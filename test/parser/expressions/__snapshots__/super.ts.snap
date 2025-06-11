@@ -1,0 +1,4212 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - Super > Expressions - Super (pass) > class C { constructor() {new super.x; } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 39,
+            "key": {
+              "end": 21,
+              "name": "constructor",
+              "range": [
+                10,
+                21,
+              ],
+              "start": 10,
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "range": [
+              10,
+              39,
+            ],
+            "start": 10,
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "end": 37,
+                    "expression": {
+                      "arguments": [],
+                      "callee": {
+                        "computed": false,
+                        "end": 36,
+                        "object": {
+                          "end": 34,
+                          "range": [
+                            29,
+                            34,
+                          ],
+                          "start": 29,
+                          "type": "Super",
+                        },
+                        "property": {
+                          "end": 36,
+                          "name": "x",
+                          "range": [
+                            35,
+                            36,
+                          ],
+                          "start": 35,
+                          "type": "Identifier",
+                        },
+                        "range": [
+                          29,
+                          36,
+                        ],
+                        "start": 29,
+                        "type": "MemberExpression",
+                      },
+                      "end": 36,
+                      "range": [
+                        25,
+                        36,
+                      ],
+                      "start": 25,
+                      "type": "NewExpression",
+                    },
+                    "range": [
+                      25,
+                      37,
+                    ],
+                    "start": 25,
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "end": 39,
+                "range": [
+                  24,
+                  39,
+                ],
+                "start": 24,
+                "type": "BlockStatement",
+              },
+              "end": 39,
+              "generator": false,
+              "id": null,
+              "params": [],
+              "range": [
+                21,
+                39,
+              ],
+              "start": 21,
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "end": 41,
+        "range": [
+          8,
+          41,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "end": 41,
+      "id": {
+        "end": 7,
+        "name": "C",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        41,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 41,
+  "range": [
+    0,
+    41,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x { constructor(){ return () => () => super.foo; }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "async": false,
+                      "body": {
+                        "async": false,
+                        "body": {
+                          "computed": false,
+                          "object": {
+                            "type": "Super",
+                          },
+                          "property": {
+                            "name": "foo",
+                            "type": "Identifier",
+                          },
+                          "type": "MemberExpression",
+                        },
+                        "expression": true,
+                        "generator": false,
+                        "params": [],
+                        "type": "ArrowFunctionExpression",
+                      },
+                      "expression": true,
+                      "generator": false,
+                      "params": [],
+                      "type": "ArrowFunctionExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x { constructor(){ return () => super.foo; }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "async": false,
+                      "body": {
+                        "computed": false,
+                        "object": {
+                          "type": "Super",
+                        },
+                        "property": {
+                          "name": "foo",
+                          "type": "Identifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "expression": true,
+                      "generator": false,
+                      "params": [],
+                      "type": "ArrowFunctionExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x { constructor(){ super.foo; }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 37,
+            "key": {
+              "end": 21,
+              "name": "constructor",
+              "range": [
+                10,
+                21,
+              ],
+              "start": 10,
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "range": [
+              10,
+              37,
+            ],
+            "start": 10,
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "end": 35,
+                    "expression": {
+                      "computed": false,
+                      "end": 34,
+                      "object": {
+                        "end": 30,
+                        "range": [
+                          25,
+                          30,
+                        ],
+                        "start": 25,
+                        "type": "Super",
+                      },
+                      "property": {
+                        "end": 34,
+                        "name": "foo",
+                        "range": [
+                          31,
+                          34,
+                        ],
+                        "start": 31,
+                        "type": "Identifier",
+                      },
+                      "range": [
+                        25,
+                        34,
+                      ],
+                      "start": 25,
+                      "type": "MemberExpression",
+                    },
+                    "range": [
+                      25,
+                      35,
+                    ],
+                    "start": 25,
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "end": 37,
+                "range": [
+                  23,
+                  37,
+                ],
+                "start": 23,
+                "type": "BlockStatement",
+              },
+              "end": 37,
+              "generator": false,
+              "id": null,
+              "params": [],
+              "range": [
+                21,
+                37,
+              ],
+              "start": 21,
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "end": 38,
+        "range": [
+          8,
+          38,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "end": 38,
+      "id": {
+        "end": 7,
+        "name": "x",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        38,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 38,
+  "range": [
+    0,
+    38,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x { constructor(){ super[foo]; }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 38,
+            "key": {
+              "end": 21,
+              "name": "constructor",
+              "range": [
+                10,
+                21,
+              ],
+              "start": 10,
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "range": [
+              10,
+              38,
+            ],
+            "start": 10,
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "end": 36,
+                    "expression": {
+                      "computed": true,
+                      "end": 35,
+                      "object": {
+                        "end": 30,
+                        "range": [
+                          25,
+                          30,
+                        ],
+                        "start": 25,
+                        "type": "Super",
+                      },
+                      "property": {
+                        "end": 34,
+                        "name": "foo",
+                        "range": [
+                          31,
+                          34,
+                        ],
+                        "start": 31,
+                        "type": "Identifier",
+                      },
+                      "range": [
+                        25,
+                        35,
+                      ],
+                      "start": 25,
+                      "type": "MemberExpression",
+                    },
+                    "range": [
+                      25,
+                      36,
+                    ],
+                    "start": 25,
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "end": 38,
+                "range": [
+                  23,
+                  38,
+                ],
+                "start": 23,
+                "type": "BlockStatement",
+              },
+              "end": 38,
+              "generator": false,
+              "id": null,
+              "params": [],
+              "range": [
+                21,
+                38,
+              ],
+              "start": 21,
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "end": 39,
+        "range": [
+          8,
+          39,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "end": 39,
+      "id": {
+        "end": 7,
+        "name": "x",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        39,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 39,
+  "range": [
+    0,
+    39,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x { dsda(){ return (a=super.foo) => a; }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "dsda",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "async": false,
+                      "body": {
+                        "name": "a",
+                        "type": "Identifier",
+                      },
+                      "expression": true,
+                      "generator": false,
+                      "params": [
+                        {
+                          "left": {
+                            "name": "a",
+                            "type": "Identifier",
+                          },
+                          "right": {
+                            "computed": false,
+                            "object": {
+                              "type": "Super",
+                            },
+                            "property": {
+                              "name": "foo",
+                              "type": "Identifier",
+                            },
+                            "type": "MemberExpression",
+                          },
+                          "type": "AssignmentPattern",
+                        },
+                      ],
+                      "type": "ArrowFunctionExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x { fo(){ return () => super.foo; }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "fo",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "async": false,
+                      "body": {
+                        "computed": false,
+                        "object": {
+                          "type": "Super",
+                        },
+                        "property": {
+                          "name": "foo",
+                          "type": "Identifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "expression": true,
+                      "generator": false,
+                      "params": [],
+                      "type": "ArrowFunctionExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x { foo(){ super.foo; }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "computed": false,
+                      "object": {
+                        "type": "Super",
+                      },
+                      "property": {
+                        "name": "foo",
+                        "type": "Identifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x { foo(){ super[foo]; }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "computed": true,
+                      "object": {
+                        "type": "Super",
+                      },
+                      "property": {
+                        "name": "foo",
+                        "type": "Identifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x { foo(x=super.foo){ }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "left": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "computed": false,
+                    "object": {
+                      "type": "Super",
+                    },
+                    "property": {
+                      "name": "foo",
+                      "type": "Identifier",
+                    },
+                    "type": "MemberExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x { foo(x=super[foo]){ }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "left": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "computed": true,
+                    "object": {
+                      "type": "Super",
+                    },
+                    "property": {
+                      "name": "foo",
+                      "type": "Identifier",
+                    },
+                    "type": "MemberExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [],
+        "end": 21,
+        "range": [
+          18,
+          21,
+        ],
+        "start": 18,
+        "type": "ClassBody",
+      },
+      "end": 21,
+      "id": {
+        "end": 7,
+        "name": "x",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        21,
+      ],
+      "start": 0,
+      "superClass": {
+        "end": 17,
+        "name": "y",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 21,
+  "range": [
+    0,
+    21,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { a = () => { super.a(); }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "decorators": [],
+            "end": 44,
+            "key": {
+              "end": 21,
+              "name": "a",
+              "range": [
+                20,
+                21,
+              ],
+              "start": 20,
+              "type": "Identifier",
+            },
+            "range": [
+              20,
+              44,
+            ],
+            "start": 20,
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "end": 42,
+                    "expression": {
+                      "arguments": [],
+                      "callee": {
+                        "computed": false,
+                        "end": 39,
+                        "object": {
+                          "end": 37,
+                          "range": [
+                            32,
+                            37,
+                          ],
+                          "start": 32,
+                          "type": "Super",
+                        },
+                        "property": {
+                          "end": 39,
+                          "name": "a",
+                          "range": [
+                            38,
+                            39,
+                          ],
+                          "start": 38,
+                          "type": "Identifier",
+                        },
+                        "range": [
+                          32,
+                          39,
+                        ],
+                        "start": 32,
+                        "type": "MemberExpression",
+                      },
+                      "end": 41,
+                      "range": [
+                        32,
+                        41,
+                      ],
+                      "start": 32,
+                      "type": "CallExpression",
+                    },
+                    "range": [
+                      32,
+                      42,
+                    ],
+                    "start": 32,
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "end": 44,
+                "range": [
+                  30,
+                  44,
+                ],
+                "start": 30,
+                "type": "BlockStatement",
+              },
+              "end": 44,
+              "expression": false,
+              "generator": false,
+              "params": [],
+              "range": [
+                24,
+                44,
+              ],
+              "start": 24,
+              "type": "ArrowFunctionExpression",
+            },
+          },
+        ],
+        "end": 45,
+        "range": [
+          18,
+          45,
+        ],
+        "start": 18,
+        "type": "ClassBody",
+      },
+      "decorators": [],
+      "end": 45,
+      "id": {
+        "end": 7,
+        "name": "x",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        45,
+      ],
+      "start": 0,
+      "superClass": {
+        "end": 17,
+        "name": "y",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 45,
+  "range": [
+    0,
+    45,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { a = () => super.a(); } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "decorators": [],
+            "end": 40,
+            "key": {
+              "end": 21,
+              "name": "a",
+              "range": [
+                20,
+                21,
+              ],
+              "start": 20,
+              "type": "Identifier",
+            },
+            "range": [
+              20,
+              40,
+            ],
+            "start": 20,
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "arguments": [],
+                "callee": {
+                  "computed": false,
+                  "end": 37,
+                  "object": {
+                    "end": 35,
+                    "range": [
+                      30,
+                      35,
+                    ],
+                    "start": 30,
+                    "type": "Super",
+                  },
+                  "property": {
+                    "end": 37,
+                    "name": "a",
+                    "range": [
+                      36,
+                      37,
+                    ],
+                    "start": 36,
+                    "type": "Identifier",
+                  },
+                  "range": [
+                    30,
+                    37,
+                  ],
+                  "start": 30,
+                  "type": "MemberExpression",
+                },
+                "end": 39,
+                "range": [
+                  30,
+                  39,
+                ],
+                "start": 30,
+                "type": "CallExpression",
+              },
+              "end": 39,
+              "expression": true,
+              "generator": false,
+              "params": [],
+              "range": [
+                24,
+                39,
+              ],
+              "start": 24,
+              "type": "ArrowFunctionExpression",
+            },
+          },
+        ],
+        "end": 42,
+        "range": [
+          18,
+          42,
+        ],
+        "start": 18,
+        "type": "ClassBody",
+      },
+      "decorators": [],
+      "end": 42,
+      "id": {
+        "end": 7,
+        "name": "x",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        42,
+      ],
+      "start": 0,
+      "superClass": {
+        "end": 17,
+        "name": "y",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 42,
+  "range": [
+    0,
+    42,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { a = async () => { await super.a(); }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "decorators": [],
+            "end": 56,
+            "key": {
+              "end": 21,
+              "name": "a",
+              "range": [
+                20,
+                21,
+              ],
+              "start": 20,
+              "type": "Identifier",
+            },
+            "range": [
+              20,
+              56,
+            ],
+            "start": 20,
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "async": true,
+              "body": {
+                "body": [
+                  {
+                    "end": 54,
+                    "expression": {
+                      "argument": {
+                        "arguments": [],
+                        "callee": {
+                          "computed": false,
+                          "end": 51,
+                          "object": {
+                            "end": 49,
+                            "range": [
+                              44,
+                              49,
+                            ],
+                            "start": 44,
+                            "type": "Super",
+                          },
+                          "property": {
+                            "end": 51,
+                            "name": "a",
+                            "range": [
+                              50,
+                              51,
+                            ],
+                            "start": 50,
+                            "type": "Identifier",
+                          },
+                          "range": [
+                            44,
+                            51,
+                          ],
+                          "start": 44,
+                          "type": "MemberExpression",
+                        },
+                        "end": 53,
+                        "range": [
+                          44,
+                          53,
+                        ],
+                        "start": 44,
+                        "type": "CallExpression",
+                      },
+                      "end": 53,
+                      "range": [
+                        38,
+                        53,
+                      ],
+                      "start": 38,
+                      "type": "AwaitExpression",
+                    },
+                    "range": [
+                      38,
+                      54,
+                    ],
+                    "start": 38,
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "end": 56,
+                "range": [
+                  36,
+                  56,
+                ],
+                "start": 36,
+                "type": "BlockStatement",
+              },
+              "end": 56,
+              "expression": false,
+              "generator": false,
+              "params": [],
+              "range": [
+                24,
+                56,
+              ],
+              "start": 24,
+              "type": "ArrowFunctionExpression",
+            },
+          },
+        ],
+        "end": 57,
+        "range": [
+          18,
+          57,
+        ],
+        "start": 18,
+        "type": "ClassBody",
+      },
+      "decorators": [],
+      "end": 57,
+      "id": {
+        "end": 7,
+        "name": "x",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        57,
+      ],
+      "start": 0,
+      "superClass": {
+        "end": 17,
+        "name": "y",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 57,
+  "range": [
+    0,
+    57,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { a = async () => await super.a(); } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "decorators": [],
+            "end": 52,
+            "key": {
+              "end": 21,
+              "name": "a",
+              "range": [
+                20,
+                21,
+              ],
+              "start": 20,
+              "type": "Identifier",
+            },
+            "range": [
+              20,
+              52,
+            ],
+            "start": 20,
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "async": true,
+              "body": {
+                "argument": {
+                  "arguments": [],
+                  "callee": {
+                    "computed": false,
+                    "end": 49,
+                    "object": {
+                      "end": 47,
+                      "range": [
+                        42,
+                        47,
+                      ],
+                      "start": 42,
+                      "type": "Super",
+                    },
+                    "property": {
+                      "end": 49,
+                      "name": "a",
+                      "range": [
+                        48,
+                        49,
+                      ],
+                      "start": 48,
+                      "type": "Identifier",
+                    },
+                    "range": [
+                      42,
+                      49,
+                    ],
+                    "start": 42,
+                    "type": "MemberExpression",
+                  },
+                  "end": 51,
+                  "range": [
+                    42,
+                    51,
+                  ],
+                  "start": 42,
+                  "type": "CallExpression",
+                },
+                "end": 51,
+                "range": [
+                  36,
+                  51,
+                ],
+                "start": 36,
+                "type": "AwaitExpression",
+              },
+              "end": 51,
+              "expression": true,
+              "generator": false,
+              "params": [],
+              "range": [
+                24,
+                51,
+              ],
+              "start": 24,
+              "type": "ArrowFunctionExpression",
+            },
+          },
+        ],
+        "end": 54,
+        "range": [
+          18,
+          54,
+        ],
+        "start": 18,
+        "type": "ClassBody",
+      },
+      "decorators": [],
+      "end": 54,
+      "id": {
+        "end": 7,
+        "name": "x",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        54,
+      ],
+      "start": 0,
+      "superClass": {
+        "end": 17,
+        "name": "y",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 54,
+  "range": [
+    0,
+    54,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor() { } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor() { f(x); super(); } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "arguments": [
+                        {
+                          "name": "x",
+                          "type": "Identifier",
+                        },
+                      ],
+                      "callee": {
+                        "name": "f",
+                        "type": "Identifier",
+                      },
+                      "type": "CallExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                  {
+                    "expression": {
+                      "arguments": [],
+                      "callee": {
+                        "type": "Super",
+                      },
+                      "type": "CallExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor() { let xx = x + x; super(); } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "declarations": [
+                      {
+                        "id": {
+                          "name": "xx",
+                          "type": "Identifier",
+                        },
+                        "init": {
+                          "left": {
+                            "name": "x",
+                            "type": "Identifier",
+                          },
+                          "operator": "+",
+                          "right": {
+                            "name": "x",
+                            "type": "Identifier",
+                          },
+                          "type": "BinaryExpression",
+                        },
+                        "type": "VariableDeclarator",
+                      },
+                    ],
+                    "kind": "let",
+                    "type": "VariableDeclaration",
+                  },
+                  {
+                    "expression": {
+                      "arguments": [],
+                      "callee": {
+                        "type": "Super",
+                      },
+                      "type": "CallExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor() { log(super.foo); super(); } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "arguments": [
+                        {
+                          "computed": false,
+                          "object": {
+                            "type": "Super",
+                          },
+                          "property": {
+                            "name": "foo",
+                            "type": "Identifier",
+                          },
+                          "type": "MemberExpression",
+                        },
+                      ],
+                      "callee": {
+                        "name": "log",
+                        "type": "Identifier",
+                      },
+                      "type": "CallExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                  {
+                    "expression": {
+                      "arguments": [],
+                      "callee": {
+                        "type": "Super",
+                      },
+                      "type": "CallExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor() { log(this); super(); } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 57,
+            "key": {
+              "end": 31,
+              "name": "constructor",
+              "range": [
+                20,
+                31,
+              ],
+              "start": 20,
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "range": [
+              20,
+              57,
+            ],
+            "start": 20,
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "end": 46,
+                    "expression": {
+                      "arguments": [
+                        {
+                          "end": 44,
+                          "range": [
+                            40,
+                            44,
+                          ],
+                          "start": 40,
+                          "type": "ThisExpression",
+                        },
+                      ],
+                      "callee": {
+                        "end": 39,
+                        "name": "log",
+                        "range": [
+                          36,
+                          39,
+                        ],
+                        "start": 36,
+                        "type": "Identifier",
+                      },
+                      "end": 45,
+                      "range": [
+                        36,
+                        45,
+                      ],
+                      "start": 36,
+                      "type": "CallExpression",
+                    },
+                    "range": [
+                      36,
+                      46,
+                    ],
+                    "start": 36,
+                    "type": "ExpressionStatement",
+                  },
+                  {
+                    "end": 55,
+                    "expression": {
+                      "arguments": [],
+                      "callee": {
+                        "end": 52,
+                        "range": [
+                          47,
+                          52,
+                        ],
+                        "start": 47,
+                        "type": "Super",
+                      },
+                      "end": 54,
+                      "range": [
+                        47,
+                        54,
+                      ],
+                      "start": 47,
+                      "type": "CallExpression",
+                    },
+                    "range": [
+                      47,
+                      55,
+                    ],
+                    "start": 47,
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "end": 57,
+                "range": [
+                  34,
+                  57,
+                ],
+                "start": 34,
+                "type": "BlockStatement",
+              },
+              "end": 57,
+              "generator": false,
+              "id": null,
+              "params": [],
+              "range": [
+                31,
+                57,
+              ],
+              "start": 31,
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "end": 59,
+        "range": [
+          18,
+          59,
+        ],
+        "start": 18,
+        "type": "ClassBody",
+      },
+      "end": 59,
+      "id": {
+        "end": 7,
+        "name": "x",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        59,
+      ],
+      "start": 0,
+      "superClass": {
+        "end": 17,
+        "name": "y",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 59,
+  "range": [
+    0,
+    59,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor() { super(); } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "arguments": [],
+                      "callee": {
+                        "type": "Super",
+                      },
+                      "type": "CallExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor() { super(); super(); } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 55,
+            "key": {
+              "end": 31,
+              "name": "constructor",
+              "range": [
+                20,
+                31,
+              ],
+              "start": 20,
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "range": [
+              20,
+              55,
+            ],
+            "start": 20,
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "end": 44,
+                    "expression": {
+                      "arguments": [],
+                      "callee": {
+                        "end": 41,
+                        "range": [
+                          36,
+                          41,
+                        ],
+                        "start": 36,
+                        "type": "Super",
+                      },
+                      "end": 43,
+                      "range": [
+                        36,
+                        43,
+                      ],
+                      "start": 36,
+                      "type": "CallExpression",
+                    },
+                    "range": [
+                      36,
+                      44,
+                    ],
+                    "start": 36,
+                    "type": "ExpressionStatement",
+                  },
+                  {
+                    "end": 53,
+                    "expression": {
+                      "arguments": [],
+                      "callee": {
+                        "end": 50,
+                        "range": [
+                          45,
+                          50,
+                        ],
+                        "start": 45,
+                        "type": "Super",
+                      },
+                      "end": 52,
+                      "range": [
+                        45,
+                        52,
+                      ],
+                      "start": 45,
+                      "type": "CallExpression",
+                    },
+                    "range": [
+                      45,
+                      53,
+                    ],
+                    "start": 45,
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "end": 55,
+                "range": [
+                  34,
+                  55,
+                ],
+                "start": 34,
+                "type": "BlockStatement",
+              },
+              "end": 55,
+              "generator": false,
+              "id": null,
+              "params": [],
+              "range": [
+                31,
+                55,
+              ],
+              "start": 31,
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "end": 57,
+        "range": [
+          18,
+          57,
+        ],
+        "start": 18,
+        "type": "ClassBody",
+      },
+      "end": 57,
+      "id": {
+        "end": 7,
+        "name": "x",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        57,
+      ],
+      "start": 0,
+      "superClass": {
+        "end": 17,
+        "name": "y",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 57,
+  "range": [
+    0,
+    57,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor() { super(this); } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "arguments": [
+                        {
+                          "type": "ThisExpression",
+                        },
+                      ],
+                      "callee": {
+                        "type": "Super",
+                      },
+                      "type": "CallExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor(){ return () => () => super(); }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "async": false,
+                      "body": {
+                        "async": false,
+                        "body": {
+                          "arguments": [],
+                          "callee": {
+                            "type": "Super",
+                          },
+                          "type": "CallExpression",
+                        },
+                        "expression": true,
+                        "generator": false,
+                        "params": [],
+                        "type": "ArrowFunctionExpression",
+                      },
+                      "expression": true,
+                      "generator": false,
+                      "params": [],
+                      "type": "ArrowFunctionExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor(){ return () => () => super.foo; }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 66,
+            "key": {
+              "end": 31,
+              "name": "constructor",
+              "range": [
+                20,
+                31,
+              ],
+              "start": 20,
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "range": [
+              20,
+              66,
+            ],
+            "start": 20,
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "async": false,
+                      "body": {
+                        "async": false,
+                        "body": {
+                          "computed": false,
+                          "end": 63,
+                          "object": {
+                            "end": 59,
+                            "range": [
+                              54,
+                              59,
+                            ],
+                            "start": 54,
+                            "type": "Super",
+                          },
+                          "property": {
+                            "end": 63,
+                            "name": "foo",
+                            "range": [
+                              60,
+                              63,
+                            ],
+                            "start": 60,
+                            "type": "Identifier",
+                          },
+                          "range": [
+                            54,
+                            63,
+                          ],
+                          "start": 54,
+                          "type": "MemberExpression",
+                        },
+                        "end": 63,
+                        "expression": true,
+                        "generator": false,
+                        "params": [],
+                        "range": [
+                          48,
+                          63,
+                        ],
+                        "start": 48,
+                        "type": "ArrowFunctionExpression",
+                      },
+                      "end": 63,
+                      "expression": true,
+                      "generator": false,
+                      "params": [],
+                      "range": [
+                        42,
+                        63,
+                      ],
+                      "start": 42,
+                      "type": "ArrowFunctionExpression",
+                    },
+                    "end": 64,
+                    "range": [
+                      35,
+                      64,
+                    ],
+                    "start": 35,
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "end": 66,
+                "range": [
+                  33,
+                  66,
+                ],
+                "start": 33,
+                "type": "BlockStatement",
+              },
+              "end": 66,
+              "generator": false,
+              "id": null,
+              "params": [],
+              "range": [
+                31,
+                66,
+              ],
+              "start": 31,
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "end": 67,
+        "range": [
+          18,
+          67,
+        ],
+        "start": 18,
+        "type": "ClassBody",
+      },
+      "end": 67,
+      "id": {
+        "end": 7,
+        "name": "x",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        67,
+      ],
+      "start": 0,
+      "superClass": {
+        "end": 17,
+        "name": "y",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 67,
+  "range": [
+    0,
+    67,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor(){ return () => super(); }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "async": false,
+                      "body": {
+                        "arguments": [],
+                        "callee": {
+                          "type": "Super",
+                        },
+                        "type": "CallExpression",
+                      },
+                      "expression": true,
+                      "generator": false,
+                      "params": [],
+                      "type": "ArrowFunctionExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor(){ return () => super.foo; }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "async": false,
+                      "body": {
+                        "computed": false,
+                        "object": {
+                          "type": "Super",
+                        },
+                        "property": {
+                          "name": "foo",
+                          "type": "Identifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "expression": true,
+                      "generator": false,
+                      "params": [],
+                      "type": "ArrowFunctionExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor(){ return () => super[foo]; }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "async": false,
+                      "body": {
+                        "computed": true,
+                        "object": {
+                          "type": "Super",
+                        },
+                        "property": {
+                          "name": "foo",
+                          "type": "Identifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "expression": true,
+                      "generator": false,
+                      "params": [],
+                      "type": "ArrowFunctionExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor(){ return (a=super()) => a; }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "async": false,
+                      "body": {
+                        "name": "a",
+                        "type": "Identifier",
+                      },
+                      "expression": true,
+                      "generator": false,
+                      "params": [
+                        {
+                          "left": {
+                            "name": "a",
+                            "type": "Identifier",
+                          },
+                          "right": {
+                            "arguments": [],
+                            "callee": {
+                              "type": "Super",
+                            },
+                            "type": "CallExpression",
+                          },
+                          "type": "AssignmentPattern",
+                        },
+                      ],
+                      "type": "ArrowFunctionExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor(){ return (a=super.foo) => a; }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "async": false,
+                      "body": {
+                        "name": "a",
+                        "type": "Identifier",
+                      },
+                      "expression": true,
+                      "generator": false,
+                      "params": [
+                        {
+                          "left": {
+                            "name": "a",
+                            "type": "Identifier",
+                          },
+                          "right": {
+                            "computed": false,
+                            "object": {
+                              "type": "Super",
+                            },
+                            "property": {
+                              "name": "foo",
+                              "type": "Identifier",
+                            },
+                            "type": "MemberExpression",
+                          },
+                          "type": "AssignmentPattern",
+                        },
+                      ],
+                      "type": "ArrowFunctionExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor(){ return (a=super.foo) => a; }} 2`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 63,
+            "key": {
+              "end": 31,
+              "name": "constructor",
+              "range": [
+                20,
+                31,
+              ],
+              "start": 20,
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "range": [
+              20,
+              63,
+            ],
+            "start": 20,
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "async": false,
+                      "body": {
+                        "end": 60,
+                        "name": "a",
+                        "range": [
+                          59,
+                          60,
+                        ],
+                        "start": 59,
+                        "type": "Identifier",
+                      },
+                      "end": 60,
+                      "expression": true,
+                      "generator": false,
+                      "params": [
+                        {
+                          "end": 54,
+                          "left": {
+                            "end": 44,
+                            "name": "a",
+                            "range": [
+                              43,
+                              44,
+                            ],
+                            "start": 43,
+                            "type": "Identifier",
+                          },
+                          "range": [
+                            43,
+                            54,
+                          ],
+                          "right": {
+                            "computed": false,
+                            "end": 54,
+                            "object": {
+                              "end": 50,
+                              "range": [
+                                45,
+                                50,
+                              ],
+                              "start": 45,
+                              "type": "Super",
+                            },
+                            "property": {
+                              "end": 54,
+                              "name": "foo",
+                              "range": [
+                                51,
+                                54,
+                              ],
+                              "start": 51,
+                              "type": "Identifier",
+                            },
+                            "range": [
+                              45,
+                              54,
+                            ],
+                            "start": 45,
+                            "type": "MemberExpression",
+                          },
+                          "start": 43,
+                          "type": "AssignmentPattern",
+                        },
+                      ],
+                      "range": [
+                        42,
+                        60,
+                      ],
+                      "start": 42,
+                      "type": "ArrowFunctionExpression",
+                    },
+                    "end": 61,
+                    "range": [
+                      35,
+                      61,
+                    ],
+                    "start": 35,
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "end": 63,
+                "range": [
+                  33,
+                  63,
+                ],
+                "start": 33,
+                "type": "BlockStatement",
+              },
+              "end": 63,
+              "generator": false,
+              "id": null,
+              "params": [],
+              "range": [
+                31,
+                63,
+              ],
+              "start": 31,
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "end": 64,
+        "range": [
+          18,
+          64,
+        ],
+        "start": 18,
+        "type": "ClassBody",
+      },
+      "end": 64,
+      "id": {
+        "end": 7,
+        "name": "x",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        64,
+      ],
+      "start": 0,
+      "superClass": {
+        "end": 17,
+        "name": "y",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 64,
+  "range": [
+    0,
+    64,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor(x = super()) { } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "left": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "arguments": [],
+                    "callee": {
+                      "type": "Super",
+                    },
+                    "type": "CallExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor(x = super(), y = this) { } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "left": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "arguments": [],
+                    "callee": {
+                      "type": "Super",
+                    },
+                    "type": "CallExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+                {
+                  "left": {
+                    "name": "y",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "type": "ThisExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { constructor(x = this) { super(); } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "arguments": [],
+                      "callee": {
+                        "type": "Super",
+                      },
+                      "type": "CallExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "left": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "type": "ThisExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { dsda(){ return (a=super.foo) => a; }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "dsda",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "async": false,
+                      "body": {
+                        "name": "a",
+                        "type": "Identifier",
+                      },
+                      "expression": true,
+                      "generator": false,
+                      "params": [
+                        {
+                          "left": {
+                            "name": "a",
+                            "type": "Identifier",
+                          },
+                          "right": {
+                            "computed": false,
+                            "object": {
+                              "type": "Super",
+                            },
+                            "property": {
+                              "name": "foo",
+                              "type": "Identifier",
+                            },
+                            "type": "MemberExpression",
+                          },
+                          "type": "AssignmentPattern",
+                        },
+                      ],
+                      "type": "ArrowFunctionExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { f(){} } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 25,
+            "key": {
+              "end": 21,
+              "name": "f",
+              "range": [
+                20,
+                21,
+              ],
+              "start": 20,
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "range": [
+              20,
+              25,
+            ],
+            "start": 20,
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "end": 25,
+                "range": [
+                  23,
+                  25,
+                ],
+                "start": 23,
+                "type": "BlockStatement",
+              },
+              "end": 25,
+              "generator": false,
+              "id": null,
+              "params": [],
+              "range": [
+                21,
+                25,
+              ],
+              "start": 21,
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "end": 27,
+        "range": [
+          18,
+          27,
+        ],
+        "start": 18,
+        "type": "ClassBody",
+      },
+      "end": 27,
+      "id": {
+        "end": 7,
+        "name": "x",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        27,
+      ],
+      "start": 0,
+      "superClass": {
+        "end": 17,
+        "name": "y",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 27,
+  "range": [
+    0,
+    27,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { foo(){ return () => () => super.foo; }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "async": false,
+                      "body": {
+                        "async": false,
+                        "body": {
+                          "computed": false,
+                          "object": {
+                            "type": "Super",
+                          },
+                          "property": {
+                            "name": "foo",
+                            "type": "Identifier",
+                          },
+                          "type": "MemberExpression",
+                        },
+                        "expression": true,
+                        "generator": false,
+                        "params": [],
+                        "type": "ArrowFunctionExpression",
+                      },
+                      "expression": true,
+                      "generator": false,
+                      "params": [],
+                      "type": "ArrowFunctionExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { static properties = { ...super.constructor.properties }; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "decorators": [],
+            "end": 76,
+            "key": {
+              "end": 37,
+              "name": "properties",
+              "range": [
+                27,
+                37,
+              ],
+              "start": 27,
+              "type": "Identifier",
+            },
+            "range": [
+              27,
+              76,
+            ],
+            "start": 27,
+            "static": true,
+            "type": "PropertyDefinition",
+            "value": {
+              "end": 75,
+              "properties": [
+                {
+                  "argument": {
+                    "computed": false,
+                    "end": 73,
+                    "object": {
+                      "computed": false,
+                      "end": 62,
+                      "object": {
+                        "end": 50,
+                        "range": [
+                          45,
+                          50,
+                        ],
+                        "start": 45,
+                        "type": "Super",
+                      },
+                      "property": {
+                        "end": 62,
+                        "name": "constructor",
+                        "range": [
+                          51,
+                          62,
+                        ],
+                        "start": 51,
+                        "type": "Identifier",
+                      },
+                      "range": [
+                        45,
+                        62,
+                      ],
+                      "start": 45,
+                      "type": "MemberExpression",
+                    },
+                    "property": {
+                      "end": 73,
+                      "name": "properties",
+                      "range": [
+                        63,
+                        73,
+                      ],
+                      "start": 63,
+                      "type": "Identifier",
+                    },
+                    "range": [
+                      45,
+                      73,
+                    ],
+                    "start": 45,
+                    "type": "MemberExpression",
+                  },
+                  "end": 73,
+                  "range": [
+                    42,
+                    73,
+                  ],
+                  "start": 42,
+                  "type": "SpreadElement",
+                },
+              ],
+              "range": [
+                40,
+                75,
+              ],
+              "start": 40,
+              "type": "ObjectExpression",
+            },
+          },
+        ],
+        "end": 78,
+        "range": [
+          18,
+          78,
+        ],
+        "start": 18,
+        "type": "ClassBody",
+      },
+      "decorators": [],
+      "end": 78,
+      "id": {
+        "end": 7,
+        "name": "x",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        78,
+      ],
+      "start": 0,
+      "superClass": {
+        "end": 17,
+        "name": "y",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 78,
+  "range": [
+    0,
+    78,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > x={ dsda(){ return (a=super.foo) => a; }} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "dsda",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": true,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "async": false,
+                "body": {
+                  "body": [
+                    {
+                      "argument": {
+                        "async": false,
+                        "body": {
+                          "name": "a",
+                          "type": "Identifier",
+                        },
+                        "expression": true,
+                        "generator": false,
+                        "params": [
+                          {
+                            "left": {
+                              "name": "a",
+                              "type": "Identifier",
+                            },
+                            "right": {
+                              "computed": false,
+                              "object": {
+                                "type": "Super",
+                              },
+                              "property": {
+                                "name": "foo",
+                                "type": "Identifier",
+                              },
+                              "type": "MemberExpression",
+                            },
+                            "type": "AssignmentPattern",
+                          },
+                        ],
+                        "type": "ArrowFunctionExpression",
+                      },
+                      "type": "ReturnStatement",
+                    },
+                  ],
+                  "type": "BlockStatement",
+                },
+                "generator": false,
+                "id": null,
+                "params": [],
+                "type": "FunctionExpression",
+              },
+            },
+          ],
+          "type": "ObjectExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > x={ fo(){ return () => super.foo; }} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "fo",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": true,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "async": false,
+                "body": {
+                  "body": [
+                    {
+                      "argument": {
+                        "async": false,
+                        "body": {
+                          "computed": false,
+                          "object": {
+                            "type": "Super",
+                          },
+                          "property": {
+                            "name": "foo",
+                            "type": "Identifier",
+                          },
+                          "type": "MemberExpression",
+                        },
+                        "expression": true,
+                        "generator": false,
+                        "params": [],
+                        "type": "ArrowFunctionExpression",
+                      },
+                      "type": "ReturnStatement",
+                    },
+                  ],
+                  "type": "BlockStatement",
+                },
+                "generator": false,
+                "id": null,
+                "params": [],
+                "type": "FunctionExpression",
+              },
+            },
+          ],
+          "type": "ObjectExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > x={ foo(){ return () => () => super.foo; }} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "foo",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": true,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "async": false,
+                "body": {
+                  "body": [
+                    {
+                      "argument": {
+                        "async": false,
+                        "body": {
+                          "async": false,
+                          "body": {
+                            "computed": false,
+                            "object": {
+                              "type": "Super",
+                            },
+                            "property": {
+                              "name": "foo",
+                              "type": "Identifier",
+                            },
+                            "type": "MemberExpression",
+                          },
+                          "expression": true,
+                          "generator": false,
+                          "params": [],
+                          "type": "ArrowFunctionExpression",
+                        },
+                        "expression": true,
+                        "generator": false,
+                        "params": [],
+                        "type": "ArrowFunctionExpression",
+                      },
+                      "type": "ReturnStatement",
+                    },
+                  ],
+                  "type": "BlockStatement",
+                },
+                "generator": false,
+                "id": null,
+                "params": [],
+                "type": "FunctionExpression",
+              },
+            },
+          ],
+          "type": "ObjectExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > x={ foo(){ super.foo; }} 1`] = `
+{
+  "body": [
+    {
+      "end": 24,
+      "expression": {
+        "end": 24,
+        "left": {
+          "end": 1,
+          "name": "x",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "range": [
+          0,
+          24,
+        ],
+        "right": {
+          "end": 24,
+          "properties": [
+            {
+              "computed": false,
+              "end": 23,
+              "key": {
+                "end": 7,
+                "name": "foo",
+                "range": [
+                  4,
+                  7,
+                ],
+                "start": 4,
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": true,
+              "range": [
+                4,
+                23,
+              ],
+              "shorthand": false,
+              "start": 4,
+              "type": "Property",
+              "value": {
+                "async": false,
+                "body": {
+                  "body": [
+                    {
+                      "end": 21,
+                      "expression": {
+                        "computed": false,
+                        "end": 20,
+                        "object": {
+                          "end": 16,
+                          "range": [
+                            11,
+                            16,
+                          ],
+                          "start": 11,
+                          "type": "Super",
+                        },
+                        "property": {
+                          "end": 20,
+                          "name": "foo",
+                          "range": [
+                            17,
+                            20,
+                          ],
+                          "start": 17,
+                          "type": "Identifier",
+                        },
+                        "range": [
+                          11,
+                          20,
+                        ],
+                        "start": 11,
+                        "type": "MemberExpression",
+                      },
+                      "range": [
+                        11,
+                        21,
+                      ],
+                      "start": 11,
+                      "type": "ExpressionStatement",
+                    },
+                  ],
+                  "end": 23,
+                  "range": [
+                    9,
+                    23,
+                  ],
+                  "start": 9,
+                  "type": "BlockStatement",
+                },
+                "end": 23,
+                "generator": false,
+                "id": null,
+                "params": [],
+                "range": [
+                  7,
+                  23,
+                ],
+                "start": 7,
+                "type": "FunctionExpression",
+              },
+            },
+          ],
+          "range": [
+            2,
+            24,
+          ],
+          "start": 2,
+          "type": "ObjectExpression",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        0,
+        24,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 24,
+  "range": [
+    0,
+    24,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > x={ foo(){ super[foo]; }} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "foo",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": true,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "async": false,
+                "body": {
+                  "body": [
+                    {
+                      "expression": {
+                        "computed": true,
+                        "object": {
+                          "type": "Super",
+                        },
+                        "property": {
+                          "name": "foo",
+                          "type": "Identifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "type": "ExpressionStatement",
+                    },
+                  ],
+                  "type": "BlockStatement",
+                },
+                "generator": false,
+                "id": null,
+                "params": [],
+                "type": "FunctionExpression",
+              },
+            },
+          ],
+          "type": "ObjectExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > x={ foo(a = super.foo){ }} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "foo",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": true,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "async": false,
+                "body": {
+                  "body": [],
+                  "type": "BlockStatement",
+                },
+                "generator": false,
+                "id": null,
+                "params": [
+                  {
+                    "left": {
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                    "right": {
+                      "computed": false,
+                      "object": {
+                        "type": "Super",
+                      },
+                      "property": {
+                        "name": "foo",
+                        "type": "Identifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                ],
+                "type": "FunctionExpression",
+              },
+            },
+          ],
+          "type": "ObjectExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Super > Expressions - Super (pass) > x={ foo(a = super[foo]){ }} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "foo",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": true,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "async": false,
+                "body": {
+                  "body": [],
+                  "type": "BlockStatement",
+                },
+                "generator": false,
+                "id": null,
+                "params": [
+                  {
+                    "left": {
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                    "right": {
+                      "computed": true,
+                      "object": {
+                        "type": "Super",
+                      },
+                      "property": {
+                        "name": "foo",
+                        "type": "Identifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                ],
+                "type": "FunctionExpression",
+              },
+            },
+          ],
+          "type": "ObjectExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

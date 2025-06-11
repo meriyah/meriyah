@@ -1,0 +1,1467 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - Block > Expressions - Block (pass) > {
+  debugger;
+} 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "type": "DebuggerStatement",
+        },
+      ],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > { { var f; } var f } 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "body": [
+            {
+              "declarations": [
+                {
+                  "id": {
+                    "name": "f",
+                    "type": "Identifier",
+                  },
+                  "init": null,
+                  "type": "VariableDeclarator",
+                },
+              ],
+              "kind": "var",
+              "type": "VariableDeclaration",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        {
+          "declarations": [
+            {
+              "id": {
+                "name": "f",
+                "type": "Identifier",
+              },
+              "init": null,
+              "type": "VariableDeclarator",
+            },
+          ],
+          "kind": "var",
+          "type": "VariableDeclaration",
+        },
+      ],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > { a(); bt(); } 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "end": 6,
+          "expression": {
+            "arguments": [],
+            "callee": {
+              "end": 3,
+              "name": "a",
+              "range": [
+                2,
+                3,
+              ],
+              "start": 2,
+              "type": "Identifier",
+            },
+            "end": 5,
+            "range": [
+              2,
+              5,
+            ],
+            "start": 2,
+            "type": "CallExpression",
+          },
+          "range": [
+            2,
+            6,
+          ],
+          "start": 2,
+          "type": "ExpressionStatement",
+        },
+        {
+          "end": 12,
+          "expression": {
+            "arguments": [],
+            "callee": {
+              "end": 9,
+              "name": "bt",
+              "range": [
+                7,
+                9,
+              ],
+              "start": 7,
+              "type": "Identifier",
+            },
+            "end": 11,
+            "range": [
+              7,
+              11,
+            ],
+            "start": 7,
+            "type": "CallExpression",
+          },
+          "range": [
+            7,
+            12,
+          ],
+          "start": 7,
+          "type": "ExpressionStatement",
+        },
+      ],
+      "end": 14,
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "BlockStatement",
+    },
+  ],
+  "end": 14,
+  "range": [
+    0,
+    14,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > { async function foo() {}; }; 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "async": true,
+          "body": {
+            "body": [],
+            "end": 25,
+            "range": [
+              23,
+              25,
+            ],
+            "start": 23,
+            "type": "BlockStatement",
+          },
+          "end": 25,
+          "generator": false,
+          "id": {
+            "end": 20,
+            "name": "foo",
+            "range": [
+              17,
+              20,
+            ],
+            "start": 17,
+            "type": "Identifier",
+          },
+          "params": [],
+          "range": [
+            2,
+            25,
+          ],
+          "start": 2,
+          "type": "FunctionDeclaration",
+        },
+        {
+          "end": 26,
+          "range": [
+            25,
+            26,
+          ],
+          "start": 25,
+          "type": "EmptyStatement",
+        },
+      ],
+      "end": 28,
+      "range": [
+        0,
+        28,
+      ],
+      "start": 0,
+      "type": "BlockStatement",
+    },
+    {
+      "end": 29,
+      "range": [
+        28,
+        29,
+      ],
+      "start": 28,
+      "type": "EmptyStatement",
+    },
+  ],
+  "end": 29,
+  "range": [
+    0,
+    29,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > { foo: bar: function f(){} } 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "body": {
+            "body": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": {
+                "name": "f",
+                "type": "Identifier",
+              },
+              "params": [],
+              "type": "FunctionDeclaration",
+            },
+            "label": {
+              "name": "bar",
+              "type": "Identifier",
+            },
+            "type": "LabeledStatement",
+          },
+          "label": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "LabeledStatement",
+        },
+      ],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > { function a() {} ; function b() {} } 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "async": false,
+          "body": {
+            "body": [],
+            "end": 17,
+            "range": [
+              15,
+              17,
+            ],
+            "start": 15,
+            "type": "BlockStatement",
+          },
+          "end": 17,
+          "generator": false,
+          "id": {
+            "end": 12,
+            "name": "a",
+            "range": [
+              11,
+              12,
+            ],
+            "start": 11,
+            "type": "Identifier",
+          },
+          "params": [],
+          "range": [
+            2,
+            17,
+          ],
+          "start": 2,
+          "type": "FunctionDeclaration",
+        },
+        {
+          "end": 19,
+          "range": [
+            18,
+            19,
+          ],
+          "start": 18,
+          "type": "EmptyStatement",
+        },
+        {
+          "async": false,
+          "body": {
+            "body": [],
+            "end": 35,
+            "range": [
+              33,
+              35,
+            ],
+            "start": 33,
+            "type": "BlockStatement",
+          },
+          "end": 35,
+          "generator": false,
+          "id": {
+            "end": 30,
+            "name": "b",
+            "range": [
+              29,
+              30,
+            ],
+            "start": 29,
+            "type": "Identifier",
+          },
+          "params": [],
+          "range": [
+            20,
+            35,
+          ],
+          "start": 20,
+          "type": "FunctionDeclaration",
+        },
+      ],
+      "end": 37,
+      "range": [
+        0,
+        37,
+      ],
+      "start": 0,
+      "type": "BlockStatement",
+    },
+  ],
+  "end": 37,
+  "range": [
+    0,
+    37,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > { function f() {} ; function f() {} } 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [],
+          "type": "FunctionDeclaration",
+        },
+        {
+          "type": "EmptyStatement",
+        },
+        {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [],
+          "type": "FunctionDeclaration",
+        },
+      ],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > { let [] = y } 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "declarations": [
+            {
+              "end": 12,
+              "id": {
+                "elements": [],
+                "end": 8,
+                "range": [
+                  6,
+                  8,
+                ],
+                "start": 6,
+                "type": "ArrayPattern",
+              },
+              "init": {
+                "end": 12,
+                "name": "y",
+                "range": [
+                  11,
+                  12,
+                ],
+                "start": 11,
+                "type": "Identifier",
+              },
+              "range": [
+                6,
+                12,
+              ],
+              "start": 6,
+              "type": "VariableDeclarator",
+            },
+          ],
+          "end": 12,
+          "kind": "let",
+          "range": [
+            2,
+            12,
+          ],
+          "start": 2,
+          "type": "VariableDeclaration",
+        },
+      ],
+      "end": 14,
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "BlockStatement",
+    },
+  ],
+  "end": 14,
+  "range": [
+    0,
+    14,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > { let {x} = y } 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "declarations": [
+            {
+              "end": 13,
+              "id": {
+                "end": 9,
+                "properties": [
+                  {
+                    "computed": false,
+                    "end": 8,
+                    "key": {
+                      "end": 8,
+                      "name": "x",
+                      "range": [
+                        7,
+                        8,
+                      ],
+                      "start": 7,
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "range": [
+                      7,
+                      8,
+                    ],
+                    "shorthand": true,
+                    "start": 7,
+                    "type": "Property",
+                    "value": {
+                      "end": 8,
+                      "name": "x",
+                      "range": [
+                        7,
+                        8,
+                      ],
+                      "start": 7,
+                      "type": "Identifier",
+                    },
+                  },
+                ],
+                "range": [
+                  6,
+                  9,
+                ],
+                "start": 6,
+                "type": "ObjectPattern",
+              },
+              "init": {
+                "end": 13,
+                "name": "y",
+                "range": [
+                  12,
+                  13,
+                ],
+                "start": 12,
+                "type": "Identifier",
+              },
+              "range": [
+                6,
+                13,
+              ],
+              "start": 6,
+              "type": "VariableDeclarator",
+            },
+          ],
+          "end": 13,
+          "kind": "let",
+          "range": [
+            2,
+            13,
+          ],
+          "start": 2,
+          "type": "VariableDeclaration",
+        },
+      ],
+      "end": 15,
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "BlockStatement",
+    },
+  ],
+  "end": 15,
+  "range": [
+    0,
+    15,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > { let x } 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "declarations": [
+            {
+              "end": 7,
+              "id": {
+                "end": 7,
+                "name": "x",
+                "range": [
+                  6,
+                  7,
+                ],
+                "start": 6,
+                "type": "Identifier",
+              },
+              "init": null,
+              "range": [
+                6,
+                7,
+              ],
+              "start": 6,
+              "type": "VariableDeclarator",
+            },
+          ],
+          "end": 7,
+          "kind": "let",
+          "range": [
+            2,
+            7,
+          ],
+          "start": 2,
+          "type": "VariableDeclaration",
+        },
+      ],
+      "end": 9,
+      "range": [
+        0,
+        9,
+      ],
+      "start": 0,
+      "type": "BlockStatement",
+    },
+  ],
+  "end": 9,
+  "range": [
+    0,
+    9,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > { var {foo=3} = {}; }; 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "declarations": [
+            {
+              "end": 18,
+              "id": {
+                "end": 13,
+                "properties": [
+                  {
+                    "computed": false,
+                    "end": 12,
+                    "key": {
+                      "end": 10,
+                      "name": "foo",
+                      "range": [
+                        7,
+                        10,
+                      ],
+                      "start": 7,
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "range": [
+                      7,
+                      12,
+                    ],
+                    "shorthand": true,
+                    "start": 7,
+                    "type": "Property",
+                    "value": {
+                      "end": 12,
+                      "left": {
+                        "end": 10,
+                        "name": "foo",
+                        "range": [
+                          7,
+                          10,
+                        ],
+                        "start": 7,
+                        "type": "Identifier",
+                      },
+                      "range": [
+                        7,
+                        12,
+                      ],
+                      "right": {
+                        "end": 12,
+                        "range": [
+                          11,
+                          12,
+                        ],
+                        "start": 11,
+                        "type": "Literal",
+                        "value": 3,
+                      },
+                      "start": 7,
+                      "type": "AssignmentPattern",
+                    },
+                  },
+                ],
+                "range": [
+                  6,
+                  13,
+                ],
+                "start": 6,
+                "type": "ObjectPattern",
+              },
+              "init": {
+                "end": 18,
+                "properties": [],
+                "range": [
+                  16,
+                  18,
+                ],
+                "start": 16,
+                "type": "ObjectExpression",
+              },
+              "range": [
+                6,
+                18,
+              ],
+              "start": 6,
+              "type": "VariableDeclarator",
+            },
+          ],
+          "end": 19,
+          "kind": "var",
+          "range": [
+            2,
+            19,
+          ],
+          "start": 2,
+          "type": "VariableDeclaration",
+        },
+      ],
+      "end": 21,
+      "range": [
+        0,
+        21,
+      ],
+      "start": 0,
+      "type": "BlockStatement",
+    },
+    {
+      "end": 22,
+      "range": [
+        21,
+        22,
+      ],
+      "start": 21,
+      "type": "EmptyStatement",
+    },
+  ],
+  "end": 22,
+  "range": [
+    0,
+    22,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > { var foo = 0; } 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "declarations": [
+            {
+              "end": 13,
+              "id": {
+                "end": 9,
+                "name": "foo",
+                "range": [
+                  6,
+                  9,
+                ],
+                "start": 6,
+                "type": "Identifier",
+              },
+              "init": {
+                "end": 13,
+                "range": [
+                  12,
+                  13,
+                ],
+                "start": 12,
+                "type": "Literal",
+                "value": 0,
+              },
+              "range": [
+                6,
+                13,
+              ],
+              "start": 6,
+              "type": "VariableDeclarator",
+            },
+          ],
+          "end": 14,
+          "kind": "var",
+          "range": [
+            2,
+            14,
+          ],
+          "start": 2,
+          "type": "VariableDeclaration",
+        },
+      ],
+      "end": 16,
+      "range": [
+        0,
+        16,
+      ],
+      "start": 0,
+      "type": "BlockStatement",
+    },
+  ],
+  "end": 16,
+  "range": [
+    0,
+    16,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > {}
+/foo/ 1`] = `
+{
+  "body": [
+    {
+      "body": [],
+      "type": "BlockStatement",
+    },
+    {
+      "expression": {
+        "regex": {
+          "flags": "",
+          "pattern": "foo",
+        },
+        "type": "Literal",
+        "value": /foo/,
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > {}
+/foo/ 2`] = `
+{
+  "body": [
+    {
+      "body": [],
+      "type": "BlockStatement",
+    },
+    {
+      "expression": {
+        "regex": {
+          "flags": "",
+          "pattern": "foo",
+        },
+        "type": "Literal",
+        "value": /foo/,
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > {}
+/foo/g 1`] = `
+{
+  "body": [
+    {
+      "body": [],
+      "type": "BlockStatement",
+    },
+    {
+      "expression": {
+        "regex": {
+          "flags": "g",
+          "pattern": "foo",
+        },
+        "type": "Literal",
+        "value": /foo/g,
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > {}
+/foo/g 2`] = `
+{
+  "body": [
+    {
+      "body": [],
+      "type": "BlockStatement",
+    },
+    {
+      "expression": {
+        "regex": {
+          "flags": "g",
+          "pattern": "foo",
+        },
+        "type": "Literal",
+        "value": /foo/g,
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > {} 1`] = `
+{
+  "body": [
+    {
+      "body": [],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > {a} 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "expression": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "type": "ExpressionStatement",
+        },
+      ],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > {debugger;} 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "end": 10,
+          "range": [
+            1,
+            10,
+          ],
+          "start": 1,
+          "type": "DebuggerStatement",
+        },
+      ],
+      "end": 11,
+      "range": [
+        0,
+        11,
+      ],
+      "start": 0,
+      "type": "BlockStatement",
+    },
+  ],
+  "end": 11,
+  "range": [
+    0,
+    11,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > {foo = b} 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "end": 8,
+          "expression": {
+            "end": 8,
+            "left": {
+              "end": 4,
+              "name": "foo",
+              "range": [
+                1,
+                4,
+              ],
+              "start": 1,
+              "type": "Identifier",
+            },
+            "operator": "=",
+            "range": [
+              1,
+              8,
+            ],
+            "right": {
+              "end": 8,
+              "name": "b",
+              "range": [
+                7,
+                8,
+              ],
+              "start": 7,
+              "type": "Identifier",
+            },
+            "start": 1,
+            "type": "AssignmentExpression",
+          },
+          "range": [
+            1,
+            8,
+          ],
+          "start": 1,
+          "type": "ExpressionStatement",
+        },
+      ],
+      "end": 9,
+      "range": [
+        0,
+        9,
+      ],
+      "start": 0,
+      "type": "BlockStatement",
+    },
+  ],
+  "end": 9,
+  "range": [
+    0,
+    9,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > {for (;;) ;} 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "body": {
+            "end": 11,
+            "range": [
+              10,
+              11,
+            ],
+            "start": 10,
+            "type": "EmptyStatement",
+          },
+          "end": 11,
+          "init": null,
+          "range": [
+            1,
+            11,
+          ],
+          "start": 1,
+          "test": null,
+          "type": "ForStatement",
+          "update": null,
+        },
+      ],
+      "end": 12,
+      "range": [
+        0,
+        12,
+      ],
+      "start": 0,
+      "type": "BlockStatement",
+    },
+  ],
+  "end": 12,
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > {if (false) {} else ;} 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "alternate": {
+            "end": 21,
+            "range": [
+              20,
+              21,
+            ],
+            "start": 20,
+            "type": "EmptyStatement",
+          },
+          "consequent": {
+            "body": [],
+            "end": 14,
+            "range": [
+              12,
+              14,
+            ],
+            "start": 12,
+            "type": "BlockStatement",
+          },
+          "end": 21,
+          "range": [
+            1,
+            21,
+          ],
+          "start": 1,
+          "test": {
+            "end": 10,
+            "range": [
+              5,
+              10,
+            ],
+            "raw": "false",
+            "start": 5,
+            "type": "Literal",
+            "value": false,
+          },
+          "type": "IfStatement",
+        },
+      ],
+      "end": 22,
+      "range": [
+        0,
+        22,
+      ],
+      "start": 0,
+      "type": "BlockStatement",
+    },
+  ],
+  "end": 22,
+  "range": [
+    0,
+    22,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > {var foo;} 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "declarations": [
+            {
+              "end": 8,
+              "id": {
+                "end": 8,
+                "name": "foo",
+                "range": [
+                  5,
+                  8,
+                ],
+                "start": 5,
+                "type": "Identifier",
+              },
+              "init": null,
+              "range": [
+                5,
+                8,
+              ],
+              "start": 5,
+              "type": "VariableDeclarator",
+            },
+          ],
+          "end": 9,
+          "kind": "var",
+          "range": [
+            1,
+            9,
+          ],
+          "start": 1,
+          "type": "VariableDeclaration",
+        },
+      ],
+      "end": 10,
+      "range": [
+        0,
+        10,
+      ],
+      "start": 0,
+      "type": "BlockStatement",
+    },
+  ],
+  "end": 10,
+  "range": [
+    0,
+    10,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > {with ({}) {}} 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "body": {
+            "body": [],
+            "end": 13,
+            "range": [
+              11,
+              13,
+            ],
+            "start": 11,
+            "type": "BlockStatement",
+          },
+          "end": 13,
+          "object": {
+            "end": 9,
+            "properties": [],
+            "range": [
+              7,
+              9,
+            ],
+            "start": 7,
+            "type": "ObjectExpression",
+          },
+          "range": [
+            1,
+            13,
+          ],
+          "start": 1,
+          "type": "WithStatement",
+        },
+      ],
+      "end": 14,
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "BlockStatement",
+    },
+  ],
+  "end": 14,
+  "range": [
+    0,
+    14,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > function f() {} var f; 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [],
+        "end": 15,
+        "range": [
+          13,
+          15,
+        ],
+        "start": 13,
+        "type": "BlockStatement",
+      },
+      "end": 15,
+      "generator": false,
+      "id": {
+        "end": 10,
+        "name": "f",
+        "range": [
+          9,
+          10,
+        ],
+        "start": 9,
+        "type": "Identifier",
+      },
+      "params": [],
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "end": 21,
+          "id": {
+            "end": 21,
+            "name": "f",
+            "range": [
+              20,
+              21,
+            ],
+            "start": 20,
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            20,
+            21,
+          ],
+          "start": 20,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 22,
+      "kind": "var",
+      "range": [
+        16,
+        22,
+      ],
+      "start": 16,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 22,
+  "range": [
+    0,
+    22,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > function x() { { var f; var f } } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "body": [
+              {
+                "declarations": [
+                  {
+                    "id": {
+                      "name": "f",
+                      "type": "Identifier",
+                    },
+                    "init": null,
+                    "type": "VariableDeclarator",
+                  },
+                ],
+                "kind": "var",
+                "type": "VariableDeclaration",
+              },
+              {
+                "declarations": [
+                  {
+                    "id": {
+                      "name": "f",
+                      "type": "Identifier",
+                    },
+                    "init": null,
+                    "type": "VariableDeclarator",
+                  },
+                ],
+                "kind": "var",
+                "type": "VariableDeclaration",
+              },
+            ],
+            "type": "BlockStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Block > Expressions - Block (pass) > var f; function f() {} 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "async": false,
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

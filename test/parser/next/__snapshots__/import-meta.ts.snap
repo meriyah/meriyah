@@ -1,0 +1,571 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Next - Import Meta > Next - Import Meta (pass) > "use strict"; ({m() { while (0) { import.meta } }}) 1`] = `
+{
+  "body": [
+    {
+      "directive": "use strict",
+      "expression": {
+        "type": "Literal",
+        "value": "use strict",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "expression": {
+        "properties": [
+          {
+            "computed": false,
+            "key": {
+              "name": "m",
+              "type": "Identifier",
+            },
+            "kind": "init",
+            "method": true,
+            "shorthand": false,
+            "type": "Property",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "body": {
+                      "body": [
+                        {
+                          "expression": {
+                            "meta": {
+                              "name": "import",
+                              "type": "Identifier",
+                            },
+                            "property": {
+                              "name": "meta",
+                              "type": "Identifier",
+                            },
+                            "type": "MetaProperty",
+                          },
+                          "type": "ExpressionStatement",
+                        },
+                      ],
+                      "type": "BlockStatement",
+                    },
+                    "test": {
+                      "type": "Literal",
+                      "value": 0,
+                    },
+                    "type": "WhileStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ObjectExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Meta > Next - Import Meta (pass) > () => { import.meta } 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [
+            {
+              "expression": {
+                "meta": {
+                  "name": "import",
+                  "type": "Identifier",
+                },
+                "property": {
+                  "name": "meta",
+                  "type": "Identifier",
+                },
+                "type": "MetaProperty",
+              },
+              "type": "ExpressionStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Meta > Next - Import Meta (pass) > ({m() { import.meta.url}}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "properties": [
+          {
+            "computed": false,
+            "key": {
+              "name": "m",
+              "type": "Identifier",
+            },
+            "kind": "init",
+            "method": true,
+            "shorthand": false,
+            "type": "Property",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "computed": false,
+                      "object": {
+                        "meta": {
+                          "name": "import",
+                          "type": "Identifier",
+                        },
+                        "property": {
+                          "name": "meta",
+                          "type": "Identifier",
+                        },
+                        "type": "MetaProperty",
+                      },
+                      "property": {
+                        "name": "url",
+                        "type": "Identifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ObjectExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Meta > Next - Import Meta (pass) > const size = import.meta.scriptElement.dataset.size || 300; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "size",
+            "type": "Identifier",
+          },
+          "init": {
+            "left": {
+              "computed": false,
+              "object": {
+                "computed": false,
+                "object": {
+                  "computed": false,
+                  "object": {
+                    "meta": {
+                      "name": "import",
+                      "type": "Identifier",
+                    },
+                    "property": {
+                      "name": "meta",
+                      "type": "Identifier",
+                    },
+                    "type": "MetaProperty",
+                  },
+                  "property": {
+                    "name": "scriptElement",
+                    "type": "Identifier",
+                  },
+                  "type": "MemberExpression",
+                },
+                "property": {
+                  "name": "dataset",
+                  "type": "Identifier",
+                },
+                "type": "MemberExpression",
+              },
+              "property": {
+                "name": "size",
+                "type": "Identifier",
+              },
+              "type": "MemberExpression",
+            },
+            "operator": "||",
+            "right": {
+              "type": "Literal",
+              "value": 300,
+            },
+            "type": "LogicalExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "const",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Meta > Next - Import Meta (pass) > delete import.meta 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "meta": {
+            "name": "import",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "meta",
+            "type": "Identifier",
+          },
+          "type": "MetaProperty",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Meta > Next - Import Meta (pass) > do { import.meta } while (0) 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "meta": {
+                "name": "import",
+                "type": "Identifier",
+              },
+              "property": {
+                "name": "meta",
+                "type": "Identifier",
+              },
+              "type": "MetaProperty",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": 0,
+      },
+      "type": "DoWhileStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Meta > Next - Import Meta (pass) > if (1) { import.meta } 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "body": [
+          {
+            "expression": {
+              "meta": {
+                "name": "import",
+                "type": "Identifier",
+              },
+              "property": {
+                "name": "meta",
+                "type": "Identifier",
+              },
+              "type": "MetaProperty",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": 1,
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Meta > Next - Import Meta (pass) > import.meta() 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "meta": {
+            "name": "import",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "meta",
+            "type": "Identifier",
+          },
+          "type": "MetaProperty",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Meta > Next - Import Meta (pass) > import.meta.resolve('something') 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "type": "Literal",
+            "value": "something",
+          },
+        ],
+        "callee": {
+          "computed": false,
+          "object": {
+            "meta": {
+              "name": "import",
+              "type": "Identifier",
+            },
+            "property": {
+              "name": "meta",
+              "type": "Identifier",
+            },
+            "type": "MetaProperty",
+          },
+          "property": {
+            "name": "resolve",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Meta > Next - Import Meta (pass) > import.meta[0] 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "computed": true,
+        "object": {
+          "meta": {
+            "name": "import",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "meta",
+            "type": "Identifier",
+          },
+          "type": "MetaProperty",
+        },
+        "property": {
+          "type": "Literal",
+          "value": 0,
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Meta > Next - Import Meta (pass) > t = [...import.meta] 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "t",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "elements": [
+            {
+              "argument": {
+                "meta": {
+                  "name": "import",
+                  "type": "Identifier",
+                },
+                "property": {
+                  "name": "meta",
+                  "type": "Identifier",
+                },
+                "type": "MetaProperty",
+              },
+              "type": "SpreadElement",
+            },
+          ],
+          "type": "ArrayExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Meta > Next - Import Meta (pass) > var f = function() {import.meta.couldBeMutable = true} 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "init": {
+            "async": false,
+            "body": {
+              "body": [
+                {
+                  "expression": {
+                    "left": {
+                      "computed": false,
+                      "object": {
+                        "meta": {
+                          "name": "import",
+                          "type": "Identifier",
+                        },
+                        "property": {
+                          "name": "meta",
+                          "type": "Identifier",
+                        },
+                        "type": "MetaProperty",
+                      },
+                      "property": {
+                        "name": "couldBeMutable",
+                        "type": "Identifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "operator": "=",
+                    "right": {
+                      "type": "Literal",
+                      "value": true,
+                    },
+                    "type": "AssignmentExpression",
+                  },
+                  "type": "ExpressionStatement",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+            "generator": false,
+            "id": null,
+            "params": [],
+            "type": "FunctionExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Meta > Next - Import Meta (pass) > x = import.meta 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "meta": {
+            "name": "import",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "meta",
+            "type": "Identifier",
+          },
+          "type": "MetaProperty",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;

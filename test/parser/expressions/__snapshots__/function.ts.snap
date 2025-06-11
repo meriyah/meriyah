@@ -1,0 +1,7721 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - Functions > Expressions - Functions (pass) >  f = function yield() {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "yield",
+            "type": "Identifier",
+          },
+          "params": [],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > ( [x], [y], [z]) => x; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "elements": [
+              {
+                "name": "x",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          {
+            "elements": [
+              {
+                "name": "y",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          {
+            "elements": [
+              {
+                "name": "z",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > ( {x}) => x; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > ( {x1:x1}, [y1]) => x; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "x1",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "name": "x1",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          {
+            "elements": [
+              {
+                "name": "y1",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (async function() {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": null,
+        "params": [],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (async function([,]) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": null,
+        "params": [
+          {
+            "elements": [
+              null,
+            ],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (async function({x:x}) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": null,
+        "params": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (async function(y, {x:x}) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": null,
+        "params": [
+          {
+            "name": "y",
+            "type": "Identifier",
+          },
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function () {
+        let q;
+        let w;
+        let e;
+        if (true) [q, w, e] = [1, 2, 3].map(()=>123);
+      })(); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "async": false,
+          "body": {
+            "body": [
+              {
+                "declarations": [
+                  {
+                    "id": {
+                      "name": "q",
+                      "type": "Identifier",
+                    },
+                    "init": null,
+                    "type": "VariableDeclarator",
+                  },
+                ],
+                "kind": "let",
+                "type": "VariableDeclaration",
+              },
+              {
+                "declarations": [
+                  {
+                    "id": {
+                      "name": "w",
+                      "type": "Identifier",
+                    },
+                    "init": null,
+                    "type": "VariableDeclarator",
+                  },
+                ],
+                "kind": "let",
+                "type": "VariableDeclaration",
+              },
+              {
+                "declarations": [
+                  {
+                    "id": {
+                      "name": "e",
+                      "type": "Identifier",
+                    },
+                    "init": null,
+                    "type": "VariableDeclarator",
+                  },
+                ],
+                "kind": "let",
+                "type": "VariableDeclaration",
+              },
+              {
+                "alternate": null,
+                "consequent": {
+                  "expression": {
+                    "left": {
+                      "elements": [
+                        {
+                          "name": "q",
+                          "type": "Identifier",
+                        },
+                        {
+                          "name": "w",
+                          "type": "Identifier",
+                        },
+                        {
+                          "name": "e",
+                          "type": "Identifier",
+                        },
+                      ],
+                      "type": "ArrayPattern",
+                    },
+                    "operator": "=",
+                    "right": {
+                      "arguments": [
+                        {
+                          "async": false,
+                          "body": {
+                            "type": "Literal",
+                            "value": 123,
+                          },
+                          "expression": true,
+                          "generator": false,
+                          "params": [],
+                          "type": "ArrowFunctionExpression",
+                        },
+                      ],
+                      "callee": {
+                        "computed": false,
+                        "object": {
+                          "elements": [
+                            {
+                              "type": "Literal",
+                              "value": 1,
+                            },
+                            {
+                              "type": "Literal",
+                              "value": 2,
+                            },
+                            {
+                              "type": "Literal",
+                              "value": 3,
+                            },
+                          ],
+                          "type": "ArrayExpression",
+                        },
+                        "property": {
+                          "name": "map",
+                          "type": "Identifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "type": "CallExpression",
+                    },
+                    "type": "AssignmentExpression",
+                  },
+                  "type": "ExpressionStatement",
+                },
+                "test": {
+                  "type": "Literal",
+                  "value": true,
+                },
+                "type": "IfStatement",
+              },
+            ],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": null,
+          "params": [],
+          "type": "FunctionExpression",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function () {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": null,
+        "params": [],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function (a = b) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": null,
+        "params": [
+          {
+            "left": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "right": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function (a,b) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": null,
+        "params": [
+          {
+            "name": "a",
+            "type": "Identifier",
+          },
+          {
+            "name": "b",
+            "type": "Identifier",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function (eval) { (function () { "use strict"; })}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [
+            {
+              "expression": {
+                "async": false,
+                "body": {
+                  "body": [
+                    {
+                      "directive": "use strict",
+                      "expression": {
+                        "type": "Literal",
+                        "value": "use strict",
+                      },
+                      "type": "ExpressionStatement",
+                    },
+                  ],
+                  "type": "BlockStatement",
+                },
+                "generator": false,
+                "id": null,
+                "params": [],
+                "type": "FunctionExpression",
+              },
+              "type": "ExpressionStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": null,
+        "params": [
+          {
+            "name": "eval",
+            "type": "Identifier",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function (eval) { function foo() { "use strict"; }}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [
+            {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "directive": "use strict",
+                    "expression": {
+                      "type": "Literal",
+                      "value": "use strict",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": {
+                "name": "foo",
+                "type": "Identifier",
+              },
+              "params": [],
+              "type": "FunctionDeclaration",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": null,
+        "params": [
+          {
+            "name": "eval",
+            "type": "Identifier",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function (love, you, donna) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": null,
+        "params": [
+          {
+            "name": "love",
+            "type": "Identifier",
+          },
+          {
+            "name": "you",
+            "type": "Identifier",
+          },
+          {
+            "name": "donna",
+            "type": "Identifier",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function (x = yield) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": null,
+        "params": [
+          {
+            "left": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "right": {
+              "name": "yield",
+              "type": "Identifier",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function *fn(  {x1:x1, x2:x2, x3:x3}, {y1:y1, y1:y2} ) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": true,
+        "id": {
+          "name": "fn",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "x1",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "name": "x1",
+                  "type": "Identifier",
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "x2",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "name": "x2",
+                  "type": "Identifier",
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "x3",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "name": "x3",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "y1",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "name": "y1",
+                  "type": "Identifier",
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "y1",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "name": "y2",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function *fn( {x1:x1}, [y1]  ) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": true,
+        "id": {
+          "name": "fn",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "x1",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "name": "x1",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          {
+            "elements": [
+              {
+                "name": "y1",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function *fn( x1, {x2, x3}, [x4, x5], x6  ) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": true,
+        "id": {
+          "name": "fn",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "name": "x1",
+            "type": "Identifier",
+          },
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "x2",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "name": "x2",
+                  "type": "Identifier",
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "x3",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "name": "x3",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          {
+            "elements": [
+              {
+                "name": "x4",
+                "type": "Identifier",
+              },
+              {
+                "name": "x5",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          {
+            "name": "x6",
+            "type": "Identifier",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function *fn({x:x}, y  ) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": true,
+        "id": {
+          "name": "fn",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          {
+            "name": "y",
+            "type": "Identifier",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function f(...rest){}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "argument": {
+              "name": "rest",
+              "type": "Identifier",
+            },
+            "type": "RestElement",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function f([...bar] = obj){}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "left": {
+              "elements": [
+                {
+                  "argument": {
+                    "name": "bar",
+                    "type": "Identifier",
+                  },
+                  "type": "RestElement",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "right": {
+              "name": "obj",
+              "type": "Identifier",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function f([foo,,]){}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "elements": [
+              {
+                "name": "foo",
+                "type": "Identifier",
+              },
+              null,
+            ],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function f([foo=a,bar=b] = x){}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "left": {
+              "elements": [
+                {
+                  "left": {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "type": "AssignmentPattern",
+                },
+                {
+                  "left": {
+                    "name": "bar",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "right": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function f([foo=a]){}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "elements": [
+              {
+                "left": {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "type": "AssignmentPattern",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function f([foo] = x, b = y){}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "left": {
+              "elements": [
+                {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "right": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "type": "AssignmentPattern",
+          },
+          {
+            "left": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "right": {
+              "name": "y",
+              "type": "Identifier",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function f([foo], b = y){}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "elements": [
+              {
+                "name": "foo",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          {
+            "left": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "right": {
+              "name": "y",
+              "type": "Identifier",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function f({} = x){}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "left": {
+              "properties": [],
+              "type": "ObjectPattern",
+            },
+            "right": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function f({foo:a=b, bar:c=d} = x){}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "left": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "left": {
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                    "right": {
+                      "name": "b",
+                      "type": "Identifier",
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                },
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "bar",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "left": {
+                      "name": "c",
+                      "type": "Identifier",
+                    },
+                    "right": {
+                      "name": "d",
+                      "type": "Identifier",
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "right": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function f({foo=a,bar} = x){}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "left": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "type": "Property",
+                  "value": {
+                    "left": {
+                      "name": "foo",
+                      "type": "Identifier",
+                    },
+                    "right": {
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                },
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "bar",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "type": "Property",
+                  "value": {
+                    "name": "bar",
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "right": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function f(a, b, ...rest){}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "name": "a",
+            "type": "Identifier",
+          },
+          {
+            "name": "b",
+            "type": "Identifier",
+          },
+          {
+            "argument": {
+              "name": "rest",
+              "type": "Identifier",
+            },
+            "type": "RestElement",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function f(x = y, [foo]){}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "left": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "right": {
+              "name": "y",
+              "type": "Identifier",
+            },
+            "type": "AssignmentPattern",
+          },
+          {
+            "elements": [
+              {
+                "name": "foo",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function foo([{y1:y1 = 1} = {y1:2}] = [{y1:3}]) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "left": {
+              "elements": [
+                {
+                  "left": {
+                    "properties": [
+                      {
+                        "computed": false,
+                        "key": {
+                          "name": "y1",
+                          "type": "Identifier",
+                        },
+                        "kind": "init",
+                        "method": false,
+                        "shorthand": false,
+                        "type": "Property",
+                        "value": {
+                          "left": {
+                            "name": "y1",
+                            "type": "Identifier",
+                          },
+                          "right": {
+                            "type": "Literal",
+                            "value": 1,
+                          },
+                          "type": "AssignmentPattern",
+                        },
+                      },
+                    ],
+                    "type": "ObjectPattern",
+                  },
+                  "right": {
+                    "properties": [
+                      {
+                        "computed": false,
+                        "key": {
+                          "name": "y1",
+                          "type": "Identifier",
+                        },
+                        "kind": "init",
+                        "method": false,
+                        "shorthand": false,
+                        "type": "Property",
+                        "value": {
+                          "type": "Literal",
+                          "value": 2,
+                        },
+                      },
+                    ],
+                    "type": "ObjectExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "right": {
+              "elements": [
+                {
+                  "properties": [
+                    {
+                      "computed": false,
+                      "key": {
+                        "name": "y1",
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "shorthand": false,
+                      "type": "Property",
+                      "value": {
+                        "type": "Literal",
+                        "value": 3,
+                      },
+                    },
+                  ],
+                  "type": "ObjectExpression",
+                },
+              ],
+              "type": "ArrayExpression",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function foo([x = 1] = [2]) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "left": {
+              "elements": [
+                {
+                  "left": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "type": "Literal",
+                    "value": 1,
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "right": {
+              "elements": [
+                {
+                  "type": "Literal",
+                  "value": 2,
+                },
+              ],
+              "type": "ArrayExpression",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function foo([x] = [1]) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "left": {
+              "elements": [
+                {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "right": {
+              "elements": [
+                {
+                  "type": "Literal",
+                  "value": 1,
+                },
+              ],
+              "type": "ArrayExpression",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function foo([x1 = 1, x2 = 2, x3 = 3]) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "elements": [
+              {
+                "left": {
+                  "name": "x1",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "type": "Literal",
+                  "value": 1,
+                },
+                "type": "AssignmentPattern",
+              },
+              {
+                "left": {
+                  "name": "x2",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "type": "Literal",
+                  "value": 2,
+                },
+                "type": "AssignmentPattern",
+              },
+              {
+                "left": {
+                  "name": "x3",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "type": "Literal",
+                  "value": 3,
+                },
+                "type": "AssignmentPattern",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function foo([x1 = 1], [y1 = 2]) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "elements": [
+              {
+                "left": {
+                  "name": "x1",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "type": "Literal",
+                  "value": 1,
+                },
+                "type": "AssignmentPattern",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          {
+            "elements": [
+              {
+                "left": {
+                  "name": "y1",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "type": "Literal",
+                  "value": 2,
+                },
+                "type": "AssignmentPattern",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function foo([x1 = 1], {y1:y1 = 2}) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "elements": [
+              {
+                "left": {
+                  "name": "x1",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "type": "Literal",
+                  "value": 1,
+                },
+                "type": "AssignmentPattern",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "y1",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "left": {
+                    "name": "y1",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "type": "Literal",
+                    "value": 2,
+                  },
+                  "type": "AssignmentPattern",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function foo([x1, {y1:y1 = 1}]) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "elements": [
+              {
+                "name": "x1",
+                "type": "Identifier",
+              },
+              {
+                "properties": [
+                  {
+                    "computed": false,
+                    "key": {
+                      "name": "y1",
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "shorthand": false,
+                    "type": "Property",
+                    "value": {
+                      "left": {
+                        "name": "y1",
+                        "type": "Identifier",
+                      },
+                      "right": {
+                        "type": "Literal",
+                        "value": 1,
+                      },
+                      "type": "AssignmentPattern",
+                    },
+                  },
+                ],
+                "type": "ObjectPattern",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function foo({x:x = 1} = {x:2}) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "left": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "left": {
+                      "name": "x",
+                      "type": "Identifier",
+                    },
+                    "right": {
+                      "type": "Literal",
+                      "value": 1,
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "right": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "type": "Literal",
+                    "value": 2,
+                  },
+                },
+              ],
+              "type": "ObjectExpression",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function foo({x:x = 10}) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "left": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "type": "Literal",
+                    "value": 10,
+                  },
+                  "type": "AssignmentPattern",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function foo({x:x} = {x:1}) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "left": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "right": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "type": "Literal",
+                    "value": 1,
+                  },
+                },
+              ],
+              "type": "ObjectExpression",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function foo({x1:[y1 = 1] = [2]} = {x1:[3]}) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "left": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "x1",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "left": {
+                      "elements": [
+                        {
+                          "left": {
+                            "name": "y1",
+                            "type": "Identifier",
+                          },
+                          "right": {
+                            "type": "Literal",
+                            "value": 1,
+                          },
+                          "type": "AssignmentPattern",
+                        },
+                      ],
+                      "type": "ArrayPattern",
+                    },
+                    "right": {
+                      "elements": [
+                        {
+                          "type": "Literal",
+                          "value": 2,
+                        },
+                      ],
+                      "type": "ArrayExpression",
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "right": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "x1",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "elements": [
+                      {
+                        "type": "Literal",
+                        "value": 3,
+                      },
+                    ],
+                    "type": "ArrayExpression",
+                  },
+                },
+              ],
+              "type": "ObjectExpression",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function foo({x1:[y1 = 1]}) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "x1",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "elements": [
+                    {
+                      "left": {
+                        "name": "y1",
+                        "type": "Identifier",
+                      },
+                      "right": {
+                        "type": "Literal",
+                        "value": 1,
+                      },
+                      "type": "AssignmentPattern",
+                    },
+                  ],
+                  "type": "ArrayPattern",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function foo({x1:x1 = 1, x2:x2 = 2, x3:x3 = 3}) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "x1",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "left": {
+                    "name": "x1",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "type": "Literal",
+                    "value": 1,
+                  },
+                  "type": "AssignmentPattern",
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "x2",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "left": {
+                    "name": "x2",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "type": "Literal",
+                    "value": 2,
+                  },
+                  "type": "AssignmentPattern",
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "x3",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "left": {
+                    "name": "x3",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "type": "Literal",
+                    "value": 3,
+                  },
+                  "type": "AssignmentPattern",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function foo({x1:x1 = 1}, [y1 = 2]) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "x1",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "left": {
+                    "name": "x1",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "type": "Literal",
+                    "value": 1,
+                  },
+                  "type": "AssignmentPattern",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          {
+            "elements": [
+              {
+                "left": {
+                  "name": "y1",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "type": "Literal",
+                  "value": 2,
+                },
+                "type": "AssignmentPattern",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function package() { (function gave_away_the_package() { "use strict"; }) }) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [
+            {
+              "expression": {
+                "async": false,
+                "body": {
+                  "body": [
+                    {
+                      "directive": "use strict",
+                      "expression": {
+                        "type": "Literal",
+                        "value": "use strict",
+                      },
+                      "type": "ExpressionStatement",
+                    },
+                  ],
+                  "type": "BlockStatement",
+                },
+                "generator": false,
+                "id": {
+                  "name": "gave_away_the_package",
+                  "type": "Identifier",
+                },
+                "params": [],
+                "type": "FunctionExpression",
+              },
+              "type": "ExpressionStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "package",
+          "type": "Identifier",
+        },
+        "params": [],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > (function([cover = (function () {}), xCover = (0, function() {})]) {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": null,
+        "params": [
+          {
+            "elements": [
+              {
+                "left": {
+                  "name": "cover",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "async": false,
+                  "body": {
+                    "body": [],
+                    "type": "BlockStatement",
+                  },
+                  "generator": false,
+                  "id": null,
+                  "params": [],
+                  "type": "FunctionExpression",
+                },
+                "type": "AssignmentPattern",
+              },
+              {
+                "left": {
+                  "name": "xCover",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "expressions": [
+                    {
+                      "type": "Literal",
+                      "value": 0,
+                    },
+                    {
+                      "async": false,
+                      "body": {
+                        "body": [],
+                        "type": "BlockStatement",
+                      },
+                      "generator": false,
+                      "id": null,
+                      "params": [],
+                      "type": "FunctionExpression",
+                    },
+                  ],
+                  "type": "SequenceExpression",
+                },
+                "type": "AssignmentPattern",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > {{{ function g() {} }}} 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "body": [
+            {
+              "body": [
+                {
+                  "async": false,
+                  "body": {
+                    "body": [],
+                    "type": "BlockStatement",
+                  },
+                  "generator": false,
+                  "id": {
+                    "name": "g",
+                    "type": "Identifier",
+                  },
+                  "params": [],
+                  "type": "FunctionDeclaration",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+      ],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > f = ([[,] = g()]) => {}; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "expression": false,
+          "generator": false,
+          "params": [
+            {
+              "elements": [
+                {
+                  "left": {
+                    "elements": [
+                      null,
+                    ],
+                    "type": "ArrayPattern",
+                  },
+                  "right": {
+                    "arguments": [],
+                    "callee": {
+                      "name": "g",
+                      "type": "Identifier",
+                    },
+                    "type": "CallExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "ArrowFunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > f = function *await() {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": true,
+          "id": {
+            "name": "await",
+            "type": "Identifier",
+          },
+          "params": [],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > f = function await() {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "await",
+            "type": "Identifier",
+          },
+          "params": [],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > foo(async function f(){}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "async": true,
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "generator": false,
+            "id": {
+              "name": "f",
+              "type": "Identifier",
+            },
+            "params": [],
+            "type": "FunctionExpression",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > foo(async function(){}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "async": true,
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "generator": false,
+            "id": null,
+            "params": [],
+            "type": "FunctionExpression",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > foo(function f(){}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "async": false,
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "generator": false,
+            "id": {
+              "name": "f",
+              "type": "Identifier",
+            },
+            "params": [],
+            "type": "FunctionExpression",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > foo(function(){}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "async": false,
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "generator": false,
+            "id": null,
+            "params": [],
+            "type": "FunctionExpression",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > foo(function* f(){}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "async": false,
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "generator": true,
+            "id": {
+              "name": "f",
+              "type": "Identifier",
+            },
+            "params": [],
+            "type": "FunctionExpression",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > foo(function*(){}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "async": false,
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "generator": true,
+            "id": null,
+            "params": [],
+            "type": "FunctionExpression",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > function f([async = await]){} 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "elements": [
+            {
+              "left": {
+                "name": "async",
+                "type": "Identifier",
+              },
+              "right": {
+                "name": "await",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "ArrayPattern",
+        },
+      ],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > function f({foo:a=b}){} 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "foo",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "left": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "type": "AssignmentPattern",
+              },
+            },
+          ],
+          "type": "ObjectPattern",
+        },
+      ],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > function f(async = await){} 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "left": {
+            "name": "async",
+            "type": "Identifier",
+          },
+          "right": {
+            "name": "await",
+            "type": "Identifier",
+          },
+          "type": "AssignmentPattern",
+        },
+      ],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > function somethingAdvanced({topLeft: {x: x1, y: y1} = {}, bottomRight: {x: x2, y: y2} = {}}, p2, p3){
+
+        }
+
+        function unpackObject({title: title, author: author}) {
+          return title + " " + author;
+        }
+
+        console.log(unpackObject({title: "title", author: "author"}));
+
+        var unpackArray = function ([a, b, c], [x, y, z]) {
+          return a+b+c;
+        };
+
+        console.log(unpackArray(["hello", ", ", "world"], [1, 2, 3])); 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "somethingAdvanced",
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "topLeft",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "left": {
+                  "properties": [
+                    {
+                      "computed": false,
+                      "key": {
+                        "name": "x",
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "shorthand": false,
+                      "type": "Property",
+                      "value": {
+                        "name": "x1",
+                        "type": "Identifier",
+                      },
+                    },
+                    {
+                      "computed": false,
+                      "key": {
+                        "name": "y",
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "shorthand": false,
+                      "type": "Property",
+                      "value": {
+                        "name": "y1",
+                        "type": "Identifier",
+                      },
+                    },
+                  ],
+                  "type": "ObjectPattern",
+                },
+                "right": {
+                  "properties": [],
+                  "type": "ObjectExpression",
+                },
+                "type": "AssignmentPattern",
+              },
+            },
+            {
+              "computed": false,
+              "key": {
+                "name": "bottomRight",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "left": {
+                  "properties": [
+                    {
+                      "computed": false,
+                      "key": {
+                        "name": "x",
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "shorthand": false,
+                      "type": "Property",
+                      "value": {
+                        "name": "x2",
+                        "type": "Identifier",
+                      },
+                    },
+                    {
+                      "computed": false,
+                      "key": {
+                        "name": "y",
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "shorthand": false,
+                      "type": "Property",
+                      "value": {
+                        "name": "y2",
+                        "type": "Identifier",
+                      },
+                    },
+                  ],
+                  "type": "ObjectPattern",
+                },
+                "right": {
+                  "properties": [],
+                  "type": "ObjectExpression",
+                },
+                "type": "AssignmentPattern",
+              },
+            },
+          ],
+          "type": "ObjectPattern",
+        },
+        {
+          "name": "p2",
+          "type": "Identifier",
+        },
+        {
+          "name": "p3",
+          "type": "Identifier",
+        },
+      ],
+      "type": "FunctionDeclaration",
+    },
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "argument": {
+              "left": {
+                "left": {
+                  "name": "title",
+                  "type": "Identifier",
+                },
+                "operator": "+",
+                "right": {
+                  "type": "Literal",
+                  "value": " ",
+                },
+                "type": "BinaryExpression",
+              },
+              "operator": "+",
+              "right": {
+                "name": "author",
+                "type": "Identifier",
+              },
+              "type": "BinaryExpression",
+            },
+            "type": "ReturnStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "unpackObject",
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "title",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "name": "title",
+                "type": "Identifier",
+              },
+            },
+            {
+              "computed": false,
+              "key": {
+                "name": "author",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "name": "author",
+                "type": "Identifier",
+              },
+            },
+          ],
+          "type": "ObjectPattern",
+        },
+      ],
+      "type": "FunctionDeclaration",
+    },
+    {
+      "expression": {
+        "arguments": [
+          {
+            "arguments": [
+              {
+                "properties": [
+                  {
+                    "computed": false,
+                    "key": {
+                      "name": "title",
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "shorthand": false,
+                    "type": "Property",
+                    "value": {
+                      "type": "Literal",
+                      "value": "title",
+                    },
+                  },
+                  {
+                    "computed": false,
+                    "key": {
+                      "name": "author",
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "shorthand": false,
+                    "type": "Property",
+                    "value": {
+                      "type": "Literal",
+                      "value": "author",
+                    },
+                  },
+                ],
+                "type": "ObjectExpression",
+              },
+            ],
+            "callee": {
+              "name": "unpackObject",
+              "type": "Identifier",
+            },
+            "type": "CallExpression",
+          },
+        ],
+        "callee": {
+          "computed": false,
+          "object": {
+            "name": "console",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "log",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "unpackArray",
+            "type": "Identifier",
+          },
+          "init": {
+            "async": false,
+            "body": {
+              "body": [
+                {
+                  "argument": {
+                    "left": {
+                      "left": {
+                        "name": "a",
+                        "type": "Identifier",
+                      },
+                      "operator": "+",
+                      "right": {
+                        "name": "b",
+                        "type": "Identifier",
+                      },
+                      "type": "BinaryExpression",
+                    },
+                    "operator": "+",
+                    "right": {
+                      "name": "c",
+                      "type": "Identifier",
+                    },
+                    "type": "BinaryExpression",
+                  },
+                  "type": "ReturnStatement",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+            "generator": false,
+            "id": null,
+            "params": [
+              {
+                "elements": [
+                  {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  {
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  {
+                    "name": "c",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              {
+                "elements": [
+                  {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  {
+                    "name": "y",
+                    "type": "Identifier",
+                  },
+                  {
+                    "name": "z",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+            ],
+            "type": "FunctionExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "expression": {
+        "arguments": [
+          {
+            "arguments": [
+              {
+                "elements": [
+                  {
+                    "type": "Literal",
+                    "value": "hello",
+                  },
+                  {
+                    "type": "Literal",
+                    "value": ", ",
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "world",
+                  },
+                ],
+                "type": "ArrayExpression",
+              },
+              {
+                "elements": [
+                  {
+                    "type": "Literal",
+                    "value": 1,
+                  },
+                  {
+                    "type": "Literal",
+                    "value": 2,
+                  },
+                  {
+                    "type": "Literal",
+                    "value": 3,
+                  },
+                ],
+                "type": "ArrayExpression",
+              },
+            ],
+            "callee": {
+              "name": "unpackArray",
+              "type": "Identifier",
+            },
+            "type": "CallExpression",
+          },
+        ],
+        "callee": {
+          "computed": false,
+          "object": {
+            "name": "console",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "log",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > function test() {
+        let ID = "1|123456";
+        return (([id, obj]) => ({[id = id.split('|')[1]]: {id: id}}))([ID, {}]);
+    } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "declarations": [
+              {
+                "id": {
+                  "name": "ID",
+                  "type": "Identifier",
+                },
+                "init": {
+                  "type": "Literal",
+                  "value": "1|123456",
+                },
+                "type": "VariableDeclarator",
+              },
+            ],
+            "kind": "let",
+            "type": "VariableDeclaration",
+          },
+          {
+            "argument": {
+              "arguments": [
+                {
+                  "elements": [
+                    {
+                      "name": "ID",
+                      "type": "Identifier",
+                    },
+                    {
+                      "properties": [],
+                      "type": "ObjectExpression",
+                    },
+                  ],
+                  "type": "ArrayExpression",
+                },
+              ],
+              "callee": {
+                "async": false,
+                "body": {
+                  "properties": [
+                    {
+                      "computed": true,
+                      "key": {
+                        "left": {
+                          "name": "id",
+                          "type": "Identifier",
+                        },
+                        "operator": "=",
+                        "right": {
+                          "computed": true,
+                          "object": {
+                            "arguments": [
+                              {
+                                "type": "Literal",
+                                "value": "|",
+                              },
+                            ],
+                            "callee": {
+                              "computed": false,
+                              "object": {
+                                "name": "id",
+                                "type": "Identifier",
+                              },
+                              "property": {
+                                "name": "split",
+                                "type": "Identifier",
+                              },
+                              "type": "MemberExpression",
+                            },
+                            "type": "CallExpression",
+                          },
+                          "property": {
+                            "type": "Literal",
+                            "value": 1,
+                          },
+                          "type": "MemberExpression",
+                        },
+                        "type": "AssignmentExpression",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "shorthand": false,
+                      "type": "Property",
+                      "value": {
+                        "properties": [
+                          {
+                            "computed": false,
+                            "key": {
+                              "name": "id",
+                              "type": "Identifier",
+                            },
+                            "kind": "init",
+                            "method": false,
+                            "shorthand": false,
+                            "type": "Property",
+                            "value": {
+                              "name": "id",
+                              "type": "Identifier",
+                            },
+                          },
+                        ],
+                        "type": "ObjectExpression",
+                      },
+                    },
+                  ],
+                  "type": "ObjectExpression",
+                },
+                "expression": true,
+                "generator": false,
+                "params": [
+                  {
+                    "elements": [
+                      {
+                        "name": "id",
+                        "type": "Identifier",
+                      },
+                      {
+                        "name": "obj",
+                        "type": "Identifier",
+                      },
+                    ],
+                    "type": "ArrayPattern",
+                  },
+                ],
+                "type": "ArrowFunctionExpression",
+              },
+              "type": "CallExpression",
+            },
+            "type": "ReturnStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "test",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > if (a && b) {
+      c.d(this.e, (ctx) => a.b(this, void 0, void 0, function* () {
+        return a
+      }));
+    } 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "body": [
+          {
+            "expression": {
+              "arguments": [
+                {
+                  "computed": false,
+                  "object": {
+                    "type": "ThisExpression",
+                  },
+                  "property": {
+                    "name": "e",
+                    "type": "Identifier",
+                  },
+                  "type": "MemberExpression",
+                },
+                {
+                  "async": false,
+                  "body": {
+                    "arguments": [
+                      {
+                        "type": "ThisExpression",
+                      },
+                      {
+                        "argument": {
+                          "type": "Literal",
+                          "value": 0,
+                        },
+                        "operator": "void",
+                        "prefix": true,
+                        "type": "UnaryExpression",
+                      },
+                      {
+                        "argument": {
+                          "type": "Literal",
+                          "value": 0,
+                        },
+                        "operator": "void",
+                        "prefix": true,
+                        "type": "UnaryExpression",
+                      },
+                      {
+                        "async": false,
+                        "body": {
+                          "body": [
+                            {
+                              "argument": {
+                                "name": "a",
+                                "type": "Identifier",
+                              },
+                              "type": "ReturnStatement",
+                            },
+                          ],
+                          "type": "BlockStatement",
+                        },
+                        "generator": true,
+                        "id": null,
+                        "params": [],
+                        "type": "FunctionExpression",
+                      },
+                    ],
+                    "callee": {
+                      "computed": false,
+                      "object": {
+                        "name": "a",
+                        "type": "Identifier",
+                      },
+                      "property": {
+                        "name": "b",
+                        "type": "Identifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "type": "CallExpression",
+                  },
+                  "expression": true,
+                  "generator": false,
+                  "params": [
+                    {
+                      "name": "ctx",
+                      "type": "Identifier",
+                    },
+                  ],
+                  "type": "ArrowFunctionExpression",
+                },
+              ],
+              "callee": {
+                "computed": false,
+                "object": {
+                  "name": "c",
+                  "type": "Identifier",
+                },
+                "property": {
+                  "name": "d",
+                  "type": "Identifier",
+                },
+                "type": "MemberExpression",
+              },
+              "type": "CallExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "test": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "&&",
+        "right": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > typeof async function f(){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "async": true,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [],
+          "type": "FunctionExpression",
+        },
+        "operator": "typeof",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = async function f(yield) {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": true,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "name": "yield",
+              "type": "Identifier",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function *await() {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": true,
+          "id": {
+            "name": "await",
+            "type": "Identifier",
+          },
+          "params": [],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function *f(await) {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": true,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "name": "await",
+              "type": "Identifier",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function donna() {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "donna",
+            "type": "Identifier",
+          },
+          "params": [],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f( [a=[...b], ...c] = obj){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  {
+                    "left": {
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                    "right": {
+                      "elements": [
+                        {
+                          "argument": {
+                            "name": "b",
+                            "type": "Identifier",
+                          },
+                          "type": "SpreadElement",
+                        },
+                      ],
+                      "type": "ArrayExpression",
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                  {
+                    "argument": {
+                      "name": "c",
+                      "type": "Identifier",
+                    },
+                    "type": "RestElement",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "obj",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f( [a=[...b], ...c]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "left": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "elements": [
+                      {
+                        "argument": {
+                          "name": "b",
+                          "type": "Identifier",
+                        },
+                        "type": "SpreadElement",
+                      },
+                    ],
+                    "type": "ArrayExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+                {
+                  "argument": {
+                    "name": "c",
+                    "type": "Identifier",
+                  },
+                  "type": "RestElement",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([,,] = x){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  null,
+                  null,
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([,,]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                null,
+                null,
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([,,foo] = x){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  null,
+                  null,
+                  {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([,,foo]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                null,
+                null,
+                {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([,] = x){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  null,
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([,]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                null,
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([,foo] = x){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  null,
+                  {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([,foo]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                null,
+                {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([...[a, b]] = obj){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  {
+                    "argument": {
+                      "elements": [
+                        {
+                          "name": "a",
+                          "type": "Identifier",
+                        },
+                        {
+                          "name": "b",
+                          "type": "Identifier",
+                        },
+                      ],
+                      "type": "ArrayPattern",
+                    },
+                    "type": "RestElement",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "obj",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([...[a, b]]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "argument": {
+                    "elements": [
+                      {
+                        "name": "a",
+                        "type": "Identifier",
+                      },
+                      {
+                        "name": "b",
+                        "type": "Identifier",
+                      },
+                    ],
+                    "type": "ArrayPattern",
+                  },
+                  "type": "RestElement",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([...bar] = obj){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  {
+                    "argument": {
+                      "name": "bar",
+                      "type": "Identifier",
+                    },
+                    "type": "RestElement",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "obj",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([...bar]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "argument": {
+                    "name": "bar",
+                    "type": "Identifier",
+                  },
+                  "type": "RestElement",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([] = x){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([{b}]) {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "properties": [
+                    {
+                      "computed": false,
+                      "key": {
+                        "name": "b",
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "shorthand": true,
+                      "type": "Property",
+                      "value": {
+                        "name": "b",
+                        "type": "Identifier",
+                      },
+                    },
+                  ],
+                  "type": "ObjectPattern",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([a = b = c] = arr){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  {
+                    "left": {
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                    "right": {
+                      "left": {
+                        "name": "b",
+                        "type": "Identifier",
+                      },
+                      "operator": "=",
+                      "right": {
+                        "name": "c",
+                        "type": "Identifier",
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "arr",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([a, [b], c]) {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                {
+                  "elements": [
+                    {
+                      "name": "b",
+                      "type": "Identifier",
+                    },
+                  ],
+                  "type": "ArrayPattern",
+                },
+                {
+                  "name": "c",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([a, {b: []}]) {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                {
+                  "properties": [
+                    {
+                      "computed": false,
+                      "key": {
+                        "name": "b",
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "shorthand": false,
+                      "type": "Property",
+                      "value": {
+                        "elements": [],
+                        "type": "ArrayPattern",
+                      },
+                    },
+                  ],
+                  "type": "ObjectPattern",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([a=b+=c]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "left": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "left": {
+                      "name": "b",
+                      "type": "Identifier",
+                    },
+                    "operator": "+=",
+                    "right": {
+                      "name": "c",
+                      "type": "Identifier",
+                    },
+                    "type": "AssignmentExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([a=b=c]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "left": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "left": {
+                      "name": "b",
+                      "type": "Identifier",
+                    },
+                    "operator": "=",
+                    "right": {
+                      "name": "c",
+                      "type": "Identifier",
+                    },
+                    "type": "AssignmentExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo, ...bar] = obj){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                  {
+                    "argument": {
+                      "name": "bar",
+                      "type": "Identifier",
+                    },
+                    "type": "RestElement",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "obj",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo, ...bar]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                {
+                  "argument": {
+                    "name": "bar",
+                    "type": "Identifier",
+                  },
+                  "type": "RestElement",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo,,] = x){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                  null,
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo,,]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                null,
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo,,bar] = x){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                  null,
+                  {
+                    "name": "bar",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo,,bar]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                null,
+                {
+                  "name": "bar",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo,] = x){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo,]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo,bar=b] = x){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                  {
+                    "left": {
+                      "name": "bar",
+                      "type": "Identifier",
+                    },
+                    "right": {
+                      "name": "b",
+                      "type": "Identifier",
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo,bar=b]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                {
+                  "left": {
+                    "name": "bar",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo,bar] = x){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                  {
+                    "name": "bar",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo,bar]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                {
+                  "name": "bar",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo=a,bar=b] = x){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  {
+                    "left": {
+                      "name": "foo",
+                      "type": "Identifier",
+                    },
+                    "right": {
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                  {
+                    "left": {
+                      "name": "bar",
+                      "type": "Identifier",
+                    },
+                    "right": {
+                      "name": "b",
+                      "type": "Identifier",
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo=a,bar=b]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "left": {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "type": "AssignmentPattern",
+                },
+                {
+                  "left": {
+                    "name": "bar",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo=a,bar] = x){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  {
+                    "left": {
+                      "name": "foo",
+                      "type": "Identifier",
+                    },
+                    "right": {
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                  {
+                    "name": "bar",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo=a,bar]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "left": {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "type": "AssignmentPattern",
+                },
+                {
+                  "name": "bar",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo=a] = c){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  {
+                    "left": {
+                      "name": "foo",
+                      "type": "Identifier",
+                    },
+                    "right": {
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "c",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo=a]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "left": {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo] = x){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo] = x, [bar] = y){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+            {
+              "left": {
+                "elements": [
+                  {
+                    "name": "bar",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "y",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo] = x, b = y){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+            {
+              "left": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "right": {
+                "name": "y",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo] = x, b){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+            {
+              "name": "b",
+              "type": "Identifier",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo], [bar]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            {
+              "elements": [
+                {
+                  "name": "bar",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo], b = y){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            {
+              "left": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "right": {
+                "name": "y",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([foo], b){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            {
+              "name": "b",
+              "type": "Identifier",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([x, ...[a, b]] = obj){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  {
+                    "argument": {
+                      "elements": [
+                        {
+                          "name": "a",
+                          "type": "Identifier",
+                        },
+                        {
+                          "name": "b",
+                          "type": "Identifier",
+                        },
+                      ],
+                      "type": "ArrayPattern",
+                    },
+                    "type": "RestElement",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "obj",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([x, ...[a, b]]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                {
+                  "argument": {
+                    "elements": [
+                      {
+                        "name": "a",
+                        "type": "Identifier",
+                      },
+                      {
+                        "name": "b",
+                        "type": "Identifier",
+                      },
+                    ],
+                    "type": "ArrayPattern",
+                  },
+                  "type": "RestElement",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([x] = y,){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "elements": [
+                  {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "y",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f([x],){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "elements": [
+                {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f({a} = b,){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "properties": [
+                  {
+                    "computed": false,
+                    "key": {
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "shorthand": true,
+                    "type": "Property",
+                    "value": {
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                  },
+                ],
+                "type": "ObjectPattern",
+              },
+              "right": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f({a},){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "type": "Property",
+                  "value": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f({b: []}) {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "elements": [],
+                    "type": "ArrayPattern",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f(a = b,){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "right": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f(a=b){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "right": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f(a=b=c){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "right": {
+                "left": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "operator": "=",
+                "right": {
+                  "name": "c",
+                  "type": "Identifier",
+                },
+                "type": "AssignmentExpression",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f(await) {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "name": "await",
+              "type": "Identifier",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f(x = y, [foo] = z){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "right": {
+                "name": "y",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+            {
+              "left": {
+                "elements": [
+                  {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "z",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f(x = y, [foo]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "left": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "right": {
+                "name": "y",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+            {
+              "elements": [
+                {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f(x, [foo] = y){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "name": "x",
+              "type": "Identifier",
+            },
+            {
+              "left": {
+                "elements": [
+                  {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "name": "y",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f(x, [foo]){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "name": "x",
+              "type": "Identifier",
+            },
+            {
+              "elements": [
+                {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function f(yield) {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "name": "yield",
+              "type": "Identifier",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function fk({x: [a, {b: []}]}) {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "fk",
+            "type": "Identifier",
+          },
+          "params": [
+            {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "elements": [
+                      {
+                        "name": "a",
+                        "type": "Identifier",
+                      },
+                      {
+                        "properties": [
+                          {
+                            "computed": false,
+                            "key": {
+                              "name": "b",
+                              "type": "Identifier",
+                            },
+                            "kind": "init",
+                            "method": false,
+                            "shorthand": false,
+                            "type": "Property",
+                            "value": {
+                              "elements": [],
+                              "type": "ArrayPattern",
+                            },
+                          },
+                        ],
+                        "type": "ObjectPattern",
+                      },
+                    ],
+                    "type": "ArrayPattern",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Functions > Expressions - Functions (pass) > x = function() {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": null,
+          "params": [],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

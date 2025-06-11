@@ -1,0 +1,4446 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Module - Export > Module - Export (pass) > [function* (...{}) {  switch (yield) {}  }]
+        a = (u) => {} 1`] = `
+{
+  "body": [
+    {
+      "end": 43,
+      "expression": {
+        "elements": [
+          {
+            "async": false,
+            "body": {
+              "body": [
+                {
+                  "cases": [],
+                  "discriminant": {
+                    "argument": null,
+                    "delegate": false,
+                    "end": 35,
+                    "range": [
+                      30,
+                      35,
+                    ],
+                    "start": 30,
+                    "type": "YieldExpression",
+                  },
+                  "end": 39,
+                  "range": [
+                    22,
+                    39,
+                  ],
+                  "start": 22,
+                  "type": "SwitchStatement",
+                },
+              ],
+              "end": 42,
+              "range": [
+                19,
+                42,
+              ],
+              "start": 19,
+              "type": "BlockStatement",
+            },
+            "end": 42,
+            "generator": true,
+            "id": null,
+            "params": [
+              {
+                "argument": {
+                  "end": 17,
+                  "properties": [],
+                  "range": [
+                    15,
+                    17,
+                  ],
+                  "start": 15,
+                  "type": "ObjectPattern",
+                },
+                "end": 17,
+                "range": [
+                  12,
+                  17,
+                ],
+                "start": 12,
+                "type": "RestElement",
+              },
+            ],
+            "range": [
+              1,
+              42,
+            ],
+            "start": 1,
+            "type": "FunctionExpression",
+          },
+        ],
+        "end": 43,
+        "range": [
+          0,
+          43,
+        ],
+        "start": 0,
+        "type": "ArrayExpression",
+      },
+      "range": [
+        0,
+        43,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+    {
+      "end": 65,
+      "expression": {
+        "end": 65,
+        "left": {
+          "end": 53,
+          "name": "a",
+          "range": [
+            52,
+            53,
+          ],
+          "start": 52,
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "range": [
+          52,
+          65,
+        ],
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "end": 65,
+            "range": [
+              63,
+              65,
+            ],
+            "start": 63,
+            "type": "BlockStatement",
+          },
+          "end": 65,
+          "expression": false,
+          "generator": false,
+          "params": [
+            {
+              "end": 58,
+              "name": "u",
+              "range": [
+                57,
+                58,
+              ],
+              "start": 57,
+              "type": "Identifier",
+            },
+          ],
+          "range": [
+            56,
+            65,
+          ],
+          "start": 56,
+          "type": "ArrowFunctionExpression",
+        },
+        "start": 52,
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        52,
+        65,
+      ],
+      "start": 52,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 65,
+  "range": [
+    0,
+    65,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export * as "foo" from "./foo"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "exported": {
+        "type": "Literal",
+        "value": "foo",
+      },
+      "source": {
+        "type": "Literal",
+        "value": "./foo",
+      },
+      "type": "ExportAllDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export * as class from 'source'; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "exported": {
+        "name": "class",
+        "type": "Identifier",
+      },
+      "source": {
+        "type": "Literal",
+        "value": "source",
+      },
+      "type": "ExportAllDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export * as foo from "./foo"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "exported": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "source": {
+        "type": "Literal",
+        "value": "./foo",
+      },
+      "type": "ExportAllDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export * as ns from "source"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "exported": {
+        "name": "ns",
+        "type": "Identifier",
+      },
+      "source": {
+        "type": "Literal",
+        "value": "source",
+      },
+      "type": "ExportAllDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export * from "a" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "end": 17,
+      "exported": null,
+      "range": [
+        0,
+        17,
+      ],
+      "source": {
+        "end": 17,
+        "range": [
+          14,
+          17,
+        ],
+        "start": 14,
+        "type": "Literal",
+        "value": "a",
+      },
+      "start": 0,
+      "type": "ExportAllDeclaration",
+    },
+  ],
+  "end": 17,
+  "range": [
+    0,
+    17,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export { "\\uD83C\\uDF19" as "a"} from "./foo"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": null,
+      "loc": {
+        "end": {
+          "column": 45,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "source": {
+        "loc": {
+          "end": {
+            "column": 44,
+            "line": 1,
+          },
+          "start": {
+            "column": 37,
+            "line": 1,
+          },
+        },
+        "type": "Literal",
+        "value": "./foo",
+      },
+      "specifiers": [
+        {
+          "exported": {
+            "loc": {
+              "end": {
+                "column": 30,
+                "line": 1,
+              },
+              "start": {
+                "column": 27,
+                "line": 1,
+              },
+            },
+            "type": "Literal",
+            "value": "a",
+          },
+          "loc": {
+            "end": {
+              "column": 30,
+              "line": 1,
+            },
+            "start": {
+              "column": 9,
+              "line": 1,
+            },
+          },
+          "local": {
+            "loc": {
+              "end": {
+                "column": 23,
+                "line": 1,
+              },
+              "start": {
+                "column": 9,
+                "line": 1,
+              },
+            },
+            "type": "Literal",
+            "value": "🌙",
+          },
+          "type": "ExportSpecifier",
+        },
+      ],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "loc": {
+    "end": {
+      "column": 45,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export {} 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": null,
+      "end": 9,
+      "range": [
+        0,
+        9,
+      ],
+      "source": null,
+      "specifiers": [],
+      "start": 0,
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "end": 9,
+  "range": [
+    0,
+    9,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export {} 2`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": null,
+      "source": null,
+      "specifiers": [],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export {} from "x" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": null,
+      "end": 18,
+      "range": [
+        0,
+        18,
+      ],
+      "source": {
+        "end": 18,
+        "range": [
+          15,
+          18,
+        ],
+        "start": 15,
+        "type": "Literal",
+        "value": "x",
+      },
+      "specifiers": [],
+      "start": 0,
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "end": 18,
+  "range": [
+    0,
+    18,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export {}; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": null,
+      "source": null,
+      "specifiers": [],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export {a as b}; var a; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": null,
+      "end": 16,
+      "range": [
+        0,
+        16,
+      ],
+      "source": null,
+      "specifiers": [
+        {
+          "end": 14,
+          "exported": {
+            "end": 14,
+            "name": "b",
+            "range": [
+              13,
+              14,
+            ],
+            "start": 13,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 9,
+            "name": "a",
+            "range": [
+              8,
+              9,
+            ],
+            "start": 8,
+            "type": "Identifier",
+          },
+          "range": [
+            8,
+            14,
+          ],
+          "start": 8,
+          "type": "ExportSpecifier",
+        },
+      ],
+      "start": 0,
+      "type": "ExportNamedDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "end": 22,
+          "id": {
+            "end": 22,
+            "name": "a",
+            "range": [
+              21,
+              22,
+            ],
+            "start": 21,
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            21,
+            22,
+          ],
+          "start": 21,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 23,
+      "kind": "var",
+      "range": [
+        17,
+        23,
+      ],
+      "start": 17,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 23,
+  "range": [
+    0,
+    23,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export {foo} from "foo"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": null,
+      "source": {
+        "type": "Literal",
+        "value": "foo",
+      },
+      "specifiers": [
+        {
+          "exported": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+      ],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export {foo}; function foo() {}; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": null,
+      "source": null,
+      "specifiers": [
+        {
+          "exported": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+      ],
+      "type": "ExportNamedDeclaration",
+    },
+    {
+      "async": false,
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+    {
+      "type": "EmptyStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export {x as a} from "foo" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": null,
+      "end": 26,
+      "range": [
+        0,
+        26,
+      ],
+      "source": {
+        "end": 26,
+        "range": [
+          21,
+          26,
+        ],
+        "start": 21,
+        "type": "Literal",
+        "value": "foo",
+      },
+      "specifiers": [
+        {
+          "end": 14,
+          "exported": {
+            "end": 14,
+            "name": "a",
+            "range": [
+              13,
+              14,
+            ],
+            "start": 13,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 9,
+            "name": "x",
+            "range": [
+              8,
+              9,
+            ],
+            "start": 8,
+            "type": "Identifier",
+          },
+          "range": [
+            8,
+            14,
+          ],
+          "start": 8,
+          "type": "ExportSpecifier",
+        },
+      ],
+      "start": 0,
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "end": 26,
+  "range": [
+    0,
+    26,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export {x as a} from "foo" 2`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": null,
+      "source": {
+        "type": "Literal",
+        "value": "foo",
+      },
+      "specifiers": [
+        {
+          "exported": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+      ],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export {x,} from "foo" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": null,
+      "source": {
+        "type": "Literal",
+        "value": "foo",
+      },
+      "specifiers": [
+        {
+          "exported": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+      ],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export {x,} from "foo" 2`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": null,
+      "source": {
+        "type": "Literal",
+        "value": "foo",
+      },
+      "specifiers": [
+        {
+          "exported": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+      ],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export {x} from "foo" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": null,
+      "end": 21,
+      "range": [
+        0,
+        21,
+      ],
+      "source": {
+        "end": 21,
+        "range": [
+          16,
+          21,
+        ],
+        "start": 16,
+        "type": "Literal",
+        "value": "foo",
+      },
+      "specifiers": [
+        {
+          "end": 9,
+          "exported": {
+            "end": 9,
+            "name": "x",
+            "range": [
+              8,
+              9,
+            ],
+            "start": 8,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 9,
+            "name": "x",
+            "range": [
+              8,
+              9,
+            ],
+            "start": 8,
+            "type": "Identifier",
+          },
+          "range": [
+            8,
+            9,
+          ],
+          "start": 8,
+          "type": "ExportSpecifier",
+        },
+      ],
+      "start": 0,
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "end": 21,
+  "range": [
+    0,
+    21,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export {x} from "foo" 2`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": null,
+      "source": {
+        "type": "Literal",
+        "value": "foo",
+      },
+      "specifiers": [
+        {
+          "exported": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+      ],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export {x}; var x; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": null,
+      "end": 11,
+      "range": [
+        0,
+        11,
+      ],
+      "source": null,
+      "specifiers": [
+        {
+          "end": 9,
+          "exported": {
+            "end": 9,
+            "name": "x",
+            "range": [
+              8,
+              9,
+            ],
+            "start": 8,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 9,
+            "name": "x",
+            "range": [
+              8,
+              9,
+            ],
+            "start": 8,
+            "type": "Identifier",
+          },
+          "range": [
+            8,
+            9,
+          ],
+          "start": 8,
+          "type": "ExportSpecifier",
+        },
+      ],
+      "start": 0,
+      "type": "ExportNamedDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "end": 17,
+          "id": {
+            "end": 17,
+            "name": "x",
+            "range": [
+              16,
+              17,
+            ],
+            "start": 16,
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            16,
+            17,
+          ],
+          "start": 16,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 18,
+      "kind": "var",
+      "range": [
+        12,
+        18,
+      ],
+      "start": 12,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 18,
+  "range": [
+    0,
+    18,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export {x}; var x; 2`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": null,
+      "source": null,
+      "specifiers": [
+        {
+          "exported": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+      ],
+      "type": "ExportNamedDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export async function f(){} 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "async": true,
+        "body": {
+          "body": [],
+          "end": 27,
+          "range": [
+            25,
+            27,
+          ],
+          "start": 25,
+          "type": "BlockStatement",
+        },
+        "end": 27,
+        "generator": false,
+        "id": {
+          "end": 23,
+          "name": "f",
+          "range": [
+            22,
+            23,
+          ],
+          "start": 22,
+          "type": "Identifier",
+        },
+        "params": [],
+        "range": [
+          7,
+          27,
+        ],
+        "start": 7,
+        "type": "FunctionDeclaration",
+      },
+      "end": 27,
+      "range": [
+        0,
+        27,
+      ],
+      "source": null,
+      "specifiers": [],
+      "start": 0,
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "end": 27,
+  "range": [
+    0,
+    27,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export class a {} 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "body": {
+          "body": [],
+          "type": "ClassBody",
+        },
+        "id": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "superClass": null,
+        "type": "ClassDeclaration",
+      },
+      "source": null,
+      "specifiers": [],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export class x {} 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "body": {
+          "body": [],
+          "end": 17,
+          "range": [
+            15,
+            17,
+          ],
+          "start": 15,
+          "type": "ClassBody",
+        },
+        "end": 17,
+        "id": {
+          "end": 14,
+          "name": "x",
+          "range": [
+            13,
+            14,
+          ],
+          "start": 13,
+          "type": "Identifier",
+        },
+        "range": [
+          7,
+          17,
+        ],
+        "start": 7,
+        "superClass": null,
+        "type": "ClassDeclaration",
+      },
+      "end": 17,
+      "range": [
+        0,
+        17,
+      ],
+      "source": null,
+      "specifiers": [],
+      "start": 0,
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "end": 17,
+  "range": [
+    0,
+    17,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export const x = 10, y = 20 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "declarations": [
+          {
+            "end": 19,
+            "id": {
+              "end": 14,
+              "name": "x",
+              "range": [
+                13,
+                14,
+              ],
+              "start": 13,
+              "type": "Identifier",
+            },
+            "init": {
+              "end": 19,
+              "range": [
+                17,
+                19,
+              ],
+              "start": 17,
+              "type": "Literal",
+              "value": 10,
+            },
+            "range": [
+              13,
+              19,
+            ],
+            "start": 13,
+            "type": "VariableDeclarator",
+          },
+          {
+            "end": 27,
+            "id": {
+              "end": 22,
+              "name": "y",
+              "range": [
+                21,
+                22,
+              ],
+              "start": 21,
+              "type": "Identifier",
+            },
+            "init": {
+              "end": 27,
+              "range": [
+                25,
+                27,
+              ],
+              "start": 25,
+              "type": "Literal",
+              "value": 20,
+            },
+            "range": [
+              21,
+              27,
+            ],
+            "start": 21,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "end": 27,
+        "kind": "const",
+        "range": [
+          7,
+          27,
+        ],
+        "start": 7,
+        "type": "VariableDeclaration",
+      },
+      "end": 27,
+      "range": [
+        0,
+        27,
+      ],
+      "source": null,
+      "specifiers": [],
+      "start": 0,
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "end": 27,
+  "range": [
+    0,
+    27,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default () => {} 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default (1 + 2); 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "end": 21,
+        "left": {
+          "end": 17,
+          "range": [
+            16,
+            17,
+          ],
+          "start": 16,
+          "type": "Literal",
+          "value": 1,
+        },
+        "operator": "+",
+        "range": [
+          16,
+          21,
+        ],
+        "right": {
+          "end": 21,
+          "range": [
+            20,
+            21,
+          ],
+          "start": 20,
+          "type": "Literal",
+          "value": 2,
+        },
+        "start": 16,
+        "type": "BinaryExpression",
+      },
+      "end": 23,
+      "range": [
+        0,
+        23,
+      ],
+      "start": 0,
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "end": 23,
+  "range": [
+    0,
+    23,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default (a,b) => {} 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "async": false,
+        "body": {
+          "body": [],
+          "end": 26,
+          "range": [
+            24,
+            26,
+          ],
+          "start": 24,
+          "type": "BlockStatement",
+        },
+        "end": 26,
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "end": 17,
+            "name": "a",
+            "range": [
+              16,
+              17,
+            ],
+            "start": 16,
+            "type": "Identifier",
+          },
+          {
+            "end": 19,
+            "name": "b",
+            "range": [
+              18,
+              19,
+            ],
+            "start": 18,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          15,
+          26,
+        ],
+        "start": 15,
+        "type": "ArrowFunctionExpression",
+      },
+      "end": 26,
+      "range": [
+        0,
+        26,
+      ],
+      "start": 0,
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "end": 26,
+  "range": [
+    0,
+    26,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default []; 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "elements": [],
+        "end": 17,
+        "range": [
+          15,
+          17,
+        ],
+        "start": 15,
+        "type": "ArrayExpression",
+      },
+      "end": 18,
+      "range": [
+        0,
+        18,
+      ],
+      "start": 0,
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "end": 18,
+  "range": [
+    0,
+    18,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default [x] = y 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "left": {
+          "elements": [
+            {
+              "name": "x",
+              "type": "Identifier",
+            },
+          ],
+          "type": "ArrayPattern",
+        },
+        "operator": "=",
+        "right": {
+          "name": "y",
+          "type": "Identifier",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default [x] = y 2`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "end": 22,
+        "left": {
+          "elements": [
+            {
+              "end": 17,
+              "name": "x",
+              "range": [
+                16,
+                17,
+              ],
+              "start": 16,
+              "type": "Identifier",
+            },
+          ],
+          "end": 18,
+          "range": [
+            15,
+            18,
+          ],
+          "start": 15,
+          "type": "ArrayPattern",
+        },
+        "operator": "=",
+        "range": [
+          15,
+          22,
+        ],
+        "right": {
+          "end": 22,
+          "name": "y",
+          "range": [
+            21,
+            22,
+          ],
+          "start": 21,
+          "type": "Identifier",
+        },
+        "start": 15,
+        "type": "AssignmentExpression",
+      },
+      "end": 22,
+      "range": [
+        0,
+        22,
+      ],
+      "start": 0,
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "end": 22,
+  "range": [
+    0,
+    22,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default 3; 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "type": "Literal",
+        "value": 3,
+      },
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default async 
+function f(){} 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "name": "async",
+        "type": "Identifier",
+      },
+      "type": "ExportDefaultDeclaration",
+    },
+    {
+      "async": false,
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default async () => y 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "async": true,
+        "body": {
+          "end": 28,
+          "name": "y",
+          "range": [
+            27,
+            28,
+          ],
+          "start": 27,
+          "type": "Identifier",
+        },
+        "end": 28,
+        "expression": true,
+        "generator": false,
+        "params": [],
+        "range": [
+          15,
+          28,
+        ],
+        "start": 15,
+        "type": "ArrowFunctionExpression",
+      },
+      "end": 28,
+      "range": [
+        0,
+        28,
+      ],
+      "start": 0,
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "end": 28,
+  "range": [
+    0,
+    28,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default async (x) => y 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "async": true,
+        "body": {
+          "end": 29,
+          "name": "y",
+          "range": [
+            28,
+            29,
+          ],
+          "start": 28,
+          "type": "Identifier",
+        },
+        "end": 29,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 23,
+            "name": "x",
+            "range": [
+              22,
+              23,
+            ],
+            "start": 22,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          15,
+          29,
+        ],
+        "start": 15,
+        "type": "ArrowFunctionExpression",
+      },
+      "end": 29,
+      "range": [
+        0,
+        29,
+      ],
+      "start": 0,
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "end": 29,
+  "range": [
+    0,
+    29,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default async 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "end": 20,
+        "name": "async",
+        "range": [
+          15,
+          20,
+        ],
+        "start": 15,
+        "type": "Identifier",
+      },
+      "end": 20,
+      "range": [
+        0,
+        20,
+      ],
+      "start": 0,
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "end": 20,
+  "range": [
+    0,
+    20,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default async function f(){} 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "async": true,
+        "body": {
+          "body": [],
+          "end": 35,
+          "range": [
+            33,
+            35,
+          ],
+          "start": 33,
+          "type": "BlockStatement",
+        },
+        "end": 35,
+        "generator": false,
+        "id": {
+          "end": 31,
+          "name": "f",
+          "range": [
+            30,
+            31,
+          ],
+          "start": 30,
+          "type": "Identifier",
+        },
+        "params": [],
+        "range": [
+          15,
+          35,
+        ],
+        "start": 15,
+        "type": "FunctionDeclaration",
+      },
+      "end": 35,
+      "range": [
+        0,
+        35,
+      ],
+      "start": 0,
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "end": 35,
+  "range": [
+    0,
+    35,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default async function(){} 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "async": true,
+        "body": {
+          "body": [],
+          "end": 33,
+          "range": [
+            31,
+            33,
+          ],
+          "start": 31,
+          "type": "BlockStatement",
+        },
+        "end": 33,
+        "generator": false,
+        "id": null,
+        "params": [],
+        "range": [
+          15,
+          33,
+        ],
+        "start": 15,
+        "type": "FunctionDeclaration",
+      },
+      "end": 33,
+      "range": [
+        0,
+        33,
+      ],
+      "start": 0,
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "end": 33,
+  "range": [
+    0,
+    33,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default async x => y 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "async": true,
+        "body": {
+          "end": 27,
+          "name": "y",
+          "range": [
+            26,
+            27,
+          ],
+          "start": 26,
+          "type": "Identifier",
+        },
+        "end": 27,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 22,
+            "name": "x",
+            "range": [
+              21,
+              22,
+            ],
+            "start": 21,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          15,
+          27,
+        ],
+        "start": 15,
+        "type": "ArrowFunctionExpression",
+      },
+      "end": 27,
+      "range": [
+        0,
+        27,
+      ],
+      "start": 0,
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "end": 27,
+  "range": [
+    0,
+    27,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default class A {} 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "body": {
+          "body": [],
+          "type": "ClassBody",
+        },
+        "id": {
+          "name": "A",
+          "type": "Identifier",
+        },
+        "superClass": null,
+        "type": "ClassDeclaration",
+      },
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default class f{}; export {f}; 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "body": {
+          "body": [],
+          "type": "ClassBody",
+        },
+        "decorators": [],
+        "id": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "superClass": null,
+        "type": "ClassDeclaration",
+      },
+      "type": "ExportDefaultDeclaration",
+    },
+    {
+      "type": "EmptyStatement",
+    },
+    {
+      "attributes": [],
+      "declaration": null,
+      "source": null,
+      "specifiers": [
+        {
+          "exported": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+      ],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default class x {} 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "body": {
+          "body": [],
+          "end": 25,
+          "range": [
+            23,
+            25,
+          ],
+          "start": 23,
+          "type": "ClassBody",
+        },
+        "end": 25,
+        "id": {
+          "end": 22,
+          "name": "x",
+          "range": [
+            21,
+            22,
+          ],
+          "start": 21,
+          "type": "Identifier",
+        },
+        "range": [
+          15,
+          25,
+        ],
+        "start": 15,
+        "superClass": null,
+        "type": "ClassDeclaration",
+      },
+      "end": 25,
+      "range": [
+        0,
+        25,
+      ],
+      "start": 0,
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "end": 25,
+  "range": [
+    0,
+    25,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default class x{} 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "body": {
+          "body": [],
+          "end": 24,
+          "range": [
+            22,
+            24,
+          ],
+          "start": 22,
+          "type": "ClassBody",
+        },
+        "decorators": [],
+        "end": 24,
+        "id": {
+          "end": 22,
+          "name": "x",
+          "range": [
+            21,
+            22,
+          ],
+          "start": 21,
+          "type": "Identifier",
+        },
+        "range": [
+          15,
+          24,
+        ],
+        "start": 15,
+        "superClass": null,
+        "type": "ClassDeclaration",
+      },
+      "end": 24,
+      "range": [
+        0,
+        24,
+      ],
+      "start": 0,
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "end": 24,
+  "range": [
+    0,
+    24,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default function () {} 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": null,
+        "params": [],
+        "type": "FunctionDeclaration",
+      },
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default function *f(){} foo 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": true,
+        "id": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "params": [],
+        "type": "FunctionDeclaration",
+      },
+      "type": "ExportDefaultDeclaration",
+    },
+    {
+      "expression": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default function *foo() {} 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": true,
+        "id": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "params": [],
+        "type": "FunctionDeclaration",
+      },
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default function f(){} 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "params": [],
+        "type": "FunctionDeclaration",
+      },
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default function f(){}; export {f}; 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "params": [],
+        "type": "FunctionDeclaration",
+      },
+      "type": "ExportDefaultDeclaration",
+    },
+    {
+      "type": "EmptyStatement",
+    },
+    {
+      "attributes": [],
+      "declaration": null,
+      "source": null,
+      "specifiers": [
+        {
+          "exported": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+      ],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default function foo() {} 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "params": [],
+        "type": "FunctionDeclaration",
+      },
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default function* (){} 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": true,
+        "id": null,
+        "params": [],
+        "type": "FunctionDeclaration",
+      },
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export default function* f(){} 1`] = `
+{
+  "body": [
+    {
+      "declaration": {
+        "async": false,
+        "body": {
+          "body": [],
+          "end": 30,
+          "range": [
+            28,
+            30,
+          ],
+          "start": 28,
+          "type": "BlockStatement",
+        },
+        "end": 30,
+        "generator": true,
+        "id": {
+          "end": 26,
+          "name": "f",
+          "range": [
+            25,
+            26,
+          ],
+          "start": 25,
+          "type": "Identifier",
+        },
+        "params": [],
+        "range": [
+          15,
+          30,
+        ],
+        "start": 15,
+        "type": "FunctionDeclaration",
+      },
+      "end": 30,
+      "range": [
+        0,
+        30,
+      ],
+      "start": 0,
+      "type": "ExportDefaultDeclaration",
+    },
+  ],
+  "end": 30,
+  "range": [
+    0,
+    30,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export function \\u{5A}() {} 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "Z",
+          "type": "Identifier",
+        },
+        "params": [],
+        "type": "FunctionDeclaration",
+      },
+      "source": null,
+      "specifiers": [],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export function f(){} 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "async": false,
+        "body": {
+          "body": [],
+          "end": 21,
+          "range": [
+            19,
+            21,
+          ],
+          "start": 19,
+          "type": "BlockStatement",
+        },
+        "end": 21,
+        "generator": false,
+        "id": {
+          "end": 17,
+          "name": "f",
+          "range": [
+            16,
+            17,
+          ],
+          "start": 16,
+          "type": "Identifier",
+        },
+        "params": [],
+        "range": [
+          7,
+          21,
+        ],
+        "start": 7,
+        "type": "FunctionDeclaration",
+      },
+      "end": 21,
+      "range": [
+        0,
+        21,
+      ],
+      "source": null,
+      "specifiers": [],
+      "start": 0,
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "end": 21,
+  "range": [
+    0,
+    21,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export function foo () {} 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "params": [],
+        "type": "FunctionDeclaration",
+      },
+      "source": null,
+      "specifiers": [],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export function* f(){} 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": true,
+        "id": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "params": [],
+        "type": "FunctionDeclaration",
+      },
+      "source": null,
+      "specifiers": [],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export let [...x] = y 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "declarations": [
+          {
+            "end": 21,
+            "id": {
+              "elements": [
+                {
+                  "argument": {
+                    "end": 16,
+                    "name": "x",
+                    "range": [
+                      15,
+                      16,
+                    ],
+                    "start": 15,
+                    "type": "Identifier",
+                  },
+                  "end": 16,
+                  "range": [
+                    12,
+                    16,
+                  ],
+                  "start": 12,
+                  "type": "RestElement",
+                },
+              ],
+              "end": 17,
+              "range": [
+                11,
+                17,
+              ],
+              "start": 11,
+              "type": "ArrayPattern",
+            },
+            "init": {
+              "end": 21,
+              "name": "y",
+              "range": [
+                20,
+                21,
+              ],
+              "start": 20,
+              "type": "Identifier",
+            },
+            "range": [
+              11,
+              21,
+            ],
+            "start": 11,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "end": 21,
+        "kind": "let",
+        "range": [
+          7,
+          21,
+        ],
+        "start": 7,
+        "type": "VariableDeclaration",
+      },
+      "end": 21,
+      "range": [
+        0,
+        21,
+      ],
+      "source": null,
+      "specifiers": [],
+      "start": 0,
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "end": 21,
+  "range": [
+    0,
+    21,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export let {...x} = y 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "declarations": [
+          {
+            "id": {
+              "properties": [
+                {
+                  "argument": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "type": "RestElement",
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "init": {
+              "name": "y",
+              "type": "Identifier",
+            },
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "source": null,
+      "specifiers": [],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export let a = 1; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "declarations": [
+          {
+            "id": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "init": {
+              "type": "Literal",
+              "value": 1,
+            },
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "source": null,
+      "specifiers": [],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export let x 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "declarations": [
+          {
+            "end": 12,
+            "id": {
+              "end": 12,
+              "name": "x",
+              "range": [
+                11,
+                12,
+              ],
+              "start": 11,
+              "type": "Identifier",
+            },
+            "init": null,
+            "range": [
+              11,
+              12,
+            ],
+            "start": 11,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "end": 12,
+        "kind": "let",
+        "range": [
+          7,
+          12,
+        ],
+        "start": 7,
+        "type": "VariableDeclaration",
+      },
+      "end": 12,
+      "range": [
+        0,
+        12,
+      ],
+      "source": null,
+      "specifiers": [],
+      "start": 0,
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "end": 12,
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export let x 2`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "declarations": [
+          {
+            "id": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "source": null,
+      "specifiers": [],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export let x, y 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "declarations": [
+          {
+            "end": 12,
+            "id": {
+              "end": 12,
+              "name": "x",
+              "range": [
+                11,
+                12,
+              ],
+              "start": 11,
+              "type": "Identifier",
+            },
+            "init": null,
+            "range": [
+              11,
+              12,
+            ],
+            "start": 11,
+            "type": "VariableDeclarator",
+          },
+          {
+            "end": 15,
+            "id": {
+              "end": 15,
+              "name": "y",
+              "range": [
+                14,
+                15,
+              ],
+              "start": 14,
+              "type": "Identifier",
+            },
+            "init": null,
+            "range": [
+              14,
+              15,
+            ],
+            "start": 14,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "end": 15,
+        "kind": "let",
+        "range": [
+          7,
+          15,
+        ],
+        "start": 7,
+        "type": "VariableDeclaration",
+      },
+      "end": 15,
+      "range": [
+        0,
+        15,
+      ],
+      "source": null,
+      "specifiers": [],
+      "start": 0,
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "end": 15,
+  "range": [
+    0,
+    15,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export let x, y 2`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "declarations": [
+          {
+            "id": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+          {
+            "id": {
+              "name": "y",
+              "type": "Identifier",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "source": null,
+      "specifiers": [],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export var foo = 1; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "declarations": [
+          {
+            "id": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "init": {
+              "type": "Literal",
+              "value": 1,
+            },
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "var",
+        "type": "VariableDeclaration",
+      },
+      "source": null,
+      "specifiers": [],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export var x = 1; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "declarations": [
+          {
+            "id": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "init": {
+              "type": "Literal",
+              "value": 1,
+            },
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "var",
+        "type": "VariableDeclaration",
+      },
+      "source": null,
+      "specifiers": [],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export var x = 10, y = 20 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "declarations": [
+          {
+            "end": 17,
+            "id": {
+              "end": 12,
+              "name": "x",
+              "range": [
+                11,
+                12,
+              ],
+              "start": 11,
+              "type": "Identifier",
+            },
+            "init": {
+              "end": 17,
+              "range": [
+                15,
+                17,
+              ],
+              "start": 15,
+              "type": "Literal",
+              "value": 10,
+            },
+            "range": [
+              11,
+              17,
+            ],
+            "start": 11,
+            "type": "VariableDeclarator",
+          },
+          {
+            "end": 25,
+            "id": {
+              "end": 20,
+              "name": "y",
+              "range": [
+                19,
+                20,
+              ],
+              "start": 19,
+              "type": "Identifier",
+            },
+            "init": {
+              "end": 25,
+              "range": [
+                23,
+                25,
+              ],
+              "start": 23,
+              "type": "Literal",
+              "value": 20,
+            },
+            "range": [
+              19,
+              25,
+            ],
+            "start": 19,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "end": 25,
+        "kind": "var",
+        "range": [
+          7,
+          25,
+        ],
+        "start": 7,
+        "type": "VariableDeclaration",
+      },
+      "end": 25,
+      "range": [
+        0,
+        25,
+      ],
+      "source": null,
+      "specifiers": [],
+      "start": 0,
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "end": 25,
+  "range": [
+    0,
+    25,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export var x = 10, y = 20 2`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "declarations": [
+          {
+            "id": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "init": {
+              "type": "Literal",
+              "value": 10,
+            },
+            "type": "VariableDeclarator",
+          },
+          {
+            "id": {
+              "name": "y",
+              "type": "Identifier",
+            },
+            "init": {
+              "type": "Literal",
+              "value": 20,
+            },
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "var",
+        "type": "VariableDeclaration",
+      },
+      "source": null,
+      "specifiers": [],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export var x 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "declarations": [
+          {
+            "id": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "var",
+        "type": "VariableDeclaration",
+      },
+      "source": null,
+      "specifiers": [],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > export var x, y 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "declarations": [
+          {
+            "id": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+          {
+            "id": {
+              "name": "y",
+              "type": "Identifier",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "var",
+        "type": "VariableDeclaration",
+      },
+      "source": null,
+      "specifiers": [],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > let foo, bar; export {foo, bar} 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+        {
+          "id": {
+            "name": "bar",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+    {
+      "attributes": [],
+      "declaration": null,
+      "source": null,
+      "specifiers": [
+        {
+          "exported": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+        {
+          "exported": {
+            "name": "bar",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "bar",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+      ],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > var a,b; export {a}; export {b}; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 5,
+          "id": {
+            "end": 5,
+            "name": "a",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            4,
+            5,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+        {
+          "end": 7,
+          "id": {
+            "end": 7,
+            "name": "b",
+            "range": [
+              6,
+              7,
+            ],
+            "start": 6,
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            6,
+            7,
+          ],
+          "start": 6,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 8,
+      "kind": "var",
+      "range": [
+        0,
+        8,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+    {
+      "attributes": [],
+      "declaration": null,
+      "end": 20,
+      "range": [
+        9,
+        20,
+      ],
+      "source": null,
+      "specifiers": [
+        {
+          "end": 18,
+          "exported": {
+            "end": 18,
+            "name": "a",
+            "range": [
+              17,
+              18,
+            ],
+            "start": 17,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 18,
+            "name": "a",
+            "range": [
+              17,
+              18,
+            ],
+            "start": 17,
+            "type": "Identifier",
+          },
+          "range": [
+            17,
+            18,
+          ],
+          "start": 17,
+          "type": "ExportSpecifier",
+        },
+      ],
+      "start": 9,
+      "type": "ExportNamedDeclaration",
+    },
+    {
+      "attributes": [],
+      "declaration": null,
+      "end": 32,
+      "range": [
+        21,
+        32,
+      ],
+      "source": null,
+      "specifiers": [
+        {
+          "end": 30,
+          "exported": {
+            "end": 30,
+            "name": "b",
+            "range": [
+              29,
+              30,
+            ],
+            "start": 29,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 30,
+            "name": "b",
+            "range": [
+              29,
+              30,
+            ],
+            "start": 29,
+            "type": "Identifier",
+          },
+          "range": [
+            29,
+            30,
+          ],
+          "start": 29,
+          "type": "ExportSpecifier",
+        },
+      ],
+      "start": 21,
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "end": 32,
+  "range": [
+    0,
+    32,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > var a; export {a as b}; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "attributes": [],
+      "declaration": null,
+      "source": null,
+      "specifiers": [
+        {
+          "exported": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+      ],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > var foo; export {foo as new} 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 7,
+          "id": {
+            "end": 7,
+            "name": "foo",
+            "range": [
+              4,
+              7,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            4,
+            7,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 8,
+      "kind": "var",
+      "range": [
+        0,
+        8,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+    {
+      "attributes": [],
+      "declaration": null,
+      "end": 28,
+      "range": [
+        9,
+        28,
+      ],
+      "source": null,
+      "specifiers": [
+        {
+          "end": 27,
+          "exported": {
+            "end": 27,
+            "name": "new",
+            "range": [
+              24,
+              27,
+            ],
+            "start": 24,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 20,
+            "name": "foo",
+            "range": [
+              17,
+              20,
+            ],
+            "start": 17,
+            "type": "Identifier",
+          },
+          "range": [
+            17,
+            27,
+          ],
+          "start": 17,
+          "type": "ExportSpecifier",
+        },
+      ],
+      "start": 9,
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "end": 28,
+  "range": [
+    0,
+    28,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > var x,y; export {x as a, y as b,} 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+        {
+          "id": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "attributes": [],
+      "declaration": null,
+      "source": null,
+      "specifiers": [
+        {
+          "exported": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+        {
+          "exported": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+      ],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > var x,y; export {x as a, y as b} 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 5,
+          "id": {
+            "end": 5,
+            "name": "x",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            4,
+            5,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+        {
+          "end": 7,
+          "id": {
+            "end": 7,
+            "name": "y",
+            "range": [
+              6,
+              7,
+            ],
+            "start": 6,
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            6,
+            7,
+          ],
+          "start": 6,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 8,
+      "kind": "var",
+      "range": [
+        0,
+        8,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+    {
+      "attributes": [],
+      "declaration": null,
+      "end": 32,
+      "range": [
+        9,
+        32,
+      ],
+      "source": null,
+      "specifiers": [
+        {
+          "end": 23,
+          "exported": {
+            "end": 23,
+            "name": "a",
+            "range": [
+              22,
+              23,
+            ],
+            "start": 22,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 18,
+            "name": "x",
+            "range": [
+              17,
+              18,
+            ],
+            "start": 17,
+            "type": "Identifier",
+          },
+          "range": [
+            17,
+            23,
+          ],
+          "start": 17,
+          "type": "ExportSpecifier",
+        },
+        {
+          "end": 31,
+          "exported": {
+            "end": 31,
+            "name": "b",
+            "range": [
+              30,
+              31,
+            ],
+            "start": 30,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 26,
+            "name": "y",
+            "range": [
+              25,
+              26,
+            ],
+            "start": 25,
+            "type": "Identifier",
+          },
+          "range": [
+            25,
+            31,
+          ],
+          "start": 25,
+          "type": "ExportSpecifier",
+        },
+      ],
+      "start": 9,
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "end": 32,
+  "range": [
+    0,
+    32,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > var x,y; export {x as a, y as b} 2`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 5,
+          "id": {
+            "end": 5,
+            "name": "x",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            4,
+            5,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+        {
+          "end": 7,
+          "id": {
+            "end": 7,
+            "name": "y",
+            "range": [
+              6,
+              7,
+            ],
+            "start": 6,
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            6,
+            7,
+          ],
+          "start": 6,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 8,
+      "kind": "var",
+      "range": [
+        0,
+        8,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+    {
+      "attributes": [],
+      "declaration": null,
+      "end": 32,
+      "range": [
+        9,
+        32,
+      ],
+      "source": null,
+      "specifiers": [
+        {
+          "end": 23,
+          "exported": {
+            "end": 23,
+            "name": "a",
+            "range": [
+              22,
+              23,
+            ],
+            "start": 22,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 18,
+            "name": "x",
+            "range": [
+              17,
+              18,
+            ],
+            "start": 17,
+            "type": "Identifier",
+          },
+          "range": [
+            17,
+            23,
+          ],
+          "start": 17,
+          "type": "ExportSpecifier",
+        },
+        {
+          "end": 31,
+          "exported": {
+            "end": 31,
+            "name": "b",
+            "range": [
+              30,
+              31,
+            ],
+            "start": 30,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 26,
+            "name": "y",
+            "range": [
+              25,
+              26,
+            ],
+            "start": 25,
+            "type": "Identifier",
+          },
+          "range": [
+            25,
+            31,
+          ],
+          "start": 25,
+          "type": "ExportSpecifier",
+        },
+      ],
+      "start": 9,
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "end": 32,
+  "range": [
+    0,
+    32,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > var x,y; export {x, y,} 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+        {
+          "id": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "attributes": [],
+      "declaration": null,
+      "source": null,
+      "specifiers": [
+        {
+          "exported": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+        {
+          "exported": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+      ],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > var x,y; export {x, y} 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+        {
+          "id": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "attributes": [],
+      "declaration": null,
+      "source": null,
+      "specifiers": [
+        {
+          "exported": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+        {
+          "exported": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+      ],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > var x; export { x as a }; export { x as b }; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 5,
+          "id": {
+            "end": 5,
+            "name": "x",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            4,
+            5,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 6,
+      "kind": "var",
+      "range": [
+        0,
+        6,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+    {
+      "attributes": [],
+      "declaration": null,
+      "end": 25,
+      "range": [
+        7,
+        25,
+      ],
+      "source": null,
+      "specifiers": [
+        {
+          "end": 22,
+          "exported": {
+            "end": 22,
+            "name": "a",
+            "range": [
+              21,
+              22,
+            ],
+            "start": 21,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 17,
+            "name": "x",
+            "range": [
+              16,
+              17,
+            ],
+            "start": 16,
+            "type": "Identifier",
+          },
+          "range": [
+            16,
+            22,
+          ],
+          "start": 16,
+          "type": "ExportSpecifier",
+        },
+      ],
+      "start": 7,
+      "type": "ExportNamedDeclaration",
+    },
+    {
+      "attributes": [],
+      "declaration": null,
+      "end": 44,
+      "range": [
+        26,
+        44,
+      ],
+      "source": null,
+      "specifiers": [
+        {
+          "end": 41,
+          "exported": {
+            "end": 41,
+            "name": "b",
+            "range": [
+              40,
+              41,
+            ],
+            "start": 40,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 36,
+            "name": "x",
+            "range": [
+              35,
+              36,
+            ],
+            "start": 35,
+            "type": "Identifier",
+          },
+          "range": [
+            35,
+            41,
+          ],
+          "start": 35,
+          "type": "ExportSpecifier",
+        },
+      ],
+      "start": 26,
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "end": 44,
+  "range": [
+    0,
+    44,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > var x; export {x as a,} 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 5,
+          "id": {
+            "end": 5,
+            "name": "x",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            4,
+            5,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 6,
+      "kind": "var",
+      "range": [
+        0,
+        6,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+    {
+      "attributes": [],
+      "declaration": null,
+      "end": 23,
+      "range": [
+        7,
+        23,
+      ],
+      "source": null,
+      "specifiers": [
+        {
+          "end": 21,
+          "exported": {
+            "end": 21,
+            "name": "a",
+            "range": [
+              20,
+              21,
+            ],
+            "start": 20,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 16,
+            "name": "x",
+            "range": [
+              15,
+              16,
+            ],
+            "start": 15,
+            "type": "Identifier",
+          },
+          "range": [
+            15,
+            21,
+          ],
+          "start": 15,
+          "type": "ExportSpecifier",
+        },
+      ],
+      "start": 7,
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "end": 23,
+  "range": [
+    0,
+    23,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > var x; export {x as a,} 2`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "attributes": [],
+      "declaration": null,
+      "source": null,
+      "specifiers": [
+        {
+          "exported": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+      ],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > var x; export {x as a} 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 5,
+          "id": {
+            "end": 5,
+            "name": "x",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            4,
+            5,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 6,
+      "kind": "var",
+      "range": [
+        0,
+        6,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+    {
+      "attributes": [],
+      "declaration": null,
+      "end": 22,
+      "range": [
+        7,
+        22,
+      ],
+      "source": null,
+      "specifiers": [
+        {
+          "end": 21,
+          "exported": {
+            "end": 21,
+            "name": "a",
+            "range": [
+              20,
+              21,
+            ],
+            "start": 20,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 16,
+            "name": "x",
+            "range": [
+              15,
+              16,
+            ],
+            "start": 15,
+            "type": "Identifier",
+          },
+          "range": [
+            15,
+            21,
+          ],
+          "start": 15,
+          "type": "ExportSpecifier",
+        },
+      ],
+      "start": 7,
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "end": 22,
+  "range": [
+    0,
+    22,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > var x; export {x as a} 2`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "attributes": [],
+      "declaration": null,
+      "source": null,
+      "specifiers": [
+        {
+          "exported": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+      ],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > var x; export {x,} 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 5,
+          "id": {
+            "end": 5,
+            "name": "x",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            4,
+            5,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 6,
+      "kind": "var",
+      "range": [
+        0,
+        6,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+    {
+      "attributes": [],
+      "declaration": null,
+      "end": 18,
+      "range": [
+        7,
+        18,
+      ],
+      "source": null,
+      "specifiers": [
+        {
+          "end": 16,
+          "exported": {
+            "end": 16,
+            "name": "x",
+            "range": [
+              15,
+              16,
+            ],
+            "start": 15,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 16,
+            "name": "x",
+            "range": [
+              15,
+              16,
+            ],
+            "start": 15,
+            "type": "Identifier",
+          },
+          "range": [
+            15,
+            16,
+          ],
+          "start": 15,
+          "type": "ExportSpecifier",
+        },
+      ],
+      "start": 7,
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "end": 18,
+  "range": [
+    0,
+    18,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Export > Module - Export (pass) > var x; export {x,} 2`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "attributes": [],
+      "declaration": null,
+      "source": null,
+      "specifiers": [
+        {
+          "exported": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+      ],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;

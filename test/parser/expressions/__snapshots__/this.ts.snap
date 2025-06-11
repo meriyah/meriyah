@@ -1,0 +1,88 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - This > Expressions - This (pass) > this
+/foo/g; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "type": "ThisExpression",
+          },
+          "operator": "/",
+          "right": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "/",
+        "right": {
+          "name": "g",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - This > Expressions - This (pass) > this
+/foo; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "type": "ThisExpression",
+        },
+        "operator": "/",
+        "right": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - This > Expressions - This (pass) > this._global = _global; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "computed": false,
+          "object": {
+            "type": "ThisExpression",
+          },
+          "property": {
+            "name": "_global",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "=",
+        "right": {
+          "name": "_global",
+          "type": "Identifier",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

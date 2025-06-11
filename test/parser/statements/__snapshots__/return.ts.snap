@@ -1,0 +1,749 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Statements - Return > Statements - Return (pass) > () => {return} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [
+            {
+              "argument": null,
+              "type": "ReturnStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Return > Statements - Return (pass) > (a, b) => {return} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [
+            {
+              "argument": null,
+              "type": "ReturnStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "name": "a",
+            "type": "Identifier",
+          },
+          {
+            "name": "b",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Return > Statements - Return (pass) > //
+      function a() {
+          return;
+      }; 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "argument": null,
+            "type": "ReturnStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+    {
+      "type": "EmptyStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Return > Statements - Return (pass) > {return} 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "argument": null,
+          "type": "ReturnStatement",
+        },
+      ],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Return > Statements - Return (pass) > async function f(){ return; } 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [
+          {
+            "argument": null,
+            "type": "ReturnStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Return > Statements - Return (pass) > class x { constructor(){ return }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": null,
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Return > Statements - Return (pass) > class x {foo(){ return }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": null,
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Return > Statements - Return (pass) > function *f() { return } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "argument": null,
+            "type": "ReturnStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Return > Statements - Return (pass) > function *f() { return } 2`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "argument": null,
+            "type": "ReturnStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Return > Statements - Return (pass) > function a() { return a, b, c; } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "argument": {
+              "end": 29,
+              "expressions": [
+                {
+                  "end": 23,
+                  "name": "a",
+                  "range": [
+                    22,
+                    23,
+                  ],
+                  "start": 22,
+                  "type": "Identifier",
+                },
+                {
+                  "end": 26,
+                  "name": "b",
+                  "range": [
+                    25,
+                    26,
+                  ],
+                  "start": 25,
+                  "type": "Identifier",
+                },
+                {
+                  "end": 29,
+                  "name": "c",
+                  "range": [
+                    28,
+                    29,
+                  ],
+                  "start": 28,
+                  "type": "Identifier",
+                },
+              ],
+              "range": [
+                22,
+                29,
+              ],
+              "start": 22,
+              "type": "SequenceExpression",
+            },
+            "end": 30,
+            "range": [
+              15,
+              30,
+            ],
+            "start": 15,
+            "type": "ReturnStatement",
+          },
+        ],
+        "end": 32,
+        "range": [
+          13,
+          32,
+        ],
+        "start": 13,
+        "type": "BlockStatement",
+      },
+      "end": 32,
+      "generator": false,
+      "id": {
+        "end": 10,
+        "name": "a",
+        "range": [
+          9,
+          10,
+        ],
+        "start": 9,
+        "type": "Identifier",
+      },
+      "params": [],
+      "range": [
+        0,
+        32,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 32,
+  "range": [
+    0,
+    32,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Return > Statements - Return (pass) > function a(x) { return x+y; } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "argument": {
+              "end": 26,
+              "left": {
+                "end": 24,
+                "loc": {
+                  "end": {
+                    "column": 24,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 23,
+                    "line": 1,
+                  },
+                },
+                "name": "x",
+                "range": [
+                  23,
+                  24,
+                ],
+                "start": 23,
+                "type": "Identifier",
+              },
+              "loc": {
+                "end": {
+                  "column": 26,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 23,
+                  "line": 1,
+                },
+              },
+              "operator": "+",
+              "range": [
+                23,
+                26,
+              ],
+              "right": {
+                "end": 26,
+                "loc": {
+                  "end": {
+                    "column": 26,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 25,
+                    "line": 1,
+                  },
+                },
+                "name": "y",
+                "range": [
+                  25,
+                  26,
+                ],
+                "start": 25,
+                "type": "Identifier",
+              },
+              "start": 23,
+              "type": "BinaryExpression",
+            },
+            "end": 27,
+            "loc": {
+              "end": {
+                "column": 27,
+                "line": 1,
+              },
+              "start": {
+                "column": 16,
+                "line": 1,
+              },
+            },
+            "range": [
+              16,
+              27,
+            ],
+            "start": 16,
+            "type": "ReturnStatement",
+          },
+        ],
+        "end": 29,
+        "loc": {
+          "end": {
+            "column": 29,
+            "line": 1,
+          },
+          "start": {
+            "column": 14,
+            "line": 1,
+          },
+        },
+        "range": [
+          14,
+          29,
+        ],
+        "start": 14,
+        "type": "BlockStatement",
+      },
+      "end": 29,
+      "generator": false,
+      "id": {
+        "end": 10,
+        "loc": {
+          "end": {
+            "column": 10,
+            "line": 1,
+          },
+          "start": {
+            "column": 9,
+            "line": 1,
+          },
+        },
+        "name": "a",
+        "range": [
+          9,
+          10,
+        ],
+        "start": 9,
+        "type": "Identifier",
+      },
+      "loc": {
+        "end": {
+          "column": 29,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "params": [
+        {
+          "end": 12,
+          "loc": {
+            "end": {
+              "column": 12,
+              "line": 1,
+            },
+            "start": {
+              "column": 11,
+              "line": 1,
+            },
+          },
+          "name": "x",
+          "range": [
+            11,
+            12,
+          ],
+          "start": 11,
+          "type": "Identifier",
+        },
+      ],
+      "range": [
+        0,
+        29,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 29,
+  "loc": {
+    "end": {
+      "column": 29,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    29,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Return > Statements - Return (pass) > function f(){   {return}    } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "body": [
+              {
+                "argument": null,
+                "type": "ReturnStatement",
+              },
+            ],
+            "type": "BlockStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Return > Statements - Return (pass) > function f(){   return
+return   } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "argument": null,
+            "type": "ReturnStatement",
+          },
+          {
+            "argument": null,
+            "type": "ReturnStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Return > Statements - Return (pass) > function f(){   return 15;    } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "argument": {
+              "type": "Literal",
+              "value": 15,
+            },
+            "type": "ReturnStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Return > Statements - Return (pass) > function f(){   return;return    }; 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "argument": null,
+            "type": "ReturnStatement",
+          },
+          {
+            "argument": null,
+            "type": "ReturnStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+    {
+      "type": "EmptyStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Return > Statements - Return (pass) > x => {return} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [
+            {
+              "argument": null,
+              "type": "ReturnStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "name": "x",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

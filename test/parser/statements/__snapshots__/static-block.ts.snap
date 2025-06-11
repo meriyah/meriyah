@@ -1,0 +1,127 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Next - Class static initialization block > Next - Class static initialization block (pass) > class A { static { this.a } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "body": [
+              {
+                "expression": {
+                  "computed": false,
+                  "object": {
+                    "type": "ThisExpression",
+                  },
+                  "property": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "type": "MemberExpression",
+                },
+                "type": "ExpressionStatement",
+              },
+            ],
+            "type": "StaticBlock",
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Class static initialization block > Next - Class static initialization block (pass) > class A { static {} } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "body": [],
+            "type": "StaticBlock",
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Class static initialization block > Next - Class static initialization block (pass) > class A {}; class B extends A { static { super.a } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+    {
+      "type": "EmptyStatement",
+    },
+    {
+      "body": {
+        "body": [
+          {
+            "body": [
+              {
+                "expression": {
+                  "computed": false,
+                  "object": {
+                    "type": "Super",
+                  },
+                  "property": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "type": "MemberExpression",
+                },
+                "type": "ExpressionStatement",
+              },
+            ],
+            "type": "StaticBlock",
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "B",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

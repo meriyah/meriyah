@@ -1,0 +1,3082 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Declarations - Let > Declarations - Let (pass) > [x = true] = y 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "elements": [
+            {
+              "left": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "right": {
+                "type": "Literal",
+                "value": true,
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "ArrayPattern",
+        },
+        "operator": "=",
+        "right": {
+          "name": "y",
+          "type": "Identifier",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > _ => { let: foo; } 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [
+            {
+              "body": {
+                "expression": {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                "type": "ExpressionStatement",
+              },
+              "label": {
+                "name": "let",
+                "type": "Identifier",
+              },
+              "type": "LabeledStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "name": "_",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > a = let;
+      [] 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "name": "let",
+          "type": "Identifier",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "expression": {
+        "elements": [],
+        "type": "ArrayExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (;let;); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "init": null,
+      "test": {
+        "name": "let",
+        "type": "Identifier",
+      },
+      "type": "ForStatement",
+      "update": null,
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let [,] of x); 1`] = `
+{
+  "body": [
+    {
+      "await": false,
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "elements": [
+                null,
+              ],
+              "type": "ArrayPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "type": "ForOfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let [...[foo, bar]] in obj); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "elements": [
+                {
+                  "argument": {
+                    "elements": [
+                      {
+                        "name": "foo",
+                        "type": "Identifier",
+                      },
+                      {
+                        "name": "bar",
+                        "type": "Identifier",
+                      },
+                    ],
+                    "type": "ArrayPattern",
+                  },
+                  "type": "RestElement",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "obj",
+        "type": "Identifier",
+      },
+      "type": "ForInStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let [...[foo, bar]] of obj); 1`] = `
+{
+  "body": [
+    {
+      "await": false,
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "elements": [
+                {
+                  "argument": {
+                    "elements": [
+                      {
+                        "name": "foo",
+                        "type": "Identifier",
+                      },
+                      {
+                        "name": "bar",
+                        "type": "Identifier",
+                      },
+                    ],
+                    "type": "ArrayPattern",
+                  },
+                  "type": "RestElement",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "obj",
+        "type": "Identifier",
+      },
+      "type": "ForOfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let [] of x); 1`] = `
+{
+  "body": [
+    {
+      "await": false,
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "elements": [],
+              "type": "ArrayPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "type": "ForOfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let [a=[...b], ...c] in obj); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "elements": [
+                {
+                  "left": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "elements": [
+                      {
+                        "argument": {
+                          "name": "b",
+                          "type": "Identifier",
+                        },
+                        "type": "SpreadElement",
+                      },
+                    ],
+                    "type": "ArrayExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+                {
+                  "argument": {
+                    "name": "c",
+                    "type": "Identifier",
+                  },
+                  "type": "RestElement",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "obj",
+        "type": "Identifier",
+      },
+      "type": "ForInStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let [a=[...b], ...c] of obj); 1`] = `
+{
+  "body": [
+    {
+      "await": false,
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "elements": [
+                {
+                  "left": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "elements": [
+                      {
+                        "argument": {
+                          "name": "b",
+                          "type": "Identifier",
+                        },
+                        "type": "SpreadElement",
+                      },
+                    ],
+                    "type": "ArrayExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+                {
+                  "argument": {
+                    "name": "c",
+                    "type": "Identifier",
+                  },
+                  "type": "RestElement",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "obj",
+        "type": "Identifier",
+      },
+      "type": "ForOfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let [foo, bar=b] of arr); 1`] = `
+{
+  "body": [
+    {
+      "await": false,
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "elements": [
+                {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                {
+                  "left": {
+                    "name": "bar",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "arr",
+        "type": "Identifier",
+      },
+      "type": "ForOfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let [foo,,] of arr); 1`] = `
+{
+  "body": [
+    {
+      "await": false,
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "elements": [
+                {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                null,
+              ],
+              "type": "ArrayPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "arr",
+        "type": "Identifier",
+      },
+      "type": "ForOfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let [foo,,bar] of arr); 1`] = `
+{
+  "body": [
+    {
+      "await": false,
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "elements": [
+                {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                null,
+                {
+                  "name": "bar",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "arr",
+        "type": "Identifier",
+      },
+      "type": "ForOfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let [foo,] of arr); 1`] = `
+{
+  "body": [
+    {
+      "await": false,
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "elements": [
+                {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "arr",
+        "type": "Identifier",
+      },
+      "type": "ForOfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let [foo=a, bar=b] of arr); 1`] = `
+{
+  "body": [
+    {
+      "await": false,
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "elements": [
+                {
+                  "left": {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "type": "AssignmentPattern",
+                },
+                {
+                  "left": {
+                    "name": "bar",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "arr",
+        "type": "Identifier",
+      },
+      "type": "ForOfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let [foo=a] of arr); 1`] = `
+{
+  "body": [
+    {
+      "await": false,
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "elements": [
+                {
+                  "left": {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "arr",
+        "type": "Identifier",
+      },
+      "type": "ForOfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let [x, ...[foo, bar]] in obj); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "elements": [
+                {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                {
+                  "argument": {
+                    "elements": [
+                      {
+                        "name": "foo",
+                        "type": "Identifier",
+                      },
+                      {
+                        "name": "bar",
+                        "type": "Identifier",
+                      },
+                    ],
+                    "type": "ArrayPattern",
+                  },
+                  "type": "RestElement",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "obj",
+        "type": "Identifier",
+      },
+      "type": "ForInStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let {[x]: y = z} in obj); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "end": 30,
+        "range": [
+          29,
+          30,
+        ],
+        "start": 29,
+        "type": "EmptyStatement",
+      },
+      "end": 30,
+      "left": {
+        "declarations": [
+          {
+            "end": 21,
+            "id": {
+              "end": 21,
+              "properties": [
+                {
+                  "computed": true,
+                  "end": 20,
+                  "key": {
+                    "end": 12,
+                    "name": "x",
+                    "range": [
+                      11,
+                      12,
+                    ],
+                    "start": 11,
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "range": [
+                    10,
+                    20,
+                  ],
+                  "shorthand": false,
+                  "start": 10,
+                  "type": "Property",
+                  "value": {
+                    "end": 20,
+                    "left": {
+                      "end": 16,
+                      "name": "y",
+                      "range": [
+                        15,
+                        16,
+                      ],
+                      "start": 15,
+                      "type": "Identifier",
+                    },
+                    "range": [
+                      15,
+                      20,
+                    ],
+                    "right": {
+                      "end": 20,
+                      "name": "z",
+                      "range": [
+                        19,
+                        20,
+                      ],
+                      "start": 19,
+                      "type": "Identifier",
+                    },
+                    "start": 15,
+                    "type": "AssignmentPattern",
+                  },
+                },
+              ],
+              "range": [
+                9,
+                21,
+              ],
+              "start": 9,
+              "type": "ObjectPattern",
+            },
+            "init": null,
+            "range": [
+              9,
+              21,
+            ],
+            "start": 9,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "end": 21,
+        "kind": "let",
+        "range": [
+          5,
+          21,
+        ],
+        "start": 5,
+        "type": "VariableDeclaration",
+      },
+      "range": [
+        0,
+        30,
+      ],
+      "right": {
+        "end": 28,
+        "name": "obj",
+        "range": [
+          25,
+          28,
+        ],
+        "start": 25,
+        "type": "Identifier",
+      },
+      "start": 0,
+      "type": "ForInStatement",
+    },
+  ],
+  "end": 30,
+  "range": [
+    0,
+    30,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let {[x]: y = z} of obj); 1`] = `
+{
+  "body": [
+    {
+      "await": false,
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "properties": [
+                {
+                  "computed": true,
+                  "key": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "left": {
+                      "name": "y",
+                      "type": "Identifier",
+                    },
+                    "right": {
+                      "name": "z",
+                      "type": "Identifier",
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "obj",
+        "type": "Identifier",
+      },
+      "type": "ForOfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let {[x]: y} in obj); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "end": 26,
+        "range": [
+          25,
+          26,
+        ],
+        "start": 25,
+        "type": "EmptyStatement",
+      },
+      "end": 26,
+      "left": {
+        "declarations": [
+          {
+            "end": 17,
+            "id": {
+              "end": 17,
+              "properties": [
+                {
+                  "computed": true,
+                  "end": 16,
+                  "key": {
+                    "end": 12,
+                    "name": "x",
+                    "range": [
+                      11,
+                      12,
+                    ],
+                    "start": 11,
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "range": [
+                    10,
+                    16,
+                  ],
+                  "shorthand": false,
+                  "start": 10,
+                  "type": "Property",
+                  "value": {
+                    "end": 16,
+                    "name": "y",
+                    "range": [
+                      15,
+                      16,
+                    ],
+                    "start": 15,
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "range": [
+                9,
+                17,
+              ],
+              "start": 9,
+              "type": "ObjectPattern",
+            },
+            "init": null,
+            "range": [
+              9,
+              17,
+            ],
+            "start": 9,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "end": 17,
+        "kind": "let",
+        "range": [
+          5,
+          17,
+        ],
+        "start": 5,
+        "type": "VariableDeclaration",
+      },
+      "range": [
+        0,
+        26,
+      ],
+      "right": {
+        "end": 24,
+        "name": "obj",
+        "range": [
+          21,
+          24,
+        ],
+        "start": 21,
+        "type": "Identifier",
+      },
+      "start": 0,
+      "type": "ForInStatement",
+    },
+  ],
+  "end": 26,
+  "range": [
+    0,
+    26,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let {} in obj); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "properties": [],
+              "type": "ObjectPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "obj",
+        "type": "Identifier",
+      },
+      "type": "ForInStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let {a, [x]: y} in obj); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "type": "Property",
+                  "value": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                },
+                {
+                  "computed": true,
+                  "key": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "name": "y",
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "obj",
+        "type": "Identifier",
+      },
+      "type": "ForInStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let {x : y = z} in obj); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "left": {
+                      "name": "y",
+                      "type": "Identifier",
+                    },
+                    "right": {
+                      "name": "z",
+                      "type": "Identifier",
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "obj",
+        "type": "Identifier",
+      },
+      "type": "ForInStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let {x : y, z, a : b = c} in obj); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "end": 39,
+        "range": [
+          38,
+          39,
+        ],
+        "start": 38,
+        "type": "EmptyStatement",
+      },
+      "end": 39,
+      "left": {
+        "declarations": [
+          {
+            "end": 30,
+            "id": {
+              "end": 30,
+              "properties": [
+                {
+                  "computed": false,
+                  "end": 15,
+                  "key": {
+                    "end": 11,
+                    "name": "x",
+                    "range": [
+                      10,
+                      11,
+                    ],
+                    "start": 10,
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "range": [
+                    10,
+                    15,
+                  ],
+                  "shorthand": false,
+                  "start": 10,
+                  "type": "Property",
+                  "value": {
+                    "end": 15,
+                    "name": "y",
+                    "range": [
+                      14,
+                      15,
+                    ],
+                    "start": 14,
+                    "type": "Identifier",
+                  },
+                },
+                {
+                  "computed": false,
+                  "end": 18,
+                  "key": {
+                    "end": 18,
+                    "name": "z",
+                    "range": [
+                      17,
+                      18,
+                    ],
+                    "start": 17,
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "range": [
+                    17,
+                    18,
+                  ],
+                  "shorthand": true,
+                  "start": 17,
+                  "type": "Property",
+                  "value": {
+                    "end": 18,
+                    "name": "z",
+                    "range": [
+                      17,
+                      18,
+                    ],
+                    "start": 17,
+                    "type": "Identifier",
+                  },
+                },
+                {
+                  "computed": false,
+                  "end": 29,
+                  "key": {
+                    "end": 21,
+                    "name": "a",
+                    "range": [
+                      20,
+                      21,
+                    ],
+                    "start": 20,
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "range": [
+                    20,
+                    29,
+                  ],
+                  "shorthand": false,
+                  "start": 20,
+                  "type": "Property",
+                  "value": {
+                    "end": 29,
+                    "left": {
+                      "end": 25,
+                      "name": "b",
+                      "range": [
+                        24,
+                        25,
+                      ],
+                      "start": 24,
+                      "type": "Identifier",
+                    },
+                    "range": [
+                      24,
+                      29,
+                    ],
+                    "right": {
+                      "end": 29,
+                      "name": "c",
+                      "range": [
+                        28,
+                        29,
+                      ],
+                      "start": 28,
+                      "type": "Identifier",
+                    },
+                    "start": 24,
+                    "type": "AssignmentPattern",
+                  },
+                },
+              ],
+              "range": [
+                9,
+                30,
+              ],
+              "start": 9,
+              "type": "ObjectPattern",
+            },
+            "init": null,
+            "range": [
+              9,
+              30,
+            ],
+            "start": 9,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "end": 30,
+        "kind": "let",
+        "range": [
+          5,
+          30,
+        ],
+        "start": 5,
+        "type": "VariableDeclaration",
+      },
+      "range": [
+        0,
+        39,
+      ],
+      "right": {
+        "end": 37,
+        "name": "obj",
+        "range": [
+          34,
+          37,
+        ],
+        "start": 34,
+        "type": "Identifier",
+      },
+      "start": 0,
+      "type": "ForInStatement",
+    },
+  ],
+  "end": 39,
+  "range": [
+    0,
+    39,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let {x : y} in obj); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "name": "y",
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "obj",
+        "type": "Identifier",
+      },
+      "type": "ForInStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let {x = y, z = a} in obj); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "type": "Property",
+                  "value": {
+                    "left": {
+                      "name": "x",
+                      "type": "Identifier",
+                    },
+                    "right": {
+                      "name": "y",
+                      "type": "Identifier",
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                },
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "z",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "type": "Property",
+                  "value": {
+                    "left": {
+                      "name": "z",
+                      "type": "Identifier",
+                    },
+                    "right": {
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "obj",
+        "type": "Identifier",
+      },
+      "type": "ForInStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let {x = y} in obj); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "type": "Property",
+                  "value": {
+                    "left": {
+                      "name": "x",
+                      "type": "Identifier",
+                    },
+                    "right": {
+                      "name": "y",
+                      "type": "Identifier",
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "obj",
+        "type": "Identifier",
+      },
+      "type": "ForInStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let {x, y : z} in obj); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "type": "Property",
+                  "value": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                },
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "y",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "name": "z",
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "obj",
+        "type": "Identifier",
+      },
+      "type": "ForInStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let {x, y = z} in obj); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "type": "Property",
+                  "value": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                },
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "y",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "type": "Property",
+                  "value": {
+                    "left": {
+                      "name": "y",
+                      "type": "Identifier",
+                    },
+                    "right": {
+                      "name": "z",
+                      "type": "Identifier",
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "obj",
+        "type": "Identifier",
+      },
+      "type": "ForInStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let {x,} in obj);   1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "type": "Property",
+                  "value": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "obj",
+        "type": "Identifier",
+      },
+      "type": "ForInStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let();;); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "init": {
+        "arguments": [],
+        "callee": {
+          "name": "let",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "test": null,
+      "type": "ForStatement",
+      "update": null,
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > for (let;;); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "init": {
+        "name": "let",
+        "type": "Identifier",
+      },
+      "test": null,
+      "type": "ForStatement",
+      "update": null,
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > if (false) {
+          L: let // ASI
+          x = 1;
+      } 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "body": [
+          {
+            "body": {
+              "expression": {
+                "name": "let",
+                "type": "Identifier",
+              },
+              "type": "ExpressionStatement",
+            },
+            "label": {
+              "name": "L",
+              "type": "Identifier",
+            },
+            "type": "LabeledStatement",
+          },
+          {
+            "expression": {
+              "left": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "operator": "=",
+              "right": {
+                "type": "Literal",
+                "value": 1,
+              },
+              "type": "AssignmentExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": false,
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > if (false) {
+        L: let // ASI
+        x = 1;
+    } 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "body": [
+          {
+            "body": {
+              "expression": {
+                "name": "let",
+                "type": "Identifier",
+              },
+              "type": "ExpressionStatement",
+            },
+            "label": {
+              "name": "L",
+              "type": "Identifier",
+            },
+            "type": "LabeledStatement",
+          },
+          {
+            "expression": {
+              "left": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "operator": "=",
+              "right": {
+                "type": "Literal",
+                "value": 1,
+              },
+              "type": "AssignmentExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": false,
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > if (false) {
+      L: let // ASI
+      x = 1;
+  } 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "body": [
+          {
+            "body": {
+              "expression": {
+                "name": "let",
+                "type": "Identifier",
+              },
+              "type": "ExpressionStatement",
+            },
+            "label": {
+              "name": "L",
+              "type": "Identifier",
+            },
+            "type": "LabeledStatement",
+          },
+          {
+            "expression": {
+              "left": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "operator": "=",
+              "right": {
+                "type": "Literal",
+                "value": 1,
+              },
+              "type": "AssignmentExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": false,
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > if (x) let; 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "expression": {
+          "name": "let",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let [,] = x; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "elements": [
+              null,
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let [...foo] = obj; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "elements": [
+              {
+                "argument": {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                "type": "RestElement",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "name": "obj",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let [foo, ...bar] = obj; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "elements": [
+              {
+                "name": "foo",
+                "type": "Identifier",
+              },
+              {
+                "argument": {
+                  "name": "bar",
+                  "type": "Identifier",
+                },
+                "type": "RestElement",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "name": "obj",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let [foo=a, bar] = arr; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "elements": [
+              {
+                "left": {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "type": "AssignmentPattern",
+              },
+              {
+                "name": "bar",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "name": "arr",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let [foo=a] = arr; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "elements": [
+              {
+                "left": {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "type": "AssignmentPattern",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "name": "arr",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let [x, ...[foo, bar]] = obj; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "elements": [
+              {
+                "name": "x",
+                "type": "Identifier",
+              },
+              {
+                "argument": {
+                  "elements": [
+                    {
+                      "name": "foo",
+                      "type": "Identifier",
+                    },
+                    {
+                      "name": "bar",
+                      "type": "Identifier",
+                    },
+                  ],
+                  "type": "ArrayPattern",
+                },
+                "type": "RestElement",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "name": "obj",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let {...x} = y 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [
+              {
+                "argument": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "type": "RestElement",
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let {...x} = y 2`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [
+              {
+                "argument": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "type": "RestElement",
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let {} = obj; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "name": "obj",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let {a, let: foo} = x; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "let",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let {let: foo} = x; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "let",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let {x, y} = obj; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 16,
+          "id": {
+            "end": 10,
+            "properties": [
+              {
+                "computed": false,
+                "end": 6,
+                "key": {
+                  "end": 6,
+                  "name": "x",
+                  "range": [
+                    5,
+                    6,
+                  ],
+                  "start": 5,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  5,
+                  6,
+                ],
+                "shorthand": true,
+                "start": 5,
+                "type": "Property",
+                "value": {
+                  "end": 6,
+                  "name": "x",
+                  "range": [
+                    5,
+                    6,
+                  ],
+                  "start": 5,
+                  "type": "Identifier",
+                },
+              },
+              {
+                "computed": false,
+                "end": 9,
+                "key": {
+                  "end": 9,
+                  "name": "y",
+                  "range": [
+                    8,
+                    9,
+                  ],
+                  "start": 8,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  8,
+                  9,
+                ],
+                "shorthand": true,
+                "start": 8,
+                "type": "Property",
+                "value": {
+                  "end": 9,
+                  "name": "y",
+                  "range": [
+                    8,
+                    9,
+                  ],
+                  "start": 8,
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "range": [
+              4,
+              10,
+            ],
+            "start": 4,
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "end": 16,
+            "name": "obj",
+            "range": [
+              13,
+              16,
+            ],
+            "start": 13,
+            "type": "Identifier",
+          },
+          "range": [
+            4,
+            16,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 17,
+      "kind": "let",
+      "range": [
+        0,
+        17,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 17,
+  "range": [
+    0,
+    17,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let {x,} = obj; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "name": "obj",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let {x} = a, {y} = obj; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 11,
+          "id": {
+            "end": 7,
+            "properties": [
+              {
+                "computed": false,
+                "end": 6,
+                "key": {
+                  "end": 6,
+                  "name": "x",
+                  "range": [
+                    5,
+                    6,
+                  ],
+                  "start": 5,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  5,
+                  6,
+                ],
+                "shorthand": true,
+                "start": 5,
+                "type": "Property",
+                "value": {
+                  "end": 6,
+                  "name": "x",
+                  "range": [
+                    5,
+                    6,
+                  ],
+                  "start": 5,
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "range": [
+              4,
+              7,
+            ],
+            "start": 4,
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "end": 11,
+            "name": "a",
+            "range": [
+              10,
+              11,
+            ],
+            "start": 10,
+            "type": "Identifier",
+          },
+          "range": [
+            4,
+            11,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+        {
+          "end": 22,
+          "id": {
+            "end": 16,
+            "properties": [
+              {
+                "computed": false,
+                "end": 15,
+                "key": {
+                  "end": 15,
+                  "name": "y",
+                  "range": [
+                    14,
+                    15,
+                  ],
+                  "start": 14,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  14,
+                  15,
+                ],
+                "shorthand": true,
+                "start": 14,
+                "type": "Property",
+                "value": {
+                  "end": 15,
+                  "name": "y",
+                  "range": [
+                    14,
+                    15,
+                  ],
+                  "start": 14,
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "range": [
+              13,
+              16,
+            ],
+            "start": 13,
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "end": 22,
+            "name": "obj",
+            "range": [
+              19,
+              22,
+            ],
+            "start": 19,
+            "type": "Identifier",
+          },
+          "range": [
+            13,
+            22,
+          ],
+          "start": 13,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 23,
+      "kind": "let",
+      "range": [
+        0,
+        23,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 23,
+  "range": [
+    0,
+    23,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let {x} = a, y = obj; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+        {
+          "id": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "init": {
+            "name": "obj",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let {x} = obj; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "name": "obj",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let a, [...x] = y 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+        {
+          "id": {
+            "elements": [
+              {
+                "argument": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "type": "RestElement",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let foo = bar; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "init": {
+            "name": "bar",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let foo; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let(); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "name": "let",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let.foo; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "computed": false,
+        "object": {
+          "name": "let",
+          "type": "Identifier",
+        },
+        "property": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > let: let; 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "expression": {
+          "name": "let",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "label": {
+        "name": "let",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > var [let] = x; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "elements": [
+              {
+                "name": "let",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > var {let} = x; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "let",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "name": "let",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Let > Declarations - Let (pass) > var let; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "let",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

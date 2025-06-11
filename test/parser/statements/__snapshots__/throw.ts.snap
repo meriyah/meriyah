@@ -1,0 +1,171 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Statements - Throw > Statements - Throw (pass) > throw ((((((d = null)))) ? (((--r))) : ((/|[--]*||[^⭺+-?]+|(?!)/giy)))); 1`] = `
+{
+  "body": [
+    {
+      "argument": {
+        "alternate": {
+          "regex": {
+            "flags": "giy",
+            "pattern": "|[--]*||[^⭺+-?]+|(?!)",
+          },
+          "type": "Literal",
+          "value": /\\|\\[--\\]\\*\\|\\|\\[\\^⭺\\+-\\?\\]\\+\\|\\(\\?!\\)/giy,
+        },
+        "consequent": {
+          "argument": {
+            "name": "r",
+            "type": "Identifier",
+          },
+          "operator": "--",
+          "prefix": true,
+          "type": "UpdateExpression",
+        },
+        "test": {
+          "left": {
+            "name": "d",
+            "type": "Identifier",
+          },
+          "operator": "=",
+          "right": {
+            "type": "Literal",
+            "value": null,
+          },
+          "type": "AssignmentExpression",
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ThrowStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Throw > Statements - Throw (pass) > throw /(?=[^O-õ(-)])/imy 1`] = `
+{
+  "body": [
+    {
+      "argument": {
+        "regex": {
+          "flags": "imy",
+          "pattern": "(?=[^O-õ(-)])",
+        },
+        "type": "Literal",
+        "value": /\\(\\?=\\[\\^O-õ\\(-\\)\\]\\)/imy,
+      },
+      "type": "ThrowStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Throw > Statements - Throw (pass) > throw 12 1`] = `
+{
+  "body": [
+    {
+      "argument": {
+        "type": "Literal",
+        "value": 12,
+      },
+      "type": "ThrowStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Throw > Statements - Throw (pass) > throw foo 1`] = `
+{
+  "body": [
+    {
+      "argument": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "ThrowStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Throw > Statements - Throw (pass) > throw foo; 1`] = `
+{
+  "body": [
+    {
+      "argument": {
+        "end": 9,
+        "name": "foo",
+        "range": [
+          6,
+          9,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "end": 10,
+      "range": [
+        0,
+        10,
+      ],
+      "start": 0,
+      "type": "ThrowStatement",
+    },
+  ],
+  "end": 10,
+  "range": [
+    0,
+    10,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Throw > Statements - Throw (pass) > throw foo; 2`] = `
+{
+  "body": [
+    {
+      "argument": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "ThrowStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Throw > Statements - Throw (pass) > throw x * y 1`] = `
+{
+  "body": [
+    {
+      "argument": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "*",
+        "right": {
+          "name": "y",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ThrowStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

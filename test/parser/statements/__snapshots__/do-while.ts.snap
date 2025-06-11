@@ -1,0 +1,891 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Statements - Do while > Statements - Do while (pass) > 
+do if(8)function s(){}
+while(y)
+ 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "alternate": null,
+        "consequent": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "s",
+            "type": "Identifier",
+          },
+          "params": [],
+          "type": "FunctionDeclaration",
+        },
+        "test": {
+          "type": "Literal",
+          "value": 8,
+        },
+        "type": "IfStatement",
+      },
+      "test": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "DoWhileStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Do while > Statements - Do while (pass) > do
+        (function(){})
+      while(y) 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "end": 25,
+        "expression": {
+          "async": false,
+          "body": {
+            "body": [],
+            "end": 24,
+            "range": [
+              22,
+              24,
+            ],
+            "start": 22,
+            "type": "BlockStatement",
+          },
+          "end": 24,
+          "generator": false,
+          "id": null,
+          "params": [],
+          "range": [
+            12,
+            24,
+          ],
+          "start": 12,
+          "type": "FunctionExpression",
+        },
+        "range": [
+          11,
+          25,
+        ],
+        "start": 11,
+        "type": "ExpressionStatement",
+      },
+      "end": 40,
+      "range": [
+        0,
+        40,
+      ],
+      "start": 0,
+      "test": {
+        "end": 39,
+        "name": "y",
+        "range": [
+          38,
+          39,
+        ],
+        "start": 38,
+        "type": "Identifier",
+      },
+      "type": "DoWhileStatement",
+    },
+  ],
+  "end": 40,
+  "range": [
+    0,
+    40,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Do while > Statements - Do while (pass) > do
+      ()=>x
+    while(c) 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "end": 14,
+        "expression": {
+          "async": false,
+          "body": {
+            "end": 14,
+            "name": "x",
+            "range": [
+              13,
+              14,
+            ],
+            "start": 13,
+            "type": "Identifier",
+          },
+          "end": 14,
+          "expression": true,
+          "generator": false,
+          "params": [],
+          "range": [
+            9,
+            14,
+          ],
+          "start": 9,
+          "type": "ArrowFunctionExpression",
+        },
+        "range": [
+          9,
+          14,
+        ],
+        "start": 9,
+        "type": "ExpressionStatement",
+      },
+      "end": 27,
+      "range": [
+        0,
+        27,
+      ],
+      "start": 0,
+      "test": {
+        "end": 26,
+        "name": "c",
+        "range": [
+          25,
+          26,
+        ],
+        "start": 25,
+        "type": "Identifier",
+      },
+      "type": "DoWhileStatement",
+    },
+  ],
+  "end": 27,
+  "range": [
+    0,
+    27,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Do while > Statements - Do while (pass) > do
+      for((function(){});;)x
+    while(x); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "end": 31,
+          "expression": {
+            "end": 31,
+            "name": "x",
+            "range": [
+              30,
+              31,
+            ],
+            "start": 30,
+            "type": "Identifier",
+          },
+          "range": [
+            30,
+            31,
+          ],
+          "start": 30,
+          "type": "ExpressionStatement",
+        },
+        "end": 31,
+        "init": {
+          "async": false,
+          "body": {
+            "body": [],
+            "end": 26,
+            "range": [
+              24,
+              26,
+            ],
+            "start": 24,
+            "type": "BlockStatement",
+          },
+          "end": 26,
+          "generator": false,
+          "id": null,
+          "params": [],
+          "range": [
+            14,
+            26,
+          ],
+          "start": 14,
+          "type": "FunctionExpression",
+        },
+        "range": [
+          9,
+          31,
+        ],
+        "start": 9,
+        "test": null,
+        "type": "ForStatement",
+        "update": null,
+      },
+      "end": 45,
+      "range": [
+        0,
+        45,
+      ],
+      "start": 0,
+      "test": {
+        "end": 43,
+        "name": "x",
+        "range": [
+          42,
+          43,
+        ],
+        "start": 42,
+        "type": "Identifier",
+      },
+      "type": "DoWhileStatement",
+    },
+  ],
+  "end": 45,
+  "range": [
+    0,
+    45,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Do while > Statements - Do while (pass) > do
+      if(x=>{});
+    while(y) 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "alternate": null,
+        "consequent": {
+          "end": 19,
+          "range": [
+            18,
+            19,
+          ],
+          "start": 18,
+          "type": "EmptyStatement",
+        },
+        "end": 19,
+        "range": [
+          9,
+          19,
+        ],
+        "start": 9,
+        "test": {
+          "async": false,
+          "body": {
+            "body": [],
+            "end": 17,
+            "range": [
+              15,
+              17,
+            ],
+            "start": 15,
+            "type": "BlockStatement",
+          },
+          "end": 17,
+          "expression": false,
+          "generator": false,
+          "params": [
+            {
+              "end": 13,
+              "name": "x",
+              "range": [
+                12,
+                13,
+              ],
+              "start": 12,
+              "type": "Identifier",
+            },
+          ],
+          "range": [
+            12,
+            17,
+          ],
+          "start": 12,
+          "type": "ArrowFunctionExpression",
+        },
+        "type": "IfStatement",
+      },
+      "end": 32,
+      "range": [
+        0,
+        32,
+      ],
+      "start": 0,
+      "test": {
+        "end": 31,
+        "name": "y",
+        "range": [
+          30,
+          31,
+        ],
+        "start": 30,
+        "type": "Identifier",
+      },
+      "type": "DoWhileStatement",
+    },
+  ],
+  "end": 32,
+  "range": [
+    0,
+    32,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Do while > Statements - Do while (pass) > do { } while (a); /^.*$/.test(b) 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "test": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "DoWhileStatement",
+    },
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "b",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "computed": false,
+          "object": {
+            "regex": {
+              "flags": "",
+              "pattern": "^.*$",
+            },
+            "type": "Literal",
+            "value": /\\^\\.\\*\\$/,
+          },
+          "property": {
+            "name": "test",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Do while > Statements - Do while (pass) > do {} while (false) false 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": false,
+      },
+      "type": "DoWhileStatement",
+    },
+    {
+      "expression": {
+        "type": "Literal",
+        "value": false,
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Do while > Statements - Do while (pass) > do async 
+ () 
+ while (y) 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "expression": {
+          "arguments": [],
+          "callee": {
+            "name": "async",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "DoWhileStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Do while > Statements - Do while (pass) > do async 
+ while (y) 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "expression": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "DoWhileStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Do while > Statements - Do while (pass) > do foo; while (bar); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "end": 7,
+        "expression": {
+          "end": 6,
+          "name": "foo",
+          "range": [
+            3,
+            6,
+          ],
+          "start": 3,
+          "type": "Identifier",
+        },
+        "range": [
+          3,
+          7,
+        ],
+        "start": 3,
+        "type": "ExpressionStatement",
+      },
+      "end": 20,
+      "range": [
+        0,
+        20,
+      ],
+      "start": 0,
+      "test": {
+        "end": 18,
+        "name": "bar",
+        "range": [
+          15,
+          18,
+        ],
+        "start": 15,
+        "type": "Identifier",
+      },
+      "type": "DoWhileStatement",
+    },
+  ],
+  "end": 20,
+  "range": [
+    0,
+    20,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Do while > Statements - Do while (pass) > do h(function(){});while(x) 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "expression": {
+          "arguments": [
+            {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          ],
+          "callee": {
+            "name": "h",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "type": "DoWhileStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Do while > Statements - Do while (pass) > do if(8)function s(){}while(y) 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "alternate": null,
+        "consequent": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "s",
+            "type": "Identifier",
+          },
+          "params": [],
+          "type": "FunctionDeclaration",
+        },
+        "test": {
+          "type": "Literal",
+          "value": 8,
+        },
+        "type": "IfStatement",
+      },
+      "test": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "DoWhileStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Do while > Statements - Do while (pass) > do if(x=>{});else n
+      while(y) 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "alternate": {
+          "end": 19,
+          "expression": {
+            "end": 19,
+            "name": "n",
+            "range": [
+              18,
+              19,
+            ],
+            "start": 18,
+            "type": "Identifier",
+          },
+          "range": [
+            18,
+            19,
+          ],
+          "start": 18,
+          "type": "ExpressionStatement",
+        },
+        "consequent": {
+          "end": 13,
+          "range": [
+            12,
+            13,
+          ],
+          "start": 12,
+          "type": "EmptyStatement",
+        },
+        "end": 19,
+        "range": [
+          3,
+          19,
+        ],
+        "start": 3,
+        "test": {
+          "async": false,
+          "body": {
+            "body": [],
+            "end": 11,
+            "range": [
+              9,
+              11,
+            ],
+            "start": 9,
+            "type": "BlockStatement",
+          },
+          "end": 11,
+          "expression": false,
+          "generator": false,
+          "params": [
+            {
+              "end": 7,
+              "name": "x",
+              "range": [
+                6,
+                7,
+              ],
+              "start": 6,
+              "type": "Identifier",
+            },
+          ],
+          "range": [
+            6,
+            11,
+          ],
+          "start": 6,
+          "type": "ArrowFunctionExpression",
+        },
+        "type": "IfStatement",
+      },
+      "end": 34,
+      "range": [
+        0,
+        34,
+      ],
+      "start": 0,
+      "test": {
+        "end": 33,
+        "name": "y",
+        "range": [
+          32,
+          33,
+        ],
+        "start": 32,
+        "type": "Identifier",
+      },
+      "type": "DoWhileStatement",
+    },
+  ],
+  "end": 34,
+  "range": [
+    0,
+    34,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Do while > Statements - Do while (pass) > do while (x) continue 
+ while (x); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "label": null,
+          "type": "ContinueStatement",
+        },
+        "test": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "WhileStatement",
+      },
+      "test": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "type": "DoWhileStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Do while > Statements - Do while (pass) > do x
+    while ({ [y]: {} ? null : false  }) 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "end": 4,
+        "expression": {
+          "end": 4,
+          "name": "x",
+          "range": [
+            3,
+            4,
+          ],
+          "start": 3,
+          "type": "Identifier",
+        },
+        "range": [
+          3,
+          4,
+        ],
+        "start": 3,
+        "type": "ExpressionStatement",
+      },
+      "end": 44,
+      "range": [
+        0,
+        44,
+      ],
+      "start": 0,
+      "test": {
+        "end": 43,
+        "properties": [
+          {
+            "computed": true,
+            "end": 40,
+            "key": {
+              "end": 20,
+              "name": "y",
+              "range": [
+                19,
+                20,
+              ],
+              "start": 19,
+              "type": "Identifier",
+            },
+            "kind": "init",
+            "method": false,
+            "range": [
+              18,
+              40,
+            ],
+            "shorthand": false,
+            "start": 18,
+            "type": "Property",
+            "value": {
+              "alternate": {
+                "end": 40,
+                "range": [
+                  35,
+                  40,
+                ],
+                "start": 35,
+                "type": "Literal",
+                "value": false,
+              },
+              "consequent": {
+                "end": 32,
+                "range": [
+                  28,
+                  32,
+                ],
+                "start": 28,
+                "type": "Literal",
+                "value": null,
+              },
+              "end": 40,
+              "range": [
+                23,
+                40,
+              ],
+              "start": 23,
+              "test": {
+                "end": 25,
+                "properties": [],
+                "range": [
+                  23,
+                  25,
+                ],
+                "start": 23,
+                "type": "ObjectExpression",
+              },
+              "type": "ConditionalExpression",
+            },
+          },
+        ],
+        "range": [
+          16,
+          43,
+        ],
+        "start": 16,
+        "type": "ObjectExpression",
+      },
+      "type": "DoWhileStatement",
+    },
+  ],
+  "end": 44,
+  "range": [
+    0,
+    44,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Do while > Statements - Do while (pass) > do;while(0) 0; 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": 0,
+      },
+      "type": "DoWhileStatement",
+    },
+    {
+      "expression": {
+        "type": "Literal",
+        "value": 0,
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

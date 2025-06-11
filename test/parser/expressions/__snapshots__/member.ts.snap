@@ -1,0 +1,819 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - Member > Expressions - Member (pass) > (2[x,x],x)>x 1`] = `
+{
+  "body": [
+    {
+      "end": 12,
+      "expression": {
+        "end": 12,
+        "left": {
+          "end": 9,
+          "expressions": [
+            {
+              "computed": true,
+              "end": 7,
+              "object": {
+                "end": 2,
+                "range": [
+                  1,
+                  2,
+                ],
+                "start": 1,
+                "type": "Literal",
+                "value": 2,
+              },
+              "property": {
+                "end": 6,
+                "expressions": [
+                  {
+                    "end": 4,
+                    "name": "x",
+                    "range": [
+                      3,
+                      4,
+                    ],
+                    "start": 3,
+                    "type": "Identifier",
+                  },
+                  {
+                    "end": 6,
+                    "name": "x",
+                    "range": [
+                      5,
+                      6,
+                    ],
+                    "start": 5,
+                    "type": "Identifier",
+                  },
+                ],
+                "range": [
+                  3,
+                  6,
+                ],
+                "start": 3,
+                "type": "SequenceExpression",
+              },
+              "range": [
+                1,
+                7,
+              ],
+              "start": 1,
+              "type": "MemberExpression",
+            },
+            {
+              "end": 9,
+              "name": "x",
+              "range": [
+                8,
+                9,
+              ],
+              "start": 8,
+              "type": "Identifier",
+            },
+          ],
+          "range": [
+            1,
+            9,
+          ],
+          "start": 1,
+          "type": "SequenceExpression",
+        },
+        "operator": ">",
+        "range": [
+          0,
+          12,
+        ],
+        "right": {
+          "end": 12,
+          "name": "x",
+          "range": [
+            11,
+            12,
+          ],
+          "start": 11,
+          "type": "Identifier",
+        },
+        "start": 0,
+        "type": "BinaryExpression",
+      },
+      "range": [
+        0,
+        12,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 12,
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Member > Expressions - Member (pass) > (a[b]||(c[d]=e)) 1`] = `
+{
+  "body": [
+    {
+      "end": 16,
+      "expression": {
+        "end": 15,
+        "left": {
+          "computed": true,
+          "end": 5,
+          "object": {
+            "end": 2,
+            "name": "a",
+            "range": [
+              1,
+              2,
+            ],
+            "start": 1,
+            "type": "Identifier",
+          },
+          "property": {
+            "end": 4,
+            "name": "b",
+            "range": [
+              3,
+              4,
+            ],
+            "start": 3,
+            "type": "Identifier",
+          },
+          "range": [
+            1,
+            5,
+          ],
+          "start": 1,
+          "type": "MemberExpression",
+        },
+        "operator": "||",
+        "range": [
+          1,
+          15,
+        ],
+        "right": {
+          "end": 14,
+          "left": {
+            "computed": true,
+            "end": 12,
+            "object": {
+              "end": 9,
+              "name": "c",
+              "range": [
+                8,
+                9,
+              ],
+              "start": 8,
+              "type": "Identifier",
+            },
+            "property": {
+              "end": 11,
+              "name": "d",
+              "range": [
+                10,
+                11,
+              ],
+              "start": 10,
+              "type": "Identifier",
+            },
+            "range": [
+              8,
+              12,
+            ],
+            "start": 8,
+            "type": "MemberExpression",
+          },
+          "operator": "=",
+          "range": [
+            8,
+            14,
+          ],
+          "right": {
+            "end": 14,
+            "name": "e",
+            "range": [
+              13,
+              14,
+            ],
+            "start": 13,
+            "type": "Identifier",
+          },
+          "start": 8,
+          "type": "AssignmentExpression",
+        },
+        "start": 1,
+        "type": "LogicalExpression",
+      },
+      "range": [
+        0,
+        16,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 16,
+  "range": [
+    0,
+    16,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Member > Expressions - Member (pass) > a&&(b=c) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "&&",
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": "=",
+          "right": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "AssignmentExpression",
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Member > Expressions - Member (pass) > a&&(b=c)&&(d=e) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "&&",
+          "right": {
+            "left": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "operator": "=",
+            "right": {
+              "name": "c",
+              "type": "Identifier",
+            },
+            "type": "AssignmentExpression",
+          },
+          "type": "LogicalExpression",
+        },
+        "operator": "&&",
+        "right": {
+          "left": {
+            "name": "d",
+            "type": "Identifier",
+          },
+          "operator": "=",
+          "right": {
+            "name": "e",
+            "type": "Identifier",
+          },
+          "type": "AssignmentExpression",
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Member > Expressions - Member (pass) > a().b 1`] = `
+{
+  "body": [
+    {
+      "end": 5,
+      "expression": {
+        "computed": false,
+        "end": 5,
+        "object": {
+          "arguments": [],
+          "callee": {
+            "end": 1,
+            "name": "a",
+            "range": [
+              0,
+              1,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+          "end": 3,
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "CallExpression",
+        },
+        "property": {
+          "end": 5,
+          "name": "b",
+          "range": [
+            4,
+            5,
+          ],
+          "start": 4,
+          "type": "Identifier",
+        },
+        "range": [
+          0,
+          5,
+        ],
+        "start": 0,
+        "type": "MemberExpression",
+      },
+      "range": [
+        0,
+        5,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 5,
+  "range": [
+    0,
+    5,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Member > Expressions - Member (pass) > a.$._.B0 1`] = `
+{
+  "body": [
+    {
+      "end": 8,
+      "expression": {
+        "computed": false,
+        "end": 8,
+        "object": {
+          "computed": false,
+          "end": 5,
+          "object": {
+            "computed": false,
+            "end": 3,
+            "object": {
+              "end": 1,
+              "name": "a",
+              "range": [
+                0,
+                1,
+              ],
+              "start": 0,
+              "type": "Identifier",
+            },
+            "property": {
+              "end": 3,
+              "name": "$",
+              "range": [
+                2,
+                3,
+              ],
+              "start": 2,
+              "type": "Identifier",
+            },
+            "range": [
+              0,
+              3,
+            ],
+            "start": 0,
+            "type": "MemberExpression",
+          },
+          "property": {
+            "end": 5,
+            "name": "_",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            5,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "property": {
+          "end": 8,
+          "name": "B0",
+          "range": [
+            6,
+            8,
+          ],
+          "start": 6,
+          "type": "Identifier",
+        },
+        "range": [
+          0,
+          8,
+        ],
+        "start": 0,
+        "type": "MemberExpression",
+      },
+      "range": [
+        0,
+        8,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 8,
+  "range": [
+    0,
+    8,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Member > Expressions - Member (pass) > a.if 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "computed": false,
+        "object": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "property": {
+          "name": "if",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Member > Expressions - Member (pass) > a[b, c] 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "computed": true,
+        "object": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "property": {
+          "expressions": [
+            {
+              "name": "b",
+              "type": "Identifier",
+            },
+            {
+              "name": "c",
+              "type": "Identifier",
+            },
+          ],
+          "type": "SequenceExpression",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Member > Expressions - Member (pass) > a[b]||(c[d]=e) 1`] = `
+{
+  "body": [
+    {
+      "end": 14,
+      "expression": {
+        "end": 14,
+        "left": {
+          "computed": true,
+          "end": 4,
+          "object": {
+            "end": 1,
+            "name": "a",
+            "range": [
+              0,
+              1,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+          "property": {
+            "end": 3,
+            "name": "b",
+            "range": [
+              2,
+              3,
+            ],
+            "start": 2,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            4,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "operator": "||",
+        "range": [
+          0,
+          14,
+        ],
+        "right": {
+          "end": 13,
+          "left": {
+            "computed": true,
+            "end": 11,
+            "object": {
+              "end": 8,
+              "name": "c",
+              "range": [
+                7,
+                8,
+              ],
+              "start": 7,
+              "type": "Identifier",
+            },
+            "property": {
+              "end": 10,
+              "name": "d",
+              "range": [
+                9,
+                10,
+              ],
+              "start": 9,
+              "type": "Identifier",
+            },
+            "range": [
+              7,
+              11,
+            ],
+            "start": 7,
+            "type": "MemberExpression",
+          },
+          "operator": "=",
+          "range": [
+            7,
+            13,
+          ],
+          "right": {
+            "end": 13,
+            "name": "e",
+            "range": [
+              12,
+              13,
+            ],
+            "start": 12,
+            "type": "Identifier",
+          },
+          "start": 7,
+          "type": "AssignmentExpression",
+        },
+        "start": 0,
+        "type": "LogicalExpression",
+      },
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 14,
+  "range": [
+    0,
+    14,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Member > Expressions - Member (pass) > abc.package 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "computed": false,
+        "object": {
+          "name": "abc",
+          "type": "Identifier",
+        },
+        "property": {
+          "name": "package",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Member > Expressions - Member (pass) > abc.package 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "computed": false,
+        "object": {
+          "name": "abc",
+          "type": "Identifier",
+        },
+        "property": {
+          "name": "package",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Member > Expressions - Member (pass) > foo.bar 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "computed": false,
+        "object": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "property": {
+          "name": "bar",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Member > Expressions - Member (pass) > x.y / z 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "computed": false,
+          "object": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "/",
+        "right": {
+          "name": "z",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Member > Expressions - Member (pass) > x[a, b] 1`] = `
+{
+  "body": [
+    {
+      "end": 7,
+      "expression": {
+        "computed": true,
+        "end": 7,
+        "object": {
+          "end": 1,
+          "name": "x",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "property": {
+          "end": 6,
+          "expressions": [
+            {
+              "end": 3,
+              "name": "a",
+              "range": [
+                2,
+                3,
+              ],
+              "start": 2,
+              "type": "Identifier",
+            },
+            {
+              "end": 6,
+              "name": "b",
+              "range": [
+                5,
+                6,
+              ],
+              "start": 5,
+              "type": "Identifier",
+            },
+          ],
+          "range": [
+            2,
+            6,
+          ],
+          "start": 2,
+          "type": "SequenceExpression",
+        },
+        "range": [
+          0,
+          7,
+        ],
+        "start": 0,
+        "type": "MemberExpression",
+      },
+      "range": [
+        0,
+        7,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 7,
+  "range": [
+    0,
+    7,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;

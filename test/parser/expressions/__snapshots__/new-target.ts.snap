@@ -1,0 +1,1734 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - New target > Expressions - New target (pass) > ({foo(x=new.target){}}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "properties": [
+          {
+            "computed": false,
+            "key": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "kind": "init",
+            "method": true,
+            "shorthand": false,
+            "type": "Property",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "left": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "meta": {
+                      "name": "new",
+                      "type": "Identifier",
+                    },
+                    "property": {
+                      "name": "target",
+                      "type": "Identifier",
+                    },
+                    "type": "MetaProperty",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ObjectExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > _ => function(){ new.target } 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "async": false,
+          "body": {
+            "body": [
+              {
+                "expression": {
+                  "meta": {
+                    "name": "new",
+                    "type": "Identifier",
+                  },
+                  "property": {
+                    "name": "target",
+                    "type": "Identifier",
+                  },
+                  "type": "MetaProperty",
+                },
+                "type": "ExpressionStatement",
+              },
+            ],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": null,
+          "params": [],
+          "type": "FunctionExpression",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "_",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > class A {a(x=new.target){}} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 26,
+            "key": {
+              "end": 10,
+              "name": "a",
+              "range": [
+                9,
+                10,
+              ],
+              "start": 9,
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "range": [
+              9,
+              26,
+            ],
+            "start": 9,
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "end": 26,
+                "range": [
+                  24,
+                  26,
+                ],
+                "start": 24,
+                "type": "BlockStatement",
+              },
+              "end": 26,
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "end": 23,
+                  "left": {
+                    "end": 12,
+                    "name": "x",
+                    "range": [
+                      11,
+                      12,
+                    ],
+                    "start": 11,
+                    "type": "Identifier",
+                  },
+                  "range": [
+                    11,
+                    23,
+                  ],
+                  "right": {
+                    "end": 23,
+                    "meta": {
+                      "end": 16,
+                      "name": "new",
+                      "range": [
+                        13,
+                        16,
+                      ],
+                      "start": 13,
+                      "type": "Identifier",
+                    },
+                    "property": {
+                      "end": 23,
+                      "name": "target",
+                      "range": [
+                        17,
+                        23,
+                      ],
+                      "start": 17,
+                      "type": "Identifier",
+                    },
+                    "range": [
+                      13,
+                      23,
+                    ],
+                    "start": 13,
+                    "type": "MetaProperty",
+                  },
+                  "start": 11,
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "range": [
+                10,
+                26,
+              ],
+              "start": 10,
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "end": 27,
+        "range": [
+          8,
+          27,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "end": 27,
+      "id": {
+        "end": 7,
+        "name": "A",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        27,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 27,
+  "range": [
+    0,
+    27,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > class A {constructor(x=new.target){}} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "left": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "meta": {
+                      "name": "new",
+                      "type": "Identifier",
+                    },
+                    "property": {
+                      "name": "target",
+                      "type": "Identifier",
+                    },
+                    "type": "MetaProperty",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > class C {set x(_) {do { new.target } while (0)}} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "kind": "set",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "body": {
+                      "body": [
+                        {
+                          "expression": {
+                            "meta": {
+                              "name": "new",
+                              "type": "Identifier",
+                            },
+                            "property": {
+                              "name": "target",
+                              "type": "Identifier",
+                            },
+                            "type": "MetaProperty",
+                          },
+                          "type": "ExpressionStatement",
+                        },
+                      ],
+                      "type": "BlockStatement",
+                    },
+                    "test": {
+                      "type": "Literal",
+                      "value": 0,
+                    },
+                    "type": "DoWhileStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "name": "_",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "C",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > class X { constructor() { new.target }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 38,
+            "key": {
+              "end": 21,
+              "name": "constructor",
+              "range": [
+                10,
+                21,
+              ],
+              "start": 10,
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "range": [
+              10,
+              38,
+            ],
+            "start": 10,
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "end": 36,
+                    "expression": {
+                      "end": 36,
+                      "meta": {
+                        "end": 29,
+                        "name": "new",
+                        "range": [
+                          26,
+                          29,
+                        ],
+                        "start": 26,
+                        "type": "Identifier",
+                      },
+                      "property": {
+                        "end": 36,
+                        "name": "target",
+                        "range": [
+                          30,
+                          36,
+                        ],
+                        "start": 30,
+                        "type": "Identifier",
+                      },
+                      "range": [
+                        26,
+                        36,
+                      ],
+                      "start": 26,
+                      "type": "MetaProperty",
+                    },
+                    "range": [
+                      26,
+                      36,
+                    ],
+                    "start": 26,
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "end": 38,
+                "range": [
+                  24,
+                  38,
+                ],
+                "start": 24,
+                "type": "BlockStatement",
+              },
+              "end": 38,
+              "generator": false,
+              "id": null,
+              "params": [],
+              "range": [
+                21,
+                38,
+              ],
+              "start": 21,
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "end": 39,
+        "range": [
+          8,
+          39,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "end": 39,
+      "id": {
+        "end": 7,
+        "name": "X",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        39,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 39,
+  "range": [
+    0,
+    39,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > class X { foo() { new.target }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "meta": {
+                        "name": "new",
+                        "type": "Identifier",
+                      },
+                      "property": {
+                        "name": "target",
+                        "type": "Identifier",
+                      },
+                      "type": "MetaProperty",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "X",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > class X { static foo() { new.target }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": true,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "meta": {
+                        "name": "new",
+                        "type": "Identifier",
+                      },
+                      "property": {
+                        "name": "target",
+                        "type": "Identifier",
+                      },
+                      "type": "MetaProperty",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "X",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > foo({bar(){ new.target }}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "bar",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": true,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "async": false,
+                  "body": {
+                    "body": [
+                      {
+                        "expression": {
+                          "meta": {
+                            "name": "new",
+                            "type": "Identifier",
+                          },
+                          "property": {
+                            "name": "target",
+                            "type": "Identifier",
+                          },
+                          "type": "MetaProperty",
+                        },
+                        "type": "ExpressionStatement",
+                      },
+                    ],
+                    "type": "BlockStatement",
+                  },
+                  "generator": false,
+                  "id": null,
+                  "params": [],
+                  "type": "FunctionExpression",
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > foo(function f(f=new.target){}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "async": false,
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "generator": false,
+            "id": {
+              "name": "f",
+              "type": "Identifier",
+            },
+            "params": [
+              {
+                "left": {
+                  "name": "f",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "meta": {
+                    "name": "new",
+                    "type": "Identifier",
+                  },
+                  "property": {
+                    "name": "target",
+                    "type": "Identifier",
+                  },
+                  "type": "MetaProperty",
+                },
+                "type": "AssignmentPattern",
+              },
+            ],
+            "type": "FunctionExpression",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > function a(b = new.target){} 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "right": {
+            "meta": {
+              "name": "new",
+              "type": "Identifier",
+            },
+            "property": {
+              "name": "target",
+              "type": "Identifier",
+            },
+            "type": "MetaProperty",
+          },
+          "type": "AssignmentPattern",
+        },
+      ],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > function f(){ [...new.target] } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "end": 29,
+            "expression": {
+              "elements": [
+                {
+                  "argument": {
+                    "end": 28,
+                    "meta": {
+                      "end": 21,
+                      "name": "new",
+                      "range": [
+                        18,
+                        21,
+                      ],
+                      "start": 18,
+                      "type": "Identifier",
+                    },
+                    "property": {
+                      "end": 28,
+                      "name": "target",
+                      "range": [
+                        22,
+                        28,
+                      ],
+                      "start": 22,
+                      "type": "Identifier",
+                    },
+                    "range": [
+                      18,
+                      28,
+                    ],
+                    "start": 18,
+                    "type": "MetaProperty",
+                  },
+                  "end": 28,
+                  "range": [
+                    15,
+                    28,
+                  ],
+                  "start": 15,
+                  "type": "SpreadElement",
+                },
+              ],
+              "end": 29,
+              "range": [
+                14,
+                29,
+              ],
+              "start": 14,
+              "type": "ArrayExpression",
+            },
+            "range": [
+              14,
+              29,
+            ],
+            "start": 14,
+            "type": "ExpressionStatement",
+          },
+        ],
+        "end": 31,
+        "range": [
+          12,
+          31,
+        ],
+        "start": 12,
+        "type": "BlockStatement",
+      },
+      "end": 31,
+      "generator": false,
+      "id": {
+        "end": 10,
+        "name": "f",
+        "range": [
+          9,
+          10,
+        ],
+        "start": 9,
+        "type": "Identifier",
+      },
+      "params": [],
+      "range": [
+        0,
+        31,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 31,
+  "range": [
+    0,
+    31,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > function f(){ _ => _ => new.target } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "end": 34,
+            "expression": {
+              "async": false,
+              "body": {
+                "async": false,
+                "body": {
+                  "end": 34,
+                  "meta": {
+                    "end": 27,
+                    "name": "new",
+                    "range": [
+                      24,
+                      27,
+                    ],
+                    "start": 24,
+                    "type": "Identifier",
+                  },
+                  "property": {
+                    "end": 34,
+                    "name": "target",
+                    "range": [
+                      28,
+                      34,
+                    ],
+                    "start": 28,
+                    "type": "Identifier",
+                  },
+                  "range": [
+                    24,
+                    34,
+                  ],
+                  "start": 24,
+                  "type": "MetaProperty",
+                },
+                "end": 34,
+                "expression": true,
+                "generator": false,
+                "params": [
+                  {
+                    "end": 20,
+                    "name": "_",
+                    "range": [
+                      19,
+                      20,
+                    ],
+                    "start": 19,
+                    "type": "Identifier",
+                  },
+                ],
+                "range": [
+                  19,
+                  34,
+                ],
+                "start": 19,
+                "type": "ArrowFunctionExpression",
+              },
+              "end": 34,
+              "expression": true,
+              "generator": false,
+              "params": [
+                {
+                  "end": 15,
+                  "name": "_",
+                  "range": [
+                    14,
+                    15,
+                  ],
+                  "start": 14,
+                  "type": "Identifier",
+                },
+              ],
+              "range": [
+                14,
+                34,
+              ],
+              "start": 14,
+              "type": "ArrowFunctionExpression",
+            },
+            "range": [
+              14,
+              34,
+            ],
+            "start": 14,
+            "type": "ExpressionStatement",
+          },
+        ],
+        "end": 36,
+        "range": [
+          12,
+          36,
+        ],
+        "start": 12,
+        "type": "BlockStatement",
+      },
+      "end": 36,
+      "generator": false,
+      "id": {
+        "end": 10,
+        "name": "f",
+        "range": [
+          9,
+          10,
+        ],
+        "start": 9,
+        "type": "Identifier",
+      },
+      "params": [],
+      "range": [
+        0,
+        36,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 36,
+  "range": [
+    0,
+    36,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > function f(){ class x extends new.target {} } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "body": {
+              "body": [],
+              "end": 43,
+              "range": [
+                41,
+                43,
+              ],
+              "start": 41,
+              "type": "ClassBody",
+            },
+            "end": 43,
+            "id": {
+              "end": 21,
+              "name": "x",
+              "range": [
+                20,
+                21,
+              ],
+              "start": 20,
+              "type": "Identifier",
+            },
+            "range": [
+              14,
+              43,
+            ],
+            "start": 14,
+            "superClass": {
+              "end": 40,
+              "meta": {
+                "end": 33,
+                "name": "new",
+                "range": [
+                  30,
+                  33,
+                ],
+                "start": 30,
+                "type": "Identifier",
+              },
+              "property": {
+                "end": 40,
+                "name": "target",
+                "range": [
+                  34,
+                  40,
+                ],
+                "start": 34,
+                "type": "Identifier",
+              },
+              "range": [
+                30,
+                40,
+              ],
+              "start": 30,
+              "type": "MetaProperty",
+            },
+            "type": "ClassDeclaration",
+          },
+        ],
+        "end": 45,
+        "range": [
+          12,
+          45,
+        ],
+        "start": 12,
+        "type": "BlockStatement",
+      },
+      "end": 45,
+      "generator": false,
+      "id": {
+        "end": 10,
+        "name": "f",
+        "range": [
+          9,
+          10,
+        ],
+        "start": 9,
+        "type": "Identifier",
+      },
+      "params": [],
+      "range": [
+        0,
+        45,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 45,
+  "range": [
+    0,
+    45,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > function f(){ foo + new.target } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "left": {
+                "name": "foo",
+                "type": "Identifier",
+              },
+              "operator": "+",
+              "right": {
+                "meta": {
+                  "name": "new",
+                  "type": "Identifier",
+                },
+                "property": {
+                  "name": "target",
+                  "type": "Identifier",
+                },
+                "type": "MetaProperty",
+              },
+              "type": "BinaryExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > function f(){ foo = new.target } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "left": {
+                "name": "foo",
+                "type": "Identifier",
+              },
+              "operator": "=",
+              "right": {
+                "meta": {
+                  "name": "new",
+                  "type": "Identifier",
+                },
+                "property": {
+                  "name": "target",
+                  "type": "Identifier",
+                },
+                "type": "MetaProperty",
+              },
+              "type": "AssignmentExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > function f(){ new . target } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "end": 26,
+            "expression": {
+              "end": 26,
+              "meta": {
+                "end": 17,
+                "name": "new",
+                "range": [
+                  14,
+                  17,
+                ],
+                "start": 14,
+                "type": "Identifier",
+              },
+              "property": {
+                "end": 26,
+                "name": "target",
+                "range": [
+                  20,
+                  26,
+                ],
+                "start": 20,
+                "type": "Identifier",
+              },
+              "range": [
+                14,
+                26,
+              ],
+              "start": 14,
+              "type": "MetaProperty",
+            },
+            "range": [
+              14,
+              26,
+            ],
+            "start": 14,
+            "type": "ExpressionStatement",
+          },
+        ],
+        "end": 28,
+        "range": [
+          12,
+          28,
+        ],
+        "start": 12,
+        "type": "BlockStatement",
+      },
+      "end": 28,
+      "generator": false,
+      "id": {
+        "end": 10,
+        "name": "f",
+        "range": [
+          9,
+          10,
+        ],
+        "start": 9,
+        "type": "Identifier",
+      },
+      "params": [],
+      "range": [
+        0,
+        28,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 28,
+  "range": [
+    0,
+    28,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > function f(){ new new .target; } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "arguments": [],
+              "callee": {
+                "meta": {
+                  "name": "new",
+                  "type": "Identifier",
+                },
+                "property": {
+                  "name": "target",
+                  "type": "Identifier",
+                },
+                "type": "MetaProperty",
+              },
+              "type": "NewExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > function f(){ new.target + foo } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "left": {
+                "meta": {
+                  "name": "new",
+                  "type": "Identifier",
+                },
+                "property": {
+                  "name": "target",
+                  "type": "Identifier",
+                },
+                "type": "MetaProperty",
+              },
+              "operator": "+",
+              "right": {
+                "name": "foo",
+                "type": "Identifier",
+              },
+              "type": "BinaryExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > function f(){ new.target } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "meta": {
+                "name": "new",
+                "type": "Identifier",
+              },
+              "property": {
+                "name": "target",
+                "type": "Identifier",
+              },
+              "type": "MetaProperty",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > function f(){ return _ => new.target } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "argument": {
+              "async": false,
+              "body": {
+                "end": 36,
+                "meta": {
+                  "end": 29,
+                  "name": "new",
+                  "range": [
+                    26,
+                    29,
+                  ],
+                  "start": 26,
+                  "type": "Identifier",
+                },
+                "property": {
+                  "end": 36,
+                  "name": "target",
+                  "range": [
+                    30,
+                    36,
+                  ],
+                  "start": 30,
+                  "type": "Identifier",
+                },
+                "range": [
+                  26,
+                  36,
+                ],
+                "start": 26,
+                "type": "MetaProperty",
+              },
+              "end": 36,
+              "expression": true,
+              "generator": false,
+              "params": [
+                {
+                  "end": 22,
+                  "name": "_",
+                  "range": [
+                    21,
+                    22,
+                  ],
+                  "start": 21,
+                  "type": "Identifier",
+                },
+              ],
+              "range": [
+                21,
+                36,
+              ],
+              "start": 21,
+              "type": "ArrowFunctionExpression",
+            },
+            "end": 36,
+            "range": [
+              14,
+              36,
+            ],
+            "start": 14,
+            "type": "ReturnStatement",
+          },
+        ],
+        "end": 38,
+        "range": [
+          12,
+          38,
+        ],
+        "start": 12,
+        "type": "BlockStatement",
+      },
+      "end": 38,
+      "generator": false,
+      "id": {
+        "end": 10,
+        "name": "f",
+        "range": [
+          9,
+          10,
+        ],
+        "start": 9,
+        "type": "Identifier",
+      },
+      "params": [],
+      "range": [
+        0,
+        38,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 38,
+  "range": [
+    0,
+    38,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > function f(){ x({[new.target]:y}) } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "end": 33,
+            "expression": {
+              "arguments": [
+                {
+                  "end": 32,
+                  "properties": [
+                    {
+                      "computed": true,
+                      "end": 31,
+                      "key": {
+                        "end": 28,
+                        "meta": {
+                          "end": 21,
+                          "name": "new",
+                          "range": [
+                            18,
+                            21,
+                          ],
+                          "start": 18,
+                          "type": "Identifier",
+                        },
+                        "property": {
+                          "end": 28,
+                          "name": "target",
+                          "range": [
+                            22,
+                            28,
+                          ],
+                          "start": 22,
+                          "type": "Identifier",
+                        },
+                        "range": [
+                          18,
+                          28,
+                        ],
+                        "start": 18,
+                        "type": "MetaProperty",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "range": [
+                        17,
+                        31,
+                      ],
+                      "shorthand": false,
+                      "start": 17,
+                      "type": "Property",
+                      "value": {
+                        "end": 31,
+                        "name": "y",
+                        "range": [
+                          30,
+                          31,
+                        ],
+                        "start": 30,
+                        "type": "Identifier",
+                      },
+                    },
+                  ],
+                  "range": [
+                    16,
+                    32,
+                  ],
+                  "start": 16,
+                  "type": "ObjectExpression",
+                },
+              ],
+              "callee": {
+                "end": 15,
+                "name": "x",
+                "range": [
+                  14,
+                  15,
+                ],
+                "start": 14,
+                "type": "Identifier",
+              },
+              "end": 33,
+              "range": [
+                14,
+                33,
+              ],
+              "start": 14,
+              "type": "CallExpression",
+            },
+            "range": [
+              14,
+              33,
+            ],
+            "start": 14,
+            "type": "ExpressionStatement",
+          },
+        ],
+        "end": 35,
+        "range": [
+          12,
+          35,
+        ],
+        "start": 12,
+        "type": "BlockStatement",
+      },
+      "end": 35,
+      "generator": false,
+      "id": {
+        "end": 10,
+        "name": "f",
+        "range": [
+          9,
+          10,
+        ],
+        "start": 9,
+        "type": "Identifier",
+      },
+      "params": [],
+      "range": [
+        0,
+        35,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 35,
+  "range": [
+    0,
+    35,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New target > Expressions - New target (pass) > function f(f=new.target){} 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "left": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "right": {
+            "meta": {
+              "name": "new",
+              "type": "Identifier",
+            },
+            "property": {
+              "name": "target",
+              "type": "Identifier",
+            },
+            "type": "MetaProperty",
+          },
+          "type": "AssignmentPattern",
+        },
+      ],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

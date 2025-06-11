@@ -1,0 +1,532 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Next - Import Attributes > Next - Import Attributes (pass) > async function load() { return import('module', { type: 'json' }); } 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [
+          {
+            "argument": {
+              "options": {
+                "properties": [
+                  {
+                    "computed": false,
+                    "key": {
+                      "name": "type",
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "shorthand": false,
+                    "type": "Property",
+                    "value": {
+                      "type": "Literal",
+                      "value": "json",
+                    },
+                  },
+                ],
+                "type": "ObjectExpression",
+              },
+              "source": {
+                "type": "Literal",
+                "value": "module",
+              },
+              "type": "ImportExpression",
+            },
+            "type": "ReturnStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "load",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Attributes > Next - Import Attributes (pass) > export * as foo from './foo' with { type: 'json' }; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [
+        {
+          "key": {
+            "name": "type",
+            "type": "Identifier",
+          },
+          "type": "ImportAttribute",
+          "value": {
+            "type": "Literal",
+            "value": "json",
+          },
+        },
+      ],
+      "exported": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "source": {
+        "type": "Literal",
+        "value": "./foo",
+      },
+      "type": "ExportAllDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Attributes > Next - Import Attributes (pass) > export * from './foo' with { type: 'json' } 1`] = `
+{
+  "body": [
+    {
+      "attributes": [
+        {
+          "key": {
+            "name": "type",
+            "type": "Identifier",
+          },
+          "type": "ImportAttribute",
+          "value": {
+            "type": "Literal",
+            "value": "json",
+          },
+        },
+      ],
+      "exported": null,
+      "source": {
+        "type": "Literal",
+        "value": "./foo",
+      },
+      "type": "ExportAllDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Attributes > Next - Import Attributes (pass) > export { foo } from './foo' with { type: 'html' } 1`] = `
+{
+  "body": [
+    {
+      "attributes": [
+        {
+          "key": {
+            "name": "type",
+            "type": "Identifier",
+          },
+          "type": "ImportAttribute",
+          "value": {
+            "type": "Literal",
+            "value": "html",
+          },
+        },
+      ],
+      "declaration": null,
+      "source": {
+        "type": "Literal",
+        "value": "./foo",
+      },
+      "specifiers": [
+        {
+          "exported": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+      ],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Attributes > Next - Import Attributes (pass) > export { foo, } from './foo' with { type: 'html' }; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [
+        {
+          "key": {
+            "name": "type",
+            "type": "Identifier",
+          },
+          "type": "ImportAttribute",
+          "value": {
+            "type": "Literal",
+            "value": "html",
+          },
+        },
+      ],
+      "declaration": null,
+      "source": {
+        "type": "Literal",
+        "value": "./foo",
+      },
+      "specifiers": [
+        {
+          "exported": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "ExportSpecifier",
+        },
+      ],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Attributes > Next - Import Attributes (pass) > export {} from './foo' with { type: 'html' }; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [
+        {
+          "key": {
+            "name": "type",
+            "type": "Identifier",
+          },
+          "type": "ImportAttribute",
+          "value": {
+            "type": "Literal",
+            "value": "html",
+          },
+        },
+      ],
+      "declaration": null,
+      "source": {
+        "type": "Literal",
+        "value": "./foo",
+      },
+      "specifiers": [],
+      "type": "ExportNamedDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Attributes > Next - Import Attributes (pass) > for await (let module of [import('module', { type: 'json' })]) {} 1`] = `
+{
+  "body": [
+    {
+      "await": true,
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "name": "module",
+              "type": "Identifier",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "let",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "elements": [
+          {
+            "options": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "type",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "type": "Literal",
+                    "value": "json",
+                  },
+                },
+              ],
+              "type": "ObjectExpression",
+            },
+            "source": {
+              "type": "Literal",
+              "value": "module",
+            },
+            "type": "ImportExpression",
+          },
+        ],
+        "type": "ArrayExpression",
+      },
+      "type": "ForOfStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Attributes > Next - Import Attributes (pass) > import foo from "bar" with { type: "json" }; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [
+        {
+          "key": {
+            "name": "type",
+            "type": "Identifier",
+          },
+          "type": "ImportAttribute",
+          "value": {
+            "type": "Literal",
+            "value": "json",
+          },
+        },
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "bar",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "ImportDefaultSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Attributes > Next - Import Attributes (pass) > import foo from "bar" with { type: "json", "data-type": "json" }; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [
+        {
+          "key": {
+            "name": "type",
+            "type": "Identifier",
+          },
+          "type": "ImportAttribute",
+          "value": {
+            "type": "Literal",
+            "value": "json",
+          },
+        },
+        {
+          "key": {
+            "type": "Literal",
+            "value": "data-type",
+          },
+          "type": "ImportAttribute",
+          "value": {
+            "type": "Literal",
+            "value": "json",
+          },
+        },
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "bar",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "ImportDefaultSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Attributes > Next - Import Attributes (pass) > import('module', { 'data-type': 'json' }); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "options": {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "type": "Literal",
+                "value": "data-type",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "type": "Literal",
+                "value": "json",
+              },
+            },
+          ],
+          "type": "ObjectExpression",
+        },
+        "source": {
+          "type": "Literal",
+          "value": "module",
+        },
+        "type": "ImportExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Attributes > Next - Import Attributes (pass) > import('module', { type: 'json' }); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "options": {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "type",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "type": "Literal",
+                "value": "json",
+              },
+            },
+          ],
+          "type": "ObjectExpression",
+        },
+        "source": {
+          "type": "Literal",
+          "value": "module",
+        },
+        "type": "ImportExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Attributes > Next - Import Attributes (pass) > var promise; for (promise = import('./2nd-param_FIXTURE.js', 'test262' in {} || undefined); false; ); 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "promise",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "init": {
+        "left": {
+          "name": "promise",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "options": {
+            "left": {
+              "left": {
+                "type": "Literal",
+                "value": "test262",
+              },
+              "operator": "in",
+              "right": {
+                "properties": [],
+                "type": "ObjectExpression",
+              },
+              "type": "BinaryExpression",
+            },
+            "operator": "||",
+            "right": {
+              "name": "undefined",
+              "type": "Identifier",
+            },
+            "type": "LogicalExpression",
+          },
+          "source": {
+            "type": "Literal",
+            "value": "./2nd-param_FIXTURE.js",
+          },
+          "type": "ImportExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "test": {
+        "type": "Literal",
+        "value": false,
+      },
+      "type": "ForStatement",
+      "update": null,
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;

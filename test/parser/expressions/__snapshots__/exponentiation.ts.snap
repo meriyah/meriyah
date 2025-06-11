@@ -1,0 +1,724 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (pass) > (++x ** a) 1`] = `
+{
+  "body": [
+    {
+      "end": 10,
+      "expression": {
+        "end": 9,
+        "left": {
+          "argument": {
+            "end": 4,
+            "name": "x",
+            "range": [
+              3,
+              4,
+            ],
+            "start": 3,
+            "type": "Identifier",
+          },
+          "end": 4,
+          "operator": "++",
+          "prefix": true,
+          "range": [
+            1,
+            4,
+          ],
+          "start": 1,
+          "type": "UpdateExpression",
+        },
+        "operator": "**",
+        "range": [
+          1,
+          9,
+        ],
+        "right": {
+          "end": 9,
+          "name": "a",
+          "range": [
+            8,
+            9,
+          ],
+          "start": 8,
+          "type": "Identifier",
+        },
+        "start": 1,
+        "type": "BinaryExpression",
+      },
+      "range": [
+        0,
+        10,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 10,
+  "range": [
+    0,
+    10,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (pass) > (+1) ** 2 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "argument": {
+            "type": "Literal",
+            "value": 1,
+          },
+          "operator": "+",
+          "prefix": true,
+          "type": "UnaryExpression",
+        },
+        "operator": "**",
+        "right": {
+          "type": "Literal",
+          "value": 2,
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (pass) > (+c * b ** a ** 3) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "argument": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "operator": "+",
+          "prefix": true,
+          "type": "UnaryExpression",
+        },
+        "operator": "*",
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": "**",
+          "right": {
+            "left": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "operator": "**",
+            "right": {
+              "type": "Literal",
+              "value": 3,
+            },
+            "type": "BinaryExpression",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (pass) > (2 ** 4) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "type": "Literal",
+          "value": 2,
+        },
+        "operator": "**",
+        "right": {
+          "type": "Literal",
+          "value": 4,
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (pass) > (base **= 3) === -27 1`] = `
+{
+  "body": [
+    {
+      "end": 20,
+      "expression": {
+        "end": 20,
+        "left": {
+          "end": 11,
+          "left": {
+            "end": 5,
+            "name": "base",
+            "range": [
+              1,
+              5,
+            ],
+            "start": 1,
+            "type": "Identifier",
+          },
+          "operator": "**=",
+          "range": [
+            1,
+            11,
+          ],
+          "right": {
+            "end": 11,
+            "range": [
+              10,
+              11,
+            ],
+            "start": 10,
+            "type": "Literal",
+            "value": 3,
+          },
+          "start": 1,
+          "type": "AssignmentExpression",
+        },
+        "operator": "===",
+        "range": [
+          0,
+          20,
+        ],
+        "right": {
+          "argument": {
+            "end": 20,
+            "range": [
+              18,
+              20,
+            ],
+            "start": 18,
+            "type": "Literal",
+            "value": 27,
+          },
+          "end": 20,
+          "operator": "-",
+          "prefix": true,
+          "range": [
+            17,
+            20,
+          ],
+          "start": 17,
+          "type": "UnaryExpression",
+        },
+        "start": 0,
+        "type": "BinaryExpression",
+      },
+      "range": [
+        0,
+        20,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 20,
+  "range": [
+    0,
+    20,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (pass) > (new x ** 2) 1`] = `
+{
+  "body": [
+    {
+      "end": 12,
+      "expression": {
+        "end": 11,
+        "left": {
+          "arguments": [],
+          "callee": {
+            "end": 6,
+            "name": "x",
+            "range": [
+              5,
+              6,
+            ],
+            "start": 5,
+            "type": "Identifier",
+          },
+          "end": 6,
+          "range": [
+            1,
+            6,
+          ],
+          "start": 1,
+          "type": "NewExpression",
+        },
+        "operator": "**",
+        "range": [
+          1,
+          11,
+        ],
+        "right": {
+          "end": 11,
+          "range": [
+            10,
+            11,
+          ],
+          "start": 10,
+          "type": "Literal",
+          "value": 2,
+        },
+        "start": 1,
+        "type": "BinaryExpression",
+      },
+      "range": [
+        0,
+        12,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 12,
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (pass) > (true ** a) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "type": "Literal",
+          "value": true,
+        },
+        "operator": "**",
+        "right": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (pass) > ++x ** a 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "argument": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "operator": "++",
+          "prefix": true,
+          "type": "UpdateExpression",
+        },
+        "operator": "**",
+        "right": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (pass) > +a * b ** c ** 3 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "argument": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "+",
+          "prefix": true,
+          "type": "UnaryExpression",
+        },
+        "operator": "*",
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": "**",
+          "right": {
+            "left": {
+              "name": "c",
+              "type": "Identifier",
+            },
+            "operator": "**",
+            "right": {
+              "type": "Literal",
+              "value": 3,
+            },
+            "type": "BinaryExpression",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (pass) > --x ** a 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "argument": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "operator": "--",
+          "prefix": true,
+          "type": "UpdateExpression",
+        },
+        "operator": "**",
+        "right": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (pass) > 2 ** 4 1`] = `
+{
+  "body": [
+    {
+      "end": 6,
+      "expression": {
+        "end": 6,
+        "left": {
+          "end": 1,
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Literal",
+          "value": 2,
+        },
+        "operator": "**",
+        "range": [
+          0,
+          6,
+        ],
+        "right": {
+          "end": 6,
+          "range": [
+            5,
+            6,
+          ],
+          "start": 5,
+          "type": "Literal",
+          "value": 4,
+        },
+        "start": 0,
+        "type": "BinaryExpression",
+      },
+      "range": [
+        0,
+        6,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 6,
+  "range": [
+    0,
+    6,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (pass) > async function f() { (await 2) ** 2; } 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "left": {
+                "argument": {
+                  "type": "Literal",
+                  "value": 2,
+                },
+                "type": "AwaitExpression",
+              },
+              "operator": "**",
+              "right": {
+                "type": "Literal",
+                "value": 2,
+              },
+              "type": "BinaryExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (pass) > async function f() { await (2 ** 2); } 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "argument": {
+                "left": {
+                  "type": "Literal",
+                  "value": 2,
+                },
+                "operator": "**",
+                "right": {
+                  "type": "Literal",
+                  "value": 2,
+                },
+                "type": "BinaryExpression",
+              },
+              "type": "AwaitExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (pass) > new x ** 2; 1`] = `
+{
+  "body": [
+    {
+      "end": 11,
+      "expression": {
+        "end": 10,
+        "left": {
+          "arguments": [],
+          "callee": {
+            "end": 5,
+            "name": "x",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "end": 5,
+          "range": [
+            0,
+            5,
+          ],
+          "start": 0,
+          "type": "NewExpression",
+        },
+        "operator": "**",
+        "range": [
+          0,
+          10,
+        ],
+        "right": {
+          "end": 10,
+          "range": [
+            9,
+            10,
+          ],
+          "start": 9,
+          "type": "Literal",
+          "value": 2,
+        },
+        "start": 0,
+        "type": "BinaryExpression",
+      },
+      "range": [
+        0,
+        11,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 11,
+  "range": [
+    0,
+    11,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (pass) > true ** a 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "type": "Literal",
+          "value": true,
+        },
+        "operator": "**",
+        "right": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (pass) > x++ ** a 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "argument": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "operator": "++",
+          "prefix": false,
+          "type": "UpdateExpression",
+        },
+        "operator": "**",
+        "right": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Exponentiation > Expressions - Exponentiation (pass) > x-- ** a 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "argument": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "operator": "--",
+          "prefix": false,
+          "type": "UpdateExpression",
+        },
+        "operator": "**",
+        "right": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

@@ -1,0 +1,694 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Statements - None > Statements - If (pass) > function f() { if (1) { return () => { while (true) hi(); } } } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "alternate": null,
+            "consequent": {
+              "body": [
+                {
+                  "argument": {
+                    "async": false,
+                    "body": {
+                      "body": [
+                        {
+                          "body": {
+                            "expression": {
+                              "arguments": [],
+                              "callee": {
+                                "name": "hi",
+                                "type": "Identifier",
+                              },
+                              "type": "CallExpression",
+                            },
+                            "type": "ExpressionStatement",
+                          },
+                          "test": {
+                            "type": "Literal",
+                            "value": true,
+                          },
+                          "type": "WhileStatement",
+                        },
+                      ],
+                      "type": "BlockStatement",
+                    },
+                    "expression": false,
+                    "generator": false,
+                    "params": [],
+                    "type": "ArrowFunctionExpression",
+                  },
+                  "type": "ReturnStatement",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+            "test": {
+              "type": "Literal",
+              "value": 1,
+            },
+            "type": "IfStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - None > Statements - If (pass) > if (1) { eval(42) } 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "body": [
+          {
+            "expression": {
+              "arguments": [
+                {
+                  "type": "Literal",
+                  "value": 42,
+                },
+              ],
+              "callee": {
+                "name": "eval",
+                "type": "Identifier",
+              },
+              "type": "CallExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": 1,
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - None > Statements - If (pass) > if (a > 2) {b = c } 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "body": [
+          {
+            "expression": {
+              "left": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "operator": "=",
+              "right": {
+                "name": "c",
+                "type": "Identifier",
+              },
+              "type": "AssignmentExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "test": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": ">",
+        "right": {
+          "type": "Literal",
+          "value": 2,
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - None > Statements - If (pass) > if (a) b() 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "expression": {
+          "arguments": [],
+          "callee": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - None > Statements - If (pass) > if (a) function a(){} 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": false,
+        "id": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "params": [],
+        "type": "FunctionDeclaration",
+      },
+      "test": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - None > Statements - If (pass) > if (async === void 0) { async = false; } 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "body": [
+          {
+            "expression": {
+              "left": {
+                "name": "async",
+                "type": "Identifier",
+              },
+              "operator": "=",
+              "right": {
+                "type": "Literal",
+                "value": false,
+              },
+              "type": "AssignmentExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "test": {
+        "left": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "operator": "===",
+        "right": {
+          "argument": {
+            "type": "Literal",
+            "value": 0,
+          },
+          "operator": "void",
+          "prefix": true,
+          "type": "UnaryExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - None > Statements - If (pass) > if (await === void 0) { async = false; } 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "body": [
+          {
+            "expression": {
+              "left": {
+                "name": "async",
+                "type": "Identifier",
+              },
+              "operator": "=",
+              "right": {
+                "type": "Literal",
+                "value": false,
+              },
+              "type": "AssignmentExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "test": {
+        "left": {
+          "name": "await",
+          "type": "Identifier",
+        },
+        "operator": "===",
+        "right": {
+          "argument": {
+            "type": "Literal",
+            "value": 0,
+          },
+          "operator": "void",
+          "prefix": true,
+          "type": "UnaryExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - None > Statements - If (pass) > if (foo) a; if (bar) b; else c; 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "expression": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "IfStatement",
+    },
+    {
+      "alternate": {
+        "expression": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "consequent": {
+        "expression": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "name": "bar",
+        "type": "Identifier",
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - None > Statements - If (pass) > if (foo) bar; 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "expression": {
+          "name": "bar",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - None > Statements - If (pass) > if (foo) bar; 2`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "expression": {
+          "name": "bar",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - None > Statements - If (pass) > if (foo) bar; else doo; 1`] = `
+{
+  "body": [
+    {
+      "alternate": {
+        "expression": {
+          "name": "doo",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "consequent": {
+        "expression": {
+          "name": "bar",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - None > Statements - If (pass) > if (true) if (false) {} else ; else {} 1`] = `
+{
+  "body": [
+    {
+      "alternate": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "consequent": {
+        "alternate": {
+          "type": "EmptyStatement",
+        },
+        "consequent": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "test": {
+          "type": "Literal",
+          "value": false,
+        },
+        "type": "IfStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": true,
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - None > Statements - If (pass) > if (true) try {} finally {} else {} 1`] = `
+{
+  "body": [
+    {
+      "alternate": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "consequent": {
+        "block": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "finalizer": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "handler": null,
+        "type": "TryStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": true,
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - None > Statements - If (pass) > if (yield === void 0) { async = false; } 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "body": [
+          {
+            "expression": {
+              "left": {
+                "name": "async",
+                "type": "Identifier",
+              },
+              "operator": "=",
+              "right": {
+                "type": "Literal",
+                "value": false,
+              },
+              "type": "AssignmentExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "test": {
+        "left": {
+          "name": "yield",
+          "type": "Identifier",
+        },
+        "operator": "===",
+        "right": {
+          "argument": {
+            "type": "Literal",
+            "value": 0,
+          },
+          "operator": "void",
+          "prefix": true,
+          "type": "UnaryExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - None > Statements - If (pass) > if(1)/  foo/ 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "expression": {
+          "regex": {
+            "flags": "",
+            "pattern": "  foo",
+          },
+          "type": "Literal",
+          "value": /  foo/,
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": 1,
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - None > Statements - If (pass) > if(1)/  foo/ 2`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "expression": {
+          "regex": {
+            "flags": "",
+            "pattern": "  foo",
+          },
+          "type": "Literal",
+          "value": /  foo/,
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": 1,
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - None > Statements - If (pass) > if(a)b 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "expression": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - None > Statements - If (pass) > if(a)b;else c; 1`] = `
+{
+  "body": [
+    {
+      "alternate": {
+        "expression": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "consequent": {
+        "expression": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - None > Statements - If (pass) > if(foo) a = b; 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "expression": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "=",
+          "right": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "AssignmentExpression",
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

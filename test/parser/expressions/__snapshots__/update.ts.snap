@@ -1,0 +1,460 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - Update > Expressions - Update (pass) > "foo"
+++bar 1`] = `
+{
+  "body": [
+    {
+      "directive": "foo",
+      "expression": {
+        "type": "Literal",
+        "value": "foo",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "expression": {
+        "argument": {
+          "name": "bar",
+          "type": "Identifier",
+        },
+        "operator": "++",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Update > Expressions - Update (pass) > ++
+foo; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "operator": "++",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Update > Expressions - Update (pass) > ++
+foo; 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "operator": "++",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Update > Expressions - Update (pass) > ++a.a 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "++",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Update > Expressions - Update (pass) > ++foo 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "operator": "++",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Update > Expressions - Update (pass) > +a++ / 1 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "argument": {
+            "argument": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "operator": "++",
+            "prefix": false,
+            "type": "UpdateExpression",
+          },
+          "operator": "+",
+          "prefix": true,
+          "type": "UnaryExpression",
+        },
+        "operator": "/",
+        "right": {
+          "type": "Literal",
+          "value": 1,
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Update > Expressions - Update (pass) > --a.a 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "--",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Update > Expressions - Update (pass) > a
+++
+b 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "expression": {
+        "argument": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "operator": "++",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Update > Expressions - Update (pass) > a++
+b 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "++",
+        "prefix": false,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "expression": {
+        "name": "b",
+        "type": "Identifier",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Update > Expressions - Update (pass) > a,b
+++c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "name": "a",
+            "type": "Identifier",
+          },
+          {
+            "name": "b",
+            "type": "Identifier",
+          },
+        ],
+        "type": "SequenceExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "expression": {
+        "argument": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "operator": "++",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Update > Expressions - Update (pass) > a.a-- 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "--",
+        "prefix": false,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Update > Expressions - Update (pass) > a=b
+++c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "expression": {
+        "argument": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "operator": "++",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Update > Expressions - Update (pass) > bar++ 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "name": "bar",
+          "type": "Identifier",
+        },
+        "operator": "++",
+        "prefix": false,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Update > Expressions - Update (pass) > foo
+++
+bar 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "expression": {
+        "argument": {
+          "name": "bar",
+          "type": "Identifier",
+        },
+        "operator": "++",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Update > Expressions - Update (pass) > foo
+++bar 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "expression": {
+        "argument": {
+          "name": "bar",
+          "type": "Identifier",
+        },
+        "operator": "++",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Update > Expressions - Update (pass) > foo
+++bar 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "expression": {
+        "argument": {
+          "name": "bar",
+          "type": "Identifier",
+        },
+        "operator": "++",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

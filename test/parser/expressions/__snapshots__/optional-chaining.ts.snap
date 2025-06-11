@@ -1,0 +1,1222 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Optional chaining > Optional chaining (pass) > ({})?.a["b"] 1`] = `
+{
+  "body": [
+    {
+      "end": 12,
+      "expression": {
+        "end": 12,
+        "expression": {
+          "computed": true,
+          "end": 12,
+          "object": {
+            "computed": false,
+            "end": 7,
+            "object": {
+              "end": 3,
+              "properties": [],
+              "range": [
+                1,
+                3,
+              ],
+              "start": 1,
+              "type": "ObjectExpression",
+            },
+            "optional": true,
+            "property": {
+              "end": 7,
+              "name": "a",
+              "range": [
+                6,
+                7,
+              ],
+              "start": 6,
+              "type": "Identifier",
+            },
+            "range": [
+              0,
+              7,
+            ],
+            "start": 0,
+            "type": "MemberExpression",
+          },
+          "property": {
+            "end": 11,
+            "range": [
+              8,
+              11,
+            ],
+            "start": 8,
+            "type": "Literal",
+            "value": "b",
+          },
+          "range": [
+            0,
+            12,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "range": [
+          0,
+          12,
+        ],
+        "start": 0,
+        "type": "ChainExpression",
+      },
+      "range": [
+        0,
+        12,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 12,
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Optional chaining > Optional chaining (pass) > (obj.aaa).bbb 1`] = `
+{
+  "body": [
+    {
+      "end": 13,
+      "expression": {
+        "computed": false,
+        "end": 13,
+        "object": {
+          "computed": false,
+          "end": 8,
+          "object": {
+            "end": 4,
+            "name": "obj",
+            "range": [
+              1,
+              4,
+            ],
+            "start": 1,
+            "type": "Identifier",
+          },
+          "property": {
+            "end": 8,
+            "name": "aaa",
+            "range": [
+              5,
+              8,
+            ],
+            "start": 5,
+            "type": "Identifier",
+          },
+          "range": [
+            1,
+            8,
+          ],
+          "start": 1,
+          "type": "MemberExpression",
+        },
+        "property": {
+          "end": 13,
+          "name": "bbb",
+          "range": [
+            10,
+            13,
+          ],
+          "start": 10,
+          "type": "Identifier",
+        },
+        "range": [
+          0,
+          13,
+        ],
+        "start": 0,
+        "type": "MemberExpression",
+      },
+      "range": [
+        0,
+        13,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 13,
+  "range": [
+    0,
+    13,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Optional chaining > Optional chaining (pass) > (obj.aaa)?.bbb 1`] = `
+{
+  "body": [
+    {
+      "end": 14,
+      "expression": {
+        "end": 14,
+        "expression": {
+          "computed": false,
+          "end": 14,
+          "object": {
+            "computed": false,
+            "end": 8,
+            "object": {
+              "end": 4,
+              "name": "obj",
+              "range": [
+                1,
+                4,
+              ],
+              "start": 1,
+              "type": "Identifier",
+            },
+            "property": {
+              "end": 8,
+              "name": "aaa",
+              "range": [
+                5,
+                8,
+              ],
+              "start": 5,
+              "type": "Identifier",
+            },
+            "range": [
+              1,
+              8,
+            ],
+            "start": 1,
+            "type": "MemberExpression",
+          },
+          "optional": true,
+          "property": {
+            "end": 14,
+            "name": "bbb",
+            "range": [
+              11,
+              14,
+            ],
+            "start": 11,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            14,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "range": [
+          0,
+          14,
+        ],
+        "start": 0,
+        "type": "ChainExpression",
+      },
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 14,
+  "range": [
+    0,
+    14,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Optional chaining > Optional chaining (pass) > (obj?.aaa).bbb 1`] = `
+{
+  "body": [
+    {
+      "end": 14,
+      "expression": {
+        "computed": false,
+        "end": 14,
+        "object": {
+          "end": 9,
+          "expression": {
+            "computed": false,
+            "end": 9,
+            "object": {
+              "end": 4,
+              "name": "obj",
+              "range": [
+                1,
+                4,
+              ],
+              "start": 1,
+              "type": "Identifier",
+            },
+            "optional": true,
+            "property": {
+              "end": 9,
+              "name": "aaa",
+              "range": [
+                6,
+                9,
+              ],
+              "start": 6,
+              "type": "Identifier",
+            },
+            "range": [
+              1,
+              9,
+            ],
+            "start": 1,
+            "type": "MemberExpression",
+          },
+          "range": [
+            1,
+            9,
+          ],
+          "start": 1,
+          "type": "ChainExpression",
+        },
+        "property": {
+          "end": 14,
+          "name": "bbb",
+          "range": [
+            11,
+            14,
+          ],
+          "start": 11,
+          "type": "Identifier",
+        },
+        "range": [
+          0,
+          14,
+        ],
+        "start": 0,
+        "type": "MemberExpression",
+      },
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 14,
+  "range": [
+    0,
+    14,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Optional chaining > Optional chaining (pass) > (obj?.aaa)?.bbb 1`] = `
+{
+  "body": [
+    {
+      "end": 15,
+      "expression": {
+        "end": 15,
+        "expression": {
+          "computed": false,
+          "end": 15,
+          "object": {
+            "end": 9,
+            "expression": {
+              "computed": false,
+              "end": 9,
+              "object": {
+                "end": 4,
+                "name": "obj",
+                "range": [
+                  1,
+                  4,
+                ],
+                "start": 1,
+                "type": "Identifier",
+              },
+              "optional": true,
+              "property": {
+                "end": 9,
+                "name": "aaa",
+                "range": [
+                  6,
+                  9,
+                ],
+                "start": 6,
+                "type": "Identifier",
+              },
+              "range": [
+                1,
+                9,
+              ],
+              "start": 1,
+              "type": "MemberExpression",
+            },
+            "range": [
+              1,
+              9,
+            ],
+            "start": 1,
+            "type": "ChainExpression",
+          },
+          "optional": true,
+          "property": {
+            "end": 15,
+            "name": "bbb",
+            "range": [
+              12,
+              15,
+            ],
+            "start": 12,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            15,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "range": [
+          0,
+          15,
+        ],
+        "start": 0,
+        "type": "ChainExpression",
+      },
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 15,
+  "range": [
+    0,
+    15,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Optional chaining > Optional chaining (pass) > a?.() 1`] = `
+{
+  "body": [
+    {
+      "end": 5,
+      "expression": {
+        "end": 5,
+        "expression": {
+          "arguments": [],
+          "callee": {
+            "end": 1,
+            "name": "a",
+            "range": [
+              0,
+              1,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+          "end": 5,
+          "optional": true,
+          "range": [
+            0,
+            5,
+          ],
+          "start": 0,
+          "type": "CallExpression",
+        },
+        "range": [
+          0,
+          5,
+        ],
+        "start": 0,
+        "type": "ChainExpression",
+      },
+      "range": [
+        0,
+        5,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 5,
+  "range": [
+    0,
+    5,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Optional chaining > Optional chaining (pass) > a?.[x] 1`] = `
+{
+  "body": [
+    {
+      "end": 6,
+      "expression": {
+        "end": 6,
+        "expression": {
+          "computed": true,
+          "end": 6,
+          "object": {
+            "end": 1,
+            "name": "a",
+            "range": [
+              0,
+              1,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+          "optional": true,
+          "property": {
+            "end": 5,
+            "name": "x",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            6,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "range": [
+          0,
+          6,
+        ],
+        "start": 0,
+        "type": "ChainExpression",
+      },
+      "range": [
+        0,
+        6,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 6,
+  "range": [
+    0,
+    6,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Optional chaining > Optional chaining (pass) > a?.b 1`] = `
+{
+  "body": [
+    {
+      "end": 4,
+      "expression": {
+        "end": 4,
+        "expression": {
+          "computed": false,
+          "end": 4,
+          "object": {
+            "end": 1,
+            "name": "a",
+            "range": [
+              0,
+              1,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+          "optional": true,
+          "property": {
+            "end": 4,
+            "name": "b",
+            "range": [
+              3,
+              4,
+            ],
+            "start": 3,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            4,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "range": [
+          0,
+          4,
+        ],
+        "start": 0,
+        "type": "ChainExpression",
+      },
+      "range": [
+        0,
+        4,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 4,
+  "range": [
+    0,
+    4,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Optional chaining > Optional chaining (pass) > a?.b[3].c?.(x).d 1`] = `
+{
+  "body": [
+    {
+      "end": 16,
+      "expression": {
+        "end": 16,
+        "expression": {
+          "computed": false,
+          "end": 16,
+          "object": {
+            "arguments": [
+              {
+                "end": 13,
+                "name": "x",
+                "range": [
+                  12,
+                  13,
+                ],
+                "start": 12,
+                "type": "Identifier",
+              },
+            ],
+            "callee": {
+              "computed": false,
+              "end": 9,
+              "object": {
+                "computed": true,
+                "end": 7,
+                "object": {
+                  "computed": false,
+                  "end": 4,
+                  "object": {
+                    "end": 1,
+                    "name": "a",
+                    "range": [
+                      0,
+                      1,
+                    ],
+                    "start": 0,
+                    "type": "Identifier",
+                  },
+                  "optional": true,
+                  "property": {
+                    "end": 4,
+                    "name": "b",
+                    "range": [
+                      3,
+                      4,
+                    ],
+                    "start": 3,
+                    "type": "Identifier",
+                  },
+                  "range": [
+                    0,
+                    4,
+                  ],
+                  "start": 0,
+                  "type": "MemberExpression",
+                },
+                "property": {
+                  "end": 6,
+                  "range": [
+                    5,
+                    6,
+                  ],
+                  "start": 5,
+                  "type": "Literal",
+                  "value": 3,
+                },
+                "range": [
+                  0,
+                  7,
+                ],
+                "start": 0,
+                "type": "MemberExpression",
+              },
+              "property": {
+                "end": 9,
+                "name": "c",
+                "range": [
+                  8,
+                  9,
+                ],
+                "start": 8,
+                "type": "Identifier",
+              },
+              "range": [
+                0,
+                9,
+              ],
+              "start": 0,
+              "type": "MemberExpression",
+            },
+            "end": 14,
+            "optional": true,
+            "range": [
+              0,
+              14,
+            ],
+            "start": 0,
+            "type": "CallExpression",
+          },
+          "property": {
+            "end": 16,
+            "name": "d",
+            "range": [
+              15,
+              16,
+            ],
+            "start": 15,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            16,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "range": [
+          0,
+          16,
+        ],
+        "start": 0,
+        "type": "ChainExpression",
+      },
+      "range": [
+        0,
+        16,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 16,
+  "range": [
+    0,
+    16,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Optional chaining > Optional chaining (pass) > a?.import("string")?.import.meta??(a) 1`] = `
+{
+  "body": [
+    {
+      "end": 37,
+      "expression": {
+        "end": 37,
+        "left": {
+          "end": 32,
+          "expression": {
+            "computed": false,
+            "end": 32,
+            "object": {
+              "computed": false,
+              "end": 27,
+              "object": {
+                "arguments": [
+                  {
+                    "end": 18,
+                    "range": [
+                      10,
+                      18,
+                    ],
+                    "start": 10,
+                    "type": "Literal",
+                    "value": "string",
+                  },
+                ],
+                "callee": {
+                  "computed": false,
+                  "end": 9,
+                  "object": {
+                    "end": 1,
+                    "name": "a",
+                    "range": [
+                      0,
+                      1,
+                    ],
+                    "start": 0,
+                    "type": "Identifier",
+                  },
+                  "optional": true,
+                  "property": {
+                    "end": 9,
+                    "name": "import",
+                    "range": [
+                      3,
+                      9,
+                    ],
+                    "start": 3,
+                    "type": "Identifier",
+                  },
+                  "range": [
+                    0,
+                    9,
+                  ],
+                  "start": 0,
+                  "type": "MemberExpression",
+                },
+                "end": 19,
+                "range": [
+                  0,
+                  19,
+                ],
+                "start": 0,
+                "type": "CallExpression",
+              },
+              "optional": true,
+              "property": {
+                "end": 27,
+                "name": "import",
+                "range": [
+                  21,
+                  27,
+                ],
+                "start": 21,
+                "type": "Identifier",
+              },
+              "range": [
+                0,
+                27,
+              ],
+              "start": 0,
+              "type": "MemberExpression",
+            },
+            "property": {
+              "end": 32,
+              "name": "meta",
+              "range": [
+                28,
+                32,
+              ],
+              "start": 28,
+              "type": "Identifier",
+            },
+            "range": [
+              0,
+              32,
+            ],
+            "start": 0,
+            "type": "MemberExpression",
+          },
+          "range": [
+            0,
+            32,
+          ],
+          "start": 0,
+          "type": "ChainExpression",
+        },
+        "operator": "??",
+        "range": [
+          0,
+          37,
+        ],
+        "right": {
+          "end": 36,
+          "name": "a",
+          "range": [
+            35,
+            36,
+          ],
+          "start": 35,
+          "type": "Identifier",
+        },
+        "start": 0,
+        "type": "LogicalExpression",
+      },
+      "range": [
+        0,
+        37,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 37,
+  "range": [
+    0,
+    37,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Optional chaining > Optional chaining (pass) > obj.aaa.bbb 1`] = `
+{
+  "body": [
+    {
+      "end": 11,
+      "expression": {
+        "computed": false,
+        "end": 11,
+        "object": {
+          "computed": false,
+          "end": 7,
+          "object": {
+            "end": 3,
+            "name": "obj",
+            "range": [
+              0,
+              3,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+          "property": {
+            "end": 7,
+            "name": "aaa",
+            "range": [
+              4,
+              7,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            7,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "property": {
+          "end": 11,
+          "name": "bbb",
+          "range": [
+            8,
+            11,
+          ],
+          "start": 8,
+          "type": "Identifier",
+        },
+        "range": [
+          0,
+          11,
+        ],
+        "start": 0,
+        "type": "MemberExpression",
+      },
+      "range": [
+        0,
+        11,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 11,
+  "range": [
+    0,
+    11,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Optional chaining > Optional chaining (pass) > obj.aaa?.bbb 1`] = `
+{
+  "body": [
+    {
+      "end": 12,
+      "expression": {
+        "end": 12,
+        "expression": {
+          "computed": false,
+          "end": 12,
+          "object": {
+            "computed": false,
+            "end": 7,
+            "object": {
+              "end": 3,
+              "name": "obj",
+              "range": [
+                0,
+                3,
+              ],
+              "start": 0,
+              "type": "Identifier",
+            },
+            "property": {
+              "end": 7,
+              "name": "aaa",
+              "range": [
+                4,
+                7,
+              ],
+              "start": 4,
+              "type": "Identifier",
+            },
+            "range": [
+              0,
+              7,
+            ],
+            "start": 0,
+            "type": "MemberExpression",
+          },
+          "optional": true,
+          "property": {
+            "end": 12,
+            "name": "bbb",
+            "range": [
+              9,
+              12,
+            ],
+            "start": 9,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            12,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "range": [
+          0,
+          12,
+        ],
+        "start": 0,
+        "type": "ChainExpression",
+      },
+      "range": [
+        0,
+        12,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 12,
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Optional chaining > Optional chaining (pass) > obj?.aaa.bbb 1`] = `
+{
+  "body": [
+    {
+      "end": 12,
+      "expression": {
+        "end": 12,
+        "expression": {
+          "computed": false,
+          "end": 12,
+          "object": {
+            "computed": false,
+            "end": 8,
+            "object": {
+              "end": 3,
+              "name": "obj",
+              "range": [
+                0,
+                3,
+              ],
+              "start": 0,
+              "type": "Identifier",
+            },
+            "optional": true,
+            "property": {
+              "end": 8,
+              "name": "aaa",
+              "range": [
+                5,
+                8,
+              ],
+              "start": 5,
+              "type": "Identifier",
+            },
+            "range": [
+              0,
+              8,
+            ],
+            "start": 0,
+            "type": "MemberExpression",
+          },
+          "property": {
+            "end": 12,
+            "name": "bbb",
+            "range": [
+              9,
+              12,
+            ],
+            "start": 9,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            12,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "range": [
+          0,
+          12,
+        ],
+        "start": 0,
+        "type": "ChainExpression",
+      },
+      "range": [
+        0,
+        12,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 12,
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Optional chaining > Optional chaining (pass) > obj?.aaa?.bbb 1`] = `
+{
+  "body": [
+    {
+      "end": 13,
+      "expression": {
+        "end": 13,
+        "expression": {
+          "computed": false,
+          "end": 13,
+          "object": {
+            "computed": false,
+            "end": 8,
+            "object": {
+              "end": 3,
+              "name": "obj",
+              "range": [
+                0,
+                3,
+              ],
+              "start": 0,
+              "type": "Identifier",
+            },
+            "optional": true,
+            "property": {
+              "end": 8,
+              "name": "aaa",
+              "range": [
+                5,
+                8,
+              ],
+              "start": 5,
+              "type": "Identifier",
+            },
+            "range": [
+              0,
+              8,
+            ],
+            "start": 0,
+            "type": "MemberExpression",
+          },
+          "optional": true,
+          "property": {
+            "end": 13,
+            "name": "bbb",
+            "range": [
+              10,
+              13,
+            ],
+            "start": 10,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            13,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "range": [
+          0,
+          13,
+        ],
+        "start": 0,
+        "type": "ChainExpression",
+      },
+      "range": [
+        0,
+        13,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 13,
+  "range": [
+    0,
+    13,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;

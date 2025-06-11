@@ -1,0 +1,1646 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a !== b === c != d == e 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "left": {
+              "left": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "operator": "!==",
+              "right": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "type": "BinaryExpression",
+            },
+            "operator": "===",
+            "right": {
+              "name": "c",
+              "type": "Identifier",
+            },
+            "type": "BinaryExpression",
+          },
+          "operator": "!=",
+          "right": {
+            "name": "d",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "==",
+        "right": {
+          "name": "e",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a % b / c * d 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "left": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "operator": "%",
+            "right": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "type": "BinaryExpression",
+          },
+          "operator": "/",
+          "right": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "*",
+        "right": {
+          "name": "d",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a & b == c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "&",
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": "==",
+          "right": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a & b == c 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "&",
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": "==",
+          "right": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a && b | c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "&&",
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": "|",
+          "right": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a && b || c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "&&",
+          "right": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "LogicalExpression",
+        },
+        "operator": "||",
+        "right": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a * b + c * d 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "*",
+          "right": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "+",
+        "right": {
+          "left": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "operator": "*",
+          "right": {
+            "name": "d",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a * b / c % d 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "left": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "operator": "*",
+            "right": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "type": "BinaryExpression",
+          },
+          "operator": "/",
+          "right": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "%",
+        "right": {
+          "name": "d",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a ** b * c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "**",
+          "right": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "*",
+        "right": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a ** b ** c + d 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "**",
+          "right": {
+            "left": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "operator": "**",
+            "right": {
+              "name": "c",
+              "type": "Identifier",
+            },
+            "type": "BinaryExpression",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "+",
+        "right": {
+          "name": "d",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a ** b ** c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "**",
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": "**",
+          "right": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a ** b + c ** d 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "**",
+          "right": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "+",
+        "right": {
+          "left": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "operator": "**",
+          "right": {
+            "name": "d",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a ** b 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "**",
+        "right": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a + b * c * d 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "+",
+        "right": {
+          "left": {
+            "left": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "operator": "*",
+            "right": {
+              "name": "c",
+              "type": "Identifier",
+            },
+            "type": "BinaryExpression",
+          },
+          "operator": "*",
+          "right": {
+            "name": "d",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a + b ** c ** d 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "+",
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": "**",
+          "right": {
+            "left": {
+              "name": "c",
+              "type": "Identifier",
+            },
+            "operator": "**",
+            "right": {
+              "name": "d",
+              "type": "Identifier",
+            },
+            "type": "BinaryExpression",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a + b ** c ** d 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "+",
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": "**",
+          "right": {
+            "left": {
+              "name": "c",
+              "type": "Identifier",
+            },
+            "operator": "**",
+            "right": {
+              "name": "d",
+              "type": "Identifier",
+            },
+            "type": "BinaryExpression",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a + b + c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "+",
+          "right": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "+",
+        "right": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a + b - c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "+",
+          "right": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "-",
+        "right": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a < b << c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "<",
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": "<<",
+          "right": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a < b == c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "<",
+          "right": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "==",
+        "right": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a << b + c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "<<",
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": "+",
+          "right": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a << b < c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "<<",
+          "right": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "<",
+        "right": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a << b >> c >>> d 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "left": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "operator": "<<",
+            "right": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "type": "BinaryExpression",
+          },
+          "operator": ">>",
+          "right": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": ">>>",
+        "right": {
+          "name": "d",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a == b != c === d !== e 1`] = `
+{
+  "body": [
+    {
+      "end": 23,
+      "expression": {
+        "end": 23,
+        "left": {
+          "end": 17,
+          "left": {
+            "end": 11,
+            "left": {
+              "end": 6,
+              "left": {
+                "end": 1,
+                "name": "a",
+                "range": [
+                  0,
+                  1,
+                ],
+                "start": 0,
+                "type": "Identifier",
+              },
+              "operator": "==",
+              "range": [
+                0,
+                6,
+              ],
+              "right": {
+                "end": 6,
+                "name": "b",
+                "range": [
+                  5,
+                  6,
+                ],
+                "start": 5,
+                "type": "Identifier",
+              },
+              "start": 0,
+              "type": "BinaryExpression",
+            },
+            "operator": "!=",
+            "range": [
+              0,
+              11,
+            ],
+            "right": {
+              "end": 11,
+              "name": "c",
+              "range": [
+                10,
+                11,
+              ],
+              "start": 10,
+              "type": "Identifier",
+            },
+            "start": 0,
+            "type": "BinaryExpression",
+          },
+          "operator": "===",
+          "range": [
+            0,
+            17,
+          ],
+          "right": {
+            "end": 17,
+            "name": "d",
+            "range": [
+              16,
+              17,
+            ],
+            "start": 16,
+            "type": "Identifier",
+          },
+          "start": 0,
+          "type": "BinaryExpression",
+        },
+        "operator": "!==",
+        "range": [
+          0,
+          23,
+        ],
+        "right": {
+          "end": 23,
+          "name": "e",
+          "range": [
+            22,
+            23,
+          ],
+          "start": 22,
+          "type": "Identifier",
+        },
+        "start": 0,
+        "type": "BinaryExpression",
+      },
+      "range": [
+        0,
+        23,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 23,
+  "range": [
+    0,
+    23,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a == b != c === d !== e 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "left": {
+              "left": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "operator": "==",
+              "right": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "type": "BinaryExpression",
+            },
+            "operator": "!=",
+            "right": {
+              "name": "c",
+              "type": "Identifier",
+            },
+            "type": "BinaryExpression",
+          },
+          "operator": "===",
+          "right": {
+            "name": "d",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "!==",
+        "right": {
+          "name": "e",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a == b & c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "==",
+          "right": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "&",
+        "right": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a == b <= c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "==",
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": "<=",
+          "right": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a == b >= c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "==",
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": ">=",
+          "right": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a >= b !== c >= d 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": ">=",
+          "right": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "!==",
+        "right": {
+          "left": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "operator": ">=",
+          "right": {
+            "name": "d",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a >>> b >> c << d 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "left": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "operator": ">>>",
+            "right": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "type": "BinaryExpression",
+          },
+          "operator": ">>",
+          "right": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "<<",
+        "right": {
+          "name": "d",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a ^ b | c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "^",
+          "right": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "|",
+        "right": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a | b && c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "|",
+          "right": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "&&",
+        "right": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a | b ^ c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "|",
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": "^",
+          "right": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a || b && c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "||",
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": "&&",
+          "right": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "LogicalExpression",
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a - b + c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "-",
+          "right": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "+",
+        "right": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a&&(b=c) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "&&",
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": "=",
+          "right": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "AssignmentExpression",
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a&&b 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "&&",
+        "right": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a[b, c] 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "computed": true,
+        "object": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "property": {
+          "expressions": [
+            {
+              "name": "b",
+              "type": "Identifier",
+            },
+            {
+              "name": "c",
+              "type": "Identifier",
+            },
+          ],
+          "type": "SequenceExpression",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a[b]||(c[d]=e) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "computed": true,
+          "object": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "||",
+        "right": {
+          "left": {
+            "computed": true,
+            "object": {
+              "name": "c",
+              "type": "Identifier",
+            },
+            "property": {
+              "name": "d",
+              "type": "Identifier",
+            },
+            "type": "MemberExpression",
+          },
+          "operator": "=",
+          "right": {
+            "name": "e",
+            "type": "Identifier",
+          },
+          "type": "AssignmentExpression",
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > a||b 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "||",
+        "right": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > x * y / z ? a : b 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "consequent": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "test": {
+          "left": {
+            "left": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "operator": "*",
+            "right": {
+              "name": "y",
+              "type": "Identifier",
+            },
+            "type": "BinaryExpression",
+          },
+          "operator": "/",
+          "right": {
+            "name": "z",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > x / z 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "/",
+        "right": {
+          "name": "z",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > x ? g / f : f * g 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "left": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "operator": "*",
+          "right": {
+            "name": "g",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "consequent": {
+          "left": {
+            "name": "g",
+            "type": "Identifier",
+          },
+          "operator": "/",
+          "right": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "test": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > x() ** b 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "arguments": [],
+          "callee": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "operator": "**",
+        "right": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Logical > Expressions - Logical (pass) > x.y / z 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "computed": false,
+          "object": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "/",
+        "right": {
+          "name": "z",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

@@ -1,0 +1,4801 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Declarations - Var > Declarations - Var (pass) > "use strict"; let x = 0; { let x = 6; } 1`] = `
+{
+  "body": [
+    {
+      "directive": "use strict",
+      "expression": {
+        "type": "Literal",
+        "value": "use strict",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": {
+            "type": "Literal",
+            "value": 0,
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+    {
+      "body": [
+        {
+          "declarations": [
+            {
+              "id": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "init": {
+                "type": "Literal",
+                "value": 6,
+              },
+              "type": "VariableDeclarator",
+            },
+          ],
+          "kind": "let",
+          "type": "VariableDeclaration",
+        },
+      ],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > "use strict"; var x = 0; { let x; x = 6; } 1`] = `
+{
+  "body": [
+    {
+      "directive": "use strict",
+      "expression": {
+        "loc": {
+          "end": {
+            "column": 12,
+            "line": 1,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "type": "Literal",
+        "value": "use strict",
+      },
+      "loc": {
+        "end": {
+          "column": 13,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "declarations": [
+        {
+          "id": {
+            "loc": {
+              "end": {
+                "column": 19,
+                "line": 1,
+              },
+              "start": {
+                "column": 18,
+                "line": 1,
+              },
+            },
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": {
+            "loc": {
+              "end": {
+                "column": 23,
+                "line": 1,
+              },
+              "start": {
+                "column": 22,
+                "line": 1,
+              },
+            },
+            "type": "Literal",
+            "value": 0,
+          },
+          "loc": {
+            "end": {
+              "column": 23,
+              "line": 1,
+            },
+            "start": {
+              "column": 18,
+              "line": 1,
+            },
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "loc": {
+        "end": {
+          "column": 24,
+          "line": 1,
+        },
+        "start": {
+          "column": 14,
+          "line": 1,
+        },
+      },
+      "type": "VariableDeclaration",
+    },
+    {
+      "body": [
+        {
+          "declarations": [
+            {
+              "id": {
+                "loc": {
+                  "end": {
+                    "column": 32,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 31,
+                    "line": 1,
+                  },
+                },
+                "name": "x",
+                "type": "Identifier",
+              },
+              "init": null,
+              "loc": {
+                "end": {
+                  "column": 32,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 31,
+                  "line": 1,
+                },
+              },
+              "type": "VariableDeclarator",
+            },
+          ],
+          "kind": "let",
+          "loc": {
+            "end": {
+              "column": 33,
+              "line": 1,
+            },
+            "start": {
+              "column": 27,
+              "line": 1,
+            },
+          },
+          "type": "VariableDeclaration",
+        },
+        {
+          "expression": {
+            "left": {
+              "loc": {
+                "end": {
+                  "column": 35,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 34,
+                  "line": 1,
+                },
+              },
+              "name": "x",
+              "type": "Identifier",
+            },
+            "loc": {
+              "end": {
+                "column": 39,
+                "line": 1,
+              },
+              "start": {
+                "column": 34,
+                "line": 1,
+              },
+            },
+            "operator": "=",
+            "right": {
+              "loc": {
+                "end": {
+                  "column": 39,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 38,
+                  "line": 1,
+                },
+              },
+              "type": "Literal",
+              "value": 6,
+            },
+            "type": "AssignmentExpression",
+          },
+          "loc": {
+            "end": {
+              "column": 40,
+              "line": 1,
+            },
+            "start": {
+              "column": 34,
+              "line": 1,
+            },
+          },
+          "type": "ExpressionStatement",
+        },
+      ],
+      "loc": {
+        "end": {
+          "column": 42,
+          "line": 1,
+        },
+        "start": {
+          "column": 25,
+          "line": 1,
+        },
+      },
+      "type": "BlockStatement",
+    },
+  ],
+  "loc": {
+    "end": {
+      "column": 42,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > { var x; }; x = 0; 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "declarations": [
+            {
+              "id": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "init": null,
+              "type": "VariableDeclarator",
+            },
+          ],
+          "kind": "var",
+          "type": "VariableDeclaration",
+        },
+      ],
+      "type": "BlockStatement",
+    },
+    {
+      "type": "EmptyStatement",
+    },
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "type": "Literal",
+          "value": 0,
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > eval(""); var x; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "type": "Literal",
+            "value": "",
+          },
+        ],
+        "callee": {
+          "name": "eval",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > for (var [,,] in x); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "elements": [
+                null,
+                null,
+              ],
+              "type": "ArrayPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "var",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "type": "ForInStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > for (var [] in x); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "end": 18,
+        "range": [
+          17,
+          18,
+        ],
+        "start": 17,
+        "type": "EmptyStatement",
+      },
+      "end": 18,
+      "left": {
+        "declarations": [
+          {
+            "end": 11,
+            "id": {
+              "elements": [],
+              "end": 11,
+              "range": [
+                9,
+                11,
+              ],
+              "start": 9,
+              "type": "ArrayPattern",
+            },
+            "init": null,
+            "range": [
+              9,
+              11,
+            ],
+            "start": 9,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "end": 11,
+        "kind": "var",
+        "range": [
+          5,
+          11,
+        ],
+        "start": 5,
+        "type": "VariableDeclaration",
+      },
+      "range": [
+        0,
+        18,
+      ],
+      "right": {
+        "end": 16,
+        "name": "x",
+        "range": [
+          15,
+          16,
+        ],
+        "start": 15,
+        "type": "Identifier",
+      },
+      "start": 0,
+      "type": "ForInStatement",
+    },
+  ],
+  "end": 18,
+  "range": [
+    0,
+    18,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > for (var [a=[...b], ...c] = obj;;); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "init": {
+        "declarations": [
+          {
+            "id": {
+              "elements": [
+                {
+                  "left": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "elements": [
+                      {
+                        "argument": {
+                          "name": "b",
+                          "type": "Identifier",
+                        },
+                        "type": "SpreadElement",
+                      },
+                    ],
+                    "type": "ArrayExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+                {
+                  "argument": {
+                    "name": "c",
+                    "type": "Identifier",
+                  },
+                  "type": "RestElement",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "init": {
+              "name": "obj",
+              "type": "Identifier",
+            },
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "var",
+        "type": "VariableDeclaration",
+      },
+      "test": null,
+      "type": "ForStatement",
+      "update": null,
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > for (var [x, ...[foo, bar]] = obj;;); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "init": {
+        "declarations": [
+          {
+            "id": {
+              "elements": [
+                {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                {
+                  "argument": {
+                    "elements": [
+                      {
+                        "name": "foo",
+                        "type": "Identifier",
+                      },
+                      {
+                        "name": "bar",
+                        "type": "Identifier",
+                      },
+                    ],
+                    "type": "ArrayPattern",
+                  },
+                  "type": "RestElement",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "init": {
+              "name": "obj",
+              "type": "Identifier",
+            },
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "var",
+        "type": "VariableDeclaration",
+      },
+      "test": null,
+      "type": "ForStatement",
+      "update": null,
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > for (var {x : y} of obj); 1`] = `
+{
+  "body": [
+    {
+      "await": false,
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "name": "y",
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "var",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "obj",
+        "type": "Identifier",
+      },
+      "type": "ForOfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > for (var x = a, {y} = obj;;); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "init": {
+        "declarations": [
+          {
+            "id": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "init": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "type": "VariableDeclarator",
+          },
+          {
+            "id": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "y",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "type": "Property",
+                  "value": {
+                    "name": "y",
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "init": {
+              "name": "obj",
+              "type": "Identifier",
+            },
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "var",
+        "type": "VariableDeclaration",
+      },
+      "test": null,
+      "type": "ForStatement",
+      "update": null,
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > for (var x, {y} = obj;;); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "end": 25,
+        "range": [
+          24,
+          25,
+        ],
+        "start": 24,
+        "type": "EmptyStatement",
+      },
+      "end": 25,
+      "init": {
+        "declarations": [
+          {
+            "end": 10,
+            "id": {
+              "end": 10,
+              "name": "x",
+              "range": [
+                9,
+                10,
+              ],
+              "start": 9,
+              "type": "Identifier",
+            },
+            "init": null,
+            "range": [
+              9,
+              10,
+            ],
+            "start": 9,
+            "type": "VariableDeclarator",
+          },
+          {
+            "end": 21,
+            "id": {
+              "end": 15,
+              "properties": [
+                {
+                  "computed": false,
+                  "end": 14,
+                  "key": {
+                    "end": 14,
+                    "name": "y",
+                    "range": [
+                      13,
+                      14,
+                    ],
+                    "start": 13,
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "range": [
+                    13,
+                    14,
+                  ],
+                  "shorthand": true,
+                  "start": 13,
+                  "type": "Property",
+                  "value": {
+                    "end": 14,
+                    "name": "y",
+                    "range": [
+                      13,
+                      14,
+                    ],
+                    "start": 13,
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "range": [
+                12,
+                15,
+              ],
+              "start": 12,
+              "type": "ObjectPattern",
+            },
+            "init": {
+              "end": 21,
+              "name": "obj",
+              "range": [
+                18,
+                21,
+              ],
+              "start": 18,
+              "type": "Identifier",
+            },
+            "range": [
+              12,
+              21,
+            ],
+            "start": 12,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "end": 21,
+        "kind": "var",
+        "range": [
+          5,
+          21,
+        ],
+        "start": 5,
+        "type": "VariableDeclaration",
+      },
+      "range": [
+        0,
+        25,
+      ],
+      "start": 0,
+      "test": null,
+      "type": "ForStatement",
+      "update": null,
+    },
+  ],
+  "end": 25,
+  "range": [
+    0,
+    25,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > function x() {}; var x; 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [],
+        "end": 15,
+        "range": [
+          13,
+          15,
+        ],
+        "start": 13,
+        "type": "BlockStatement",
+      },
+      "end": 15,
+      "generator": false,
+      "id": {
+        "end": 10,
+        "name": "x",
+        "range": [
+          9,
+          10,
+        ],
+        "start": 9,
+        "type": "Identifier",
+      },
+      "params": [],
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+    {
+      "end": 16,
+      "range": [
+        15,
+        16,
+      ],
+      "start": 15,
+      "type": "EmptyStatement",
+    },
+    {
+      "declarations": [
+        {
+          "end": 22,
+          "id": {
+            "end": 22,
+            "name": "x",
+            "range": [
+              21,
+              22,
+            ],
+            "start": 21,
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            21,
+            22,
+          ],
+          "start": 21,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 23,
+      "kind": "var",
+      "range": [
+        17,
+        23,
+      ],
+      "start": 17,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 23,
+  "range": [
+    0,
+    23,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var
+foo 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var [ a, , b ] = list
+  [ b, a ] = [ a, b ] 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "elements": [
+              {
+                "name": "a",
+                "type": "Identifier",
+              },
+              null,
+              {
+                "name": "b",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "left": {
+              "computed": true,
+              "object": {
+                "name": "list",
+                "type": "Identifier",
+              },
+              "property": {
+                "expressions": [
+                  {
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "SequenceExpression",
+              },
+              "type": "MemberExpression",
+            },
+            "operator": "=",
+            "right": {
+              "elements": [
+                {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayExpression",
+            },
+            "type": "AssignmentExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var [ a, , b ] = list 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 21,
+          "id": {
+            "elements": [
+              {
+                "end": 7,
+                "name": "a",
+                "range": [
+                  6,
+                  7,
+                ],
+                "start": 6,
+                "type": "Identifier",
+              },
+              null,
+              {
+                "end": 12,
+                "name": "b",
+                "range": [
+                  11,
+                  12,
+                ],
+                "start": 11,
+                "type": "Identifier",
+              },
+            ],
+            "end": 14,
+            "range": [
+              4,
+              14,
+            ],
+            "start": 4,
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "end": 21,
+            "name": "list",
+            "range": [
+              17,
+              21,
+            ],
+            "start": 17,
+            "type": "Identifier",
+          },
+          "range": [
+            4,
+            21,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 21,
+      "kind": "var",
+      "range": [
+        0,
+        21,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 21,
+  "range": [
+    0,
+    21,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var [ a, , b ] = list;
+      [ b, a ] = [ a, b ] 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 21,
+          "id": {
+            "elements": [
+              {
+                "end": 7,
+                "name": "a",
+                "range": [
+                  6,
+                  7,
+                ],
+                "start": 6,
+                "type": "Identifier",
+              },
+              null,
+              {
+                "end": 12,
+                "name": "b",
+                "range": [
+                  11,
+                  12,
+                ],
+                "start": 11,
+                "type": "Identifier",
+              },
+            ],
+            "end": 14,
+            "range": [
+              4,
+              14,
+            ],
+            "start": 4,
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "end": 21,
+            "name": "list",
+            "range": [
+              17,
+              21,
+            ],
+            "start": 17,
+            "type": "Identifier",
+          },
+          "range": [
+            4,
+            21,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 22,
+      "kind": "var",
+      "range": [
+        0,
+        22,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+    {
+      "end": 48,
+      "expression": {
+        "end": 48,
+        "left": {
+          "elements": [
+            {
+              "end": 32,
+              "name": "b",
+              "range": [
+                31,
+                32,
+              ],
+              "start": 31,
+              "type": "Identifier",
+            },
+            {
+              "end": 35,
+              "name": "a",
+              "range": [
+                34,
+                35,
+              ],
+              "start": 34,
+              "type": "Identifier",
+            },
+          ],
+          "end": 37,
+          "range": [
+            29,
+            37,
+          ],
+          "start": 29,
+          "type": "ArrayPattern",
+        },
+        "operator": "=",
+        "range": [
+          29,
+          48,
+        ],
+        "right": {
+          "elements": [
+            {
+              "end": 43,
+              "name": "a",
+              "range": [
+                42,
+                43,
+              ],
+              "start": 42,
+              "type": "Identifier",
+            },
+            {
+              "end": 46,
+              "name": "b",
+              "range": [
+                45,
+                46,
+              ],
+              "start": 45,
+              "type": "Identifier",
+            },
+          ],
+          "end": 48,
+          "range": [
+            40,
+            48,
+          ],
+          "start": 40,
+          "type": "ArrayExpression",
+        },
+        "start": 29,
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        29,
+        48,
+      ],
+      "start": 29,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 48,
+  "range": [
+    0,
+    48,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var [,,] = x; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "elements": [
+              null,
+              null,
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var [,,foo] = x; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "elements": [
+              null,
+              null,
+              {
+                "name": "foo",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var [,] = x; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 11,
+          "id": {
+            "elements": [
+              null,
+            ],
+            "end": 7,
+            "range": [
+              4,
+              7,
+            ],
+            "start": 4,
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "end": 11,
+            "name": "x",
+            "range": [
+              10,
+              11,
+            ],
+            "start": 10,
+            "type": "Identifier",
+          },
+          "range": [
+            4,
+            11,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 12,
+      "kind": "var",
+      "range": [
+        0,
+        12,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 12,
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var [,foo] = x; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "elements": [
+              null,
+              {
+                "name": "foo",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var [foo,,] = x; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "elements": [
+              {
+                "name": "foo",
+                "type": "Identifier",
+              },
+              null,
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var [foo,bar] = x; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "elements": [
+              {
+                "name": "foo",
+                "type": "Identifier",
+              },
+              {
+                "name": "bar",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var [foo=a,bar=b] = x; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 21,
+          "id": {
+            "elements": [
+              {
+                "end": 10,
+                "left": {
+                  "end": 8,
+                  "name": "foo",
+                  "range": [
+                    5,
+                    8,
+                  ],
+                  "start": 5,
+                  "type": "Identifier",
+                },
+                "range": [
+                  5,
+                  10,
+                ],
+                "right": {
+                  "end": 10,
+                  "name": "a",
+                  "range": [
+                    9,
+                    10,
+                  ],
+                  "start": 9,
+                  "type": "Identifier",
+                },
+                "start": 5,
+                "type": "AssignmentPattern",
+              },
+              {
+                "end": 16,
+                "left": {
+                  "end": 14,
+                  "name": "bar",
+                  "range": [
+                    11,
+                    14,
+                  ],
+                  "start": 11,
+                  "type": "Identifier",
+                },
+                "range": [
+                  11,
+                  16,
+                ],
+                "right": {
+                  "end": 16,
+                  "name": "b",
+                  "range": [
+                    15,
+                    16,
+                  ],
+                  "start": 15,
+                  "type": "Identifier",
+                },
+                "start": 11,
+                "type": "AssignmentPattern",
+              },
+            ],
+            "end": 17,
+            "range": [
+              4,
+              17,
+            ],
+            "start": 4,
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "end": 21,
+            "name": "x",
+            "range": [
+              20,
+              21,
+            ],
+            "start": 20,
+            "type": "Identifier",
+          },
+          "range": [
+            4,
+            21,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 22,
+      "kind": "var",
+      "range": [
+        0,
+        22,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 22,
+  "range": [
+    0,
+    22,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var [foo=a] = c; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 15,
+          "id": {
+            "elements": [
+              {
+                "end": 10,
+                "left": {
+                  "end": 8,
+                  "name": "foo",
+                  "range": [
+                    5,
+                    8,
+                  ],
+                  "start": 5,
+                  "type": "Identifier",
+                },
+                "range": [
+                  5,
+                  10,
+                ],
+                "right": {
+                  "end": 10,
+                  "name": "a",
+                  "range": [
+                    9,
+                    10,
+                  ],
+                  "start": 9,
+                  "type": "Identifier",
+                },
+                "start": 5,
+                "type": "AssignmentPattern",
+              },
+            ],
+            "end": 11,
+            "range": [
+              4,
+              11,
+            ],
+            "start": 4,
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "end": 15,
+            "name": "c",
+            "range": [
+              14,
+              15,
+            ],
+            "start": 14,
+            "type": "Identifier",
+          },
+          "range": [
+            4,
+            15,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 16,
+      "kind": "var",
+      "range": [
+        0,
+        16,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 16,
+  "range": [
+    0,
+    16,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var [foo] = x, [foo] = y; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "elements": [
+              {
+                "name": "foo",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+        {
+          "id": {
+            "elements": [
+              {
+                "name": "foo",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var [foo] = x, b = y; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "elements": [
+              {
+                "name": "foo",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+        {
+          "id": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "init": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var [foo] = x, b; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "elements": [
+              {
+                "name": "foo",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+        {
+          "id": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var [let] = [] 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "elements": [
+              {
+                "name": "let",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "elements": [],
+            "type": "ArrayExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var [x, x] = [4, 5]; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 19,
+          "id": {
+            "elements": [
+              {
+                "end": 6,
+                "name": "x",
+                "range": [
+                  5,
+                  6,
+                ],
+                "start": 5,
+                "type": "Identifier",
+              },
+              {
+                "end": 9,
+                "name": "x",
+                "range": [
+                  8,
+                  9,
+                ],
+                "start": 8,
+                "type": "Identifier",
+              },
+            ],
+            "end": 10,
+            "range": [
+              4,
+              10,
+            ],
+            "start": 4,
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "elements": [
+              {
+                "end": 15,
+                "range": [
+                  14,
+                  15,
+                ],
+                "start": 14,
+                "type": "Literal",
+                "value": 4,
+              },
+              {
+                "end": 18,
+                "range": [
+                  17,
+                  18,
+                ],
+                "start": 17,
+                "type": "Literal",
+                "value": 5,
+              },
+            ],
+            "end": 19,
+            "range": [
+              13,
+              19,
+            ],
+            "start": 13,
+            "type": "ArrayExpression",
+          },
+          "range": [
+            4,
+            19,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 20,
+      "kind": "var",
+      "range": [
+        0,
+        20,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 20,
+  "range": [
+    0,
+    20,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var {} = x; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var {a: x, b: x} = {a: 4, b: 5}; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 31,
+          "id": {
+            "end": 16,
+            "properties": [
+              {
+                "computed": false,
+                "end": 9,
+                "key": {
+                  "end": 6,
+                  "name": "a",
+                  "range": [
+                    5,
+                    6,
+                  ],
+                  "start": 5,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  5,
+                  9,
+                ],
+                "shorthand": false,
+                "start": 5,
+                "type": "Property",
+                "value": {
+                  "end": 9,
+                  "name": "x",
+                  "range": [
+                    8,
+                    9,
+                  ],
+                  "start": 8,
+                  "type": "Identifier",
+                },
+              },
+              {
+                "computed": false,
+                "end": 15,
+                "key": {
+                  "end": 12,
+                  "name": "b",
+                  "range": [
+                    11,
+                    12,
+                  ],
+                  "start": 11,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  11,
+                  15,
+                ],
+                "shorthand": false,
+                "start": 11,
+                "type": "Property",
+                "value": {
+                  "end": 15,
+                  "name": "x",
+                  "range": [
+                    14,
+                    15,
+                  ],
+                  "start": 14,
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "range": [
+              4,
+              16,
+            ],
+            "start": 4,
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "end": 31,
+            "properties": [
+              {
+                "computed": false,
+                "end": 24,
+                "key": {
+                  "end": 21,
+                  "name": "a",
+                  "range": [
+                    20,
+                    21,
+                  ],
+                  "start": 20,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  20,
+                  24,
+                ],
+                "shorthand": false,
+                "start": 20,
+                "type": "Property",
+                "value": {
+                  "end": 24,
+                  "range": [
+                    23,
+                    24,
+                  ],
+                  "start": 23,
+                  "type": "Literal",
+                  "value": 4,
+                },
+              },
+              {
+                "computed": false,
+                "end": 30,
+                "key": {
+                  "end": 27,
+                  "name": "b",
+                  "range": [
+                    26,
+                    27,
+                  ],
+                  "start": 26,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  26,
+                  30,
+                ],
+                "shorthand": false,
+                "start": 26,
+                "type": "Property",
+                "value": {
+                  "end": 30,
+                  "range": [
+                    29,
+                    30,
+                  ],
+                  "start": 29,
+                  "type": "Literal",
+                  "value": 5,
+                },
+              },
+            ],
+            "range": [
+              19,
+              31,
+            ],
+            "start": 19,
+            "type": "ObjectExpression",
+          },
+          "range": [
+            4,
+            31,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 32,
+      "kind": "var",
+      "range": [
+        0,
+        32,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 32,
+  "range": [
+    0,
+    32,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var {foo,} = x; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var {foo} = x; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var {x = y, z} = obj; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 20,
+          "id": {
+            "end": 14,
+            "properties": [
+              {
+                "computed": false,
+                "end": 10,
+                "key": {
+                  "end": 6,
+                  "name": "x",
+                  "range": [
+                    5,
+                    6,
+                  ],
+                  "start": 5,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  5,
+                  10,
+                ],
+                "shorthand": true,
+                "start": 5,
+                "type": "Property",
+                "value": {
+                  "end": 10,
+                  "left": {
+                    "end": 6,
+                    "name": "x",
+                    "range": [
+                      5,
+                      6,
+                    ],
+                    "start": 5,
+                    "type": "Identifier",
+                  },
+                  "range": [
+                    5,
+                    10,
+                  ],
+                  "right": {
+                    "end": 10,
+                    "name": "y",
+                    "range": [
+                      9,
+                      10,
+                    ],
+                    "start": 9,
+                    "type": "Identifier",
+                  },
+                  "start": 5,
+                  "type": "AssignmentPattern",
+                },
+              },
+              {
+                "computed": false,
+                "end": 13,
+                "key": {
+                  "end": 13,
+                  "name": "z",
+                  "range": [
+                    12,
+                    13,
+                  ],
+                  "start": 12,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  12,
+                  13,
+                ],
+                "shorthand": true,
+                "start": 12,
+                "type": "Property",
+                "value": {
+                  "end": 13,
+                  "name": "z",
+                  "range": [
+                    12,
+                    13,
+                  ],
+                  "start": 12,
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "range": [
+              4,
+              14,
+            ],
+            "start": 4,
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "end": 20,
+            "name": "obj",
+            "range": [
+              17,
+              20,
+            ],
+            "start": 17,
+            "type": "Identifier",
+          },
+          "range": [
+            4,
+            20,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 21,
+      "kind": "var",
+      "range": [
+        0,
+        21,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 21,
+  "range": [
+    0,
+    21,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var {x = y} = obj; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "left": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "name": "y",
+                    "type": "Identifier",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "name": "obj",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var {x=1} = {a: 4, b: (x = 5)}; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "left": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "type": "Literal",
+                    "value": 1,
+                  },
+                  "type": "AssignmentPattern",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "type": "Literal",
+                  "value": 4,
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "left": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "operator": "=",
+                  "right": {
+                    "type": "Literal",
+                    "value": 5,
+                  },
+                  "type": "AssignmentExpression",
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var O = { async "method"() { await 1; } } 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "O",
+            "type": "Identifier",
+          },
+          "init": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "type": "Literal",
+                  "value": "method",
+                },
+                "kind": "init",
+                "method": true,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "async": true,
+                  "body": {
+                    "body": [
+                      {
+                        "expression": {
+                          "argument": {
+                            "type": "Literal",
+                            "value": 1,
+                          },
+                          "type": "AwaitExpression",
+                        },
+                        "type": "ExpressionStatement",
+                      },
+                    ],
+                    "type": "BlockStatement",
+                  },
+                  "generator": false,
+                  "id": null,
+                  "params": [],
+                  "type": "FunctionExpression",
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var O = { async ["meth" + "od"]() { await 1; } } 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 48,
+          "id": {
+            "end": 5,
+            "name": "O",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": {
+            "end": 48,
+            "properties": [
+              {
+                "computed": true,
+                "end": 46,
+                "key": {
+                  "end": 30,
+                  "left": {
+                    "end": 23,
+                    "range": [
+                      17,
+                      23,
+                    ],
+                    "raw": ""meth"",
+                    "start": 17,
+                    "type": "Literal",
+                    "value": "meth",
+                  },
+                  "operator": "+",
+                  "range": [
+                    17,
+                    30,
+                  ],
+                  "right": {
+                    "end": 30,
+                    "range": [
+                      26,
+                      30,
+                    ],
+                    "raw": ""od"",
+                    "start": 26,
+                    "type": "Literal",
+                    "value": "od",
+                  },
+                  "start": 17,
+                  "type": "BinaryExpression",
+                },
+                "kind": "init",
+                "method": true,
+                "range": [
+                  10,
+                  46,
+                ],
+                "shorthand": false,
+                "start": 10,
+                "type": "Property",
+                "value": {
+                  "async": true,
+                  "body": {
+                    "body": [
+                      {
+                        "end": 44,
+                        "expression": {
+                          "argument": {
+                            "end": 43,
+                            "range": [
+                              42,
+                              43,
+                            ],
+                            "raw": "1",
+                            "start": 42,
+                            "type": "Literal",
+                            "value": 1,
+                          },
+                          "end": 43,
+                          "range": [
+                            36,
+                            43,
+                          ],
+                          "start": 36,
+                          "type": "AwaitExpression",
+                        },
+                        "range": [
+                          36,
+                          44,
+                        ],
+                        "start": 36,
+                        "type": "ExpressionStatement",
+                      },
+                    ],
+                    "end": 46,
+                    "range": [
+                      34,
+                      46,
+                    ],
+                    "start": 34,
+                    "type": "BlockStatement",
+                  },
+                  "end": 46,
+                  "generator": false,
+                  "id": null,
+                  "params": [],
+                  "range": [
+                    31,
+                    46,
+                  ],
+                  "start": 31,
+                  "type": "FunctionExpression",
+                },
+              },
+            ],
+            "range": [
+              8,
+              48,
+            ],
+            "start": 8,
+            "type": "ObjectExpression",
+          },
+          "range": [
+            4,
+            48,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 48,
+      "kind": "var",
+      "range": [
+        0,
+        48,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 48,
+  "range": [
+    0,
+    48,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var O = { async 0() { await 1; } } 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 34,
+          "id": {
+            "end": 5,
+            "name": "O",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": {
+            "end": 34,
+            "properties": [
+              {
+                "computed": false,
+                "end": 32,
+                "key": {
+                  "end": 17,
+                  "range": [
+                    16,
+                    17,
+                  ],
+                  "start": 16,
+                  "type": "Literal",
+                  "value": 0,
+                },
+                "kind": "init",
+                "method": true,
+                "range": [
+                  10,
+                  32,
+                ],
+                "shorthand": false,
+                "start": 10,
+                "type": "Property",
+                "value": {
+                  "async": true,
+                  "body": {
+                    "body": [
+                      {
+                        "end": 30,
+                        "expression": {
+                          "argument": {
+                            "end": 29,
+                            "range": [
+                              28,
+                              29,
+                            ],
+                            "start": 28,
+                            "type": "Literal",
+                            "value": 1,
+                          },
+                          "end": 29,
+                          "range": [
+                            22,
+                            29,
+                          ],
+                          "start": 22,
+                          "type": "AwaitExpression",
+                        },
+                        "range": [
+                          22,
+                          30,
+                        ],
+                        "start": 22,
+                        "type": "ExpressionStatement",
+                      },
+                    ],
+                    "end": 32,
+                    "range": [
+                      20,
+                      32,
+                    ],
+                    "start": 20,
+                    "type": "BlockStatement",
+                  },
+                  "end": 32,
+                  "generator": false,
+                  "id": null,
+                  "params": [],
+                  "range": [
+                    17,
+                    32,
+                  ],
+                  "start": 17,
+                  "type": "FunctionExpression",
+                },
+              },
+            ],
+            "range": [
+              8,
+              34,
+            ],
+            "start": 8,
+            "type": "ObjectExpression",
+          },
+          "range": [
+            4,
+            34,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 34,
+      "kind": "var",
+      "range": [
+        0,
+        34,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 34,
+  "range": [
+    0,
+    34,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var O = { async method() { await 1; } } 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "O",
+            "type": "Identifier",
+          },
+          "init": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "method",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": true,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "async": true,
+                  "body": {
+                    "body": [
+                      {
+                        "expression": {
+                          "argument": {
+                            "type": "Literal",
+                            "value": 1,
+                          },
+                          "type": "AwaitExpression",
+                        },
+                        "type": "ExpressionStatement",
+                      },
+                    ],
+                    "type": "BlockStatement",
+                  },
+                  "generator": false,
+                  "id": null,
+                  "params": [],
+                  "type": "FunctionExpression",
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var ancestors = [/^VarDef$/, /^(Const|Let|Var)$/, /^Export$/]; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "ancestors",
+            "type": "Identifier",
+          },
+          "init": {
+            "elements": [
+              {
+                "regex": {
+                  "flags": "",
+                  "pattern": "^VarDef$",
+                },
+                "type": "Literal",
+                "value": /\\^VarDef\\$/,
+              },
+              {
+                "regex": {
+                  "flags": "",
+                  "pattern": "^(Const|Let|Var)$",
+                },
+                "type": "Literal",
+                "value": /\\^\\(Const\\|Let\\|Var\\)\\$/,
+              },
+              {
+                "regex": {
+                  "flags": "",
+                  "pattern": "^Export$",
+                },
+                "type": "Literal",
+                "value": /\\^Export\\$/,
+              },
+            ],
+            "type": "ArrayExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var await = { await } 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "await",
+            "type": "Identifier",
+          },
+          "init": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "await",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "name": "await",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var f0 = function (a, b = a, c = b) {
+        return [a, b, c];
+      };
+
+      expect(f0(1)).toEqual([1, 1, 1]);
+
+      var f1 = function ({a}, b = a, c = b) {
+        return [a, b, c];
+      };
+
+      expect(f1({a: 1})).toEqual([1, 1, 1]);
+
+      var f2 = function ({a}, b = a, c = a) {
+        return [a, b, c];
+      }; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "f0",
+            "type": "Identifier",
+          },
+          "init": {
+            "async": false,
+            "body": {
+              "body": [
+                {
+                  "argument": {
+                    "elements": [
+                      {
+                        "name": "a",
+                        "type": "Identifier",
+                      },
+                      {
+                        "name": "b",
+                        "type": "Identifier",
+                      },
+                      {
+                        "name": "c",
+                        "type": "Identifier",
+                      },
+                    ],
+                    "type": "ArrayExpression",
+                  },
+                  "type": "ReturnStatement",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+            "generator": false,
+            "id": null,
+            "params": [
+              {
+                "name": "a",
+                "type": "Identifier",
+              },
+              {
+                "left": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "type": "AssignmentPattern",
+              },
+              {
+                "left": {
+                  "name": "c",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "type": "AssignmentPattern",
+              },
+            ],
+            "type": "FunctionExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "expression": {
+        "arguments": [
+          {
+            "elements": [
+              {
+                "type": "Literal",
+                "value": 1,
+              },
+              {
+                "type": "Literal",
+                "value": 1,
+              },
+              {
+                "type": "Literal",
+                "value": 1,
+              },
+            ],
+            "type": "ArrayExpression",
+          },
+        ],
+        "callee": {
+          "computed": false,
+          "object": {
+            "arguments": [
+              {
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": 1,
+                  },
+                ],
+                "callee": {
+                  "name": "f0",
+                  "type": "Identifier",
+                },
+                "type": "CallExpression",
+              },
+            ],
+            "callee": {
+              "name": "expect",
+              "type": "Identifier",
+            },
+            "type": "CallExpression",
+          },
+          "property": {
+            "name": "toEqual",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "f1",
+            "type": "Identifier",
+          },
+          "init": {
+            "async": false,
+            "body": {
+              "body": [
+                {
+                  "argument": {
+                    "elements": [
+                      {
+                        "name": "a",
+                        "type": "Identifier",
+                      },
+                      {
+                        "name": "b",
+                        "type": "Identifier",
+                      },
+                      {
+                        "name": "c",
+                        "type": "Identifier",
+                      },
+                    ],
+                    "type": "ArrayExpression",
+                  },
+                  "type": "ReturnStatement",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+            "generator": false,
+            "id": null,
+            "params": [
+              {
+                "properties": [
+                  {
+                    "computed": false,
+                    "key": {
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "shorthand": true,
+                    "type": "Property",
+                    "value": {
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                  },
+                ],
+                "type": "ObjectPattern",
+              },
+              {
+                "left": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "type": "AssignmentPattern",
+              },
+              {
+                "left": {
+                  "name": "c",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "type": "AssignmentPattern",
+              },
+            ],
+            "type": "FunctionExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "expression": {
+        "arguments": [
+          {
+            "elements": [
+              {
+                "type": "Literal",
+                "value": 1,
+              },
+              {
+                "type": "Literal",
+                "value": 1,
+              },
+              {
+                "type": "Literal",
+                "value": 1,
+              },
+            ],
+            "type": "ArrayExpression",
+          },
+        ],
+        "callee": {
+          "computed": false,
+          "object": {
+            "arguments": [
+              {
+                "arguments": [
+                  {
+                    "properties": [
+                      {
+                        "computed": false,
+                        "key": {
+                          "name": "a",
+                          "type": "Identifier",
+                        },
+                        "kind": "init",
+                        "method": false,
+                        "shorthand": false,
+                        "type": "Property",
+                        "value": {
+                          "type": "Literal",
+                          "value": 1,
+                        },
+                      },
+                    ],
+                    "type": "ObjectExpression",
+                  },
+                ],
+                "callee": {
+                  "name": "f1",
+                  "type": "Identifier",
+                },
+                "type": "CallExpression",
+              },
+            ],
+            "callee": {
+              "name": "expect",
+              "type": "Identifier",
+            },
+            "type": "CallExpression",
+          },
+          "property": {
+            "name": "toEqual",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "f2",
+            "type": "Identifier",
+          },
+          "init": {
+            "async": false,
+            "body": {
+              "body": [
+                {
+                  "argument": {
+                    "elements": [
+                      {
+                        "name": "a",
+                        "type": "Identifier",
+                      },
+                      {
+                        "name": "b",
+                        "type": "Identifier",
+                      },
+                      {
+                        "name": "c",
+                        "type": "Identifier",
+                      },
+                    ],
+                    "type": "ArrayExpression",
+                  },
+                  "type": "ReturnStatement",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+            "generator": false,
+            "id": null,
+            "params": [
+              {
+                "properties": [
+                  {
+                    "computed": false,
+                    "key": {
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "shorthand": true,
+                    "type": "Property",
+                    "value": {
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                  },
+                ],
+                "type": "ObjectPattern",
+              },
+              {
+                "left": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "type": "AssignmentPattern",
+              },
+              {
+                "left": {
+                  "name": "c",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "type": "AssignmentPattern",
+              },
+            ],
+            "type": "FunctionExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var foo = {}; foo.arguments; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "init": {
+            "properties": [],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "expression": {
+        "computed": false,
+        "object": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "property": {
+          "name": "arguments",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var foo = {}; foo.if; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "init": {
+            "properties": [],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "expression": {
+        "computed": false,
+        "object": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "property": {
+          "name": "if",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var foo = {}; foo.interface; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "init": {
+            "properties": [],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "expression": {
+        "computed": false,
+        "object": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "property": {
+          "name": "interface",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var foo = {}; foo.super; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 12,
+          "id": {
+            "end": 7,
+            "name": "foo",
+            "range": [
+              4,
+              7,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": {
+            "end": 12,
+            "properties": [],
+            "range": [
+              10,
+              12,
+            ],
+            "start": 10,
+            "type": "ObjectExpression",
+          },
+          "range": [
+            4,
+            12,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 13,
+      "kind": "var",
+      "range": [
+        0,
+        13,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+    {
+      "end": 24,
+      "expression": {
+        "computed": false,
+        "end": 23,
+        "object": {
+          "end": 17,
+          "name": "foo",
+          "range": [
+            14,
+            17,
+          ],
+          "start": 14,
+          "type": "Identifier",
+        },
+        "property": {
+          "end": 23,
+          "name": "super",
+          "range": [
+            18,
+            23,
+          ],
+          "start": 18,
+          "type": "Identifier",
+        },
+        "range": [
+          14,
+          23,
+        ],
+        "start": 14,
+        "type": "MemberExpression",
+      },
+      "range": [
+        14,
+        24,
+      ],
+      "start": 14,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 24,
+  "range": [
+    0,
+    24,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var foo, bar 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+        {
+          "id": {
+            "name": "bar",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var foo, bar; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+        {
+          "id": {
+            "name": "bar",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var idx = reverse ? --to : from++; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "idx",
+            "type": "Identifier",
+          },
+          "init": {
+            "alternate": {
+              "argument": {
+                "name": "from",
+                "type": "Identifier",
+              },
+              "operator": "++",
+              "prefix": false,
+              "type": "UpdateExpression",
+            },
+            "consequent": {
+              "argument": {
+                "name": "to",
+                "type": "Identifier",
+              },
+              "operator": "--",
+              "prefix": true,
+              "type": "UpdateExpression",
+            },
+            "test": {
+              "name": "reverse",
+              "type": "Identifier",
+            },
+            "type": "ConditionalExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var let 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "let",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var o = { get [/./.exec('')](){} } 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 34,
+          "id": {
+            "end": 5,
+            "name": "o",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": {
+            "end": 34,
+            "properties": [
+              {
+                "computed": true,
+                "end": 32,
+                "key": {
+                  "arguments": [
+                    {
+                      "end": 26,
+                      "range": [
+                        24,
+                        26,
+                      ],
+                      "raw": "''",
+                      "start": 24,
+                      "type": "Literal",
+                      "value": "",
+                    },
+                  ],
+                  "callee": {
+                    "computed": false,
+                    "end": 23,
+                    "object": {
+                      "end": 18,
+                      "range": [
+                        15,
+                        18,
+                      ],
+                      "raw": "/./",
+                      "regex": {
+                        "flags": "",
+                        "pattern": ".",
+                      },
+                      "start": 15,
+                      "type": "Literal",
+                      "value": /\\./,
+                    },
+                    "property": {
+                      "end": 23,
+                      "name": "exec",
+                      "range": [
+                        19,
+                        23,
+                      ],
+                      "start": 19,
+                      "type": "Identifier",
+                    },
+                    "range": [
+                      15,
+                      23,
+                    ],
+                    "start": 15,
+                    "type": "MemberExpression",
+                  },
+                  "end": 27,
+                  "range": [
+                    15,
+                    27,
+                  ],
+                  "start": 15,
+                  "type": "CallExpression",
+                },
+                "kind": "get",
+                "method": false,
+                "range": [
+                  10,
+                  32,
+                ],
+                "shorthand": false,
+                "start": 10,
+                "type": "Property",
+                "value": {
+                  "async": false,
+                  "body": {
+                    "body": [],
+                    "end": 32,
+                    "range": [
+                      30,
+                      32,
+                    ],
+                    "start": 30,
+                    "type": "BlockStatement",
+                  },
+                  "end": 32,
+                  "generator": false,
+                  "id": null,
+                  "params": [],
+                  "range": [
+                    28,
+                    32,
+                  ],
+                  "start": 28,
+                  "type": "FunctionExpression",
+                },
+              },
+            ],
+            "range": [
+              8,
+              34,
+            ],
+            "start": 8,
+            "type": "ObjectExpression",
+          },
+          "range": [
+            4,
+            34,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 34,
+      "kind": "var",
+      "range": [
+        0,
+        34,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 34,
+  "range": [
+    0,
+    34,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var x = {a: 4, b: (x = 5)}; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "type": "Literal",
+                  "value": 4,
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "left": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "operator": "=",
+                  "right": {
+                    "type": "Literal",
+                    "value": 5,
+                  },
+                  "type": "AssignmentExpression",
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var x = {a: 4, b: (x = 5)}; 2`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "type": "Literal",
+                  "value": 4,
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "left": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "operator": "=",
+                  "right": {
+                    "type": "Literal",
+                    "value": 5,
+                  },
+                  "type": "AssignmentExpression",
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var x = 5; function x() {} 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": {
+            "type": "Literal",
+            "value": 5,
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "async": false,
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var x = 8; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": {
+            "type": "Literal",
+            "value": 8,
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var x, [foo] = y; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+        {
+          "id": {
+            "elements": [
+              {
+                "name": "foo",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var x, {y} = obj; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+        {
+          "id": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "y",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "name": "y",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "name": "obj",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var x; [x, x] = [4, 5]; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 5,
+          "id": {
+            "end": 5,
+            "name": "x",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            4,
+            5,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 6,
+      "kind": "var",
+      "range": [
+        0,
+        6,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+    {
+      "end": 23,
+      "expression": {
+        "end": 22,
+        "left": {
+          "elements": [
+            {
+              "end": 9,
+              "name": "x",
+              "range": [
+                8,
+                9,
+              ],
+              "start": 8,
+              "type": "Identifier",
+            },
+            {
+              "end": 12,
+              "name": "x",
+              "range": [
+                11,
+                12,
+              ],
+              "start": 11,
+              "type": "Identifier",
+            },
+          ],
+          "end": 13,
+          "range": [
+            7,
+            13,
+          ],
+          "start": 7,
+          "type": "ArrayPattern",
+        },
+        "operator": "=",
+        "range": [
+          7,
+          22,
+        ],
+        "right": {
+          "elements": [
+            {
+              "end": 18,
+              "range": [
+                17,
+                18,
+              ],
+              "start": 17,
+              "type": "Literal",
+              "value": 4,
+            },
+            {
+              "end": 21,
+              "range": [
+                20,
+                21,
+              ],
+              "start": 20,
+              "type": "Literal",
+              "value": 5,
+            },
+          ],
+          "end": 22,
+          "range": [
+            16,
+            22,
+          ],
+          "start": 16,
+          "type": "ArrayExpression",
+        },
+        "start": 7,
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        7,
+        23,
+      ],
+      "start": 7,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 23,
+  "range": [
+    0,
+    23,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var x; { var x = 5; } 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "body": [
+        {
+          "declarations": [
+            {
+              "id": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "init": {
+                "type": "Literal",
+                "value": 5,
+              },
+              "type": "VariableDeclarator",
+            },
+          ],
+          "kind": "var",
+          "type": "VariableDeclaration",
+        },
+      ],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var x; { with ({}) { x = 1; } } 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 5,
+          "id": {
+            "end": 5,
+            "name": "x",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            4,
+            5,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 6,
+      "kind": "var",
+      "range": [
+        0,
+        6,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+    {
+      "body": [
+        {
+          "body": {
+            "body": [
+              {
+                "end": 27,
+                "expression": {
+                  "end": 26,
+                  "left": {
+                    "end": 22,
+                    "name": "x",
+                    "range": [
+                      21,
+                      22,
+                    ],
+                    "start": 21,
+                    "type": "Identifier",
+                  },
+                  "operator": "=",
+                  "range": [
+                    21,
+                    26,
+                  ],
+                  "right": {
+                    "end": 26,
+                    "range": [
+                      25,
+                      26,
+                    ],
+                    "start": 25,
+                    "type": "Literal",
+                    "value": 1,
+                  },
+                  "start": 21,
+                  "type": "AssignmentExpression",
+                },
+                "range": [
+                  21,
+                  27,
+                ],
+                "start": 21,
+                "type": "ExpressionStatement",
+              },
+            ],
+            "end": 29,
+            "range": [
+              19,
+              29,
+            ],
+            "start": 19,
+            "type": "BlockStatement",
+          },
+          "end": 29,
+          "object": {
+            "end": 17,
+            "properties": [],
+            "range": [
+              15,
+              17,
+            ],
+            "start": 15,
+            "type": "ObjectExpression",
+          },
+          "range": [
+            9,
+            29,
+          ],
+          "start": 9,
+          "type": "WithStatement",
+        },
+      ],
+      "end": 31,
+      "range": [
+        7,
+        31,
+      ],
+      "start": 7,
+      "type": "BlockStatement",
+    },
+  ],
+  "end": 31,
+  "range": [
+    0,
+    31,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var x; eval(""); 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "expression": {
+        "arguments": [
+          {
+            "type": "Literal",
+            "value": "",
+          },
+        ],
+        "callee": {
+          "name": "eval",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var x; try {} catch (x) { var x = 5; } 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "declarations": [
+                {
+                  "id": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "init": {
+                    "type": "Literal",
+                    "value": 5,
+                  },
+                  "type": "VariableDeclarator",
+                },
+              ],
+              "kind": "var",
+              "type": "VariableDeclaration",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var x; try {} catch (x) { x = 5; } 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "expression": {
+                "left": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "operator": "=",
+                "right": {
+                  "type": "Literal",
+                  "value": 5,
+                },
+                "type": "AssignmentExpression",
+              },
+              "type": "ExpressionStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var x; var x = 5; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": {
+            "type": "Literal",
+            "value": 5,
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var x; var x; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 5,
+          "id": {
+            "end": 5,
+            "name": "x",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            4,
+            5,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 6,
+      "kind": "var",
+      "range": [
+        0,
+        6,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "end": 12,
+          "id": {
+            "end": 12,
+            "name": "x",
+            "range": [
+              11,
+              12,
+            ],
+            "start": 11,
+            "type": "Identifier",
+          },
+          "init": null,
+          "range": [
+            11,
+            12,
+          ],
+          "start": 11,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 13,
+      "kind": "var",
+      "range": [
+        7,
+        13,
+      ],
+      "start": 7,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 13,
+  "range": [
+    0,
+    13,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Var > Declarations - Var (pass) > var x; x = 8; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "type": "Literal",
+          "value": 8,
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

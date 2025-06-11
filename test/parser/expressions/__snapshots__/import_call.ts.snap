@@ -1,0 +1,213 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Next - ImportCall > Next - ImportCall (pass) > async function bar(){ await import("./nchanged") } 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "argument": {
+                "options": null,
+                "source": {
+                  "type": "Literal",
+                  "value": "./nchanged",
+                },
+                "type": "ImportExpression",
+              },
+              "type": "AwaitExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "bar",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - ImportCall > Next - ImportCall (pass) > function loadImport(file) { import(file).then(() => {}), console.log("Done."); } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "expressions": [
+                {
+                  "arguments": [
+                    {
+                      "async": false,
+                      "body": {
+                        "body": [],
+                        "type": "BlockStatement",
+                      },
+                      "expression": false,
+                      "generator": false,
+                      "params": [],
+                      "type": "ArrowFunctionExpression",
+                    },
+                  ],
+                  "callee": {
+                    "computed": false,
+                    "object": {
+                      "options": null,
+                      "source": {
+                        "name": "file",
+                        "type": "Identifier",
+                      },
+                      "type": "ImportExpression",
+                    },
+                    "property": {
+                      "name": "then",
+                      "type": "Identifier",
+                    },
+                    "type": "MemberExpression",
+                  },
+                  "type": "CallExpression",
+                },
+                {
+                  "arguments": [
+                    {
+                      "type": "Literal",
+                      "value": "Done.",
+                    },
+                  ],
+                  "callee": {
+                    "computed": false,
+                    "object": {
+                      "name": "console",
+                      "type": "Identifier",
+                    },
+                    "property": {
+                      "name": "log",
+                      "type": "Identifier",
+                    },
+                    "type": "MemberExpression",
+                  },
+                  "type": "CallExpression",
+                },
+              ],
+              "type": "SequenceExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "loadImport",
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "name": "file",
+          "type": "Identifier",
+        },
+      ],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - ImportCall > Next - ImportCall (pass) > import("lib.js").then(doThis); 1`] = `
+{
+  "body": [
+    {
+      "end": 30,
+      "expression": {
+        "arguments": [
+          {
+            "end": 28,
+            "name": "doThis",
+            "range": [
+              22,
+              28,
+            ],
+            "start": 22,
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "computed": false,
+          "end": 21,
+          "object": {
+            "end": 16,
+            "range": [
+              0,
+              16,
+            ],
+            "source": {
+              "end": 15,
+              "range": [
+                7,
+                15,
+              ],
+              "start": 7,
+              "type": "Literal",
+              "value": "lib.js",
+            },
+            "start": 0,
+            "type": "ImportExpression",
+          },
+          "property": {
+            "end": 21,
+            "name": "then",
+            "range": [
+              17,
+              21,
+            ],
+            "start": 17,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            21,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "end": 29,
+        "range": [
+          0,
+          29,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        30,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 30,
+  "range": [
+    0,
+    30,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;

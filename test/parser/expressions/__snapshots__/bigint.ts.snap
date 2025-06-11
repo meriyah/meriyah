@@ -1,0 +1,128 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - BigInt > Expressions - BigInt (pass) > 0xdead_BEEFn 1`] = `
+{
+  "body": [
+    {
+      "end": 12,
+      "expression": {
+        "bigint": "3735928559",
+        "end": 12,
+        "range": [
+          0,
+          12,
+        ],
+        "raw": "0xdead_BEEFn",
+        "start": 0,
+        "type": "Literal",
+        "value": 3735928559n,
+      },
+      "range": [
+        0,
+        12,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 12,
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - BigInt > Expressions - BigInt (pass) > 1n + 2333333n 1`] = `
+{
+  "body": [
+    {
+      "end": 13,
+      "expression": {
+        "end": 13,
+        "left": {
+          "bigint": "1",
+          "end": 2,
+          "range": [
+            0,
+            2,
+          ],
+          "start": 0,
+          "type": "Literal",
+          "value": 1n,
+        },
+        "operator": "+",
+        "range": [
+          0,
+          13,
+        ],
+        "right": {
+          "bigint": "2333333",
+          "end": 13,
+          "range": [
+            5,
+            13,
+          ],
+          "start": 5,
+          "type": "Literal",
+          "value": 2333333n,
+        },
+        "start": 0,
+        "type": "BinaryExpression",
+      },
+      "range": [
+        0,
+        13,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 13,
+  "range": [
+    0,
+    13,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - BigInt > Expressions - BigInt (pass) > 1n 1`] = `
+{
+  "body": [
+    {
+      "end": 2,
+      "expression": {
+        "bigint": "1",
+        "end": 2,
+        "range": [
+          0,
+          2,
+        ],
+        "start": 0,
+        "type": "Literal",
+        "value": 1n,
+      },
+      "range": [
+        0,
+        2,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 2,
+  "range": [
+    0,
+    2,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;

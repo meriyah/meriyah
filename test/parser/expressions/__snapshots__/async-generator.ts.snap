@@ -1,0 +1,698 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - Async Generator > Expressions - Async Generator (pass) > (async function *([{ x }]) { }) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": true,
+        "id": null,
+        "params": [
+          {
+            "elements": [
+              {
+                "properties": [
+                  {
+                    "computed": false,
+                    "key": {
+                      "name": "x",
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "shorthand": true,
+                    "type": "Property",
+                    "value": {
+                      "name": "x",
+                      "type": "Identifier",
+                    },
+                  },
+                ],
+                "type": "ObjectPattern",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async Generator > Expressions - Async Generator (pass) > (async function *foo() { }.prototype) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "computed": false,
+        "object": {
+          "async": true,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": true,
+          "id": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "params": [],
+          "type": "FunctionExpression",
+        },
+        "property": {
+          "name": "prototype",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async Generator > Expressions - Async Generator (pass) > (async function *foo([...x] = 123) { }) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": true,
+        "id": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "left": {
+              "elements": [
+                {
+                  "argument": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "type": "RestElement",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "right": {
+              "type": "Literal",
+              "value": 123,
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async Generator > Expressions - Async Generator (pass) > (async function *foo(x, y = x, z = y) { }) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": true,
+        "id": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "name": "x",
+            "type": "Identifier",
+          },
+          {
+            "left": {
+              "name": "y",
+              "type": "Identifier",
+            },
+            "right": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "type": "AssignmentPattern",
+          },
+          {
+            "left": {
+              "name": "z",
+              "type": "Identifier",
+            },
+            "right": {
+              "name": "y",
+              "type": "Identifier",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async Generator > Expressions - Async Generator (pass) > (async function* h([]) { }) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": true,
+        "id": {
+          "name": "h",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "elements": [],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async Generator > Expressions - Async Generator (pass) > (async function* h([{ x, y, z } = { x: 44, y: 55, z: 66 }]) { }) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": true,
+        "id": {
+          "name": "h",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "elements": [
+              {
+                "left": {
+                  "properties": [
+                    {
+                      "computed": false,
+                      "key": {
+                        "name": "x",
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "shorthand": true,
+                      "type": "Property",
+                      "value": {
+                        "name": "x",
+                        "type": "Identifier",
+                      },
+                    },
+                    {
+                      "computed": false,
+                      "key": {
+                        "name": "y",
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "shorthand": true,
+                      "type": "Property",
+                      "value": {
+                        "name": "y",
+                        "type": "Identifier",
+                      },
+                    },
+                    {
+                      "computed": false,
+                      "key": {
+                        "name": "z",
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "shorthand": true,
+                      "type": "Property",
+                      "value": {
+                        "name": "z",
+                        "type": "Identifier",
+                      },
+                    },
+                  ],
+                  "type": "ObjectPattern",
+                },
+                "right": {
+                  "properties": [
+                    {
+                      "computed": false,
+                      "key": {
+                        "name": "x",
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "shorthand": false,
+                      "type": "Property",
+                      "value": {
+                        "type": "Literal",
+                        "value": 44,
+                      },
+                    },
+                    {
+                      "computed": false,
+                      "key": {
+                        "name": "y",
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "shorthand": false,
+                      "type": "Property",
+                      "value": {
+                        "type": "Literal",
+                        "value": 55,
+                      },
+                    },
+                    {
+                      "computed": false,
+                      "key": {
+                        "name": "z",
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "shorthand": false,
+                      "type": "Property",
+                      "value": {
+                        "type": "Literal",
+                        "value": 66,
+                      },
+                    },
+                  ],
+                  "type": "ObjectExpression",
+                },
+                "type": "AssignmentPattern",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async Generator > Expressions - Async Generator (pass) > (async function* h([cls = class {}, xCls = class X {}, xCls2 = class { static name() {} }]) { }) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": true,
+        "id": {
+          "name": "h",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "elements": [
+              {
+                "left": {
+                  "name": "cls",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "body": {
+                    "body": [],
+                    "type": "ClassBody",
+                  },
+                  "id": null,
+                  "superClass": null,
+                  "type": "ClassExpression",
+                },
+                "type": "AssignmentPattern",
+              },
+              {
+                "left": {
+                  "name": "xCls",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "body": {
+                    "body": [],
+                    "type": "ClassBody",
+                  },
+                  "id": {
+                    "name": "X",
+                    "type": "Identifier",
+                  },
+                  "superClass": null,
+                  "type": "ClassExpression",
+                },
+                "type": "AssignmentPattern",
+              },
+              {
+                "left": {
+                  "name": "xCls2",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "body": {
+                    "body": [
+                      {
+                        "computed": false,
+                        "key": {
+                          "name": "name",
+                          "type": "Identifier",
+                        },
+                        "kind": "method",
+                        "static": true,
+                        "type": "MethodDefinition",
+                        "value": {
+                          "async": false,
+                          "body": {
+                            "body": [],
+                            "type": "BlockStatement",
+                          },
+                          "generator": false,
+                          "id": null,
+                          "params": [],
+                          "type": "FunctionExpression",
+                        },
+                      },
+                    ],
+                    "type": "ClassBody",
+                  },
+                  "id": null,
+                  "superClass": null,
+                  "type": "ClassExpression",
+                },
+                "type": "AssignmentPattern",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async Generator > Expressions - Async Generator (pass) > (async function* h([fn = function () {}, xFn = function x() {}] = []) { }) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": true,
+        "id": {
+          "name": "h",
+          "type": "Identifier",
+        },
+        "params": [
+          {
+            "left": {
+              "elements": [
+                {
+                  "left": {
+                    "name": "fn",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "async": false,
+                    "body": {
+                      "body": [],
+                      "type": "BlockStatement",
+                    },
+                    "generator": false,
+                    "id": null,
+                    "params": [],
+                    "type": "FunctionExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+                {
+                  "left": {
+                    "name": "xFn",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "async": false,
+                    "body": {
+                      "body": [],
+                      "type": "BlockStatement",
+                    },
+                    "generator": false,
+                    "id": {
+                      "name": "x",
+                      "type": "Identifier",
+                    },
+                    "params": [],
+                    "type": "FunctionExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "right": {
+              "elements": [],
+              "type": "ArrayExpression",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async Generator > Expressions - Async Generator (pass) > (async function*({ w: { x, y, z } = { x: 4, y: 5, z: 6 } } = { w: undefined }) { }) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": true,
+        "id": null,
+        "params": [
+          {
+            "left": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "w",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "left": {
+                      "properties": [
+                        {
+                          "computed": false,
+                          "key": {
+                            "name": "x",
+                            "type": "Identifier",
+                          },
+                          "kind": "init",
+                          "method": false,
+                          "shorthand": true,
+                          "type": "Property",
+                          "value": {
+                            "name": "x",
+                            "type": "Identifier",
+                          },
+                        },
+                        {
+                          "computed": false,
+                          "key": {
+                            "name": "y",
+                            "type": "Identifier",
+                          },
+                          "kind": "init",
+                          "method": false,
+                          "shorthand": true,
+                          "type": "Property",
+                          "value": {
+                            "name": "y",
+                            "type": "Identifier",
+                          },
+                        },
+                        {
+                          "computed": false,
+                          "key": {
+                            "name": "z",
+                            "type": "Identifier",
+                          },
+                          "kind": "init",
+                          "method": false,
+                          "shorthand": true,
+                          "type": "Property",
+                          "value": {
+                            "name": "z",
+                            "type": "Identifier",
+                          },
+                        },
+                      ],
+                      "type": "ObjectPattern",
+                    },
+                    "right": {
+                      "properties": [
+                        {
+                          "computed": false,
+                          "key": {
+                            "name": "x",
+                            "type": "Identifier",
+                          },
+                          "kind": "init",
+                          "method": false,
+                          "shorthand": false,
+                          "type": "Property",
+                          "value": {
+                            "type": "Literal",
+                            "value": 4,
+                          },
+                        },
+                        {
+                          "computed": false,
+                          "key": {
+                            "name": "y",
+                            "type": "Identifier",
+                          },
+                          "kind": "init",
+                          "method": false,
+                          "shorthand": false,
+                          "type": "Property",
+                          "value": {
+                            "type": "Literal",
+                            "value": 5,
+                          },
+                        },
+                        {
+                          "computed": false,
+                          "key": {
+                            "name": "z",
+                            "type": "Identifier",
+                          },
+                          "kind": "init",
+                          "method": false,
+                          "shorthand": false,
+                          "type": "Property",
+                          "value": {
+                            "type": "Literal",
+                            "value": 6,
+                          },
+                        },
+                      ],
+                      "type": "ObjectExpression",
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "right": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "w",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "name": "undefined",
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "type": "ObjectExpression",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

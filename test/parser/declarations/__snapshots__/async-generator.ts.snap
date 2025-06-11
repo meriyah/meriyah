@@ -1,0 +1,3030 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > (async function*() {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "generator": true,
+        "id": null,
+        "params": [],
+        "type": "FunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > async function* f() { await a; yield b; } 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "argument": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "type": "AwaitExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+          {
+            "expression": {
+              "argument": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "delegate": false,
+              "type": "YieldExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > async function* f([ , , ...x]) {  } 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [],
+        "end": 35,
+        "range": [
+          31,
+          35,
+        ],
+        "start": 31,
+        "type": "BlockStatement",
+      },
+      "end": 35,
+      "generator": true,
+      "id": {
+        "end": 17,
+        "name": "f",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "elements": [
+            null,
+            null,
+            {
+              "argument": {
+                "end": 28,
+                "name": "x",
+                "range": [
+                  27,
+                  28,
+                ],
+                "start": 27,
+                "type": "Identifier",
+              },
+              "end": 28,
+              "range": [
+                24,
+                28,
+              ],
+              "start": 24,
+              "type": "RestElement",
+            },
+          ],
+          "end": 29,
+          "range": [
+            18,
+            29,
+          ],
+          "start": 18,
+          "type": "ArrayPattern",
+        },
+      ],
+      "range": [
+        0,
+        35,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 35,
+  "range": [
+    0,
+    35,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > async function* f([[] = function() {}()]) { } 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "elements": [
+            {
+              "left": {
+                "elements": [],
+                "type": "ArrayPattern",
+              },
+              "right": {
+                "arguments": [],
+                "callee": {
+                  "async": false,
+                  "body": {
+                    "body": [],
+                    "type": "BlockStatement",
+                  },
+                  "generator": false,
+                  "id": null,
+                  "params": [],
+                  "type": "FunctionExpression",
+                },
+                "type": "CallExpression",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "ArrayPattern",
+        },
+      ],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > async function* f([[x]] = [null]) {} 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [],
+        "end": 36,
+        "range": [
+          34,
+          36,
+        ],
+        "start": 34,
+        "type": "BlockStatement",
+      },
+      "end": 36,
+      "generator": true,
+      "id": {
+        "end": 17,
+        "name": "f",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "end": 32,
+          "left": {
+            "elements": [
+              {
+                "elements": [
+                  {
+                    "end": 21,
+                    "name": "x",
+                    "range": [
+                      20,
+                      21,
+                    ],
+                    "start": 20,
+                    "type": "Identifier",
+                  },
+                ],
+                "end": 22,
+                "range": [
+                  19,
+                  22,
+                ],
+                "start": 19,
+                "type": "ArrayPattern",
+              },
+            ],
+            "end": 23,
+            "range": [
+              18,
+              23,
+            ],
+            "start": 18,
+            "type": "ArrayPattern",
+          },
+          "range": [
+            18,
+            32,
+          ],
+          "right": {
+            "elements": [
+              {
+                "end": 31,
+                "range": [
+                  27,
+                  31,
+                ],
+                "start": 27,
+                "type": "Literal",
+                "value": null,
+              },
+            ],
+            "end": 32,
+            "range": [
+              26,
+              32,
+            ],
+            "start": 26,
+            "type": "ArrayExpression",
+          },
+          "start": 18,
+          "type": "AssignmentPattern",
+        },
+      ],
+      "range": [
+        0,
+        36,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 36,
+  "range": [
+    0,
+    36,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > async function* f([[x]]) {  } 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "elements": [
+            {
+              "elements": [
+                {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "ArrayPattern",
+        },
+      ],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > async function* f([{ x }]) {  } 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [],
+        "end": 31,
+        "range": [
+          27,
+          31,
+        ],
+        "start": 27,
+        "type": "BlockStatement",
+      },
+      "end": 31,
+      "generator": true,
+      "id": {
+        "end": 17,
+        "name": "f",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "elements": [
+            {
+              "end": 24,
+              "properties": [
+                {
+                  "computed": false,
+                  "end": 22,
+                  "key": {
+                    "end": 22,
+                    "name": "x",
+                    "range": [
+                      21,
+                      22,
+                    ],
+                    "start": 21,
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "range": [
+                    21,
+                    22,
+                  ],
+                  "shorthand": true,
+                  "start": 21,
+                  "type": "Property",
+                  "value": {
+                    "end": 22,
+                    "name": "x",
+                    "range": [
+                      21,
+                      22,
+                    ],
+                    "start": 21,
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "range": [
+                19,
+                24,
+              ],
+              "start": 19,
+              "type": "ObjectPattern",
+            },
+          ],
+          "end": 25,
+          "range": [
+            18,
+            25,
+          ],
+          "start": 18,
+          "type": "ArrayPattern",
+        },
+      ],
+      "range": [
+        0,
+        31,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 31,
+  "range": [
+    0,
+    31,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > async function* f([{ x, y, z } = { x: 44, y: 55, z: 66 }] = [{ x: 11, y: 22, z: 33 }]) {} 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [],
+        "end": 89,
+        "range": [
+          87,
+          89,
+        ],
+        "start": 87,
+        "type": "BlockStatement",
+      },
+      "end": 89,
+      "generator": true,
+      "id": {
+        "end": 17,
+        "name": "f",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "end": 85,
+          "left": {
+            "elements": [
+              {
+                "end": 56,
+                "left": {
+                  "end": 30,
+                  "properties": [
+                    {
+                      "computed": false,
+                      "end": 22,
+                      "key": {
+                        "end": 22,
+                        "name": "x",
+                        "range": [
+                          21,
+                          22,
+                        ],
+                        "start": 21,
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "range": [
+                        21,
+                        22,
+                      ],
+                      "shorthand": true,
+                      "start": 21,
+                      "type": "Property",
+                      "value": {
+                        "end": 22,
+                        "name": "x",
+                        "range": [
+                          21,
+                          22,
+                        ],
+                        "start": 21,
+                        "type": "Identifier",
+                      },
+                    },
+                    {
+                      "computed": false,
+                      "end": 25,
+                      "key": {
+                        "end": 25,
+                        "name": "y",
+                        "range": [
+                          24,
+                          25,
+                        ],
+                        "start": 24,
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "range": [
+                        24,
+                        25,
+                      ],
+                      "shorthand": true,
+                      "start": 24,
+                      "type": "Property",
+                      "value": {
+                        "end": 25,
+                        "name": "y",
+                        "range": [
+                          24,
+                          25,
+                        ],
+                        "start": 24,
+                        "type": "Identifier",
+                      },
+                    },
+                    {
+                      "computed": false,
+                      "end": 28,
+                      "key": {
+                        "end": 28,
+                        "name": "z",
+                        "range": [
+                          27,
+                          28,
+                        ],
+                        "start": 27,
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "range": [
+                        27,
+                        28,
+                      ],
+                      "shorthand": true,
+                      "start": 27,
+                      "type": "Property",
+                      "value": {
+                        "end": 28,
+                        "name": "z",
+                        "range": [
+                          27,
+                          28,
+                        ],
+                        "start": 27,
+                        "type": "Identifier",
+                      },
+                    },
+                  ],
+                  "range": [
+                    19,
+                    30,
+                  ],
+                  "start": 19,
+                  "type": "ObjectPattern",
+                },
+                "range": [
+                  19,
+                  56,
+                ],
+                "right": {
+                  "end": 56,
+                  "properties": [
+                    {
+                      "computed": false,
+                      "end": 40,
+                      "key": {
+                        "end": 36,
+                        "name": "x",
+                        "range": [
+                          35,
+                          36,
+                        ],
+                        "start": 35,
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "range": [
+                        35,
+                        40,
+                      ],
+                      "shorthand": false,
+                      "start": 35,
+                      "type": "Property",
+                      "value": {
+                        "end": 40,
+                        "range": [
+                          38,
+                          40,
+                        ],
+                        "raw": "44",
+                        "start": 38,
+                        "type": "Literal",
+                        "value": 44,
+                      },
+                    },
+                    {
+                      "computed": false,
+                      "end": 47,
+                      "key": {
+                        "end": 43,
+                        "name": "y",
+                        "range": [
+                          42,
+                          43,
+                        ],
+                        "start": 42,
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "range": [
+                        42,
+                        47,
+                      ],
+                      "shorthand": false,
+                      "start": 42,
+                      "type": "Property",
+                      "value": {
+                        "end": 47,
+                        "range": [
+                          45,
+                          47,
+                        ],
+                        "raw": "55",
+                        "start": 45,
+                        "type": "Literal",
+                        "value": 55,
+                      },
+                    },
+                    {
+                      "computed": false,
+                      "end": 54,
+                      "key": {
+                        "end": 50,
+                        "name": "z",
+                        "range": [
+                          49,
+                          50,
+                        ],
+                        "start": 49,
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "range": [
+                        49,
+                        54,
+                      ],
+                      "shorthand": false,
+                      "start": 49,
+                      "type": "Property",
+                      "value": {
+                        "end": 54,
+                        "range": [
+                          52,
+                          54,
+                        ],
+                        "raw": "66",
+                        "start": 52,
+                        "type": "Literal",
+                        "value": 66,
+                      },
+                    },
+                  ],
+                  "range": [
+                    33,
+                    56,
+                  ],
+                  "start": 33,
+                  "type": "ObjectExpression",
+                },
+                "start": 19,
+                "type": "AssignmentPattern",
+              },
+            ],
+            "end": 57,
+            "range": [
+              18,
+              57,
+            ],
+            "start": 18,
+            "type": "ArrayPattern",
+          },
+          "range": [
+            18,
+            85,
+          ],
+          "right": {
+            "elements": [
+              {
+                "end": 84,
+                "properties": [
+                  {
+                    "computed": false,
+                    "end": 68,
+                    "key": {
+                      "end": 64,
+                      "name": "x",
+                      "range": [
+                        63,
+                        64,
+                      ],
+                      "start": 63,
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "range": [
+                      63,
+                      68,
+                    ],
+                    "shorthand": false,
+                    "start": 63,
+                    "type": "Property",
+                    "value": {
+                      "end": 68,
+                      "range": [
+                        66,
+                        68,
+                      ],
+                      "raw": "11",
+                      "start": 66,
+                      "type": "Literal",
+                      "value": 11,
+                    },
+                  },
+                  {
+                    "computed": false,
+                    "end": 75,
+                    "key": {
+                      "end": 71,
+                      "name": "y",
+                      "range": [
+                        70,
+                        71,
+                      ],
+                      "start": 70,
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "range": [
+                      70,
+                      75,
+                    ],
+                    "shorthand": false,
+                    "start": 70,
+                    "type": "Property",
+                    "value": {
+                      "end": 75,
+                      "range": [
+                        73,
+                        75,
+                      ],
+                      "raw": "22",
+                      "start": 73,
+                      "type": "Literal",
+                      "value": 22,
+                    },
+                  },
+                  {
+                    "computed": false,
+                    "end": 82,
+                    "key": {
+                      "end": 78,
+                      "name": "z",
+                      "range": [
+                        77,
+                        78,
+                      ],
+                      "start": 77,
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "range": [
+                      77,
+                      82,
+                    ],
+                    "shorthand": false,
+                    "start": 77,
+                    "type": "Property",
+                    "value": {
+                      "end": 82,
+                      "range": [
+                        80,
+                        82,
+                      ],
+                      "raw": "33",
+                      "start": 80,
+                      "type": "Literal",
+                      "value": 33,
+                    },
+                  },
+                ],
+                "range": [
+                  61,
+                  84,
+                ],
+                "start": 61,
+                "type": "ObjectExpression",
+              },
+            ],
+            "end": 85,
+            "range": [
+              60,
+              85,
+            ],
+            "start": 60,
+            "type": "ArrayExpression",
+          },
+          "start": 18,
+          "type": "AssignmentPattern",
+        },
+      ],
+      "range": [
+        0,
+        89,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 89,
+  "range": [
+    0,
+    89,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > async function* f([{ x, y, z } = { x: 44, y: 55, z: 66 }]) {  } 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [],
+        "end": 63,
+        "range": [
+          59,
+          63,
+        ],
+        "start": 59,
+        "type": "BlockStatement",
+      },
+      "end": 63,
+      "generator": true,
+      "id": {
+        "end": 17,
+        "name": "f",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "elements": [
+            {
+              "end": 56,
+              "left": {
+                "end": 30,
+                "properties": [
+                  {
+                    "computed": false,
+                    "end": 22,
+                    "key": {
+                      "end": 22,
+                      "name": "x",
+                      "range": [
+                        21,
+                        22,
+                      ],
+                      "start": 21,
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "range": [
+                      21,
+                      22,
+                    ],
+                    "shorthand": true,
+                    "start": 21,
+                    "type": "Property",
+                    "value": {
+                      "end": 22,
+                      "name": "x",
+                      "range": [
+                        21,
+                        22,
+                      ],
+                      "start": 21,
+                      "type": "Identifier",
+                    },
+                  },
+                  {
+                    "computed": false,
+                    "end": 25,
+                    "key": {
+                      "end": 25,
+                      "name": "y",
+                      "range": [
+                        24,
+                        25,
+                      ],
+                      "start": 24,
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "range": [
+                      24,
+                      25,
+                    ],
+                    "shorthand": true,
+                    "start": 24,
+                    "type": "Property",
+                    "value": {
+                      "end": 25,
+                      "name": "y",
+                      "range": [
+                        24,
+                        25,
+                      ],
+                      "start": 24,
+                      "type": "Identifier",
+                    },
+                  },
+                  {
+                    "computed": false,
+                    "end": 28,
+                    "key": {
+                      "end": 28,
+                      "name": "z",
+                      "range": [
+                        27,
+                        28,
+                      ],
+                      "start": 27,
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "range": [
+                      27,
+                      28,
+                    ],
+                    "shorthand": true,
+                    "start": 27,
+                    "type": "Property",
+                    "value": {
+                      "end": 28,
+                      "name": "z",
+                      "range": [
+                        27,
+                        28,
+                      ],
+                      "start": 27,
+                      "type": "Identifier",
+                    },
+                  },
+                ],
+                "range": [
+                  19,
+                  30,
+                ],
+                "start": 19,
+                "type": "ObjectPattern",
+              },
+              "range": [
+                19,
+                56,
+              ],
+              "right": {
+                "end": 56,
+                "properties": [
+                  {
+                    "computed": false,
+                    "end": 40,
+                    "key": {
+                      "end": 36,
+                      "name": "x",
+                      "range": [
+                        35,
+                        36,
+                      ],
+                      "start": 35,
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "range": [
+                      35,
+                      40,
+                    ],
+                    "shorthand": false,
+                    "start": 35,
+                    "type": "Property",
+                    "value": {
+                      "end": 40,
+                      "range": [
+                        38,
+                        40,
+                      ],
+                      "start": 38,
+                      "type": "Literal",
+                      "value": 44,
+                    },
+                  },
+                  {
+                    "computed": false,
+                    "end": 47,
+                    "key": {
+                      "end": 43,
+                      "name": "y",
+                      "range": [
+                        42,
+                        43,
+                      ],
+                      "start": 42,
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "range": [
+                      42,
+                      47,
+                    ],
+                    "shorthand": false,
+                    "start": 42,
+                    "type": "Property",
+                    "value": {
+                      "end": 47,
+                      "range": [
+                        45,
+                        47,
+                      ],
+                      "start": 45,
+                      "type": "Literal",
+                      "value": 55,
+                    },
+                  },
+                  {
+                    "computed": false,
+                    "end": 54,
+                    "key": {
+                      "end": 50,
+                      "name": "z",
+                      "range": [
+                        49,
+                        50,
+                      ],
+                      "start": 49,
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "range": [
+                      49,
+                      54,
+                    ],
+                    "shorthand": false,
+                    "start": 49,
+                    "type": "Property",
+                    "value": {
+                      "end": 54,
+                      "range": [
+                        52,
+                        54,
+                      ],
+                      "start": 52,
+                      "type": "Literal",
+                      "value": 66,
+                    },
+                  },
+                ],
+                "range": [
+                  33,
+                  56,
+                ],
+                "start": 33,
+                "type": "ObjectExpression",
+              },
+              "start": 19,
+              "type": "AssignmentPattern",
+            },
+          ],
+          "end": 57,
+          "range": [
+            18,
+            57,
+          ],
+          "start": 18,
+          "type": "ArrayPattern",
+        },
+      ],
+      "range": [
+        0,
+        63,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 63,
+  "range": [
+    0,
+    63,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > async function* f([arrow = () => {}] = []) {} 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "left": {
+            "elements": [
+              {
+                "left": {
+                  "name": "arrow",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "async": false,
+                  "body": {
+                    "body": [],
+                    "type": "BlockStatement",
+                  },
+                  "expression": false,
+                  "generator": false,
+                  "params": [],
+                  "type": "ArrowFunctionExpression",
+                },
+                "type": "AssignmentPattern",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "right": {
+            "elements": [],
+            "type": "ArrayExpression",
+          },
+          "type": "AssignmentPattern",
+        },
+      ],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > async function* f([arrow = () => {}]) {  } 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "elements": [
+            {
+              "left": {
+                "name": "arrow",
+                "type": "Identifier",
+              },
+              "right": {
+                "async": false,
+                "body": {
+                  "body": [],
+                  "type": "BlockStatement",
+                },
+                "expression": false,
+                "generator": false,
+                "params": [],
+                "type": "ArrowFunctionExpression",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "ArrayPattern",
+        },
+      ],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > async function* f([fn = function () {}, xFn = function x() {}]) {  } 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [],
+        "end": 68,
+        "range": [
+          64,
+          68,
+        ],
+        "start": 64,
+        "type": "BlockStatement",
+      },
+      "end": 68,
+      "generator": true,
+      "id": {
+        "end": 17,
+        "name": "f",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "elements": [
+            {
+              "end": 38,
+              "left": {
+                "end": 21,
+                "name": "fn",
+                "range": [
+                  19,
+                  21,
+                ],
+                "start": 19,
+                "type": "Identifier",
+              },
+              "range": [
+                19,
+                38,
+              ],
+              "right": {
+                "async": false,
+                "body": {
+                  "body": [],
+                  "end": 38,
+                  "range": [
+                    36,
+                    38,
+                  ],
+                  "start": 36,
+                  "type": "BlockStatement",
+                },
+                "end": 38,
+                "generator": false,
+                "id": null,
+                "params": [],
+                "range": [
+                  24,
+                  38,
+                ],
+                "start": 24,
+                "type": "FunctionExpression",
+              },
+              "start": 19,
+              "type": "AssignmentPattern",
+            },
+            {
+              "end": 61,
+              "left": {
+                "end": 43,
+                "name": "xFn",
+                "range": [
+                  40,
+                  43,
+                ],
+                "start": 40,
+                "type": "Identifier",
+              },
+              "range": [
+                40,
+                61,
+              ],
+              "right": {
+                "async": false,
+                "body": {
+                  "body": [],
+                  "end": 61,
+                  "range": [
+                    59,
+                    61,
+                  ],
+                  "start": 59,
+                  "type": "BlockStatement",
+                },
+                "end": 61,
+                "generator": false,
+                "id": {
+                  "end": 56,
+                  "name": "x",
+                  "range": [
+                    55,
+                    56,
+                  ],
+                  "start": 55,
+                  "type": "Identifier",
+                },
+                "params": [],
+                "range": [
+                  46,
+                  61,
+                ],
+                "start": 46,
+                "type": "FunctionExpression",
+              },
+              "start": 40,
+              "type": "AssignmentPattern",
+            },
+          ],
+          "end": 62,
+          "range": [
+            18,
+            62,
+          ],
+          "start": 18,
+          "type": "ArrayPattern",
+        },
+      ],
+      "range": [
+        0,
+        68,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 68,
+  "range": [
+    0,
+    68,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > async function* f({ fn = function () {}, xFn = function x() {} } = {}) {} 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [],
+        "end": 73,
+        "range": [
+          71,
+          73,
+        ],
+        "start": 71,
+        "type": "BlockStatement",
+      },
+      "end": 73,
+      "generator": true,
+      "id": {
+        "end": 17,
+        "name": "f",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "end": 69,
+          "left": {
+            "end": 64,
+            "properties": [
+              {
+                "computed": false,
+                "end": 39,
+                "key": {
+                  "end": 22,
+                  "name": "fn",
+                  "range": [
+                    20,
+                    22,
+                  ],
+                  "start": 20,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  20,
+                  39,
+                ],
+                "shorthand": true,
+                "start": 20,
+                "type": "Property",
+                "value": {
+                  "end": 39,
+                  "left": {
+                    "end": 22,
+                    "name": "fn",
+                    "range": [
+                      20,
+                      22,
+                    ],
+                    "start": 20,
+                    "type": "Identifier",
+                  },
+                  "range": [
+                    20,
+                    39,
+                  ],
+                  "right": {
+                    "async": false,
+                    "body": {
+                      "body": [],
+                      "end": 39,
+                      "range": [
+                        37,
+                        39,
+                      ],
+                      "start": 37,
+                      "type": "BlockStatement",
+                    },
+                    "end": 39,
+                    "generator": false,
+                    "id": null,
+                    "params": [],
+                    "range": [
+                      25,
+                      39,
+                    ],
+                    "start": 25,
+                    "type": "FunctionExpression",
+                  },
+                  "start": 20,
+                  "type": "AssignmentPattern",
+                },
+              },
+              {
+                "computed": false,
+                "end": 62,
+                "key": {
+                  "end": 44,
+                  "name": "xFn",
+                  "range": [
+                    41,
+                    44,
+                  ],
+                  "start": 41,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  41,
+                  62,
+                ],
+                "shorthand": true,
+                "start": 41,
+                "type": "Property",
+                "value": {
+                  "end": 62,
+                  "left": {
+                    "end": 44,
+                    "name": "xFn",
+                    "range": [
+                      41,
+                      44,
+                    ],
+                    "start": 41,
+                    "type": "Identifier",
+                  },
+                  "range": [
+                    41,
+                    62,
+                  ],
+                  "right": {
+                    "async": false,
+                    "body": {
+                      "body": [],
+                      "end": 62,
+                      "range": [
+                        60,
+                        62,
+                      ],
+                      "start": 60,
+                      "type": "BlockStatement",
+                    },
+                    "end": 62,
+                    "generator": false,
+                    "id": {
+                      "end": 57,
+                      "name": "x",
+                      "range": [
+                        56,
+                        57,
+                      ],
+                      "start": 56,
+                      "type": "Identifier",
+                    },
+                    "params": [],
+                    "range": [
+                      47,
+                      62,
+                    ],
+                    "start": 47,
+                    "type": "FunctionExpression",
+                  },
+                  "start": 41,
+                  "type": "AssignmentPattern",
+                },
+              },
+            ],
+            "range": [
+              18,
+              64,
+            ],
+            "start": 18,
+            "type": "ObjectPattern",
+          },
+          "range": [
+            18,
+            69,
+          ],
+          "right": {
+            "end": 69,
+            "properties": [],
+            "range": [
+              67,
+              69,
+            ],
+            "start": 67,
+            "type": "ObjectExpression",
+          },
+          "start": 18,
+          "type": "AssignmentPattern",
+        },
+      ],
+      "range": [
+        0,
+        73,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 73,
+  "range": [
+    0,
+    73,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > async function* f({ w: { x, y, z } = { x: 4, y: 5, z: 6 } }) {} 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [],
+        "end": 63,
+        "range": [
+          61,
+          63,
+        ],
+        "start": 61,
+        "type": "BlockStatement",
+      },
+      "end": 63,
+      "generator": true,
+      "id": {
+        "end": 17,
+        "name": "f",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "end": 59,
+          "properties": [
+            {
+              "computed": false,
+              "end": 57,
+              "key": {
+                "end": 21,
+                "name": "w",
+                "range": [
+                  20,
+                  21,
+                ],
+                "start": 20,
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "range": [
+                20,
+                57,
+              ],
+              "shorthand": false,
+              "start": 20,
+              "type": "Property",
+              "value": {
+                "end": 57,
+                "left": {
+                  "end": 34,
+                  "properties": [
+                    {
+                      "computed": false,
+                      "end": 26,
+                      "key": {
+                        "end": 26,
+                        "name": "x",
+                        "range": [
+                          25,
+                          26,
+                        ],
+                        "start": 25,
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "range": [
+                        25,
+                        26,
+                      ],
+                      "shorthand": true,
+                      "start": 25,
+                      "type": "Property",
+                      "value": {
+                        "end": 26,
+                        "name": "x",
+                        "range": [
+                          25,
+                          26,
+                        ],
+                        "start": 25,
+                        "type": "Identifier",
+                      },
+                    },
+                    {
+                      "computed": false,
+                      "end": 29,
+                      "key": {
+                        "end": 29,
+                        "name": "y",
+                        "range": [
+                          28,
+                          29,
+                        ],
+                        "start": 28,
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "range": [
+                        28,
+                        29,
+                      ],
+                      "shorthand": true,
+                      "start": 28,
+                      "type": "Property",
+                      "value": {
+                        "end": 29,
+                        "name": "y",
+                        "range": [
+                          28,
+                          29,
+                        ],
+                        "start": 28,
+                        "type": "Identifier",
+                      },
+                    },
+                    {
+                      "computed": false,
+                      "end": 32,
+                      "key": {
+                        "end": 32,
+                        "name": "z",
+                        "range": [
+                          31,
+                          32,
+                        ],
+                        "start": 31,
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "range": [
+                        31,
+                        32,
+                      ],
+                      "shorthand": true,
+                      "start": 31,
+                      "type": "Property",
+                      "value": {
+                        "end": 32,
+                        "name": "z",
+                        "range": [
+                          31,
+                          32,
+                        ],
+                        "start": 31,
+                        "type": "Identifier",
+                      },
+                    },
+                  ],
+                  "range": [
+                    23,
+                    34,
+                  ],
+                  "start": 23,
+                  "type": "ObjectPattern",
+                },
+                "range": [
+                  23,
+                  57,
+                ],
+                "right": {
+                  "end": 57,
+                  "properties": [
+                    {
+                      "computed": false,
+                      "end": 43,
+                      "key": {
+                        "end": 40,
+                        "name": "x",
+                        "range": [
+                          39,
+                          40,
+                        ],
+                        "start": 39,
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "range": [
+                        39,
+                        43,
+                      ],
+                      "shorthand": false,
+                      "start": 39,
+                      "type": "Property",
+                      "value": {
+                        "end": 43,
+                        "range": [
+                          42,
+                          43,
+                        ],
+                        "raw": "4",
+                        "start": 42,
+                        "type": "Literal",
+                        "value": 4,
+                      },
+                    },
+                    {
+                      "computed": false,
+                      "end": 49,
+                      "key": {
+                        "end": 46,
+                        "name": "y",
+                        "range": [
+                          45,
+                          46,
+                        ],
+                        "start": 45,
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "range": [
+                        45,
+                        49,
+                      ],
+                      "shorthand": false,
+                      "start": 45,
+                      "type": "Property",
+                      "value": {
+                        "end": 49,
+                        "range": [
+                          48,
+                          49,
+                        ],
+                        "raw": "5",
+                        "start": 48,
+                        "type": "Literal",
+                        "value": 5,
+                      },
+                    },
+                    {
+                      "computed": false,
+                      "end": 55,
+                      "key": {
+                        "end": 52,
+                        "name": "z",
+                        "range": [
+                          51,
+                          52,
+                        ],
+                        "start": 51,
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "range": [
+                        51,
+                        55,
+                      ],
+                      "shorthand": false,
+                      "start": 51,
+                      "type": "Property",
+                      "value": {
+                        "end": 55,
+                        "range": [
+                          54,
+                          55,
+                        ],
+                        "raw": "6",
+                        "start": 54,
+                        "type": "Literal",
+                        "value": 6,
+                      },
+                    },
+                  ],
+                  "range": [
+                    37,
+                    57,
+                  ],
+                  "start": 37,
+                  "type": "ObjectExpression",
+                },
+                "start": 23,
+                "type": "AssignmentPattern",
+              },
+            },
+          ],
+          "range": [
+            18,
+            59,
+          ],
+          "start": 18,
+          "type": "ObjectPattern",
+        },
+      ],
+      "range": [
+        0,
+        63,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 63,
+  "range": [
+    0,
+    63,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > async function* f({ x: y = 33 } = { }) {} 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [],
+        "end": 41,
+        "range": [
+          39,
+          41,
+        ],
+        "start": 39,
+        "type": "BlockStatement",
+      },
+      "end": 41,
+      "generator": true,
+      "id": {
+        "end": 17,
+        "name": "f",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "end": 37,
+          "left": {
+            "end": 31,
+            "properties": [
+              {
+                "computed": false,
+                "end": 29,
+                "key": {
+                  "end": 21,
+                  "name": "x",
+                  "range": [
+                    20,
+                    21,
+                  ],
+                  "start": 20,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  20,
+                  29,
+                ],
+                "shorthand": false,
+                "start": 20,
+                "type": "Property",
+                "value": {
+                  "end": 29,
+                  "left": {
+                    "end": 24,
+                    "name": "y",
+                    "range": [
+                      23,
+                      24,
+                    ],
+                    "start": 23,
+                    "type": "Identifier",
+                  },
+                  "range": [
+                    23,
+                    29,
+                  ],
+                  "right": {
+                    "end": 29,
+                    "range": [
+                      27,
+                      29,
+                    ],
+                    "start": 27,
+                    "type": "Literal",
+                    "value": 33,
+                  },
+                  "start": 23,
+                  "type": "AssignmentPattern",
+                },
+              },
+            ],
+            "range": [
+              18,
+              31,
+            ],
+            "start": 18,
+            "type": "ObjectPattern",
+          },
+          "range": [
+            18,
+            37,
+          ],
+          "right": {
+            "end": 37,
+            "properties": [],
+            "range": [
+              34,
+              37,
+            ],
+            "start": 34,
+            "type": "ObjectExpression",
+          },
+          "start": 18,
+          "type": "AssignmentPattern",
+        },
+      ],
+      "range": [
+        0,
+        41,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 41,
+  "range": [
+    0,
+    41,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > async function* f({ x: y }) {} 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "name": "y",
+                "type": "Identifier",
+              },
+            },
+          ],
+          "type": "ObjectPattern",
+        },
+      ],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > async function* f({...x}) {} 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [],
+        "end": 28,
+        "range": [
+          26,
+          28,
+        ],
+        "start": 26,
+        "type": "BlockStatement",
+      },
+      "end": 28,
+      "generator": true,
+      "id": {
+        "end": 17,
+        "name": "f",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "end": 24,
+          "properties": [
+            {
+              "argument": {
+                "end": 23,
+                "name": "x",
+                "range": [
+                  22,
+                  23,
+                ],
+                "start": 22,
+                "type": "Identifier",
+              },
+              "end": 23,
+              "range": [
+                19,
+                23,
+              ],
+              "start": 19,
+              "type": "RestElement",
+            },
+          ],
+          "range": [
+            18,
+            24,
+          ],
+          "start": 18,
+          "type": "ObjectPattern",
+        },
+      ],
+      "range": [
+        0,
+        28,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 28,
+  "range": [
+    0,
+    28,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > async function* f({a, b, ...rest}) {} 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": true,
+              "type": "Property",
+              "value": {
+                "name": "a",
+                "type": "Identifier",
+              },
+            },
+            {
+              "computed": false,
+              "key": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": true,
+              "type": "Property",
+              "value": {
+                "name": "b",
+                "type": "Identifier",
+              },
+            },
+            {
+              "argument": {
+                "name": "rest",
+                "type": "Identifier",
+              },
+              "type": "RestElement",
+            },
+          ],
+          "type": "ObjectPattern",
+        },
+      ],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > async function* x() {} 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > class A { async* f() { await a; yield b; } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 42,
+            "key": {
+              "end": 18,
+              "name": "f",
+              "range": [
+                17,
+                18,
+              ],
+              "start": 17,
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "range": [
+              10,
+              42,
+            ],
+            "start": 10,
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": true,
+              "body": {
+                "body": [
+                  {
+                    "end": 31,
+                    "expression": {
+                      "argument": {
+                        "end": 30,
+                        "name": "a",
+                        "range": [
+                          29,
+                          30,
+                        ],
+                        "start": 29,
+                        "type": "Identifier",
+                      },
+                      "end": 30,
+                      "range": [
+                        23,
+                        30,
+                      ],
+                      "start": 23,
+                      "type": "AwaitExpression",
+                    },
+                    "range": [
+                      23,
+                      31,
+                    ],
+                    "start": 23,
+                    "type": "ExpressionStatement",
+                  },
+                  {
+                    "end": 40,
+                    "expression": {
+                      "argument": {
+                        "end": 39,
+                        "name": "b",
+                        "range": [
+                          38,
+                          39,
+                        ],
+                        "start": 38,
+                        "type": "Identifier",
+                      },
+                      "delegate": false,
+                      "end": 39,
+                      "range": [
+                        32,
+                        39,
+                      ],
+                      "start": 32,
+                      "type": "YieldExpression",
+                    },
+                    "range": [
+                      32,
+                      40,
+                    ],
+                    "start": 32,
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "end": 42,
+                "range": [
+                  21,
+                  42,
+                ],
+                "start": 21,
+                "type": "BlockStatement",
+              },
+              "end": 42,
+              "generator": true,
+              "id": null,
+              "params": [],
+              "range": [
+                18,
+                42,
+              ],
+              "start": 18,
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "end": 44,
+        "range": [
+          8,
+          44,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "end": 44,
+      "id": {
+        "end": 7,
+        "name": "A",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        44,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 44,
+  "range": [
+    0,
+    44,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > class A { static async* f() { await a; yield b; } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 49,
+            "key": {
+              "end": 25,
+              "name": "f",
+              "range": [
+                24,
+                25,
+              ],
+              "start": 24,
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "range": [
+              10,
+              49,
+            ],
+            "start": 10,
+            "static": true,
+            "type": "MethodDefinition",
+            "value": {
+              "async": true,
+              "body": {
+                "body": [
+                  {
+                    "end": 38,
+                    "expression": {
+                      "argument": {
+                        "end": 37,
+                        "name": "a",
+                        "range": [
+                          36,
+                          37,
+                        ],
+                        "start": 36,
+                        "type": "Identifier",
+                      },
+                      "end": 37,
+                      "range": [
+                        30,
+                        37,
+                      ],
+                      "start": 30,
+                      "type": "AwaitExpression",
+                    },
+                    "range": [
+                      30,
+                      38,
+                    ],
+                    "start": 30,
+                    "type": "ExpressionStatement",
+                  },
+                  {
+                    "end": 47,
+                    "expression": {
+                      "argument": {
+                        "end": 46,
+                        "name": "b",
+                        "range": [
+                          45,
+                          46,
+                        ],
+                        "start": 45,
+                        "type": "Identifier",
+                      },
+                      "delegate": false,
+                      "end": 46,
+                      "range": [
+                        39,
+                        46,
+                      ],
+                      "start": 39,
+                      "type": "YieldExpression",
+                    },
+                    "range": [
+                      39,
+                      47,
+                    ],
+                    "start": 39,
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "end": 49,
+                "range": [
+                  28,
+                  49,
+                ],
+                "start": 28,
+                "type": "BlockStatement",
+              },
+              "end": 49,
+              "generator": true,
+              "id": null,
+              "params": [],
+              "range": [
+                25,
+                49,
+              ],
+              "start": 25,
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "end": 51,
+        "range": [
+          8,
+          51,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "end": 51,
+      "id": {
+        "end": 7,
+        "name": "A",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        51,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 51,
+  "range": [
+    0,
+    51,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > f = async function*() { await a; yield b; } 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": true,
+          "body": {
+            "body": [
+              {
+                "expression": {
+                  "argument": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "type": "AwaitExpression",
+                },
+                "type": "ExpressionStatement",
+              },
+              {
+                "expression": {
+                  "argument": {
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  "delegate": false,
+                  "type": "YieldExpression",
+                },
+                "type": "ExpressionStatement",
+              },
+            ],
+            "type": "BlockStatement",
+          },
+          "generator": true,
+          "id": null,
+          "params": [],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > obj = { async* f() { await a; yield b; } } 1`] = `
+{
+  "body": [
+    {
+      "end": 42,
+      "expression": {
+        "end": 42,
+        "left": {
+          "end": 3,
+          "name": "obj",
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "range": [
+          0,
+          42,
+        ],
+        "right": {
+          "end": 42,
+          "properties": [
+            {
+              "computed": false,
+              "end": 40,
+              "key": {
+                "end": 16,
+                "name": "f",
+                "range": [
+                  15,
+                  16,
+                ],
+                "start": 15,
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": true,
+              "range": [
+                8,
+                40,
+              ],
+              "shorthand": false,
+              "start": 8,
+              "type": "Property",
+              "value": {
+                "async": true,
+                "body": {
+                  "body": [
+                    {
+                      "end": 29,
+                      "expression": {
+                        "argument": {
+                          "end": 28,
+                          "name": "a",
+                          "range": [
+                            27,
+                            28,
+                          ],
+                          "start": 27,
+                          "type": "Identifier",
+                        },
+                        "end": 28,
+                        "range": [
+                          21,
+                          28,
+                        ],
+                        "start": 21,
+                        "type": "AwaitExpression",
+                      },
+                      "range": [
+                        21,
+                        29,
+                      ],
+                      "start": 21,
+                      "type": "ExpressionStatement",
+                    },
+                    {
+                      "end": 38,
+                      "expression": {
+                        "argument": {
+                          "end": 37,
+                          "name": "b",
+                          "range": [
+                            36,
+                            37,
+                          ],
+                          "start": 36,
+                          "type": "Identifier",
+                        },
+                        "delegate": false,
+                        "end": 37,
+                        "range": [
+                          30,
+                          37,
+                        ],
+                        "start": 30,
+                        "type": "YieldExpression",
+                      },
+                      "range": [
+                        30,
+                        38,
+                      ],
+                      "start": 30,
+                      "type": "ExpressionStatement",
+                    },
+                  ],
+                  "end": 40,
+                  "range": [
+                    19,
+                    40,
+                  ],
+                  "start": 19,
+                  "type": "BlockStatement",
+                },
+                "end": 40,
+                "generator": true,
+                "id": null,
+                "params": [],
+                "range": [
+                  16,
+                  40,
+                ],
+                "start": 16,
+                "type": "FunctionExpression",
+              },
+            },
+          ],
+          "range": [
+            6,
+            42,
+          ],
+          "start": 6,
+          "type": "ObjectExpression",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        0,
+        42,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 42,
+  "range": [
+    0,
+    42,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > var gen = { async *method() {} } 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "gen",
+            "type": "Identifier",
+          },
+          "init": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "method",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": true,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "async": true,
+                  "body": {
+                    "body": [],
+                    "type": "BlockStatement",
+                  },
+                  "generator": true,
+                  "id": null,
+                  "params": [],
+                  "type": "FunctionExpression",
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - Async Generator > Declarations - const (pass) > var gen = async function *() { yield { ...yield, y: 1, ...yield yield, }; }; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 75,
+          "id": {
+            "end": 7,
+            "name": "gen",
+            "range": [
+              4,
+              7,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": {
+            "async": true,
+            "body": {
+              "body": [
+                {
+                  "end": 73,
+                  "expression": {
+                    "argument": {
+                      "end": 72,
+                      "properties": [
+                        {
+                          "argument": {
+                            "argument": null,
+                            "delegate": false,
+                            "end": 47,
+                            "range": [
+                              42,
+                              47,
+                            ],
+                            "start": 42,
+                            "type": "YieldExpression",
+                          },
+                          "end": 47,
+                          "range": [
+                            39,
+                            47,
+                          ],
+                          "start": 39,
+                          "type": "SpreadElement",
+                        },
+                        {
+                          "computed": false,
+                          "end": 53,
+                          "key": {
+                            "end": 50,
+                            "name": "y",
+                            "range": [
+                              49,
+                              50,
+                            ],
+                            "start": 49,
+                            "type": "Identifier",
+                          },
+                          "kind": "init",
+                          "method": false,
+                          "range": [
+                            49,
+                            53,
+                          ],
+                          "shorthand": false,
+                          "start": 49,
+                          "type": "Property",
+                          "value": {
+                            "end": 53,
+                            "range": [
+                              52,
+                              53,
+                            ],
+                            "start": 52,
+                            "type": "Literal",
+                            "value": 1,
+                          },
+                        },
+                        {
+                          "argument": {
+                            "argument": {
+                              "argument": null,
+                              "delegate": false,
+                              "end": 69,
+                              "range": [
+                                64,
+                                69,
+                              ],
+                              "start": 64,
+                              "type": "YieldExpression",
+                            },
+                            "delegate": false,
+                            "end": 69,
+                            "range": [
+                              58,
+                              69,
+                            ],
+                            "start": 58,
+                            "type": "YieldExpression",
+                          },
+                          "end": 69,
+                          "range": [
+                            55,
+                            69,
+                          ],
+                          "start": 55,
+                          "type": "SpreadElement",
+                        },
+                      ],
+                      "range": [
+                        37,
+                        72,
+                      ],
+                      "start": 37,
+                      "type": "ObjectExpression",
+                    },
+                    "delegate": false,
+                    "end": 72,
+                    "range": [
+                      31,
+                      72,
+                    ],
+                    "start": 31,
+                    "type": "YieldExpression",
+                  },
+                  "range": [
+                    31,
+                    73,
+                  ],
+                  "start": 31,
+                  "type": "ExpressionStatement",
+                },
+              ],
+              "end": 75,
+              "range": [
+                29,
+                75,
+              ],
+              "start": 29,
+              "type": "BlockStatement",
+            },
+            "end": 75,
+            "generator": true,
+            "id": null,
+            "params": [],
+            "range": [
+              10,
+              75,
+            ],
+            "start": 10,
+            "type": "FunctionExpression",
+          },
+          "range": [
+            4,
+            75,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 76,
+      "kind": "var",
+      "range": [
+        0,
+        76,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 76,
+  "range": [
+    0,
+    76,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;

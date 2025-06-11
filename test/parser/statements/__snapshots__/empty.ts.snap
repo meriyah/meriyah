@@ -1,0 +1,88 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Statements - Empty > Statements - Empty (pass) > ;;;;;;;; 1`] = `
+{
+  "body": [
+    {
+      "end": 1,
+      "range": [
+        0,
+        1,
+      ],
+      "start": 0,
+      "type": "EmptyStatement",
+    },
+    {
+      "end": 2,
+      "range": [
+        1,
+        2,
+      ],
+      "start": 1,
+      "type": "EmptyStatement",
+    },
+    {
+      "end": 3,
+      "range": [
+        2,
+        3,
+      ],
+      "start": 2,
+      "type": "EmptyStatement",
+    },
+    {
+      "end": 4,
+      "range": [
+        3,
+        4,
+      ],
+      "start": 3,
+      "type": "EmptyStatement",
+    },
+    {
+      "end": 5,
+      "range": [
+        4,
+        5,
+      ],
+      "start": 4,
+      "type": "EmptyStatement",
+    },
+    {
+      "end": 6,
+      "range": [
+        5,
+        6,
+      ],
+      "start": 5,
+      "type": "EmptyStatement",
+    },
+    {
+      "end": 7,
+      "range": [
+        6,
+        7,
+      ],
+      "start": 6,
+      "type": "EmptyStatement",
+    },
+    {
+      "end": 8,
+      "range": [
+        7,
+        8,
+      ],
+      "start": 7,
+      "type": "EmptyStatement",
+    },
+  ],
+  "end": 8,
+  "range": [
+    0,
+    8,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;

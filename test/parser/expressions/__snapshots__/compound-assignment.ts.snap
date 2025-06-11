@@ -1,0 +1,1452 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > (new foo).bar() 1`] = `
+{
+  "body": [
+    {
+      "end": 15,
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "computed": false,
+          "end": 13,
+          "object": {
+            "arguments": [],
+            "callee": {
+              "end": 8,
+              "name": "foo",
+              "range": [
+                5,
+                8,
+              ],
+              "start": 5,
+              "type": "Identifier",
+            },
+            "end": 8,
+            "range": [
+              1,
+              8,
+            ],
+            "start": 1,
+            "type": "NewExpression",
+          },
+          "property": {
+            "end": 13,
+            "name": "bar",
+            "range": [
+              10,
+              13,
+            ],
+            "start": 10,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            13,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "end": 15,
+        "range": [
+          0,
+          15,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 15,
+  "range": [
+    0,
+    15,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > (x + y) <= z 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "operator": "+",
+          "right": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "<=",
+        "right": {
+          "name": "z",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > (x + y) >= z 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "operator": "+",
+          "right": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": ">=",
+        "right": {
+          "name": "z",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > a(0).b(14, 3, 77).c 1`] = `
+{
+  "body": [
+    {
+      "end": 19,
+      "expression": {
+        "computed": false,
+        "end": 19,
+        "object": {
+          "arguments": [
+            {
+              "end": 9,
+              "range": [
+                7,
+                9,
+              ],
+              "start": 7,
+              "type": "Literal",
+              "value": 14,
+            },
+            {
+              "end": 12,
+              "range": [
+                11,
+                12,
+              ],
+              "start": 11,
+              "type": "Literal",
+              "value": 3,
+            },
+            {
+              "end": 16,
+              "range": [
+                14,
+                16,
+              ],
+              "start": 14,
+              "type": "Literal",
+              "value": 77,
+            },
+          ],
+          "callee": {
+            "computed": false,
+            "end": 6,
+            "object": {
+              "arguments": [
+                {
+                  "end": 3,
+                  "range": [
+                    2,
+                    3,
+                  ],
+                  "start": 2,
+                  "type": "Literal",
+                  "value": 0,
+                },
+              ],
+              "callee": {
+                "end": 1,
+                "name": "a",
+                "range": [
+                  0,
+                  1,
+                ],
+                "start": 0,
+                "type": "Identifier",
+              },
+              "end": 4,
+              "range": [
+                0,
+                4,
+              ],
+              "start": 0,
+              "type": "CallExpression",
+            },
+            "property": {
+              "end": 6,
+              "name": "b",
+              "range": [
+                5,
+                6,
+              ],
+              "start": 5,
+              "type": "Identifier",
+            },
+            "range": [
+              0,
+              6,
+            ],
+            "start": 0,
+            "type": "MemberExpression",
+          },
+          "end": 17,
+          "range": [
+            0,
+            17,
+          ],
+          "start": 0,
+          "type": "CallExpression",
+        },
+        "property": {
+          "end": 19,
+          "name": "c",
+          "range": [
+            18,
+            19,
+          ],
+          "start": 18,
+          "type": "Identifier",
+        },
+        "range": [
+          0,
+          19,
+        ],
+        "start": 0,
+        "type": "MemberExpression",
+      },
+      "range": [
+        0,
+        19,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 19,
+  "range": [
+    0,
+    19,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > a.b.c(2020) 1`] = `
+{
+  "body": [
+    {
+      "end": 11,
+      "expression": {
+        "arguments": [
+          {
+            "end": 10,
+            "range": [
+              6,
+              10,
+            ],
+            "start": 6,
+            "type": "Literal",
+            "value": 2020,
+          },
+        ],
+        "callee": {
+          "computed": false,
+          "end": 5,
+          "object": {
+            "computed": false,
+            "end": 3,
+            "object": {
+              "end": 1,
+              "name": "a",
+              "range": [
+                0,
+                1,
+              ],
+              "start": 0,
+              "type": "Identifier",
+            },
+            "property": {
+              "end": 3,
+              "name": "b",
+              "range": [
+                2,
+                3,
+              ],
+              "start": 2,
+              "type": "Identifier",
+            },
+            "range": [
+              0,
+              3,
+            ],
+            "start": 0,
+            "type": "MemberExpression",
+          },
+          "property": {
+            "end": 5,
+            "name": "c",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            5,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "end": 11,
+        "range": [
+          0,
+          11,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        11,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 11,
+  "range": [
+    0,
+    11,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > arguments &= 20; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "arguments",
+          "type": "Identifier",
+        },
+        "operator": "&=",
+        "right": {
+          "type": "Literal",
+          "value": 20,
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > base[prop()] /= expr(); 1`] = `
+{
+  "body": [
+    {
+      "end": 23,
+      "expression": {
+        "end": 22,
+        "left": {
+          "computed": true,
+          "end": 12,
+          "object": {
+            "end": 4,
+            "name": "base",
+            "range": [
+              0,
+              4,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+          "property": {
+            "arguments": [],
+            "callee": {
+              "end": 9,
+              "name": "prop",
+              "range": [
+                5,
+                9,
+              ],
+              "start": 5,
+              "type": "Identifier",
+            },
+            "end": 11,
+            "range": [
+              5,
+              11,
+            ],
+            "start": 5,
+            "type": "CallExpression",
+          },
+          "range": [
+            0,
+            12,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "operator": "/=",
+        "range": [
+          0,
+          22,
+        ],
+        "right": {
+          "arguments": [],
+          "callee": {
+            "end": 20,
+            "name": "expr",
+            "range": [
+              16,
+              20,
+            ],
+            "start": 16,
+            "type": "Identifier",
+          },
+          "end": 22,
+          "range": [
+            16,
+            22,
+          ],
+          "start": 16,
+          "type": "CallExpression",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        0,
+        23,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 23,
+  "range": [
+    0,
+    23,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > null && (x += null) 1`] = `
+{
+  "body": [
+    {
+      "end": 19,
+      "expression": {
+        "end": 19,
+        "left": {
+          "end": 4,
+          "range": [
+            0,
+            4,
+          ],
+          "start": 0,
+          "type": "Literal",
+          "value": null,
+        },
+        "operator": "&&",
+        "range": [
+          0,
+          19,
+        ],
+        "right": {
+          "end": 18,
+          "left": {
+            "end": 10,
+            "name": "x",
+            "range": [
+              9,
+              10,
+            ],
+            "start": 9,
+            "type": "Identifier",
+          },
+          "operator": "+=",
+          "range": [
+            9,
+            18,
+          ],
+          "right": {
+            "end": 18,
+            "range": [
+              14,
+              18,
+            ],
+            "start": 14,
+            "type": "Literal",
+            "value": null,
+          },
+          "start": 9,
+          "type": "AssignmentExpression",
+        },
+        "start": 0,
+        "type": "LogicalExpression",
+      },
+      "range": [
+        0,
+        19,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 19,
+  "range": [
+    0,
+    19,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > obj.len &= 10; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "computed": false,
+          "object": {
+            "name": "obj",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "len",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "&=",
+        "right": {
+          "type": "Literal",
+          "value": 10,
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > obj.prop >>= 20; 1`] = `
+{
+  "body": [
+    {
+      "end": 16,
+      "expression": {
+        "end": 15,
+        "left": {
+          "computed": false,
+          "end": 8,
+          "object": {
+            "end": 3,
+            "name": "obj",
+            "range": [
+              0,
+              3,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+          "property": {
+            "end": 8,
+            "name": "prop",
+            "range": [
+              4,
+              8,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            8,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "operator": ">>=",
+        "range": [
+          0,
+          15,
+        ],
+        "right": {
+          "end": 15,
+          "range": [
+            13,
+            15,
+          ],
+          "start": 13,
+          "type": "Literal",
+          "value": 20,
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        0,
+        16,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 16,
+  "range": [
+    0,
+    16,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > var x = 4; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": {
+            "type": "Literal",
+            "value": 4,
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > var x1 = (x <<= 1); 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x1",
+            "type": "Identifier",
+          },
+          "init": {
+            "left": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "operator": "<<=",
+            "right": {
+              "type": "Literal",
+              "value": 1,
+            },
+            "type": "AssignmentExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > var z = (x %= y); 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "z",
+            "type": "Identifier",
+          },
+          "init": {
+            "left": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "operator": "%=",
+            "right": {
+              "name": "y",
+              "type": "Identifier",
+            },
+            "type": "AssignmentExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > var z = (x *= -1); 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 17,
+          "id": {
+            "end": 5,
+            "name": "z",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": {
+            "end": 16,
+            "left": {
+              "end": 10,
+              "name": "x",
+              "range": [
+                9,
+                10,
+              ],
+              "start": 9,
+              "type": "Identifier",
+            },
+            "operator": "*=",
+            "range": [
+              9,
+              16,
+            ],
+            "right": {
+              "argument": {
+                "end": 16,
+                "range": [
+                  15,
+                  16,
+                ],
+                "start": 15,
+                "type": "Literal",
+                "value": 1,
+              },
+              "end": 16,
+              "operator": "-",
+              "prefix": true,
+              "range": [
+                14,
+                16,
+              ],
+              "start": 14,
+              "type": "UnaryExpression",
+            },
+            "start": 9,
+            "type": "AssignmentExpression",
+          },
+          "range": [
+            4,
+            17,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 18,
+      "kind": "var",
+      "range": [
+        0,
+        18,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 18,
+  "range": [
+    0,
+    18,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > x *= "1"; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "*=",
+        "right": {
+          "type": "Literal",
+          "value": "1",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > x *= null; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "*=",
+        "right": {
+          "type": "Literal",
+          "value": null,
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > x *= undefined; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "*=",
+        "right": {
+          "name": "undefined",
+          "type": "Identifier",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > x *= undefined; 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "*=",
+        "right": {
+          "name": "undefined",
+          "type": "Identifier",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > x += "1"; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "+=",
+        "right": {
+          "type": "Literal",
+          "value": "1",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > x += true 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "+=",
+        "right": {
+          "type": "Literal",
+          "value": true,
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > x /= true; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "/=",
+        "right": {
+          "type": "Literal",
+          "value": true,
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > x >>= 1; 1`] = `
+{
+  "body": [
+    {
+      "end": 8,
+      "expression": {
+        "end": 7,
+        "left": {
+          "end": 1,
+          "name": "x",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "operator": ">>=",
+        "range": [
+          0,
+          7,
+        ],
+        "right": {
+          "end": 7,
+          "range": [
+            6,
+            7,
+          ],
+          "start": 6,
+          "type": "Literal",
+          "value": 1,
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        0,
+        8,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 8,
+  "range": [
+    0,
+    8,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > x >>= true; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": ">>=",
+        "right": {
+          "type": "Literal",
+          "value": true,
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > x ^= new String("1"); 1`] = `
+{
+  "body": [
+    {
+      "end": 21,
+      "expression": {
+        "end": 20,
+        "left": {
+          "end": 1,
+          "name": "x",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "operator": "^=",
+        "range": [
+          0,
+          20,
+        ],
+        "right": {
+          "arguments": [
+            {
+              "end": 19,
+              "range": [
+                16,
+                19,
+              ],
+              "start": 16,
+              "type": "Literal",
+              "value": "1",
+            },
+          ],
+          "callee": {
+            "end": 15,
+            "name": "String",
+            "range": [
+              9,
+              15,
+            ],
+            "start": 9,
+            "type": "Identifier",
+          },
+          "end": 20,
+          "range": [
+            5,
+            20,
+          ],
+          "start": 5,
+          "type": "NewExpression",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        0,
+        21,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 21,
+  "range": [
+    0,
+    21,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > x |= "1" 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "|=",
+        "right": {
+          "type": "Literal",
+          "value": "1",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > x |= "1"; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "|=",
+        "right": {
+          "type": "Literal",
+          "value": "1",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > x |= 1 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "|=",
+        "right": {
+          "type": "Literal",
+          "value": 1,
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > x |= 1; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "|=",
+        "right": {
+          "type": "Literal",
+          "value": 1,
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > x |= true 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "|=",
+        "right": {
+          "type": "Literal",
+          "value": true,
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > x -= 1; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "-=",
+        "right": {
+          "type": "Literal",
+          "value": 1,
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > y1 = (y %= 2); 1`] = `
+{
+  "body": [
+    {
+      "end": 14,
+      "expression": {
+        "end": 13,
+        "left": {
+          "end": 2,
+          "name": "y1",
+          "range": [
+            0,
+            2,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "range": [
+          0,
+          13,
+        ],
+        "right": {
+          "end": 12,
+          "left": {
+            "end": 7,
+            "name": "y",
+            "range": [
+              6,
+              7,
+            ],
+            "start": 6,
+            "type": "Identifier",
+          },
+          "operator": "%=",
+          "range": [
+            6,
+            12,
+          ],
+          "right": {
+            "end": 12,
+            "range": [
+              11,
+              12,
+            ],
+            "start": 11,
+            "type": "Literal",
+            "value": 2,
+          },
+          "start": 6,
+          "type": "AssignmentExpression",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 14,
+  "range": [
+    0,
+    14,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > y1 = (y <<= 1); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "y1",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "left": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "operator": "<<=",
+          "right": {
+            "type": "Literal",
+            "value": 1,
+          },
+          "type": "AssignmentExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Compound assignment > Expressions - Compound assignment (pass) > z = (x %= y); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "z",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "left": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "operator": "%=",
+          "right": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "AssignmentExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
