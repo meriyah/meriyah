@@ -6,7 +6,9 @@ import { expect } from 'vitest';
 export const pass = (name: string, valid: [string, Context][]): void => {
   describe(name, () => {
     for (const [source, ctx] of valid) {
-      it(source, () => {
+      // https://github.com/vitest-dev/vitest/issues/8151
+      const title = source.replaceAll('\r', '␍␊');
+      it(title, () => {
         const parseResult = parseSource(source, undefined, ctx);
         expect(parseResult).toMatchSnapshot();
       });

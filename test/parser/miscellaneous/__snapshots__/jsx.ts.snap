@@ -3174,46 +3174,6 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a><// line
 }
 `;
 
-exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a>{
-}</a> 1`] = `
-{
-  "body": [
-    {
-      "expression": {
-        "children": [
-          {
-            "expression": {
-              "type": "JSXEmptyExpression",
-            },
-            "type": "JSXExpressionContainer",
-          },
-        ],
-        "closingElement": {
-          "name": {
-            "name": "a",
-            "type": "JSXIdentifier",
-          },
-          "type": "JSXClosingElement",
-        },
-        "openingElement": {
-          "attributes": [],
-          "name": {
-            "name": "a",
-            "type": "JSXIdentifier",
-          },
-          "selfClosing": false,
-          "type": "JSXOpeningElement",
-        },
-        "type": "JSXElement",
-      },
-      "type": "ExpressionStatement",
-    },
-  ],
-  "sourceType": "script",
-  "type": "Program",
-}
-`;
-
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a>{ }</a> 1`] = `
 {
   "body": [
@@ -3447,6 +3407,46 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a>{b}</a> 1`] = `
             "expression": {
               "name": "b",
               "type": "Identifier",
+            },
+            "type": "JSXExpressionContainer",
+          },
+        ],
+        "closingElement": {
+          "name": {
+            "name": "a",
+            "type": "JSXIdentifier",
+          },
+          "type": "JSXClosingElement",
+        },
+        "openingElement": {
+          "attributes": [],
+          "name": {
+            "name": "a",
+            "type": "JSXIdentifier",
+          },
+          "selfClosing": false,
+          "type": "JSXOpeningElement",
+        },
+        "type": "JSXElement",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a>{␍␊
+}</a> 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "children": [
+          {
+            "expression": {
+              "type": "JSXEmptyExpression",
             },
             "type": "JSXExpressionContainer",
           },
