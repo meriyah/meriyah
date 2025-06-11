@@ -271,91 +271,23 @@ describe('Expressions - Binary', () => {
   }
 
   pass('Expressions - Binary (pass)', [
-    [
-      '1+2;',
-      Context.None,
-      
-    ],
-    [
-      'x - y + z',
-      Context.None,
-      
-    ],
-    [
-      'x + y * z',
-      Context.None,
-      
-    ],
-    [
-      'x * y % z',
-      Context.None,
-      
-    ],
-    [
-      '++x ** y',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '-(x ** y)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x in y',
-      Context.None,
-      
-    ],
-    [
-      'b && c == d',
-      Context.OptionsRanges,
-      
-    ],
+    ['1+2;', Context.None],
+    ['x - y + z', Context.None],
+    ['x + y * z', Context.None],
+    ['x * y % z', Context.None],
+    ['++x ** y', Context.OptionsRanges],
+    ['-(x ** y)', Context.OptionsRanges],
+    ['x in y', Context.None],
+    ['b && c == d', Context.OptionsRanges],
 
-    [
-      'a=b+=c-=d**=e*=f/=g%=h<<=i>>=j>>>=k&=l^=m|=n',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a|=b^=c&=d>>>=e>>=f<<=g%=h/=i*=j**=k-=l+=m=n',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a || b || c',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a && b && c',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a && b || c',
-      Context.None,
-      
-    ],
-    [
-      'a || b && c',
-      Context.OptionsLoc,
-      
-    ],
-    [
-      'a ^ b | c',
-      Context.OptionsLoc,
-      
-    ],
-    [
-      'a == b != c === d !== e',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      `var a = {b: 'u' + 1 }`,
-      Context.None | Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
+    ['a=b+=c-=d**=e*=f/=g%=h<<=i>>=j>>>=k&=l^=m|=n', Context.OptionsRanges],
+    ['a|=b^=c&=d>>>=e>>=f<<=g%=h/=i*=j**=k-=l+=m=n', Context.OptionsRanges],
+    ['a || b || c', Context.OptionsRanges],
+    ['a && b && c', Context.OptionsRanges],
+    ['a && b || c', Context.None],
+    ['a || b && c', Context.OptionsLoc],
+    ['a ^ b | c', Context.OptionsLoc],
+    ['a == b != c === d !== e', Context.OptionsRanges],
+    [`var a = {b: 'u' + 1 }`, Context.None | Context.OptionsRanges | Context.OptionsLoc],
   ]);
 });

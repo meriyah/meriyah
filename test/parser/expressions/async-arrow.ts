@@ -871,21 +871,9 @@ describe('Expressions - Async arrow', () => {
     });
   }
   pass('Expressions - Async arrow', [
-    [
-      `async (a = async () => { await 1; }) => {}`,
-      Context.OptionsRanges,
-      
-    ],
-    [
-      `async (() => 1)(), 1`,
-      Context.OptionsRanges,
-      
-    ],
-    [
-      `async x => delete ("x"[(await x)])`,
-      Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
+    [`async (a = async () => { await 1; }) => {}`, Context.OptionsRanges],
+    [`async (() => 1)(), 1`, Context.OptionsRanges],
+    [`async x => delete ("x"[(await x)])`, Context.OptionsRanges | Context.OptionsLoc],
     [
       `(async () => {})
       (async () => {})
@@ -893,122 +881,29 @@ describe('Expressions - Async arrow', () => {
       (async () => {})
       (async () => {})`,
       Context.OptionsRanges,
-      
     ],
-    [
-      '(async x =>x)',
-      Context.None,
-      
-    ],
-    [
-      'x + (async y => x)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'var f = cond ? x=>{x.foo } : x=>x + x + x + x + x + x + (async x =>x)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[async(x,y) => z]',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[async x => z]',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'f(a, async b => await b)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({x: async (y,w) => z})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'async (a, b) => 0, (c, d) => 1',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(async({x = yield}) => 1);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'async (b = {await: a}) => 1',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({async foo () \n {}})',
-      Context.None,
-      
-    ],
-    [
-      '(async (a = b) => {  })',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'async ({a: b = c})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(async ({await: a}) => 1)',
-      Context.None,
-      
-    ],
-    [
-      'id = async x => x, square = async (y) => {}',
-      Context.None,
-      
-    ],
-    [
-      '(async a => {})()',
-      Context.None,
-      
-    ],
-    [
-      'new async()',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'async ((a))',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(async function a(){}(0))',
-      Context.None,
-      
-    ],
-    [
-      '(async a => b => c)',
-      Context.None,
-      
-    ],
-    [
-      'f(async ()=>c)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a => a => a => async a => a',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'f(a, async (b, c) => await [b, c], d)',
-      Context.OptionsRanges,
-      
-    ],
+    ['(async x =>x)', Context.None],
+    ['x + (async y => x)', Context.OptionsRanges],
+    ['var f = cond ? x=>{x.foo } : x=>x + x + x + x + x + x + (async x =>x)', Context.OptionsRanges],
+    ['[async(x,y) => z]', Context.OptionsRanges],
+    ['[async x => z]', Context.OptionsRanges],
+    ['f(a, async b => await b)', Context.OptionsRanges],
+    ['({x: async (y,w) => z})', Context.OptionsRanges],
+    ['async (a, b) => 0, (c, d) => 1', Context.OptionsRanges],
+    ['(async({x = yield}) => 1);', Context.OptionsRanges],
+    ['async (b = {await: a}) => 1', Context.OptionsRanges],
+    ['({async foo () \n {}})', Context.None],
+    ['(async (a = b) => {  })', Context.OptionsRanges],
+    ['async ({a: b = c})', Context.OptionsRanges],
+    ['(async ({await: a}) => 1)', Context.None],
+    ['id = async x => x, square = async (y) => {}', Context.None],
+    ['(async a => {})()', Context.None],
+    ['new async()', Context.OptionsRanges],
+    ['async ((a))', Context.OptionsRanges],
+    ['(async function a(){}(0))', Context.None],
+    ['(async a => b => c)', Context.None],
+    ['f(async ()=>c)', Context.OptionsRanges],
+    ['a => a => a => async a => a', Context.OptionsRanges],
+    ['f(a, async (b, c) => await [b, c], d)', Context.OptionsRanges],
   ]);
 });

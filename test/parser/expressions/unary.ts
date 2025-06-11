@@ -109,61 +109,17 @@ describe('Expressions - Unary', () => {
   ]);
 
   pass('Expressions - Unary (pass)', [
-    [
-      'typeof async',
-      Context.None,
-      
-    ],
-    [
-      'typeof await',
-      Context.None,
-      
-    ],
-    [
-      'typeof x',
-      Context.None,
-      
-    ],
-    [
-      'delete true',
-      Context.None,
-      
-    ],
-    [
-      'delete foo.bar',
-      Context.None,
-      
-    ],
-    [
-      'typeof async({a});',
-      Context.None,
-      
-    ],
-    [
-      'typeof x + y',
-      Context.None,
-      
-    ],
-    [
-      'delete x.y',
-      Context.None,
-      
-    ],
-    [
-      'delete foo()',
-      Context.None,
-      
-    ],
-    [
-      'delete typeof true',
-      Context.None,
-      
-    ],
-    [
-      'delete (foo.bar);',
-      Context.None,
-      
-    ],
+    ['typeof async', Context.None],
+    ['typeof await', Context.None],
+    ['typeof x', Context.None],
+    ['delete true', Context.None],
+    ['delete foo.bar', Context.None],
+    ['typeof async({a});', Context.None],
+    ['typeof x + y', Context.None],
+    ['delete x.y', Context.None],
+    ['delete foo()', Context.None],
+    ['delete typeof true', Context.None],
+    ['delete (foo.bar);', Context.None],
     /* [
       'delete foo.bar, z;',
       Context.None,
@@ -203,530 +159,114 @@ describe('Expressions - Unary', () => {
         ]
       }
     ],*/
-    [
-      'delete /foo/.bar;',
-      Context.None,
-      
-    ],
-    [
-      'delete ((foo).x)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'delete ((((foo))).x)',
-      Context.OptionsRanges,
-      
-    ],
+    ['delete /foo/.bar;', Context.None],
+    ['delete ((foo).x)', Context.OptionsRanges],
+    ['delete ((((foo))).x)', Context.OptionsRanges],
     /*[
       '(delete (((x))) \n x)',
       Context.None,
       {}], */
-    [
-      'delete (a, b).c',
-      Context.None,
-      
-    ],
-    [
-      'delete ((a)=>b)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'delete ((a, b, [c])=>b)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'delete (((a)=>b).x)',
-      Context.None,
-      
-    ],
-    [
-      'delete ((()=>b))',
-      Context.None,
-      
-    ],
-    [
-      'delete ((foo).x)',
-      Context.None,
-      
-    ],
-    [
-      'delete ((((foo))).x)',
-      Context.None,
-      
-    ],
-    [
-      'delete (a, b).c',
-      Context.None,
-      
-    ],
-    [
-      'delete ((a)=>b)',
-      Context.None,
-      
-    ],
-    [
-      'delete ((a, b, [c])=>b)',
-      Context.None,
-      
-    ],
-    [
-      'delete ((()=>b))',
-      Context.None,
-      
-    ],
-    [
-      'delete (((a)=b).x)',
-      Context.None,
-      
-    ],
-    [
-      'delete true.__proto__.foo',
-      Context.None,
-      
-    ],
-    [
-      'delete "x".y',
-      Context.None,
-      
-    ],
-    [
-      'delete [].x',
-      Context.None,
-      
-    ],
-    [
-      'delete ("foo", "bar")',
-      Context.None,
-      
-    ],
-    [
-      'delete ("foo" + "bar")',
-      Context.None,
-      
-    ],
-    [
-      'delete ("foo".bar = 20)',
-      Context.None,
-      
-    ],
-    [
-      'delete ((foo)++)',
-      Context.None,
-      
-    ],
-    [
-      'delete foo.bar',
-      Context.None,
-      
-    ],
-    [
-      'delete foo[bar]',
-      Context.None,
-      
-    ],
-    [
-      'delete ( \n () => x)',
-      Context.None,
-      
-    ],
-    [
-      'delete ((foo).x)',
-      Context.None,
-      
-    ],
-    [
-      'delete ((((foo))).x)',
-      Context.None,
-      
-    ],
-    [
-      'delete (a, b).c',
-      Context.None,
-      
-    ],
-    [
-      'delete ((a)=>b)',
-      Context.None,
-      
-    ],
-    [
-      'delete ((a, b, [c])=>b)',
-      Context.None,
-      
-    ],
-    [
-      'delete ((()=>b))',
-      Context.None,
-      
-    ],
-    [
-      'delete (((a)=b).x)',
-      Context.None,
-      
-    ],
-    [
-      'delete true.__proto__.foo',
-      Context.None,
-      
-    ],
-    [
-      'delete "x".y',
-      Context.None,
-      
-    ],
-    [
-      'delete [].x',
-      Context.None,
-      
-    ],
-    [
-      'delete ("foo", "bar")',
-      Context.None,
-      
-    ],
-    [
-      'delete ("foo" + "bar")',
-      Context.None,
-      
-    ],
-    [
-      'delete ("foo".bar = 20)',
-      Context.None,
-      
-    ],
-    [
-      'delete ((foo)++)',
-      Context.None,
-      
-    ],
-    [
-      'delete foo.bar',
-      Context.None,
-      
-    ],
-    [
-      'delete foo[bar]',
-      Context.None,
-      
-    ],
-    [
-      'delete ( \n () => x)',
-      Context.None,
-      
-    ],
-    [
-      'delete x.y',
-      Context.None,
-      
-    ],
-    [
-      'delete x.y',
-      Context.None,
-      
-    ],
-    [
-      'delete (((a)=b).x)',
-      Context.None,
-      
-    ],
-    [
-      'delete true.__proto__.foo',
-      Context.None,
-      
-    ],
-    [
-      'delete "x".y',
-      Context.None,
-      
-    ],
-    [
-      'delete [].x',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'delete ("foo" + "bar")',
-      Context.None,
-      
-    ],
-    [
-      'delete ("foo".bar = 20)',
-      Context.None,
-      
-    ],
-    [
-      'delete ((foo)++)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'delete foo.bar',
-      Context.None,
-      
-    ],
-    [
-      'delete foo[bar]',
-      Context.None,
-      
-    ],
-    [
-      'async x => delete (((((foo(await x)))))).bar',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function *f(){ delete (((((foo(yield)))))).bar }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function *f(){ delete (((((foo(yield y)))))).bar }',
-      Context.None,
-      
-    ],
-    [
-      'async x => delete ("x"[(await x)])',
-      Context.None,
-      
-    ],
-    [
-      'function *f(){ delete ("x"[(yield)]) }',
-      Context.None,
-      
-    ],
-    [
-      'typeof exports === "object"',
-      Context.None,
-      
-    ],
+    ['delete (a, b).c', Context.None],
+    ['delete ((a)=>b)', Context.OptionsRanges],
+    ['delete ((a, b, [c])=>b)', Context.OptionsRanges],
+    ['delete (((a)=>b).x)', Context.None],
+    ['delete ((()=>b))', Context.None],
+    ['delete ((foo).x)', Context.None],
+    ['delete ((((foo))).x)', Context.None],
+    ['delete (a, b).c', Context.None],
+    ['delete ((a)=>b)', Context.None],
+    ['delete ((a, b, [c])=>b)', Context.None],
+    ['delete ((()=>b))', Context.None],
+    ['delete (((a)=b).x)', Context.None],
+    ['delete true.__proto__.foo', Context.None],
+    ['delete "x".y', Context.None],
+    ['delete [].x', Context.None],
+    ['delete ("foo", "bar")', Context.None],
+    ['delete ("foo" + "bar")', Context.None],
+    ['delete ("foo".bar = 20)', Context.None],
+    ['delete ((foo)++)', Context.None],
+    ['delete foo.bar', Context.None],
+    ['delete foo[bar]', Context.None],
+    ['delete ( \n () => x)', Context.None],
+    ['delete ((foo).x)', Context.None],
+    ['delete ((((foo))).x)', Context.None],
+    ['delete (a, b).c', Context.None],
+    ['delete ((a)=>b)', Context.None],
+    ['delete ((a, b, [c])=>b)', Context.None],
+    ['delete ((()=>b))', Context.None],
+    ['delete (((a)=b).x)', Context.None],
+    ['delete true.__proto__.foo', Context.None],
+    ['delete "x".y', Context.None],
+    ['delete [].x', Context.None],
+    ['delete ("foo", "bar")', Context.None],
+    ['delete ("foo" + "bar")', Context.None],
+    ['delete ("foo".bar = 20)', Context.None],
+    ['delete ((foo)++)', Context.None],
+    ['delete foo.bar', Context.None],
+    ['delete foo[bar]', Context.None],
+    ['delete ( \n () => x)', Context.None],
+    ['delete x.y', Context.None],
+    ['delete x.y', Context.None],
+    ['delete (((a)=b).x)', Context.None],
+    ['delete true.__proto__.foo', Context.None],
+    ['delete "x".y', Context.None],
+    ['delete [].x', Context.OptionsRanges],
+    ['delete ("foo" + "bar")', Context.None],
+    ['delete ("foo".bar = 20)', Context.None],
+    ['delete ((foo)++)', Context.OptionsRanges],
+    ['delete foo.bar', Context.None],
+    ['delete foo[bar]', Context.None],
+    ['async x => delete (((((foo(await x)))))).bar', Context.OptionsRanges],
+    ['function *f(){ delete (((((foo(yield)))))).bar }', Context.OptionsRanges],
+    ['function *f(){ delete (((((foo(yield y)))))).bar }', Context.None],
+    ['async x => delete ("x"[(await x)])', Context.None],
+    ['function *f(){ delete ("x"[(yield)]) }', Context.None],
+    ['typeof exports === "object"', Context.None],
 
-    [
-      '++this.x',
-      Context.None,
-      
-    ],
-    [
-      '(++this.x)',
-      Context.None,
-      
-    ],
-    [
-      '--this.x',
-      Context.None,
-      
-    ],
-    [
-      '(this.x++)',
-      Context.None,
-      
-    ],
-    [
-      'function f(){ return ++a; }',
-      Context.None,
-      
-    ],
-    [
-      'let x = () => ++a;',
-      Context.None,
-      
-    ],
-    [
-      'if (++a);',
-      Context.None,
-      
-    ],
-    [
-      '++(x);',
-      Context.None,
-      
-    ],
-    [
-      '++(((x)));',
-      Context.None,
-      
-    ],
-    [
-      'if (a) --a;',
-      Context.None,
-      
-    ],
-    [
-      '(x)++;',
-      Context.None,
-      
-    ],
-    [
-      'a\n++b',
-      Context.None,
-      
-    ],
-    [
-      'let x = () => ++\na;',
-      Context.None,
-      
-    ],
-    [
-      '++\na',
-      Context.None,
-      
-    ],
-    [
-      'a = typeof async (x)',
-      Context.None,
-      
-    ],
-    [
-      'foo = !a',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(typeof async (x))',
-      Context.None,
-      
-    ],
-    [
-      'a(void b)',
-      Context.None,
-      
-    ],
-    [
-      '(delete a.b)',
-      Context.None,
-      
-    ],
-    [
-      'foo = ~b',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '+null',
-      Context.None,
-      
-    ],
-    [
-      '-function(val){  return val }',
-      Context.None,
-      
-    ],
-    [
-      'foo = !42',
-      Context.None,
-      
-    ],
-    [
-      'a ? b : !c',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '![]',
-      Context.None,
-      
-    ],
-    [
-      'foo = (![])',
-      Context.None,
-      
-    ],
-    [
-      'a = ++a',
-      Context.None,
-      
-    ],
-    [
-      'a = +a',
-      Context.None,
-      
-    ],
-    [
-      'y = x--',
-      Context.None,
-      
-    ],
-    [
-      '~false',
-      Context.None,
-      
-    ],
-    [
-      'typeof [1,2,3] ',
-      Context.None,
-      
-    ],
-    [
-      'typeof {hi: "world"}',
-      Context.None,
-      
-    ],
-    [
-      'delete lunch.beans;',
-      Context.None,
-      
-    ],
-    [
-      'console.log(Math.PI);',
-      Context.None,
-      
-    ],
-    [
-      'typeof void 0',
-      Context.None,
-      
-    ],
-    [
-      'x == 5 || y == 5',
-      Context.None,
-      
-    ],
-    [
-      'void x !== undefined',
-      Context.None,
-      
-    ],
-    [
-      'void (x = 1) !== undefined',
-      Context.None,
-      
-    ],
-    [
-      'isNaN(+(void 0)) !== true',
-      Context.None,
-      
-    ],
-    [
-      'typeof async (x)',
-      Context.None,
-      
-    ],
-    [
-      'let',
-      Context.None,
-      
-    ],
-    [
-      '!love',
-      Context.None,
-      
-    ],
-    [
-      '-a',
-      Context.None,
-      
-    ],
-    [
-      'void love',
-      Context.None,
-      
-    ],
-    [
-      'typeof love',
-      Context.None,
-      
-    ],
+    ['++this.x', Context.None],
+    ['(++this.x)', Context.None],
+    ['--this.x', Context.None],
+    ['(this.x++)', Context.None],
+    ['function f(){ return ++a; }', Context.None],
+    ['let x = () => ++a;', Context.None],
+    ['if (++a);', Context.None],
+    ['++(x);', Context.None],
+    ['++(((x)));', Context.None],
+    ['if (a) --a;', Context.None],
+    ['(x)++;', Context.None],
+    ['a\n++b', Context.None],
+    ['let x = () => ++\na;', Context.None],
+    ['++\na', Context.None],
+    ['a = typeof async (x)', Context.None],
+    ['foo = !a', Context.OptionsRanges],
+    ['(typeof async (x))', Context.None],
+    ['a(void b)', Context.None],
+    ['(delete a.b)', Context.None],
+    ['foo = ~b', Context.OptionsRanges],
+    ['+null', Context.None],
+    ['-function(val){  return val }', Context.None],
+    ['foo = !42', Context.None],
+    ['a ? b : !c', Context.OptionsRanges],
+    ['![]', Context.None],
+    ['foo = (![])', Context.None],
+    ['a = ++a', Context.None],
+    ['a = +a', Context.None],
+    ['y = x--', Context.None],
+    ['~false', Context.None],
+    ['typeof [1,2,3] ', Context.None],
+    ['typeof {hi: "world"}', Context.None],
+    ['delete lunch.beans;', Context.None],
+    ['console.log(Math.PI);', Context.None],
+    ['typeof void 0', Context.None],
+    ['x == 5 || y == 5', Context.None],
+    ['void x !== undefined', Context.None],
+    ['void (x = 1) !== undefined', Context.None],
+    ['isNaN(+(void 0)) !== true', Context.None],
+    ['typeof async (x)', Context.None],
+    ['let', Context.None],
+    ['!love', Context.None],
+    ['-a', Context.None],
+    ['void love', Context.None],
+    ['typeof love', Context.None],
   ]);
 });

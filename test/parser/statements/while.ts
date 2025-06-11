@@ -22,11 +22,7 @@ describe('Statements - While', () => {
   ]);
 
   pass('Statements - While (pass)', [
-    [
-      'while (1) /foo/',
-      Context.None,
-      
-    ],
+    ['while (1) /foo/', Context.None],
     [
       `var i = 0;
       woohoo:{
@@ -38,45 +34,22 @@ describe('Statements - While', () => {
         }
       }`,
       Context.None,
-      
     ],
     [
       `while (false) let // ASI
       x = 1;`,
       Context.None,
-      
     ],
     [
       `while (false) let // ASI
   {}`,
       Context.None,
-      
     ],
 
-    [
-      'while (x < 10) { x++; y--; }',
-      Context.None,
-      
-    ],
-    [
-      'while (i-->1) {}',
-      Context.None,
-      
-    ],
-    [
-      'a: while (true) continue a;',
-      Context.None,
-      
-    ],
-    [
-      'while (this) try {} catch (h) {}',
-      Context.None,
-      
-    ],
-    [
-      'while (foo) bar;',
-      Context.None,
-      
-    ],
+    ['while (x < 10) { x++; y--; }', Context.None],
+    ['while (i-->1) {}', Context.None],
+    ['a: while (true) continue a;', Context.None],
+    ['while (this) try {} catch (h) {}', Context.None],
+    ['while (foo) bar;', Context.None],
   ]);
 });

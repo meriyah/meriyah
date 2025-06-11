@@ -462,140 +462,32 @@ describe('Module - Import', () => {
 
   // valid tests
   pass('Module - Export', [
-    [
-      'import {} from "y"',
-      Context.Strict | Context.Module | Context.OptionsRanges,
-      
-    ],
-    [
-      'import e, {f as g, h as i, j} from "module";',
-      Context.Strict | Context.Module | Context.OptionsRanges,
-      
-    ],
-    [
-      'import {n, o as p} from "module";',
-      Context.Strict | Context.Module | Context.OptionsRanges,
-      
-    ],
-    [
-      'import { as, get, set, from } from "baz"',
-      Context.Strict | Context.Module | Context.OptionsRanges,
-      
-    ],
-    [
-      'import x, * as ns from "foo"',
-      Context.Strict | Context.Module | Context.OptionsRanges,
-      
-    ],
-    [
-      'import $ from "foo"',
-      Context.Strict | Context.Module,
-      
-    ],
-    [
-      'import from from "foo"',
-      Context.Strict | Context.Module,
-      
-    ],
-    [
-      'import * as d from "module";',
-      Context.Strict | Context.Module | Context.OptionsRanges,
-      
-    ],
-    [
-      'import {n, o as p} from "module";',
-      Context.Strict | Context.Module,
-      
-    ],
-    [
-      'import icefapper from "await"',
-      Context.Strict | Context.Module,
-      
-    ],
-    [
-      'import x from "y"',
-      Context.Strict | Context.Module,
-      
-    ],
-    [
-      'import {a, b} from "c"',
-      Context.Strict | Context.Module | Context.OptionsRanges,
-      
-    ],
-    [
-      'import * as a from "y"',
-      Context.Strict | Context.Module,
-      
-    ],
-    [
-      'import x, * as a from "y"',
-      Context.Strict | Context.Module | Context.OptionsRanges,
-      
-    ],
-    [
-      'import {} from "y"',
-      Context.Strict | Context.Module,
-      
-    ],
-    [
-      'import "y"',
-      Context.Strict | Context.Module | Context.OptionsRanges,
-      
-    ],
-    [
-      'import {x} from "y"',
-      Context.Strict | Context.Module,
-      
-    ],
-    [
-      'import {x,} from "y"',
-      Context.Strict | Context.Module,
-      
-    ],
-    [
-      'import {x as z} from "y"',
-      Context.Strict | Context.Module,
-      
-    ],
-    [
-      'import {x as z,} from "y"',
-      Context.Strict | Context.Module | Context.OptionsRanges,
-      
-    ],
-    [
-      'import {x, z} from "y"',
-      Context.Strict | Context.Module,
-      
-    ],
-    [
-      'import {x, z,} from "y"',
-      Context.Strict | Context.Module,
-      
-    ],
-    [
-      'import {x as a, z} from "y"',
-      Context.Strict | Context.Module,
-      
-    ],
-    [
-      'import {x, z as b} from "y"',
-      Context.Strict | Context.Module,
-      
-    ],
-    [
-      'import {x as a, z as b} from "y"',
-      Context.Strict | Context.Module | Context.OptionsRanges,
-      
-    ],
-    [
-      'import {x as a, z as b,} from "y"',
-      Context.Strict | Context.Module,
-      
-    ],
-    [
-      'import { default as f2, "foo" as foo } from "./foo";',
-      Context.Strict | Context.Module,
-      
-    ],
+    ['import {} from "y"', Context.Strict | Context.Module | Context.OptionsRanges],
+    ['import e, {f as g, h as i, j} from "module";', Context.Strict | Context.Module | Context.OptionsRanges],
+    ['import {n, o as p} from "module";', Context.Strict | Context.Module | Context.OptionsRanges],
+    ['import { as, get, set, from } from "baz"', Context.Strict | Context.Module | Context.OptionsRanges],
+    ['import x, * as ns from "foo"', Context.Strict | Context.Module | Context.OptionsRanges],
+    ['import $ from "foo"', Context.Strict | Context.Module],
+    ['import from from "foo"', Context.Strict | Context.Module],
+    ['import * as d from "module";', Context.Strict | Context.Module | Context.OptionsRanges],
+    ['import {n, o as p} from "module";', Context.Strict | Context.Module],
+    ['import icefapper from "await"', Context.Strict | Context.Module],
+    ['import x from "y"', Context.Strict | Context.Module],
+    ['import {a, b} from "c"', Context.Strict | Context.Module | Context.OptionsRanges],
+    ['import * as a from "y"', Context.Strict | Context.Module],
+    ['import x, * as a from "y"', Context.Strict | Context.Module | Context.OptionsRanges],
+    ['import {} from "y"', Context.Strict | Context.Module],
+    ['import "y"', Context.Strict | Context.Module | Context.OptionsRanges],
+    ['import {x} from "y"', Context.Strict | Context.Module],
+    ['import {x,} from "y"', Context.Strict | Context.Module],
+    ['import {x as z} from "y"', Context.Strict | Context.Module],
+    ['import {x as z,} from "y"', Context.Strict | Context.Module | Context.OptionsRanges],
+    ['import {x, z} from "y"', Context.Strict | Context.Module],
+    ['import {x, z,} from "y"', Context.Strict | Context.Module],
+    ['import {x as a, z} from "y"', Context.Strict | Context.Module],
+    ['import {x, z as b} from "y"', Context.Strict | Context.Module],
+    ['import {x as a, z as b} from "y"', Context.Strict | Context.Module | Context.OptionsRanges],
+    ['import {x as a, z as b,} from "y"', Context.Strict | Context.Module],
+    ['import { default as f2, "foo" as foo } from "./foo";', Context.Strict | Context.Module],
   ]);
 });

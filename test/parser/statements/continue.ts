@@ -100,80 +100,20 @@ describe('Statements - Continue', () => {
   ]);
 
   pass('Statements - Continue', [
-    [
-      'while (x) continue',
-      Context.None,
-      
-    ],
-    [
-      'do continue; while(foo);',
-      Context.None,
-      
-    ],
-    [
-      'foo: do continue foo; while(foo);',
-      Context.None,
-      
-    ],
-    [
-      '__proto__: while (true) { continue __proto__; }',
-      Context.None,
-      
-    ],
-    [
-      'a: do continue a; while(1);',
-      Context.None,
-      
-    ],
-    [
-      'a: while (0) { continue \r b; }',
-      Context.None,
-      
-    ],
-    [
-      'a: while (0) { continue /*\n*/ b; }',
-      Context.None,
-      
-    ],
-    [
-      'a: while (0) { continue /*\u2029*/ b; }',
-      Context.None,
-      
-    ],
-    [
-      '() => { do        if (x) continue   ; while(true);}',
-      Context.None,
-      
-    ],
-    [
-      'for (;;)  {  continue   }',
-      Context.None,
-      
-    ],
-    [
-      'for (;;)  { if (x) continue   }',
-      Context.None,
-      
-    ],
-    [
-      'function f(){ for (;;)  {     continue    }}',
-      Context.None,
-      
-    ],
-    [
-      'while (true) {  continue   }',
-      Context.None,
-      
-    ],
-    [
-      'foo: while(true)continue foo;',
-      Context.None,
-      
-    ],
-    [
-      'foo: while (true) { if (x) continue foo; }',
-      Context.None,
-      
-    ],
+    ['while (x) continue', Context.None],
+    ['do continue; while(foo);', Context.None],
+    ['foo: do continue foo; while(foo);', Context.None],
+    ['__proto__: while (true) { continue __proto__; }', Context.None],
+    ['a: do continue a; while(1);', Context.None],
+    ['a: while (0) { continue \r b; }', Context.None],
+    ['a: while (0) { continue /*\n*/ b; }', Context.None],
+    ['a: while (0) { continue /*\u2029*/ b; }', Context.None],
+    ['() => { do        if (x) continue   ; while(true);}', Context.None],
+    ['for (;;)  {  continue   }', Context.None],
+    ['for (;;)  { if (x) continue   }', Context.None],
+    ['function f(){ for (;;)  {     continue    }}', Context.None],
+    ['while (true) {  continue   }', Context.None],
+    ['foo: while(true)continue foo;', Context.None],
+    ['foo: while (true) { if (x) continue foo; }', Context.None],
   ]);
 });

@@ -579,26 +579,10 @@ describe('Declarations - Function', () => {
   }
 
   pass('Declarations - Function (pass)', [
-    [
-      'function w(casecase){y:j:function casecase(){}}',
-      Context.OptionsWebCompat | Context.OptionsRanges,
-      
-    ],
-    [
-      'function* x() { for (const [j = yield] in (x) => {}) {} }',
-      Context.None,
-      
-    ],
-    [
-      '"use strict"; function* g() { yield; }; f = ([...[,]] = g()) => {};',
-      Context.None,
-      
-    ],
-    [
-      `function foo(package) {}`,
-      Context.None,
-      
-    ],
+    ['function w(casecase){y:j:function casecase(){}}', Context.OptionsWebCompat | Context.OptionsRanges],
+    ['function* x() { for (const [j = yield] in (x) => {}) {} }', Context.None],
+    ['"use strict"; function* g() { yield; }; f = ([...[,]] = g()) => {};', Context.None],
+    [`function foo(package) {}`, Context.None],
     [
       `function compareArray(a, b) {
         if (b.length !== a.length) {
@@ -609,7 +593,6 @@ describe('Declarations - Function', () => {
         }
     }`,
       Context.OptionsRanges | Context.OptionsRaw,
-      
     ],
     [
       `function shouldThrow(func, errorMessage) {
@@ -623,104 +606,27 @@ describe('Declarations - Function', () => {
           }
       }`,
       Context.OptionsRanges | Context.OptionsRaw,
-      
     ],
-    [
-      'function f([foo,,bar] = x){}',
-      Context.OptionsLoc,
-      
-    ],
-    [
-      'function f(){ foo: bar: function f(){} }',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'function f(){ let f; }',
-      Context.OptionsLoc,
-      
-    ],
-    [
-      'function f() {let f}',
-      Context.None,
-      
-    ],
-    [
-      'function* a( [ {  x  =  y  }  =  a ] )  { }',
-      Context.OptionsLoc,
-      
-    ],
-    [
-      'function a( a = b  ) {} n => {  "use strict"; }',
-      Context.None,
-      
-    ],
-    [
-      'function f() {var f}',
-      Context.None,
-      
-    ],
-    [
-      'function a([ { a = x }, {} = b]) {}',
-      Context.OptionsLoc,
-      
-    ],
-    [
-      'function f(){} function f(){}',
-      Context.OptionsLoc,
-      
-    ],
-    [
-      'function g() {  function f(){} function f(){} }',
-      Context.OptionsLoc,
-      
-    ],
-    [
-      'function f(x) { { const x = y } }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function f(){ foo = new.target }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function f(x) {var x}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function f(x) {{var x}}',
-      Context.None,
-      
-    ],
-    [
-      'function foo() {}',
-      Context.None,
-      
-    ],
-    [
-      'function f(){}\n/foo/',
-      Context.None,
-      
-    ],
+    ['function f([foo,,bar] = x){}', Context.OptionsLoc],
+    ['function f(){ foo: bar: function f(){} }', Context.OptionsWebCompat],
+    ['function f(){ let f; }', Context.OptionsLoc],
+    ['function f() {let f}', Context.None],
+    ['function* a( [ {  x  =  y  }  =  a ] )  { }', Context.OptionsLoc],
+    ['function a( a = b  ) {} n => {  "use strict"; }', Context.None],
+    ['function f() {var f}', Context.None],
+    ['function a([ { a = x }, {} = b]) {}', Context.OptionsLoc],
+    ['function f(){} function f(){}', Context.OptionsLoc],
+    ['function g() {  function f(){} function f(){} }', Context.OptionsLoc],
+    ['function f(x) { { const x = y } }', Context.OptionsRanges],
+    ['function f(){ foo = new.target }', Context.OptionsRanges],
+    ['function f(x) {var x}', Context.OptionsRanges],
+    ['function f(x) {{var x}}', Context.None],
+    ['function foo() {}', Context.None],
+    ['function f(){}\n/foo/', Context.None],
 
-    [
-      'function f(){}\n/foo/',
-      Context.None,
-      
-    ],
-    [
-      'function f(){}\n/foo/g',
-      Context.None,
-      
-    ],
+    ['function f(){}\n/foo/', Context.None],
+    ['function f(){}\n/foo/g', Context.None],
 
-    [
-      'typeof function f(){}\n/foo/g',
-      Context.None,
-      
-    ],
+    ['typeof function f(){}\n/foo/g', Context.None],
   ]);
 });

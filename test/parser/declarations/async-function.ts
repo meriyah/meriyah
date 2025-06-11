@@ -538,110 +538,32 @@ describe('Declarations - Async Function', () => {
   ]);
 
   pass('Declarations - Async function (pass)', [
-    [
-      'async\nfunction foo() { }',
-      Context.None,
-      
-    ],
-    [
-      'async function *gen() { yield [...yield]; }',
-      Context.Strict | Context.OptionsRanges,
-      
-    ],
+    ['async\nfunction foo() { }', Context.None],
+    ['async function *gen() { yield [...yield]; }', Context.Strict | Context.OptionsRanges],
     [
       '"use strict"; async function foo() { function bar() { await = 1; } bar(); }',
       Context.Strict | Context.OptionsRanges | Context.OptionsRaw,
-      
     ],
-    [
-      'export async function foo() { }',
-      Context.Module,
-      
-    ],
-    [
-      'async function await() { }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(async function foo() { })',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'async ({a: b = c})',
-      Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      '({async await() { }})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'async function foo(a, b) { await a }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(async function foo(a) { await a })',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(async (a) => await a)',
-      Context.None,
-      
-    ],
-    [
-      '({async foo(a) { await a }})',
-      Context.None,
-      
-    ],
-    [
-      'async function foo(a, b) { await a + await b }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function foo() { await + 1 }',
-      Context.OptionsLoc | Context.OptionsRanges,
-      
-    ],
-    [
-      'async function foo(a = async function foo() { await b }) {}',
-      Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      'async function foo(a = async () => await b) {}',
-      Context.None,
-      
-    ],
-    [
-      'async function foo(a = {async bar() { await b }}) {}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'async function foo(a = class {async bar() { await b }}) {}',
-      Context.OptionsRanges,
-      
-    ],
+    ['export async function foo() { }', Context.Module],
+    ['async function await() { }', Context.OptionsRanges],
+    ['(async function foo() { })', Context.OptionsRanges],
+    ['async ({a: b = c})', Context.OptionsRanges | Context.OptionsLoc],
+    ['({async await() { }})', Context.OptionsRanges],
+    ['async function foo(a, b) { await a }', Context.OptionsRanges],
+    ['(async function foo(a) { await a })', Context.OptionsRanges],
+    ['(async (a) => await a)', Context.None],
+    ['({async foo(a) { await a }})', Context.None],
+    ['async function foo(a, b) { await a + await b }', Context.OptionsRanges],
+    ['function foo() { await + 1 }', Context.OptionsLoc | Context.OptionsRanges],
+    ['async function foo(a = async function foo() { await b }) {}', Context.OptionsRanges | Context.OptionsLoc],
+    ['async function foo(a = async () => await b) {}', Context.None],
+    ['async function foo(a = {async bar() { await b }}) {}', Context.OptionsRanges],
+    ['async function foo(a = class {async bar() { await b }}) {}', Context.OptionsRanges],
     [
       'f = ({ w = counter(), x = counter(), y = counter(), z = counter() } = { w: null, x: 0, y: false, z: "" }) => {}',
       Context.OptionsLoc | Context.OptionsRanges,
-      
     ],
-    [
-      '({async = 0} = {})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({async 100(){}})',
-      Context.OptionsRanges,
-      
-    ],
+    ['({async = 0} = {})', Context.OptionsRanges],
+    ['({async 100(){}})', Context.OptionsRanges],
   ]);
 });

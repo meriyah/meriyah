@@ -169,56 +169,19 @@ describe('Next - Public fields', () => {
   }
 
   pass('Next - Public fields (pass)', [
-    [
-      `var C = class { static async #prototype() {} };`,
-      Context.OptionsNext | Context.OptionsRanges,
-      
-    ],
-    [
-      `class Foo { x = 1; }`,
-      Context.OptionsNext | Context.OptionsRanges,
-      
-    ],
-    [
-      `class A { set; }`,
-      Context.OptionsNext | Context.OptionsRanges,
-      
-    ],
-    [
-      `class A { set = get; }`,
-      Context.OptionsNext,
-      
-    ],
-    [
-      `const createClass = (k) => class { [k()] = 2 };`,
-      Context.OptionsNext | Context.OptionsRanges,
-      
-    ],
-    [
-      `class A { a = 0; }`,
-      Context.OptionsNext,
-      
-    ],
+    [`var C = class { static async #prototype() {} };`, Context.OptionsNext | Context.OptionsRanges],
+    [`class Foo { x = 1; }`, Context.OptionsNext | Context.OptionsRanges],
+    [`class A { set; }`, Context.OptionsNext | Context.OptionsRanges],
+    [`class A { set = get; }`, Context.OptionsNext],
+    [`const createClass = (k) => class { [k()] = 2 };`, Context.OptionsNext | Context.OptionsRanges],
+    [`class A { a = 0; }`, Context.OptionsNext],
     [
       `class A { ;;;;;;[x] = 42; [10] = "meep"; ["not initialized"];;;;;;; }`,
       Context.OptionsNext | Context.OptionsRanges,
-      
     ],
-    [
-      `{ class X { static p = function() { return arguments[0]; } } }`,
-      Context.OptionsNext | Context.OptionsRanges,
-      
-    ],
-    [
-      `class A { ['a'] = 0; b; }`,
-      Context.OptionsNext | Context.OptionsRanges,
-      
-    ],
-    [
-      'class Some { render=( )=>{ return null; }}',
-      Context.OptionsNext | Context.OptionsRanges,
-      
-    ],
+    [`{ class X { static p = function() { return arguments[0]; } } }`, Context.OptionsNext | Context.OptionsRanges],
+    [`class A { ['a'] = 0; b; }`, Context.OptionsNext | Context.OptionsRanges],
+    ['class Some { render=( )=>{ return null; }}', Context.OptionsNext | Context.OptionsRanges],
     [
       `{
         class X {
@@ -237,37 +200,12 @@ describe('Next - Public fields', () => {
         let p = X.t();
       }`,
       Context.OptionsNext | Context.OptionsRanges,
-      
     ],
-    [
-      'class X { static p = eval("(function() { return arguments[0]; })(1)"); }',
-      Context.OptionsNext,
-      
-    ],
-    [
-      'class Some { render=(a,b)=>{ return null; } }',
-      Context.OptionsNext,
-      
-    ],
-    [
-      `class A {  ;;;; ;;;;;;'a'; "b"; 'c' = 39;  "d" = 42;;;;;;;  ;;;; }`,
-      Context.OptionsNext | Context.OptionsRanges,
-      
-    ],
-    [
-      `class A { foo; }`,
-      Context.OptionsNext | Context.OptionsRanges,
-      
-    ],
-    [
-      `class A { a = b = c }`,
-      Context.OptionsNext | Context.OptionsRanges,
-      
-    ],
-    [
-      `class A { a = b += c }`,
-      Context.OptionsNext | Context.OptionsRanges,
-      
-    ],
+    ['class X { static p = eval("(function() { return arguments[0]; })(1)"); }', Context.OptionsNext],
+    ['class Some { render=(a,b)=>{ return null; } }', Context.OptionsNext],
+    [`class A {  ;;;; ;;;;;;'a'; "b"; 'c' = 39;  "d" = 42;;;;;;;  ;;;; }`, Context.OptionsNext | Context.OptionsRanges],
+    [`class A { foo; }`, Context.OptionsNext | Context.OptionsRanges],
+    [`class A { a = b = c }`, Context.OptionsNext | Context.OptionsRanges],
+    [`class A { a = b += c }`, Context.OptionsNext | Context.OptionsRanges],
   ]);
 });

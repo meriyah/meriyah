@@ -13,85 +13,21 @@ describe('Expressions - Update', () => {
     ['[]++', Context.None]*/
   ]);
   pass('Expressions - Update (pass)', [
-    [
-      'foo\n++\nbar',
-      Context.None,
-      
-    ],
-    [
-      '++\nfoo;',
-      Context.None,
-      
-    ],
-    [
-      'foo\n++bar',
-      Context.None,
-      
-    ],
-    [
-      '++\nfoo;',
-      Context.None,
-      
-    ],
-    [
-      '"foo"\n++bar',
-      Context.None,
-      
-    ],
-    [
-      '+a++ / 1',
-      Context.None,
-      
-    ],
-    [
-      'a=b\n++c',
-      Context.None,
-      
-    ],
-    [
-      'a,b\n++c',
-      Context.None,
-      
-    ],
-    [
-      'a++\nb',
-      Context.None,
-      
-    ],
-    [
-      'a\n++\nb',
-      Context.None,
-      
-    ],
-    [
-      'a.a--',
-      Context.None,
-      
-    ],
-    [
-      '++a.a',
-      Context.None,
-      
-    ],
-    [
-      'foo\n++bar',
-      Context.None,
-      
-    ],
-    [
-      '--a.a',
-      Context.None,
-      
-    ],
-    [
-      '++foo',
-      Context.None,
-      
-    ],
-    [
-      'bar++',
-      Context.None,
-      
-    ],
+    ['foo\n++\nbar', Context.None],
+    ['++\nfoo;', Context.None],
+    ['foo\n++bar', Context.None],
+    ['++\nfoo;', Context.None],
+    ['"foo"\n++bar', Context.None],
+    ['+a++ / 1', Context.None],
+    ['a=b\n++c', Context.None],
+    ['a,b\n++c', Context.None],
+    ['a++\nb', Context.None],
+    ['a\n++\nb', Context.None],
+    ['a.a--', Context.None],
+    ['++a.a', Context.None],
+    ['foo\n++bar', Context.None],
+    ['--a.a', Context.None],
+    ['++foo', Context.None],
+    ['bar++', Context.None],
   ]);
 });

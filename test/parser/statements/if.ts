@@ -37,102 +37,26 @@ describe('Statements - None', () => {
   ]);
 
   pass('Statements - If (pass)', [
-    [
-      'if (yield === void 0) { async = false; }',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'if (await === void 0) { async = false; }',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'if (async === void 0) { async = false; }',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'if (a) b()',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'if(a)b;else c;',
-      Context.None,
-      
-    ],
-    [
-      'function f() { if (1) { return () => { while (true) hi(); } } }',
-      Context.None,
-      
-    ],
-    [
-      'if (1) { eval(42) }',
-      Context.None,
-      
-    ],
-    [
-      'if (true) if (false) {} else ; else {}',
-      Context.None,
-      
-    ],
-    [
-      'if (true) try {} finally {} else {}',
-      Context.None,
-      
-    ],
-    [
-      'if(a)b',
-      Context.None,
-      
-    ],
-    [
-      'if(1)/  foo/',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'if (foo) bar;',
-      Context.None,
-      
-    ],
-    [
-      'if (foo) a; if (bar) b; else c;',
-      Context.None,
-      
-    ],
-    [
-      'if (a > 2) {b = c }',
-      Context.None,
-      
-    ],
-    [
-      'if(foo) a = b;',
-      Context.None,
-      
-    ],
-    [
-      'if(1)/  foo/',
-      Context.OptionsWebCompat,
-      
-    ],
+    ['if (yield === void 0) { async = false; }', Context.OptionsWebCompat],
+    ['if (await === void 0) { async = false; }', Context.OptionsWebCompat],
+    ['if (async === void 0) { async = false; }', Context.OptionsWebCompat],
+    ['if (a) b()', Context.OptionsWebCompat],
+    ['if(a)b;else c;', Context.None],
+    ['function f() { if (1) { return () => { while (true) hi(); } } }', Context.None],
+    ['if (1) { eval(42) }', Context.None],
+    ['if (true) if (false) {} else ; else {}', Context.None],
+    ['if (true) try {} finally {} else {}', Context.None],
+    ['if(a)b', Context.None],
+    ['if(1)/  foo/', Context.OptionsWebCompat],
+    ['if (foo) bar;', Context.None],
+    ['if (foo) a; if (bar) b; else c;', Context.None],
+    ['if (a > 2) {b = c }', Context.None],
+    ['if(foo) a = b;', Context.None],
+    ['if(1)/  foo/', Context.OptionsWebCompat],
 
     // Should only pass with AnnexB
-    [
-      'if (a) function a(){}',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'if (foo) bar;',
-      Context.None,
-      
-    ],
-    [
-      'if (foo) bar; else doo;',
-      Context.None,
-      
-    ],
+    ['if (a) function a(){}', Context.OptionsWebCompat],
+    ['if (foo) bar;', Context.None],
+    ['if (foo) bar; else doo;', Context.None],
   ]);
 });

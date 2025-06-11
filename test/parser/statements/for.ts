@@ -783,480 +783,110 @@ describe('Statements - For', () => {
   ]);
 
   pass('Statements - For (pass)', [
-    [
-      'for (let [,] = x;;);',
-      Context.None,
-      
-    ],
-    [
-      'for(()=>{a in b};;);',
-      Context.None,
-      
-    ],
+    ['for (let [,] = x;;);', Context.None],
+    ['for(()=>{a in b};;);', Context.None],
     [
       `let = 4;
       for ( [let][0]; ; )
         break;
       `,
       Context.None,
-      
     ],
-    [
-      'for (let\nfoo;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [] = x;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [foo] = arr, bar;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (() => { this in null };;);',
-      Context.None,
-      
-    ],
+    ['for (let\nfoo;;);', Context.None],
+    ['for (let [] = x;;);', Context.None],
+    ['for (let [foo] = arr, bar;;);', Context.None],
+    ['for (() => { this in null };;);', Context.None],
     [
       'for (`<${new arguments(++r.function[eval], () => {}, function () {""}, (a)in this, true)}`; x ^= arguments;) {}',
       Context.None,
-      
     ],
-    [
-      'for (let [foo, ...bar] = obj;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (let {x} = obj;;);',
-      Context.None,
-      
-    ],
-    [
-      'for ({x = y} = (z);;) {}',
-      Context.None,
-      
-    ],
-    [
-      'for (let [foo, bar=b] in arr);',
-      Context.None,
-      
-    ],
-    [
-      'for (var a;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (var a,b,c;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (var x = 0; x < 1000000; x++);',
-      Context.None,
-      
-    ],
-    [
-      'for (let a;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (let a,b,c;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (var a;;) { let a; }',
-      Context.None,
-      
-    ],
-    [
-      'for (let foo in x);',
-      Context.None,
-      
-    ],
-    [
-      'for (let foo;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (a;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (;b;);',
-      Context.None,
-      
-    ],
-    [
-      'for (;;c);',
-      Context.None,
-      
-    ],
-    [
-      'for (a;b;);',
-      Context.None,
-      
-    ],
-    [
-      'for (a;;c);',
-      Context.None,
-      
-    ],
-    [
-      'for (;b;c);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [foo=a, bar=b] in arr);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [...foo] = obj;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [foo=a, bar=b] = arr;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [foo, bar=b] = arr;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [foo=a] = arr;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (let foo = arr, [bar] = arr2;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (a * b + c * d;b;c);',
-      Context.None,
-      
-    ],
-    [
-      'for ((a * b + c) * d;b;c);',
-      Context.None,
-      
-    ],
-    [
-      'for (const [...x] in y){}',
-      Context.None,
-      
-    ],
-    [
-      'for (const [...x] in y){}',
-      Context.None,
-      
-    ],
-    [
-      'for (const {...x} in y){}',
-      Context.None,
-      
-    ],
-    [
-      'for (var a=1;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (var a=1, b;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (var a, b=1;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (var a=1, b=2;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (const a in b);',
-      Context.None,
-      
-    ],
-    [
-      'for (var a = b in c);',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'for (var a = ++b in c);',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'for (var a = 0 in stored = a, {});',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'for (var a = (++effects, -1) in x);',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'for (var a in stored = a, {a: 0, b: 1, c: 2});',
-      Context.None,
-      
-    ],
-    [
-      'for (var a = (++effects, -1) in stored = a, {a: 0, b: 1, c: 2});',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'for ([a.b] in c) d',
-      Context.None,
-      
-    ],
-    [
-      'for ([a.b].foo in c) d',
-      Context.None,
-      
-    ],
-    [
-      'for ({a: b.c} in d) e',
-      Context.None,
-      
-    ],
-    [
-      'for ({a: b.c}.foo in d) e',
-      Context.None,
-      
-    ],
-    [
-      'for (let a of b);',
-      Context.None,
-      
-    ],
-    [
-      'for (a of b=c);',
-      Context.None,
-      
-    ],
-    [
-      'for ([a.b] of c) d',
-      Context.None,
-      
-    ],
-    [
-      'for ([a.b].foo of c) d',
-      Context.None,
-      
-    ],
-    [
-      'for ({a: b.c} of d) e',
-      Context.None,
-      
-    ],
-    [
-      'for ({a: b.c}.foo of d) e',
-      Context.None,
-      
-    ],
-    [
-      'for (let [,,] = x;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [foo] = arr;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [foo,] = arr;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [foo] = arr, [bar] = arr2;;);',
-      Context.None,
-      
-    ],
+    ['for (let [foo, ...bar] = obj;;);', Context.None],
+    ['for (let {x} = obj;;);', Context.None],
+    ['for ({x = y} = (z);;) {}', Context.None],
+    ['for (let [foo, bar=b] in arr);', Context.None],
+    ['for (var a;;);', Context.None],
+    ['for (var a,b,c;;);', Context.None],
+    ['for (var x = 0; x < 1000000; x++);', Context.None],
+    ['for (let a;;);', Context.None],
+    ['for (let a,b,c;;);', Context.None],
+    ['for (var a;;) { let a; }', Context.None],
+    ['for (let foo in x);', Context.None],
+    ['for (let foo;;);', Context.None],
+    ['for (;;);', Context.None],
+    ['for (a;;);', Context.None],
+    ['for (;b;);', Context.None],
+    ['for (;;c);', Context.None],
+    ['for (a;b;);', Context.None],
+    ['for (a;;c);', Context.None],
+    ['for (;b;c);', Context.None],
+    ['for (let [foo=a, bar=b] in arr);', Context.None],
+    ['for (let [...foo] = obj;;);', Context.None],
+    ['for (let [foo=a, bar=b] = arr;;);', Context.None],
+    ['for (let [foo, bar=b] = arr;;);', Context.None],
+    ['for (let [foo=a] = arr;;);', Context.None],
+    ['for (let foo = arr, [bar] = arr2;;);', Context.None],
+    ['for (a * b + c * d;b;c);', Context.None],
+    ['for ((a * b + c) * d;b;c);', Context.None],
+    ['for (const [...x] in y){}', Context.None],
+    ['for (const [...x] in y){}', Context.None],
+    ['for (const {...x} in y){}', Context.None],
+    ['for (var a=1;;);', Context.None],
+    ['for (var a=1, b;;);', Context.None],
+    ['for (var a, b=1;;);', Context.None],
+    ['for (var a=1, b=2;;);', Context.None],
+    ['for (const a in b);', Context.None],
+    ['for (var a = b in c);', Context.OptionsWebCompat],
+    ['for (var a = ++b in c);', Context.OptionsWebCompat],
+    ['for (var a = 0 in stored = a, {});', Context.OptionsWebCompat],
+    ['for (var a = (++effects, -1) in x);', Context.OptionsWebCompat],
+    ['for (var a in stored = a, {a: 0, b: 1, c: 2});', Context.None],
+    ['for (var a = (++effects, -1) in stored = a, {a: 0, b: 1, c: 2});', Context.OptionsWebCompat],
+    ['for ([a.b] in c) d', Context.None],
+    ['for ([a.b].foo in c) d', Context.None],
+    ['for ({a: b.c} in d) e', Context.None],
+    ['for ({a: b.c}.foo in d) e', Context.None],
+    ['for (let a of b);', Context.None],
+    ['for (a of b=c);', Context.None],
+    ['for ([a.b] of c) d', Context.None],
+    ['for ([a.b].foo of c) d', Context.None],
+    ['for ({a: b.c} of d) e', Context.None],
+    ['for ({a: b.c}.foo of d) e', Context.None],
+    ['for (let [,,] = x;;);', Context.None],
+    ['for (let [foo] = arr;;);', Context.None],
+    ['for (let [foo,] = arr;;);', Context.None],
+    ['for (let [foo] = arr, [bar] = arr2;;);', Context.None],
 
-    [
-      'for (a + b * c * d;b;c);',
-      Context.None,
-      
-    ],
-    [
-      'for (;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (a;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (;b;);',
-      Context.None,
-      
-    ],
-    [
-      'for (foo=10;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (let=10;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (;;) let \n {}',
-      Context.None,
-      
-    ],
-    [
-      'for (;;) let \n x = 1',
-      Context.None,
-      
-    ],
-    [
-      'for (let a, { b } = {};;) { let a, { b } = {}; { let a, { b } = {}; }}',
-      Context.None,
-      
-    ],
-    [
-      'for (true ? a in b : {}; false; ) ;',
-      Context.None,
-      
-    ],
-    [
-      'for (a;b;c);',
-      Context.None,
-      
-    ],
-    [
-      'for (a * b + c * d;b;c);',
-      Context.None,
-      
-    ],
-    [
-      'for (var a;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (let a;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (a in b=c);',
-      Context.None,
-      
-    ],
-    [
-      'for (a of b);',
-      Context.None,
-      
-    ],
-    [
-      'for (let a of b);',
-      Context.None,
-      
-    ],
-    [
-      'for (let in x) y',
-      Context.None,
-      
-    ],
-    [
-      'for (;;c);',
-      Context.None,
-      
-    ],
-    [
-      'for (a;b;);',
-      Context.None,
-      
-    ],
-    [
-      'for (a;;c);',
-      Context.None,
-      
-    ],
-    [
-      'for (;b;c);',
-      Context.None,
-      
-    ],
-    [
-      'for (a;b;c);',
-      Context.None,
-      
-    ],
-    [
-      'for (a * b + c * d;b;c);',
-      Context.None,
-      
-    ],
-    [
-      'for ((a * b + c) * d;b;c);',
-      Context.None,
-      
-    ],
-    [
-      'for (var a,b,c;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (let a,b,c;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (const [...x] in y){}',
-      Context.None,
-      
-    ],
-    [
-      'for (var a=1, b;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (var a, b=1;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (var a=1, b=2;;);',
-      Context.None,
-      
-    ],
+    ['for (a + b * c * d;b;c);', Context.None],
+    ['for (;;);', Context.None],
+    ['for (a;;);', Context.None],
+    ['for (;b;);', Context.None],
+    ['for (foo=10;;);', Context.None],
+    ['for (let=10;;);', Context.None],
+    ['for (;;) let \n {}', Context.None],
+    ['for (;;) let \n x = 1', Context.None],
+    ['for (let a, { b } = {};;) { let a, { b } = {}; { let a, { b } = {}; }}', Context.None],
+    ['for (true ? a in b : {}; false; ) ;', Context.None],
+    ['for (a;b;c);', Context.None],
+    ['for (a * b + c * d;b;c);', Context.None],
+    ['for (var a;;);', Context.None],
+    ['for (let a;;);', Context.None],
+    ['for (a in b=c);', Context.None],
+    ['for (a of b);', Context.None],
+    ['for (let a of b);', Context.None],
+    ['for (let in x) y', Context.None],
+    ['for (;;c);', Context.None],
+    ['for (a;b;);', Context.None],
+    ['for (a;;c);', Context.None],
+    ['for (;b;c);', Context.None],
+    ['for (a;b;c);', Context.None],
+    ['for (a * b + c * d;b;c);', Context.None],
+    ['for ((a * b + c) * d;b;c);', Context.None],
+    ['for (var a,b,c;;);', Context.None],
+    ['for (let a,b,c;;);', Context.None],
+    ['for (const [...x] in y){}', Context.None],
+    ['for (var a=1, b;;);', Context.None],
+    ['for (var a, b=1;;);', Context.None],
+    ['for (var a=1, b=2;;);', Context.None],
     /*  [ 'for (a in b);', Context.None, {}],
     [ 'for (a in b);', Context.None, {}],
     [ 'for (a in b);', Context.None, {}],
@@ -1280,10 +910,6 @@ describe('Statements - For', () => {
     [ 'for (a in b);', Context.None, {}],
     [ 'for (a in b);', Context.None, {}],*/
 
-    [
-      'for (a in b);',
-      Context.None,
-      
-    ],
+    ['for (a in b);', Context.None],
   ]);
 });

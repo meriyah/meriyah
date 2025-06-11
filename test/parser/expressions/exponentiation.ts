@@ -146,90 +146,22 @@ describe('Expressions - Exponentiation', () => {
   }
 
   pass('Expressions - Exponentiation (pass)', [
-    [
-      '(base **= 3) === -27',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '2 ** 4',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'new x ** 2;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'true ** a',
-      Context.None,
-      
-    ],
-    [
-      '++x ** a',
-      Context.None,
-      
-    ],
-    [
-      '--x ** a',
-      Context.None,
-      
-    ],
-    [
-      'x++ ** a',
-      Context.None,
-      
-    ],
-    [
-      'x-- ** a',
-      Context.None,
-      
-    ],
-    [
-      '+a * b ** c ** 3',
-      Context.None,
-      
-    ],
-    [
-      '(2 ** 4)',
-      Context.None,
-      
-    ],
-    [
-      '(new x ** 2)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(true ** a)',
-      Context.None,
-      
-    ],
-    [
-      '(++x ** a)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(+c * b ** a ** 3)',
-      Context.None,
-      
-    ],
-    [
-      '(+1) ** 2',
-      Context.None,
-      
-    ],
-    [
-      'async function f() { (await 2) ** 2; }',
-      Context.None,
-      
-    ],
-    [
-      'async function f() { await (2 ** 2); }',
-      Context.None,
-      
-    ],
+    ['(base **= 3) === -27', Context.OptionsRanges],
+    ['2 ** 4', Context.OptionsRanges],
+    ['new x ** 2;', Context.OptionsRanges],
+    ['true ** a', Context.None],
+    ['++x ** a', Context.None],
+    ['--x ** a', Context.None],
+    ['x++ ** a', Context.None],
+    ['x-- ** a', Context.None],
+    ['+a * b ** c ** 3', Context.None],
+    ['(2 ** 4)', Context.None],
+    ['(new x ** 2)', Context.OptionsRanges],
+    ['(true ** a)', Context.None],
+    ['(++x ** a)', Context.OptionsRanges],
+    ['(+c * b ** a ** 3)', Context.None],
+    ['(+1) ** 2', Context.None],
+    ['async function f() { (await 2) ** 2; }', Context.None],
+    ['async function f() { await (2 ** 2); }', Context.None],
   ]);
 });

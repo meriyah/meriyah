@@ -71,110 +71,26 @@ describe('Expressions - Assign', () => {
   }
 
   pass('Expressions - Assign (pass)', [
-    [
-      'a *= b',
-      Context.None,
-      
-    ],
-    [
-      'a /= b',
-      Context.None,
-      
-    ],
-    [
-      'a %= b',
-      Context.None,
-      
-    ],
-    [
-      'a += b',
-      Context.None,
-      
-    ],
-    [
-      'a -= b',
-      Context.None,
-      
-    ],
-    [
-      'a <<= b',
-      Context.None,
-      
-    ],
-    [
-      'a >>= b',
-      Context.None,
-      
-    ],
-    [
-      'a >>>= b',
-      Context.None,
-      
-    ],
-    [
-      'a |= b',
-      Context.None,
-      
-    ],
-    [
-      'a ^= b',
-      Context.None,
-      
-    ],
-    [
-      'a |= b',
-      Context.None,
-      
-    ],
-    [
-      'a **= b',
-      Context.None,
-      
-    ],
-    [
-      'a = b = c',
-      Context.None,
-      
-    ],
-    [
-      'a = b = c = d',
-      Context.None,
-      
-    ],
-    [
-      '(a) = b;',
-      Context.None,
-      
-    ],
-    [
-      '((a)) = b;',
-      Context.None,
-      
-    ],
-    [
-      'x = ((y)) = z',
-      Context.None,
-      
-    ],
-    [
-      'a = ((b)) = c;',
-      Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      'a ||= b',
-      Context.None,
-      
-    ],
-    [
-      'a &&= b',
-      Context.None,
-      
-    ],
-    [
-      'a ??= b',
-      Context.None | Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
+    ['a *= b', Context.None],
+    ['a /= b', Context.None],
+    ['a %= b', Context.None],
+    ['a += b', Context.None],
+    ['a -= b', Context.None],
+    ['a <<= b', Context.None],
+    ['a >>= b', Context.None],
+    ['a >>>= b', Context.None],
+    ['a |= b', Context.None],
+    ['a ^= b', Context.None],
+    ['a |= b', Context.None],
+    ['a **= b', Context.None],
+    ['a = b = c', Context.None],
+    ['a = b = c = d', Context.None],
+    ['(a) = b;', Context.None],
+    ['((a)) = b;', Context.None],
+    ['x = ((y)) = z', Context.None],
+    ['a = ((b)) = c;', Context.OptionsRanges | Context.OptionsLoc],
+    ['a ||= b', Context.None],
+    ['a &&= b', Context.None],
+    ['a ??= b', Context.None | Context.OptionsRanges | Context.OptionsLoc],
   ]);
 });

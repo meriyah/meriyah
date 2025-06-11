@@ -114,95 +114,23 @@ describe('Statements - Labeled', () => {
   ]);
 
   pass('Statements - Labeled (pass)', [
-    [
-      'function *f(){ await: x; }',
-      Context.OptionsWebCompat | Context.OptionsRanges,
-      
-    ],
-    [
-      'await: while (await) { continue await; }',
-      Context.OptionsWebCompat | Context.OptionsRanges,
-      
-    ],
-    [
-      'async: while (async) { continue async; }',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'let, let, let, let',
-      Context.OptionsWebCompat | Context.OptionsRanges,
-      
-    ],
-    [
-      'let: foo',
-      Context.OptionsWebCompat | Context.OptionsRanges,
-      
-    ],
-    [
-      'foo: function bar() {}',
-      Context.OptionsWebCompat | Context.OptionsRanges,
-      
-    ],
-    [
-      'yield: await',
-      Context.None,
-      
-    ],
-    [
-      'a:package',
-      Context.None,
-      
-    ],
-    [
-      '__proto__: test',
-      Context.None,
-      
-    ],
-    [
-      'a:{break a;}',
-      Context.None | Context.OptionsRanges,
-      
-    ],
-    [
-      'async: await',
-      Context.None,
-      
-    ],
-    [
-      'start: while (true) break start',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'if (false) {\n L: let\nx = 1; \n }',
-      Context.None,
-      
-    ],
-    [
-      'foo: bar: function f(){}',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'foo: bar: third: function f(){}',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'L: let\nx',
-      Context.None,
-      
-    ],
-    [
-      '__proto__: while (true) { break __proto__; }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a:{break a;}',
-      Context.None,
-      
-    ],
+    ['function *f(){ await: x; }', Context.OptionsWebCompat | Context.OptionsRanges],
+    ['await: while (await) { continue await; }', Context.OptionsWebCompat | Context.OptionsRanges],
+    ['async: while (async) { continue async; }', Context.OptionsWebCompat],
+    ['let, let, let, let', Context.OptionsWebCompat | Context.OptionsRanges],
+    ['let: foo', Context.OptionsWebCompat | Context.OptionsRanges],
+    ['foo: function bar() {}', Context.OptionsWebCompat | Context.OptionsRanges],
+    ['yield: await', Context.None],
+    ['a:package', Context.None],
+    ['__proto__: test', Context.None],
+    ['a:{break a;}', Context.None | Context.OptionsRanges],
+    ['async: await', Context.None],
+    ['start: while (true) break start', Context.OptionsRanges],
+    ['if (false) {\n L: let\nx = 1; \n }', Context.None],
+    ['foo: bar: function f(){}', Context.OptionsWebCompat],
+    ['foo: bar: third: function f(){}', Context.OptionsWebCompat],
+    ['L: let\nx', Context.None],
+    ['__proto__: while (true) { break __proto__; }', Context.OptionsRanges],
+    ['a:{break a;}', Context.None],
   ]);
 });

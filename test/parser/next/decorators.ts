@@ -106,21 +106,9 @@ describe('Next - Decorators', () => {
   ]);
 
   pass('Next - Decorators (pass)', [
-    [
-      `class A { @dec name = 0; }`,
-      Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      `class A {  @deco #prop; #foo = 2; test() {  this.#foo; }}`,
-      Context.OptionsNext,
-      
-    ],
-    [
-      `(class A { @foo get getter(){} })`,
-      Context.OptionsNext | Context.Module | Context.Strict,
-      
-    ],
+    [`class A { @dec name = 0; }`, Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
+    [`class A {  @deco #prop; #foo = 2; test() {  this.#foo; }}`, Context.OptionsNext],
+    [`(class A { @foo get getter(){} })`, Context.OptionsNext | Context.Module | Context.Strict],
     [
       `export default @id class Sample {
         method() {
@@ -128,31 +116,26 @@ describe('Next - Decorators', () => {
         }
       }`,
       Context.OptionsNext | Context.Module | Context.Strict,
-      
     ],
     [
       `@bar export default
           class Foo { }`,
       Context.OptionsNext | Context.Module | Context.Strict | Context.OptionsRanges | Context.OptionsLoc,
-      
     ],
     [
       `export default
           @bar class Foo { }`,
       Context.OptionsNext | Context.Module | Context.Strict | Context.OptionsRanges | Context.OptionsLoc,
-      
     ],
     [
       `export default @bar
           class Foo { }`,
       Context.OptionsNext | Context.Module | Context.Strict,
-      
     ],
     [
       `@lo export default @bar
           class Foo { }`,
       Context.OptionsNext | Context.Module | Context.Strict,
-      
     ],
     [
       `@pushElement({
@@ -165,7 +148,6 @@ describe('Next - Decorators', () => {
       class A {}
       new A();`,
       Context.OptionsNext | Context.Module | Context.Strict,
-      
     ],
     [
       `@decorator
@@ -175,19 +157,13 @@ describe('Next - Decorators', () => {
             async *f3() {}
           }`,
       Context.OptionsNext,
-      
     ],
-    [
-      `export default (@decorator class Foo {})`,
-      Context.OptionsNext | Context.Module | Context.Strict,
-      
-    ],
+    [`export default (@decorator class Foo {})`, Context.OptionsNext | Context.Module | Context.Strict],
     [
       `class Foo {
         @A * b() {}
       }`,
       Context.OptionsNext,
-      
     ],
     [
       `function deco() {}
@@ -197,36 +173,27 @@ describe('Next - Decorators', () => {
         *generatorMethod() {}
       }`,
       Context.OptionsNext,
-      
     ],
-    [
-      `@deco1 @deco2() @deco3(foo, bar) @deco4({foo, bar}) class Foo {}`,
-      Context.OptionsNext,
-      
-    ],
+    [`@deco1 @deco2() @deco3(foo, bar) @deco4({foo, bar}) class Foo {}`, Context.OptionsNext],
     [
       `@foo('bar')
   class Foo {}`,
       Context.OptionsNext,
-      
     ],
     [
       `@foo('bar')
   class Foo {}`,
       Context.OptionsNext | Context.Module,
-      
     ],
     [
       `(@foo('bar')
   class Foo {})`,
       Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc,
-      
     ],
     [
       `(@foo('bar')
   class Foo {})`,
       Context.OptionsNext | Context.Module,
-      
     ],
     [
       `class Foo {
@@ -234,7 +201,6 @@ describe('Next - Decorators', () => {
     static bar() {}
   }`,
       Context.OptionsNext,
-      
     ],
     [
       `class A {
@@ -246,7 +212,6 @@ describe('Next - Decorators', () => {
         }
       }`,
       Context.OptionsNext,
-      
     ],
     [
       `@deco
@@ -266,7 +231,6 @@ describe('Next - Decorators', () => {
           }
         }`,
       Context.OptionsNext,
-      
     ],
     [
       `@deco
@@ -278,7 +242,6 @@ describe('Next - Decorators', () => {
             }
           }`,
       Context.OptionsNext,
-      
     ],
     [
       `class A {
@@ -286,7 +249,6 @@ describe('Next - Decorators', () => {
               #x;
             }`,
       Context.OptionsNext,
-      
     ],
     [
       `function writable(w) {
@@ -312,7 +274,6 @@ describe('Next - Decorators', () => {
                 }
               }`,
       Context.OptionsNext,
-      
     ],
     [
       `class A {
@@ -320,20 +281,17 @@ describe('Next - Decorators', () => {
                   static foo() {}
                 }`,
       Context.OptionsNext,
-      
     ],
     [
       `@foo(class Bar{})
     class Foo {}`,
       Context.OptionsNext,
-      
     ],
     [
       `class A {
           @foo get getter(){}
         }`,
       Context.OptionsNext,
-      
     ],
     [
       `@outer({
@@ -343,7 +301,6 @@ describe('Next - Decorators', () => {
 
           }`,
       Context.OptionsNext,
-      
     ],
     [
       `class Bar{
@@ -356,7 +313,6 @@ describe('Next - Decorators', () => {
               outerMethod() {}
             }`,
       Context.OptionsNext,
-      
     ],
     [
       `@({
@@ -366,14 +322,12 @@ describe('Next - Decorators', () => {
 
               }`,
       Context.OptionsNext,
-      
     ],
     [
       `class A {
                     @dec #name = 0
                   }`,
       Context.OptionsNext,
-      
     ],
     [
       `class Foo {
@@ -381,54 +335,20 @@ describe('Next - Decorators', () => {
                       static bar() {}
                     }`,
       Context.OptionsNext,
-      
     ],
     [
       `class A {
                         @dec static #name = 0
                       }`,
       Context.OptionsNext,
-      
     ],
-    [
-      `class Foo { @foo @bar bar() {} }`,
-      Context.OptionsNext,
-      
-    ],
-    [
-      `var Foo = @foo class Foo {}`,
-      Context.OptionsNext,
-      
-    ],
-    [
-      `class Foo { @foo set bar(f) {} }`,
-      Context.OptionsNext,
-      
-    ],
-    [
-      '@a(@b class C {}) @d(@e() class F {}) class G {}',
-      Context.OptionsNext,
-      
-    ],
-    [
-      '@a(@b class C {}) @d(@e() class F {}) class G {}',
-      Context.OptionsNext | Context.Module,
-      
-    ],
-    [
-      '@a class G {}',
-      Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      'class A { @dec accessor a }',
-      Context.OptionsNext | Context.OptionsLoc,
-      
-    ],
-    [
-      'class A { @dec accessor #a }',
-      Context.OptionsNext,
-      
-    ],
+    [`class Foo { @foo @bar bar() {} }`, Context.OptionsNext],
+    [`var Foo = @foo class Foo {}`, Context.OptionsNext],
+    [`class Foo { @foo set bar(f) {} }`, Context.OptionsNext],
+    ['@a(@b class C {}) @d(@e() class F {}) class G {}', Context.OptionsNext],
+    ['@a(@b class C {}) @d(@e() class F {}) class G {}', Context.OptionsNext | Context.Module],
+    ['@a class G {}', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
+    ['class A { @dec accessor a }', Context.OptionsNext | Context.OptionsLoc],
+    ['class A { @dec accessor #a }', Context.OptionsNext],
   ]);
 });

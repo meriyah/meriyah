@@ -576,31 +576,11 @@ describe('Declarations - Let', () => {
   ]);
 
   pass('Declarations - Let (pass)', [
-    [
-      'for (let {[x]: y = z} of obj);',
-      Context.None,
-      
-    ],
-    [
-      '[x = true] = y',
-      Context.None,
-      
-    ],
-    [
-      'let [,] = x;',
-      Context.None,
-      
-    ],
-    [
-      'let [foo=a] = arr;',
-      Context.None,
-      
-    ],
-    [
-      'for (let;;);',
-      Context.None,
-      
-    ],
+    ['for (let {[x]: y = z} of obj);', Context.None],
+    ['[x = true] = y', Context.None],
+    ['let [,] = x;', Context.None],
+    ['let [foo=a] = arr;', Context.None],
+    ['for (let;;);', Context.None],
 
     [
       `if (false) {
@@ -608,7 +588,6 @@ describe('Declarations - Let', () => {
       x = 1;
   }`,
       Context.None,
-      
     ],
     [
       `if (false) {
@@ -616,7 +595,6 @@ describe('Declarations - Let', () => {
         x = 1;
     }`,
       Context.None,
-      
     ],
     [
       `if (false) {
@@ -624,275 +602,65 @@ describe('Declarations - Let', () => {
           x = 1;
       }`,
       Context.None,
-      
     ],
-    [
-      'for (;let;);',
-      Context.None,
-      
-    ],
-    [
-      '_ => { let: foo; }',
-      Context.None,
-      
-    ],
-    [
-      'let: let;',
-      Context.None,
-      
-    ],
-    [
-      'for (let {x, y : z} in obj);',
-      Context.None,
-      
-    ],
-    [
-      'for (let {x : y = z} in obj);',
-      Context.None,
-      
-    ],
+    ['for (;let;);', Context.None],
+    ['_ => { let: foo; }', Context.None],
+    ['let: let;', Context.None],
+    ['for (let {x, y : z} in obj);', Context.None],
+    ['for (let {x : y = z} in obj);', Context.None],
 
-    [
-      'for (let();;);',
-      Context.None,
-      
-    ],
-    [
-      'for (let {x : y, z, a : b = c} in obj);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for (let {[x]: y} in obj);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for (let {[x]: y = z} in obj);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for (let {a, [x]: y} in obj);',
-      Context.None,
-      
-    ],
-    [
-      'let {...x} = y',
-      Context.None,
-      
-    ],
-    [
-      'for (let [] of x);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [,] of x);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [foo,] of arr);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [foo,,] of arr);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [foo,,bar] of arr);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [foo=a] of arr);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [foo, bar=b] of arr);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [foo=a, bar=b] of arr);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [...[foo, bar]] of obj);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [a=[...b], ...c] of obj);',
-      Context.None,
-      
-    ],
-    [
-      'let foo = bar;',
-      Context.None,
-      
-    ],
-    [
-      'if (x) let;',
-      Context.None,
-      
-    ],
-    [
-      'for (let [...[foo, bar]] in obj);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [x, ...[foo, bar]] in obj);',
-      Context.None,
-      
-    ],
-    [
-      'for (let [a=[...b], ...c] in obj);',
-      Context.None,
-      
-    ],
-    [
-      'for (let {} in obj);',
-      Context.None,
-      
-    ],
-    [
-      'for (let {x,} in obj);  ',
-      Context.None,
-      
-    ],
-    [
-      'for (let {x = y} in obj);',
-      Context.None,
-      
-    ],
-    [
-      'for (let {x, y = z} in obj);',
-      Context.None,
-      
-    ],
-    [
-      'for (let {x = y, z = a} in obj);',
-      Context.None,
-      
-    ],
-    [
-      'for (let {x : y} in obj);',
-      Context.None,
-      
-    ],
-    [
-      'let [foo=a, bar] = arr;',
-      Context.None,
-      
-    ],
-    [
-      'let [...foo] = obj;',
-      Context.None,
-      
-    ],
-    [
-      'let [foo, ...bar] = obj;',
-      Context.None,
-      
-    ],
-    [
-      'let {x} = a, y = obj;',
-      Context.None,
-      
-    ],
-    [
-      'let foo;',
-      Context.None,
-      
-    ],
+    ['for (let();;);', Context.None],
+    ['for (let {x : y, z, a : b = c} in obj);', Context.OptionsRanges],
+    ['for (let {[x]: y} in obj);', Context.OptionsRanges],
+    ['for (let {[x]: y = z} in obj);', Context.OptionsRanges],
+    ['for (let {a, [x]: y} in obj);', Context.None],
+    ['let {...x} = y', Context.None],
+    ['for (let [] of x);', Context.None],
+    ['for (let [,] of x);', Context.None],
+    ['for (let [foo,] of arr);', Context.None],
+    ['for (let [foo,,] of arr);', Context.None],
+    ['for (let [foo,,bar] of arr);', Context.None],
+    ['for (let [foo=a] of arr);', Context.None],
+    ['for (let [foo, bar=b] of arr);', Context.None],
+    ['for (let [foo=a, bar=b] of arr);', Context.None],
+    ['for (let [...[foo, bar]] of obj);', Context.None],
+    ['for (let [a=[...b], ...c] of obj);', Context.None],
+    ['let foo = bar;', Context.None],
+    ['if (x) let;', Context.None],
+    ['for (let [...[foo, bar]] in obj);', Context.None],
+    ['for (let [x, ...[foo, bar]] in obj);', Context.None],
+    ['for (let [a=[...b], ...c] in obj);', Context.None],
+    ['for (let {} in obj);', Context.None],
+    ['for (let {x,} in obj);  ', Context.None],
+    ['for (let {x = y} in obj);', Context.None],
+    ['for (let {x, y = z} in obj);', Context.None],
+    ['for (let {x = y, z = a} in obj);', Context.None],
+    ['for (let {x : y} in obj);', Context.None],
+    ['let [foo=a, bar] = arr;', Context.None],
+    ['let [...foo] = obj;', Context.None],
+    ['let [foo, ...bar] = obj;', Context.None],
+    ['let {x} = a, y = obj;', Context.None],
+    ['let foo;', Context.None],
 
-    [
-      'let a, [...x] = y',
-      Context.None,
-      
-    ],
-    [
-      'let {...x} = y',
-      Context.None,
-      
-    ],
-    [
-      'var let;',
-      Context.None,
-      
-    ],
-    [
-      'var [let] = x;',
-      Context.None,
-      
-    ],
-    [
-      'var {let} = x;',
-      Context.None,
-      
-    ],
-    [
-      'let.foo;',
-      Context.None,
-      
-    ],
-    [
-      'let {let: foo} = x;',
-      Context.None,
-      
-    ],
-    [
-      'let {a, let: foo} = x;',
-      Context.None,
-      
-    ],
-    [
-      'let();',
-      Context.None,
-      
-    ],
-    [
-      'let [x, ...[foo, bar]] = obj;',
-      Context.None,
-      
-    ],
-    [
-      'let {} = obj;',
-      Context.None,
-      
-    ],
-    [
-      'let {x} = obj;',
-      Context.None,
-      
-    ],
-    [
-      'let {x,} = obj;',
-      Context.None,
-      
-    ],
-    [
-      'let {x, y} = obj;',
-      Context.OptionsRanges,
-      
-    ],
+    ['let a, [...x] = y', Context.None],
+    ['let {...x} = y', Context.None],
+    ['var let;', Context.None],
+    ['var [let] = x;', Context.None],
+    ['var {let} = x;', Context.None],
+    ['let.foo;', Context.None],
+    ['let {let: foo} = x;', Context.None],
+    ['let {a, let: foo} = x;', Context.None],
+    ['let();', Context.None],
+    ['let [x, ...[foo, bar]] = obj;', Context.None],
+    ['let {} = obj;', Context.None],
+    ['let {x} = obj;', Context.None],
+    ['let {x,} = obj;', Context.None],
+    ['let {x, y} = obj;', Context.OptionsRanges],
     [
       `a = let;
       []`,
       Context.None,
-      
     ],
-    [
-      'let {x} = a, {y} = obj;',
-      Context.OptionsRanges,
-      
-    ],
+    ['let {x} = a, {y} = obj;', Context.OptionsRanges],
   ]);
 });

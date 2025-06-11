@@ -1171,134 +1171,34 @@ describe('Expressions - Arrow', () => {
     });
   }
   pass('Expressions - Arrow (pass)', [
-    [
-      'async let => {}',
-      Context.OptionsLexical,
-      
-    ],
-    [
-      'let => {}',
-      Context.OptionsLexical,
-      
-    ],
+    ['async let => {}', Context.OptionsLexical],
+    ['let => {}', Context.OptionsLexical],
 
-    [
-      'f = ([[,] = g()]) => {}',
-      Context.None,
-      
-    ],
+    ['f = ([[,] = g()]) => {}', Context.None],
 
-    [
-      '() => { let x }',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'let => a + b',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'async let => {}, let => {}',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'let => {}, let => {}',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'let => {}',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'f = ([[,] = g()]) => {}',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      '([[[[[[[[[[[[[[[[[[[[{a=b}]]]]]]]]]]]]]]]]]]]])=>0;',
-      Context.None,
-      
-    ],
+    ['() => { let x }', Context.OptionsWebCompat],
+    ['let => a + b', Context.OptionsWebCompat],
+    ['async let => {}, let => {}', Context.OptionsWebCompat],
+    ['let => {}, let => {}', Context.OptionsWebCompat],
+    ['let => {}', Context.OptionsWebCompat],
+    ['f = ([[,] = g()]) => {}', Context.OptionsWebCompat],
+    ['([[[[[[[[[[[[[[[[[[[[{a=b}]]]]]]]]]]]]]]]]]]]])=>0;', Context.None],
 
-    [
-      'a => a + x',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a => a / x',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a => x.foo',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(() => {}) << x',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a => x[foo]',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a => x()',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '() => {}\n+function(){}',
-      Context.None,
-      
-    ],
-    [
-      'fn = (a, b, ...c) => c;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(interface)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({}) => {}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(x = yield = x) => x',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '([x = yield]) => x',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '([x, {y: [yield]}])',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '([], a) => {}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(a = b) => {}',
-      Context.None,
-      
-    ],
+    ['a => a + x', Context.OptionsRanges],
+    ['a => a / x', Context.OptionsRanges],
+    ['a => x.foo', Context.OptionsRanges],
+    ['(() => {}) << x', Context.OptionsRanges],
+    ['a => x[foo]', Context.OptionsRanges],
+    ['a => x()', Context.OptionsRanges],
+    ['() => {}\n+function(){}', Context.None],
+    ['fn = (a, b, ...c) => c;', Context.OptionsRanges],
+    ['(interface)', Context.OptionsRanges],
+    ['({}) => {}', Context.OptionsRanges],
+    ['(x = yield = x) => x', Context.OptionsRanges],
+    ['([x = yield]) => x', Context.OptionsRanges],
+    ['([x, {y: [yield]}])', Context.OptionsRanges],
+    ['([], a) => {}', Context.OptionsRanges],
+    ['(a = b) => {}', Context.None],
     [
       `(expect, subject, typeName) => {
           typeName = /^reg(?:exp?|ular expression)$/.test(typeName)
@@ -1318,378 +1218,81 @@ describe('Expressions - Arrow', () => {
           }
         }`,
       Context.OptionsRanges,
-      
     ],
-    [
-      '(a, b = c) => {}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(x, y = 9, z = 8) => {}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({a} = {}) => {}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'let x = ({y=z}=e) => d',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '([x] = []) => {}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(...a) => 0',
-      Context.None,
-      
-    ],
-    [
-      'e => "test"',
-      Context.None,
-      
-    ],
-    [
-      'e => { label: 42 }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(a, b) => { 42; }',
-      Context.None,
-      
-    ],
-    [
-      '(x=1) => x * x',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'arguments => 42',
-      Context.None,
-      
-    ],
-    [
-      '(eval = 10) => 42',
-      Context.None,
-      
-    ],
-    [
-      '(x) => ((y, z) => (x, y, z))',
-      Context.None,
-      
-    ],
-    [
-      'foo(() => {})',
-      Context.None,
-      
-    ],
-    [
-      'foo((x, y) => {})',
-      Context.None,
-      
-    ],
-    [
-      'x => { function x() {} }',
-      Context.None,
-      
-    ],
-    [
-      '(a, ...b) => {}',
-      Context.None,
-      
-    ],
-    [
-      '(...a) => {}',
-      Context.None,
-      
-    ],
-    [
-      '(a = 1) => {}',
-      Context.None,
-      
-    ],
-    [
-      `async (eval) => "use strict";`,
-      Context.None,
-      
-    ],
-    [
-      '(x) => { function x() {} }',
-      Context.None,
-      
-    ],
-    [
-      '([x, y] = z) => x;',
-      Context.None,
-      
-    ],
-    [
-      '([...x]) => x',
-      Context.None,
-      
-    ],
-    [
-      '([x, ...y]) => x',
-      Context.None,
-      
-    ],
-    [
-      '([[x, y] = z]) => x;',
-      Context.None,
-      
-    ],
-    [
-      '() => { let {} = y }',
-      Context.None,
-      
-    ],
-    [
-      '(x, y)=>x;',
-      Context.None,
-      
-    ],
-    [
-      '(a = 1, b = 2) => x;',
-      Context.None,
-      
-    ],
-    [
-      'a = (b) => c;',
-      Context.None,
-      
-    ],
-    [
-      '({x});',
-      Context.None,
-      
-    ],
-    [
-      '({ident: {x: y}}) => x',
-      Context.None,
-      
-    ],
-    [
-      '({ident: {x}}) => x',
-      Context.None,
-      
-    ],
-    [
-      '({a} = b,) => {}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(a, b, (c, d) => 0)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(a, b) => 0, (c, d) => 1',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(a, b => {}, a => a + 1)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '() => a + b - yield / 1',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({x = 10, y: { z = 10 }}) => [x, z]',
-      Context.OptionsRanges | Context.OptionsRaw,
-      
-    ],
-    [
-      '({x = 10}) => x',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(a, {}) => {}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({}, a) => {}',
-      Context.None,
-      
-    ],
-    [
-      '(eval = 10) => 42;',
-      Context.None,
-      
-    ],
-    [
-      '(a = b, c) => {}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(x = 9) => {}',
-      Context.None,
-      
-    ],
-    [
-      '(a) => 00;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(x, y) => x + y',
-      Context.None,
-      
-    ],
-    [
-      '(x, y) => z => z * (x + y)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({a} = {}) => {}',
-      Context.None,
-      
-    ],
-    [
-      '() => bar',
-      Context.None,
-      
-    ],
-    [
-      '(( [x]=f(yield) )=>{});',
-      Context.None,
-      
-    ],
-    [
-      '(( {x=f(yield)} )=>{});',
-      Context.None,
-      
-    ],
-    [
-      'for ( f => ( "key" in {}) ; 0;);',
-      Context.None,
-      
-    ],
-    [
-      '(x, y) => z => z * (x + y);',
-      Context.None,
-      
-    ],
-    [
-      'x => (y, z) => z * (x + y)',
-      Context.None,
-      
-    ],
-    [
-      'a, b => 0;',
-      Context.None,
-      
-    ],
-    [
-      'a, b, (c, d) => 0;',
-      Context.None,
-      
-    ],
-    [
-      'var x = ({x = 30}, [y], z) => x',
-      Context.None,
-      
-    ],
-    [
-      'var x = ([x = 25]) => x => x => ({x} = {})',
-      Context.None,
-      
-    ],
-    [
-      'var x = foo => x => x => x => {x}',
-      Context.None,
-      
-    ],
-    [
-      '(a, b) => 0, (c, d) => 1;',
-      Context.None,
-      
-    ],
-    [
-      '(a, b => {}, a => a + 1);',
-      Context.None,
-      
-    ],
-    [
-      '((a, b) => {}, (a => a + 1));',
-      Context.None,
-      
-    ],
-    [
-      '(a, (a, (b, c) => 0));',
-      Context.None,
-      
-    ],
-    [
-      'foo ? bar : baz => {};',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(a, {}) => {};',
-      Context.None,
-      
-    ],
-    [
-      '({}, a) => {};',
-      Context.None,
-      
-    ],
-    [
-      '({a}) => {};',
-      Context.None,
-      
-    ],
-    [
-      '(x = 9) => {};',
-      Context.None,
-      
-    ],
-    [
-      '(x, y = 9) => {};',
-      Context.None,
-      
-    ],
-    [
-      '(x = 9, y) => {};',
-      Context.None,
-      
-    ],
-    [
-      '(x, y = 9, z = 8) => {};',
-      Context.None,
-      
-    ],
-    [
-      '({a} = {}) => {};',
-      Context.None,
-      
-    ],
-    [
-      '([x] = []) => {};',
-      Context.None,
-      
-    ],
-    [
-      '([x = 0]) => {};',
-      Context.None,
-      
-    ],
+    ['(a, b = c) => {}', Context.OptionsRanges],
+    ['(x, y = 9, z = 8) => {}', Context.OptionsRanges],
+    ['({a} = {}) => {}', Context.OptionsRanges],
+    ['let x = ({y=z}=e) => d', Context.OptionsRanges],
+    ['([x] = []) => {}', Context.OptionsRanges],
+    ['(...a) => 0', Context.None],
+    ['e => "test"', Context.None],
+    ['e => { label: 42 }', Context.OptionsRanges],
+    ['(a, b) => { 42; }', Context.None],
+    ['(x=1) => x * x', Context.OptionsRanges],
+    ['arguments => 42', Context.None],
+    ['(eval = 10) => 42', Context.None],
+    ['(x) => ((y, z) => (x, y, z))', Context.None],
+    ['foo(() => {})', Context.None],
+    ['foo((x, y) => {})', Context.None],
+    ['x => { function x() {} }', Context.None],
+    ['(a, ...b) => {}', Context.None],
+    ['(...a) => {}', Context.None],
+    ['(a = 1) => {}', Context.None],
+    [`async (eval) => "use strict";`, Context.None],
+    ['(x) => { function x() {} }', Context.None],
+    ['([x, y] = z) => x;', Context.None],
+    ['([...x]) => x', Context.None],
+    ['([x, ...y]) => x', Context.None],
+    ['([[x, y] = z]) => x;', Context.None],
+    ['() => { let {} = y }', Context.None],
+    ['(x, y)=>x;', Context.None],
+    ['(a = 1, b = 2) => x;', Context.None],
+    ['a = (b) => c;', Context.None],
+    ['({x});', Context.None],
+    ['({ident: {x: y}}) => x', Context.None],
+    ['({ident: {x}}) => x', Context.None],
+    ['({a} = b,) => {}', Context.OptionsRanges],
+    ['(a, b, (c, d) => 0)', Context.OptionsRanges],
+    ['(a, b) => 0, (c, d) => 1', Context.OptionsRanges],
+    ['(a, b => {}, a => a + 1)', Context.OptionsRanges],
+    ['() => a + b - yield / 1', Context.OptionsRanges],
+    ['({x = 10, y: { z = 10 }}) => [x, z]', Context.OptionsRanges | Context.OptionsRaw],
+    ['({x = 10}) => x', Context.OptionsRanges],
+    ['(a, {}) => {}', Context.OptionsRanges],
+    ['({}, a) => {}', Context.None],
+    ['(eval = 10) => 42;', Context.None],
+    ['(a = b, c) => {}', Context.OptionsRanges],
+    ['(x = 9) => {}', Context.None],
+    ['(a) => 00;', Context.OptionsRanges],
+    ['(x, y) => x + y', Context.None],
+    ['(x, y) => z => z * (x + y)', Context.OptionsRanges],
+    ['({a} = {}) => {}', Context.None],
+    ['() => bar', Context.None],
+    ['(( [x]=f(yield) )=>{});', Context.None],
+    ['(( {x=f(yield)} )=>{});', Context.None],
+    ['for ( f => ( "key" in {}) ; 0;);', Context.None],
+    ['(x, y) => z => z * (x + y);', Context.None],
+    ['x => (y, z) => z * (x + y)', Context.None],
+    ['a, b => 0;', Context.None],
+    ['a, b, (c, d) => 0;', Context.None],
+    ['var x = ({x = 30}, [y], z) => x', Context.None],
+    ['var x = ([x = 25]) => x => x => ({x} = {})', Context.None],
+    ['var x = foo => x => x => x => {x}', Context.None],
+    ['(a, b) => 0, (c, d) => 1;', Context.None],
+    ['(a, b => {}, a => a + 1);', Context.None],
+    ['((a, b) => {}, (a => a + 1));', Context.None],
+    ['(a, (a, (b, c) => 0));', Context.None],
+    ['foo ? bar : baz => {};', Context.OptionsRanges],
+    ['(a, {}) => {};', Context.None],
+    ['({}, a) => {};', Context.None],
+    ['({a}) => {};', Context.None],
+    ['(x = 9) => {};', Context.None],
+    ['(x, y = 9) => {};', Context.None],
+    ['(x = 9, y) => {};', Context.None],
+    ['(x, y = 9, z = 8) => {};', Context.None],
+    ['({a} = {}) => {};', Context.None],
+    ['([x] = []) => {};', Context.None],
+    ['([x = 0]) => {};', Context.None],
     [
       `(a) => b;  // 1 args
     (a, b) => c;  // n args
@@ -1700,28 +1303,14 @@ describe('Expressions - Arrow', () => {
     a=>{return b;}
     a => 'e';  // Dropping the parens`,
       Context.OptionsRanges,
-      
     ],
-    [
-      'const a = () => {return (3, 4);};',
-      Context.OptionsRanges,
-      
-    ],
+    ['const a = () => {return (3, 4);};', Context.OptionsRanges],
     [
       `(() => {}) || true;
     (() => {}) ? a : b;`,
       Context.OptionsRanges,
-      
     ],
-    [
-      '(() => {}) + 2',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'bar ? ( (x, y) => (u, v) => x*u + y*v ) : baz;',
-      Context.OptionsRanges,
-      
-    ],
+    ['(() => {}) + 2', Context.OptionsRanges],
+    ['bar ? ( (x, y) => (u, v) => x*u + y*v ) : baz;', Context.OptionsRanges],
   ]);
 });

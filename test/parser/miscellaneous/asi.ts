@@ -135,100 +135,24 @@ describe('Miscellaneous - ASI', () => {
 
   pass('Miscellaneous - ASI', [
     // Acorn issue: https://github.com/acornjs/acorn/issues/775
-    [
-      `;;1;;1;;1`,
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '"foo"\nx',
-      Context.OptionsRaw | Context.OptionsRanges,
-      
-    ],
-    [
-      `function f(){\n'foo';\n}`,
-      Context.OptionsRaw,
-      
-    ],
-    [
-      'function f(){\n"foo"\n}',
-      Context.OptionsRaw,
-      
-    ],
-    [
-      '"ignore me"\n++x',
-      Context.OptionsRaw,
-      
-    ],
-    [
-      '("use strict"); foo = 42;',
-      Context.OptionsRaw,
-      
-    ],
-    [
-      '("use strict"); eval = 42;',
-      Context.OptionsRaw,
-      
-    ],
-    [
-      '"USE STRICT";  var public = 1;',
-      Context.OptionsRaw,
-      
-    ],
-    [
-      '() => { "use strict"; }',
-      Context.OptionsRaw,
-      
-    ],
-    [
-      'function wrap() { "use asm"; "use strict"; foo }',
-      Context.OptionsRaw | Context.OptionsRanges,
-      
-    ],
-    [
-      '{ "use strict"; }',
-      Context.OptionsRaw,
-      
-    ],
-    [
-      'function a() { "use strict" } "use strict"; foo;',
-      Context.OptionsRaw,
-      
-    ],
-    [
-      'function f(){ "Esprima uses directives"; "use strict";}',
-      Context.OptionsRaw,
-      
-    ],
-    [
-      'function f(){ 123; "use strict";}',
-      Context.OptionsRaw,
-      
-    ],
-    [
-      'function f(){"use strict";}',
-      Context.OptionsRaw,
-      
-    ],
-    [
-      '+function f(){"use strict";}',
-      Context.OptionsRaw,
-      
-    ],
-    [
-      '({x:function(){"use strict";}})',
-      Context.OptionsRaw,
-      
-    ],
-    [
-      'function f(x){"use strict";}',
-      Context.OptionsRaw,
-      
-    ],
-    [
-      'function f(x, y){"use strict";}',
-      Context.OptionsRaw,
-      
-    ],
+    [`;;1;;1;;1`, Context.OptionsRanges],
+    ['"foo"\nx', Context.OptionsRaw | Context.OptionsRanges],
+    [`function f(){\n'foo';\n}`, Context.OptionsRaw],
+    ['function f(){\n"foo"\n}', Context.OptionsRaw],
+    ['"ignore me"\n++x', Context.OptionsRaw],
+    ['("use strict"); foo = 42;', Context.OptionsRaw],
+    ['("use strict"); eval = 42;', Context.OptionsRaw],
+    ['"USE STRICT";  var public = 1;', Context.OptionsRaw],
+    ['() => { "use strict"; }', Context.OptionsRaw],
+    ['function wrap() { "use asm"; "use strict"; foo }', Context.OptionsRaw | Context.OptionsRanges],
+    ['{ "use strict"; }', Context.OptionsRaw],
+    ['function a() { "use strict" } "use strict"; foo;', Context.OptionsRaw],
+    ['function f(){ "Esprima uses directives"; "use strict";}', Context.OptionsRaw],
+    ['function f(){ 123; "use strict";}', Context.OptionsRaw],
+    ['function f(){"use strict";}', Context.OptionsRaw],
+    ['+function f(){"use strict";}', Context.OptionsRaw],
+    ['({x:function(){"use strict";}})', Context.OptionsRaw],
+    ['function f(x){"use strict";}', Context.OptionsRaw],
+    ['function f(x, y){"use strict";}', Context.OptionsRaw],
   ]);
 });

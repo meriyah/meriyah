@@ -160,20 +160,8 @@ describe('Next - ImportCall', () => {
   }
 
   pass('Next - ImportCall (pass)', [
-    [
-      `import("lib.js").then(doThis);`,
-      Context.Strict | Context.Module | Context.OptionsRanges,
-      
-    ],
-    [
-      `async function bar(){ await import("./nchanged") }`,
-      Context.OptionsNext,
-      
-    ],
-    [
-      'function loadImport(file) { import(file).then(() => {}), console.log("Done."); }',
-      Context.OptionsNext,
-      
-    ],
+    [`import("lib.js").then(doThis);`, Context.Strict | Context.Module | Context.OptionsRanges],
+    [`async function bar(){ await import("./nchanged") }`, Context.OptionsNext],
+    ['function loadImport(file) { import(file).then(() => {}), console.log("Done."); }', Context.OptionsNext],
   ]);
 });

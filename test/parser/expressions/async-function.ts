@@ -242,106 +242,29 @@ describe('Expressions - Async function', () => {
     [String.raw`a = (async (p\u0061ckage) => { "use strict" })`, Context.None],
   ]);
   pass('Expressions - Async function (pass)', [
-    [
-      '(async function foo(a, b = 39,) {})',
-      Context.None,
-      
-    ],
-    [
-      'async function f() { let y = await x * x }',
-      Context.None,
-      
-    ],
-    [
-      'async function f() {} var f;',
-      Context.None,
-      
-    ],
-    [
-      'function g() {   async function f() {} var f;   }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(async function(){})',
-      Context.None,
-      
-    ],
-    [
-      '(async function foo() { }.prototype)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'async function foo(a = class {async bar() { await b }}) {}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(function f() { async function yield() {} })',
-      Context.None,
-      
-    ],
-    [
-      '({ async [yield]() {} });',
-      Context.None,
-      
-    ],
-    [
-      'f(async function(x) { await x })',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(function* g() { (async function yield() {}); })',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '"use strict"; ({ async yield() {} });',
-      Context.None,
-      
-    ],
-    [
-      '(function f() { ({ async [yield]() {} }); })',
-      Context.None,
-      
-    ],
-    [
-      'x = async function(a) { await a }',
-      Context.None,
-      
-    ],
-    [
-      'class X { static async await(){} }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'var O = { async 0(eval) {} }',
-      Context.None,
-      
-    ],
-    [
-      '(async function foo(a, b = 39,) { })',
-      Context.OptionsRanges,
-      
-    ],
+    ['(async function foo(a, b = 39,) {})', Context.None],
+    ['async function f() { let y = await x * x }', Context.None],
+    ['async function f() {} var f;', Context.None],
+    ['function g() {   async function f() {} var f;   }', Context.OptionsRanges],
+    ['(async function(){})', Context.None],
+    ['(async function foo() { }.prototype)', Context.OptionsRanges],
+    ['async function foo(a = class {async bar() { await b }}) {}', Context.OptionsRanges],
+    ['(function f() { async function yield() {} })', Context.None],
+    ['({ async [yield]() {} });', Context.None],
+    ['f(async function(x) { await x })', Context.OptionsRanges],
+    ['(function* g() { (async function yield() {}); })', Context.OptionsRanges],
+    ['"use strict"; ({ async yield() {} });', Context.None],
+    ['(function f() { ({ async [yield]() {} }); })', Context.None],
+    ['x = async function(a) { await a }', Context.None],
+    ['class X { static async await(){} }', Context.OptionsRanges],
+    ['var O = { async 0(eval) {} }', Context.None],
+    ['(async function foo(a, b = 39,) { })', Context.OptionsRanges],
     [
       '(async function*(a = b +=1, c = d += 1, e = f += 1, g = h += 1, i = j += 1, k = l +=1) {})',
       Context.OptionsRanges,
-      
     ],
-    [
-      '(async function foo(a,) {})',
-      Context.None,
-      
-    ],
+    ['(async function foo(a,) {})', Context.None],
 
-    [
-      '(async function foo(_ = (function() {}())) { })',
-      Context.None,
-      
-    ],
+    ['(async function foo(_ = (function() {}())) { })', Context.None],
   ]);
 });

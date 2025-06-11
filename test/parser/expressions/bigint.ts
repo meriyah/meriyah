@@ -142,20 +142,8 @@ describe('Expressions - BigInt', () => {
   }
 
   pass('Expressions - BigInt (pass)', [
-    [
-      '1n',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '1n + 2333333n',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '0xdead_BEEFn',
-      Context.OptionsRanges | Context.OptionsRaw,
-      
-    ],
+    ['1n', Context.OptionsRanges],
+    ['1n + 2333333n', Context.OptionsRanges],
+    ['0xdead_BEEFn', Context.OptionsRanges | Context.OptionsRaw],
   ]);
 });

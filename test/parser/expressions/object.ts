@@ -1424,126 +1424,30 @@ describe('Expressions - Object', () => {
   ]);
 
   pass('Expressions - Object (pass)', [
-    [
-      'x= { prototype(){} }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({a: b = c} = [2])',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({a: (b) = c} = [2])',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({a: (b).c} = [2])',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({a: (b).c = d} = [2])',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'var a = { __proto__: { abc: 123 } };',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'var b = { ["__proto__"]: { abc: 123 }};',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({...x = y, y})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({...a,});',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[...a] = []',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({[sourceKey()]: target()[targetKey()]} = source());',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'f(a, ...1 + 1, b)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function *f(){   s = {"foo": yield}   }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function *f(){   s = {"foo": yield /x/}   }',
-      Context.None,
-      
-    ],
-    [
-      '[{x : [{y:{z = 1}}] }] = [{x:[{y:{}}]}];',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function *f(){   s = {foo: yield /x/}   }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      's = {"foo": await = x} = x',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function f([...[a, b]]){}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function f({...a}){}',
-      Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      '(z = {...x.y} = z) => z',
-      Context.None,
-      
-    ],
-    [
-      '({foo: typeof /x/});',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function *f(){   s = {foo: yield /x/g}   }',
-      Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      '({...obj}) => {}',
-      Context.None,
-      
-    ],
-    [
-      'function *f(){   s = {"foo": yield /x/g}   }',
-      Context.None,
-      
-    ],
+    ['x= { prototype(){} }', Context.OptionsRanges],
+    ['({a: b = c} = [2])', Context.OptionsRanges],
+    ['({a: (b) = c} = [2])', Context.OptionsRanges],
+    ['({a: (b).c} = [2])', Context.OptionsRanges],
+    ['({a: (b).c = d} = [2])', Context.OptionsRanges],
+    ['var a = { __proto__: { abc: 123 } };', Context.OptionsRanges],
+    ['var b = { ["__proto__"]: { abc: 123 }};', Context.OptionsRanges],
+    ['({...x = y, y})', Context.OptionsRanges],
+    ['({...a,});', Context.OptionsRanges],
+    ['[...a] = []', Context.OptionsRanges],
+    ['({[sourceKey()]: target()[targetKey()]} = source());', Context.OptionsRanges],
+    ['f(a, ...1 + 1, b)', Context.OptionsRanges],
+    ['function *f(){   s = {"foo": yield}   }', Context.OptionsRanges],
+    ['function *f(){   s = {"foo": yield /x/}   }', Context.None],
+    ['[{x : [{y:{z = 1}}] }] = [{x:[{y:{}}]}];', Context.OptionsRanges],
+    ['function *f(){   s = {foo: yield /x/}   }', Context.OptionsRanges],
+    ['s = {"foo": await = x} = x', Context.OptionsRanges],
+    ['function f([...[a, b]]){}', Context.OptionsRanges],
+    ['function f({...a}){}', Context.OptionsRanges | Context.OptionsLoc],
+    ['(z = {...x.y} = z) => z', Context.None],
+    ['({foo: typeof /x/});', Context.OptionsRanges],
+    ['function *f(){   s = {foo: yield /x/g}   }', Context.OptionsRanges | Context.OptionsLoc],
+    ['({...obj}) => {}', Context.None],
+    ['function *f(){   s = {"foo": yield /x/g}   }', Context.None],
     [
       `var callCount = 0;
 
@@ -1556,29 +1460,12 @@ describe('Expressions - Object', () => {
         };
   }}`,
       Context.OptionsRanges,
-      
     ],
 
-    [
-      's = {foo: yield}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      's = {foo: yield / x}',
-      Context.None,
-      
-    ],
-    [
-      '({...obj} = foo)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'let { x4: { ...y4 } } = z;',
-      Context.OptionsRanges,
-      
-    ],
+    ['s = {foo: yield}', Context.OptionsRanges],
+    ['s = {foo: yield / x}', Context.None],
+    ['({...obj} = foo)', Context.OptionsRanges],
+    ['let { x4: { ...y4 } } = z;', Context.OptionsRanges],
     [
       `({
         把你想在页面内共享的变量写在这里喔 : 1,
@@ -1587,1900 +1474,400 @@ describe('Expressions - Object', () => {
         }
         });`,
       Context.OptionsRanges,
-      
     ],
     [
       'var {  a, "b": b1, [`c`]: c1, [d + "e"]: d1, [`${d}e`]: d2, ...e1 } = e;',
       Context.OptionsRanges | Context.OptionsRaw,
-      
     ],
-    [
-      's = {foo: yield /x/g}',
-      Context.None,
-      
-    ],
-    [
-      's = {"foo": yield /x/g}',
-      Context.None,
-      
-    ],
-    [
-      '({async *5(){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({async 8(){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({5(){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({"foo"(){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({async "a b c"(){}});',
-      Context.None,
-      
-    ],
-    [
-      '({async 15(){}});',
-      Context.OptionsLoc,
-      
-    ],
-    [
-      '({get "a b c"(){}});',
-      Context.OptionsLoc,
-      
-    ],
-    [
-      '({set 15(x){}});',
-      Context.None,
-      
-    ],
-    [
-      '({async *[x](){}})',
-      Context.None,
-      
-    ],
-    [
-      '({a:b,...obj} = foo)',
-      Context.None,
-      
-    ],
+    ['s = {foo: yield /x/g}', Context.None],
+    ['s = {"foo": yield /x/g}', Context.None],
+    ['({async *5(){}})', Context.OptionsRanges],
+    ['({async 8(){}})', Context.OptionsRanges],
+    ['({5(){}})', Context.OptionsRanges],
+    ['({"foo"(){}})', Context.OptionsRanges],
+    ['({async "a b c"(){}});', Context.None],
+    ['({async 15(){}});', Context.OptionsLoc],
+    ['({get "a b c"(){}});', Context.OptionsLoc],
+    ['({set 15(x){}});', Context.None],
+    ['({async *[x](){}})', Context.None],
+    ['({a:b,...obj} = foo)', Context.None],
 
-    [
-      '({async *ident(){}})',
-      Context.None,
-      
-    ],
-    [
-      '({set ident(ident){}})',
-      Context.None,
-      
-    ],
-    [
-      '({get ident(){}})',
-      Context.None,
-      
-    ],
-    [
-      '({async ident(){}})',
-      Context.None,
-      
-    ],
-    [
-      '({ident: {}.length} = x)',
-      Context.None,
-      
-    ],
-    [
-      '({ident: {}.length = x} = x)',
-      Context.None,
-      
-    ],
-    [
-      '({ident: [foo].length} = x)',
-      Context.None,
-      
-    ],
-    [
-      '({ident: [foo].length = x} = x)',
-      Context.None,
-      
-    ],
-    [
-      '({ident: {}.length} = x)',
-      Context.None,
-      
-    ],
-    [
-      '({ident: {}.length = x} = x)',
-      Context.None,
-      
-    ],
-    [
-      '({...obj} = {}) => {}',
-      Context.None,
-      
-    ],
+    ['({async *ident(){}})', Context.None],
+    ['({set ident(ident){}})', Context.None],
+    ['({get ident(){}})', Context.None],
+    ['({async ident(){}})', Context.None],
+    ['({ident: {}.length} = x)', Context.None],
+    ['({ident: {}.length = x} = x)', Context.None],
+    ['({ident: [foo].length} = x)', Context.None],
+    ['({ident: [foo].length = x} = x)', Context.None],
+    ['({ident: {}.length} = x)', Context.None],
+    ['({ident: {}.length = x} = x)', Context.None],
+    ['({...obj} = {}) => {}', Context.None],
 
-    [
-      '({...x[0] }= {});',
-      Context.None,
-      
-    ],
-    [
-      '({eval});',
-      Context.None,
-      
-    ],
-    [
-      '({eval} = x);',
-      Context.None,
-      
-    ],
-    [
-      '({...x[0] }= {});',
-      Context.None,
-      
-    ],
-    [
-      '({...rest})',
-      Context.None,
-      
-    ],
-    [
-      '({a, b, ...{c, e}})',
-      Context.None,
-      
-    ],
-    [
-      '({ x, ...{y , z} })',
-      Context.None,
-      
-    ],
-    [
-      '({a:b,...obj}) => {}',
-      Context.None,
-      
-    ],
-    [
-      '({a,...obj}) => {}',
-      Context.None,
-      
-    ],
-    [
-      'function f({ x, y, ...z }) {}',
-      Context.None,
-      
-    ],
-    [
-      '({x, ...y} = {x, ...y})',
-      Context.None,
-      
-    ],
-    [
-      '[(function() {})]',
-      Context.None,
-      
-    ],
-    [
-      '([[ x ]] = [undefined]= {});',
-      Context.None,
-      
-    ],
-    [
-      'someObject = { someKey: { ...mapGetters([ "some_val_1", "some_val_2" ]) } }',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      '(function({x, ...y}) {})',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'fn = ({text = "default", ...props}) => text + props.children',
-      Context.None,
-      
-    ],
-    [
-      '({x, ...y, a, ...b, c})',
-      Context.None,
-      
-    ],
-    [
-      'assignmentResult = { x: x = yield } = value',
-      Context.None,
-      
-    ],
-    [
-      '({l: 50..foo} = x)',
-      Context.None,
-      
-    ],
-    [
-      '({s: "foo".foo} = x)',
-      Context.None,
-      
-    ],
-    [
-      '({"foo": [x].foo}=y)',
-      Context.None,
-      
-    ],
-    [
-      '({"foo": {x}.foo}=y)',
-      Context.None,
-      
-    ],
-    [
-      '({"foo": 15..foo}=y)',
-      Context.None,
-      
-    ],
-    [
-      '({a: x = true} = y)',
-      Context.None,
-      
-    ],
-    [
-      '({a: {x} = true} = y)',
-      Context.None,
-      
-    ],
-    [
-      '({a: {x = true} = true} = y)',
-      Context.None,
-      
-    ],
-    [
-      '({"x": 600..xyz} = x)',
-      Context.None,
-      
-    ],
-    [
-      '({...x.y} = z)',
-      Context.None,
-      
-    ],
-    [
-      '({...x});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({a:b, c:d});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({a, c:d});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({a:b, c});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({a, c:d} = x);',
-      Context.None,
-      
-    ],
-    [
-      'wrap({1:b, 2:d});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({"a":b});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({"a":b, "c":d});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({"a":b, "c":d});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({[a]:b});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({[a]:b, [15]:d});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({foo(){}});',
-      Context.None,
-      
-    ],
-    [
-      '({typeof: x});',
-      Context.None,
-      
-    ],
-    [
-      '({typeof: x} = y);',
-      Context.None,
-      
-    ],
-    [
-      '({typeof: x}) => x;',
-      Context.None,
-      
-    ],
-    [
-      '({get typeof(){}});',
-      Context.None,
-      
-    ],
-    [
-      '({async typeof(){}});',
-      Context.None,
-      
-    ],
-    [
-      '({async * typeof(){}});',
-      Context.None,
-      
-    ],
-    [
-      'x = { async *[y](){} }',
-      Context.None,
-      
-    ],
-    [
-      '({async "a b c"(){}});',
-      Context.None,
-      
-    ],
-    [
-      '({async 15(){}});',
-      Context.None,
-      
-    ],
-    [
-      '({get 15(){}});',
-      Context.None,
-      
-    ],
-    [
-      '({set "a b c"(x){}});',
-      Context.None,
-      
-    ],
-    [
-      '({set 15(x){}});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({async(){}});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({foo(){}, bar(){}});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({foo(a,b,c){}});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({1(){}});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({"foo"(){}});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({async foo(){}});',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = ({async async(){}});',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = ({async "foo"(){}});',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = ({async 100(){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({async [foo](){}});',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = ({async foo(){}, async bar(){}});',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({x: y, z})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = ({async foo(){}, bar(){}});',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = ({foo(){}, async bar(){}});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({*foo(){}});',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = ({*get(){}});',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = ({*async(){}});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({*"foo"(){}});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({*[foo](){}});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({* foo(){},*bar(){}});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({* foo(){}, bar(){}});',
-      Context.None,
-      
-    ],
-    [
-      '({get foo(){}});',
-      Context.None,
-      
-    ],
-    [
-      '({get get(){}});',
-      Context.None,
-      
-    ],
-    [
-      '({get foo(){}, get bar(){}});',
-      Context.None,
-      
-    ],
-    [
-      '({get foo(){}, bar(){}});',
-      Context.None,
-      
-    ],
-    [
-      '({foo(){}, get bar(){}});',
-      Context.None,
-      
-    ],
-    [
-      '({get [foo](){}});',
-      Context.None,
-      
-    ],
-    [
-      '({get [foo](){}, [bar](){}});',
-      Context.None,
-      
-    ],
-    [
-      '({[foo](){}, get [bar](){}});',
-      Context.None,
-      
-    ],
-    [
-      '({get "foo"(){}});',
-      Context.None,
-      
-    ],
-    [
-      '({...x, y})',
-      Context.None,
-      
-    ],
-    [
-      '({get "foo"(){}});',
-      Context.None,
-      
-    ],
-    [
-      '({get 123(){}});',
-      Context.None,
-      
-    ],
-    [
-      '({set foo(a){}});',
-      Context.None,
-      
-    ],
-    [
-      '({set get(a){}});',
-      Context.None,
-      
-    ],
-    [
-      '({set foo(b){}, set bar(d){}});',
-      Context.None,
-      
-    ],
-    [
-      '({set foo(c){}, bar(){}});',
-      Context.None,
-      
-    ],
-    [
-      '({set [foo](a){}});',
-      Context.None,
-      
-    ],
-    [
-      '({set [foo](b){}, set [bar](d){}});',
-      Context.None,
-      
-    ],
-    [
-      '({set [foo](c){}, [bar](){}});',
-      Context.None,
-      
-    ],
-    [
-      '({[foo](){}, set [bar](e){}});',
-      Context.None,
-      
-    ],
-    [
-      '({set "foo"(a){}});',
-      Context.None,
-      
-    ],
-    [
-      '({set 123(a){}});',
-      Context.None,
-      
-    ],
-    [
-      '({foo: typeof x});',
-      Context.None,
-      
-    ],
-    [
-      '({}=obj);',
-      Context.None,
-      
-    ],
-    [
-      '({a}=obj);',
-      Context.None,
-      
-    ],
-    [
-      '({a:b}=obj);',
-      Context.None,
-      
-    ],
-    [
-      '({a, b}=obj);',
-      Context.None,
-      
-    ],
-    [
-      '({a:b, c:d}=obj);',
-      Context.None,
-      
-    ],
-    [
-      '({a, c:d}=obj);',
-      Context.None,
-      
-    ],
-    [
-      '({a:b, c}=obj);',
-      Context.None,
-      
-    ],
-    [
-      '({}=x);',
-      Context.None,
-      
-    ],
-    [
-      '({a=b}=c);',
-      Context.None,
-      
-    ],
-    [
-      '({a:v=b}=c);',
-      Context.None,
-      
-    ],
-    [
-      '({foo(){}, set bar(e){}});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({foo(){}, *bar(){}});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({*123(){}});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({async get(){}});',
-      Context.None,
-      
-    ],
-    [
-      '({get "a b c"(){}});',
-      Context.None,
-      
-    ],
-    [
-      '({*typeof(){}});',
-      Context.None,
-      
-    ],
-    [
-      '({typeof(){}});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({"a":b});',
-      Context.None,
-      
-    ],
-    [
-      'x = ({a:b, c} = x);',
-      Context.None,
-      
-    ],
-    [
-      '({[foo]: x} = y)',
-      Context.None,
-      
-    ],
-    [
-      'a = {} = b',
-      Context.None,
-      
-    ],
-    [
-      'a = {"a": b} = b',
-      Context.None,
-      
-    ],
-    [
-      '({x})',
-      Context.None,
-      
-    ],
-    [
-      '({x} = foo )',
-      Context.None,
-      
-    ],
-    [
-      'a = {}',
-      Context.None,
-      
-    ],
-    [
-      'a = {"a": b}',
-      Context.None,
-      
-    ],
-    [
-      'x = {get}',
-      Context.None,
-      
-    ],
-    [
-      'x = {async}',
-      Context.None,
-      
-    ],
-    [
-      'x = {get} = x',
-      Context.None,
-      
-    ],
-    [
-      'x = {async} = x',
-      Context.None,
-      
-    ],
-    [
-      'x = {a:b}',
-      Context.None,
-      
-    ],
-    [
-      'x = {get:b}',
-      Context.None,
-      
-    ],
-    [
-      'x = {async:b}',
-      Context.None,
-      
-    ],
-    [
-      'x = {a, b}',
-      Context.None,
-      
-    ],
-    [
-      'x = {a, b} = x',
-      Context.None,
-      
-    ],
-    [
-      'x = {a:b, c:d}',
-      Context.None,
-      
-    ],
-    [
-      'x = {a, c:d}',
-      Context.None,
-      
-    ],
-    [
-      'x = {a, c:d} = x',
-      Context.None,
-      
-    ],
-    [
-      'x = {a:b, c} = x',
-      Context.None,
-      
-    ],
-    [
-      '({ [a]: {} [a] })',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = {15:b}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = {.9:a, 0x84:b, 0b1:c, 0o27:d, 1e234:e}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = {1:b, 0:d}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = {"a":b}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = {"a":b, "c":d}',
-      Context.None,
-      
-    ],
-    [
-      'x = {[a]:b}',
-      Context.None,
-      
-    ],
-    [
-      'x = {[a]:b, [15]:d}',
-      Context.None,
-      
-    ],
-    [
-      'x = { *a() {} }',
-      Context.None,
-      
-    ],
-    [
-      'x = {0(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {.9(){}, 0x84(){}, 0b1(){}, 0o27(){}, 1e234(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {"foo"(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {async foo(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {async async(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {async "foo"(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {async 100(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {async [foo](){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {async foo(){}, async bar(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {async foo(){}, bar(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {foo(){}, async bar(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {*foo(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {*get(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {*set(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {*async(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {*"foo"(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {*123(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {*[foo](){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {* foo(){},*bar(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {* foo(){}, bar(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {foo(){}, *bar(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {get foo(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {get get(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {get foo(){}, get bar(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {get foo(){}, bar(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {foo(){}, get bar(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {get [foo](){}}',
-      Context.None,
-      
-    ],
+    ['({...x[0] }= {});', Context.None],
+    ['({eval});', Context.None],
+    ['({eval} = x);', Context.None],
+    ['({...x[0] }= {});', Context.None],
+    ['({...rest})', Context.None],
+    ['({a, b, ...{c, e}})', Context.None],
+    ['({ x, ...{y , z} })', Context.None],
+    ['({a:b,...obj}) => {}', Context.None],
+    ['({a,...obj}) => {}', Context.None],
+    ['function f({ x, y, ...z }) {}', Context.None],
+    ['({x, ...y} = {x, ...y})', Context.None],
+    ['[(function() {})]', Context.None],
+    ['([[ x ]] = [undefined]= {});', Context.None],
+    ['someObject = { someKey: { ...mapGetters([ "some_val_1", "some_val_2" ]) } }', Context.OptionsWebCompat],
+    ['(function({x, ...y}) {})', Context.OptionsWebCompat],
+    ['fn = ({text = "default", ...props}) => text + props.children', Context.None],
+    ['({x, ...y, a, ...b, c})', Context.None],
+    ['assignmentResult = { x: x = yield } = value', Context.None],
+    ['({l: 50..foo} = x)', Context.None],
+    ['({s: "foo".foo} = x)', Context.None],
+    ['({"foo": [x].foo}=y)', Context.None],
+    ['({"foo": {x}.foo}=y)', Context.None],
+    ['({"foo": 15..foo}=y)', Context.None],
+    ['({a: x = true} = y)', Context.None],
+    ['({a: {x} = true} = y)', Context.None],
+    ['({a: {x = true} = true} = y)', Context.None],
+    ['({"x": 600..xyz} = x)', Context.None],
+    ['({...x.y} = z)', Context.None],
+    ['({...x});', Context.None],
+    ['x = ({a:b, c:d});', Context.None],
+    ['x = ({a, c:d});', Context.None],
+    ['x = ({a:b, c});', Context.None],
+    ['x = ({a, c:d} = x);', Context.None],
+    ['wrap({1:b, 2:d});', Context.None],
+    ['x = ({"a":b});', Context.None],
+    ['x = ({"a":b, "c":d});', Context.None],
+    ['x = ({"a":b, "c":d});', Context.None],
+    ['x = ({[a]:b});', Context.None],
+    ['x = ({[a]:b, [15]:d});', Context.None],
+    ['x = ({foo(){}});', Context.None],
+    ['({typeof: x});', Context.None],
+    ['({typeof: x} = y);', Context.None],
+    ['({typeof: x}) => x;', Context.None],
+    ['({get typeof(){}});', Context.None],
+    ['({async typeof(){}});', Context.None],
+    ['({async * typeof(){}});', Context.None],
+    ['x = { async *[y](){} }', Context.None],
+    ['({async "a b c"(){}});', Context.None],
+    ['({async 15(){}});', Context.None],
+    ['({get 15(){}});', Context.None],
+    ['({set "a b c"(x){}});', Context.None],
+    ['({set 15(x){}});', Context.None],
+    ['x = ({async(){}});', Context.None],
+    ['x = ({foo(){}, bar(){}});', Context.None],
+    ['x = ({foo(a,b,c){}});', Context.None],
+    ['x = ({1(){}});', Context.None],
+    ['x = ({"foo"(){}});', Context.None],
+    ['x = ({async foo(){}});', Context.OptionsRanges],
+    ['x = ({async async(){}});', Context.OptionsRanges],
+    ['x = ({async "foo"(){}});', Context.OptionsRanges],
+    ['x = ({async 100(){}});', Context.None],
+    ['wrap({async [foo](){}});', Context.OptionsRanges],
+    ['x = ({async foo(){}, async bar(){}});', Context.OptionsRanges],
+    ['({x: y, z})', Context.OptionsRanges],
+    ['x = ({async foo(){}, bar(){}});', Context.OptionsRanges],
+    ['x = ({foo(){}, async bar(){}});', Context.None],
+    ['x = ({*foo(){}});', Context.OptionsRanges],
+    ['x = ({*get(){}});', Context.OptionsRanges],
+    ['x = ({*async(){}});', Context.None],
+    ['x = ({*"foo"(){}});', Context.None],
+    ['x = ({*[foo](){}});', Context.None],
+    ['x = ({* foo(){},*bar(){}});', Context.None],
+    ['x = ({* foo(){}, bar(){}});', Context.None],
+    ['({get foo(){}});', Context.None],
+    ['({get get(){}});', Context.None],
+    ['({get foo(){}, get bar(){}});', Context.None],
+    ['({get foo(){}, bar(){}});', Context.None],
+    ['({foo(){}, get bar(){}});', Context.None],
+    ['({get [foo](){}});', Context.None],
+    ['({get [foo](){}, [bar](){}});', Context.None],
+    ['({[foo](){}, get [bar](){}});', Context.None],
+    ['({get "foo"(){}});', Context.None],
+    ['({...x, y})', Context.None],
+    ['({get "foo"(){}});', Context.None],
+    ['({get 123(){}});', Context.None],
+    ['({set foo(a){}});', Context.None],
+    ['({set get(a){}});', Context.None],
+    ['({set foo(b){}, set bar(d){}});', Context.None],
+    ['({set foo(c){}, bar(){}});', Context.None],
+    ['({set [foo](a){}});', Context.None],
+    ['({set [foo](b){}, set [bar](d){}});', Context.None],
+    ['({set [foo](c){}, [bar](){}});', Context.None],
+    ['({[foo](){}, set [bar](e){}});', Context.None],
+    ['({set "foo"(a){}});', Context.None],
+    ['({set 123(a){}});', Context.None],
+    ['({foo: typeof x});', Context.None],
+    ['({}=obj);', Context.None],
+    ['({a}=obj);', Context.None],
+    ['({a:b}=obj);', Context.None],
+    ['({a, b}=obj);', Context.None],
+    ['({a:b, c:d}=obj);', Context.None],
+    ['({a, c:d}=obj);', Context.None],
+    ['({a:b, c}=obj);', Context.None],
+    ['({}=x);', Context.None],
+    ['({a=b}=c);', Context.None],
+    ['({a:v=b}=c);', Context.None],
+    ['({foo(){}, set bar(e){}});', Context.None],
+    ['x = ({foo(){}, *bar(){}});', Context.None],
+    ['x = ({*123(){}});', Context.None],
+    ['x = ({async get(){}});', Context.None],
+    ['({get "a b c"(){}});', Context.None],
+    ['({*typeof(){}});', Context.None],
+    ['({typeof(){}});', Context.None],
+    ['x = ({"a":b});', Context.None],
+    ['x = ({a:b, c} = x);', Context.None],
+    ['({[foo]: x} = y)', Context.None],
+    ['a = {} = b', Context.None],
+    ['a = {"a": b} = b', Context.None],
+    ['({x})', Context.None],
+    ['({x} = foo )', Context.None],
+    ['a = {}', Context.None],
+    ['a = {"a": b}', Context.None],
+    ['x = {get}', Context.None],
+    ['x = {async}', Context.None],
+    ['x = {get} = x', Context.None],
+    ['x = {async} = x', Context.None],
+    ['x = {a:b}', Context.None],
+    ['x = {get:b}', Context.None],
+    ['x = {async:b}', Context.None],
+    ['x = {a, b}', Context.None],
+    ['x = {a, b} = x', Context.None],
+    ['x = {a:b, c:d}', Context.None],
+    ['x = {a, c:d}', Context.None],
+    ['x = {a, c:d} = x', Context.None],
+    ['x = {a:b, c} = x', Context.None],
+    ['({ [a]: {} [a] })', Context.OptionsRanges],
+    ['x = {15:b}', Context.OptionsRanges],
+    ['x = {.9:a, 0x84:b, 0b1:c, 0o27:d, 1e234:e}', Context.OptionsRanges],
+    ['x = {1:b, 0:d}', Context.OptionsRanges],
+    ['x = {"a":b}', Context.OptionsRanges],
+    ['x = {"a":b, "c":d}', Context.None],
+    ['x = {[a]:b}', Context.None],
+    ['x = {[a]:b, [15]:d}', Context.None],
+    ['x = { *a() {} }', Context.None],
+    ['x = {0(){}}', Context.None],
+    ['x = {.9(){}, 0x84(){}, 0b1(){}, 0o27(){}, 1e234(){}}', Context.None],
+    ['x = {"foo"(){}}', Context.None],
+    ['x = {async foo(){}}', Context.None],
+    ['x = {async async(){}}', Context.None],
+    ['x = {async "foo"(){}}', Context.None],
+    ['x = {async 100(){}}', Context.None],
+    ['x = {async [foo](){}}', Context.None],
+    ['x = {async foo(){}, async bar(){}}', Context.None],
+    ['x = {async foo(){}, bar(){}}', Context.None],
+    ['x = {foo(){}, async bar(){}}', Context.None],
+    ['x = {*foo(){}}', Context.None],
+    ['x = {*get(){}}', Context.None],
+    ['x = {*set(){}}', Context.None],
+    ['x = {*async(){}}', Context.None],
+    ['x = {*"foo"(){}}', Context.None],
+    ['x = {*123(){}}', Context.None],
+    ['x = {*[foo](){}}', Context.None],
+    ['x = {* foo(){},*bar(){}}', Context.None],
+    ['x = {* foo(){}, bar(){}}', Context.None],
+    ['x = {foo(){}, *bar(){}}', Context.None],
+    ['x = {get foo(){}}', Context.None],
+    ['x = {get get(){}}', Context.None],
+    ['x = {get foo(){}, get bar(){}}', Context.None],
+    ['x = {get foo(){}, bar(){}}', Context.None],
+    ['x = {foo(){}, get bar(){}}', Context.None],
+    ['x = {get [foo](){}}', Context.None],
 
+    ['x = {get [foo](){}, get [bar](){}}', Context.None],
+    ['x = {get [foo](){}, [bar](){}}', Context.None],
+    ['x = {[foo](){}, get [bar](){}}', Context.None],
+    ['x = {get "foo"(){}}', Context.None],
+    ['x = {get 123(){}}', Context.None],
+    ['x = {set foo(a){}}', Context.None],
+    ['x = {set get(a){}}', Context.OptionsRanges],
+    ['x = {foo: typeof x}', Context.OptionsRanges],
+    ['x = {foo: true / false}', Context.None],
+    ['x = {await}  = x', Context.None],
+    ['x = {arguments}', Context.None],
+    ['x = {eval}', Context.None],
+    ['x = {"x": y+z}', Context.None],
+    ['x = {"x": [y]}', Context.None],
+    ['x = {"x": [y]} = x', Context.None],
+    ['x = {"x": [y + x]}', Context.None],
+    ['x = {"x": [y].slice(0)}', Context.None],
+    ['x = {"x": {y: z}}', Context.None],
+    ['x = {"x": {y: z}} = x', Context.None],
+    ['x = {"x": {a: y + x}}', Context.None],
+    ['x = {"x": {a: y + x}.slice(0)}', Context.None],
+    ['x = {"x": 600}', Context.None],
+    ['x = {"x": 600..xyz}', Context.None],
+    ['x = {...y}', Context.None],
+    ['x = {x, ...y}', Context.None],
+    ['x = {a, ...y, b}', Context.None],
+    ['x = {...y, b}', Context.None],
+    ['x = {...a,}', Context.None],
+    ['x = {...a=b}', Context.OptionsRanges],
+    ['x = {...a + b}', Context.None],
+    ['x = {...[a, b]}', Context.OptionsRanges],
+    ['x = {...{a, b}}', Context.OptionsRanges],
+    ['({...a})', Context.OptionsRanges],
+    ['({...a=b})', Context.OptionsRanges],
+    ['({...a+b})', Context.None],
+    ['({...[a, b]})', Context.None],
+    ['({...{a, b}})', Context.None],
+    ['x = {...a, ...b}', Context.None],
+    ['[{x:x = 1, y:y = 2}, [a = 3, b = 4, c = 5]] = {};', Context.OptionsRanges | Context.OptionsRaw],
+
+    ['({[foo()] : (z)} = z = {});', Context.OptionsRanges],
+
+    ['({a: 1, a: 2})', Context.None],
+    ['({a: 1, b: 3, a: 2})', Context.None],
+    ['({b: x, a: 1, a: 2})', Context.None],
+    ['({a: 1, a: 2, b: 3})', Context.None],
+    ['({a, a})', Context.None],
+    ['({a, a: 1})', Context.None],
+    ['({a: 1, a})', Context.None],
+    ['wrap({async "foo"(){}});', Context.None],
+    ['wrap({async 100(){}});', Context.None],
+    ['wrap({foo(){}, async bar(){}});', Context.None],
+    ['wrap({*foo(){}});', Context.None],
+    ['wrap({*get(){}});', Context.None],
+    ['wrap({*set(){}});', Context.None],
+    ['wrap({*async(){}});', Context.None],
+    ['wrap({*"foo"(){}});', Context.None],
+    ['wrap({*123(){}});', Context.None],
+    ['wrap({*[foo](){}});', Context.None],
+    ['wrap({* foo(){},*bar(){}});', Context.None],
+    ['wrap({get foo(){}});', Context.None],
+    ['(({a = 0}) => a)', Context.None],
+    ['(({a = 0} = {}) => a)({})', Context.None],
+    ['({x=1} = {});', Context.None],
+    ['(({a = 0} = {}) => a)({a: 1})', Context.None],
+    ['wrap({get get(){}});', Context.None],
+    ['wrap({get foo(){}, get bar(){}});', Context.None],
+    ['wrap({get foo(){}, bar(){}});', Context.None],
+    ['wrap({foo(){}, get bar(){}});', Context.None],
+    ['wrap({get [foo](){}});', Context.None],
+    ['wrap({get [foo](){}, get [bar](){}});', Context.None],
+    ['wrap({get [foo](){}, [bar](){}});', Context.None],
+    ['wrap({[foo](){}, get [bar](){}});', Context.None],
+    ['wrap({get "foo"(){}});', Context.None],
+    ['wrap({get 123(){}});', Context.None],
+    ['wrap({set get(a){}});', Context.None],
+    ['wrap({set foo(b){}, set bar(d){}});', Context.None],
+    ['wrap({set foo(c){}, bar(){}});', Context.None],
+    ['wrap({set [foo](a){}});', Context.None],
+    ['wrap({set [foo](b){}, set [bar](d){}});', Context.None],
+    ['wrap({set [foo](c){}, [bar](){}});', Context.None],
+    ['function x([a, b]){}', Context.None],
+    ['wrap({set [foo]([a, b]){}});', Context.None],
+    ['wrap({set "foo"(a){}});', Context.None],
+    ['wrap({set 123(a){}});', Context.None],
+    ['({foo: typeof x});', Context.None],
+    ['({foo: true / false});', Context.None],
+    ['wrap({}=obj);', Context.None],
+    ['wrap({a}=obj);', Context.None],
+    ['wrap({a:b}=obj);', Context.None],
+    ['wrap({a, b}=obj);', Context.None],
+    ['wrap({a:b, c:d}=obj);', Context.None],
+    ['wrap({a, c:d}=obj);', Context.None],
+    ['wrap({a:b, c}=obj);', Context.None],
+
+    ['({x:let}) => null', Context.None],
+    ['wrap({}=x);', Context.None],
+    ['wrap({a=b}=c);', Context.None],
+    ['wrap({a:v=b}=c);', Context.None],
+    ['({x:let} = null)', Context.None],
+    ['({x:let})', Context.None],
+    ['wrap({a:b=x}=y);', Context.None],
+    ['wrap({"a":b}=obj);', Context.None],
+    ['wrap({"a":b, "c":d}=obj);', Context.None],
+    ['({"x": y+z})', Context.None],
+    ['({"x": [y]})', Context.None],
+    ['({"x": [y]} = x)', Context.OptionsRanges],
+    ['({"x": [y]}) => x', Context.None],
+    ['({"x": [y + x]})', Context.OptionsRanges],
+    ['({"x": [y].slice(0)})', Context.None],
+    ['({"x": {y: z}})', Context.None],
+    ['({"x": {y: z}} = x)', Context.OptionsRanges],
+    ['({"x": {a: y + x}})', Context.None],
+    ['({"x": {a: y + x}.slice(0)})', Context.OptionsRanges],
+    ['({"x": 600})', Context.None],
+    ['({"x": 600..xyz})', Context.OptionsRanges],
+    ['wrap({[a]:b}=obj);', Context.OptionsRanges],
+    ['wrap({[a]:b, [15]:d}=obj);', Context.OptionsRanges],
+    ['x, {foo, bar} = doo', Context.None],
+    ['x, {foo = y, bar} = doo', Context.None],
+    ['x = {a, b} = y', Context.None],
+    ['({a, b} = c = d)', Context.None],
+    ['result = [x[yield]] = vals;', Context.None],
+    ['({ x: x[Y] } = x);', Context.OptionsRanges],
+    ['a={"b":c=d}', Context.None],
+    ['s = {s: true}', Context.None],
+    ['s = {s: this}', Context.None],
+    ['s = {"foo": this}', Context.None],
+    ['x={...true}', Context.None],
+    ['({x = 1} = {});', Context.OptionsRanges],
+    ['({x, y = 1, z = 2} = {});', Context.OptionsRanges],
     [
-      'x = {get [foo](){}, get [bar](){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {get [foo](){}, [bar](){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {[foo](){}, get [bar](){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {get "foo"(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {get 123(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {set foo(a){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {set get(a){}}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = {foo: typeof x}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = {foo: true / false}',
-      Context.None,
-      
-    ],
-    [
-      'x = {await}  = x',
-      Context.None,
-      
-    ],
-    [
-      'x = {arguments}',
-      Context.None,
-      
-    ],
-    [
-      'x = {eval}',
-      Context.None,
-      
-    ],
-    [
-      'x = {"x": y+z}',
-      Context.None,
-      
-    ],
-    [
-      'x = {"x": [y]}',
-      Context.None,
-      
-    ],
-    [
-      'x = {"x": [y]} = x',
-      Context.None,
-      
-    ],
-    [
-      'x = {"x": [y + x]}',
-      Context.None,
-      
-    ],
-    [
-      'x = {"x": [y].slice(0)}',
-      Context.None,
-      
-    ],
-    [
-      'x = {"x": {y: z}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {"x": {y: z}} = x',
-      Context.None,
-      
-    ],
-    [
-      'x = {"x": {a: y + x}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {"x": {a: y + x}.slice(0)}',
-      Context.None,
-      
-    ],
-    [
-      'x = {"x": 600}',
-      Context.None,
-      
-    ],
-    [
-      'x = {"x": 600..xyz}',
-      Context.None,
-      
-    ],
-    [
-      'x = {...y}',
-      Context.None,
-      
-    ],
-    [
-      'x = {x, ...y}',
-      Context.None,
-      
-    ],
-    [
-      'x = {a, ...y, b}',
-      Context.None,
-      
-    ],
-    [
-      'x = {...y, b}',
-      Context.None,
-      
-    ],
-    [
-      'x = {...a,}',
-      Context.None,
-      
-    ],
-    [
-      'x = {...a=b}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = {...a + b}',
-      Context.None,
-      
-    ],
-    [
-      'x = {...[a, b]}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = {...{a, b}}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({...a})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({...a=b})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({...a+b})',
-      Context.None,
-      
-    ],
-    [
-      '({...[a, b]})',
-      Context.None,
-      
-    ],
-    [
-      '({...{a, b}})',
-      Context.None,
-      
-    ],
-    [
-      'x = {...a, ...b}',
-      Context.None,
-      
-    ],
-    [
-      '[{x:x = 1, y:y = 2}, [a = 3, b = 4, c = 5]] = {};',
+      '[{x : [{y:{z = 1}, z1 = 2}] }, {x2 = 3}, {x3 : {y3:[{z3 = 4}]}} ] = [{x:[{y:{}}]}, {}, {x3:{y3:[{}]}}];',
       Context.OptionsRanges | Context.OptionsRaw,
-      
-    ],
-
-    [
-      '({[foo()] : (z)} = z = {});',
-      Context.OptionsRanges,
-      
-    ],
-
-    [
-      '({a: 1, a: 2})',
-      Context.None,
-      
-    ],
-    [
-      '({a: 1, b: 3, a: 2})',
-      Context.None,
-      
-    ],
-    [
-      '({b: x, a: 1, a: 2})',
-      Context.None,
-      
-    ],
-    [
-      '({a: 1, a: 2, b: 3})',
-      Context.None,
-      
-    ],
-    [
-      '({a, a})',
-      Context.None,
-      
-    ],
-    [
-      '({a, a: 1})',
-      Context.None,
-      
-    ],
-    [
-      '({a: 1, a})',
-      Context.None,
-      
-    ],
-    [
-      'wrap({async "foo"(){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({async 100(){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({foo(){}, async bar(){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({*foo(){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({*get(){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({*set(){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({*async(){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({*"foo"(){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({*123(){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({*[foo](){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({* foo(){},*bar(){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({get foo(){}});',
-      Context.None,
-      
-    ],
-    [
-      '(({a = 0}) => a)',
-      Context.None,
-      
-    ],
-    [
-      '(({a = 0} = {}) => a)({})',
-      Context.None,
-      
-    ],
-    [
-      '({x=1} = {});',
-      Context.None,
-      
-    ],
-    [
-      '(({a = 0} = {}) => a)({a: 1})',
-      Context.None,
-      
-    ],
-    [
-      'wrap({get get(){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({get foo(){}, get bar(){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({get foo(){}, bar(){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({foo(){}, get bar(){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({get [foo](){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({get [foo](){}, get [bar](){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({get [foo](){}, [bar](){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({[foo](){}, get [bar](){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({get "foo"(){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({get 123(){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({set get(a){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({set foo(b){}, set bar(d){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({set foo(c){}, bar(){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({set [foo](a){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({set [foo](b){}, set [bar](d){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({set [foo](c){}, [bar](){}});',
-      Context.None,
-      
-    ],
-    [
-      'function x([a, b]){}',
-      Context.None,
-      
-    ],
-    [
-      'wrap({set [foo]([a, b]){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({set "foo"(a){}});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({set 123(a){}});',
-      Context.None,
-      
-    ],
-    [
-      '({foo: typeof x});',
-      Context.None,
-      
-    ],
-    [
-      '({foo: true / false});',
-      Context.None,
-      
-    ],
-    [
-      'wrap({}=obj);',
-      Context.None,
-      
-    ],
-    [
-      'wrap({a}=obj);',
-      Context.None,
-      
-    ],
-    [
-      'wrap({a:b}=obj);',
-      Context.None,
-      
-    ],
-    [
-      'wrap({a, b}=obj);',
-      Context.None,
-      
-    ],
-    [
-      'wrap({a:b, c:d}=obj);',
-      Context.None,
-      
-    ],
-    [
-      'wrap({a, c:d}=obj);',
-      Context.None,
-      
-    ],
-    [
-      'wrap({a:b, c}=obj);',
-      Context.None,
-      
-    ],
-
-    [
-      '({x:let}) => null',
-      Context.None,
-      
-    ],
-    [
-      'wrap({}=x);',
-      Context.None,
-      
-    ],
-    [
-      'wrap({a=b}=c);',
-      Context.None,
-      
-    ],
-    [
-      'wrap({a:v=b}=c);',
-      Context.None,
-      
-    ],
-    [
-      '({x:let} = null)',
-      Context.None,
-      
-    ],
-    [
-      '({x:let})',
-      Context.None,
-      
-    ],
-    [
-      'wrap({a:b=x}=y);',
-      Context.None,
-      
-    ],
-    [
-      'wrap({"a":b}=obj);',
-      Context.None,
-      
-    ],
-    [
-      'wrap({"a":b, "c":d}=obj);',
-      Context.None,
-      
-    ],
-    [
-      '({"x": y+z})',
-      Context.None,
-      
-    ],
-    [
-      '({"x": [y]})',
-      Context.None,
-      
-    ],
-    [
-      '({"x": [y]} = x)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({"x": [y]}) => x',
-      Context.None,
-      
-    ],
-    [
-      '({"x": [y + x]})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({"x": [y].slice(0)})',
-      Context.None,
-      
-    ],
-    [
-      '({"x": {y: z}})',
-      Context.None,
-      
-    ],
-    [
-      '({"x": {y: z}} = x)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({"x": {a: y + x}})',
-      Context.None,
-      
-    ],
-    [
-      '({"x": {a: y + x}.slice(0)})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({"x": 600})',
-      Context.None,
-      
-    ],
-    [
-      '({"x": 600..xyz})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'wrap({[a]:b}=obj);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'wrap({[a]:b, [15]:d}=obj);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x, {foo, bar} = doo',
-      Context.None,
-      
-    ],
-    [
-      'x, {foo = y, bar} = doo',
-      Context.None,
-      
-    ],
-    [
-      'x = {a, b} = y',
-      Context.None,
-      
-    ],
-    [
-      '({a, b} = c = d)',
-      Context.None,
-      
-    ],
-    [
-      'result = [x[yield]] = vals;',
-      Context.None,
-      
-    ],
-    [
-      '({ x: x[Y] } = x);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a={"b":c=d}',
-      Context.None,
-      
-    ],
-    [
-      's = {s: true}',
-      Context.None,
-      
-    ],
-    [
-      's = {s: this}',
-      Context.None,
-      
-    ],
-    [
-      's = {"foo": this}',
-      Context.None,
-      
-    ],
-    [
-      'x={...true}',
-      Context.None,
-      
-    ],
-    [
-      '({x = 1} = {});',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({x, y = 1, z = 2} = {});',
-      Context.OptionsRanges,
-      
     ],
     [
       '[{x : [{y:{z = 1}, z1 = 2}] }, {x2 = 3}, {x3 : {y3:[{z3 = 4}]}} ] = [{x:[{y:{}}]}, {}, {x3:{y3:[{}]}}];',
       Context.OptionsRanges | Context.OptionsRaw,
-      
     ],
-    [
-      '[{x : [{y:{z = 1}, z1 = 2}] }, {x2 = 3}, {x3 : {y3:[{z3 = 4}]}} ] = [{x:[{y:{}}]}, {}, {x3:{y3:[{}]}}];',
-      Context.OptionsRanges | Context.OptionsRaw,
-      
-    ],
-    [
-      '({*ident(){}})',
-      Context.None,
-      
-    ],
-    [
-      '({*get(){}})',
-      Context.None,
-      
-    ],
-    [
-      '({*set(){}})',
-      Context.None,
-      
-    ],
-    [
-      '({*async(){}})',
-      Context.None,
-      
-    ],
-    [
-      '({653: [x].foo})',
-      Context.None,
-      
-    ],
-    [
-      '({"x": {y: z}}) => x',
-      Context.None,
-      
-    ],
-    [
-      '({"a":b}=obj);',
-      Context.None,
-      
-    ],
-    [
-      '({"x": [y]} = x)',
-      Context.None,
-      
-    ],
-    [
-      'o = {f(f) { }}',
-      Context.None,
-      
-    ],
-    [
-      'function *f(){   s = {"foo": yield}   }',
-      Context.None,
-      
-    ],
-    [
-      'function *f(){   s = {foo: yield}   }',
-      Context.None,
-      
-    ],
-    [
-      '({[foo]: x} = x) => y',
-      Context.None,
-      
-    ],
-    [
-      'var someObject = { someKey: { ...mapGetters([ "some_val_1", "some_val_2" ]) } }',
-      Context.None,
-      
-    ],
-    [
-      '({x, ...y, a, ...b, c})',
-      Context.None,
-      
-    ],
-    [
-      'z = {x, ...y}',
-      Context.None,
-      
-    ],
-    [
-      'let z = {...x}',
-      Context.None,
-      
-    ],
-    [
-      '({a:b,...obj}) => {}',
-      Context.None,
-      
-    ],
-    [
-      '({a,...obj}) => {}',
-      Context.None,
-      
-    ],
-    [
-      '({...obj} = {}) => {}',
-      Context.None,
-      
-    ],
-    [
-      '({a:b,...obj} = foo)',
-      Context.None,
-      
-    ],
-    [
-      '({a,...obj} = foo)',
-      Context.None,
-      
-    ],
-    [
-      '({...(a,b),c})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({...a,b,c})',
-      Context.OptionsRanges,
-      
-    ],
+    ['({*ident(){}})', Context.None],
+    ['({*get(){}})', Context.None],
+    ['({*set(){}})', Context.None],
+    ['({*async(){}})', Context.None],
+    ['({653: [x].foo})', Context.None],
+    ['({"x": {y: z}}) => x', Context.None],
+    ['({"a":b}=obj);', Context.None],
+    ['({"x": [y]} = x)', Context.None],
+    ['o = {f(f) { }}', Context.None],
+    ['function *f(){   s = {"foo": yield}   }', Context.None],
+    ['function *f(){   s = {foo: yield}   }', Context.None],
+    ['({[foo]: x} = x) => y', Context.None],
+    ['var someObject = { someKey: { ...mapGetters([ "some_val_1", "some_val_2" ]) } }', Context.None],
+    ['({x, ...y, a, ...b, c})', Context.None],
+    ['z = {x, ...y}', Context.None],
+    ['let z = {...x}', Context.None],
+    ['({a:b,...obj}) => {}', Context.None],
+    ['({a,...obj}) => {}', Context.None],
+    ['({...obj} = {}) => {}', Context.None],
+    ['({a:b,...obj} = foo)', Context.None],
+    ['({a,...obj} = foo)', Context.None],
+    ['({...(a,b),c})', Context.OptionsRanges],
+    ['({...a,b,c})', Context.OptionsRanges],
 
-    [
-      'x = {__proto__: a, __proto__: b} = y',
-      Context.None,
-      
-    ],
-    [
-      '({__proto__: a, __proto__: b} = x)',
-      Context.None,
-      
-    ],
-    [
-      '({x:a["x"]} = {x:20});',
-      Context.None,
-      
-    ],
-    [
-      'async function wrap() { ({a = await b} = obj) }',
-      Context.None,
-      
-    ],
-    [
-      '({x:y} = {});',
-      Context.None,
-      
-    ],
-    [
-      '({y:y2} = {y:y2-2})',
-      Context.OptionsRanges | Context.OptionsRaw,
-      
-    ],
-    [
-      '({async foo(a) { await a }});',
-      Context.None,
-      
-    ],
-    [
-      '({async, foo})',
-      Context.None,
-      
-    ],
-    [
-      'o({async await() { }})',
-      Context.None,
-      
-    ],
-    [
-      'async ({a: b = c})',
-      Context.None,
-      
-    ],
-    [
-      '({ async *foo() {} })',
-      Context.None,
-      
-    ],
-    [
-      '({x, y} = o)',
-      Context.None,
-      
-    ],
-    [
-      '({ enum: 0 })',
-      Context.None,
-      
-    ],
-    [
-      '({a(b,c){}})',
-      Context.None,
-      
-    ],
-    [
-      '({set a(eval){}})',
-      Context.None,
-      
-    ],
-    [
-      '({ set a([{b = 0}]){}, })',
-      Context.None,
-      
-    ],
-    [
-      '({a(b,...c){}})',
-      Context.None,
-      
-    ],
-    [
-      '(a, {b}) => {}',
-      Context.None,
-      
-    ],
-    [
-      'x = {__proto__(){}, __proto__: 2}',
-      Context.None,
-      
-    ],
-    [
-      'x = {__proto__(){}, __proto__(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {async __proto__(){}, *__proto__(){}}',
-      Context.None,
-      
-    ],
-    [
-      'x = {...y}',
-      Context.None,
-      
-    ],
-    [
-      'x = {x, ...y}',
-      Context.None,
-      
-    ],
-    [
-      'x = {...a=b}',
-      Context.None,
-      
-    ],
+    ['x = {__proto__: a, __proto__: b} = y', Context.None],
+    ['({__proto__: a, __proto__: b} = x)', Context.None],
+    ['({x:a["x"]} = {x:20});', Context.None],
+    ['async function wrap() { ({a = await b} = obj) }', Context.None],
+    ['({x:y} = {});', Context.None],
+    ['({y:y2} = {y:y2-2})', Context.OptionsRanges | Context.OptionsRaw],
+    ['({async foo(a) { await a }});', Context.None],
+    ['({async, foo})', Context.None],
+    ['o({async await() { }})', Context.None],
+    ['async ({a: b = c})', Context.None],
+    ['({ async *foo() {} })', Context.None],
+    ['({x, y} = o)', Context.None],
+    ['({ enum: 0 })', Context.None],
+    ['({a(b,c){}})', Context.None],
+    ['({set a(eval){}})', Context.None],
+    ['({ set a([{b = 0}]){}, })', Context.None],
+    ['({a(b,...c){}})', Context.None],
+    ['(a, {b}) => {}', Context.None],
+    ['x = {__proto__(){}, __proto__: 2}', Context.None],
+    ['x = {__proto__(){}, __proto__(){}}', Context.None],
+    ['x = {async __proto__(){}, *__proto__(){}}', Context.None],
+    ['x = {...y}', Context.None],
+    ['x = {x, ...y}', Context.None],
+    ['x = {...a=b}', Context.None],
 
-    [
-      '({...x=y});',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = {...a + b}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = {a, ...y, b}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '({"x": {y: z}}) => x',
-      Context.None,
-      
-    ],
-    [
-      '({1n:1})',
-      Context.OptionsRanges,
-      
-    ],
+    ['({...x=y});', Context.OptionsRanges],
+    ['x = {...a + b}', Context.OptionsRanges],
+    ['x = {a, ...y, b}', Context.OptionsRanges],
+    ['({"x": {y: z}}) => x', Context.None],
+    ['({1n:1})', Context.OptionsRanges],
   ]);
 });

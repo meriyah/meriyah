@@ -142,120 +142,28 @@ describe('Expressions - New target', () => {
   }
 
   pass('Expressions - New target (pass)', [
-    [
-      'class C {set x(_) {do { new.target } while (0)}}',
-      Context.None,
-      
-    ],
-    [
-      'function f(){ new new .target; }',
-      Context.None,
-      
-    ],
-    [
-      'function f(){ new.target }',
-      Context.None,
-      
-    ],
-    [
-      'function f(){ new . target }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function f(){ return _ => new.target }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function f(){ _ => _ => new.target }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '_ => function(){ new.target }',
-      Context.None,
-      
-    ],
-    [
-      'function f(){ new.target + foo }',
-      Context.None,
-      
-    ],
-    [
-      'function f(){ foo + new.target }',
-      Context.None,
-      
-    ],
-    [
-      'function f(){ foo = new.target }',
-      Context.None,
-      
-    ],
-    [
-      'foo({bar(){ new.target }})',
-      Context.None,
-      
-    ],
-    [
-      'class X { constructor() { new.target }}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'class X { foo() { new.target }}',
-      Context.None,
-      
-    ],
-    [
-      'class X { static foo() { new.target }}',
-      Context.None,
-      
-    ],
-    [
-      'function f(f=new.target){}',
-      Context.None,
-      
-    ],
-    [
-      'foo(function f(f=new.target){})',
-      Context.None,
-      
-    ],
-    [
-      '({foo(x=new.target){}})',
-      Context.None,
-      
-    ],
-    [
-      'class A {constructor(x=new.target){}}',
-      Context.None,
-      
-    ],
-    [
-      'class A {a(x=new.target){}}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function f(){ [...new.target] }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function f(){ class x extends new.target {} }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function f(){ x({[new.target]:y}) }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function a(b = new.target){}',
-      Context.None,
-      
-    ],
+    ['class C {set x(_) {do { new.target } while (0)}}', Context.None],
+    ['function f(){ new new .target; }', Context.None],
+    ['function f(){ new.target }', Context.None],
+    ['function f(){ new . target }', Context.OptionsRanges],
+    ['function f(){ return _ => new.target }', Context.OptionsRanges],
+    ['function f(){ _ => _ => new.target }', Context.OptionsRanges],
+    ['_ => function(){ new.target }', Context.None],
+    ['function f(){ new.target + foo }', Context.None],
+    ['function f(){ foo + new.target }', Context.None],
+    ['function f(){ foo = new.target }', Context.None],
+    ['foo({bar(){ new.target }})', Context.None],
+    ['class X { constructor() { new.target }}', Context.OptionsRanges],
+    ['class X { foo() { new.target }}', Context.None],
+    ['class X { static foo() { new.target }}', Context.None],
+    ['function f(f=new.target){}', Context.None],
+    ['foo(function f(f=new.target){})', Context.None],
+    ['({foo(x=new.target){}})', Context.None],
+    ['class A {constructor(x=new.target){}}', Context.None],
+    ['class A {a(x=new.target){}}', Context.OptionsRanges],
+    ['function f(){ [...new.target] }', Context.OptionsRanges],
+    ['function f(){ class x extends new.target {} }', Context.OptionsRanges],
+    ['function f(){ x({[new.target]:y}) }', Context.OptionsRanges],
+    ['function a(b = new.target){}', Context.None],
   ]);
 });

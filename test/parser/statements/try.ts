@@ -161,241 +161,56 @@ describe('Statements - Try', () => {
   }
 
   pass('Statements - Try (pass)', [
-    [
-      'try {} catch(e){}',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'try { } catch (e) { foo: bar: third: function f(){} }',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'try {} catch({e}){}',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'try {} catch([e]){}',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'try {} catch({e=x}){}',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'try {} catch([e=x]){}',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'try {} catch {}',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'try {} catch {} finally {}',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'try {} catch \n {}',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'try { } catch (e) { var x; for (var y of []) {} }',
-      Context.OptionsWebCompat,
-      
-    ],
+    ['try {} catch(e){}', Context.OptionsWebCompat],
+    ['try { } catch (e) { foo: bar: third: function f(){} }', Context.OptionsWebCompat],
+    ['try {} catch({e}){}', Context.OptionsWebCompat],
+    ['try {} catch([e]){}', Context.OptionsWebCompat],
+    ['try {} catch({e=x}){}', Context.OptionsWebCompat],
+    ['try {} catch([e=x]){}', Context.OptionsWebCompat],
+    ['try {} catch {}', Context.OptionsWebCompat],
+    ['try {} catch {} finally {}', Context.OptionsWebCompat],
+    ['try {} catch \n {}', Context.OptionsWebCompat],
+    ['try { } catch (e) { var x; for (var y of []) {} }', Context.OptionsWebCompat],
     [
       'function __f_3() { try { __f_3(); } catch(e) { eval("let fun = ({a} = {a: 30}) => {"); } }',
       Context.OptionsWebCompat,
-      
     ],
-    [
-      'try { throw null; } catch (f) {if (false) ; else function f() { return 123; }}',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'try{}catch(a){}',
-      Context.None,
-      
-    ],
-    [
-      'try { } catch (eval) { }',
-      Context.None,
-      
-    ],
-    [
-      'try { } catch (e) { say(e) }',
-      Context.None,
-      
-    ],
-    [
-      'try { } catch ([a = 0]) { }',
-      Context.None,
-      
-    ],
-    [
-      'try { } catch (e) { let a; }',
-      Context.None,
-      
-    ],
-    [
-      'try { } catch ([]) {}',
-      Context.None,
-      
-    ],
-    [
-      'try { throw [1, 2, 3]; } catch ([...x]) {}',
-      Context.None,
-      
-    ],
-    [
-      'try {} catch([e=x]){}',
-      Context.None,
-      
-    ],
-    [
-      'try {} catch({e=x}){}',
-      Context.None,
-      
-    ],
-    [
-      'try {} catch([e]){}',
-      Context.None,
-      
-    ],
-    [
-      'try {} finally {}',
-      Context.None,
-      
-    ],
-    [
-      'try {} finally {}\n/foo/g',
-      Context.None,
-      
-    ],
-    [
-      'try {try { let e; } catch { let e; } finally { let e; }} catch (e) { }',
-      Context.None,
-      
-    ],
-    [
-      'try {try { } catch { } finally { }} catch ({e}) { }',
-      Context.None | Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      'try {} catch(x) { x = 0; }',
-      Context.None,
-      
-    ],
-    [
-      'try {} catch(x) { with ({}) { x = 1; } }',
-      Context.None,
-      
-    ],
-    [
-      'try {} catch ([a,b,c]) { }',
-      Context.None,
-      
-    ],
-    [
-      'try {} catch (foo) {} var foo;',
-      Context.None,
-      
-    ],
-    [
-      'try { throw null; } catch ({}) {}',
-      Context.None,
-      
-    ],
-    [
-      'try { } catch (a) { { const a = b; } }',
-      Context.None,
-      
-    ],
-    [
-      'try {} catch(e) { try {} catch (e) {} }',
-      Context.None,
-      
-    ],
-    [
-      'try {} catch (foo) { { let foo; } }',
-      Context.None,
-      
-    ],
-    [
-      'var foo; try {} catch (_) { let foo; }',
-      Context.None,
-      
-    ],
-    [
-      'try {} catch (e) { { let e = x; } }',
-      Context.None,
-      
-    ],
-    [
-      'try {} catch (foo) {} let foo;',
-      Context.None,
-      
-    ],
-    [
-      'try {} catch (e) { let b = x; }',
-      Context.None,
-      
-    ],
-    [
-      'try {} catch (e) { var e = x; }',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'try {} catch (a) { }',
-      Context.None,
-      
-    ],
-    [
-      'try {} catch (e) { for (const e in y) {} }',
-      Context.None,
-      
-    ],
-    [
-      'try {} catch (e) { for (let e of y) {} }',
-      Context.None,
-      
-    ],
-    [
-      'try {} catch (e) { for (const e of y) {} }',
-      Context.None,
-      
-    ],
-    [
-      'try {} catch (e) { for (var e in y) {} }',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'try {} catch (e) { for (let e of y) {} }',
-      Context.None,
-      
-    ],
-    [
-      'try {} catch (e) { for (const e of y) {} }',
-      Context.None,
-      
-    ],
-    [
-      'var foo; try {} catch (_) { const foo = 1; }',
-      Context.None,
-      
-    ],
+    ['try { throw null; } catch (f) {if (false) ; else function f() { return 123; }}', Context.OptionsWebCompat],
+    ['try{}catch(a){}', Context.None],
+    ['try { } catch (eval) { }', Context.None],
+    ['try { } catch (e) { say(e) }', Context.None],
+    ['try { } catch ([a = 0]) { }', Context.None],
+    ['try { } catch (e) { let a; }', Context.None],
+    ['try { } catch ([]) {}', Context.None],
+    ['try { throw [1, 2, 3]; } catch ([...x]) {}', Context.None],
+    ['try {} catch([e=x]){}', Context.None],
+    ['try {} catch({e=x}){}', Context.None],
+    ['try {} catch([e]){}', Context.None],
+    ['try {} finally {}', Context.None],
+    ['try {} finally {}\n/foo/g', Context.None],
+    ['try {try { let e; } catch { let e; } finally { let e; }} catch (e) { }', Context.None],
+    ['try {try { } catch { } finally { }} catch ({e}) { }', Context.None | Context.OptionsRanges | Context.OptionsLoc],
+    ['try {} catch(x) { x = 0; }', Context.None],
+    ['try {} catch(x) { with ({}) { x = 1; } }', Context.None],
+    ['try {} catch ([a,b,c]) { }', Context.None],
+    ['try {} catch (foo) {} var foo;', Context.None],
+    ['try { throw null; } catch ({}) {}', Context.None],
+    ['try { } catch (a) { { const a = b; } }', Context.None],
+    ['try {} catch(e) { try {} catch (e) {} }', Context.None],
+    ['try {} catch (foo) { { let foo; } }', Context.None],
+    ['var foo; try {} catch (_) { let foo; }', Context.None],
+    ['try {} catch (e) { { let e = x; } }', Context.None],
+    ['try {} catch (foo) {} let foo;', Context.None],
+    ['try {} catch (e) { let b = x; }', Context.None],
+    ['try {} catch (e) { var e = x; }', Context.OptionsWebCompat],
+    ['try {} catch (a) { }', Context.None],
+    ['try {} catch (e) { for (const e in y) {} }', Context.None],
+    ['try {} catch (e) { for (let e of y) {} }', Context.None],
+    ['try {} catch (e) { for (const e of y) {} }', Context.None],
+    ['try {} catch (e) { for (var e in y) {} }', Context.OptionsWebCompat],
+    ['try {} catch (e) { for (let e of y) {} }', Context.None],
+    ['try {} catch (e) { for (const e of y) {} }', Context.None],
+    ['var foo; try {} catch (_) { const foo = 1; }', Context.None],
     [
       `try {
       var x = 2;
@@ -406,12 +221,7 @@ describe('Statements - Try', () => {
       probeBlock = function() { return x; };
     }`,
       Context.None,
-      
     ],
-    [
-      'try {} catch(e) {}',
-      Context.None,
-      
-    ],
+    ['try {} catch(e) {}', Context.None],
   ]);
 });

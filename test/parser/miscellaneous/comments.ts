@@ -230,53 +230,22 @@ describe('Miscellaneous - Comments', () => {
       lines
       */`,
       Context.OptionsNext | Context.OptionsLoc,
-      
     ],
-    [
-      '/**/ --> comment',
-      Context.OptionsRanges | Context.OptionsWebCompat,
-      
-    ],
-    [
-      'var x = 42;/*\n*/-->is eol-comment\nvar y = 37;\n',
-      Context.OptionsRanges | Context.OptionsWebCompat,
-      
-    ],
+    ['/**/ --> comment', Context.OptionsRanges | Context.OptionsWebCompat],
+    ['var x = 42;/*\n*/-->is eol-comment\nvar y = 37;\n', Context.OptionsRanges | Context.OptionsWebCompat],
     [
       '/* MLC1 \n */ /* SLDC1 */ /* MLC2 \n */ /* SLDC2 */ --> is eol-comment\n',
       Context.OptionsRanges | Context.OptionsWebCompat,
-      
     ],
     [
       '/* before */async function /* a */ f /* b */ ( /* c */ x /* d */ , /* e */ y /* f */ ) /* g */ { /* h */ ; /* i */ ; /* j */ }/* after */',
       Context.OptionsRanges,
-      
     ],
-    [
-      'var x = 42;/*\n*/-->is eol-comment\nvar y = 37;\n',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      '\n/*precomment*/-->eol-comment\nvar y = 37;\n',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      '\n-->is eol-comment\nvar y = 37;\n',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      '-->',
-      Context.OptionsWebCompat | Context.OptionsRanges,
-      
-    ],
-    [
-      '42 /* block comment 1 */ /* block comment 2 */',
-      Context.OptionsRanges,
-      
-    ],
+    ['var x = 42;/*\n*/-->is eol-comment\nvar y = 37;\n', Context.OptionsWebCompat],
+    ['\n/*precomment*/-->eol-comment\nvar y = 37;\n', Context.OptionsWebCompat],
+    ['\n-->is eol-comment\nvar y = 37;\n', Context.OptionsWebCompat],
+    ['-->', Context.OptionsWebCompat | Context.OptionsRanges],
+    ['42 /* block comment 1 */ /* block comment 2 */', Context.OptionsRanges],
     [
       `/* multiline
       comment
@@ -284,49 +253,19 @@ describe('Miscellaneous - Comments', () => {
       be
       ignored */ 42`,
       Context.None,
-      
     ],
     [
       `// line comment
       42`,
       Context.None,
-      
     ],
-    [
-      '//',
-      Context.None,
-      
-    ],
-    [
-      'if (x) { /* Some comment */ doThat() }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function f() { /* infinite */ while (true) { } /* bar */ var each; }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'while (i-->0) {}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function x(){ /*Jupiter*/ return; /*Saturn*/}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function a() {}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '/**/ function a() {}',
-      Context.OptionsRanges,
-      
-    ],
+    ['//', Context.None],
+    ['if (x) { /* Some comment */ doThat() }', Context.OptionsRanges],
+    ['function f() { /* infinite */ while (true) { } /* bar */ var each; }', Context.OptionsRanges],
+    ['while (i-->0) {}', Context.OptionsRanges],
+    ['function x(){ /*Jupiter*/ return; /*Saturn*/}', Context.OptionsRanges],
+    ['function a() {}', Context.OptionsRanges],
+    ['/**/ function a() {}', Context.OptionsRanges],
     [
       `while (true) {
         /**
@@ -334,7 +273,6 @@ describe('Miscellaneous - Comments', () => {
          */
       }`,
       Context.OptionsRanges,
-      
     ],
   ]);
 });

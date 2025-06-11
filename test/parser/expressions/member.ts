@@ -40,75 +40,19 @@ describe('Expressions - Member', () => {
   }
 
   pass('Expressions - Member (pass)', [
-    [
-      'abc.package',
-      Context.None,
-      
-    ],
-    [
-      'abc.package',
-      Context.Module | Context.Strict,
-      
-    ],
-    [
-      'x[a, b]',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(2[x,x],x)>x',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'foo.bar',
-      Context.None,
-      
-    ],
-    [
-      '(a[b]||(c[d]=e))',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a&&(b=c)&&(d=e)',
-      Context.None,
-      
-    ],
-    [
-      'a.$._.B0',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a.if',
-      Context.None,
-      
-    ],
-    [
-      'a().b',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x.y / z',
-      Context.None,
-      
-    ],
-    [
-      'a[b, c]',
-      Context.None,
-      
-    ],
-    [
-      'a[b]||(c[d]=e)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a&&(b=c)',
-      Context.None,
-      
-    ],
+    ['abc.package', Context.None],
+    ['abc.package', Context.Module | Context.Strict],
+    ['x[a, b]', Context.OptionsRanges],
+    ['(2[x,x],x)>x', Context.OptionsRanges],
+    ['foo.bar', Context.None],
+    ['(a[b]||(c[d]=e))', Context.OptionsRanges],
+    ['a&&(b=c)&&(d=e)', Context.None],
+    ['a.$._.B0', Context.OptionsRanges],
+    ['a.if', Context.None],
+    ['a().b', Context.OptionsRanges],
+    ['x.y / z', Context.None],
+    ['a[b, c]', Context.None],
+    ['a[b]||(c[d]=e)', Context.OptionsRanges],
+    ['a&&(b=c)', Context.None],
   ]);
 });

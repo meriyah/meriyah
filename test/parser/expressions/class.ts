@@ -1156,7 +1156,6 @@ describe('Expressions - Class', () => {
         [sym1](){return "bart";}
       }`,
       Context.None,
-      
     ],
     [
       `class SimpleParent {
@@ -1185,56 +1184,22 @@ describe('Expressions - Class', () => {
           }
       };`,
       Context.None,
-      
     ],
-    [
-      'class await { }',
-      Context.None | Context.OptionsRanges,
-      
-    ],
-    [
-      'class x extends await { }',
-      Context.None | Context.OptionsRanges,
-      
-    ],
-    [
-      'class a extends [] { static set [a] ({w=a}) { for (;;) a } }',
-      Context.None,
-      
-    ],
-    [
-      'class x extends {} {}',
-      Context.None,
-      
-    ],
+    ['class await { }', Context.None | Context.OptionsRanges],
+    ['class x extends await { }', Context.None | Context.OptionsRanges],
+    ['class a extends [] { static set [a] ({w=a}) { for (;;) a } }', Context.None],
+    ['class x extends {} {}', Context.None],
 
-    [
-      'class x{[x](a=await){}}',
-      Context.None,
-      
-    ],
-    [
-      'class x{[x](a=await){}}',
-      Context.None,
-      
-    ],
-    [
-      'class x{[x](await){}}',
-      Context.None,
-      
-    ],
-    [
-      '(class x {}.foo)',
-      Context.None,
-      
-    ],
+    ['class x{[x](a=await){}}', Context.None],
+    ['class x{[x](a=await){}}', Context.None],
+    ['class x{[x](await){}}', Context.None],
+    ['(class x {}.foo)', Context.None],
     [
       `var C = class { static async *gen() {
         callCount += 1;
         yield [...yield];
     }}`,
       Context.None,
-      
     ],
     [
       `var gen = {
@@ -1244,7 +1209,6 @@ describe('Expressions - Class', () => {
           }
         }.method;`,
       Context.None,
-      
     ],
     [
       `class C { async *gen() {
@@ -1255,921 +1219,199 @@ describe('Expressions - Class', () => {
               };
         }}`,
       Context.None,
-      
     ],
-    [
-      '(class x {}.foo())',
-      Context.None,
-      
-    ],
-    [
-      '(class x {}())',
-      Context.None,
-      
-    ],
-    [
-      'f = ([xCls = class X {}]) => {}',
-      Context.None,
-      
-    ],
-    [
-      '(class A extends B { constructor() { super() } })',
-      Context.None,
-      
-    ],
+    ['(class x {}.foo())', Context.None],
+    ['(class x {}())', Context.None],
+    ['f = ([xCls = class X {}]) => {}', Context.None],
+    ['(class A extends B { constructor() { super() } })', Context.None],
 
-    [
-      'class x { foo(x=new (await)()){} }',
-      Context.OptionsWebCompat | Context.OptionsRanges,
-      
-    ],
-    [
-      'class x { foo(x=await){} }',
-      Context.OptionsWebCompat | Context.OptionsRanges,
-      
-    ],
-    [
-      'class x extends feh(await) { }',
-      Context.OptionsWebCompat | Context.OptionsRanges,
-      
-    ],
-    [
-      'class x { foo(await){} }',
-      Context.OptionsWebCompat | Context.OptionsRanges,
-      
-    ],
-    [
-      'class v extends[x] {}',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'class v extends.9 {}',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      '(class A extends B { constructor() { super() } })',
-      Context.OptionsWebCompat | Context.OptionsRanges,
-      
-    ],
-    [
-      'f = ([cls = class {}]) => {}',
-      Context.None,
-      
-    ],
-    [
-      'f = ([xCls2 = class { name() {} }]) => {}',
-      Context.None,
-      
-    ],
-    [
-      '(class x{}())',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class x{}.foo)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class x{}.foo())',
-      Context.OptionsRanges,
-      
-    ],
+    ['class x { foo(x=new (await)()){} }', Context.OptionsWebCompat | Context.OptionsRanges],
+    ['class x { foo(x=await){} }', Context.OptionsWebCompat | Context.OptionsRanges],
+    ['class x extends feh(await) { }', Context.OptionsWebCompat | Context.OptionsRanges],
+    ['class x { foo(await){} }', Context.OptionsWebCompat | Context.OptionsRanges],
+    ['class v extends[x] {}', Context.OptionsWebCompat],
+    ['class v extends.9 {}', Context.OptionsWebCompat],
+    ['(class A extends B { constructor() { super() } })', Context.OptionsWebCompat | Context.OptionsRanges],
+    ['f = ([cls = class {}]) => {}', Context.None],
+    ['f = ([xCls2 = class { name() {} }]) => {}', Context.None],
+    ['(class x{}())', Context.OptionsRanges],
+    ['(class x{}.foo)', Context.OptionsRanges],
+    ['(class x{}.foo())', Context.OptionsRanges],
     /*[
       'class a\\u{77}ait {}',
       Context.None,
       {}], */
-    [
-      'class await {}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'class x { [await](){} }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'class async {}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = class{} / x',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class{} \n / foo / g)',
-      Context.None,
-      
-    ],
-    [
-      'f = ([xCls2 = class { static name() {} }]) => {}',
-      Context.None,
-      
-    ],
-    [
-      'f = ([cls = class {}, xCls = class X {}, xCls2 = class { static name() {} }]) => {}',
-      Context.None,
-      
-    ],
-    [
-      '(class A {})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {; ;; ;})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class A extends B {})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class A extends foo() {})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class A extends {} {})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {a(){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class A {constructor(){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class A {static constructor(){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class A {async foo(){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class A {*foo(){}})',
-      Context.OptionsRanges,
-      
-    ],
+    ['class await {}', Context.OptionsRanges],
+    ['class x { [await](){} }', Context.OptionsRanges],
+    ['class async {}', Context.OptionsRanges],
+    ['x = class{} / x', Context.OptionsRanges],
+    ['(class{} \n / foo / g)', Context.None],
+    ['f = ([xCls2 = class { static name() {} }]) => {}', Context.None],
+    ['f = ([cls = class {}, xCls = class X {}, xCls2 = class { static name() {} }]) => {}', Context.None],
+    ['(class A {})', Context.None],
+    ['(class A {; ;; ;})', Context.OptionsRanges],
+    ['(class A extends B {})', Context.OptionsRanges],
+    ['(class A extends foo() {})', Context.OptionsRanges],
+    ['(class A extends {} {})', Context.None],
+    ['(class A {a(){}})', Context.OptionsRanges],
+    ['(class A {constructor(){}})', Context.OptionsRanges],
+    ['(class A {static constructor(){}})', Context.OptionsRanges],
+    ['(class A {async foo(){}})', Context.OptionsRanges],
+    ['(class A {*foo(){}})', Context.OptionsRanges],
 
-    [
-      '(class A {get foo(){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class o {f(){ function x(){}}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class o {f(f) { }})',
-      Context.None,
-      
-    ],
-    [
-      '(class M { static foo() {} get foo() {} set foo(x) {}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class OnlyStaticSetter { static set setter(x) { p("ssetter " + x) } })',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class A {set foo(x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set get(x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set(){} get(){} async(){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class A {"x"(){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class A {"constructor"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {async "foo"(){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class A {*"foo"(){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class A {get "foo"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {get "set"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set "foo"(x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set "get"(x){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class A {"set"(){} "get"(){} "async"(){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class A {1(){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class A {async 3(){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class A {*4(){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class A {async * 34(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {get 5(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set 9(x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {[a](){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class A {*[foo](){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class A {get [foo](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set [foo](x){}})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class x { *[y](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x { get [y](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x { set [y](z){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x { async *[y](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{*foo(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{*[x](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{*"foo"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{*555(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{async *foo(a){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{async *[x](a){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{async *"foo"(a){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{async *555(a){}})',
-      Context.None,
-      
-    ],
+    ['(class A {get foo(){}})', Context.OptionsRanges],
+    ['(class o {f(){ function x(){}}})', Context.OptionsRanges],
+    ['(class o {f(f) { }})', Context.None],
+    ['(class M { static foo() {} get foo() {} set foo(x) {}})', Context.OptionsRanges],
+    ['(class OnlyStaticSetter { static set setter(x) { p("ssetter " + x) } })', Context.OptionsRanges],
+    ['(class A {set foo(x){}})', Context.None],
+    ['(class A {set get(x){}})', Context.None],
+    ['(class A {set(){} get(){} async(){}})', Context.OptionsRanges],
+    ['(class A {"x"(){}})', Context.OptionsRanges],
+    ['(class A {"constructor"(){}})', Context.None],
+    ['(class A {async "foo"(){}})', Context.OptionsRanges],
+    ['(class A {*"foo"(){}})', Context.OptionsRanges],
+    ['(class A {get "foo"(){}})', Context.None],
+    ['(class A {get "set"(){}})', Context.None],
+    ['(class A {set "foo"(x){}})', Context.None],
+    ['(class A {set "get"(x){}})', Context.OptionsRanges],
+    ['(class A {"set"(){} "get"(){} "async"(){}})', Context.OptionsRanges],
+    ['(class A {1(){}})', Context.OptionsRanges],
+    ['(class A {async 3(){}})', Context.OptionsRanges],
+    ['(class A {*4(){}})', Context.OptionsRanges],
+    ['(class A {async * 34(){}})', Context.None],
+    ['(class A {get 5(){}})', Context.None],
+    ['(class A {set 9(x){}})', Context.None],
+    ['(class A {[a](){}})', Context.OptionsRanges],
+    ['(class A {*[foo](){}})', Context.OptionsRanges],
+    ['(class A {get [foo](){}})', Context.None],
+    ['(class A {set [foo](x){}})', Context.OptionsRanges],
+    ['(class x { *[y](){}})', Context.None],
+    ['(class x { get [y](){}})', Context.None],
+    ['(class x { set [y](z){}})', Context.None],
+    ['(class x { async *[y](){}})', Context.None],
+    ['(class x{*foo(){}})', Context.None],
+    ['(class x{*[x](){}})', Context.None],
+    ['(class x{*"foo"(){}})', Context.None],
+    ['(class x{*555(){}})', Context.None],
+    ['(class x{async *foo(a){}})', Context.None],
+    ['(class x{async *[x](a){}})', Context.None],
+    ['(class x{async *"foo"(a){}})', Context.None],
+    ['(class x{async *555(a){}})', Context.None],
 
-    [
-      '(class A {static a(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {static constructor(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {static get foo(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {static set foo(x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {static "x"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {static "constructor"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {static get "foo"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {static set "foo"(x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {static 2(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {async foo(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {*foo(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {get foo(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {get set(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set foo(x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set get(x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set(){} get(){} async(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {"x"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {"constructor"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {async "foo"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {*"foo"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {get "foo"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {get "set"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set "foo"(x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set "get"(x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {"set"(){} "get"(){} "async"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {static "constructor"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {static get "foo"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {static set "foo"(x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {static 2(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {async foo(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {*foo(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {get foo(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {get set(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set foo(x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set get(x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set(){} get(){} async(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {"x"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {"constructor"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {async "foo"(){}})',
-      Context.None,
-      
-    ],
-    [
-      'var C = class { static async *gen() { yield { ...yield, y: 1, ...yield yield, };}}',
-      Context.None,
-      
-    ],
+    ['(class A {static a(){}})', Context.None],
+    ['(class A {static constructor(){}})', Context.None],
+    ['(class A {static get foo(){}})', Context.None],
+    ['(class A {static set foo(x){}})', Context.None],
+    ['(class A {static "x"(){}})', Context.None],
+    ['(class A {static "constructor"(){}})', Context.None],
+    ['(class A {static get "foo"(){}})', Context.None],
+    ['(class A {static set "foo"(x){}})', Context.None],
+    ['(class A {static 2(){}})', Context.None],
+    ['(class A {async foo(){}})', Context.None],
+    ['(class A {*foo(){}})', Context.None],
+    ['(class A {get foo(){}})', Context.None],
+    ['(class A {get set(){}})', Context.None],
+    ['(class A {set foo(x){}})', Context.None],
+    ['(class A {set get(x){}})', Context.None],
+    ['(class A {set(){} get(){} async(){}})', Context.None],
+    ['(class A {"x"(){}})', Context.None],
+    ['(class A {"constructor"(){}})', Context.None],
+    ['(class A {async "foo"(){}})', Context.None],
+    ['(class A {*"foo"(){}})', Context.None],
+    ['(class A {get "foo"(){}})', Context.None],
+    ['(class A {get "set"(){}})', Context.None],
+    ['(class A {set "foo"(x){}})', Context.None],
+    ['(class A {set "get"(x){}})', Context.None],
+    ['(class A {"set"(){} "get"(){} "async"(){}})', Context.None],
+    ['(class A {static "constructor"(){}})', Context.None],
+    ['(class A {static get "foo"(){}})', Context.None],
+    ['(class A {static set "foo"(x){}})', Context.None],
+    ['(class A {static 2(){}})', Context.None],
+    ['(class A {async foo(){}})', Context.None],
+    ['(class A {*foo(){}})', Context.None],
+    ['(class A {get foo(){}})', Context.None],
+    ['(class A {get set(){}})', Context.None],
+    ['(class A {set foo(x){}})', Context.None],
+    ['(class A {set get(x){}})', Context.None],
+    ['(class A {set(){} get(){} async(){}})', Context.None],
+    ['(class A {"x"(){}})', Context.None],
+    ['(class A {"constructor"(){}})', Context.None],
+    ['(class A {async "foo"(){}})', Context.None],
+    ['var C = class { static async *gen() { yield { ...yield, y: 1, ...yield yield, };}}', Context.None],
     [
       'class c { static *[false]() { "use strict"; } set [this] (q) { "use strict"; } set [true] (u) { "use strict"; } }',
       Context.OptionsRanges,
-      
     ],
-    [
-      'var C = class { static async *gen() { yield [...yield yield]; }}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(class A {*"foo"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {get "foo"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {get "set"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set "foo"(x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set "get"(x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {"set"(){} "get"(){} "async"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {async * 34(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {get 5(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set 9(x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {[a](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {*[foo](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {get [foo](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set [foo](x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x { *[y](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x { get [y](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x { set [y](z){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x { async *[y](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{*foo(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{*[x](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{*"foo"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {async * 34(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {get 5(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set 9(x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {[a](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {*[foo](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {get [foo](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set [foo](x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x { *[y](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x { get [y](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x { set [y](z){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x { async *[y](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{*foo(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{*[x](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{*"foo"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set(){} get(){} async(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {"x"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {"constructor"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {async "foo"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {*"foo"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {get "foo"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {get "set"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set "foo"(x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {set "get"(x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {"set"(){} "get"(){} "async"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {1(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x { get [y](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x { set [y](z){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x { async *[y](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{*foo(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{*[x](){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{*"foo"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{*555(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{async *foo(a){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{async *[x](a){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{async *"foo"(a){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class x{async *555(a){}})',
-      Context.None,
-      
-    ],
+    ['var C = class { static async *gen() { yield [...yield yield]; }}', Context.OptionsRanges],
+    ['(class A {*"foo"(){}})', Context.None],
+    ['(class A {get "foo"(){}})', Context.None],
+    ['(class A {get "set"(){}})', Context.None],
+    ['(class A {set "foo"(x){}})', Context.None],
+    ['(class A {set "get"(x){}})', Context.None],
+    ['(class A {"set"(){} "get"(){} "async"(){}})', Context.None],
+    ['(class A {async * 34(){}})', Context.None],
+    ['(class A {get 5(){}})', Context.None],
+    ['(class A {set 9(x){}})', Context.None],
+    ['(class A {[a](){}})', Context.None],
+    ['(class A {*[foo](){}})', Context.None],
+    ['(class A {get [foo](){}})', Context.None],
+    ['(class A {set [foo](x){}})', Context.None],
+    ['(class x { *[y](){}})', Context.None],
+    ['(class x { get [y](){}})', Context.None],
+    ['(class x { set [y](z){}})', Context.None],
+    ['(class x { async *[y](){}})', Context.None],
+    ['(class x{*foo(){}})', Context.None],
+    ['(class x{*[x](){}})', Context.None],
+    ['(class x{*"foo"(){}})', Context.None],
+    ['(class A {async * 34(){}})', Context.None],
+    ['(class A {get 5(){}})', Context.None],
+    ['(class A {set 9(x){}})', Context.None],
+    ['(class A {[a](){}})', Context.None],
+    ['(class A {*[foo](){}})', Context.None],
+    ['(class A {get [foo](){}})', Context.None],
+    ['(class A {set [foo](x){}})', Context.None],
+    ['(class x { *[y](){}})', Context.None],
+    ['(class x { get [y](){}})', Context.None],
+    ['(class x { set [y](z){}})', Context.None],
+    ['(class x { async *[y](){}})', Context.None],
+    ['(class x{*foo(){}})', Context.None],
+    ['(class x{*[x](){}})', Context.None],
+    ['(class x{*"foo"(){}})', Context.None],
+    ['(class A {set(){} get(){} async(){}})', Context.None],
+    ['(class A {"x"(){}})', Context.None],
+    ['(class A {"constructor"(){}})', Context.None],
+    ['(class A {async "foo"(){}})', Context.None],
+    ['(class A {*"foo"(){}})', Context.None],
+    ['(class A {get "foo"(){}})', Context.None],
+    ['(class A {get "set"(){}})', Context.None],
+    ['(class A {set "foo"(x){}})', Context.None],
+    ['(class A {set "get"(x){}})', Context.None],
+    ['(class A {"set"(){} "get"(){} "async"(){}})', Context.None],
+    ['(class A {1(){}})', Context.None],
+    ['(class x { get [y](){}})', Context.None],
+    ['(class x { set [y](z){}})', Context.None],
+    ['(class x { async *[y](){}})', Context.None],
+    ['(class x{*foo(){}})', Context.None],
+    ['(class x{*[x](){}})', Context.None],
+    ['(class x{*"foo"(){}})', Context.None],
+    ['(class x{*555(){}})', Context.None],
+    ['(class x{async *foo(a){}})', Context.None],
+    ['(class x{async *[x](a){}})', Context.None],
+    ['(class x{async *"foo"(a){}})', Context.None],
+    ['(class x{async *555(a){}})', Context.None],
 
-    [
-      '(class A {static a(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {static constructor(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {static get "foo"(){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {static set "foo"(x){}})',
-      Context.None,
-      
-    ],
-    [
-      '(class A {static 2(){}})',
-      Context.None,
-      
-    ],
-    [
-      'class A extends B { *get() {} }',
-      Context.None,
-      
-    ],
-    [
-      'class a { async *get(){} }',
-      Context.None,
-      
-    ],
-    [
-      `class A { [1n](){} }`,
-      Context.None,
-      
-    ],
-    [
-      `class A { static }`,
-      Context.OptionsNext | Context.Module,
-      
-    ],
-    [
-      `class A { static; }`,
-      Context.OptionsNext | Context.Module,
-      
-    ],
-    [
-      `class A { static = 1 }`,
-      Context.OptionsNext | Context.Module,
-      
-    ],
+    ['(class A {static a(){}})', Context.None],
+    ['(class A {static constructor(){}})', Context.None],
+    ['(class A {static get "foo"(){}})', Context.None],
+    ['(class A {static set "foo"(x){}})', Context.None],
+    ['(class A {static 2(){}})', Context.None],
+    ['class A extends B { *get() {} }', Context.None],
+    ['class a { async *get(){} }', Context.None],
+    [`class A { [1n](){} }`, Context.None],
+    [`class A { static }`, Context.OptionsNext | Context.Module],
+    [`class A { static; }`, Context.OptionsNext | Context.Module],
+    [`class A { static = 1 }`, Context.OptionsNext | Context.Module],
     [
       `new class {
         start() {
@@ -2180,7 +1422,6 @@ describe('Expressions - Class', () => {
         constructor() {}
       }`,
       Context.None,
-      
     ],
   ]);
 });

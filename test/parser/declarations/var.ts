@@ -804,147 +804,35 @@ describe('Declarations - Var', () => {
   ]);
 
   pass('Declarations - Var (pass)', [
-    [
-      'var ancestors = [/^VarDef$/, /^(Const|Let|Var)$/, /^Export$/];',
-      Context.None,
-      
-    ],
-    [
-      'var idx = reverse ? --to : from++;',
-      Context.None,
-      
-    ],
-    [
-      'for (var [x, ...[foo, bar]] = obj;;);',
-      Context.None,
-      
-    ],
+    ['var ancestors = [/^VarDef$/, /^(Const|Let|Var)$/, /^Export$/];', Context.None],
+    ['var idx = reverse ? --to : from++;', Context.None],
+    ['for (var [x, ...[foo, bar]] = obj;;);', Context.None],
 
-    [
-      'var await = { await }',
-      Context.None,
-      
-    ],
-    [
-      'for (var [a=[...b], ...c] = obj;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (var x = a, {y} = obj;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (var x, {y} = obj;;);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for (var [] in x);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for (var [,,] in x);',
-      Context.None,
-      
-    ],
-    [
-      'var x; var x = 5;',
-      Context.None,
-      
-    ],
-    [
-      '{ var x; }; x = 0;',
-      Context.None,
-      
-    ],
-    [
-      'var x = 8;',
-      Context.None,
-      
-    ],
-    [
-      'var x; { var x = 5; }',
-      Context.None,
-      
-    ],
-    [
-      'var {x=1} = {a: 4, b: (x = 5)};',
-      Context.None,
-      
-    ],
-    [
-      'var x = {a: 4, b: (x = 5)};',
-      Context.None,
-      
-    ],
-    [
-      'var x; try {} catch (x) { x = 5; }',
-      Context.None,
-      
-    ],
-    [
-      'var x; eval("");',
-      Context.None,
-      
-    ],
-    [
-      'eval(""); var x;',
-      Context.None,
-      
-    ],
-    [
-      'var x; var x;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'function x() {}; var x;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'var x; try {} catch (x) { var x = 5; }',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      '"use strict"; var x = 0; { let x; x = 6; }',
-      Context.OptionsLoc,
-      
-    ],
-    [
-      '"use strict"; let x = 0; { let x = 6; }',
-      Context.None,
-      
-    ],
-    [
-      'var [x, x] = [4, 5];',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'var x; [x, x] = [4, 5];',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'var {a: x, b: x} = {a: 4, b: 5};',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'var x = {a: 4, b: (x = 5)};',
-      Context.None,
-      
-    ],
-    [
-      'var foo = {}; foo.if;',
-      Context.None,
-      
-    ],
+    ['var await = { await }', Context.None],
+    ['for (var [a=[...b], ...c] = obj;;);', Context.None],
+    ['for (var x = a, {y} = obj;;);', Context.None],
+    ['for (var x, {y} = obj;;);', Context.OptionsRanges],
+    ['for (var [] in x);', Context.OptionsRanges],
+    ['for (var [,,] in x);', Context.None],
+    ['var x; var x = 5;', Context.None],
+    ['{ var x; }; x = 0;', Context.None],
+    ['var x = 8;', Context.None],
+    ['var x; { var x = 5; }', Context.None],
+    ['var {x=1} = {a: 4, b: (x = 5)};', Context.None],
+    ['var x = {a: 4, b: (x = 5)};', Context.None],
+    ['var x; try {} catch (x) { x = 5; }', Context.None],
+    ['var x; eval("");', Context.None],
+    ['eval(""); var x;', Context.None],
+    ['var x; var x;', Context.OptionsRanges],
+    ['function x() {}; var x;', Context.OptionsRanges],
+    ['var x; try {} catch (x) { var x = 5; }', Context.OptionsWebCompat],
+    ['"use strict"; var x = 0; { let x; x = 6; }', Context.OptionsLoc],
+    ['"use strict"; let x = 0; { let x = 6; }', Context.None],
+    ['var [x, x] = [4, 5];', Context.OptionsRanges],
+    ['var x; [x, x] = [4, 5];', Context.OptionsRanges],
+    ['var {a: x, b: x} = {a: 4, b: 5};', Context.OptionsRanges],
+    ['var x = {a: 4, b: (x = 5)};', Context.None],
+    ['var foo = {}; foo.if;', Context.None],
     [
       `var f0 = function (a, b = a, c = b) {
         return [a, b, c];
@@ -962,199 +850,52 @@ describe('Declarations - Var', () => {
         return [a, b, c];
       };`,
       Context.None,
-      
     ],
-    [
-      'var foo = {}; foo.super;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'var foo = {}; foo.interface;',
-      Context.None,
-      
-    ],
-    [
-      'var foo = {}; foo.arguments;',
-      Context.None,
-      
-    ],
-    [
-      'var [,] = x;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'var [,,] = x;',
-      Context.None,
-      
-    ],
-    [
-      'var\nfoo',
-      Context.None,
-      
-    ],
-    [
-      'var [foo,,] = x;',
-      Context.None,
-      
-    ],
-    [
-      'var [,foo] = x;',
-      Context.None,
-      
-    ],
-    [
-      'var [,,foo] = x;',
-      Context.None,
-      
-    ],
-    [
-      'var [foo,bar] = x;',
-      Context.None,
-      
-    ],
-    [
-      'var [foo] = x, [foo] = y;',
-      Context.None,
-      
-    ],
-    [
-      'var [foo] = x, b;',
-      Context.None,
-      
-    ],
-    [
-      'var [foo] = x, b = y;',
-      Context.None,
-      
-    ],
-    [
-      'var x, [foo] = y;',
-      Context.None,
-      
-    ],
-    [
-      'var [foo=a] = c;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'var [foo=a,bar=b] = x;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'var {} = x;',
-      Context.None,
-      
-    ],
-    [
-      'var {foo} = x;',
-      Context.None,
-      
-    ],
-    [
-      'var {foo,} = x;',
-      Context.None,
-      
-    ],
-    [
-      'var x = 5; function x() {}',
-      Context.None,
-      
-    ],
-    [
-      'var x; x = 8;',
-      Context.None,
-      
-    ],
-    [
-      'var O = { async method() { await 1; } }',
-      Context.None,
-      
-    ],
-    [
-      'var O = { async ["meth" + "od"]() { await 1; } }',
-      Context.OptionsRanges | Context.OptionsRaw,
-      
-    ],
-    [
-      'var [ a, , b ] = list',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'var O = { async "method"() { await 1; } }',
-      Context.None,
-      
-    ],
-    [
-      'var O = { async 0() { await 1; } }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'var let',
-      Context.None,
-      
-    ],
-    [
-      'var [let] = []',
-      Context.None,
-      
-    ],
-    [
-      'var x; { with ({}) { x = 1; } }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for (var {x : y} of obj);',
-      Context.None,
-      
-    ],
-    [
-      "var o = { get [/./.exec('')](){} }",
-      Context.OptionsRanges | Context.OptionsRaw,
-      
-    ],
+    ['var foo = {}; foo.super;', Context.OptionsRanges],
+    ['var foo = {}; foo.interface;', Context.None],
+    ['var foo = {}; foo.arguments;', Context.None],
+    ['var [,] = x;', Context.OptionsRanges],
+    ['var [,,] = x;', Context.None],
+    ['var\nfoo', Context.None],
+    ['var [foo,,] = x;', Context.None],
+    ['var [,foo] = x;', Context.None],
+    ['var [,,foo] = x;', Context.None],
+    ['var [foo,bar] = x;', Context.None],
+    ['var [foo] = x, [foo] = y;', Context.None],
+    ['var [foo] = x, b;', Context.None],
+    ['var [foo] = x, b = y;', Context.None],
+    ['var x, [foo] = y;', Context.None],
+    ['var [foo=a] = c;', Context.OptionsRanges],
+    ['var [foo=a,bar=b] = x;', Context.OptionsRanges],
+    ['var {} = x;', Context.None],
+    ['var {foo} = x;', Context.None],
+    ['var {foo,} = x;', Context.None],
+    ['var x = 5; function x() {}', Context.None],
+    ['var x; x = 8;', Context.None],
+    ['var O = { async method() { await 1; } }', Context.None],
+    ['var O = { async ["meth" + "od"]() { await 1; } }', Context.OptionsRanges | Context.OptionsRaw],
+    ['var [ a, , b ] = list', Context.OptionsRanges],
+    ['var O = { async "method"() { await 1; } }', Context.None],
+    ['var O = { async 0() { await 1; } }', Context.OptionsRanges],
+    ['var let', Context.None],
+    ['var [let] = []', Context.None],
+    ['var x; { with ({}) { x = 1; } }', Context.OptionsRanges],
+    ['for (var {x : y} of obj);', Context.None],
+    ["var o = { get [/./.exec('')](){} }", Context.OptionsRanges | Context.OptionsRaw],
     [
       `var [ a, , b ] = list;
       [ b, a ] = [ a, b ]`,
       Context.OptionsRanges,
-      
     ],
     [
       `var [ a, , b ] = list
   [ b, a ] = [ a, b ]`,
       Context.None,
-      
     ],
-    [
-      'var x, {y} = obj;',
-      Context.None,
-      
-    ],
-    [
-      'var {x = y} = obj;',
-      Context.None,
-      
-    ],
-    [
-      'var {x = y, z} = obj;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'var foo, bar;',
-      Context.None,
-      
-    ],
-    [
-      'var foo, bar',
-      Context.None,
-      
-    ],
+    ['var x, {y} = obj;', Context.None],
+    ['var {x = y} = obj;', Context.None],
+    ['var {x = y, z} = obj;', Context.OptionsRanges],
+    ['var foo, bar;', Context.None],
+    ['var foo, bar', Context.None],
   ]);
 });

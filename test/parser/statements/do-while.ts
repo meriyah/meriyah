@@ -30,76 +30,46 @@ describe('Statements - Do while', () => {
   ]);
 
   pass('Statements - Do while (pass)', [
-    [
-      `do;while(0) 0;`,
-      Context.None,
-      
-    ],
+    [`do;while(0) 0;`, Context.None],
     [
       `do x
     while ({ [y]: {} ? null : false  })`,
       Context.OptionsRanges,
-      
     ],
-    [
-      'do async \n while (y)',
-      Context.None,
-      
-    ],
-    [
-      'do async \n () \n while (y)',
-      Context.None,
-      
-    ],
-    [
-      'do while (x) continue \n while (x);',
-      Context.None,
-      
-    ],
+    ['do async \n while (y)', Context.None],
+    ['do async \n () \n while (y)', Context.None],
+    ['do while (x) continue \n while (x);', Context.None],
     [
       `do if(x=>{});else n
       while(y)`,
       Context.OptionsRanges,
-      
     ],
     [
       `do
       if(x=>{});
     while(y)`,
       Context.OptionsRanges,
-      
     ],
     [
       `do
       for((function(){});;)x
     while(x);`,
       Context.OptionsRanges,
-      
     ],
     [
       `do
         (function(){})
       while(y)`,
       Context.OptionsRanges,
-      
     ],
-    [
-      'do h(function(){});while(x)',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'do if(8)function s(){}while(y)',
-      Context.OptionsWebCompat,
-      
-    ],
+    ['do h(function(){});while(x)', Context.OptionsWebCompat],
+    ['do if(8)function s(){}while(y)', Context.OptionsWebCompat],
     [
       `
 do if(8)function s(){}
 while(y)
 `,
       Context.OptionsWebCompat,
-      
     ],
 
     [
@@ -107,22 +77,9 @@ while(y)
       ()=>x
     while(c)`,
       Context.OptionsWebCompat | Context.OptionsRanges,
-      
     ],
-    [
-      'do foo; while (bar);',
-      Context.OptionsWebCompat | Context.OptionsRanges,
-      
-    ],
-    [
-      'do {} while (false) false',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      'do { } while (a); /^.*$/.test(b)',
-      Context.OptionsWebCompat,
-      
-    ],
+    ['do foo; while (bar);', Context.OptionsWebCompat | Context.OptionsRanges],
+    ['do {} while (false) false', Context.OptionsWebCompat],
+    ['do { } while (a); /^.*$/.test(b)', Context.OptionsWebCompat],
   ]);
 });

@@ -262,130 +262,36 @@ describe('Declarations - Async Generator', () => {
   ]);
 
   pass('Declarations - const (pass)', [
-    [
-      'async function* f([[] = function() {}()]) { }',
-      Context.None,
-      
-    ],
-    [
-      'async function* f([[x]]) {  }',
-      Context.None,
-      
-    ],
+    ['async function* f([[] = function() {}()]) { }', Context.None],
+    ['async function* f([[x]]) {  }', Context.None],
     [
       'var gen = async function *() { yield { ...yield, y: 1, ...yield yield, }; };',
       Context.Strict | Context.OptionsRanges,
-      
     ],
-    [
-      'async function* f([arrow = () => {}]) {  }',
-      Context.None,
-      
-    ],
-    [
-      'async function* f([fn = function () {}, xFn = function x() {}]) {  }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'async function* f([{ x, y, z } = { x: 44, y: 55, z: 66 }]) {  }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'async function* f([{ x }]) {  }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'async function* f([ , , ...x]) {  }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'async function* f([arrow = () => {}] = []) {}',
-      Context.None,
-      
-    ],
-    [
-      'async function* f([[x]] = [null]) {}',
-      Context.OptionsRanges,
-      
-    ],
+    ['async function* f([arrow = () => {}]) {  }', Context.None],
+    ['async function* f([fn = function () {}, xFn = function x() {}]) {  }', Context.OptionsRanges],
+    ['async function* f([{ x, y, z } = { x: 44, y: 55, z: 66 }]) {  }', Context.OptionsRanges],
+    ['async function* f([{ x }]) {  }', Context.OptionsRanges],
+    ['async function* f([ , , ...x]) {  }', Context.OptionsRanges],
+    ['async function* f([arrow = () => {}] = []) {}', Context.None],
+    ['async function* f([[x]] = [null]) {}', Context.OptionsRanges],
     [
       'async function* f([{ x, y, z } = { x: 44, y: 55, z: 66 }] = [{ x: 11, y: 22, z: 33 }]) {}',
       Context.OptionsRanges | Context.OptionsRaw,
-      
     ],
-    [
-      'async function* f({ fn = function () {}, xFn = function x() {} } = {}) {}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'async function* f({ x: y = 33 } = { }) {}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'async function* f({ x: y }) {}',
-      Context.None,
-      
-    ],
-    [
-      'async function* f({ w: { x, y, z } = { x: 4, y: 5, z: 6 } }) {}',
-      Context.OptionsRanges | Context.OptionsRaw,
-      
-    ],
-    [
-      'async function* f({...x}) {}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'async function* f({a, b, ...rest}) {}',
-      Context.None,
-      
-    ],
-    [
-      'async function* f() { await a; yield b; }',
-      Context.None,
-      
-    ],
-    [
-      'f = async function*() { await a; yield b; }',
-      Context.None,
-      
-    ],
-    [
-      'obj = { async* f() { await a; yield b; } }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'class A { async* f() { await a; yield b; } }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'class A { static async* f() { await a; yield b; } }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'async function* x() {}',
-      Context.None,
-      
-    ],
-    [
-      '(async function*() {})',
-      Context.None,
-      
-    ],
-    [
-      'var gen = { async *method() {} }',
-      Context.None,
-      
-    ],
+    ['async function* f({ fn = function () {}, xFn = function x() {} } = {}) {}', Context.OptionsRanges],
+    ['async function* f({ x: y = 33 } = { }) {}', Context.OptionsRanges],
+    ['async function* f({ x: y }) {}', Context.None],
+    ['async function* f({ w: { x, y, z } = { x: 4, y: 5, z: 6 } }) {}', Context.OptionsRanges | Context.OptionsRaw],
+    ['async function* f({...x}) {}', Context.OptionsRanges],
+    ['async function* f({a, b, ...rest}) {}', Context.None],
+    ['async function* f() { await a; yield b; }', Context.None],
+    ['f = async function*() { await a; yield b; }', Context.None],
+    ['obj = { async* f() { await a; yield b; } }', Context.OptionsRanges],
+    ['class A { async* f() { await a; yield b; } }', Context.OptionsRanges],
+    ['class A { static async* f() { await a; yield b; } }', Context.OptionsRanges],
+    ['async function* x() {}', Context.None],
+    ['(async function*() {})', Context.None],
+    ['var gen = { async *method() {} }', Context.None],
   ]);
 });

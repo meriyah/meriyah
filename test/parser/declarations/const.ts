@@ -294,71 +294,19 @@ describe('Declarations - const', () => {
   ]);
 
   pass('Declarations - const (pass)', [
-    [
-      '"use strict"; const { [eval]: []} = a;',
-      Context.None,
-      
-    ],
-    [
-      'const { [eval]: []} = a;',
-      Context.None,
-      
-    ],
-    [
-      'const [foo] = x, [bar] = y;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'const x = y, [foo] = z;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'const [foo=a,bar=b] = x;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'const [...bar] = obj;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'const x = y, {foo} = z;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'const {foo:a,bar:b} = x;',
-      Context.OptionsLoc | Context.OptionsRanges,
-      
-    ],
-    [
-      'const a = b',
-      Context.None,
-      
-    ],
-    [
-      'for (const [,,] of x);',
-      Context.None,
-      
-    ],
-    [
-      'for (const [,] of x);',
-      Context.None,
-      
-    ],
-    [
-      'for (const {a, [x]: y} in obj);',
-      Context.None,
-      
-    ],
-    [
-      'for (const {x : y, z, a : b = c} in obj);',
-      Context.OptionsRanges,
-      
-    ],
+    ['"use strict"; const { [eval]: []} = a;', Context.None],
+    ['const { [eval]: []} = a;', Context.None],
+    ['const [foo] = x, [bar] = y;', Context.OptionsRanges],
+    ['const x = y, [foo] = z;', Context.OptionsRanges],
+    ['const [foo=a,bar=b] = x;', Context.OptionsRanges],
+    ['const [...bar] = obj;', Context.OptionsRanges],
+    ['const x = y, {foo} = z;', Context.OptionsRanges],
+    ['const {foo:a,bar:b} = x;', Context.OptionsLoc | Context.OptionsRanges],
+    ['const a = b', Context.None],
+    ['for (const [,,] of x);', Context.None],
+    ['for (const [,] of x);', Context.None],
+    ['for (const {a, [x]: y} in obj);', Context.None],
+    ['for (const {x : y, z, a : b = c} in obj);', Context.OptionsRanges],
     [
       `const {
         [({ ...rest }) => {
@@ -367,7 +315,6 @@ describe('Declarations - const', () => {
         [({ ...d } = {})]: c,
       } = {};`,
       Context.None,
-      
     ],
     [
       `const {
@@ -377,13 +324,8 @@ describe('Declarations - const', () => {
           c = ({ ...d } = {}),
         } = {};`,
       Context.None,
-      
     ],
-    [
-      'const { a: { ...bar }, b: { ...baz }, ...foo } = obj;',
-      Context.None,
-      
-    ],
+    ['const { a: { ...bar }, b: { ...baz }, ...foo } = obj;', Context.None],
     [
       `var z = {};
             var { ...x } = z;
@@ -405,7 +347,6 @@ describe('Declarations - const', () => {
 
             let { x4: { ...y4 } } = z;`,
       Context.OptionsRanges,
-      
     ],
     [
       `let {
@@ -417,7 +358,6 @@ describe('Declarations - const', () => {
                 d: "oyez"
               };`,
       Context.None,
-      
     ],
     [
       `// ForXStatement
@@ -440,12 +380,7 @@ describe('Declarations - const', () => {
                   for await (a of []) {}
                 }`,
       Context.OptionsRanges,
-      
     ],
-    [
-      'const foo = bar;',
-      Context.None,
-      
-    ],
+    ['const foo = bar;', Context.None],
   ]);
 });

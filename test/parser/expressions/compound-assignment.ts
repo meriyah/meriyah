@@ -91,172 +91,40 @@ describe('Expressions - Compound assignment', () => {
   }
 
   pass('Expressions - Compound assignment (pass)', [
-    [
-      'base[prop()] /= expr();',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'null && (x += null)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'y1 = (y %= 2);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'y1 = (y <<= 1);',
-      Context.None,
-      
-    ],
-    [
-      'x ^= new String("1");',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x *= "1";',
-      Context.None,
-      
-    ],
-    [
-      'obj.prop >>= 20;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'arguments &= 20;',
-      Context.None,
-      
-    ],
-    [
-      'var z = (x *= -1);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'var z = (x %= y);',
-      Context.None,
-      
-    ],
-    [
-      'x *= undefined;',
-      Context.None,
-      
-    ],
-    [
-      'x -= 1;',
-      Context.None,
-      
-    ],
-    [
-      '(new foo).bar()',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a.b.c(2020)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a(0).b(14, 3, 77).c',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x >>= 1;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'var x1 = (x <<= 1);',
-      Context.None,
-      
-    ],
-    [
-      'x |= 1;',
-      Context.None,
-      
-    ],
-    [
-      'x /= true;',
-      Context.None,
-      
-    ],
-    [
-      'obj.len &= 10;',
-      Context.None,
-      
-    ],
-    [
-      'var x = 4;',
-      Context.None,
-      
-    ],
-    [
-      '(x + y) >= z',
-      Context.None,
-      
-    ],
-    [
-      '(x + y) <= z',
-      Context.None,
-      
-    ],
-    [
-      'x *= undefined;',
-      Context.None,
-      
-    ],
-    [
-      'x *= null;',
-      Context.None,
-      
-    ],
-    [
-      'x |= "1";',
-      Context.None,
-      
-    ],
-    [
-      'z = (x %= y);',
-      Context.None,
-      
-    ],
-    [
-      'x += "1";',
-      Context.None,
-      
-    ],
-    [
-      'x >>= true;',
-      Context.None,
-      
-    ],
+    ['base[prop()] /= expr();', Context.OptionsRanges],
+    ['null && (x += null)', Context.OptionsRanges],
+    ['y1 = (y %= 2);', Context.OptionsRanges],
+    ['y1 = (y <<= 1);', Context.None],
+    ['x ^= new String("1");', Context.OptionsRanges],
+    ['x *= "1";', Context.None],
+    ['obj.prop >>= 20;', Context.OptionsRanges],
+    ['arguments &= 20;', Context.None],
+    ['var z = (x *= -1);', Context.OptionsRanges],
+    ['var z = (x %= y);', Context.None],
+    ['x *= undefined;', Context.None],
+    ['x -= 1;', Context.None],
+    ['(new foo).bar()', Context.OptionsRanges],
+    ['a.b.c(2020)', Context.OptionsRanges],
+    ['a(0).b(14, 3, 77).c', Context.OptionsRanges],
+    ['x >>= 1;', Context.OptionsRanges],
+    ['var x1 = (x <<= 1);', Context.None],
+    ['x |= 1;', Context.None],
+    ['x /= true;', Context.None],
+    ['obj.len &= 10;', Context.None],
+    ['var x = 4;', Context.None],
+    ['(x + y) >= z', Context.None],
+    ['(x + y) <= z', Context.None],
+    ['x *= undefined;', Context.None],
+    ['x *= null;', Context.None],
+    ['x |= "1";', Context.None],
+    ['z = (x %= y);', Context.None],
+    ['x += "1";', Context.None],
+    ['x >>= true;', Context.None],
 
-    [
-      'x |= true',
-      Context.None,
-      
-    ],
+    ['x |= true', Context.None],
 
-    [
-      'x |= "1"',
-      Context.None,
-      
-    ],
-    [
-      'x |= 1',
-      Context.None,
-      
-    ],
-    [
-      'x += true',
-      Context.None,
-      
-    ],
+    ['x |= "1"', Context.None],
+    ['x |= 1', Context.None],
+    ['x += true', Context.None],
   ]);
 });

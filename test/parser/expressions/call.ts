@@ -267,222 +267,49 @@ describe('Expressions - Call', () => {
                                           ["bar"]()
                                               .baz()()`,
       Context.OptionsRanges,
-      
     ],
-    [
-      'async(x,) => x',
-      Context.None,
-      
-    ],
-    [
-      'async(x,)',
-      Context.None,
-      
-    ],
-    [
-      'foo({c=3} = {})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'async({c=3} = {})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '"foo", async',
-      Context.None,
-      
-    ],
-    [
-      'foo(async,)',
-      Context.None,
-      
-    ],
-    [
-      'foo("abc", async)',
-      Context.None,
-      
-    ],
-    [
-      'foo(1, async,)',
-      Context.None,
-      
-    ],
-    [
-      'foo(async,await,)',
-      Context.None,
-      
-    ],
-    [
-      'foo(async.await[foo])',
-      Context.None,
-      
-    ],
-    [
-      'foo(async.abc = await)',
-      Context.None,
-      
-    ],
-    [
-      'foo(123, async,await,)',
-      Context.None,
-      
-    ],
-    [
-      'foo("string", async / 1 -2, await,)',
-      Context.None,
-      
-    ],
-    [
-      'async({a})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'foo(x=1,y=x,x+y)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'foo(x,x=1);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'foo()(1, 2, 3, ...{})',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(function(obj) {}({a: 1, b: 2, ...{c: 3, d: 4}}));',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a.b( c() ).d.e;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'i(a, b, ...c);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(function(obj) {}({a: 1, b: 2, ...null}));',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a.replace(/ /g, "")',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'async(a)=> {}',
-      Context.None,
-      
-    ],
-    [
-      'call(await[1])',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'foo(a)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'foo(a)(b)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'foo(a, b, c)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'foo(a)(b)',
-      Context.None,
-      
-    ],
-    [
-      'async(a)(b)',
-      Context.None,
-      
-    ],
-    [
-      'async(a)(s)(y)(n)(c)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'async().a',
-      Context.None,
-      
-    ],
-    [
-      'async()()',
-      Context.None,
-      
-    ],
-    [
-      'async(async(async(async(async(async())))))',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a.b( o.bar )',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a.b( o["bar"] )',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a.b( foo() )',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a.b( c() ).d',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a.b( c() ).d.e',
-      Context.None,
-      
-    ],
-    [
-      'foo()(1, 2, 3)',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'foo(x,y,)',
-      Context.None,
-      
-    ],
-    [
-      'foo(200)',
-      Context.None,
-      
-    ],
-    [
-      'foo(a)(b)',
-      Context.None,
-      
-    ],
-    [
-      'foo(a)(b)(c)(d)(e)',
-      Context.None,
-      
-    ],
+    ['async(x,) => x', Context.None],
+    ['async(x,)', Context.None],
+    ['foo({c=3} = {})', Context.OptionsRanges],
+    ['async({c=3} = {})', Context.OptionsRanges],
+    ['"foo", async', Context.None],
+    ['foo(async,)', Context.None],
+    ['foo("abc", async)', Context.None],
+    ['foo(1, async,)', Context.None],
+    ['foo(async,await,)', Context.None],
+    ['foo(async.await[foo])', Context.None],
+    ['foo(async.abc = await)', Context.None],
+    ['foo(123, async,await,)', Context.None],
+    ['foo("string", async / 1 -2, await,)', Context.None],
+    ['async({a})', Context.OptionsRanges],
+    ['foo(x=1,y=x,x+y)', Context.OptionsRanges],
+    ['foo(x,x=1);', Context.OptionsRanges],
+    ['foo()(1, 2, 3, ...{})', Context.OptionsRanges],
+    ['(function(obj) {}({a: 1, b: 2, ...{c: 3, d: 4}}));', Context.OptionsRanges],
+    ['a.b( c() ).d.e;', Context.OptionsRanges],
+    ['i(a, b, ...c);', Context.OptionsRanges],
+    ['(function(obj) {}({a: 1, b: 2, ...null}));', Context.OptionsRanges],
+    ['a.replace(/ /g, "")', Context.OptionsRanges],
+    ['async(a)=> {}', Context.None],
+    ['call(await[1])', Context.OptionsRanges],
+    ['foo(a)', Context.OptionsRanges],
+    ['foo(a)(b)', Context.OptionsRanges],
+    ['foo(a, b, c)', Context.OptionsRanges],
+    ['foo(a)(b)', Context.None],
+    ['async(a)(b)', Context.None],
+    ['async(a)(s)(y)(n)(c)', Context.OptionsRanges],
+    ['async().a', Context.None],
+    ['async()()', Context.None],
+    ['async(async(async(async(async(async())))))', Context.OptionsRanges],
+    ['a.b( o.bar )', Context.OptionsRanges],
+    ['a.b( o["bar"] )', Context.OptionsRanges],
+    ['a.b( foo() )', Context.OptionsRanges],
+    ['a.b( c() ).d', Context.OptionsRanges],
+    ['a.b( c() ).d.e', Context.None],
+    ['foo()(1, 2, 3)', Context.OptionsRanges],
+    ['foo(x,y,)', Context.None],
+    ['foo(200)', Context.None],
+    ['foo(a)(b)', Context.None],
+    ['foo(a)(b)(c)(d)(e)', Context.None],
   ]);
 });

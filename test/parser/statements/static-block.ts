@@ -47,20 +47,8 @@ describe('Next - Class static initialization block', () => {
   }
 
   pass('Next - Class static initialization block (pass)', [
-    [
-      `class A { static {} }`,
-      Context.None,
-      
-    ],
-    [
-      `class A { static { this.a } }`,
-      Context.None,
-      
-    ],
-    [
-      `class A {}; class B extends A { static { super.a } }`,
-      Context.None,
-      
-    ],
+    [`class A { static {} }`, Context.None],
+    [`class A { static { this.a } }`, Context.None],
+    [`class A {}; class B extends A { static { super.a } }`, Context.None],
   ]);
 });

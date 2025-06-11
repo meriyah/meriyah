@@ -306,16 +306,8 @@ describe('Expressions - Functions', () => {
   ]);
 
   pass('Expressions - Functions (pass)', [
-    [
-      `function f(async = await){}`,
-      Context.None,
-      
-    ],
-    [
-      `function f([async = await]){}`,
-      Context.None,
-      
-    ],
+    [`function f(async = await){}`, Context.None],
+    [`function f([async = await]){}`, Context.None],
     [
       `(function () {
         let q;
@@ -324,7 +316,6 @@ describe('Expressions - Functions', () => {
         if (true) [q, w, e] = [1, 2, 3].map(()=>123);
       })();`,
       Context.None,
-      
     ],
     [
       `function somethingAdvanced({topLeft: {x: x1, y: y1} = {}, bottomRight: {x: x2, y: y2} = {}}, p2, p3){
@@ -343,547 +334,121 @@ describe('Expressions - Functions', () => {
 
         console.log(unpackArray(["hello", ", ", "world"], [1, 2, 3]));`,
       Context.None,
-      
     ],
-    [
-      'foo(function(){})',
-      Context.None,
-      
-    ],
-    [
-      'foo(function f(){})',
-      Context.None,
-      
-    ],
-    [
-      'foo(function*(){})',
-      Context.None,
-      
-    ],
-    [
-      'foo(function* f(){})',
-      Context.None,
-      
-    ],
-    [
-      'foo(async function(){})',
-      Context.None,
-      
-    ],
-    [
-      '(function (x = yield) {})',
-      Context.None,
-      
-    ],
-    [
-      'foo(async function f(){})',
-      Context.None,
-      
-    ],
-    [
-      '(function f(...rest){})',
-      Context.None,
-      
-    ],
-    [
-      '(function f(a, b, ...rest){})',
-      Context.None,
-      
-    ],
-    [
-      'typeof async function f(){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f(a = b,){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([x],){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f({a},){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([x] = y,){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f({a} = b,){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f(a=b){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f(a=b=c){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([] = x){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([,]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([,] = x){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([,,]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([,,] = x){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo] = x){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo,]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo,] = x){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo,,]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo,,] = x){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([,foo]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([,foo] = x){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([,,foo]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([,,foo] = x){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo,bar]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo,bar] = x){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo,,bar]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo,,bar] = x){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo], [bar]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo] = x, [bar] = y){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo], b){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo] = x, b){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo], b = y){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo] = x, b = y){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f(x, [foo]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f(x, [foo] = y){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f(x = y, [foo] = z){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f(x = y, [foo]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo=a]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo=a] = c){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo=a,bar]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo=a,bar] = x){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo,bar=b]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo,bar=b] = x){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo=a,bar=b]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo=a,bar=b] = x){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([a=b=c]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([a=b+=c]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([a = b = c] = arr){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f({b: []}) {}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([{b}]) {}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([a, {b: []}]) {}',
-      Context.None,
-      
-    ],
-    [
-      'x = function fk({x: [a, {b: []}]}) {}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([a, [b], c]) {}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([...bar]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([...bar] = obj){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo, ...bar]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([foo, ...bar] = obj){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([...[a, b]]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([...[a, b]] = obj){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([x, ...[a, b]]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f([x, ...[a, b]] = obj){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f( [a=[...b], ...c]){}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f( [a=[...b], ...c] = obj){}',
-      Context.None,
-      
-    ],
-    [
-      'f = ([[,] = g()]) => {};',
-      Context.None,
-      
-    ],
-    [
-      'x = function *await() {}',
-      Context.None,
-      
-    ],
-    [
-      ' f = function yield() {}',
-      Context.None,
-      
-    ],
-    [
-      'f = function await() {}',
-      Context.None,
-      
-    ],
-    [
-      'f = function *await() {}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f(yield) {}',
-      Context.None,
-      
-    ],
-    [
-      'x = async function f(yield) {}',
-      Context.None,
-      
-    ],
-    [
-      'x = function f(await) {}',
-      Context.None,
-      
-    ],
-    [
-      'x = function *f(await) {}',
-      Context.None,
-      
-    ],
+    ['foo(function(){})', Context.None],
+    ['foo(function f(){})', Context.None],
+    ['foo(function*(){})', Context.None],
+    ['foo(function* f(){})', Context.None],
+    ['foo(async function(){})', Context.None],
+    ['(function (x = yield) {})', Context.None],
+    ['foo(async function f(){})', Context.None],
+    ['(function f(...rest){})', Context.None],
+    ['(function f(a, b, ...rest){})', Context.None],
+    ['typeof async function f(){}', Context.None],
+    ['x = function f(a = b,){}', Context.None],
+    ['x = function f([x],){}', Context.None],
+    ['x = function f({a},){}', Context.None],
+    ['x = function f([x] = y,){}', Context.None],
+    ['x = function f({a} = b,){}', Context.None],
+    ['x = function f(a=b){}', Context.None],
+    ['x = function f(a=b=c){}', Context.None],
+    ['x = function f([]){}', Context.None],
+    ['x = function f([] = x){}', Context.None],
+    ['x = function f([,]){}', Context.None],
+    ['x = function f([,] = x){}', Context.None],
+    ['x = function f([,,]){}', Context.None],
+    ['x = function f([,,] = x){}', Context.None],
+    ['x = function f([foo]){}', Context.None],
+    ['x = function f([foo] = x){}', Context.None],
+    ['x = function f([foo,]){}', Context.None],
+    ['x = function f([foo,] = x){}', Context.None],
+    ['x = function f([foo,,]){}', Context.None],
+    ['x = function f([foo,,] = x){}', Context.None],
+    ['x = function f([,foo]){}', Context.None],
+    ['x = function f([,foo] = x){}', Context.None],
+    ['x = function f([,,foo]){}', Context.None],
+    ['x = function f([,,foo] = x){}', Context.None],
+    ['x = function f([foo,bar]){}', Context.None],
+    ['x = function f([foo,bar] = x){}', Context.None],
+    ['x = function f([foo,,bar]){}', Context.None],
+    ['x = function f([foo,,bar] = x){}', Context.None],
+    ['x = function f([foo], [bar]){}', Context.None],
+    ['x = function f([foo] = x, [bar] = y){}', Context.None],
+    ['x = function f([foo], b){}', Context.None],
+    ['x = function f([foo] = x, b){}', Context.None],
+    ['x = function f([foo], b = y){}', Context.None],
+    ['x = function f([foo] = x, b = y){}', Context.None],
+    ['x = function f(x, [foo]){}', Context.None],
+    ['x = function f(x, [foo] = y){}', Context.None],
+    ['x = function f(x = y, [foo] = z){}', Context.None],
+    ['x = function f(x = y, [foo]){}', Context.None],
+    ['x = function f([foo=a]){}', Context.None],
+    ['x = function f([foo=a] = c){}', Context.None],
+    ['x = function f([foo=a,bar]){}', Context.None],
+    ['x = function f([foo=a,bar] = x){}', Context.None],
+    ['x = function f([foo,bar=b]){}', Context.None],
+    ['x = function f([foo,bar=b] = x){}', Context.None],
+    ['x = function f([foo=a,bar=b]){}', Context.None],
+    ['x = function f([foo=a,bar=b] = x){}', Context.None],
+    ['x = function f([a=b=c]){}', Context.None],
+    ['x = function f([a=b+=c]){}', Context.None],
+    ['x = function f([a = b = c] = arr){}', Context.None],
+    ['x = function f({b: []}) {}', Context.None],
+    ['x = function f([{b}]) {}', Context.None],
+    ['x = function f([a, {b: []}]) {}', Context.None],
+    ['x = function fk({x: [a, {b: []}]}) {}', Context.None],
+    ['x = function f([a, [b], c]) {}', Context.None],
+    ['x = function f([...bar]){}', Context.None],
+    ['x = function f([...bar] = obj){}', Context.None],
+    ['x = function f([foo, ...bar]){}', Context.None],
+    ['x = function f([foo, ...bar] = obj){}', Context.None],
+    ['x = function f([...[a, b]]){}', Context.None],
+    ['x = function f([...[a, b]] = obj){}', Context.None],
+    ['x = function f([x, ...[a, b]]){}', Context.None],
+    ['x = function f([x, ...[a, b]] = obj){}', Context.None],
+    ['x = function f( [a=[...b], ...c]){}', Context.None],
+    ['x = function f( [a=[...b], ...c] = obj){}', Context.None],
+    ['f = ([[,] = g()]) => {};', Context.None],
+    ['x = function *await() {}', Context.None],
+    [' f = function yield() {}', Context.None],
+    ['f = function await() {}', Context.None],
+    ['f = function *await() {}', Context.None],
+    ['x = function f(yield) {}', Context.None],
+    ['x = async function f(yield) {}', Context.None],
+    ['x = function f(await) {}', Context.None],
+    ['x = function *f(await) {}', Context.None],
 
-    [
-      '(function foo({x:x = 10}) {})',
-      Context.None,
-      
-    ],
-    [
-      '(function foo([x1 = 1], [y1 = 2]) {})',
-      Context.None,
-      
-    ],
-    [
-      '(function foo({x1:x1 = 1, x2:x2 = 2, x3:x3 = 3}) {})',
-      Context.None,
-      
-    ],
-    [
-      '(function foo([x1 = 1, x2 = 2, x3 = 3]) {})',
-      Context.None,
-      
-    ],
-    [
-      '(function foo({x1:x1 = 1}, [y1 = 2]) {})',
-      Context.None,
-      
-    ],
-    [
-      '(function foo([x1 = 1], {y1:y1 = 2}) {})',
-      Context.None,
-      
-    ],
-    [
-      '(function foo({x:x} = {x:1}) {})',
-      Context.None,
-      
-    ],
+    ['(function foo({x:x = 10}) {})', Context.None],
+    ['(function foo([x1 = 1], [y1 = 2]) {})', Context.None],
+    ['(function foo({x1:x1 = 1, x2:x2 = 2, x3:x3 = 3}) {})', Context.None],
+    ['(function foo([x1 = 1, x2 = 2, x3 = 3]) {})', Context.None],
+    ['(function foo({x1:x1 = 1}, [y1 = 2]) {})', Context.None],
+    ['(function foo([x1 = 1], {y1:y1 = 2}) {})', Context.None],
+    ['(function foo({x:x} = {x:1}) {})', Context.None],
     [
       `function test() {
         let ID = "1|123456";
         return (([id, obj]) => ({[id = id.split('|')[1]]: {id: id}}))([ID, {}]);
     }`,
       Context.None,
-      
     ],
-    [
-      '(function foo([x] = [1]) {})',
-      Context.None,
-      
-    ],
-    [
-      '(function foo({x:x = 1} = {x:2}) {})',
-      Context.None,
-      
-    ],
-    [
-      '(function foo([x = 1] = [2]) {})',
-      Context.None,
-      
-    ],
-    [
-      '(function foo({x1:[y1 = 1]}) {})',
-      Context.None,
-      
-    ],
-    [
-      '(function foo([x1, {y1:y1 = 1}]) {})',
-      Context.None,
-      
-    ],
-    [
-      '(function foo({x1:[y1 = 1] = [2]} = {x1:[3]}) {})',
-      Context.None,
-      
-    ],
-    [
-      '(function foo([{y1:y1 = 1} = {y1:2}] = [{y1:3}]) {})',
-      Context.None,
-      
-    ],
-    [
-      '(function *fn( x1, {x2, x3}, [x4, x5], x6  ) {})',
-      Context.None,
-      
-    ],
-    [
-      '(function *fn(  {x1:x1, x2:x2, x3:x3}, {y1:y1, y1:y2} ) {})',
-      Context.None,
-      
-    ],
-    [
-      '(function *fn({x:x}, y  ) {})',
-      Context.None,
-      
-    ],
-    [
-      '(function *fn( {x1:x1}, [y1]  ) {})',
-      Context.None,
-      
-    ],
-    [
-      '(async function([,]) {})',
-      Context.None,
-      
-    ],
-    [
-      '(async function({x:x}) {})',
-      Context.None,
-      
-    ],
-    [
-      '(async function(y, {x:x}) {})',
-      Context.None,
-      
-    ],
-    [
-      '( [x], [y], [z]) => x;',
-      Context.None,
-      
-    ],
-    [
-      '( {x1:x1}, [y1]) => x;',
-      Context.None,
-      
-    ],
-    [
-      '( {x}) => x;',
-      Context.None,
-      
-    ],
+    ['(function foo([x] = [1]) {})', Context.None],
+    ['(function foo({x:x = 1} = {x:2}) {})', Context.None],
+    ['(function foo([x = 1] = [2]) {})', Context.None],
+    ['(function foo({x1:[y1 = 1]}) {})', Context.None],
+    ['(function foo([x1, {y1:y1 = 1}]) {})', Context.None],
+    ['(function foo({x1:[y1 = 1] = [2]} = {x1:[3]}) {})', Context.None],
+    ['(function foo([{y1:y1 = 1} = {y1:2}] = [{y1:3}]) {})', Context.None],
+    ['(function *fn( x1, {x2, x3}, [x4, x5], x6  ) {})', Context.None],
+    ['(function *fn(  {x1:x1, x2:x2, x3:x3}, {y1:y1, y1:y2} ) {})', Context.None],
+    ['(function *fn({x:x}, y  ) {})', Context.None],
+    ['(function *fn( {x1:x1}, [y1]  ) {})', Context.None],
+    ['(async function([,]) {})', Context.None],
+    ['(async function({x:x}) {})', Context.None],
+    ['(async function(y, {x:x}) {})', Context.None],
+    ['( [x], [y], [z]) => x;', Context.None],
+    ['( {x1:x1}, [y1]) => x;', Context.None],
+    ['( {x}) => x;', Context.None],
 
     [
       `if (a && b) {
@@ -892,123 +457,30 @@ describe('Expressions - Functions', () => {
       }));
     }`,
       Context.None,
-      
     ],
-    [
-      '(function (eval) { function foo() { "use strict"; }})',
-      Context.None,
-      
-    ],
-    [
-      '(function (eval) { (function () { "use strict"; })})',
-      Context.None,
-      
-    ],
-    [
-      '(function package() { (function gave_away_the_package() { "use strict"; }) })',
-      Context.None,
-      
-    ],
-    [
-      '(function([cover = (function () {}), xCover = (0, function() {})]) {})',
-      Context.None,
-      
-    ],
-    [
-      '{{{ function g() {} }}}',
-      Context.None,
-      
-    ],
-    [
-      '(function f({foo=a,bar} = x){})',
-      Context.None,
-      
-    ],
-    [
-      '(function f({foo:a=b, bar:c=d} = x){})',
-      Context.None,
-      
-    ],
-    [
-      'function f({foo:a=b}){}',
-      Context.None,
-      
-    ],
-    [
-      '(function f({} = x){})',
-      Context.None,
-      
-    ],
-    [
-      '(function f([...bar] = obj){})',
-      Context.None,
-      
-    ],
-    [
-      '(function f([foo=a]){})',
-      Context.None,
-      
-    ],
-    [
-      '(function f([foo], b = y){})',
-      Context.None,
-      
-    ],
-    [
-      '(function f([foo,,]){})',
-      Context.None,
-      
-    ],
+    ['(function (eval) { function foo() { "use strict"; }})', Context.None],
+    ['(function (eval) { (function () { "use strict"; })})', Context.None],
+    ['(function package() { (function gave_away_the_package() { "use strict"; }) })', Context.None],
+    ['(function([cover = (function () {}), xCover = (0, function() {})]) {})', Context.None],
+    ['{{{ function g() {} }}}', Context.None],
+    ['(function f({foo=a,bar} = x){})', Context.None],
+    ['(function f({foo:a=b, bar:c=d} = x){})', Context.None],
+    ['function f({foo:a=b}){}', Context.None],
+    ['(function f({} = x){})', Context.None],
+    ['(function f([...bar] = obj){})', Context.None],
+    ['(function f([foo=a]){})', Context.None],
+    ['(function f([foo], b = y){})', Context.None],
+    ['(function f([foo,,]){})', Context.None],
 
-    [
-      '(function f(x = y, [foo]){})',
-      Context.None,
-      
-    ],
-    [
-      '(function f([foo=a,bar=b] = x){})',
-      Context.None,
-      
-    ],
-    [
-      '(function f([foo] = x, b = y){})',
-      Context.None,
-      
-    ],
-    [
-      '(async function() {})',
-      Context.None,
-      
-    ],
-    [
-      'x = function() {}',
-      Context.None,
-      
-    ],
-    [
-      'x = function donna() {}',
-      Context.None,
-      
-    ],
-    [
-      '(function () {})',
-      Context.None,
-      
-    ],
-    [
-      '(function (a,b) {})',
-      Context.None,
-      
-    ],
-    [
-      '(function (a = b) {})',
-      Context.None,
-      
-    ],
-    [
-      '(function (love, you, donna) {})',
-      Context.None,
-      
-    ],
+    ['(function f(x = y, [foo]){})', Context.None],
+    ['(function f([foo=a,bar=b] = x){})', Context.None],
+    ['(function f([foo] = x, b = y){})', Context.None],
+    ['(async function() {})', Context.None],
+    ['x = function() {}', Context.None],
+    ['x = function donna() {}', Context.None],
+    ['(function () {})', Context.None],
+    ['(function (a,b) {})', Context.None],
+    ['(function (a = b) {})', Context.None],
+    ['(function (love, you, donna) {})', Context.None],
   ]);
 });

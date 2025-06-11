@@ -775,251 +775,55 @@ describe('Expressions - Await', () => {
   }
 
   pass('Expressions - Await (pass)', [
-    [
-      'await f();',
-      Context.Module,
-      
-    ],
-    [
-      'await 5;',
-      Context.Module | Context.Strict,
-      
-    ],
-    [
-      'const foo = (await bar)',
-      Context.Module,
-      
-    ],
-    [
-      'async function f(){ if (await \n x) {} }',
-      Context.None,
-      
-    ],
-    [
-      'async function a(){     async ([y] = [{m: 5 + t(await bar)}]);     }',
-      Context.None,
-      
-    ],
-    [
-      'async function f(){ await \n x; }',
-      Context.None,
-      
-    ],
-    [
-      'async function f(){ if (await \n x) {} }',
-      Context.None,
-      
-    ],
-    [
-      'let o = {await(){}}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'class x {await(){}}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'class x {async *await(){}}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'async function f() { await 3; }',
-      Context.Strict | Context.Module,
-      
-    ],
-    [
-      'function f(x = await){}',
-      Context.None,
-      
-    ],
-    [
-      'async function a(){     async ({r} = await bar);     }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'await()',
-      Context.None,
-      
-    ],
+    ['await f();', Context.Module],
+    ['await 5;', Context.Module | Context.Strict],
+    ['const foo = (await bar)', Context.Module],
+    ['async function f(){ if (await \n x) {} }', Context.None],
+    ['async function a(){     async ([y] = [{m: 5 + t(await bar)}]);     }', Context.None],
+    ['async function f(){ await \n x; }', Context.None],
+    ['async function f(){ if (await \n x) {} }', Context.None],
+    ['let o = {await(){}}', Context.OptionsRanges],
+    ['class x {await(){}}', Context.OptionsRanges],
+    ['class x {async *await(){}}', Context.OptionsRanges],
+    ['async function f() { await 3; }', Context.Strict | Context.Module],
+    ['function f(x = await){}', Context.None],
+    ['async function a(){     async ({r} = await bar);     }', Context.OptionsRanges],
+    ['await()', Context.None],
 
-    [
-      'await[x]',
-      Context.None,
-      
-    ],
-    [
-      'await = 1',
-      Context.None,
-      
-    ],
-    [
-      'await - 25',
-      Context.None,
-      
-    ],
-    [
-      'call(await)',
-      Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      'call(await[1])',
-      Context.OptionsLoc | Context.OptionsRanges,
-      
-    ],
-    [
-      'call(await.foo)',
-      Context.None,
-      
-    ],
-    [
-      '(function call(await){})',
-      Context.None,
-      
-    ],
-    [
-      '(function call(foo=await){})',
-      Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      'y = async x => await x',
-      Context.None,
-      
-    ],
-    [
-      '(async function f(){ await \n x; })',
-      Context.None,
-      
-    ],
-    [
-      '(function *await(){})',
-      Context.None,
-      
-    ],
-    [
-      'o = {await(){}}',
-      Context.None,
-      
-    ],
-    [
-      'o = {async await(){}}',
-      Context.None,
-      
-    ],
-    [
-      'async function foo(){}',
-      Context.None,
-      
-    ],
-    [
-      'o = {*await(){}}',
-      Context.None,
-      
-    ],
-    [
-      'o = {async *await(){}}',
-      Context.None,
-      
-    ],
-    [
-      'o = {f(await){}}',
-      Context.None,
-      
-    ],
-    [
-      'o = {*f(await){}}',
-      Context.None,
-      
-    ],
-    [
-      'o = (await) => x',
-      Context.None,
-      
-    ],
-    [
-      'x = function f(foo = await){}',
-      Context.None,
-      
-    ],
-    [
-      'async function f(){ await await foo; }',
-      Context.None,
-      
-    ],
-    [
-      'function *f(await){}',
-      Context.None,
-      
-    ],
-    [
-      '(await) => x',
-      Context.None,
-      
-    ],
-    [
-      'let x = function *f(foo = await){}',
-      Context.None,
-      
-    ],
-    [
-      'let o = {f(foo = await){}}',
-      Context.None,
-      
-    ],
-    [
-      'function *f(){  (await) => x  }',
-      Context.None,
-      
-    ],
-    [
-      'function *f(){  foo(await)  }',
-      Context.None,
-      
-    ],
-    [
-      'async function a(){     async ([v] = await bar);     }',
-      Context.None,
-      
-    ],
-    [
-      'async function a(){     async (foo = [{m: 5 + t(await bar)}]);     }',
-      Context.None,
-      
-    ],
-    [
-      '(await) => x',
-      Context.None,
-      
-    ],
-    [
-      'function *f(){  foo(await)  }',
-      Context.None,
-      
-    ],
-    [
-      'function f(foo = await){}',
-      Context.None,
-      
-    ],
-    [
-      'let o = {*f(await){}}',
-      Context.None,
-      
-    ],
-    [
-      'foo[await 1]',
-      Context.Module,
-      
-    ],
-    [
-      'foo(await bar)',
-      Context.Module,
-      
-    ],
+    ['await[x]', Context.None],
+    ['await = 1', Context.None],
+    ['await - 25', Context.None],
+    ['call(await)', Context.OptionsRanges | Context.OptionsLoc],
+    ['call(await[1])', Context.OptionsLoc | Context.OptionsRanges],
+    ['call(await.foo)', Context.None],
+    ['(function call(await){})', Context.None],
+    ['(function call(foo=await){})', Context.OptionsRanges | Context.OptionsLoc],
+    ['y = async x => await x', Context.None],
+    ['(async function f(){ await \n x; })', Context.None],
+    ['(function *await(){})', Context.None],
+    ['o = {await(){}}', Context.None],
+    ['o = {async await(){}}', Context.None],
+    ['async function foo(){}', Context.None],
+    ['o = {*await(){}}', Context.None],
+    ['o = {async *await(){}}', Context.None],
+    ['o = {f(await){}}', Context.None],
+    ['o = {*f(await){}}', Context.None],
+    ['o = (await) => x', Context.None],
+    ['x = function f(foo = await){}', Context.None],
+    ['async function f(){ await await foo; }', Context.None],
+    ['function *f(await){}', Context.None],
+    ['(await) => x', Context.None],
+    ['let x = function *f(foo = await){}', Context.None],
+    ['let o = {f(foo = await){}}', Context.None],
+    ['function *f(){  (await) => x  }', Context.None],
+    ['function *f(){  foo(await)  }', Context.None],
+    ['async function a(){     async ([v] = await bar);     }', Context.None],
+    ['async function a(){     async (foo = [{m: 5 + t(await bar)}]);     }', Context.None],
+    ['(await) => x', Context.None],
+    ['function *f(){  foo(await)  }', Context.None],
+    ['function f(foo = await){}', Context.None],
+    ['let o = {*f(await){}}', Context.None],
+    ['foo[await 1]', Context.Module],
+    ['foo(await bar)', Context.Module],
   ]);
 });

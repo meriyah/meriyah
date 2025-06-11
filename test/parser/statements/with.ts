@@ -17,30 +17,10 @@ describe('Statements - With', () => {
   ]);
 
   pass('Statements - With (pass)', [
-    [
-      'with ({}) let',
-      Context.None,
-      
-    ],
-    [
-      'with ({}) { }',
-      Context.None,
-      
-    ],
-    [
-      'with (x) foo;',
-      Context.None,
-      
-    ],
-    [
-      'with (x) { foo }',
-      Context.None,
-      
-    ],
-    [
-      'with (foo) bar;',
-      Context.None,
-      
-    ],
+    ['with ({}) let', Context.None],
+    ['with ({}) { }', Context.None],
+    ['with (x) foo;', Context.None],
+    ['with (x) { foo }', Context.None],
+    ['with (foo) bar;', Context.None],
   ]);
 });

@@ -129,65 +129,29 @@ describe('Next - Import Attributes', () => {
   ]);
 
   pass('Next - Import Attributes (pass)', [
-    [
-      `import('module', { type: 'json' });`,
-      Context.Module | Context.Strict | Context.OptionsNext,
-      
-    ],
-    [
-      `import('module', { 'data-type': 'json' });`,
-      Context.Module | Context.Strict | Context.OptionsNext,
-      
-    ],
+    [`import('module', { type: 'json' });`, Context.Module | Context.Strict | Context.OptionsNext],
+    [`import('module', { 'data-type': 'json' });`, Context.Module | Context.Strict | Context.OptionsNext],
     [
       `async function load() { return import('module', { type: 'json' }); }`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      
     ],
     [
       `for await (let module of [import('module', { type: 'json' })]) {}`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      
     ],
-    [
-      'import foo from "bar" with { type: "json" };',
-      Context.Module | Context.Strict | Context.OptionsNext,
-      
-    ],
+    ['import foo from "bar" with { type: "json" };', Context.Module | Context.Strict | Context.OptionsNext],
     [
       'import foo from "bar" with { type: "json", "data-type": "json" };',
       Context.Module | Context.Strict | Context.OptionsNext,
-      
     ],
     [
       `var promise; for (promise = import('./2nd-param_FIXTURE.js', 'test262' in {} || undefined); false; );`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      
     ],
-    [
-      `export * from './foo' with { type: 'json' }`,
-      Context.Module | Context.Strict | Context.OptionsNext,
-      
-    ],
-    [
-      `export * as foo from './foo' with { type: 'json' };`,
-      Context.Module | Context.Strict | Context.OptionsNext,
-      
-    ],
-    [
-      `export {} from './foo' with { type: 'html' };`,
-      Context.Module | Context.Strict | Context.OptionsNext,
-      
-    ],
-    [
-      `export { foo } from './foo' with { type: 'html' }`,
-      Context.Module | Context.Strict | Context.OptionsNext,
-      
-    ],
-    [
-      `export { foo, } from './foo' with { type: 'html' };`,
-      Context.Module | Context.Strict | Context.OptionsNext,
-      
-    ],
+    [`export * from './foo' with { type: 'json' }`, Context.Module | Context.Strict | Context.OptionsNext],
+    [`export * as foo from './foo' with { type: 'json' };`, Context.Module | Context.Strict | Context.OptionsNext],
+    [`export {} from './foo' with { type: 'html' };`, Context.Module | Context.Strict | Context.OptionsNext],
+    [`export { foo } from './foo' with { type: 'html' }`, Context.Module | Context.Strict | Context.OptionsNext],
+    [`export { foo, } from './foo' with { type: 'html' };`, Context.Module | Context.Strict | Context.OptionsNext],
   ]);
 });

@@ -458,318 +458,70 @@ describe('Expressions - Template', () => {
     ['`\\9`', Context.None],
   ]);
   pass('Expressions - Template (pass)', [
-    [
-      'var await = `simple template`;',
-      Context.None,
-      
-    ],
-    [
-      '`${y, x`)`}`',
-      Context.None,
-      
-    ],
-    [
-      '`${x`)`, y}`',
-      Context.None,
-      
-    ],
-    [
-      '`a${b=c}d`',
-      Context.None,
-      
-    ],
-    [
-      'f`x${/foo/}y`',
-      Context.None,
-      
-    ],
-    [
-      '`foo ${a} and ${b} and ${c} baz`',
-      Context.None,
-      
-    ],
-    [
-      '{`foo baz`}',
-      Context.None,
-      
-    ],
-    [
-      '{`foo ${a} baz`}',
-      Context.None,
-      
-    ],
-    [
-      '{`foo ${a} and ${b} and ${c} baz`}',
-      Context.None,
-      
-    ],
-    [
-      '`foo${{}}baz`',
-      Context.None,
-      
-    ],
-    [
-      '`foo${{a,b}}baz`',
-      Context.None,
-      
-    ],
-    [
-      '`foo${`foo`}baz`',
-      Context.None,
-      
-    ],
-    [
-      '`foo${`foo${bar}baz`}baz`',
-      Context.None,
-      
-    ],
-    [
-      '{`foo ${a} and ${b} and ${`w ${d} x ${e} y ${f} z`} baz`}',
-      Context.None,
-      
-    ],
-    [
-      '`a ${function(){}} b`',
-      Context.None,
-      
-    ],
+    ['var await = `simple template`;', Context.None],
+    ['`${y, x`)`}`', Context.None],
+    ['`${x`)`, y}`', Context.None],
+    ['`a${b=c}d`', Context.None],
+    ['f`x${/foo/}y`', Context.None],
+    ['`foo ${a} and ${b} and ${c} baz`', Context.None],
+    ['{`foo baz`}', Context.None],
+    ['{`foo ${a} baz`}', Context.None],
+    ['{`foo ${a} and ${b} and ${c} baz`}', Context.None],
+    ['`foo${{}}baz`', Context.None],
+    ['`foo${{a,b}}baz`', Context.None],
+    ['`foo${`foo`}baz`', Context.None],
+    ['`foo${`foo${bar}baz`}baz`', Context.None],
+    ['{`foo ${a} and ${b} and ${`w ${d} x ${e} y ${f} z`} baz`}', Context.None],
+    ['`a ${function(){}} b`', Context.None],
 
-    [
-      'function *f(){   x = `1 ${ yield } 2`   }',
-      Context.None,
-      
-    ],
+    ['function *f(){   x = `1 ${ yield } 2`   }', Context.None],
 
-    [
-      '`foo${bar}baz`',
-      Context.None,
-      
-    ],
-    [
-      '`foo${{a,b} = x}baz`',
-      Context.None,
-      
-    ],
-    [
-      '`${ {function: 1} }`',
-      Context.None,
-      
-    ],
-    [
-      '`${ {class: 1} }`',
-      Context.None,
-      
-    ],
-    [
-      '`${ foo({class: 1}) }`',
-      Context.None,
-      
-    ],
-    [
-      'var y = `{${x}}`;',
-      Context.None,
-      
-    ],
-    [
-      '`${x} + ${y} = ${x + y}` === "5 + 10 = 15"',
-      Context.None,
-      
-    ],
-    [
-      '`outer${{x: {y: 10}}}bar${`nested${function(){return 1;}}endnest`}end`;',
-      Context.None,
-      
-    ],
-    [
-      'var y = `{ ${x} }`;',
-      Context.None,
-      
-    ],
-    [
-      '`${/\\d/.exec("1")[0]}`',
-      Context.None,
-      
-    ],
-    [
-      '`${ {delete: 1} }`',
-      Context.None,
-      
-    ],
-    [
-      '`${ {enum: 1} }`',
-      Context.None,
-      
-    ],
-    [
-      'foo`x${a}y${b}z`',
-      Context.None,
-      
-    ],
-    [
-      'a.foo`bar`',
-      Context.None,
-      
-    ],
-    [
-      'abc`bar`',
-      Context.None,
-      
-    ],
-    [
-      '`bar`',
-      Context.None,
-      
-    ],
-    [
-      '`foo ${a} and ${b} and ${c} baz`',
-      Context.None,
-      
-    ],
-    [
-      '{`foo baz`}',
-      Context.None,
-      
-    ],
-    [
-      '{`foo ${a} baz`}',
-      Context.None,
-      
-    ],
-    [
-      '{`foo ${a} and ${b} and ${c} baz`}',
-      Context.None,
-      
-    ],
-    [
-      '`foo${{}}baz`',
-      Context.None,
-      
-    ],
-    [
-      '`foo${{a,b}}baz`',
-      Context.None,
-      
-    ],
-    [
-      '`foo${{a,b} = x}baz`',
-      Context.None,
-      
-    ],
-    [
-      '`foo${`foo`}baz`',
-      Context.None,
-      
-    ],
-    [
-      '`foo${`foo${bar}baz`}baz`',
-      Context.None,
-      
-    ],
-    [
-      '{`foo ${a} and ${b} and ${`w ${d} x ${e} y ${f} z`} baz`}',
-      Context.None,
-      
-    ],
-    [
-      '`a ${()=>{}} b`',
-      Context.None,
-      
-    ],
+    ['`foo${bar}baz`', Context.None],
+    ['`foo${{a,b} = x}baz`', Context.None],
+    ['`${ {function: 1} }`', Context.None],
+    ['`${ {class: 1} }`', Context.None],
+    ['`${ foo({class: 1}) }`', Context.None],
+    ['var y = `{${x}}`;', Context.None],
+    ['`${x} + ${y} = ${x + y}` === "5 + 10 = 15"', Context.None],
+    ['`outer${{x: {y: 10}}}bar${`nested${function(){return 1;}}endnest`}end`;', Context.None],
+    ['var y = `{ ${x} }`;', Context.None],
+    ['`${/\\d/.exec("1")[0]}`', Context.None],
+    ['`${ {delete: 1} }`', Context.None],
+    ['`${ {enum: 1} }`', Context.None],
+    ['foo`x${a}y${b}z`', Context.None],
+    ['a.foo`bar`', Context.None],
+    ['abc`bar`', Context.None],
+    ['`bar`', Context.None],
+    ['`foo ${a} and ${b} and ${c} baz`', Context.None],
+    ['{`foo baz`}', Context.None],
+    ['{`foo ${a} baz`}', Context.None],
+    ['{`foo ${a} and ${b} and ${c} baz`}', Context.None],
+    ['`foo${{}}baz`', Context.None],
+    ['`foo${{a,b}}baz`', Context.None],
+    ['`foo${{a,b} = x}baz`', Context.None],
+    ['`foo${`foo`}baz`', Context.None],
+    ['`foo${`foo${bar}baz`}baz`', Context.None],
+    ['{`foo ${a} and ${b} and ${`w ${d} x ${e} y ${f} z`} baz`}', Context.None],
+    ['`a ${()=>{}} b`', Context.None],
 
-    [
-      '`a ${(k)=>{x}} b`',
-      Context.None,
-      
-    ],
-    [
-      'x = `1 ${ yield } 2`',
-      Context.None,
-      
-    ],
-    [
-      'x = `1 ${ yield } 2 ${ 3 } 4`',
-      Context.None,
-      
-    ],
-    [
-      'function *f(){   x = `1 ${ yield } 2`   }',
-      Context.None,
-      
-    ],
-    [
-      'function *f(){   x = `1 ${ yield } 2 ${ 3 } 4`   }',
-      Context.None,
-      
-    ],
-    [
-      'function *f(){   x = `1 ${ yield x } 2`   }',
-      Context.None,
-      
-    ],
-    [
-      'function *f(){   x = `1 ${ yield x } 2 ${ 3 } 4`   }',
-      Context.None,
-      
-    ],
-    [
-      '`foo${bar}baz`',
-      Context.None,
-      
-    ],
-    [
-      'tagA`a`\ntagB`b`',
-      Context.None | Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      '`${b()}${c()}`',
-      Context.None | Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      'function a() {\nreturn `1234${b}`;\n}\n',
-      Context.None | Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      "tag()`'\\00a0'`;",
-      Context.None,
-      
-    ],
-    [
-      "tag('a')`'\\00a0'`;",
-      Context.None,
-      
-    ],
-    [
-      "tag('a')('b')`'\\00a0'`;",
-      Context.None,
-      
-    ],
-    [
-      "tag()(...a)`'\\00a0'`;",
-      Context.None,
-      
-    ],
-    [
-      "tag('a')(b)(c, ...d)`'\\00a0'`;",
-      Context.None,
-      
-    ],
-    [
-      "(tag = () => {})`'\\00a0'`",
-      Context.None,
-      
-    ],
-    [
-      'String.raw`{\rtf1adeflang1025ansiansicpg1252\\uc1`;',
-      Context.None,
-      
-    ],
-    [
-      'test`\\u{0`',
-      Context.None,
-      
-    ],
+    ['`a ${(k)=>{x}} b`', Context.None],
+    ['x = `1 ${ yield } 2`', Context.None],
+    ['x = `1 ${ yield } 2 ${ 3 } 4`', Context.None],
+    ['function *f(){   x = `1 ${ yield } 2`   }', Context.None],
+    ['function *f(){   x = `1 ${ yield } 2 ${ 3 } 4`   }', Context.None],
+    ['function *f(){   x = `1 ${ yield x } 2`   }', Context.None],
+    ['function *f(){   x = `1 ${ yield x } 2 ${ 3 } 4`   }', Context.None],
+    ['`foo${bar}baz`', Context.None],
+    ['tagA`a`\ntagB`b`', Context.None | Context.OptionsRanges | Context.OptionsLoc],
+    ['`${b()}${c()}`', Context.None | Context.OptionsRanges | Context.OptionsLoc],
+    ['function a() {\nreturn `1234${b}`;\n}\n', Context.None | Context.OptionsRanges | Context.OptionsLoc],
+    ["tag()`'\\00a0'`;", Context.None],
+    ["tag('a')`'\\00a0'`;", Context.None],
+    ["tag('a')('b')`'\\00a0'`;", Context.None],
+    ["tag()(...a)`'\\00a0'`;", Context.None],
+    ["tag('a')(b)(c, ...d)`'\\00a0'`;", Context.None],
+    ["(tag = () => {})`'\\00a0'`", Context.None],
+    ['String.raw`{\rtf1adeflang1025ansiansicpg1252\\uc1`;', Context.None],
+    ['test`\\u{0`', Context.None],
   ]);
 });

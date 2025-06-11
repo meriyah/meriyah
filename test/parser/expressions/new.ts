@@ -159,388 +159,84 @@ describe('Expressions - New', () => {
   ]);
 
   pass('Expressions - New (pass)', [
-    [
-      'new await()()',
-      Context.None,
-      
-    ],
-    [
-      'new foo()();',
-      Context.None,
-      
-    ],
-    [
-      'new (foo)();',
-      Context.None,
-      
-    ],
-    [
-      'new (foo);',
-      Context.None,
-      
-    ],
-    [
-      'new a ? b : c',
-      Context.None,
-      
-    ],
-    [
-      'new Foo',
-      Context.None,
-      
-    ],
-    [
-      'new Foo.Bar',
-      Context.None,
-      
-    ],
-    [
-      'new a.b.c.d',
-      Context.None,
-      
-    ],
-    [
-      'new async(x)(y)',
-      Context.None,
-      
-    ],
-    [
-      'new Foo["bar"]',
-      Context.None,
-      
-    ],
-    [
-      'new Foo()',
-      Context.None,
-      
-    ],
-    [
-      'new Foo.Bar()',
-      Context.None,
-      
-    ],
-    [
-      'new Foo["bar"]()',
-      Context.None,
-      
-    ],
-    [
-      'new Foo(X)',
-      Context.None,
-      
-    ],
-    [
-      'new Foo.Bar(X)',
-      Context.None,
-      
-    ],
-    [
-      'new Foo["bar"](X)',
-      Context.None,
-      
-    ],
-    [
-      'new Foo(X, Y, Z)',
-      Context.None,
-      
-    ],
-    [
-      'new Foo.Bar(X, Y, Z)',
-      Context.None,
-      
-    ],
-    [
-      'new Foo["bar"](X, Y, Z)',
-      Context.None,
-      
-    ],
-    [
-      'new x().y',
-      Context.None,
-      
-    ],
-    [
-      'new x()[y]',
-      Context.None,
-      
-    ],
-    [
-      'new x()();',
-      Context.None,
-      
-    ],
+    ['new await()()', Context.None],
+    ['new foo()();', Context.None],
+    ['new (foo)();', Context.None],
+    ['new (foo);', Context.None],
+    ['new a ? b : c', Context.None],
+    ['new Foo', Context.None],
+    ['new Foo.Bar', Context.None],
+    ['new a.b.c.d', Context.None],
+    ['new async(x)(y)', Context.None],
+    ['new Foo["bar"]', Context.None],
+    ['new Foo()', Context.None],
+    ['new Foo.Bar()', Context.None],
+    ['new Foo["bar"]()', Context.None],
+    ['new Foo(X)', Context.None],
+    ['new Foo.Bar(X)', Context.None],
+    ['new Foo["bar"](X)', Context.None],
+    ['new Foo(X, Y, Z)', Context.None],
+    ['new Foo.Bar(X, Y, Z)', Context.None],
+    ['new Foo["bar"](X, Y, Z)', Context.None],
+    ['new x().y', Context.None],
+    ['new x()[y]', Context.None],
+    ['new x()();', Context.None],
     //['new x()`y`', Context.None,  {}],
-    [
-      'new a.b.c.d()',
-      Context.None,
-      
-    ],
-    [
-      'new Foo["bar"]()',
-      Context.None,
-      
-    ],
-    [
-      'new Foo(X)',
-      Context.None,
-      
-    ],
-    [
-      'new Foo.Bar(X)',
-      Context.None,
-      
-    ],
-    [
-      'new Foo["bar"](X)',
-      Context.None,
-      
-    ],
-    [
-      'new Foo(X, Y, Z)',
-      Context.None,
-      
-    ],
-    [
-      'new Foo.Bar(X, Y, Z)',
-      Context.None,
-      
-    ],
-    [
-      'new Foo["bar"](X, Y, Z)',
-      Context.None,
-      
-    ],
-    [
-      'new x().y',
-      Context.None,
-      
-    ],
-    [
-      'new x()[y]',
-      Context.None,
-      
-    ],
-    [
-      'new x()();',
-      Context.None,
-      
-    ],
-    [
-      'new x().y = z',
-      Context.None,
-      
-    ],
-    [
-      'new x().y + z',
-      Context.None,
-      
-    ],
-    [
-      'new x()[y] = z',
-      Context.None,
-      
-    ],
-    [
-      'new x()[y] + z',
-      Context.None,
-      
-    ],
-    [
-      '++new x().y',
-      Context.None,
-      
-    ],
+    ['new a.b.c.d()', Context.None],
+    ['new Foo["bar"]()', Context.None],
+    ['new Foo(X)', Context.None],
+    ['new Foo.Bar(X)', Context.None],
+    ['new Foo["bar"](X)', Context.None],
+    ['new Foo(X, Y, Z)', Context.None],
+    ['new Foo.Bar(X, Y, Z)', Context.None],
+    ['new Foo["bar"](X, Y, Z)', Context.None],
+    ['new x().y', Context.None],
+    ['new x()[y]', Context.None],
+    ['new x()();', Context.None],
+    ['new x().y = z', Context.None],
+    ['new x().y + z', Context.None],
+    ['new x()[y] = z', Context.None],
+    ['new x()[y] + z', Context.None],
+    ['++new x().y', Context.None],
 
-    [
-      'new x().y++',
-      Context.None,
-      
-    ],
-    [
-      'delete new x()',
-      Context.None,
-      
-    ],
-    [
-      'delete new x().y',
-      Context.None,
-      
-    ],
-    [
-      'typeof new x()',
-      Context.None,
-      
-    ],
-    [
-      'new new A().foo',
-      Context.None,
-      
-    ],
-    [
-      'new new A.foo()',
-      Context.None,
-      
-    ],
-    [
-      'new "foo".__proto__.constructor',
-      Context.None,
-      
-    ],
-    [
-      'new 1..__proto__.constructor',
-      Context.None,
-      
-    ],
-    [
-      'new 0x2.__proto__.constructor',
-      Context.None,
-      
-    ],
-    [
-      'new true.__proto__.constructor',
-      Context.None,
-      
-    ],
-    [
-      'typeof new x().y',
-      Context.None,
-      
-    ],
-    [
-      'new new x',
-      Context.None,
-      
-    ],
+    ['new x().y++', Context.None],
+    ['delete new x()', Context.None],
+    ['delete new x().y', Context.None],
+    ['typeof new x()', Context.None],
+    ['new new A().foo', Context.None],
+    ['new new A.foo()', Context.None],
+    ['new "foo".__proto__.constructor', Context.None],
+    ['new 1..__proto__.constructor', Context.None],
+    ['new 0x2.__proto__.constructor', Context.None],
+    ['new true.__proto__.constructor', Context.None],
+    ['typeof new x().y', Context.None],
+    ['new new x', Context.None],
 
-    [
-      '[...new A()]',
-      Context.None,
-      
-    ],
-    [
-      'class x extends new A() {}',
-      Context.None,
-      
-    ],
-    [
-      'x({[new A()]:y})',
-      Context.None,
-      
-    ],
-    [
-      'f(new /z/())',
-      Context.None,
-      
-    ],
-    [
-      'f(new /z/)',
-      Context.None,
-      
-    ],
-    [
-      'f(new /z/.foo)',
-      Context.None,
-      
-    ],
-    [
-      'new arguments',
-      Context.None,
-      
-    ],
-    [
-      'new async',
-      Context.None,
-      
-    ],
-    [
-      'new async (x, y)',
-      Context.None,
-      
-    ],
-    [
-      'new async (...x)',
-      Context.None,
-      
-    ],
-    [
-      'new async function(){}',
-      Context.None,
-      
-    ],
-    [
-      'typeof async',
-      Context.None,
-      
-    ],
-    [
-      'typeof async ()',
-      Context.None,
-      
-    ],
-    [
-      'typeof async function(){}',
-      Context.None,
-      
-    ],
-    [
-      'new await',
-      Context.None,
-      
-    ],
-    [
-      'new class{}',
-      Context.None,
-      
-    ],
-    [
-      'new class extends x{}',
-      Context.None,
-      
-    ],
-    [
-      'class x extends (x) {}',
-      Context.None,
-      
-    ],
-    [
-      'new eval()',
-      Context.None,
-      
-    ],
-    [
-      'new false.__proto__.constructor',
-      Context.None,
-      
-    ],
-    [
-      'new function(){}',
-      Context.None,
-      
-    ],
-    [
-      'new function(){}(x)',
-      Context.None,
-      
-    ],
-    [
-      'class x extends y { constructor() { new super.foo }}',
-      Context.None,
-      
-    ],
-    [
-      'class x extends y { constructor() { new super() }}',
-      Context.None,
-      
-    ],
-    [
-      'new this',
-      Context.None,
-      
-    ],
-    [
-      'new let',
-      Context.None,
-      
-    ],
+    ['[...new A()]', Context.None],
+    ['class x extends new A() {}', Context.None],
+    ['x({[new A()]:y})', Context.None],
+    ['f(new /z/())', Context.None],
+    ['f(new /z/)', Context.None],
+    ['f(new /z/.foo)', Context.None],
+    ['new arguments', Context.None],
+    ['new async', Context.None],
+    ['new async (x, y)', Context.None],
+    ['new async (...x)', Context.None],
+    ['new async function(){}', Context.None],
+    ['typeof async', Context.None],
+    ['typeof async ()', Context.None],
+    ['typeof async function(){}', Context.None],
+    ['new await', Context.None],
+    ['new class{}', Context.None],
+    ['new class extends x{}', Context.None],
+    ['class x extends (x) {}', Context.None],
+    ['new eval()', Context.None],
+    ['new false.__proto__.constructor', Context.None],
+    ['new function(){}', Context.None],
+    ['new function(){}(x)', Context.None],
+    ['class x extends y { constructor() { new super.foo }}', Context.None],
+    ['class x extends y { constructor() { new super() }}', Context.None],
+    ['new this', Context.None],
+    ['new let', Context.None],
   ]);
 });

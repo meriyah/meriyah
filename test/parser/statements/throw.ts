@@ -13,40 +13,12 @@ describe('Statements - Throw', () => {
   fail('Statements - Throw', inValids);
 
   pass('Statements - Throw (pass)', [
-    [
-      'throw ((((((d = null)))) ? (((--r))) : ((/|[--]*||[^\u2B7a+-?]+|(?!)/giy))));',
-      Context.None,
-      
-    ],
-    [
-      'throw /(?=[^\x4f-\xF5(-)])/imy',
-      Context.None,
-      
-    ],
-    [
-      'throw foo;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'throw foo',
-      Context.None,
-      
-    ],
-    [
-      'throw 12',
-      Context.None,
-      
-    ],
-    [
-      'throw x * y',
-      Context.None,
-      
-    ],
-    [
-      'throw foo;',
-      Context.None,
-      
-    ],
+    ['throw ((((((d = null)))) ? (((--r))) : ((/|[--]*||[^\u2B7a+-?]+|(?!)/giy))));', Context.None],
+    ['throw /(?=[^\x4f-\xF5(-)])/imy', Context.None],
+    ['throw foo;', Context.OptionsRanges],
+    ['throw foo', Context.None],
+    ['throw 12', Context.None],
+    ['throw x * y', Context.None],
+    ['throw foo;', Context.None],
   ]);
 });

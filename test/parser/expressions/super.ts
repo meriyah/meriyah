@@ -615,235 +615,66 @@ describe('Expressions - Super', () => {
   ]);
 
   pass('Expressions - Super (pass)', [
-    [
-      'class C { constructor() {new super.x; } }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'class x extends y { }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'class x extends y { f(){} }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'class x extends y { constructor() { super(); } }',
-      Context.None,
-      
-    ],
-    [
-      'class x { constructor(){ super.foo; }}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'class x { foo(){ super.foo; }}',
-      Context.None,
-      
-    ],
-    [
-      'class x { foo(x=super.foo){ }}',
-      Context.None,
-      
-    ],
-    [
-      'x={ foo(){ super.foo; }}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x={ foo(a = super.foo){ }}',
-      Context.None,
-      
-    ],
-    [
-      'class x { constructor(){ super[foo]; }}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'class x { foo(){ super[foo]; }}',
-      Context.None,
-      
-    ],
-    [
-      'class x { foo(x=super[foo]){ }}',
-      Context.None,
-      
-    ],
-    [
-      'x={ foo(){ super[foo]; }}',
-      Context.None,
-      
-    ],
-    [
-      'x={ foo(a = super[foo]){ }}',
-      Context.None,
-      
-    ],
-    [
-      'class x extends y { constructor(){ return () => super(); }}',
-      Context.None,
-      
-    ],
-    [
-      'class x extends y { constructor(){ return (a=super()) => a; }}',
-      Context.None,
-      
-    ],
-    [
-      'class x extends y { constructor(){ return () => () => super(); }}',
-      Context.None,
-      
-    ],
-    [
-      'class x extends y { constructor(){ return () => super.foo; }}',
-      Context.None,
-      
-    ],
-    [
-      'class x extends y { constructor(){ return () => super[foo]; }}',
-      Context.None,
-      
-    ],
-    [
-      'class x { constructor(){ return () => super.foo; }}',
-      Context.None,
-      
-    ],
-    [
-      'class x extends y { constructor(){ return (a=super.foo) => a; }}',
-      Context.None,
-      
-    ],
-    [
-      'class x extends y { constructor(){ return (a=super.foo) => a; }}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'class x extends y { constructor(){ return () => () => super.foo; }}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'class x { constructor(){ return () => () => super.foo; }}',
-      Context.None,
-      
-    ],
-    [
-      'class x { fo(){ return () => super.foo; }}',
-      Context.None,
-      
-    ],
-    [
-      'class x extends y { dsda(){ return (a=super.foo) => a; }}',
-      Context.None,
-      
-    ],
-    [
-      'class x { dsda(){ return (a=super.foo) => a; }}',
-      Context.None,
-      
-    ],
-    [
-      'class x extends y { foo(){ return () => () => super.foo; }}',
-      Context.None,
-      
-    ],
-    [
-      'x={ fo(){ return () => super.foo; }}',
-      Context.None,
-      
-    ],
-    [
-      'x={ dsda(){ return (a=super.foo) => a; }}',
-      Context.None,
-      
-    ],
-    [
-      'x={ foo(){ return () => () => super.foo; }}',
-      Context.None,
-      
-    ],
-    [
-      'class x extends y { constructor() { } }',
-      Context.None,
-      
-    ],
-    [
-      'class x extends y { constructor() { log(this); super(); } }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'class x extends y { constructor() { log(super.foo); super(); } }',
-      Context.None,
-      
-    ],
-    [
-      'class x extends y { constructor(x = super()) { } }',
-      Context.None,
-      
-    ],
-    [
-      'class x extends y { constructor(x = this) { super(); } }',
-      Context.None,
-      
-    ],
-    [
-      'class x extends y { constructor(x = super(), y = this) { } }',
-      Context.None,
-      
-    ],
-    [
-      'class x extends y { constructor() { super(); super(); } }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'class x extends y { constructor() { super(this); } }',
-      Context.None,
-      
-    ],
-    [
-      'class x extends y { constructor() { let xx = x + x; super(); } }',
-      Context.None,
-      
-    ],
-    [
-      'class x extends y { constructor() { f(x); super(); } }',
-      Context.None,
-      
-    ],
+    ['class C { constructor() {new super.x; } }', Context.OptionsRanges],
+    ['class x extends y { }', Context.OptionsRanges],
+    ['class x extends y { f(){} }', Context.OptionsRanges],
+    ['class x extends y { constructor() { super(); } }', Context.None],
+    ['class x { constructor(){ super.foo; }}', Context.OptionsRanges],
+    ['class x { foo(){ super.foo; }}', Context.None],
+    ['class x { foo(x=super.foo){ }}', Context.None],
+    ['x={ foo(){ super.foo; }}', Context.OptionsRanges],
+    ['x={ foo(a = super.foo){ }}', Context.None],
+    ['class x { constructor(){ super[foo]; }}', Context.OptionsRanges],
+    ['class x { foo(){ super[foo]; }}', Context.None],
+    ['class x { foo(x=super[foo]){ }}', Context.None],
+    ['x={ foo(){ super[foo]; }}', Context.None],
+    ['x={ foo(a = super[foo]){ }}', Context.None],
+    ['class x extends y { constructor(){ return () => super(); }}', Context.None],
+    ['class x extends y { constructor(){ return (a=super()) => a; }}', Context.None],
+    ['class x extends y { constructor(){ return () => () => super(); }}', Context.None],
+    ['class x extends y { constructor(){ return () => super.foo; }}', Context.None],
+    ['class x extends y { constructor(){ return () => super[foo]; }}', Context.None],
+    ['class x { constructor(){ return () => super.foo; }}', Context.None],
+    ['class x extends y { constructor(){ return (a=super.foo) => a; }}', Context.None],
+    ['class x extends y { constructor(){ return (a=super.foo) => a; }}', Context.OptionsRanges],
+    ['class x extends y { constructor(){ return () => () => super.foo; }}', Context.OptionsRanges],
+    ['class x { constructor(){ return () => () => super.foo; }}', Context.None],
+    ['class x { fo(){ return () => super.foo; }}', Context.None],
+    ['class x extends y { dsda(){ return (a=super.foo) => a; }}', Context.None],
+    ['class x { dsda(){ return (a=super.foo) => a; }}', Context.None],
+    ['class x extends y { foo(){ return () => () => super.foo; }}', Context.None],
+    ['x={ fo(){ return () => super.foo; }}', Context.None],
+    ['x={ dsda(){ return (a=super.foo) => a; }}', Context.None],
+    ['x={ foo(){ return () => () => super.foo; }}', Context.None],
+    ['class x extends y { constructor() { } }', Context.None],
+    ['class x extends y { constructor() { log(this); super(); } }', Context.OptionsRanges],
+    ['class x extends y { constructor() { log(super.foo); super(); } }', Context.None],
+    ['class x extends y { constructor(x = super()) { } }', Context.None],
+    ['class x extends y { constructor(x = this) { super(); } }', Context.None],
+    ['class x extends y { constructor(x = super(), y = this) { } }', Context.None],
+    ['class x extends y { constructor() { super(); super(); } }', Context.OptionsRanges],
+    ['class x extends y { constructor() { super(this); } }', Context.None],
+    ['class x extends y { constructor() { let xx = x + x; super(); } }', Context.None],
+    ['class x extends y { constructor() { f(x); super(); } }', Context.None],
     [
       'class x extends y { a = () => super.a(); }',
       Context.OptionsNext | Context.OptionsWebCompat | Context.OptionsRanges,
-      
     ],
     [
       'class x extends y { a = () => { super.a(); }}',
       Context.OptionsNext | Context.OptionsWebCompat | Context.OptionsRanges,
-      
     ],
     [
       'class x extends y { a = async () => await super.a(); }',
       Context.OptionsNext | Context.OptionsWebCompat | Context.OptionsRanges,
-      
     ],
     [
       'class x extends y { a = async () => { await super.a(); }}',
       Context.OptionsNext | Context.OptionsWebCompat | Context.OptionsRanges,
-      
     ],
     [
       'class x extends y { static properties = { ...super.constructor.properties }; }',
       Context.OptionsNext | Context.OptionsWebCompat | Context.OptionsRanges,
-      
     ],
   ]);
 });

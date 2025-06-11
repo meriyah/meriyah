@@ -5,21 +5,9 @@ import { parse } from '../../../src/meriyah';
 
 describe('Miscellaneous - loc', () => {
   pass('Miscellaneous - loc (pass)', [
-    [
-      `[,,x]`,
-      Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      `[50..foo] = x`,
-      Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      `a={"b":c=d}`,
-      Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
+    [`[,,x]`, Context.OptionsRanges | Context.OptionsLoc],
+    [`[50..foo] = x`, Context.OptionsRanges | Context.OptionsLoc],
+    [`a={"b":c=d}`, Context.OptionsRanges | Context.OptionsLoc],
     /*  [
             `1 -2 / 4`,
             Context.OptionsRanges | Context.OptionsLoc,
@@ -136,51 +124,15 @@ describe('Miscellaneous - loc', () => {
               ],
               "sourceType": "script"
             }], */
-    [
-      `x = {y}`,
-      Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      `0, [ x = y ] = [];`,
-      Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      `of = 42`,
-      Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      `a *= b`,
-      Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      `(2[x,x],x)>x`,
-      Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      `a&&(b=c)&&(d=e)`,
-      Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      `x = {...y, b}`,
-      Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      `x = {...[a, b]}`,
-      Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
-    [
-      `[,]`,
-      Context.OptionsRanges | Context.OptionsLoc,
-      
-    ],
+    [`x = {y}`, Context.OptionsRanges | Context.OptionsLoc],
+    [`0, [ x = y ] = [];`, Context.OptionsRanges | Context.OptionsLoc],
+    [`of = 42`, Context.OptionsRanges | Context.OptionsLoc],
+    [`a *= b`, Context.OptionsRanges | Context.OptionsLoc],
+    [`(2[x,x],x)>x`, Context.OptionsRanges | Context.OptionsLoc],
+    [`a&&(b=c)&&(d=e)`, Context.OptionsRanges | Context.OptionsLoc],
+    [`x = {...y, b}`, Context.OptionsRanges | Context.OptionsLoc],
+    [`x = {...[a, b]}`, Context.OptionsRanges | Context.OptionsLoc],
+    [`[,]`, Context.OptionsRanges | Context.OptionsLoc],
   ]);
 
   it('Miscellaneous - loc (different line endings)', () => {

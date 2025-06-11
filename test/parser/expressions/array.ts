@@ -705,1221 +705,252 @@ describe('Expressions - Array', () => {
   ]);
 
   pass('Expressions - Array (pass)', [
-    [
-      '[(x) = y = (z) => (a)]',
-      Context.None,
-      
-    ],
-    [
-      '[.../x//yield]',
-      Context.None,
-      
-    ],
-    [
-      'x, [foo, bar] = doo;',
-      Context.None,
-      
-    ],
-    [
-      'x, [foo = y, bar] = doo',
-      Context.None,
-      
-    ],
-    [
-      'function *f(){ return [...yield x]; }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '"use strict"; const { [eval]: []} = a;',
-      Context.OptionsRanges | Context.OptionsRaw,
-      
-    ],
-    [
-      'function *f(){ return [...yield]; }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[x = true] = y',
-      Context.OptionsRanges,
-      
-    ],
+    ['[(x) = y = (z) => (a)]', Context.None],
+    ['[.../x//yield]', Context.None],
+    ['x, [foo, bar] = doo;', Context.None],
+    ['x, [foo = y, bar] = doo', Context.None],
+    ['function *f(){ return [...yield x]; }', Context.OptionsRanges],
+    ['"use strict"; const { [eval]: []} = a;', Context.OptionsRanges | Context.OptionsRaw],
+    ['function *f(){ return [...yield]; }', Context.OptionsRanges],
+    ['[x = true] = y', Context.OptionsRanges],
 
-    [
-      '[[x] = true] = y',
-      Context.None,
-      
-    ],
-    [
-      '[[x = true] = true] = y',
-      Context.None,
-      
-    ],
-    [
-      '["foo".foo] = x',
-      Context.None,
-      
-    ],
-    [
-      'result = [...{ x = yield }] = y;',
-      Context.None,
-      
-    ],
-    [
-      '[/foo/.length] = x',
-      Context.None,
-      
-    ],
-    [
-      'function* g() {   [...{ x = yield }] = y   }',
-      Context.None,
-      
-    ],
-    [
-      '[...{x}=y];',
-      Context.None,
-      
-    ],
-    [
-      '[(a)] = 1',
-      Context.None,
-      
-    ],
-    [
-      '[x,] = 0',
-      Context.None,
-      
-    ],
-    [
-      '[[x]] = 0',
-      Context.None,
-      
-    ],
-    [
-      '[...this];',
-      Context.OptionsWebCompat,
-      
-    ],
-    [
-      '[...x.list];',
-      Context.None,
-      
-    ],
-    [
-      '[...x.list] = a;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[, x,,] = 0',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[...[x]] = 0',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[...{x = 1}] = [{}]',
-      Context.None,
-      
-    ],
-    [
-      '[...[x]] = 0',
-      Context.None,
-      
-    ],
-    [
-      '[x, ...{0: y}] = 0',
-      Context.None,
-      
-    ],
-    [
-      '[x, x] = 0',
-      Context.None,
-      
-    ],
-    [
-      '[(a)] = 0',
-      Context.None,
-      
-    ],
-    [
-      '({x} = 0)',
-      Context.None,
-      
-    ],
-    [
-      '[ x = "x" in {} ] = value;',
-      Context.None,
-      
-    ],
-    [
-      'a = [ a = x += 1, b = x *= 2 ] = value;',
-      Context.None,
-      
-    ],
-    [
-      '[{ x }] = [null];',
-      Context.None,
-      
-    ],
-    [
-      '[{ x }] = [ , ];',
-      Context.None,
-      
-    ],
-    [
-      'a = [{ x = yield }] = value;',
-      Context.None,
-      
-    ],
-    [
-      'a = [[x[yield]]] = 123;',
-      Context.None,
-      
-    ],
-    [
-      '[{ x }] = [];',
-      Context.None,
-      
-    ],
-    [
-      'a = [{ x }] =  [{ x: 2 }];',
-      Context.None,
-      
-    ],
-    [
-      'a = [x.y] = [123];',
-      Context.None,
-      
-    ],
-    [
-      '[x, ...y] = [1, 2, 3];',
-      Context.None,
-      
-    ],
-    [
-      '[, ...x] = [1, 2, 3];',
-      Context.None,
-      
-    ],
-    [
-      'a = [x.y] = value;',
-      Context.None,
-      
-    ],
-    [
-      'a = [ x[yield] ] = [33];',
-      Context.None,
-      
-    ],
-    [
-      'a = [...[x, y]] = [null];',
-      Context.None,
-      
-    ],
-    [
-      'a = [...[x]] = [ , ];',
-      Context.None,
-      
-    ],
-    [
-      'a = [...{ 0: x, length }] = [undefined];',
-      Context.None,
-      
-    ],
-    [
-      'a = [...x.y] = [4, 3, 2];',
-      Context.None,
-      
-    ],
-    [
-      'a = [...[x[yield]]] = [2018];',
-      Context.None,
-      
-    ],
-    [
-      'a = [...{ 0: x, length }] = value;',
-      Context.None,
-      
-    ],
-    [
-      'a = [...{ 1: x }] = [1, 2, 3];',
-      Context.None,
-      
-    ],
-    [
-      '[,] = null;',
-      Context.None,
-      
-    ],
-    [
-      '[[x]] = [[1]];',
-      Context.None,
-      
-    ],
-    [
-      'a = [ x = yield ] = [];',
-      Context.None,
-      
-    ],
-    [
-      'result = [, x, , y, ,] = [1, 2, 3, 4, 5, 6];',
-      Context.None,
-      
-    ],
-    [
-      'a = [ x = flag = true ] = [];',
-      Context.None,
-      
-    ],
-    [
-      'a = [ a = x += 1, b = x *= 2 ] = [];',
-      Context.None,
-      
-    ],
-    [
-      'a = [arguments = 4, eval = 5] = value;',
-      Context.None,
-      
-    ],
-    [
-      '[a,b=0,[c,...a[0]]={}]=0',
-      Context.None,
-      
-    ],
-    [
-      '[a,a,,...a]=0;',
-      Context.None,
-      
-    ],
-    [
-      '[{a=b}=0]',
-      Context.None,
-      
-    ],
-    [
-      '[a = 0, ...{b = 0}] = 0',
-      Context.None,
-      
-    ],
-    [
-      '[{a=0}, ...b] = 0',
-      Context.None,
-      
-    ],
-    [
-      '[x[a]=a] = 0',
-      Context.None,
-      
-    ],
-    [
-      '[x.a=a] = 0',
-      Context.None,
-      
-    ],
-    [
-      '[{a=0},{a=0}] = 0',
-      Context.None,
-      
-    ],
-    [
-      '[...[...a[x]]] = 1',
-      Context.None,
-      
-    ],
-    [
-      'for([a,b[a],{c,d=e,[f]:[g,h().a,(0).k,...i[0]]}] in 0);',
-      Context.None,
-      
-    ],
-    [
-      '[[[[[[[[[[[[[[[[[[[[{a=b[0]}]]]]]]]]]]]]]]]]]]]]=0;',
-      Context.None,
-      
-    ],
-    [
-      '[ { x = 10 } = {} ]',
-      Context.None,
-      
-    ],
-    [
-      '[ { x : foo()[y] = 10 } = {} ]',
-      Context.None,
-      
-    ],
-    [
-      '[ [ foo().x = 10 ] = {} ]',
-      Context.None,
-      
-    ],
-    [
-      '[x, y, ...z = 1]',
-      Context.None,
-      
-    ],
-    [
-      '[...z = 1]',
-      Context.None,
-      
-    ],
-    [
-      'function x([ a, b ]){}',
-      Context.None,
-      
-    ],
-    [
-      'function a([x, , [, z]]) {}',
-      Context.None,
-      
-    ],
-    [
-      '[a,,b] = array;',
-      Context.None,
-      
-    ],
-    [
-      '[x = 10, y, z] = a;',
-      Context.None,
-      
-    ],
-    [
-      '[ok.v] = 20;',
-      Context.None,
-      
-    ],
-    [
-      '([y]) => x;',
-      Context.None,
-      
-    ],
-    [
-      '[{a = 0}] = [{}];',
-      Context.None,
-      
-    ],
-    [
-      '[{a = 0}] = [{}];',
-      Context.None,
-      
-    ],
-    [
-      'function f([...[{a = 0}]]) {}',
-      Context.None,
-      
-    ],
-    [
-      'h = ([...[{a = 0}]]) => {};',
-      Context.None,
-      
-    ],
-    [
-      'function f1({a} = {a:1}, b, [c] = [2]) {}',
-      Context.None,
-      
-    ],
-    [
-      '[arguments] = []',
-      Context.None,
-      
-    ],
-    [
-      '[...{a}] = [{}];',
-      Context.None,
-      
-    ],
+    ['[[x] = true] = y', Context.None],
+    ['[[x = true] = true] = y', Context.None],
+    ['["foo".foo] = x', Context.None],
+    ['result = [...{ x = yield }] = y;', Context.None],
+    ['[/foo/.length] = x', Context.None],
+    ['function* g() {   [...{ x = yield }] = y   }', Context.None],
+    ['[...{x}=y];', Context.None],
+    ['[(a)] = 1', Context.None],
+    ['[x,] = 0', Context.None],
+    ['[[x]] = 0', Context.None],
+    ['[...this];', Context.OptionsWebCompat],
+    ['[...x.list];', Context.None],
+    ['[...x.list] = a;', Context.OptionsRanges],
+    ['[, x,,] = 0', Context.OptionsRanges],
+    ['[...[x]] = 0', Context.OptionsRanges],
+    ['[...{x = 1}] = [{}]', Context.None],
+    ['[...[x]] = 0', Context.None],
+    ['[x, ...{0: y}] = 0', Context.None],
+    ['[x, x] = 0', Context.None],
+    ['[(a)] = 0', Context.None],
+    ['({x} = 0)', Context.None],
+    ['[ x = "x" in {} ] = value;', Context.None],
+    ['a = [ a = x += 1, b = x *= 2 ] = value;', Context.None],
+    ['[{ x }] = [null];', Context.None],
+    ['[{ x }] = [ , ];', Context.None],
+    ['a = [{ x = yield }] = value;', Context.None],
+    ['a = [[x[yield]]] = 123;', Context.None],
+    ['[{ x }] = [];', Context.None],
+    ['a = [{ x }] =  [{ x: 2 }];', Context.None],
+    ['a = [x.y] = [123];', Context.None],
+    ['[x, ...y] = [1, 2, 3];', Context.None],
+    ['[, ...x] = [1, 2, 3];', Context.None],
+    ['a = [x.y] = value;', Context.None],
+    ['a = [ x[yield] ] = [33];', Context.None],
+    ['a = [...[x, y]] = [null];', Context.None],
+    ['a = [...[x]] = [ , ];', Context.None],
+    ['a = [...{ 0: x, length }] = [undefined];', Context.None],
+    ['a = [...x.y] = [4, 3, 2];', Context.None],
+    ['a = [...[x[yield]]] = [2018];', Context.None],
+    ['a = [...{ 0: x, length }] = value;', Context.None],
+    ['a = [...{ 1: x }] = [1, 2, 3];', Context.None],
+    ['[,] = null;', Context.None],
+    ['[[x]] = [[1]];', Context.None],
+    ['a = [ x = yield ] = [];', Context.None],
+    ['result = [, x, , y, ,] = [1, 2, 3, 4, 5, 6];', Context.None],
+    ['a = [ x = flag = true ] = [];', Context.None],
+    ['a = [ a = x += 1, b = x *= 2 ] = [];', Context.None],
+    ['a = [arguments = 4, eval = 5] = value;', Context.None],
+    ['[a,b=0,[c,...a[0]]={}]=0', Context.None],
+    ['[a,a,,...a]=0;', Context.None],
+    ['[{a=b}=0]', Context.None],
+    ['[a = 0, ...{b = 0}] = 0', Context.None],
+    ['[{a=0}, ...b] = 0', Context.None],
+    ['[x[a]=a] = 0', Context.None],
+    ['[x.a=a] = 0', Context.None],
+    ['[{a=0},{a=0}] = 0', Context.None],
+    ['[...[...a[x]]] = 1', Context.None],
+    ['for([a,b[a],{c,d=e,[f]:[g,h().a,(0).k,...i[0]]}] in 0);', Context.None],
+    ['[[[[[[[[[[[[[[[[[[[[{a=b[0]}]]]]]]]]]]]]]]]]]]]]=0;', Context.None],
+    ['[ { x = 10 } = {} ]', Context.None],
+    ['[ { x : foo()[y] = 10 } = {} ]', Context.None],
+    ['[ [ foo().x = 10 ] = {} ]', Context.None],
+    ['[x, y, ...z = 1]', Context.None],
+    ['[...z = 1]', Context.None],
+    ['function x([ a, b ]){}', Context.None],
+    ['function a([x, , [, z]]) {}', Context.None],
+    ['[a,,b] = array;', Context.None],
+    ['[x = 10, y, z] = a;', Context.None],
+    ['[ok.v] = 20;', Context.None],
+    ['([y]) => x;', Context.None],
+    ['[{a = 0}] = [{}];', Context.None],
+    ['[{a = 0}] = [{}];', Context.None],
+    ['function f([...[{a = 0}]]) {}', Context.None],
+    ['h = ([...[{a = 0}]]) => {};', Context.None],
+    ['function f1({a} = {a:1}, b, [c] = [2]) {}', Context.None],
+    ['[arguments] = []', Context.None],
+    ['[...{a}] = [{}];', Context.None],
     [
       '[{x : [{y:{z = 1}, z1 = 2}] }, {x2 = 3}, {x3 : {y3:[{z3 = 4}]}} ] = [{x:[{y:{}}]}, {}, {x3:{y3:[{}]}}];',
       Context.None,
-      
     ],
-    [
-      '[[ x ]] = [ , ];',
-      Context.None,
-      
-    ],
-    [
-      '[[ x ]] = [undefined];',
-      Context.None,
-      
-    ],
-    [
-      '[[ x ]] = [null];',
-      Context.None,
-      
-    ],
-    [
-      '[...[a] = 1]',
-      Context.None,
-      
-    ],
-    [
-      '[...[ x = 5 ] ] = x',
-      Context.None,
-      
-    ],
-    [
-      'function foo([x] = [1]) {}',
-      Context.None,
-      
-    ],
-    [
-      'function foo([x = 1] = [2]) {}',
-      Context.None,
-      
-    ],
-    [
-      '[.../x/]',
-      Context.None,
-      
-    ],
-    [
-      '[.../x/+y]',
-      Context.None,
-      
-    ],
-    [
-      '[.../x//y]',
-      Context.None,
-      
-    ],
-    [
-      '[.../x/g/y]',
-      Context.None,
-      
-    ],
-    [
-      'function foo([{y1:y1 = 1} = {y1:2}] = [{y1:3}]) {}',
-      Context.None,
-      
-    ],
-    [
-      '[...[...[...a]]] = [[[]]];',
-      Context.None,
-      
-    ],
-    [
-      'x; [{ x = 10 } = {}]',
-      Context.None,
-      
-    ],
-    [
-      '[...[a].b1] = 3',
-      Context.None,
-      
-    ],
-    [
-      '[ { x : foo().y } ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ { x : foo()[y] } ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ { x : x.y } ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ [ x ] ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ [ foo().x ] ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ [ foo()[x] ] ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ [ x.y ] ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ [ x[y] ] ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ x = 10 ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ foo().x = 10 ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ foo()[x] = 10 ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ x.y = 10 ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ x[y] = 10 ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ { x = 10 } = {} ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ { x : y = 10 } = {} ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ { x : foo().y = 10 } = {} ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ { x : foo()[y] = 10 } = {} ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ [ x = 10 ] = {} ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[[y] = /a/ ]',
-      Context.None,
-      
-    ],
-    [
-      '[{y} = /a/ ]',
-      Context.None,
-      
-    ],
-    [
-      '[ [ foo()[x] = 10 ] = {} ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ [ x.y = 10 ] = {} ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[x,y,z] = x',
-      Context.None,
-      
-    ],
-    [
-      '[x, y = 42, z] = x',
-      Context.None,
-      
-    ],
-    [
-      '[{x:x = 1, y:y = 2}, [z = 3, z = 4, z = 5]] = x',
-      Context.None,
-      
-    ],
-    [
-      '[(x)] = x',
-      Context.None,
-      
-    ],
-    [
-      '[((x, y) => z).x] = x',
-      Context.None,
-      
-    ],
-    [
-      '[((x, y) => z)["x"]] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ ...(a) ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ ...(foo.bar) ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ (foo.bar) ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[ (foo["bar"]) ] = x',
-      Context.None,
-      
-    ],
-    [
-      '[[].length] = x',
-      Context.None,
-      
-    ],
-    [
-      '[[x].length] = x',
-      Context.None,
-      
-    ],
-    [
-      '[{}.length] = x',
-      Context.None,
-      
-    ],
-    [
-      '[{x: y}.length] = x',
-      Context.None,
-      
-    ],
-    [
-      '[...true]',
-      Context.None,
-      
-    ],
-    [
-      '[..."f".toString()]',
-      Context.None,
-      
-    ],
-    [
-      '[...50]',
-      Context.None,
-      
-    ],
-    [
-      '[..."foo"]',
-      Context.None,
-      
-    ],
-    [
-      '[..."foo".bar]',
-      Context.None,
-      
-    ],
-    [
-      '[...(x)]',
-      Context.None,
-      
-    ],
-    [
-      '[...(x,y)]',
-      Context.None,
-      
-    ],
-    [
-      '[..."x".y]',
-      Context.None,
-      
-    ],
-    [
-      '(x|y)^y',
-      Context.None,
-      
-    ],
-    [
-      '[...{a = b}] = x',
-      Context.None,
-      
-    ],
-    [
-      '[..."x" + y]',
-      Context.None,
-      
-    ],
-    [
-      '[[ x ]] = [];',
-      Context.None,
-      
-    ],
-    [
-      '[]',
-      Context.None,
-      
-    ],
-    [
-      '[1,2,3,4,5]',
-      Context.None,
-      
-    ],
-    [
-      '[,]',
-      Context.None,
-      
-    ],
-    [
-      '[,a,]',
-      Context.None,
-      
-    ],
-    [
-      '[a,,,,,,,,,b]',
-      Context.None,
-      
-    ],
-    [
-      '[[[[z++]]]]',
-      Context.None,
-      
-    ],
-    [
-      'array[1] === 2',
-      Context.None,
-      
-    ],
-    [
-      '[1, 2, 3, ...[]]',
-      Context.None,
-      
-    ],
-    [
-      '[1, 2, ...target = source]',
-      Context.None,
-      
-    ],
-    [
-      '[5, ...[6, 7, 8], 9]',
-      Context.None,
-      
-    ],
-    [
-      '[x]',
-      Context.None,
-      
-    ],
-    [
-      '[() => {}]',
-      Context.None,
-      
-    ],
-    [
-      '[abc => {}]',
-      Context.None,
-      
-    ],
-    [
-      '[,,]',
-      Context.None,
-      
-    ],
-    [
-      '[x,,,]',
-      Context.None,
-      
-    ],
-    [
-      '[x,,y]',
-      Context.None,
-      
-    ],
-    [
-      '[this];',
-      Context.None,
-      
-    ],
-    [
-      '[,,,]',
-      Context.None,
-      
-    ],
-    [
-      '[,,x]',
-      Context.None,
-      
-    ],
-    [
-      '[this];',
-      Context.None,
-      
-    ],
-    [
-      '[x, y, ...z]',
-      Context.None,
-      
-    ],
-    [
-      '[x.y] = z',
-      Context.None,
-      
-    ],
-    [
-      '[x().y] = z',
-      Context.None,
-      
-    ],
-    [
-      '[a[x.y]] = z',
-      Context.None,
-      
-    ],
-    [
-      '[x()[y]] = z',
-      Context.None,
-      
-    ],
-    [
-      '[x.y = a] = z',
-      Context.None,
-      
-    ],
-    [
-      '[x().y = a] = z',
-      Context.None,
-      
-    ],
-    [
-      '[a[x.y] = a] = z',
-      Context.None,
-      
-    ],
-    [
-      '[x()[y] = a ] = z',
-      Context.None,
-      
-    ],
-    [
-      '[x.y = a + b] = z',
-      Context.None,
-      
-    ],
-    [
-      '[x().y = a + b] = z',
-      Context.None,
-      
-    ],
-    [
-      '[a[x.y] = a + b] = z',
-      Context.None,
-      
-    ],
-    [
-      '[x()[y] = a + b] = z',
-      Context.None,
-      
-    ],
-    [
-      '[function(){}.length] = x',
-      Context.None,
-      
-    ],
-    [
-      '[5..length] = x',
-      Context.None,
-      
-    ],
-    [
-      '["X".length] = x',
-      Context.None,
-      
-    ],
-    [
-      '[{}.x] = y',
-      Context.None,
-      
-    ],
-    [
-      '[{}[x]] = y',
-      Context.None,
-      
-    ],
-    [
-      '[x, y, ...z]',
-      Context.None,
-      
-    ],
-    [
-      ' [...target = source]',
-      Context.None,
-      
-    ],
-    [
-      '[x, ...y, z]',
-      Context.None,
-      
-    ],
-    [
-      '[x, y, ...z = arr]',
-      Context.None,
-      
-    ],
-    [
-      '[x, y, ...z()]',
-      Context.None,
-      
-    ],
-    [
-      '[x, y, ...z + arr]',
-      Context.None,
-      
-    ],
-    [
-      '[x, ...z = arr, y]',
-      Context.None,
-      
-    ],
-    [
-      '[x, ...z(), y]',
-      Context.None,
-      
-    ],
-    [
-      '[x, ...z + arr, y]',
-      Context.None,
-      
-    ],
-    [
-      '[foo = A] = arr;',
-      Context.None,
-      
-    ],
-    [
-      '[foo, bar] = arr;',
-      Context.None,
-      
-    ],
-    [
-      '[foo = A, bar = B] = arr;',
-      Context.None,
-      
-    ],
-    [
-      '[foo, [x,y,z], bar = B] = arr;',
-      Context.None,
-      
-    ],
-    [
-      '[foo, [[[[[[[[[[[[[x,y,z]]]]]]]]]]]]], bar = B] = arr;',
-      Context.None,
-      
-    ],
-    [
-      '[foo, [x,y = 20,z], bar = B] = arr;',
-      Context.None,
-      
-    ],
-    [
-      'foo([a, b] = arr);',
-      Context.None,
-      
-    ],
-    [
-      '[...x.list];',
-      Context.None,
-      
-    ],
-    [
-      '[...x.list] = a;',
-      Context.None,
-      
-    ],
-    [
-      '[...x = y];',
-      Context.None,
-      
-    ],
-    [
-      '[...x += y];',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[...[x].map(y, z)];',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[...[x].map(y, z)[x]] = a;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x, [foo, bar] = doo',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x, [foo = y, bar] = doo',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x = [a, b] = y',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[a, b] = c = d',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[[foo].length] = x',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[x, y]',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[x = y]',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[x.y]',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[]',
-      Context.None,
-      
-    ],
-    [
-      '[,]',
-      Context.None,
-      
-    ],
-    [
-      '[,,]',
-      Context.None,
-      
-    ],
-    [
-      '[x,]',
-      Context.None,
-      
-    ],
-    [
-      '[x,,,]',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[x,,y]',
-      Context.None,
-      
-    ],
-    [
-      '[foo = A] = arr;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[foo, bar] = arr;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[foo = A, bar = B] = arr;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[x &= 42]',
-      Context.OptionsRanges | Context.OptionsRaw,
-      
-    ],
-    [
-      '[a = 2]',
-      Context.None,
-      
-    ],
-    [
-      '[await = x] = x',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[await = x]',
-      Context.None,
-      
-    ],
-    [
-      '["x".foo]=x',
-      Context.OptionsRanges | Context.OptionsRaw,
-      
-    ],
-    [
-      '[x.y = z]',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[a,b=[x,y]] = z',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(foo, [bar, baz] = doo);',
-      Context.None,
-      
-    ],
-    [
-      '[a, {b:d}, c] = obj',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[a, {[b]:d}, c] = obj',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[please, {[make]: it}, stop] = bwahahahaha',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[pweeze = [pretty] = please, {[make]: it}, stop] = bwahahahaha',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'log({foo: [bar]});',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'log({foo: [bar]} = obj);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[...{a = b} = c];',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[a, {b}, c] = obj',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '[z++]',
-      Context.OptionsRanges,
-      
-    ],
+    ['[[ x ]] = [ , ];', Context.None],
+    ['[[ x ]] = [undefined];', Context.None],
+    ['[[ x ]] = [null];', Context.None],
+    ['[...[a] = 1]', Context.None],
+    ['[...[ x = 5 ] ] = x', Context.None],
+    ['function foo([x] = [1]) {}', Context.None],
+    ['function foo([x = 1] = [2]) {}', Context.None],
+    ['[.../x/]', Context.None],
+    ['[.../x/+y]', Context.None],
+    ['[.../x//y]', Context.None],
+    ['[.../x/g/y]', Context.None],
+    ['function foo([{y1:y1 = 1} = {y1:2}] = [{y1:3}]) {}', Context.None],
+    ['[...[...[...a]]] = [[[]]];', Context.None],
+    ['x; [{ x = 10 } = {}]', Context.None],
+    ['[...[a].b1] = 3', Context.None],
+    ['[ { x : foo().y } ] = x', Context.None],
+    ['[ { x : foo()[y] } ] = x', Context.None],
+    ['[ { x : x.y } ] = x', Context.None],
+    ['[ [ x ] ] = x', Context.None],
+    ['[ [ foo().x ] ] = x', Context.None],
+    ['[ [ foo()[x] ] ] = x', Context.None],
+    ['[ [ x.y ] ] = x', Context.None],
+    ['[ [ x[y] ] ] = x', Context.None],
+    ['[ x = 10 ] = x', Context.None],
+    ['[ foo().x = 10 ] = x', Context.None],
+    ['[ foo()[x] = 10 ] = x', Context.None],
+    ['[ x.y = 10 ] = x', Context.None],
+    ['[ x[y] = 10 ] = x', Context.None],
+    ['[ { x = 10 } = {} ] = x', Context.None],
+    ['[ { x : y = 10 } = {} ] = x', Context.None],
+    ['[ { x : foo().y = 10 } = {} ] = x', Context.None],
+    ['[ { x : foo()[y] = 10 } = {} ] = x', Context.None],
+    ['[ [ x = 10 ] = {} ] = x', Context.None],
+    ['[[y] = /a/ ]', Context.None],
+    ['[{y} = /a/ ]', Context.None],
+    ['[ [ foo()[x] = 10 ] = {} ] = x', Context.None],
+    ['[ [ x.y = 10 ] = {} ] = x', Context.None],
+    ['[x,y,z] = x', Context.None],
+    ['[x, y = 42, z] = x', Context.None],
+    ['[{x:x = 1, y:y = 2}, [z = 3, z = 4, z = 5]] = x', Context.None],
+    ['[(x)] = x', Context.None],
+    ['[((x, y) => z).x] = x', Context.None],
+    ['[((x, y) => z)["x"]] = x', Context.None],
+    ['[ ...(a) ] = x', Context.None],
+    ['[ ...(foo.bar) ] = x', Context.None],
+    ['[ (foo.bar) ] = x', Context.None],
+    ['[ (foo["bar"]) ] = x', Context.None],
+    ['[[].length] = x', Context.None],
+    ['[[x].length] = x', Context.None],
+    ['[{}.length] = x', Context.None],
+    ['[{x: y}.length] = x', Context.None],
+    ['[...true]', Context.None],
+    ['[..."f".toString()]', Context.None],
+    ['[...50]', Context.None],
+    ['[..."foo"]', Context.None],
+    ['[..."foo".bar]', Context.None],
+    ['[...(x)]', Context.None],
+    ['[...(x,y)]', Context.None],
+    ['[..."x".y]', Context.None],
+    ['(x|y)^y', Context.None],
+    ['[...{a = b}] = x', Context.None],
+    ['[..."x" + y]', Context.None],
+    ['[[ x ]] = [];', Context.None],
+    ['[]', Context.None],
+    ['[1,2,3,4,5]', Context.None],
+    ['[,]', Context.None],
+    ['[,a,]', Context.None],
+    ['[a,,,,,,,,,b]', Context.None],
+    ['[[[[z++]]]]', Context.None],
+    ['array[1] === 2', Context.None],
+    ['[1, 2, 3, ...[]]', Context.None],
+    ['[1, 2, ...target = source]', Context.None],
+    ['[5, ...[6, 7, 8], 9]', Context.None],
+    ['[x]', Context.None],
+    ['[() => {}]', Context.None],
+    ['[abc => {}]', Context.None],
+    ['[,,]', Context.None],
+    ['[x,,,]', Context.None],
+    ['[x,,y]', Context.None],
+    ['[this];', Context.None],
+    ['[,,,]', Context.None],
+    ['[,,x]', Context.None],
+    ['[this];', Context.None],
+    ['[x, y, ...z]', Context.None],
+    ['[x.y] = z', Context.None],
+    ['[x().y] = z', Context.None],
+    ['[a[x.y]] = z', Context.None],
+    ['[x()[y]] = z', Context.None],
+    ['[x.y = a] = z', Context.None],
+    ['[x().y = a] = z', Context.None],
+    ['[a[x.y] = a] = z', Context.None],
+    ['[x()[y] = a ] = z', Context.None],
+    ['[x.y = a + b] = z', Context.None],
+    ['[x().y = a + b] = z', Context.None],
+    ['[a[x.y] = a + b] = z', Context.None],
+    ['[x()[y] = a + b] = z', Context.None],
+    ['[function(){}.length] = x', Context.None],
+    ['[5..length] = x', Context.None],
+    ['["X".length] = x', Context.None],
+    ['[{}.x] = y', Context.None],
+    ['[{}[x]] = y', Context.None],
+    ['[x, y, ...z]', Context.None],
+    [' [...target = source]', Context.None],
+    ['[x, ...y, z]', Context.None],
+    ['[x, y, ...z = arr]', Context.None],
+    ['[x, y, ...z()]', Context.None],
+    ['[x, y, ...z + arr]', Context.None],
+    ['[x, ...z = arr, y]', Context.None],
+    ['[x, ...z(), y]', Context.None],
+    ['[x, ...z + arr, y]', Context.None],
+    ['[foo = A] = arr;', Context.None],
+    ['[foo, bar] = arr;', Context.None],
+    ['[foo = A, bar = B] = arr;', Context.None],
+    ['[foo, [x,y,z], bar = B] = arr;', Context.None],
+    ['[foo, [[[[[[[[[[[[[x,y,z]]]]]]]]]]]]], bar = B] = arr;', Context.None],
+    ['[foo, [x,y = 20,z], bar = B] = arr;', Context.None],
+    ['foo([a, b] = arr);', Context.None],
+    ['[...x.list];', Context.None],
+    ['[...x.list] = a;', Context.None],
+    ['[...x = y];', Context.None],
+    ['[...x += y];', Context.OptionsRanges],
+    ['[...[x].map(y, z)];', Context.OptionsRanges],
+    ['[...[x].map(y, z)[x]] = a;', Context.OptionsRanges],
+    ['x, [foo, bar] = doo', Context.OptionsRanges],
+    ['x, [foo = y, bar] = doo', Context.OptionsRanges],
+    ['x = [a, b] = y', Context.OptionsRanges],
+    ['[a, b] = c = d', Context.OptionsRanges],
+    ['[[foo].length] = x', Context.OptionsRanges],
+    ['[x, y]', Context.OptionsRanges],
+    ['[x = y]', Context.OptionsRanges],
+    ['[x.y]', Context.OptionsRanges],
+    ['[]', Context.None],
+    ['[,]', Context.None],
+    ['[,,]', Context.None],
+    ['[x,]', Context.None],
+    ['[x,,,]', Context.OptionsRanges],
+    ['[x,,y]', Context.None],
+    ['[foo = A] = arr;', Context.OptionsRanges],
+    ['[foo, bar] = arr;', Context.OptionsRanges],
+    ['[foo = A, bar = B] = arr;', Context.OptionsRanges],
+    ['[x &= 42]', Context.OptionsRanges | Context.OptionsRaw],
+    ['[a = 2]', Context.None],
+    ['[await = x] = x', Context.OptionsRanges],
+    ['[await = x]', Context.None],
+    ['["x".foo]=x', Context.OptionsRanges | Context.OptionsRaw],
+    ['[x.y = z]', Context.OptionsRanges],
+    ['[a,b=[x,y]] = z', Context.OptionsRanges],
+    ['(foo, [bar, baz] = doo);', Context.None],
+    ['[a, {b:d}, c] = obj', Context.OptionsRanges],
+    ['[a, {[b]:d}, c] = obj', Context.OptionsRanges],
+    ['[please, {[make]: it}, stop] = bwahahahaha', Context.OptionsRanges],
+    ['[pweeze = [pretty] = please, {[make]: it}, stop] = bwahahahaha', Context.OptionsRanges],
+    ['log({foo: [bar]});', Context.OptionsRanges],
+    ['log({foo: [bar]} = obj);', Context.OptionsRanges],
+    ['[...{a = b} = c];', Context.OptionsRanges],
+    ['[a, {b}, c] = obj', Context.OptionsRanges],
+    ['[z++]', Context.OptionsRanges],
   ]);
 });

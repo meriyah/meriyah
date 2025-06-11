@@ -202,45 +202,13 @@ describe('Miscellaneous - Directives', () => {
   ]);
 
   pass('Miscellaneous - Directives (pass)', [
-    [
-      String.raw`"use strict" + "Hello\312World"`,
-      Context.Module | Context.OptionsRanges | Context.OptionsRaw,
-      
-    ],
-    [
-      '("use strict"); foo = 42;',
-      Context.Module | Context.OptionsRanges | Context.OptionsRaw,
-      
-    ],
-    [
-      String.raw`"use strict", "Hello\312World"`,
-      Context.None | Context.OptionsRanges | Context.OptionsRaw,
-      
-    ],
-    [
-      '"use asm" \n "use strict"',
-      Context.None | Context.OptionsRanges | Context.OptionsRaw,
-      
-    ],
-    [
-      '"use strict"; + 1',
-      Context.None | Context.OptionsRanges,
-      
-    ],
-    [
-      '("use strict"); foo = 42;',
-      Context.None | Context.OptionsRanges,
-      
-    ],
-    [
-      '"\\u0061b"\n"c\\u0064"',
-      Context.None,
-      
-    ],
-    [
-      '"\\u0061b"\n"c\\u0064"',
-      Context.Module,
-      
-    ],
+    [String.raw`"use strict" + "Hello\312World"`, Context.Module | Context.OptionsRanges | Context.OptionsRaw],
+    ['("use strict"); foo = 42;', Context.Module | Context.OptionsRanges | Context.OptionsRaw],
+    [String.raw`"use strict", "Hello\312World"`, Context.None | Context.OptionsRanges | Context.OptionsRaw],
+    ['"use asm" \n "use strict"', Context.None | Context.OptionsRanges | Context.OptionsRaw],
+    ['"use strict"; + 1', Context.None | Context.OptionsRanges],
+    ['("use strict"); foo = 42;', Context.None | Context.OptionsRanges],
+    ['"\\u0061b"\n"c\\u0064"', Context.None],
+    ['"\\u0061b"\n"c\\u0064"', Context.Module],
   ]);
 });

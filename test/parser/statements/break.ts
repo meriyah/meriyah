@@ -141,38 +141,13 @@ describe('Statements - Break', () => {
       `a: if (true) b: { break a; break b; }
       else b: { break a; break b; }`,
       Context.None,
-      
     ],
-    [
-      'foo: while (true) if (x) break foo;',
-      Context.None,
-      
-    ],
-    [
-      'foo: while(true)break foo;',
-      Context.None,
-      
-    ],
-    [
-      'function f(){ while (true)       if (x) break   }',
-      Context.None,
-      
-    ],
-    [
-      'while (true)    { break }   ',
-      Context.None,
-      
-    ],
-    [
-      'function f(){ for (;;)       if (x) break   }',
-      Context.None,
-      
-    ],
-    [
-      'L: let\nx',
-      Context.None,
-      
-    ],
+    ['foo: while (true) if (x) break foo;', Context.None],
+    ['foo: while(true)break foo;', Context.None],
+    ['function f(){ while (true)       if (x) break   }', Context.None],
+    ['while (true)    { break }   ', Context.None],
+    ['function f(){ for (;;)       if (x) break   }', Context.None],
+    ['L: let\nx', Context.None],
     [
       `switch (a) { case 10 /* StringLiteral */:
         if (lookAhead(function () { return nextToken() !== 57 /* ColonToken */; })) {
@@ -181,53 +156,16 @@ describe('Statements - Break', () => {
         }
 }`,
       Context.None,
-      
     ],
-    [
-      'switch (a) { case 123: { if (a) {} break } }',
-      Context.OptionsRanges,
-      
-    ],
+    ['switch (a) { case 123: { if (a) {} break } }', Context.OptionsRanges],
 
-    [
-      'ding: foo: bar: while (true) break foo;',
-      Context.OptionsRanges | Context.OptionsRaw,
-      
-    ],
-    [
-      'switch (x) { default: break; }',
-      Context.None,
-      
-    ],
-    [
-      'switch (x) { case x: if (foo) break; }',
-      Context.None,
-      
-    ],
-    [
-      'switch (x) { case x: {break;} }',
-      Context.None,
-      
-    ],
-    [
-      'foo: switch (x) { case x: break foo; }',
-      Context.OptionsRanges | Context.OptionsRaw,
-      
-    ],
-    [
-      'this',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'foo: switch (x) { case x: if (foo) {break foo;} }',
-      Context.None,
-      
-    ],
-    [
-      'switch (x) { case x: break; }',
-      Context.OptionsRanges,
-      
-    ],
+    ['ding: foo: bar: while (true) break foo;', Context.OptionsRanges | Context.OptionsRaw],
+    ['switch (x) { default: break; }', Context.None],
+    ['switch (x) { case x: if (foo) break; }', Context.None],
+    ['switch (x) { case x: {break;} }', Context.None],
+    ['foo: switch (x) { case x: break foo; }', Context.OptionsRanges | Context.OptionsRaw],
+    ['this', Context.OptionsRanges],
+    ['foo: switch (x) { case x: if (foo) {break foo;} }', Context.None],
+    ['switch (x) { case x: break; }', Context.OptionsRanges],
   ]);
 });

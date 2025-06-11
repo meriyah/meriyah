@@ -492,46 +492,14 @@ describe('Statements - For of', () => {
   }
 
   pass('Statements - For of (pass)', [
-    [
-      'for (a of b);',
-      Context.None,
-      
-    ],
-    [
-      'for (var a of b);',
-      Context.None,
-      
-    ],
-    [
-      'for (let a of b);',
-      Context.None,
-      
-    ],
-    [
-      'for (const a of b);',
-      Context.None,
-      
-    ],
-    [
-      'for (a of b=c);',
-      Context.None,
-      
-    ],
-    [
-      'for ([a.b] of c) d',
-      Context.None,
-      
-    ],
-    [
-      'for (const {f = x in /([--])|[--]|=+|[-\x1c$-\x9a+-\xad-]/y} of []) {}',
-      Context.None,
-      
-    ],
-    [
-      'for ([a.b].foo of c) d',
-      Context.None,
-      
-    ],
+    ['for (a of b);', Context.None],
+    ['for (var a of b);', Context.None],
+    ['for (let a of b);', Context.None],
+    ['for (const a of b);', Context.None],
+    ['for (a of b=c);', Context.None],
+    ['for ([a.b] of c) d', Context.None],
+    ['for (const {f = x in /([--])|[--]|=+|[-\x1c$-\x9a+-\xad-]/y} of []) {}', Context.None],
+    ['for ([a.b].foo of c) d', Context.None],
 
     [
       `for (const puxdlkurdxjjhtxg of [, new (({a: () => {
@@ -539,88 +507,23 @@ describe('Statements - For of', () => {
         "¡";
       })]) {}`,
       Context.None,
-      
     ],
-    [
-      'for ({a: b.c} of d) e',
-      Context.None,
-      
-    ],
-    [
-      'for ({a: b.c}.foo of d) e',
-      Context.None,
-      
-    ],
-    [
-      'for (foo=10;;);',
-      Context.None,
-      
-    ],
-    [
-      'for (let=10;;);',
-      Context.None,
-      
-    ],
-    [
-      'for ({x, y} of [{x: 1, y: 2}]) {}',
-      Context.None,
-      
-    ],
-    [
-      'for (let {j} of x) { foo = j }',
-      Context.None,
-      
-    ],
-    [
-      'for ([] of [{ next: function() {return { done: true }; },return: function() {return {}; }}]) {}',
-      Context.None,
-      
-    ],
-    [
-      'for (const {j} of x) { var [foo] = [j] }',
-      Context.OptionsLoc,
-      
-    ],
-    [
-      'for([{a=0}] of b);',
-      Context.OptionsLoc,
-      
-    ],
-    [
-      'for (var { cover = (function () {}), a = (0, function() {})  } of [{}]) {}',
-      Context.None,
-      
-    ],
-    [
-      'for (var [...{ length }] of [[1, 2, 3]]) {}',
-      Context.None,
-      
-    ],
-    [
-      'for (var [...[...x]] of [[1, 2, 3]]) {}',
-      Context.None,
-      
-    ],
-    [
-      'for (const [{ x, y, z } = { x: 44, y: 55, z: 66 }] of [[]]) {}',
-      Context.None,
-      
-    ],
-    [
-      'for ([] of [[]]) {}',
-      Context.None,
-      
-    ],
-    [
-      'for ([...{ 0: x, length }] of [[null]]) {}',
-      Context.None,
-      
-    ],
-    [
-      'for ({x, y} of z);',
-      Context.None,
-      
-    ],
+    ['for ({a: b.c} of d) e', Context.None],
+    ['for ({a: b.c}.foo of d) e', Context.None],
+    ['for (foo=10;;);', Context.None],
+    ['for (let=10;;);', Context.None],
+    ['for ({x, y} of [{x: 1, y: 2}]) {}', Context.None],
+    ['for (let {j} of x) { foo = j }', Context.None],
+    ['for ([] of [{ next: function() {return { done: true }; },return: function() {return {}; }}]) {}', Context.None],
+    ['for (const {j} of x) { var [foo] = [j] }', Context.OptionsLoc],
+    ['for([{a=0}] of b);', Context.OptionsLoc],
+    ['for (var { cover = (function () {}), a = (0, function() {})  } of [{}]) {}', Context.None],
+    ['for (var [...{ length }] of [[1, 2, 3]]) {}', Context.None],
+    ['for (var [...[...x]] of [[1, 2, 3]]) {}', Context.None],
+    ['for (const [{ x, y, z } = { x: 44, y: 55, z: 66 }] of [[]]) {}', Context.None],
+    ['for ([] of [[]]) {}', Context.None],
+    ['for ([...{ 0: x, length }] of [[null]]) {}', Context.None],
+    ['for ({x, y} of z);', Context.None],
     /*['for (let of, bar; false; ) { }', Context.None, {
       "type": "Program",
       "sourceType": "script",
@@ -696,43 +599,18 @@ describe('Statements - For of', () => {
         }
       ]
     }],*/
-    [
-      'for (j of x) { foo = j }',
-      Context.None,
-      
-    ],
-    [
-      'for (j of x) { function foo() {return j} }',
-      Context.None,
-      
-    ],
-    [
-      'for (j of x) { const [foo] = [j] }',
-      Context.None,
-      
-    ],
-    [
-      'function* g() { for(x of yield) {} }',
-      Context.None,
-      
-    ],
-    [
-      'for (let {j} of x) { [foo] = [j] }',
-      Context.None,
-      
-    ],
-    [
-      'for ({x, y} of [{x: 1, y: 2}]) {}',
-      Context.None,
-      
-    ],
+    ['for (j of x) { foo = j }', Context.None],
+    ['for (j of x) { function foo() {return j} }', Context.None],
+    ['for (j of x) { const [foo] = [j] }', Context.None],
+    ['function* g() { for(x of yield) {} }', Context.None],
+    ['for (let {j} of x) { [foo] = [j] }', Context.None],
+    ['for ({x, y} of [{x: 1, y: 2}]) {}', Context.None],
     [
       `for ( var i = 0, list = items; i < list.length; i += 1 ) {
       var item = list[i];
         if ( item.foo ) { continue; }
     }`,
       Context.None,
-      
     ],
     [
       `for ( let member of [ 'a', 'b', 'c' ] ) {
@@ -741,28 +619,11 @@ describe('Statements - For of', () => {
       });
      }`,
       Context.None,
-      
     ],
-    [
-      'for ([] of [{ next: function() {return { done: true }; },return: function() {return {}; }}]) {}',
-      Context.None,
-      
-    ],
-    [
-      'function* g() { for(var x of yield) {} }',
-      Context.None,
-      
-    ],
-    [
-      'for(let [a] of b);',
-      Context.None,
-      
-    ],
-    [
-      'for (var { cover = (function () {}), a = (0, function() {})  } of [{}]) {}',
-      Context.None,
-      
-    ],
+    ['for ([] of [{ next: function() {return { done: true }; },return: function() {return {}; }}]) {}', Context.None],
+    ['function* g() { for(var x of yield) {} }', Context.None],
+    ['for(let [a] of b);', Context.None],
+    ['for (var { cover = (function () {}), a = (0, function() {})  } of [{}]) {}', Context.None],
     /**[
       'for({a=0} of b);',
       Context.None,
@@ -811,51 +672,15 @@ describe('Statements - For of', () => {
         ]
       }
     ], */
-    [
-      'for ( let[x] of [[34]] ) {}',
-      Context.None,
-      
-    ],
-    [
-      'for (var [...{ length }] of [[1, 2, 3]]) {}',
-      Context.None,
-      
-    ],
-    [
-      'for (var a of b);',
-      Context.None,
-      
-    ],
-    [
-      'for (let a of b);',
-      Context.None,
-      
-    ],
-    [
-      'for (const a of b);',
-      Context.None,
-      
-    ],
-    [
-      'for (a of b);',
-      Context.None,
-      
-    ],
-    [
-      'for (var a of b);',
-      Context.None,
-      
-    ],
-    [
-      'for ({ x: [ x ] } of [{}]) {}',
-      Context.None,
-      
-    ],
-    [
-      'for ({ x: [x = yield] } of [{ x: [] }]) {}',
-      Context.None,
-      
-    ],
+    ['for ( let[x] of [[34]] ) {}', Context.None],
+    ['for (var [...{ length }] of [[1, 2, 3]]) {}', Context.None],
+    ['for (var a of b);', Context.None],
+    ['for (let a of b);', Context.None],
+    ['for (const a of b);', Context.None],
+    ['for (a of b);', Context.None],
+    ['for (var a of b);', Context.None],
+    ['for ({ x: [ x ] } of [{}]) {}', Context.None],
+    ['for ({ x: [x = yield] } of [{ x: [] }]) {}', Context.None],
     /*  [
       'for ({ x: prop = "x" in {} } of [{}]) {}',
       Context.None,
@@ -1083,40 +908,12 @@ describe('Statements - For of', () => {
         ]
       }
     ],*/
-    [
-      'for ({ x = y } of [{}]) {}',
-      Context.None,
-      
-    ],
-    [
-      'for ([...x.y] of [[4, 3, 2]]) {}',
-      Context.None,
-      
-    ],
-    [
-      'for (x of let) {}',
-      Context.None,
-      
-    ],
-    [
-      'for (var {x, y} of z);',
-      Context.None,
-      
-    ],
-    [
-      'for (const y of list);',
-      Context.None,
-      
-    ],
-    [
-      'for(const x = 1; ; ) {}',
-      Context.None,
-      
-    ],
-    [
-      'for (let [p, q] of r);',
-      Context.None,
-      
-    ],
+    ['for ({ x = y } of [{}]) {}', Context.None],
+    ['for ([...x.y] of [[4, 3, 2]]) {}', Context.None],
+    ['for (x of let) {}', Context.None],
+    ['for (var {x, y} of z);', Context.None],
+    ['for (const y of list);', Context.None],
+    ['for(const x = 1; ; ) {}', Context.None],
+    ['for (let [p, q] of r);', Context.None],
   ]);
 });

@@ -22,7 +22,6 @@ describe('Statements  Switch', () => {
           foo: bar: function f(){}
       }`,
       Context.OptionsWebCompat,
-      
     ],
     [
       `for (let i = 0; i < 1; ++i) {
@@ -33,82 +32,21 @@ describe('Statements  Switch', () => {
         }
     }`,
       Context.OptionsRanges,
-      
     ],
-    [
-      'switch(foo) {}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'switch (A) {default: D; case B: C; }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'switch(a){case 1:default:}',
-      Context.None,
-      
-    ],
-    [
-      'switch(a){default:case 2:}',
-      Context.None,
-      
-    ],
-    [
-      'switch (answer) { case 0: hi(); break; default: break }',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'switch(a){case 1:}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'switch (a) { case b: let [x] = y }',
-      Context.OptionsRanges | Context.OptionsRaw,
-      
-    ],
-    [
-      'switch (answer) { case 0: let a; }',
-      Context.OptionsRanges | Context.OptionsRaw,
-      
-    ],
-    [
-      'switch (A) {default: B;}',
-      Context.None,
-      
-    ],
-    [
-      'switch (0) { case 1: var f; default: var f }',
-      Context.OptionsRanges | Context.OptionsRaw,
-      
-    ],
-    [
-      'switch (A) {default: B; break;}',
-      Context.None,
-      
-    ],
-    [
-      'switch (A) {case B: C; break; case D: E; break;}',
-      Context.None,
-      
-    ],
-    [
-      'switch (A) {default: D; case B: C; }',
-      Context.None,
-      
-    ],
-    [
-      'switch (A) {case B: C; default: D;}',
-      Context.None,
-      
-    ],
-    [
-      'switch (A) {default: B;}',
-      Context.None,
-      
-    ],
+    ['switch(foo) {}', Context.OptionsRanges],
+    ['switch (A) {default: D; case B: C; }', Context.OptionsRanges],
+    ['switch(a){case 1:default:}', Context.None],
+    ['switch(a){default:case 2:}', Context.None],
+    ['switch (answer) { case 0: hi(); break; default: break }', Context.OptionsRanges],
+    ['switch(a){case 1:}', Context.OptionsRanges],
+    ['switch (a) { case b: let [x] = y }', Context.OptionsRanges | Context.OptionsRaw],
+    ['switch (answer) { case 0: let a; }', Context.OptionsRanges | Context.OptionsRaw],
+    ['switch (A) {default: B;}', Context.None],
+    ['switch (0) { case 1: var f; default: var f }', Context.OptionsRanges | Context.OptionsRaw],
+    ['switch (A) {default: B; break;}', Context.None],
+    ['switch (A) {case B: C; break; case D: E; break;}', Context.None],
+    ['switch (A) {default: D; case B: C; }', Context.None],
+    ['switch (A) {case B: C; default: D;}', Context.None],
+    ['switch (A) {default: B;}', Context.None],
   ]);
 });

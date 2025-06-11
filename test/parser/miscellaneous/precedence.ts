@@ -3,285 +3,61 @@ import { pass } from '../../test-utils';
 
 describe('Miscellaneous - Precedence', () => {
   pass('Miscellaneous - Precedence (pass)', [
-    [
-      'x = a > b instanceof c',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'foo( a instanceof b + c )',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'foo( a instanceof b > c )',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'foo( a + b instanceof c )',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'foo( a + b ** c )',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'foo( a / b + c )',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'foo( a > b instanceof c )',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x, a instanceof b + c',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x, a ** b + c',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x, a + b instanceof c',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x, a + b ** c',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x, a / b + c',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'foo[ a + b ** c ]',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'foo[ a + b / c ]',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      '(a * b + c) * d',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a|=b^=c&=d>>>=e>>=f<<=g%=h/=i*=j**=k-=l+=m=n',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a || b || c',
-      Context.None,
-      
-    ],
-    [
-      'a && b || c',
-      Context.None,
-      
-    ],
-    [
-      'a | b && c',
-      Context.None,
-      
-    ],
-    [
-      'a && b | c',
-      Context.None,
-      
-    ],
-    [
-      'a ^ b & c',
-      Context.None,
-      
-    ],
-    [
-      'a == b & c',
-      Context.None,
-      
-    ],
-    [
-      'a !== b === c != d == e',
-      Context.None,
-      
-    ],
-    [
-      'a & b == c',
-      Context.None,
-      
-    ],
-    [
-      'a << b < c',
-      Context.None,
-      
-    ],
-    [
-      'foo[ a > b instanceof c ]',
-      Context.None,
-      
-    ],
-    [
-      'for ( a instanceof b + c ;;);',
-      Context.None,
-      
-    ],
-    [
-      'for ( a instanceof b > c ;;);',
-      Context.None,
-      
-    ],
-    [
-      'for ( a ** b + c ;;);',
-      Context.None,
-      
-    ],
-    [
-      'for ( a + b ** c ;;);',
-      Context.None,
-      
-    ],
-    [
-      '( a + b instanceof c )',
-      Context.None,
-      
-    ],
-    [
-      '( a + b ** c )',
-      Context.None,
-      
-    ],
-    [
-      '( a + b / c )',
-      Context.None,
-      
-    ],
-    [
-      '( a / b + c )',
-      Context.None,
-      
-    ],
-    [
-      'if ( a instanceof b + c ) ;',
-      Context.None,
-      
-    ],
-    [
-      'if ( a instanceof b > c ) ;',
-      Context.None,
-      
-    ],
-    [
-      'if ( a ** b + c ) ;',
-      Context.None,
-      
-    ],
-    [
-      'if ( a + b instanceof c ) ;',
-      Context.None,
-      
-    ],
-    [
-      'if ( a + b ** c ) ;',
-      Context.None,
-      
-    ],
-    [
-      'if ( a / b + c ) ;',
-      Context.None,
-      
-    ],
-    [
-      'a + b << c',
-      Context.None,
-      
-    ],
-    [
-      'a << b + c',
-      Context.None,
-      
-    ],
-    [
-      'a ** b * c',
-      Context.None,
-      
-    ],
-    [
-      'a ** b ** c + d',
-      Context.None,
-      
-    ],
-    [
-      'a * x ? b : c ? d : e',
-      Context.None,
-      
-    ],
-    [
-      'a=b+=c-=d**=e*=f/=g%=h<<=i>>=j>>>=k&=l^=m|=n',
-      Context.None,
-      
-    ],
-    [
-      'a ? b : c ? d : e * x',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a ? b : c ? d : e ** x',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a ? b ? c : d : e',
-      Context.None,
-      
-    ],
-    [
-      'a ** x ? b ? c : d : e',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'x || y || z',
-      Context.None,
-      
-    ],
-    [
-      'a ? b ? c ** x : d : e',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'a ? b ? c : d ** x : e',
-      Context.None,
-      
-    ],
-    [
-      'a ? b ? c : d : e ** x',
-      Context.None,
-      
-    ],
-    [
-      'a ? b : c * x ? d : e',
-      Context.None,
-      
-    ],
-    [
-      'a=b+=c-=d**=e*=f/=g%=h<<=i>>=j>>>=k&=l^=m|=n',
-      Context.None,
-      
-    ],
+    ['x = a > b instanceof c', Context.OptionsRanges],
+    ['foo( a instanceof b + c )', Context.OptionsRanges],
+    ['foo( a instanceof b > c )', Context.OptionsRanges],
+    ['foo( a + b instanceof c )', Context.OptionsRanges],
+    ['foo( a + b ** c )', Context.OptionsRanges],
+    ['foo( a / b + c )', Context.OptionsRanges],
+    ['foo( a > b instanceof c )', Context.OptionsRanges],
+    ['x, a instanceof b + c', Context.OptionsRanges],
+    ['x, a ** b + c', Context.OptionsRanges],
+    ['x, a + b instanceof c', Context.OptionsRanges],
+    ['x, a + b ** c', Context.OptionsRanges],
+    ['x, a / b + c', Context.OptionsRanges],
+    ['foo[ a + b ** c ]', Context.OptionsRanges],
+    ['foo[ a + b / c ]', Context.OptionsRanges],
+    ['(a * b + c) * d', Context.OptionsRanges],
+    ['a|=b^=c&=d>>>=e>>=f<<=g%=h/=i*=j**=k-=l+=m=n', Context.OptionsRanges],
+    ['a || b || c', Context.None],
+    ['a && b || c', Context.None],
+    ['a | b && c', Context.None],
+    ['a && b | c', Context.None],
+    ['a ^ b & c', Context.None],
+    ['a == b & c', Context.None],
+    ['a !== b === c != d == e', Context.None],
+    ['a & b == c', Context.None],
+    ['a << b < c', Context.None],
+    ['foo[ a > b instanceof c ]', Context.None],
+    ['for ( a instanceof b + c ;;);', Context.None],
+    ['for ( a instanceof b > c ;;);', Context.None],
+    ['for ( a ** b + c ;;);', Context.None],
+    ['for ( a + b ** c ;;);', Context.None],
+    ['( a + b instanceof c )', Context.None],
+    ['( a + b ** c )', Context.None],
+    ['( a + b / c )', Context.None],
+    ['( a / b + c )', Context.None],
+    ['if ( a instanceof b + c ) ;', Context.None],
+    ['if ( a instanceof b > c ) ;', Context.None],
+    ['if ( a ** b + c ) ;', Context.None],
+    ['if ( a + b instanceof c ) ;', Context.None],
+    ['if ( a + b ** c ) ;', Context.None],
+    ['if ( a / b + c ) ;', Context.None],
+    ['a + b << c', Context.None],
+    ['a << b + c', Context.None],
+    ['a ** b * c', Context.None],
+    ['a ** b ** c + d', Context.None],
+    ['a * x ? b : c ? d : e', Context.None],
+    ['a=b+=c-=d**=e*=f/=g%=h<<=i>>=j>>>=k&=l^=m|=n', Context.None],
+    ['a ? b : c ? d : e * x', Context.OptionsRanges],
+    ['a ? b : c ? d : e ** x', Context.OptionsRanges],
+    ['a ? b ? c : d : e', Context.None],
+    ['a ** x ? b ? c : d : e', Context.OptionsRanges],
+    ['x || y || z', Context.None],
+    ['a ? b ? c ** x : d : e', Context.OptionsRanges],
+    ['a ? b ? c : d ** x : e', Context.None],
+    ['a ? b ? c : d : e ** x', Context.None],
+    ['a ? b : c * x ? d : e', Context.None],
+    ['a=b+=c-=d**=e*=f/=g%=h<<=i>>=j>>>=k&=l^=m|=n', Context.None],
   ]);
 });

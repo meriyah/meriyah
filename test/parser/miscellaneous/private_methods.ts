@@ -284,61 +284,20 @@ describe('Next - Private methods', () => {
     });
   }
   pass('Next - Private methods (pass)', [
-    [
-      `class A { #key; }`,
-      Context.None,
-      
-    ],
-    [
-      `class A { static async #_(value) { return await value;} }`,
-      Context.None,
-      
-    ],
-    [
-      `class A { #a; #b; }`,
-      Context.OptionsRanges,
-      
-    ],
-    [
-      `class A { #yield = b[c]; }`,
-      Context.OptionsRanges,
-      
-    ],
-    [
-      `class A { #yield = foo + bar; }`,
-      Context.OptionsRanges,
-      
-    ],
-    [
-      `class A { #yield; }`,
-      Context.OptionsRanges,
-      
-    ],
+    [`class A { #key; }`, Context.None],
+    [`class A { static async #_(value) { return await value;} }`, Context.None],
+    [`class A { #a; #b; }`, Context.OptionsRanges],
+    [`class A { #yield = b[c]; }`, Context.OptionsRanges],
+    [`class A { #yield = foo + bar; }`, Context.OptionsRanges],
+    [`class A { #yield; }`, Context.OptionsRanges],
     [
       `class C { static async *#gen() { yield { ...yield,  y: 1, ...yield yield, }; } static get gen() { return this.#gen; } }`,
       Context.None,
-      
     ],
-    [
-      `class C { static *#gen() { yield [...yield yield]; } static get gen() { return this.#gen; } }`,
-      Context.None,
-      
-    ],
-    [
-      `class C { get #℘() {} set #℘(x) {} a() { return this.#℘; } b(value) { this.#℘ = x; } };`,
-      Context.None,
-      
-    ],
-    [
-      `class C { #m() { return 42; } get ref() { return this.#m; } }`,
-      Context.None,
-      
-    ],
-    [
-      `class A { #foo = bar; }`,
-      Context.None,
-      
-    ],
+    [`class C { static *#gen() { yield [...yield yield]; } static get gen() { return this.#gen; } }`, Context.None],
+    [`class C { get #℘() {} set #℘(x) {} a() { return this.#℘; } b(value) { this.#℘ = x; } };`, Context.None],
+    [`class C { #m() { return 42; } get ref() { return this.#m; } }`, Context.None],
+    [`class A { #foo = bar; }`, Context.None],
     [
       `class Cl {
         #privateField = "top secret string";
@@ -388,7 +347,6 @@ describe('Next - Private methods', () => {
         }
       }`,
       Context.None,
-      
     ],
     [
       `class Cl {
@@ -403,7 +361,6 @@ describe('Next - Private methods', () => {
           }
         }`,
       Context.None,
-      
     ],
     [
       `class Cl {
@@ -430,98 +387,38 @@ describe('Next - Private methods', () => {
             }
           } `,
       Context.None,
-      
     ],
-    [
-      `class A { #key() {} }`,
-      Context.None,
-      
-    ],
-    [
-      `class A { #yield\n = 0; }`,
-      Context.None,
-      
-    ],
-    [
-      `class A { #foo() { #bar } }`,
-      Context.None,
-      
-    ],
-    [
-      `class A { static #key; }`,
-      Context.None,
-      
-    ],
-    [
-      `class A { static #foo(bar) {} }`,
-      Context.None,
-      
-    ],
-    [
-      `class A { m() {} #a; }`,
-      Context.None,
-      
-    ],
-    [
-      `class A {  #a; m() {} }`,
-      Context.None,
-      
-    ],
-    [
-      `class A {  #a; m() {} #b; }`,
-      Context.None,
-      
-    ],
-    [
-      `class A { m() { return 42; } #a;  #__;  #NJ_;  #℘_ ; }`,
-      Context.None,
-      
-    ],
+    [`class A { #key() {} }`, Context.None],
+    [`class A { #yield\n = 0; }`, Context.None],
+    [`class A { #foo() { #bar } }`, Context.None],
+    [`class A { static #key; }`, Context.None],
+    [`class A { static #foo(bar) {} }`, Context.None],
+    [`class A { m() {} #a; }`, Context.None],
+    [`class A {  #a; m() {} }`, Context.None],
+    [`class A {  #a; m() {} #b; }`, Context.None],
+    [`class A { m() { return 42; } #a;  #__;  #NJ_;  #℘_ ; }`, Context.None],
     [
       `class A { #foo = () => 'bar';  method() {
         return this.#foo();
       } }`,
       Context.None,
-      
     ],
-    [
-      `class B { #x = 0; #y = 1; }`,
-      Context.None,
-      
-    ],
+    [`class B { #x = 0; #y = 1; }`, Context.None],
     [
       `class A {
           static #x;
           static #y = 1;
         }`,
       Context.None,
-      
     ],
-    [
-      `class A {  #m = async function() { return 'foo'; };  method() { return this.#m(); } }`,
-      Context.None,
-      
-    ],
-    [
-      `class A { method() { return this.#m(); } #m = function () { return 'foo'; };  }`,
-      Context.None,
-      
-    ],
+    [`class A {  #m = async function() { return 'foo'; };  method() { return this.#m(); } }`, Context.None],
+    [`class A { method() { return this.#m(); } #m = function () { return 'foo'; };  }`, Context.None],
     [
       `class A {  #m() { return 42; } get bGetter() { return this.#b; } #b = this.#m(); get ref() { return this.#m; } constructor() {} }`,
       Context.None,
-      
     ],
-    [
-      `class A { #$_; #℘_; }`,
-      Context.None,
-      
-    ],
-    [
-      `class A { $(value) { this.#$_ = value; return this.#$; } }`,
-      Context.None,
-      
-    ],
+    [`class A { #$_; #℘_; }`, Context.None],
+    [`class A { $(value) { this.#$_ = value; return this.#$; } }`, Context.None],
     [
       `var C = class {
         static *m() { return 42; } #$_; #__;  #℘_;   set #$(value) { this.#$_ = value;
@@ -531,13 +428,8 @@ describe('Next - Private methods', () => {
         }
       }`,
       Context.None,
-      
     ],
-    [
-      `class A { get #foo/*{ declareWith }*/() {} }`,
-      Context.None,
-      
-    ],
+    [`class A { get #foo/*{ declareWith }*/() {} }`, Context.None],
     [
       `var C = class {
         static async *m() { return 42; } #$_; #__;
@@ -556,7 +448,6 @@ describe('Next - Private methods', () => {
 
       }`,
       Context.None,
-      
     ],
     [
       `class Hotel {
@@ -568,7 +459,6 @@ describe('Next - Private methods', () => {
         }
       }`,
       Context.None,
-      
     ],
     [
       `var C = class {
@@ -589,32 +479,11 @@ describe('Next - Private methods', () => {
         }
       } `,
       Context.None,
-      
     ],
-    [
-      `class A { static set #foo/*{ declareWith }*/(param) {} }`,
-      Context.None,
-      
-    ],
-    [
-      `class A { #\\u{61}\nstatic #\\u0062() {} }`,
-      Context.None,
-      
-    ],
-    [
-      'class a {#𐌭人}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'class a {#人}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'class a {#𐌭}',
-      Context.OptionsRanges,
-      
-    ],
+    [`class A { static set #foo/*{ declareWith }*/(param) {} }`, Context.None],
+    [`class A { #\\u{61}\nstatic #\\u0062() {} }`, Context.None],
+    ['class a {#𐌭人}', Context.OptionsRanges],
+    ['class a {#人}', Context.OptionsRanges],
+    ['class a {#𐌭}', Context.OptionsRanges],
   ]);
 });

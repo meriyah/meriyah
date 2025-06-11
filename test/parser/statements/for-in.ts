@@ -611,334 +611,77 @@ describe('Statements - For in', () => {
     ['for ([]=1 in x);', Context.None],
   ]);
   pass('Statements - For in (pass)', [
-    [
-      'for ({x: a.b} in obj);',
-      Context.None,
-      
-    ],
+    ['for ({x: a.b} in obj);', Context.None],
 
-    [
-      'for ("foo".bar in obj);',
-      Context.None,
-      
-    ],
-    [
-      'for ({}.bar in obj);',
-      Context.None,
-      
-    ],
-    [
-      'for ([].bar in obj);',
-      Context.None,
-      
-    ],
-    [
-      'for (var {x : y} in obj);',
-      Context.None,
-      
-    ],
-    [
-      'for(var x=1 in [1,2,3]) 0',
-      Context.None,
-      
-    ],
-    [
-      'for (var [foo, bar=b] of arr);',
-      Context.None,
-      
-    ],
-    [
-      'for (function* y() { new.target in /(?:()|[]|(?!))/iuy };; (null))  {}',
-      Context.None,
-      
-    ],
-    [
-      'for (var {[x]: y} of obj);',
-      Context.None,
-      
-    ],
+    ['for ("foo".bar in obj);', Context.None],
+    ['for ({}.bar in obj);', Context.None],
+    ['for ([].bar in obj);', Context.None],
+    ['for (var {x : y} in obj);', Context.None],
+    ['for(var x=1 in [1,2,3]) 0', Context.None],
+    ['for (var [foo, bar=b] of arr);', Context.None],
+    ['for (function* y() { new.target in /(?:()|[]|(?!))/iuy };; (null))  {}', Context.None],
+    ['for (var {[x]: y} of obj);', Context.None],
 
-    [
-      'for (var {x = y} in obj);',
-      Context.None,
-      
-    ],
-    [
-      'for (var [] in x);',
-      Context.None,
-      
-    ],
-    [
-      'for (var [foo,] in arr);',
-      Context.None,
-      
-    ],
-    [
-      'for (var a = b in c);',
-      Context.None,
-      
-    ],
-    [
-      'for (var [foo,bar] in arr);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for (let.x in {}) {}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for (var [foo,,] in arr);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for (var [foo=a, bar=b] in arr);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for (var [,] in x);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for (var [foo] in arr);',
-      Context.None,
-      
-    ],
-    [
-      'for (var [foo=a] in arr);',
-      Context.None,
-      
-    ],
-    [
-      'for (var [foo=a, bar] in arr);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for (var [foo, bar=b] in arr);',
-      Context.None,
-      
-    ],
-    [
-      'for (var [...foo] in obj);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for (var {} in obj);',
-      Context.None,
-      
-    ],
-    [
-      'for (var {x,} in obj);',
-      Context.None,
-      
-    ],
-    [
-      'for (var {x, y} in obj);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for (var {x} in obj);',
-      Context.None,
-      
-    ],
-    [
-      'for (var {x = y} in obj);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for (a in b);',
-      Context.None,
-      
-    ],
-    [
-      'for (a in b); for (a in b); for (a in b);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for (let a in b);',
-      Context.None,
-      
-    ],
-    [
-      'for ([a,b] in x) a;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for ([a,b] of x) a;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for ({a,b} in x) a;',
-      Context.None,
-      
-    ],
-    [
-      'for ({a,b} of x) a;',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for (const [...x] in y){}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for (const {...x} in y){}',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for (var a=1;;);',
-      Context.OptionsRanges,
-      
-    ],
-    [
-      'for (var a in b);',
-      Context.None,
-      
-    ],
-    [
-      'for (let a in b);',
-      Context.None,
-      
-    ],
-    [
-      'for (const a in b);',
-      Context.None,
-      
-    ],
-    [
-      'for (a in b=c);',
-      Context.None,
-      
-    ],
-    [
-      'for (var a = ++b in c);',
-      Context.None,
-      
-    ],
-    [
-      'for (var a = 0 in stored = a, {});',
-      Context.None,
-      
-    ],
-    [
-      'for (var a = (++effects, -1) in x);',
-      Context.None,
-      
-    ],
-    [
-      'for (var a in stored = a, {a: 0, b: 1, c: 2});',
-      Context.None,
-      
-    ],
+    ['for (var {x = y} in obj);', Context.None],
+    ['for (var [] in x);', Context.None],
+    ['for (var [foo,] in arr);', Context.None],
+    ['for (var a = b in c);', Context.None],
+    ['for (var [foo,bar] in arr);', Context.OptionsRanges],
+    ['for (let.x in {}) {}', Context.OptionsRanges],
+    ['for (var [foo,,] in arr);', Context.OptionsRanges],
+    ['for (var [foo=a, bar=b] in arr);', Context.OptionsRanges],
+    ['for (var [,] in x);', Context.OptionsRanges],
+    ['for (var [foo] in arr);', Context.None],
+    ['for (var [foo=a] in arr);', Context.None],
+    ['for (var [foo=a, bar] in arr);', Context.OptionsRanges],
+    ['for (var [foo, bar=b] in arr);', Context.None],
+    ['for (var [...foo] in obj);', Context.OptionsRanges],
+    ['for (var {} in obj);', Context.None],
+    ['for (var {x,} in obj);', Context.None],
+    ['for (var {x, y} in obj);', Context.OptionsRanges],
+    ['for (var {x} in obj);', Context.None],
+    ['for (var {x = y} in obj);', Context.OptionsRanges],
+    ['for (a in b);', Context.None],
+    ['for (a in b); for (a in b); for (a in b);', Context.OptionsRanges],
+    ['for (let a in b);', Context.None],
+    ['for ([a,b] in x) a;', Context.OptionsRanges],
+    ['for ([a,b] of x) a;', Context.OptionsRanges],
+    ['for ({a,b} in x) a;', Context.None],
+    ['for ({a,b} of x) a;', Context.OptionsRanges],
+    ['for (const [...x] in y){}', Context.OptionsRanges],
+    ['for (const {...x} in y){}', Context.OptionsRanges],
+    ['for (var a=1;;);', Context.OptionsRanges],
+    ['for (var a in b);', Context.None],
+    ['for (let a in b);', Context.None],
+    ['for (const a in b);', Context.None],
+    ['for (a in b=c);', Context.None],
+    ['for (var a = ++b in c);', Context.None],
+    ['for (var a = 0 in stored = a, {});', Context.None],
+    ['for (var a = (++effects, -1) in x);', Context.None],
+    ['for (var a in stored = a, {a: 0, b: 1, c: 2});', Context.None],
     [
       'for (var a = (++effects, -1) in stored = a, {a: 0, b: 1, c: 2});',
       Context.OptionsWebCompat | Context.OptionsRanges,
-      
     ],
-    [
-      'for ([a.b] in c) d',
-      Context.None,
-      
-    ],
-    [
-      'for ([a.b].foo in c) d',
-      Context.None,
-      
-    ],
-    [
-      'for ({a: b.c} in d) e',
-      Context.None,
-      
-    ],
-    [
-      'for ({a: b.c}.foo in d) e',
-      Context.None,
-      
-    ],
-    [
-      'for(let {a} in []) {}',
-      Context.None,
-      
-    ],
-    [
-      'for(let [a = 1, ...b] in []) {}',
-      Context.None,
-      
-    ],
-    [
-      'for(const {[Symbol.iterator]: a} in []){}',
-      Context.None,
-      
-    ],
-    [
-      'for({a: a} in []){}',
-      Context.None,
-      
-    ],
-    [
-      'for({"a": a} in []){}',
-      Context.None,
-      
-    ],
-    [
-      'for({a=0} in b);',
-      Context.None,
-      
-    ],
-    [
-      'for ({j} in x) { var [foo] = [j] }',
-      Context.None,
-      
-    ],
-    [
-      'for (const {j} in x) { function foo() {return j} }',
-      Context.None,
-      
-    ],
-    [
-      'for (const j in x) { let [foo] = [j] }',
-      Context.None,
-      
-    ],
-    [
-      'for(ind in (hash={2:"b",1:"a",4:"d",3:"c"}))__str+=hash[ind]',
-      Context.None,
-      
-    ],
-    [
-      'for ([arguments] in [[]]) ;',
-      Context.None,
-      
-    ],
-    [
-      'for (let x in null, { key: 0 }) {}',
-      Context.None,
-      
-    ],
+    ['for ([a.b] in c) d', Context.None],
+    ['for ([a.b].foo in c) d', Context.None],
+    ['for ({a: b.c} in d) e', Context.None],
+    ['for ({a: b.c}.foo in d) e', Context.None],
+    ['for(let {a} in []) {}', Context.None],
+    ['for(let [a = 1, ...b] in []) {}', Context.None],
+    ['for(const {[Symbol.iterator]: a} in []){}', Context.None],
+    ['for({a: a} in []){}', Context.None],
+    ['for({"a": a} in []){}', Context.None],
+    ['for({a=0} in b);', Context.None],
+    ['for ({j} in x) { var [foo] = [j] }', Context.None],
+    ['for (const {j} in x) { function foo() {return j} }', Context.None],
+    ['for (const j in x) { let [foo] = [j] }', Context.None],
+    ['for(ind in (hash={2:"b",1:"a",4:"d",3:"c"}))__str+=hash[ind]', Context.None],
+    ['for ([arguments] in [[]]) ;', Context.None],
+    ['for (let x in null, { key: 0 }) {}', Context.None],
 
-    [
-      'for(let [a=b in c] in null);',
-      Context.None,
-      
-    ],
-    [
-      'for([{a=0}] in b);',
-      Context.None,
-      
-    ],
+    ['for(let [a=b in c] in null);', Context.None],
+    ['for([{a=0}] in b);', Context.None],
     /*[
       'for(var a = 0 in b, c);',
       Context.None,
@@ -984,31 +727,11 @@ describe('Statements - For in', () => {
           }
         ]
       }],*/
-    [
-      'for(var a in b, c);',
-      Context.None,
-      
-    ],
-    [
-      'for ([...{ x = yield }] in [[{}]]) ;',
-      Context.None,
-      
-    ],
-    [
-      'for ( [let][1] in obj ) ;',
-      Context.None,
-      
-    ],
-    [
-      'for ((x) in { attr: null }) {}',
-      Context.None,
-      
-    ],
-    [
-      '2; for (var b in { x: 0 }) { 3; }',
-      Context.None,
-      
-    ],
+    ['for(var a in b, c);', Context.None],
+    ['for ([...{ x = yield }] in [[{}]]) ;', Context.None],
+    ['for ( [let][1] in obj ) ;', Context.None],
+    ['for ((x) in { attr: null }) {}', Context.None],
+    ['2; for (var b in { x: 0 }) { 3; }', Context.None],
     [
       `for (var p in obj) {
       if (obj.hasOwnProperty(p)) {
@@ -1024,47 +747,14 @@ describe('Statements - For in', () => {
       }
   }`,
       Context.None,
-      
     ],
-    [
-      'for(x in list) process(x);',
-      Context.None,
-      
-    ],
-    [
-      'for (var x in list) process(x);',
-      Context.None,
-      
-    ],
-    [
-      'for ([...x] in {ab: a}) {}',
-      Context.None,
-      
-    ],
-    [
-      'for (let {j} in x) { var [foo] = [j] }',
-      Context.None,
-      
-    ],
-    [
-      'for(x of "foo" in {}) {}',
-      Context.None,
-      
-    ],
-    [
-      'for (x in {a: b}) {}',
-      Context.None,
-      
-    ],
-    [
-      'function foo(){ "use strict"; for(x in {}, {}) {} }',
-      Context.None,
-      
-    ],
-    [
-      'for(const x in [1,2,3]) {}',
-      Context.None,
-      
-    ],
+    ['for(x in list) process(x);', Context.None],
+    ['for (var x in list) process(x);', Context.None],
+    ['for ([...x] in {ab: a}) {}', Context.None],
+    ['for (let {j} in x) { var [foo] = [j] }', Context.None],
+    ['for(x of "foo" in {}) {}', Context.None],
+    ['for (x in {a: b}) {}', Context.None],
+    ['function foo(){ "use strict"; for(x in {}, {}) {} }', Context.None],
+    ['for(const x in [1,2,3]) {}', Context.None],
   ]);
 });

@@ -195,70 +195,21 @@ describe('Next - Import Meta', () => {
   ]);
 
   pass('Next - Import Meta (pass)', [
-    [
-      `({m() { import.meta.url}})`,
-      Context.Module | Context.Strict | Context.OptionsNext,
-      
-    ],
-    [
-      `if (1) { import.meta }`,
-      Context.Module | Context.Strict | Context.OptionsNext,
-      
-    ],
-    [
-      `var f = function() {import.meta.couldBeMutable = true}`,
-      Context.Module | Context.Strict | Context.OptionsNext,
-      
-    ],
-    [
-      `import.meta[0]`,
-      Context.Module | Context.Strict | Context.OptionsNext,
-      
-    ],
-    [
-      `do { import.meta } while (0)`,
-      Context.Module | Context.Strict | Context.OptionsNext,
-      
-    ],
-    [
-      `import.meta()`,
-      Context.Module | Context.Strict | Context.OptionsNext,
-      
-    ],
-    [
-      `t = [...import.meta]`,
-      Context.Module | Context.Strict | Context.OptionsNext,
-      
-    ],
-    [
-      `"use strict"; ({m() { while (0) { import.meta } }})`,
-      Context.Module | Context.Strict | Context.OptionsNext,
-      
-    ],
-    [
-      `delete import.meta`,
-      Context.Module | Context.Strict | Context.OptionsNext,
-      
-    ],
-    [
-      `import.meta.resolve('something')`,
-      Context.Module | Context.Strict | Context.OptionsNext,
-      
-    ],
+    [`({m() { import.meta.url}})`, Context.Module | Context.Strict | Context.OptionsNext],
+    [`if (1) { import.meta }`, Context.Module | Context.Strict | Context.OptionsNext],
+    [`var f = function() {import.meta.couldBeMutable = true}`, Context.Module | Context.Strict | Context.OptionsNext],
+    [`import.meta[0]`, Context.Module | Context.Strict | Context.OptionsNext],
+    [`do { import.meta } while (0)`, Context.Module | Context.Strict | Context.OptionsNext],
+    [`import.meta()`, Context.Module | Context.Strict | Context.OptionsNext],
+    [`t = [...import.meta]`, Context.Module | Context.Strict | Context.OptionsNext],
+    [`"use strict"; ({m() { while (0) { import.meta } }})`, Context.Module | Context.Strict | Context.OptionsNext],
+    [`delete import.meta`, Context.Module | Context.Strict | Context.OptionsNext],
+    [`import.meta.resolve('something')`, Context.Module | Context.Strict | Context.OptionsNext],
     [
       `const size = import.meta.scriptElement.dataset.size || 300;`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      
     ],
-    [
-      `x = import.meta`,
-      Context.Module | Context.Strict | Context.OptionsNext,
-      
-    ],
-    [
-      `() => { import.meta }`,
-      Context.Module | Context.Strict | Context.OptionsNext,
-      
-    ],
+    [`x = import.meta`, Context.Module | Context.Strict | Context.OptionsNext],
+    [`() => { import.meta }`, Context.Module | Context.Strict | Context.OptionsNext],
   ]);
 });
