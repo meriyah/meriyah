@@ -5190,11 +5190,6 @@ export function parseImportExpression(
     parser.tokenLine,
     parser.tokenColumn,
   );
-<<<<<<< HEAD
-  const node: ESTree.ImportExpression = {
-    type: 'ImportExpression',
-    source,
-=======
 
   let options: ESTree.Expression | null = null;
 
@@ -5222,7 +5217,6 @@ export function parseImportExpression(
     type: 'ImportExpression',
     source,
     options,
->>>>>>> 0b3ee28 (Format)
   };
 
   if (context & Context.OptionsNext) {

@@ -739,17 +739,7 @@ describe('Module - Export', () => {
     });
 
     it(`${arg}`, () => {
-      t.doesNotThrow(() => {
-<<<<<<< HEAD
-        parseSource(
-          `${arg}`,
-          undefined,
-          Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsWebCompat,
-        );
-=======
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsWebCompat);
->>>>>>> 0b3ee28 (Format)
-      });
+      parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsWebCompat);
     });
   }
   for (const arg of [
@@ -774,15 +764,7 @@ describe('Module - Export', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-<<<<<<< HEAD
-        parseSource(
-          `${arg}`,
-          undefined,
-          Context.Strict | Context.Module | Context.OptionsLexical | Context.OptionsNext,
-        );
-=======
         parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsLexical);
->>>>>>> 0b3ee28 (Format)
       });
     });
   }

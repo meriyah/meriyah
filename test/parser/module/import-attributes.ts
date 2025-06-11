@@ -63,15 +63,7 @@ describe('Next - Import Attributes', () => {
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-<<<<<<< HEAD
-        parseSource(
-          `${arg}`,
-          undefined,
-          Context.OptionsNext | Context.OptionsWebCompat | Context.Strict | Context.Module,
-        );
-=======
         parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.Strict | Context.Module);
->>>>>>> 0b3ee28 (Format)
       });
     });
   }
@@ -111,27 +103,6 @@ describe('Next - Import Attributes', () => {
       type: 'json',
       'typ\u0065': ''
     };`,
-<<<<<<< HEAD
-      Context.OptionsNext | Context.Strict | Context.Module,
-    ],
-    [
-      'import { default as a, foo } from "./foo.json" with { type: "json" };',
-      Context.OptionsNext | Context.Strict | Context.Module,
-    ],
-    [
-      'import a, { foo } from "./foo.json" with { type: "json" };',
-      Context.OptionsNext | Context.Strict | Context.Module,
-    ],
-    [`import 'bar' with { type: 'json' };`, Context.OptionsNext | Context.Module],
-    ['import foo from "bar" with { 1: "foo" };', Context.OptionsNext | Context.Module],
-    ['import foo from "bar" with { type: 1 };', Context.OptionsNext | Context.Module],
-    ['import foo from "bar" with { type: [1] };', Context.OptionsNext | Context.Module],
-    ['import foo from "bar" with { type: null };', Context.OptionsNext | Context.Module],
-    ['import foo from "bar" with { type: undefined };', Context.OptionsNext | Context.Module],
-    ['import foo from "bar" with { type: "json", foo: {} };', Context.OptionsNext | Context.Module],
-    [`export { foo } from './foo.json' with { type: 'json' };`, Context.OptionsNext | Context.Module],
-    [`export foo, { foo2 } from './foo.json' with { "type": 'json' };`, Context.OptionsNext | Context.Module],
-=======
       Context.Strict | Context.Module,
     ],
     ['import { default as a, foo } from "./foo.json" with { type: "json" };', Context.Strict | Context.Module],
@@ -145,7 +116,6 @@ describe('Next - Import Attributes', () => {
     ['import foo from "bar" with { type: "json", foo: {} };', Context.Module],
     [`export { foo } from './foo.json' with { type: 'json' };`, Context.Module],
     [`export foo, { foo2 } from './foo.json' with { "type": 'json' };`, Context.Module],
->>>>>>> 0b3ee28 (Format)
   ]);
 
   pass('Import Attributes (pass)', [
