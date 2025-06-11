@@ -1,13 +1,14 @@
 import * as t from 'node:assert/strict';
 import { parseSource } from '../src/parser';
 import { type Context } from '../src/common';
+import { expect } from 'vitest';
 
-export const pass = (name: string, valid: [string, Context, any][]): void => {
+export const pass = (name: string, valid: [string, Context][]): void => {
   describe(name, () => {
-    for (const [source, ctx, expected] of valid) {
+    for (const [source, ctx] of valid) {
       it(source, () => {
-        const parser = parseSource(source, undefined, ctx);
-        t.deepStrictEqual(parser, expected);
+        const parseResult = parseSource(source, undefined, ctx);
+        expect(parseResult).toMatchSnapshot();
       });
     }
   });
