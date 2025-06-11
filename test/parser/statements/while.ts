@@ -18,7 +18,7 @@ describe('Statements - While', () => {
     ['while (false) function* g() {}', Context.None],
     ['while true break;', Context.None],
     ['while({1}){ break ; };', Context.None],
-    ['while({1}){ break ; };', Context.OptionsWebCompat]
+    ['while({1}){ break ; };', Context.OptionsWebCompat],
   ]);
 
   pass('Statements - While (pass)', [
@@ -32,23 +32,23 @@ describe('Statements - While', () => {
               expression: {
                 regex: {
                   flags: '',
-                  pattern: 'foo'
+                  pattern: 'foo',
                 },
                 type: 'Literal',
-                value: /foo/
+                value: /foo/,
               },
-              type: 'ExpressionStatement'
+              type: 'ExpressionStatement',
             },
             test: {
               type: 'Literal',
-              value: 1
+              value: 1,
             },
-            type: 'WhileStatement'
-          }
+            type: 'WhileStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `var i = 0;
@@ -73,20 +73,20 @@ describe('Statements - While', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Literal',
-                  value: 0
+                  value: 0,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'i'
-                }
-              }
-            ]
+                  name: 'i',
+                },
+              },
+            ],
           },
           {
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'woohoo'
+              name: 'woohoo',
             },
             body: {
               type: 'BlockStatement',
@@ -95,7 +95,7 @@ describe('Statements - While', () => {
                   type: 'WhileStatement',
                   test: {
                     type: 'Literal',
-                    value: true
+                    value: true,
                   },
                   body: {
                     type: 'BlockStatement',
@@ -106,11 +106,11 @@ describe('Statements - While', () => {
                           type: 'UpdateExpression',
                           argument: {
                             type: 'Identifier',
-                            name: 'i'
+                            name: 'i',
                           },
                           operator: '++',
-                          prefix: false
-                        }
+                          prefix: false,
+                        },
                       },
                       {
                         type: 'IfStatement',
@@ -118,13 +118,13 @@ describe('Statements - While', () => {
                           type: 'BinaryExpression',
                           left: {
                             type: 'Identifier',
-                            name: 'i'
+                            name: 'i',
                           },
                           right: {
                             type: 'Literal',
-                            value: 10
+                            value: 10,
                           },
-                          operator: '=='
+                          operator: '==',
                         },
                         consequent: {
                           type: 'BlockStatement',
@@ -133,21 +133,21 @@ describe('Statements - While', () => {
                               type: 'BreakStatement',
                               label: {
                                 type: 'Identifier',
-                                name: 'woohoo'
-                              }
-                            }
-                          ]
+                                name: 'woohoo',
+                              },
+                            },
+                          ],
                         },
-                        alternate: null
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                        alternate: null,
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `while (false) let // ASI
@@ -159,35 +159,35 @@ describe('Statements - While', () => {
             body: {
               expression: {
                 name: 'let',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'ExpressionStatement'
+              type: 'ExpressionStatement',
             },
             test: {
               type: 'Literal',
-              value: false
+              value: false,
             },
-            type: 'WhileStatement'
+            type: 'WhileStatement',
           },
           {
             expression: {
               left: {
                 name: 'x',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '=',
               right: {
                 type: 'Literal',
-                value: 1
+                value: 1,
               },
-              type: 'AssignmentExpression'
+              type: 'AssignmentExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `while (false) let // ASI
@@ -199,24 +199,24 @@ describe('Statements - While', () => {
             body: {
               expression: {
                 name: 'let',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'ExpressionStatement'
+              type: 'ExpressionStatement',
             },
             test: {
               type: 'Literal',
-              value: false
+              value: false,
             },
-            type: 'WhileStatement'
+            type: 'WhileStatement',
           },
           {
             body: [],
-            type: 'BlockStatement'
-          }
+            type: 'BlockStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
 
     [
@@ -232,12 +232,12 @@ describe('Statements - While', () => {
               operator: '<',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'Literal',
-                value: 10
-              }
+                value: 10,
+              },
             },
             body: {
               type: 'BlockStatement',
@@ -249,10 +249,10 @@ describe('Statements - While', () => {
                     operator: '++',
                     argument: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
-                    prefix: false
-                  }
+                    prefix: false,
+                  },
                 },
                 {
                   type: 'ExpressionStatement',
@@ -261,17 +261,17 @@ describe('Statements - While', () => {
                     operator: '--',
                     argument: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
-                    prefix: false
-                  }
-                }
-              ]
-            }
-          }
+                    prefix: false,
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'while (i-->1) {}',
@@ -289,23 +289,23 @@ describe('Statements - While', () => {
                 operator: '--',
                 argument: {
                   type: 'Identifier',
-                  name: 'i'
+                  name: 'i',
                 },
-                prefix: false
+                prefix: false,
               },
               right: {
                 type: 'Literal',
-                value: 1
-              }
+                value: 1,
+              },
             },
             body: {
               type: 'BlockStatement',
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a: while (true) continue a;',
@@ -318,25 +318,25 @@ describe('Statements - While', () => {
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'a'
+              name: 'a',
             },
             body: {
               type: 'WhileStatement',
               test: {
                 type: 'Literal',
-                value: true
+                value: true,
               },
               body: {
                 type: 'ContinueStatement',
                 label: {
                   type: 'Identifier',
-                  name: 'a'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'a',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'while (this) try {} catch (h) {}',
@@ -347,31 +347,31 @@ describe('Statements - While', () => {
             body: {
               block: {
                 body: [],
-                type: 'BlockStatement'
+                type: 'BlockStatement',
               },
               finalizer: null,
               handler: {
                 body: {
                   body: [],
-                  type: 'BlockStatement'
+                  type: 'BlockStatement',
                 },
                 param: {
                   name: 'h',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'CatchClause'
+                type: 'CatchClause',
               },
-              type: 'TryStatement'
+              type: 'TryStatement',
             },
             test: {
-              type: 'ThisExpression'
+              type: 'ThisExpression',
             },
-            type: 'WhileStatement'
-          }
+            type: 'WhileStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'while (foo) bar;',
@@ -384,18 +384,18 @@ describe('Statements - While', () => {
             type: 'WhileStatement',
             test: {
               type: 'Identifier',
-              name: 'foo'
+              name: 'foo',
             },
             body: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'bar'
-              }
-            }
-          }
-        ]
-      }
-    ]
+                name: 'bar',
+              },
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

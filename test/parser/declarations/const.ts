@@ -42,7 +42,7 @@ describe('Declarations - const', () => {
     'null',
     'true',
     'false',
-    'enum'
+    'enum',
   ]) {
     it(`const ${arg} = x`, () => {
       t.throws(() => {
@@ -86,7 +86,7 @@ describe('Declarations - const', () => {
         parseSource(
           `for (const  ${arg}  = x;;);`,
           undefined,
-          Context.Strict | Context.Module | Context.OptionsWebCompat
+          Context.Strict | Context.Module | Context.OptionsWebCompat,
         );
       });
     });
@@ -169,7 +169,7 @@ describe('Declarations - const', () => {
     'const {foo,bar:b} = x;',
     'const foo = () => { return bar, baz; };',
     'const val = (function f(a, b = (() => a)) {})',
-    'const { a, b, ...c } = { a: 1, b: 2, c: 3 };'
+    'const { a, b, ...c } = { a: 1, b: 2, c: 3 };',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -290,7 +290,7 @@ describe('Declarations - const', () => {
     ['const foo =x, bar;', Context.None],
     ['const foo, bar;', Context.Module],
     ['const [a, let, b] = [1, 2, 3];', Context.None],
-    ['const {let} = 1;', Context.None]
+    ['const {let} = 1;', Context.None],
   ]);
 
   pass('Declarations - const (pass)', [
@@ -305,9 +305,9 @@ describe('Declarations - const', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: 'use strict'
+              value: 'use strict',
             },
-            directive: 'use strict'
+            directive: 'use strict',
           },
           {
             type: 'VariableDeclaration',
@@ -317,7 +317,7 @@ describe('Declarations - const', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 id: {
                   type: 'ObjectPattern',
@@ -327,23 +327,23 @@ describe('Declarations - const', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'eval'
+                        name: 'eval',
                       },
                       computed: true,
                       value: {
                         type: 'ArrayPattern',
-                        elements: []
+                        elements: [],
                       },
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'const { [eval]: []} = a;',
@@ -360,7 +360,7 @@ describe('Declarations - const', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 id: {
                   type: 'ObjectPattern',
@@ -370,23 +370,23 @@ describe('Declarations - const', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'eval'
+                        name: 'eval',
                       },
                       computed: true,
                       value: {
                         type: 'ArrayPattern',
-                        elements: []
+                        elements: [],
                       },
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'const [foo] = x, [bar] = y;',
@@ -406,7 +406,7 @@ describe('Declarations - const', () => {
                   name: 'x',
                   start: 14,
                   end: 15,
-                  range: [14, 15]
+                  range: [14, 15],
                 },
                 id: {
                   type: 'ArrayPattern',
@@ -416,16 +416,16 @@ describe('Declarations - const', () => {
                       name: 'foo',
                       start: 7,
                       end: 10,
-                      range: [7, 10]
-                    }
+                      range: [7, 10],
+                    },
                   ],
                   start: 6,
                   end: 11,
-                  range: [6, 11]
+                  range: [6, 11],
                 },
                 start: 6,
                 end: 15,
-                range: [6, 15]
+                range: [6, 15],
               },
               {
                 type: 'VariableDeclarator',
@@ -434,7 +434,7 @@ describe('Declarations - const', () => {
                   name: 'y',
                   start: 25,
                   end: 26,
-                  range: [25, 26]
+                  range: [25, 26],
                 },
                 id: {
                   type: 'ArrayPattern',
@@ -444,27 +444,27 @@ describe('Declarations - const', () => {
                       name: 'bar',
                       start: 18,
                       end: 21,
-                      range: [18, 21]
-                    }
+                      range: [18, 21],
+                    },
                   ],
                   start: 17,
                   end: 22,
-                  range: [17, 22]
+                  range: [17, 22],
                 },
                 start: 17,
                 end: 26,
-                range: [17, 26]
-              }
+                range: [17, 26],
+              },
             ],
             start: 0,
             end: 27,
-            range: [0, 27]
-          }
+            range: [0, 27],
+          },
         ],
         start: 0,
         end: 27,
-        range: [0, 27]
-      }
+        range: [0, 27],
+      },
     ],
     [
       'const x = y, [foo] = z;',
@@ -491,15 +491,15 @@ describe('Declarations - const', () => {
                   start: 6,
                   end: 7,
                   range: [6, 7],
-                  name: 'x'
+                  name: 'x',
                 },
                 init: {
                   type: 'Identifier',
                   start: 10,
                   end: 11,
                   range: [10, 11],
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               },
               {
                 type: 'VariableDeclarator',
@@ -517,24 +517,24 @@ describe('Declarations - const', () => {
                       start: 14,
                       end: 17,
                       range: [14, 17],
-                      name: 'foo'
-                    }
-                  ]
+                      name: 'foo',
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 21,
                   end: 22,
                   range: [21, 22],
-                  name: 'z'
-                }
-              }
+                  name: 'z',
+                },
+              },
             ],
-            kind: 'const'
-          }
+            kind: 'const',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'const [foo=a,bar=b] = x;',
@@ -572,15 +572,15 @@ describe('Declarations - const', () => {
                         start: 7,
                         end: 10,
                         range: [7, 10],
-                        name: 'foo'
+                        name: 'foo',
                       },
                       right: {
                         type: 'Identifier',
                         start: 11,
                         end: 12,
                         range: [11, 12],
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     },
                     {
                       type: 'AssignmentPattern',
@@ -592,32 +592,32 @@ describe('Declarations - const', () => {
                         start: 13,
                         end: 16,
                         range: [13, 16],
-                        name: 'bar'
+                        name: 'bar',
                       },
                       right: {
                         type: 'Identifier',
                         start: 17,
                         end: 18,
                         range: [17, 18],
-                        name: 'b'
-                      }
-                    }
-                  ]
+                        name: 'b',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 22,
                   end: 23,
                   range: [22, 23],
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
-            kind: 'const'
-          }
+            kind: 'const',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'const [...bar] = obj;',
@@ -655,25 +655,25 @@ describe('Declarations - const', () => {
                         start: 10,
                         end: 13,
                         range: [10, 13],
-                        name: 'bar'
-                      }
-                    }
-                  ]
+                        name: 'bar',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 17,
                   end: 20,
                   range: [17, 20],
-                  name: 'obj'
-                }
-              }
+                  name: 'obj',
+                },
+              },
             ],
-            kind: 'const'
-          }
+            kind: 'const',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'const x = y, {foo} = z;',
@@ -700,15 +700,15 @@ describe('Declarations - const', () => {
                   start: 6,
                   end: 7,
                   range: [6, 7],
-                  name: 'x'
+                  name: 'x',
                 },
                 init: {
                   type: 'Identifier',
                   start: 10,
                   end: 11,
                   range: [10, 11],
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               },
               {
                 type: 'VariableDeclarator',
@@ -734,7 +734,7 @@ describe('Declarations - const', () => {
                         start: 14,
                         end: 17,
                         range: [14, 17],
-                        name: 'foo'
+                        name: 'foo',
                       },
                       kind: 'init',
                       value: {
@@ -742,25 +742,25 @@ describe('Declarations - const', () => {
                         start: 14,
                         end: 17,
                         range: [14, 17],
-                        name: 'foo'
-                      }
-                    }
-                  ]
+                        name: 'foo',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 21,
                   end: 22,
                   range: [21, 22],
-                  name: 'z'
-                }
-              }
+                  name: 'z',
+                },
+              },
             ],
-            kind: 'const'
-          }
+            kind: 'const',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'const {foo:a,bar:b} = x;',
@@ -773,12 +773,12 @@ describe('Declarations - const', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 24
-          }
+            column: 24,
+          },
         },
         body: [
           {
@@ -789,12 +789,12 @@ describe('Declarations - const', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 24
-              }
+                column: 24,
+              },
             },
             declarations: [
               {
@@ -805,12 +805,12 @@ describe('Declarations - const', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 6
+                    column: 6,
                   },
                   end: {
                     line: 1,
-                    column: 23
-                  }
+                    column: 23,
+                  },
                 },
                 id: {
                   type: 'ObjectPattern',
@@ -820,12 +820,12 @@ describe('Declarations - const', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 6
+                      column: 6,
                     },
                     end: {
                       line: 1,
-                      column: 19
-                    }
+                      column: 19,
+                    },
                   },
                   properties: [
                     {
@@ -836,12 +836,12 @@ describe('Declarations - const', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 7
+                          column: 7,
                         },
                         end: {
                           line: 1,
-                          column: 12
-                        }
+                          column: 12,
+                        },
                       },
                       method: false,
                       shorthand: false,
@@ -854,14 +854,14 @@ describe('Declarations - const', () => {
                         loc: {
                           start: {
                             line: 1,
-                            column: 7
+                            column: 7,
                           },
                           end: {
                             line: 1,
-                            column: 10
-                          }
+                            column: 10,
+                          },
                         },
-                        name: 'foo'
+                        name: 'foo',
                       },
                       value: {
                         type: 'Identifier',
@@ -871,16 +871,16 @@ describe('Declarations - const', () => {
                         loc: {
                           start: {
                             line: 1,
-                            column: 11
+                            column: 11,
                           },
                           end: {
                             line: 1,
-                            column: 12
-                          }
+                            column: 12,
+                          },
                         },
-                        name: 'a'
+                        name: 'a',
                       },
-                      kind: 'init'
+                      kind: 'init',
                     },
                     {
                       type: 'Property',
@@ -890,12 +890,12 @@ describe('Declarations - const', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 13
+                          column: 13,
                         },
                         end: {
                           line: 1,
-                          column: 18
-                        }
+                          column: 18,
+                        },
                       },
                       method: false,
                       shorthand: false,
@@ -908,14 +908,14 @@ describe('Declarations - const', () => {
                         loc: {
                           start: {
                             line: 1,
-                            column: 13
+                            column: 13,
                           },
                           end: {
                             line: 1,
-                            column: 16
-                          }
+                            column: 16,
+                          },
                         },
-                        name: 'bar'
+                        name: 'bar',
                       },
                       value: {
                         type: 'Identifier',
@@ -925,18 +925,18 @@ describe('Declarations - const', () => {
                         loc: {
                           start: {
                             line: 1,
-                            column: 17
+                            column: 17,
                           },
                           end: {
                             line: 1,
-                            column: 18
-                          }
+                            column: 18,
+                          },
                         },
-                        name: 'b'
+                        name: 'b',
                       },
-                      kind: 'init'
-                    }
-                  ]
+                      kind: 'init',
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
@@ -946,22 +946,22 @@ describe('Declarations - const', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 22
+                      column: 22,
                     },
                     end: {
                       line: 1,
-                      column: 23
-                    }
+                      column: 23,
+                    },
                   },
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
-            kind: 'const'
-          }
+            kind: 'const',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'const a = b',
@@ -978,17 +978,17 @@ describe('Declarations - const', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'a'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'a',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'for (const [,,] of x);',
@@ -1000,7 +1000,7 @@ describe('Declarations - const', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1011,19 +1011,19 @@ describe('Declarations - const', () => {
                   init: null,
                   id: {
                     type: 'ArrayPattern',
-                    elements: [null, null]
-                  }
-                }
-              ]
+                    elements: [null, null],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (const [,] of x);',
@@ -1035,7 +1035,7 @@ describe('Declarations - const', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1046,19 +1046,19 @@ describe('Declarations - const', () => {
                   init: null,
                   id: {
                     type: 'ArrayPattern',
-                    elements: [null]
-                  }
-                }
-              ]
+                    elements: [null],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (const {a, [x]: y} in obj);',
@@ -1070,7 +1070,7 @@ describe('Declarations - const', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1087,43 +1087,43 @@ describe('Declarations - const', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         method: false,
-                        shorthand: true
+                        shorthand: true,
                       },
                       {
                         type: 'Property',
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         computed: true,
                         value: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: false,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (const {x : y, z, a : b = c} in obj);',
@@ -1169,16 +1169,16 @@ describe('Declarations - const', () => {
                           start: 12,
                           end: 13,
                           range: [12, 13],
-                          name: 'x'
+                          name: 'x',
                         },
                         value: {
                           type: 'Identifier',
                           start: 16,
                           end: 17,
                           range: [16, 17],
-                          name: 'y'
+                          name: 'y',
                         },
-                        kind: 'init'
+                        kind: 'init',
                       },
                       {
                         type: 'Property',
@@ -1193,7 +1193,7 @@ describe('Declarations - const', () => {
                           start: 19,
                           end: 20,
                           range: [19, 20],
-                          name: 'z'
+                          name: 'z',
                         },
                         kind: 'init',
                         value: {
@@ -1201,8 +1201,8 @@ describe('Declarations - const', () => {
                           start: 19,
                           end: 20,
                           range: [19, 20],
-                          name: 'z'
-                        }
+                          name: 'z',
+                        },
                       },
                       {
                         type: 'Property',
@@ -1217,7 +1217,7 @@ describe('Declarations - const', () => {
                           start: 22,
                           end: 23,
                           range: [22, 23],
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'AssignmentPattern',
@@ -1229,42 +1229,42 @@ describe('Declarations - const', () => {
                             start: 26,
                             end: 27,
                             range: [26, 27],
-                            name: 'b'
+                            name: 'b',
                           },
                           right: {
                             type: 'Identifier',
                             start: 30,
                             end: 31,
                             range: [30, 31],
-                            name: 'c'
-                          }
+                            name: 'c',
+                          },
                         },
-                        kind: 'init'
-                      }
-                    ]
+                        kind: 'init',
+                      },
+                    ],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'const'
+              kind: 'const',
             },
             right: {
               type: 'Identifier',
               start: 36,
               end: 39,
               range: [36, 39],
-              name: 'obj'
+              name: 'obj',
             },
             body: {
               type: 'EmptyStatement',
               start: 40,
               end: 41,
-              range: [40, 41]
-            }
-          }
+              range: [40, 41],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `const {
@@ -1295,25 +1295,25 @@ describe('Declarations - const', () => {
                                       {
                                         argument: {
                                           name: 'b',
-                                          type: 'Identifier'
+                                          type: 'Identifier',
                                         },
-                                        type: 'RestElement'
-                                      }
+                                        type: 'RestElement',
+                                      },
                                     ],
-                                    type: 'ObjectPattern'
+                                    type: 'ObjectPattern',
                                   },
                                   init: {
                                     properties: [],
-                                    type: 'ObjectExpression'
+                                    type: 'ObjectExpression',
                                   },
-                                  type: 'VariableDeclarator'
-                                }
+                                  type: 'VariableDeclarator',
+                                },
                               ],
                               kind: 'let',
-                              type: 'VariableDeclaration'
-                            }
+                              type: 'VariableDeclaration',
+                            },
                           ],
-                          type: 'BlockStatement'
+                          type: 'BlockStatement',
                         },
                         expression: false,
 
@@ -1323,16 +1323,16 @@ describe('Declarations - const', () => {
                               {
                                 argument: {
                                   name: 'rest',
-                                  type: 'Identifier'
+                                  type: 'Identifier',
                                 },
-                                type: 'RestElement'
-                              }
+                                type: 'RestElement',
+                              },
                             ],
-                            type: 'ObjectPattern'
-                          }
+                            type: 'ObjectPattern',
+                          },
                         ],
                         type: 'ArrowFunctionExpression',
-                        generator: false
+                        generator: false,
                       },
                       kind: 'init',
                       method: false,
@@ -1340,8 +1340,8 @@ describe('Declarations - const', () => {
                       type: 'Property',
                       value: {
                         name: 'a',
-                        type: 'Identifier'
-                      }
+                        type: 'Identifier',
+                      },
                     },
                     {
                       computed: true,
@@ -1351,19 +1351,19 @@ describe('Declarations - const', () => {
                             {
                               argument: {
                                 name: 'd',
-                                type: 'Identifier'
+                                type: 'Identifier',
                               },
-                              type: 'RestElement'
-                            }
+                              type: 'RestElement',
+                            },
                           ],
-                          type: 'ObjectPattern'
+                          type: 'ObjectPattern',
                         },
                         operator: '=',
                         right: {
                           properties: [],
-                          type: 'ObjectExpression'
+                          type: 'ObjectExpression',
                         },
-                        type: 'AssignmentExpression'
+                        type: 'AssignmentExpression',
                       },
                       kind: 'init',
                       method: false,
@@ -1371,26 +1371,26 @@ describe('Declarations - const', () => {
                       type: 'Property',
                       value: {
                         name: 'c',
-                        type: 'Identifier'
-                      }
-                    }
+                        type: 'Identifier',
+                      },
+                    },
                   ],
-                  type: 'ObjectPattern'
+                  type: 'ObjectPattern',
                 },
                 init: {
                   properties: [],
-                  type: 'ObjectExpression'
+                  type: 'ObjectExpression',
                 },
-                type: 'VariableDeclarator'
-              }
+                type: 'VariableDeclarator',
+              },
             ],
             kind: 'const',
-            type: 'VariableDeclaration'
-          }
+            type: 'VariableDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `const {
@@ -1412,7 +1412,7 @@ describe('Declarations - const', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'ObjectExpression',
-                  properties: []
+                  properties: [],
                 },
                 id: {
                   type: 'ObjectPattern',
@@ -1422,14 +1422,14 @@ describe('Declarations - const', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       computed: false,
                       value: {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         right: {
                           type: 'ArrowFunctionExpression',
@@ -1445,7 +1445,7 @@ describe('Declarations - const', () => {
                                     type: 'VariableDeclarator',
                                     init: {
                                       type: 'ObjectExpression',
-                                      properties: []
+                                      properties: [],
                                     },
                                     id: {
                                       type: 'ObjectPattern',
@@ -1454,15 +1454,15 @@ describe('Declarations - const', () => {
                                           type: 'RestElement',
                                           argument: {
                                             type: 'Identifier',
-                                            name: 'b'
-                                          }
-                                        }
-                                      ]
-                                    }
-                                  }
-                                ]
-                              }
-                            ]
+                                            name: 'b',
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            ],
                           },
                           params: [
                             {
@@ -1472,32 +1472,32 @@ describe('Declarations - const', () => {
                                   type: 'RestElement',
                                   argument: {
                                     type: 'Identifier',
-                                    name: 'rest'
-                                  }
-                                }
-                              ]
-                            }
+                                    name: 'rest',
+                                  },
+                                },
+                              ],
+                            },
                           ],
                           async: false,
-                          expression: false
-                        }
+                          expression: false,
+                        },
                       },
                       method: false,
-                      shorthand: true
+                      shorthand: true,
                     },
                     {
                       type: 'Property',
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'c'
+                        name: 'c',
                       },
                       computed: false,
                       value: {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'c'
+                          name: 'c',
                         },
                         right: {
                           type: 'AssignmentExpression',
@@ -1508,28 +1508,28 @@ describe('Declarations - const', () => {
                                 type: 'RestElement',
                                 argument: {
                                   type: 'Identifier',
-                                  name: 'd'
-                                }
-                              }
-                            ]
+                                  name: 'd',
+                                },
+                              },
+                            ],
                           },
                           operator: '=',
                           right: {
                             type: 'ObjectExpression',
-                            properties: []
-                          }
-                        }
+                            properties: [],
+                          },
+                        },
                       },
                       method: false,
-                      shorthand: true
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      shorthand: true,
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'const { a: { ...bar }, b: { ...baz }, ...foo } = obj;',
@@ -1546,7 +1546,7 @@ describe('Declarations - const', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Identifier',
-                  name: 'obj'
+                  name: 'obj',
                 },
                 id: {
                   type: 'ObjectPattern',
@@ -1556,7 +1556,7 @@ describe('Declarations - const', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       computed: false,
                       value: {
@@ -1566,20 +1566,20 @@ describe('Declarations - const', () => {
                             type: 'RestElement',
                             argument: {
                               type: 'Identifier',
-                              name: 'bar'
-                            }
-                          }
-                        ]
+                              name: 'bar',
+                            },
+                          },
+                        ],
                       },
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       computed: false,
                       value: {
@@ -1589,28 +1589,28 @@ describe('Declarations - const', () => {
                             type: 'RestElement',
                             argument: {
                               type: 'Identifier',
-                              name: 'baz'
-                            }
-                          }
-                        ]
+                              name: 'baz',
+                            },
+                          },
+                        ],
                       },
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'RestElement',
                       argument: {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                        name: 'foo',
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       `var z = {};
@@ -1655,18 +1655,18 @@ describe('Declarations - const', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'z'
+                  name: 'z',
                 },
                 init: {
                   type: 'ObjectExpression',
                   start: 8,
                   end: 10,
                   range: [8, 10],
-                  properties: []
-                }
-              }
+                  properties: [],
+                },
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'VariableDeclaration',
@@ -1695,21 +1695,21 @@ describe('Declarations - const', () => {
                         start: 33,
                         end: 34,
                         range: [33, 34],
-                        name: 'x'
-                      }
-                    }
-                  ]
+                        name: 'x',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 39,
                   end: 40,
                   range: [39, 40],
-                  name: 'z'
-                }
-              }
+                  name: 'z',
+                },
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'VariableDeclaration',
@@ -1738,10 +1738,10 @@ describe('Declarations - const', () => {
                         start: 63,
                         end: 64,
                         range: [63, 64],
-                        name: 'a'
-                      }
-                    }
-                  ]
+                        name: 'a',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'ObjectExpression',
@@ -1762,22 +1762,22 @@ describe('Declarations - const', () => {
                         start: 71,
                         end: 72,
                         range: [71, 72],
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Literal',
                         start: 74,
                         end: 75,
                         range: [74, 75],
-                        value: 1
+                        value: 1,
                       },
-                      kind: 'init'
-                    }
-                  ]
-                }
-              }
+                      kind: 'init',
+                    },
+                  ],
+                },
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'VariableDeclaration',
@@ -1806,10 +1806,10 @@ describe('Declarations - const', () => {
                         start: 100,
                         end: 101,
                         range: [100, 101],
-                        name: 'x'
-                      }
-                    }
-                  ]
+                        name: 'x',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'MemberExpression',
@@ -1821,20 +1821,20 @@ describe('Declarations - const', () => {
                     start: 106,
                     end: 107,
                     range: [106, 107],
-                    name: 'a'
+                    name: 'a',
                   },
                   property: {
                     type: 'Identifier',
                     start: 108,
                     end: 109,
                     range: [108, 109],
-                    name: 'b'
+                    name: 'b',
                   },
-                  computed: false
-                }
-              }
+                  computed: false,
+                },
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'VariableDeclaration',
@@ -1863,10 +1863,10 @@ describe('Declarations - const', () => {
                         start: 132,
                         end: 133,
                         range: [132, 133],
-                        name: 'x'
-                      }
-                    }
-                  ]
+                        name: 'x',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'CallExpression',
@@ -1878,13 +1878,13 @@ describe('Declarations - const', () => {
                     start: 138,
                     end: 139,
                     range: [138, 139],
-                    name: 'a'
+                    name: 'a',
                   },
-                  arguments: []
-                }
-              }
+                  arguments: [],
+                },
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'VariableDeclaration',
@@ -1916,7 +1916,7 @@ describe('Declarations - const', () => {
                         start: 160,
                         end: 162,
                         range: [160, 162],
-                        name: 'x1'
+                        name: 'x1',
                       },
                       kind: 'init',
                       value: {
@@ -1924,8 +1924,8 @@ describe('Declarations - const', () => {
                         start: 160,
                         end: 162,
                         range: [160, 162],
-                        name: 'x1'
-                      }
+                        name: 'x1',
+                      },
                     },
                     {
                       type: 'RestElement',
@@ -1937,21 +1937,21 @@ describe('Declarations - const', () => {
                         start: 167,
                         end: 169,
                         range: [167, 169],
-                        name: 'y1'
-                      }
-                    }
-                  ]
+                        name: 'y1',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 173,
                   end: 174,
                   range: [173, 174],
-                  name: 'z'
-                }
-              }
+                  name: 'z',
+                },
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'ExpressionStatement',
@@ -1970,9 +1970,9 @@ describe('Declarations - const', () => {
                 start: 188,
                 end: 190,
                 range: [188, 190],
-                name: 'x1'
-              }
-            }
+                name: 'x1',
+              },
+            },
           },
           {
             type: 'VariableDeclaration',
@@ -2004,16 +2004,16 @@ describe('Declarations - const', () => {
                         start: 213,
                         end: 214,
                         range: [213, 214],
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Identifier',
                         start: 217,
                         end: 218,
                         range: [217, 218],
-                        name: 'b'
+                        name: 'b',
                       },
-                      kind: 'init'
+                      kind: 'init',
                     },
                     {
                       type: 'RestElement',
@@ -2025,21 +2025,21 @@ describe('Declarations - const', () => {
                         start: 223,
                         end: 224,
                         range: [223, 224],
-                        name: 'c'
-                      }
-                    }
-                  ]
+                        name: 'c',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 229,
                   end: 230,
                   range: [229, 230],
-                  name: 'z'
-                }
-              }
+                  name: 'z',
+                },
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'VariableDeclaration',
@@ -2071,7 +2071,7 @@ describe('Declarations - const', () => {
                         start: 249,
                         end: 251,
                         range: [249, 251],
-                        name: 'x1'
+                        name: 'x1',
                       },
                       kind: 'init',
                       value: {
@@ -2079,8 +2079,8 @@ describe('Declarations - const', () => {
                         start: 249,
                         end: 251,
                         range: [249, 251],
-                        name: 'x1'
-                      }
+                        name: 'x1',
+                      },
                     },
                     {
                       type: 'RestElement',
@@ -2092,21 +2092,21 @@ describe('Declarations - const', () => {
                         start: 256,
                         end: 258,
                         range: [256, 258],
-                        name: 'y1'
-                      }
-                    }
-                  ]
+                        name: 'y1',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 262,
                   end: 263,
                   range: [262, 263],
-                  name: 'z'
-                }
-              }
+                  name: 'z',
+                },
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'VariableDeclaration',
@@ -2138,7 +2138,7 @@ describe('Declarations - const', () => {
                         start: 282,
                         end: 284,
                         range: [282, 284],
-                        name: 'x2'
+                        name: 'x2',
                       },
                       kind: 'init',
                       value: {
@@ -2146,8 +2146,8 @@ describe('Declarations - const', () => {
                         start: 282,
                         end: 284,
                         range: [282, 284],
-                        name: 'x2'
-                      }
+                        name: 'x2',
+                      },
                     },
                     {
                       type: 'Property',
@@ -2162,7 +2162,7 @@ describe('Declarations - const', () => {
                         start: 286,
                         end: 288,
                         range: [286, 288],
-                        name: 'y2'
+                        name: 'y2',
                       },
                       kind: 'init',
                       value: {
@@ -2170,8 +2170,8 @@ describe('Declarations - const', () => {
                         start: 286,
                         end: 288,
                         range: [286, 288],
-                        name: 'y2'
-                      }
+                        name: 'y2',
+                      },
                     },
                     {
                       type: 'RestElement',
@@ -2183,21 +2183,21 @@ describe('Declarations - const', () => {
                         start: 293,
                         end: 295,
                         range: [293, 295],
-                        name: 'z2'
-                      }
-                    }
-                  ]
+                        name: 'z2',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 299,
                   end: 300,
                   range: [299, 300],
-                  name: 'z'
-                }
-              }
+                  name: 'z',
+                },
+              },
             ],
-            kind: 'let'
+            kind: 'let',
           },
           {
             type: 'VariableDeclaration',
@@ -2229,7 +2229,7 @@ describe('Declarations - const', () => {
                         start: 321,
                         end: 323,
                         range: [321, 323],
-                        name: 'w3'
+                        name: 'w3',
                       },
                       kind: 'init',
                       value: {
@@ -2237,8 +2237,8 @@ describe('Declarations - const', () => {
                         start: 321,
                         end: 323,
                         range: [321, 323],
-                        name: 'w3'
-                      }
+                        name: 'w3',
+                      },
                     },
                     {
                       type: 'Property',
@@ -2253,7 +2253,7 @@ describe('Declarations - const', () => {
                         start: 325,
                         end: 327,
                         range: [325, 327],
-                        name: 'x3'
+                        name: 'x3',
                       },
                       kind: 'init',
                       value: {
@@ -2261,8 +2261,8 @@ describe('Declarations - const', () => {
                         start: 325,
                         end: 327,
                         range: [325, 327],
-                        name: 'x3'
-                      }
+                        name: 'x3',
+                      },
                     },
                     {
                       type: 'Property',
@@ -2277,7 +2277,7 @@ describe('Declarations - const', () => {
                         start: 329,
                         end: 331,
                         range: [329, 331],
-                        name: 'y3'
+                        name: 'y3',
                       },
                       kind: 'init',
                       value: {
@@ -2285,8 +2285,8 @@ describe('Declarations - const', () => {
                         start: 329,
                         end: 331,
                         range: [329, 331],
-                        name: 'y3'
-                      }
+                        name: 'y3',
+                      },
                     },
                     {
                       type: 'RestElement',
@@ -2298,21 +2298,21 @@ describe('Declarations - const', () => {
                         start: 336,
                         end: 338,
                         range: [336, 338],
-                        name: 'z4'
-                      }
-                    }
-                  ]
+                        name: 'z4',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 342,
                   end: 343,
                   range: [342, 343],
-                  name: 'z'
-                }
-              }
+                  name: 'z',
+                },
+              },
             ],
-            kind: 'const'
+            kind: 'const',
           },
           {
             type: 'VariableDeclaration',
@@ -2344,7 +2344,7 @@ describe('Declarations - const', () => {
                         start: 378,
                         end: 379,
                         range: [378, 379],
-                        name: 'x'
+                        name: 'x',
                       },
                       value: {
                         type: 'ObjectPattern',
@@ -2365,16 +2365,16 @@ describe('Declarations - const', () => {
                               start: 383,
                               end: 384,
                               range: [383, 384],
-                              name: 'a'
+                              name: 'a',
                             },
                             value: {
                               type: 'Identifier',
                               start: 386,
                               end: 388,
                               range: [386, 388],
-                              name: 'xa'
+                              name: 'xa',
                             },
-                            kind: 'init'
+                            kind: 'init',
                           },
                           {
                             type: 'Property',
@@ -2389,16 +2389,16 @@ describe('Declarations - const', () => {
                               start: 391,
                               end: 392,
                               range: [391, 392],
-                              name: 'd'
+                              name: 'd',
                             },
                             value: {
                               type: 'Identifier',
                               start: 395,
                               end: 396,
                               range: [395, 396],
-                              name: 'f'
+                              name: 'f',
                             },
-                            kind: 'init'
+                            kind: 'init',
                           },
                           {
                             type: 'RestElement',
@@ -2410,12 +2410,12 @@ describe('Declarations - const', () => {
                               start: 401,
                               end: 405,
                               range: [401, 405],
-                              name: 'asdf'
-                            }
-                          }
-                        ]
+                              name: 'asdf',
+                            },
+                          },
+                        ],
                       },
-                      kind: 'init'
+                      kind: 'init',
                     },
                     {
                       type: 'Property',
@@ -2430,7 +2430,7 @@ describe('Declarations - const', () => {
                         start: 423,
                         end: 424,
                         range: [423, 424],
-                        name: 'y'
+                        name: 'y',
                       },
                       value: {
                         type: 'ObjectPattern',
@@ -2448,12 +2448,12 @@ describe('Declarations - const', () => {
                               start: 431,
                               end: 432,
                               range: [431, 432],
-                              name: 'd'
-                            }
-                          }
-                        ]
+                              name: 'd',
+                            },
+                          },
+                        ],
                       },
-                      kind: 'init'
+                      kind: 'init',
                     },
                     {
                       type: 'RestElement',
@@ -2465,21 +2465,21 @@ describe('Declarations - const', () => {
                         start: 453,
                         end: 454,
                         range: [453, 454],
-                        name: 'g'
-                      }
-                    }
-                  ]
+                        name: 'g',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 471,
                   end: 478,
                   range: [471, 478],
-                  name: 'complex'
-                }
-              }
+                  name: 'complex',
+                },
+              },
             ],
-            kind: 'let'
+            kind: 'let',
           },
           {
             type: 'VariableDeclaration',
@@ -2511,7 +2511,7 @@ describe('Declarations - const', () => {
                         start: 499,
                         end: 501,
                         range: [499, 501],
-                        name: 'x4'
+                        name: 'x4',
                       },
                       value: {
                         type: 'ObjectPattern',
@@ -2529,29 +2529,29 @@ describe('Declarations - const', () => {
                               start: 508,
                               end: 510,
                               range: [508, 510],
-                              name: 'y4'
-                            }
-                          }
-                        ]
+                              name: 'y4',
+                            },
+                          },
+                        ],
                       },
-                      kind: 'init'
-                    }
-                  ]
+                      kind: 'init',
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 517,
                   end: 518,
                   range: [517, 518],
-                  name: 'z'
-                }
-              }
+                  name: 'z',
+                },
+              },
             ],
-            kind: 'let'
-          }
+            kind: 'let',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `let {
@@ -2580,50 +2580,50 @@ describe('Declarations - const', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'ArrayExpression',
                         elements: [
                           {
                             type: 'Literal',
-                            value: 1
+                            value: 1,
                           },
                           {
                             type: 'Literal',
-                            value: 2
+                            value: 2,
                           },
                           {
                             type: 'Literal',
-                            value: 3
+                            value: 3,
                           },
                           {
                             type: 'Literal',
-                            value: 4
-                          }
-                        ]
+                            value: 4,
+                          },
+                        ],
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'd'
+                        name: 'd',
                       },
                       value: {
                         type: 'Literal',
-                        value: 'oyez'
+                        value: 'oyez',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 id: {
                   type: 'ObjectPattern',
@@ -2633,7 +2633,7 @@ describe('Declarations - const', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       computed: false,
                       value: {
@@ -2641,33 +2641,33 @@ describe('Declarations - const', () => {
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'b'
+                            name: 'b',
                           },
                           {
                             type: 'RestElement',
                             argument: {
                               type: 'Identifier',
-                              name: 'arrayRest'
-                            }
-                          }
-                        ]
+                              name: 'arrayRest',
+                            },
+                          },
+                        ],
                       },
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'c'
+                        name: 'c',
                       },
                       computed: false,
                       value: {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'c'
+                          name: 'c',
                         },
                         right: {
                           type: 'FunctionExpression',
@@ -2676,37 +2676,37 @@ describe('Declarations - const', () => {
                               type: 'RestElement',
                               argument: {
                                 type: 'Identifier',
-                                name: 'functionRest'
-                              }
-                            }
+                                name: 'functionRest',
+                              },
+                            },
                           ],
                           body: {
                             type: 'BlockStatement',
-                            body: []
+                            body: [],
                           },
                           async: false,
                           generator: false,
 
-                          id: null
-                        }
+                          id: null,
+                        },
                       },
                       method: false,
-                      shorthand: true
+                      shorthand: true,
                     },
                     {
                       type: 'RestElement',
                       argument: {
                         type: 'Identifier',
-                        name: 'objectRest'
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                        name: 'objectRest',
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       `// ForXStatement
@@ -2771,7 +2771,7 @@ describe('Declarations - const', () => {
                           start: 43,
                           end: 44,
                           range: [43, 44],
-                          name: 'a'
+                          name: 'a',
                         },
                         kind: 'init',
                         value: {
@@ -2779,8 +2779,8 @@ describe('Declarations - const', () => {
                           start: 43,
                           end: 44,
                           range: [43, 44],
-                          name: 'a'
-                        }
+                          name: 'a',
+                        },
                       },
                       {
                         type: 'RestElement',
@@ -2792,30 +2792,30 @@ describe('Declarations - const', () => {
                           start: 49,
                           end: 50,
                           range: [49, 50],
-                          name: 'b'
-                        }
-                      }
-                    ]
+                          name: 'b',
+                        },
+                      },
+                    ],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             right: {
               type: 'ArrayExpression',
               start: 55,
               end: 57,
               range: [55, 57],
-              elements: []
+              elements: [],
             },
             body: {
               type: 'BlockStatement',
               start: 59,
               end: 61,
               range: [59, 61],
-              body: []
-            }
+              body: [],
+            },
           },
           {
             type: 'ForOfStatement',
@@ -2842,7 +2842,7 @@ describe('Declarations - const', () => {
                     start: 84,
                     end: 85,
                     range: [84, 85],
-                    name: 'a'
+                    name: 'a',
                   },
                   kind: 'init',
                   value: {
@@ -2850,8 +2850,8 @@ describe('Declarations - const', () => {
                     start: 84,
                     end: 85,
                     range: [84, 85],
-                    name: 'a'
-                  }
+                    name: 'a',
+                  },
                 },
                 {
                   type: 'RestElement',
@@ -2863,25 +2863,25 @@ describe('Declarations - const', () => {
                     start: 90,
                     end: 91,
                     range: [90, 91],
-                    name: 'b'
-                  }
-                }
-              ]
+                    name: 'b',
+                  },
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
               start: 96,
               end: 98,
               range: [96, 98],
-              elements: []
+              elements: [],
             },
             body: {
               type: 'BlockStatement',
               start: 100,
               end: 102,
               range: [100, 102],
-              body: []
-            }
+              body: [],
+            },
           },
           {
             type: 'FunctionDeclaration',
@@ -2893,7 +2893,7 @@ describe('Declarations - const', () => {
               start: 134,
               end: 135,
               range: [134, 135],
-              name: 'a'
+              name: 'a',
             },
             generator: false,
             async: true,
@@ -2929,7 +2929,7 @@ describe('Declarations - const', () => {
                           start: 170,
                           end: 171,
                           range: [170, 171],
-                          name: 'a'
+                          name: 'a',
                         },
                         kind: 'init',
                         value: {
@@ -2937,8 +2937,8 @@ describe('Declarations - const', () => {
                           start: 170,
                           end: 171,
                           range: [170, 171],
-                          name: 'a'
-                        }
+                          name: 'a',
+                        },
                       },
                       {
                         type: 'RestElement',
@@ -2950,28 +2950,28 @@ describe('Declarations - const', () => {
                           start: 176,
                           end: 177,
                           range: [176, 177],
-                          name: 'b'
-                        }
-                      }
-                    ]
+                          name: 'b',
+                        },
+                      },
+                    ],
                   },
                   right: {
                     type: 'ArrayExpression',
                     start: 182,
                     end: 184,
                     range: [182, 184],
-                    elements: []
+                    elements: [],
                   },
                   body: {
                     type: 'BlockStatement',
                     start: 186,
                     end: 188,
                     range: [186, 188],
-                    body: []
-                  }
-                }
-              ]
-            }
+                    body: [],
+                  },
+                },
+              ],
+            },
           },
           {
             type: 'ForInStatement',
@@ -2997,7 +2997,7 @@ describe('Declarations - const', () => {
                     start: 254,
                     end: 255,
                     range: [254, 255],
-                    name: 'a'
+                    name: 'a',
                   },
                   kind: 'init',
                   value: {
@@ -3005,25 +3005,25 @@ describe('Declarations - const', () => {
                     start: 254,
                     end: 255,
                     range: [254, 255],
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             right: {
               type: 'ObjectExpression',
               start: 260,
               end: 262,
               range: [260, 262],
-              properties: []
+              properties: [],
             },
             body: {
               type: 'BlockStatement',
               start: 264,
               end: 266,
               range: [264, 266],
-              body: []
-            }
+              body: [],
+            },
           },
           {
             type: 'ForOfStatement',
@@ -3050,7 +3050,7 @@ describe('Declarations - const', () => {
                     start: 289,
                     end: 290,
                     range: [289, 290],
-                    name: 'a'
+                    name: 'a',
                   },
                   kind: 'init',
                   value: {
@@ -3058,25 +3058,25 @@ describe('Declarations - const', () => {
                     start: 289,
                     end: 290,
                     range: [289, 290],
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
               start: 295,
               end: 297,
               range: [295, 297],
-              elements: []
+              elements: [],
             },
             body: {
               type: 'BlockStatement',
               start: 299,
               end: 301,
               range: [299, 301],
-              body: []
-            }
+              body: [],
+            },
           },
           {
             type: 'FunctionDeclaration',
@@ -3088,7 +3088,7 @@ describe('Declarations - const', () => {
               start: 333,
               end: 334,
               range: [333, 334],
-              name: 'a'
+              name: 'a',
             },
             generator: false,
             async: true,
@@ -3124,7 +3124,7 @@ describe('Declarations - const', () => {
                           start: 369,
                           end: 370,
                           range: [369, 370],
-                          name: 'a'
+                          name: 'a',
                         },
                         kind: 'init',
                         value: {
@@ -3132,28 +3132,28 @@ describe('Declarations - const', () => {
                           start: 369,
                           end: 370,
                           range: [369, 370],
-                          name: 'a'
-                        }
-                      }
-                    ]
+                          name: 'a',
+                        },
+                      },
+                    ],
                   },
                   right: {
                     type: 'ArrayExpression',
                     start: 375,
                     end: 377,
                     range: [375, 377],
-                    elements: []
+                    elements: [],
                   },
                   body: {
                     type: 'BlockStatement',
                     start: 379,
                     end: 381,
                     range: [379, 381],
-                    body: []
-                  }
-                }
-              ]
-            }
+                    body: [],
+                  },
+                },
+              ],
+            },
           },
           {
             type: 'ForInStatement',
@@ -3165,22 +3165,22 @@ describe('Declarations - const', () => {
               start: 422,
               end: 423,
               range: [422, 423],
-              name: 'a'
+              name: 'a',
             },
             right: {
               type: 'ObjectExpression',
               start: 427,
               end: 429,
               range: [427, 429],
-              properties: []
+              properties: [],
             },
             body: {
               type: 'BlockStatement',
               start: 431,
               end: 433,
               range: [431, 433],
-              body: []
-            }
+              body: [],
+            },
           },
           {
             type: 'ForOfStatement',
@@ -3193,22 +3193,22 @@ describe('Declarations - const', () => {
               start: 455,
               end: 456,
               range: [455, 456],
-              name: 'a'
+              name: 'a',
             },
             right: {
               type: 'ArrayExpression',
               start: 460,
               end: 462,
               range: [460, 462],
-              elements: []
+              elements: [],
             },
             body: {
               type: 'BlockStatement',
               start: 464,
               end: 466,
               range: [464, 466],
-              body: []
-            }
+              body: [],
+            },
           },
           {
             type: 'FunctionDeclaration',
@@ -3220,7 +3220,7 @@ describe('Declarations - const', () => {
               start: 498,
               end: 499,
               range: [498, 499],
-              name: 'a'
+              name: 'a',
             },
             generator: false,
             async: true,
@@ -3242,29 +3242,29 @@ describe('Declarations - const', () => {
                     start: 533,
                     end: 534,
                     range: [533, 534],
-                    name: 'a'
+                    name: 'a',
                   },
                   right: {
                     type: 'ArrayExpression',
                     start: 538,
                     end: 540,
                     range: [538, 540],
-                    elements: []
+                    elements: [],
                   },
                   body: {
                     type: 'BlockStatement',
                     start: 542,
                     end: 544,
                     range: [542, 544],
-                    body: []
-                  }
-                }
-              ]
-            }
-          }
+                    body: [],
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'const foo = bar;',
@@ -3279,19 +3279,19 @@ describe('Declarations - const', () => {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'bar'
-                }
-              }
+                  name: 'bar',
+                },
+              },
             ],
-            kind: 'const'
-          }
+            kind: 'const',
+          },
         ],
-        sourceType: 'script'
-      }
-    ]
+        sourceType: 'script',
+      },
+    ],
   ]);
 });

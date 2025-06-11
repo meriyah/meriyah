@@ -14,7 +14,7 @@ describe('Expressions - Rest', () => {
     'var ...x = [1,2,3];',
     'var [...x,] = [1,2,3];',
     'var [...x, y] = [1,2,3];',
-    'var { x } = {x: ...[1,2,3]}'
+    'var { x } = {x: ...[1,2,3]}',
   ]) {
     it(`x = ${arg}`, () => {
       t.throws(() => {
@@ -90,7 +90,7 @@ describe('Expressions - Rest', () => {
     '{ ...[]}',
     '{ ...async function() { }}',
     '{ ...async () => { }}',
-    '{ ...new Foo()}'
+    '{ ...new Foo()}',
   ]) {
     it(`x = ${arg}`, () => {
       t.doesNotThrow(() => {

@@ -39,7 +39,7 @@ describe('Lexer - Comments', () => {
     [Context.OptionsWebCompat, Token.EOF, '//\r', ''],
     [Context.OptionsWebCompat, Token.EOF, '//\n', ''],
     [Context.OptionsWebCompat, Token.EOF, '<!--', ''],
-    [Context.OptionsWebCompat, Token.EOF, '\n--' + '>', '']
+    [Context.OptionsWebCompat, Token.EOF, '\n--' + '>', ''],
   ];
 
   for (const [ctx, token, op] of tokens) {
@@ -51,13 +51,13 @@ describe('Lexer - Comments', () => {
         {
           token: found,
           hasNext: state.index < state.source.length,
-          index: state.index
+          index: state.index,
         },
         {
           token: token,
           hasNext: false,
-          index: op.length
-        }
+          index: op.length,
+        },
       );
     });
   }

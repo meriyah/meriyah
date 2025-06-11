@@ -119,7 +119,7 @@ describe('Expressions - Yield', () => {
           }
         }
       }
-    }`
+    }`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -175,7 +175,7 @@ describe('Expressions - Yield', () => {
     "for (yield 'x' of {});",
     "for (yield 'x' in {} in {});",
     "for (yield 'x' in {} of {});",
-    'class C extends yield { }'
+    'class C extends yield { }',
   ]) {
     it(`function *g() { ${arg}}`, () => {
       t.throws(() => {
@@ -245,7 +245,7 @@ describe('Expressions - Yield', () => {
     `async ([...yield]) => {};`,
     `async ({a: yield}) => {};`,
     `async ({yield}) => {};`,
-    `async ({yield = 0}) => {};`
+    `async ({yield = 0}) => {};`,
   ];
 
   const yieldInBody = [
@@ -273,7 +273,7 @@ describe('Expressions - Yield', () => {
     `() => { const [...yield] = []; };`,
     `() => { const {a: yield} = {}; };`,
     `() => { const {yield} = {}; };`,
-    `() => { const {yield = 0} = {}; };`
+    `() => { const {yield = 0} = {}; };`,
   ];
 
   for (const test of [...yieldInParameters, ...yieldInBody]) {
@@ -297,7 +297,7 @@ describe('Expressions - Yield', () => {
         parseSource(
           `"use strict"; function f() { ${test} }`,
           undefined,
-          Context.OptionsWebCompat | Context.OptionsNext
+          Context.OptionsWebCompat | Context.OptionsNext,
         );
       });
     });
@@ -368,7 +368,7 @@ describe('Expressions - Yield', () => {
     'x = class extends (yield) {}',
     'x = class extends f(yield) {}',
     'x = class extends (null, yield) { }',
-    'x = class extends (a ? null : yield) { }'
+    'x = class extends (a ? null : yield) { }',
   ]) {
     it(`function *foo() {${arg}}`, () => {
       t.doesNotThrow(() => {
@@ -406,7 +406,7 @@ describe('Expressions - Yield', () => {
     '({ yield: 1 })',
     '({ get yield() { 1 } })',
     'yield(100)',
-    'yield[100]'
+    'yield[100]',
   ]) {
     it(`function foo() {${arg}}`, () => {
       t.doesNotThrow(() => {
@@ -579,7 +579,7 @@ yield d;
     'function f() { var o = { *yield() { } } }',
     'function f() { var yield = 10; var o = { yield }; }',
     'function f() { class C { yield() { } } }',
-    'function f() { class C { *yield() { } } }'
+    'function f() { class C { *yield() { } } }',
   ]) {
     it(`function foo() { ${arg}}`, () => {
       t.doesNotThrow(() => {
@@ -832,7 +832,7 @@ yield d;
     ['function* gf() { var gfe = function* yield() { } }', Context.None],
     ['function* gf() { function yield() { } }', Context.None],
     ['function* gf() { const yield = 10; }', Context.None],
-    ['async (yield) = f', Context.None]
+    ['async (yield) = f', Context.None],
     // [`(x = delete (async (yield) = f)) => {}`, Context.None]
   ]);
 
@@ -852,29 +852,29 @@ yield d;
                 name: 'a',
                 start: 14,
                 end: 15,
-                range: [14, 15]
+                range: [14, 15],
               },
               {
                 type: 'Identifier',
                 name: 'b',
                 start: 17,
                 end: 18,
-                range: [17, 18]
+                range: [17, 18],
               },
               {
                 type: 'Identifier',
                 name: 'c',
                 start: 20,
                 end: 21,
-                range: [20, 21]
+                range: [20, 21],
               },
               {
                 type: 'Identifier',
                 name: 'd',
                 start: 23,
                 end: 24,
-                range: [23, 24]
-              }
+                range: [23, 24],
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -888,16 +888,16 @@ yield d;
                       name: 'a',
                       start: 34,
                       end: 35,
-                      range: [34, 35]
+                      range: [34, 35],
                     },
                     delegate: false,
                     start: 28,
                     end: 35,
-                    range: [28, 35]
+                    range: [28, 35],
                   },
                   start: 28,
                   end: 36,
-                  range: [28, 36]
+                  range: [28, 36],
                 },
                 {
                   type: 'ExpressionStatement',
@@ -908,16 +908,16 @@ yield d;
                       name: 'b',
                       start: 43,
                       end: 44,
-                      range: [43, 44]
+                      range: [43, 44],
                     },
                     delegate: false,
                     start: 37,
                     end: 44,
-                    range: [37, 44]
+                    range: [37, 44],
                   },
                   start: 37,
                   end: 45,
-                  range: [37, 45]
+                  range: [37, 45],
                 },
                 {
                   type: 'ExpressionStatement',
@@ -928,16 +928,16 @@ yield d;
                       name: 'c',
                       start: 52,
                       end: 53,
-                      range: [52, 53]
+                      range: [52, 53],
                     },
                     delegate: false,
                     start: 46,
                     end: 53,
-                    range: [46, 53]
+                    range: [46, 53],
                   },
                   start: 46,
                   end: 54,
-                  range: [46, 54]
+                  range: [46, 54],
                 },
                 {
                   type: 'ExpressionStatement',
@@ -948,21 +948,21 @@ yield d;
                       name: 'd',
                       start: 61,
                       end: 62,
-                      range: [61, 62]
+                      range: [61, 62],
                     },
                     delegate: false,
                     start: 55,
                     end: 62,
-                    range: [55, 62]
+                    range: [55, 62],
                   },
                   start: 55,
                   end: 63,
-                  range: [55, 63]
-                }
+                  range: [55, 63],
+                },
               ],
               start: 26,
               end: 65,
-              range: [26, 65]
+              range: [26, 65],
             },
             async: false,
             generator: true,
@@ -971,17 +971,17 @@ yield d;
               name: 'foo',
               start: 10,
               end: 13,
-              range: [10, 13]
+              range: [10, 13],
             },
             start: 0,
             end: 65,
-            range: [0, 65]
-          }
+            range: [0, 65],
+          },
         ],
         start: 0,
         end: 65,
-        range: [0, 65]
-      }
+        range: [0, 65],
+      },
     ],
 
     [
@@ -1022,7 +1022,7 @@ yield d;
                                 value: 1,
                                 start: 60,
                                 end: 61,
-                                range: [60, 61]
+                                range: [60, 61],
                               },
                               right: {
                                 type: 'YieldExpression',
@@ -1031,43 +1031,43 @@ yield d;
                                   value: 2,
                                   start: 71,
                                   end: 72,
-                                  range: [71, 72]
+                                  range: [71, 72],
                                 },
                                 delegate: false,
                                 start: 65,
                                 end: 72,
-                                range: [65, 72]
+                                range: [65, 72],
                               },
                               operator: '+',
                               start: 60,
                               end: 73,
-                              range: [60, 73]
+                              range: [60, 73],
                             },
                             right: {
                               type: 'Literal',
                               value: 3,
                               start: 76,
                               end: 77,
-                              range: [76, 77]
+                              range: [76, 77],
                             },
                             operator: '+',
                             start: 60,
                             end: 77,
-                            range: [60, 77]
+                            range: [60, 77],
                           },
                           delegate: false,
                           start: 53,
                           end: 78,
-                          range: [53, 78]
+                          range: [53, 78],
                         },
                         start: 46,
                         end: 79,
-                        range: [46, 79]
-                      }
+                        range: [46, 79],
+                      },
                     ],
                     start: 32,
                     end: 91,
-                    range: [32, 91]
+                    range: [32, 91],
                   },
                   handler: {
                     type: 'CatchClause',
@@ -1076,7 +1076,7 @@ yield d;
                       name: 'e',
                       start: 99,
                       end: 100,
-                      range: [99, 100]
+                      range: [99, 100],
                     },
                     body: {
                       type: 'BlockStatement',
@@ -1093,24 +1093,24 @@ yield d;
                                 name: 'e',
                                 start: 127,
                                 end: 128,
-                                range: [127, 128]
+                                range: [127, 128],
                               },
                               prefix: true,
                               start: 120,
                               end: 128,
-                              range: [120, 128]
+                              range: [120, 128],
                             },
                             right: {
                               type: 'Literal',
                               value: 'object',
                               start: 132,
                               end: 140,
-                              range: [132, 140]
+                              range: [132, 140],
                             },
                             operator: '==',
                             start: 120,
                             end: 140,
-                            range: [120, 140]
+                            range: [120, 140],
                           },
                           consequent: {
                             type: 'ThrowStatement',
@@ -1119,16 +1119,16 @@ yield d;
                               name: 'e',
                               start: 148,
                               end: 149,
-                              range: [148, 149]
+                              range: [148, 149],
                             },
                             start: 142,
                             end: 150,
-                            range: [142, 150]
+                            range: [142, 150],
                           },
                           alternate: null,
                           start: 116,
                           end: 150,
-                          range: [116, 150]
+                          range: [116, 150],
                         },
                         {
                           type: 'ReturnStatement',
@@ -1139,7 +1139,7 @@ yield d;
                               name: 'e',
                               start: 170,
                               end: 171,
-                              range: [170, 171]
+                              range: [170, 171],
                             },
                             right: {
                               type: 'YieldExpression',
@@ -1152,7 +1152,7 @@ yield d;
                                     value: 4,
                                     start: 182,
                                     end: 183,
-                                    range: [182, 183]
+                                    range: [182, 183],
                                   },
                                   right: {
                                     type: 'YieldExpression',
@@ -1161,62 +1161,62 @@ yield d;
                                       value: 5,
                                       start: 193,
                                       end: 194,
-                                      range: [193, 194]
+                                      range: [193, 194],
                                     },
                                     delegate: false,
                                     start: 187,
                                     end: 194,
-                                    range: [187, 194]
+                                    range: [187, 194],
                                   },
                                   operator: '+',
                                   start: 182,
                                   end: 195,
-                                  range: [182, 195]
+                                  range: [182, 195],
                                 },
                                 right: {
                                   type: 'Literal',
                                   value: 6,
                                   start: 198,
                                   end: 199,
-                                  range: [198, 199]
+                                  range: [198, 199],
                                 },
                                 operator: '+',
                                 start: 182,
                                 end: 199,
-                                range: [182, 199]
+                                range: [182, 199],
                               },
                               delegate: false,
                               start: 175,
                               end: 200,
-                              range: [175, 200]
+                              range: [175, 200],
                             },
                             operator: '+',
                             start: 170,
                             end: 201,
-                            range: [170, 201]
+                            range: [170, 201],
                           },
                           start: 163,
                           end: 202,
-                          range: [163, 202]
-                        }
+                          range: [163, 202],
+                        },
                       ],
                       start: 102,
                       end: 214,
-                      range: [102, 214]
+                      range: [102, 214],
                     },
                     start: 92,
                     end: 214,
-                    range: [92, 214]
+                    range: [92, 214],
                   },
                   finalizer: null,
                   start: 28,
                   end: 214,
-                  range: [28, 214]
-                }
+                  range: [28, 214],
+                },
               ],
               start: 16,
               end: 224,
-              range: [16, 224]
+              range: [16, 224],
             },
             async: false,
             generator: true,
@@ -1225,17 +1225,17 @@ yield d;
               name: 'g25',
               start: 10,
               end: 13,
-              range: [10, 13]
+              range: [10, 13],
             },
             start: 0,
             end: 224,
-            range: [0, 224]
-          }
+            range: [0, 224],
+          },
         ],
         start: 0,
         end: 224,
-        range: [0, 224]
-      }
+        range: [0, 224],
+      },
     ],
 
     [
@@ -1267,14 +1267,14 @@ yield d;
                               name: 'x',
                               start: 27,
                               end: 28,
-                              range: [27, 28]
+                              range: [27, 28],
                             },
                             value: {
                               type: 'Literal',
                               value: 42,
                               start: 30,
                               end: 32,
-                              range: [30, 32]
+                              range: [30, 32],
                             },
                             kind: 'init',
                             computed: false,
@@ -1282,7 +1282,7 @@ yield d;
                             shorthand: false,
                             start: 27,
                             end: 32,
-                            range: [27, 32]
+                            range: [27, 32],
                           },
                           {
                             type: 'Property',
@@ -1291,7 +1291,7 @@ yield d;
                               name: 'g',
                               start: 34,
                               end: 35,
-                              range: [34, 35]
+                              range: [34, 35],
                             },
                             value: {
                               type: 'FunctionExpression',
@@ -1301,8 +1301,8 @@ yield d;
                                   name: 'a',
                                   start: 48,
                                   end: 49,
-                                  range: [48, 49]
-                                }
+                                  range: [48, 49],
+                                },
                               ],
                               body: {
                                 type: 'BlockStatement',
@@ -1317,7 +1317,7 @@ yield d;
                                           type: 'ThisExpression',
                                           start: 59,
                                           end: 63,
-                                          range: [59, 63]
+                                          range: [59, 63],
                                         },
                                         computed: false,
                                         property: {
@@ -1325,32 +1325,32 @@ yield d;
                                           name: 'x',
                                           start: 64,
                                           end: 65,
-                                          range: [64, 65]
+                                          range: [64, 65],
                                         },
                                         start: 59,
                                         end: 65,
-                                        range: [59, 65]
+                                        range: [59, 65],
                                       },
                                       delegate: false,
                                       start: 53,
                                       end: 65,
-                                      range: [53, 65]
+                                      range: [53, 65],
                                     },
                                     start: 53,
                                     end: 65,
-                                    range: [53, 65]
-                                  }
+                                    range: [53, 65],
+                                  },
                                 ],
                                 start: 51,
                                 end: 67,
-                                range: [51, 67]
+                                range: [51, 67],
                               },
                               async: false,
                               generator: true,
                               id: null,
                               start: 37,
                               end: 67,
-                              range: [37, 67]
+                              range: [37, 67],
                             },
                             kind: 'init',
                             computed: false,
@@ -1358,12 +1358,12 @@ yield d;
                             shorthand: false,
                             start: 34,
                             end: 67,
-                            range: [34, 67]
-                          }
+                            range: [34, 67],
+                          },
                         ],
                         start: 25,
                         end: 69,
-                        range: [25, 69]
+                        range: [25, 69],
                       },
                       computed: false,
                       property: {
@@ -1371,11 +1371,11 @@ yield d;
                         name: 'g',
                         start: 71,
                         end: 72,
-                        range: [71, 72]
+                        range: [71, 72],
                       },
                       start: 24,
                       end: 72,
-                      range: [24, 72]
+                      range: [24, 72],
                     },
                     arguments: [
                       {
@@ -1383,21 +1383,21 @@ yield d;
                         value: 0,
                         start: 73,
                         end: 74,
-                        range: [73, 74]
-                      }
+                        range: [73, 74],
+                      },
                     ],
                     start: 24,
                     end: 75,
-                    range: [24, 75]
+                    range: [24, 75],
                   },
                   start: 17,
                   end: 76,
-                  range: [17, 76]
-                }
+                  range: [17, 76],
+                },
               ],
               start: 15,
               end: 78,
-              range: [15, 78]
+              range: [15, 78],
             },
             async: false,
             generator: false,
@@ -1406,17 +1406,17 @@ yield d;
               name: 'foo',
               start: 9,
               end: 12,
-              range: [9, 12]
+              range: [9, 12],
             },
             start: 0,
             end: 78,
-            range: [0, 78]
-          }
+            range: [0, 78],
+          },
         ],
         start: 0,
         end: 78,
-        range: [0, 78]
-      }
+        range: [0, 78],
+      },
     ],
 
     [
@@ -1435,7 +1435,7 @@ yield d;
                 name: 'yield',
                 start: 0,
                 end: 5,
-                range: [0, 5]
+                range: [0, 5],
               },
               operator: '*=',
               right: {
@@ -1443,21 +1443,21 @@ yield d;
                 name: 'x',
                 start: 9,
                 end: 10,
-                range: [9, 10]
+                range: [9, 10],
               },
               start: 0,
               end: 10,
-              range: [0, 10]
+              range: [0, 10],
             },
             start: 0,
             end: 11,
-            range: [0, 11]
-          }
+            range: [0, 11],
+          },
         ],
         start: 0,
         end: 11,
-        range: [0, 11]
-      }
+        range: [0, 11],
+      },
     ],
     [
       'function* g() { yield 1; try { yield 2; } catch (e) { yield e; } yield 3; }',
@@ -1481,16 +1481,16 @@ yield d;
                       value: 1,
                       start: 22,
                       end: 23,
-                      range: [22, 23]
+                      range: [22, 23],
                     },
                     delegate: false,
                     start: 16,
                     end: 23,
-                    range: [16, 23]
+                    range: [16, 23],
                   },
                   start: 16,
                   end: 24,
-                  range: [16, 24]
+                  range: [16, 24],
                 },
                 {
                   type: 'TryStatement',
@@ -1506,21 +1506,21 @@ yield d;
                             value: 2,
                             start: 37,
                             end: 38,
-                            range: [37, 38]
+                            range: [37, 38],
                           },
                           delegate: false,
                           start: 31,
                           end: 38,
-                          range: [31, 38]
+                          range: [31, 38],
                         },
                         start: 31,
                         end: 39,
-                        range: [31, 39]
-                      }
+                        range: [31, 39],
+                      },
                     ],
                     start: 29,
                     end: 41,
-                    range: [29, 41]
+                    range: [29, 41],
                   },
                   handler: {
                     type: 'CatchClause',
@@ -1529,7 +1529,7 @@ yield d;
                       name: 'e',
                       start: 49,
                       end: 50,
-                      range: [49, 50]
+                      range: [49, 50],
                     },
                     body: {
                       type: 'BlockStatement',
@@ -1543,30 +1543,30 @@ yield d;
                               name: 'e',
                               start: 60,
                               end: 61,
-                              range: [60, 61]
+                              range: [60, 61],
                             },
                             delegate: false,
                             start: 54,
                             end: 61,
-                            range: [54, 61]
+                            range: [54, 61],
                           },
                           start: 54,
                           end: 62,
-                          range: [54, 62]
-                        }
+                          range: [54, 62],
+                        },
                       ],
                       start: 52,
                       end: 64,
-                      range: [52, 64]
+                      range: [52, 64],
                     },
                     start: 42,
                     end: 64,
-                    range: [42, 64]
+                    range: [42, 64],
                   },
                   finalizer: null,
                   start: 25,
                   end: 64,
-                  range: [25, 64]
+                  range: [25, 64],
                 },
                 {
                   type: 'ExpressionStatement',
@@ -1577,21 +1577,21 @@ yield d;
                       value: 3,
                       start: 71,
                       end: 72,
-                      range: [71, 72]
+                      range: [71, 72],
                     },
                     delegate: false,
                     start: 65,
                     end: 72,
-                    range: [65, 72]
+                    range: [65, 72],
                   },
                   start: 65,
                   end: 73,
-                  range: [65, 73]
-                }
+                  range: [65, 73],
+                },
               ],
               start: 14,
               end: 75,
-              range: [14, 75]
+              range: [14, 75],
             },
             async: false,
             generator: true,
@@ -1600,17 +1600,17 @@ yield d;
               name: 'g',
               start: 10,
               end: 11,
-              range: [10, 11]
+              range: [10, 11],
             },
             start: 0,
             end: 75,
-            range: [0, 75]
-          }
+            range: [0, 75],
+          },
         ],
         start: 0,
         end: 75,
-        range: [0, 75]
-      }
+        range: [0, 75],
+      },
     ],
 
     [
@@ -1656,42 +1656,42 @@ yield d;
                                         value: 42,
                                         start: 68,
                                         end: 70,
-                                        range: [68, 70]
+                                        range: [68, 70],
                                       },
                                       delegate: false,
                                       start: 62,
                                       end: 70,
-                                      range: [62, 70]
+                                      range: [62, 70],
                                     },
                                     start: 62,
                                     end: 71,
-                                    range: [62, 71]
-                                  }
+                                    range: [62, 71],
+                                  },
                                 ],
                                 start: 60,
                                 end: 73,
-                                range: [60, 73]
+                                range: [60, 73],
                               },
                               async: false,
                               generator: true,
                               id: null,
                               start: 48,
                               end: 73,
-                              range: [48, 73]
+                              range: [48, 73],
                             },
                             arguments: [],
                             start: 48,
                             end: 75,
-                            range: [48, 75]
+                            range: [48, 75],
                           },
                           delegate: true,
                           start: 40,
                           end: 76,
-                          range: [40, 76]
+                          range: [40, 76],
                         },
                         start: 40,
                         end: 77,
-                        range: [40, 77]
+                        range: [40, 77],
                       },
                       {
                         type: 'ExpressionStatement',
@@ -1702,50 +1702,50 @@ yield d;
                             name: 'assertUnreachable',
                             start: 94,
                             end: 111,
-                            range: [94, 111]
+                            range: [94, 111],
                           },
                           arguments: [],
                           start: 94,
                           end: 113,
-                          range: [94, 113]
+                          range: [94, 113],
                         },
                         start: 94,
                         end: 114,
-                        range: [94, 114]
-                      }
+                        range: [94, 114],
+                      },
                     ],
                     start: 22,
                     end: 130,
-                    range: [22, 130]
+                    range: [22, 130],
                   },
                   async: false,
                   generator: true,
                   id: null,
                   start: 10,
                   end: 130,
-                  range: [10, 130]
+                  range: [10, 130],
                 },
                 id: {
                   type: 'Identifier',
                   name: 'foo',
                   start: 4,
                   end: 7,
-                  range: [4, 7]
+                  range: [4, 7],
                 },
                 start: 4,
                 end: 130,
-                range: [4, 130]
-              }
+                range: [4, 130],
+              },
             ],
             start: 0,
             end: 130,
-            range: [0, 130]
-          }
+            range: [0, 130],
+          },
         ],
         start: 0,
         end: 130,
-        range: [0, 130]
-      }
+        range: [0, 130],
+      },
     ],
 
     [
@@ -1774,7 +1774,7 @@ yield d;
                           value: 1,
                           start: 26,
                           end: 27,
-                          range: [26, 27]
+                          range: [26, 27],
                         },
                         right: {
                           type: 'YieldExpression',
@@ -1783,38 +1783,38 @@ yield d;
                             value: 2,
                             start: 37,
                             end: 38,
-                            range: [37, 38]
+                            range: [37, 38],
                           },
                           delegate: false,
                           start: 31,
                           end: 38,
-                          range: [31, 38]
+                          range: [31, 38],
                         },
                         operator: '+',
                         start: 26,
                         end: 39,
-                        range: [26, 39]
+                        range: [26, 39],
                       },
                       right: {
                         type: 'Literal',
                         value: 3,
                         start: 42,
                         end: 43,
-                        range: [42, 43]
+                        range: [42, 43],
                       },
                       operator: '+',
                       start: 26,
                       end: 43,
-                      range: [26, 43]
+                      range: [26, 43],
                     },
                     delegate: false,
                     start: 19,
                     end: 44,
-                    range: [19, 44]
+                    range: [19, 44],
                   },
                   start: 19,
                   end: 45,
-                  range: [19, 45]
+                  range: [19, 45],
                 },
                 {
                   type: 'ExpressionStatement',
@@ -1829,7 +1829,7 @@ yield d;
                           value: 4,
                           start: 53,
                           end: 54,
-                          range: [53, 54]
+                          range: [53, 54],
                         },
                         right: {
                           type: 'YieldExpression',
@@ -1838,43 +1838,43 @@ yield d;
                             value: 5,
                             start: 64,
                             end: 65,
-                            range: [64, 65]
+                            range: [64, 65],
                           },
                           delegate: false,
                           start: 58,
                           end: 65,
-                          range: [58, 65]
+                          range: [58, 65],
                         },
                         operator: '+',
                         start: 53,
                         end: 66,
-                        range: [53, 66]
+                        range: [53, 66],
                       },
                       right: {
                         type: 'Literal',
                         value: 6,
                         start: 69,
                         end: 70,
-                        range: [69, 70]
+                        range: [69, 70],
                       },
                       operator: '+',
                       start: 53,
                       end: 70,
-                      range: [53, 70]
+                      range: [53, 70],
                     },
                     delegate: false,
                     start: 46,
                     end: 71,
-                    range: [46, 71]
+                    range: [46, 71],
                   },
                   start: 46,
                   end: 72,
-                  range: [46, 72]
-                }
+                  range: [46, 72],
+                },
               ],
               start: 17,
               end: 74,
-              range: [17, 74]
+              range: [17, 74],
             },
             async: false,
             generator: true,
@@ -1883,17 +1883,17 @@ yield d;
               name: 'g22',
               start: 11,
               end: 14,
-              range: [11, 14]
+              range: [11, 14],
             },
             start: 1,
             end: 74,
-            range: [1, 74]
-          }
+            range: [1, 74],
+          },
         ],
         start: 0,
         end: 74,
-        range: [0, 74]
-      }
+        range: [0, 74],
+      },
     ],
 
     [
@@ -1920,23 +1920,23 @@ yield d;
                         value: 1,
                         start: 26,
                         end: 27,
-                        range: [26, 27]
+                        range: [26, 27],
                       },
                       id: {
                         type: 'Identifier',
                         name: 'x',
                         start: 22,
                         end: 23,
-                        range: [22, 23]
+                        range: [22, 23],
                       },
                       start: 22,
                       end: 27,
-                      range: [22, 27]
-                    }
+                      range: [22, 27],
+                    },
                   ],
                   start: 18,
                   end: 28,
-                  range: [18, 28]
+                  range: [18, 28],
                 },
                 {
                   type: 'ExpressionStatement',
@@ -1947,16 +1947,16 @@ yield d;
                       name: 'x',
                       start: 35,
                       end: 36,
-                      range: [35, 36]
+                      range: [35, 36],
                     },
                     delegate: false,
                     start: 29,
                     end: 36,
-                    range: [29, 36]
+                    range: [29, 36],
                   },
                   start: 29,
                   end: 37,
-                  range: [29, 37]
+                  range: [29, 37],
                 },
                 {
                   type: 'WithStatement',
@@ -1970,14 +1970,14 @@ yield d;
                           name: 'x',
                           start: 44,
                           end: 45,
-                          range: [44, 45]
+                          range: [44, 45],
                         },
                         value: {
                           type: 'Literal',
                           value: 2,
                           start: 46,
                           end: 47,
-                          range: [46, 47]
+                          range: [46, 47],
                         },
                         kind: 'init',
                         computed: false,
@@ -1985,12 +1985,12 @@ yield d;
                         shorthand: false,
                         start: 44,
                         end: 47,
-                        range: [44, 47]
-                      }
+                        range: [44, 47],
+                      },
                     ],
                     start: 43,
                     end: 48,
-                    range: [43, 48]
+                    range: [43, 48],
                   },
                   body: {
                     type: 'BlockStatement',
@@ -2004,25 +2004,25 @@ yield d;
                             name: 'x',
                             start: 58,
                             end: 59,
-                            range: [58, 59]
+                            range: [58, 59],
                           },
                           delegate: false,
                           start: 52,
                           end: 59,
-                          range: [52, 59]
+                          range: [52, 59],
                         },
                         start: 52,
                         end: 60,
-                        range: [52, 60]
-                      }
+                        range: [52, 60],
+                      },
                     ],
                     start: 50,
                     end: 62,
-                    range: [50, 62]
+                    range: [50, 62],
                   },
                   start: 38,
                   end: 62,
-                  range: [38, 62]
+                  range: [38, 62],
                 },
                 {
                   type: 'ExpressionStatement',
@@ -2033,21 +2033,21 @@ yield d;
                       name: 'x',
                       start: 69,
                       end: 70,
-                      range: [69, 70]
+                      range: [69, 70],
                     },
                     delegate: false,
                     start: 63,
                     end: 70,
-                    range: [63, 70]
+                    range: [63, 70],
                   },
                   start: 63,
                   end: 71,
-                  range: [63, 71]
-                }
+                  range: [63, 71],
+                },
               ],
               start: 16,
               end: 73,
-              range: [16, 73]
+              range: [16, 73],
             },
             async: false,
             generator: true,
@@ -2056,17 +2056,17 @@ yield d;
               name: 'g19',
               start: 10,
               end: 13,
-              range: [10, 13]
+              range: [10, 13],
             },
             start: 0,
             end: 73,
-            range: [0, 73]
-          }
+            range: [0, 73],
+          },
         ],
         start: 0,
         end: 73,
-        range: [0, 73]
-      }
+        range: [0, 73],
+      },
     ],
     [
       'function* g8() { for (var x = 0; x < 4; x++) { yield x; } }',
@@ -2095,21 +2095,21 @@ yield d;
                             name: 'x',
                             start: 53,
                             end: 54,
-                            range: [53, 54]
+                            range: [53, 54],
                           },
                           delegate: false,
                           start: 47,
                           end: 54,
-                          range: [47, 54]
+                          range: [47, 54],
                         },
                         start: 47,
                         end: 55,
-                        range: [47, 55]
-                      }
+                        range: [47, 55],
+                      },
                     ],
                     start: 45,
                     end: 57,
-                    range: [45, 57]
+                    range: [45, 57],
                   },
                   init: {
                     type: 'VariableDeclaration',
@@ -2122,23 +2122,23 @@ yield d;
                           value: 0,
                           start: 30,
                           end: 31,
-                          range: [30, 31]
+                          range: [30, 31],
                         },
                         id: {
                           type: 'Identifier',
                           name: 'x',
                           start: 26,
                           end: 27,
-                          range: [26, 27]
+                          range: [26, 27],
                         },
                         start: 26,
                         end: 31,
-                        range: [26, 31]
-                      }
+                        range: [26, 31],
+                      },
                     ],
                     start: 22,
                     end: 31,
-                    range: [22, 31]
+                    range: [22, 31],
                   },
                   test: {
                     type: 'BinaryExpression',
@@ -2147,19 +2147,19 @@ yield d;
                       name: 'x',
                       start: 33,
                       end: 34,
-                      range: [33, 34]
+                      range: [33, 34],
                     },
                     right: {
                       type: 'Literal',
                       value: 4,
                       start: 37,
                       end: 38,
-                      range: [37, 38]
+                      range: [37, 38],
                     },
                     operator: '<',
                     start: 33,
                     end: 38,
-                    range: [33, 38]
+                    range: [33, 38],
                   },
                   update: {
                     type: 'UpdateExpression',
@@ -2168,22 +2168,22 @@ yield d;
                       name: 'x',
                       start: 40,
                       end: 41,
-                      range: [40, 41]
+                      range: [40, 41],
                     },
                     operator: '++',
                     prefix: false,
                     start: 40,
                     end: 43,
-                    range: [40, 43]
+                    range: [40, 43],
                   },
                   start: 17,
                   end: 57,
-                  range: [17, 57]
-                }
+                  range: [17, 57],
+                },
               ],
               start: 15,
               end: 59,
-              range: [15, 59]
+              range: [15, 59],
             },
             async: false,
             generator: true,
@@ -2192,17 +2192,17 @@ yield d;
               name: 'g8',
               start: 10,
               end: 12,
-              range: [10, 12]
+              range: [10, 12],
             },
             start: 0,
             end: 59,
-            range: [0, 59]
-          }
+            range: [0, 59],
+          },
         ],
         start: 0,
         end: 59,
-        range: [0, 59]
-      }
+        range: [0, 59],
+      },
     ],
     [
       'function *a(){yield void 0}',
@@ -2223,7 +2223,7 @@ yield d;
               start: 10,
               end: 11,
               range: [10, 11],
-              name: 'a'
+              name: 'a',
             },
             generator: true,
             async: false,
@@ -2257,17 +2257,17 @@ yield d;
                         start: 25,
                         end: 26,
                         range: [25, 26],
-                        value: 0
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                        value: 0,
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function *a(){yield ~0}',
@@ -2288,7 +2288,7 @@ yield d;
               start: 10,
               end: 11,
               range: [10, 11],
-              name: 'a'
+              name: 'a',
             },
             generator: true,
             async: false,
@@ -2322,17 +2322,17 @@ yield d;
                         start: 21,
                         end: 22,
                         range: [21, 22],
-                        value: 0
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                        value: 0,
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function *a(){yield ++a;}',
@@ -2355,26 +2355,26 @@ yield d;
                       type: 'UpdateExpression',
                       argument: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       operator: '++',
-                      prefix: true
+                      prefix: true,
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'a'
-            }
-          }
-        ]
-      }
+              name: 'a',
+            },
+          },
+        ],
+      },
     ],
     [
       'function a(){({*[yield](){}})}',
@@ -2395,7 +2395,7 @@ yield d;
               start: 9,
               end: 10,
               range: [9, 10],
-              name: 'a'
+              name: 'a',
             },
             generator: false,
             async: false,
@@ -2430,7 +2430,7 @@ yield d;
                           start: 17,
                           end: 22,
                           range: [17, 22],
-                          name: 'yield'
+                          name: 'yield',
                         },
                         kind: 'init',
                         value: {
@@ -2447,19 +2447,19 @@ yield d;
                             start: 25,
                             end: 27,
                             range: [25, 27],
-                            body: []
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
+                            body: [],
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function*a(){yield\na}',
@@ -2474,33 +2474,33 @@ yield d;
                   expression: {
                     argument: null,
                     delegate: false,
-                    type: 'YieldExpression'
+                    type: 'YieldExpression',
                   },
-                  type: 'ExpressionStatement'
+                  type: 'ExpressionStatement',
                 },
                 {
                   expression: {
                     name: 'a',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
-                  type: 'ExpressionStatement'
-                }
+                  type: 'ExpressionStatement',
+                },
               ],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
 
             generator: true,
             id: {
               name: 'a',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             params: [],
-            type: 'FunctionDeclaration'
-          }
+            type: 'FunctionDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '({yield} = x)',
@@ -2520,28 +2520,28 @@ yield d;
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'yield'
+                      name: 'yield',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'yield'
+                      name: 'yield',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'x'
-              }
-            }
-          }
-        ]
-      }
+                name: 'x',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '([x, {y: [yield]}]) => x',
@@ -2557,7 +2557,7 @@ yield d;
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -2565,7 +2565,7 @@ yield d;
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     {
                       type: 'ObjectPattern',
@@ -2574,33 +2574,33 @@ yield d;
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'y'
+                            name: 'y',
                           },
                           value: {
                             type: 'ArrayPattern',
                             elements: [
                               {
                                 type: 'Identifier',
-                                name: 'yield'
-                              }
-                            ]
+                                name: 'yield',
+                              },
+                            ],
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: false
-                        }
-                      ]
-                    }
-                  ]
-                }
+                          shorthand: false,
+                        },
+                      ],
+                    },
+                  ],
+                },
               ],
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){ 5 + yield }',
@@ -2621,27 +2621,27 @@ yield d;
                     type: 'BinaryExpression',
                     left: {
                       type: 'Literal',
-                      value: 5
+                      value: 5,
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'yield'
+                      name: 'yield',
                     },
-                    operator: '+'
-                  }
-                }
-              ]
+                    operator: '+',
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       '(x = yield = x)',
@@ -2656,25 +2656,25 @@ yield d;
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'yield'
+                  name: 'yield',
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '([yield])',
@@ -2690,13 +2690,13 @@ yield d;
               elements: [
                 {
                   type: 'Identifier',
-                  name: 'yield'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'yield',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '([x, {y: [yield]}] = z)',
@@ -2714,7 +2714,7 @@ yield d;
                 elements: [
                   {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   {
                     type: 'ObjectPattern',
@@ -2723,35 +2723,35 @@ yield d;
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
                         value: {
                           type: 'ArrayPattern',
                           elements: [
                             {
                               type: 'Identifier',
-                              name: 'yield'
-                            }
-                          ]
+                              name: 'yield',
+                            },
+                          ],
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
-                ]
+                        shorthand: false,
+                      },
+                    ],
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'z'
-              }
-            }
-          }
-        ]
-      }
+                name: 'z',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'function* a(b, c, d) { throw `_":${((yield* (6002.22)))}¿Z${null}UâÑ?${([])}â.Ò÷${((`m`))}`; }',
@@ -2765,16 +2765,16 @@ yield d;
             params: [
               {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
               {
                 type: 'Identifier',
-                name: 'c'
+                name: 'c',
               },
               {
                 type: 'Identifier',
-                name: 'd'
-              }
+                name: 'd',
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -2788,17 +2788,17 @@ yield d;
                         type: 'YieldExpression',
                         argument: {
                           type: 'Literal',
-                          value: 6002.22
+                          value: 6002.22,
                         },
-                        delegate: true
+                        delegate: true,
                       },
                       {
                         type: 'Literal',
-                        value: null
+                        value: null,
                       },
                       {
                         type: 'ArrayExpression',
-                        elements: []
+                        elements: [],
                       },
                       {
                         type: 'TemplateLiteral',
@@ -2808,69 +2808,69 @@ yield d;
                             type: 'TemplateElement',
                             value: {
                               cooked: 'm',
-                              raw: 'm'
+                              raw: 'm',
                             },
-                            tail: true
-                          }
-                        ]
-                      }
+                            tail: true,
+                          },
+                        ],
+                      },
                     ],
                     quasis: [
                       {
                         type: 'TemplateElement',
                         value: {
                           cooked: '\u0005_":',
-                          raw: '\u0005_":'
+                          raw: '\u0005_":',
                         },
-                        tail: false
+                        tail: false,
                       },
                       {
                         type: 'TemplateElement',
                         value: {
                           cooked: '¿Z',
-                          raw: '¿Z'
+                          raw: '¿Z',
                         },
-                        tail: false
+                        tail: false,
                       },
                       {
                         type: 'TemplateElement',
                         value: {
                           cooked: 'UâÑ?',
-                          raw: 'UâÑ?'
+                          raw: 'UâÑ?',
                         },
-                        tail: false
+                        tail: false,
                       },
                       {
                         type: 'TemplateElement',
                         value: {
                           cooked: 'â.Ò÷',
-                          raw: 'â.Ò÷'
+                          raw: 'â.Ò÷',
                         },
-                        tail: false
+                        tail: false,
                       },
                       {
                         type: 'TemplateElement',
                         value: {
                           cooked: '',
-                          raw: ''
+                          raw: '',
                         },
-                        tail: true
-                      }
-                    ]
-                  }
-                }
-              ]
+                        tail: true,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
 
             async: false,
             generator: true,
             id: {
               type: 'Identifier',
-              name: 'a'
-            }
-          }
-        ]
-      }
+              name: 'a',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* a(b, c, d) { "use strict"; if (yield null) for (const o in null()) throw this; }',
@@ -2884,16 +2884,16 @@ yield d;
             params: [
               {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
               {
                 type: 'Identifier',
-                name: 'c'
+                name: 'c',
               },
               {
                 type: 'Identifier',
-                name: 'd'
-              }
+                name: 'd',
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -2902,9 +2902,9 @@ yield d;
                   type: 'ExpressionStatement',
                   expression: {
                     type: 'Literal',
-                    value: 'use strict'
+                    value: 'use strict',
                   },
-                  directive: 'use strict'
+                  directive: 'use strict',
                 },
                 {
                   type: 'IfStatement',
@@ -2912,17 +2912,17 @@ yield d;
                     type: 'YieldExpression',
                     argument: {
                       type: 'Literal',
-                      value: null
+                      value: null,
                     },
-                    delegate: false
+                    delegate: false,
                   },
                   consequent: {
                     type: 'ForInStatement',
                     body: {
                       type: 'ThrowStatement',
                       argument: {
-                        type: 'ThisExpression'
-                      }
+                        type: 'ThisExpression',
+                      },
                     },
                     left: {
                       type: 'VariableDeclaration',
@@ -2933,34 +2933,34 @@ yield d;
                           init: null,
                           id: {
                             type: 'Identifier',
-                            name: 'o'
-                          }
-                        }
-                      ]
+                            name: 'o',
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'CallExpression',
                       callee: {
                         type: 'Literal',
-                        value: null
+                        value: null,
                       },
-                      arguments: []
-                    }
+                      arguments: [],
+                    },
                   },
-                  alternate: null
-                }
-              ]
+                  alternate: null,
+                },
+              ],
             },
 
             async: false,
             generator: true,
             id: {
               type: 'Identifier',
-              name: 'a'
-            }
-          }
-        ]
-      }
+              name: 'a',
+            },
+          },
+        ],
+      },
     ],
     [
       '([x, {y: [yield]}])',
@@ -2987,7 +2987,7 @@ yield d;
                   start: 2,
                   end: 3,
                   range: [2, 3],
-                  name: 'x'
+                  name: 'x',
                 },
                 {
                   type: 'ObjectExpression',
@@ -3008,7 +3008,7 @@ yield d;
                         start: 6,
                         end: 7,
                         range: [6, 7],
-                        name: 'y'
+                        name: 'y',
                       },
                       value: {
                         type: 'ArrayExpression',
@@ -3021,20 +3021,20 @@ yield d;
                             start: 10,
                             end: 15,
                             range: [10, 15],
-                            name: 'yield'
-                          }
-                        ]
+                            name: 'yield',
+                          },
+                        ],
                       },
-                      kind: 'init'
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                      kind: 'init',
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
 
     [
@@ -3059,30 +3059,30 @@ yield d;
                       type: 'MemberExpression',
                       object: {
                         type: 'Literal',
-                        value: 'x'
+                        value: 'x',
                       },
                       computed: true,
                       property: {
                         type: 'YieldExpression',
                         argument: null,
-                        delegate: false
-                      }
+                        delegate: false,
+                      },
                     },
-                    prefix: true
-                  }
-                }
-              ]
+                    prefix: true,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f() { (yield x ** y) }',
@@ -3103,7 +3103,7 @@ yield d;
               start: 10,
               end: 11,
               range: [10, 11],
-              name: 'f'
+              name: 'f',
             },
             generator: true,
             async: false,
@@ -3135,7 +3135,7 @@ yield d;
                         start: 23,
                         end: 24,
                         range: [23, 24],
-                        name: 'x'
+                        name: 'x',
                       },
                       operator: '**',
                       right: {
@@ -3143,17 +3143,17 @@ yield d;
                         start: 28,
                         end: 29,
                         range: [28, 29],
-                        name: 'y'
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                        name: 'y',
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function *f(){ delete (((((foo(yield)))))).bar }',
@@ -3179,37 +3179,37 @@ yield d;
                         type: 'CallExpression',
                         callee: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         arguments: [
                           {
                             type: 'YieldExpression',
                             argument: null,
-                            delegate: false
-                          }
-                        ]
+                            delegate: false,
+                          },
+                        ],
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'bar'
-                      }
+                        name: 'bar',
+                      },
                     },
-                    prefix: true
-                  }
-                }
-              ]
+                    prefix: true,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f({x: x}) { function f({x: yield}) {} }',
@@ -3229,18 +3229,18 @@ yield d;
                     kind: 'init',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     computed: false,
                     value: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
+                    shorthand: false,
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -3256,43 +3256,43 @@ yield d;
                           kind: 'init',
                           key: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           computed: false,
                           value: {
                             type: 'Identifier',
-                            name: 'yield'
+                            name: 'yield',
                           },
                           method: false,
-                          shorthand: false
-                        }
-                      ]
-                    }
+                          shorthand: false,
+                        },
+                      ],
+                    },
                   ],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: false,
 
                   id: {
                     type: 'Identifier',
-                    name: 'f'
-                  }
-                }
-              ]
+                    name: 'f',
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       '({ *g1() {   return {x: yield}  }})',
@@ -3310,7 +3310,7 @@ yield d;
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'g1'
+                    name: 'g1',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -3327,37 +3327,37 @@ yield d;
                                 type: 'Property',
                                 key: {
                                   type: 'Identifier',
-                                  name: 'x'
+                                  name: 'x',
                                 },
                                 value: {
                                   type: 'YieldExpression',
                                   argument: null,
-                                  delegate: false
+                                  delegate: false,
                                 },
                                 kind: 'init',
                                 computed: false,
                                 method: false,
-                                shorthand: false
-                              }
-                            ]
-                          }
-                        }
-                      ]
+                                shorthand: false,
+                              },
+                            ],
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: true,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({ *g1() {   (yield 1)  }})',
@@ -3375,7 +3375,7 @@ yield d;
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'g1'
+                    name: 'g1',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -3389,27 +3389,27 @@ yield d;
                             type: 'YieldExpression',
                             argument: {
                               type: 'Literal',
-                              value: 1
+                              value: 1,
                             },
-                            delegate: false
-                          }
-                        }
-                      ]
+                            delegate: false,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: true,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({ *g1() {   (yield)  }})',
@@ -3427,7 +3427,7 @@ yield d;
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'g1'
+                    name: 'g1',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -3440,25 +3440,25 @@ yield d;
                           expression: {
                             type: 'YieldExpression',
                             argument: null,
-                            delegate: false
-                          }
-                        }
-                      ]
+                            delegate: false,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: true,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f() { 1 ? 1 : yield ; }',
@@ -3479,31 +3479,31 @@ yield d;
                     type: 'ConditionalExpression',
                     test: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
                     consequent: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
                     alternate: {
                       type: 'YieldExpression',
                       argument: null,
-                      delegate: false
-                    }
-                  }
-                }
-              ]
+                      delegate: false,
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f() { 1 ? yield : 1 ; }',
@@ -3524,31 +3524,31 @@ yield d;
                     type: 'ConditionalExpression',
                     test: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
                     consequent: {
                       type: 'YieldExpression',
                       argument: null,
-                      delegate: false
+                      delegate: false,
                     },
                     alternate: {
                       type: 'Literal',
-                      value: 1
-                    }
-                  }
-                }
-              ]
+                      value: 1,
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f() { 1 ? 2 : yield 3; }',
@@ -3569,34 +3569,34 @@ yield d;
                     type: 'ConditionalExpression',
                     test: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
                     consequent: {
                       type: 'Literal',
-                      value: 2
+                      value: 2,
                     },
                     alternate: {
                       type: 'YieldExpression',
                       argument: {
                         type: 'Literal',
-                        value: 3
+                        value: 3,
                       },
-                      delegate: false
-                    }
-                  }
-                }
-              ]
+                      delegate: false,
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f() { 1 ? yield 2 : 3; }',
@@ -3617,34 +3617,34 @@ yield d;
                     type: 'ConditionalExpression',
                     test: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
                     consequent: {
                       type: 'YieldExpression',
                       argument: {
                         type: 'Literal',
-                        value: 2
+                        value: 2,
                       },
-                      delegate: false
+                      delegate: false,
                     },
                     alternate: {
                       type: 'Literal',
-                      value: 3
-                    }
-                  }
-                }
-              ]
+                      value: 3,
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f() { yield 1 ? 2 : 3; }',
@@ -3667,32 +3667,32 @@ yield d;
                       type: 'ConditionalExpression',
                       test: {
                         type: 'Literal',
-                        value: 1
+                        value: 1,
                       },
                       consequent: {
                         type: 'Literal',
-                        value: 2
+                        value: 2,
                       },
                       alternate: {
                         type: 'Literal',
-                        value: 3
-                      }
+                        value: 3,
+                      },
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f() { (yield 1) ? yield 2 : yield 3; }',
@@ -3715,40 +3715,40 @@ yield d;
                       type: 'YieldExpression',
                       argument: {
                         type: 'Literal',
-                        value: 1
+                        value: 1,
                       },
-                      delegate: false
+                      delegate: false,
                     },
                     consequent: {
                       type: 'YieldExpression',
                       argument: {
                         type: 'Literal',
-                        value: 2
+                        value: 2,
                       },
-                      delegate: false
+                      delegate: false,
                     },
                     alternate: {
                       type: 'YieldExpression',
                       argument: {
                         type: 'Literal',
-                        value: 3
+                        value: 3,
                       },
-                      delegate: false
-                    }
-                  }
-                }
-              ]
+                      delegate: false,
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       '({  * yield() {}  })',
@@ -3766,29 +3766,29 @@ yield d;
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'yield'
+                    name: 'yield',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: true,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g() { [...yield]; }',
@@ -3813,24 +3813,24 @@ yield d;
                         argument: {
                           type: 'YieldExpression',
                           argument: null,
-                          delegate: false
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          delegate: false,
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       `function* gf1 () {
@@ -3863,10 +3863,10 @@ yield d;
                     type: 'YieldExpression',
                     argument: {
                       type: 'Literal',
-                      value: 10
+                      value: 10,
                     },
-                    delegate: false
-                  }
+                    delegate: false,
+                  },
                 },
                 {
                   type: 'ExpressionStatement',
@@ -3874,10 +3874,10 @@ yield d;
                     type: 'YieldExpression',
                     argument: {
                       type: 'Literal',
-                      value: 20
+                      value: 20,
                     },
-                    delegate: false
-                  }
+                    delegate: false,
+                  },
                 },
                 {
                   type: 'ExpressionStatement',
@@ -3885,55 +3885,55 @@ yield d;
                     type: 'YieldExpression',
                     argument: {
                       type: 'Literal',
-                      value: 30
+                      value: 30,
                     },
-                    delegate: false
-                  }
+                    delegate: false,
+                  },
                 },
                 {
                   type: 'FunctionDeclaration',
                   params: [],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: false,
 
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
+                    name: 'a',
+                  },
                 },
                 {
                   type: 'FunctionDeclaration',
                   params: [],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: false,
 
                   id: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 },
                 {
                   type: 'FunctionDeclaration',
                   params: [],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: false,
 
                   id: {
                     type: 'Identifier',
-                    name: 'c'
-                  }
+                    name: 'c',
+                  },
                 },
                 {
                   type: 'ExpressionStatement',
@@ -3943,12 +3943,12 @@ yield d;
                       type: 'CallExpression',
                       callee: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
-                      arguments: []
+                      arguments: [],
                     },
-                    delegate: false
-                  }
+                    delegate: false,
+                  },
                 },
                 {
                   type: 'ExpressionStatement',
@@ -3960,9 +3960,9 @@ yield d;
                         type: 'CallExpression',
                         callee: {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
-                        arguments: []
+                        arguments: [],
                       },
                       right: {
                         type: 'YieldExpression',
@@ -3970,29 +3970,29 @@ yield d;
                           type: 'CallExpression',
                           callee: {
                             type: 'Identifier',
-                            name: 'c'
+                            name: 'c',
                           },
-                          arguments: []
+                          arguments: [],
                         },
-                        delegate: false
+                        delegate: false,
                       },
-                      operator: '+'
+                      operator: '+',
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gf1'
-            }
-          }
-        ]
-      }
+              name: 'gf1',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){  return function(x=yield) {};  }',
@@ -4016,36 +4016,36 @@ yield d;
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'yield'
-                        }
-                      }
+                          name: 'yield',
+                        },
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
-                  }
-                }
-              ]
+                    id: null,
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){  x = {foo(a=yield){}}  }',
@@ -4066,7 +4066,7 @@ yield d;
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
@@ -4076,7 +4076,7 @@ yield d;
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'foo'
+                            name: 'foo',
                           },
                           value: {
                             type: 'FunctionExpression',
@@ -4085,43 +4085,43 @@ yield d;
                                 type: 'AssignmentPattern',
                                 left: {
                                   type: 'Identifier',
-                                  name: 'a'
+                                  name: 'a',
                                 },
                                 right: {
                                   type: 'Identifier',
-                                  name: 'yield'
-                                }
-                              }
+                                  name: 'yield',
+                                },
+                              },
                             ],
                             body: {
                               type: 'BlockStatement',
-                              body: []
+                              body: [],
                             },
                             async: false,
                             generator: false,
-                            id: null
+                            id: null,
                           },
                           kind: 'init',
                           computed: false,
                           method: true,
-                          shorthand: false
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                          shorthand: false,
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){  return function(x=yield) {};  }',
@@ -4145,36 +4145,36 @@ yield d;
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'yield'
-                        }
-                      }
+                          name: 'yield',
+                        },
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
-                  }
-                }
-              ]
+                    id: null,
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){  return (x=yield) => x;  }',
@@ -4196,37 +4196,37 @@ yield d;
                     generator: false,
                     body: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     params: [
                       {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'yield'
-                        }
-                      }
+                          name: 'yield',
+                        },
+                      },
                     ],
                     async: false,
-                    expression: true
-                  }
-                }
-              ]
+                    expression: true,
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f(){  return function(x=yield) {};  }',
@@ -4250,36 +4250,36 @@ yield d;
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'yield'
-                        }
-                      }
+                          name: 'yield',
+                        },
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
-                  }
-                }
-              ]
+                    id: null,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g() { function f(x = x + yield) {}; }',
@@ -4301,49 +4301,49 @@ yield d;
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       right: {
                         type: 'BinaryExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'yield'
+                          name: 'yield',
                         },
-                        operator: '+'
-                      }
-                    }
+                        operator: '+',
+                      },
+                    },
                   ],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: false,
 
                   id: {
                     type: 'Identifier',
-                    name: 'f'
-                  }
+                    name: 'f',
+                  },
                 },
                 {
-                  type: 'EmptyStatement'
-                }
-              ]
+                  type: 'EmptyStatement',
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g() { function f(x = yield) {}; }',
@@ -4365,41 +4365,41 @@ yield d;
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'yield'
-                      }
-                    }
+                        name: 'yield',
+                      },
+                    },
                   ],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: false,
 
                   id: {
                     type: 'Identifier',
-                    name: 'f'
-                  }
+                    name: 'f',
+                  },
                 },
                 {
-                  type: 'EmptyStatement'
-                }
-              ]
+                  type: 'EmptyStatement',
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'async (x = z = yield)',
@@ -4414,34 +4414,34 @@ yield d;
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
               arguments: [
                 {
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   operator: '=',
                   right: {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'z'
+                      name: 'z',
                     },
                     operator: '=',
                     right: {
                       type: 'Identifier',
-                      name: 'yield'
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      name: 'yield',
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f(){ async (yield) }',
@@ -4462,29 +4462,29 @@ yield d;
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     arguments: [
                       {
                         type: 'YieldExpression',
                         argument: null,
-                        delegate: false
-                      }
-                    ]
-                  }
-                }
-              ]
+                        delegate: false,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'async (x = z = yield) => {}',
@@ -4500,35 +4500,35 @@ yield d;
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   right: {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'z'
+                      name: 'z',
                     },
                     operator: '=',
                     right: {
                       type: 'Identifier',
-                      name: 'yield'
-                    }
-                  }
-                }
+                      name: 'yield',
+                    },
+                  },
+                },
               ],
               async: true,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'async (x = (yield)) => {}',
@@ -4544,27 +4544,27 @@ yield d;
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'yield'
-                  }
-                }
+                    name: 'yield',
+                  },
+                },
               ],
               async: true,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'async (x = yield)',
@@ -4579,26 +4579,26 @@ yield d;
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
               arguments: [
                 {
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'yield'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'yield',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'async (yield)',
@@ -4613,18 +4613,18 @@ yield d;
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'yield'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'yield',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'async (x = yield) => {}',
@@ -4640,27 +4640,27 @@ yield d;
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'yield'
-                  }
-                }
+                    name: 'yield',
+                  },
+                },
               ],
               async: true,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f({x: x}) { function f({x: yield}) {} }',
@@ -4680,18 +4680,18 @@ yield d;
                     kind: 'init',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     computed: false,
                     value: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
+                    shorthand: false,
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -4707,43 +4707,43 @@ yield d;
                           kind: 'init',
                           key: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           computed: false,
                           value: {
                             type: 'Identifier',
-                            name: 'yield'
+                            name: 'yield',
                           },
                           method: false,
-                          shorthand: false
-                        }
-                      ]
-                    }
+                          shorthand: false,
+                        },
+                      ],
+                    },
                   ],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: false,
 
                   id: {
                     type: 'Identifier',
-                    name: 'f'
-                  }
-                }
-              ]
+                    name: 'f',
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g(){ async (x = [yield y]) }',
@@ -4764,14 +4764,14 @@ yield d;
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     arguments: [
                       {
                         type: 'AssignmentExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         operator: '=',
                         right: {
@@ -4781,28 +4781,28 @@ yield d;
                               type: 'YieldExpression',
                               argument: {
                                 type: 'Identifier',
-                                name: 'y'
+                                name: 'y',
                               },
-                              delegate: false
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                              delegate: false,
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g(){ async (x = [yield]) }',
@@ -4823,14 +4823,14 @@ yield d;
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     arguments: [
                       {
                         type: 'AssignmentExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         operator: '=',
                         right: {
@@ -4839,26 +4839,26 @@ yield d;
                             {
                               type: 'YieldExpression',
                               argument: null,
-                              delegate: false
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                              delegate: false,
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g(){ async (x = {[yield y]: 1}) }',
@@ -4879,14 +4879,14 @@ yield d;
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     arguments: [
                       {
                         type: 'AssignmentExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         operator: '=',
                         right: {
@@ -4898,37 +4898,37 @@ yield d;
                                 type: 'YieldExpression',
                                 argument: {
                                   type: 'Identifier',
-                                  name: 'y'
+                                  name: 'y',
                                 },
-                                delegate: false
+                                delegate: false,
                               },
                               value: {
                                 type: 'Literal',
-                                value: 1
+                                value: 1,
                               },
                               kind: 'init',
                               computed: true,
                               method: false,
-                              shorthand: false
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                              shorthand: false,
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g(){ async (x = {[yield]: 1}) }',
@@ -4949,14 +4949,14 @@ yield d;
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     arguments: [
                       {
                         type: 'AssignmentExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         operator: '=',
                         right: {
@@ -4967,35 +4967,35 @@ yield d;
                               key: {
                                 type: 'YieldExpression',
                                 argument: null,
-                                delegate: false
+                                delegate: false,
                               },
                               value: {
                                 type: 'Literal',
-                                value: 1
+                                value: 1,
                               },
                               kind: 'init',
                               computed: true,
                               method: false,
-                              shorthand: false
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                              shorthand: false,
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g() { async (x = x + foo(a, yield y)); }',
@@ -5016,61 +5016,61 @@ yield d;
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     arguments: [
                       {
                         type: 'AssignmentExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         operator: '=',
                         right: {
                           type: 'BinaryExpression',
                           left: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           right: {
                             type: 'CallExpression',
                             callee: {
                               type: 'Identifier',
-                              name: 'foo'
+                              name: 'foo',
                             },
                             arguments: [
                               {
                                 type: 'Identifier',
-                                name: 'a'
+                                name: 'a',
                               },
                               {
                                 type: 'YieldExpression',
                                 argument: {
                                   type: 'Identifier',
-                                  name: 'y'
+                                  name: 'y',
                                 },
-                                delegate: false
-                              }
-                            ]
+                                delegate: false,
+                              },
+                            ],
                           },
-                          operator: '+'
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          operator: '+',
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g() { async (x = yield); }',
@@ -5091,37 +5091,37 @@ yield d;
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     arguments: [
                       {
                         type: 'AssignmentExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         operator: '=',
                         right: {
                           type: 'YieldExpression',
                           argument: null,
-                          delegate: false
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          delegate: false,
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       '{ (x = [yield]) => z }',
@@ -5140,34 +5140,34 @@ yield d;
                   generator: false,
                   body: {
                     type: 'Identifier',
-                    name: 'z'
+                    name: 'z',
                   },
                   params: [
                     {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       right: {
                         type: 'ArrayExpression',
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'yield'
-                          }
-                        ]
-                      }
-                    }
+                            name: 'yield',
+                          },
+                        ],
+                      },
+                    },
                   ],
                   async: false,
-                  expression: true
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  expression: true,
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '{ (x = [yield]) }',
@@ -5185,7 +5185,7 @@ yield d;
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   operator: '=',
                   right: {
@@ -5193,16 +5193,16 @@ yield d;
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'yield'
-                      }
-                    ]
-                  }
-                }
-              }
-            ]
-          }
-        ]
-      }
+                        name: 'yield',
+                      },
+                    ],
+                  },
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '{ (x = {[yield]: 1}) => z }',
@@ -5221,14 +5221,14 @@ yield d;
                   generator: false,
                   body: {
                     type: 'Identifier',
-                    name: 'z'
+                    name: 'z',
                   },
                   params: [
                     {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       right: {
                         type: 'ObjectExpression',
@@ -5237,29 +5237,29 @@ yield d;
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'yield'
+                              name: 'yield',
                             },
                             value: {
                               type: 'Literal',
-                              value: 1
+                              value: 1,
                             },
                             kind: 'init',
                             computed: true,
                             method: false,
-                            shorthand: false
-                          }
-                        ]
-                      }
-                    }
+                            shorthand: false,
+                          },
+                        ],
+                      },
+                    },
                   ],
                   async: false,
-                  expression: true
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  expression: true,
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '{ (x = {[yield]: 1}) }',
@@ -5277,7 +5277,7 @@ yield d;
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   operator: '=',
                   right: {
@@ -5287,25 +5287,25 @@ yield d;
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'yield'
+                          name: 'yield',
                         },
                         value: {
                           type: 'Literal',
-                          value: 1
+                          value: 1,
                         },
                         kind: 'init',
                         computed: true,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
-                }
-              }
-            ]
-          }
-        ]
-      }
+                        shorthand: false,
+                      },
+                    ],
+                  },
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '{ (x = x + yield) => x; }',
@@ -5324,37 +5324,37 @@ yield d;
                   generator: false,
                   body: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   params: [
                     {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       right: {
                         type: 'BinaryExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'yield'
+                          name: 'yield',
                         },
-                        operator: '+'
-                      }
-                    }
+                        operator: '+',
+                      },
+                    },
                   ],
                   async: false,
-                  expression: true
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  expression: true,
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '{ (x = x + yield); }',
@@ -5372,27 +5372,27 @@ yield d;
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   operator: '=',
                   right: {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'yield'
+                      name: 'yield',
                     },
-                    operator: '+'
-                  }
-                }
-              }
-            ]
-          }
-        ]
-      }
+                    operator: '+',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '{ (x = yield); }',
@@ -5410,19 +5410,19 @@ yield d;
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'yield'
-                  }
-                }
-              }
-            ]
-          }
-        ]
-      }
+                    name: 'yield',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '{ (x = yield) => {}; }',
@@ -5441,29 +5441,29 @@ yield d;
                   generator: false,
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   params: [
                     {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'yield'
-                      }
-                    }
+                        name: 'yield',
+                      },
+                    },
                   ],
                   async: false,
-                  expression: false
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  expression: false,
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '{ yield => {}; }',
@@ -5482,22 +5482,22 @@ yield d;
                   generator: false,
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   params: [
                     {
                       type: 'Identifier',
-                      name: 'yield'
-                    }
+                      name: 'yield',
+                    },
                   ],
                   async: false,
-                  expression: false
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  expression: false,
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '{ yield = {}; }',
@@ -5515,19 +5515,19 @@ yield d;
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'yield'
+                    name: 'yield',
                   },
                   operator: '=',
                   right: {
                     type: 'ObjectExpression',
-                    properties: []
-                  }
-                }
-              }
-            ]
-          }
-        ]
-      }
+                    properties: [],
+                  },
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'function *g(){ (x = [yield y]) }',
@@ -5548,7 +5548,7 @@ yield d;
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
@@ -5558,26 +5558,26 @@ yield d;
                           type: 'YieldExpression',
                           argument: {
                             type: 'Identifier',
-                            name: 'y'
+                            name: 'y',
                           },
-                          delegate: false
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                          delegate: false,
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -5599,7 +5599,7 @@ yield d;
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
@@ -5608,24 +5608,24 @@ yield d;
                         {
                           type: 'YieldExpression',
                           argument: null,
-                          delegate: false
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                          delegate: false,
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -5647,32 +5647,32 @@ yield d;
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'call'
+                      name: 'call',
                     },
                     arguments: [
                       {
                         type: 'YieldExpression',
                         argument: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
-                        delegate: false
-                      }
-                    ]
-                  }
-                }
-              ]
+                        delegate: false,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g(){ (x = {[yield y]: 1}) }',
@@ -5693,7 +5693,7 @@ yield d;
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
@@ -5705,35 +5705,35 @@ yield d;
                             type: 'YieldExpression',
                             argument: {
                               type: 'Identifier',
-                              name: 'y'
+                              name: 'y',
                             },
-                            delegate: false
+                            delegate: false,
                           },
                           value: {
                             type: 'Literal',
-                            value: 1
+                            value: 1,
                           },
                           kind: 'init',
                           computed: true,
                           method: false,
-                          shorthand: false
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                          shorthand: false,
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -5755,7 +5755,7 @@ yield d;
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
@@ -5766,33 +5766,33 @@ yield d;
                           key: {
                             type: 'YieldExpression',
                             argument: null,
-                            delegate: false
+                            delegate: false,
                           },
                           value: {
                             type: 'Literal',
-                            value: 1
+                            value: 1,
                           },
                           kind: 'init',
                           computed: true,
                           method: false,
-                          shorthand: false
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                          shorthand: false,
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g() { function f(x = yield) {} }',
@@ -5814,38 +5814,38 @@ yield d;
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'yield'
-                      }
-                    }
+                        name: 'yield',
+                      },
+                    },
                   ],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: false,
 
                   id: {
                     type: 'Identifier',
-                    name: 'f'
-                  }
-                }
-              ]
+                    name: 'f',
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g() { function f(x = x + yield) {} }',
@@ -5867,46 +5867,46 @@ yield d;
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       right: {
                         type: 'BinaryExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'yield'
+                          name: 'yield',
                         },
-                        operator: '+'
-                      }
-                    }
+                        operator: '+',
+                      },
+                    },
                   ],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: false,
 
                   id: {
                     type: 'Identifier',
-                    name: 'f'
-                  }
-                }
-              ]
+                    name: 'f',
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){ (x=yield) => x;  }',
@@ -5928,37 +5928,37 @@ yield d;
                     generator: false,
                     body: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     params: [
                       {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'yield'
-                        }
-                      }
+                          name: 'yield',
+                        },
+                      },
                     ],
                     async: false,
-                    expression: true
-                  }
-                }
-              ]
+                    expression: true,
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){ a = function(x=yield) {};  }',
@@ -5979,7 +5979,7 @@ yield d;
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     operator: '=',
                     right: {
@@ -5989,37 +5989,37 @@ yield d;
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'yield'
-                          }
-                        }
+                            name: 'yield',
+                          },
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
-                    }
-                  }
-                }
-              ]
+                      id: null,
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){  x = {foo(a=yield){}}  }',
@@ -6040,7 +6040,7 @@ yield d;
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
@@ -6050,7 +6050,7 @@ yield d;
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'foo'
+                            name: 'foo',
                           },
                           value: {
                             type: 'FunctionExpression',
@@ -6059,43 +6059,43 @@ yield d;
                                 type: 'AssignmentPattern',
                                 left: {
                                   type: 'Identifier',
-                                  name: 'a'
+                                  name: 'a',
                                 },
                                 right: {
                                   type: 'Identifier',
-                                  name: 'yield'
-                                }
-                              }
+                                  name: 'yield',
+                                },
+                              },
                             ],
                             body: {
                               type: 'BlockStatement',
-                              body: []
+                              body: [],
                             },
                             async: false,
                             generator: false,
-                            id: null
+                            id: null,
                           },
                           kind: 'init',
                           computed: false,
                           method: true,
-                          shorthand: false
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                          shorthand: false,
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g() { [...yield]; }',
@@ -6120,24 +6120,24 @@ yield d;
                         argument: {
                           type: 'YieldExpression',
                           argument: null,
-                          delegate: false
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          delegate: false,
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       '({  * yield() {}  })',
@@ -6155,29 +6155,29 @@ yield d;
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'yield'
+                    name: 'yield',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: true,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f() { (yield 1) ? yield 2 : yield 3; }',
@@ -6200,40 +6200,40 @@ yield d;
                       type: 'YieldExpression',
                       argument: {
                         type: 'Literal',
-                        value: 1
+                        value: 1,
                       },
-                      delegate: false
+                      delegate: false,
                     },
                     consequent: {
                       type: 'YieldExpression',
                       argument: {
                         type: 'Literal',
-                        value: 2
+                        value: 2,
                       },
-                      delegate: false
+                      delegate: false,
                     },
                     alternate: {
                       type: 'YieldExpression',
                       argument: {
                         type: 'Literal',
-                        value: 3
+                        value: 3,
                       },
-                      delegate: false
-                    }
-                  }
-                }
-              ]
+                      delegate: false,
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -6255,40 +6255,40 @@ yield d;
                     type: 'BinaryExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     right: {
                       type: 'CallExpression',
                       callee: {
                         type: 'Identifier',
-                        name: 'f'
+                        name: 'f',
                       },
                       arguments: [
                         {
                           type: 'YieldExpression',
                           argument: {
                             type: 'Identifier',
-                            name: 'f'
+                            name: 'f',
                           },
-                          delegate: false
-                        }
-                      ]
+                          delegate: false,
+                        },
+                      ],
                     },
-                    operator: '+'
-                  }
-                }
-              ]
+                    operator: '+',
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'async function *f(x){ yield x; }',
@@ -6302,8 +6302,8 @@ yield d;
             params: [
               {
                 type: 'Identifier',
-                name: 'x'
-              }
+                name: 'x',
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -6314,23 +6314,23 @@ yield d;
                     type: 'YieldExpression',
                     argument: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: true,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *a() { (b) => b * yield; }',
@@ -6354,36 +6354,36 @@ yield d;
                       type: 'BinaryExpression',
                       left: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'yield'
+                        name: 'yield',
                       },
-                      operator: '*'
+                      operator: '*',
                     },
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'b'
-                      }
+                        name: 'b',
+                      },
                     ],
                     async: false,
-                    expression: true
-                  }
-                }
-              ]
+                    expression: true,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'a'
-            }
-          }
-        ]
-      }
+              name: 'a',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g() { (x = x + foo(a, yield y)); }',
@@ -6404,52 +6404,52 @@ yield d;
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
                       type: 'BinaryExpression',
                       left: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       right: {
                         type: 'CallExpression',
                         callee: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         arguments: [
                           {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           {
                             type: 'YieldExpression',
                             argument: {
                               type: 'Identifier',
-                              name: 'y'
+                              name: 'y',
                             },
-                            delegate: false
-                          }
-                        ]
+                            delegate: false,
+                          },
+                        ],
                       },
-                      operator: '+'
-                    }
-                  }
-                }
-              ]
+                      operator: '+',
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       '([x, {y: [yield]}] = z)',
@@ -6467,7 +6467,7 @@ yield d;
                 elements: [
                   {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   {
                     type: 'ObjectPattern',
@@ -6476,35 +6476,35 @@ yield d;
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
                         value: {
                           type: 'ArrayPattern',
                           elements: [
                             {
                               type: 'Identifier',
-                              name: 'yield'
-                            }
-                          ]
+                              name: 'yield',
+                            },
+                          ],
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
-                ]
+                        shorthand: false,
+                      },
+                    ],
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'z'
-              }
-            }
-          }
-        ]
-      }
+                name: 'z',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '([x, {y: [yield]}])',
@@ -6520,7 +6520,7 @@ yield d;
               elements: [
                 {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 {
                   type: 'ObjectExpression',
@@ -6529,29 +6529,29 @@ yield d;
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'y'
+                        name: 'y',
                       },
                       value: {
                         type: 'ArrayExpression',
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'yield'
-                          }
-                        ]
+                            name: 'yield',
+                          },
+                        ],
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'function foo() { function *g() { yield ~x } }',
@@ -6581,35 +6581,35 @@ yield d;
                             operator: '~',
                             argument: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
-                            prefix: true
+                            prefix: true,
                           },
-                          delegate: false
-                        }
-                      }
-                    ]
+                          delegate: false,
+                        },
+                      },
+                    ],
                   },
                   async: false,
                   generator: true,
 
                   id: {
                     type: 'Identifier',
-                    name: 'g'
-                  }
-                }
-              ]
+                    name: 'g',
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
     [
       'function foo() { function a(){({*[yield](){}})} }',
@@ -6639,49 +6639,49 @@ yield d;
                               type: 'Property',
                               key: {
                                 type: 'Identifier',
-                                name: 'yield'
+                                name: 'yield',
                               },
                               value: {
                                 type: 'FunctionExpression',
                                 params: [],
                                 body: {
                                   type: 'BlockStatement',
-                                  body: []
+                                  body: [],
                                 },
                                 async: false,
                                 generator: true,
-                                id: null
+                                id: null,
                               },
                               kind: 'init',
                               computed: true,
                               method: true,
-                              shorthand: false
-                            }
-                          ]
-                        }
-                      }
-                    ]
+                              shorthand: false,
+                            },
+                          ],
+                        },
+                      },
+                    ],
                   },
                   async: false,
                   generator: false,
 
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
     [
       'function foo() { function *a(){yield ++a;} }',
@@ -6710,36 +6710,36 @@ yield d;
                             type: 'UpdateExpression',
                             argument: {
                               type: 'Identifier',
-                              name: 'a'
+                              name: 'a',
                             },
                             operator: '++',
-                            prefix: true
+                            prefix: true,
                           },
-                          delegate: false
-                        }
-                      }
-                    ]
+                          delegate: false,
+                        },
+                      },
+                    ],
                   },
                   async: false,
                   generator: true,
 
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
     [
       'function foo() { ({ get yield() { 1 } }) }',
@@ -6763,7 +6763,7 @@ yield d;
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'yield'
+                          name: 'yield',
                         },
                         value: {
                           type: 'FunctionExpression',
@@ -6775,35 +6775,35 @@ yield d;
                                 type: 'ExpressionStatement',
                                 expression: {
                                   type: 'Literal',
-                                  value: 1
-                                }
-                              }
-                            ]
+                                  value: 1,
+                                },
+                              },
+                            ],
                           },
                           async: false,
                           generator: false,
-                          id: null
+                          id: null,
                         },
                         kind: 'get',
                         computed: false,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: false,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
     [
       'function foo() {++yield; }',
@@ -6824,24 +6824,24 @@ yield d;
                     type: 'UpdateExpression',
                     argument: {
                       type: 'Identifier',
-                      name: 'yield'
+                      name: 'yield',
                     },
                     operator: '++',
-                    prefix: true
-                  }
-                }
-              ]
+                    prefix: true,
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
     [
       'function foo() { function foo(yield) { } }',
@@ -6861,33 +6861,33 @@ yield d;
                   params: [
                     {
                       type: 'Identifier',
-                      name: 'yield'
-                    }
+                      name: 'yield',
+                    },
                   ],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: false,
 
                   id: {
                     type: 'Identifier',
-                    name: 'foo'
-                  }
-                }
-              ]
+                    name: 'foo',
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
     [
       '(function* f(){ yield })',
@@ -6909,22 +6909,22 @@ yield d;
                     expression: {
                       type: 'YieldExpression',
                       argument: null,
-                      delegate: false
-                    }
-                  }
-                ]
+                      delegate: false,
+                    },
+                  },
+                ],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function* f(){ yield x + y })',
@@ -6949,30 +6949,30 @@ yield d;
                         type: 'BinaryExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
-                        operator: '+'
+                        operator: '+',
                       },
-                      delegate: false
-                    }
-                  }
-                ]
+                      delegate: false,
+                    },
+                  },
+                ],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'function foo() { function *a(){yield delete 1}}',
@@ -7002,35 +7002,35 @@ yield d;
                             operator: 'delete',
                             argument: {
                               type: 'Literal',
-                              value: 1
+                              value: 1,
                             },
-                            prefix: true
+                            prefix: true,
                           },
-                          delegate: false
-                        }
-                      }
-                    ]
+                          delegate: false,
+                        },
+                      },
+                    ],
                   },
                   async: false,
                   generator: true,
 
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
     [
       'function foo() { function*a(){yield*a} }',
@@ -7057,33 +7057,33 @@ yield d;
                           type: 'YieldExpression',
                           argument: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
-                          delegate: true
-                        }
-                      }
-                    ]
+                          delegate: true,
+                        },
+                      },
+                    ],
                   },
                   async: false,
                   generator: true,
 
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
     [
       'function foo() { function * gen() { (yield) ? yield : yield } }',
@@ -7111,42 +7111,42 @@ yield d;
                           test: {
                             type: 'YieldExpression',
                             argument: null,
-                            delegate: false
+                            delegate: false,
                           },
                           consequent: {
                             type: 'YieldExpression',
                             argument: null,
-                            delegate: false
+                            delegate: false,
                           },
                           alternate: {
                             type: 'YieldExpression',
                             argument: null,
-                            delegate: false
-                          }
-                        }
-                      }
-                    ]
+                            delegate: false,
+                          },
+                        },
+                      },
+                    ],
                   },
                   async: false,
                   generator: true,
 
                   id: {
                     type: 'Identifier',
-                    name: 'gen'
-                  }
-                }
-              ]
+                    name: 'gen',
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -7167,21 +7167,21 @@ yield d;
                   expression: {
                     type: 'YieldExpression',
                     argument: null,
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       '(function* f(){ yield x; })',
@@ -7204,24 +7204,24 @@ yield d;
                       type: 'YieldExpression',
                       argument: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
-                      delegate: false
-                    }
-                  }
-                ]
+                      delegate: false,
+                    },
+                  },
+                ],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function* f(){ yield x + y; })',
@@ -7246,30 +7246,30 @@ yield d;
                         type: 'BinaryExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
-                        operator: '+'
+                        operator: '+',
                       },
-                      delegate: false
-                    }
-                  }
-                ]
+                      delegate: false,
+                    },
+                  },
+                ],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function* f(){ call(yield); })',
@@ -7292,30 +7292,30 @@ yield d;
                       type: 'CallExpression',
                       callee: {
                         type: 'Identifier',
-                        name: 'call'
+                        name: 'call',
                       },
                       arguments: [
                         {
                           type: 'YieldExpression',
                           argument: null,
-                          delegate: false
-                        }
-                      ]
-                    }
-                  }
-                ]
+                          delegate: false,
+                        },
+                      ],
+                    },
+                  },
+                ],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function* f(){ call(yield x + y); })',
@@ -7338,7 +7338,7 @@ yield d;
                       type: 'CallExpression',
                       callee: {
                         type: 'Identifier',
-                        name: 'call'
+                        name: 'call',
                       },
                       arguments: [
                         {
@@ -7347,32 +7347,32 @@ yield d;
                             type: 'BinaryExpression',
                             left: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             right: {
                               type: 'Identifier',
-                              name: 'y'
+                              name: 'y',
                             },
-                            operator: '+'
+                            operator: '+',
                           },
-                          delegate: false
-                        }
-                      ]
-                    }
-                  }
-                ]
+                          delegate: false,
+                        },
+                      ],
+                    },
+                  },
+                ],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function f(){ 5 + yield })',
@@ -7395,28 +7395,28 @@ yield d;
                       type: 'BinaryExpression',
                       left: {
                         type: 'Literal',
-                        value: 5
+                        value: 5,
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'yield'
+                        name: 'yield',
                       },
-                      operator: '+'
-                    }
-                  }
-                ]
+                      operator: '+',
+                    },
+                  },
+                ],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function f(){ call(yield); })',
@@ -7439,29 +7439,29 @@ yield d;
                       type: 'CallExpression',
                       callee: {
                         type: 'Identifier',
-                        name: 'call'
+                        name: 'call',
                       },
                       arguments: [
                         {
                           type: 'Identifier',
-                          name: 'yield'
-                        }
-                      ]
-                    }
-                  }
-                ]
+                          name: 'yield',
+                        },
+                      ],
+                    },
+                  },
+                ],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function* g() { x = yield 3; })',
@@ -7484,32 +7484,32 @@ yield d;
                       type: 'AssignmentExpression',
                       left: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       operator: '=',
                       right: {
                         type: 'YieldExpression',
                         argument: {
                           type: 'Literal',
-                          value: 3
+                          value: 3,
                         },
-                        delegate: false
-                      }
-                    }
-                  }
-                ]
+                        delegate: false,
+                      },
+                    },
+                  },
+                ],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'g'
-              }
-            }
-          }
-        ]
-      }
+                name: 'g',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function* g(x) { yield x = 3; })',
@@ -7525,8 +7525,8 @@ yield d;
               params: [
                 {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               ],
               body: {
                 type: 'BlockStatement',
@@ -7539,30 +7539,30 @@ yield d;
                         type: 'AssignmentExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         operator: '=',
                         right: {
                           type: 'Literal',
-                          value: 3
-                        }
+                          value: 3,
+                        },
                       },
-                      delegate: false
-                    }
-                  }
-                ]
+                      delegate: false,
+                    },
+                  },
+                ],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'g'
-              }
-            }
-          }
-        ]
-      }
+                name: 'g',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function* g(x) { yield x = yield 3; })',
@@ -7578,8 +7578,8 @@ yield d;
               params: [
                 {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               ],
               body: {
                 type: 'BlockStatement',
@@ -7592,34 +7592,34 @@ yield d;
                         type: 'AssignmentExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         operator: '=',
                         right: {
                           type: 'YieldExpression',
                           argument: {
                             type: 'Literal',
-                            value: 3
+                            value: 3,
                           },
-                          delegate: false
-                        }
+                          delegate: false,
+                        },
                       },
-                      delegate: false
-                    }
-                  }
-                ]
+                      delegate: false,
+                    },
+                  },
+                ],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'g'
-              }
-            }
-          }
-        ]
-      }
+                name: 'g',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'async function *g() { (x = y = yield z) }',
@@ -7640,39 +7640,39 @@ yield d;
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
                       type: 'AssignmentExpression',
                       left: {
                         type: 'Identifier',
-                        name: 'y'
+                        name: 'y',
                       },
                       operator: '=',
                       right: {
                         type: 'YieldExpression',
                         argument: {
                           type: 'Identifier',
-                          name: 'z'
+                          name: 'z',
                         },
-                        delegate: false
-                      }
-                    }
-                  }
-                }
-              ]
+                        delegate: false,
+                      },
+                    },
+                  },
+                },
+              ],
             },
             async: true,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'async function *g() { (x = yield); }',
@@ -7693,28 +7693,28 @@ yield d;
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
                       type: 'YieldExpression',
                       argument: null,
-                      delegate: false
-                    }
-                  }
-                }
-              ]
+                      delegate: false,
+                    },
+                  },
+                },
+              ],
             },
             async: true,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       '(x = x + yield);',
@@ -7729,25 +7729,25 @@ yield d;
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'yield'
+                  name: 'yield',
                 },
-                operator: '+'
-              }
-            }
-          }
-        ]
-      }
+                operator: '+',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(x = x + yield) => x;',
@@ -7763,35 +7763,35 @@ yield d;
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   right: {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'yield'
+                      name: 'yield',
                     },
-                    operator: '+'
-                  }
-                }
+                    operator: '+',
+                  },
+                },
               ],
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '(x = {[yield]: 1})',
@@ -7806,7 +7806,7 @@ yield d;
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -7816,23 +7816,23 @@ yield d;
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'yield'
+                      name: 'yield',
                     },
                     value: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
                     kind: 'init',
                     computed: true,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function *g(){ async (x = {[yield]: 1}) })',
@@ -7855,14 +7855,14 @@ yield d;
                       type: 'CallExpression',
                       callee: {
                         type: 'Identifier',
-                        name: 'async'
+                        name: 'async',
                       },
                       arguments: [
                         {
                           type: 'AssignmentExpression',
                           left: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           operator: '=',
                           right: {
@@ -7873,36 +7873,36 @@ yield d;
                                 key: {
                                   type: 'YieldExpression',
                                   argument: null,
-                                  delegate: false
+                                  delegate: false,
                                 },
                                 value: {
                                   type: 'Literal',
-                                  value: 1
+                                  value: 1,
                                 },
                                 kind: 'init',
                                 computed: true,
                                 method: false,
-                                shorthand: false
-                              }
-                            ]
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
+                                shorthand: false,
+                              },
+                            ],
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'g'
-              }
-            }
-          }
-        ]
-      }
+                name: 'g',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function *g(){ async (x = {[yield y]: 1}) })',
@@ -7925,14 +7925,14 @@ yield d;
                       type: 'CallExpression',
                       callee: {
                         type: 'Identifier',
-                        name: 'async'
+                        name: 'async',
                       },
                       arguments: [
                         {
                           type: 'AssignmentExpression',
                           left: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           operator: '=',
                           right: {
@@ -7944,38 +7944,38 @@ yield d;
                                   type: 'YieldExpression',
                                   argument: {
                                     type: 'Identifier',
-                                    name: 'y'
+                                    name: 'y',
                                   },
-                                  delegate: false
+                                  delegate: false,
                                 },
                                 value: {
                                   type: 'Literal',
-                                  value: 1
+                                  value: 1,
                                 },
                                 kind: 'init',
                                 computed: true,
                                 method: false,
-                                shorthand: false
-                              }
-                            ]
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
+                                shorthand: false,
+                              },
+                            ],
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'g'
-              }
-            }
-          }
-        ]
-      }
+                name: 'g',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(function *g(){ async (x = [yield y]) })',
@@ -7998,14 +7998,14 @@ yield d;
                       type: 'CallExpression',
                       callee: {
                         type: 'Identifier',
-                        name: 'async'
+                        name: 'async',
                       },
                       arguments: [
                         {
                           type: 'AssignmentExpression',
                           left: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           operator: '=',
                           right: {
@@ -8015,29 +8015,29 @@ yield d;
                                 type: 'YieldExpression',
                                 argument: {
                                   type: 'Identifier',
-                                  name: 'y'
+                                  name: 'y',
                                 },
-                                delegate: false
-                              }
-                            ]
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
+                                delegate: false,
+                              },
+                            ],
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'g'
-              }
-            }
-          }
-        ]
-      }
+                name: 'g',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'async (x = yield) => {}',
@@ -8053,27 +8053,27 @@ yield d;
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'yield'
-                  }
-                }
+                    name: 'yield',
+                  },
+                },
               ],
               async: true,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'async (yield)',
@@ -8088,18 +8088,18 @@ yield d;
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'yield'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'yield',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'async (x = yield)',
@@ -8114,26 +8114,26 @@ yield d;
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
               arguments: [
                 {
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'yield'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'yield',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'async (x = (yield)) => {}',
@@ -8149,27 +8149,27 @@ yield d;
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'yield'
-                  }
-                }
+                    name: 'yield',
+                  },
+                },
               ],
               async: true,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'async (x = z = yield) => {}',
@@ -8185,35 +8185,35 @@ yield d;
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   right: {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'z'
+                      name: 'z',
                     },
                     operator: '=',
                     right: {
                       type: 'Identifier',
-                      name: 'yield'
-                    }
-                  }
-                }
+                      name: 'yield',
+                    },
+                  },
+                },
               ],
               async: true,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'async (x = z = yield)',
@@ -8228,34 +8228,34 @@ yield d;
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
               arguments: [
                 {
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   operator: '=',
                   right: {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'z'
+                      name: 'z',
                     },
                     operator: '=',
                     right: {
                       type: 'Identifier',
-                      name: 'yield'
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      name: 'yield',
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(function *f(){ async (x = yield) })',
@@ -8278,38 +8278,38 @@ yield d;
                       type: 'CallExpression',
                       callee: {
                         type: 'Identifier',
-                        name: 'async'
+                        name: 'async',
                       },
                       arguments: [
                         {
                           type: 'AssignmentExpression',
                           left: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           operator: '=',
                           right: {
                             type: 'YieldExpression',
                             argument: null,
-                            delegate: false
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
+                            delegate: false,
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'f'
-              }
-            }
-          }
-        ]
-      }
+                name: 'f',
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -8326,21 +8326,21 @@ yield d;
               expressions: [
                 {
                   type: 'Literal',
-                  value: 1
+                  value: 1,
                 },
                 {
                   type: 'Literal',
-                  value: 2
+                  value: 2,
                 },
                 {
                   type: 'Literal',
-                  value: 3
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  value: 3,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'yield',
@@ -8353,11 +8353,11 @@ yield d;
             type: 'ExpressionStatement',
             expression: {
               type: 'Identifier',
-              name: 'yield'
-            }
-          }
-        ]
-      }
+              name: 'yield',
+            },
+          },
+        ],
+      },
     ],
     [
       'yield: foo  => {}',
@@ -8370,7 +8370,7 @@ yield d;
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'yield'
+              name: 'yield',
             },
             body: {
               type: 'ExpressionStatement',
@@ -8379,21 +8379,21 @@ yield d;
                 generator: false,
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 params: [
                   {
                     type: 'Identifier',
-                    name: 'foo'
-                  }
+                    name: 'foo',
+                  },
                 ],
                 async: false,
-                expression: false
-              }
-            }
-          }
-        ]
-      }
+                expression: false,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'yield  => {}',
@@ -8409,20 +8409,20 @@ yield d;
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'yield'
-                }
+                  name: 'yield',
+                },
               ],
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     // yield => yield => foo
     [
@@ -8441,29 +8441,29 @@ yield d;
                 type: 'ConditionalExpression',
                 test: {
                   type: 'Identifier',
-                  name: 'yield'
+                  name: 'yield',
                 },
                 consequent: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 alternate: {
                   type: 'Identifier',
-                  name: 'bar'
-                }
+                  name: 'bar',
+                },
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'yield'
-                }
+                  name: 'yield',
+                },
               ],
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'await: yield',
@@ -8476,18 +8476,18 @@ yield d;
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'await'
+              name: 'await',
             },
             body: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'yield'
-              }
-            }
-          }
-        ]
-      }
+                name: 'yield',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'function *foo() { () => {} }',
@@ -8509,25 +8509,25 @@ yield d;
                     generator: false,
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     params: [],
                     async: false,
-                    expression: false
-                  }
-                }
-              ]
+                    expression: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
     [
       'function foo() { function *b() {} }',
@@ -8547,28 +8547,28 @@ yield d;
                   params: [],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: true,
 
                   id: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                }
-              ]
+                    name: 'b',
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -8596,37 +8596,37 @@ yield d;
                           type: 'YieldExpression',
                           argument: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
-                          delegate: true
-                        }
+                          delegate: true,
+                        },
                       },
                       {
                         type: 'ReturnStatement',
-                        argument: null
-                      }
-                    ]
+                        argument: null,
+                      },
+                    ],
                   },
                   async: false,
                   generator: true,
 
                   id: {
                     type: 'Identifier',
-                    name: 'gen'
-                  }
-                }
-              ]
+                    name: 'gen',
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *foo() { function b() {} function *b() {} }',
@@ -8646,43 +8646,43 @@ yield d;
                   params: [],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: false,
 
                   id: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 },
                 {
                   type: 'FunctionDeclaration',
                   params: [],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: true,
 
                   id: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                }
-              ]
+                    name: 'b',
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -8712,35 +8712,35 @@ yield d;
                             type: 'YieldExpression',
                             argument: {
                               type: 'Identifier',
-                              name: 'a'
+                              name: 'a',
                             },
-                            delegate: false
+                            delegate: false,
                           },
-                          delegate: false
-                        }
-                      }
-                    ]
+                          delegate: false,
+                        },
+                      },
+                    ],
                   },
                   async: false,
                   generator: true,
 
                   id: {
                     type: 'Identifier',
-                    name: 'gen'
-                  }
-                }
-              ]
+                    name: 'gen',
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
     [
       'yield: foo',
@@ -8753,18 +8753,18 @@ yield d;
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'yield'
+              name: 'yield',
             },
             body: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'try { } catch (yield) { }',
@@ -8777,23 +8777,23 @@ yield d;
             type: 'TryStatement',
             block: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
               param: {
                 type: 'Identifier',
-                name: 'yield'
+                name: 'yield',
               },
               body: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
-        ]
-      }
+            finalizer: null,
+          },
+        ],
+      },
     ],
     [
       'var foo = yield = 1;',
@@ -8812,23 +8812,23 @@ yield d;
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'yield'
+                    name: 'yield',
                   },
                   operator: '=',
                   right: {
                     type: 'Literal',
-                    value: 1
-                  }
+                    value: 1,
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'foo',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'yield * 2;',
@@ -8843,17 +8843,17 @@ yield d;
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'yield'
+                name: 'yield',
               },
               right: {
                 type: 'Literal',
-                value: 2
+                value: 2,
               },
-              operator: '*'
-            }
-          }
-        ]
-      }
+              operator: '*',
+            },
+          },
+        ],
+      },
     ],
     [
       'yield: 34',
@@ -8866,18 +8866,18 @@ yield d;
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'yield'
+              name: 'yield',
             },
             body: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Literal',
-                value: 34
-              }
-            }
-          }
-        ]
-      }
+                value: 34,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'function yield(yield) { yield: yield (yield + yield(0)); }',
@@ -8891,8 +8891,8 @@ yield d;
             params: [
               {
                 type: 'Identifier',
-                name: 'yield'
-              }
+                name: 'yield',
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -8901,7 +8901,7 @@ yield d;
                   type: 'LabeledStatement',
                   label: {
                     type: 'Identifier',
-                    name: 'yield'
+                    name: 'yield',
                   },
                   body: {
                     type: 'ExpressionStatement',
@@ -8909,46 +8909,46 @@ yield d;
                       type: 'CallExpression',
                       callee: {
                         type: 'Identifier',
-                        name: 'yield'
+                        name: 'yield',
                       },
                       arguments: [
                         {
                           type: 'BinaryExpression',
                           left: {
                             type: 'Identifier',
-                            name: 'yield'
+                            name: 'yield',
                           },
                           right: {
                             type: 'CallExpression',
                             callee: {
                               type: 'Identifier',
-                              name: 'yield'
+                              name: 'yield',
                             },
                             arguments: [
                               {
                                 type: 'Literal',
-                                value: 0
-                              }
-                            ]
+                                value: 0,
+                              },
+                            ],
                           },
-                          operator: '+'
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                          operator: '+',
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'yield'
-            }
-          }
-        ]
-      }
+              name: 'yield',
+            },
+          },
+        ],
+      },
     ],
     [
       'yield(100)',
@@ -8963,18 +8963,18 @@ yield d;
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'yield'
+                name: 'yield',
               },
               arguments: [
                 {
                   type: 'Literal',
-                  value: 100
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  value: 100,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'yield[100]',
@@ -8989,17 +8989,17 @@ yield d;
               type: 'MemberExpression',
               object: {
                 type: 'Identifier',
-                name: 'yield'
+                name: 'yield',
               },
               computed: true,
               property: {
                 type: 'Literal',
-                value: 100
-              }
-            }
-          }
-        ]
-      }
+                value: 100,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'function* gf() { yield "foo"; }',
@@ -9020,23 +9020,23 @@ yield d;
                     type: 'YieldExpression',
                     argument: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gf'
-            }
-          }
-        ]
-      }
+              name: 'gf',
+            },
+          },
+        ],
+      },
     ],
     [
       'var o = { *gf() { switch (1) { case yield: break; } } }',
@@ -9058,7 +9058,7 @@ yield d;
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'gf'
+                        name: 'gf',
                       },
                       value: {
                         type: 'FunctionExpression',
@@ -9070,7 +9070,7 @@ yield d;
                               type: 'SwitchStatement',
                               discriminant: {
                                 type: 'Literal',
-                                value: 1
+                                value: 1,
                               },
                               cases: [
                                 {
@@ -9078,39 +9078,39 @@ yield d;
                                   test: {
                                     type: 'YieldExpression',
                                     argument: null,
-                                    delegate: false
+                                    delegate: false,
                                   },
                                   consequent: [
                                     {
                                       type: 'BreakStatement',
-                                      label: null
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
+                                      label: null,
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
                         },
                         async: false,
                         generator: true,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'o'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'o',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'function * yield() { }',
@@ -9131,7 +9131,7 @@ yield d;
               start: 11,
               end: 16,
               range: [11, 16],
-              name: 'yield'
+              name: 'yield',
             },
             generator: true,
             async: false,
@@ -9141,12 +9141,12 @@ yield d;
               start: 19,
               end: 22,
               range: [19, 22],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '++yield;',
@@ -9161,14 +9161,14 @@ yield d;
               type: 'UpdateExpression',
               argument: {
                 type: 'Identifier',
-                name: 'yield'
+                name: 'yield',
               },
               operator: '++',
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'function * gen() { yield a; }',
@@ -9189,23 +9189,23 @@ yield d;
                     type: 'YieldExpression',
                     argument: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gen'
-            }
-          }
-        ]
-      }
+              name: 'gen',
+            },
+          },
+        ],
+      },
     ],
     [
       'function * gen() { yield * a; return }',
@@ -9226,7 +9226,7 @@ yield d;
               start: 11,
               end: 14,
               range: [11, 14],
-              name: 'gen'
+              name: 'gen',
             },
             generator: true,
             async: false,
@@ -9253,23 +9253,23 @@ yield d;
                       start: 27,
                       end: 28,
                       range: [27, 28],
-                      name: 'a'
-                    }
-                  }
+                      name: 'a',
+                    },
+                  },
                 },
                 {
                   type: 'ReturnStatement',
                   start: 30,
                   end: 36,
                   range: [30, 36],
-                  argument: null
-                }
-              ]
-            }
-          }
+                  argument: null,
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function *a(){yield delete 0}',
@@ -9293,25 +9293,25 @@ yield d;
                       operator: 'delete',
                       argument: {
                         type: 'Literal',
-                        value: 0
+                        value: 0,
                       },
-                      prefix: true
+                      prefix: true,
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'a'
-            }
-          }
-        ]
-      }
+              name: 'a',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *a(){({get b(){yield}})}',
@@ -9335,7 +9335,7 @@ yield d;
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         value: {
                           type: 'FunctionExpression',
@@ -9347,35 +9347,35 @@ yield d;
                                 type: 'ExpressionStatement',
                                 expression: {
                                   type: 'Identifier',
-                                  name: 'yield'
-                                }
-                              }
-                            ]
+                                  name: 'yield',
+                                },
+                              },
+                            ],
                           },
                           async: false,
                           generator: false,
-                          id: null
+                          id: null,
                         },
                         kind: 'get',
                         computed: false,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: false,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'a'
-            }
-          }
-        ]
-      }
+              name: 'a',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *a(){yield ++a;}',
@@ -9398,26 +9398,26 @@ yield d;
                       type: 'UpdateExpression',
                       argument: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       operator: '++',
-                      prefix: true
+                      prefix: true,
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'a'
-            }
-          }
-        ]
-      }
+              name: 'a',
+            },
+          },
+        ],
+      },
     ],
     [
       'function * gen() { (yield * 3) + (yield * 4); }',
@@ -9440,33 +9440,33 @@ yield d;
                       type: 'YieldExpression',
                       argument: {
                         type: 'Literal',
-                        value: 3
+                        value: 3,
                       },
-                      delegate: true
+                      delegate: true,
                     },
                     right: {
                       type: 'YieldExpression',
                       argument: {
                         type: 'Literal',
-                        value: 4
+                        value: 4,
                       },
-                      delegate: true
+                      delegate: true,
                     },
-                    operator: '+'
-                  }
-                }
-              ]
+                    operator: '+',
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gen'
-            }
-          }
-        ]
-      }
+              name: 'gen',
+            },
+          },
+        ],
+      },
     ],
     [
       '(function * () { x = class extends (yield) {} });',
@@ -9489,7 +9489,7 @@ yield d;
                       type: 'AssignmentExpression',
                       left: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       operator: '=',
                       right: {
@@ -9498,25 +9498,25 @@ yield d;
                         superClass: {
                           type: 'YieldExpression',
                           argument: null,
-                          delegate: false
+                          delegate: false,
                         },
                         body: {
                           type: 'ClassBody',
-                          body: []
-                        }
-                      }
-                    }
-                  }
-                ]
+                          body: [],
+                        },
+                      },
+                    },
+                  },
+                ],
               },
               async: false,
               generator: true,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '(function * () { yield * 1; return 37; yield * "icefapper"; });',
@@ -9539,17 +9539,17 @@ yield d;
                       type: 'YieldExpression',
                       argument: {
                         type: 'Literal',
-                        value: 1
+                        value: 1,
                       },
-                      delegate: true
-                    }
+                      delegate: true,
+                    },
                   },
                   {
                     type: 'ReturnStatement',
                     argument: {
                       type: 'Literal',
-                      value: 37
-                    }
+                      value: 37,
+                    },
                   },
                   {
                     type: 'ExpressionStatement',
@@ -9557,21 +9557,21 @@ yield d;
                       type: 'YieldExpression',
                       argument: {
                         type: 'Literal',
-                        value: 'icefapper'
+                        value: 'icefapper',
                       },
-                      delegate: true
-                    }
-                  }
-                ]
+                      delegate: true,
+                    },
+                  },
+                ],
               },
               async: false,
               generator: true,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '(function * () { ({ [yield]: x } = { }) });',
@@ -9600,36 +9600,36 @@ yield d;
                             key: {
                               type: 'YieldExpression',
                               argument: null,
-                              delegate: false
+                              delegate: false,
                             },
                             value: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             kind: 'init',
                             computed: true,
                             method: false,
-                            shorthand: false
-                          }
-                        ]
+                            shorthand: false,
+                          },
+                        ],
                       },
                       operator: '=',
                       right: {
                         type: 'ObjectExpression',
-                        properties: []
-                      }
-                    }
-                  }
-                ]
+                        properties: [],
+                      },
+                    },
+                  },
+                ],
               },
               async: false,
               generator: true,
 
-              id: null
-            }
-          }
-        ]
-      }
+              id: null,
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g() { yield ~x }',
@@ -9653,25 +9653,25 @@ yield d;
                       operator: '~',
                       argument: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
-                      prefix: true
+                      prefix: true,
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g() { yield class x {} }',
@@ -9694,29 +9694,29 @@ yield d;
                       type: 'ClassExpression',
                       id: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       superClass: null,
                       body: {
                         type: 'ClassBody',
-                        body: []
-                      }
+                        body: [],
+                      },
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g() { yield yield }',
@@ -9738,23 +9738,23 @@ yield d;
                     argument: {
                       type: 'YieldExpression',
                       argument: null,
-                      delegate: false
+                      delegate: false,
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* g() { exprValue = yield * {}; }',
@@ -9775,31 +9775,31 @@ yield d;
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'exprValue'
+                      name: 'exprValue',
                     },
                     operator: '=',
                     right: {
                       type: 'YieldExpression',
                       argument: {
                         type: 'ObjectExpression',
-                        properties: []
+                        properties: [],
                       },
-                      delegate: true
-                    }
-                  }
-                }
-              ]
+                      delegate: true,
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* g5() { (yield 1) ? yield 2 : yield 3; }',
@@ -9822,40 +9822,40 @@ yield d;
                       type: 'YieldExpression',
                       argument: {
                         type: 'Literal',
-                        value: 1
+                        value: 1,
                       },
-                      delegate: false
+                      delegate: false,
                     },
                     consequent: {
                       type: 'YieldExpression',
                       argument: {
                         type: 'Literal',
-                        value: 2
+                        value: 2,
                       },
-                      delegate: false
+                      delegate: false,
                     },
                     alternate: {
                       type: 'YieldExpression',
                       argument: {
                         type: 'Literal',
-                        value: 3
+                        value: 3,
                       },
-                      delegate: false
-                    }
-                  }
-                }
-              ]
+                      delegate: false,
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g5'
-            }
-          }
-        ]
-      }
+              name: 'g5',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f() { var yield = 10; var o = { yield }; }',
@@ -9878,14 +9878,14 @@ yield d;
                       type: 'VariableDeclarator',
                       init: {
                         type: 'Literal',
-                        value: 10
+                        value: 10,
                       },
                       id: {
                         type: 'Identifier',
-                        name: 'yield'
-                      }
-                    }
-                  ]
+                        name: 'yield',
+                      },
+                    },
+                  ],
                 },
                 {
                   type: 'VariableDeclaration',
@@ -9900,38 +9900,38 @@ yield d;
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'yield'
+                              name: 'yield',
                             },
                             value: {
                               type: 'Identifier',
-                              name: 'yield'
+                              name: 'yield',
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: true
-                          }
-                        ]
+                            shorthand: true,
+                          },
+                        ],
                       },
                       id: {
                         type: 'Identifier',
-                        name: 'o'
-                      }
-                    }
-                  ]
-                }
-              ]
+                        name: 'o',
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f() { class C { yield() { } } }',
@@ -9950,7 +9950,7 @@ yield d;
                   type: 'ClassDeclaration',
                   id: {
                     type: 'Identifier',
-                    name: 'C'
+                    name: 'C',
                   },
                   superClass: null,
                   body: {
@@ -9963,35 +9963,35 @@ yield d;
                         computed: false,
                         key: {
                           type: 'Identifier',
-                          name: 'yield'
+                          name: 'yield',
                         },
                         value: {
                           type: 'FunctionExpression',
                           params: [],
                           body: {
                             type: 'BlockStatement',
-                            body: []
+                            body: [],
                           },
                           async: false,
                           generator: false,
-                          id: null
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          id: null,
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       '+function yield() {}',
@@ -10010,21 +10010,21 @@ yield d;
                 params: [],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'yield'
-                }
+                  name: 'yield',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       `function *f1() {
@@ -10055,37 +10055,37 @@ yield d;
                           type: 'BinaryExpression',
                           left: {
                             type: 'Identifier',
-                            name: 'yield'
+                            name: 'yield',
                           },
                           right: {
                             type: 'Literal',
-                            value: 1
+                            value: 1,
                           },
-                          operator: '/'
-                        }
-                      }
-                    ]
+                          operator: '/',
+                        },
+                      },
+                    ],
                   },
                   async: false,
                   generator: false,
 
                   id: {
                     type: 'Identifier',
-                    name: 'g'
-                  }
-                }
-              ]
+                    name: 'g',
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f1'
-            }
-          }
-        ]
-      }
+              name: 'f1',
+            },
+          },
+        ],
+      },
     ],
     [
       `function* fn() {
@@ -10110,12 +10110,12 @@ yield d;
                     generator: false,
                     body: {
                       type: 'Identifier',
-                      name: 'yield'
+                      name: 'yield',
                     },
                     params: [],
                     async: false,
-                    expression: true
-                  }
+                    expression: true,
+                  },
                 },
                 {
                   type: 'ExpressionStatement',
@@ -10129,28 +10129,28 @@ yield d;
                           type: 'ExpressionStatement',
                           expression: {
                             type: 'Identifier',
-                            name: 'yield'
-                          }
-                        }
-                      ]
+                            name: 'yield',
+                          },
+                        },
+                      ],
                     },
                     params: [],
                     async: false,
-                    expression: false
-                  }
-                }
-              ]
+                    expression: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'fn'
-            }
-          }
-        ]
-      }
+              name: 'fn',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* f(){ () => yield; }',
@@ -10172,25 +10172,25 @@ yield d;
                     generator: false,
                     body: {
                       type: 'Identifier',
-                      name: 'yield'
+                      name: 'yield',
                     },
                     params: [],
                     async: false,
-                    expression: true
-                  }
-                }
-              ]
+                    expression: true,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *foo() { function b() {} }',
@@ -10210,28 +10210,28 @@ yield d;
                   params: [],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: false,
 
                   id: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                }
-              ]
+                    name: 'b',
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
     [
       'function fn(x = yield* yield) {}',
@@ -10247,36 +10247,36 @@ yield d;
                 type: 'AssignmentPattern',
                 left: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 right: {
                   type: 'BinaryExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'yield'
+                    name: 'yield',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'yield'
+                    name: 'yield',
                   },
-                  operator: '*'
-                }
-              }
+                  operator: '*',
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'fn'
-            }
-          }
-        ]
-      }
+              name: 'fn',
+            },
+          },
+        ],
+      },
     ],
     [
       'function * gen() { (yield * a) + (yield * b);; }',
@@ -10299,36 +10299,36 @@ yield d;
                       type: 'YieldExpression',
                       argument: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
-                      delegate: true
+                      delegate: true,
                     },
                     right: {
                       type: 'YieldExpression',
                       argument: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
-                      delegate: true
+                      delegate: true,
                     },
-                    operator: '+'
-                  }
+                    operator: '+',
+                  },
                 },
                 {
-                  type: 'EmptyStatement'
-                }
-              ]
+                  type: 'EmptyStatement',
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gen'
-            }
-          }
-        ]
-      }
+              name: 'gen',
+            },
+          },
+        ],
+      },
     ],
     [
       'function * gen() { yield, yield }',
@@ -10351,28 +10351,28 @@ yield d;
                       {
                         type: 'YieldExpression',
                         argument: null,
-                        delegate: false
+                        delegate: false,
                       },
                       {
                         type: 'YieldExpression',
                         argument: null,
-                        delegate: false
-                      }
-                    ]
-                  }
-                }
-              ]
+                        delegate: false,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gen'
-            }
-          }
-        ]
-      }
+              name: 'gen',
+            },
+          },
+        ],
+      },
     ],
     [
       'function fn(x = yield* yield) {}',
@@ -10388,36 +10388,36 @@ yield d;
                 type: 'AssignmentPattern',
                 left: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 right: {
                   type: 'BinaryExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'yield'
+                    name: 'yield',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'yield'
+                    name: 'yield',
                   },
-                  operator: '*'
-                }
-              }
+                  operator: '*',
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'fn'
-            }
-          }
-        ]
-      }
+              name: 'fn',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* a(){({[yield]:a}=0)}',
@@ -10444,38 +10444,38 @@ yield d;
                           key: {
                             type: 'YieldExpression',
                             argument: null,
-                            delegate: false
+                            delegate: false,
                           },
                           value: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           kind: 'init',
                           computed: true,
                           method: false,
-                          shorthand: false
-                        }
-                      ]
+                          shorthand: false,
+                        },
+                      ],
                     },
                     operator: '=',
                     right: {
                       type: 'Literal',
-                      value: 0
-                    }
-                  }
-                }
-              ]
+                      value: 0,
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'a'
-            }
-          }
-        ]
-      }
+              name: 'a',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* a(){yield a}',
@@ -10496,23 +10496,23 @@ yield d;
                     type: 'YieldExpression',
                     argument: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'a'
-            }
-          }
-        ]
-      }
+              name: 'a',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* g(){(class extends (yield) {});}',
@@ -10535,26 +10535,26 @@ yield d;
                     superClass: {
                       type: 'YieldExpression',
                       argument: null,
-                      delegate: false
+                      delegate: false,
                     },
                     body: {
                       type: 'ClassBody',
-                      body: []
-                    }
-                  }
-                }
-              ]
+                      body: [],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* a(){(class {[yield](){}})};',
@@ -10586,39 +10586,39 @@ yield d;
                           key: {
                             type: 'YieldExpression',
                             argument: null,
-                            delegate: false
+                            delegate: false,
                           },
                           value: {
                             type: 'FunctionExpression',
                             params: [],
                             body: {
                               type: 'BlockStatement',
-                              body: []
+                              body: [],
                             },
                             async: false,
                             generator: false,
-                            id: null
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                            id: null,
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'a'
-            }
+              name: 'a',
+            },
           },
           {
-            type: 'EmptyStatement'
-          }
-        ]
-      }
+            type: 'EmptyStatement',
+          },
+        ],
+      },
     ],
     [
       'function * gen() { yield /* comment */ }',
@@ -10638,21 +10638,21 @@ yield d;
                   expression: {
                     type: 'YieldExpression',
                     argument: null,
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gen'
-            }
-          }
-        ]
-      }
+              name: 'gen',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* g1() { (yield 1) }',
@@ -10673,23 +10673,23 @@ yield d;
                     type: 'YieldExpression',
                     argument: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g1'
-            }
-          }
-        ]
-      }
+              name: 'g1',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* g2() { [yield 1] }',
@@ -10713,25 +10713,25 @@ yield d;
                         type: 'YieldExpression',
                         argument: {
                           type: 'Literal',
-                          value: 1
+                          value: 1,
                         },
-                        delegate: false
-                      }
-                    ]
-                  }
-                }
-              ]
+                        delegate: false,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g2'
-            }
-          }
-        ]
-      }
+              name: 'g2',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* a() { yield; function b({} = c) {} (d) => { }  }',
@@ -10751,8 +10751,8 @@ yield d;
                   expression: {
                     type: 'YieldExpression',
                     argument: null,
-                    delegate: false
-                  }
+                    delegate: false,
+                  },
                 },
                 {
                   type: 'FunctionDeclaration',
@@ -10761,25 +10761,25 @@ yield d;
                       type: 'AssignmentPattern',
                       left: {
                         type: 'ObjectPattern',
-                        properties: []
+                        properties: [],
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'c'
-                      }
-                    }
+                        name: 'c',
+                      },
+                    },
                   ],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: false,
 
                   id: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 },
                 {
                   type: 'ExpressionStatement',
@@ -10788,30 +10788,30 @@ yield d;
                     generator: false,
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'd'
-                      }
+                        name: 'd',
+                      },
                     ],
                     async: false,
-                    expression: false
-                  }
-                }
-              ]
+                    expression: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'a'
-            }
-          }
-        ]
-      }
+              name: 'a',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* g4() { yield 1, yield 2; }',
@@ -10835,33 +10835,33 @@ yield d;
                         type: 'YieldExpression',
                         argument: {
                           type: 'Literal',
-                          value: 1
+                          value: 1,
                         },
-                        delegate: false
+                        delegate: false,
                       },
                       {
                         type: 'YieldExpression',
                         argument: {
                           type: 'Literal',
-                          value: 2
+                          value: 2,
                         },
-                        delegate: false
-                      }
-                    ]
-                  }
-                }
-              ]
+                        delegate: false,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g4'
-            }
-          }
-        ]
-      }
+              name: 'g4',
+            },
+          },
+        ],
+      },
     ],
     [
       `function* g(a, b, c, d) {
@@ -10883,20 +10883,20 @@ yield d;
             params: [
               {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
               {
                 type: 'Identifier',
-                name: 'c'
+                name: 'c',
               },
               {
                 type: 'Identifier',
-                name: 'd'
-              }
+                name: 'd',
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -10909,20 +10909,20 @@ yield d;
                       type: 'MemberExpression',
                       object: {
                         type: 'Identifier',
-                        name: 'arguments'
+                        name: 'arguments',
                       },
                       computed: true,
                       property: {
                         type: 'Literal',
-                        value: 0
-                      }
+                        value: 0,
+                      },
                     },
                     operator: '=',
                     right: {
                       type: 'Literal',
-                      value: 32
-                    }
-                  }
+                      value: 32,
+                    },
+                  },
                 },
                 {
                   type: 'ExpressionStatement',
@@ -10932,20 +10932,20 @@ yield d;
                       type: 'MemberExpression',
                       object: {
                         type: 'Identifier',
-                        name: 'arguments'
+                        name: 'arguments',
                       },
                       computed: true,
                       property: {
                         type: 'Literal',
-                        value: 1
-                      }
+                        value: 1,
+                      },
                     },
                     operator: '=',
                     right: {
                       type: 'Literal',
-                      value: 54
-                    }
-                  }
+                      value: 54,
+                    },
+                  },
                 },
                 {
                   type: 'ExpressionStatement',
@@ -10955,20 +10955,20 @@ yield d;
                       type: 'MemberExpression',
                       object: {
                         type: 'Identifier',
-                        name: 'arguments'
+                        name: 'arguments',
                       },
                       computed: true,
                       property: {
                         type: 'Literal',
-                        value: 2
-                      }
+                        value: 2,
+                      },
                     },
                     operator: '=',
                     right: {
                       type: 'Literal',
-                      value: 333
-                    }
-                  }
+                      value: 333,
+                    },
+                  },
                 },
                 {
                   type: 'ExpressionStatement',
@@ -10976,10 +10976,10 @@ yield d;
                     type: 'YieldExpression',
                     argument: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
-                    delegate: false
-                  }
+                    delegate: false,
+                  },
                 },
                 {
                   type: 'ExpressionStatement',
@@ -10987,10 +10987,10 @@ yield d;
                     type: 'YieldExpression',
                     argument: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
-                    delegate: false
-                  }
+                    delegate: false,
+                  },
                 },
                 {
                   type: 'ExpressionStatement',
@@ -10998,10 +10998,10 @@ yield d;
                     type: 'YieldExpression',
                     argument: {
                       type: 'Identifier',
-                      name: 'c'
+                      name: 'c',
                     },
-                    delegate: false
-                  }
+                    delegate: false,
+                  },
                 },
                 {
                   type: 'ExpressionStatement',
@@ -11009,23 +11009,23 @@ yield d;
                     type: 'YieldExpression',
                     argument: {
                       type: 'Identifier',
-                      name: 'd'
+                      name: 'd',
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f() { function* yield() { } }',
@@ -11045,28 +11045,28 @@ yield d;
                   params: [],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: true,
 
                   id: {
                     type: 'Identifier',
-                    name: 'yield'
-                  }
-                }
-              ]
+                    name: 'yield',
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f() { var o = { *yield() { } } }',
@@ -11094,46 +11094,46 @@ yield d;
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'yield'
+                              name: 'yield',
                             },
                             value: {
                               type: 'FunctionExpression',
                               params: [],
                               body: {
                                 type: 'BlockStatement',
-                                body: []
+                                body: [],
                               },
                               async: false,
                               generator: true,
 
-                              id: null
+                              id: null,
                             },
                             kind: 'init',
                             computed: false,
                             method: true,
-                            shorthand: false
-                          }
-                        ]
+                            shorthand: false,
+                          },
+                        ],
                       },
                       id: {
                         type: 'Identifier',
-                        name: 'o'
-                      }
-                    }
-                  ]
-                }
-              ]
+                        name: 'o',
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f() { var yield = 10; var o = { yield }; }',
@@ -11156,14 +11156,14 @@ yield d;
                       type: 'VariableDeclarator',
                       init: {
                         type: 'Literal',
-                        value: 10
+                        value: 10,
                       },
                       id: {
                         type: 'Identifier',
-                        name: 'yield'
-                      }
-                    }
-                  ]
+                        name: 'yield',
+                      },
+                    },
+                  ],
                 },
                 {
                   type: 'VariableDeclaration',
@@ -11178,38 +11178,38 @@ yield d;
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'yield'
+                              name: 'yield',
                             },
                             value: {
                               type: 'Identifier',
-                              name: 'yield'
+                              name: 'yield',
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: true
-                          }
-                        ]
+                            shorthand: true,
+                          },
+                        ],
                       },
                       id: {
                         type: 'Identifier',
-                        name: 'o'
-                      }
-                    }
-                  ]
-                }
-              ]
+                        name: 'o',
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f() { class C { yield() { } } }',
@@ -11230,7 +11230,7 @@ yield d;
               start: 9,
               end: 10,
               range: [9, 10],
-              name: 'f'
+              name: 'f',
             },
             generator: false,
             async: false,
@@ -11251,7 +11251,7 @@ yield d;
                     start: 21,
                     end: 22,
                     range: [21, 22],
-                    name: 'C'
+                    name: 'C',
                   },
                   superClass: null,
                   body: {
@@ -11273,7 +11273,7 @@ yield d;
                           start: 25,
                           end: 30,
                           range: [25, 30],
-                          name: 'yield'
+                          name: 'yield',
                         },
                         value: {
                           type: 'FunctionExpression',
@@ -11289,19 +11289,19 @@ yield d;
                             start: 33,
                             end: 36,
                             range: [33, 36],
-                            body: []
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
+                            body: [],
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function f() { let yield; }',
@@ -11325,23 +11325,23 @@ yield d;
                       init: null,
                       id: {
                         type: 'Identifier',
-                        name: 'yield'
-                      }
-                    }
-                  ]
-                }
-              ]
+                        name: 'yield',
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f() { const yield = 10; }',
@@ -11364,27 +11364,27 @@ yield d;
                       type: 'VariableDeclarator',
                       init: {
                         type: 'Literal',
-                        value: 10
+                        value: 10,
                       },
                       id: {
                         type: 'Identifier',
-                        name: 'yield'
-                      }
-                    }
-                  ]
-                }
-              ]
+                        name: 'yield',
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* gf() { var o = { yield: 10 } }',
@@ -11412,38 +11412,38 @@ yield d;
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'yield'
+                              name: 'yield',
                             },
                             value: {
                               type: 'Literal',
-                              value: 10
+                              value: 10,
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: false
-                          }
-                        ]
+                            shorthand: false,
+                          },
+                        ],
                       },
                       id: {
                         type: 'Identifier',
-                        name: 'o'
-                      }
-                    }
-                  ]
-                }
-              ]
+                        name: 'o',
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gf'
-            }
-          }
-        ]
-      }
+              name: 'gf',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g() { yield {...(x,y),}}',
@@ -11472,32 +11472,32 @@ yield d;
                             expressions: [
                               {
                                 type: 'Identifier',
-                                name: 'x'
+                                name: 'x',
                               },
                               {
                                 type: 'Identifier',
-                                name: 'y'
-                              }
-                            ]
-                          }
-                        }
-                      ]
+                                name: 'y',
+                              },
+                            ],
+                          },
+                        },
+                      ],
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g() {yield {     ...yield yield,    };}',
@@ -11526,28 +11526,28 @@ yield d;
                             argument: {
                               type: 'YieldExpression',
                               argument: null,
-                              delegate: false
+                              delegate: false,
                             },
-                            delegate: false
-                          }
-                        }
-                      ]
+                            delegate: false,
+                          },
+                        },
+                      ],
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g() {x={     ...yield yield,    };}',
@@ -11568,7 +11568,7 @@ yield d;
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
@@ -11581,27 +11581,27 @@ yield d;
                             argument: {
                               type: 'YieldExpression',
                               argument: null,
-                              delegate: false
+                              delegate: false,
                             },
-                            delegate: false
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                            delegate: false,
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g() {x={     ...yield x,    };}',
@@ -11622,7 +11622,7 @@ yield d;
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
@@ -11634,27 +11634,27 @@ yield d;
                             type: 'YieldExpression',
                             argument: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
-                            delegate: false
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                            delegate: false,
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g() {x={     ...yield,    };}',
@@ -11675,7 +11675,7 @@ yield d;
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
@@ -11686,25 +11686,25 @@ yield d;
                           argument: {
                             type: 'YieldExpression',
                             argument: null,
-                            delegate: false
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                            delegate: false,
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g() {x={     ...yield yield    };}',
@@ -11725,7 +11725,7 @@ yield d;
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
@@ -11738,27 +11738,27 @@ yield d;
                             argument: {
                               type: 'YieldExpression',
                               argument: null,
-                              delegate: false
+                              delegate: false,
                             },
-                            delegate: false
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
+                            delegate: false,
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g() {yield {     ...yield yield    };}',
@@ -11787,28 +11787,28 @@ yield d;
                             argument: {
                               type: 'YieldExpression',
                               argument: null,
-                              delegate: false
+                              delegate: false,
                             },
-                            delegate: false
-                          }
-                        }
-                      ]
+                            delegate: false,
+                          },
+                        },
+                      ],
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       '({ *g1() {   return {x: yield}  }})',
@@ -11826,7 +11826,7 @@ yield d;
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'g1'
+                    name: 'g1',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -11843,37 +11843,37 @@ yield d;
                                 type: 'Property',
                                 key: {
                                   type: 'Identifier',
-                                  name: 'x'
+                                  name: 'x',
                                 },
                                 value: {
                                   type: 'YieldExpression',
                                   argument: null,
-                                  delegate: false
+                                  delegate: false,
                                 },
                                 kind: 'init',
                                 computed: false,
                                 method: false,
-                                shorthand: false
-                              }
-                            ]
-                          }
-                        }
-                      ]
+                                shorthand: false,
+                              },
+                            ],
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: true,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f(){  class x extends (yield y){}  }',
@@ -11892,33 +11892,33 @@ yield d;
                   type: 'ClassDeclaration',
                   id: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   superClass: {
                     type: 'YieldExpression',
                     argument: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
-                    delegate: false
+                    delegate: false,
                   },
                   body: {
                     type: 'ClassBody',
-                    body: []
-                  }
-                }
-              ]
+                    body: [],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f(){  class x{[yield foo](a){}}  }',
@@ -11937,7 +11937,7 @@ yield d;
                   type: 'ClassDeclaration',
                   id: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   superClass: null,
                   body: {
@@ -11952,42 +11952,42 @@ yield d;
                           type: 'YieldExpression',
                           argument: {
                             type: 'Identifier',
-                            name: 'foo'
+                            name: 'foo',
                           },
-                          delegate: false
+                          delegate: false,
                         },
                         value: {
                           type: 'FunctionExpression',
                           params: [
                             {
                               type: 'Identifier',
-                              name: 'a'
-                            }
+                              name: 'a',
+                            },
                           ],
                           body: {
                             type: 'BlockStatement',
-                            body: []
+                            body: [],
                           },
                           async: false,
                           generator: false,
-                          id: null
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          id: null,
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* gf() { var a = yield; }',
@@ -12011,27 +12011,27 @@ yield d;
                       init: {
                         type: 'YieldExpression',
                         argument: null,
-                        delegate: false
+                        delegate: false,
                       },
                       id: {
                         type: 'Identifier',
-                        name: 'a'
-                      }
-                    }
-                  ]
-                }
-              ]
+                        name: 'a',
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gf'
-            }
-          }
-        ]
-      }
+              name: 'gf',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* gf() { foo[yield]; }',
@@ -12052,28 +12052,28 @@ yield d;
                     type: 'MemberExpression',
                     object: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: true,
                     property: {
                       type: 'YieldExpression',
                       argument: null,
-                      delegate: false
-                    }
-                  }
-                }
-              ]
+                      delegate: false,
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gf'
-            }
-          }
-        ]
-      }
+              name: 'gf',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* gf() { yield, 10; }',
@@ -12096,27 +12096,27 @@ yield d;
                       {
                         type: 'YieldExpression',
                         argument: null,
-                        delegate: false
+                        delegate: false,
                       },
                       {
                         type: 'Literal',
-                        value: 10
-                      }
-                    ]
-                  }
-                }
-              ]
+                        value: 10,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gf'
-            }
-          }
-        ]
-      }
+              name: 'gf',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* gf() { switch (1) { case yield: break; } }',
@@ -12135,7 +12135,7 @@ yield d;
                   type: 'SwitchStatement',
                   discriminant: {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   cases: [
                     {
@@ -12143,29 +12143,29 @@ yield d;
                       test: {
                         type: 'YieldExpression',
                         argument: null,
-                        delegate: false
+                        delegate: false,
                       },
                       consequent: [
                         {
                           type: 'BreakStatement',
-                          label: null
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
+                          label: null,
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gf'
-            }
-          }
-        ]
-      }
+              name: 'gf',
+            },
+          },
+        ],
+      },
     ],
     [
       'var gfe = function* () { switch (1) { case yield: break; } }',
@@ -12190,7 +12190,7 @@ yield d;
                         type: 'SwitchStatement',
                         discriminant: {
                           type: 'Literal',
-                          value: 1
+                          value: 1,
                         },
                         cases: [
                           {
@@ -12198,33 +12198,33 @@ yield d;
                             test: {
                               type: 'YieldExpression',
                               argument: null,
-                              delegate: false
+                              delegate: false,
                             },
                             consequent: [
                               {
                                 type: 'BreakStatement',
-                                label: null
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
+                                label: null,
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
                   },
                   async: false,
                   generator: true,
 
-                  id: null
+                  id: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'gfe'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'gfe',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var o = { *gf() { switch (1) { case yield: break; } } }',
@@ -12246,7 +12246,7 @@ yield d;
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'gf'
+                        name: 'gf',
                       },
                       value: {
                         type: 'FunctionExpression',
@@ -12258,7 +12258,7 @@ yield d;
                               type: 'SwitchStatement',
                               discriminant: {
                                 type: 'Literal',
-                                value: 1
+                                value: 1,
                               },
                               cases: [
                                 {
@@ -12266,39 +12266,39 @@ yield d;
                                   test: {
                                     type: 'YieldExpression',
                                     argument: null,
-                                    delegate: false
+                                    delegate: false,
                                   },
                                   consequent: [
                                     {
                                       type: 'BreakStatement',
-                                      label: null
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
+                                      label: null,
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
                         },
                         async: false,
                         generator: true,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'o'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'o',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'class C { *gf() { switch (1) { case yield: break; } } }',
@@ -12311,7 +12311,7 @@ yield d;
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'C'
+              name: 'C',
             },
             superClass: null,
             body: {
@@ -12324,7 +12324,7 @@ yield d;
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'gf'
+                    name: 'gf',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -12336,7 +12336,7 @@ yield d;
                           type: 'SwitchStatement',
                           discriminant: {
                             type: 'Literal',
-                            value: 1
+                            value: 1,
                           },
                           cases: [
                             {
@@ -12344,29 +12344,29 @@ yield d;
                               test: {
                                 type: 'YieldExpression',
                                 argument: null,
-                                delegate: false
+                                delegate: false,
                               },
                               consequent: [
                                 {
                                   type: 'BreakStatement',
-                                  label: null
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
+                                  label: null,
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
                     },
                     async: false,
                     generator: true,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'function* gf() { var a = yield "foo"; }',
@@ -12391,29 +12391,29 @@ yield d;
                         type: 'YieldExpression',
                         argument: {
                           type: 'Literal',
-                          value: 'foo'
+                          value: 'foo',
                         },
-                        delegate: false
+                        delegate: false,
                       },
                       id: {
                         type: 'Identifier',
-                        name: 'a'
-                      }
-                    }
-                  ]
-                }
-              ]
+                        name: 'a',
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gf'
-            }
-          }
-        ]
-      }
+              name: 'gf',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* gf() { foo[yield "foo"]; }',
@@ -12434,31 +12434,31 @@ yield d;
                     type: 'MemberExpression',
                     object: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: true,
                     property: {
                       type: 'YieldExpression',
                       argument: {
                         type: 'Literal',
-                        value: 'foo'
+                        value: 'foo',
                       },
-                      delegate: false
-                    }
-                  }
-                }
-              ]
+                      delegate: false,
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gf'
-            }
-          }
-        ]
-      }
+              name: 'gf',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* gf() { switch (1) { case yield "foo": break; } }',
@@ -12477,7 +12477,7 @@ yield d;
                   type: 'SwitchStatement',
                   discriminant: {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   cases: [
                     {
@@ -12486,31 +12486,31 @@ yield d;
                         type: 'YieldExpression',
                         argument: {
                           type: 'Literal',
-                          value: 'foo'
+                          value: 'foo',
                         },
-                        delegate: false
+                        delegate: false,
                       },
                       consequent: [
                         {
                           type: 'BreakStatement',
-                          label: null
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
+                          label: null,
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gf'
-            }
-          }
-        ]
-      }
+              name: 'gf',
+            },
+          },
+        ],
+      },
     ],
     [
       "function* gf() { yield* 'foo'; }",
@@ -12531,23 +12531,23 @@ yield d;
                     type: 'YieldExpression',
                     argument: {
                       type: 'Literal',
-                      value: 'foo'
+                      value: 'foo',
                     },
-                    delegate: true
-                  }
-                }
-              ]
+                    delegate: true,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gf'
-            }
-          }
-        ]
-      }
+              name: 'gf',
+            },
+          },
+        ],
+      },
     ],
     [
       "function* gf() { var a = yield* 'foo'; }",
@@ -12572,29 +12572,29 @@ yield d;
                         type: 'YieldExpression',
                         argument: {
                           type: 'Literal',
-                          value: 'foo'
+                          value: 'foo',
                         },
-                        delegate: true
+                        delegate: true,
                       },
                       id: {
                         type: 'Identifier',
-                        name: 'a'
-                      }
-                    }
-                  ]
-                }
-              ]
+                        name: 'a',
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gf'
-            }
-          }
-        ]
-      }
+              name: 'gf',
+            },
+          },
+        ],
+      },
     ],
     [
       "class C { *gf() { switch (1) { case yield* 'foo': break; } } }",
@@ -12615,7 +12615,7 @@ yield d;
               start: 6,
               end: 7,
               range: [6, 7],
-              name: 'C'
+              name: 'C',
             },
             superClass: null,
             body: {
@@ -12637,7 +12637,7 @@ yield d;
                     start: 11,
                     end: 13,
                     range: [11, 13],
-                    name: 'gf'
+                    name: 'gf',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -12664,7 +12664,7 @@ yield d;
                             start: 26,
                             end: 27,
                             range: [26, 27],
-                            value: 1
+                            value: 1,
                           },
                           cases: [
                             {
@@ -12678,8 +12678,8 @@ yield d;
                                   start: 50,
                                   end: 56,
                                   range: [50, 56],
-                                  label: null
-                                }
+                                  label: null,
+                                },
                               ],
                               test: {
                                 type: 'YieldExpression',
@@ -12692,22 +12692,22 @@ yield d;
                                   start: 43,
                                   end: 48,
                                   range: [43, 48],
-                                  value: 'foo'
-                                }
-                              }
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                                  value: 'foo',
+                                },
+                              },
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function* gf() { var fe = function yield() { } }',
@@ -12733,35 +12733,35 @@ yield d;
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
 
                         id: {
                           type: 'Identifier',
-                          name: 'yield'
-                        }
+                          name: 'yield',
+                        },
                       },
                       id: {
                         type: 'Identifier',
-                        name: 'fe'
-                      }
-                    }
-                  ]
-                }
-              ]
+                        name: 'fe',
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gf'
-            }
-          }
-        ]
-      }
+              name: 'gf',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* gf() { var o = { yield: 10 } }',
@@ -12789,38 +12789,38 @@ yield d;
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'yield'
+                              name: 'yield',
                             },
                             value: {
                               type: 'Literal',
-                              value: 10
+                              value: 10,
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: false
-                          }
-                        ]
+                            shorthand: false,
+                          },
+                        ],
                       },
                       id: {
                         type: 'Identifier',
-                        name: 'o'
-                      }
-                    }
-                  ]
-                }
-              ]
+                        name: 'o',
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gf'
-            }
-          }
-        ]
-      }
+              name: 'gf',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* gf() { var o = { yield() { } } }',
@@ -12848,45 +12848,45 @@ yield d;
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'yield'
+                              name: 'yield',
                             },
                             value: {
                               type: 'FunctionExpression',
                               params: [],
                               body: {
                                 type: 'BlockStatement',
-                                body: []
+                                body: [],
                               },
                               async: false,
                               generator: false,
-                              id: null
+                              id: null,
                             },
                             kind: 'init',
                             computed: false,
                             method: true,
-                            shorthand: false
-                          }
-                        ]
+                            shorthand: false,
+                          },
+                        ],
                       },
                       id: {
                         type: 'Identifier',
-                        name: 'o'
-                      }
-                    }
-                  ]
-                }
-              ]
+                        name: 'o',
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gf'
-            }
-          }
-        ]
-      }
+              name: 'gf',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* gf() { class C { *yield() { } } }',
@@ -12905,7 +12905,7 @@ yield d;
                   type: 'ClassDeclaration',
                   id: {
                     type: 'Identifier',
-                    name: 'C'
+                    name: 'C',
                   },
                   superClass: null,
                   body: {
@@ -12918,35 +12918,35 @@ yield d;
                         computed: false,
                         key: {
                           type: 'Identifier',
-                          name: 'yield'
+                          name: 'yield',
                         },
                         value: {
                           type: 'FunctionExpression',
                           params: [],
                           body: {
                             type: 'BlockStatement',
-                            body: []
+                            body: [],
                           },
                           async: false,
                           generator: true,
-                          id: null
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          id: null,
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gf'
-            }
-          }
-        ]
-      }
+              name: 'gf',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f() { const yield = 10; }',
@@ -12969,27 +12969,27 @@ yield d;
                       type: 'VariableDeclarator',
                       init: {
                         type: 'Literal',
-                        value: 10
+                        value: 10,
                       },
                       id: {
                         type: 'Identifier',
-                        name: 'yield'
-                      }
-                    }
-                  ]
-                }
-              ]
+                        name: 'yield',
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f() { var o = { yield: 10 } }',
@@ -13017,38 +13017,38 @@ yield d;
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'yield'
+                              name: 'yield',
                             },
                             value: {
                               type: 'Literal',
-                              value: 10
+                              value: 10,
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: false
-                          }
-                        ]
+                            shorthand: false,
+                          },
+                        ],
                       },
                       id: {
                         type: 'Identifier',
-                        name: 'o'
-                      }
-                    }
-                  ]
-                }
-              ]
+                        name: 'o',
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function f() { class C { *yield() { } } }',
@@ -13067,7 +13067,7 @@ yield d;
                   type: 'ClassDeclaration',
                   id: {
                     type: 'Identifier',
-                    name: 'C'
+                    name: 'C',
                   },
                   superClass: null,
                   body: {
@@ -13080,35 +13080,35 @@ yield d;
                         computed: false,
                         key: {
                           type: 'Identifier',
-                          name: 'yield'
+                          name: 'yield',
                         },
                         value: {
                           type: 'FunctionExpression',
                           params: [],
                           body: {
                             type: 'BlockStatement',
-                            body: []
+                            body: [],
                           },
                           async: false,
                           generator: true,
-                          id: null
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          id: null,
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     // ['function* gf() {for(var a = yield in {});}', Context.None, {}],
     [
@@ -13137,45 +13137,45 @@ yield d;
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'yield'
+                              name: 'yield',
                             },
                             value: {
                               type: 'FunctionExpression',
                               params: [],
                               body: {
                                 type: 'BlockStatement',
-                                body: []
+                                body: [],
                               },
                               async: false,
                               generator: true,
-                              id: null
+                              id: null,
                             },
                             kind: 'init',
                             computed: false,
                             method: true,
-                            shorthand: false
-                          }
-                        ]
+                            shorthand: false,
+                          },
+                        ],
                       },
                       id: {
                         type: 'Identifier',
-                        name: 'o'
-                      }
-                    }
-                  ]
-                }
-              ]
+                        name: 'o',
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'gf'
-            }
-          }
-        ]
-      }
+              name: 'gf',
+            },
+          },
+        ],
+      },
     ],
     [
       `function* testGenerator(arg1) {
@@ -13211,7 +13211,7 @@ yield d;
               start: 10,
               end: 23,
               range: [10, 23],
-              name: 'testGenerator'
+              name: 'testGenerator',
             },
             generator: true,
             async: false,
@@ -13221,8 +13221,8 @@ yield d;
                 start: 24,
                 end: 28,
                 range: [24, 28],
-                name: 'arg1'
-              }
+                name: 'arg1',
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -13246,7 +13246,7 @@ yield d;
                         start: 44,
                         end: 45,
                         range: [44, 45],
-                        name: 'i'
+                        name: 'i',
                       },
                       init: {
                         type: 'Literal',
@@ -13254,11 +13254,11 @@ yield d;
                         end: 51,
                         range: [48, 51],
                         value: 100,
-                        raw: '100'
-                      }
-                    }
+                        raw: '100',
+                      },
+                    },
                   ],
-                  kind: 'var'
+                  kind: 'var',
                 },
                 {
                   type: 'VariableDeclaration',
@@ -13276,7 +13276,7 @@ yield d;
                         start: 65,
                         end: 66,
                         range: [65, 66],
-                        name: 'j'
+                        name: 'j',
                       },
                       init: {
                         type: 'Literal',
@@ -13284,11 +13284,11 @@ yield d;
                         end: 73,
                         range: [69, 73],
                         value: 1000,
-                        raw: '1000'
-                      }
-                    }
+                        raw: '1000',
+                      },
+                    },
                   ],
-                  kind: 'var'
+                  kind: 'var',
                 },
                 {
                   type: 'VariableDeclaration',
@@ -13306,7 +13306,7 @@ yield d;
                         start: 87,
                         end: 88,
                         range: [87, 88],
-                        name: 'k'
+                        name: 'k',
                       },
                       init: {
                         type: 'Literal',
@@ -13314,11 +13314,11 @@ yield d;
                         end: 96,
                         range: [91, 96],
                         value: 10000,
-                        raw: '10000'
-                      }
-                    }
+                        raw: '10000',
+                      },
+                    },
                   ],
-                  kind: 'var'
+                  kind: 'var',
                 },
                 {
                   type: 'ExpressionStatement',
@@ -13350,7 +13350,7 @@ yield d;
                             start: 114,
                             end: 118,
                             range: [114, 118],
-                            name: 'arg1'
+                            name: 'arg1',
                           },
                           value: {
                             type: 'UpdateExpression',
@@ -13364,10 +13364,10 @@ yield d;
                               start: 120,
                               end: 124,
                               range: [120, 124],
-                              name: 'arg1'
-                            }
+                              name: 'arg1',
+                            },
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -13382,7 +13382,7 @@ yield d;
                             start: 128,
                             end: 129,
                             range: [128, 129],
-                            name: 'i'
+                            name: 'i',
                           },
                           value: {
                             type: 'UpdateExpression',
@@ -13396,10 +13396,10 @@ yield d;
                               start: 133,
                               end: 134,
                               range: [133, 134],
-                              name: 'i'
-                            }
+                              name: 'i',
+                            },
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -13414,7 +13414,7 @@ yield d;
                             start: 136,
                             end: 137,
                             range: [136, 137],
-                            name: 'j'
+                            name: 'j',
                           },
                           value: {
                             type: 'UpdateExpression',
@@ -13428,10 +13428,10 @@ yield d;
                               start: 139,
                               end: 140,
                               range: [139, 140],
-                              name: 'j'
-                            }
+                              name: 'j',
+                            },
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -13446,7 +13446,7 @@ yield d;
                             start: 144,
                             end: 145,
                             range: [144, 145],
-                            name: 'k'
+                            name: 'k',
                           },
                           value: {
                             type: 'UpdateExpression',
@@ -13460,10 +13460,10 @@ yield d;
                               start: 147,
                               end: 148,
                               range: [147, 148],
-                              name: 'k'
-                            }
+                              name: 'k',
+                            },
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -13478,7 +13478,7 @@ yield d;
                             start: 152,
                             end: 153,
                             range: [152, 153],
-                            name: 'p'
+                            name: 'p',
                           },
                           value: {
                             type: 'UpdateExpression',
@@ -13492,14 +13492,14 @@ yield d;
                               start: 157,
                               end: 158,
                               range: [157, 158],
-                              name: 'p'
-                            }
+                              name: 'p',
+                            },
                           },
-                          kind: 'init'
-                        }
-                      ]
-                    }
-                  }
+                          kind: 'init',
+                        },
+                      ],
+                    },
+                  },
                 },
                 {
                   type: 'ExpressionStatement',
@@ -13531,7 +13531,7 @@ yield d;
                             start: 178,
                             end: 182,
                             range: [178, 182],
-                            name: 'arg1'
+                            name: 'arg1',
                           },
                           value: {
                             type: 'UpdateExpression',
@@ -13545,10 +13545,10 @@ yield d;
                               start: 184,
                               end: 188,
                               range: [184, 188],
-                              name: 'arg1'
-                            }
+                              name: 'arg1',
+                            },
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -13563,7 +13563,7 @@ yield d;
                             start: 192,
                             end: 193,
                             range: [192, 193],
-                            name: 'i'
+                            name: 'i',
                           },
                           value: {
                             type: 'UpdateExpression',
@@ -13577,10 +13577,10 @@ yield d;
                               start: 197,
                               end: 198,
                               range: [197, 198],
-                              name: 'i'
-                            }
+                              name: 'i',
+                            },
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -13595,7 +13595,7 @@ yield d;
                             start: 200,
                             end: 201,
                             range: [200, 201],
-                            name: 'j'
+                            name: 'j',
                           },
                           value: {
                             type: 'UpdateExpression',
@@ -13609,10 +13609,10 @@ yield d;
                               start: 203,
                               end: 204,
                               range: [203, 204],
-                              name: 'j'
-                            }
+                              name: 'j',
+                            },
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -13627,7 +13627,7 @@ yield d;
                             start: 208,
                             end: 209,
                             range: [208, 209],
-                            name: 'k'
+                            name: 'k',
                           },
                           value: {
                             type: 'UpdateExpression',
@@ -13641,10 +13641,10 @@ yield d;
                               start: 211,
                               end: 212,
                               range: [211, 212],
-                              name: 'k'
-                            }
+                              name: 'k',
+                            },
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -13659,7 +13659,7 @@ yield d;
                             start: 216,
                             end: 217,
                             range: [216, 217],
-                            name: 'p'
+                            name: 'p',
                           },
                           value: {
                             type: 'UpdateExpression',
@@ -13673,14 +13673,14 @@ yield d;
                               start: 221,
                               end: 222,
                               range: [221, 222],
-                              name: 'p'
-                            }
+                              name: 'p',
+                            },
                           },
-                          kind: 'init'
-                        }
-                      ]
-                    }
-                  }
+                          kind: 'init',
+                        },
+                      ],
+                    },
+                  },
                 },
                 {
                   type: 'ExpressionStatement',
@@ -13712,7 +13712,7 @@ yield d;
                             start: 242,
                             end: 246,
                             range: [242, 246],
-                            name: 'arg1'
+                            name: 'arg1',
                           },
                           value: {
                             type: 'UpdateExpression',
@@ -13726,10 +13726,10 @@ yield d;
                               start: 248,
                               end: 252,
                               range: [248, 252],
-                              name: 'arg1'
-                            }
+                              name: 'arg1',
+                            },
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -13744,7 +13744,7 @@ yield d;
                             start: 256,
                             end: 257,
                             range: [256, 257],
-                            name: 'i'
+                            name: 'i',
                           },
                           value: {
                             type: 'UpdateExpression',
@@ -13758,10 +13758,10 @@ yield d;
                               start: 261,
                               end: 262,
                               range: [261, 262],
-                              name: 'i'
-                            }
+                              name: 'i',
+                            },
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -13776,7 +13776,7 @@ yield d;
                             start: 264,
                             end: 265,
                             range: [264, 265],
-                            name: 'j'
+                            name: 'j',
                           },
                           value: {
                             type: 'UpdateExpression',
@@ -13790,10 +13790,10 @@ yield d;
                               start: 267,
                               end: 268,
                               range: [267, 268],
-                              name: 'j'
-                            }
+                              name: 'j',
+                            },
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -13808,7 +13808,7 @@ yield d;
                             start: 272,
                             end: 273,
                             range: [272, 273],
-                            name: 'k'
+                            name: 'k',
                           },
                           value: {
                             type: 'UpdateExpression',
@@ -13822,10 +13822,10 @@ yield d;
                               start: 275,
                               end: 276,
                               range: [275, 276],
-                              name: 'k'
-                            }
+                              name: 'k',
+                            },
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -13840,7 +13840,7 @@ yield d;
                             start: 280,
                             end: 281,
                             range: [280, 281],
-                            name: 'p'
+                            name: 'p',
                           },
                           value: {
                             type: 'UpdateExpression',
@@ -13854,14 +13854,14 @@ yield d;
                               start: 285,
                               end: 286,
                               range: [285, 286],
-                              name: 'p'
-                            }
+                              name: 'p',
+                            },
                           },
-                          kind: 'init'
-                        }
-                      ]
-                    }
-                  }
+                          kind: 'init',
+                        },
+                      ],
+                    },
+                  },
                 },
                 {
                   type: 'ExpressionStatement',
@@ -13893,7 +13893,7 @@ yield d;
                             start: 306,
                             end: 310,
                             range: [306, 310],
-                            name: 'arg1'
+                            name: 'arg1',
                           },
                           value: {
                             type: 'UpdateExpression',
@@ -13907,10 +13907,10 @@ yield d;
                               start: 312,
                               end: 316,
                               range: [312, 316],
-                              name: 'arg1'
-                            }
+                              name: 'arg1',
+                            },
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -13925,7 +13925,7 @@ yield d;
                             start: 320,
                             end: 321,
                             range: [320, 321],
-                            name: 'i'
+                            name: 'i',
                           },
                           value: {
                             type: 'UpdateExpression',
@@ -13939,10 +13939,10 @@ yield d;
                               start: 325,
                               end: 326,
                               range: [325, 326],
-                              name: 'i'
-                            }
+                              name: 'i',
+                            },
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -13957,7 +13957,7 @@ yield d;
                             start: 328,
                             end: 329,
                             range: [328, 329],
-                            name: 'j'
+                            name: 'j',
                           },
                           value: {
                             type: 'UpdateExpression',
@@ -13971,10 +13971,10 @@ yield d;
                               start: 331,
                               end: 332,
                               range: [331, 332],
-                              name: 'j'
-                            }
+                              name: 'j',
+                            },
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -13989,7 +13989,7 @@ yield d;
                             start: 336,
                             end: 337,
                             range: [336, 337],
-                            name: 'k'
+                            name: 'k',
                           },
                           value: {
                             type: 'UpdateExpression',
@@ -14003,10 +14003,10 @@ yield d;
                               start: 339,
                               end: 340,
                               range: [339, 340],
-                              name: 'k'
-                            }
+                              name: 'k',
+                            },
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -14021,7 +14021,7 @@ yield d;
                             start: 344,
                             end: 345,
                             range: [344, 345],
-                            name: 'p'
+                            name: 'p',
                           },
                           value: {
                             type: 'UpdateExpression',
@@ -14035,17 +14035,17 @@ yield d;
                               start: 349,
                               end: 350,
                               range: [349, 350],
-                              name: 'p'
-                            }
+                              name: 'p',
+                            },
                           },
-                          kind: 'init'
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
+                          kind: 'init',
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
           },
           {
             type: 'VariableDeclaration',
@@ -14063,7 +14063,7 @@ yield d;
                   start: 369,
                   end: 372,
                   range: [369, 372],
-                  name: 'gen'
+                  name: 'gen',
                 },
                 init: {
                   type: 'CallExpression',
@@ -14075,7 +14075,7 @@ yield d;
                     start: 375,
                     end: 388,
                     range: [375, 388],
-                    name: 'testGenerator'
+                    name: 'testGenerator',
                   },
                   arguments: [
                     {
@@ -14084,13 +14084,13 @@ yield d;
                       end: 391,
                       range: [389, 391],
                       value: 10,
-                      raw: '10'
-                    }
-                  ]
-                }
-              }
+                      raw: '10',
+                    },
+                  ],
+                },
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'FunctionDeclaration',
@@ -14102,7 +14102,7 @@ yield d;
               start: 408,
               end: 416,
               range: [408, 416],
-              name: 'yieldOne'
+              name: 'yieldOne',
             },
             generator: false,
             async: false,
@@ -14129,7 +14129,7 @@ yield d;
                         start: 433,
                         end: 435,
                         range: [433, 435],
-                        name: 'v1'
+                        name: 'v1',
                       },
                       init: {
                         type: 'CallExpression',
@@ -14146,22 +14146,22 @@ yield d;
                             start: 438,
                             end: 441,
                             range: [438, 441],
-                            name: 'gen'
+                            name: 'gen',
                           },
                           property: {
                             type: 'Identifier',
                             start: 442,
                             end: 446,
                             range: [442, 446],
-                            name: 'next'
+                            name: 'next',
                           },
-                          computed: false
+                          computed: false,
                         },
-                        arguments: []
-                      }
-                    }
+                        arguments: [],
+                      },
+                    },
                   ],
-                  kind: 'var'
+                  kind: 'var',
                 },
                 {
                   type: 'VariableDeclaration',
@@ -14179,7 +14179,7 @@ yield d;
                         start: 462,
                         end: 465,
                         range: [462, 465],
-                        name: 'val'
+                        name: 'val',
                       },
                       init: {
                         type: 'CallExpression',
@@ -14196,16 +14196,16 @@ yield d;
                             start: 468,
                             end: 472,
                             range: [468, 472],
-                            name: 'JSON'
+                            name: 'JSON',
                           },
                           property: {
                             type: 'Identifier',
                             start: 473,
                             end: 482,
                             range: [473, 482],
-                            name: 'stringify'
+                            name: 'stringify',
                           },
-                          computed: false
+                          computed: false,
                         },
                         arguments: [
                           {
@@ -14218,23 +14218,23 @@ yield d;
                               start: 483,
                               end: 485,
                               range: [483, 485],
-                              name: 'v1'
+                              name: 'v1',
                             },
                             property: {
                               type: 'Identifier',
                               start: 486,
                               end: 491,
                               range: [486, 491],
-                              name: 'value'
+                              name: 'value',
                             },
-                            computed: false
+                            computed: false,
                           },
                           {
                             type: 'Identifier',
                             start: 493,
                             end: 502,
                             range: [493, 502],
-                            name: 'undefined'
+                            name: 'undefined',
                           },
                           {
                             type: 'Literal',
@@ -14242,20 +14242,20 @@ yield d;
                             end: 506,
                             range: [504, 506],
                             value: '',
-                            raw: "''"
-                          }
-                        ]
-                      }
-                    }
+                            raw: "''",
+                          },
+                        ],
+                      },
+                    },
                   ],
-                  kind: 'var'
-                }
-              ]
-            }
-          }
+                  kind: 'var',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
-    ]
+        sourceType: 'script',
+      },
+    ],
   ]);
 });

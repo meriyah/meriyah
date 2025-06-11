@@ -138,7 +138,7 @@ describe('Expressions - Super', () => {
     'new super[27]',
     'new super[27]()',
     '() => new super.x;',
-    '() => new super.x();'
+    '() => new super.x();',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -211,7 +211,7 @@ describe('Expressions - Super', () => {
     'var f = function() { super(); }',
     '({ f: function*() { super(); } })',
     '(function*() { super(); })',
-    'var f = function*() { super(); }'
+    'var f = function*() { super(); }',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -263,7 +263,7 @@ describe('Expressions - Super', () => {
     'class f extends bar { constructor(){  class x { super(){} }  }}',
     'class f { bar(){  class x { super(){} }  }}',
     'class f { constructor(){  class x { super(){} }  }}',
-    'class a { foo(){   class x { [super.foo](){} }    }}'
+    'class a { foo(){   class x { [super.foo](){} }    }}',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -288,7 +288,7 @@ describe('Expressions - Super', () => {
     'new super(12, 45)',
     'new new super',
     'new new super()',
-    'new new super()()'
+    'new new super()()',
   ]) {
     it(`class C { m() { ${arg}; } }`, () => {
       t.throws(() => {
@@ -372,7 +372,7 @@ describe('Expressions - Super', () => {
     'new super.x()',
     'new super[27]',
     'new super[27]()',
-    'z.super'
+    'z.super',
   ]) {
     it(`class C { m() { ${arg}; } }`, () => {
       t.doesNotThrow(() => {
@@ -611,7 +611,7 @@ describe('Expressions - Super', () => {
     ['class f extends bar { xxx(){ class x { [super() y](){} } }}', Context.None],
     ['super', Context.None],
     ['super[]', Context.None],
-    ['super()', Context.None]
+    ['super()', Context.None],
   ]);
 
   pass('Expressions - Super (pass)', [
@@ -634,7 +634,7 @@ describe('Expressions - Super', () => {
               start: 6,
               end: 7,
               range: [6, 7],
-              name: 'C'
+              name: 'C',
             },
             superClass: null,
             body: {
@@ -656,7 +656,7 @@ describe('Expressions - Super', () => {
                     start: 10,
                     end: 21,
                     range: [10, 21],
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -692,30 +692,30 @@ describe('Expressions - Super', () => {
                                 type: 'Super',
                                 start: 29,
                                 end: 34,
-                                range: [29, 34]
+                                range: [29, 34],
                               },
                               property: {
                                 type: 'Identifier',
                                 start: 35,
                                 end: 36,
                                 range: [35, 36],
-                                name: 'x'
+                                name: 'x',
                               },
-                              computed: false
+                              computed: false,
                             },
-                            arguments: []
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                            arguments: [],
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'class x extends y { }',
@@ -736,26 +736,26 @@ describe('Expressions - Super', () => {
               start: 6,
               end: 7,
               range: [6, 7],
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
               start: 16,
               end: 17,
               range: [16, 17],
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
               start: 18,
               end: 21,
               range: [18, 21],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'class x extends y { f(){} }',
@@ -776,14 +776,14 @@ describe('Expressions - Super', () => {
               start: 6,
               end: 7,
               range: [6, 7],
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
               start: 16,
               end: 17,
               range: [16, 17],
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -804,7 +804,7 @@ describe('Expressions - Super', () => {
                     start: 20,
                     end: 21,
                     range: [20, 21],
-                    name: 'f'
+                    name: 'f',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -820,16 +820,16 @@ describe('Expressions - Super', () => {
                       start: 23,
                       end: 25,
                       range: [23, 25],
-                      body: []
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      body: [],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'class x extends y { constructor() { super(); } }',
@@ -842,11 +842,11 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -858,7 +858,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -871,23 +871,23 @@ describe('Expressions - Super', () => {
                           expression: {
                             type: 'CallExpression',
                             callee: {
-                              type: 'Super'
+                              type: 'Super',
                             },
-                            arguments: []
-                          }
-                        }
-                      ]
+                            arguments: [],
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x { constructor(){ super.foo; }}',
@@ -908,7 +908,7 @@ describe('Expressions - Super', () => {
               start: 6,
               end: 7,
               range: [6, 7],
-              name: 'x'
+              name: 'x',
             },
             superClass: null,
             body: {
@@ -930,7 +930,7 @@ describe('Expressions - Super', () => {
                     start: 10,
                     end: 21,
                     range: [10, 21],
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -961,28 +961,28 @@ describe('Expressions - Super', () => {
                               type: 'Super',
                               start: 25,
                               end: 30,
-                              range: [25, 30]
+                              range: [25, 30],
                             },
                             property: {
                               type: 'Identifier',
                               start: 31,
                               end: 34,
                               range: [31, 34],
-                              name: 'foo'
+                              name: 'foo',
                             },
-                            computed: false
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                            computed: false,
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'class x { foo(){ super.foo; }}',
@@ -995,7 +995,7 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: null,
             body: {
@@ -1008,7 +1008,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1021,28 +1021,28 @@ describe('Expressions - Super', () => {
                           expression: {
                             type: 'MemberExpression',
                             object: {
-                              type: 'Super'
+                              type: 'Super',
                             },
                             computed: false,
                             property: {
                               type: 'Identifier',
-                              name: 'foo'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'foo',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x { foo(x=super.foo){ }}',
@@ -1055,7 +1055,7 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: null,
             body: {
@@ -1068,7 +1068,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1077,36 +1077,36 @@ describe('Expressions - Super', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'MemberExpression',
                           object: {
-                            type: 'Super'
+                            type: 'Super',
                           },
                           computed: false,
                           property: {
                             type: 'Identifier',
-                            name: 'foo'
-                          }
-                        }
-                      }
+                            name: 'foo',
+                          },
+                        },
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'x={ foo(){ super.foo; }}',
@@ -1133,7 +1133,7 @@ describe('Expressions - Super', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -1154,7 +1154,7 @@ describe('Expressions - Super', () => {
                       start: 4,
                       end: 7,
                       range: [4, 7],
-                      name: 'foo'
+                      name: 'foo',
                     },
                     kind: 'init',
                     value: {
@@ -1186,29 +1186,29 @@ describe('Expressions - Super', () => {
                                 type: 'Super',
                                 start: 11,
                                 end: 16,
-                                range: [11, 16]
+                                range: [11, 16],
                               },
                               property: {
                                 type: 'Identifier',
                                 start: 17,
                                 end: 20,
                                 range: [17, 20],
-                                name: 'foo'
+                                name: 'foo',
                               },
-                              computed: false
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                              computed: false,
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x={ foo(a = super.foo){ }}',
@@ -1223,7 +1223,7 @@ describe('Expressions - Super', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -1233,7 +1233,7 @@ describe('Expressions - Super', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -1242,41 +1242,41 @@ describe('Expressions - Super', () => {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           right: {
                             type: 'MemberExpression',
                             object: {
-                              type: 'Super'
+                              type: 'Super',
                             },
                             computed: false,
                             property: {
                               type: 'Identifier',
-                              name: 'foo'
-                            }
-                          }
-                        }
+                              name: 'foo',
+                            },
+                          },
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'class x { constructor(){ super[foo]; }}',
@@ -1297,7 +1297,7 @@ describe('Expressions - Super', () => {
               start: 6,
               end: 7,
               range: [6, 7],
-              name: 'x'
+              name: 'x',
             },
             superClass: null,
             body: {
@@ -1319,7 +1319,7 @@ describe('Expressions - Super', () => {
                     start: 10,
                     end: 21,
                     range: [10, 21],
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1350,28 +1350,28 @@ describe('Expressions - Super', () => {
                               type: 'Super',
                               start: 25,
                               end: 30,
-                              range: [25, 30]
+                              range: [25, 30],
                             },
                             property: {
                               type: 'Identifier',
                               start: 31,
                               end: 34,
                               range: [31, 34],
-                              name: 'foo'
+                              name: 'foo',
                             },
-                            computed: true
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                            computed: true,
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'class x { foo(){ super[foo]; }}',
@@ -1384,7 +1384,7 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: null,
             body: {
@@ -1397,7 +1397,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1410,28 +1410,28 @@ describe('Expressions - Super', () => {
                           expression: {
                             type: 'MemberExpression',
                             object: {
-                              type: 'Super'
+                              type: 'Super',
                             },
                             computed: true,
                             property: {
                               type: 'Identifier',
-                              name: 'foo'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'foo',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x { foo(x=super[foo]){ }}',
@@ -1444,7 +1444,7 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: null,
             body: {
@@ -1457,7 +1457,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1466,35 +1466,35 @@ describe('Expressions - Super', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'MemberExpression',
                           object: {
-                            type: 'Super'
+                            type: 'Super',
                           },
                           computed: true,
                           property: {
                             type: 'Identifier',
-                            name: 'foo'
-                          }
-                        }
-                      }
+                            name: 'foo',
+                          },
+                        },
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'x={ foo(){ super[foo]; }}',
@@ -1509,7 +1509,7 @@ describe('Expressions - Super', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -1519,7 +1519,7 @@ describe('Expressions - Super', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -1532,33 +1532,33 @@ describe('Expressions - Super', () => {
                             expression: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'Super'
+                                type: 'Super',
                               },
                               computed: true,
                               property: {
                                 type: 'Identifier',
-                                name: 'foo'
-                              }
-                            }
-                          }
-                        ]
+                                name: 'foo',
+                              },
+                            },
+                          },
+                        ],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x={ foo(a = super[foo]){ }}',
@@ -1573,7 +1573,7 @@ describe('Expressions - Super', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -1583,7 +1583,7 @@ describe('Expressions - Super', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -1592,41 +1592,41 @@ describe('Expressions - Super', () => {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           right: {
                             type: 'MemberExpression',
                             object: {
-                              type: 'Super'
+                              type: 'Super',
                             },
                             computed: true,
                             property: {
                               type: 'Identifier',
-                              name: 'foo'
-                            }
-                          }
-                        }
+                              name: 'foo',
+                            },
+                          },
+                        },
                       ],
                       body: {
                         type: 'BlockStatement',
-                        body: []
+                        body: [],
                       },
                       async: false,
                       generator: false,
 
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends y { constructor(){ return () => super(); }}',
@@ -1639,11 +1639,11 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -1655,7 +1655,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1671,29 +1671,29 @@ describe('Expressions - Super', () => {
                             body: {
                               type: 'CallExpression',
                               callee: {
-                                type: 'Super'
+                                type: 'Super',
                               },
-                              arguments: []
+                              arguments: [],
                             },
                             params: [],
 
                             async: false,
-                            expression: true
-                          }
-                        }
-                      ]
+                            expression: true,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends y { constructor(){ return (a=super()) => a; }}',
@@ -1706,11 +1706,11 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -1722,7 +1722,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1737,42 +1737,42 @@ describe('Expressions - Super', () => {
                             generator: false,
                             body: {
                               type: 'Identifier',
-                              name: 'a'
+                              name: 'a',
                             },
                             params: [
                               {
                                 type: 'AssignmentPattern',
                                 left: {
                                   type: 'Identifier',
-                                  name: 'a'
+                                  name: 'a',
                                 },
                                 right: {
                                   type: 'CallExpression',
                                   callee: {
-                                    type: 'Super'
+                                    type: 'Super',
                                   },
-                                  arguments: []
-                                }
-                              }
+                                  arguments: [],
+                                },
+                              },
                             ],
 
                             async: false,
-                            expression: true
-                          }
-                        }
-                      ]
+                            expression: true,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends y { constructor(){ return () => () => super(); }}',
@@ -1785,11 +1785,11 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -1801,7 +1801,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1820,32 +1820,32 @@ describe('Expressions - Super', () => {
                               body: {
                                 type: 'CallExpression',
                                 callee: {
-                                  type: 'Super'
+                                  type: 'Super',
                                 },
-                                arguments: []
+                                arguments: [],
                               },
                               params: [],
 
                               async: false,
-                              expression: true
+                              expression: true,
                             },
                             params: [],
                             async: false,
-                            expression: true
-                          }
-                        }
-                      ]
+                            expression: true,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends y { constructor(){ return () => super.foo; }}',
@@ -1858,11 +1858,11 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -1874,7 +1874,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1890,32 +1890,32 @@ describe('Expressions - Super', () => {
                             body: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'Super'
+                                type: 'Super',
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'foo'
-                              }
+                                name: 'foo',
+                              },
                             },
                             params: [],
 
                             async: false,
-                            expression: true
-                          }
-                        }
-                      ]
+                            expression: true,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends y { constructor(){ return () => super[foo]; }}',
@@ -1928,11 +1928,11 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -1944,7 +1944,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -1960,33 +1960,33 @@ describe('Expressions - Super', () => {
                             body: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'Super'
+                                type: 'Super',
                               },
                               computed: true,
                               property: {
                                 type: 'Identifier',
-                                name: 'foo'
-                              }
+                                name: 'foo',
+                              },
                             },
                             params: [],
 
                             async: false,
-                            expression: true
-                          }
-                        }
-                      ]
+                            expression: true,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
 
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x { constructor(){ return () => super.foo; }}',
@@ -1999,7 +1999,7 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: null,
             body: {
@@ -2012,7 +2012,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2028,32 +2028,32 @@ describe('Expressions - Super', () => {
                             body: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'Super'
+                                type: 'Super',
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'foo'
-                              }
+                                name: 'foo',
+                              },
                             },
                             params: [],
 
                             async: false,
-                            expression: true
-                          }
-                        }
-                      ]
+                            expression: true,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends y { constructor(){ return (a=super.foo) => a; }}',
@@ -2066,11 +2066,11 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -2082,7 +2082,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2097,44 +2097,44 @@ describe('Expressions - Super', () => {
                             generator: false,
                             body: {
                               type: 'Identifier',
-                              name: 'a'
+                              name: 'a',
                             },
                             params: [
                               {
                                 type: 'AssignmentPattern',
                                 left: {
                                   type: 'Identifier',
-                                  name: 'a'
+                                  name: 'a',
                                 },
                                 right: {
                                   type: 'MemberExpression',
                                   object: {
-                                    type: 'Super'
+                                    type: 'Super',
                                   },
                                   computed: false,
                                   property: {
                                     type: 'Identifier',
-                                    name: 'foo'
-                                  }
-                                }
-                              }
+                                    name: 'foo',
+                                  },
+                                },
+                              },
                             ],
                             async: false,
-                            expression: true
-                          }
-                        }
-                      ]
+                            expression: true,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends y { constructor(){ return (a=super.foo) => a; }}',
@@ -2155,14 +2155,14 @@ describe('Expressions - Super', () => {
               start: 6,
               end: 7,
               range: [6, 7],
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
               start: 16,
               end: 17,
               range: [16, 17],
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -2183,7 +2183,7 @@ describe('Expressions - Super', () => {
                     start: 20,
                     end: 31,
                     range: [20, 31],
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2224,7 +2224,7 @@ describe('Expressions - Super', () => {
                                   start: 43,
                                   end: 44,
                                   range: [43, 44],
-                                  name: 'a'
+                                  name: 'a',
                                 },
                                 right: {
                                   type: 'MemberExpression',
@@ -2235,38 +2235,38 @@ describe('Expressions - Super', () => {
                                     type: 'Super',
                                     start: 45,
                                     end: 50,
-                                    range: [45, 50]
+                                    range: [45, 50],
                                   },
                                   property: {
                                     type: 'Identifier',
                                     start: 51,
                                     end: 54,
                                     range: [51, 54],
-                                    name: 'foo'
+                                    name: 'foo',
                                   },
-                                  computed: false
-                                }
-                              }
+                                  computed: false,
+                                },
+                              },
                             ],
                             body: {
                               type: 'Identifier',
                               start: 59,
                               end: 60,
                               range: [59, 60],
-                              name: 'a'
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                              name: 'a',
+                            },
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'class x extends y { constructor(){ return () => () => super.foo; }}',
@@ -2287,14 +2287,14 @@ describe('Expressions - Super', () => {
               start: 6,
               end: 7,
               range: [6, 7],
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
               start: 16,
               end: 17,
               range: [16, 17],
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -2315,7 +2315,7 @@ describe('Expressions - Super', () => {
                     start: 20,
                     end: 31,
                     range: [20, 31],
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2364,30 +2364,30 @@ describe('Expressions - Super', () => {
                                   type: 'Super',
                                   start: 54,
                                   end: 59,
-                                  range: [54, 59]
+                                  range: [54, 59],
                                 },
                                 property: {
                                   type: 'Identifier',
                                   start: 60,
                                   end: 63,
                                   range: [60, 63],
-                                  name: 'foo'
+                                  name: 'foo',
                                 },
-                                computed: false
-                              }
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                                computed: false,
+                              },
+                            },
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'class x { constructor(){ return () => () => super.foo; }}',
@@ -2400,7 +2400,7 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: null,
             body: {
@@ -2413,7 +2413,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2432,36 +2432,36 @@ describe('Expressions - Super', () => {
                               body: {
                                 type: 'MemberExpression',
                                 object: {
-                                  type: 'Super'
+                                  type: 'Super',
                                 },
                                 computed: false,
                                 property: {
                                   type: 'Identifier',
-                                  name: 'foo'
-                                }
+                                  name: 'foo',
+                                },
                               },
                               params: [],
 
                               async: false,
-                              expression: true
+                              expression: true,
                             },
                             params: [],
                             async: false,
-                            expression: true
-                          }
-                        }
-                      ]
+                            expression: true,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x { fo(){ return () => super.foo; }}',
@@ -2474,7 +2474,7 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: null,
             body: {
@@ -2487,7 +2487,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'fo'
+                    name: 'fo',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2503,32 +2503,32 @@ describe('Expressions - Super', () => {
                             body: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'Super'
+                                type: 'Super',
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'foo'
-                              }
+                                name: 'foo',
+                              },
                             },
                             params: [],
 
                             async: false,
-                            expression: true
-                          }
-                        }
-                      ]
+                            expression: true,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends y { dsda(){ return (a=super.foo) => a; }}',
@@ -2541,11 +2541,11 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -2557,7 +2557,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'dsda'
+                    name: 'dsda',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2572,44 +2572,44 @@ describe('Expressions - Super', () => {
                             generator: false,
                             body: {
                               type: 'Identifier',
-                              name: 'a'
+                              name: 'a',
                             },
                             params: [
                               {
                                 type: 'AssignmentPattern',
                                 left: {
                                   type: 'Identifier',
-                                  name: 'a'
+                                  name: 'a',
                                 },
                                 right: {
                                   type: 'MemberExpression',
                                   object: {
-                                    type: 'Super'
+                                    type: 'Super',
                                   },
                                   computed: false,
                                   property: {
                                     type: 'Identifier',
-                                    name: 'foo'
-                                  }
-                                }
-                              }
+                                    name: 'foo',
+                                  },
+                                },
+                              },
                             ],
                             async: false,
-                            expression: true
-                          }
-                        }
-                      ]
+                            expression: true,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x { dsda(){ return (a=super.foo) => a; }}',
@@ -2622,7 +2622,7 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: null,
             body: {
@@ -2635,7 +2635,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'dsda'
+                    name: 'dsda',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2650,44 +2650,44 @@ describe('Expressions - Super', () => {
                             generator: false,
                             body: {
                               type: 'Identifier',
-                              name: 'a'
+                              name: 'a',
                             },
                             params: [
                               {
                                 type: 'AssignmentPattern',
                                 left: {
                                   type: 'Identifier',
-                                  name: 'a'
+                                  name: 'a',
                                 },
                                 right: {
                                   type: 'MemberExpression',
                                   object: {
-                                    type: 'Super'
+                                    type: 'Super',
                                   },
                                   computed: false,
                                   property: {
                                     type: 'Identifier',
-                                    name: 'foo'
-                                  }
-                                }
-                              }
+                                    name: 'foo',
+                                  },
+                                },
+                              },
                             ],
                             async: false,
-                            expression: true
-                          }
-                        }
-                      ]
+                            expression: true,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends y { foo(){ return () => () => super.foo; }}',
@@ -2700,11 +2700,11 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -2716,7 +2716,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2735,36 +2735,36 @@ describe('Expressions - Super', () => {
                               body: {
                                 type: 'MemberExpression',
                                 object: {
-                                  type: 'Super'
+                                  type: 'Super',
                                 },
                                 computed: false,
                                 property: {
                                   type: 'Identifier',
-                                  name: 'foo'
-                                }
+                                  name: 'foo',
+                                },
                               },
                               params: [],
 
                               async: false,
-                              expression: true
+                              expression: true,
                             },
                             params: [],
                             async: false,
-                            expression: true
-                          }
-                        }
-                      ]
+                            expression: true,
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'x={ fo(){ return () => super.foo; }}',
@@ -2779,7 +2779,7 @@ describe('Expressions - Super', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2789,7 +2789,7 @@ describe('Expressions - Super', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'fo'
+                      name: 'fo',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -2805,37 +2805,37 @@ describe('Expressions - Super', () => {
                               body: {
                                 type: 'MemberExpression',
                                 object: {
-                                  type: 'Super'
+                                  type: 'Super',
                                 },
                                 computed: false,
                                 property: {
                                   type: 'Identifier',
-                                  name: 'foo'
-                                }
+                                  name: 'foo',
+                                },
                               },
                               params: [],
 
                               async: false,
-                              expression: true
-                            }
-                          }
-                        ]
+                              expression: true,
+                            },
+                          },
+                        ],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x={ dsda(){ return (a=super.foo) => a; }}',
@@ -2850,7 +2850,7 @@ describe('Expressions - Super', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2860,7 +2860,7 @@ describe('Expressions - Super', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'dsda'
+                      name: 'dsda',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -2875,49 +2875,49 @@ describe('Expressions - Super', () => {
                               generator: false,
                               body: {
                                 type: 'Identifier',
-                                name: 'a'
+                                name: 'a',
                               },
                               params: [
                                 {
                                   type: 'AssignmentPattern',
                                   left: {
                                     type: 'Identifier',
-                                    name: 'a'
+                                    name: 'a',
                                   },
                                   right: {
                                     type: 'MemberExpression',
                                     object: {
-                                      type: 'Super'
+                                      type: 'Super',
                                     },
                                     computed: false,
                                     property: {
                                       type: 'Identifier',
-                                      name: 'foo'
-                                    }
-                                  }
-                                }
+                                      name: 'foo',
+                                    },
+                                  },
+                                },
                               ],
                               async: false,
-                              expression: true
-                            }
-                          }
-                        ]
+                              expression: true,
+                            },
+                          },
+                        ],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x={ foo(){ return () => () => super.foo; }}',
@@ -2932,7 +2932,7 @@ describe('Expressions - Super', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
@@ -2942,7 +2942,7 @@ describe('Expressions - Super', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'FunctionExpression',
@@ -2961,40 +2961,40 @@ describe('Expressions - Super', () => {
                                 body: {
                                   type: 'MemberExpression',
                                   object: {
-                                    type: 'Super'
+                                    type: 'Super',
                                   },
                                   computed: false,
                                   property: {
                                     type: 'Identifier',
-                                    name: 'foo'
-                                  }
+                                    name: 'foo',
+                                  },
                                 },
                                 params: [],
                                 async: false,
-                                expression: true
+                                expression: true,
                               },
                               params: [],
                               async: false,
-                              expression: true
-                            }
-                          }
-                        ]
+                              expression: true,
+                            },
+                          },
+                        ],
                       },
                       async: false,
                       generator: false,
-                      id: null
+                      id: null,
                     },
                     kind: 'init',
                     computed: false,
                     method: true,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends y { constructor() { } }',
@@ -3007,11 +3007,11 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -3023,25 +3023,25 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends y { constructor() { log(this); super(); } }',
@@ -3062,14 +3062,14 @@ describe('Expressions - Super', () => {
               start: 6,
               end: 7,
               range: [6, 7],
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
               start: 16,
               end: 17,
               range: [16, 17],
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -3090,7 +3090,7 @@ describe('Expressions - Super', () => {
                     start: 20,
                     end: 31,
                     range: [20, 31],
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -3122,17 +3122,17 @@ describe('Expressions - Super', () => {
                               start: 36,
                               end: 39,
                               range: [36, 39],
-                              name: 'log'
+                              name: 'log',
                             },
                             arguments: [
                               {
                                 type: 'ThisExpression',
                                 start: 40,
                                 end: 44,
-                                range: [40, 44]
-                              }
-                            ]
-                          }
+                                range: [40, 44],
+                              },
+                            ],
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
@@ -3148,21 +3148,21 @@ describe('Expressions - Super', () => {
                               type: 'Super',
                               start: 47,
                               end: 52,
-                              range: [47, 52]
+                              range: [47, 52],
                             },
-                            arguments: []
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                            arguments: [],
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'class x extends y { constructor() { log(super.foo); super(); } }',
@@ -3175,11 +3175,11 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -3191,7 +3191,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -3205,45 +3205,45 @@ describe('Expressions - Super', () => {
                             type: 'CallExpression',
                             callee: {
                               type: 'Identifier',
-                              name: 'log'
+                              name: 'log',
                             },
                             arguments: [
                               {
                                 type: 'MemberExpression',
                                 object: {
-                                  type: 'Super'
+                                  type: 'Super',
                                 },
                                 computed: false,
                                 property: {
                                   type: 'Identifier',
-                                  name: 'foo'
-                                }
-                              }
-                            ]
-                          }
+                                  name: 'foo',
+                                },
+                              },
+                            ],
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
                           expression: {
                             type: 'CallExpression',
                             callee: {
-                              type: 'Super'
+                              type: 'Super',
                             },
-                            arguments: []
-                          }
-                        }
-                      ]
+                            arguments: [],
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends y { constructor(x = super()) { } }',
@@ -3256,11 +3256,11 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -3272,7 +3272,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -3281,31 +3281,31 @@ describe('Expressions - Super', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'CallExpression',
                           callee: {
-                            type: 'Super'
+                            type: 'Super',
                           },
-                          arguments: []
-                        }
-                      }
+                          arguments: [],
+                        },
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends y { constructor(x = this) { super(); } }',
@@ -3318,11 +3318,11 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -3334,7 +3334,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -3343,12 +3343,12 @@ describe('Expressions - Super', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
-                          type: 'ThisExpression'
-                        }
-                      }
+                          type: 'ThisExpression',
+                        },
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
@@ -3358,23 +3358,23 @@ describe('Expressions - Super', () => {
                           expression: {
                             type: 'CallExpression',
                             callee: {
-                              type: 'Super'
+                              type: 'Super',
                             },
-                            arguments: []
-                          }
-                        }
-                      ]
+                            arguments: [],
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends y { constructor(x = super(), y = this) { } }',
@@ -3387,11 +3387,11 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -3403,7 +3403,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -3412,41 +3412,41 @@ describe('Expressions - Super', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'CallExpression',
                           callee: {
-                            type: 'Super'
+                            type: 'Super',
                           },
-                          arguments: []
-                        }
+                          arguments: [],
+                        },
                       },
                       {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
                         right: {
-                          type: 'ThisExpression'
-                        }
-                      }
+                          type: 'ThisExpression',
+                        },
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends y { constructor() { super(); super(); } }',
@@ -3467,14 +3467,14 @@ describe('Expressions - Super', () => {
               start: 6,
               end: 7,
               range: [6, 7],
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
               start: 16,
               end: 17,
               range: [16, 17],
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -3495,7 +3495,7 @@ describe('Expressions - Super', () => {
                     start: 20,
                     end: 31,
                     range: [20, 31],
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -3526,10 +3526,10 @@ describe('Expressions - Super', () => {
                               type: 'Super',
                               start: 36,
                               end: 41,
-                              range: [36, 41]
+                              range: [36, 41],
                             },
-                            arguments: []
-                          }
+                            arguments: [],
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
@@ -3545,21 +3545,21 @@ describe('Expressions - Super', () => {
                               type: 'Super',
                               start: 45,
                               end: 50,
-                              range: [45, 50]
+                              range: [45, 50],
                             },
-                            arguments: []
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                            arguments: [],
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'class x extends y { constructor() { super(this); } }',
@@ -3572,11 +3572,11 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -3588,7 +3588,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -3601,27 +3601,27 @@ describe('Expressions - Super', () => {
                           expression: {
                             type: 'CallExpression',
                             callee: {
-                              type: 'Super'
+                              type: 'Super',
                             },
                             arguments: [
                               {
-                                type: 'ThisExpression'
-                              }
-                            ]
-                          }
-                        }
-                      ]
+                                type: 'ThisExpression',
+                              },
+                            ],
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends y { constructor() { let xx = x + x; super(); } }',
@@ -3634,11 +3634,11 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -3650,7 +3650,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -3668,43 +3668,43 @@ describe('Expressions - Super', () => {
                                 type: 'BinaryExpression',
                                 left: {
                                   type: 'Identifier',
-                                  name: 'x'
+                                  name: 'x',
                                 },
                                 right: {
                                   type: 'Identifier',
-                                  name: 'x'
+                                  name: 'x',
                                 },
-                                operator: '+'
+                                operator: '+',
                               },
                               id: {
                                 type: 'Identifier',
-                                name: 'xx'
-                              }
-                            }
-                          ]
+                                name: 'xx',
+                              },
+                            },
+                          ],
                         },
                         {
                           type: 'ExpressionStatement',
                           expression: {
                             type: 'CallExpression',
                             callee: {
-                              type: 'Super'
+                              type: 'Super',
                             },
-                            arguments: []
-                          }
-                        }
-                      ]
+                            arguments: [],
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends y { constructor() { f(x); super(); } }',
@@ -3717,11 +3717,11 @@ describe('Expressions - Super', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -3733,7 +3733,7 @@ describe('Expressions - Super', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -3747,38 +3747,38 @@ describe('Expressions - Super', () => {
                             type: 'CallExpression',
                             callee: {
                               type: 'Identifier',
-                              name: 'f'
+                              name: 'f',
                             },
                             arguments: [
                               {
                                 type: 'Identifier',
-                                name: 'x'
-                              }
-                            ]
-                          }
+                                name: 'x',
+                              },
+                            ],
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
                           expression: {
                             type: 'CallExpression',
                             callee: {
-                              type: 'Super'
+                              type: 'Super',
                             },
-                            arguments: []
-                          }
-                        }
-                      ]
+                            arguments: [],
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends y { a = () => super.a(); }',
@@ -3797,7 +3797,7 @@ describe('Expressions - Super', () => {
                     name: 'a',
                     range: [20, 21],
                     start: 20,
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   range: [20, 40],
                   start: 20,
@@ -3814,23 +3814,23 @@ describe('Expressions - Super', () => {
                           end: 35,
                           range: [30, 35],
                           start: 30,
-                          type: 'Super'
+                          type: 'Super',
                         },
                         property: {
                           end: 37,
                           name: 'a',
                           range: [36, 37],
                           start: 36,
-                          type: 'Identifier'
+                          type: 'Identifier',
                         },
                         range: [30, 37],
                         start: 30,
-                        type: 'MemberExpression'
+                        type: 'MemberExpression',
                       },
                       end: 39,
                       range: [30, 39],
                       start: 30,
-                      type: 'CallExpression'
+                      type: 'CallExpression',
                     },
                     end: 39,
                     expression: true,
@@ -3838,14 +3838,14 @@ describe('Expressions - Super', () => {
                     range: [24, 39],
                     start: 24,
                     type: 'ArrowFunctionExpression',
-                    generator: false
-                  }
-                }
+                    generator: false,
+                  },
+                },
               ],
               end: 42,
               range: [18, 42],
               start: 18,
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
             decorators: [],
             end: 42,
@@ -3854,7 +3854,7 @@ describe('Expressions - Super', () => {
               name: 'x',
               range: [6, 7],
               start: 6,
-              type: 'Identifier'
+              type: 'Identifier',
             },
             range: [0, 42],
             start: 0,
@@ -3863,17 +3863,17 @@ describe('Expressions - Super', () => {
               name: 'y',
               range: [16, 17],
               start: 16,
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         end: 42,
         range: [0, 42],
         sourceType: 'script',
         start: 0,
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'class x extends y { a = () => { super.a(); }}',
@@ -3892,7 +3892,7 @@ describe('Expressions - Super', () => {
                     name: 'a',
                     range: [20, 21],
                     start: 20,
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   range: [20, 44],
                   start: 20,
@@ -3913,33 +3913,33 @@ describe('Expressions - Super', () => {
                                 end: 37,
                                 range: [32, 37],
                                 start: 32,
-                                type: 'Super'
+                                type: 'Super',
                               },
                               property: {
                                 end: 39,
                                 name: 'a',
                                 range: [38, 39],
                                 start: 38,
-                                type: 'Identifier'
+                                type: 'Identifier',
                               },
                               range: [32, 39],
                               start: 32,
-                              type: 'MemberExpression'
+                              type: 'MemberExpression',
                             },
                             end: 41,
                             range: [32, 41],
                             start: 32,
-                            type: 'CallExpression'
+                            type: 'CallExpression',
                           },
                           range: [32, 42],
                           start: 32,
-                          type: 'ExpressionStatement'
-                        }
+                          type: 'ExpressionStatement',
+                        },
                       ],
                       end: 44,
                       range: [30, 44],
                       start: 30,
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     end: 44,
                     expression: false,
@@ -3947,14 +3947,14 @@ describe('Expressions - Super', () => {
                     range: [24, 44],
                     start: 24,
                     type: 'ArrowFunctionExpression',
-                    generator: false
-                  }
-                }
+                    generator: false,
+                  },
+                },
               ],
               end: 45,
               range: [18, 45],
               start: 18,
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
             decorators: [],
             end: 45,
@@ -3963,7 +3963,7 @@ describe('Expressions - Super', () => {
               name: 'x',
               range: [6, 7],
               start: 6,
-              type: 'Identifier'
+              type: 'Identifier',
             },
             range: [0, 45],
             start: 0,
@@ -3972,17 +3972,17 @@ describe('Expressions - Super', () => {
               name: 'y',
               range: [16, 17],
               start: 16,
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         end: 45,
         range: [0, 45],
         sourceType: 'script',
         start: 0,
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'class x extends y { a = async () => await super.a(); }',
@@ -4001,7 +4001,7 @@ describe('Expressions - Super', () => {
                     name: 'a',
                     range: [20, 21],
                     start: 20,
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   range: [20, 52],
                   start: 20,
@@ -4019,28 +4019,28 @@ describe('Expressions - Super', () => {
                             end: 47,
                             range: [42, 47],
                             start: 42,
-                            type: 'Super'
+                            type: 'Super',
                           },
                           property: {
                             end: 49,
                             name: 'a',
                             range: [48, 49],
                             start: 48,
-                            type: 'Identifier'
+                            type: 'Identifier',
                           },
                           range: [42, 49],
                           start: 42,
-                          type: 'MemberExpression'
+                          type: 'MemberExpression',
                         },
                         end: 51,
                         range: [42, 51],
                         start: 42,
-                        type: 'CallExpression'
+                        type: 'CallExpression',
                       },
                       end: 51,
                       range: [36, 51],
                       start: 36,
-                      type: 'AwaitExpression'
+                      type: 'AwaitExpression',
                     },
                     end: 51,
                     expression: true,
@@ -4048,14 +4048,14 @@ describe('Expressions - Super', () => {
                     range: [24, 51],
                     start: 24,
                     type: 'ArrowFunctionExpression',
-                    generator: false
-                  }
-                }
+                    generator: false,
+                  },
+                },
               ],
               end: 54,
               range: [18, 54],
               start: 18,
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
             decorators: [],
             end: 54,
@@ -4064,7 +4064,7 @@ describe('Expressions - Super', () => {
               name: 'x',
               range: [6, 7],
               start: 6,
-              type: 'Identifier'
+              type: 'Identifier',
             },
             range: [0, 54],
             start: 0,
@@ -4073,17 +4073,17 @@ describe('Expressions - Super', () => {
               name: 'y',
               range: [16, 17],
               start: 16,
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         end: 54,
         range: [0, 54],
         sourceType: 'script',
         start: 0,
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'class x extends y { a = async () => { await super.a(); }}',
@@ -4102,7 +4102,7 @@ describe('Expressions - Super', () => {
                     name: 'a',
                     range: [20, 21],
                     start: 20,
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   range: [20, 56],
                   start: 20,
@@ -4124,38 +4124,38 @@ describe('Expressions - Super', () => {
                                   end: 49,
                                   range: [44, 49],
                                   start: 44,
-                                  type: 'Super'
+                                  type: 'Super',
                                 },
                                 property: {
                                   end: 51,
                                   name: 'a',
                                   range: [50, 51],
                                   start: 50,
-                                  type: 'Identifier'
+                                  type: 'Identifier',
                                 },
                                 range: [44, 51],
                                 start: 44,
-                                type: 'MemberExpression'
+                                type: 'MemberExpression',
                               },
                               end: 53,
                               range: [44, 53],
                               start: 44,
-                              type: 'CallExpression'
+                              type: 'CallExpression',
                             },
                             end: 53,
                             range: [38, 53],
                             start: 38,
-                            type: 'AwaitExpression'
+                            type: 'AwaitExpression',
                           },
                           range: [38, 54],
                           start: 38,
-                          type: 'ExpressionStatement'
-                        }
+                          type: 'ExpressionStatement',
+                        },
                       ],
                       end: 56,
                       range: [36, 56],
                       start: 36,
-                      type: 'BlockStatement'
+                      type: 'BlockStatement',
                     },
                     end: 56,
                     expression: false,
@@ -4163,14 +4163,14 @@ describe('Expressions - Super', () => {
                     range: [24, 56],
                     start: 24,
                     type: 'ArrowFunctionExpression',
-                    generator: false
-                  }
-                }
+                    generator: false,
+                  },
+                },
               ],
               end: 57,
               range: [18, 57],
               start: 18,
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
             decorators: [],
             end: 57,
@@ -4179,7 +4179,7 @@ describe('Expressions - Super', () => {
               name: 'x',
               range: [6, 7],
               start: 6,
-              type: 'Identifier'
+              type: 'Identifier',
             },
             range: [0, 57],
             start: 0,
@@ -4188,17 +4188,17 @@ describe('Expressions - Super', () => {
               name: 'y',
               range: [16, 17],
               start: 16,
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         end: 57,
         range: [0, 57],
         sourceType: 'script',
         start: 0,
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'class x extends y { static properties = { ...super.constructor.properties }; }',
@@ -4217,7 +4217,7 @@ describe('Expressions - Super', () => {
                     name: 'properties',
                     range: [27, 37],
                     start: 27,
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   range: [27, 76],
                   start: 27,
@@ -4237,46 +4237,46 @@ describe('Expressions - Super', () => {
                               end: 50,
                               range: [45, 50],
                               start: 45,
-                              type: 'Super'
+                              type: 'Super',
                             },
                             property: {
                               end: 62,
                               name: 'constructor',
                               range: [51, 62],
                               start: 51,
-                              type: 'Identifier'
+                              type: 'Identifier',
                             },
                             range: [45, 62],
                             start: 45,
-                            type: 'MemberExpression'
+                            type: 'MemberExpression',
                           },
                           property: {
                             end: 73,
                             name: 'properties',
                             range: [63, 73],
                             start: 63,
-                            type: 'Identifier'
+                            type: 'Identifier',
                           },
                           range: [45, 73],
                           start: 45,
-                          type: 'MemberExpression'
+                          type: 'MemberExpression',
                         },
                         end: 73,
                         range: [42, 73],
                         start: 42,
-                        type: 'SpreadElement'
-                      }
+                        type: 'SpreadElement',
+                      },
                     ],
                     range: [40, 75],
                     start: 40,
-                    type: 'ObjectExpression'
-                  }
-                }
+                    type: 'ObjectExpression',
+                  },
+                },
               ],
               end: 78,
               range: [18, 78],
               start: 18,
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
             decorators: [],
             end: 78,
@@ -4285,7 +4285,7 @@ describe('Expressions - Super', () => {
               name: 'x',
               range: [6, 7],
               start: 6,
-              type: 'Identifier'
+              type: 'Identifier',
             },
             range: [0, 78],
             start: 0,
@@ -4294,17 +4294,17 @@ describe('Expressions - Super', () => {
               name: 'y',
               range: [16, 17],
               start: 16,
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         end: 78,
         range: [0, 78],
         sourceType: 'script',
         start: 0,
-        type: 'Program'
-      }
-    ]
+        type: 'Program',
+      },
+    ],
   ]);
 });

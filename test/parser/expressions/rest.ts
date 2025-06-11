@@ -42,7 +42,7 @@ describe('Expressions - Rest', () => {
     '({...obj1,a} = foo)',
     '({...obj1,} = foo)',
     'let {...[a,b]} = foo',
-    'let {...{a,b}} = foo'
+    'let {...{a,b}} = foo',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -77,7 +77,7 @@ describe('Expressions - Rest', () => {
     '({a, b, ...{c, e}})',
     '({ x, ...{y , z} })',
     'function f({ x, y, ...z }) {}',
-    '({...(obj)} = foo)'
+    '({...(obj)} = foo)',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -127,7 +127,7 @@ describe('Expressions - Rest', () => {
     'function multiElementWithRest(...[a, b, ...c]) {}',
     'function multiElementWithLeading(x, y, ...[a, b, c]) {}',
     'function af(...a) {}',
-    'function bf(a, ...b) {}'
+    'function bf(a, ...b) {}',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -166,7 +166,7 @@ describe('Expressions - Rest', () => {
     ['(...rest = ...NaN) => {};', Context.None],
     ['[...x,] = [1,2,3];', Context.None],
     ['[...x, y] = [1,2,3];', Context.None],
-    ['function foo(...[a],) {}', Context.None]
+    ['function foo(...[a],) {}', Context.None],
   ]);
 
   pass('Expressions - Rest (pass)', [
@@ -190,22 +190,22 @@ describe('Expressions - Rest', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'method'
+                        name: 'method',
                       },
                       value: {
                         type: 'FunctionExpression',
                         params: [
                           {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           {
                             type: 'Identifier',
-                            name: 'b'
+                            name: 'b',
                           },
                           {
                             type: 'Identifier',
-                            name: 'c'
+                            name: 'c',
                           },
                           {
                             type: 'RestElement',
@@ -214,11 +214,11 @@ describe('Expressions - Rest', () => {
                               elements: [
                                 {
                                   type: 'Identifier',
-                                  name: 'd'
-                                }
-                              ]
-                            }
-                          }
+                                  name: 'd',
+                                },
+                              ],
+                            },
+                          },
                         ],
                         body: {
                           type: 'BlockStatement',
@@ -230,45 +230,45 @@ describe('Expressions - Rest', () => {
                                 elements: [
                                   {
                                     type: 'Identifier',
-                                    name: 'a'
+                                    name: 'a',
                                   },
                                   {
                                     type: 'Identifier',
-                                    name: 'b'
+                                    name: 'b',
                                   },
                                   {
                                     type: 'Identifier',
-                                    name: 'c'
+                                    name: 'c',
                                   },
                                   {
                                     type: 'Identifier',
-                                    name: 'd'
-                                  }
-                                ]
-                              }
-                            }
-                          ]
+                                    name: 'd',
+                                  },
+                                ],
+                              },
+                            },
+                          ],
                         },
                         async: false,
                         generator: false,
-                        id: null
+                        id: null,
                       },
                       kind: 'init',
                       computed: false,
                       method: true,
-                      shorthand: false
-                    }
-                  ]
+                      shorthand: false,
+                    },
+                  ],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'obj'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'obj',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       "function objRest(...{'0': a, '1': b, length}) { return [a, b, length]; }",
@@ -290,49 +290,49 @@ describe('Expressions - Rest', () => {
                       kind: 'init',
                       key: {
                         type: 'Literal',
-                        value: '0'
+                        value: '0',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       kind: 'init',
                       key: {
                         type: 'Literal',
-                        value: '1'
+                        value: '1',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'length'
+                        name: 'length',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'length'
+                        name: 'length',
                       },
                       method: false,
-                      shorthand: true
-                    }
-                  ]
-                }
-              }
+                      shorthand: true,
+                    },
+                  ],
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -344,31 +344,31 @@ describe('Expressions - Rest', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       {
                         type: 'Identifier',
-                        name: 'length'
-                      }
-                    ]
-                  }
-                }
-              ]
+                        name: 'length',
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
 
             generator: false,
             id: {
               type: 'Identifier',
-              name: 'objRest'
-            }
-          }
-        ]
-      }
+              name: 'objRest',
+            },
+          },
+        ],
+      },
     ],
     [
       'function singleRest(...[d]) { return d; }',
@@ -387,11 +387,11 @@ describe('Expressions - Rest', () => {
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'd'
-                    }
-                  ]
-                }
-              }
+                      name: 'd',
+                    },
+                  ],
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -400,21 +400,21 @@ describe('Expressions - Rest', () => {
                   type: 'ReturnStatement',
                   argument: {
                     type: 'Identifier',
-                    name: 'd'
-                  }
-                }
-              ]
+                    name: 'd',
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'singleRest'
-            }
-          }
-        ]
-      }
+              name: 'singleRest',
+            },
+          },
+        ],
+      },
     ],
     [
       'function foo(a, b, c, ...[d]) { arguments; return [a, b, c, d]; }',
@@ -428,15 +428,15 @@ describe('Expressions - Rest', () => {
             params: [
               {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
               {
                 type: 'Identifier',
-                name: 'c'
+                name: 'c',
               },
               {
                 type: 'RestElement',
@@ -445,11 +445,11 @@ describe('Expressions - Rest', () => {
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'd'
-                    }
-                  ]
-                }
-              }
+                      name: 'd',
+                    },
+                  ],
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -458,8 +458,8 @@ describe('Expressions - Rest', () => {
                   type: 'ExpressionStatement',
                   expression: {
                     type: 'Identifier',
-                    name: 'arguments'
-                  }
+                    name: 'arguments',
+                  },
                 },
                 {
                   type: 'ReturnStatement',
@@ -468,35 +468,35 @@ describe('Expressions - Rest', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       {
                         type: 'Identifier',
-                        name: 'c'
+                        name: 'c',
                       },
                       {
                         type: 'Identifier',
-                        name: 'd'
-                      }
-                    ]
-                  }
-                }
-              ]
+                        name: 'd',
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
     [
       'class restClass { method(a, b, c, ...[d]) { arguments; return [a, b, c, d]; } };',
@@ -509,7 +509,7 @@ describe('Expressions - Rest', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'restClass'
+              name: 'restClass',
             },
             superClass: null,
             body: {
@@ -522,22 +522,22 @@ describe('Expressions - Rest', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'method'
+                    name: 'method',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       {
                         type: 'Identifier',
-                        name: 'c'
+                        name: 'c',
                       },
                       {
                         type: 'RestElement',
@@ -546,11 +546,11 @@ describe('Expressions - Rest', () => {
                           elements: [
                             {
                               type: 'Identifier',
-                              name: 'd'
-                            }
-                          ]
-                        }
-                      }
+                              name: 'd',
+                            },
+                          ],
+                        },
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
@@ -559,8 +559,8 @@ describe('Expressions - Rest', () => {
                           type: 'ExpressionStatement',
                           expression: {
                             type: 'Identifier',
-                            name: 'arguments'
-                          }
+                            name: 'arguments',
+                          },
                         },
                         {
                           type: 'ReturnStatement',
@@ -569,38 +569,38 @@ describe('Expressions - Rest', () => {
                             elements: [
                               {
                                 type: 'Identifier',
-                                name: 'a'
+                                name: 'a',
                               },
                               {
                                 type: 'Identifier',
-                                name: 'b'
+                                name: 'b',
                               },
                               {
                                 type: 'Identifier',
-                                name: 'c'
+                                name: 'c',
                               },
                               {
                                 type: 'Identifier',
-                                name: 'd'
-                              }
-                            ]
-                          }
-                        }
-                      ]
+                                name: 'd',
+                              },
+                            ],
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
+                    id: null,
+                  },
+                },
+              ],
+            },
           },
           {
-            type: 'EmptyStatement'
-          }
-        ]
-      }
+            type: 'EmptyStatement',
+          },
+        ],
+      },
     ],
     [
       'function fooInline(a, b, c, ...rest) { arguments; this; return [a, b, c, ...rest]; }',
@@ -614,23 +614,23 @@ describe('Expressions - Rest', () => {
             params: [
               {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
               {
                 type: 'Identifier',
-                name: 'c'
+                name: 'c',
               },
               {
                 type: 'RestElement',
                 argument: {
                   type: 'Identifier',
-                  name: 'rest'
-                }
-              }
+                  name: 'rest',
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -639,14 +639,14 @@ describe('Expressions - Rest', () => {
                   type: 'ExpressionStatement',
                   expression: {
                     type: 'Identifier',
-                    name: 'arguments'
-                  }
+                    name: 'arguments',
+                  },
                 },
                 {
                   type: 'ExpressionStatement',
                   expression: {
-                    type: 'ThisExpression'
-                  }
+                    type: 'ThisExpression',
+                  },
                 },
                 {
                   type: 'ReturnStatement',
@@ -655,38 +655,38 @@ describe('Expressions - Rest', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       {
                         type: 'Identifier',
-                        name: 'c'
+                        name: 'c',
                       },
                       {
                         type: 'SpreadElement',
                         argument: {
                           type: 'Identifier',
-                          name: 'rest'
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          name: 'rest',
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'fooInline'
-            }
-          }
-        ]
-      }
+              name: 'fooInline',
+            },
+          },
+        ],
+      },
     ],
     [
       'var func5 = function (...[argArr13]) { function foo() { eval(); } };',
@@ -711,11 +711,11 @@ describe('Expressions - Rest', () => {
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'argArr13'
-                          }
-                        ]
-                      }
-                    }
+                            name: 'argArr13',
+                          },
+                        ],
+                      },
+                    },
                   ],
                   body: {
                     type: 'BlockStatement',
@@ -732,37 +732,37 @@ describe('Expressions - Rest', () => {
                                 type: 'CallExpression',
                                 callee: {
                                   type: 'Identifier',
-                                  name: 'eval'
+                                  name: 'eval',
                                 },
-                                arguments: []
-                              }
-                            }
-                          ]
+                                arguments: [],
+                              },
+                            },
+                          ],
                         },
                         async: false,
                         generator: false,
 
                         id: {
                           type: 'Identifier',
-                          name: 'foo'
-                        }
-                      }
-                    ]
+                          name: 'foo',
+                        },
+                      },
+                    ],
                   },
                   async: false,
                   generator: false,
 
-                  id: null
+                  id: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'func5'
-                }
-              }
-            ]
-          }
-        ]
-      }
-    ]
+                  name: 'func5',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    ],
   ]);
 });

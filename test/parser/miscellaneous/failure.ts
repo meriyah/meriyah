@@ -2116,7 +2116,7 @@ describe('Miscellaneous - Failure', () => {
     'async function a(){ async (foo = +await bar) => {}     }',
     'async function a(){ (foo = [{m: 5 + t(+await bar)}]) => {}     }',
     'async function a(){ async (foo = [{m: 5 + t(+await bar)}]) => {}     }',
-    '++(x) => b'
+    '++(x) => b',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -2149,7 +2149,7 @@ describe('Miscellaneous - Failure', () => {
     String.raw`let l\u0065t = 1`,
     String.raw`const l\u0065t = 1`,
     String.raw`for (let l\u0065t in {}) {}`,
-    'const package = 1;'
+    'const package = 1;',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {

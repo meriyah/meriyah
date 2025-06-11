@@ -101,7 +101,7 @@ describe('Lexer - Identifiers', () => {
       Context.None,
       Token.InterfaceKeyword | Token.Contextual | Token.IsEscaped,
       String.raw`int\u0065rface`,
-      'interface'
+      'interface',
     ],
     [Context.None, Token.YieldKeyword | Token.IsEscaped, String.raw`yi\u0065ld`, 'yield'],
     [Context.Strict, Token.EscapedReserved, String.raw`\u{64}ebugger`, 'debugger'],
@@ -143,7 +143,7 @@ describe('Lexer - Identifiers', () => {
 
     // UTF-16 surrogate pairs.
     [Context.None, Token.Identifier, '𐌭', '𐌭'],
-    [Context.None, Token.Identifier | Token.IsEscaped, String.raw`\u{1032d}`, '𐌭']
+    [Context.None, Token.Identifier | Token.IsEscaped, String.raw`\u{1032d}`, '𐌭'],
   ];
 
   for (const [ctx, token, op, value] of tokens) {
@@ -156,14 +156,14 @@ describe('Lexer - Identifiers', () => {
           token: found,
           hasNext: state.index < state.source.length,
           value: state.tokenValue,
-          index: state.index
+          index: state.index,
         },
         {
           token: token,
           hasNext: false,
           value,
-          index: op.length
-        }
+          index: op.length,
+        },
       );
     });
 
@@ -176,14 +176,14 @@ describe('Lexer - Identifiers', () => {
           token: found,
           hasNext: state.index < state.source.length,
           value: state.tokenValue,
-          index: state.index
+          index: state.index,
         },
         {
           token: token,
           hasNext: true,
           value,
-          index: op.length
-        }
+          index: op.length,
+        },
       );
     });
   }

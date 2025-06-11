@@ -27,7 +27,7 @@ describe('Declarations - Let', () => {
     String.raw`const l\u0065t = 1`,
     String.raw`let [l\u0065t] = 1`,
     String.raw`const [l\u0065t] = 1`,
-    String.raw`for (let l\u0065t in {}) {}`
+    String.raw`for (let l\u0065t in {}) {}`,
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -89,7 +89,7 @@ describe('Declarations - Let', () => {
     'var [let] = []',
     'let f = /* before */async /* a */ ( /* b */ a /* c */ , /* d */ b /* e */ ) /* f */ => /* g */ { /* h */ ; /* i */ }/* after */;',
     'let g = /* before */async /* a */ ( /* b */ ) /* c */ => /* d */ 0/* after */;',
-    'let h = /* before */async /* a */ a /* b */ => /* c */ 0/* after */;'
+    'let h = /* before */async /* a */ a /* b */ => /* c */ 0/* after */;',
   ]) {
     it(`function f() { ${arg}}`, () => {
       t.doesNotThrow(() => {
@@ -353,7 +353,7 @@ describe('Declarations - Let', () => {
     'let {a, b} = c, d;',
     'let {a, b, c} = {}, e, f;',
     'if (1) let\n{}',
-    'let {a, b} = {}, c = 0;'
+    'let {a, b} = {}, c = 0;',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -468,7 +468,7 @@ describe('Declarations - Let', () => {
     [
       `let
     [let;`,
-      Context.None
+      Context.None,
     ],
     ['for (;false;) let x = 1;', Context.None],
     ['do let x; while (false)', Context.None],
@@ -479,7 +479,7 @@ describe('Declarations - Let', () => {
     [
       `let  // start of a LexicalDeclaration, *not* an ASI opportunity
     [let = "irrelevant initializer";`,
-      Context.None
+      Context.None,
     ],
     // Acorn issue: https://github.com/acornjs/acorn/issues/586
     ['let let', Context.None],
@@ -488,7 +488,7 @@ describe('Declarations - Let', () => {
       `do let
       [x] = 0
       while (false);`,
-      Context.None
+      Context.None,
     ],
     ['let {a: o.a} = obj;', Context.None],
     ['let default', Context.None],
@@ -571,8 +571,8 @@ describe('Declarations - Let', () => {
     [
       `while (false) let
     [a]`,
-      Context.None
-    ]
+      Context.None,
+    ],
   ]);
 
   pass('Declarations - Let (pass)', [
@@ -586,7 +586,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -603,36 +603,36 @@ describe('Declarations - Let', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         computed: true,
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'y'
+                            name: 'y',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'z'
-                          }
+                            name: 'z',
+                          },
                         },
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: false,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
+              name: 'obj',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       '[x = true] = y',
@@ -652,24 +652,24 @@ describe('Declarations - Let', () => {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     right: {
                       type: 'Literal',
-                      value: true
-                    }
-                  }
-                ]
+                      value: true,
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'y'
-              }
-            }
-          }
-        ]
-      }
+                name: 'y',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'let [,] = x;',
@@ -684,19 +684,19 @@ describe('Declarations - Let', () => {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'ArrayPattern',
-                  elements: [null]
+                  elements: [null],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
-            kind: 'let'
-          }
+            kind: 'let',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'let [foo=a] = arr;',
@@ -716,26 +716,26 @@ describe('Declarations - Let', () => {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'a'
-                      }
-                    }
-                  ]
+                        name: 'a',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'arr'
-                }
-              }
+                  name: 'arr',
+                },
+              },
             ],
-            kind: 'let'
-          }
+            kind: 'let',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (let;;);',
@@ -747,17 +747,17 @@ describe('Declarations - Let', () => {
           {
             type: 'ForStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             init: {
               type: 'Identifier',
-              name: 'let'
+              name: 'let',
             },
             test: null,
-            update: null
-          }
-        ]
-      }
+            update: null,
+          },
+        ],
+      },
     ],
 
     [
@@ -776,44 +776,44 @@ describe('Declarations - Let', () => {
                   body: {
                     expression: {
                       name: 'let',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
-                    type: 'ExpressionStatement'
+                    type: 'ExpressionStatement',
                   },
                   label: {
                     name: 'L',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
-                  type: 'LabeledStatement'
+                  type: 'LabeledStatement',
                 },
                 {
                   expression: {
                     left: {
                       name: 'x',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
                     operator: '=',
                     right: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
-                    type: 'AssignmentExpression'
+                    type: 'AssignmentExpression',
                   },
-                  type: 'ExpressionStatement'
-                }
+                  type: 'ExpressionStatement',
+                },
               ],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
             test: {
               type: 'Literal',
-              value: false
+              value: false,
             },
-            type: 'IfStatement'
-          }
+            type: 'IfStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `if (false) {
@@ -831,44 +831,44 @@ describe('Declarations - Let', () => {
                   body: {
                     expression: {
                       name: 'let',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
-                    type: 'ExpressionStatement'
+                    type: 'ExpressionStatement',
                   },
                   label: {
                     name: 'L',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
-                  type: 'LabeledStatement'
+                  type: 'LabeledStatement',
                 },
                 {
                   expression: {
                     left: {
                       name: 'x',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
                     operator: '=',
                     right: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
-                    type: 'AssignmentExpression'
+                    type: 'AssignmentExpression',
                   },
-                  type: 'ExpressionStatement'
-                }
+                  type: 'ExpressionStatement',
+                },
               ],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
             test: {
               type: 'Literal',
-              value: false
+              value: false,
             },
-            type: 'IfStatement'
-          }
+            type: 'IfStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `if (false) {
@@ -886,44 +886,44 @@ describe('Declarations - Let', () => {
                   body: {
                     expression: {
                       name: 'let',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
-                    type: 'ExpressionStatement'
+                    type: 'ExpressionStatement',
                   },
                   label: {
                     name: 'L',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
-                  type: 'LabeledStatement'
+                  type: 'LabeledStatement',
                 },
                 {
                   expression: {
                     left: {
                       name: 'x',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
                     operator: '=',
                     right: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
-                    type: 'AssignmentExpression'
+                    type: 'AssignmentExpression',
                   },
-                  type: 'ExpressionStatement'
-                }
+                  type: 'ExpressionStatement',
+                },
               ],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
             test: {
               type: 'Literal',
-              value: false
+              value: false,
             },
-            type: 'IfStatement'
-          }
+            type: 'IfStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'for (;let;);',
@@ -935,17 +935,17 @@ describe('Declarations - Let', () => {
           {
             type: 'ForStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             init: null,
             test: {
               type: 'Identifier',
-              name: 'let'
+              name: 'let',
             },
-            update: null
-          }
-        ]
-      }
+            update: null,
+          },
+        ],
+      },
     ],
     [
       '_ => { let: foo; }',
@@ -966,30 +966,30 @@ describe('Declarations - Let', () => {
                     type: 'LabeledStatement',
                     label: {
                       type: 'Identifier',
-                      name: 'let'
+                      name: 'let',
                     },
                     body: {
                       type: 'ExpressionStatement',
                       expression: {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
-                    }
-                  }
-                ]
+                        name: 'foo',
+                      },
+                    },
+                  },
+                ],
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: '_'
-                }
+                  name: '_',
+                },
               ],
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'let: let;',
@@ -1002,18 +1002,18 @@ describe('Declarations - Let', () => {
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'let'
+              name: 'let',
             },
             body: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'let'
-              }
-            }
-          }
-        ]
-      }
+                name: 'let',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'for (let {x, y : z} in obj);',
@@ -1025,7 +1025,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1042,43 +1042,43 @@ describe('Declarations - Let', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         method: false,
-                        shorthand: true
+                        shorthand: true,
                       },
                       {
                         type: 'Property',
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'z'
+                          name: 'z',
                         },
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: false,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (let {x : y = z} in obj);',
@@ -1090,7 +1090,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1107,35 +1107,35 @@ describe('Declarations - Let', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         computed: false,
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'y'
+                            name: 'y',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'z'
-                          }
+                            name: 'z',
+                          },
                         },
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: false,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -1145,24 +1145,24 @@ describe('Declarations - Let', () => {
         body: [
           {
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             init: {
               arguments: [],
               callee: {
                 name: 'let',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'CallExpression'
+              type: 'CallExpression',
             },
             test: null,
             type: 'ForStatement',
-            update: null
-          }
+            update: null,
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'for (let {x : y, z, a : b = c} in obj);',
@@ -1208,16 +1208,16 @@ describe('Declarations - Let', () => {
                           start: 10,
                           end: 11,
                           range: [10, 11],
-                          name: 'x'
+                          name: 'x',
                         },
                         value: {
                           type: 'Identifier',
                           start: 14,
                           end: 15,
                           range: [14, 15],
-                          name: 'y'
+                          name: 'y',
                         },
-                        kind: 'init'
+                        kind: 'init',
                       },
                       {
                         type: 'Property',
@@ -1232,7 +1232,7 @@ describe('Declarations - Let', () => {
                           start: 17,
                           end: 18,
                           range: [17, 18],
-                          name: 'z'
+                          name: 'z',
                         },
                         kind: 'init',
                         value: {
@@ -1240,8 +1240,8 @@ describe('Declarations - Let', () => {
                           start: 17,
                           end: 18,
                           range: [17, 18],
-                          name: 'z'
-                        }
+                          name: 'z',
+                        },
                       },
                       {
                         type: 'Property',
@@ -1256,7 +1256,7 @@ describe('Declarations - Let', () => {
                           start: 20,
                           end: 21,
                           range: [20, 21],
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'AssignmentPattern',
@@ -1268,42 +1268,42 @@ describe('Declarations - Let', () => {
                             start: 24,
                             end: 25,
                             range: [24, 25],
-                            name: 'b'
+                            name: 'b',
                           },
                           right: {
                             type: 'Identifier',
                             start: 28,
                             end: 29,
                             range: [28, 29],
-                            name: 'c'
-                          }
+                            name: 'c',
+                          },
                         },
-                        kind: 'init'
-                      }
-                    ]
+                        kind: 'init',
+                      },
+                    ],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'let'
+              kind: 'let',
             },
             right: {
               type: 'Identifier',
               start: 34,
               end: 37,
               range: [34, 37],
-              name: 'obj'
+              name: 'obj',
             },
             body: {
               type: 'EmptyStatement',
               start: 38,
               end: 39,
-              range: [38, 39]
-            }
-          }
+              range: [38, 39],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (let {[x]: y} in obj);',
@@ -1349,41 +1349,41 @@ describe('Declarations - Let', () => {
                           start: 11,
                           end: 12,
                           range: [11, 12],
-                          name: 'x'
+                          name: 'x',
                         },
                         value: {
                           type: 'Identifier',
                           start: 15,
                           end: 16,
                           range: [15, 16],
-                          name: 'y'
+                          name: 'y',
                         },
-                        kind: 'init'
-                      }
-                    ]
+                        kind: 'init',
+                      },
+                    ],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'let'
+              kind: 'let',
             },
             right: {
               type: 'Identifier',
               start: 21,
               end: 24,
               range: [21, 24],
-              name: 'obj'
+              name: 'obj',
             },
             body: {
               type: 'EmptyStatement',
               start: 25,
               end: 26,
-              range: [25, 26]
-            }
-          }
+              range: [25, 26],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (let {[x]: y = z} in obj);',
@@ -1429,7 +1429,7 @@ describe('Declarations - Let', () => {
                           start: 11,
                           end: 12,
                           range: [11, 12],
-                          name: 'x'
+                          name: 'x',
                         },
                         value: {
                           type: 'AssignmentPattern',
@@ -1441,42 +1441,42 @@ describe('Declarations - Let', () => {
                             start: 15,
                             end: 16,
                             range: [15, 16],
-                            name: 'y'
+                            name: 'y',
                           },
                           right: {
                             type: 'Identifier',
                             start: 19,
                             end: 20,
                             range: [19, 20],
-                            name: 'z'
-                          }
+                            name: 'z',
+                          },
                         },
-                        kind: 'init'
-                      }
-                    ]
+                        kind: 'init',
+                      },
+                    ],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'let'
+              kind: 'let',
             },
             right: {
               type: 'Identifier',
               start: 25,
               end: 28,
               range: [25, 28],
-              name: 'obj'
+              name: 'obj',
             },
             body: {
               type: 'EmptyStatement',
               start: 29,
               end: 30,
-              range: [29, 30]
-            }
-          }
+              range: [29, 30],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (let {a, [x]: y} in obj);',
@@ -1488,7 +1488,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1505,43 +1505,43 @@ describe('Declarations - Let', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         method: false,
-                        shorthand: true
+                        shorthand: true,
                       },
                       {
                         type: 'Property',
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         computed: true,
                         value: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: false,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
     [
       'let {...x} = y',
@@ -1558,7 +1558,7 @@ describe('Declarations - Let', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
                 id: {
                   type: 'ObjectPattern',
@@ -1567,16 +1567,16 @@ describe('Declarations - Let', () => {
                       type: 'RestElement',
                       argument: {
                         type: 'Identifier',
-                        name: 'x'
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                        name: 'x',
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'for (let [] of x);',
@@ -1588,7 +1588,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1599,19 +1599,19 @@ describe('Declarations - Let', () => {
                   init: null,
                   id: {
                     type: 'ArrayPattern',
-                    elements: []
-                  }
-                }
-              ]
+                    elements: [],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (let [,] of x);',
@@ -1623,7 +1623,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1634,19 +1634,19 @@ describe('Declarations - Let', () => {
                   init: null,
                   id: {
                     type: 'ArrayPattern',
-                    elements: [null]
-                  }
-                }
-              ]
+                    elements: [null],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (let [foo,] of arr);',
@@ -1658,7 +1658,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1672,21 +1672,21 @@ describe('Declarations - Let', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
-                    ]
-                  }
-                }
-              ]
+                        name: 'foo',
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'arr'
+              name: 'arr',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (let [foo,,] of arr);',
@@ -1698,7 +1698,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1712,22 +1712,22 @@ describe('Declarations - Let', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
-                      null
-                    ]
-                  }
-                }
-              ]
+                      null,
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'arr'
+              name: 'arr',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (let [foo,,bar] of arr);',
@@ -1739,7 +1739,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1753,26 +1753,26 @@ describe('Declarations - Let', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       null,
                       {
                         type: 'Identifier',
-                        name: 'bar'
-                      }
-                    ]
-                  }
-                }
-              ]
+                        name: 'bar',
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'arr'
+              name: 'arr',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (let [foo=a] of arr);',
@@ -1784,7 +1784,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1800,26 +1800,26 @@ describe('Declarations - Let', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'a'
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          name: 'a',
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'arr'
+              name: 'arr',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (let [foo, bar=b] of arr);',
@@ -1831,7 +1831,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1845,32 +1845,32 @@ describe('Declarations - Let', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'bar'
+                          name: 'bar',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'b'
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          name: 'b',
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'arr'
+              name: 'arr',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (let [foo=a, bar=b] of arr);',
@@ -1882,7 +1882,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1898,37 +1898,37 @@ describe('Declarations - Let', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'a'
-                        }
+                          name: 'a',
+                        },
                       },
                       {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'bar'
+                          name: 'bar',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'b'
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          name: 'b',
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'arr'
+              name: 'arr',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (let [...[foo, bar]] of obj);',
@@ -1940,7 +1940,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1959,28 +1959,28 @@ describe('Declarations - Let', () => {
                           elements: [
                             {
                               type: 'Identifier',
-                              name: 'foo'
+                              name: 'foo',
                             },
                             {
                               type: 'Identifier',
-                              name: 'bar'
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                              name: 'bar',
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
+              name: 'obj',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (let [a=[...b], ...c] of obj);',
@@ -1992,7 +1992,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -2008,7 +2008,7 @@ describe('Declarations - Let', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         right: {
                           type: 'ArrayExpression',
@@ -2017,32 +2017,32 @@ describe('Declarations - Let', () => {
                               type: 'SpreadElement',
                               argument: {
                                 type: 'Identifier',
-                                name: 'b'
-                              }
-                            }
-                          ]
-                        }
+                                name: 'b',
+                              },
+                            },
+                          ],
+                        },
                       },
                       {
                         type: 'RestElement',
                         argument: {
                           type: 'Identifier',
-                          name: 'c'
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          name: 'c',
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
+              name: 'obj',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'let foo = bar;',
@@ -2057,19 +2057,19 @@ describe('Declarations - Let', () => {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'bar'
-                }
-              }
+                  name: 'bar',
+                },
+              },
             ],
-            kind: 'let'
-          }
+            kind: 'let',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'if (x) let;',
@@ -2082,19 +2082,19 @@ describe('Declarations - Let', () => {
             type: 'IfStatement',
             test: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             consequent: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'let'
-              }
+                name: 'let',
+              },
             },
-            alternate: null
-          }
-        ]
-      }
+            alternate: null,
+          },
+        ],
+      },
     ],
     [
       'for (let [...[foo, bar]] in obj);',
@@ -2106,7 +2106,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -2125,27 +2125,27 @@ describe('Declarations - Let', () => {
                           elements: [
                             {
                               type: 'Identifier',
-                              name: 'foo'
+                              name: 'foo',
                             },
                             {
                               type: 'Identifier',
-                              name: 'bar'
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                              name: 'bar',
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (let [x, ...[foo, bar]] in obj);',
@@ -2157,7 +2157,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -2171,7 +2171,7 @@ describe('Declarations - Let', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       {
                         type: 'RestElement',
@@ -2180,27 +2180,27 @@ describe('Declarations - Let', () => {
                           elements: [
                             {
                               type: 'Identifier',
-                              name: 'foo'
+                              name: 'foo',
                             },
                             {
                               type: 'Identifier',
-                              name: 'bar'
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                              name: 'bar',
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (let [a=[...b], ...c] in obj);',
@@ -2212,7 +2212,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -2228,7 +2228,7 @@ describe('Declarations - Let', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         right: {
                           type: 'ArrayExpression',
@@ -2237,31 +2237,31 @@ describe('Declarations - Let', () => {
                               type: 'SpreadElement',
                               argument: {
                                 type: 'Identifier',
-                                name: 'b'
-                              }
-                            }
-                          ]
-                        }
+                                name: 'b',
+                              },
+                            },
+                          ],
+                        },
                       },
                       {
                         type: 'RestElement',
                         argument: {
                           type: 'Identifier',
-                          name: 'c'
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          name: 'c',
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (let {} in obj);',
@@ -2273,7 +2273,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -2284,18 +2284,18 @@ describe('Declarations - Let', () => {
                   init: null,
                   id: {
                     type: 'ObjectPattern',
-                    properties: []
-                  }
-                }
-              ]
+                    properties: [],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (let {x,} in obj);  ',
@@ -2307,7 +2307,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -2324,28 +2324,28 @@ describe('Declarations - Let', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (let {x = y} in obj);',
@@ -2357,7 +2357,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -2374,35 +2374,35 @@ describe('Declarations - Let', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         computed: false,
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'y'
-                          }
+                            name: 'y',
+                          },
                         },
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (let {x, y = z} in obj);',
@@ -2414,7 +2414,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -2431,50 +2431,50 @@ describe('Declarations - Let', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         method: false,
-                        shorthand: true
+                        shorthand: true,
                       },
                       {
                         type: 'Property',
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
                         computed: false,
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'y'
+                            name: 'y',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'z'
-                          }
+                            name: 'z',
+                          },
                         },
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (let {x = y, z = a} in obj);',
@@ -2486,7 +2486,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -2503,57 +2503,57 @@ describe('Declarations - Let', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         computed: false,
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'y'
-                          }
+                            name: 'y',
+                          },
                         },
                         method: false,
-                        shorthand: true
+                        shorthand: true,
                       },
                       {
                         type: 'Property',
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'z'
+                          name: 'z',
                         },
                         computed: false,
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'z'
+                            name: 'z',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'a'
-                          }
+                            name: 'a',
+                          },
                         },
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (let {x : y} in obj);',
@@ -2565,7 +2565,7 @@ describe('Declarations - Let', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -2582,28 +2582,28 @@ describe('Declarations - Let', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: false,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
     [
       'let [foo=a, bar] = arr;',
@@ -2623,30 +2623,30 @@ describe('Declarations - Let', () => {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     },
                     {
                       type: 'Identifier',
-                      name: 'bar'
-                    }
-                  ]
+                      name: 'bar',
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'arr'
-                }
-              }
+                  name: 'arr',
+                },
+              },
             ],
-            kind: 'let'
-          }
+            kind: 'let',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'let [...foo] = obj;',
@@ -2666,22 +2666,22 @@ describe('Declarations - Let', () => {
                       type: 'RestElement',
                       argument: {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
-                    }
-                  ]
+                        name: 'foo',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'obj'
-                }
-              }
+                  name: 'obj',
+                },
+              },
             ],
-            kind: 'let'
-          }
+            kind: 'let',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'let [foo, ...bar] = obj;',
@@ -2699,28 +2699,28 @@ describe('Declarations - Let', () => {
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     {
                       type: 'RestElement',
                       argument: {
                         type: 'Identifier',
-                        name: 'bar'
-                      }
-                    }
-                  ]
+                        name: 'bar',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'obj'
-                }
-              }
+                  name: 'obj',
+                },
+              },
             ],
-            kind: 'let'
-          }
+            kind: 'let',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'let {x} = a, y = obj;',
@@ -2740,41 +2740,41 @@ describe('Declarations - Let', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       kind: 'init',
                       method: false,
-                      shorthand: true
-                    }
-                  ]
+                      shorthand: true,
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               },
               {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'obj'
-                }
-              }
+                  name: 'obj',
+                },
+              },
             ],
-            kind: 'let'
-          }
+            kind: 'let',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'let foo;',
@@ -2789,16 +2789,16 @@ describe('Declarations - Let', () => {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'let'
-          }
+            kind: 'let',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
 
     [
@@ -2817,14 +2817,14 @@ describe('Declarations - Let', () => {
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               },
               {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
                 id: {
                   type: 'ArrayPattern',
@@ -2833,16 +2833,16 @@ describe('Declarations - Let', () => {
                       type: 'RestElement',
                       argument: {
                         type: 'Identifier',
-                        name: 'x'
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                        name: 'x',
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'let {...x} = y',
@@ -2859,7 +2859,7 @@ describe('Declarations - Let', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
                 id: {
                   type: 'ObjectPattern',
@@ -2868,16 +2868,16 @@ describe('Declarations - Let', () => {
                       type: 'RestElement',
                       argument: {
                         type: 'Identifier',
-                        name: 'x'
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                        name: 'x',
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var let;',
@@ -2895,13 +2895,13 @@ describe('Declarations - Let', () => {
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'let'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'let',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var [let] = x;',
@@ -2918,22 +2918,22 @@ describe('Declarations - Let', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 id: {
                   type: 'ArrayPattern',
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'let'
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      name: 'let',
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var {let} = x;',
@@ -2950,7 +2950,7 @@ describe('Declarations - Let', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 id: {
                   type: 'ObjectPattern',
@@ -2960,23 +2960,23 @@ describe('Declarations - Let', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'let'
+                        name: 'let',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'let'
+                        name: 'let',
                       },
                       method: false,
-                      shorthand: true
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      shorthand: true,
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'let.foo;',
@@ -2991,17 +2991,17 @@ describe('Declarations - Let', () => {
               type: 'MemberExpression',
               object: {
                 type: 'Identifier',
-                name: 'let'
+                name: 'let',
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'let {let: foo} = x;',
@@ -3018,7 +3018,7 @@ describe('Declarations - Let', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 id: {
                   type: 'ObjectPattern',
@@ -3028,23 +3028,23 @@ describe('Declarations - Let', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'let'
+                        name: 'let',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'let {a, let: foo} = x;',
@@ -3061,7 +3061,7 @@ describe('Declarations - Let', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 id: {
                   type: 'ObjectPattern',
@@ -3071,38 +3071,38 @@ describe('Declarations - Let', () => {
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       method: false,
-                      shorthand: true
+                      shorthand: true,
                     },
                     {
                       type: 'Property',
                       kind: 'init',
                       key: {
                         type: 'Identifier',
-                        name: 'let'
+                        name: 'let',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'let();',
@@ -3117,13 +3117,13 @@ describe('Declarations - Let', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'let'
+                name: 'let',
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'let [x, ...[foo, bar]] = obj;',
@@ -3141,7 +3141,7 @@ describe('Declarations - Let', () => {
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     {
                       type: 'RestElement',
@@ -3150,28 +3150,28 @@ describe('Declarations - Let', () => {
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'foo'
+                            name: 'foo',
                           },
                           {
                             type: 'Identifier',
-                            name: 'bar'
-                          }
-                        ]
-                      }
-                    }
-                  ]
+                            name: 'bar',
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'obj'
-                }
-              }
+                  name: 'obj',
+                },
+              },
             ],
-            kind: 'let'
-          }
+            kind: 'let',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'let {} = obj;',
@@ -3186,19 +3186,19 @@ describe('Declarations - Let', () => {
                 type: 'VariableDeclarator',
                 id: {
                   type: 'ObjectPattern',
-                  properties: []
+                  properties: [],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'obj'
-                }
-              }
+                  name: 'obj',
+                },
+              },
             ],
-            kind: 'let'
-          }
+            kind: 'let',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'let {x} = obj;',
@@ -3218,30 +3218,30 @@ describe('Declarations - Let', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       kind: 'init',
                       method: false,
-                      shorthand: true
-                    }
-                  ]
+                      shorthand: true,
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'obj'
-                }
-              }
+                  name: 'obj',
+                },
+              },
             ],
-            kind: 'let'
-          }
+            kind: 'let',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'let {x,} = obj;',
@@ -3261,30 +3261,30 @@ describe('Declarations - Let', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       computed: false,
                       value: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       kind: 'init',
                       method: false,
-                      shorthand: true
-                    }
-                  ]
+                      shorthand: true,
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
-                  name: 'obj'
-                }
-              }
+                  name: 'obj',
+                },
+              },
             ],
-            kind: 'let'
-          }
+            kind: 'let',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'let {x, y} = obj;',
@@ -3325,7 +3325,7 @@ describe('Declarations - Let', () => {
                         start: 5,
                         end: 6,
                         range: [5, 6],
-                        name: 'x'
+                        name: 'x',
                       },
                       kind: 'init',
                       value: {
@@ -3333,8 +3333,8 @@ describe('Declarations - Let', () => {
                         start: 5,
                         end: 6,
                         range: [5, 6],
-                        name: 'x'
-                      }
+                        name: 'x',
+                      },
                     },
                     {
                       type: 'Property',
@@ -3349,7 +3349,7 @@ describe('Declarations - Let', () => {
                         start: 8,
                         end: 9,
                         range: [8, 9],
-                        name: 'y'
+                        name: 'y',
                       },
                       kind: 'init',
                       value: {
@@ -3357,25 +3357,25 @@ describe('Declarations - Let', () => {
                         start: 8,
                         end: 9,
                         range: [8, 9],
-                        name: 'y'
-                      }
-                    }
-                  ]
+                        name: 'y',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 13,
                   end: 16,
                   range: [13, 16],
-                  name: 'obj'
-                }
-              }
+                  name: 'obj',
+                },
+              },
             ],
-            kind: 'let'
-          }
+            kind: 'let',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `a = let;
@@ -3387,28 +3387,28 @@ describe('Declarations - Let', () => {
             expression: {
               left: {
                 name: 'a',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '=',
               right: {
                 name: 'let',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'AssignmentExpression'
+              type: 'AssignmentExpression',
             },
-            type: 'ExpressionStatement'
+            type: 'ExpressionStatement',
           },
           {
             expression: {
               elements: [],
-              type: 'ArrayExpression'
+              type: 'ArrayExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'let {x} = a, {y} = obj;',
@@ -3449,7 +3449,7 @@ describe('Declarations - Let', () => {
                         start: 5,
                         end: 6,
                         range: [5, 6],
-                        name: 'x'
+                        name: 'x',
                       },
                       kind: 'init',
                       value: {
@@ -3457,18 +3457,18 @@ describe('Declarations - Let', () => {
                         start: 5,
                         end: 6,
                         range: [5, 6],
-                        name: 'x'
-                      }
-                    }
-                  ]
+                        name: 'x',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 10,
                   end: 11,
                   range: [10, 11],
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               },
               {
                 type: 'VariableDeclarator',
@@ -3494,7 +3494,7 @@ describe('Declarations - Let', () => {
                         start: 14,
                         end: 15,
                         range: [14, 15],
-                        name: 'y'
+                        name: 'y',
                       },
                       kind: 'init',
                       value: {
@@ -3502,25 +3502,25 @@ describe('Declarations - Let', () => {
                         start: 14,
                         end: 15,
                         range: [14, 15],
-                        name: 'y'
-                      }
-                    }
-                  ]
+                        name: 'y',
+                      },
+                    },
+                  ],
                 },
                 init: {
                   type: 'Identifier',
                   start: 19,
                   end: 22,
                   range: [19, 22],
-                  name: 'obj'
-                }
-              }
+                  name: 'obj',
+                },
+              },
             ],
-            kind: 'let'
-          }
+            kind: 'let',
+          },
         ],
-        sourceType: 'script'
-      }
-    ]
+        sourceType: 'script',
+      },
+    ],
   ]);
 });

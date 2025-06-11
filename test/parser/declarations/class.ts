@@ -7,7 +7,7 @@ describe('Declarations - Class', () => {
   for (const arg of [
     'class C { method() { with ({}) {} } }',
     'class C extends function() { with ({}) {} } {}',
-    'class C { *method() { with ({}) {} } }'
+    'class C { *method() { with ({}) {} } }',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -27,7 +27,7 @@ describe('Declarations - Class', () => {
     'public',
     'static',
     'var',
-    'yield'
+    'yield',
   ]) {
     it(`class ${arg} {};`, () => {
       t.throws(() => {
@@ -51,7 +51,7 @@ describe('Declarations - Class', () => {
     'class name { set x() {) }',
     'class {}',
     'class extends base {}',
-    'class name { *'
+    'class name { *',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -151,7 +151,7 @@ describe('Declarations - Class', () => {
     'method() { const [super.x] = []; }',
     'method() { var [super()] = []; }',
     'method() { let [super()] = []; }',
-    'method() { [super()] = []; }'
+    'method() { [super()] = []; }',
   ]) {
     it(`class ${arg}`, () => {
       t.throws(() => {
@@ -180,7 +180,7 @@ describe('Declarations - Class', () => {
     'static void',
     String.raw`static voi\u0064`,
     'static void() {}',
-    String.raw`static async *\u0076oid() {}`
+    String.raw`static async *\u0076oid() {}`,
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
@@ -229,7 +229,7 @@ describe('Declarations - Class', () => {
     'do',
     'try',
     'catch',
-    'finally'
+    'finally',
   ]) {
     it(`class C { ${arg}() {}}`, () => {
       t.doesNotThrow(() => {
@@ -315,7 +315,7 @@ describe('Declarations - Class', () => {
     'class name extends F {}',
     'class name extends (F, G) {}',
     'class name extends class {} {}',
-    'class name extends class base {} {}'
+    'class name extends class base {} {}',
   ]) {
     it(`{ ${arg} }`, () => {
       t.doesNotThrow(() => {
@@ -357,7 +357,7 @@ describe('Declarations - Class', () => {
     'class foo { async method(a, b,) {} }',
     'class foo { static method(a,) {} }',
     'class foo { static set a(_ = null) {} }',
-    'class foo { static method(a,) {} }'
+    'class foo { static method(a,) {} }',
   ]) {
     it(`{ ${arg} }`, () => {
       t.doesNotThrow(() => {
@@ -587,7 +587,7 @@ describe('Declarations - Class', () => {
     'static set [_ = "str' + 'ing"](param) {}',
     'get "character\tescape"() { return "get string"; }',
     'get "character\tescape"() { return "get string"; }',
-    'get "character\tescape"() { return "get string"; }'
+    'get "character\tescape"() { return "get string"; }',
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {

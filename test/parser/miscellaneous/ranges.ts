@@ -34,45 +34,45 @@ describe('Miscellaneous - ranges', () => {
                           value: 1,
                           start: 81,
                           end: 82,
-                          range: [81, 82]
+                          range: [81, 82],
                         },
                         start: 73,
                         end: 84,
-                        range: [73, 84]
-                      }
+                        range: [73, 84],
+                      },
                     ],
                     start: 16,
                     end: 90,
-                    range: [16, 90]
+                    range: [16, 90],
                   },
                   params: [],
                   async: false,
                   expression: false,
                   start: 10,
                   end: 90,
-                  range: [10, 90]
+                  range: [10, 90],
                 },
                 id: {
                   type: 'Identifier',
                   name: 'fun',
                   start: 4,
                   end: 7,
-                  range: [4, 7]
+                  range: [4, 7],
                 },
                 start: 4,
                 end: 90,
-                range: [4, 90]
-              }
+                range: [4, 90],
+              },
             ],
             start: 0,
             end: 90,
-            range: [0, 90]
-          }
+            range: [0, 90],
+          },
         ],
         start: 0,
         end: 90,
-        range: [0, 90]
-      }
+        range: [0, 90],
+      },
     ],
     [
       'let',
@@ -88,17 +88,17 @@ describe('Miscellaneous - ranges', () => {
               name: 'let',
               start: 0,
               end: 3,
-              range: [0, 3]
+              range: [0, 3],
             },
             start: 0,
             end: 3,
-            range: [0, 3]
-          }
+            range: [0, 3],
+          },
         ],
         start: 0,
         end: 3,
-        range: [0, 3]
-      }
+        range: [0, 3],
+      },
     ],
     [
       'let.bar[foo]',
@@ -118,7 +118,7 @@ describe('Miscellaneous - ranges', () => {
                   name: 'let',
                   start: 0,
                   end: 3,
-                  range: [0, 3]
+                  range: [0, 3],
                 },
                 computed: false,
                 property: {
@@ -126,11 +126,11 @@ describe('Miscellaneous - ranges', () => {
                   name: 'bar',
                   start: 4,
                   end: 7,
-                  range: [4, 7]
+                  range: [4, 7],
                 },
                 start: 0,
                 end: 7,
-                range: [0, 7]
+                range: [0, 7],
               },
               computed: true,
               property: {
@@ -138,21 +138,21 @@ describe('Miscellaneous - ranges', () => {
                 name: 'foo',
                 start: 8,
                 end: 11,
-                range: [8, 11]
+                range: [8, 11],
               },
               start: 0,
               end: 12,
-              range: [0, 12]
+              range: [0, 12],
             },
             start: 0,
             end: 12,
-            range: [0, 12]
-          }
+            range: [0, 12],
+          },
         ],
         start: 0,
         end: 12,
-        range: [0, 12]
-      }
+        range: [0, 12],
+      },
     ],
     [
       '({f({x} = {x: 10}) {}});',
@@ -173,7 +173,7 @@ describe('Miscellaneous - ranges', () => {
                     name: 'f',
                     start: 2,
                     end: 3,
-                    range: [2, 3]
+                    range: [2, 3],
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -191,7 +191,7 @@ describe('Miscellaneous - ranges', () => {
                                 name: 'x',
                                 start: 5,
                                 end: 6,
-                                range: [5, 6]
+                                range: [5, 6],
                               },
                               computed: false,
                               value: {
@@ -199,18 +199,18 @@ describe('Miscellaneous - ranges', () => {
                                 name: 'x',
                                 start: 5,
                                 end: 6,
-                                range: [5, 6]
+                                range: [5, 6],
                               },
                               method: false,
                               shorthand: true,
                               start: 5,
                               end: 6,
-                              range: [5, 6]
-                            }
+                              range: [5, 6],
+                            },
                           ],
                           start: 4,
                           end: 7,
-                          range: [4, 7]
+                          range: [4, 7],
                         },
                         right: {
                           type: 'ObjectExpression',
@@ -222,14 +222,14 @@ describe('Miscellaneous - ranges', () => {
                                 name: 'x',
                                 start: 11,
                                 end: 12,
-                                range: [11, 12]
+                                range: [11, 12],
                               },
                               value: {
                                 type: 'Literal',
                                 value: 10,
                                 start: 14,
                                 end: 16,
-                                range: [14, 16]
+                                range: [14, 16],
                               },
                               kind: 'init',
                               computed: false,
@@ -237,31 +237,31 @@ describe('Miscellaneous - ranges', () => {
                               shorthand: false,
                               start: 11,
                               end: 16,
-                              range: [11, 16]
-                            }
+                              range: [11, 16],
+                            },
                           ],
                           start: 10,
                           end: 17,
-                          range: [10, 17]
+                          range: [10, 17],
                         },
                         start: 4,
                         end: 17,
-                        range: [4, 17]
-                      }
+                        range: [4, 17],
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
                       body: [],
                       start: 19,
                       end: 21,
-                      range: [19, 21]
+                      range: [19, 21],
                     },
                     async: false,
                     generator: false,
                     id: null,
                     start: 3,
                     end: 21,
-                    range: [3, 21]
+                    range: [3, 21],
                   },
                   kind: 'init',
                   computed: false,
@@ -269,22 +269,22 @@ describe('Miscellaneous - ranges', () => {
                   shorthand: false,
                   start: 2,
                   end: 21,
-                  range: [2, 21]
-                }
+                  range: [2, 21],
+                },
               ],
               start: 1,
               end: 22,
-              range: [1, 22]
+              range: [1, 22],
             },
             start: 0,
             end: 24,
-            range: [0, 24]
-          }
+            range: [0, 24],
+          },
         ],
         start: 0,
         end: 24,
-        range: [0, 24]
-      }
+        range: [0, 24],
+      },
     ],
     [
       'var [x, , [, z]] = [1,2,[3,4]];',
@@ -307,14 +307,14 @@ describe('Miscellaneous - ranges', () => {
                       value: 1,
                       start: 20,
                       end: 21,
-                      range: [20, 21]
+                      range: [20, 21],
                     },
                     {
                       type: 'Literal',
                       value: 2,
                       start: 22,
                       end: 23,
-                      range: [22, 23]
+                      range: [22, 23],
                     },
                     {
                       type: 'ArrayExpression',
@@ -324,24 +324,24 @@ describe('Miscellaneous - ranges', () => {
                           value: 3,
                           start: 25,
                           end: 26,
-                          range: [25, 26]
+                          range: [25, 26],
                         },
                         {
                           type: 'Literal',
                           value: 4,
                           start: 27,
                           end: 28,
-                          range: [27, 28]
-                        }
+                          range: [27, 28],
+                        },
                       ],
                       start: 24,
                       end: 29,
-                      range: [24, 29]
-                    }
+                      range: [24, 29],
+                    },
                   ],
                   start: 19,
                   end: 30,
-                  range: [19, 30]
+                  range: [19, 30],
                 },
                 id: {
                   type: 'ArrayPattern',
@@ -351,7 +351,7 @@ describe('Miscellaneous - ranges', () => {
                       name: 'x',
                       start: 5,
                       end: 6,
-                      range: [5, 6]
+                      range: [5, 6],
                     },
                     null,
                     {
@@ -363,32 +363,32 @@ describe('Miscellaneous - ranges', () => {
                           name: 'z',
                           start: 13,
                           end: 14,
-                          range: [13, 14]
-                        }
+                          range: [13, 14],
+                        },
                       ],
                       start: 10,
                       end: 15,
-                      range: [10, 15]
-                    }
+                      range: [10, 15],
+                    },
                   ],
                   start: 4,
                   end: 16,
-                  range: [4, 16]
+                  range: [4, 16],
                 },
                 start: 4,
                 end: 30,
-                range: [4, 30]
-              }
+                range: [4, 30],
+              },
             ],
             start: 0,
             end: 31,
-            range: [0, 31]
-          }
+            range: [0, 31],
+          },
         ],
         start: 0,
         end: 31,
-        range: [0, 31]
-      }
+        range: [0, 31],
+      },
     ],
     [
       '({x,y,} = 0)',
@@ -411,14 +411,14 @@ describe('Miscellaneous - ranges', () => {
                       name: 'x',
                       start: 2,
                       end: 3,
-                      range: [2, 3]
+                      range: [2, 3],
                     },
                     value: {
                       type: 'Identifier',
                       name: 'x',
                       start: 2,
                       end: 3,
-                      range: [2, 3]
+                      range: [2, 3],
                     },
                     kind: 'init',
                     computed: false,
@@ -426,7 +426,7 @@ describe('Miscellaneous - ranges', () => {
                     shorthand: true,
                     start: 2,
                     end: 3,
-                    range: [2, 3]
+                    range: [2, 3],
                   },
                   {
                     type: 'Property',
@@ -435,14 +435,14 @@ describe('Miscellaneous - ranges', () => {
                       name: 'y',
                       start: 4,
                       end: 5,
-                      range: [4, 5]
+                      range: [4, 5],
                     },
                     value: {
                       type: 'Identifier',
                       name: 'y',
                       start: 4,
                       end: 5,
-                      range: [4, 5]
+                      range: [4, 5],
                     },
                     kind: 'init',
                     computed: false,
@@ -450,12 +450,12 @@ describe('Miscellaneous - ranges', () => {
                     shorthand: true,
                     start: 4,
                     end: 5,
-                    range: [4, 5]
-                  }
+                    range: [4, 5],
+                  },
                 ],
                 start: 1,
                 end: 7,
-                range: [1, 7]
+                range: [1, 7],
               },
               operator: '=',
               right: {
@@ -463,21 +463,21 @@ describe('Miscellaneous - ranges', () => {
                 value: 0,
                 start: 10,
                 end: 11,
-                range: [10, 11]
+                range: [10, 11],
               },
               start: 1,
               end: 11,
-              range: [1, 11]
+              range: [1, 11],
             },
             start: 0,
             end: 12,
-            range: [0, 12]
-          }
+            range: [0, 12],
+          },
         ],
         start: 0,
         end: 12,
-        range: [0, 12]
-      }
+        range: [0, 12],
+      },
     ],
     [
       '({x: y = z = 0} = 1)',
@@ -500,7 +500,7 @@ describe('Miscellaneous - ranges', () => {
                       name: 'x',
                       start: 2,
                       end: 3,
-                      range: [2, 3]
+                      range: [2, 3],
                     },
                     value: {
                       type: 'AssignmentPattern',
@@ -509,7 +509,7 @@ describe('Miscellaneous - ranges', () => {
                         name: 'y',
                         start: 5,
                         end: 6,
-                        range: [5, 6]
+                        range: [5, 6],
                       },
                       right: {
                         type: 'AssignmentExpression',
@@ -518,7 +518,7 @@ describe('Miscellaneous - ranges', () => {
                           name: 'z',
                           start: 9,
                           end: 10,
-                          range: [9, 10]
+                          range: [9, 10],
                         },
                         operator: '=',
                         right: {
@@ -526,15 +526,15 @@ describe('Miscellaneous - ranges', () => {
                           value: 0,
                           start: 13,
                           end: 14,
-                          range: [13, 14]
+                          range: [13, 14],
                         },
                         start: 9,
                         end: 14,
-                        range: [9, 14]
+                        range: [9, 14],
                       },
                       start: 5,
                       end: 14,
-                      range: [5, 14]
+                      range: [5, 14],
                     },
                     kind: 'init',
                     computed: false,
@@ -542,12 +542,12 @@ describe('Miscellaneous - ranges', () => {
                     shorthand: false,
                     start: 2,
                     end: 14,
-                    range: [2, 14]
-                  }
+                    range: [2, 14],
+                  },
                 ],
                 start: 1,
                 end: 15,
-                range: [1, 15]
+                range: [1, 15],
               },
               operator: '=',
               right: {
@@ -555,21 +555,21 @@ describe('Miscellaneous - ranges', () => {
                 value: 1,
                 start: 18,
                 end: 19,
-                range: [18, 19]
+                range: [18, 19],
               },
               start: 1,
               end: 19,
-              range: [1, 19]
+              range: [1, 19],
             },
             start: 0,
             end: 20,
-            range: [0, 20]
-          }
+            range: [0, 20],
+          },
         ],
         start: 0,
         end: 20,
-        range: [0, 20]
-      }
+        range: [0, 20],
+      },
     ],
     [
       '[...[...a[x]]] = b',
@@ -599,7 +599,7 @@ describe('Miscellaneous - ranges', () => {
                               name: 'a',
                               start: 8,
                               end: 9,
-                              range: [8, 9]
+                              range: [8, 9],
                             },
                             computed: true,
                             property: {
@@ -607,29 +607,29 @@ describe('Miscellaneous - ranges', () => {
                               name: 'x',
                               start: 10,
                               end: 11,
-                              range: [10, 11]
+                              range: [10, 11],
                             },
                             start: 8,
                             end: 12,
-                            range: [8, 12]
+                            range: [8, 12],
                           },
                           start: 5,
                           end: 12,
-                          range: [5, 12]
-                        }
+                          range: [5, 12],
+                        },
                       ],
                       start: 4,
                       end: 13,
-                      range: [4, 13]
+                      range: [4, 13],
                     },
                     start: 1,
                     end: 13,
-                    range: [1, 13]
-                  }
+                    range: [1, 13],
+                  },
                 ],
                 start: 0,
                 end: 14,
-                range: [0, 14]
+                range: [0, 14],
               },
               operator: '=',
               right: {
@@ -637,21 +637,21 @@ describe('Miscellaneous - ranges', () => {
                 name: 'b',
                 start: 17,
                 end: 18,
-                range: [17, 18]
+                range: [17, 18],
               },
               start: 0,
               end: 18,
-              range: [0, 18]
+              range: [0, 18],
             },
             start: 0,
             end: 18,
-            range: [0, 18]
-          }
+            range: [0, 18],
+          },
         ],
         start: 0,
         end: 18,
-        range: [0, 18]
-      }
+        range: [0, 18],
+      },
     ],
     [
       '[{a=0}, ...b] = 0',
@@ -677,7 +677,7 @@ describe('Miscellaneous - ranges', () => {
                           name: 'a',
                           start: 2,
                           end: 3,
-                          range: [2, 3]
+                          range: [2, 3],
                         },
                         value: {
                           type: 'AssignmentPattern',
@@ -686,18 +686,18 @@ describe('Miscellaneous - ranges', () => {
                             name: 'a',
                             start: 2,
                             end: 3,
-                            range: [2, 3]
+                            range: [2, 3],
                           },
                           right: {
                             type: 'Literal',
                             value: 0,
                             start: 4,
                             end: 5,
-                            range: [4, 5]
+                            range: [4, 5],
                           },
                           start: 2,
                           end: 5,
-                          range: [2, 5]
+                          range: [2, 5],
                         },
                         kind: 'init',
                         computed: false,
@@ -705,12 +705,12 @@ describe('Miscellaneous - ranges', () => {
                         shorthand: true,
                         start: 2,
                         end: 5,
-                        range: [2, 5]
-                      }
+                        range: [2, 5],
+                      },
                     ],
                     start: 1,
                     end: 6,
-                    range: [1, 6]
+                    range: [1, 6],
                   },
                   {
                     type: 'RestElement',
@@ -719,16 +719,16 @@ describe('Miscellaneous - ranges', () => {
                       name: 'b',
                       start: 11,
                       end: 12,
-                      range: [11, 12]
+                      range: [11, 12],
                     },
                     start: 8,
                     end: 12,
-                    range: [8, 12]
-                  }
+                    range: [8, 12],
+                  },
                 ],
                 start: 0,
                 end: 13,
-                range: [0, 13]
+                range: [0, 13],
               },
               operator: '=',
               right: {
@@ -736,21 +736,21 @@ describe('Miscellaneous - ranges', () => {
                 value: 0,
                 start: 16,
                 end: 17,
-                range: [16, 17]
+                range: [16, 17],
               },
               start: 0,
               end: 17,
-              range: [0, 17]
+              range: [0, 17],
             },
             start: 0,
             end: 17,
-            range: [0, 17]
-          }
+            range: [0, 17],
+          },
         ],
         start: 0,
         end: 17,
-        range: [0, 17]
-      }
+        range: [0, 17],
+      },
     ],
     [
       'var [{a = 0}] = 0;',
@@ -770,7 +770,7 @@ describe('Miscellaneous - ranges', () => {
                   value: 0,
                   start: 16,
                   end: 17,
-                  range: [16, 17]
+                  range: [16, 17],
                 },
                 id: {
                   type: 'ArrayPattern',
@@ -786,7 +786,7 @@ describe('Miscellaneous - ranges', () => {
                             name: 'a',
                             start: 6,
                             end: 7,
-                            range: [6, 7]
+                            range: [6, 7],
                           },
                           computed: false,
                           value: {
@@ -796,49 +796,49 @@ describe('Miscellaneous - ranges', () => {
                               name: 'a',
                               start: 6,
                               end: 7,
-                              range: [6, 7]
+                              range: [6, 7],
                             },
                             right: {
                               type: 'Literal',
                               value: 0,
                               start: 10,
                               end: 11,
-                              range: [10, 11]
+                              range: [10, 11],
                             },
                             start: 6,
                             end: 11,
-                            range: [6, 11]
+                            range: [6, 11],
                           },
                           method: false,
                           shorthand: true,
                           start: 6,
                           end: 11,
-                          range: [6, 11]
-                        }
+                          range: [6, 11],
+                        },
                       ],
                       start: 5,
                       end: 12,
-                      range: [5, 12]
-                    }
+                      range: [5, 12],
+                    },
                   ],
                   start: 4,
                   end: 13,
-                  range: [4, 13]
+                  range: [4, 13],
                 },
                 start: 4,
                 end: 17,
-                range: [4, 17]
-              }
+                range: [4, 17],
+              },
             ],
             start: 0,
             end: 18,
-            range: [0, 18]
-          }
+            range: [0, 18],
+          },
         ],
         start: 0,
         end: 18,
-        range: [0, 18]
-      }
+        range: [0, 18],
+      },
     ],
     [
       `var x = {
@@ -867,7 +867,7 @@ describe('Miscellaneous - ranges', () => {
                         name: 'baz',
                         start: 16,
                         end: 19,
-                        range: [16, 19]
+                        range: [16, 19],
                       },
                       value: {
                         type: 'FunctionExpression',
@@ -879,33 +879,33 @@ describe('Miscellaneous - ranges', () => {
                               name: 'a',
                               start: 20,
                               end: 21,
-                              range: [20, 21]
+                              range: [20, 21],
                             },
                             right: {
                               type: 'Literal',
                               value: 10,
                               start: 24,
                               end: 26,
-                              range: [24, 26]
+                              range: [24, 26],
                             },
                             start: 20,
                             end: 26,
-                            range: [20, 26]
-                          }
+                            range: [20, 26],
+                          },
                         ],
                         body: {
                           type: 'BlockStatement',
                           body: [],
                           start: 28,
                           end: 30,
-                          range: [28, 30]
+                          range: [28, 30],
                         },
                         async: false,
                         generator: false,
                         id: null,
                         start: 19,
                         end: 30,
-                        range: [19, 30]
+                        range: [19, 30],
                       },
                       kind: 'init',
                       computed: false,
@@ -913,7 +913,7 @@ describe('Miscellaneous - ranges', () => {
                       shorthand: false,
                       start: 16,
                       end: 30,
-                      range: [16, 30]
+                      range: [16, 30],
                     },
                     {
                       type: 'Property',
@@ -922,7 +922,7 @@ describe('Miscellaneous - ranges', () => {
                         name: 'foo',
                         start: 38,
                         end: 41,
-                        range: [38, 41]
+                        range: [38, 41],
                       },
                       value: {
                         type: 'FunctionExpression',
@@ -932,7 +932,7 @@ describe('Miscellaneous - ranges', () => {
                             name: 'a',
                             start: 42,
                             end: 43,
-                            range: [42, 43]
+                            range: [42, 43],
                           },
                           {
                             type: 'AssignmentPattern',
@@ -941,33 +941,33 @@ describe('Miscellaneous - ranges', () => {
                               name: 'b',
                               start: 45,
                               end: 46,
-                              range: [45, 46]
+                              range: [45, 46],
                             },
                             right: {
                               type: 'Literal',
                               value: 10,
                               start: 49,
                               end: 51,
-                              range: [49, 51]
+                              range: [49, 51],
                             },
                             start: 45,
                             end: 51,
-                            range: [45, 51]
-                          }
+                            range: [45, 51],
+                          },
                         ],
                         body: {
                           type: 'BlockStatement',
                           body: [],
                           start: 53,
                           end: 55,
-                          range: [53, 55]
+                          range: [53, 55],
                         },
                         async: false,
                         generator: false,
                         id: null,
                         start: 41,
                         end: 55,
-                        range: [41, 55]
+                        range: [41, 55],
                       },
                       kind: 'init',
                       computed: false,
@@ -975,7 +975,7 @@ describe('Miscellaneous - ranges', () => {
                       shorthand: false,
                       start: 38,
                       end: 55,
-                      range: [38, 55]
+                      range: [38, 55],
                     },
                     {
                       type: 'Property',
@@ -984,7 +984,7 @@ describe('Miscellaneous - ranges', () => {
                         name: 'toast',
                         start: 63,
                         end: 68,
-                        range: [63, 68]
+                        range: [63, 68],
                       },
                       value: {
                         type: 'FunctionExpression',
@@ -994,7 +994,7 @@ describe('Miscellaneous - ranges', () => {
                             name: 'a',
                             start: 69,
                             end: 70,
-                            range: [69, 70]
+                            range: [69, 70],
                           },
                           {
                             type: 'AssignmentPattern',
@@ -1003,40 +1003,40 @@ describe('Miscellaneous - ranges', () => {
                               name: 'b',
                               start: 72,
                               end: 73,
-                              range: [72, 73]
+                              range: [72, 73],
                             },
                             right: {
                               type: 'Literal',
                               value: 10,
                               start: 76,
                               end: 78,
-                              range: [76, 78]
+                              range: [76, 78],
                             },
                             start: 72,
                             end: 78,
-                            range: [72, 78]
+                            range: [72, 78],
                           },
                           {
                             type: 'Identifier',
                             name: 'c',
                             start: 80,
                             end: 81,
-                            range: [80, 81]
-                          }
+                            range: [80, 81],
+                          },
                         ],
                         body: {
                           type: 'BlockStatement',
                           body: [],
                           start: 83,
                           end: 85,
-                          range: [83, 85]
+                          range: [83, 85],
                         },
                         async: false,
                         generator: false,
                         id: null,
                         start: 68,
                         end: 85,
-                        range: [68, 85]
+                        range: [68, 85],
                       },
                       kind: 'init',
                       computed: false,
@@ -1044,34 +1044,34 @@ describe('Miscellaneous - ranges', () => {
                       shorthand: false,
                       start: 63,
                       end: 85,
-                      range: [63, 85]
-                    }
+                      range: [63, 85],
+                    },
                   ],
                   start: 8,
                   end: 91,
-                  range: [8, 91]
+                  range: [8, 91],
                 },
                 id: {
                   type: 'Identifier',
                   name: 'x',
                   start: 4,
                   end: 5,
-                  range: [4, 5]
+                  range: [4, 5],
                 },
                 start: 4,
                 end: 91,
-                range: [4, 91]
-              }
+                range: [4, 91],
+              },
             ],
             start: 0,
             end: 92,
-            range: [0, 92]
-          }
+            range: [0, 92],
+          },
         ],
         start: 0,
         end: 92,
-        range: [0, 92]
-      }
+        range: [0, 92],
+      },
     ],
     [
       '([,,])=>0',
@@ -1090,7 +1090,7 @@ describe('Miscellaneous - ranges', () => {
                 value: 0,
                 start: 8,
                 end: 9,
-                range: [8, 9]
+                range: [8, 9],
               },
               params: [
                 {
@@ -1098,24 +1098,24 @@ describe('Miscellaneous - ranges', () => {
                   elements: [null, null],
                   start: 1,
                   end: 5,
-                  range: [1, 5]
-                }
+                  range: [1, 5],
+                },
               ],
               async: false,
               expression: true,
               start: 0,
               end: 9,
-              range: [0, 9]
+              range: [0, 9],
             },
             start: 0,
             end: 9,
-            range: [0, 9]
-          }
+            range: [0, 9],
+          },
         ],
         start: 0,
         end: 9,
-        range: [0, 9]
-      }
+        range: [0, 9],
+      },
     ],
     [
       'for([a,b[a],{c,d=e,[f]:[g,h().a,(0).k,...i[0]]}] in 0);',
@@ -1130,7 +1130,7 @@ describe('Miscellaneous - ranges', () => {
               type: 'EmptyStatement',
               start: 54,
               end: 55,
-              range: [54, 55]
+              range: [54, 55],
             },
             left: {
               type: 'ArrayPattern',
@@ -1140,7 +1140,7 @@ describe('Miscellaneous - ranges', () => {
                   name: 'a',
                   start: 5,
                   end: 6,
-                  range: [5, 6]
+                  range: [5, 6],
                 },
                 {
                   type: 'MemberExpression',
@@ -1149,7 +1149,7 @@ describe('Miscellaneous - ranges', () => {
                     name: 'b',
                     start: 7,
                     end: 8,
-                    range: [7, 8]
+                    range: [7, 8],
                   },
                   computed: true,
                   property: {
@@ -1157,11 +1157,11 @@ describe('Miscellaneous - ranges', () => {
                     name: 'a',
                     start: 9,
                     end: 10,
-                    range: [9, 10]
+                    range: [9, 10],
                   },
                   start: 7,
                   end: 11,
-                  range: [7, 11]
+                  range: [7, 11],
                 },
                 {
                   type: 'ObjectPattern',
@@ -1173,14 +1173,14 @@ describe('Miscellaneous - ranges', () => {
                         name: 'c',
                         start: 13,
                         end: 14,
-                        range: [13, 14]
+                        range: [13, 14],
                       },
                       value: {
                         type: 'Identifier',
                         name: 'c',
                         start: 13,
                         end: 14,
-                        range: [13, 14]
+                        range: [13, 14],
                       },
                       kind: 'init',
                       computed: false,
@@ -1188,7 +1188,7 @@ describe('Miscellaneous - ranges', () => {
                       shorthand: true,
                       start: 13,
                       end: 14,
-                      range: [13, 14]
+                      range: [13, 14],
                     },
                     {
                       type: 'Property',
@@ -1197,7 +1197,7 @@ describe('Miscellaneous - ranges', () => {
                         name: 'd',
                         start: 15,
                         end: 16,
-                        range: [15, 16]
+                        range: [15, 16],
                       },
                       value: {
                         type: 'AssignmentPattern',
@@ -1206,18 +1206,18 @@ describe('Miscellaneous - ranges', () => {
                           name: 'd',
                           start: 15,
                           end: 16,
-                          range: [15, 16]
+                          range: [15, 16],
                         },
                         right: {
                           type: 'Identifier',
                           name: 'e',
                           start: 17,
                           end: 18,
-                          range: [17, 18]
+                          range: [17, 18],
                         },
                         start: 15,
                         end: 18,
-                        range: [15, 18]
+                        range: [15, 18],
                       },
                       kind: 'init',
                       computed: false,
@@ -1225,7 +1225,7 @@ describe('Miscellaneous - ranges', () => {
                       shorthand: true,
                       start: 15,
                       end: 18,
-                      range: [15, 18]
+                      range: [15, 18],
                     },
                     {
                       type: 'Property',
@@ -1234,7 +1234,7 @@ describe('Miscellaneous - ranges', () => {
                         name: 'f',
                         start: 20,
                         end: 21,
-                        range: [20, 21]
+                        range: [20, 21],
                       },
                       value: {
                         type: 'ArrayPattern',
@@ -1244,7 +1244,7 @@ describe('Miscellaneous - ranges', () => {
                             name: 'g',
                             start: 24,
                             end: 25,
-                            range: [24, 25]
+                            range: [24, 25],
                           },
                           {
                             type: 'MemberExpression',
@@ -1255,12 +1255,12 @@ describe('Miscellaneous - ranges', () => {
                                 name: 'h',
                                 start: 26,
                                 end: 27,
-                                range: [26, 27]
+                                range: [26, 27],
                               },
                               arguments: [],
                               start: 26,
                               end: 29,
-                              range: [26, 29]
+                              range: [26, 29],
                             },
                             computed: false,
                             property: {
@@ -1268,11 +1268,11 @@ describe('Miscellaneous - ranges', () => {
                               name: 'a',
                               start: 30,
                               end: 31,
-                              range: [30, 31]
+                              range: [30, 31],
                             },
                             start: 26,
                             end: 31,
-                            range: [26, 31]
+                            range: [26, 31],
                           },
                           {
                             type: 'MemberExpression',
@@ -1281,7 +1281,7 @@ describe('Miscellaneous - ranges', () => {
                               value: 0,
                               start: 33,
                               end: 34,
-                              range: [33, 34]
+                              range: [33, 34],
                             },
                             computed: false,
                             property: {
@@ -1289,11 +1289,11 @@ describe('Miscellaneous - ranges', () => {
                               name: 'k',
                               start: 36,
                               end: 37,
-                              range: [36, 37]
+                              range: [36, 37],
                             },
                             start: 32,
                             end: 37,
-                            range: [32, 37]
+                            range: [32, 37],
                           },
                           {
                             type: 'RestElement',
@@ -1304,7 +1304,7 @@ describe('Miscellaneous - ranges', () => {
                                 name: 'i',
                                 start: 41,
                                 end: 42,
-                                range: [41, 42]
+                                range: [41, 42],
                               },
                               computed: true,
                               property: {
@@ -1312,20 +1312,20 @@ describe('Miscellaneous - ranges', () => {
                                 value: 0,
                                 start: 43,
                                 end: 44,
-                                range: [43, 44]
+                                range: [43, 44],
                               },
                               start: 41,
                               end: 45,
-                              range: [41, 45]
+                              range: [41, 45],
                             },
                             start: 38,
                             end: 45,
-                            range: [38, 45]
-                          }
+                            range: [38, 45],
+                          },
                         ],
                         start: 23,
                         end: 46,
-                        range: [23, 46]
+                        range: [23, 46],
                       },
                       kind: 'init',
                       computed: true,
@@ -1333,34 +1333,34 @@ describe('Miscellaneous - ranges', () => {
                       shorthand: false,
                       start: 19,
                       end: 46,
-                      range: [19, 46]
-                    }
+                      range: [19, 46],
+                    },
                   ],
                   start: 12,
                   end: 47,
-                  range: [12, 47]
-                }
+                  range: [12, 47],
+                },
               ],
               start: 4,
               end: 48,
-              range: [4, 48]
+              range: [4, 48],
             },
             right: {
               type: 'Literal',
               value: 0,
               start: 52,
               end: 53,
-              range: [52, 53]
+              range: [52, 53],
             },
             start: 0,
             end: 55,
-            range: [0, 55]
-          }
+            range: [0, 55],
+          },
         ],
         start: 0,
         end: 55,
-        range: [0, 55]
-      }
+        range: [0, 55],
+      },
     ],
     [
       '({x = 10, y: { z = 10 }}) => [x, z]',
@@ -1382,19 +1382,19 @@ describe('Miscellaneous - ranges', () => {
                     name: 'x',
                     start: 30,
                     end: 31,
-                    range: [30, 31]
+                    range: [30, 31],
                   },
                   {
                     type: 'Identifier',
                     name: 'z',
                     start: 33,
                     end: 34,
-                    range: [33, 34]
-                  }
+                    range: [33, 34],
+                  },
                 ],
                 start: 29,
                 end: 35,
-                range: [29, 35]
+                range: [29, 35],
               },
               params: [
                 {
@@ -1407,7 +1407,7 @@ describe('Miscellaneous - ranges', () => {
                         name: 'x',
                         start: 2,
                         end: 3,
-                        range: [2, 3]
+                        range: [2, 3],
                       },
                       value: {
                         type: 'AssignmentPattern',
@@ -1416,18 +1416,18 @@ describe('Miscellaneous - ranges', () => {
                           name: 'x',
                           start: 2,
                           end: 3,
-                          range: [2, 3]
+                          range: [2, 3],
                         },
                         right: {
                           type: 'Literal',
                           value: 10,
                           start: 6,
                           end: 8,
-                          range: [6, 8]
+                          range: [6, 8],
                         },
                         start: 2,
                         end: 8,
-                        range: [2, 8]
+                        range: [2, 8],
                       },
                       kind: 'init',
                       computed: false,
@@ -1435,7 +1435,7 @@ describe('Miscellaneous - ranges', () => {
                       shorthand: true,
                       start: 2,
                       end: 8,
-                      range: [2, 8]
+                      range: [2, 8],
                     },
                     {
                       type: 'Property',
@@ -1444,7 +1444,7 @@ describe('Miscellaneous - ranges', () => {
                         name: 'y',
                         start: 10,
                         end: 11,
-                        range: [10, 11]
+                        range: [10, 11],
                       },
                       value: {
                         type: 'ObjectPattern',
@@ -1456,7 +1456,7 @@ describe('Miscellaneous - ranges', () => {
                               name: 'z',
                               start: 15,
                               end: 16,
-                              range: [15, 16]
+                              range: [15, 16],
                             },
                             value: {
                               type: 'AssignmentPattern',
@@ -1465,18 +1465,18 @@ describe('Miscellaneous - ranges', () => {
                                 name: 'z',
                                 start: 15,
                                 end: 16,
-                                range: [15, 16]
+                                range: [15, 16],
                               },
                               right: {
                                 type: 'Literal',
                                 value: 10,
                                 start: 19,
                                 end: 21,
-                                range: [19, 21]
+                                range: [19, 21],
                               },
                               start: 15,
                               end: 21,
-                              range: [15, 21]
+                              range: [15, 21],
                             },
                             kind: 'init',
                             computed: false,
@@ -1484,12 +1484,12 @@ describe('Miscellaneous - ranges', () => {
                             shorthand: true,
                             start: 15,
                             end: 21,
-                            range: [15, 21]
-                          }
+                            range: [15, 21],
+                          },
                         ],
                         start: 13,
                         end: 23,
-                        range: [13, 23]
+                        range: [13, 23],
                       },
                       kind: 'init',
                       computed: false,
@@ -1497,29 +1497,29 @@ describe('Miscellaneous - ranges', () => {
                       shorthand: false,
                       start: 10,
                       end: 23,
-                      range: [10, 23]
-                    }
+                      range: [10, 23],
+                    },
                   ],
                   start: 1,
                   end: 24,
-                  range: [1, 24]
-                }
+                  range: [1, 24],
+                },
               ],
               async: false,
               expression: true,
               start: 0,
               end: 35,
-              range: [0, 35]
+              range: [0, 35],
             },
             start: 0,
             end: 35,
-            range: [0, 35]
-          }
+            range: [0, 35],
+          },
         ],
         start: 0,
         end: 35,
-        range: [0, 35]
-      }
+        range: [0, 35],
+      },
     ],
     [
       '(x, y = 9, ...a) => {}',
@@ -1538,7 +1538,7 @@ describe('Miscellaneous - ranges', () => {
                 body: [],
                 start: 20,
                 end: 22,
-                range: [20, 22]
+                range: [20, 22],
               },
               params: [
                 {
@@ -1546,7 +1546,7 @@ describe('Miscellaneous - ranges', () => {
                   name: 'x',
                   start: 1,
                   end: 2,
-                  range: [1, 2]
+                  range: [1, 2],
                 },
                 {
                   type: 'AssignmentPattern',
@@ -1555,18 +1555,18 @@ describe('Miscellaneous - ranges', () => {
                     name: 'y',
                     start: 4,
                     end: 5,
-                    range: [4, 5]
+                    range: [4, 5],
                   },
                   right: {
                     type: 'Literal',
                     value: 9,
                     start: 8,
                     end: 9,
-                    range: [8, 9]
+                    range: [8, 9],
                   },
                   start: 4,
                   end: 9,
-                  range: [4, 9]
+                  range: [4, 9],
                 },
                 {
                   type: 'RestElement',
@@ -1575,28 +1575,28 @@ describe('Miscellaneous - ranges', () => {
                     name: 'a',
                     start: 14,
                     end: 15,
-                    range: [14, 15]
+                    range: [14, 15],
                   },
                   start: 11,
                   end: 15,
-                  range: [11, 15]
-                }
+                  range: [11, 15],
+                },
               ],
               async: false,
               expression: false,
               start: 0,
               end: 22,
-              range: [0, 22]
+              range: [0, 22],
             },
             start: 0,
             end: 22,
-            range: [0, 22]
-          }
+            range: [0, 22],
+          },
         ],
         start: 0,
         end: 22,
-        range: [0, 22]
-      }
+        range: [0, 22],
+      },
     ],
     [
       '({ tyssjh = ((cspagh = 4) => a) } = 1) => { /*jjj*/ }; (function(a) { })()',
@@ -1615,7 +1615,7 @@ describe('Miscellaneous - ranges', () => {
                 body: [],
                 start: 42,
                 end: 53,
-                range: [42, 53]
+                range: [42, 53],
               },
               params: [
                 {
@@ -1630,7 +1630,7 @@ describe('Miscellaneous - ranges', () => {
                           name: 'tyssjh',
                           start: 3,
                           end: 9,
-                          range: [3, 9]
+                          range: [3, 9],
                         },
                         value: {
                           type: 'AssignmentPattern',
@@ -1639,7 +1639,7 @@ describe('Miscellaneous - ranges', () => {
                             name: 'tyssjh',
                             start: 3,
                             end: 9,
-                            range: [3, 9]
+                            range: [3, 9],
                           },
                           right: {
                             type: 'ArrowFunctionExpression',
@@ -1649,7 +1649,7 @@ describe('Miscellaneous - ranges', () => {
                               name: 'a',
                               start: 29,
                               end: 30,
-                              range: [29, 30]
+                              range: [29, 30],
                             },
                             params: [
                               {
@@ -1659,29 +1659,29 @@ describe('Miscellaneous - ranges', () => {
                                   name: 'cspagh',
                                   start: 14,
                                   end: 20,
-                                  range: [14, 20]
+                                  range: [14, 20],
                                 },
                                 right: {
                                   type: 'Literal',
                                   value: 4,
                                   start: 23,
                                   end: 24,
-                                  range: [23, 24]
+                                  range: [23, 24],
                                 },
                                 start: 14,
                                 end: 24,
-                                range: [14, 24]
-                              }
+                                range: [14, 24],
+                              },
                             ],
                             async: false,
                             expression: true,
                             start: 13,
                             end: 30,
-                            range: [13, 30]
+                            range: [13, 30],
                           },
                           start: 3,
                           end: 31,
-                          range: [3, 31]
+                          range: [3, 31],
                         },
                         kind: 'init',
                         computed: false,
@@ -1689,34 +1689,34 @@ describe('Miscellaneous - ranges', () => {
                         shorthand: true,
                         start: 3,
                         end: 31,
-                        range: [3, 31]
-                      }
+                        range: [3, 31],
+                      },
                     ],
                     start: 1,
                     end: 33,
-                    range: [1, 33]
+                    range: [1, 33],
                   },
                   right: {
                     type: 'Literal',
                     value: 1,
                     start: 36,
                     end: 37,
-                    range: [36, 37]
+                    range: [36, 37],
                   },
                   start: 1,
                   end: 37,
-                  range: [1, 37]
-                }
+                  range: [1, 37],
+                },
               ],
               async: false,
               expression: false,
               start: 0,
               end: 53,
-              range: [0, 53]
+              range: [0, 53],
             },
             start: 0,
             end: 54,
-            range: [0, 54]
+            range: [0, 54],
           },
           {
             type: 'ExpressionStatement',
@@ -1730,37 +1730,37 @@ describe('Miscellaneous - ranges', () => {
                     name: 'a',
                     start: 65,
                     end: 66,
-                    range: [65, 66]
-                  }
+                    range: [65, 66],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
                   body: [],
                   start: 68,
                   end: 71,
-                  range: [68, 71]
+                  range: [68, 71],
                 },
                 async: false,
                 generator: false,
                 id: null,
                 start: 56,
                 end: 71,
-                range: [56, 71]
+                range: [56, 71],
               },
               arguments: [],
               start: 55,
               end: 74,
-              range: [55, 74]
+              range: [55, 74],
             },
             start: 55,
             end: 74,
-            range: [55, 74]
-          }
+            range: [55, 74],
+          },
         ],
         start: 0,
         end: 74,
-        range: [0, 74]
-      }
+        range: [0, 74],
+      },
     ],
     [
       '[...{a:a = 1}] = [{}];',
@@ -1788,7 +1788,7 @@ describe('Miscellaneous - ranges', () => {
                             name: 'a',
                             start: 5,
                             end: 6,
-                            range: [5, 6]
+                            range: [5, 6],
                           },
                           value: {
                             type: 'AssignmentPattern',
@@ -1797,18 +1797,18 @@ describe('Miscellaneous - ranges', () => {
                               name: 'a',
                               start: 7,
                               end: 8,
-                              range: [7, 8]
+                              range: [7, 8],
                             },
                             right: {
                               type: 'Literal',
                               value: 1,
                               start: 11,
                               end: 12,
-                              range: [11, 12]
+                              range: [11, 12],
                             },
                             start: 7,
                             end: 12,
-                            range: [7, 12]
+                            range: [7, 12],
                           },
                           kind: 'init',
                           computed: false,
@@ -1816,21 +1816,21 @@ describe('Miscellaneous - ranges', () => {
                           shorthand: false,
                           start: 5,
                           end: 12,
-                          range: [5, 12]
-                        }
+                          range: [5, 12],
+                        },
                       ],
                       start: 4,
                       end: 13,
-                      range: [4, 13]
+                      range: [4, 13],
                     },
                     start: 1,
                     end: 13,
-                    range: [1, 13]
-                  }
+                    range: [1, 13],
+                  },
                 ],
                 start: 0,
                 end: 14,
-                range: [0, 14]
+                range: [0, 14],
               },
               operator: '=',
               right: {
@@ -1841,26 +1841,26 @@ describe('Miscellaneous - ranges', () => {
                     properties: [],
                     start: 18,
                     end: 20,
-                    range: [18, 20]
-                  }
+                    range: [18, 20],
+                  },
                 ],
                 start: 17,
                 end: 21,
-                range: [17, 21]
+                range: [17, 21],
               },
               start: 0,
               end: 21,
-              range: [0, 21]
+              range: [0, 21],
             },
             start: 0,
             end: 22,
-            range: [0, 22]
-          }
+            range: [0, 22],
+          },
         ],
         start: 0,
         end: 22,
-        range: [0, 22]
-      }
+        range: [0, 22],
+      },
     ],
     [
       '[[[...a]]] = [[[]]];',
@@ -1889,26 +1889,26 @@ describe('Miscellaneous - ranges', () => {
                               name: 'a',
                               start: 6,
                               end: 7,
-                              range: [6, 7]
+                              range: [6, 7],
                             },
                             start: 3,
                             end: 7,
-                            range: [3, 7]
-                          }
+                            range: [3, 7],
+                          },
                         ],
                         start: 2,
                         end: 8,
-                        range: [2, 8]
-                      }
+                        range: [2, 8],
+                      },
                     ],
                     start: 1,
                     end: 9,
-                    range: [1, 9]
-                  }
+                    range: [1, 9],
+                  },
                 ],
                 start: 0,
                 end: 10,
-                range: [0, 10]
+                range: [0, 10],
               },
               operator: '=',
               right: {
@@ -1922,31 +1922,31 @@ describe('Miscellaneous - ranges', () => {
                         elements: [],
                         start: 15,
                         end: 17,
-                        range: [15, 17]
-                      }
+                        range: [15, 17],
+                      },
                     ],
                     start: 14,
                     end: 18,
-                    range: [14, 18]
-                  }
+                    range: [14, 18],
+                  },
                 ],
                 start: 13,
                 end: 19,
-                range: [13, 19]
+                range: [13, 19],
               },
               start: 0,
               end: 19,
-              range: [0, 19]
+              range: [0, 19],
             },
             start: 0,
             end: 20,
-            range: [0, 20]
-          }
+            range: [0, 20],
+          },
         ],
         start: 0,
         end: 20,
-        range: [0, 20]
-      }
+        range: [0, 20],
+      },
     ],
     [
       'bar1 = ( {abcdef  = (((((a1)) = (30))))} = (b1 = 40) ) => { try { throw a1; } catch(a1) { } };',
@@ -1964,7 +1964,7 @@ describe('Miscellaneous - ranges', () => {
                 name: 'bar1',
                 start: 0,
                 end: 4,
-                range: [0, 4]
+                range: [0, 4],
               },
               operator: '=',
               right: {
@@ -1985,16 +1985,16 @@ describe('Miscellaneous - ranges', () => {
                               name: 'a1',
                               start: 72,
                               end: 74,
-                              range: [72, 74]
+                              range: [72, 74],
                             },
                             start: 66,
                             end: 75,
-                            range: [66, 75]
-                          }
+                            range: [66, 75],
+                          },
                         ],
                         start: 64,
                         end: 77,
-                        range: [64, 77]
+                        range: [64, 77],
                       },
                       handler: {
                         type: 'CatchClause',
@@ -2003,28 +2003,28 @@ describe('Miscellaneous - ranges', () => {
                           name: 'a1',
                           start: 84,
                           end: 86,
-                          range: [84, 86]
+                          range: [84, 86],
                         },
                         body: {
                           type: 'BlockStatement',
                           body: [],
                           start: 88,
                           end: 91,
-                          range: [88, 91]
+                          range: [88, 91],
                         },
                         start: 78,
                         end: 91,
-                        range: [78, 91]
+                        range: [78, 91],
                       },
                       finalizer: null,
                       start: 60,
                       end: 91,
-                      range: [60, 91]
-                    }
+                      range: [60, 91],
+                    },
                   ],
                   start: 58,
                   end: 93,
-                  range: [58, 93]
+                  range: [58, 93],
                 },
                 params: [
                   {
@@ -2039,7 +2039,7 @@ describe('Miscellaneous - ranges', () => {
                             name: 'abcdef',
                             start: 10,
                             end: 16,
-                            range: [10, 16]
+                            range: [10, 16],
                           },
                           value: {
                             type: 'AssignmentPattern',
@@ -2048,7 +2048,7 @@ describe('Miscellaneous - ranges', () => {
                               name: 'abcdef',
                               start: 10,
                               end: 16,
-                              range: [10, 16]
+                              range: [10, 16],
                             },
                             right: {
                               type: 'AssignmentExpression',
@@ -2057,7 +2057,7 @@ describe('Miscellaneous - ranges', () => {
                                 name: 'a1',
                                 start: 25,
                                 end: 27,
-                                range: [25, 27]
+                                range: [25, 27],
                               },
                               operator: '=',
                               right: {
@@ -2065,15 +2065,15 @@ describe('Miscellaneous - ranges', () => {
                                 value: 30,
                                 start: 33,
                                 end: 35,
-                                range: [33, 35]
+                                range: [33, 35],
                               },
                               start: 23,
                               end: 36,
-                              range: [23, 36]
+                              range: [23, 36],
                             },
                             start: 10,
                             end: 39,
-                            range: [10, 39]
+                            range: [10, 39],
                           },
                           kind: 'init',
                           computed: false,
@@ -2081,12 +2081,12 @@ describe('Miscellaneous - ranges', () => {
                           shorthand: true,
                           start: 10,
                           end: 39,
-                          range: [10, 39]
-                        }
+                          range: [10, 39],
+                        },
                       ],
                       start: 9,
                       end: 40,
-                      range: [9, 40]
+                      range: [9, 40],
                     },
                     right: {
                       type: 'AssignmentExpression',
@@ -2095,7 +2095,7 @@ describe('Miscellaneous - ranges', () => {
                         name: 'b1',
                         start: 44,
                         end: 46,
-                        range: [44, 46]
+                        range: [44, 46],
                       },
                       operator: '=',
                       right: {
@@ -2103,36 +2103,36 @@ describe('Miscellaneous - ranges', () => {
                         value: 40,
                         start: 49,
                         end: 51,
-                        range: [49, 51]
+                        range: [49, 51],
                       },
                       start: 44,
                       end: 51,
-                      range: [44, 51]
+                      range: [44, 51],
                     },
                     start: 9,
                     end: 52,
-                    range: [9, 52]
-                  }
+                    range: [9, 52],
+                  },
                 ],
                 async: false,
                 expression: false,
                 start: 7,
                 end: 93,
-                range: [7, 93]
+                range: [7, 93],
               },
               start: 0,
               end: 93,
-              range: [0, 93]
+              range: [0, 93],
             },
             start: 0,
             end: 94,
-            range: [0, 94]
-          }
+            range: [0, 94],
+          },
         ],
         start: 0,
         end: 94,
-        range: [0, 94]
-      }
+        range: [0, 94],
+      },
     ],
     [
       'var e = 1; ( {tuvwxy  = (((  {}   =  1 )))} = (e)) => {  try{ } catch(e) {}}',
@@ -2152,23 +2152,23 @@ describe('Miscellaneous - ranges', () => {
                   value: 1,
                   start: 8,
                   end: 9,
-                  range: [8, 9]
+                  range: [8, 9],
                 },
                 id: {
                   type: 'Identifier',
                   name: 'e',
                   start: 4,
                   end: 5,
-                  range: [4, 5]
+                  range: [4, 5],
                 },
                 start: 4,
                 end: 9,
-                range: [4, 9]
-              }
+                range: [4, 9],
+              },
             ],
             start: 0,
             end: 10,
-            range: [0, 10]
+            range: [0, 10],
           },
           {
             type: 'ExpressionStatement',
@@ -2185,7 +2185,7 @@ describe('Miscellaneous - ranges', () => {
                       body: [],
                       start: 60,
                       end: 63,
-                      range: [60, 63]
+                      range: [60, 63],
                     },
                     handler: {
                       type: 'CatchClause',
@@ -2194,28 +2194,28 @@ describe('Miscellaneous - ranges', () => {
                         name: 'e',
                         start: 70,
                         end: 71,
-                        range: [70, 71]
+                        range: [70, 71],
                       },
                       body: {
                         type: 'BlockStatement',
                         body: [],
                         start: 73,
                         end: 75,
-                        range: [73, 75]
+                        range: [73, 75],
                       },
                       start: 64,
                       end: 75,
-                      range: [64, 75]
+                      range: [64, 75],
                     },
                     finalizer: null,
                     start: 57,
                     end: 75,
-                    range: [57, 75]
-                  }
+                    range: [57, 75],
+                  },
                 ],
                 start: 54,
                 end: 76,
-                range: [54, 76]
+                range: [54, 76],
               },
               params: [
                 {
@@ -2230,7 +2230,7 @@ describe('Miscellaneous - ranges', () => {
                           name: 'tuvwxy',
                           start: 14,
                           end: 20,
-                          range: [14, 20]
+                          range: [14, 20],
                         },
                         value: {
                           type: 'AssignmentPattern',
@@ -2239,7 +2239,7 @@ describe('Miscellaneous - ranges', () => {
                             name: 'tuvwxy',
                             start: 14,
                             end: 20,
-                            range: [14, 20]
+                            range: [14, 20],
                           },
                           right: {
                             type: 'AssignmentExpression',
@@ -2248,7 +2248,7 @@ describe('Miscellaneous - ranges', () => {
                               properties: [],
                               start: 29,
                               end: 31,
-                              range: [29, 31]
+                              range: [29, 31],
                             },
                             operator: '=',
                             right: {
@@ -2256,15 +2256,15 @@ describe('Miscellaneous - ranges', () => {
                               value: 1,
                               start: 37,
                               end: 38,
-                              range: [37, 38]
+                              range: [37, 38],
                             },
                             start: 29,
                             end: 38,
-                            range: [29, 38]
+                            range: [29, 38],
                           },
                           start: 14,
                           end: 42,
-                          range: [14, 42]
+                          range: [14, 42],
                         },
                         kind: 'init',
                         computed: false,
@@ -2272,40 +2272,40 @@ describe('Miscellaneous - ranges', () => {
                         shorthand: true,
                         start: 14,
                         end: 42,
-                        range: [14, 42]
-                      }
+                        range: [14, 42],
+                      },
                     ],
                     start: 13,
                     end: 43,
-                    range: [13, 43]
+                    range: [13, 43],
                   },
                   right: {
                     type: 'Identifier',
                     name: 'e',
                     start: 47,
                     end: 48,
-                    range: [47, 48]
+                    range: [47, 48],
                   },
                   start: 13,
                   end: 49,
-                  range: [13, 49]
-                }
+                  range: [13, 49],
+                },
               ],
               async: false,
               expression: false,
               start: 11,
               end: 76,
-              range: [11, 76]
+              range: [11, 76],
             },
             start: 11,
             end: 76,
-            range: [11, 76]
-          }
+            range: [11, 76],
+          },
         ],
         start: 0,
         end: 76,
-        range: [0, 76]
-      }
+        range: [0, 76],
+      },
     ],
     [
       'var a = [1], i = 0; ({x:a[i++]} = {});',
@@ -2328,23 +2328,23 @@ describe('Miscellaneous - ranges', () => {
                       value: 1,
                       start: 9,
                       end: 10,
-                      range: [9, 10]
-                    }
+                      range: [9, 10],
+                    },
                   ],
                   start: 8,
                   end: 11,
-                  range: [8, 11]
+                  range: [8, 11],
                 },
                 id: {
                   type: 'Identifier',
                   name: 'a',
                   start: 4,
                   end: 5,
-                  range: [4, 5]
+                  range: [4, 5],
                 },
                 start: 4,
                 end: 11,
-                range: [4, 11]
+                range: [4, 11],
               },
               {
                 type: 'VariableDeclarator',
@@ -2353,23 +2353,23 @@ describe('Miscellaneous - ranges', () => {
                   value: 0,
                   start: 17,
                   end: 18,
-                  range: [17, 18]
+                  range: [17, 18],
                 },
                 id: {
                   type: 'Identifier',
                   name: 'i',
                   start: 13,
                   end: 14,
-                  range: [13, 14]
+                  range: [13, 14],
                 },
                 start: 13,
                 end: 18,
-                range: [13, 18]
-              }
+                range: [13, 18],
+              },
             ],
             start: 0,
             end: 19,
-            range: [0, 19]
+            range: [0, 19],
           },
           {
             type: 'ExpressionStatement',
@@ -2385,7 +2385,7 @@ describe('Miscellaneous - ranges', () => {
                       name: 'x',
                       start: 22,
                       end: 23,
-                      range: [22, 23]
+                      range: [22, 23],
                     },
                     value: {
                       type: 'MemberExpression',
@@ -2394,7 +2394,7 @@ describe('Miscellaneous - ranges', () => {
                         name: 'a',
                         start: 24,
                         end: 25,
-                        range: [24, 25]
+                        range: [24, 25],
                       },
                       computed: true,
                       property: {
@@ -2404,17 +2404,17 @@ describe('Miscellaneous - ranges', () => {
                           name: 'i',
                           start: 26,
                           end: 27,
-                          range: [26, 27]
+                          range: [26, 27],
                         },
                         operator: '++',
                         prefix: false,
                         start: 26,
                         end: 29,
-                        range: [26, 29]
+                        range: [26, 29],
                       },
                       start: 24,
                       end: 30,
-                      range: [24, 30]
+                      range: [24, 30],
                     },
                     kind: 'init',
                     computed: false,
@@ -2422,12 +2422,12 @@ describe('Miscellaneous - ranges', () => {
                     shorthand: false,
                     start: 22,
                     end: 30,
-                    range: [22, 30]
-                  }
+                    range: [22, 30],
+                  },
                 ],
                 start: 21,
                 end: 31,
-                range: [21, 31]
+                range: [21, 31],
               },
               operator: '=',
               right: {
@@ -2435,21 +2435,21 @@ describe('Miscellaneous - ranges', () => {
                 properties: [],
                 start: 34,
                 end: 36,
-                range: [34, 36]
+                range: [34, 36],
               },
               start: 21,
               end: 36,
-              range: [21, 36]
+              range: [21, 36],
             },
             start: 20,
             end: 38,
-            range: [20, 38]
-          }
+            range: [20, 38],
+          },
         ],
         start: 0,
         end: 38,
-        range: [0, 38]
-      }
+        range: [0, 38],
+      },
     ],
     [
       'function foo() { return {x:1}; }; [...foo()["x"]] = [10];',
@@ -2476,14 +2476,14 @@ describe('Miscellaneous - ranges', () => {
                           name: 'x',
                           start: 25,
                           end: 26,
-                          range: [25, 26]
+                          range: [25, 26],
                         },
                         value: {
                           type: 'Literal',
                           value: 1,
                           start: 27,
                           end: 28,
-                          range: [27, 28]
+                          range: [27, 28],
                         },
                         kind: 'init',
                         computed: false,
@@ -2491,21 +2491,21 @@ describe('Miscellaneous - ranges', () => {
                         shorthand: false,
                         start: 25,
                         end: 28,
-                        range: [25, 28]
-                      }
+                        range: [25, 28],
+                      },
                     ],
                     start: 24,
                     end: 29,
-                    range: [24, 29]
+                    range: [24, 29],
                   },
                   start: 17,
                   end: 30,
-                  range: [17, 30]
-                }
+                  range: [17, 30],
+                },
               ],
               start: 15,
               end: 32,
-              range: [15, 32]
+              range: [15, 32],
             },
             async: false,
             generator: false,
@@ -2514,17 +2514,17 @@ describe('Miscellaneous - ranges', () => {
               name: 'foo',
               start: 9,
               end: 12,
-              range: [9, 12]
+              range: [9, 12],
             },
             start: 0,
             end: 32,
-            range: [0, 32]
+            range: [0, 32],
           },
           {
             type: 'EmptyStatement',
             start: 32,
             end: 33,
-            range: [32, 33]
+            range: [32, 33],
           },
           {
             type: 'ExpressionStatement',
@@ -2544,12 +2544,12 @@ describe('Miscellaneous - ranges', () => {
                           name: 'foo',
                           start: 38,
                           end: 41,
-                          range: [38, 41]
+                          range: [38, 41],
                         },
                         arguments: [],
                         start: 38,
                         end: 43,
-                        range: [38, 43]
+                        range: [38, 43],
                       },
                       computed: true,
                       property: {
@@ -2557,20 +2557,20 @@ describe('Miscellaneous - ranges', () => {
                         value: 'x',
                         start: 44,
                         end: 47,
-                        range: [44, 47]
+                        range: [44, 47],
                       },
                       start: 38,
                       end: 48,
-                      range: [38, 48]
+                      range: [38, 48],
                     },
                     start: 35,
                     end: 48,
-                    range: [35, 48]
-                  }
+                    range: [35, 48],
+                  },
                 ],
                 start: 34,
                 end: 49,
-                range: [34, 49]
+                range: [34, 49],
               },
               operator: '=',
               right: {
@@ -2581,26 +2581,26 @@ describe('Miscellaneous - ranges', () => {
                     value: 10,
                     start: 53,
                     end: 55,
-                    range: [53, 55]
-                  }
+                    range: [53, 55],
+                  },
                 ],
                 start: 52,
                 end: 56,
-                range: [52, 56]
+                range: [52, 56],
               },
               start: 34,
               end: 56,
-              range: [34, 56]
+              range: [34, 56],
             },
             start: 34,
             end: 57,
-            range: [34, 57]
-          }
+            range: [34, 57],
+          },
         ],
         start: 0,
         end: 57,
-        range: [0, 57]
-      }
+        range: [0, 57],
+      },
     ],
     [
       'var [{x : [{y:{z = 1}, z1 = 2}] }, {x2 = 3}, {x3 : {y3:[{z3 = 4}]}} ] = [{x:[{y:{}}]}, {}, {x3:{y3:[{}]}}];',
@@ -2628,7 +2628,7 @@ describe('Miscellaneous - ranges', () => {
                             name: 'x',
                             start: 74,
                             end: 75,
-                            range: [74, 75]
+                            range: [74, 75],
                           },
                           value: {
                             type: 'ArrayExpression',
@@ -2643,14 +2643,14 @@ describe('Miscellaneous - ranges', () => {
                                       name: 'y',
                                       start: 78,
                                       end: 79,
-                                      range: [78, 79]
+                                      range: [78, 79],
                                     },
                                     value: {
                                       type: 'ObjectExpression',
                                       properties: [],
                                       start: 80,
                                       end: 82,
-                                      range: [80, 82]
+                                      range: [80, 82],
                                     },
                                     kind: 'init',
                                     computed: false,
@@ -2658,17 +2658,17 @@ describe('Miscellaneous - ranges', () => {
                                     shorthand: false,
                                     start: 78,
                                     end: 82,
-                                    range: [78, 82]
-                                  }
+                                    range: [78, 82],
+                                  },
                                 ],
                                 start: 77,
                                 end: 83,
-                                range: [77, 83]
-                              }
+                                range: [77, 83],
+                              },
                             ],
                             start: 76,
                             end: 84,
-                            range: [76, 84]
+                            range: [76, 84],
                           },
                           kind: 'init',
                           computed: false,
@@ -2676,19 +2676,19 @@ describe('Miscellaneous - ranges', () => {
                           shorthand: false,
                           start: 74,
                           end: 84,
-                          range: [74, 84]
-                        }
+                          range: [74, 84],
+                        },
                       ],
                       start: 73,
                       end: 85,
-                      range: [73, 85]
+                      range: [73, 85],
                     },
                     {
                       type: 'ObjectExpression',
                       properties: [],
                       start: 87,
                       end: 89,
-                      range: [87, 89]
+                      range: [87, 89],
                     },
                     {
                       type: 'ObjectExpression',
@@ -2700,7 +2700,7 @@ describe('Miscellaneous - ranges', () => {
                             name: 'x3',
                             start: 92,
                             end: 94,
-                            range: [92, 94]
+                            range: [92, 94],
                           },
                           value: {
                             type: 'ObjectExpression',
@@ -2712,7 +2712,7 @@ describe('Miscellaneous - ranges', () => {
                                   name: 'y3',
                                   start: 96,
                                   end: 98,
-                                  range: [96, 98]
+                                  range: [96, 98],
                                 },
                                 value: {
                                   type: 'ArrayExpression',
@@ -2722,12 +2722,12 @@ describe('Miscellaneous - ranges', () => {
                                       properties: [],
                                       start: 100,
                                       end: 102,
-                                      range: [100, 102]
-                                    }
+                                      range: [100, 102],
+                                    },
                                   ],
                                   start: 99,
                                   end: 103,
-                                  range: [99, 103]
+                                  range: [99, 103],
                                 },
                                 kind: 'init',
                                 computed: false,
@@ -2735,12 +2735,12 @@ describe('Miscellaneous - ranges', () => {
                                 shorthand: false,
                                 start: 96,
                                 end: 103,
-                                range: [96, 103]
-                              }
+                                range: [96, 103],
+                              },
                             ],
                             start: 95,
                             end: 104,
-                            range: [95, 104]
+                            range: [95, 104],
                           },
                           kind: 'init',
                           computed: false,
@@ -2748,17 +2748,17 @@ describe('Miscellaneous - ranges', () => {
                           shorthand: false,
                           start: 92,
                           end: 104,
-                          range: [92, 104]
-                        }
+                          range: [92, 104],
+                        },
                       ],
                       start: 91,
                       end: 105,
-                      range: [91, 105]
-                    }
+                      range: [91, 105],
+                    },
                   ],
                   start: 72,
                   end: 106,
-                  range: [72, 106]
+                  range: [72, 106],
                 },
                 id: {
                   type: 'ArrayPattern',
@@ -2774,7 +2774,7 @@ describe('Miscellaneous - ranges', () => {
                             name: 'x',
                             start: 6,
                             end: 7,
-                            range: [6, 7]
+                            range: [6, 7],
                           },
                           computed: false,
                           value: {
@@ -2791,7 +2791,7 @@ describe('Miscellaneous - ranges', () => {
                                       name: 'y',
                                       start: 12,
                                       end: 13,
-                                      range: [12, 13]
+                                      range: [12, 13],
                                     },
                                     computed: false,
                                     value: {
@@ -2805,7 +2805,7 @@ describe('Miscellaneous - ranges', () => {
                                             name: 'z',
                                             start: 15,
                                             end: 16,
-                                            range: [15, 16]
+                                            range: [15, 16],
                                           },
                                           computed: false,
                                           value: {
@@ -2815,35 +2815,35 @@ describe('Miscellaneous - ranges', () => {
                                               name: 'z',
                                               start: 15,
                                               end: 16,
-                                              range: [15, 16]
+                                              range: [15, 16],
                                             },
                                             right: {
                                               type: 'Literal',
                                               value: 1,
                                               start: 19,
                                               end: 20,
-                                              range: [19, 20]
+                                              range: [19, 20],
                                             },
                                             start: 15,
                                             end: 20,
-                                            range: [15, 20]
+                                            range: [15, 20],
                                           },
                                           method: false,
                                           shorthand: true,
                                           start: 15,
                                           end: 20,
-                                          range: [15, 20]
-                                        }
+                                          range: [15, 20],
+                                        },
                                       ],
                                       start: 14,
                                       end: 21,
-                                      range: [14, 21]
+                                      range: [14, 21],
                                     },
                                     method: false,
                                     shorthand: false,
                                     start: 12,
                                     end: 21,
-                                    range: [12, 21]
+                                    range: [12, 21],
                                   },
                                   {
                                     type: 'Property',
@@ -2853,7 +2853,7 @@ describe('Miscellaneous - ranges', () => {
                                       name: 'z1',
                                       start: 23,
                                       end: 25,
-                                      range: [23, 25]
+                                      range: [23, 25],
                                     },
                                     computed: false,
                                     value: {
@@ -2863,45 +2863,45 @@ describe('Miscellaneous - ranges', () => {
                                         name: 'z1',
                                         start: 23,
                                         end: 25,
-                                        range: [23, 25]
+                                        range: [23, 25],
                                       },
                                       right: {
                                         type: 'Literal',
                                         value: 2,
                                         start: 28,
                                         end: 29,
-                                        range: [28, 29]
+                                        range: [28, 29],
                                       },
                                       start: 23,
                                       end: 29,
-                                      range: [23, 29]
+                                      range: [23, 29],
                                     },
                                     method: false,
                                     shorthand: true,
                                     start: 23,
                                     end: 29,
-                                    range: [23, 29]
-                                  }
+                                    range: [23, 29],
+                                  },
                                 ],
                                 start: 11,
                                 end: 30,
-                                range: [11, 30]
-                              }
+                                range: [11, 30],
+                              },
                             ],
                             start: 10,
                             end: 31,
-                            range: [10, 31]
+                            range: [10, 31],
                           },
                           method: false,
                           shorthand: false,
                           start: 6,
                           end: 31,
-                          range: [6, 31]
-                        }
+                          range: [6, 31],
+                        },
                       ],
                       start: 5,
                       end: 33,
-                      range: [5, 33]
+                      range: [5, 33],
                     },
                     {
                       type: 'ObjectPattern',
@@ -2914,7 +2914,7 @@ describe('Miscellaneous - ranges', () => {
                             name: 'x2',
                             start: 36,
                             end: 38,
-                            range: [36, 38]
+                            range: [36, 38],
                           },
                           computed: false,
                           value: {
@@ -2924,29 +2924,29 @@ describe('Miscellaneous - ranges', () => {
                               name: 'x2',
                               start: 36,
                               end: 38,
-                              range: [36, 38]
+                              range: [36, 38],
                             },
                             right: {
                               type: 'Literal',
                               value: 3,
                               start: 41,
                               end: 42,
-                              range: [41, 42]
+                              range: [41, 42],
                             },
                             start: 36,
                             end: 42,
-                            range: [36, 42]
+                            range: [36, 42],
                           },
                           method: false,
                           shorthand: true,
                           start: 36,
                           end: 42,
-                          range: [36, 42]
-                        }
+                          range: [36, 42],
+                        },
                       ],
                       start: 35,
                       end: 43,
-                      range: [35, 43]
+                      range: [35, 43],
                     },
                     {
                       type: 'ObjectPattern',
@@ -2959,7 +2959,7 @@ describe('Miscellaneous - ranges', () => {
                             name: 'x3',
                             start: 46,
                             end: 48,
-                            range: [46, 48]
+                            range: [46, 48],
                           },
                           computed: false,
                           value: {
@@ -2973,7 +2973,7 @@ describe('Miscellaneous - ranges', () => {
                                   name: 'y3',
                                   start: 52,
                                   end: 54,
-                                  range: [52, 54]
+                                  range: [52, 54],
                                 },
                                 computed: false,
                                 value: {
@@ -2990,7 +2990,7 @@ describe('Miscellaneous - ranges', () => {
                                             name: 'z3',
                                             start: 57,
                                             end: 59,
-                                            range: [57, 59]
+                                            range: [57, 59],
                                           },
                                           computed: false,
                                           value: {
@@ -3000,76 +3000,76 @@ describe('Miscellaneous - ranges', () => {
                                               name: 'z3',
                                               start: 57,
                                               end: 59,
-                                              range: [57, 59]
+                                              range: [57, 59],
                                             },
                                             right: {
                                               type: 'Literal',
                                               value: 4,
                                               start: 62,
                                               end: 63,
-                                              range: [62, 63]
+                                              range: [62, 63],
                                             },
                                             start: 57,
                                             end: 63,
-                                            range: [57, 63]
+                                            range: [57, 63],
                                           },
                                           method: false,
                                           shorthand: true,
                                           start: 57,
                                           end: 63,
-                                          range: [57, 63]
-                                        }
+                                          range: [57, 63],
+                                        },
                                       ],
                                       start: 56,
                                       end: 64,
-                                      range: [56, 64]
-                                    }
+                                      range: [56, 64],
+                                    },
                                   ],
                                   start: 55,
                                   end: 65,
-                                  range: [55, 65]
+                                  range: [55, 65],
                                 },
                                 method: false,
                                 shorthand: false,
                                 start: 52,
                                 end: 65,
-                                range: [52, 65]
-                              }
+                                range: [52, 65],
+                              },
                             ],
                             start: 51,
                             end: 66,
-                            range: [51, 66]
+                            range: [51, 66],
                           },
                           method: false,
                           shorthand: false,
                           start: 46,
                           end: 66,
-                          range: [46, 66]
-                        }
+                          range: [46, 66],
+                        },
                       ],
                       start: 45,
                       end: 67,
-                      range: [45, 67]
-                    }
+                      range: [45, 67],
+                    },
                   ],
                   start: 4,
                   end: 69,
-                  range: [4, 69]
+                  range: [4, 69],
                 },
                 start: 4,
                 end: 106,
-                range: [4, 106]
-              }
+                range: [4, 106],
+              },
             ],
             start: 0,
             end: 107,
-            range: [0, 107]
-          }
+            range: [0, 107],
+          },
         ],
         start: 0,
         end: 107,
-        range: [0, 107]
-      }
+        range: [0, 107],
+      },
     ],
     [
       `let {
@@ -3102,7 +3102,7 @@ describe('Miscellaneous - ranges', () => {
                         name: 'x',
                         start: 174,
                         end: 175,
-                        range: [174, 175]
+                        range: [174, 175],
                       },
                       value: {
                         type: 'ObjectExpression',
@@ -3114,7 +3114,7 @@ describe('Miscellaneous - ranges', () => {
                               name: 'y',
                               start: 178,
                               end: 179,
-                              range: [178, 179]
+                              range: [178, 179],
                             },
                             value: {
                               type: 'ObjectExpression',
@@ -3126,14 +3126,14 @@ describe('Miscellaneous - ranges', () => {
                                     name: 'z',
                                     start: 182,
                                     end: 183,
-                                    range: [182, 183]
+                                    range: [182, 183],
                                   },
                                   value: {
                                     type: 'ObjectExpression',
                                     properties: [],
                                     start: 184,
                                     end: 186,
-                                    range: [184, 186]
+                                    range: [184, 186],
                                   },
                                   kind: 'init',
                                   computed: false,
@@ -3141,12 +3141,12 @@ describe('Miscellaneous - ranges', () => {
                                   shorthand: false,
                                   start: 182,
                                   end: 186,
-                                  range: [182, 186]
-                                }
+                                  range: [182, 186],
+                                },
                               ],
                               start: 180,
                               end: 188,
-                              range: [180, 188]
+                              range: [180, 188],
                             },
                             kind: 'init',
                             computed: false,
@@ -3154,12 +3154,12 @@ describe('Miscellaneous - ranges', () => {
                             shorthand: false,
                             start: 178,
                             end: 188,
-                            range: [178, 188]
-                          }
+                            range: [178, 188],
+                          },
                         ],
                         start: 176,
                         end: 190,
-                        range: [176, 190]
+                        range: [176, 190],
                       },
                       kind: 'init',
                       computed: false,
@@ -3167,12 +3167,12 @@ describe('Miscellaneous - ranges', () => {
                       shorthand: false,
                       start: 174,
                       end: 190,
-                      range: [174, 190]
-                    }
+                      range: [174, 190],
+                    },
                   ],
                   start: 172,
                   end: 192,
-                  range: [172, 192]
+                  range: [172, 192],
                 },
                 id: {
                   type: 'ObjectPattern',
@@ -3185,7 +3185,7 @@ describe('Miscellaneous - ranges', () => {
                         name: 'x',
                         start: 12,
                         end: 13,
-                        range: [12, 13]
+                        range: [12, 13],
                       },
                       computed: false,
                       value: {
@@ -3201,7 +3201,7 @@ describe('Miscellaneous - ranges', () => {
                                 name: 'y',
                                 start: 26,
                                 end: 27,
-                                range: [26, 27]
+                                range: [26, 27],
                               },
                               computed: false,
                               value: {
@@ -3217,7 +3217,7 @@ describe('Miscellaneous - ranges', () => {
                                         name: 'z',
                                         start: 44,
                                         end: 45,
-                                        range: [44, 45]
+                                        range: [44, 45],
                                       },
                                       computed: false,
                                       value: {
@@ -3233,7 +3233,7 @@ describe('Miscellaneous - ranges', () => {
                                                 name: 'k',
                                                 start: 66,
                                                 end: 67,
-                                                range: [66, 67]
+                                                range: [66, 67],
                                               },
                                               computed: false,
                                               value: {
@@ -3243,29 +3243,29 @@ describe('Miscellaneous - ranges', () => {
                                                   name: 'k2',
                                                   start: 68,
                                                   end: 70,
-                                                  range: [68, 70]
+                                                  range: [68, 70],
                                                 },
                                                 right: {
                                                   type: 'Literal',
                                                   value: 31,
                                                   start: 73,
                                                   end: 75,
-                                                  range: [73, 75]
+                                                  range: [73, 75],
                                                 },
                                                 start: 68,
                                                 end: 75,
-                                                range: [68, 75]
+                                                range: [68, 75],
                                               },
                                               method: false,
                                               shorthand: false,
                                               start: 66,
                                               end: 75,
-                                              range: [66, 75]
-                                            }
+                                              range: [66, 75],
+                                            },
                                           ],
                                           start: 46,
                                           end: 93,
-                                          range: [46, 93]
+                                          range: [46, 93],
                                         },
                                         right: {
                                           type: 'ObjectExpression',
@@ -3277,14 +3277,14 @@ describe('Miscellaneous - ranges', () => {
                                                 name: 'k',
                                                 start: 98,
                                                 end: 99,
-                                                range: [98, 99]
+                                                range: [98, 99],
                                               },
                                               value: {
                                                 type: 'Literal',
                                                 value: 21,
                                                 start: 100,
                                                 end: 102,
-                                                range: [100, 102]
+                                                range: [100, 102],
                                               },
                                               kind: 'init',
                                               computed: false,
@@ -3292,27 +3292,27 @@ describe('Miscellaneous - ranges', () => {
                                               shorthand: false,
                                               start: 98,
                                               end: 102,
-                                              range: [98, 102]
-                                            }
+                                              range: [98, 102],
+                                            },
                                           ],
                                           start: 96,
                                           end: 104,
-                                          range: [96, 104]
+                                          range: [96, 104],
                                         },
                                         start: 46,
                                         end: 104,
-                                        range: [46, 104]
+                                        range: [46, 104],
                                       },
                                       method: false,
                                       shorthand: false,
                                       start: 44,
                                       end: 104,
-                                      range: [44, 104]
-                                    }
+                                      range: [44, 104],
+                                    },
                                   ],
                                   start: 28,
                                   end: 118,
-                                  range: [28, 118]
+                                  range: [28, 118],
                                 },
                                 right: {
                                   type: 'ObjectExpression',
@@ -3324,7 +3324,7 @@ describe('Miscellaneous - ranges', () => {
                                         name: 'z',
                                         start: 123,
                                         end: 124,
-                                        range: [123, 124]
+                                        range: [123, 124],
                                       },
                                       value: {
                                         type: 'ObjectExpression',
@@ -3336,14 +3336,14 @@ describe('Miscellaneous - ranges', () => {
                                               name: 'k',
                                               start: 127,
                                               end: 128,
-                                              range: [127, 128]
+                                              range: [127, 128],
                                             },
                                             value: {
                                               type: 'Literal',
                                               value: 20,
                                               start: 129,
                                               end: 131,
-                                              range: [129, 131]
+                                              range: [129, 131],
                                             },
                                             kind: 'init',
                                             computed: false,
@@ -3351,12 +3351,12 @@ describe('Miscellaneous - ranges', () => {
                                             shorthand: false,
                                             start: 127,
                                             end: 131,
-                                            range: [127, 131]
-                                          }
+                                            range: [127, 131],
+                                          },
                                         ],
                                         start: 125,
                                         end: 133,
-                                        range: [125, 133]
+                                        range: [125, 133],
                                       },
                                       kind: 'init',
                                       computed: false,
@@ -3364,27 +3364,27 @@ describe('Miscellaneous - ranges', () => {
                                       shorthand: false,
                                       start: 123,
                                       end: 133,
-                                      range: [123, 133]
-                                    }
+                                      range: [123, 133],
+                                    },
                                   ],
                                   start: 121,
                                   end: 135,
-                                  range: [121, 135]
+                                  range: [121, 135],
                                 },
                                 start: 28,
                                 end: 135,
-                                range: [28, 135]
+                                range: [28, 135],
                               },
                               method: false,
                               shorthand: false,
                               start: 26,
                               end: 135,
-                              range: [26, 135]
-                            }
+                              range: [26, 135],
+                            },
                           ],
                           start: 14,
                           end: 145,
-                          range: [14, 145]
+                          range: [14, 145],
                         },
                         right: {
                           type: 'ObjectExpression',
@@ -3396,7 +3396,7 @@ describe('Miscellaneous - ranges', () => {
                                 name: 'y',
                                 start: 150,
                                 end: 151,
-                                range: [150, 151]
+                                range: [150, 151],
                               },
                               value: {
                                 type: 'ObjectExpression',
@@ -3408,14 +3408,14 @@ describe('Miscellaneous - ranges', () => {
                                       name: 'z',
                                       start: 155,
                                       end: 156,
-                                      range: [155, 156]
+                                      range: [155, 156],
                                     },
                                     value: {
                                       type: 'ObjectExpression',
                                       properties: [],
                                       start: 157,
                                       end: 159,
-                                      range: [157, 159]
+                                      range: [157, 159],
                                     },
                                     kind: 'init',
                                     computed: false,
@@ -3423,12 +3423,12 @@ describe('Miscellaneous - ranges', () => {
                                     shorthand: false,
                                     start: 155,
                                     end: 159,
-                                    range: [155, 159]
-                                  }
+                                    range: [155, 159],
+                                  },
                                 ],
                                 start: 153,
                                 end: 161,
-                                range: [153, 161]
+                                range: [153, 161],
                               },
                               kind: 'init',
                               computed: false,
@@ -3436,42 +3436,42 @@ describe('Miscellaneous - ranges', () => {
                               shorthand: false,
                               start: 150,
                               end: 161,
-                              range: [150, 161]
-                            }
+                              range: [150, 161],
+                            },
                           ],
                           start: 148,
                           end: 163,
-                          range: [148, 163]
+                          range: [148, 163],
                         },
                         start: 14,
                         end: 163,
-                        range: [14, 163]
+                        range: [14, 163],
                       },
                       method: false,
                       shorthand: false,
                       start: 12,
                       end: 163,
-                      range: [12, 163]
-                    }
+                      range: [12, 163],
+                    },
                   ],
                   start: 4,
                   end: 169,
-                  range: [4, 169]
+                  range: [4, 169],
                 },
                 start: 4,
                 end: 192,
-                range: [4, 192]
-              }
+                range: [4, 192],
+              },
             ],
             start: 0,
             end: 193,
-            range: [0, 193]
-          }
+            range: [0, 193],
+          },
         ],
         start: 0,
         end: 193,
-        range: [0, 193]
-      }
+        range: [0, 193],
+      },
     ],
     [
       'var x = (new Foo).x;',
@@ -3495,12 +3495,12 @@ describe('Miscellaneous - ranges', () => {
                       name: 'Foo',
                       start: 13,
                       end: 16,
-                      range: [13, 16]
+                      range: [13, 16],
                     },
                     arguments: [],
                     start: 9,
                     end: 16,
-                    range: [9, 16]
+                    range: [9, 16],
                   },
                   computed: false,
                   property: {
@@ -3508,33 +3508,33 @@ describe('Miscellaneous - ranges', () => {
                     name: 'x',
                     start: 18,
                     end: 19,
-                    range: [18, 19]
+                    range: [18, 19],
                   },
                   start: 8,
                   end: 19,
-                  range: [8, 19]
+                  range: [8, 19],
                 },
                 id: {
                   type: 'Identifier',
                   name: 'x',
                   start: 4,
                   end: 5,
-                  range: [4, 5]
+                  range: [4, 5],
                 },
                 start: 4,
                 end: 19,
-                range: [4, 19]
-              }
+                range: [4, 19],
+              },
             ],
             start: 0,
             end: 20,
-            range: [0, 20]
-          }
+            range: [0, 20],
+          },
         ],
         start: 0,
         end: 20,
-        range: [0, 20]
-      }
+        range: [0, 20],
+      },
     ],
     [
       'var private = [["hello"]][0][0];',
@@ -3564,17 +3564,17 @@ describe('Miscellaneous - ranges', () => {
                               value: 'hello',
                               start: 16,
                               end: 23,
-                              range: [16, 23]
-                            }
+                              range: [16, 23],
+                            },
                           ],
                           start: 15,
                           end: 24,
-                          range: [15, 24]
-                        }
+                          range: [15, 24],
+                        },
                       ],
                       start: 14,
                       end: 25,
-                      range: [14, 25]
+                      range: [14, 25],
                     },
                     computed: true,
                     property: {
@@ -3582,11 +3582,11 @@ describe('Miscellaneous - ranges', () => {
                       value: 0,
                       start: 26,
                       end: 27,
-                      range: [26, 27]
+                      range: [26, 27],
                     },
                     start: 14,
                     end: 28,
-                    range: [14, 28]
+                    range: [14, 28],
                   },
                   computed: true,
                   property: {
@@ -3594,33 +3594,33 @@ describe('Miscellaneous - ranges', () => {
                     value: 0,
                     start: 29,
                     end: 30,
-                    range: [29, 30]
+                    range: [29, 30],
                   },
                   start: 14,
                   end: 31,
-                  range: [14, 31]
+                  range: [14, 31],
                 },
                 id: {
                   type: 'Identifier',
                   name: 'private',
                   start: 4,
                   end: 11,
-                  range: [4, 11]
+                  range: [4, 11],
                 },
                 start: 4,
                 end: 31,
-                range: [4, 31]
-              }
+                range: [4, 31],
+              },
             ],
             start: 0,
             end: 32,
-            range: [0, 32]
-          }
+            range: [0, 32],
+          },
         ],
         start: 0,
         end: 32,
-        range: [0, 32]
-      }
+        range: [0, 32],
+      },
     ],
     [
       'if ((b === undefined && c === undefined) || (this.b === undefined && this.c === undefined)) {}',
@@ -3642,19 +3642,19 @@ describe('Miscellaneous - ranges', () => {
                     name: 'b',
                     start: 5,
                     end: 6,
-                    range: [5, 6]
+                    range: [5, 6],
                   },
                   right: {
                     type: 'Identifier',
                     name: 'undefined',
                     start: 11,
                     end: 20,
-                    range: [11, 20]
+                    range: [11, 20],
                   },
                   operator: '===',
                   start: 5,
                   end: 20,
-                  range: [5, 20]
+                  range: [5, 20],
                 },
                 right: {
                   type: 'BinaryExpression',
@@ -3663,24 +3663,24 @@ describe('Miscellaneous - ranges', () => {
                     name: 'c',
                     start: 24,
                     end: 25,
-                    range: [24, 25]
+                    range: [24, 25],
                   },
                   right: {
                     type: 'Identifier',
                     name: 'undefined',
                     start: 30,
                     end: 39,
-                    range: [30, 39]
+                    range: [30, 39],
                   },
                   operator: '===',
                   start: 24,
                   end: 39,
-                  range: [24, 39]
+                  range: [24, 39],
                 },
                 operator: '&&',
                 start: 5,
                 end: 39,
-                range: [5, 39]
+                range: [5, 39],
               },
               right: {
                 type: 'LogicalExpression',
@@ -3692,7 +3692,7 @@ describe('Miscellaneous - ranges', () => {
                       type: 'ThisExpression',
                       start: 45,
                       end: 49,
-                      range: [45, 49]
+                      range: [45, 49],
                     },
                     computed: false,
                     property: {
@@ -3700,23 +3700,23 @@ describe('Miscellaneous - ranges', () => {
                       name: 'b',
                       start: 50,
                       end: 51,
-                      range: [50, 51]
+                      range: [50, 51],
                     },
                     start: 45,
                     end: 51,
-                    range: [45, 51]
+                    range: [45, 51],
                   },
                   right: {
                     type: 'Identifier',
                     name: 'undefined',
                     start: 56,
                     end: 65,
-                    range: [56, 65]
+                    range: [56, 65],
                   },
                   operator: '===',
                   start: 45,
                   end: 65,
-                  range: [45, 65]
+                  range: [45, 65],
                 },
                 right: {
                   type: 'BinaryExpression',
@@ -3726,7 +3726,7 @@ describe('Miscellaneous - ranges', () => {
                       type: 'ThisExpression',
                       start: 69,
                       end: 73,
-                      range: [69, 73]
+                      range: [69, 73],
                     },
                     computed: false,
                     property: {
@@ -3734,51 +3734,51 @@ describe('Miscellaneous - ranges', () => {
                       name: 'c',
                       start: 74,
                       end: 75,
-                      range: [74, 75]
+                      range: [74, 75],
                     },
                     start: 69,
                     end: 75,
-                    range: [69, 75]
+                    range: [69, 75],
                   },
                   right: {
                     type: 'Identifier',
                     name: 'undefined',
                     start: 80,
                     end: 89,
-                    range: [80, 89]
+                    range: [80, 89],
                   },
                   operator: '===',
                   start: 69,
                   end: 89,
-                  range: [69, 89]
+                  range: [69, 89],
                 },
                 operator: '&&',
                 start: 45,
                 end: 89,
-                range: [45, 89]
+                range: [45, 89],
               },
               operator: '||',
               start: 4,
               end: 90,
-              range: [4, 90]
+              range: [4, 90],
             },
             consequent: {
               type: 'BlockStatement',
               body: [],
               start: 92,
               end: 94,
-              range: [92, 94]
+              range: [92, 94],
             },
             alternate: null,
             start: 0,
             end: 94,
-            range: [0, 94]
-          }
+            range: [0, 94],
+          },
         ],
         start: 0,
         end: 94,
-        range: [0, 94]
-      }
+        range: [0, 94],
+      },
     ],
     [
       '[((((((x.y))))))] = obj',
@@ -3801,7 +3801,7 @@ describe('Miscellaneous - ranges', () => {
                       name: 'x',
                       start: 7,
                       end: 8,
-                      range: [7, 8]
+                      range: [7, 8],
                     },
                     computed: false,
                     property: {
@@ -3809,16 +3809,16 @@ describe('Miscellaneous - ranges', () => {
                       name: 'y',
                       start: 9,
                       end: 10,
-                      range: [9, 10]
+                      range: [9, 10],
                     },
                     start: 7,
                     end: 10,
-                    range: [7, 10]
-                  }
+                    range: [7, 10],
+                  },
                 ],
                 start: 0,
                 end: 17,
-                range: [0, 17]
+                range: [0, 17],
               },
               operator: '=',
               right: {
@@ -3826,21 +3826,21 @@ describe('Miscellaneous - ranges', () => {
                 name: 'obj',
                 start: 20,
                 end: 23,
-                range: [20, 23]
+                range: [20, 23],
               },
               start: 0,
               end: 23,
-              range: [0, 23]
+              range: [0, 23],
             },
             start: 0,
             end: 23,
-            range: [0, 23]
-          }
+            range: [0, 23],
+          },
         ],
         start: 0,
         end: 23,
-        range: [0, 23]
-      }
+        range: [0, 23],
+      },
     ],
     [
       '({[(a)()]: {}})',
@@ -3863,19 +3863,19 @@ describe('Miscellaneous - ranges', () => {
                       name: 'a',
                       start: 4,
                       end: 5,
-                      range: [4, 5]
+                      range: [4, 5],
                     },
                     arguments: [],
                     start: 3,
                     end: 8,
-                    range: [3, 8]
+                    range: [3, 8],
                   },
                   value: {
                     type: 'ObjectExpression',
                     properties: [],
                     start: 11,
                     end: 13,
-                    range: [11, 13]
+                    range: [11, 13],
                   },
                   kind: 'init',
                   computed: true,
@@ -3883,22 +3883,22 @@ describe('Miscellaneous - ranges', () => {
                   shorthand: false,
                   start: 2,
                   end: 13,
-                  range: [2, 13]
-                }
+                  range: [2, 13],
+                },
               ],
               start: 1,
               end: 14,
-              range: [1, 14]
+              range: [1, 14],
             },
             start: 0,
             end: 15,
-            range: [0, 15]
-          }
+            range: [0, 15],
+          },
         ],
         start: 0,
         end: 15,
-        range: [0, 15]
-      }
+        range: [0, 15],
+      },
     ],
     [
       '({a = [b]} = 1)',
@@ -3921,7 +3921,7 @@ describe('Miscellaneous - ranges', () => {
                       name: 'a',
                       start: 2,
                       end: 3,
-                      range: [2, 3]
+                      range: [2, 3],
                     },
                     value: {
                       type: 'AssignmentPattern',
@@ -3930,7 +3930,7 @@ describe('Miscellaneous - ranges', () => {
                         name: 'a',
                         start: 2,
                         end: 3,
-                        range: [2, 3]
+                        range: [2, 3],
                       },
                       right: {
                         type: 'ArrayExpression',
@@ -3940,16 +3940,16 @@ describe('Miscellaneous - ranges', () => {
                             name: 'b',
                             start: 7,
                             end: 8,
-                            range: [7, 8]
-                          }
+                            range: [7, 8],
+                          },
                         ],
                         start: 6,
                         end: 9,
-                        range: [6, 9]
+                        range: [6, 9],
                       },
                       start: 2,
                       end: 9,
-                      range: [2, 9]
+                      range: [2, 9],
                     },
                     kind: 'init',
                     computed: false,
@@ -3957,12 +3957,12 @@ describe('Miscellaneous - ranges', () => {
                     shorthand: true,
                     start: 2,
                     end: 9,
-                    range: [2, 9]
-                  }
+                    range: [2, 9],
+                  },
                 ],
                 start: 1,
                 end: 10,
-                range: [1, 10]
+                range: [1, 10],
               },
               operator: '=',
               right: {
@@ -3970,21 +3970,21 @@ describe('Miscellaneous - ranges', () => {
                 value: 1,
                 start: 13,
                 end: 14,
-                range: [13, 14]
+                range: [13, 14],
               },
               start: 1,
               end: 14,
-              range: [1, 14]
+              range: [1, 14],
             },
             start: 0,
             end: 15,
-            range: [0, 15]
-          }
+            range: [0, 15],
+          },
         ],
         start: 0,
         end: 15,
-        range: [0, 15]
-      }
+        range: [0, 15],
+      },
     ],
     [
       '({["a"]: [b]} = 1 / (d = (e)))',
@@ -4007,7 +4007,7 @@ describe('Miscellaneous - ranges', () => {
                       value: 'a',
                       start: 3,
                       end: 6,
-                      range: [3, 6]
+                      range: [3, 6],
                     },
                     value: {
                       type: 'ArrayPattern',
@@ -4017,12 +4017,12 @@ describe('Miscellaneous - ranges', () => {
                           name: 'b',
                           start: 10,
                           end: 11,
-                          range: [10, 11]
-                        }
+                          range: [10, 11],
+                        },
                       ],
                       start: 9,
                       end: 12,
-                      range: [9, 12]
+                      range: [9, 12],
                     },
                     kind: 'init',
                     computed: true,
@@ -4030,12 +4030,12 @@ describe('Miscellaneous - ranges', () => {
                     shorthand: false,
                     start: 2,
                     end: 12,
-                    range: [2, 12]
-                  }
+                    range: [2, 12],
+                  },
                 ],
                 start: 1,
                 end: 13,
-                range: [1, 13]
+                range: [1, 13],
               },
               operator: '=',
               right: {
@@ -4045,7 +4045,7 @@ describe('Miscellaneous - ranges', () => {
                   value: 1,
                   start: 16,
                   end: 17,
-                  range: [16, 17]
+                  range: [16, 17],
                 },
                 right: {
                   type: 'AssignmentExpression',
@@ -4054,7 +4054,7 @@ describe('Miscellaneous - ranges', () => {
                     name: 'd',
                     start: 21,
                     end: 22,
-                    range: [21, 22]
+                    range: [21, 22],
                   },
                   operator: '=',
                   right: {
@@ -4062,30 +4062,30 @@ describe('Miscellaneous - ranges', () => {
                     name: 'e',
                     start: 26,
                     end: 27,
-                    range: [26, 27]
+                    range: [26, 27],
                   },
                   start: 21,
                   end: 28,
-                  range: [21, 28]
+                  range: [21, 28],
                 },
                 operator: '/',
                 start: 16,
                 end: 29,
-                range: [16, 29]
+                range: [16, 29],
               },
               start: 1,
               end: 29,
-              range: [1, 29]
+              range: [1, 29],
             },
             start: 0,
             end: 30,
-            range: [0, 30]
-          }
+            range: [0, 30],
+          },
         ],
         start: 0,
         end: 30,
-        range: [0, 30]
-      }
+        range: [0, 30],
+      },
     ],
     [
       '({["a"]: [b]} = 1 / (d = ((a)) = a))',
@@ -4108,7 +4108,7 @@ describe('Miscellaneous - ranges', () => {
                       value: 'a',
                       start: 3,
                       end: 6,
-                      range: [3, 6]
+                      range: [3, 6],
                     },
                     value: {
                       type: 'ArrayPattern',
@@ -4118,12 +4118,12 @@ describe('Miscellaneous - ranges', () => {
                           name: 'b',
                           start: 10,
                           end: 11,
-                          range: [10, 11]
-                        }
+                          range: [10, 11],
+                        },
                       ],
                       start: 9,
                       end: 12,
-                      range: [9, 12]
+                      range: [9, 12],
                     },
                     kind: 'init',
                     computed: true,
@@ -4131,12 +4131,12 @@ describe('Miscellaneous - ranges', () => {
                     shorthand: false,
                     start: 2,
                     end: 12,
-                    range: [2, 12]
-                  }
+                    range: [2, 12],
+                  },
                 ],
                 start: 1,
                 end: 13,
-                range: [1, 13]
+                range: [1, 13],
               },
               operator: '=',
               right: {
@@ -4146,7 +4146,7 @@ describe('Miscellaneous - ranges', () => {
                   value: 1,
                   start: 16,
                   end: 17,
-                  range: [16, 17]
+                  range: [16, 17],
                 },
                 right: {
                   type: 'AssignmentExpression',
@@ -4155,7 +4155,7 @@ describe('Miscellaneous - ranges', () => {
                     name: 'd',
                     start: 21,
                     end: 22,
-                    range: [21, 22]
+                    range: [21, 22],
                   },
                   operator: '=',
                   right: {
@@ -4165,7 +4165,7 @@ describe('Miscellaneous - ranges', () => {
                       name: 'a',
                       start: 27,
                       end: 28,
-                      range: [27, 28]
+                      range: [27, 28],
                     },
                     operator: '=',
                     right: {
@@ -4173,34 +4173,34 @@ describe('Miscellaneous - ranges', () => {
                       name: 'a',
                       start: 33,
                       end: 34,
-                      range: [33, 34]
+                      range: [33, 34],
                     },
                     start: 25,
                     end: 34,
-                    range: [25, 34]
+                    range: [25, 34],
                   },
                   start: 21,
                   end: 34,
-                  range: [21, 34]
+                  range: [21, 34],
                 },
                 operator: '/',
                 start: 16,
                 end: 35,
-                range: [16, 35]
+                range: [16, 35],
               },
               start: 1,
               end: 35,
-              range: [1, 35]
+              range: [1, 35],
             },
             start: 0,
             end: 36,
-            range: [0, 36]
-          }
+            range: [0, 36],
+          },
         ],
         start: 0,
         end: 36,
-        range: [0, 36]
-      }
+        range: [0, 36],
+      },
     ],
     [
       '({a: ("string") / a[3](a = b.c) })',
@@ -4221,7 +4221,7 @@ describe('Miscellaneous - ranges', () => {
                     name: 'a',
                     start: 2,
                     end: 3,
-                    range: [2, 3]
+                    range: [2, 3],
                   },
                   value: {
                     type: 'BinaryExpression',
@@ -4230,7 +4230,7 @@ describe('Miscellaneous - ranges', () => {
                       value: 'string',
                       start: 6,
                       end: 14,
-                      range: [6, 14]
+                      range: [6, 14],
                     },
                     right: {
                       type: 'CallExpression',
@@ -4241,7 +4241,7 @@ describe('Miscellaneous - ranges', () => {
                           name: 'a',
                           start: 18,
                           end: 19,
-                          range: [18, 19]
+                          range: [18, 19],
                         },
                         computed: true,
                         property: {
@@ -4249,11 +4249,11 @@ describe('Miscellaneous - ranges', () => {
                           value: 3,
                           start: 20,
                           end: 21,
-                          range: [20, 21]
+                          range: [20, 21],
                         },
                         start: 18,
                         end: 22,
-                        range: [18, 22]
+                        range: [18, 22],
                       },
                       arguments: [
                         {
@@ -4263,7 +4263,7 @@ describe('Miscellaneous - ranges', () => {
                             name: 'a',
                             start: 23,
                             end: 24,
-                            range: [23, 24]
+                            range: [23, 24],
                           },
                           operator: '=',
                           right: {
@@ -4273,7 +4273,7 @@ describe('Miscellaneous - ranges', () => {
                               name: 'b',
                               start: 27,
                               end: 28,
-                              range: [27, 28]
+                              range: [27, 28],
                             },
                             computed: false,
                             property: {
@@ -4281,25 +4281,25 @@ describe('Miscellaneous - ranges', () => {
                               name: 'c',
                               start: 29,
                               end: 30,
-                              range: [29, 30]
+                              range: [29, 30],
                             },
                             start: 27,
                             end: 30,
-                            range: [27, 30]
+                            range: [27, 30],
                           },
                           start: 23,
                           end: 30,
-                          range: [23, 30]
-                        }
+                          range: [23, 30],
+                        },
                       ],
                       start: 18,
                       end: 31,
-                      range: [18, 31]
+                      range: [18, 31],
                     },
                     operator: '/',
                     start: 5,
                     end: 31,
-                    range: [5, 31]
+                    range: [5, 31],
                   },
                   kind: 'init',
                   computed: false,
@@ -4307,22 +4307,22 @@ describe('Miscellaneous - ranges', () => {
                   shorthand: false,
                   start: 2,
                   end: 31,
-                  range: [2, 31]
-                }
+                  range: [2, 31],
+                },
               ],
               start: 1,
               end: 33,
-              range: [1, 33]
+              range: [1, 33],
             },
             start: 0,
             end: 34,
-            range: [0, 34]
-          }
+            range: [0, 34],
+          },
         ],
         start: 0,
         end: 34,
-        range: [0, 34]
-      }
+        range: [0, 34],
+      },
     ],
     [
       '({a: ("string") / a[3](((((a = b.c))))) })',
@@ -4343,7 +4343,7 @@ describe('Miscellaneous - ranges', () => {
                     name: 'a',
                     start: 2,
                     end: 3,
-                    range: [2, 3]
+                    range: [2, 3],
                   },
                   value: {
                     type: 'BinaryExpression',
@@ -4352,7 +4352,7 @@ describe('Miscellaneous - ranges', () => {
                       value: 'string',
                       start: 6,
                       end: 14,
-                      range: [6, 14]
+                      range: [6, 14],
                     },
                     right: {
                       type: 'CallExpression',
@@ -4363,7 +4363,7 @@ describe('Miscellaneous - ranges', () => {
                           name: 'a',
                           start: 18,
                           end: 19,
-                          range: [18, 19]
+                          range: [18, 19],
                         },
                         computed: true,
                         property: {
@@ -4371,11 +4371,11 @@ describe('Miscellaneous - ranges', () => {
                           value: 3,
                           start: 20,
                           end: 21,
-                          range: [20, 21]
+                          range: [20, 21],
                         },
                         start: 18,
                         end: 22,
-                        range: [18, 22]
+                        range: [18, 22],
                       },
                       arguments: [
                         {
@@ -4385,7 +4385,7 @@ describe('Miscellaneous - ranges', () => {
                             name: 'a',
                             start: 27,
                             end: 28,
-                            range: [27, 28]
+                            range: [27, 28],
                           },
                           operator: '=',
                           right: {
@@ -4395,7 +4395,7 @@ describe('Miscellaneous - ranges', () => {
                               name: 'b',
                               start: 31,
                               end: 32,
-                              range: [31, 32]
+                              range: [31, 32],
                             },
                             computed: false,
                             property: {
@@ -4403,25 +4403,25 @@ describe('Miscellaneous - ranges', () => {
                               name: 'c',
                               start: 33,
                               end: 34,
-                              range: [33, 34]
+                              range: [33, 34],
                             },
                             start: 31,
                             end: 34,
-                            range: [31, 34]
+                            range: [31, 34],
                           },
                           start: 27,
                           end: 34,
-                          range: [27, 34]
-                        }
+                          range: [27, 34],
+                        },
                       ],
                       start: 18,
                       end: 39,
-                      range: [18, 39]
+                      range: [18, 39],
                     },
                     operator: '/',
                     start: 5,
                     end: 39,
-                    range: [5, 39]
+                    range: [5, 39],
                   },
                   kind: 'init',
                   computed: false,
@@ -4429,22 +4429,22 @@ describe('Miscellaneous - ranges', () => {
                   shorthand: false,
                   start: 2,
                   end: 39,
-                  range: [2, 39]
-                }
+                  range: [2, 39],
+                },
               ],
               start: 1,
               end: 41,
-              range: [1, 41]
+              range: [1, 41],
             },
             start: 0,
             end: 42,
-            range: [0, 42]
-          }
+            range: [0, 42],
+          },
         ],
         start: 0,
         end: 42,
-        range: [0, 42]
-      }
+        range: [0, 42],
+      },
     ],
     [
       '({a: ("string") / a[3](((((a /= [b.c] = (x)))))) })',
@@ -4465,7 +4465,7 @@ describe('Miscellaneous - ranges', () => {
                     name: 'a',
                     start: 2,
                     end: 3,
-                    range: [2, 3]
+                    range: [2, 3],
                   },
                   value: {
                     type: 'BinaryExpression',
@@ -4474,7 +4474,7 @@ describe('Miscellaneous - ranges', () => {
                       value: 'string',
                       start: 6,
                       end: 14,
-                      range: [6, 14]
+                      range: [6, 14],
                     },
                     right: {
                       type: 'CallExpression',
@@ -4485,7 +4485,7 @@ describe('Miscellaneous - ranges', () => {
                           name: 'a',
                           start: 18,
                           end: 19,
-                          range: [18, 19]
+                          range: [18, 19],
                         },
                         computed: true,
                         property: {
@@ -4493,11 +4493,11 @@ describe('Miscellaneous - ranges', () => {
                           value: 3,
                           start: 20,
                           end: 21,
-                          range: [20, 21]
+                          range: [20, 21],
                         },
                         start: 18,
                         end: 22,
-                        range: [18, 22]
+                        range: [18, 22],
                       },
                       arguments: [
                         {
@@ -4507,7 +4507,7 @@ describe('Miscellaneous - ranges', () => {
                             name: 'a',
                             start: 27,
                             end: 28,
-                            range: [27, 28]
+                            range: [27, 28],
                           },
                           operator: '/=',
                           right: {
@@ -4522,7 +4522,7 @@ describe('Miscellaneous - ranges', () => {
                                     name: 'b',
                                     start: 33,
                                     end: 34,
-                                    range: [33, 34]
+                                    range: [33, 34],
                                   },
                                   computed: false,
                                   property: {
@@ -4530,16 +4530,16 @@ describe('Miscellaneous - ranges', () => {
                                     name: 'c',
                                     start: 35,
                                     end: 36,
-                                    range: [35, 36]
+                                    range: [35, 36],
                                   },
                                   start: 33,
                                   end: 36,
-                                  range: [33, 36]
-                                }
+                                  range: [33, 36],
+                                },
                               ],
                               start: 32,
                               end: 37,
-                              range: [32, 37]
+                              range: [32, 37],
                             },
                             operator: '=',
                             right: {
@@ -4547,25 +4547,25 @@ describe('Miscellaneous - ranges', () => {
                               name: 'x',
                               start: 41,
                               end: 42,
-                              range: [41, 42]
+                              range: [41, 42],
                             },
                             start: 32,
                             end: 43,
-                            range: [32, 43]
+                            range: [32, 43],
                           },
                           start: 27,
                           end: 43,
-                          range: [27, 43]
-                        }
+                          range: [27, 43],
+                        },
                       ],
                       start: 18,
                       end: 48,
-                      range: [18, 48]
+                      range: [18, 48],
                     },
                     operator: '/',
                     start: 5,
                     end: 48,
-                    range: [5, 48]
+                    range: [5, 48],
                   },
                   kind: 'init',
                   computed: false,
@@ -4573,22 +4573,22 @@ describe('Miscellaneous - ranges', () => {
                   shorthand: false,
                   start: 2,
                   end: 48,
-                  range: [2, 48]
-                }
+                  range: [2, 48],
+                },
               ],
               start: 1,
               end: 50,
-              range: [1, 50]
+              range: [1, 50],
             },
             start: 0,
             end: 51,
-            range: [0, 51]
-          }
+            range: [0, 51],
+          },
         ],
         start: 0,
         end: 51,
-        range: [0, 51]
-      }
+        range: [0, 51],
+      },
     ],
     [
       'try { throw {x:10, z:["this is z"]}; }  catch({x, y, z:[z]}) {x;}',
@@ -4614,14 +4614,14 @@ describe('Miscellaneous - ranges', () => {
                           name: 'x',
                           start: 13,
                           end: 14,
-                          range: [13, 14]
+                          range: [13, 14],
                         },
                         value: {
                           type: 'Literal',
                           value: 10,
                           start: 15,
                           end: 17,
-                          range: [15, 17]
+                          range: [15, 17],
                         },
                         kind: 'init',
                         computed: false,
@@ -4629,7 +4629,7 @@ describe('Miscellaneous - ranges', () => {
                         shorthand: false,
                         start: 13,
                         end: 17,
-                        range: [13, 17]
+                        range: [13, 17],
                       },
                       {
                         type: 'Property',
@@ -4638,7 +4638,7 @@ describe('Miscellaneous - ranges', () => {
                           name: 'z',
                           start: 19,
                           end: 20,
-                          range: [19, 20]
+                          range: [19, 20],
                         },
                         value: {
                           type: 'ArrayExpression',
@@ -4648,12 +4648,12 @@ describe('Miscellaneous - ranges', () => {
                               value: 'this is z',
                               start: 22,
                               end: 33,
-                              range: [22, 33]
-                            }
+                              range: [22, 33],
+                            },
                           ],
                           start: 21,
                           end: 34,
-                          range: [21, 34]
+                          range: [21, 34],
                         },
                         kind: 'init',
                         computed: false,
@@ -4661,21 +4661,21 @@ describe('Miscellaneous - ranges', () => {
                         shorthand: false,
                         start: 19,
                         end: 34,
-                        range: [19, 34]
-                      }
+                        range: [19, 34],
+                      },
                     ],
                     start: 12,
                     end: 35,
-                    range: [12, 35]
+                    range: [12, 35],
                   },
                   start: 6,
                   end: 36,
-                  range: [6, 36]
-                }
+                  range: [6, 36],
+                },
               ],
               start: 4,
               end: 38,
-              range: [4, 38]
+              range: [4, 38],
             },
             handler: {
               type: 'CatchClause',
@@ -4690,7 +4690,7 @@ describe('Miscellaneous - ranges', () => {
                       name: 'x',
                       start: 47,
                       end: 48,
-                      range: [47, 48]
+                      range: [47, 48],
                     },
                     computed: false,
                     value: {
@@ -4698,13 +4698,13 @@ describe('Miscellaneous - ranges', () => {
                       name: 'x',
                       start: 47,
                       end: 48,
-                      range: [47, 48]
+                      range: [47, 48],
                     },
                     method: false,
                     shorthand: true,
                     start: 47,
                     end: 48,
-                    range: [47, 48]
+                    range: [47, 48],
                   },
                   {
                     type: 'Property',
@@ -4714,7 +4714,7 @@ describe('Miscellaneous - ranges', () => {
                       name: 'y',
                       start: 50,
                       end: 51,
-                      range: [50, 51]
+                      range: [50, 51],
                     },
                     computed: false,
                     value: {
@@ -4722,13 +4722,13 @@ describe('Miscellaneous - ranges', () => {
                       name: 'y',
                       start: 50,
                       end: 51,
-                      range: [50, 51]
+                      range: [50, 51],
                     },
                     method: false,
                     shorthand: true,
                     start: 50,
                     end: 51,
-                    range: [50, 51]
+                    range: [50, 51],
                   },
                   {
                     type: 'Property',
@@ -4738,7 +4738,7 @@ describe('Miscellaneous - ranges', () => {
                       name: 'z',
                       start: 53,
                       end: 54,
-                      range: [53, 54]
+                      range: [53, 54],
                     },
                     computed: false,
                     value: {
@@ -4749,23 +4749,23 @@ describe('Miscellaneous - ranges', () => {
                           name: 'z',
                           start: 56,
                           end: 57,
-                          range: [56, 57]
-                        }
+                          range: [56, 57],
+                        },
                       ],
                       start: 55,
                       end: 58,
-                      range: [55, 58]
+                      range: [55, 58],
                     },
                     method: false,
                     shorthand: false,
                     start: 53,
                     end: 58,
-                    range: [53, 58]
-                  }
+                    range: [53, 58],
+                  },
                 ],
                 start: 46,
                 end: 59,
-                range: [46, 59]
+                range: [46, 59],
               },
               body: {
                 type: 'BlockStatement',
@@ -4777,31 +4777,31 @@ describe('Miscellaneous - ranges', () => {
                       name: 'x',
                       start: 62,
                       end: 63,
-                      range: [62, 63]
+                      range: [62, 63],
                     },
                     start: 62,
                     end: 64,
-                    range: [62, 64]
-                  }
+                    range: [62, 64],
+                  },
                 ],
                 start: 61,
                 end: 65,
-                range: [61, 65]
+                range: [61, 65],
               },
               start: 40,
               end: 65,
-              range: [40, 65]
+              range: [40, 65],
             },
             finalizer: null,
             start: 0,
             end: 65,
-            range: [0, 65]
-          }
+            range: [0, 65],
+          },
         ],
         start: 0,
         end: 65,
-        range: [0, 65]
-      }
+        range: [0, 65],
+      },
     ],
     [
       'for (let x in { a: a[i++] = () => eval("x") }) { b[j++] = () => eval("x"); }',
@@ -4826,7 +4826,7 @@ describe('Miscellaneous - ranges', () => {
                         name: 'b',
                         start: 49,
                         end: 50,
-                        range: [49, 50]
+                        range: [49, 50],
                       },
                       computed: true,
                       property: {
@@ -4836,17 +4836,17 @@ describe('Miscellaneous - ranges', () => {
                           name: 'j',
                           start: 51,
                           end: 52,
-                          range: [51, 52]
+                          range: [51, 52],
                         },
                         operator: '++',
                         prefix: false,
                         start: 51,
                         end: 54,
-                        range: [51, 54]
+                        range: [51, 54],
                       },
                       start: 49,
                       end: 55,
-                      range: [49, 55]
+                      range: [49, 55],
                     },
                     operator: '=',
                     right: {
@@ -4859,7 +4859,7 @@ describe('Miscellaneous - ranges', () => {
                           name: 'eval',
                           start: 64,
                           end: 68,
-                          range: [64, 68]
+                          range: [64, 68],
                         },
                         arguments: [
                           {
@@ -4867,32 +4867,32 @@ describe('Miscellaneous - ranges', () => {
                             value: 'x',
                             start: 69,
                             end: 72,
-                            range: [69, 72]
-                          }
+                            range: [69, 72],
+                          },
                         ],
                         start: 64,
                         end: 73,
-                        range: [64, 73]
+                        range: [64, 73],
                       },
                       params: [],
                       async: false,
                       expression: true,
                       start: 58,
                       end: 73,
-                      range: [58, 73]
+                      range: [58, 73],
                     },
                     start: 49,
                     end: 73,
-                    range: [49, 73]
+                    range: [49, 73],
                   },
                   start: 49,
                   end: 74,
-                  range: [49, 74]
-                }
+                  range: [49, 74],
+                },
               ],
               start: 47,
               end: 76,
-              range: [47, 76]
+              range: [47, 76],
             },
             left: {
               type: 'VariableDeclaration',
@@ -4906,16 +4906,16 @@ describe('Miscellaneous - ranges', () => {
                     name: 'x',
                     start: 9,
                     end: 10,
-                    range: [9, 10]
+                    range: [9, 10],
                   },
                   start: 9,
                   end: 10,
-                  range: [9, 10]
-                }
+                  range: [9, 10],
+                },
               ],
               start: 5,
               end: 10,
-              range: [5, 10]
+              range: [5, 10],
             },
             right: {
               type: 'ObjectExpression',
@@ -4927,7 +4927,7 @@ describe('Miscellaneous - ranges', () => {
                     name: 'a',
                     start: 16,
                     end: 17,
-                    range: [16, 17]
+                    range: [16, 17],
                   },
                   value: {
                     type: 'AssignmentExpression',
@@ -4938,7 +4938,7 @@ describe('Miscellaneous - ranges', () => {
                         name: 'a',
                         start: 19,
                         end: 20,
-                        range: [19, 20]
+                        range: [19, 20],
                       },
                       computed: true,
                       property: {
@@ -4948,17 +4948,17 @@ describe('Miscellaneous - ranges', () => {
                           name: 'i',
                           start: 21,
                           end: 22,
-                          range: [21, 22]
+                          range: [21, 22],
                         },
                         operator: '++',
                         prefix: false,
                         start: 21,
                         end: 24,
-                        range: [21, 24]
+                        range: [21, 24],
                       },
                       start: 19,
                       end: 25,
-                      range: [19, 25]
+                      range: [19, 25],
                     },
                     operator: '=',
                     right: {
@@ -4971,7 +4971,7 @@ describe('Miscellaneous - ranges', () => {
                           name: 'eval',
                           start: 34,
                           end: 38,
-                          range: [34, 38]
+                          range: [34, 38],
                         },
                         arguments: [
                           {
@@ -4979,23 +4979,23 @@ describe('Miscellaneous - ranges', () => {
                             value: 'x',
                             start: 39,
                             end: 42,
-                            range: [39, 42]
-                          }
+                            range: [39, 42],
+                          },
                         ],
                         start: 34,
                         end: 43,
-                        range: [34, 43]
+                        range: [34, 43],
                       },
                       params: [],
                       async: false,
                       expression: true,
                       start: 28,
                       end: 43,
-                      range: [28, 43]
+                      range: [28, 43],
                     },
                     start: 19,
                     end: 43,
-                    range: [19, 43]
+                    range: [19, 43],
                   },
                   kind: 'init',
                   computed: false,
@@ -5003,22 +5003,22 @@ describe('Miscellaneous - ranges', () => {
                   shorthand: false,
                   start: 16,
                   end: 43,
-                  range: [16, 43]
-                }
+                  range: [16, 43],
+                },
               ],
               start: 14,
               end: 45,
-              range: [14, 45]
+              range: [14, 45],
             },
             start: 0,
             end: 76,
-            range: [0, 76]
-          }
+            range: [0, 76],
+          },
         ],
         start: 0,
         end: 76,
-        range: [0, 76]
-      }
+        range: [0, 76],
+      },
     ],
     [
       'bar2 = ( {abcdef  = (((((a2)) = (30))))} = (b2 = 40) ) => { try { throw a2; } catch(a2) { } };',
@@ -5036,7 +5036,7 @@ describe('Miscellaneous - ranges', () => {
                 name: 'bar2',
                 start: 0,
                 end: 4,
-                range: [0, 4]
+                range: [0, 4],
               },
               operator: '=',
               right: {
@@ -5057,16 +5057,16 @@ describe('Miscellaneous - ranges', () => {
                               name: 'a2',
                               start: 72,
                               end: 74,
-                              range: [72, 74]
+                              range: [72, 74],
                             },
                             start: 66,
                             end: 75,
-                            range: [66, 75]
-                          }
+                            range: [66, 75],
+                          },
                         ],
                         start: 64,
                         end: 77,
-                        range: [64, 77]
+                        range: [64, 77],
                       },
                       handler: {
                         type: 'CatchClause',
@@ -5075,28 +5075,28 @@ describe('Miscellaneous - ranges', () => {
                           name: 'a2',
                           start: 84,
                           end: 86,
-                          range: [84, 86]
+                          range: [84, 86],
                         },
                         body: {
                           type: 'BlockStatement',
                           body: [],
                           start: 88,
                           end: 91,
-                          range: [88, 91]
+                          range: [88, 91],
                         },
                         start: 78,
                         end: 91,
-                        range: [78, 91]
+                        range: [78, 91],
                       },
                       finalizer: null,
                       start: 60,
                       end: 91,
-                      range: [60, 91]
-                    }
+                      range: [60, 91],
+                    },
                   ],
                   start: 58,
                   end: 93,
-                  range: [58, 93]
+                  range: [58, 93],
                 },
                 params: [
                   {
@@ -5111,7 +5111,7 @@ describe('Miscellaneous - ranges', () => {
                             name: 'abcdef',
                             start: 10,
                             end: 16,
-                            range: [10, 16]
+                            range: [10, 16],
                           },
                           value: {
                             type: 'AssignmentPattern',
@@ -5120,7 +5120,7 @@ describe('Miscellaneous - ranges', () => {
                               name: 'abcdef',
                               start: 10,
                               end: 16,
-                              range: [10, 16]
+                              range: [10, 16],
                             },
                             right: {
                               type: 'AssignmentExpression',
@@ -5129,7 +5129,7 @@ describe('Miscellaneous - ranges', () => {
                                 name: 'a2',
                                 start: 25,
                                 end: 27,
-                                range: [25, 27]
+                                range: [25, 27],
                               },
                               operator: '=',
                               right: {
@@ -5137,15 +5137,15 @@ describe('Miscellaneous - ranges', () => {
                                 value: 30,
                                 start: 33,
                                 end: 35,
-                                range: [33, 35]
+                                range: [33, 35],
                               },
                               start: 23,
                               end: 36,
-                              range: [23, 36]
+                              range: [23, 36],
                             },
                             start: 10,
                             end: 39,
-                            range: [10, 39]
+                            range: [10, 39],
                           },
                           kind: 'init',
                           computed: false,
@@ -5153,12 +5153,12 @@ describe('Miscellaneous - ranges', () => {
                           shorthand: true,
                           start: 10,
                           end: 39,
-                          range: [10, 39]
-                        }
+                          range: [10, 39],
+                        },
                       ],
                       start: 9,
                       end: 40,
-                      range: [9, 40]
+                      range: [9, 40],
                     },
                     right: {
                       type: 'AssignmentExpression',
@@ -5167,7 +5167,7 @@ describe('Miscellaneous - ranges', () => {
                         name: 'b2',
                         start: 44,
                         end: 46,
-                        range: [44, 46]
+                        range: [44, 46],
                       },
                       operator: '=',
                       right: {
@@ -5175,36 +5175,36 @@ describe('Miscellaneous - ranges', () => {
                         value: 40,
                         start: 49,
                         end: 51,
-                        range: [49, 51]
+                        range: [49, 51],
                       },
                       start: 44,
                       end: 51,
-                      range: [44, 51]
+                      range: [44, 51],
                     },
                     start: 9,
                     end: 52,
-                    range: [9, 52]
-                  }
+                    range: [9, 52],
+                  },
                 ],
                 async: false,
                 expression: false,
                 start: 7,
                 end: 93,
-                range: [7, 93]
+                range: [7, 93],
               },
               start: 0,
               end: 93,
-              range: [0, 93]
+              range: [0, 93],
             },
             start: 0,
             end: 94,
-            range: [0, 94]
-          }
+            range: [0, 94],
+          },
         ],
         start: 0,
         end: 94,
-        range: [0, 94]
-      }
+        range: [0, 94],
+      },
     ],
     [
       '[[a]=[1]] = [];',
@@ -5230,12 +5230,12 @@ describe('Miscellaneous - ranges', () => {
                           name: 'a',
                           start: 2,
                           end: 3,
-                          range: [2, 3]
-                        }
+                          range: [2, 3],
+                        },
                       ],
                       start: 1,
                       end: 4,
-                      range: [1, 4]
+                      range: [1, 4],
                     },
                     right: {
                       type: 'ArrayExpression',
@@ -5245,21 +5245,21 @@ describe('Miscellaneous - ranges', () => {
                           value: 1,
                           start: 6,
                           end: 7,
-                          range: [6, 7]
-                        }
+                          range: [6, 7],
+                        },
                       ],
                       start: 5,
                       end: 8,
-                      range: [5, 8]
+                      range: [5, 8],
                     },
                     start: 1,
                     end: 8,
-                    range: [1, 8]
-                  }
+                    range: [1, 8],
+                  },
                 ],
                 start: 0,
                 end: 9,
-                range: [0, 9]
+                range: [0, 9],
               },
               operator: '=',
               right: {
@@ -5267,21 +5267,21 @@ describe('Miscellaneous - ranges', () => {
                 elements: [],
                 start: 12,
                 end: 14,
-                range: [12, 14]
+                range: [12, 14],
               },
               start: 0,
               end: 14,
-              range: [0, 14]
+              range: [0, 14],
             },
             start: 0,
             end: 15,
-            range: [0, 15]
-          }
+            range: [0, 15],
+          },
         ],
         start: 0,
         end: 15,
-        range: [0, 15]
-      }
+        range: [0, 15],
+      },
     ],
     [
       '({a:a}=1)()',
@@ -5306,14 +5306,14 @@ describe('Miscellaneous - ranges', () => {
                         name: 'a',
                         start: 2,
                         end: 3,
-                        range: [2, 3]
+                        range: [2, 3],
                       },
                       value: {
                         type: 'Identifier',
                         name: 'a',
                         start: 4,
                         end: 5,
-                        range: [4, 5]
+                        range: [4, 5],
                       },
                       kind: 'init',
                       computed: false,
@@ -5321,12 +5321,12 @@ describe('Miscellaneous - ranges', () => {
                       shorthand: false,
                       start: 2,
                       end: 5,
-                      range: [2, 5]
-                    }
+                      range: [2, 5],
+                    },
                   ],
                   start: 1,
                   end: 6,
-                  range: [1, 6]
+                  range: [1, 6],
                 },
                 operator: '=',
                 right: {
@@ -5334,26 +5334,26 @@ describe('Miscellaneous - ranges', () => {
                   value: 1,
                   start: 7,
                   end: 8,
-                  range: [7, 8]
+                  range: [7, 8],
                 },
                 start: 1,
                 end: 8,
-                range: [1, 8]
+                range: [1, 8],
               },
               arguments: [],
               start: 0,
               end: 11,
-              range: [0, 11]
+              range: [0, 11],
             },
             start: 0,
             end: 11,
-            range: [0, 11]
-          }
+            range: [0, 11],
+          },
         ],
         start: 0,
         end: 11,
-        range: [0, 11]
-      }
+        range: [0, 11],
+      },
     ],
     [
       '([1 || 1].a = 1)',
@@ -5378,24 +5378,24 @@ describe('Miscellaneous - ranges', () => {
                         value: 1,
                         start: 2,
                         end: 3,
-                        range: [2, 3]
+                        range: [2, 3],
                       },
                       right: {
                         type: 'Literal',
                         value: 1,
                         start: 7,
                         end: 8,
-                        range: [7, 8]
+                        range: [7, 8],
                       },
                       operator: '||',
                       start: 2,
                       end: 8,
-                      range: [2, 8]
-                    }
+                      range: [2, 8],
+                    },
                   ],
                   start: 1,
                   end: 9,
-                  range: [1, 9]
+                  range: [1, 9],
                 },
                 computed: false,
                 property: {
@@ -5403,11 +5403,11 @@ describe('Miscellaneous - ranges', () => {
                   name: 'a',
                   start: 10,
                   end: 11,
-                  range: [10, 11]
+                  range: [10, 11],
                 },
                 start: 1,
                 end: 11,
-                range: [1, 11]
+                range: [1, 11],
               },
               operator: '=',
               right: {
@@ -5415,21 +5415,21 @@ describe('Miscellaneous - ranges', () => {
                 value: 1,
                 start: 14,
                 end: 15,
-                range: [14, 15]
+                range: [14, 15],
               },
               start: 1,
               end: 15,
-              range: [1, 15]
+              range: [1, 15],
             },
             start: 0,
             end: 16,
-            range: [0, 16]
-          }
+            range: [0, 16],
+          },
         ],
         start: 0,
         end: 16,
-        range: [0, 16]
-      }
+        range: [0, 16],
+      },
     ],
     [
       '({a: 1 || 1}.a = 1)',
@@ -5454,7 +5454,7 @@ describe('Miscellaneous - ranges', () => {
                         name: 'a',
                         start: 2,
                         end: 3,
-                        range: [2, 3]
+                        range: [2, 3],
                       },
                       value: {
                         type: 'LogicalExpression',
@@ -5463,19 +5463,19 @@ describe('Miscellaneous - ranges', () => {
                           value: 1,
                           start: 5,
                           end: 6,
-                          range: [5, 6]
+                          range: [5, 6],
                         },
                         right: {
                           type: 'Literal',
                           value: 1,
                           start: 10,
                           end: 11,
-                          range: [10, 11]
+                          range: [10, 11],
                         },
                         operator: '||',
                         start: 5,
                         end: 11,
-                        range: [5, 11]
+                        range: [5, 11],
                       },
                       kind: 'init',
                       computed: false,
@@ -5483,12 +5483,12 @@ describe('Miscellaneous - ranges', () => {
                       shorthand: false,
                       start: 2,
                       end: 11,
-                      range: [2, 11]
-                    }
+                      range: [2, 11],
+                    },
                   ],
                   start: 1,
                   end: 12,
-                  range: [1, 12]
+                  range: [1, 12],
                 },
                 computed: false,
                 property: {
@@ -5496,11 +5496,11 @@ describe('Miscellaneous - ranges', () => {
                   name: 'a',
                   start: 13,
                   end: 14,
-                  range: [13, 14]
+                  range: [13, 14],
                 },
                 start: 1,
                 end: 14,
-                range: [1, 14]
+                range: [1, 14],
               },
               operator: '=',
               right: {
@@ -5508,21 +5508,21 @@ describe('Miscellaneous - ranges', () => {
                 value: 1,
                 start: 17,
                 end: 18,
-                range: [17, 18]
+                range: [17, 18],
               },
               start: 1,
               end: 18,
-              range: [1, 18]
+              range: [1, 18],
             },
             start: 0,
             end: 19,
-            range: [0, 19]
-          }
+            range: [0, 19],
+          },
         ],
         start: 0,
         end: 19,
-        range: [0, 19]
-      }
+        range: [0, 19],
+      },
     ],
     [
       'function f() { ((((a))((b)()).l))() }',
@@ -5550,7 +5550,7 @@ describe('Miscellaneous - ranges', () => {
                           name: 'a',
                           start: 19,
                           end: 20,
-                          range: [19, 20]
+                          range: [19, 20],
                         },
                         arguments: [
                           {
@@ -5560,17 +5560,17 @@ describe('Miscellaneous - ranges', () => {
                               name: 'b',
                               start: 24,
                               end: 25,
-                              range: [24, 25]
+                              range: [24, 25],
                             },
                             arguments: [],
                             start: 23,
                             end: 28,
-                            range: [23, 28]
-                          }
+                            range: [23, 28],
+                          },
                         ],
                         start: 17,
                         end: 29,
-                        range: [17, 29]
+                        range: [17, 29],
                       },
                       computed: false,
                       property: {
@@ -5578,25 +5578,25 @@ describe('Miscellaneous - ranges', () => {
                         name: 'l',
                         start: 30,
                         end: 31,
-                        range: [30, 31]
+                        range: [30, 31],
                       },
                       start: 17,
                       end: 31,
-                      range: [17, 31]
+                      range: [17, 31],
                     },
                     arguments: [],
                     start: 15,
                     end: 35,
-                    range: [15, 35]
+                    range: [15, 35],
                   },
                   start: 15,
                   end: 35,
-                  range: [15, 35]
-                }
+                  range: [15, 35],
+                },
               ],
               start: 13,
               end: 37,
-              range: [13, 37]
+              range: [13, 37],
             },
             async: false,
             generator: false,
@@ -5605,17 +5605,17 @@ describe('Miscellaneous - ranges', () => {
               name: 'f',
               start: 9,
               end: 10,
-              range: [9, 10]
+              range: [9, 10],
             },
             start: 0,
             end: 37,
-            range: [0, 37]
-          }
+            range: [0, 37],
+          },
         ],
         start: 0,
         end: 37,
-        range: [0, 37]
-      }
+        range: [0, 37],
+      },
     ],
     [
       'for (/x/g + b;;);',
@@ -5630,7 +5630,7 @@ describe('Miscellaneous - ranges', () => {
               type: 'EmptyStatement',
               start: 16,
               end: 17,
-              range: [16, 17]
+              range: [16, 17],
             },
             init: {
               type: 'BinaryExpression',
@@ -5639,35 +5639,35 @@ describe('Miscellaneous - ranges', () => {
                 value: /x/g,
                 regex: {
                   pattern: 'x',
-                  flags: 'g'
+                  flags: 'g',
                 },
                 start: 5,
                 end: 9,
-                range: [5, 9]
+                range: [5, 9],
               },
               right: {
                 type: 'Identifier',
                 name: 'b',
                 start: 12,
                 end: 13,
-                range: [12, 13]
+                range: [12, 13],
               },
               operator: '+',
               start: 5,
               end: 13,
-              range: [5, 13]
+              range: [5, 13],
             },
             test: null,
             update: null,
             start: 0,
             end: 17,
-            range: [0, 17]
-          }
+            range: [0, 17],
+          },
         ],
         start: 0,
         end: 17,
-        range: [0, 17]
-      }
+        range: [0, 17],
+      },
     ],
     [
       '([...x+=y]);',
@@ -5690,7 +5690,7 @@ describe('Miscellaneous - ranges', () => {
                       name: 'x',
                       start: 5,
                       end: 6,
-                      range: [5, 6]
+                      range: [5, 6],
                     },
                     operator: '+=',
                     right: {
@@ -5698,30 +5698,30 @@ describe('Miscellaneous - ranges', () => {
                       name: 'y',
                       start: 8,
                       end: 9,
-                      range: [8, 9]
+                      range: [8, 9],
                     },
                     start: 5,
                     end: 9,
-                    range: [5, 9]
+                    range: [5, 9],
                   },
                   start: 2,
                   end: 9,
-                  range: [2, 9]
-                }
+                  range: [2, 9],
+                },
               ],
               start: 1,
               end: 10,
-              range: [1, 10]
+              range: [1, 10],
             },
             start: 0,
             end: 12,
-            range: [0, 12]
-          }
+            range: [0, 12],
+          },
         ],
         start: 0,
         end: 12,
-        range: [0, 12]
-      }
+        range: [0, 12],
+      },
     ],
     [
       '({...[].x} = x);',
@@ -5746,7 +5746,7 @@ describe('Miscellaneous - ranges', () => {
                         elements: [],
                         start: 5,
                         end: 7,
-                        range: [5, 7]
+                        range: [5, 7],
                       },
                       computed: false,
                       property: {
@@ -5754,20 +5754,20 @@ describe('Miscellaneous - ranges', () => {
                         name: 'x',
                         start: 8,
                         end: 9,
-                        range: [8, 9]
+                        range: [8, 9],
                       },
                       start: 5,
                       end: 9,
-                      range: [5, 9]
+                      range: [5, 9],
                     },
                     start: 2,
                     end: 9,
-                    range: [2, 9]
-                  }
+                    range: [2, 9],
+                  },
                 ],
                 start: 1,
                 end: 10,
-                range: [1, 10]
+                range: [1, 10],
               },
               operator: '=',
               right: {
@@ -5775,21 +5775,21 @@ describe('Miscellaneous - ranges', () => {
                 name: 'x',
                 start: 13,
                 end: 14,
-                range: [13, 14]
+                range: [13, 14],
               },
               start: 1,
               end: 14,
-              range: [1, 14]
+              range: [1, 14],
             },
             start: 0,
             end: 16,
-            range: [0, 16]
-          }
+            range: [0, 16],
+          },
         ],
         start: 0,
         end: 16,
-        range: [0, 16]
-      }
+        range: [0, 16],
+      },
     ],
     [
       '(((x)))++;',
@@ -5807,23 +5807,23 @@ describe('Miscellaneous - ranges', () => {
                 name: 'x',
                 start: 3,
                 end: 4,
-                range: [3, 4]
+                range: [3, 4],
               },
               operator: '++',
               prefix: false,
               start: 0,
               end: 9,
-              range: [0, 9]
+              range: [0, 9],
             },
             start: 0,
             end: 10,
-            range: [0, 10]
-          }
+            range: [0, 10],
+          },
         ],
         start: 0,
         end: 10,
-        range: [0, 10]
-      }
+        range: [0, 10],
+      },
     ],
 
     [
@@ -5848,7 +5848,7 @@ describe('Miscellaneous - ranges', () => {
                 name: '__str',
                 start: 0,
                 end: 5,
-                range: [0, 5]
+                range: [0, 5],
               },
               operator: '=',
               right: {
@@ -5856,15 +5856,15 @@ describe('Miscellaneous - ranges', () => {
                 value: '',
                 start: 6,
                 end: 8,
-                range: [6, 8]
+                range: [6, 8],
               },
               start: 0,
               end: 8,
-              range: [0, 8]
+              range: [0, 8],
             },
             start: 0,
             end: 9,
-            range: [0, 9]
+            range: [0, 9],
           },
           {
             type: 'LabeledStatement',
@@ -5873,7 +5873,7 @@ describe('Miscellaneous - ranges', () => {
               name: 'outer',
               start: 15,
               end: 20,
-              range: [15, 20]
+              range: [15, 20],
             },
             body: {
               type: 'ForStatement',
@@ -5887,7 +5887,7 @@ describe('Miscellaneous - ranges', () => {
                       name: 'nested',
                       start: 66,
                       end: 72,
-                      range: [66, 72]
+                      range: [66, 72],
                     },
                     body: {
                       type: 'ForStatement',
@@ -5905,43 +5905,43 @@ describe('Miscellaneous - ranges', () => {
                                   name: 'index',
                                   start: 130,
                                   end: 135,
-                                  range: [130, 135]
+                                  range: [130, 135],
                                 },
                                 right: {
                                   type: 'Identifier',
                                   name: 'index_n',
                                   start: 136,
                                   end: 143,
-                                  range: [136, 143]
+                                  range: [136, 143],
                                 },
                                 operator: '*',
                                 start: 130,
                                 end: 143,
-                                range: [130, 143]
+                                range: [130, 143],
                               },
                               right: {
                                 type: 'Literal',
                                 value: 4,
                                 start: 147,
                                 end: 148,
-                                range: [147, 148]
+                                range: [147, 148],
                               },
                               operator: '>=',
                               start: 130,
                               end: 148,
-                              range: [130, 148]
+                              range: [130, 148],
                             },
                             consequent: {
                               type: 'BreakStatement',
                               label: null,
                               start: 149,
                               end: 156,
-                              range: [149, 156]
+                              range: [149, 156],
                             },
                             alternate: null,
                             start: 126,
                             end: 156,
-                            range: [126, 156]
+                            range: [126, 156],
                           },
                           {
                             type: 'ExpressionStatement',
@@ -5952,7 +5952,7 @@ describe('Miscellaneous - ranges', () => {
                                 name: '__str',
                                 start: 164,
                                 end: 169,
-                                range: [164, 169]
+                                range: [164, 169],
                               },
                               operator: '+=',
                               right: {
@@ -5964,44 +5964,44 @@ describe('Miscellaneous - ranges', () => {
                                     value: '',
                                     start: 171,
                                     end: 173,
-                                    range: [171, 173]
+                                    range: [171, 173],
                                   },
                                   right: {
                                     type: 'Identifier',
                                     name: 'index',
                                     start: 174,
                                     end: 179,
-                                    range: [174, 179]
+                                    range: [174, 179],
                                   },
                                   operator: '+',
                                   start: 171,
                                   end: 179,
-                                  range: [171, 179]
+                                  range: [171, 179],
                                 },
                                 right: {
                                   type: 'Identifier',
                                   name: 'index_n',
                                   start: 180,
                                   end: 187,
-                                  range: [180, 187]
+                                  range: [180, 187],
                                 },
                                 operator: '+',
                                 start: 171,
                                 end: 187,
-                                range: [171, 187]
+                                range: [171, 187],
                               },
                               start: 164,
                               end: 187,
-                              range: [164, 187]
+                              range: [164, 187],
                             },
                             start: 164,
                             end: 188,
-                            range: [164, 188]
-                          }
+                            range: [164, 188],
+                          },
                         ],
                         start: 117,
                         end: 199,
-                        range: [117, 199]
+                        range: [117, 199],
                       },
                       init: {
                         type: 'AssignmentExpression',
@@ -6010,7 +6010,7 @@ describe('Miscellaneous - ranges', () => {
                           name: 'index_n',
                           start: 79,
                           end: 86,
-                          range: [79, 86]
+                          range: [79, 86],
                         },
                         operator: '=',
                         right: {
@@ -6018,11 +6018,11 @@ describe('Miscellaneous - ranges', () => {
                           value: 0,
                           start: 87,
                           end: 88,
-                          range: [87, 88]
+                          range: [87, 88],
                         },
                         start: 79,
                         end: 88,
-                        range: [79, 88]
+                        range: [79, 88],
                       },
                       test: {
                         type: 'BinaryExpression',
@@ -6031,19 +6031,19 @@ describe('Miscellaneous - ranges', () => {
                           name: 'index_n',
                           start: 90,
                           end: 97,
-                          range: [90, 97]
+                          range: [90, 97],
                         },
                         right: {
                           type: 'Identifier',
                           name: 'index',
                           start: 99,
                           end: 104,
-                          range: [99, 104]
+                          range: [99, 104],
                         },
                         operator: '<=',
                         start: 90,
                         end: 104,
-                        range: [90, 104]
+                        range: [90, 104],
                       },
                       update: {
                         type: 'UpdateExpression',
@@ -6052,26 +6052,26 @@ describe('Miscellaneous - ranges', () => {
                           name: 'index_n',
                           start: 106,
                           end: 113,
-                          range: [106, 113]
+                          range: [106, 113],
                         },
                         operator: '++',
                         prefix: false,
                         start: 106,
                         end: 115,
-                        range: [106, 115]
+                        range: [106, 115],
                       },
                       start: 75,
                       end: 199,
-                      range: [75, 199]
+                      range: [75, 199],
                     },
                     start: 66,
                     end: 199,
-                    range: [66, 199]
-                  }
+                    range: [66, 199],
+                  },
                 ],
                 start: 55,
                 end: 206,
-                range: [55, 206]
+                range: [55, 206],
               },
               init: {
                 type: 'AssignmentExpression',
@@ -6080,7 +6080,7 @@ describe('Miscellaneous - ranges', () => {
                   name: 'index',
                   start: 27,
                   end: 32,
-                  range: [27, 32]
+                  range: [27, 32],
                 },
                 operator: '=',
                 right: {
@@ -6088,11 +6088,11 @@ describe('Miscellaneous - ranges', () => {
                   value: 0,
                   start: 33,
                   end: 34,
-                  range: [33, 34]
+                  range: [33, 34],
                 },
                 start: 27,
                 end: 34,
-                range: [27, 34]
+                range: [27, 34],
               },
               test: {
                 type: 'BinaryExpression',
@@ -6101,19 +6101,19 @@ describe('Miscellaneous - ranges', () => {
                   name: 'index',
                   start: 36,
                   end: 41,
-                  range: [36, 41]
+                  range: [36, 41],
                 },
                 right: {
                   type: 'Literal',
                   value: 4,
                   start: 42,
                   end: 43,
-                  range: [42, 43]
+                  range: [42, 43],
                 },
                 operator: '<',
                 start: 36,
                 end: 43,
-                range: [36, 43]
+                range: [36, 43],
               },
               update: {
                 type: 'AssignmentExpression',
@@ -6122,7 +6122,7 @@ describe('Miscellaneous - ranges', () => {
                   name: 'index',
                   start: 45,
                   end: 50,
-                  range: [45, 50]
+                  range: [45, 50],
                 },
                 operator: '+=',
                 right: {
@@ -6130,25 +6130,25 @@ describe('Miscellaneous - ranges', () => {
                   value: 1,
                   start: 52,
                   end: 53,
-                  range: [52, 53]
+                  range: [52, 53],
                 },
                 start: 45,
                 end: 53,
-                range: [45, 53]
+                range: [45, 53],
               },
               start: 23,
               end: 206,
-              range: [23, 206]
+              range: [23, 206],
             },
             start: 15,
             end: 206,
-            range: [15, 206]
-          }
+            range: [15, 206],
+          },
         ],
         start: 0,
         end: 206,
-        range: [0, 206]
-      }
+        range: [0, 206],
+      },
     ],
     [
       `var probeBefore = function() { return x; };
@@ -6185,39 +6185,39 @@ describe('Miscellaneous - ranges', () => {
                           name: 'x',
                           start: 38,
                           end: 39,
-                          range: [38, 39]
+                          range: [38, 39],
                         },
                         start: 31,
                         end: 40,
-                        range: [31, 40]
-                      }
+                        range: [31, 40],
+                      },
                     ],
                     start: 29,
                     end: 42,
-                    range: [29, 42]
+                    range: [29, 42],
                   },
                   async: false,
                   generator: false,
                   id: null,
                   start: 18,
                   end: 42,
-                  range: [18, 42]
+                  range: [18, 42],
                 },
                 id: {
                   type: 'Identifier',
                   name: 'probeBefore',
                   start: 4,
                   end: 15,
-                  range: [4, 15]
+                  range: [4, 15],
                 },
                 start: 4,
                 end: 42,
-                range: [4, 42]
-              }
+                range: [4, 42],
+              },
             ],
             start: 0,
             end: 43,
-            range: [0, 43]
+            range: [0, 43],
           },
           {
             type: 'VariableDeclaration',
@@ -6231,11 +6231,11 @@ describe('Miscellaneous - ranges', () => {
                   name: 'probeTest',
                   start: 53,
                   end: 62,
-                  range: [53, 62]
+                  range: [53, 62],
                 },
                 start: 53,
                 end: 62,
-                range: [53, 62]
+                range: [53, 62],
               },
               {
                 type: 'VariableDeclarator',
@@ -6245,11 +6245,11 @@ describe('Miscellaneous - ranges', () => {
                   name: 'probeIncr',
                   start: 64,
                   end: 73,
-                  range: [64, 73]
+                  range: [64, 73],
                 },
                 start: 64,
                 end: 73,
-                range: [64, 73]
+                range: [64, 73],
               },
               {
                 type: 'VariableDeclarator',
@@ -6259,16 +6259,16 @@ describe('Miscellaneous - ranges', () => {
                   name: 'probeBody',
                   start: 75,
                   end: 84,
-                  range: [75, 84]
+                  range: [75, 84],
                 },
                 start: 75,
                 end: 84,
-                range: [75, 84]
-              }
+                range: [75, 84],
+              },
             ],
             start: 49,
             end: 85,
-            range: [49, 85]
+            range: [49, 85],
           },
           {
             type: 'VariableDeclaration',
@@ -6281,23 +6281,23 @@ describe('Miscellaneous - ranges', () => {
                   value: true,
                   start: 101,
                   end: 105,
-                  range: [101, 105]
+                  range: [101, 105],
                 },
                 id: {
                   type: 'Identifier',
                   name: 'run',
                   start: 95,
                   end: 98,
-                  range: [95, 98]
+                  range: [95, 98],
                 },
                 start: 95,
                 end: 105,
-                range: [95, 105]
-              }
+                range: [95, 105],
+              },
             ],
             start: 91,
             end: 106,
-            range: [91, 106]
+            range: [91, 106],
           },
           {
             type: 'ForStatement',
@@ -6313,7 +6313,7 @@ describe('Miscellaneous - ranges', () => {
                       name: 'probeBody',
                       start: 273,
                       end: 282,
-                      range: [273, 282]
+                      range: [273, 282],
                     },
                     operator: '=',
                     right: {
@@ -6329,27 +6329,27 @@ describe('Miscellaneous - ranges', () => {
                               name: 'x',
                               start: 305,
                               end: 306,
-                              range: [305, 306]
+                              range: [305, 306],
                             },
                             start: 298,
                             end: 307,
-                            range: [298, 307]
-                          }
+                            range: [298, 307],
+                          },
                         ],
                         start: 296,
                         end: 309,
-                        range: [296, 309]
+                        range: [296, 309],
                       },
                       async: false,
                       generator: false,
                       id: null,
                       start: 285,
                       end: 309,
-                      range: [285, 309]
+                      range: [285, 309],
                     },
                     start: 273,
                     end: 309,
-                    range: [273, 309]
+                    range: [273, 309],
                   },
                   {
                     type: 'AssignmentExpression',
@@ -6358,7 +6358,7 @@ describe('Miscellaneous - ranges', () => {
                       name: 'run',
                       start: 311,
                       end: 314,
-                      range: [311, 314]
+                      range: [311, 314],
                     },
                     operator: '=',
                     right: {
@@ -6366,20 +6366,20 @@ describe('Miscellaneous - ranges', () => {
                       value: false,
                       start: 317,
                       end: 322,
-                      range: [317, 322]
+                      range: [317, 322],
                     },
                     start: 311,
                     end: 322,
-                    range: [311, 322]
-                  }
+                    range: [311, 322],
+                  },
                 ],
                 start: 273,
                 end: 322,
-                range: [273, 322]
+                range: [273, 322],
               },
               start: 273,
               end: 323,
-              range: [273, 323]
+              range: [273, 323],
             },
             init: {
               type: 'VariableDeclaration',
@@ -6394,7 +6394,7 @@ describe('Miscellaneous - ranges', () => {
                       name: 'eval',
                       start: 135,
                       end: 139,
-                      range: [135, 139]
+                      range: [135, 139],
                     },
                     arguments: [
                       {
@@ -6402,28 +6402,28 @@ describe('Miscellaneous - ranges', () => {
                         value: 'var x = 1;',
                         start: 140,
                         end: 152,
-                        range: [140, 152]
-                      }
+                        range: [140, 152],
+                      },
                     ],
                     start: 135,
                     end: 153,
-                    range: [135, 153]
+                    range: [135, 153],
                   },
                   id: {
                     type: 'Identifier',
                     name: '_',
                     start: 131,
                     end: 132,
-                    range: [131, 132]
+                    range: [131, 132],
                   },
                   start: 131,
                   end: 153,
-                  range: [131, 153]
-                }
+                  range: [131, 153],
+                },
               ],
               start: 127,
               end: 153,
-              range: [127, 153]
+              range: [127, 153],
             },
             test: {
               type: 'LogicalExpression',
@@ -6432,7 +6432,7 @@ describe('Miscellaneous - ranges', () => {
                 name: 'run',
                 start: 164,
                 end: 167,
-                range: [164, 167]
+                range: [164, 167],
               },
               right: {
                 type: 'AssignmentExpression',
@@ -6441,7 +6441,7 @@ describe('Miscellaneous - ranges', () => {
                   name: 'probeTest',
                   start: 172,
                   end: 181,
-                  range: [172, 181]
+                  range: [172, 181],
                 },
                 operator: '=',
                 right: {
@@ -6457,32 +6457,32 @@ describe('Miscellaneous - ranges', () => {
                           name: 'x',
                           start: 204,
                           end: 205,
-                          range: [204, 205]
+                          range: [204, 205],
                         },
                         start: 197,
                         end: 206,
-                        range: [197, 206]
-                      }
+                        range: [197, 206],
+                      },
                     ],
                     start: 195,
                     end: 208,
-                    range: [195, 208]
+                    range: [195, 208],
                   },
                   async: false,
                   generator: false,
                   id: null,
                   start: 184,
                   end: 208,
-                  range: [184, 208]
+                  range: [184, 208],
                 },
                 start: 172,
                 end: 208,
-                range: [172, 208]
+                range: [172, 208],
               },
               operator: '&&',
               start: 164,
               end: 209,
-              range: [164, 209]
+              range: [164, 209],
             },
             update: {
               type: 'AssignmentExpression',
@@ -6491,7 +6491,7 @@ describe('Miscellaneous - ranges', () => {
                 name: 'probeIncr',
                 start: 220,
                 end: 229,
-                range: [220, 229]
+                range: [220, 229],
               },
               operator: '=',
               right: {
@@ -6507,31 +6507,31 @@ describe('Miscellaneous - ranges', () => {
                         name: 'x',
                         start: 252,
                         end: 253,
-                        range: [252, 253]
+                        range: [252, 253],
                       },
                       start: 245,
                       end: 254,
-                      range: [245, 254]
-                    }
+                      range: [245, 254],
+                    },
                   ],
                   start: 243,
                   end: 256,
-                  range: [243, 256]
+                  range: [243, 256],
                 },
                 async: false,
                 generator: false,
                 id: null,
                 start: 232,
                 end: 256,
-                range: [232, 256]
+                range: [232, 256],
               },
               start: 220,
               end: 256,
-              range: [220, 256]
+              range: [220, 256],
             },
             start: 112,
             end: 323,
-            range: [112, 323]
+            range: [112, 323],
           },
           {
             type: 'VariableDeclaration',
@@ -6544,29 +6544,29 @@ describe('Miscellaneous - ranges', () => {
                   value: 2,
                   start: 337,
                   end: 338,
-                  range: [337, 338]
+                  range: [337, 338],
                 },
                 id: {
                   type: 'Identifier',
                   name: 'x',
                   start: 333,
                   end: 334,
-                  range: [333, 334]
+                  range: [333, 334],
                 },
                 start: 333,
                 end: 338,
-                range: [333, 338]
-              }
+                range: [333, 338],
+              },
             ],
             start: 329,
             end: 339,
-            range: [329, 339]
-          }
+            range: [329, 339],
+          },
         ],
         start: 0,
         end: 339,
-        range: [0, 339]
-      }
+        range: [0, 339],
+      },
     ],
     [
       'for ([x.y];;);',
@@ -6581,7 +6581,7 @@ describe('Miscellaneous - ranges', () => {
               type: 'EmptyStatement',
               start: 13,
               end: 14,
-              range: [13, 14]
+              range: [13, 14],
             },
             init: {
               type: 'ArrayExpression',
@@ -6593,7 +6593,7 @@ describe('Miscellaneous - ranges', () => {
                     name: 'x',
                     start: 6,
                     end: 7,
-                    range: [6, 7]
+                    range: [6, 7],
                   },
                   computed: false,
                   property: {
@@ -6601,28 +6601,28 @@ describe('Miscellaneous - ranges', () => {
                     name: 'y',
                     start: 8,
                     end: 9,
-                    range: [8, 9]
+                    range: [8, 9],
                   },
                   start: 6,
                   end: 9,
-                  range: [6, 9]
-                }
+                  range: [6, 9],
+                },
               ],
               start: 5,
               end: 10,
-              range: [5, 10]
+              range: [5, 10],
             },
             test: null,
             update: null,
             start: 0,
             end: 14,
-            range: [0, 14]
-          }
+            range: [0, 14],
+          },
         ],
         start: 0,
         end: 14,
-        range: [0, 14]
-      }
+        range: [0, 14],
+      },
     ],
     [
       'for (let [{ u: v, w: x, y: z } = { u: 444, w: 555, y: 666 }] = [{ u: 777, w: 888, y: 999 }]; a < 1; ) {}',
@@ -6638,7 +6638,7 @@ describe('Miscellaneous - ranges', () => {
               body: [],
               start: 102,
               end: 104,
-              range: [102, 104]
+              range: [102, 104],
             },
             init: {
               type: 'VariableDeclaration',
@@ -6659,14 +6659,14 @@ describe('Miscellaneous - ranges', () => {
                               name: 'u',
                               start: 66,
                               end: 67,
-                              range: [66, 67]
+                              range: [66, 67],
                             },
                             value: {
                               type: 'Literal',
                               value: 777,
                               start: 69,
                               end: 72,
-                              range: [69, 72]
+                              range: [69, 72],
                             },
                             kind: 'init',
                             computed: false,
@@ -6674,7 +6674,7 @@ describe('Miscellaneous - ranges', () => {
                             shorthand: false,
                             start: 66,
                             end: 72,
-                            range: [66, 72]
+                            range: [66, 72],
                           },
                           {
                             type: 'Property',
@@ -6683,14 +6683,14 @@ describe('Miscellaneous - ranges', () => {
                               name: 'w',
                               start: 74,
                               end: 75,
-                              range: [74, 75]
+                              range: [74, 75],
                             },
                             value: {
                               type: 'Literal',
                               value: 888,
                               start: 77,
                               end: 80,
-                              range: [77, 80]
+                              range: [77, 80],
                             },
                             kind: 'init',
                             computed: false,
@@ -6698,7 +6698,7 @@ describe('Miscellaneous - ranges', () => {
                             shorthand: false,
                             start: 74,
                             end: 80,
-                            range: [74, 80]
+                            range: [74, 80],
                           },
                           {
                             type: 'Property',
@@ -6707,14 +6707,14 @@ describe('Miscellaneous - ranges', () => {
                               name: 'y',
                               start: 82,
                               end: 83,
-                              range: [82, 83]
+                              range: [82, 83],
                             },
                             value: {
                               type: 'Literal',
                               value: 999,
                               start: 85,
                               end: 88,
-                              range: [85, 88]
+                              range: [85, 88],
                             },
                             kind: 'init',
                             computed: false,
@@ -6722,17 +6722,17 @@ describe('Miscellaneous - ranges', () => {
                             shorthand: false,
                             start: 82,
                             end: 88,
-                            range: [82, 88]
-                          }
+                            range: [82, 88],
+                          },
                         ],
                         start: 64,
                         end: 90,
-                        range: [64, 90]
-                      }
+                        range: [64, 90],
+                      },
                     ],
                     start: 63,
                     end: 91,
-                    range: [63, 91]
+                    range: [63, 91],
                   },
                   id: {
                     type: 'ArrayPattern',
@@ -6750,7 +6750,7 @@ describe('Miscellaneous - ranges', () => {
                                 name: 'u',
                                 start: 12,
                                 end: 13,
-                                range: [12, 13]
+                                range: [12, 13],
                               },
                               computed: false,
                               value: {
@@ -6758,13 +6758,13 @@ describe('Miscellaneous - ranges', () => {
                                 name: 'v',
                                 start: 15,
                                 end: 16,
-                                range: [15, 16]
+                                range: [15, 16],
                               },
                               method: false,
                               shorthand: false,
                               start: 12,
                               end: 16,
-                              range: [12, 16]
+                              range: [12, 16],
                             },
                             {
                               type: 'Property',
@@ -6774,7 +6774,7 @@ describe('Miscellaneous - ranges', () => {
                                 name: 'w',
                                 start: 18,
                                 end: 19,
-                                range: [18, 19]
+                                range: [18, 19],
                               },
                               computed: false,
                               value: {
@@ -6782,13 +6782,13 @@ describe('Miscellaneous - ranges', () => {
                                 name: 'x',
                                 start: 21,
                                 end: 22,
-                                range: [21, 22]
+                                range: [21, 22],
                               },
                               method: false,
                               shorthand: false,
                               start: 18,
                               end: 22,
-                              range: [18, 22]
+                              range: [18, 22],
                             },
                             {
                               type: 'Property',
@@ -6798,7 +6798,7 @@ describe('Miscellaneous - ranges', () => {
                                 name: 'y',
                                 start: 24,
                                 end: 25,
-                                range: [24, 25]
+                                range: [24, 25],
                               },
                               computed: false,
                               value: {
@@ -6806,18 +6806,18 @@ describe('Miscellaneous - ranges', () => {
                                 name: 'z',
                                 start: 27,
                                 end: 28,
-                                range: [27, 28]
+                                range: [27, 28],
                               },
                               method: false,
                               shorthand: false,
                               start: 24,
                               end: 28,
-                              range: [24, 28]
-                            }
+                              range: [24, 28],
+                            },
                           ],
                           start: 10,
                           end: 30,
-                          range: [10, 30]
+                          range: [10, 30],
                         },
                         right: {
                           type: 'ObjectExpression',
@@ -6829,14 +6829,14 @@ describe('Miscellaneous - ranges', () => {
                                 name: 'u',
                                 start: 35,
                                 end: 36,
-                                range: [35, 36]
+                                range: [35, 36],
                               },
                               value: {
                                 type: 'Literal',
                                 value: 444,
                                 start: 38,
                                 end: 41,
-                                range: [38, 41]
+                                range: [38, 41],
                               },
                               kind: 'init',
                               computed: false,
@@ -6844,7 +6844,7 @@ describe('Miscellaneous - ranges', () => {
                               shorthand: false,
                               start: 35,
                               end: 41,
-                              range: [35, 41]
+                              range: [35, 41],
                             },
                             {
                               type: 'Property',
@@ -6853,14 +6853,14 @@ describe('Miscellaneous - ranges', () => {
                                 name: 'w',
                                 start: 43,
                                 end: 44,
-                                range: [43, 44]
+                                range: [43, 44],
                               },
                               value: {
                                 type: 'Literal',
                                 value: 555,
                                 start: 46,
                                 end: 49,
-                                range: [46, 49]
+                                range: [46, 49],
                               },
                               kind: 'init',
                               computed: false,
@@ -6868,7 +6868,7 @@ describe('Miscellaneous - ranges', () => {
                               shorthand: false,
                               start: 43,
                               end: 49,
-                              range: [43, 49]
+                              range: [43, 49],
                             },
                             {
                               type: 'Property',
@@ -6877,14 +6877,14 @@ describe('Miscellaneous - ranges', () => {
                                 name: 'y',
                                 start: 51,
                                 end: 52,
-                                range: [51, 52]
+                                range: [51, 52],
                               },
                               value: {
                                 type: 'Literal',
                                 value: 666,
                                 start: 54,
                                 end: 57,
-                                range: [54, 57]
+                                range: [54, 57],
                               },
                               kind: 'init',
                               computed: false,
@@ -6892,30 +6892,30 @@ describe('Miscellaneous - ranges', () => {
                               shorthand: false,
                               start: 51,
                               end: 57,
-                              range: [51, 57]
-                            }
+                              range: [51, 57],
+                            },
                           ],
                           start: 33,
                           end: 59,
-                          range: [33, 59]
+                          range: [33, 59],
                         },
                         start: 10,
                         end: 59,
-                        range: [10, 59]
-                      }
+                        range: [10, 59],
+                      },
                     ],
                     start: 9,
                     end: 60,
-                    range: [9, 60]
+                    range: [9, 60],
                   },
                   start: 9,
                   end: 91,
-                  range: [9, 91]
-                }
+                  range: [9, 91],
+                },
               ],
               start: 5,
               end: 91,
-              range: [5, 91]
+              range: [5, 91],
             },
             test: {
               type: 'BinaryExpression',
@@ -6924,30 +6924,30 @@ describe('Miscellaneous - ranges', () => {
                 name: 'a',
                 start: 93,
                 end: 94,
-                range: [93, 94]
+                range: [93, 94],
               },
               right: {
                 type: 'Literal',
                 value: 1,
                 start: 97,
                 end: 98,
-                range: [97, 98]
+                range: [97, 98],
               },
               operator: '<',
               start: 93,
               end: 98,
-              range: [93, 98]
+              range: [93, 98],
             },
             update: null,
             start: 0,
             end: 104,
-            range: [0, 104]
-          }
+            range: [0, 104],
+          },
         ],
         start: 0,
         end: 104,
-        range: [0, 104]
-      }
+        range: [0, 104],
+      },
     ],
     [
       'for ((x)=>{};;);',
@@ -6962,7 +6962,7 @@ describe('Miscellaneous - ranges', () => {
               type: 'EmptyStatement',
               start: 15,
               end: 16,
-              range: [15, 16]
+              range: [15, 16],
             },
             init: {
               type: 'ArrowFunctionExpression',
@@ -6972,7 +6972,7 @@ describe('Miscellaneous - ranges', () => {
                 body: [],
                 start: 10,
                 end: 12,
-                range: [10, 12]
+                range: [10, 12],
               },
               params: [
                 {
@@ -6980,26 +6980,26 @@ describe('Miscellaneous - ranges', () => {
                   name: 'x',
                   start: 6,
                   end: 7,
-                  range: [6, 7]
-                }
+                  range: [6, 7],
+                },
               ],
               async: false,
               expression: false,
               start: 5,
               end: 12,
-              range: [5, 12]
+              range: [5, 12],
             },
             test: null,
             update: null,
             start: 0,
             end: 16,
-            range: [0, 16]
-          }
+            range: [0, 16],
+          },
         ],
         start: 0,
         end: 16,
-        range: [0, 16]
-      }
+        range: [0, 16],
+      },
     ],
     [
       'function z() { for (let c in new.target) for (let o in (--((b)).debugger)) debugger; }',
@@ -7022,7 +7022,7 @@ describe('Miscellaneous - ranges', () => {
                       type: 'DebuggerStatement',
                       start: 75,
                       end: 84,
-                      range: [75, 84]
+                      range: [75, 84],
                     },
                     left: {
                       type: 'VariableDeclaration',
@@ -7036,16 +7036,16 @@ describe('Miscellaneous - ranges', () => {
                             name: 'o',
                             start: 50,
                             end: 51,
-                            range: [50, 51]
+                            range: [50, 51],
                           },
                           start: 50,
                           end: 51,
-                          range: [50, 51]
-                        }
+                          range: [50, 51],
+                        },
                       ],
                       start: 46,
                       end: 51,
-                      range: [46, 51]
+                      range: [46, 51],
                     },
                     right: {
                       type: 'UpdateExpression',
@@ -7056,7 +7056,7 @@ describe('Miscellaneous - ranges', () => {
                           name: 'b',
                           start: 60,
                           end: 61,
-                          range: [60, 61]
+                          range: [60, 61],
                         },
                         computed: false,
                         property: {
@@ -7064,21 +7064,21 @@ describe('Miscellaneous - ranges', () => {
                           name: 'debugger',
                           start: 64,
                           end: 72,
-                          range: [64, 72]
+                          range: [64, 72],
                         },
                         start: 58,
                         end: 72,
-                        range: [58, 72]
+                        range: [58, 72],
                       },
                       operator: '--',
                       prefix: true,
                       start: 56,
                       end: 72,
-                      range: [56, 72]
+                      range: [56, 72],
                     },
                     start: 41,
                     end: 84,
-                    range: [41, 84]
+                    range: [41, 84],
                   },
                   left: {
                     type: 'VariableDeclaration',
@@ -7092,16 +7092,16 @@ describe('Miscellaneous - ranges', () => {
                           name: 'c',
                           start: 24,
                           end: 25,
-                          range: [24, 25]
+                          range: [24, 25],
                         },
                         start: 24,
                         end: 25,
-                        range: [24, 25]
-                      }
+                        range: [24, 25],
+                      },
                     ],
                     start: 20,
                     end: 25,
-                    range: [20, 25]
+                    range: [20, 25],
                   },
                   right: {
                     meta: {
@@ -7109,7 +7109,7 @@ describe('Miscellaneous - ranges', () => {
                       name: 'new',
                       start: 29,
                       end: 32,
-                      range: [29, 32]
+                      range: [29, 32],
                     },
                     type: 'MetaProperty',
                     property: {
@@ -7117,20 +7117,20 @@ describe('Miscellaneous - ranges', () => {
                       name: 'target',
                       start: 33,
                       end: 39,
-                      range: [33, 39]
+                      range: [33, 39],
                     },
                     start: 29,
                     end: 39,
-                    range: [29, 39]
+                    range: [29, 39],
                   },
                   start: 15,
                   end: 84,
-                  range: [15, 84]
-                }
+                  range: [15, 84],
+                },
               ],
               start: 13,
               end: 86,
-              range: [13, 86]
+              range: [13, 86],
             },
             async: false,
             generator: false,
@@ -7139,17 +7139,17 @@ describe('Miscellaneous - ranges', () => {
               name: 'z',
               start: 9,
               end: 10,
-              range: [9, 10]
+              range: [9, 10],
             },
             start: 0,
             end: 86,
-            range: [0, 86]
-          }
+            range: [0, 86],
+          },
         ],
         start: 0,
         end: 86,
-        range: [0, 86]
-      }
+        range: [0, 86],
+      },
     ],
     [
       'for (((x)=>{}).x of y);',
@@ -7164,7 +7164,7 @@ describe('Miscellaneous - ranges', () => {
               type: 'EmptyStatement',
               start: 22,
               end: 23,
-              range: [22, 23]
+              range: [22, 23],
             },
             left: {
               type: 'MemberExpression',
@@ -7176,7 +7176,7 @@ describe('Miscellaneous - ranges', () => {
                   body: [],
                   start: 11,
                   end: 13,
-                  range: [11, 13]
+                  range: [11, 13],
                 },
                 params: [
                   {
@@ -7184,14 +7184,14 @@ describe('Miscellaneous - ranges', () => {
                     name: 'x',
                     start: 7,
                     end: 8,
-                    range: [7, 8]
-                  }
+                    range: [7, 8],
+                  },
                 ],
                 async: false,
                 expression: false,
                 start: 6,
                 end: 13,
-                range: [6, 13]
+                range: [6, 13],
               },
               computed: false,
               property: {
@@ -7199,29 +7199,29 @@ describe('Miscellaneous - ranges', () => {
                 name: 'x',
                 start: 15,
                 end: 16,
-                range: [15, 16]
+                range: [15, 16],
               },
               start: 5,
               end: 16,
-              range: [5, 16]
+              range: [5, 16],
             },
             right: {
               type: 'Identifier',
               name: 'y',
               start: 20,
               end: 21,
-              range: [20, 21]
+              range: [20, 21],
             },
             await: false,
             start: 0,
             end: 23,
-            range: [0, 23]
-          }
+            range: [0, 23],
+          },
         ],
         start: 0,
         end: 23,
-        range: [0, 23]
-      }
+        range: [0, 23],
+      },
     ],
     [
       '{}',
@@ -7237,11 +7237,11 @@ describe('Miscellaneous - ranges', () => {
             start: 0,
             end: 2,
             range: [0, 2],
-            body: []
-          }
+            body: [],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{debugger;}',
@@ -7262,13 +7262,13 @@ describe('Miscellaneous - ranges', () => {
                 type: 'DebuggerStatement',
                 start: 1,
                 end: 10,
-                range: [1, 10]
-              }
-            ]
-          }
+                range: [1, 10],
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function f() {}',
@@ -7289,7 +7289,7 @@ describe('Miscellaneous - ranges', () => {
               start: 9,
               end: 10,
               range: [9, 10],
-              name: 'f'
+              name: 'f',
             },
             generator: false,
             async: false,
@@ -7299,12 +7299,12 @@ describe('Miscellaneous - ranges', () => {
               start: 13,
               end: 15,
               range: [13, 15],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var a',
@@ -7331,16 +7331,16 @@ describe('Miscellaneous - ranges', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'a'
+                  name: 'a',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{{}}',
@@ -7362,13 +7362,13 @@ describe('Miscellaneous - ranges', () => {
                 start: 1,
                 end: 3,
                 range: [1, 3],
-                body: []
-              }
-            ]
-          }
+                body: [],
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{{{{}}}}',
@@ -7402,17 +7402,17 @@ describe('Miscellaneous - ranges', () => {
                         start: 3,
                         end: 5,
                         range: [3, 5],
-                        body: []
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
+                        body: [],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{{a}}',
@@ -7445,16 +7445,16 @@ describe('Miscellaneous - ranges', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'a'
-                    }
-                  }
-                ]
-              }
-            ]
-          }
+                      name: 'a',
+                    },
+                  },
+                ],
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[a]',
@@ -7481,14 +7481,14 @@ describe('Miscellaneous - ranges', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  name: 'a'
-                }
-              ]
-            }
-          }
+                  name: 'a',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '"foo";',
@@ -7509,13 +7509,13 @@ describe('Miscellaneous - ranges', () => {
               start: 0,
               end: 5,
               range: [0, 5],
-              value: 'foo'
+              value: 'foo',
             },
-            directive: 'foo'
-          }
+            directive: 'foo',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'foo; "bar"; 9;',
@@ -7536,8 +7536,8 @@ describe('Miscellaneous - ranges', () => {
               start: 0,
               end: 3,
               range: [0, 3],
-              name: 'foo'
-            }
+              name: 'foo',
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -7549,8 +7549,8 @@ describe('Miscellaneous - ranges', () => {
               start: 5,
               end: 10,
               range: [5, 10],
-              value: 'bar'
-            }
+              value: 'bar',
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -7562,12 +7562,12 @@ describe('Miscellaneous - ranges', () => {
               start: 12,
               end: 13,
               range: [12, 13],
-              value: 9
-            }
-          }
+              value: 9,
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a, b',
@@ -7594,21 +7594,21 @@ describe('Miscellaneous - ranges', () => {
                   start: 0,
                   end: 1,
                   range: [0, 1],
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
                   start: 3,
                   end: 4,
                   range: [3, 4],
-                  name: 'b'
-                }
-              ]
-            }
-          }
+                  name: 'b',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a = 2',
@@ -7635,20 +7635,20 @@ describe('Miscellaneous - ranges', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'Literal',
                 start: 4,
                 end: 5,
                 range: [4, 5],
-                value: 2
-              }
-            }
-          }
+                value: 2,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a = b, c',
@@ -7681,29 +7681,29 @@ describe('Miscellaneous - ranges', () => {
                     start: 0,
                     end: 1,
                     range: [0, 1],
-                    name: 'a'
+                    name: 'a',
                   },
                   right: {
                     type: 'Identifier',
                     start: 4,
                     end: 5,
                     range: [4, 5],
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 },
                 {
                   type: 'Identifier',
                   start: 7,
                   end: 8,
                   range: [7, 8],
-                  name: 'c'
-                }
-              ]
-            }
-          }
+                  name: 'c',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a, b = c',
@@ -7722,7 +7722,7 @@ describe('Miscellaneous - ranges', () => {
                   name: 'a',
                   start: 0,
                   end: 1,
-                  range: [0, 1]
+                  range: [0, 1],
                 },
                 {
                   type: 'AssignmentExpression',
@@ -7731,7 +7731,7 @@ describe('Miscellaneous - ranges', () => {
                     name: 'b',
                     start: 3,
                     end: 4,
-                    range: [3, 4]
+                    range: [3, 4],
                   },
                   operator: '=',
                   right: {
@@ -7739,26 +7739,26 @@ describe('Miscellaneous - ranges', () => {
                     name: 'c',
                     start: 7,
                     end: 8,
-                    range: [7, 8]
+                    range: [7, 8],
                   },
                   start: 3,
                   end: 8,
-                  range: [3, 8]
-                }
+                  range: [3, 8],
+                },
               ],
               start: 0,
               end: 8,
-              range: [0, 8]
+              range: [0, 8],
             },
             start: 0,
             end: 8,
-            range: [0, 8]
-          }
+            range: [0, 8],
+          },
         ],
         start: 0,
         end: 8,
-        range: [0, 8]
-      }
+        range: [0, 8],
+      },
     ],
     [
       'a, b = c, d',
@@ -7785,7 +7785,7 @@ describe('Miscellaneous - ranges', () => {
                   start: 0,
                   end: 1,
                   range: [0, 1],
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'AssignmentExpression',
@@ -7798,29 +7798,29 @@ describe('Miscellaneous - ranges', () => {
                     start: 3,
                     end: 4,
                     range: [3, 4],
-                    name: 'b'
+                    name: 'b',
                   },
                   right: {
                     type: 'Identifier',
                     start: 7,
                     end: 8,
                     range: [7, 8],
-                    name: 'c'
-                  }
+                    name: 'c',
+                  },
                 },
                 {
                   type: 'Identifier',
                   start: 10,
                   end: 11,
                   range: [10, 11],
-                  name: 'd'
-                }
-              ]
-            }
-          }
+                  name: 'd',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a, b, c = d',
@@ -7847,14 +7847,14 @@ describe('Miscellaneous - ranges', () => {
                   start: 0,
                   end: 1,
                   range: [0, 1],
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
                   start: 3,
                   end: 4,
                   range: [3, 4],
-                  name: 'b'
+                  name: 'b',
                 },
                 {
                   type: 'AssignmentExpression',
@@ -7867,22 +7867,22 @@ describe('Miscellaneous - ranges', () => {
                     start: 6,
                     end: 7,
                     range: [6, 7],
-                    name: 'c'
+                    name: 'c',
                   },
                   right: {
                     type: 'Identifier',
                     start: 10,
                     end: 11,
                     range: [10, 11],
-                    name: 'd'
-                  }
-                }
-              ]
-            }
-          }
+                    name: 'd',
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a, b = 2',
@@ -7909,7 +7909,7 @@ describe('Miscellaneous - ranges', () => {
                   start: 0,
                   end: 1,
                   range: [0, 1],
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'AssignmentExpression',
@@ -7922,22 +7922,22 @@ describe('Miscellaneous - ranges', () => {
                     start: 3,
                     end: 4,
                     range: [3, 4],
-                    name: 'b'
+                    name: 'b',
                   },
                   right: {
                     type: 'Literal',
                     start: 7,
                     end: 8,
                     range: [7, 8],
-                    value: 2
-                  }
-                }
-              ]
-            }
-          }
+                    value: 2,
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{ 1; }',
@@ -7964,14 +7964,14 @@ describe('Miscellaneous - ranges', () => {
                   start: 2,
                   end: 3,
                   range: [2, 3],
-                  value: 1
-                }
-              }
-            ]
-          }
+                  value: 1,
+                },
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{ a = 2; }',
@@ -8004,22 +8004,22 @@ describe('Miscellaneous - ranges', () => {
                     start: 2,
                     end: 3,
                     range: [2, 3],
-                    name: 'a'
+                    name: 'a',
                   },
                   right: {
                     type: 'Literal',
                     start: 6,
                     end: 7,
                     range: [6, 7],
-                    value: 2
-                  }
-                }
-              }
-            ]
-          }
+                    value: 2,
+                  },
+                },
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '1; 2;',
@@ -8040,8 +8040,8 @@ describe('Miscellaneous - ranges', () => {
               start: 0,
               end: 1,
               range: [0, 1],
-              value: 1
-            }
+              value: 1,
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -8053,12 +8053,12 @@ describe('Miscellaneous - ranges', () => {
               start: 3,
               end: 4,
               range: [3, 4],
-              value: 2
-            }
-          }
+              value: 2,
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[ foo ]',
@@ -8085,14 +8085,14 @@ describe('Miscellaneous - ranges', () => {
                   start: 2,
                   end: 5,
                   range: [2, 5],
-                  name: 'foo'
-                }
-              ]
-            }
-          }
+                  name: 'foo',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[foo]; [foo];',
@@ -8119,10 +8119,10 @@ describe('Miscellaneous - ranges', () => {
                   start: 1,
                   end: 4,
                   range: [1, 4],
-                  name: 'foo'
-                }
-              ]
-            }
+                  name: 'foo',
+                },
+              ],
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -8140,14 +8140,14 @@ describe('Miscellaneous - ranges', () => {
                   start: 8,
                   end: 11,
                   range: [8, 11],
-                  name: 'foo'
-                }
-              ]
-            }
-          }
+                  name: 'foo',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[ foo ] = bar',
@@ -8180,22 +8180,22 @@ describe('Miscellaneous - ranges', () => {
                     start: 2,
                     end: 5,
                     range: [2, 5],
-                    name: 'foo'
-                  }
-                ]
+                    name: 'foo',
+                  },
+                ],
               },
               right: {
                 type: 'Identifier',
                 start: 10,
                 end: 13,
                 range: [10, 13],
-                name: 'bar'
-              }
-            }
-          }
+                name: 'bar',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[[foo]]',
@@ -8228,16 +8228,16 @@ describe('Miscellaneous - ranges', () => {
                       start: 2,
                       end: 5,
                       range: [2, 5],
-                      name: 'foo'
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                      name: 'foo',
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[[foo]] = []',
@@ -8276,24 +8276,24 @@ describe('Miscellaneous - ranges', () => {
                         start: 2,
                         end: 5,
                         range: [2, 5],
-                        name: 'foo'
-                      }
-                    ]
-                  }
-                ]
+                        name: 'foo',
+                      },
+                    ],
+                  },
+                ],
               },
               right: {
                 type: 'ArrayExpression',
                 start: 10,
                 end: 12,
                 range: [10, 12],
-                elements: []
-              }
-            }
-          }
+                elements: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     /*   ['[[foo]] = [bar = nchanged]', Context.OptionsRanges, {
       "type": "Program",
@@ -8384,21 +8384,21 @@ describe('Miscellaneous - ranges', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'b'
-                }
-              ]
-            }
-          }
+                  name: 'b',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[a = b, c = d]',
@@ -8431,15 +8431,15 @@ describe('Miscellaneous - ranges', () => {
                     start: 1,
                     end: 2,
                     range: [1, 2],
-                    name: 'a'
+                    name: 'a',
                   },
                   right: {
                     type: 'Identifier',
                     start: 5,
                     end: 6,
                     range: [5, 6],
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 },
                 {
                   type: 'AssignmentExpression',
@@ -8452,22 +8452,22 @@ describe('Miscellaneous - ranges', () => {
                     start: 8,
                     end: 9,
                     range: [8, 9],
-                    name: 'c'
+                    name: 'c',
                   },
                   right: {
                     type: 'Identifier',
                     start: 12,
                     end: 13,
                     range: [12, 13],
-                    name: 'd'
-                  }
-                }
-              ]
-            }
-          }
+                    name: 'd',
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[[[a.b =[]]]]',
@@ -8517,35 +8517,35 @@ describe('Miscellaneous - ranges', () => {
                               start: 3,
                               end: 4,
                               range: [3, 4],
-                              name: 'a'
+                              name: 'a',
                             },
                             property: {
                               type: 'Identifier',
                               start: 5,
                               end: 6,
                               range: [5, 6],
-                              name: 'b'
+                              name: 'b',
                             },
-                            computed: false
+                            computed: false,
                           },
                           right: {
                             type: 'ArrayExpression',
                             start: 8,
                             end: 10,
                             range: [8, 10],
-                            elements: []
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                            elements: [],
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[[[[[[[a=b] = c] = c] = c] = c] = c] = c] = [[[[[[[a=b] = c]]] = c] = c] = c] = c;',
@@ -8649,77 +8649,77 @@ describe('Miscellaneous - ranges', () => {
                                                           start: 7,
                                                           end: 8,
                                                           range: [7, 8],
-                                                          name: 'a'
+                                                          name: 'a',
                                                         },
                                                         right: {
                                                           type: 'Identifier',
                                                           start: 9,
                                                           end: 10,
                                                           range: [9, 10],
-                                                          name: 'b'
-                                                        }
-                                                      }
-                                                    ]
+                                                          name: 'b',
+                                                        },
+                                                      },
+                                                    ],
                                                   },
                                                   right: {
                                                     type: 'Identifier',
                                                     start: 14,
                                                     end: 15,
                                                     range: [14, 15],
-                                                    name: 'c'
-                                                  }
-                                                }
-                                              ]
+                                                    name: 'c',
+                                                  },
+                                                },
+                                              ],
                                             },
                                             right: {
                                               type: 'Identifier',
                                               start: 19,
                                               end: 20,
                                               range: [19, 20],
-                                              name: 'c'
-                                            }
-                                          }
-                                        ]
+                                              name: 'c',
+                                            },
+                                          },
+                                        ],
                                       },
                                       right: {
                                         type: 'Identifier',
                                         start: 24,
                                         end: 25,
                                         range: [24, 25],
-                                        name: 'c'
-                                      }
-                                    }
-                                  ]
+                                        name: 'c',
+                                      },
+                                    },
+                                  ],
                                 },
                                 right: {
                                   type: 'Identifier',
                                   start: 29,
                                   end: 30,
                                   range: [29, 30],
-                                  name: 'c'
-                                }
-                              }
-                            ]
+                                  name: 'c',
+                                },
+                              },
+                            ],
                           },
                           right: {
                             type: 'Identifier',
                             start: 34,
                             end: 35,
                             range: [34, 35],
-                            name: 'c'
-                          }
-                        }
-                      ]
+                            name: 'c',
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'Identifier',
                       start: 39,
                       end: 40,
                       range: [39, 40],
-                      name: 'c'
-                    }
-                  }
-                ]
+                      name: 'c',
+                    },
+                  },
+                ],
               },
               right: {
                 type: 'AssignmentExpression',
@@ -8799,75 +8799,75 @@ describe('Miscellaneous - ranges', () => {
                                                         start: 51,
                                                         end: 52,
                                                         range: [51, 52],
-                                                        name: 'a'
+                                                        name: 'a',
                                                       },
                                                       right: {
                                                         type: 'Identifier',
                                                         start: 53,
                                                         end: 54,
                                                         range: [53, 54],
-                                                        name: 'b'
-                                                      }
-                                                    }
-                                                  ]
+                                                        name: 'b',
+                                                      },
+                                                    },
+                                                  ],
                                                 },
                                                 right: {
                                                   type: 'Identifier',
                                                   start: 58,
                                                   end: 59,
                                                   range: [58, 59],
-                                                  name: 'c'
-                                                }
-                                              }
-                                            ]
-                                          }
-                                        ]
-                                      }
-                                    ]
+                                                  name: 'c',
+                                                },
+                                              },
+                                            ],
+                                          },
+                                        ],
+                                      },
+                                    ],
                                   },
                                   right: {
                                     type: 'Identifier',
                                     start: 65,
                                     end: 66,
                                     range: [65, 66],
-                                    name: 'c'
-                                  }
-                                }
-                              ]
+                                    name: 'c',
+                                  },
+                                },
+                              ],
                             },
                             right: {
                               type: 'Identifier',
                               start: 70,
                               end: 71,
                               range: [70, 71],
-                              name: 'c'
-                            }
-                          }
-                        ]
+                              name: 'c',
+                            },
+                          },
+                        ],
                       },
                       right: {
                         type: 'Identifier',
                         start: 75,
                         end: 76,
                         range: [75, 76],
-                        name: 'c'
-                      }
-                    }
-                  ]
+                        name: 'c',
+                      },
+                    },
+                  ],
                 },
                 right: {
                   type: 'Identifier',
                   start: 80,
                   end: 81,
                   range: [80, 81],
-                  name: 'c'
-                }
-              }
-            }
-          }
+                  name: 'c',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'foo; bar;',
@@ -8888,8 +8888,8 @@ describe('Miscellaneous - ranges', () => {
               start: 0,
               end: 3,
               range: [0, 3],
-              name: 'foo'
-            }
+              name: 'foo',
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -8901,12 +8901,12 @@ describe('Miscellaneous - ranges', () => {
               start: 5,
               end: 8,
               range: [5, 8],
-              name: 'bar'
-            }
-          }
+              name: 'bar',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'foo; bar; goo;',
@@ -8927,8 +8927,8 @@ describe('Miscellaneous - ranges', () => {
               start: 0,
               end: 3,
               range: [0, 3],
-              name: 'foo'
-            }
+              name: 'foo',
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -8940,8 +8940,8 @@ describe('Miscellaneous - ranges', () => {
               start: 5,
               end: 8,
               range: [5, 8],
-              name: 'bar'
-            }
+              name: 'bar',
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -8953,12 +8953,12 @@ describe('Miscellaneous - ranges', () => {
               start: 10,
               end: 13,
               range: [10, 13],
-              name: 'goo'
-            }
-          }
+              name: 'goo',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{a}',
@@ -8985,14 +8985,14 @@ describe('Miscellaneous - ranges', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  name: 'a'
-                }
-              }
-            ]
-          }
+                  name: 'a',
+                },
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{if (false) {} else ;}',
@@ -9019,27 +9019,27 @@ describe('Miscellaneous - ranges', () => {
                   start: 5,
                   end: 10,
                   range: [5, 10],
-                  value: false
+                  value: false,
                 },
                 consequent: {
                   type: 'BlockStatement',
                   start: 12,
                   end: 14,
                   range: [12, 14],
-                  body: []
+                  body: [],
                 },
                 alternate: {
                   type: 'EmptyStatement',
                   start: 20,
                   end: 21,
-                  range: [20, 21]
-                }
-              }
-            ]
-          }
+                  range: [20, 21],
+                },
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{if (false) a }',
@@ -9066,7 +9066,7 @@ describe('Miscellaneous - ranges', () => {
                   start: 5,
                   end: 10,
                   range: [5, 10],
-                  value: false
+                  value: false,
                 },
                 consequent: {
                   type: 'ExpressionStatement',
@@ -9078,16 +9078,16 @@ describe('Miscellaneous - ranges', () => {
                     start: 12,
                     end: 13,
                     range: [12, 13],
-                    name: 'a'
-                  }
+                    name: 'a',
+                  },
                 },
-                alternate: null
-              }
-            ]
-          }
+                alternate: null,
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'if (a) b',
@@ -9108,7 +9108,7 @@ describe('Miscellaneous - ranges', () => {
               start: 4,
               end: 5,
               range: [4, 5],
-              name: 'a'
+              name: 'a',
             },
             consequent: {
               type: 'ExpressionStatement',
@@ -9120,14 +9120,14 @@ describe('Miscellaneous - ranges', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'b'
-              }
+                name: 'b',
+              },
             },
-            alternate: null
-          }
+            alternate: null,
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'if (false) {} else ;',
@@ -9148,25 +9148,25 @@ describe('Miscellaneous - ranges', () => {
               start: 4,
               end: 9,
               range: [4, 9],
-              value: false
+              value: false,
             },
             consequent: {
               type: 'BlockStatement',
               start: 11,
               end: 13,
               range: [11, 13],
-              body: []
+              body: [],
             },
             alternate: {
               type: 'EmptyStatement',
               start: 19,
               end: 20,
-              range: [19, 20]
-            }
-          }
+              range: [19, 20],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'if(a)b;else c;',
@@ -9187,7 +9187,7 @@ describe('Miscellaneous - ranges', () => {
               start: 3,
               end: 4,
               range: [3, 4],
-              name: 'a'
+              name: 'a',
             },
             consequent: {
               type: 'ExpressionStatement',
@@ -9199,8 +9199,8 @@ describe('Miscellaneous - ranges', () => {
                 start: 5,
                 end: 6,
                 range: [5, 6],
-                name: 'b'
-              }
+                name: 'b',
+              },
             },
             alternate: {
               type: 'ExpressionStatement',
@@ -9212,13 +9212,13 @@ describe('Miscellaneous - ranges', () => {
                 start: 12,
                 end: 13,
                 range: [12, 13],
-                name: 'c'
-              }
-            }
-          }
+                name: 'c',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'if(a)b',
@@ -9239,7 +9239,7 @@ describe('Miscellaneous - ranges', () => {
               start: 3,
               end: 4,
               range: [3, 4],
-              name: 'a'
+              name: 'a',
             },
             consequent: {
               type: 'ExpressionStatement',
@@ -9251,14 +9251,14 @@ describe('Miscellaneous - ranges', () => {
                 start: 5,
                 end: 6,
                 range: [5, 6],
-                name: 'b'
-              }
+                name: 'b',
+              },
             },
-            alternate: null
-          }
+            alternate: null,
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'if (foo) a; if (bar) b; else c;',
@@ -9279,7 +9279,7 @@ describe('Miscellaneous - ranges', () => {
               start: 4,
               end: 7,
               range: [4, 7],
-              name: 'foo'
+              name: 'foo',
             },
             consequent: {
               type: 'ExpressionStatement',
@@ -9291,10 +9291,10 @@ describe('Miscellaneous - ranges', () => {
                 start: 9,
                 end: 10,
                 range: [9, 10],
-                name: 'a'
-              }
+                name: 'a',
+              },
             },
-            alternate: null
+            alternate: null,
           },
           {
             type: 'IfStatement',
@@ -9306,7 +9306,7 @@ describe('Miscellaneous - ranges', () => {
               start: 16,
               end: 19,
               range: [16, 19],
-              name: 'bar'
+              name: 'bar',
             },
             consequent: {
               type: 'ExpressionStatement',
@@ -9318,8 +9318,8 @@ describe('Miscellaneous - ranges', () => {
                 start: 21,
                 end: 22,
                 range: [21, 22],
-                name: 'b'
-              }
+                name: 'b',
+              },
             },
             alternate: {
               type: 'ExpressionStatement',
@@ -9331,13 +9331,13 @@ describe('Miscellaneous - ranges', () => {
                 start: 29,
                 end: 30,
                 range: [29, 30],
-                name: 'c'
-              }
-            }
-          }
+                name: 'c',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'if (a > 2) {b = c }',
@@ -9363,7 +9363,7 @@ describe('Miscellaneous - ranges', () => {
                 start: 4,
                 end: 5,
                 range: [4, 5],
-                name: 'a'
+                name: 'a',
               },
               operator: '>',
               right: {
@@ -9371,8 +9371,8 @@ describe('Miscellaneous - ranges', () => {
                 start: 8,
                 end: 9,
                 range: [8, 9],
-                value: 2
-              }
+                value: 2,
+              },
             },
             consequent: {
               type: 'BlockStatement',
@@ -9396,24 +9396,24 @@ describe('Miscellaneous - ranges', () => {
                       start: 12,
                       end: 13,
                       range: [12, 13],
-                      name: 'b'
+                      name: 'b',
                     },
                     right: {
                       type: 'Identifier',
                       start: 16,
                       end: 17,
                       range: [16, 17],
-                      name: 'c'
-                    }
-                  }
-                }
-              ]
+                      name: 'c',
+                    },
+                  },
+                },
+              ],
             },
-            alternate: null
-          }
+            alternate: null,
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'while (x < 10) { x++; y--; }',
@@ -9439,7 +9439,7 @@ describe('Miscellaneous - ranges', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'x'
+                name: 'x',
               },
               operator: '<',
               right: {
@@ -9447,8 +9447,8 @@ describe('Miscellaneous - ranges', () => {
                 start: 11,
                 end: 13,
                 range: [11, 13],
-                value: 10
-              }
+                value: 10,
+              },
             },
             body: {
               type: 'BlockStatement',
@@ -9473,9 +9473,9 @@ describe('Miscellaneous - ranges', () => {
                       start: 17,
                       end: 18,
                       range: [17, 18],
-                      name: 'x'
-                    }
-                  }
+                      name: 'x',
+                    },
+                  },
                 },
                 {
                   type: 'ExpressionStatement',
@@ -9494,16 +9494,16 @@ describe('Miscellaneous - ranges', () => {
                       start: 22,
                       end: 23,
                       range: [22, 23],
-                      name: 'y'
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      name: 'y',
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'while (i-->1) {}',
@@ -9536,8 +9536,8 @@ describe('Miscellaneous - ranges', () => {
                   start: 7,
                   end: 8,
                   range: [7, 8],
-                  name: 'i'
-                }
+                  name: 'i',
+                },
               },
               operator: '>',
               right: {
@@ -9545,20 +9545,20 @@ describe('Miscellaneous - ranges', () => {
                 start: 11,
                 end: 12,
                 range: [11, 12],
-                value: 1
-              }
+                value: 1,
+              },
             },
             body: {
               type: 'BlockStatement',
               start: 14,
               end: 16,
               range: [14, 16],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'try {} catch({e=x}){}',
@@ -9579,7 +9579,7 @@ describe('Miscellaneous - ranges', () => {
               start: 4,
               end: 6,
               range: [4, 6],
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
@@ -9605,7 +9605,7 @@ describe('Miscellaneous - ranges', () => {
                       start: 14,
                       end: 15,
                       range: [14, 15],
-                      name: 'e'
+                      name: 'e',
                     },
                     kind: 'init',
                     value: {
@@ -9618,32 +9618,32 @@ describe('Miscellaneous - ranges', () => {
                         start: 14,
                         end: 15,
                         range: [14, 15],
-                        name: 'e'
+                        name: 'e',
                       },
                       right: {
                         type: 'Identifier',
                         start: 16,
                         end: 17,
                         range: [16, 17],
-                        name: 'x'
-                      }
-                    }
-                  }
-                ]
+                        name: 'x',
+                      },
+                    },
+                  },
+                ],
               },
               body: {
                 type: 'BlockStatement',
                 start: 19,
                 end: 21,
                 range: [19, 21],
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
+            finalizer: null,
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'try {} catch {}',
@@ -9664,7 +9664,7 @@ describe('Miscellaneous - ranges', () => {
               start: 4,
               end: 6,
               range: [4, 6],
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
@@ -9677,14 +9677,14 @@ describe('Miscellaneous - ranges', () => {
                 start: 13,
                 end: 15,
                 range: [13, 15],
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
+            finalizer: null,
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'try { } catch (e) { say(e) }',
@@ -9705,7 +9705,7 @@ describe('Miscellaneous - ranges', () => {
               start: 4,
               end: 7,
               range: [4, 7],
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
@@ -9717,7 +9717,7 @@ describe('Miscellaneous - ranges', () => {
                 start: 15,
                 end: 16,
                 range: [15, 16],
-                name: 'e'
+                name: 'e',
               },
               body: {
                 type: 'BlockStatement',
@@ -9740,7 +9740,7 @@ describe('Miscellaneous - ranges', () => {
                         start: 20,
                         end: 23,
                         range: [20, 23],
-                        name: 'say'
+                        name: 'say',
                       },
                       arguments: [
                         {
@@ -9748,19 +9748,19 @@ describe('Miscellaneous - ranges', () => {
                           start: 24,
                           end: 25,
                           range: [24, 25],
-                          name: 'e'
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
+                          name: 'e',
+                        },
+                      ],
+                    },
+                  },
+                ],
+              },
             },
-            finalizer: null
-          }
+            finalizer: null,
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'try { } catch ([a = 0]) { }',
@@ -9781,7 +9781,7 @@ describe('Miscellaneous - ranges', () => {
               start: 4,
               end: 7,
               range: [4, 7],
-              body: []
+              body: [],
             },
             handler: {
               type: 'CatchClause',
@@ -9804,31 +9804,31 @@ describe('Miscellaneous - ranges', () => {
                       start: 16,
                       end: 17,
                       range: [16, 17],
-                      name: 'a'
+                      name: 'a',
                     },
                     right: {
                       type: 'Literal',
                       start: 20,
                       end: 21,
                       range: [20, 21],
-                      value: 0
-                    }
-                  }
-                ]
+                      value: 0,
+                    },
+                  },
+                ],
               },
               body: {
                 type: 'BlockStatement',
                 start: 24,
                 end: 27,
                 range: [24, 27],
-                body: []
-              }
+                body: [],
+              },
             },
-            finalizer: null
-          }
+            finalizer: null,
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'throw foo;',
@@ -9849,12 +9849,12 @@ describe('Miscellaneous - ranges', () => {
               start: 6,
               end: 9,
               range: [6, 9],
-              name: 'foo'
-            }
-          }
+              name: 'foo',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'throw x * y',
@@ -9880,7 +9880,7 @@ describe('Miscellaneous - ranges', () => {
                 start: 6,
                 end: 7,
                 range: [6, 7],
-                name: 'x'
+                name: 'x',
               },
               operator: '*',
               right: {
@@ -9888,13 +9888,13 @@ describe('Miscellaneous - ranges', () => {
                 start: 10,
                 end: 11,
                 range: [10, 11],
-                name: 'y'
-              }
-            }
-          }
+                name: 'y',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'switch(foo) {}',
@@ -9915,13 +9915,13 @@ describe('Miscellaneous - ranges', () => {
               start: 7,
               end: 10,
               range: [7, 10],
-              name: 'foo'
+              name: 'foo',
             },
-            cases: []
-          }
+            cases: [],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'switch (A) {default: D; case B: C; }',
@@ -9942,7 +9942,7 @@ describe('Miscellaneous - ranges', () => {
               start: 8,
               end: 9,
               range: [8, 9],
-              name: 'A'
+              name: 'A',
             },
             cases: [
               {
@@ -9961,11 +9961,11 @@ describe('Miscellaneous - ranges', () => {
                       start: 21,
                       end: 22,
                       range: [21, 22],
-                      name: 'D'
-                    }
-                  }
+                      name: 'D',
+                    },
+                  },
                 ],
-                test: null
+                test: null,
               },
               {
                 type: 'SwitchCase',
@@ -9983,23 +9983,23 @@ describe('Miscellaneous - ranges', () => {
                       start: 32,
                       end: 33,
                       range: [32, 33],
-                      name: 'C'
-                    }
-                  }
+                      name: 'C',
+                    },
+                  },
                 ],
                 test: {
                   type: 'Identifier',
                   start: 29,
                   end: 30,
                   range: [29, 30],
-                  name: 'B'
-                }
-              }
-            ]
-          }
+                  name: 'B',
+                },
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'switch(a){case 1:default:}',
@@ -10020,7 +10020,7 @@ describe('Miscellaneous - ranges', () => {
               start: 7,
               end: 8,
               range: [7, 8],
-              name: 'a'
+              name: 'a',
             },
             cases: [
               {
@@ -10034,8 +10034,8 @@ describe('Miscellaneous - ranges', () => {
                   start: 15,
                   end: 16,
                   range: [15, 16],
-                  value: 1
-                }
+                  value: 1,
+                },
               },
               {
                 type: 'SwitchCase',
@@ -10043,13 +10043,13 @@ describe('Miscellaneous - ranges', () => {
                 end: 25,
                 range: [17, 25],
                 consequent: [],
-                test: null
-              }
-            ]
-          }
+                test: null,
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (a;;);',
@@ -10070,7 +10070,7 @@ describe('Miscellaneous - ranges', () => {
               start: 5,
               end: 6,
               range: [5, 6],
-              name: 'a'
+              name: 'a',
             },
             test: null,
             update: null,
@@ -10078,12 +10078,12 @@ describe('Miscellaneous - ranges', () => {
               type: 'EmptyStatement',
               start: 9,
               end: 10,
-              range: [9, 10]
-            }
-          }
+              range: [9, 10],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (let [...foo] = obj;;);',
@@ -10126,21 +10126,21 @@ describe('Miscellaneous - ranges', () => {
                           start: 13,
                           end: 16,
                           range: [13, 16],
-                          name: 'foo'
-                        }
-                      }
-                    ]
+                          name: 'foo',
+                        },
+                      },
+                    ],
                   },
                   init: {
                     type: 'Identifier',
                     start: 20,
                     end: 23,
                     range: [20, 23],
-                    name: 'obj'
-                  }
-                }
+                    name: 'obj',
+                  },
+                },
               ],
-              kind: 'let'
+              kind: 'let',
             },
             test: null,
             update: null,
@@ -10148,12 +10148,12 @@ describe('Miscellaneous - ranges', () => {
               type: 'EmptyStatement',
               start: 26,
               end: 27,
-              range: [26, 27]
-            }
-          }
+              range: [26, 27],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (let [foo=a] = arr;;);',
@@ -10196,28 +10196,28 @@ describe('Miscellaneous - ranges', () => {
                           start: 10,
                           end: 13,
                           range: [10, 13],
-                          name: 'foo'
+                          name: 'foo',
                         },
                         right: {
                           type: 'Identifier',
                           start: 14,
                           end: 15,
                           range: [14, 15],
-                          name: 'a'
-                        }
-                      }
-                    ]
+                          name: 'a',
+                        },
+                      },
+                    ],
                   },
                   init: {
                     type: 'Identifier',
                     start: 19,
                     end: 22,
                     range: [19, 22],
-                    name: 'arr'
-                  }
-                }
+                    name: 'arr',
+                  },
+                },
               ],
-              kind: 'let'
+              kind: 'let',
             },
             test: null,
             update: null,
@@ -10225,12 +10225,12 @@ describe('Miscellaneous - ranges', () => {
               type: 'EmptyStatement',
               start: 25,
               end: 26,
-              range: [25, 26]
-            }
-          }
+              range: [25, 26],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (x.y of [23]) {}',
@@ -10257,16 +10257,16 @@ describe('Miscellaneous - ranges', () => {
                 start: 5,
                 end: 6,
                 range: [5, 6],
-                name: 'x'
+                name: 'x',
               },
               property: {
                 type: 'Identifier',
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'y'
+                name: 'y',
               },
-              computed: false
+              computed: false,
             },
             right: {
               type: 'ArrayExpression',
@@ -10279,21 +10279,21 @@ describe('Miscellaneous - ranges', () => {
                   start: 13,
                   end: 15,
                   range: [13, 15],
-                  value: 23
-                }
-              ]
+                  value: 23,
+                },
+              ],
             },
             body: {
               type: 'BlockStatement',
               start: 18,
               end: 20,
               range: [18, 20],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for ( let[x] of [[34]] ) {}',
@@ -10332,14 +10332,14 @@ describe('Miscellaneous - ranges', () => {
                         start: 10,
                         end: 11,
                         range: [10, 11],
-                        name: 'x'
-                      }
-                    ]
+                        name: 'x',
+                      },
+                    ],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'let'
+              kind: 'let',
             },
             right: {
               type: 'ArrayExpression',
@@ -10358,23 +10358,23 @@ describe('Miscellaneous - ranges', () => {
                       start: 18,
                       end: 20,
                       range: [18, 20],
-                      value: 34
-                    }
-                  ]
-                }
-              ]
+                      value: 34,
+                    },
+                  ],
+                },
+              ],
             },
             body: {
               type: 'BlockStatement',
               start: 25,
               end: 27,
               range: [25, 27],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (yield[g]--;;);',
@@ -10407,17 +10407,17 @@ describe('Miscellaneous - ranges', () => {
                   start: 5,
                   end: 10,
                   range: [5, 10],
-                  name: 'yield'
+                  name: 'yield',
                 },
                 property: {
                   type: 'Identifier',
                   start: 11,
                   end: 12,
                   range: [11, 12],
-                  name: 'g'
+                  name: 'g',
                 },
-                computed: true
-              }
+                computed: true,
+              },
             },
             test: null,
             update: null,
@@ -10425,12 +10425,12 @@ describe('Miscellaneous - ranges', () => {
               type: 'EmptyStatement',
               start: 18,
               end: 19,
-              range: [18, 19]
-            }
-          }
+              range: [18, 19],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function fn4([[x, y, ...z]]) {}',
@@ -10451,7 +10451,7 @@ describe('Miscellaneous - ranges', () => {
               start: 9,
               end: 12,
               range: [9, 12],
-              name: 'fn4'
+              name: 'fn4',
             },
             generator: false,
             async: false,
@@ -10473,14 +10473,14 @@ describe('Miscellaneous - ranges', () => {
                         start: 15,
                         end: 16,
                         range: [15, 16],
-                        name: 'x'
+                        name: 'x',
                       },
                       {
                         type: 'Identifier',
                         start: 18,
                         end: 19,
                         range: [18, 19],
-                        name: 'y'
+                        name: 'y',
                       },
                       {
                         type: 'RestElement',
@@ -10492,25 +10492,25 @@ describe('Miscellaneous - ranges', () => {
                           start: 24,
                           end: 25,
                           range: [24, 25],
-                          name: 'z'
-                        }
-                      }
-                    ]
-                  }
-                ]
-              }
+                          name: 'z',
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
               start: 29,
               end: 31,
               range: [29, 31],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[x.a=a] = 0',
@@ -10553,39 +10553,39 @@ describe('Miscellaneous - ranges', () => {
                         start: 1,
                         end: 2,
                         range: [1, 2],
-                        name: 'x'
+                        name: 'x',
                       },
                       property: {
                         type: 'Identifier',
                         start: 3,
                         end: 4,
                         range: [3, 4],
-                        name: 'a'
+                        name: 'a',
                       },
-                      computed: false
+                      computed: false,
                     },
                     right: {
                       type: 'Identifier',
                       start: 5,
                       end: 6,
                       range: [5, 6],
-                      name: 'a'
-                    }
-                  }
-                ]
+                      name: 'a',
+                    },
+                  },
+                ],
               },
               right: {
                 type: 'Literal',
                 start: 10,
                 end: 11,
                 range: [10, 11],
-                value: 0
-              }
-            }
-          }
+                value: 0,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[{a=0},{a=0}] = 0',
@@ -10632,7 +10632,7 @@ describe('Miscellaneous - ranges', () => {
                           start: 2,
                           end: 3,
                           range: [2, 3],
-                          name: 'a'
+                          name: 'a',
                         },
                         kind: 'init',
                         value: {
@@ -10645,18 +10645,18 @@ describe('Miscellaneous - ranges', () => {
                             start: 2,
                             end: 3,
                             range: [2, 3],
-                            name: 'a'
+                            name: 'a',
                           },
                           right: {
                             type: 'Literal',
                             start: 4,
                             end: 5,
                             range: [4, 5],
-                            value: 0
-                          }
-                        }
-                      }
-                    ]
+                            value: 0,
+                          },
+                        },
+                      },
+                    ],
                   },
                   {
                     type: 'ObjectPattern',
@@ -10677,7 +10677,7 @@ describe('Miscellaneous - ranges', () => {
                           start: 8,
                           end: 9,
                           range: [8, 9],
-                          name: 'a'
+                          name: 'a',
                         },
                         kind: 'init',
                         value: {
@@ -10690,33 +10690,33 @@ describe('Miscellaneous - ranges', () => {
                             start: 8,
                             end: 9,
                             range: [8, 9],
-                            name: 'a'
+                            name: 'a',
                           },
                           right: {
                             type: 'Literal',
                             start: 10,
                             end: 11,
                             range: [10, 11],
-                            value: 0
-                          }
-                        }
-                      }
-                    ]
-                  }
-                ]
+                            value: 0,
+                          },
+                        },
+                      },
+                    ],
+                  },
+                ],
               },
               right: {
                 type: 'Literal',
                 start: 16,
                 end: 17,
                 range: [16, 17],
-                value: 0
-              }
-            }
-          }
+                value: 0,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[...[...a[x]]] = 1',
@@ -10770,35 +10770,35 @@ describe('Miscellaneous - ranges', () => {
                               start: 8,
                               end: 9,
                               range: [8, 9],
-                              name: 'a'
+                              name: 'a',
                             },
                             property: {
                               type: 'Identifier',
                               start: 10,
                               end: 11,
                               range: [10, 11],
-                              name: 'x'
+                              name: 'x',
                             },
-                            computed: true
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
+                            computed: true,
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
               },
               right: {
                 type: 'Literal',
                 start: 17,
                 end: 18,
                 range: [17, 18],
-                value: 1
-              }
-            }
-          }
+                value: 1,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var {x: y, z: { a: b } } = { x: "3", z: { a: "b" } };',
@@ -10839,16 +10839,16 @@ describe('Miscellaneous - ranges', () => {
                         start: 5,
                         end: 6,
                         range: [5, 6],
-                        name: 'x'
+                        name: 'x',
                       },
                       value: {
                         type: 'Identifier',
                         start: 8,
                         end: 9,
                         range: [8, 9],
-                        name: 'y'
+                        name: 'y',
                       },
-                      kind: 'init'
+                      kind: 'init',
                     },
                     {
                       type: 'Property',
@@ -10863,7 +10863,7 @@ describe('Miscellaneous - ranges', () => {
                         start: 11,
                         end: 12,
                         range: [11, 12],
-                        name: 'z'
+                        name: 'z',
                       },
                       value: {
                         type: 'ObjectPattern',
@@ -10884,22 +10884,22 @@ describe('Miscellaneous - ranges', () => {
                               start: 16,
                               end: 17,
                               range: [16, 17],
-                              name: 'a'
+                              name: 'a',
                             },
                             value: {
                               type: 'Identifier',
                               start: 19,
                               end: 20,
                               range: [19, 20],
-                              name: 'b'
+                              name: 'b',
                             },
-                            kind: 'init'
-                          }
-                        ]
+                            kind: 'init',
+                          },
+                        ],
                       },
-                      kind: 'init'
-                    }
-                  ]
+                      kind: 'init',
+                    },
+                  ],
                 },
                 init: {
                   type: 'ObjectExpression',
@@ -10920,7 +10920,7 @@ describe('Miscellaneous - ranges', () => {
                         start: 29,
                         end: 30,
                         range: [29, 30],
-                        name: 'x'
+                        name: 'x',
                       },
                       value: {
                         type: 'Literal',
@@ -10928,9 +10928,9 @@ describe('Miscellaneous - ranges', () => {
                         end: 35,
                         range: [32, 35],
                         value: '3',
-                        raw: '"3"'
+                        raw: '"3"',
                       },
-                      kind: 'init'
+                      kind: 'init',
                     },
                     {
                       type: 'Property',
@@ -10945,7 +10945,7 @@ describe('Miscellaneous - ranges', () => {
                         start: 37,
                         end: 38,
                         range: [37, 38],
-                        name: 'z'
+                        name: 'z',
                       },
                       value: {
                         type: 'ObjectExpression',
@@ -10966,7 +10966,7 @@ describe('Miscellaneous - ranges', () => {
                               start: 42,
                               end: 43,
                               range: [42, 43],
-                              name: 'a'
+                              name: 'a',
                             },
                             value: {
                               type: 'Literal',
@@ -10974,23 +10974,23 @@ describe('Miscellaneous - ranges', () => {
                               end: 48,
                               range: [45, 48],
                               value: 'b',
-                              raw: '"b"'
+                              raw: '"b"',
                             },
-                            kind: 'init'
-                          }
-                        ]
+                            kind: 'init',
+                          },
+                        ],
                       },
-                      kind: 'init'
-                    }
-                  ]
-                }
-              }
+                      kind: 'init',
+                    },
+                  ],
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[a,b=0,[c,...a[0]]={}]=0;',
@@ -11023,7 +11023,7 @@ describe('Miscellaneous - ranges', () => {
                     start: 1,
                     end: 2,
                     range: [1, 2],
-                    name: 'a'
+                    name: 'a',
                   },
                   {
                     type: 'AssignmentPattern',
@@ -11035,7 +11035,7 @@ describe('Miscellaneous - ranges', () => {
                       start: 3,
                       end: 4,
                       range: [3, 4],
-                      name: 'b'
+                      name: 'b',
                     },
                     right: {
                       type: 'Literal',
@@ -11043,8 +11043,8 @@ describe('Miscellaneous - ranges', () => {
                       end: 6,
                       range: [5, 6],
                       value: 0,
-                      raw: '0'
-                    }
+                      raw: '0',
+                    },
                   },
                   {
                     type: 'AssignmentPattern',
@@ -11062,7 +11062,7 @@ describe('Miscellaneous - ranges', () => {
                           start: 8,
                           end: 9,
                           range: [8, 9],
-                          name: 'c'
+                          name: 'c',
                         },
                         {
                           type: 'RestElement',
@@ -11079,7 +11079,7 @@ describe('Miscellaneous - ranges', () => {
                               start: 13,
                               end: 14,
                               range: [13, 14],
-                              name: 'a'
+                              name: 'a',
                             },
                             property: {
                               type: 'Literal',
@@ -11087,22 +11087,22 @@ describe('Miscellaneous - ranges', () => {
                               end: 16,
                               range: [15, 16],
                               value: 0,
-                              raw: '0'
+                              raw: '0',
                             },
-                            computed: true
-                          }
-                        }
-                      ]
+                            computed: true,
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'ObjectExpression',
                       start: 19,
                       end: 21,
                       range: [19, 21],
-                      properties: []
-                    }
-                  }
-                ]
+                      properties: [],
+                    },
+                  },
+                ],
               },
               right: {
                 type: 'Literal',
@@ -11110,13 +11110,13 @@ describe('Miscellaneous - ranges', () => {
                 end: 24,
                 range: [23, 24],
                 value: 0,
-                raw: '0'
-              }
-            }
-          }
+                raw: '0',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({a,b=b,a:c,[a]:[d]})=>0;',
@@ -11160,7 +11160,7 @@ describe('Miscellaneous - ranges', () => {
                         start: 2,
                         end: 3,
                         range: [2, 3],
-                        name: 'a'
+                        name: 'a',
                       },
                       kind: 'init',
                       value: {
@@ -11168,8 +11168,8 @@ describe('Miscellaneous - ranges', () => {
                         start: 2,
                         end: 3,
                         range: [2, 3],
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     },
                     {
                       type: 'Property',
@@ -11184,7 +11184,7 @@ describe('Miscellaneous - ranges', () => {
                         start: 4,
                         end: 5,
                         range: [4, 5],
-                        name: 'b'
+                        name: 'b',
                       },
                       kind: 'init',
                       value: {
@@ -11197,16 +11197,16 @@ describe('Miscellaneous - ranges', () => {
                           start: 4,
                           end: 5,
                           range: [4, 5],
-                          name: 'b'
+                          name: 'b',
                         },
                         right: {
                           type: 'Identifier',
                           start: 6,
                           end: 7,
                           range: [6, 7],
-                          name: 'b'
-                        }
-                      }
+                          name: 'b',
+                        },
+                      },
                     },
                     {
                       type: 'Property',
@@ -11221,16 +11221,16 @@ describe('Miscellaneous - ranges', () => {
                         start: 8,
                         end: 9,
                         range: [8, 9],
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Identifier',
                         start: 10,
                         end: 11,
                         range: [10, 11],
-                        name: 'c'
+                        name: 'c',
                       },
-                      kind: 'init'
+                      kind: 'init',
                     },
                     {
                       type: 'Property',
@@ -11245,7 +11245,7 @@ describe('Miscellaneous - ranges', () => {
                         start: 13,
                         end: 14,
                         range: [13, 14],
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'ArrayPattern',
@@ -11258,14 +11258,14 @@ describe('Miscellaneous - ranges', () => {
                             start: 17,
                             end: 18,
                             range: [17, 18],
-                            name: 'd'
-                          }
-                        ]
+                            name: 'd',
+                          },
+                        ],
                       },
-                      kind: 'init'
-                    }
-                  ]
-                }
+                      kind: 'init',
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'Literal',
@@ -11273,13 +11273,13 @@ describe('Miscellaneous - ranges', () => {
                 end: 24,
                 range: [23, 24],
                 value: 0,
-                raw: '0'
-              }
-            }
-          }
+                raw: '0',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(x, y = 9, {b}, z = 8, ...a) => {}',
@@ -11309,7 +11309,7 @@ describe('Miscellaneous - ranges', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  name: 'x'
+                  name: 'x',
                 },
                 {
                   type: 'AssignmentPattern',
@@ -11321,7 +11321,7 @@ describe('Miscellaneous - ranges', () => {
                     start: 4,
                     end: 5,
                     range: [4, 5],
-                    name: 'y'
+                    name: 'y',
                   },
                   right: {
                     type: 'Literal',
@@ -11329,8 +11329,8 @@ describe('Miscellaneous - ranges', () => {
                     end: 9,
                     range: [8, 9],
                     value: 9,
-                    raw: '9'
-                  }
+                    raw: '9',
+                  },
                 },
                 {
                   type: 'ObjectPattern',
@@ -11351,7 +11351,7 @@ describe('Miscellaneous - ranges', () => {
                         start: 12,
                         end: 13,
                         range: [12, 13],
-                        name: 'b'
+                        name: 'b',
                       },
                       kind: 'init',
                       value: {
@@ -11359,10 +11359,10 @@ describe('Miscellaneous - ranges', () => {
                         start: 12,
                         end: 13,
                         range: [12, 13],
-                        name: 'b'
-                      }
-                    }
-                  ]
+                        name: 'b',
+                      },
+                    },
+                  ],
                 },
                 {
                   type: 'AssignmentPattern',
@@ -11374,7 +11374,7 @@ describe('Miscellaneous - ranges', () => {
                     start: 16,
                     end: 17,
                     range: [16, 17],
-                    name: 'z'
+                    name: 'z',
                   },
                   right: {
                     type: 'Literal',
@@ -11382,8 +11382,8 @@ describe('Miscellaneous - ranges', () => {
                     end: 21,
                     range: [20, 21],
                     value: 8,
-                    raw: '8'
-                  }
+                    raw: '8',
+                  },
                 },
                 {
                   type: 'RestElement',
@@ -11395,22 +11395,22 @@ describe('Miscellaneous - ranges', () => {
                     start: 26,
                     end: 27,
                     range: [26, 27],
-                    name: 'a'
-                  }
-                }
+                    name: 'a',
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
                 start: 32,
                 end: 34,
                 range: [32, 34],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[...[{prop: 1}.prop]] = []',
@@ -11473,45 +11473,45 @@ describe('Miscellaneous - ranges', () => {
                                   start: 6,
                                   end: 10,
                                   range: [6, 10],
-                                  name: 'prop'
+                                  name: 'prop',
                                 },
                                 value: {
                                   type: 'Literal',
                                   start: 12,
                                   end: 13,
                                   range: [12, 13],
-                                  value: 1
+                                  value: 1,
                                 },
-                                kind: 'init'
-                              }
-                            ]
+                                kind: 'init',
+                              },
+                            ],
                           },
                           property: {
                             type: 'Identifier',
                             start: 15,
                             end: 19,
                             range: [15, 19],
-                            name: 'prop'
+                            name: 'prop',
                           },
-                          computed: false
-                        }
-                      ]
-                    }
-                  }
-                ]
+                          computed: false,
+                        },
+                      ],
+                    },
+                  },
+                ],
               },
               right: {
                 type: 'ArrayExpression',
                 start: 24,
                 end: 26,
                 range: [24, 26],
-                elements: []
-              }
-            }
-          }
+                elements: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'f = ([cls = class {}]) => {}',
@@ -11538,7 +11538,7 @@ describe('Miscellaneous - ranges', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'f'
+                name: 'f',
               },
               right: {
                 type: 'ArrowFunctionExpression',
@@ -11565,7 +11565,7 @@ describe('Miscellaneous - ranges', () => {
                           start: 6,
                           end: 9,
                           range: [6, 9],
-                          name: 'cls'
+                          name: 'cls',
                         },
                         right: {
                           type: 'ClassExpression',
@@ -11579,26 +11579,26 @@ describe('Miscellaneous - ranges', () => {
                             start: 18,
                             end: 20,
                             range: [18, 20],
-                            body: []
-                          }
-                        }
-                      }
-                    ]
-                  }
+                            body: [],
+                          },
+                        },
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
                   start: 26,
                   end: 28,
                   range: [26, 28],
-                  body: []
-                }
-              }
-            }
-          }
+                  body: [],
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'f = ([cls = class {}, xCls = class X {}, xCls2 = class { static name() {} }]) => {}',
@@ -11625,7 +11625,7 @@ describe('Miscellaneous - ranges', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'f'
+                name: 'f',
               },
               right: {
                 type: 'ArrowFunctionExpression',
@@ -11652,7 +11652,7 @@ describe('Miscellaneous - ranges', () => {
                           start: 6,
                           end: 9,
                           range: [6, 9],
-                          name: 'cls'
+                          name: 'cls',
                         },
                         right: {
                           type: 'ClassExpression',
@@ -11666,9 +11666,9 @@ describe('Miscellaneous - ranges', () => {
                             start: 18,
                             end: 20,
                             range: [18, 20],
-                            body: []
-                          }
-                        }
+                            body: [],
+                          },
+                        },
                       },
                       {
                         type: 'AssignmentPattern',
@@ -11680,7 +11680,7 @@ describe('Miscellaneous - ranges', () => {
                           start: 22,
                           end: 26,
                           range: [22, 26],
-                          name: 'xCls'
+                          name: 'xCls',
                         },
                         right: {
                           type: 'ClassExpression',
@@ -11692,7 +11692,7 @@ describe('Miscellaneous - ranges', () => {
                             start: 35,
                             end: 36,
                             range: [35, 36],
-                            name: 'X'
+                            name: 'X',
                           },
                           superClass: null,
                           body: {
@@ -11700,9 +11700,9 @@ describe('Miscellaneous - ranges', () => {
                             start: 37,
                             end: 39,
                             range: [37, 39],
-                            body: []
-                          }
-                        }
+                            body: [],
+                          },
+                        },
                       },
                       {
                         type: 'AssignmentPattern',
@@ -11714,7 +11714,7 @@ describe('Miscellaneous - ranges', () => {
                           start: 41,
                           end: 46,
                           range: [41, 46],
-                          name: 'xCls2'
+                          name: 'xCls2',
                         },
                         right: {
                           type: 'ClassExpression',
@@ -11742,7 +11742,7 @@ describe('Miscellaneous - ranges', () => {
                                   start: 64,
                                   end: 68,
                                   range: [64, 68],
-                                  name: 'name'
+                                  name: 'name',
                                 },
                                 value: {
                                   type: 'FunctionExpression',
@@ -11758,30 +11758,30 @@ describe('Miscellaneous - ranges', () => {
                                     start: 71,
                                     end: 73,
                                     range: [71, 73],
-                                    body: []
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    ]
-                  }
+                                    body: [],
+                                  },
+                                },
+                              },
+                            ],
+                          },
+                        },
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
                   start: 81,
                   end: 83,
                   range: [81, 83],
-                  body: []
-                }
-              }
-            }
-          }
+                  body: [],
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[{x : [{y:{z = 1}, z1 = 2}] }, {x2 = 3}, {x3 : {y3:[{z3 = 4}]}} ] = [{x:[{y:{}}]}, {}, {x3:{y3:[{}]}}];',
@@ -11828,7 +11828,7 @@ describe('Miscellaneous - ranges', () => {
                           start: 2,
                           end: 3,
                           range: [2, 3],
-                          name: 'x'
+                          name: 'x',
                         },
                         value: {
                           type: 'ArrayPattern',
@@ -11855,7 +11855,7 @@ describe('Miscellaneous - ranges', () => {
                                     start: 8,
                                     end: 9,
                                     range: [8, 9],
-                                    name: 'y'
+                                    name: 'y',
                                   },
                                   value: {
                                     type: 'ObjectPattern',
@@ -11876,7 +11876,7 @@ describe('Miscellaneous - ranges', () => {
                                           start: 11,
                                           end: 12,
                                           range: [11, 12],
-                                          name: 'z'
+                                          name: 'z',
                                         },
                                         kind: 'init',
                                         value: {
@@ -11889,7 +11889,7 @@ describe('Miscellaneous - ranges', () => {
                                             start: 11,
                                             end: 12,
                                             range: [11, 12],
-                                            name: 'z'
+                                            name: 'z',
                                           },
                                           right: {
                                             type: 'Literal',
@@ -11897,13 +11897,13 @@ describe('Miscellaneous - ranges', () => {
                                             end: 16,
                                             range: [15, 16],
                                             value: 1,
-                                            raw: '1'
-                                          }
-                                        }
-                                      }
-                                    ]
+                                            raw: '1',
+                                          },
+                                        },
+                                      },
+                                    ],
                                   },
-                                  kind: 'init'
+                                  kind: 'init',
                                 },
                                 {
                                   type: 'Property',
@@ -11918,7 +11918,7 @@ describe('Miscellaneous - ranges', () => {
                                     start: 19,
                                     end: 21,
                                     range: [19, 21],
-                                    name: 'z1'
+                                    name: 'z1',
                                   },
                                   kind: 'init',
                                   value: {
@@ -11931,7 +11931,7 @@ describe('Miscellaneous - ranges', () => {
                                       start: 19,
                                       end: 21,
                                       range: [19, 21],
-                                      name: 'z1'
+                                      name: 'z1',
                                     },
                                     right: {
                                       type: 'Literal',
@@ -11939,17 +11939,17 @@ describe('Miscellaneous - ranges', () => {
                                       end: 25,
                                       range: [24, 25],
                                       value: 2,
-                                      raw: '2'
-                                    }
-                                  }
-                                }
-                              ]
-                            }
-                          ]
+                                      raw: '2',
+                                    },
+                                  },
+                                },
+                              ],
+                            },
+                          ],
                         },
-                        kind: 'init'
-                      }
-                    ]
+                        kind: 'init',
+                      },
+                    ],
                   },
                   {
                     type: 'ObjectPattern',
@@ -11970,7 +11970,7 @@ describe('Miscellaneous - ranges', () => {
                           start: 32,
                           end: 34,
                           range: [32, 34],
-                          name: 'x2'
+                          name: 'x2',
                         },
                         kind: 'init',
                         value: {
@@ -11983,7 +11983,7 @@ describe('Miscellaneous - ranges', () => {
                             start: 32,
                             end: 34,
                             range: [32, 34],
-                            name: 'x2'
+                            name: 'x2',
                           },
                           right: {
                             type: 'Literal',
@@ -11991,11 +11991,11 @@ describe('Miscellaneous - ranges', () => {
                             end: 38,
                             range: [37, 38],
                             value: 3,
-                            raw: '3'
-                          }
-                        }
-                      }
-                    ]
+                            raw: '3',
+                          },
+                        },
+                      },
+                    ],
                   },
                   {
                     type: 'ObjectPattern',
@@ -12016,7 +12016,7 @@ describe('Miscellaneous - ranges', () => {
                           start: 42,
                           end: 44,
                           range: [42, 44],
-                          name: 'x3'
+                          name: 'x3',
                         },
                         value: {
                           type: 'ObjectPattern',
@@ -12037,7 +12037,7 @@ describe('Miscellaneous - ranges', () => {
                                 start: 48,
                                 end: 50,
                                 range: [48, 50],
-                                name: 'y3'
+                                name: 'y3',
                               },
                               value: {
                                 type: 'ArrayPattern',
@@ -12064,7 +12064,7 @@ describe('Miscellaneous - ranges', () => {
                                           start: 53,
                                           end: 55,
                                           range: [53, 55],
-                                          name: 'z3'
+                                          name: 'z3',
                                         },
                                         kind: 'init',
                                         value: {
@@ -12077,7 +12077,7 @@ describe('Miscellaneous - ranges', () => {
                                             start: 53,
                                             end: 55,
                                             range: [53, 55],
-                                            name: 'z3'
+                                            name: 'z3',
                                           },
                                           right: {
                                             type: 'Literal',
@@ -12085,23 +12085,23 @@ describe('Miscellaneous - ranges', () => {
                                             end: 59,
                                             range: [58, 59],
                                             value: 4,
-                                            raw: '4'
-                                          }
-                                        }
-                                      }
-                                    ]
-                                  }
-                                ]
+                                            raw: '4',
+                                          },
+                                        },
+                                      },
+                                    ],
+                                  },
+                                ],
                               },
-                              kind: 'init'
-                            }
-                          ]
+                              kind: 'init',
+                            },
+                          ],
                         },
-                        kind: 'init'
-                      }
-                    ]
-                  }
-                ]
+                        kind: 'init',
+                      },
+                    ],
+                  },
+                ],
               },
               right: {
                 type: 'ArrayExpression',
@@ -12128,7 +12128,7 @@ describe('Miscellaneous - ranges', () => {
                           start: 70,
                           end: 71,
                           range: [70, 71],
-                          name: 'x'
+                          name: 'x',
                         },
                         value: {
                           type: 'ArrayExpression',
@@ -12155,31 +12155,31 @@ describe('Miscellaneous - ranges', () => {
                                     start: 74,
                                     end: 75,
                                     range: [74, 75],
-                                    name: 'y'
+                                    name: 'y',
                                   },
                                   value: {
                                     type: 'ObjectExpression',
                                     start: 76,
                                     end: 78,
                                     range: [76, 78],
-                                    properties: []
+                                    properties: [],
                                   },
-                                  kind: 'init'
-                                }
-                              ]
-                            }
-                          ]
+                                  kind: 'init',
+                                },
+                              ],
+                            },
+                          ],
                         },
-                        kind: 'init'
-                      }
-                    ]
+                        kind: 'init',
+                      },
+                    ],
                   },
                   {
                     type: 'ObjectExpression',
                     start: 83,
                     end: 85,
                     range: [83, 85],
-                    properties: []
+                    properties: [],
                   },
                   {
                     type: 'ObjectExpression',
@@ -12200,7 +12200,7 @@ describe('Miscellaneous - ranges', () => {
                           start: 88,
                           end: 90,
                           range: [88, 90],
-                          name: 'x3'
+                          name: 'x3',
                         },
                         value: {
                           type: 'ObjectExpression',
@@ -12221,7 +12221,7 @@ describe('Miscellaneous - ranges', () => {
                                 start: 92,
                                 end: 94,
                                 range: [92, 94],
-                                name: 'y3'
+                                name: 'y3',
                               },
                               value: {
                                 type: 'ArrayExpression',
@@ -12234,25 +12234,25 @@ describe('Miscellaneous - ranges', () => {
                                     start: 96,
                                     end: 98,
                                     range: [96, 98],
-                                    properties: []
-                                  }
-                                ]
+                                    properties: [],
+                                  },
+                                ],
                               },
-                              kind: 'init'
-                            }
-                          ]
+                              kind: 'init',
+                            },
+                          ],
                         },
-                        kind: 'init'
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          }
+                        kind: 'init',
+                      },
+                    ],
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `function bind_bindFunction0(fun, thisArg, boundArgs) {
@@ -12320,7 +12320,7 @@ describe('Miscellaneous - ranges', () => {
               start: 9,
               end: 27,
               range: [9, 27],
-              name: 'bind_bindFunction0'
+              name: 'bind_bindFunction0',
             },
             generator: false,
             async: false,
@@ -12330,22 +12330,22 @@ describe('Miscellaneous - ranges', () => {
                 start: 28,
                 end: 31,
                 range: [28, 31],
-                name: 'fun'
+                name: 'fun',
               },
               {
                 type: 'Identifier',
                 start: 33,
                 end: 40,
                 range: [33, 40],
-                name: 'thisArg'
+                name: 'thisArg',
               },
               {
                 type: 'Identifier',
                 start: 42,
                 end: 51,
                 range: [42, 51],
-                name: 'boundArgs'
-              }
+                name: 'boundArgs',
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -12368,7 +12368,7 @@ describe('Miscellaneous - ranges', () => {
                       start: 77,
                       end: 82,
                       range: [77, 82],
-                      name: 'bound'
+                      name: 'bound',
                     },
                     generator: false,
                     async: false,
@@ -12390,7 +12390,7 @@ describe('Miscellaneous - ranges', () => {
                             end: 226,
                             range: [221, 226],
                             value: false,
-                            raw: 'false'
+                            raw: 'false',
                           },
                           consequent: {
                             type: 'ExpressionStatement',
@@ -12409,11 +12409,11 @@ describe('Miscellaneous - ranges', () => {
                                 start: 233,
                                 end: 242,
                                 range: [233, 242],
-                                name: 'boundArgs'
-                              }
-                            }
+                                name: 'boundArgs',
+                              },
+                            },
                           },
-                          alternate: null
+                          alternate: null,
                         },
                         {
                           type: 'VariableDeclaration',
@@ -12431,12 +12431,12 @@ describe('Miscellaneous - ranges', () => {
                                 start: 259,
                                 end: 268,
                                 range: [259, 268],
-                                name: 'newTarget'
+                                name: 'newTarget',
                               },
-                              init: null
-                            }
+                              init: null,
+                            },
                           ],
-                          kind: 'var'
+                          kind: 'var',
                         },
                         {
                           type: 'IfStatement',
@@ -12453,9 +12453,9 @@ describe('Miscellaneous - ranges', () => {
                               start: 284,
                               end: 299,
                               range: [284, 299],
-                              name: '_IsConstructing'
+                              name: '_IsConstructing',
                             },
-                            arguments: []
+                            arguments: [],
                           },
                           consequent: {
                             type: 'BlockStatement',
@@ -12479,7 +12479,7 @@ describe('Miscellaneous - ranges', () => {
                                     start: 319,
                                     end: 328,
                                     range: [319, 328],
-                                    name: 'newTarget'
+                                    name: 'newTarget',
                                   },
                                   right: {
                                     type: 'MetaProperty',
@@ -12491,17 +12491,17 @@ describe('Miscellaneous - ranges', () => {
                                       start: 331,
                                       end: 334,
                                       range: [331, 334],
-                                      name: 'new'
+                                      name: 'new',
                                     },
                                     property: {
                                       type: 'Identifier',
                                       start: 335,
                                       end: 341,
                                       range: [335, 341],
-                                      name: 'target'
-                                    }
-                                  }
-                                }
+                                      name: 'target',
+                                    },
+                                  },
+                                },
                               },
                               {
                                 type: 'IfStatement',
@@ -12518,7 +12518,7 @@ describe('Miscellaneous - ranges', () => {
                                     start: 361,
                                     end: 370,
                                     range: [361, 370],
-                                    name: 'newTarget'
+                                    name: 'newTarget',
                                   },
                                   operator: '===',
                                   right: {
@@ -12526,8 +12526,8 @@ describe('Miscellaneous - ranges', () => {
                                     start: 375,
                                     end: 380,
                                     range: [375, 380],
-                                    name: 'bound'
-                                  }
+                                    name: 'bound',
+                                  },
                                 },
                                 consequent: {
                                   type: 'ExpressionStatement',
@@ -12545,18 +12545,18 @@ describe('Miscellaneous - ranges', () => {
                                       start: 400,
                                       end: 409,
                                       range: [400, 409],
-                                      name: 'newTarget'
+                                      name: 'newTarget',
                                     },
                                     right: {
                                       type: 'Identifier',
                                       start: 412,
                                       end: 415,
                                       range: [412, 415],
-                                      name: 'fun'
-                                    }
-                                  }
+                                      name: 'fun',
+                                    },
+                                  },
                                 },
-                                alternate: null
+                                alternate: null,
                               },
                               {
                                 type: 'SwitchStatement',
@@ -12573,16 +12573,16 @@ describe('Miscellaneous - ranges', () => {
                                     start: 439,
                                     end: 448,
                                     range: [439, 448],
-                                    name: 'arguments'
+                                    name: 'arguments',
                                   },
                                   property: {
                                     type: 'Identifier',
                                     start: 449,
                                     end: 455,
                                     range: [449, 455],
-                                    name: 'length'
+                                    name: 'length',
                                   },
-                                  computed: false
+                                  computed: false,
                                 },
                                 cases: [
                                   {
@@ -12606,7 +12606,7 @@ describe('Miscellaneous - ranges', () => {
                                             start: 508,
                                             end: 532,
                                             range: [508, 532],
-                                            name: 'constructContentFunction'
+                                            name: 'constructContentFunction',
                                           },
                                           arguments: [
                                             {
@@ -12614,18 +12614,18 @@ describe('Miscellaneous - ranges', () => {
                                               start: 533,
                                               end: 536,
                                               range: [533, 536],
-                                              name: 'fun'
+                                              name: 'fun',
                                             },
                                             {
                                               type: 'Identifier',
                                               start: 538,
                                               end: 547,
                                               range: [538, 547],
-                                              name: 'newTarget'
-                                            }
-                                          ]
-                                        }
-                                      }
+                                              name: 'newTarget',
+                                            },
+                                          ],
+                                        },
+                                      },
                                     ],
                                     test: {
                                       type: 'Literal',
@@ -12633,8 +12633,8 @@ describe('Miscellaneous - ranges', () => {
                                       end: 481,
                                       range: [480, 481],
                                       value: 0,
-                                      raw: '0'
-                                    }
+                                      raw: '0',
+                                    },
                                   },
                                   {
                                     type: 'SwitchCase',
@@ -12657,7 +12657,7 @@ describe('Miscellaneous - ranges', () => {
                                             start: 599,
                                             end: 623,
                                             range: [599, 623],
-                                            name: 'constructContentFunction'
+                                            name: 'constructContentFunction',
                                           },
                                           arguments: [
                                             {
@@ -12665,14 +12665,14 @@ describe('Miscellaneous - ranges', () => {
                                               start: 624,
                                               end: 627,
                                               range: [624, 627],
-                                              name: 'fun'
+                                              name: 'fun',
                                             },
                                             {
                                               type: 'Identifier',
                                               start: 629,
                                               end: 638,
                                               range: [629, 638],
-                                              name: 'newTarget'
+                                              name: 'newTarget',
                                             },
                                             {
                                               type: 'CallExpression',
@@ -12684,7 +12684,7 @@ describe('Miscellaneous - ranges', () => {
                                                 start: 640,
                                                 end: 646,
                                                 range: [640, 646],
-                                                name: 'SPREAD'
+                                                name: 'SPREAD',
                                               },
                                               arguments: [
                                                 {
@@ -12692,7 +12692,7 @@ describe('Miscellaneous - ranges', () => {
                                                   start: 647,
                                                   end: 656,
                                                   range: [647, 656],
-                                                  name: 'arguments'
+                                                  name: 'arguments',
                                                 },
                                                 {
                                                   type: 'Literal',
@@ -12700,13 +12700,13 @@ describe('Miscellaneous - ranges', () => {
                                                   end: 659,
                                                   range: [658, 659],
                                                   value: 1,
-                                                  raw: '1'
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      }
+                                                  raw: '1',
+                                                },
+                                              ],
+                                            },
+                                          ],
+                                        },
+                                      },
                                     ],
                                     test: {
                                       type: 'Literal',
@@ -12714,8 +12714,8 @@ describe('Miscellaneous - ranges', () => {
                                       end: 572,
                                       range: [571, 572],
                                       value: 1,
-                                      raw: '1'
-                                    }
+                                      raw: '1',
+                                    },
                                   },
                                   {
                                     type: 'SwitchCase',
@@ -12738,7 +12738,7 @@ describe('Miscellaneous - ranges', () => {
                                             start: 712,
                                             end: 736,
                                             range: [712, 736],
-                                            name: 'constructContentFunction'
+                                            name: 'constructContentFunction',
                                           },
                                           arguments: [
                                             {
@@ -12746,14 +12746,14 @@ describe('Miscellaneous - ranges', () => {
                                               start: 737,
                                               end: 740,
                                               range: [737, 740],
-                                              name: 'fun'
+                                              name: 'fun',
                                             },
                                             {
                                               type: 'Identifier',
                                               start: 742,
                                               end: 751,
                                               range: [742, 751],
-                                              name: 'newTarget'
+                                              name: 'newTarget',
                                             },
                                             {
                                               type: 'CallExpression',
@@ -12765,7 +12765,7 @@ describe('Miscellaneous - ranges', () => {
                                                 start: 753,
                                                 end: 759,
                                                 range: [753, 759],
-                                                name: 'SPREAD'
+                                                name: 'SPREAD',
                                               },
                                               arguments: [
                                                 {
@@ -12773,7 +12773,7 @@ describe('Miscellaneous - ranges', () => {
                                                   start: 760,
                                                   end: 769,
                                                   range: [760, 769],
-                                                  name: 'arguments'
+                                                  name: 'arguments',
                                                 },
                                                 {
                                                   type: 'Literal',
@@ -12781,13 +12781,13 @@ describe('Miscellaneous - ranges', () => {
                                                   end: 772,
                                                   range: [771, 772],
                                                   value: 2,
-                                                  raw: '2'
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      }
+                                                  raw: '2',
+                                                },
+                                              ],
+                                            },
+                                          ],
+                                        },
+                                      },
                                     ],
                                     test: {
                                       type: 'Literal',
@@ -12795,8 +12795,8 @@ describe('Miscellaneous - ranges', () => {
                                       end: 685,
                                       range: [684, 685],
                                       value: 2,
-                                      raw: '2'
-                                    }
+                                      raw: '2',
+                                    },
                                   },
                                   {
                                     type: 'SwitchCase',
@@ -12819,7 +12819,7 @@ describe('Miscellaneous - ranges', () => {
                                             start: 825,
                                             end: 849,
                                             range: [825, 849],
-                                            name: 'constructContentFunction'
+                                            name: 'constructContentFunction',
                                           },
                                           arguments: [
                                             {
@@ -12827,14 +12827,14 @@ describe('Miscellaneous - ranges', () => {
                                               start: 850,
                                               end: 853,
                                               range: [850, 853],
-                                              name: 'fun'
+                                              name: 'fun',
                                             },
                                             {
                                               type: 'Identifier',
                                               start: 855,
                                               end: 864,
                                               range: [855, 864],
-                                              name: 'newTarget'
+                                              name: 'newTarget',
                                             },
                                             {
                                               type: 'CallExpression',
@@ -12846,7 +12846,7 @@ describe('Miscellaneous - ranges', () => {
                                                 start: 866,
                                                 end: 872,
                                                 range: [866, 872],
-                                                name: 'SPREAD'
+                                                name: 'SPREAD',
                                               },
                                               arguments: [
                                                 {
@@ -12854,7 +12854,7 @@ describe('Miscellaneous - ranges', () => {
                                                   start: 873,
                                                   end: 882,
                                                   range: [873, 882],
-                                                  name: 'arguments'
+                                                  name: 'arguments',
                                                 },
                                                 {
                                                   type: 'Literal',
@@ -12862,13 +12862,13 @@ describe('Miscellaneous - ranges', () => {
                                                   end: 885,
                                                   range: [884, 885],
                                                   value: 3,
-                                                  raw: '3'
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      }
+                                                  raw: '3',
+                                                },
+                                              ],
+                                            },
+                                          ],
+                                        },
+                                      },
                                     ],
                                     test: {
                                       type: 'Literal',
@@ -12876,8 +12876,8 @@ describe('Miscellaneous - ranges', () => {
                                       end: 798,
                                       range: [797, 798],
                                       value: 3,
-                                      raw: '3'
-                                    }
+                                      raw: '3',
+                                    },
                                   },
                                   {
                                     type: 'SwitchCase',
@@ -12900,7 +12900,7 @@ describe('Miscellaneous - ranges', () => {
                                             start: 938,
                                             end: 962,
                                             range: [938, 962],
-                                            name: 'constructContentFunction'
+                                            name: 'constructContentFunction',
                                           },
                                           arguments: [
                                             {
@@ -12908,14 +12908,14 @@ describe('Miscellaneous - ranges', () => {
                                               start: 963,
                                               end: 966,
                                               range: [963, 966],
-                                              name: 'fun'
+                                              name: 'fun',
                                             },
                                             {
                                               type: 'Identifier',
                                               start: 968,
                                               end: 977,
                                               range: [968, 977],
-                                              name: 'newTarget'
+                                              name: 'newTarget',
                                             },
                                             {
                                               type: 'CallExpression',
@@ -12927,7 +12927,7 @@ describe('Miscellaneous - ranges', () => {
                                                 start: 979,
                                                 end: 985,
                                                 range: [979, 985],
-                                                name: 'SPREAD'
+                                                name: 'SPREAD',
                                               },
                                               arguments: [
                                                 {
@@ -12935,7 +12935,7 @@ describe('Miscellaneous - ranges', () => {
                                                   start: 986,
                                                   end: 995,
                                                   range: [986, 995],
-                                                  name: 'arguments'
+                                                  name: 'arguments',
                                                 },
                                                 {
                                                   type: 'Literal',
@@ -12943,13 +12943,13 @@ describe('Miscellaneous - ranges', () => {
                                                   end: 998,
                                                   range: [997, 998],
                                                   value: 4,
-                                                  raw: '4'
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      }
+                                                  raw: '4',
+                                                },
+                                              ],
+                                            },
+                                          ],
+                                        },
+                                      },
                                     ],
                                     test: {
                                       type: 'Literal',
@@ -12957,8 +12957,8 @@ describe('Miscellaneous - ranges', () => {
                                       end: 911,
                                       range: [910, 911],
                                       value: 4,
-                                      raw: '4'
-                                    }
+                                      raw: '4',
+                                    },
                                   },
                                   {
                                     type: 'SwitchCase',
@@ -12981,7 +12981,7 @@ describe('Miscellaneous - ranges', () => {
                                             start: 1051,
                                             end: 1075,
                                             range: [1051, 1075],
-                                            name: 'constructContentFunction'
+                                            name: 'constructContentFunction',
                                           },
                                           arguments: [
                                             {
@@ -12989,14 +12989,14 @@ describe('Miscellaneous - ranges', () => {
                                               start: 1076,
                                               end: 1079,
                                               range: [1076, 1079],
-                                              name: 'fun'
+                                              name: 'fun',
                                             },
                                             {
                                               type: 'Identifier',
                                               start: 1081,
                                               end: 1090,
                                               range: [1081, 1090],
-                                              name: 'newTarget'
+                                              name: 'newTarget',
                                             },
                                             {
                                               type: 'CallExpression',
@@ -13008,7 +13008,7 @@ describe('Miscellaneous - ranges', () => {
                                                 start: 1092,
                                                 end: 1098,
                                                 range: [1092, 1098],
-                                                name: 'SPREAD'
+                                                name: 'SPREAD',
                                               },
                                               arguments: [
                                                 {
@@ -13016,7 +13016,7 @@ describe('Miscellaneous - ranges', () => {
                                                   start: 1099,
                                                   end: 1108,
                                                   range: [1099, 1108],
-                                                  name: 'arguments'
+                                                  name: 'arguments',
                                                 },
                                                 {
                                                   type: 'Literal',
@@ -13024,13 +13024,13 @@ describe('Miscellaneous - ranges', () => {
                                                   end: 1111,
                                                   range: [1110, 1111],
                                                   value: 5,
-                                                  raw: '5'
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      }
+                                                  raw: '5',
+                                                },
+                                              ],
+                                            },
+                                          ],
+                                        },
+                                      },
                                     ],
                                     test: {
                                       type: 'Literal',
@@ -13038,8 +13038,8 @@ describe('Miscellaneous - ranges', () => {
                                       end: 1024,
                                       range: [1023, 1024],
                                       value: 5,
-                                      raw: '5'
-                                    }
+                                      raw: '5',
+                                    },
                                   },
                                   {
                                     type: 'SwitchCase',
@@ -13063,7 +13063,7 @@ describe('Miscellaneous - ranges', () => {
                                               start: 1162,
                                               end: 1166,
                                               range: [1162, 1166],
-                                              name: 'args'
+                                              name: 'args',
                                             },
                                             init: {
                                               type: 'CallExpression',
@@ -13075,7 +13075,7 @@ describe('Miscellaneous - ranges', () => {
                                                 start: 1169,
                                                 end: 1178,
                                                 range: [1169, 1178],
-                                                name: 'FUN_APPLY'
+                                                name: 'FUN_APPLY',
                                               },
                                               arguments: [
                                                 {
@@ -13083,7 +13083,7 @@ describe('Miscellaneous - ranges', () => {
                                                   start: 1179,
                                                   end: 1196,
                                                   range: [1179, 1196],
-                                                  name: 'bind_mapArguments'
+                                                  name: 'bind_mapArguments',
                                                 },
                                                 {
                                                   type: 'Literal',
@@ -13091,20 +13091,20 @@ describe('Miscellaneous - ranges', () => {
                                                   end: 1202,
                                                   range: [1198, 1202],
                                                   value: null,
-                                                  raw: 'null'
+                                                  raw: 'null',
                                                 },
                                                 {
                                                   type: 'Identifier',
                                                   start: 1204,
                                                   end: 1213,
                                                   range: [1204, 1213],
-                                                  name: 'arguments'
-                                                }
-                                              ]
-                                            }
-                                          }
+                                                  name: 'arguments',
+                                                },
+                                              ],
+                                            },
+                                          },
                                         ],
-                                        kind: 'var'
+                                        kind: 'var',
                                       },
                                       {
                                         type: 'ReturnStatement',
@@ -13121,7 +13121,7 @@ describe('Miscellaneous - ranges', () => {
                                             start: 1241,
                                             end: 1264,
                                             range: [1241, 1264],
-                                            name: 'bind_constructFunctionN'
+                                            name: 'bind_constructFunctionN',
                                           },
                                           arguments: [
                                             {
@@ -13129,31 +13129,31 @@ describe('Miscellaneous - ranges', () => {
                                               start: 1265,
                                               end: 1268,
                                               range: [1265, 1268],
-                                              name: 'fun'
+                                              name: 'fun',
                                             },
                                             {
                                               type: 'Identifier',
                                               start: 1270,
                                               end: 1279,
                                               range: [1270, 1279],
-                                              name: 'newTarget'
+                                              name: 'newTarget',
                                             },
                                             {
                                               type: 'Identifier',
                                               start: 1281,
                                               end: 1285,
                                               range: [1281, 1285],
-                                              name: 'args'
-                                            }
-                                          ]
-                                        }
-                                      }
+                                              name: 'args',
+                                            },
+                                          ],
+                                        },
+                                      },
                                     ],
-                                    test: null
-                                  }
-                                ]
-                              }
-                            ]
+                                    test: null,
+                                  },
+                                ],
+                              },
+                            ],
                           },
                           alternate: {
                             type: 'BlockStatement',
@@ -13176,16 +13176,16 @@ describe('Miscellaneous - ranges', () => {
                                     start: 1345,
                                     end: 1354,
                                     range: [1345, 1354],
-                                    name: 'arguments'
+                                    name: 'arguments',
                                   },
                                   property: {
                                     type: 'Identifier',
                                     start: 1355,
                                     end: 1361,
                                     range: [1355, 1361],
-                                    name: 'length'
+                                    name: 'length',
                                   },
-                                  computed: false
+                                  computed: false,
                                 },
                                 cases: [
                                   {
@@ -13209,7 +13209,7 @@ describe('Miscellaneous - ranges', () => {
                                             start: 1414,
                                             end: 1433,
                                             range: [1414, 1433],
-                                            name: 'callContentFunction'
+                                            name: 'callContentFunction',
                                           },
                                           arguments: [
                                             {
@@ -13217,18 +13217,18 @@ describe('Miscellaneous - ranges', () => {
                                               start: 1434,
                                               end: 1437,
                                               range: [1434, 1437],
-                                              name: 'fun'
+                                              name: 'fun',
                                             },
                                             {
                                               type: 'Identifier',
                                               start: 1439,
                                               end: 1446,
                                               range: [1439, 1446],
-                                              name: 'thisArg'
-                                            }
-                                          ]
-                                        }
-                                      }
+                                              name: 'thisArg',
+                                            },
+                                          ],
+                                        },
+                                      },
                                     ],
                                     test: {
                                       type: 'Literal',
@@ -13236,8 +13236,8 @@ describe('Miscellaneous - ranges', () => {
                                       end: 1387,
                                       range: [1386, 1387],
                                       value: 0,
-                                      raw: '0'
-                                    }
+                                      raw: '0',
+                                    },
                                   },
                                   {
                                     type: 'SwitchCase',
@@ -13260,7 +13260,7 @@ describe('Miscellaneous - ranges', () => {
                                             start: 1498,
                                             end: 1517,
                                             range: [1498, 1517],
-                                            name: 'callContentFunction'
+                                            name: 'callContentFunction',
                                           },
                                           arguments: [
                                             {
@@ -13268,14 +13268,14 @@ describe('Miscellaneous - ranges', () => {
                                               start: 1518,
                                               end: 1521,
                                               range: [1518, 1521],
-                                              name: 'fun'
+                                              name: 'fun',
                                             },
                                             {
                                               type: 'Identifier',
                                               start: 1523,
                                               end: 1530,
                                               range: [1523, 1530],
-                                              name: 'thisArg'
+                                              name: 'thisArg',
                                             },
                                             {
                                               type: 'CallExpression',
@@ -13287,7 +13287,7 @@ describe('Miscellaneous - ranges', () => {
                                                 start: 1532,
                                                 end: 1538,
                                                 range: [1532, 1538],
-                                                name: 'SPREAD'
+                                                name: 'SPREAD',
                                               },
                                               arguments: [
                                                 {
@@ -13295,7 +13295,7 @@ describe('Miscellaneous - ranges', () => {
                                                   start: 1539,
                                                   end: 1548,
                                                   range: [1539, 1548],
-                                                  name: 'arguments'
+                                                  name: 'arguments',
                                                 },
                                                 {
                                                   type: 'Literal',
@@ -13303,13 +13303,13 @@ describe('Miscellaneous - ranges', () => {
                                                   end: 1551,
                                                   range: [1550, 1551],
                                                   value: 1,
-                                                  raw: '1'
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      }
+                                                  raw: '1',
+                                                },
+                                              ],
+                                            },
+                                          ],
+                                        },
+                                      },
                                     ],
                                     test: {
                                       type: 'Literal',
@@ -13317,8 +13317,8 @@ describe('Miscellaneous - ranges', () => {
                                       end: 1471,
                                       range: [1470, 1471],
                                       value: 1,
-                                      raw: '1'
-                                    }
+                                      raw: '1',
+                                    },
                                   },
                                   {
                                     type: 'SwitchCase',
@@ -13341,7 +13341,7 @@ describe('Miscellaneous - ranges', () => {
                                             start: 1604,
                                             end: 1623,
                                             range: [1604, 1623],
-                                            name: 'callContentFunction'
+                                            name: 'callContentFunction',
                                           },
                                           arguments: [
                                             {
@@ -13349,14 +13349,14 @@ describe('Miscellaneous - ranges', () => {
                                               start: 1624,
                                               end: 1627,
                                               range: [1624, 1627],
-                                              name: 'fun'
+                                              name: 'fun',
                                             },
                                             {
                                               type: 'Identifier',
                                               start: 1629,
                                               end: 1636,
                                               range: [1629, 1636],
-                                              name: 'thisArg'
+                                              name: 'thisArg',
                                             },
                                             {
                                               type: 'CallExpression',
@@ -13368,7 +13368,7 @@ describe('Miscellaneous - ranges', () => {
                                                 start: 1638,
                                                 end: 1644,
                                                 range: [1638, 1644],
-                                                name: 'SPREAD'
+                                                name: 'SPREAD',
                                               },
                                               arguments: [
                                                 {
@@ -13376,7 +13376,7 @@ describe('Miscellaneous - ranges', () => {
                                                   start: 1645,
                                                   end: 1654,
                                                   range: [1645, 1654],
-                                                  name: 'arguments'
+                                                  name: 'arguments',
                                                 },
                                                 {
                                                   type: 'Literal',
@@ -13384,13 +13384,13 @@ describe('Miscellaneous - ranges', () => {
                                                   end: 1657,
                                                   range: [1656, 1657],
                                                   value: 2,
-                                                  raw: '2'
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      }
+                                                  raw: '2',
+                                                },
+                                              ],
+                                            },
+                                          ],
+                                        },
+                                      },
                                     ],
                                     test: {
                                       type: 'Literal',
@@ -13398,8 +13398,8 @@ describe('Miscellaneous - ranges', () => {
                                       end: 1577,
                                       range: [1576, 1577],
                                       value: 2,
-                                      raw: '2'
-                                    }
+                                      raw: '2',
+                                    },
                                   },
                                   {
                                     type: 'SwitchCase',
@@ -13422,7 +13422,7 @@ describe('Miscellaneous - ranges', () => {
                                             start: 1710,
                                             end: 1729,
                                             range: [1710, 1729],
-                                            name: 'callContentFunction'
+                                            name: 'callContentFunction',
                                           },
                                           arguments: [
                                             {
@@ -13430,14 +13430,14 @@ describe('Miscellaneous - ranges', () => {
                                               start: 1730,
                                               end: 1733,
                                               range: [1730, 1733],
-                                              name: 'fun'
+                                              name: 'fun',
                                             },
                                             {
                                               type: 'Identifier',
                                               start: 1735,
                                               end: 1742,
                                               range: [1735, 1742],
-                                              name: 'thisArg'
+                                              name: 'thisArg',
                                             },
                                             {
                                               type: 'CallExpression',
@@ -13449,7 +13449,7 @@ describe('Miscellaneous - ranges', () => {
                                                 start: 1744,
                                                 end: 1750,
                                                 range: [1744, 1750],
-                                                name: 'SPREAD'
+                                                name: 'SPREAD',
                                               },
                                               arguments: [
                                                 {
@@ -13457,7 +13457,7 @@ describe('Miscellaneous - ranges', () => {
                                                   start: 1751,
                                                   end: 1760,
                                                   range: [1751, 1760],
-                                                  name: 'arguments'
+                                                  name: 'arguments',
                                                 },
                                                 {
                                                   type: 'Literal',
@@ -13465,13 +13465,13 @@ describe('Miscellaneous - ranges', () => {
                                                   end: 1763,
                                                   range: [1762, 1763],
                                                   value: 3,
-                                                  raw: '3'
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      }
+                                                  raw: '3',
+                                                },
+                                              ],
+                                            },
+                                          ],
+                                        },
+                                      },
                                     ],
                                     test: {
                                       type: 'Literal',
@@ -13479,8 +13479,8 @@ describe('Miscellaneous - ranges', () => {
                                       end: 1683,
                                       range: [1682, 1683],
                                       value: 3,
-                                      raw: '3'
-                                    }
+                                      raw: '3',
+                                    },
                                   },
                                   {
                                     type: 'SwitchCase',
@@ -13503,7 +13503,7 @@ describe('Miscellaneous - ranges', () => {
                                             start: 1816,
                                             end: 1835,
                                             range: [1816, 1835],
-                                            name: 'callContentFunction'
+                                            name: 'callContentFunction',
                                           },
                                           arguments: [
                                             {
@@ -13511,14 +13511,14 @@ describe('Miscellaneous - ranges', () => {
                                               start: 1836,
                                               end: 1839,
                                               range: [1836, 1839],
-                                              name: 'fun'
+                                              name: 'fun',
                                             },
                                             {
                                               type: 'Identifier',
                                               start: 1841,
                                               end: 1848,
                                               range: [1841, 1848],
-                                              name: 'thisArg'
+                                              name: 'thisArg',
                                             },
                                             {
                                               type: 'CallExpression',
@@ -13530,7 +13530,7 @@ describe('Miscellaneous - ranges', () => {
                                                 start: 1850,
                                                 end: 1856,
                                                 range: [1850, 1856],
-                                                name: 'SPREAD'
+                                                name: 'SPREAD',
                                               },
                                               arguments: [
                                                 {
@@ -13538,7 +13538,7 @@ describe('Miscellaneous - ranges', () => {
                                                   start: 1857,
                                                   end: 1866,
                                                   range: [1857, 1866],
-                                                  name: 'arguments'
+                                                  name: 'arguments',
                                                 },
                                                 {
                                                   type: 'Literal',
@@ -13546,13 +13546,13 @@ describe('Miscellaneous - ranges', () => {
                                                   end: 1869,
                                                   range: [1868, 1869],
                                                   value: 4,
-                                                  raw: '4'
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      }
+                                                  raw: '4',
+                                                },
+                                              ],
+                                            },
+                                          ],
+                                        },
+                                      },
                                     ],
                                     test: {
                                       type: 'Literal',
@@ -13560,8 +13560,8 @@ describe('Miscellaneous - ranges', () => {
                                       end: 1789,
                                       range: [1788, 1789],
                                       value: 4,
-                                      raw: '4'
-                                    }
+                                      raw: '4',
+                                    },
                                   },
                                   {
                                     type: 'SwitchCase',
@@ -13584,7 +13584,7 @@ describe('Miscellaneous - ranges', () => {
                                             start: 1922,
                                             end: 1941,
                                             range: [1922, 1941],
-                                            name: 'callContentFunction'
+                                            name: 'callContentFunction',
                                           },
                                           arguments: [
                                             {
@@ -13592,14 +13592,14 @@ describe('Miscellaneous - ranges', () => {
                                               start: 1942,
                                               end: 1945,
                                               range: [1942, 1945],
-                                              name: 'fun'
+                                              name: 'fun',
                                             },
                                             {
                                               type: 'Identifier',
                                               start: 1947,
                                               end: 1954,
                                               range: [1947, 1954],
-                                              name: 'thisArg'
+                                              name: 'thisArg',
                                             },
                                             {
                                               type: 'CallExpression',
@@ -13611,7 +13611,7 @@ describe('Miscellaneous - ranges', () => {
                                                 start: 1956,
                                                 end: 1962,
                                                 range: [1956, 1962],
-                                                name: 'SPREAD'
+                                                name: 'SPREAD',
                                               },
                                               arguments: [
                                                 {
@@ -13619,7 +13619,7 @@ describe('Miscellaneous - ranges', () => {
                                                   start: 1963,
                                                   end: 1972,
                                                   range: [1963, 1972],
-                                                  name: 'arguments'
+                                                  name: 'arguments',
                                                 },
                                                 {
                                                   type: 'Literal',
@@ -13627,13 +13627,13 @@ describe('Miscellaneous - ranges', () => {
                                                   end: 1975,
                                                   range: [1974, 1975],
                                                   value: 5,
-                                                  raw: '5'
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      }
+                                                  raw: '5',
+                                                },
+                                              ],
+                                            },
+                                          ],
+                                        },
+                                      },
                                     ],
                                     test: {
                                       type: 'Literal',
@@ -13641,8 +13641,8 @@ describe('Miscellaneous - ranges', () => {
                                       end: 1895,
                                       range: [1894, 1895],
                                       value: 5,
-                                      raw: '5'
-                                    }
+                                      raw: '5',
+                                    },
                                   },
                                   {
                                     type: 'SwitchCase',
@@ -13665,7 +13665,7 @@ describe('Miscellaneous - ranges', () => {
                                             start: 2029,
                                             end: 2038,
                                             range: [2029, 2038],
-                                            name: 'FUN_APPLY'
+                                            name: 'FUN_APPLY',
                                           },
                                           arguments: [
                                             {
@@ -13673,43 +13673,43 @@ describe('Miscellaneous - ranges', () => {
                                               start: 2039,
                                               end: 2042,
                                               range: [2039, 2042],
-                                              name: 'fun'
+                                              name: 'fun',
                                             },
                                             {
                                               type: 'Identifier',
                                               start: 2044,
                                               end: 2051,
                                               range: [2044, 2051],
-                                              name: 'thisArg'
+                                              name: 'thisArg',
                                             },
                                             {
                                               type: 'Identifier',
                                               start: 2053,
                                               end: 2062,
                                               range: [2053, 2062],
-                                              name: 'arguments'
-                                            }
-                                          ]
-                                        }
-                                      }
+                                              name: 'arguments',
+                                            },
+                                          ],
+                                        },
+                                      },
                                     ],
-                                    test: null
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                                    test: null,
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a--',
@@ -13737,13 +13737,13 @@ describe('Miscellaneous - ranges', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'a'
-              }
-            }
-          }
+                name: 'a',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '--a',
@@ -13771,13 +13771,13 @@ describe('Miscellaneous - ranges', () => {
                 start: 2,
                 end: 3,
                 range: [2, 3],
-                name: 'a'
-              }
-            }
-          }
+                name: 'a',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
-    ]
+        sourceType: 'script',
+      },
+    ],
   ]);
 });

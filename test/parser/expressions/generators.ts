@@ -6,7 +6,7 @@ import { parseSource } from '../../../src/parser';
 describe('Expressions - Generators', () => {
   fail('Expressions - Generators (pass)', [
     ['foo\n++', Context.None],
-    ['if (foo\n++);', Context.None]
+    ['if (foo\n++);', Context.None],
   ]);
 
   for (const arg of [
@@ -44,7 +44,7 @@ describe('Expressions - Generators', () => {
     "for (yield 'x' of {});",
     "for (yield 'x' in {} in {});",
     "for (yield 'x' in {} of {});",
-    'class C extends yield { }'
+    'class C extends yield { }',
   ]) {
     it(`function * icefapper() {${arg}}`, () => {
       t.throws(() => {
@@ -75,7 +75,7 @@ describe('Expressions - Generators', () => {
     '"use strict"; (function *g() { ( x = class { [(yield, 1)]() { }  ) => {} });',
     'var g = function*(yield) {};',
     'var gen = function *() { void yield; };',
-    'let gfe = function* yield() { }'
+    'let gfe = function* yield() { }',
   ];
 
   for (const arg of invalidSyntax) {
@@ -130,7 +130,7 @@ describe('Expressions - Generators', () => {
     'x = class extends (yield) {}',
     'x = class extends f(yield) {}',
     'x = class extends (null, yield) { }',
-    'x = class extends (a ? null : yield) { }'
+    'x = class extends (a ? null : yield) { }',
   ];
 
   for (const arg of validYieldInGenerator) {
@@ -234,7 +234,7 @@ describe('Expressions - Generators', () => {
           yield *
           g2();
         };
-        var g2 = function*() {};`
+        var g2 = function*() {};`,
   ];
 
   for (const arg of validSyntax) {

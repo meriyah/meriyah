@@ -20,7 +20,7 @@ describe('Miscellaneous - JSX', () => {
     '<div>{this.props.children}</div>;',
     '<a>{}</a>;',
     '<p>{1/2}</p>',
-    '<p>{/w/.test(s)}</p>'
+    '<p>{/w/.test(s)}</p>',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -117,7 +117,7 @@ describe('Miscellaneous - JSX', () => {
     ['<div=-/>', Context.OptionsJSX],
     ['<div=/>', Context.OptionsJSX],
     ['<div =/>', Context.OptionsJSX],
-    ['<div=+-%&([)]}.../>', Context.OptionsJSX]
+    ['<div=+-%&([)]}.../>', Context.OptionsJSX],
   ]);
 
   pass('Miscellaneous - JSX (pass)', [
@@ -127,8 +127,8 @@ describe('Miscellaneous - JSX', () => {
       {
         body: [],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class Columns extends React.Component {
@@ -157,13 +157,13 @@ describe('Miscellaneous - JSX', () => {
               loc: {
                 start: {
                   column: 6,
-                  line: 1
+                  line: 1,
                 },
                 end: {
                   column: 13,
-                  line: 1
-                }
-              }
+                  line: 1,
+                },
+              },
             },
             superClass: {
               type: 'MemberExpression',
@@ -176,13 +176,13 @@ describe('Miscellaneous - JSX', () => {
                 loc: {
                   start: {
                     column: 22,
-                    line: 1
+                    line: 1,
                   },
                   end: {
                     column: 27,
-                    line: 1
-                  }
-                }
+                    line: 1,
+                  },
+                },
               },
               computed: false,
               property: {
@@ -194,13 +194,13 @@ describe('Miscellaneous - JSX', () => {
                 loc: {
                   start: {
                     column: 28,
-                    line: 1
+                    line: 1,
                   },
                   end: {
                     column: 37,
-                    line: 1
-                  }
-                }
+                    line: 1,
+                  },
+                },
               },
               start: 22,
               end: 37,
@@ -208,13 +208,13 @@ describe('Miscellaneous - JSX', () => {
               loc: {
                 start: {
                   column: 22,
-                  line: 1
+                  line: 1,
                 },
                 end: {
                   column: 37,
-                  line: 1
-                }
-              }
+                  line: 1,
+                },
+              },
             },
             body: {
               type: 'ClassBody',
@@ -233,13 +233,13 @@ describe('Miscellaneous - JSX', () => {
                     loc: {
                       start: {
                         column: 8,
-                        line: 2
+                        line: 2,
                       },
                       end: {
                         column: 14,
-                        line: 2
-                      }
-                    }
+                        line: 2,
+                      },
+                    },
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -261,13 +261,13 @@ describe('Miscellaneous - JSX', () => {
                                 loc: {
                                   start: {
                                     column: 14,
-                                    line: 4
+                                    line: 4,
                                   },
                                   end: {
                                     column: 14,
-                                    line: 5
-                                  }
-                                }
+                                    line: 5,
+                                  },
+                                },
                               },
                               {
                                 type: 'JSXElement',
@@ -281,14 +281,14 @@ describe('Miscellaneous - JSX', () => {
                                     loc: {
                                       start: {
                                         column: 18,
-                                        line: 5
+                                        line: 5,
                                       },
                                       end: {
                                         column: 23,
-                                        line: 5
-                                      }
-                                    }
-                                  }
+                                        line: 5,
+                                      },
+                                    },
+                                  },
                                 ],
                                 openingElement: {
                                   type: 'JSXOpeningElement',
@@ -301,13 +301,13 @@ describe('Miscellaneous - JSX', () => {
                                     loc: {
                                       start: {
                                         column: 15,
-                                        line: 5
+                                        line: 5,
                                       },
                                       end: {
                                         column: 17,
-                                        line: 5
-                                      }
-                                    }
+                                        line: 5,
+                                      },
+                                    },
                                   },
                                   attributes: [],
                                   selfClosing: false,
@@ -317,13 +317,13 @@ describe('Miscellaneous - JSX', () => {
                                   loc: {
                                     start: {
                                       column: 14,
-                                      line: 5
+                                      line: 5,
                                     },
                                     end: {
                                       column: 18,
-                                      line: 5
-                                    }
-                                  }
+                                      line: 5,
+                                    },
+                                  },
                                 },
                                 closingElement: {
                                   type: 'JSXClosingElement',
@@ -336,13 +336,13 @@ describe('Miscellaneous - JSX', () => {
                                     loc: {
                                       start: {
                                         column: 25,
-                                        line: 5
+                                        line: 5,
                                       },
                                       end: {
                                         column: 27,
-                                        line: 5
-                                      }
-                                    }
+                                        line: 5,
+                                      },
+                                    },
                                   },
                                   start: 116,
                                   end: 121,
@@ -350,13 +350,13 @@ describe('Miscellaneous - JSX', () => {
                                   loc: {
                                     start: {
                                       column: 23,
-                                      line: 5
+                                      line: 5,
                                     },
                                     end: {
                                       column: 28,
-                                      line: 5
-                                    }
-                                  }
+                                      line: 5,
+                                    },
+                                  },
                                 },
                                 start: 107,
                                 end: 121,
@@ -364,13 +364,13 @@ describe('Miscellaneous - JSX', () => {
                                 loc: {
                                   start: {
                                     column: 14,
-                                    line: 5
+                                    line: 5,
                                   },
                                   end: {
                                     column: 28,
-                                    line: 5
-                                  }
-                                }
+                                    line: 5,
+                                  },
+                                },
                               },
                               {
                                 type: 'JSXText',
@@ -381,13 +381,13 @@ describe('Miscellaneous - JSX', () => {
                                 loc: {
                                   start: {
                                     column: 28,
-                                    line: 5
+                                    line: 5,
                                   },
                                   end: {
                                     column: 14,
-                                    line: 6
-                                  }
-                                }
+                                    line: 6,
+                                  },
+                                },
                               },
                               {
                                 type: 'JSXElement',
@@ -401,14 +401,14 @@ describe('Miscellaneous - JSX', () => {
                                     loc: {
                                       start: {
                                         column: 18,
-                                        line: 6
+                                        line: 6,
                                       },
                                       end: {
                                         column: 23,
-                                        line: 6
-                                      }
-                                    }
-                                  }
+                                        line: 6,
+                                      },
+                                    },
+                                  },
                                 ],
                                 openingElement: {
                                   type: 'JSXOpeningElement',
@@ -421,13 +421,13 @@ describe('Miscellaneous - JSX', () => {
                                     loc: {
                                       start: {
                                         column: 15,
-                                        line: 6
+                                        line: 6,
                                       },
                                       end: {
                                         column: 17,
-                                        line: 6
-                                      }
-                                    }
+                                        line: 6,
+                                      },
+                                    },
                                   },
                                   attributes: [],
                                   selfClosing: false,
@@ -437,13 +437,13 @@ describe('Miscellaneous - JSX', () => {
                                   loc: {
                                     start: {
                                       column: 14,
-                                      line: 6
+                                      line: 6,
                                     },
                                     end: {
                                       column: 18,
-                                      line: 6
-                                    }
-                                  }
+                                      line: 6,
+                                    },
+                                  },
                                 },
                                 closingElement: {
                                   type: 'JSXClosingElement',
@@ -456,13 +456,13 @@ describe('Miscellaneous - JSX', () => {
                                     loc: {
                                       start: {
                                         column: 25,
-                                        line: 6
+                                        line: 6,
                                       },
                                       end: {
                                         column: 27,
-                                        line: 6
-                                      }
-                                    }
+                                        line: 6,
+                                      },
+                                    },
                                   },
                                   start: 145,
                                   end: 150,
@@ -470,13 +470,13 @@ describe('Miscellaneous - JSX', () => {
                                   loc: {
                                     start: {
                                       column: 23,
-                                      line: 6
+                                      line: 6,
                                     },
                                     end: {
                                       column: 28,
-                                      line: 6
-                                    }
-                                  }
+                                      line: 6,
+                                    },
+                                  },
                                 },
                                 start: 136,
                                 end: 150,
@@ -484,13 +484,13 @@ describe('Miscellaneous - JSX', () => {
                                 loc: {
                                   start: {
                                     column: 14,
-                                    line: 6
+                                    line: 6,
                                   },
                                   end: {
                                     column: 28,
-                                    line: 6
-                                  }
-                                }
+                                    line: 6,
+                                  },
+                                },
                               },
                               {
                                 type: 'JSXText',
@@ -501,14 +501,14 @@ describe('Miscellaneous - JSX', () => {
                                 loc: {
                                   start: {
                                     column: 28,
-                                    line: 6
+                                    line: 6,
                                   },
                                   end: {
                                     column: 12,
-                                    line: 7
-                                  }
-                                }
-                              }
+                                    line: 7,
+                                  },
+                                },
+                              },
                             ],
                             openingFragment: {
                               type: 'JSXOpeningFragment',
@@ -518,13 +518,13 @@ describe('Miscellaneous - JSX', () => {
                               loc: {
                                 start: {
                                   column: 12,
-                                  line: 4
+                                  line: 4,
                                 },
                                 end: {
                                   column: 14,
-                                  line: 4
-                                }
-                              }
+                                  line: 4,
+                                },
+                              },
                             },
                             closingFragment: {
                               type: 'JSXClosingFragment',
@@ -534,13 +534,13 @@ describe('Miscellaneous - JSX', () => {
                               loc: {
                                 start: {
                                   column: 12,
-                                  line: 7
+                                  line: 7,
                                 },
                                 end: {
                                   column: 15,
-                                  line: 7
-                                }
-                              }
+                                  line: 7,
+                                },
+                              },
                             },
                             start: 90,
                             end: 166,
@@ -548,13 +548,13 @@ describe('Miscellaneous - JSX', () => {
                             loc: {
                               start: {
                                 column: 12,
-                                line: 4
+                                line: 4,
                               },
                               end: {
                                 column: 15,
-                                line: 7
-                              }
-                            }
+                                line: 7,
+                              },
+                            },
                           },
                           start: 69,
                           end: 179,
@@ -562,14 +562,14 @@ describe('Miscellaneous - JSX', () => {
                           loc: {
                             start: {
                               column: 10,
-                              line: 3
+                              line: 3,
                             },
                             end: {
                               column: 12,
-                              line: 8
-                            }
-                          }
-                        }
+                              line: 8,
+                            },
+                          },
+                        },
                       ],
                       start: 57,
                       end: 189,
@@ -577,13 +577,13 @@ describe('Miscellaneous - JSX', () => {
                       loc: {
                         start: {
                           column: 17,
-                          line: 2
+                          line: 2,
                         },
                         end: {
                           column: 9,
-                          line: 9
-                        }
-                      }
+                          line: 9,
+                        },
+                      },
                     },
                     async: false,
                     generator: false,
@@ -594,13 +594,13 @@ describe('Miscellaneous - JSX', () => {
                     loc: {
                       start: {
                         column: 14,
-                        line: 2
+                        line: 2,
                       },
                       end: {
                         column: 9,
-                        line: 9
-                      }
-                    }
+                        line: 9,
+                      },
+                    },
                   },
                   start: 48,
                   end: 189,
@@ -608,14 +608,14 @@ describe('Miscellaneous - JSX', () => {
                   loc: {
                     start: {
                       column: 8,
-                      line: 2
+                      line: 2,
                     },
                     end: {
                       column: 9,
-                      line: 9
-                    }
-                  }
-                }
+                      line: 9,
+                    },
+                  },
+                },
               ],
               start: 38,
               end: 197,
@@ -623,13 +623,13 @@ describe('Miscellaneous - JSX', () => {
               loc: {
                 start: {
                   column: 38,
-                  line: 1
+                  line: 1,
                 },
                 end: {
                   column: 7,
-                  line: 10
-                }
-              }
+                  line: 10,
+                },
+              },
             },
             start: 0,
             end: 197,
@@ -637,14 +637,14 @@ describe('Miscellaneous - JSX', () => {
             loc: {
               start: {
                 column: 0,
-                line: 1
+                line: 1,
               },
               end: {
                 column: 7,
-                line: 10
-              }
-            }
-          }
+                line: 10,
+              },
+            },
+          },
         ],
         start: 0,
         end: 197,
@@ -652,14 +652,14 @@ describe('Miscellaneous - JSX', () => {
         loc: {
           start: {
             column: 0,
-            line: 1
+            line: 1,
           },
           end: {
             column: 7,
-            line: 10
-          }
-        }
-      }
+            line: 10,
+          },
+        },
+      },
     ],
     [
       `<div>{111}</div>`,
@@ -691,9 +691,9 @@ describe('Miscellaneous - JSX', () => {
                   start: 1,
                   end: 4,
                   range: [1, 4],
-                  name: 'div'
+                  name: 'div',
                 },
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
@@ -705,8 +705,8 @@ describe('Miscellaneous - JSX', () => {
                   start: 12,
                   end: 15,
                   range: [12, 15],
-                  name: 'div'
-                }
+                  name: 'div',
+                },
               },
               children: [
                 {
@@ -719,15 +719,15 @@ describe('Miscellaneous - JSX', () => {
                     start: 6,
                     end: 9,
                     range: [6, 9],
-                    value: 111
-                  }
-                }
-              ]
-            }
-          }
+                    value: 111,
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `<div></div>`,
@@ -759,9 +759,9 @@ describe('Miscellaneous - JSX', () => {
                   start: 1,
                   end: 4,
                   range: [1, 4],
-                  name: 'div'
+                  name: 'div',
                 },
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
@@ -773,15 +773,15 @@ describe('Miscellaneous - JSX', () => {
                   start: 7,
                   end: 10,
                   range: [7, 10],
-                  name: 'div'
-                }
+                  name: 'div',
+                },
               },
-              children: []
-            }
-          }
+              children: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `<div {...[<div/>]} />`,
@@ -835,33 +835,33 @@ describe('Miscellaneous - JSX', () => {
                               start: 11,
                               end: 14,
                               range: [11, 14],
-                              name: 'div'
+                              name: 'div',
                             },
-                            selfClosing: true
+                            selfClosing: true,
                           },
                           closingElement: null,
-                          children: []
-                        }
-                      ]
-                    }
-                  }
+                          children: [],
+                        },
+                      ],
+                    },
+                  },
                 ],
                 name: {
                   type: 'JSXIdentifier',
                   start: 1,
                   end: 4,
                   range: [1, 4],
-                  name: 'div'
+                  name: 'div',
                 },
-                selfClosing: true
+                selfClosing: true,
               },
               closingElement: null,
-              children: []
-            }
-          }
+              children: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `<div >{111}</div>`,
@@ -879,30 +879,30 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXExpressionContainer',
                   expression: {
                     type: 'Literal',
-                    value: 111
-                  }
-                }
+                    value: 111,
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<div >xxx{111}xxx{222}</div>`,
@@ -934,9 +934,9 @@ describe('Miscellaneous - JSX', () => {
                   start: 1,
                   end: 4,
                   range: [1, 4],
-                  name: 'div'
+                  name: 'div',
                 },
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
@@ -948,8 +948,8 @@ describe('Miscellaneous - JSX', () => {
                   start: 24,
                   end: 27,
                   range: [24, 27],
-                  name: 'div'
-                }
+                  name: 'div',
+                },
               },
               children: [
                 {
@@ -957,7 +957,7 @@ describe('Miscellaneous - JSX', () => {
                   start: 6,
                   end: 9,
                   range: [6, 9],
-                  value: 'xxx'
+                  value: 'xxx',
                 },
                 {
                   type: 'JSXExpressionContainer',
@@ -969,15 +969,15 @@ describe('Miscellaneous - JSX', () => {
                     start: 10,
                     end: 13,
                     range: [10, 13],
-                    value: 111
-                  }
+                    value: 111,
+                  },
                 },
                 {
                   type: 'JSXText',
                   start: 14,
                   end: 17,
                   range: [14, 17],
-                  value: 'xxx'
+                  value: 'xxx',
                 },
                 {
                   type: 'JSXExpressionContainer',
@@ -989,15 +989,15 @@ describe('Miscellaneous - JSX', () => {
                     start: 18,
                     end: 21,
                     range: [18, 21],
-                    value: 222
-                  }
-                }
-              ]
-            }
-          }
+                    value: 222,
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `<div >xxx{function(){return <div id={aaa}>111</div>}}xxx{222}</div>`,
@@ -1029,9 +1029,9 @@ describe('Miscellaneous - JSX', () => {
                   start: 1,
                   end: 4,
                   range: [1, 4],
-                  name: 'div'
+                  name: 'div',
                 },
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
@@ -1043,8 +1043,8 @@ describe('Miscellaneous - JSX', () => {
                   start: 63,
                   end: 66,
                   range: [63, 66],
-                  name: 'div'
-                }
+                  name: 'div',
+                },
               },
               children: [
                 {
@@ -1052,7 +1052,7 @@ describe('Miscellaneous - JSX', () => {
                   start: 6,
                   end: 9,
                   range: [6, 9],
-                  value: 'xxx'
+                  value: 'xxx',
                 },
                 {
                   type: 'JSXExpressionContainer',
@@ -1100,7 +1100,7 @@ describe('Miscellaneous - JSX', () => {
                                     start: 33,
                                     end: 35,
                                     range: [33, 35],
-                                    name: 'id'
+                                    name: 'id',
                                   },
                                   value: {
                                     type: 'JSXExpressionContainer',
@@ -1112,19 +1112,19 @@ describe('Miscellaneous - JSX', () => {
                                       start: 37,
                                       end: 40,
                                       range: [37, 40],
-                                      name: 'aaa'
-                                    }
-                                  }
-                                }
+                                      name: 'aaa',
+                                    },
+                                  },
+                                },
                               ],
                               name: {
                                 type: 'JSXIdentifier',
                                 start: 29,
                                 end: 32,
                                 range: [29, 32],
-                                name: 'div'
+                                name: 'div',
                               },
-                              selfClosing: false
+                              selfClosing: false,
                             },
                             closingElement: {
                               type: 'JSXClosingElement',
@@ -1136,8 +1136,8 @@ describe('Miscellaneous - JSX', () => {
                                 start: 47,
                                 end: 50,
                                 range: [47, 50],
-                                name: 'div'
-                              }
+                                name: 'div',
+                              },
                             },
                             children: [
                               {
@@ -1145,21 +1145,21 @@ describe('Miscellaneous - JSX', () => {
                                 start: 42,
                                 end: 45,
                                 range: [42, 45],
-                                value: '111'
-                              }
-                            ]
-                          }
-                        }
-                      ]
-                    }
-                  }
+                                value: '111',
+                              },
+                            ],
+                          },
+                        },
+                      ],
+                    },
+                  },
                 },
                 {
                   type: 'JSXText',
                   start: 53,
                   end: 56,
                   range: [53, 56],
-                  value: 'xxx'
+                  value: 'xxx',
                 },
                 {
                   type: 'JSXExpressionContainer',
@@ -1171,15 +1171,15 @@ describe('Miscellaneous - JSX', () => {
                     start: 57,
                     end: 60,
                     range: [57, 60],
-                    value: 222
-                  }
-                }
-              ]
-            }
-          }
+                    value: 222,
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `<ul><li>111</li><li>222</li><li>333</li><li>444</li></ul>`,
@@ -1211,9 +1211,9 @@ describe('Miscellaneous - JSX', () => {
                   start: 1,
                   end: 3,
                   range: [1, 3],
-                  name: 'ul'
+                  name: 'ul',
                 },
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
@@ -1225,8 +1225,8 @@ describe('Miscellaneous - JSX', () => {
                   start: 54,
                   end: 56,
                   range: [54, 56],
-                  name: 'ul'
-                }
+                  name: 'ul',
+                },
               },
               children: [
                 {
@@ -1245,9 +1245,9 @@ describe('Miscellaneous - JSX', () => {
                       start: 5,
                       end: 7,
                       range: [5, 7],
-                      name: 'li'
+                      name: 'li',
                     },
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
@@ -1259,8 +1259,8 @@ describe('Miscellaneous - JSX', () => {
                       start: 13,
                       end: 15,
                       range: [13, 15],
-                      name: 'li'
-                    }
+                      name: 'li',
+                    },
                   },
                   children: [
                     {
@@ -1268,9 +1268,9 @@ describe('Miscellaneous - JSX', () => {
                       start: 8,
                       end: 11,
                       range: [8, 11],
-                      value: '111'
-                    }
-                  ]
+                      value: '111',
+                    },
+                  ],
                 },
                 {
                   type: 'JSXElement',
@@ -1288,9 +1288,9 @@ describe('Miscellaneous - JSX', () => {
                       start: 17,
                       end: 19,
                       range: [17, 19],
-                      name: 'li'
+                      name: 'li',
                     },
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
@@ -1302,8 +1302,8 @@ describe('Miscellaneous - JSX', () => {
                       start: 25,
                       end: 27,
                       range: [25, 27],
-                      name: 'li'
-                    }
+                      name: 'li',
+                    },
                   },
                   children: [
                     {
@@ -1311,9 +1311,9 @@ describe('Miscellaneous - JSX', () => {
                       start: 20,
                       end: 23,
                       range: [20, 23],
-                      value: '222'
-                    }
-                  ]
+                      value: '222',
+                    },
+                  ],
                 },
                 {
                   type: 'JSXElement',
@@ -1331,9 +1331,9 @@ describe('Miscellaneous - JSX', () => {
                       start: 29,
                       end: 31,
                       range: [29, 31],
-                      name: 'li'
+                      name: 'li',
                     },
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
@@ -1345,8 +1345,8 @@ describe('Miscellaneous - JSX', () => {
                       start: 37,
                       end: 39,
                       range: [37, 39],
-                      name: 'li'
-                    }
+                      name: 'li',
+                    },
                   },
                   children: [
                     {
@@ -1354,9 +1354,9 @@ describe('Miscellaneous - JSX', () => {
                       start: 32,
                       end: 35,
                       range: [32, 35],
-                      value: '333'
-                    }
-                  ]
+                      value: '333',
+                    },
+                  ],
                 },
                 {
                   type: 'JSXElement',
@@ -1374,9 +1374,9 @@ describe('Miscellaneous - JSX', () => {
                       start: 41,
                       end: 43,
                       range: [41, 43],
-                      name: 'li'
+                      name: 'li',
                     },
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
@@ -1388,8 +1388,8 @@ describe('Miscellaneous - JSX', () => {
                       start: 49,
                       end: 51,
                       range: [49, 51],
-                      name: 'li'
-                    }
+                      name: 'li',
+                    },
                   },
                   children: [
                     {
@@ -1397,16 +1397,16 @@ describe('Miscellaneous - JSX', () => {
                       start: 44,
                       end: 47,
                       range: [44, 47],
-                      value: '444'
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                      value: '444',
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `<div id="复杂结构">xxx{function(){return <div id={aaa}>111</div>}}xxx{222}</div>`,
@@ -1422,7 +1422,7 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: 'xxx'
+                  value: 'xxx',
                 },
                 {
                   type: 'JSXExpressionContainer',
@@ -1439,14 +1439,14 @@ describe('Miscellaneous - JSX', () => {
                             children: [
                               {
                                 type: 'JSXText',
-                                value: '111'
-                              }
+                                value: '111',
+                              },
                             ],
                             openingElement: {
                               type: 'JSXOpeningElement',
                               name: {
                                 type: 'JSXIdentifier',
-                                name: 'div'
+                                name: 'div',
                               },
                               attributes: [
                                 {
@@ -1455,77 +1455,77 @@ describe('Miscellaneous - JSX', () => {
                                     type: 'JSXExpressionContainer',
                                     expression: {
                                       type: 'Identifier',
-                                      name: 'aaa'
-                                    }
+                                      name: 'aaa',
+                                    },
                                   },
                                   name: {
                                     type: 'JSXIdentifier',
-                                    name: 'id'
-                                  }
-                                }
+                                    name: 'id',
+                                  },
+                                },
                               ],
-                              selfClosing: false
+                              selfClosing: false,
                             },
                             closingElement: {
                               type: 'JSXClosingElement',
                               name: {
                                 type: 'JSXIdentifier',
-                                name: 'div'
-                              }
-                            }
-                          }
-                        }
-                      ]
+                                name: 'div',
+                              },
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'JSXText',
-                  value: 'xxx'
+                  value: 'xxx',
                 },
                 {
                   type: 'JSXExpressionContainer',
                   expression: {
                     type: 'Literal',
-                    value: 222
-                  }
-                }
+                    value: 222,
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [
                   {
                     type: 'JSXAttribute',
                     value: {
                       type: 'Literal',
-                      value: '复杂结构'
+                      value: '复杂结构',
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'id'
-                    }
-                  }
+                      name: 'id',
+                    },
+                  },
                 ],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<ul>  <li>  </li> <li>x</li> </ul>`,
@@ -1541,87 +1541,87 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: '  '
+                  value: '  ',
                 },
                 {
                   type: 'JSXElement',
                   children: [
                     {
                       type: 'JSXText',
-                      value: '  '
-                    }
+                      value: '  ',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'li'
+                      name: 'li',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'li'
-                    }
-                  }
+                      name: 'li',
+                    },
+                  },
                 },
                 {
                   type: 'JSXText',
-                  value: ' '
+                  value: ' ',
                 },
                 {
                   type: 'JSXElement',
                   children: [
                     {
                       type: 'JSXText',
-                      value: 'x'
-                    }
+                      value: 'x',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'li'
+                      name: 'li',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'li'
-                    }
-                  }
+                      name: 'li',
+                    },
+                  },
                 },
                 {
                   type: 'JSXText',
-                  value: ' '
-                }
+                  value: ' ',
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'ul'
+                  name: 'ul',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'ul'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'ul',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<option><b>dddd</b><script>333</script><xmp>eee</xmp><template>eeeee</template></option>`,
@@ -1640,122 +1640,122 @@ describe('Miscellaneous - JSX', () => {
                   children: [
                     {
                       type: 'JSXText',
-                      value: 'dddd'
-                    }
+                      value: 'dddd',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'b'
-                    }
-                  }
+                      name: 'b',
+                    },
+                  },
                 },
                 {
                   type: 'JSXElement',
                   children: [
                     {
                       type: 'JSXText',
-                      value: '333'
-                    }
+                      value: '333',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'script'
+                      name: 'script',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'script'
-                    }
-                  }
+                      name: 'script',
+                    },
+                  },
                 },
                 {
                   type: 'JSXElement',
                   children: [
                     {
                       type: 'JSXText',
-                      value: 'eee'
-                    }
+                      value: 'eee',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'xmp'
+                      name: 'xmp',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'xmp'
-                    }
-                  }
+                      name: 'xmp',
+                    },
+                  },
                 },
                 {
                   type: 'JSXElement',
                   children: [
                     {
                       type: 'JSXText',
-                      value: 'eeeee'
-                    }
+                      value: 'eeeee',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'template'
+                      name: 'template',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'template'
-                    }
-                  }
-                }
+                      name: 'template',
+                    },
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'option'
+                  name: 'option',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'option'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'option',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<div id={aa} class="className" > t </div>`,
@@ -1779,14 +1779,14 @@ describe('Miscellaneous - JSX', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 32
+                      column: 32,
                     },
                     end: {
                       line: 1,
-                      column: 35
-                    }
-                  }
-                }
+                      column: 35,
+                    },
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
@@ -1799,13 +1799,13 @@ describe('Miscellaneous - JSX', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 1
+                      column: 1,
                     },
                     end: {
                       line: 1,
-                      column: 4
-                    }
-                  }
+                      column: 4,
+                    },
+                  },
                 },
                 attributes: [
                   {
@@ -1821,13 +1821,13 @@ describe('Miscellaneous - JSX', () => {
                         loc: {
                           start: {
                             line: 1,
-                            column: 9
+                            column: 9,
                           },
                           end: {
                             line: 1,
-                            column: 11
-                          }
-                        }
+                            column: 11,
+                          },
+                        },
                       },
                       start: 8,
                       end: 12,
@@ -1835,13 +1835,13 @@ describe('Miscellaneous - JSX', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 8
+                          column: 8,
                         },
                         end: {
                           line: 1,
-                          column: 12
-                        }
-                      }
+                          column: 12,
+                        },
+                      },
                     },
                     name: {
                       type: 'JSXIdentifier',
@@ -1852,13 +1852,13 @@ describe('Miscellaneous - JSX', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 5
+                          column: 5,
                         },
                         end: {
                           line: 1,
-                          column: 7
-                        }
-                      }
+                          column: 7,
+                        },
+                      },
                     },
                     start: 5,
                     end: 12,
@@ -1866,13 +1866,13 @@ describe('Miscellaneous - JSX', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 5
+                        column: 5,
                       },
                       end: {
                         line: 1,
-                        column: 12
-                      }
-                    }
+                        column: 12,
+                      },
+                    },
                   },
                   {
                     type: 'JSXAttribute',
@@ -1886,13 +1886,13 @@ describe('Miscellaneous - JSX', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 19
+                          column: 19,
                         },
                         end: {
                           line: 1,
-                          column: 30
-                        }
-                      }
+                          column: 30,
+                        },
+                      },
                     },
                     name: {
                       type: 'JSXIdentifier',
@@ -1903,13 +1903,13 @@ describe('Miscellaneous - JSX', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 13
+                          column: 13,
                         },
                         end: {
                           line: 1,
-                          column: 18
-                        }
-                      }
+                          column: 18,
+                        },
+                      },
                     },
                     start: 13,
                     end: 30,
@@ -1917,14 +1917,14 @@ describe('Miscellaneous - JSX', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 13
+                        column: 13,
                       },
                       end: {
                         line: 1,
-                        column: 30
-                      }
-                    }
-                  }
+                        column: 30,
+                      },
+                    },
+                  },
                 ],
                 selfClosing: false,
                 start: 0,
@@ -1933,13 +1933,13 @@ describe('Miscellaneous - JSX', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 32
-                  }
-                }
+                    column: 32,
+                  },
+                },
               },
               closingElement: {
                 type: 'JSXClosingElement',
@@ -1952,13 +1952,13 @@ describe('Miscellaneous - JSX', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 37
+                      column: 37,
                     },
                     end: {
                       line: 1,
-                      column: 40
-                    }
-                  }
+                      column: 40,
+                    },
+                  },
                 },
                 start: 35,
                 end: 41,
@@ -1966,13 +1966,13 @@ describe('Miscellaneous - JSX', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 35
+                    column: 35,
                   },
                   end: {
                     line: 1,
-                    column: 41
-                  }
-                }
+                    column: 41,
+                  },
+                },
               },
               start: 0,
               end: 41,
@@ -1980,13 +1980,13 @@ describe('Miscellaneous - JSX', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 41
-                }
-              }
+                  column: 41,
+                },
+              },
             },
             start: 0,
             end: 41,
@@ -1994,14 +1994,14 @@ describe('Miscellaneous - JSX', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 41
-              }
-            }
-          }
+                column: 41,
+              },
+            },
+          },
         ],
         start: 0,
         end: 41,
@@ -2009,14 +2009,14 @@ describe('Miscellaneous - JSX', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 41
-          }
-        }
-      }
+            column: 41,
+          },
+        },
+      },
     ],
     [
       `<div id={function(){ return <div/> }} class="className"><p>xxx</p></div>`,
@@ -2035,32 +2035,32 @@ describe('Miscellaneous - JSX', () => {
                   children: [
                     {
                       type: 'JSXText',
-                      value: 'xxx'
-                    }
+                      value: 'xxx',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'p'
+                      name: 'p',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'p'
-                    }
-                  }
-                }
+                      name: 'p',
+                    },
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [
                   {
@@ -2082,51 +2082,51 @@ describe('Miscellaneous - JSX', () => {
                                   type: 'JSXOpeningElement',
                                   name: {
                                     type: 'JSXIdentifier',
-                                    name: 'div'
+                                    name: 'div',
                                   },
                                   attributes: [],
-                                  selfClosing: true
+                                  selfClosing: true,
                                 },
-                                closingElement: null
-                              }
-                            }
-                          ]
+                                closingElement: null,
+                              },
+                            },
+                          ],
                         },
                         async: false,
                         generator: false,
-                        id: null
-                      }
+                        id: null,
+                      },
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'id'
-                    }
+                      name: 'id',
+                    },
                   },
                   {
                     type: 'JSXAttribute',
                     value: {
                       type: 'Literal',
-                      value: 'className'
+                      value: 'className',
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'class'
-                    }
-                  }
+                      name: 'class',
+                    },
+                  },
                 ],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<div id={aa} title={ bb } {...{a:1}} class="className" ></div>`,
@@ -2144,7 +2144,7 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [
                   {
@@ -2153,13 +2153,13 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXExpressionContainer',
                       expression: {
                         type: 'Identifier',
-                        name: 'aa'
-                      }
+                        name: 'aa',
+                      },
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'id'
-                    }
+                      name: 'id',
+                    },
                   },
                   {
                     type: 'JSXAttribute',
@@ -2167,13 +2167,13 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXExpressionContainer',
                       expression: {
                         type: 'Identifier',
-                        name: 'bb'
-                      }
+                        name: 'bb',
+                      },
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'title'
-                    }
+                      name: 'title',
+                    },
                   },
                   {
                     type: 'JSXSpreadAttribute',
@@ -2184,45 +2184,45 @@ describe('Miscellaneous - JSX', () => {
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           value: {
                             type: 'Literal',
-                            value: 1
+                            value: 1,
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: false
-                        }
-                      ]
-                    }
+                          shorthand: false,
+                        },
+                      ],
+                    },
                   },
                   {
                     type: 'JSXAttribute',
                     value: {
                       type: 'Literal',
-                      value: 'className'
+                      value: 'className',
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'class'
-                    }
-                  }
+                      name: 'class',
+                    },
+                  },
                 ],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<X prop="2"><Y /><Z /></X>`,
@@ -2243,12 +2243,12 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'Y'
+                      name: 'Y',
                     },
                     attributes: [],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 {
                   type: 'JSXElement',
@@ -2257,46 +2257,46 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'Z'
+                      name: 'Z',
                     },
                     attributes: [],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
-                }
+                  closingElement: null,
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'X'
+                  name: 'X',
                 },
                 attributes: [
                   {
                     type: 'JSXAttribute',
                     value: {
                       type: 'Literal',
-                      value: '2'
+                      value: '2',
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'prop'
-                    }
-                  }
+                      name: 'prop',
+                    },
+                  },
                 ],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'X'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'X',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<X>{a} {b}</X>`,
@@ -2314,41 +2314,41 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXExpressionContainer',
                   expression: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
+                    name: 'a',
+                  },
                 },
                 {
                   type: 'JSXText',
-                  value: ' '
+                  value: ' ',
                 },
                 {
                   type: 'JSXExpressionContainer',
                   expression: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                }
+                    name: 'b',
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'X'
+                  name: 'X',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'X'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'X',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<X data-prop={x ? <Y prop={2} /> : <Z>\n</Z>}></X>`,
@@ -2361,16 +2361,16 @@ describe('Miscellaneous - JSX', () => {
               closingElement: {
                 name: {
                   name: 'X',
-                  type: 'JSXIdentifier'
+                  type: 'JSXIdentifier',
                 },
-                type: 'JSXClosingElement'
+                type: 'JSXClosingElement',
               },
               openingElement: {
                 attributes: [
                   {
                     name: {
                       name: 'data-prop',
-                      type: 'JSXIdentifier'
+                      type: 'JSXIdentifier',
                     },
                     type: 'JSXAttribute',
                     value: {
@@ -2379,26 +2379,26 @@ describe('Miscellaneous - JSX', () => {
                           children: [
                             {
                               type: 'JSXText',
-                              value: '\n'
-                            }
+                              value: '\n',
+                            },
                           ],
                           closingElement: {
                             name: {
                               name: 'Z',
-                              type: 'JSXIdentifier'
+                              type: 'JSXIdentifier',
                             },
-                            type: 'JSXClosingElement'
+                            type: 'JSXClosingElement',
                           },
                           openingElement: {
                             attributes: [],
                             name: {
                               name: 'Z',
-                              type: 'JSXIdentifier'
+                              type: 'JSXIdentifier',
                             },
                             selfClosing: false,
-                            type: 'JSXOpeningElement'
+                            type: 'JSXOpeningElement',
                           },
-                          type: 'JSXElement'
+                          type: 'JSXElement',
                         },
                         consequent: {
                           children: [],
@@ -2408,52 +2408,52 @@ describe('Miscellaneous - JSX', () => {
                               {
                                 name: {
                                   name: 'prop',
-                                  type: 'JSXIdentifier'
+                                  type: 'JSXIdentifier',
                                 },
                                 type: 'JSXAttribute',
                                 value: {
                                   expression: {
                                     type: 'Literal',
-                                    value: 2
+                                    value: 2,
                                   },
-                                  type: 'JSXExpressionContainer'
-                                }
-                              }
+                                  type: 'JSXExpressionContainer',
+                                },
+                              },
                             ],
                             name: {
                               name: 'Y',
-                              type: 'JSXIdentifier'
+                              type: 'JSXIdentifier',
                             },
                             selfClosing: true,
-                            type: 'JSXOpeningElement'
+                            type: 'JSXOpeningElement',
                           },
-                          type: 'JSXElement'
+                          type: 'JSXElement',
                         },
                         test: {
                           name: 'x',
-                          type: 'Identifier'
+                          type: 'Identifier',
                         },
-                        type: 'ConditionalExpression'
+                        type: 'ConditionalExpression',
                       },
-                      type: 'JSXExpressionContainer'
-                    }
-                  }
+                      type: 'JSXExpressionContainer',
+                    },
+                  },
                 ],
                 name: {
                   name: 'X',
-                  type: 'JSXIdentifier'
+                  type: 'JSXIdentifier',
                 },
                 selfClosing: false,
-                type: 'JSXOpeningElement'
+                type: 'JSXOpeningElement',
               },
-              type: 'JSXElement'
+              type: 'JSXElement',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `/** @jsx CUSTOM_DOM */<a></a>`,
@@ -2471,22 +2471,22 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'a',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `import React from 'react'
@@ -2505,15 +2505,15 @@ describe('Miscellaneous - JSX', () => {
                 type: 'ImportDefaultSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'React'
-                }
-              }
+                  name: 'React',
+                },
+              },
             ],
             source: {
               type: 'Literal',
-              value: 'react'
+              value: 'react',
             },
-            attributes: []
+            attributes: [],
           },
           {
             type: 'VariableDeclaration',
@@ -2529,39 +2529,39 @@ describe('Miscellaneous - JSX', () => {
                     children: [
                       {
                         type: 'JSXText',
-                        value: 'Hello, World'
-                      }
+                        value: 'Hello, World',
+                      },
                     ],
                     openingElement: {
                       type: 'JSXOpeningElement',
                       name: {
                         type: 'JSXIdentifier',
-                        name: 'div'
+                        name: 'div',
                       },
                       attributes: [],
-                      selfClosing: false
+                      selfClosing: false,
                     },
                     closingElement: {
                       type: 'JSXClosingElement',
                       name: {
                         type: 'JSXIdentifier',
-                        name: 'div'
-                      }
-                    }
+                        name: 'div',
+                      },
+                    },
                   },
                   params: [],
                   async: false,
-                  expression: true
+                  expression: true,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'Component'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'Component',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       `<Basic>
@@ -2585,116 +2585,116 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: '\n       '
+                  value: '\n       ',
                 },
                 {
                   type: 'JSXElement',
                   children: [
                     {
                       type: 'JSXText',
-                      value: '\n         '
+                      value: '\n         ',
                     },
                     {
                       type: 'JSXElement',
                       children: [
                         {
                           type: 'JSXText',
-                          value: '\n           '
+                          value: '\n           ',
                         },
                         {
                           type: 'JSXElement',
                           children: [
                             {
                               type: 'JSXText',
-                              value: '\n             Title 2\n           '
-                            }
+                              value: '\n             Title 2\n           ',
+                            },
                           ],
                           openingElement: {
                             type: 'JSXOpeningElement',
                             name: {
                               type: 'JSXIdentifier',
-                              name: 'BasicChild'
+                              name: 'BasicChild',
                             },
                             attributes: [],
-                            selfClosing: false
+                            selfClosing: false,
                           },
                           closingElement: {
                             type: 'JSXClosingElement',
                             name: {
                               type: 'JSXIdentifier',
-                              name: 'BasicChild'
-                            }
-                          }
+                              name: 'BasicChild',
+                            },
+                          },
                         },
                         {
                           type: 'JSXText',
-                          value: '\n         '
-                        }
+                          value: '\n         ',
+                        },
                       ],
                       openingElement: {
                         type: 'JSXOpeningElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'BasicChild'
+                          name: 'BasicChild',
                         },
                         attributes: [],
-                        selfClosing: false
+                        selfClosing: false,
                       },
                       closingElement: {
                         type: 'JSXClosingElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'BasicChild'
-                        }
-                      }
+                          name: 'BasicChild',
+                        },
+                      },
                     },
                     {
                       type: 'JSXText',
-                      value: '\n       '
-                    }
+                      value: '\n       ',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'BasicChild'
+                      name: 'BasicChild',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'BasicChild'
-                    }
-                  }
+                      name: 'BasicChild',
+                    },
+                  },
                 },
                 {
                   type: 'JSXText',
-                  value: '\n     '
-                }
+                  value: '\n     ',
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'Basic'
+                  name: 'Basic',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'Basic'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'Basic',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<div>
@@ -2718,87 +2718,87 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: '\n     one\n     '
+                  value: '\n     one\n     ',
                 },
                 {
                   type: 'JSXElement',
                   children: [
                     {
                       type: 'JSXText',
-                      value: '\n       two\n       '
+                      value: '\n       two\n       ',
                     },
                     {
                       type: 'JSXElement',
                       children: [
                         {
                           type: 'JSXText',
-                          value: '\n         three\n       '
-                        }
+                          value: '\n         three\n       ',
+                        },
                       ],
                       openingElement: {
                         type: 'JSXOpeningElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'span'
+                          name: 'span',
                         },
                         attributes: [],
-                        selfClosing: false
+                        selfClosing: false,
                       },
                       closingElement: {
                         type: 'JSXClosingElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'span'
-                        }
-                      }
+                          name: 'span',
+                        },
+                      },
                     },
                     {
                       type: 'JSXText',
-                      value: '\n     '
-                    }
+                      value: '\n     ',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
-                    }
-                  }
+                      name: 'div',
+                    },
+                  },
                 },
                 {
                   type: 'JSXText',
-                  value: '\n   '
-                }
+                  value: '\n   ',
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<>Fragment</>`,
@@ -2814,19 +2814,19 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: 'Fragment'
-                }
+                  value: 'Fragment',
+                },
               ],
               openingFragment: {
-                type: 'JSXOpeningFragment'
+                type: 'JSXOpeningFragment',
               },
               closingFragment: {
-                type: 'JSXClosingFragment'
-              }
-            }
-          }
-        ]
-      }
+                type: 'JSXClosingFragment',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<p>hello,world</p>`,
@@ -2842,29 +2842,29 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: 'hello,world'
-                }
+                  value: 'hello,world',
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'p'
+                  name: 'p',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'p'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'p',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<></>`,
@@ -2889,20 +2889,20 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningFragment',
                 start: 0,
                 end: 2,
-                range: [0, 2]
+                range: [0, 2],
               },
               closingFragment: {
                 type: 'JSXClosingFragment',
                 start: 2,
                 end: 5,
-                range: [2, 5]
+                range: [2, 5],
               },
-              children: []
-            }
-          }
+              children: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `<    ></   >`,
@@ -2927,20 +2927,20 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningFragment',
                 start: 0,
                 end: 6,
-                range: [0, 6]
+                range: [0, 6],
               },
               closingFragment: {
                 type: 'JSXClosingFragment',
                 start: 6,
                 end: 12,
-                range: [6, 12]
+                range: [6, 12],
               },
-              children: []
-            }
-          }
+              children: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `< /*starting wrap*/ ></ /*ending wrap*/>;`,
@@ -2955,15 +2955,15 @@ describe('Miscellaneous - JSX', () => {
               type: 'JSXFragment',
               children: [],
               openingFragment: {
-                type: 'JSXOpeningFragment'
+                type: 'JSXOpeningFragment',
               },
               closingFragment: {
-                type: 'JSXClosingFragment'
-              }
-            }
-          }
-        ]
-      }
+                type: 'JSXClosingFragment',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<>hi</>;`,
@@ -2979,19 +2979,19 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: 'hi'
-                }
+                  value: 'hi',
+                },
               ],
               openingFragment: {
-                type: 'JSXOpeningFragment'
+                type: 'JSXOpeningFragment',
               },
               closingFragment: {
-                type: 'JSXClosingFragment'
-              }
-            }
-          }
-        ]
-      }
+                type: 'JSXClosingFragment',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<><div>JSXElement</div>JSXText{'JSXExpressionContainer'}</>`,
@@ -3010,48 +3010,48 @@ describe('Miscellaneous - JSX', () => {
                   children: [
                     {
                       type: 'JSXText',
-                      value: 'JSXElement'
-                    }
+                      value: 'JSXElement',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
-                    }
-                  }
+                      name: 'div',
+                    },
+                  },
                 },
                 {
                   type: 'JSXText',
-                  value: 'JSXText'
+                  value: 'JSXText',
                 },
                 {
                   type: 'JSXExpressionContainer',
                   expression: {
                     type: 'Literal',
-                    value: 'JSXExpressionContainer'
-                  }
-                }
+                    value: 'JSXExpressionContainer',
+                  },
+                },
               ],
               openingFragment: {
-                type: 'JSXOpeningFragment'
+                type: 'JSXOpeningFragment',
               },
               closingFragment: {
-                type: 'JSXClosingFragment'
-              }
-            }
-          }
-        ]
-      }
+                type: 'JSXClosingFragment',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<><span>hi</span><div>bye</div></>;`,
@@ -3070,62 +3070,62 @@ describe('Miscellaneous - JSX', () => {
                   children: [
                     {
                       type: 'JSXText',
-                      value: 'hi'
-                    }
+                      value: 'hi',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'span'
+                      name: 'span',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'span'
-                    }
-                  }
+                      name: 'span',
+                    },
+                  },
                 },
                 {
                   type: 'JSXElement',
                   children: [
                     {
                       type: 'JSXText',
-                      value: 'bye'
-                    }
+                      value: 'bye',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
-                    }
-                  }
-                }
+                      name: 'div',
+                    },
+                  },
+                },
               ],
               openingFragment: {
-                type: 'JSXOpeningFragment'
+                type: 'JSXOpeningFragment',
               },
               closingFragment: {
-                type: 'JSXClosingFragment'
-              }
-            }
-          }
-        ]
-      }
+                type: 'JSXClosingFragment',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<><span>1</span><><span>2.1</span><span>2.2</span></><span>3</span></>;`,
@@ -3144,25 +3144,25 @@ describe('Miscellaneous - JSX', () => {
                   children: [
                     {
                       type: 'JSXText',
-                      value: '1'
-                    }
+                      value: '1',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'span'
+                      name: 'span',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'span'
-                    }
-                  }
+                      name: 'span',
+                    },
+                  },
                 },
                 {
                   type: 'JSXFragment',
@@ -3172,95 +3172,95 @@ describe('Miscellaneous - JSX', () => {
                       children: [
                         {
                           type: 'JSXText',
-                          value: '2.1'
-                        }
+                          value: '2.1',
+                        },
                       ],
                       openingElement: {
                         type: 'JSXOpeningElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'span'
+                          name: 'span',
                         },
                         attributes: [],
-                        selfClosing: false
+                        selfClosing: false,
                       },
                       closingElement: {
                         type: 'JSXClosingElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'span'
-                        }
-                      }
+                          name: 'span',
+                        },
+                      },
                     },
                     {
                       type: 'JSXElement',
                       children: [
                         {
                           type: 'JSXText',
-                          value: '2.2'
-                        }
+                          value: '2.2',
+                        },
                       ],
                       openingElement: {
                         type: 'JSXOpeningElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'span'
+                          name: 'span',
                         },
                         attributes: [],
-                        selfClosing: false
+                        selfClosing: false,
                       },
                       closingElement: {
                         type: 'JSXClosingElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'span'
-                        }
-                      }
-                    }
+                          name: 'span',
+                        },
+                      },
+                    },
                   ],
                   openingFragment: {
-                    type: 'JSXOpeningFragment'
+                    type: 'JSXOpeningFragment',
                   },
                   closingFragment: {
-                    type: 'JSXClosingFragment'
-                  }
+                    type: 'JSXClosingFragment',
+                  },
                 },
                 {
                   type: 'JSXElement',
                   children: [
                     {
                       type: 'JSXText',
-                      value: '3'
-                    }
+                      value: '3',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'span'
+                      name: 'span',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'span'
-                    }
-                  }
-                }
+                      name: 'span',
+                    },
+                  },
+                },
               ],
               openingFragment: {
-                type: 'JSXOpeningFragment'
+                type: 'JSXOpeningFragment',
               },
               closingFragment: {
-                type: 'JSXClosingFragment'
-              }
-            }
-          }
-        ]
-      }
+                type: 'JSXClosingFragment',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<><span> hi </span> <div>bye</div> </>`,
@@ -3279,70 +3279,70 @@ describe('Miscellaneous - JSX', () => {
                   children: [
                     {
                       type: 'JSXText',
-                      value: ' hi '
-                    }
+                      value: ' hi ',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'span'
+                      name: 'span',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'span'
-                    }
-                  }
+                      name: 'span',
+                    },
+                  },
                 },
                 {
                   type: 'JSXText',
-                  value: ' '
+                  value: ' ',
                 },
                 {
                   type: 'JSXElement',
                   children: [
                     {
                       type: 'JSXText',
-                      value: 'bye'
-                    }
+                      value: 'bye',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
-                    }
-                  }
+                      name: 'div',
+                    },
+                  },
                 },
                 {
                   type: 'JSXText',
-                  value: ' '
-                }
+                  value: ' ',
+                },
               ],
               openingFragment: {
-                type: 'JSXOpeningFragment'
+                type: 'JSXOpeningFragment',
               },
               closingFragment: {
-                type: 'JSXClosingFragment'
-              }
-            }
-          }
-        ]
-      }
+                type: 'JSXClosingFragment',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<>
@@ -3364,57 +3364,57 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: '\n     '
+                  value: '\n     ',
                 },
                 {
                   type: 'JSXFragment',
                   children: [
                     {
                       type: 'JSXText',
-                      value: '\n       '
+                      value: '\n       ',
                     },
                     {
                       type: 'JSXFragment',
                       children: [
                         {
                           type: 'JSXText',
-                          value: '\n        Ghost!\n       '
-                        }
+                          value: '\n        Ghost!\n       ',
+                        },
                       ],
                       openingFragment: {
-                        type: 'JSXOpeningFragment'
+                        type: 'JSXOpeningFragment',
                       },
                       closingFragment: {
-                        type: 'JSXClosingFragment'
-                      }
+                        type: 'JSXClosingFragment',
+                      },
                     },
                     {
                       type: 'JSXText',
-                      value: '\n     '
-                    }
+                      value: '\n     ',
+                    },
                   ],
                   openingFragment: {
-                    type: 'JSXOpeningFragment'
+                    type: 'JSXOpeningFragment',
                   },
                   closingFragment: {
-                    type: 'JSXClosingFragment'
-                  }
+                    type: 'JSXClosingFragment',
+                  },
                 },
                 {
                   type: 'JSXText',
-                  value: '\n   '
-                }
+                  value: '\n   ',
+                },
               ],
               openingFragment: {
-                type: 'JSXOpeningFragment'
+                type: 'JSXOpeningFragment',
               },
               closingFragment: {
-                type: 'JSXClosingFragment'
-              }
-            }
-          }
-        ]
-      }
+                type: 'JSXClosingFragment',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<>
@@ -3436,57 +3436,57 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: '\n     '
+                  value: '\n     ',
                 },
                 {
                   type: 'JSXFragment',
                   children: [
                     {
                       type: 'JSXText',
-                      value: '\n       '
+                      value: '\n       ',
                     },
                     {
                       type: 'JSXFragment',
                       children: [
                         {
                           type: 'JSXText',
-                          value: '\n         super deep\n       '
-                        }
+                          value: '\n         super deep\n       ',
+                        },
                       ],
                       openingFragment: {
-                        type: 'JSXOpeningFragment'
+                        type: 'JSXOpeningFragment',
                       },
                       closingFragment: {
-                        type: 'JSXClosingFragment'
-                      }
+                        type: 'JSXClosingFragment',
+                      },
                     },
                     {
                       type: 'JSXText',
-                      value: '\n     '
-                    }
+                      value: '\n     ',
+                    },
                   ],
                   openingFragment: {
-                    type: 'JSXOpeningFragment'
+                    type: 'JSXOpeningFragment',
                   },
                   closingFragment: {
-                    type: 'JSXClosingFragment'
-                  }
+                    type: 'JSXClosingFragment',
+                  },
                 },
                 {
                   type: 'JSXText',
-                  value: '\n   '
-                }
+                  value: '\n   ',
+                },
               ],
               openingFragment: {
-                type: 'JSXOpeningFragment'
+                type: 'JSXOpeningFragment',
               },
               closingFragment: {
-                type: 'JSXClosingFragment'
-              }
-            }
-          }
-        ]
-      }
+                type: 'JSXClosingFragment',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<dl>
@@ -3509,7 +3509,7 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: '\n     '
+                  value: '\n     ',
                 },
                 {
                   type: 'JSXExpressionContainer',
@@ -3521,19 +3521,19 @@ describe('Miscellaneous - JSX', () => {
                         type: 'MemberExpression',
                         object: {
                           type: 'Identifier',
-                          name: 'props'
+                          name: 'props',
                         },
                         computed: false,
                         property: {
                           type: 'Identifier',
-                          name: 'items'
-                        }
+                          name: 'items',
+                        },
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'map'
-                      }
+                        name: 'map',
+                      },
                     },
                     arguments: [
                       {
@@ -3544,7 +3544,7 @@ describe('Miscellaneous - JSX', () => {
                           children: [
                             {
                               type: 'JSXText',
-                              value: '\n         '
+                              value: '\n         ',
                             },
                             {
                               type: 'JSXElement',
@@ -3555,36 +3555,36 @@ describe('Miscellaneous - JSX', () => {
                                     type: 'MemberExpression',
                                     object: {
                                       type: 'Identifier',
-                                      name: 'item'
+                                      name: 'item',
                                     },
                                     computed: false,
                                     property: {
                                       type: 'Identifier',
-                                      name: 'term'
-                                    }
-                                  }
-                                }
+                                      name: 'term',
+                                    },
+                                  },
+                                },
                               ],
                               openingElement: {
                                 type: 'JSXOpeningElement',
                                 name: {
                                   type: 'JSXIdentifier',
-                                  name: 'dt'
+                                  name: 'dt',
                                 },
                                 attributes: [],
-                                selfClosing: false
+                                selfClosing: false,
                               },
                               closingElement: {
                                 type: 'JSXClosingElement',
                                 name: {
                                   type: 'JSXIdentifier',
-                                  name: 'dt'
-                                }
-                              }
+                                  name: 'dt',
+                                },
+                              },
                             },
                             {
                               type: 'JSXText',
-                              value: '\n         '
+                              value: '\n         ',
                             },
                             {
                               type: 'JSXElement',
@@ -3595,37 +3595,37 @@ describe('Miscellaneous - JSX', () => {
                                     type: 'MemberExpression',
                                     object: {
                                       type: 'Identifier',
-                                      name: 'item'
+                                      name: 'item',
                                     },
                                     computed: false,
                                     property: {
                                       type: 'Identifier',
-                                      name: 'description'
-                                    }
-                                  }
-                                }
+                                      name: 'description',
+                                    },
+                                  },
+                                },
                               ],
                               openingElement: {
                                 type: 'JSXOpeningElement',
                                 name: {
                                   type: 'JSXIdentifier',
-                                  name: 'dd'
+                                  name: 'dd',
                                 },
                                 attributes: [],
-                                selfClosing: false
+                                selfClosing: false,
                               },
                               closingElement: {
                                 type: 'JSXClosingElement',
                                 name: {
                                   type: 'JSXIdentifier',
-                                  name: 'dd'
-                                }
-                              }
+                                  name: 'dd',
+                                },
+                              },
                             },
                             {
                               type: 'JSXText',
-                              value: '\n       '
-                            }
+                              value: '\n       ',
+                            },
                           ],
                           openingElement: {
                             type: 'JSXOpeningElement',
@@ -3633,12 +3633,12 @@ describe('Miscellaneous - JSX', () => {
                               type: 'JSXMemberExpression',
                               object: {
                                 type: 'JSXIdentifier',
-                                name: 'React'
+                                name: 'React',
                               },
                               property: {
                                 type: 'JSXIdentifier',
-                                name: 'Fragment'
-                              }
+                                name: 'Fragment',
+                              },
                             },
                             attributes: [
                               {
@@ -3649,22 +3649,22 @@ describe('Miscellaneous - JSX', () => {
                                     type: 'MemberExpression',
                                     object: {
                                       type: 'Identifier',
-                                      name: 'item'
+                                      name: 'item',
                                     },
                                     computed: false,
                                     property: {
                                       type: 'Identifier',
-                                      name: 'id'
-                                    }
-                                  }
+                                      name: 'id',
+                                    },
+                                  },
                                 },
                                 name: {
                                   type: 'JSXIdentifier',
-                                  name: 'key'
-                                }
-                              }
+                                  name: 'key',
+                                },
+                              },
                             ],
-                            selfClosing: false
+                            selfClosing: false,
                           },
                           closingElement: {
                             type: 'JSXClosingElement',
@@ -3672,52 +3672,52 @@ describe('Miscellaneous - JSX', () => {
                               type: 'JSXMemberExpression',
                               object: {
                                 type: 'JSXIdentifier',
-                                name: 'React'
+                                name: 'React',
                               },
                               property: {
                                 type: 'JSXIdentifier',
-                                name: 'Fragment'
-                              }
-                            }
-                          }
+                                name: 'Fragment',
+                              },
+                            },
+                          },
                         },
                         params: [
                           {
                             type: 'Identifier',
-                            name: 'item'
-                          }
+                            name: 'item',
+                          },
                         ],
                         async: false,
-                        expression: true
-                      }
-                    ]
-                  }
+                        expression: true,
+                      },
+                    ],
+                  },
                 },
                 {
                   type: 'JSXText',
-                  value: '\n   '
-                }
+                  value: '\n   ',
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'dl'
+                  name: 'dl',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'dl'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'dl',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -3738,29 +3738,29 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: '\n     One\n     Two\n     Three\n     '
-                }
+                  value: '\n     One\n     Two\n     Three\n     ',
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'em'
+                  name: 'em',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'em'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'em',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '<SolarSystem.Earth.America.USA.California.mountain-view></SolarSystem.Earth.America.USA.California.mountain-view>',
@@ -3788,35 +3788,35 @@ describe('Miscellaneous - JSX', () => {
                           type: 'JSXMemberExpression',
                           object: {
                             type: 'JSXIdentifier',
-                            name: 'SolarSystem'
+                            name: 'SolarSystem',
                           },
                           property: {
                             type: 'JSXIdentifier',
-                            name: 'Earth'
-                          }
+                            name: 'Earth',
+                          },
                         },
                         property: {
                           type: 'JSXIdentifier',
-                          name: 'America'
-                        }
+                          name: 'America',
+                        },
                       },
                       property: {
                         type: 'JSXIdentifier',
-                        name: 'USA'
-                      }
+                        name: 'USA',
+                      },
                     },
                     property: {
                       type: 'JSXIdentifier',
-                      name: 'California'
-                    }
+                      name: 'California',
+                    },
                   },
                   property: {
                     type: 'JSXIdentifier',
-                    name: 'mountain-view'
-                  }
+                    name: 'mountain-view',
+                  },
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
@@ -3832,38 +3832,38 @@ describe('Miscellaneous - JSX', () => {
                           type: 'JSXMemberExpression',
                           object: {
                             type: 'JSXIdentifier',
-                            name: 'SolarSystem'
+                            name: 'SolarSystem',
                           },
                           property: {
                             type: 'JSXIdentifier',
-                            name: 'Earth'
-                          }
+                            name: 'Earth',
+                          },
                         },
                         property: {
                           type: 'JSXIdentifier',
-                          name: 'America'
-                        }
+                          name: 'America',
+                        },
                       },
                       property: {
                         type: 'JSXIdentifier',
-                        name: 'USA'
-                      }
+                        name: 'USA',
+                      },
                     },
                     property: {
                       type: 'JSXIdentifier',
-                      name: 'California'
-                    }
+                      name: 'California',
+                    },
                   },
                   property: {
                     type: 'JSXIdentifier',
-                    name: 'mountain-view'
-                  }
-                }
-              }
-            }
-          }
-        ]
-      }
+                    name: 'mountain-view',
+                  },
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'function *g() { yield <h1>Hello</h1> }',
@@ -3887,40 +3887,40 @@ describe('Miscellaneous - JSX', () => {
                       children: [
                         {
                           type: 'JSXText',
-                          value: 'Hello'
-                        }
+                          value: 'Hello',
+                        },
                       ],
                       openingElement: {
                         type: 'JSXOpeningElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'h1'
+                          name: 'h1',
                         },
                         attributes: [],
-                        selfClosing: false
+                        selfClosing: false,
                       },
                       closingElement: {
                         type: 'JSXClosingElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'h1'
-                        }
-                      }
+                          name: 'h1',
+                        },
+                      },
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
             id: {
               type: 'Identifier',
-              name: 'g'
-            }
-          }
-        ]
-      }
+              name: 'g',
+            },
+          },
+        ],
+      },
     ],
     [
       '<a>{`${1}`}</a>',
@@ -3941,50 +3941,50 @@ describe('Miscellaneous - JSX', () => {
                     expressions: [
                       {
                         type: 'Literal',
-                        value: 1
-                      }
+                        value: 1,
+                      },
                     ],
                     quasis: [
                       {
                         type: 'TemplateElement',
                         value: {
                           cooked: '',
-                          raw: ''
+                          raw: '',
                         },
-                        tail: false
+                        tail: false,
                       },
                       {
                         type: 'TemplateElement',
                         value: {
                           cooked: '',
-                          raw: ''
+                          raw: '',
                         },
-                        tail: true
-                      }
-                    ]
-                  }
-                }
+                        tail: true,
+                      },
+                    ],
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'a',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '<strong><em><a href="{link}"><test/></a></em></strong>',
@@ -4011,82 +4011,82 @@ describe('Miscellaneous - JSX', () => {
                             type: 'JSXOpeningElement',
                             name: {
                               type: 'JSXIdentifier',
-                              name: 'test'
+                              name: 'test',
                             },
                             attributes: [],
-                            selfClosing: true
+                            selfClosing: true,
                           },
-                          closingElement: null
-                        }
+                          closingElement: null,
+                        },
                       ],
                       openingElement: {
                         type: 'JSXOpeningElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         attributes: [
                           {
                             type: 'JSXAttribute',
                             value: {
                               type: 'Literal',
-                              value: '{link}'
+                              value: '{link}',
                             },
                             name: {
                               type: 'JSXIdentifier',
-                              name: 'href'
-                            }
-                          }
+                              name: 'href',
+                            },
+                          },
                         ],
-                        selfClosing: false
+                        selfClosing: false,
                       },
                       closingElement: {
                         type: 'JSXClosingElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'a'
-                        }
-                      }
-                    }
+                          name: 'a',
+                        },
+                      },
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'em'
+                      name: 'em',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'em'
-                    }
-                  }
-                }
+                      name: 'em',
+                    },
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'strong'
+                  name: 'strong',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'strong'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'strong',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '<x y="&#123abc &#123;" />',
@@ -4104,28 +4104,28 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 attributes: [
                   {
                     type: 'JSXAttribute',
                     value: {
                       type: 'Literal',
-                      value: '&#123abc &#123;'
+                      value: '&#123abc &#123;',
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'y'
-                    }
-                  }
+                      name: 'y',
+                    },
+                  },
                 ],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '<a b="&#xA2; &#x00A3;"/>',
@@ -4143,28 +4143,28 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 attributes: [
                   {
                     type: 'JSXAttribute',
                     value: {
                       type: 'Literal',
-                      value: '&#xA2; &#x00A3;'
+                      value: '&#xA2; &#x00A3;',
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'b'
-                    }
-                  }
+                      name: 'b',
+                    },
+                  },
                 ],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '<p q="Just my &#xA2;2" />',
@@ -4182,28 +4182,28 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'p'
+                  name: 'p',
                 },
                 attributes: [
                   {
                     type: 'JSXAttribute',
                     value: {
                       type: 'Literal',
-                      value: 'Just my &#xA2;2'
+                      value: 'Just my &#xA2;2',
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'q'
-                    }
-                  }
+                      name: 'q',
+                    },
+                  },
                 ],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       'class C {  static a = <C.z></C.z> }',
@@ -4217,7 +4217,7 @@ describe('Miscellaneous - JSX', () => {
             decorators: [],
             id: {
               type: 'Identifier',
-              name: 'C'
+              name: 'C',
             },
             superClass: null,
             body: {
@@ -4228,7 +4228,7 @@ describe('Miscellaneous - JSX', () => {
                   decorators: [],
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'JSXElement',
@@ -4239,15 +4239,15 @@ describe('Miscellaneous - JSX', () => {
                         type: 'JSXMemberExpression',
                         object: {
                           type: 'JSXIdentifier',
-                          name: 'C'
+                          name: 'C',
                         },
                         property: {
                           type: 'JSXIdentifier',
-                          name: 'z'
-                        }
+                          name: 'z',
+                        },
                       },
                       attributes: [],
-                      selfClosing: false
+                      selfClosing: false,
                     },
                     closingElement: {
                       type: 'JSXClosingElement',
@@ -4255,23 +4255,23 @@ describe('Miscellaneous - JSX', () => {
                         type: 'JSXMemberExpression',
                         object: {
                           type: 'JSXIdentifier',
-                          name: 'C'
+                          name: 'C',
                         },
                         property: {
                           type: 'JSXIdentifier',
-                          name: 'z'
-                        }
-                      }
-                    }
+                          name: 'z',
+                        },
+                      },
+                    },
                   },
                   computed: false,
-                  static: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  static: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -4292,12 +4292,12 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXNamespacedName',
                   namespace: {
                     type: 'JSXIdentifier',
-                    name: 'n'
+                    name: 'n',
                   },
                   name: {
                     type: 'JSXIdentifier',
-                    name: 'a'
-                  }
+                    name: 'a',
+                  },
                 },
                 attributes: [
                   {
@@ -4307,22 +4307,22 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXNamespacedName',
                       namespace: {
                         type: 'JSXIdentifier',
-                        name: 'n'
+                        name: 'n',
                       },
                       name: {
                         type: 'JSXIdentifier',
-                        name: 'v'
-                      }
-                    }
-                  }
+                        name: 'v',
+                      },
+                    },
+                  },
                 ],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -4360,25 +4360,25 @@ describe('Miscellaneous - JSX', () => {
                     start: 1,
                     end: 2,
                     range: [1, 2],
-                    name: 'n'
+                    name: 'n',
                   },
                   name: {
                     type: 'JSXIdentifier',
                     start: 3,
                     end: 4,
                     range: [3, 4],
-                    name: 'a'
-                  }
+                    name: 'a',
+                  },
                 },
-                selfClosing: true
+                selfClosing: true,
               },
               closingElement: null,
-              children: []
-            }
-          }
+              children: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '<a:b><a:b></a:b></a:b>;',
@@ -4415,17 +4415,17 @@ describe('Miscellaneous - JSX', () => {
                     start: 1,
                     end: 2,
                     range: [1, 2],
-                    name: 'a'
+                    name: 'a',
                   },
                   name: {
                     type: 'JSXIdentifier',
                     start: 3,
                     end: 4,
                     range: [3, 4],
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 },
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
@@ -4442,16 +4442,16 @@ describe('Miscellaneous - JSX', () => {
                     start: 18,
                     end: 19,
                     range: [18, 19],
-                    name: 'a'
+                    name: 'a',
                   },
                   name: {
                     type: 'JSXIdentifier',
                     start: 20,
                     end: 21,
                     range: [20, 21],
-                    name: 'b'
-                  }
-                }
+                    name: 'b',
+                  },
+                },
               },
               children: [
                 {
@@ -4475,17 +4475,17 @@ describe('Miscellaneous - JSX', () => {
                         start: 6,
                         end: 7,
                         range: [6, 7],
-                        name: 'a'
+                        name: 'a',
                       },
                       name: {
                         type: 'JSXIdentifier',
                         start: 8,
                         end: 9,
                         range: [8, 9],
-                        name: 'b'
-                      }
+                        name: 'b',
+                      },
                     },
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
@@ -4502,25 +4502,25 @@ describe('Miscellaneous - JSX', () => {
                         start: 12,
                         end: 13,
                         range: [12, 13],
-                        name: 'a'
+                        name: 'a',
                       },
                       name: {
                         type: 'JSXIdentifier',
                         start: 14,
                         end: 15,
                         range: [14, 15],
-                        name: 'b'
-                      }
-                    }
+                        name: 'b',
+                      },
+                    },
                   },
-                  children: []
-                }
-              ]
-            }
-          }
+                  children: [],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '<A aa={aa.bb.cc} bb={bb.cc.dd}><div>{aa.b}</div></A>',
@@ -4543,39 +4543,39 @@ describe('Miscellaneous - JSX', () => {
                         type: 'MemberExpression',
                         object: {
                           type: 'Identifier',
-                          name: 'aa'
+                          name: 'aa',
                         },
                         computed: false,
                         property: {
                           type: 'Identifier',
-                          name: 'b'
-                        }
-                      }
-                    }
+                          name: 'b',
+                        },
+                      },
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
-                    }
-                  }
-                }
+                      name: 'div',
+                    },
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'A'
+                  name: 'A',
                 },
                 attributes: [
                   {
@@ -4588,25 +4588,25 @@ describe('Miscellaneous - JSX', () => {
                           type: 'MemberExpression',
                           object: {
                             type: 'Identifier',
-                            name: 'aa'
+                            name: 'aa',
                           },
                           computed: false,
                           property: {
                             type: 'Identifier',
-                            name: 'bb'
-                          }
+                            name: 'bb',
+                          },
                         },
                         computed: false,
                         property: {
                           type: 'Identifier',
-                          name: 'cc'
-                        }
-                      }
+                          name: 'cc',
+                        },
+                      },
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'aa'
-                    }
+                      name: 'aa',
+                    },
                   },
                   {
                     type: 'JSXAttribute',
@@ -4618,40 +4618,40 @@ describe('Miscellaneous - JSX', () => {
                           type: 'MemberExpression',
                           object: {
                             type: 'Identifier',
-                            name: 'bb'
+                            name: 'bb',
                           },
                           computed: false,
                           property: {
                             type: 'Identifier',
-                            name: 'cc'
-                          }
+                            name: 'cc',
+                          },
                         },
                         computed: false,
                         property: {
                           type: 'Identifier',
-                          name: 'dd'
-                        }
-                      }
+                          name: 'dd',
+                        },
+                      },
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'bb'
-                    }
-                  }
+                      name: 'bb',
+                    },
+                  },
                 ],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'A'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'A',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -4674,30 +4674,30 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'Component'
+                      name: 'Component',
                     },
                     attributes: [
                       {
                         type: 'JSXSpreadAttribute',
                         argument: {
                           type: 'Identifier',
-                          name: 'props'
-                        }
-                      }
+                          name: 'props',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'component'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'component',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       `class SayHello extends React.Component {
@@ -4728,19 +4728,19 @@ describe('Miscellaneous - JSX', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'SayHello'
+              name: 'SayHello',
             },
             superClass: {
               type: 'MemberExpression',
               object: {
                 type: 'Identifier',
-                name: 'React'
+                name: 'React',
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'Component'
-              }
+                name: 'Component',
+              },
             },
             body: {
               type: 'ClassBody',
@@ -4752,15 +4752,15 @@ describe('Miscellaneous - JSX', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'props'
-                      }
+                        name: 'props',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
@@ -4770,15 +4770,15 @@ describe('Miscellaneous - JSX', () => {
                           expression: {
                             type: 'CallExpression',
                             callee: {
-                              type: 'Super'
+                              type: 'Super',
                             },
                             arguments: [
                               {
                                 type: 'Identifier',
-                                name: 'props'
-                              }
-                            ]
-                          }
+                                name: 'props',
+                              },
+                            ],
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
@@ -4787,13 +4787,13 @@ describe('Miscellaneous - JSX', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'state'
-                              }
+                                name: 'state',
+                              },
                             },
                             operator: '=',
                             right: {
@@ -4803,20 +4803,20 @@ describe('Miscellaneous - JSX', () => {
                                   type: 'Property',
                                   key: {
                                     type: 'Identifier',
-                                    name: 'message'
+                                    name: 'message',
                                   },
                                   value: {
                                     type: 'Literal',
-                                    value: 'Hello!'
+                                    value: 'Hello!',
                                   },
                                   kind: 'init',
                                   computed: false,
                                   method: false,
-                                  shorthand: false
-                                }
-                              ]
-                            }
-                          }
+                                  shorthand: false,
+                                },
+                              ],
+                            },
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
@@ -4825,13 +4825,13 @@ describe('Miscellaneous - JSX', () => {
                             left: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'ThisExpression'
+                                type: 'ThisExpression',
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'handleClick'
-                              }
+                                name: 'handleClick',
+                              },
                             },
                             operator: '=',
                             right: {
@@ -4841,34 +4841,34 @@ describe('Miscellaneous - JSX', () => {
                                 object: {
                                   type: 'MemberExpression',
                                   object: {
-                                    type: 'ThisExpression'
+                                    type: 'ThisExpression',
                                   },
                                   computed: false,
                                   property: {
                                     type: 'Identifier',
-                                    name: 'handleClick'
-                                  }
+                                    name: 'handleClick',
+                                  },
                                 },
                                 computed: false,
                                 property: {
                                   type: 'Identifier',
-                                  name: 'bind'
-                                }
+                                  name: 'bind',
+                                },
                               },
                               arguments: [
                                 {
-                                  type: 'ThisExpression'
-                                }
-                              ]
-                            }
-                          }
-                        }
-                      ]
+                                  type: 'ThisExpression',
+                                },
+                              ],
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -4877,7 +4877,7 @@ describe('Miscellaneous - JSX', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'handleClick'
+                    name: 'handleClick',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -4891,7 +4891,7 @@ describe('Miscellaneous - JSX', () => {
                             type: 'CallExpression',
                             callee: {
                               type: 'Identifier',
-                              name: 'alert'
+                              name: 'alert',
                             },
                             arguments: [
                               {
@@ -4899,29 +4899,29 @@ describe('Miscellaneous - JSX', () => {
                                 object: {
                                   type: 'MemberExpression',
                                   object: {
-                                    type: 'ThisExpression'
+                                    type: 'ThisExpression',
                                   },
                                   computed: false,
                                   property: {
                                     type: 'Identifier',
-                                    name: 'state'
-                                  }
+                                    name: 'state',
+                                  },
                                 },
                                 computed: false,
                                 property: {
                                   type: 'Identifier',
-                                  name: 'message'
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      ]
+                                  name: 'message',
+                                },
+                              },
+                            ],
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
+                    id: null,
+                  },
                 },
                 {
                   type: 'MethodDefinition',
@@ -4930,7 +4930,7 @@ describe('Miscellaneous - JSX', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'render'
+                    name: 'render',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -4945,14 +4945,14 @@ describe('Miscellaneous - JSX', () => {
                             children: [
                               {
                                 type: 'JSXText',
-                                value: '\n            Say hello\n          '
-                              }
+                                value: '\n            Say hello\n          ',
+                              },
                             ],
                             openingElement: {
                               type: 'JSXOpeningElement',
                               name: {
                                 type: 'JSXIdentifier',
-                                name: 'button'
+                                name: 'button',
                               },
                               attributes: [
                                 {
@@ -4962,44 +4962,44 @@ describe('Miscellaneous - JSX', () => {
                                     expression: {
                                       type: 'MemberExpression',
                                       object: {
-                                        type: 'ThisExpression'
+                                        type: 'ThisExpression',
                                       },
                                       computed: false,
                                       property: {
                                         type: 'Identifier',
-                                        name: 'handleClick'
-                                      }
-                                    }
+                                        name: 'handleClick',
+                                      },
+                                    },
                                   },
                                   name: {
                                     type: 'JSXIdentifier',
-                                    name: 'onClick'
-                                  }
-                                }
+                                    name: 'onClick',
+                                  },
+                                },
                               ],
-                              selfClosing: false
+                              selfClosing: false,
                             },
                             closingElement: {
                               type: 'JSXClosingElement',
                               name: {
                                 type: 'JSXIdentifier',
-                                name: 'button'
-                              }
-                            }
-                          }
-                        }
-                      ]
+                                name: 'button',
+                              },
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '<a>{\r\n}</a>',
@@ -5011,35 +5011,35 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   expression: {
-                    type: 'JSXEmptyExpression'
+                    type: 'JSXEmptyExpression',
                   },
-                  type: 'JSXExpressionContainer'
-                }
+                  type: 'JSXExpressionContainer',
+                },
               ],
               closingElement: {
                 name: {
                   name: 'a',
-                  type: 'JSXIdentifier'
+                  type: 'JSXIdentifier',
                 },
-                type: 'JSXClosingElement'
+                type: 'JSXClosingElement',
               },
               openingElement: {
                 attributes: [],
                 name: {
                   name: 'a',
-                  type: 'JSXIdentifier'
+                  type: 'JSXIdentifier',
                 },
                 selfClosing: false,
-                type: 'JSXOpeningElement'
+                type: 'JSXOpeningElement',
               },
-              type: 'JSXElement'
+              type: 'JSXElement',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '<a>{/* this\nis\na\nmulti-line\ncomment */}</a>',
@@ -5051,35 +5051,35 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   expression: {
-                    type: 'JSXEmptyExpression'
+                    type: 'JSXEmptyExpression',
                   },
-                  type: 'JSXExpressionContainer'
-                }
+                  type: 'JSXExpressionContainer',
+                },
               ],
               closingElement: {
                 name: {
                   name: 'a',
-                  type: 'JSXIdentifier'
+                  type: 'JSXIdentifier',
                 },
-                type: 'JSXClosingElement'
+                type: 'JSXClosingElement',
               },
               openingElement: {
                 attributes: [],
                 name: {
                   name: 'a',
-                  type: 'JSXIdentifier'
+                  type: 'JSXIdentifier',
                 },
                 selfClosing: false,
-                type: 'JSXOpeningElement'
+                type: 'JSXOpeningElement',
               },
-              type: 'JSXElement'
+              type: 'JSXElement',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     /*[
       '<a>= == =</a>',
@@ -5135,16 +5135,16 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'this'
+                  name: 'this',
                 },
                 attributes: [],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '<Switch checkedChildren="开" unCheckedChildren={"关"} />',
@@ -5162,19 +5162,19 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'Switch'
+                  name: 'Switch',
                 },
                 attributes: [
                   {
                     type: 'JSXAttribute',
                     value: {
                       type: 'Literal',
-                      value: '开'
+                      value: '开',
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'checkedChildren'
-                    }
+                      name: 'checkedChildren',
+                    },
                   },
                   {
                     type: 'JSXAttribute',
@@ -5182,22 +5182,22 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXExpressionContainer',
                       expression: {
                         type: 'Literal',
-                        value: '关'
-                      }
+                        value: '关',
+                      },
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'unCheckedChildren'
-                    }
-                  }
+                      name: 'unCheckedChildren',
+                    },
+                  },
                 ],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '<a b="&notanentity;" />',
@@ -5215,28 +5215,28 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 attributes: [
                   {
                     type: 'JSXAttribute',
                     value: {
                       type: 'Literal',
-                      value: '&notanentity;'
+                      value: '&notanentity;',
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'b'
-                    }
-                  }
+                      name: 'b',
+                    },
+                  },
                 ],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       'let child = <img src={url} key="img" />;',
@@ -5258,7 +5258,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'img'
+                      name: 'img',
                     },
                     attributes: [
                       {
@@ -5267,39 +5267,39 @@ describe('Miscellaneous - JSX', () => {
                           type: 'JSXExpressionContainer',
                           expression: {
                             type: 'Identifier',
-                            name: 'url'
-                          }
+                            name: 'url',
+                          },
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'src'
-                        }
+                          name: 'src',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'img'
+                          value: 'img',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'key'
-                        }
-                      }
+                          name: 'key',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'child'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'child',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '<img src="/cat.jpg" style={{ position: "absolute", left: mouse.x, top: mouse.y }} />',
@@ -5317,19 +5317,19 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'img'
+                  name: 'img',
                 },
                 attributes: [
                   {
                     type: 'JSXAttribute',
                     value: {
                       type: 'Literal',
-                      value: '/cat.jpg'
+                      value: '/cat.jpg',
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'src'
-                    }
+                      name: 'src',
+                    },
                   },
                   {
                     type: 'JSXAttribute',
@@ -5342,79 +5342,79 @@ describe('Miscellaneous - JSX', () => {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'position'
+                              name: 'position',
                             },
                             value: {
                               type: 'Literal',
-                              value: 'absolute'
+                              value: 'absolute',
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: false
+                            shorthand: false,
                           },
                           {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'left'
+                              name: 'left',
                             },
                             value: {
                               type: 'MemberExpression',
                               object: {
                                 type: 'Identifier',
-                                name: 'mouse'
+                                name: 'mouse',
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'x'
-                              }
+                                name: 'x',
+                              },
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: false
+                            shorthand: false,
                           },
                           {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'top'
+                              name: 'top',
                             },
                             value: {
                               type: 'MemberExpression',
                               object: {
                                 type: 'Identifier',
-                                name: 'mouse'
+                                name: 'mouse',
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'y'
-                              }
+                                name: 'y',
+                              },
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: false
-                          }
-                        ]
-                      }
+                            shorthand: false,
+                          },
+                        ],
+                      },
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'style'
-                    }
-                  }
+                      name: 'style',
+                    },
+                  },
                 ],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '<Component {...{...props, y: 1 }} />',
@@ -5432,7 +5432,7 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'Component'
+                  name: 'Component',
                 },
                 attributes: [
                   {
@@ -5444,35 +5444,35 @@ describe('Miscellaneous - JSX', () => {
                           type: 'SpreadElement',
                           argument: {
                             type: 'Identifier',
-                            name: 'props'
-                          }
+                            name: 'props',
+                          },
                         },
                         {
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'y'
+                            name: 'y',
                           },
                           value: {
                             type: 'Literal',
-                            value: 1
+                            value: 1,
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: false
-                        }
-                      ]
-                    }
-                  }
+                          shorthand: false,
+                        },
+                      ],
+                    },
+                  },
                 ],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '<Component {...props} y={1} />',
@@ -5490,15 +5490,15 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'Component'
+                  name: 'Component',
                 },
                 attributes: [
                   {
                     type: 'JSXSpreadAttribute',
                     argument: {
                       type: 'Identifier',
-                      name: 'props'
-                    }
+                      name: 'props',
+                    },
                   },
                   {
                     type: 'JSXAttribute',
@@ -5506,22 +5506,22 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXExpressionContainer',
                       expression: {
                         type: 'Literal',
-                        value: 1
-                      }
+                        value: 1,
+                      },
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'y'
-                    }
-                  }
+                      name: 'y',
+                    },
+                  },
                 ],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       `var div = (
@@ -5546,7 +5546,7 @@ describe('Miscellaneous - JSX', () => {
                   children: [
                     {
                       type: 'JSXText',
-                      value: '\n        '
+                      value: '\n        ',
                     },
                     {
                       type: 'JSXElement',
@@ -5555,28 +5555,28 @@ describe('Miscellaneous - JSX', () => {
                         type: 'JSXOpeningElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'img'
+                          name: 'img',
                         },
                         attributes: [
                           {
                             type: 'JSXAttribute',
                             value: {
                               type: 'Literal',
-                              value: 'foo.gif'
+                              value: 'foo.gif',
                             },
                             name: {
                               type: 'JSXIdentifier',
-                              name: 'src'
-                            }
-                          }
+                              name: 'src',
+                            },
+                          },
                         ],
-                        selfClosing: true
+                        selfClosing: true,
                       },
-                      closingElement: null
+                      closingElement: null,
                     },
                     {
                       type: 'JSXText',
-                      value: '\n        '
+                      value: '\n        ',
                     },
                     {
                       type: 'JSXElement',
@@ -5585,68 +5585,68 @@ describe('Miscellaneous - JSX', () => {
                         type: 'JSXOpeningElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'img'
+                          name: 'img',
                         },
                         attributes: [
                           {
                             type: 'JSXAttribute',
                             value: {
                               type: 'Literal',
-                              value: 'bar.gif'
+                              value: 'bar.gif',
                             },
                             name: {
                               type: 'JSXIdentifier',
-                              name: 'src'
-                            }
-                          }
+                              name: 'src',
+                            },
+                          },
                         ],
-                        selfClosing: true
+                        selfClosing: true,
                       },
-                      closingElement: null
+                      closingElement: null,
                     },
                     {
                       type: 'JSXText',
-                      value: '\n      '
-                    }
+                      value: '\n      ',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'foo'
+                          value: 'foo',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'className'
-                        }
-                      }
+                          name: 'className',
+                        },
+                      },
                     ],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
-                    }
-                  }
+                      name: 'div',
+                    },
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'div'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       `<h1>
@@ -5665,40 +5665,40 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: '\n     Hello '
+                  value: '\n     Hello ',
                 },
                 {
                   type: 'JSXExpressionContainer',
                   expression: {
                     type: 'Identifier',
-                    name: 'name'
-                  }
+                    name: 'name',
+                  },
                 },
                 {
                   type: 'JSXText',
-                  value: '\n     !\n   '
-                }
+                  value: '\n     !\n   ',
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'h1'
+                  name: 'h1',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'h1'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'h1',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `var div = (
@@ -5722,7 +5722,7 @@ describe('Miscellaneous - JSX', () => {
                   children: [
                     {
                       type: 'JSXText',
-                      value: '\n        '
+                      value: '\n        ',
                     },
                     {
                       type: 'JSXExpressionContainer',
@@ -5732,13 +5732,13 @@ describe('Miscellaneous - JSX', () => {
                           type: 'MemberExpression',
                           object: {
                             type: 'Identifier',
-                            name: 'images'
+                            name: 'images',
                           },
                           computed: false,
                           property: {
                             type: 'Identifier',
-                            name: 'map'
-                          }
+                            name: 'map',
+                          },
                         },
                         arguments: [
                           {
@@ -5751,7 +5751,7 @@ describe('Miscellaneous - JSX', () => {
                                 type: 'JSXOpeningElement',
                                 name: {
                                   type: 'JSXIdentifier',
-                                  name: 'img'
+                                  name: 'img',
                                 },
                                 attributes: [
                                   {
@@ -5760,62 +5760,62 @@ describe('Miscellaneous - JSX', () => {
                                       type: 'JSXExpressionContainer',
                                       expression: {
                                         type: 'Identifier',
-                                        name: 'src'
-                                      }
+                                        name: 'src',
+                                      },
                                     },
                                     name: {
                                       type: 'JSXIdentifier',
-                                      name: 'src'
-                                    }
-                                  }
+                                      name: 'src',
+                                    },
+                                  },
                                 ],
-                                selfClosing: true
+                                selfClosing: true,
                               },
-                              closingElement: null
+                              closingElement: null,
                             },
                             params: [
                               {
                                 type: 'Identifier',
-                                name: 'src'
-                              }
+                                name: 'src',
+                              },
                             ],
                             async: false,
-                            expression: true
-                          }
-                        ]
-                      }
+                            expression: true,
+                          },
+                        ],
+                      },
                     },
                     {
                       type: 'JSXText',
-                      value: '\n      '
-                    }
+                      value: '\n      ',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
-                    }
-                  }
+                      name: 'div',
+                    },
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'div'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '<div {...c}> {...children}{a}{...b}</div>',
@@ -5831,58 +5831,58 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: ' '
+                  value: ' ',
                 },
                 {
                   type: 'JSXSpreadChild',
                   expression: {
                     type: 'Identifier',
-                    name: 'children'
-                  }
+                    name: 'children',
+                  },
                 },
                 {
                   type: 'JSXExpressionContainer',
                   expression: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
+                    name: 'a',
+                  },
                 },
                 {
                   type: 'JSXSpreadChild',
                   expression: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                }
+                    name: 'b',
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [
                   {
                     type: 'JSXSpreadAttribute',
                     argument: {
                       type: 'Identifier',
-                      name: 'c'
-                    }
-                  }
+                      name: 'c',
+                    },
+                  },
                 ],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'function* test() { yield <Hey />;    }',
@@ -5908,27 +5908,27 @@ describe('Miscellaneous - JSX', () => {
                         type: 'JSXOpeningElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'Hey'
+                          name: 'Hey',
                         },
                         attributes: [],
-                        selfClosing: true
+                        selfClosing: true,
                       },
-                      closingElement: null
+                      closingElement: null,
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
             id: {
               type: 'Identifier',
-              name: 'test'
-            }
-          }
-        ]
-      }
+              name: 'test',
+            },
+          },
+        ],
+      },
     ],
     [
       'function* test() { yield (<Hey />); }',
@@ -5954,27 +5954,27 @@ describe('Miscellaneous - JSX', () => {
                         type: 'JSXOpeningElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'Hey'
+                          name: 'Hey',
                         },
                         attributes: [],
-                        selfClosing: true
+                        selfClosing: true,
                       },
-                      closingElement: null
+                      closingElement: null,
                     },
-                    delegate: false
-                  }
-                }
-              ]
+                    delegate: false,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
             id: {
               type: 'Identifier',
-              name: 'test'
-            }
-          }
-        ]
-      }
+              name: 'test',
+            },
+          },
+        ],
+      },
     ],
     [
       '<div {...c}> {...children}{a}{...b}</div>',
@@ -5990,58 +5990,58 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: ' '
+                  value: ' ',
                 },
                 {
                   type: 'JSXSpreadChild',
                   expression: {
                     type: 'Identifier',
-                    name: 'children'
-                  }
+                    name: 'children',
+                  },
                 },
                 {
                   type: 'JSXExpressionContainer',
                   expression: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
+                    name: 'a',
+                  },
                 },
                 {
                   type: 'JSXSpreadChild',
                   expression: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                }
+                    name: 'b',
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [
                   {
                     type: 'JSXSpreadAttribute',
                     argument: {
                       type: 'Identifier',
-                      name: 'c'
-                    }
-                  }
+                      name: 'c',
+                    },
+                  },
                 ],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'function Meet({name = "world"}) { return <div>Hello, {name}</div>; }',
@@ -6061,25 +6061,25 @@ describe('Miscellaneous - JSX', () => {
                     kind: 'init',
                     key: {
                       type: 'Identifier',
-                      name: 'name'
+                      name: 'name',
                     },
                     computed: false,
                     value: {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'name'
+                        name: 'name',
                       },
                       right: {
                         type: 'Literal',
-                        value: 'world'
-                      }
+                        value: 'world',
+                      },
                     },
                     method: false,
-                    shorthand: true
-                  }
-                ]
-              }
+                    shorthand: true,
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -6091,45 +6091,45 @@ describe('Miscellaneous - JSX', () => {
                     children: [
                       {
                         type: 'JSXText',
-                        value: 'Hello, '
+                        value: 'Hello, ',
                       },
                       {
                         type: 'JSXExpressionContainer',
                         expression: {
                           type: 'Identifier',
-                          name: 'name'
-                        }
-                      }
+                          name: 'name',
+                        },
+                      },
                     ],
                     openingElement: {
                       type: 'JSXOpeningElement',
                       name: {
                         type: 'JSXIdentifier',
-                        name: 'div'
+                        name: 'div',
                       },
                       attributes: [],
-                      selfClosing: false
+                      selfClosing: false,
                     },
                     closingElement: {
                       type: 'JSXClosingElement',
                       name: {
                         type: 'JSXIdentifier',
-                        name: 'div'
-                      }
-                    }
-                  }
-                }
-              ]
+                        name: 'div',
+                      },
+                    },
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
             id: {
               type: 'Identifier',
-              name: 'Meet'
-            }
-          }
-        ]
-      }
+              name: 'Meet',
+            },
+          },
+        ],
+      },
     ],
     [
       'const d1 = <TestingOneThing y1 extra-data />;',
@@ -6151,7 +6151,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'TestingOneThing'
+                      name: 'TestingOneThing',
                     },
                     attributes: [
                       {
@@ -6159,31 +6159,31 @@ describe('Miscellaneous - JSX', () => {
                         value: null,
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'y1'
-                        }
+                          name: 'y1',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
                         value: null,
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'extra-data'
-                        }
-                      }
+                          name: 'extra-data',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'd1'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'd1',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'const d2 = <TestingOneThing extra-data="hello" />;',
@@ -6205,34 +6205,34 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'TestingOneThing'
+                      name: 'TestingOneThing',
                     },
                     attributes: [
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'hello'
+                          value: 'hello',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'extra-data'
-                        }
-                      }
+                          name: 'extra-data',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'd2'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'd2',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '<a b={x ? <c /> : <d />} />',
@@ -6250,7 +6250,7 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 attributes: [
                   {
@@ -6261,7 +6261,7 @@ describe('Miscellaneous - JSX', () => {
                         type: 'ConditionalExpression',
                         test: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         consequent: {
                           type: 'JSXElement',
@@ -6270,12 +6270,12 @@ describe('Miscellaneous - JSX', () => {
                             type: 'JSXOpeningElement',
                             name: {
                               type: 'JSXIdentifier',
-                              name: 'c'
+                              name: 'c',
                             },
                             attributes: [],
-                            selfClosing: true
+                            selfClosing: true,
                           },
-                          closingElement: null
+                          closingElement: null,
                         },
                         alternate: {
                           type: 'JSXElement',
@@ -6284,28 +6284,28 @@ describe('Miscellaneous - JSX', () => {
                             type: 'JSXOpeningElement',
                             name: {
                               type: 'JSXIdentifier',
-                              name: 'd'
+                              name: 'd',
                             },
                             attributes: [],
-                            selfClosing: true
+                            selfClosing: true,
                           },
-                          closingElement: null
-                        }
-                      }
+                          closingElement: null,
+                        },
+                      },
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'b'
-                    }
-                  }
+                      name: 'b',
+                    },
+                  },
                 ],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '<Test {...{a: "foo"}} {...{b: 123}} />;',
@@ -6323,7 +6323,7 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'Test'
+                  name: 'Test',
                 },
                 attributes: [
                   {
@@ -6335,19 +6335,19 @@ describe('Miscellaneous - JSX', () => {
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           value: {
                             type: 'Literal',
-                            value: 'foo'
+                            value: 'foo',
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: false
-                        }
-                      ]
-                    }
+                          shorthand: false,
+                        },
+                      ],
+                    },
                   },
                   {
                     type: 'JSXSpreadAttribute',
@@ -6358,28 +6358,28 @@ describe('Miscellaneous - JSX', () => {
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'b'
+                            name: 'b',
                           },
                           value: {
                             type: 'Literal',
-                            value: 123
+                            value: 123,
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: false
-                        }
-                      ]
-                    }
-                  }
+                          shorthand: false,
+                        },
+                      ],
+                    },
+                  },
                 ],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       `ReactDOM.render(
@@ -6399,13 +6399,13 @@ describe('Miscellaneous - JSX', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'ReactDOM'
+                  name: 'ReactDOM',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'render'
-                }
+                  name: 'render',
+                },
               },
               arguments: [
                 {
@@ -6415,19 +6415,19 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'CommentBox'
+                      name: 'CommentBox',
                     },
                     attributes: [
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: '/api/comments'
+                          value: '/api/comments',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'url'
-                        }
+                          name: 'url',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
@@ -6435,18 +6435,18 @@ describe('Miscellaneous - JSX', () => {
                           type: 'JSXExpressionContainer',
                           expression: {
                             type: 'Literal',
-                            value: 2000
-                          }
+                            value: 2000,
+                          },
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'pollInterval'
-                        }
-                      }
+                          name: 'pollInterval',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 {
                   type: 'CallExpression',
@@ -6454,26 +6454,26 @@ describe('Miscellaneous - JSX', () => {
                     type: 'MemberExpression',
                     object: {
                       type: 'Identifier',
-                      name: 'document'
+                      name: 'document',
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'getElementById'
-                    }
+                      name: 'getElementById',
+                    },
                   },
                   arguments: [
                     {
                       type: 'Literal',
-                      value: 'content'
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      value: 'content',
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '<div>{0}</div>;',
@@ -6491,30 +6491,30 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXExpressionContainer',
                   expression: {
                     type: 'Literal',
-                    value: 0
-                  }
-                }
+                    value: 0,
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(<div />) < x;',
@@ -6534,22 +6534,22 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXOpeningElement',
                   name: {
                     type: 'JSXIdentifier',
-                    name: 'div'
+                    name: 'div',
                   },
                   attributes: [],
-                  selfClosing: true
+                  selfClosing: true,
                 },
-                closingElement: null
+                closingElement: null,
               },
               right: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
-              operator: '<'
-            }
-          }
-        ]
-      }
+              operator: '<',
+            },
+          },
+        ],
+      },
     ],
     [
       '<div>{() => (<div text="wat" />)}</div>',
@@ -6575,51 +6575,51 @@ describe('Miscellaneous - JSX', () => {
                         type: 'JSXOpeningElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'div'
+                          name: 'div',
                         },
                         attributes: [
                           {
                             type: 'JSXAttribute',
                             value: {
                               type: 'Literal',
-                              value: 'wat'
+                              value: 'wat',
                             },
                             name: {
                               type: 'JSXIdentifier',
-                              name: 'text'
-                            }
-                          }
+                              name: 'text',
+                            },
+                          },
                         ],
-                        selfClosing: true
+                        selfClosing: true,
                       },
-                      closingElement: null
+                      closingElement: null,
                     },
                     params: [],
                     async: false,
-                    expression: true
-                  }
-                }
+                    expression: true,
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '<a />;',
@@ -6637,16 +6637,16 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 attributes: [],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       'const c2 = <OneThing yy={100}  yy1="hello"/>;',
@@ -6668,7 +6668,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'OneThing'
+                      name: 'OneThing',
                     },
                     attributes: [
                       {
@@ -6677,39 +6677,39 @@ describe('Miscellaneous - JSX', () => {
                           type: 'JSXExpressionContainer',
                           expression: {
                             type: 'Literal',
-                            value: 100
-                          }
+                            value: 100,
+                          },
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'yy'
-                        }
+                          name: 'yy',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'hello'
+                          value: 'hello',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'yy1'
-                        }
-                      }
+                          name: 'yy1',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'c2'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'c2',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'const c3 = <OneThing yxx="hello" ignore-prop />',
@@ -6731,42 +6731,42 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'OneThing'
+                      name: 'OneThing',
                     },
                     attributes: [
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'hello'
+                          value: 'hello',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'yxx'
-                        }
+                          name: 'yxx',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
                         value: null,
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'ignore-prop'
-                        }
-                      }
+                          name: 'ignore-prop',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'c3'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'c3',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'const d3 = <TestingOneThing extra-data="hello" yy="hihi" />',
@@ -6788,45 +6788,45 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'TestingOneThing'
+                      name: 'TestingOneThing',
                     },
                     attributes: [
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'hello'
+                          value: 'hello',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'extra-data'
-                        }
+                          name: 'extra-data',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'hihi'
+                          value: 'hihi',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'yy'
-                        }
-                      }
+                          name: 'yy',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'd3'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'd3',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'const d4 = <TestingOneThing extra-data="hello" yy={9} direction={10} />',
@@ -6848,19 +6848,19 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'TestingOneThing'
+                      name: 'TestingOneThing',
                     },
                     attributes: [
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'hello'
+                          value: 'hello',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'extra-data'
-                        }
+                          name: 'extra-data',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
@@ -6868,13 +6868,13 @@ describe('Miscellaneous - JSX', () => {
                           type: 'JSXExpressionContainer',
                           expression: {
                             type: 'Literal',
-                            value: 9
-                          }
+                            value: 9,
+                          },
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'yy'
-                        }
+                          name: 'yy',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
@@ -6882,28 +6882,28 @@ describe('Miscellaneous - JSX', () => {
                           type: 'JSXExpressionContainer',
                           expression: {
                             type: 'Literal',
-                            value: 10
-                          }
+                            value: 10,
+                          },
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'direction'
-                        }
-                      }
+                          name: 'direction',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'd4'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'd4',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'const d5 = <TestingOneThing extra-data="hello" yy="hello" name="Bob" />',
@@ -6925,56 +6925,56 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'TestingOneThing'
+                      name: 'TestingOneThing',
                     },
                     attributes: [
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'hello'
+                          value: 'hello',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'extra-data'
-                        }
+                          name: 'extra-data',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'hello'
+                          value: 'hello',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'yy'
-                        }
+                          name: 'yy',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'Bob'
+                          value: 'Bob',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'name'
-                        }
-                      }
+                          name: 'name',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'd5'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'd5',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'const e3 = <TestingOptional y1="hello"/>',
@@ -6996,34 +6996,34 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'TestingOptional'
+                      name: 'TestingOptional',
                     },
                     attributes: [
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'hello'
+                          value: 'hello',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'y1'
-                        }
-                      }
+                          name: 'y1',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'e3'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'e3',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'const e4 = <TestingOptional y1="hello" y2={1000} />',
@@ -7045,19 +7045,19 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'TestingOptional'
+                      name: 'TestingOptional',
                     },
                     attributes: [
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'hello'
+                          value: 'hello',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'y1'
-                        }
+                          name: 'y1',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
@@ -7065,28 +7065,28 @@ describe('Miscellaneous - JSX', () => {
                           type: 'JSXExpressionContainer',
                           expression: {
                             type: 'Literal',
-                            value: 1000
-                          }
+                            value: 1000,
+                          },
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'y2'
-                        }
-                      }
+                          name: 'y2',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'e4'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'e4',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'const e5 = <TestingOptional y1 y3/>',
@@ -7108,7 +7108,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'TestingOptional'
+                      name: 'TestingOptional',
                     },
                     attributes: [
                       {
@@ -7116,31 +7116,31 @@ describe('Miscellaneous - JSX', () => {
                         value: null,
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'y1'
-                        }
+                          name: 'y1',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
                         value: null,
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'y3'
-                        }
-                      }
+                          name: 'y3',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'e5'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'e5',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'const e6 = <TestingOptional y1 y3 y2={10} />',
@@ -7162,7 +7162,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'TestingOptional'
+                      name: 'TestingOptional',
                     },
                     attributes: [
                       {
@@ -7170,16 +7170,16 @@ describe('Miscellaneous - JSX', () => {
                         value: null,
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'y1'
-                        }
+                          name: 'y1',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
                         value: null,
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'y3'
-                        }
+                          name: 'y3',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
@@ -7187,28 +7187,28 @@ describe('Miscellaneous - JSX', () => {
                           type: 'JSXExpressionContainer',
                           expression: {
                             type: 'Literal',
-                            value: 10
-                          }
+                            value: 10,
+                          },
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'y2'
-                        }
-                      }
+                          name: 'y2',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'e6'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'e6',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'const e2 = <TestingOptional y1 y3 extra-prop/>',
@@ -7230,7 +7230,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'TestingOptional'
+                      name: 'TestingOptional',
                     },
                     attributes: [
                       {
@@ -7238,39 +7238,39 @@ describe('Miscellaneous - JSX', () => {
                         value: null,
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'y1'
-                        }
+                          name: 'y1',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
                         value: null,
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'y3'
-                        }
+                          name: 'y3',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
                         value: null,
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'extra-prop'
-                        }
-                      }
+                          name: 'extra-prop',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'e2'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'e2',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'let k3 = <Comp a={10} b="hi"><Button /><AnotherButton /></Comp>',
@@ -7295,12 +7295,12 @@ describe('Miscellaneous - JSX', () => {
                         type: 'JSXOpeningElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'Button'
+                          name: 'Button',
                         },
                         attributes: [],
-                        selfClosing: true
+                        selfClosing: true,
                       },
-                      closingElement: null
+                      closingElement: null,
                     },
                     {
                       type: 'JSXElement',
@@ -7309,19 +7309,19 @@ describe('Miscellaneous - JSX', () => {
                         type: 'JSXOpeningElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'AnotherButton'
+                          name: 'AnotherButton',
                         },
                         attributes: [],
-                        selfClosing: true
+                        selfClosing: true,
                       },
-                      closingElement: null
-                    }
+                      closingElement: null,
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'Comp'
+                      name: 'Comp',
                     },
                     attributes: [
                       {
@@ -7330,45 +7330,45 @@ describe('Miscellaneous - JSX', () => {
                           type: 'JSXExpressionContainer',
                           expression: {
                             type: 'Literal',
-                            value: 10
-                          }
+                            value: 10,
+                          },
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'a'
-                        }
+                          name: 'a',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'hi'
+                          value: 'hi',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'b'
-                        }
-                      }
+                          name: 'b',
+                        },
+                      },
                     ],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'Comp'
-                    }
-                  }
+                      name: 'Comp',
+                    },
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'k3'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'k3',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var selfClosed2 = <div x="1" />',
@@ -7390,34 +7390,34 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: '1'
+                          value: '1',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'x'
-                        }
-                      }
+                          name: 'x',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'selfClosed2'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'selfClosed2',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var selfClosed5 = <div x={0} y="0" />',
@@ -7439,7 +7439,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [
                       {
@@ -7448,39 +7448,39 @@ describe('Miscellaneous - JSX', () => {
                           type: 'JSXExpressionContainer',
                           expression: {
                             type: 'Literal',
-                            value: 0
-                          }
+                            value: 0,
+                          },
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: '0'
+                          value: '0',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'y'
-                        }
-                      }
+                          name: 'y',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'selfClosed5'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'selfClosed5',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var selfClosed6 = <div x={"1"} y="0" />',
@@ -7502,7 +7502,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [
                       {
@@ -7511,39 +7511,39 @@ describe('Miscellaneous - JSX', () => {
                           type: 'JSXExpressionContainer',
                           expression: {
                             type: 'Literal',
-                            value: '1'
-                          }
+                            value: '1',
+                          },
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: '0'
+                          value: '0',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'y'
-                        }
-                      }
+                          name: 'y',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'selfClosed6'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'selfClosed6',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var selfClosed7 = <div x={p} y="p" b />',
@@ -7565,7 +7565,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [
                       {
@@ -7574,47 +7574,47 @@ describe('Miscellaneous - JSX', () => {
                           type: 'JSXExpressionContainer',
                           expression: {
                             type: 'Identifier',
-                            name: 'p'
-                          }
+                            name: 'p',
+                          },
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'p'
+                          value: 'p',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'y'
-                        }
+                          name: 'y',
+                        },
                       },
                       {
                         type: 'JSXAttribute',
                         value: null,
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'b'
-                        }
-                      }
+                          name: 'b',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'selfClosed7'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'selfClosed7',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var openClosed4 = <div n="m">{p < p}</div>',
@@ -7638,54 +7638,54 @@ describe('Miscellaneous - JSX', () => {
                         type: 'BinaryExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'p'
+                          name: 'p',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'p'
+                          name: 'p',
                         },
-                        operator: '<'
-                      }
-                    }
+                        operator: '<',
+                      },
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'm'
+                          value: 'm',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'n'
-                        }
-                      }
+                          name: 'n',
+                        },
+                      },
                     ],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
-                    }
-                  }
+                      name: 'div',
+                    },
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'openClosed4'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'openClosed4',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var rewrites1 = <div>{() => this}</div>',
@@ -7709,40 +7709,40 @@ describe('Miscellaneous - JSX', () => {
                         type: 'ArrowFunctionExpression',
                         generator: false,
                         body: {
-                          type: 'ThisExpression'
+                          type: 'ThisExpression',
                         },
                         params: [],
                         async: false,
-                        expression: true
-                      }
-                    }
+                        expression: true,
+                      },
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
-                    }
-                  }
+                      name: 'div',
+                    },
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'rewrites1'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'rewrites1',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var rewrites2 = <div>{[p, ...p, p]}</div>',
@@ -7767,49 +7767,49 @@ describe('Miscellaneous - JSX', () => {
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'p'
+                            name: 'p',
                           },
                           {
                             type: 'SpreadElement',
                             argument: {
                               type: 'Identifier',
-                              name: 'p'
-                            }
+                              name: 'p',
+                            },
                           },
                           {
                             type: 'Identifier',
-                            name: 'p'
-                          }
-                        ]
-                      }
-                    }
+                            name: 'p',
+                          },
+                        ],
+                      },
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
-                    }
-                  }
+                      name: 'div',
+                    },
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'rewrites2'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'rewrites2',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var rewrites3 = <div>{{p}}</div>',
@@ -7836,47 +7836,47 @@ describe('Miscellaneous - JSX', () => {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'p'
+                              name: 'p',
                             },
                             value: {
                               type: 'Identifier',
-                              name: 'p'
+                              name: 'p',
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: true
-                          }
-                        ]
-                      }
-                    }
+                            shorthand: true,
+                          },
+                        ],
+                      },
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
-                    }
-                  }
+                      name: 'div',
+                    },
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'rewrites3'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'rewrites3',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var rewrites4 = <div a={() => this}></div>',
@@ -7903,7 +7903,7 @@ describe('Miscellaneous - JSX', () => {
                   start: 4,
                   end: 13,
                   range: [4, 13],
-                  name: 'rewrites4'
+                  name: 'rewrites4',
                 },
                 init: {
                   type: 'JSXElement',
@@ -7926,7 +7926,7 @@ describe('Miscellaneous - JSX', () => {
                           start: 21,
                           end: 22,
                           range: [21, 22],
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'JSXExpressionContainer',
@@ -7946,20 +7946,20 @@ describe('Miscellaneous - JSX', () => {
                               type: 'ThisExpression',
                               start: 30,
                               end: 34,
-                              range: [30, 34]
-                            }
-                          }
-                        }
-                      }
+                              range: [30, 34],
+                            },
+                          },
+                        },
+                      },
                     ],
                     name: {
                       type: 'JSXIdentifier',
                       start: 17,
                       end: 20,
                       range: [17, 20],
-                      name: 'div'
+                      name: 'div',
                     },
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
@@ -7971,18 +7971,18 @@ describe('Miscellaneous - JSX', () => {
                       start: 38,
                       end: 41,
                       range: [38, 41],
-                      name: 'div'
-                    }
+                      name: 'div',
+                    },
                   },
-                  children: []
-                }
-              }
+                  children: [],
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var rewrites5 = <div a={[p, ...p, p]}></div>',
@@ -8004,7 +8004,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [
                       {
@@ -8016,47 +8016,47 @@ describe('Miscellaneous - JSX', () => {
                             elements: [
                               {
                                 type: 'Identifier',
-                                name: 'p'
+                                name: 'p',
                               },
                               {
                                 type: 'SpreadElement',
                                 argument: {
                                   type: 'Identifier',
-                                  name: 'p'
-                                }
+                                  name: 'p',
+                                },
                               },
                               {
                                 type: 'Identifier',
-                                name: 'p'
-                              }
-                            ]
-                          }
+                                name: 'p',
+                              },
+                            ],
+                          },
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'a'
-                        }
-                      }
+                          name: 'a',
+                        },
+                      },
                     ],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
-                    }
-                  }
+                      name: 'div',
+                    },
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'rewrites5'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'rewrites5',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var rewrites6 = <div a={{p}}></div>',
@@ -8083,7 +8083,7 @@ describe('Miscellaneous - JSX', () => {
                   start: 4,
                   end: 13,
                   range: [4, 13],
-                  name: 'rewrites6'
+                  name: 'rewrites6',
                 },
                 init: {
                   type: 'JSXElement',
@@ -8106,7 +8106,7 @@ describe('Miscellaneous - JSX', () => {
                           start: 21,
                           end: 22,
                           range: [21, 22],
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'JSXExpressionContainer',
@@ -8132,7 +8132,7 @@ describe('Miscellaneous - JSX', () => {
                                   start: 25,
                                   end: 26,
                                   range: [25, 26],
-                                  name: 'p'
+                                  name: 'p',
                                 },
                                 kind: 'init',
                                 value: {
@@ -8140,22 +8140,22 @@ describe('Miscellaneous - JSX', () => {
                                   start: 25,
                                   end: 26,
                                   range: [25, 26],
-                                  name: 'p'
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
+                                  name: 'p',
+                                },
+                              },
+                            ],
+                          },
+                        },
+                      },
                     ],
                     name: {
                       type: 'JSXIdentifier',
                       start: 17,
                       end: 20,
                       range: [17, 20],
-                      name: 'div'
+                      name: 'div',
                     },
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
@@ -8167,18 +8167,18 @@ describe('Miscellaneous - JSX', () => {
                       start: 31,
                       end: 34,
                       range: [31, 34],
-                      name: 'div'
-                    }
+                      name: 'div',
+                    },
                   },
-                  children: []
-                }
-              }
+                  children: [],
+                },
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'var whitespace1 = <div>      </div>',
@@ -8198,35 +8198,35 @@ describe('Miscellaneous - JSX', () => {
                   children: [
                     {
                       type: 'JSXText',
-                      value: '      '
-                    }
+                      value: '      ',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
-                    }
-                  }
+                      name: 'div',
+                    },
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'whitespace1'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'whitespace1',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var whitespace2 = <div>  {p}    </div>',
@@ -8246,46 +8246,46 @@ describe('Miscellaneous - JSX', () => {
                   children: [
                     {
                       type: 'JSXText',
-                      value: '  '
+                      value: '  ',
                     },
                     {
                       type: 'JSXExpressionContainer',
                       expression: {
                         type: 'Identifier',
-                        name: 'p'
-                      }
+                        name: 'p',
+                      },
                     },
                     {
                       type: 'JSXText',
-                      value: '    '
-                    }
+                      value: '    ',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
-                    }
-                  }
+                      name: 'div',
+                    },
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'whitespace2'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'whitespace2',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'const Tag = (x) => <div></div>',
@@ -8310,37 +8310,37 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXOpeningElement',
                       name: {
                         type: 'JSXIdentifier',
-                        name: 'div'
+                        name: 'div',
                       },
                       attributes: [],
-                      selfClosing: false
+                      selfClosing: false,
                     },
                     closingElement: {
                       type: 'JSXClosingElement',
                       name: {
                         type: 'JSXIdentifier',
-                        name: 'div'
-                      }
-                    }
+                        name: 'div',
+                      },
+                    },
                   },
                   params: [
                     {
                       type: 'Identifier',
-                      name: 'x'
-                    }
+                      name: 'x',
+                    },
                   ],
                   async: false,
-                  expression: true
+                  expression: true,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'Tag'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'Tag',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '<div>hi hi hi!</div>',
@@ -8356,29 +8356,29 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: 'hi hi hi!'
-                }
+                  value: 'hi hi hi!',
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'var m = <div x-y="val"></div>',
@@ -8400,40 +8400,40 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'val'
+                          value: 'val',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'x-y'
-                        }
-                      }
+                          name: 'x-y',
+                        },
+                      },
                     ],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
-                    }
-                  }
+                      name: 'div',
+                    },
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'm'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'm',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
 
     [
@@ -8456,40 +8456,40 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'val'
+                          value: 'val',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'x-yy'
-                        }
-                      }
+                          name: 'x-yy',
+                        },
+                      },
                     ],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
-                    }
-                  }
+                      name: 'div',
+                    },
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'o'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'o',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var p = <div xx-yy="val"></div>',
@@ -8511,40 +8511,40 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'val'
+                          value: 'val',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'xx-yy'
-                        }
-                      }
+                          name: 'xx-yy',
+                        },
+                      },
                     ],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
-                    }
-                  }
+                      name: 'div',
+                    },
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'p'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'p',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var e = <div xxxxx="val"></div>',
@@ -8566,40 +8566,40 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'val'
+                          value: 'val',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'xxxxx'
-                        }
-                      }
+                          name: 'xxxxx',
+                        },
+                      },
                     ],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
-                    }
-                  }
+                      name: 'div',
+                    },
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'e'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'e',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'const b3 = <MainButton {...{goTo:"home"}} extra />',
@@ -8621,7 +8621,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'MainButton'
+                      name: 'MainButton',
                     },
                     attributes: [
                       {
@@ -8633,42 +8633,42 @@ describe('Miscellaneous - JSX', () => {
                               type: 'Property',
                               key: {
                                 type: 'Identifier',
-                                name: 'goTo'
+                                name: 'goTo',
                               },
                               value: {
                                 type: 'Literal',
-                                value: 'home'
+                                value: 'home',
                               },
                               kind: 'init',
                               computed: false,
                               method: false,
-                              shorthand: false
-                            }
-                          ]
-                        }
+                              shorthand: false,
+                            },
+                          ],
+                        },
                       },
                       {
                         type: 'JSXAttribute',
                         value: null,
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'extra'
-                        }
-                      }
+                          name: 'extra',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'b3'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'b3',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'const c1 = <NoOverload  {...{onClick: (k) => {console.log(k)}}} extra />',
@@ -8690,7 +8690,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'NoOverload'
+                      name: 'NoOverload',
                     },
                     attributes: [
                       {
@@ -8702,7 +8702,7 @@ describe('Miscellaneous - JSX', () => {
                               type: 'Property',
                               key: {
                                 type: 'Identifier',
-                                name: 'onClick'
+                                name: 'onClick',
                               },
                               value: {
                                 type: 'ArrowFunctionExpression',
@@ -8718,63 +8718,63 @@ describe('Miscellaneous - JSX', () => {
                                           type: 'MemberExpression',
                                           object: {
                                             type: 'Identifier',
-                                            name: 'console'
+                                            name: 'console',
                                           },
                                           computed: false,
                                           property: {
                                             type: 'Identifier',
-                                            name: 'log'
-                                          }
+                                            name: 'log',
+                                          },
                                         },
                                         arguments: [
                                           {
                                             type: 'Identifier',
-                                            name: 'k'
-                                          }
-                                        ]
-                                      }
-                                    }
-                                  ]
+                                            name: 'k',
+                                          },
+                                        ],
+                                      },
+                                    },
+                                  ],
                                 },
                                 params: [
                                   {
                                     type: 'Identifier',
-                                    name: 'k'
-                                  }
+                                    name: 'k',
+                                  },
                                 ],
                                 async: false,
-                                expression: false
+                                expression: false,
                               },
                               kind: 'init',
                               computed: false,
                               method: false,
-                              shorthand: false
-                            }
-                          ]
-                        }
+                              shorthand: false,
+                            },
+                          ],
+                        },
                       },
                       {
                         type: 'JSXAttribute',
                         value: null,
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'extra'
-                        }
-                      }
+                          name: 'extra',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'c1'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'c1',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'const d1 = <NoOverload1 {...{goTo:"home"}} extra  />',
@@ -8796,7 +8796,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'NoOverload1'
+                      name: 'NoOverload1',
                     },
                     attributes: [
                       {
@@ -8808,42 +8808,42 @@ describe('Miscellaneous - JSX', () => {
                               type: 'Property',
                               key: {
                                 type: 'Identifier',
-                                name: 'goTo'
+                                name: 'goTo',
                               },
                               value: {
                                 type: 'Literal',
-                                value: 'home'
+                                value: 'home',
                               },
                               kind: 'init',
                               computed: false,
                               method: false,
-                              shorthand: false
-                            }
-                          ]
-                        }
+                              shorthand: false,
+                            },
+                          ],
+                        },
                       },
                       {
                         type: 'JSXAttribute',
                         value: null,
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'extra'
-                        }
-                      }
+                          name: 'extra',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'd1'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'd1',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'let k1 = <div> <h2> Hello </h2> <h1> world </h1></div>',
@@ -8863,89 +8863,89 @@ describe('Miscellaneous - JSX', () => {
                   children: [
                     {
                       type: 'JSXText',
-                      value: ' '
+                      value: ' ',
                     },
                     {
                       type: 'JSXElement',
                       children: [
                         {
                           type: 'JSXText',
-                          value: ' Hello '
-                        }
+                          value: ' Hello ',
+                        },
                       ],
                       openingElement: {
                         type: 'JSXOpeningElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'h2'
+                          name: 'h2',
                         },
                         attributes: [],
-                        selfClosing: false
+                        selfClosing: false,
                       },
                       closingElement: {
                         type: 'JSXClosingElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'h2'
-                        }
-                      }
+                          name: 'h2',
+                        },
+                      },
                     },
                     {
                       type: 'JSXText',
-                      value: ' '
+                      value: ' ',
                     },
                     {
                       type: 'JSXElement',
                       children: [
                         {
                           type: 'JSXText',
-                          value: ' world '
-                        }
+                          value: ' world ',
+                        },
                       ],
                       openingElement: {
                         type: 'JSXOpeningElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'h1'
+                          name: 'h1',
                         },
                         attributes: [],
-                        selfClosing: false
+                        selfClosing: false,
                       },
                       closingElement: {
                         type: 'JSXClosingElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'h1'
-                        }
-                      }
-                    }
+                          name: 'h1',
+                        },
+                      },
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
-                    }
-                  }
+                      name: 'div',
+                    },
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'k1'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'k1',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'let k3 = <div> {1} {"That is a number"} </div>',
@@ -8965,57 +8965,57 @@ describe('Miscellaneous - JSX', () => {
                   children: [
                     {
                       type: 'JSXText',
-                      value: ' '
+                      value: ' ',
                     },
                     {
                       type: 'JSXExpressionContainer',
                       expression: {
                         type: 'Literal',
-                        value: 1
-                      }
+                        value: 1,
+                      },
                     },
                     {
                       type: 'JSXText',
-                      value: ' '
+                      value: ' ',
                     },
                     {
                       type: 'JSXExpressionContainer',
                       expression: {
                         type: 'Literal',
-                        value: 'That is a number'
-                      }
+                        value: 'That is a number',
+                      },
                     },
                     {
                       type: 'JSXText',
-                      value: ' '
-                    }
+                      value: ' ',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
-                    }
-                  }
+                      name: 'div',
+                    },
+                  },
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'k3'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'k3',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '<LeftRight left=<a /> right=<b>monkeys</b> />',
@@ -9033,7 +9033,7 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'LeftRight'
+                  name: 'LeftRight',
                 },
                 attributes: [
                   {
@@ -9045,17 +9045,17 @@ describe('Miscellaneous - JSX', () => {
                         type: 'JSXOpeningElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         attributes: [],
-                        selfClosing: true
+                        selfClosing: true,
                       },
-                      closingElement: null
+                      closingElement: null,
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'left'
-                    }
+                      name: 'left',
+                    },
                   },
                   {
                     type: 'JSXAttribute',
@@ -9064,39 +9064,39 @@ describe('Miscellaneous - JSX', () => {
                       children: [
                         {
                           type: 'JSXText',
-                          value: 'monkeys'
-                        }
+                          value: 'monkeys',
+                        },
                       ],
                       openingElement: {
                         type: 'JSXOpeningElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         attributes: [],
-                        selfClosing: false
+                        selfClosing: false,
                       },
                       closingElement: {
                         type: 'JSXClosingElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'b'
-                        }
-                      }
+                          name: 'b',
+                        },
+                      },
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'right'
-                    }
-                  }
+                      name: 'right',
+                    },
+                  },
                 ],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '<america state=<usa.california></usa.california> />',
@@ -9114,7 +9114,7 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'america'
+                  name: 'america',
                 },
                 attributes: [
                   {
@@ -9128,15 +9128,15 @@ describe('Miscellaneous - JSX', () => {
                           type: 'JSXMemberExpression',
                           object: {
                             type: 'JSXIdentifier',
-                            name: 'usa'
+                            name: 'usa',
                           },
                           property: {
                             type: 'JSXIdentifier',
-                            name: 'california'
-                          }
+                            name: 'california',
+                          },
                         },
                         attributes: [],
-                        selfClosing: false
+                        selfClosing: false,
                       },
                       closingElement: {
                         type: 'JSXClosingElement',
@@ -9144,28 +9144,28 @@ describe('Miscellaneous - JSX', () => {
                           type: 'JSXMemberExpression',
                           object: {
                             type: 'JSXIdentifier',
-                            name: 'usa'
+                            name: 'usa',
                           },
                           property: {
                             type: 'JSXIdentifier',
-                            name: 'california'
-                          }
-                        }
-                      }
+                            name: 'california',
+                          },
+                        },
+                      },
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'state'
-                    }
-                  }
+                      name: 'state',
+                    },
+                  },
                 ],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '<america state=<a/> />',
@@ -9183,7 +9183,7 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'america'
+                  name: 'america',
                 },
                 attributes: [
                   {
@@ -9195,26 +9195,26 @@ describe('Miscellaneous - JSX', () => {
                         type: 'JSXOpeningElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         attributes: [],
-                        selfClosing: true
+                        selfClosing: true,
                       },
-                      closingElement: null
+                      closingElement: null,
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'state'
-                    }
-                  }
+                      name: 'state',
+                    },
+                  },
                 ],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '<div {...children}></div>',
@@ -9232,30 +9232,30 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [
                   {
                     type: 'JSXSpreadAttribute',
                     argument: {
                       type: 'Identifier',
-                      name: 'children'
-                    }
-                  }
+                      name: 'children',
+                    },
+                  },
                 ],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '<div {...a }>{...b}</div>',
@@ -9277,25 +9277,25 @@ describe('Miscellaneous - JSX', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 17
+                        column: 17,
                       },
                       end: {
                         line: 1,
-                        column: 18
-                      }
-                    }
+                        column: 18,
+                      },
+                    },
                   },
                   loc: {
                     start: {
                       line: 1,
-                      column: 13
+                      column: 13,
                     },
                     end: {
                       line: 1,
-                      column: 19
-                    }
-                  }
-                }
+                      column: 19,
+                    },
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
@@ -9305,13 +9305,13 @@ describe('Miscellaneous - JSX', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 1
+                      column: 1,
                     },
                     end: {
                       line: 1,
-                      column: 4
-                    }
-                  }
+                      column: 4,
+                    },
+                  },
                 },
                 attributes: [
                   {
@@ -9322,37 +9322,37 @@ describe('Miscellaneous - JSX', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 9
+                          column: 9,
                         },
                         end: {
                           line: 1,
-                          column: 10
-                        }
-                      }
+                          column: 10,
+                        },
+                      },
                     },
                     loc: {
                       start: {
                         line: 1,
-                        column: 5
+                        column: 5,
                       },
                       end: {
                         line: 1,
-                        column: 12
-                      }
-                    }
-                  }
+                        column: 12,
+                      },
+                    },
+                  },
                 ],
                 selfClosing: false,
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 13
-                  }
-                }
+                    column: 13,
+                  },
+                },
               },
               closingElement: {
                 type: 'JSXClosingElement',
@@ -9362,59 +9362,59 @@ describe('Miscellaneous - JSX', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 21
+                      column: 21,
                     },
                     end: {
                       line: 1,
-                      column: 24
-                    }
-                  }
+                      column: 24,
+                    },
+                  },
                 },
                 loc: {
                   start: {
                     line: 1,
-                    column: 19
+                    column: 19,
                   },
                   end: {
                     line: 1,
-                    column: 25
-                  }
-                }
+                    column: 25,
+                  },
+                },
               },
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 25
-                }
-              }
+                  column: 25,
+                },
+              },
             },
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 25
-              }
-            }
-          }
+                column: 25,
+              },
+            },
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 25
-          }
-        }
-      }
+            column: 25,
+          },
+        },
+      },
     ],
     [
       'let e1 = <EmptyProp {...{}} />',
@@ -9436,30 +9436,30 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'EmptyProp'
+                      name: 'EmptyProp',
                     },
                     attributes: [
                       {
                         type: 'JSXSpreadAttribute',
                         argument: {
                           type: 'ObjectExpression',
-                          properties: []
-                        }
-                      }
+                          properties: [],
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'e1'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'e1',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'let e2 = <EmptyProp {...j} />',
@@ -9481,30 +9481,30 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'EmptyProp'
+                      name: 'EmptyProp',
                     },
                     attributes: [
                       {
                         type: 'JSXSpreadAttribute',
                         argument: {
                           type: 'Identifier',
-                          name: 'j'
-                        }
-                      }
+                          name: 'j',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'e2'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'e2',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'let e5 = <EmptyProp {...{ "data-prop": true}} />',
@@ -9526,7 +9526,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'EmptyProp'
+                      name: 'EmptyProp',
                     },
                     attributes: [
                       {
@@ -9538,34 +9538,34 @@ describe('Miscellaneous - JSX', () => {
                               type: 'Property',
                               key: {
                                 type: 'Literal',
-                                value: 'data-prop'
+                                value: 'data-prop',
                               },
                               value: {
                                 type: 'Literal',
-                                value: true
+                                value: true,
                               },
                               kind: 'init',
                               computed: false,
                               method: false,
-                              shorthand: false
-                            }
-                          ]
-                        }
-                      }
+                              shorthand: false,
+                            },
+                          ],
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'e5'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'e5',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '<div>{() => <div text="wat" />}</div>',
@@ -9591,51 +9591,51 @@ describe('Miscellaneous - JSX', () => {
                         type: 'JSXOpeningElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'div'
+                          name: 'div',
                         },
                         attributes: [
                           {
                             type: 'JSXAttribute',
                             value: {
                               type: 'Literal',
-                              value: 'wat'
+                              value: 'wat',
                             },
                             name: {
                               type: 'JSXIdentifier',
-                              name: 'text'
-                            }
-                          }
+                              name: 'text',
+                            },
+                          },
                         ],
-                        selfClosing: true
+                        selfClosing: true,
                       },
-                      closingElement: null
+                      closingElement: null,
                     },
                     params: [],
                     async: false,
-                    expression: true
-                  }
-                }
+                    expression: true,
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '<Poisoned {...{x: "ok", y: "2"}} />',
@@ -9653,7 +9653,7 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'Poisoned'
+                  name: 'Poisoned',
                 },
                 attributes: [
                   {
@@ -9665,43 +9665,43 @@ describe('Miscellaneous - JSX', () => {
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           value: {
                             type: 'Literal',
-                            value: 'ok'
+                            value: 'ok',
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: false
+                          shorthand: false,
                         },
                         {
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'y'
+                            name: 'y',
                           },
                           value: {
                             type: 'Literal',
-                            value: '2'
+                            value: '2',
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: false
-                        }
-                      ]
-                    }
-                  }
+                          shorthand: false,
+                        },
+                      ],
+                    },
+                  },
                 ],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       'let w = <Poisoned {...{x: 5, y: "2"}}/>',
@@ -9723,7 +9723,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'Poisoned'
+                      name: 'Poisoned',
                     },
                     attributes: [
                       {
@@ -9735,49 +9735,49 @@ describe('Miscellaneous - JSX', () => {
                               type: 'Property',
                               key: {
                                 type: 'Identifier',
-                                name: 'x'
+                                name: 'x',
                               },
                               value: {
                                 type: 'Literal',
-                                value: 5
+                                value: 5,
                               },
                               kind: 'init',
                               computed: false,
                               method: false,
-                              shorthand: false
+                              shorthand: false,
                             },
                             {
                               type: 'Property',
                               key: {
                                 type: 'Identifier',
-                                name: 'y'
+                                name: 'y',
                               },
                               value: {
                                 type: 'Literal',
-                                value: '2'
+                                value: '2',
                               },
                               kind: 'init',
                               computed: false,
                               method: false,
-                              shorthand: false
-                            }
-                          ]
-                        }
-                      }
+                              shorthand: false,
+                            },
+                          ],
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'w'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'w',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'let w1 = <Poisoned {...{x: 5, y: "2"}} X="hi" />',
@@ -9799,7 +9799,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'Poisoned'
+                      name: 'Poisoned',
                     },
                     attributes: [
                       {
@@ -9811,60 +9811,60 @@ describe('Miscellaneous - JSX', () => {
                               type: 'Property',
                               key: {
                                 type: 'Identifier',
-                                name: 'x'
+                                name: 'x',
                               },
                               value: {
                                 type: 'Literal',
-                                value: 5
+                                value: 5,
                               },
                               kind: 'init',
                               computed: false,
                               method: false,
-                              shorthand: false
+                              shorthand: false,
                             },
                             {
                               type: 'Property',
                               key: {
                                 type: 'Identifier',
-                                name: 'y'
+                                name: 'y',
                               },
                               value: {
                                 type: 'Literal',
-                                value: '2'
+                                value: '2',
                               },
                               kind: 'init',
                               computed: false,
                               method: false,
-                              shorthand: false
-                            }
-                          ]
-                        }
+                              shorthand: false,
+                            },
+                          ],
+                        },
                       },
                       {
                         type: 'JSXAttribute',
                         value: {
                           type: 'Literal',
-                          value: 'hi'
+                          value: 'hi',
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'X'
-                        }
-                      }
+                          name: 'X',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'w1'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'w1',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '<div>\n</div>',
@@ -9876,33 +9876,33 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: '\n'
-                }
+                  value: '\n',
+                },
               ],
               closingElement: {
                 name: {
                   name: 'div',
-                  type: 'JSXIdentifier'
+                  type: 'JSXIdentifier',
                 },
-                type: 'JSXClosingElement'
+                type: 'JSXClosingElement',
               },
               openingElement: {
                 attributes: [],
                 name: {
                   name: 'div',
-                  type: 'JSXIdentifier'
+                  type: 'JSXIdentifier',
                 },
                 selfClosing: false,
-                type: 'JSXOpeningElement'
+                type: 'JSXOpeningElement',
               },
-              type: 'JSXElement'
+              type: 'JSXElement',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '<div attr="&#0123;&hellip;&#x7D;"></div>',
@@ -9920,34 +9920,34 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [
                   {
                     type: 'JSXAttribute',
                     value: {
                       type: 'Literal',
-                      value: '&#0123;&hellip;&#x7D;'
+                      value: '&#0123;&hellip;&#x7D;',
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'attr'
-                    }
-                  }
+                      name: 'attr',
+                    },
+                  },
                 ],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<div attr='"'></div>`,
@@ -9965,34 +9965,34 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [
                   {
                     type: 'JSXAttribute',
                     value: {
                       type: 'Literal',
-                      value: '"'
+                      value: '"',
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'attr'
-                    }
-                  }
+                      name: 'attr',
+                    },
+                  },
                 ],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '<foo bar=<baz.zoo></baz.zoo> />',
@@ -10010,7 +10010,7 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 attributes: [
                   {
@@ -10024,15 +10024,15 @@ describe('Miscellaneous - JSX', () => {
                           type: 'JSXMemberExpression',
                           object: {
                             type: 'JSXIdentifier',
-                            name: 'baz'
+                            name: 'baz',
                           },
                           property: {
                             type: 'JSXIdentifier',
-                            name: 'zoo'
-                          }
+                            name: 'zoo',
+                          },
                         },
                         attributes: [],
-                        selfClosing: false
+                        selfClosing: false,
                       },
                       closingElement: {
                         type: 'JSXClosingElement',
@@ -10040,28 +10040,28 @@ describe('Miscellaneous - JSX', () => {
                           type: 'JSXMemberExpression',
                           object: {
                             type: 'JSXIdentifier',
-                            name: 'baz'
+                            name: 'baz',
                           },
                           property: {
                             type: 'JSXIdentifier',
-                            name: 'zoo'
-                          }
-                        }
-                      }
+                            name: 'zoo',
+                          },
+                        },
+                      },
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'bar'
-                    }
-                  }
+                      name: 'bar',
+                    },
+                  },
                 ],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '<a href={link}></a>',
@@ -10079,7 +10079,7 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 attributes: [
                   {
@@ -10088,28 +10088,28 @@ describe('Miscellaneous - JSX', () => {
                       type: 'JSXExpressionContainer',
                       expression: {
                         type: 'Identifier',
-                        name: 'link'
-                      }
+                        name: 'link',
+                      },
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'href'
-                    }
-                  }
+                      name: 'href',
+                    },
+                  },
                 ],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'a',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '<img width={320}/>',
@@ -10146,7 +10146,7 @@ describe('Miscellaneous - JSX', () => {
                       start: 5,
                       end: 10,
                       range: [5, 10],
-                      name: 'width'
+                      name: 'width',
                     },
                     value: {
                       type: 'JSXExpressionContainer',
@@ -10158,27 +10158,27 @@ describe('Miscellaneous - JSX', () => {
                         start: 12,
                         end: 15,
                         range: [12, 15],
-                        value: 320
-                      }
-                    }
-                  }
+                        value: 320,
+                      },
+                    },
+                  },
                 ],
                 name: {
                   type: 'JSXIdentifier',
                   start: 1,
                   end: 4,
                   range: [1, 4],
-                  name: 'img'
+                  name: 'img',
                 },
-                selfClosing: true
+                selfClosing: true,
               },
               closingElement: null,
-              children: []
-            }
-          }
+              children: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '<日本語></日本語>',
@@ -10196,22 +10196,22 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: '日本語'
+                  name: '日本語',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: '日本語'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: '日本語',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<em>
@@ -10231,29 +10231,29 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: '\n     One\n     Two\n     Three\n     '
-                }
+                  value: '\n     One\n     Two\n     Three\n     ',
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'em'
+                  name: 'em',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'em'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'em',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -10311,57 +10311,57 @@ describe('Miscellaneous - JSX', () => {
                             start: 1,
                             end: 12,
                             range: [1, 12],
-                            name: 'SolarSystem'
+                            name: 'SolarSystem',
                           },
                           property: {
                             type: 'JSXIdentifier',
                             start: 13,
                             end: 18,
                             range: [13, 18],
-                            name: 'Earth'
-                          }
+                            name: 'Earth',
+                          },
                         },
                         property: {
                           type: 'JSXIdentifier',
                           start: 19,
                           end: 26,
                           range: [19, 26],
-                          name: 'America'
-                        }
+                          name: 'America',
+                        },
                       },
                       property: {
                         type: 'JSXIdentifier',
                         start: 27,
                         end: 30,
                         range: [27, 30],
-                        name: 'USA'
-                      }
+                        name: 'USA',
+                      },
                     },
                     property: {
                       type: 'JSXIdentifier',
                       start: 31,
                       end: 41,
                       range: [31, 41],
-                      name: 'California'
-                    }
+                      name: 'California',
+                    },
                   },
                   property: {
                     type: 'JSXIdentifier',
                     start: 42,
                     end: 55,
                     range: [42, 55],
-                    name: 'mountain-view'
-                  }
+                    name: 'mountain-view',
+                  },
                 },
-                selfClosing: true
+                selfClosing: true,
               },
               closingElement: null,
-              children: []
-            }
-          }
+              children: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '<div> foo:bar</div>',
@@ -10393,9 +10393,9 @@ describe('Miscellaneous - JSX', () => {
                   start: 1,
                   end: 4,
                   range: [1, 4],
-                  name: 'div'
+                  name: 'div',
                 },
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
@@ -10407,8 +10407,8 @@ describe('Miscellaneous - JSX', () => {
                   start: 15,
                   end: 18,
                   range: [15, 18],
-                  name: 'div'
-                }
+                  name: 'div',
+                },
               },
               children: [
                 {
@@ -10417,14 +10417,14 @@ describe('Miscellaneous - JSX', () => {
                   end: 13,
                   range: [5, 13],
                   value: ' foo:bar',
-                  raw: ' foo:bar'
-                }
-              ]
-            }
-          }
+                  raw: ' foo:bar',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '<div><li>Item 1</li><li>Item 1</li></div>',
@@ -10443,72 +10443,72 @@ describe('Miscellaneous - JSX', () => {
                   children: [
                     {
                       type: 'JSXText',
-                      value: 'Item 1'
-                    }
+                      value: 'Item 1',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'li'
+                      name: 'li',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'li'
-                    }
-                  }
+                      name: 'li',
+                    },
+                  },
                 },
                 {
                   type: 'JSXElement',
                   children: [
                     {
                       type: 'JSXText',
-                      value: 'Item 1'
-                    }
+                      value: 'Item 1',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'li'
+                      name: 'li',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'li'
-                    }
-                  }
-                }
+                      name: 'li',
+                    },
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<div style={{color: 'red', fontWeight: 'bold'}} />`,
@@ -10526,7 +10526,7 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [
                   {
@@ -10540,48 +10540,48 @@ describe('Miscellaneous - JSX', () => {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'color'
+                              name: 'color',
                             },
                             value: {
                               type: 'Literal',
-                              value: 'red'
+                              value: 'red',
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: false
+                            shorthand: false,
                           },
                           {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'fontWeight'
+                              name: 'fontWeight',
                             },
                             value: {
                               type: 'Literal',
-                              value: 'bold'
+                              value: 'bold',
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: false
-                          }
-                        ]
-                      }
+                            shorthand: false,
+                          },
+                        ],
+                      },
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'style'
-                    }
-                  }
+                      name: 'style',
+                    },
+                  },
                 ],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '<h1>Hello {data.target}</h1>',
@@ -10597,7 +10597,7 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: 'Hello '
+                  value: 'Hello ',
                 },
                 {
                   type: 'JSXExpressionContainer',
@@ -10605,36 +10605,36 @@ describe('Miscellaneous - JSX', () => {
                     type: 'MemberExpression',
                     object: {
                       type: 'Identifier',
-                      name: 'data'
+                      name: 'data',
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'target'
-                    }
-                  }
-                }
+                      name: 'target',
+                    },
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'h1'
+                  name: 'h1',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'h1'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'h1',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `<div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
@@ -10653,43 +10653,43 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: '\n     '
+                  value: '\n     ',
                 },
                 {
                   type: 'JSXElement',
                   children: [
                     {
                       type: 'JSXText',
-                      value: 'Move the mouse around!'
-                    }
+                      value: 'Move the mouse around!',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'h1'
+                      name: 'h1',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'h1'
-                    }
-                  }
+                      name: 'h1',
+                    },
+                  },
                 },
                 {
                   type: 'JSXText',
-                  value: '\n     '
+                  value: '\n     ',
                 },
                 {
                   type: 'JSXElement',
                   children: [
                     {
                       type: 'JSXText',
-                      value: 'The current mouse position is ('
+                      value: 'The current mouse position is (',
                     },
                     {
                       type: 'JSXExpressionContainer',
@@ -10698,24 +10698,24 @@ describe('Miscellaneous - JSX', () => {
                         object: {
                           type: 'MemberExpression',
                           object: {
-                            type: 'ThisExpression'
+                            type: 'ThisExpression',
                           },
                           computed: false,
                           property: {
                             type: 'Identifier',
-                            name: 'state'
-                          }
+                            name: 'state',
+                          },
                         },
                         computed: false,
                         property: {
                           type: 'Identifier',
-                          name: 'x'
-                        }
-                      }
+                          name: 'x',
+                        },
+                      },
                     },
                     {
                       type: 'JSXText',
-                      value: ', '
+                      value: ', ',
                     },
                     {
                       type: 'JSXExpressionContainer',
@@ -10724,53 +10724,53 @@ describe('Miscellaneous - JSX', () => {
                         object: {
                           type: 'MemberExpression',
                           object: {
-                            type: 'ThisExpression'
+                            type: 'ThisExpression',
                           },
                           computed: false,
                           property: {
                             type: 'Identifier',
-                            name: 'state'
-                          }
+                            name: 'state',
+                          },
                         },
                         computed: false,
                         property: {
                           type: 'Identifier',
-                          name: 'y'
-                        }
-                      }
+                          name: 'y',
+                        },
+                      },
                     },
                     {
                       type: 'JSXText',
-                      value: ')'
-                    }
+                      value: ')',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'p'
+                      name: 'p',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'p'
-                    }
-                  }
+                      name: 'p',
+                    },
+                  },
                 },
                 {
                   type: 'JSXText',
-                  value: '\n   '
-                }
+                  value: '\n   ',
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [
                   {
@@ -10784,24 +10784,24 @@ describe('Miscellaneous - JSX', () => {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'height'
+                              name: 'height',
                             },
                             value: {
                               type: 'Literal',
-                              value: '100%'
+                              value: '100%',
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: false
-                          }
-                        ]
-                      }
+                            shorthand: false,
+                          },
+                        ],
+                      },
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'style'
-                    }
+                      name: 'style',
+                    },
                   },
                   {
                     type: 'JSXAttribute',
@@ -10810,34 +10810,34 @@ describe('Miscellaneous - JSX', () => {
                       expression: {
                         type: 'MemberExpression',
                         object: {
-                          type: 'ThisExpression'
+                          type: 'ThisExpression',
                         },
                         computed: false,
                         property: {
                           type: 'Identifier',
-                          name: 'handleMouseMove'
-                        }
-                      }
+                          name: 'handleMouseMove',
+                        },
+                      },
                     },
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'onMouseMove'
-                    }
-                  }
+                      name: 'onMouseMove',
+                    },
+                  },
                 ],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'var element = <Hello name={name}/>',
@@ -10859,7 +10859,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'Hello'
+                      name: 'Hello',
                     },
                     attributes: [
                       {
@@ -10868,28 +10868,28 @@ describe('Miscellaneous - JSX', () => {
                           type: 'JSXExpressionContainer',
                           expression: {
                             type: 'Identifier',
-                            name: 'name'
-                          }
+                            name: 'name',
+                          },
                         },
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'name'
-                        }
-                      }
+                          name: 'name',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'element'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'element',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var div = <div contentEditable />',
@@ -10911,7 +10911,7 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'div'
+                      name: 'div',
                     },
                     attributes: [
                       {
@@ -10919,23 +10919,23 @@ describe('Miscellaneous - JSX', () => {
                         value: null,
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'contentEditable'
-                        }
-                      }
+                          name: 'contentEditable',
+                        },
+                      },
                     ],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'div'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '<div {...this.props}/>',
@@ -10953,7 +10953,7 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [
                   {
@@ -10961,23 +10961,23 @@ describe('Miscellaneous - JSX', () => {
                     argument: {
                       type: 'MemberExpression',
                       object: {
-                        type: 'ThisExpression'
+                        type: 'ThisExpression',
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'props'
-                      }
-                    }
-                  }
+                        name: 'props',
+                      },
+                    },
+                  },
                 ],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '<Foo> <h1>Hello {name}!</h1>   </Foo>',
@@ -10993,69 +10993,69 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: ' '
+                  value: ' ',
                 },
                 {
                   type: 'JSXElement',
                   children: [
                     {
                       type: 'JSXText',
-                      value: 'Hello '
+                      value: 'Hello ',
                     },
                     {
                       type: 'JSXExpressionContainer',
                       expression: {
                         type: 'Identifier',
-                        name: 'name'
-                      }
+                        name: 'name',
+                      },
                     },
                     {
                       type: 'JSXText',
-                      value: '!'
-                    }
+                      value: '!',
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'h1'
+                      name: 'h1',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'h1'
-                    }
-                  }
+                      name: 'h1',
+                    },
+                  },
                 },
                 {
                   type: 'JSXText',
-                  value: '   '
-                }
+                  value: '   ',
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'Foo'
+                  name: 'Foo',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'Foo'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'Foo',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -11072,40 +11072,40 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: ' '
+                  value: ' ',
                 },
                 {
                   type: 'JSXExpressionContainer',
                   expression: {
                     type: 'Literal',
-                    value: true
-                  }
+                    value: true,
+                  },
                 },
                 {
                   type: 'JSXText',
-                  value: ' '
-                }
+                  value: ' ',
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'Foo'
+                  name: 'Foo',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'Foo'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'Foo',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -11123,30 +11123,30 @@ describe('Miscellaneous - JSX', () => {
                 {
                   type: 'JSXExpressionContainer',
                   expression: {
-                    type: 'JSXEmptyExpression'
-                  }
-                }
+                    type: 'JSXEmptyExpression',
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'a',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '<a>{b}</a>',
@@ -11164,30 +11164,30 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXExpressionContainer',
                   expression: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                }
+                    name: 'b',
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'a',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '<input disabled />',
@@ -11205,7 +11205,7 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'input'
+                  name: 'input',
                 },
                 attributes: [
                   {
@@ -11213,17 +11213,17 @@ describe('Miscellaneous - JSX', () => {
                     value: null,
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'disabled'
-                    }
-                  }
+                      name: 'disabled',
+                    },
+                  },
                 ],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '<a>{/* this is a comment */}</a>',
@@ -11240,30 +11240,30 @@ describe('Miscellaneous - JSX', () => {
                 {
                   type: 'JSXExpressionContainer',
                   expression: {
-                    type: 'JSXEmptyExpression'
-                  }
-                }
+                    type: 'JSXEmptyExpression',
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'a',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '<div>@test content</div>',
@@ -11279,29 +11279,29 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: '@test content'
-                }
+                  value: '@test content',
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '<div><br />7x invalid-js-identifier</div>',
@@ -11322,38 +11322,38 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'br'
+                      name: 'br',
                     },
                     attributes: [],
-                    selfClosing: true
+                    selfClosing: true,
                   },
-                  closingElement: null
+                  closingElement: null,
                 },
                 {
                   type: 'JSXText',
-                  value: '7x invalid-js-identifier'
-                }
+                  value: '7x invalid-js-identifier',
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '<a.b></a.b>',
@@ -11373,15 +11373,15 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXMemberExpression',
                   object: {
                     type: 'JSXIdentifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   property: {
                     type: 'JSXIdentifier',
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
@@ -11389,18 +11389,18 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXMemberExpression',
                   object: {
                     type: 'JSXIdentifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   property: {
                     type: 'JSXIdentifier',
-                    name: 'b'
-                  }
-                }
-              }
-            }
-          }
-        ]
-      }
+                    name: 'b',
+                  },
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '<a>    </a>',
@@ -11416,29 +11416,29 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: '    '
-                }
+                  value: '    ',
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'a',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '<title>{ {caption} }</title>',
@@ -11470,9 +11470,9 @@ describe('Miscellaneous - JSX', () => {
                   start: 1,
                   end: 6,
                   range: [1, 6],
-                  name: 'title'
+                  name: 'title',
                 },
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
@@ -11484,8 +11484,8 @@ describe('Miscellaneous - JSX', () => {
                   start: 22,
                   end: 27,
                   range: [22, 27],
-                  name: 'title'
-                }
+                  name: 'title',
+                },
               },
               children: [
                 {
@@ -11512,7 +11512,7 @@ describe('Miscellaneous - JSX', () => {
                           start: 10,
                           end: 17,
                           range: [10, 17],
-                          name: 'caption'
+                          name: 'caption',
                         },
                         kind: 'init',
                         value: {
@@ -11520,18 +11520,18 @@ describe('Miscellaneous - JSX', () => {
                           start: 10,
                           end: 17,
                           range: [10, 17],
-                          name: 'caption'
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
+                          name: 'caption',
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '"use strict"; <async />',
@@ -11544,9 +11544,9 @@ describe('Miscellaneous - JSX', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: 'use strict'
+              value: 'use strict',
             },
-            directive: 'use strict'
+            directive: 'use strict',
           },
           {
             type: 'ExpressionStatement',
@@ -11557,16 +11557,16 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'async'
+                  name: 'async',
                 },
                 attributes: [],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '<A.B.C.D.E.foo-bar />',
@@ -11594,41 +11594,41 @@ describe('Miscellaneous - JSX', () => {
                           type: 'JSXMemberExpression',
                           object: {
                             type: 'JSXIdentifier',
-                            name: 'A'
+                            name: 'A',
                           },
                           property: {
                             type: 'JSXIdentifier',
-                            name: 'B'
-                          }
+                            name: 'B',
+                          },
                         },
                         property: {
                           type: 'JSXIdentifier',
-                          name: 'C'
-                        }
+                          name: 'C',
+                        },
                       },
                       property: {
                         type: 'JSXIdentifier',
-                        name: 'D'
-                      }
+                        name: 'D',
+                      },
                     },
                     property: {
                       type: 'JSXIdentifier',
-                      name: 'E'
-                    }
+                      name: 'E',
+                    },
                   },
                   property: {
                     type: 'JSXIdentifier',
-                    name: 'foo-bar'
-                  }
+                    name: 'foo-bar',
+                  },
                 },
                 attributes: [],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '<a>  <b><c/></b> </a>',
@@ -11644,7 +11644,7 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: '  '
+                  value: '  ',
                 },
                 {
                   type: 'JSXElement',
@@ -11656,56 +11656,56 @@ describe('Miscellaneous - JSX', () => {
                         type: 'JSXOpeningElement',
                         name: {
                           type: 'JSXIdentifier',
-                          name: 'c'
+                          name: 'c',
                         },
                         attributes: [],
-                        selfClosing: true
+                        selfClosing: true,
                       },
-                      closingElement: null
-                    }
+                      closingElement: null,
+                    },
                   ],
                   openingElement: {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'b'
-                    }
-                  }
+                      name: 'b',
+                    },
+                  },
                 },
                 {
                   type: 'JSXText',
-                  value: ' '
-                }
+                  value: ' ',
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'a',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -11726,15 +11726,15 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXMemberExpression',
                   object: {
                     type: 'JSXIdentifier',
-                    name: 'Test'
+                    name: 'Test',
                   },
                   property: {
                     type: 'JSXIdentifier',
-                    name: 'X'
-                  }
+                    name: 'X',
+                  },
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
@@ -11742,18 +11742,18 @@ describe('Miscellaneous - JSX', () => {
                   type: 'JSXMemberExpression',
                   object: {
                     type: 'JSXIdentifier',
-                    name: 'Test'
+                    name: 'Test',
                   },
                   property: {
                     type: 'JSXIdentifier',
-                    name: 'X'
-                  }
-                }
-              }
-            }
-          }
-        ]
-      }
+                    name: 'X',
+                  },
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '<View {...this.props} {...this.state} />',
@@ -11771,7 +11771,7 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'View'
+                  name: 'View',
                 },
                 attributes: [
                   {
@@ -11779,37 +11779,37 @@ describe('Miscellaneous - JSX', () => {
                     argument: {
                       type: 'MemberExpression',
                       object: {
-                        type: 'ThisExpression'
+                        type: 'ThisExpression',
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'props'
-                      }
-                    }
+                        name: 'props',
+                      },
+                    },
                   },
                   {
                     type: 'JSXSpreadAttribute',
                     argument: {
                       type: 'MemberExpression',
                       object: {
-                        type: 'ThisExpression'
+                        type: 'ThisExpression',
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'state'
-                      }
-                    }
-                  }
+                        name: 'state',
+                      },
+                    },
+                  },
                 ],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '<div />',
@@ -11827,16 +11827,16 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -11854,30 +11854,30 @@ describe('Miscellaneous - JSX', () => {
                 {
                   type: 'JSXExpressionContainer',
                   expression: {
-                    type: 'JSXEmptyExpression'
-                  }
-                }
+                    type: 'JSXEmptyExpression',
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'a',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '<a> a </a>',
@@ -11893,29 +11893,29 @@ describe('Miscellaneous - JSX', () => {
               children: [
                 {
                   type: 'JSXText',
-                  value: ' a '
-                }
+                  value: ' a ',
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'a',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '<a/>',
@@ -11933,16 +11933,16 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 attributes: [],
-                selfClosing: true
+                selfClosing: true,
               },
-              closingElement: null
-            }
-          }
-        ]
-      }
+              closingElement: null,
+            },
+          },
+        ],
+      },
     ],
     [
       '<div><span></span></div>',
@@ -11963,40 +11963,40 @@ describe('Miscellaneous - JSX', () => {
                     type: 'JSXOpeningElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'span'
+                      name: 'span',
                     },
                     attributes: [],
-                    selfClosing: false
+                    selfClosing: false,
                   },
                   closingElement: {
                     type: 'JSXClosingElement',
                     name: {
                       type: 'JSXIdentifier',
-                      name: 'span'
-                    }
-                  }
-                }
+                      name: 'span',
+                    },
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
+                  name: 'div',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'div'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'div',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '<div>{ }</div>',
@@ -12020,13 +12020,13 @@ describe('Miscellaneous - JSX', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 6
+                        column: 6,
                       },
                       end: {
                         line: 1,
-                        column: 7
-                      }
-                    }
+                        column: 7,
+                      },
+                    },
                   },
                   start: 5,
                   end: 8,
@@ -12034,14 +12034,14 @@ describe('Miscellaneous - JSX', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 5
+                      column: 5,
                     },
                     end: {
                       line: 1,
-                      column: 8
-                    }
-                  }
-                }
+                      column: 8,
+                    },
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
@@ -12054,13 +12054,13 @@ describe('Miscellaneous - JSX', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 1
+                      column: 1,
                     },
                     end: {
                       line: 1,
-                      column: 4
-                    }
-                  }
+                      column: 4,
+                    },
+                  },
                 },
                 attributes: [],
                 selfClosing: false,
@@ -12070,13 +12070,13 @@ describe('Miscellaneous - JSX', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 5
-                  }
-                }
+                    column: 5,
+                  },
+                },
               },
               closingElement: {
                 type: 'JSXClosingElement',
@@ -12089,13 +12089,13 @@ describe('Miscellaneous - JSX', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 10
+                      column: 10,
                     },
                     end: {
                       line: 1,
-                      column: 13
-                    }
-                  }
+                      column: 13,
+                    },
+                  },
                 },
                 start: 8,
                 end: 14,
@@ -12103,13 +12103,13 @@ describe('Miscellaneous - JSX', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 8
+                    column: 8,
                   },
                   end: {
                     line: 1,
-                    column: 14
-                  }
-                }
+                    column: 14,
+                  },
+                },
               },
               start: 0,
               end: 14,
@@ -12117,13 +12117,13 @@ describe('Miscellaneous - JSX', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 14
-                }
-              }
+                  column: 14,
+                },
+              },
             },
             start: 0,
             end: 14,
@@ -12131,14 +12131,14 @@ describe('Miscellaneous - JSX', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 14
-              }
-            }
-          }
+                column: 14,
+              },
+            },
+          },
         ],
         start: 0,
         end: 14,
@@ -12146,14 +12146,14 @@ describe('Miscellaneous - JSX', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 14
-          }
-        }
-      }
+            column: 14,
+          },
+        },
+      },
     ],
     [
       '<div>&nbsp;&amp;</div>',
@@ -12177,14 +12177,14 @@ describe('Miscellaneous - JSX', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 5
+                      column: 5,
                     },
                     end: {
                       line: 1,
-                      column: 16
-                    }
-                  }
-                }
+                      column: 16,
+                    },
+                  },
+                },
               ],
               openingElement: {
                 type: 'JSXOpeningElement',
@@ -12197,13 +12197,13 @@ describe('Miscellaneous - JSX', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 1
+                      column: 1,
                     },
                     end: {
                       line: 1,
-                      column: 4
-                    }
-                  }
+                      column: 4,
+                    },
+                  },
                 },
                 attributes: [],
                 selfClosing: false,
@@ -12213,13 +12213,13 @@ describe('Miscellaneous - JSX', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 5
-                  }
-                }
+                    column: 5,
+                  },
+                },
               },
               closingElement: {
                 type: 'JSXClosingElement',
@@ -12232,13 +12232,13 @@ describe('Miscellaneous - JSX', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 18
+                      column: 18,
                     },
                     end: {
                       line: 1,
-                      column: 21
-                    }
-                  }
+                      column: 21,
+                    },
+                  },
                 },
                 start: 16,
                 end: 22,
@@ -12246,13 +12246,13 @@ describe('Miscellaneous - JSX', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 16
+                    column: 16,
                   },
                   end: {
                     line: 1,
-                    column: 22
-                  }
-                }
+                    column: 22,
+                  },
+                },
               },
               start: 0,
               end: 22,
@@ -12260,13 +12260,13 @@ describe('Miscellaneous - JSX', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 22
-                }
-              }
+                  column: 22,
+                },
+              },
             },
             start: 0,
             end: 22,
@@ -12274,14 +12274,14 @@ describe('Miscellaneous - JSX', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 22
-              }
-            }
-          }
+                column: 22,
+              },
+            },
+          },
         ],
         start: 0,
         end: 22,
@@ -12289,14 +12289,14 @@ describe('Miscellaneous - JSX', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 22
-          }
-        }
-      }
+            column: 22,
+          },
+        },
+      },
     ],
     [
       '<a><// line\n/a>;',
@@ -12317,13 +12317,13 @@ describe('Miscellaneous - JSX', () => {
                   name: 'a',
                   start: 1,
                   end: 2,
-                  range: [1, 2]
+                  range: [1, 2],
                 },
                 attributes: [],
                 selfClosing: false,
                 start: 0,
                 end: 3,
-                range: [0, 3]
+                range: [0, 3],
               },
               closingElement: {
                 type: 'JSXClosingElement',
@@ -12332,25 +12332,25 @@ describe('Miscellaneous - JSX', () => {
                   name: 'a',
                   start: 13,
                   end: 14,
-                  range: [13, 14]
+                  range: [13, 14],
                 },
                 start: 3,
                 end: 15,
-                range: [3, 15]
+                range: [3, 15],
               },
               start: 0,
               end: 15,
-              range: [0, 15]
+              range: [0, 15],
             },
             start: 0,
             end: 16,
-            range: [0, 16]
-          }
+            range: [0, 16],
+          },
         ],
         start: 0,
         end: 16,
-        range: [0, 16]
-      }
+        range: [0, 16],
+      },
     ],
     [
       '<// line\na\n><\n/\na\n>;',
@@ -12371,13 +12371,13 @@ describe('Miscellaneous - JSX', () => {
                   name: 'a',
                   start: 9,
                   end: 10,
-                  range: [9, 10]
+                  range: [9, 10],
                 },
                 attributes: [],
                 selfClosing: false,
                 start: 0,
                 end: 12,
-                range: [0, 12]
+                range: [0, 12],
               },
               closingElement: {
                 type: 'JSXClosingElement',
@@ -12386,25 +12386,25 @@ describe('Miscellaneous - JSX', () => {
                   name: 'a',
                   start: 16,
                   end: 17,
-                  range: [16, 17]
+                  range: [16, 17],
                 },
                 start: 12,
                 end: 19,
-                range: [12, 19]
+                range: [12, 19],
               },
               start: 0,
               end: 19,
-              range: [0, 19]
+              range: [0, 19],
             },
             start: 0,
             end: 20,
-            range: [0, 20]
-          }
+            range: [0, 20],
+          },
         ],
         start: 0,
         end: 20,
-        range: [0, 20]
-      }
+        range: [0, 20],
+      },
     ],
     [
       '<a></* block */\n/a>;',
@@ -12422,22 +12422,22 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 attributes: [],
-                selfClosing: false
+                selfClosing: false,
               },
               closingElement: {
                 type: 'JSXClosingElement',
                 name: {
                   type: 'JSXIdentifier',
-                  name: 'a'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'a',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '</* open fragment */>\n</ /* close fragment */>;',
@@ -12454,7 +12454,7 @@ describe('Miscellaneous - JSX', () => {
                 type: 'JSXOpeningFragment',
                 start: 0,
                 end: 21,
-                range: [0, 21]
+                range: [0, 21],
               },
               children: [
                 {
@@ -12462,28 +12462,28 @@ describe('Miscellaneous - JSX', () => {
                   value: '\n',
                   start: 21,
                   end: 22,
-                  range: [21, 22]
-                }
+                  range: [21, 22],
+                },
               ],
               closingFragment: {
                 type: 'JSXClosingFragment',
                 start: 22,
                 end: 46,
-                range: [22, 46]
+                range: [22, 46],
               },
               start: 0,
               end: 46,
-              range: [0, 46]
+              range: [0, 46],
             },
             start: 0,
             end: 47,
-            range: [0, 47]
-          }
+            range: [0, 47],
+          },
         ],
         start: 0,
         end: 47,
-        range: [0, 47]
-      }
+        range: [0, 47],
+      },
     ],
     [
       '<a><  /a>',
@@ -12504,13 +12504,13 @@ describe('Miscellaneous - JSX', () => {
                   name: 'a',
                   start: 1,
                   end: 2,
-                  range: [1, 2]
+                  range: [1, 2],
                 },
                 attributes: [],
                 selfClosing: false,
                 start: 0,
                 end: 3,
-                range: [0, 3]
+                range: [0, 3],
               },
               closingElement: {
                 type: 'JSXClosingElement',
@@ -12519,25 +12519,25 @@ describe('Miscellaneous - JSX', () => {
                   name: 'a',
                   start: 7,
                   end: 8,
-                  range: [7, 8]
+                  range: [7, 8],
                 },
                 start: 3,
                 end: 9,
-                range: [3, 9]
+                range: [3, 9],
               },
               start: 0,
               end: 9,
-              range: [0, 9]
+              range: [0, 9],
             },
             start: 0,
             end: 9,
-            range: [0, 9]
-          }
+            range: [0, 9],
+          },
         ],
         start: 0,
         end: 9,
-        range: [0, 9]
-      }
-    ]
+        range: [0, 9],
+      },
+    ],
   ]);
 });

@@ -191,7 +191,7 @@ describe('Module - Import', () => {
     'import { "foo" } from',
     'import { "foo", } from "./foo";',
     'import { "foo" as "f" } from "./foo";',
-    'import { foo as "f" } from "./foo";'
+    'import { foo as "f" } from "./foo";',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -206,7 +206,7 @@ describe('Module - Import', () => {
     'import * as a "foo";',
     'import { a } "foo";',
     'import b, { a } "foo";',
-    'import { default as a, b } "foo";'
+    'import { default as a, b } "foo";',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -266,7 +266,7 @@ describe('Module - Import', () => {
     ['if (false) import { default } from "module";', Context.Strict | Context.Module | Context.OptionsLexical],
     [
       'for(var i=0; i<1; i++) import { default } from "module";',
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     ['{ export default null; }', Context.Strict | Context.Module | Context.OptionsLexical],
     ['{ export default null; }', Context.Strict | Context.Module | Context.OptionsLexical],
@@ -347,17 +347,17 @@ describe('Module - Import', () => {
     ['() => { import arrow from ""; }', Context.Strict | Context.Module | Context.OptionsLexical],
     [
       'import * as "foo" from "./f"; import { foo } from "./m";',
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     [
       'import * as foo from "./f"; import { foo } from "./m";',
-      Context.Strict | Context.Module | Context.OptionsLexical
+      Context.Strict | Context.Module | Context.OptionsLexical,
     ],
     ['import { foo } from "./f"; import { foo } from "./m";', Context.Strict | Context.Module | Context.OptionsLexical],
     [
       'import { b as foo } from "./f"; import { "a" as foo } from "./m";',
-      Context.Strict | Context.Module | Context.OptionsLexical
-    ]
+      Context.Strict | Context.Module | Context.OptionsLexical,
+    ],
   ]);
 
   for (const arg of [
@@ -447,7 +447,7 @@ describe('Module - Import', () => {
     'import { a, "foo" as foo, } from "./foo";',
     'import { "foo" as foo, a } from "./foo";',
     'import { "foo" as foo, a, } from "./foo";',
-    'import { "foo" as foo, "a" as a, default as b } from "./foo";'
+    'import { "foo" as foo, "a" as a, default as b } from "./foo";',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -482,13 +482,13 @@ describe('Module - Import', () => {
               start: 15,
               end: 18,
               range: [15, 18],
-              value: 'y'
+              value: 'y',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'import e, {f as g, h as i, j} from "module";',
@@ -515,8 +515,8 @@ describe('Module - Import', () => {
                   start: 7,
                   end: 8,
                   range: [7, 8],
-                  name: 'e'
-                }
+                  name: 'e',
+                },
               },
               {
                 type: 'ImportSpecifier',
@@ -528,15 +528,15 @@ describe('Module - Import', () => {
                   start: 11,
                   end: 12,
                   range: [11, 12],
-                  name: 'f'
+                  name: 'f',
                 },
                 local: {
                   type: 'Identifier',
                   start: 16,
                   end: 17,
                   range: [16, 17],
-                  name: 'g'
-                }
+                  name: 'g',
+                },
               },
               {
                 type: 'ImportSpecifier',
@@ -548,15 +548,15 @@ describe('Module - Import', () => {
                   start: 19,
                   end: 20,
                   range: [19, 20],
-                  name: 'h'
+                  name: 'h',
                 },
                 local: {
                   type: 'Identifier',
                   start: 24,
                   end: 25,
                   range: [24, 25],
-                  name: 'i'
-                }
+                  name: 'i',
+                },
               },
               {
                 type: 'ImportSpecifier',
@@ -568,29 +568,29 @@ describe('Module - Import', () => {
                   start: 27,
                   end: 28,
                   range: [27, 28],
-                  name: 'j'
+                  name: 'j',
                 },
                 local: {
                   type: 'Identifier',
                   start: 27,
                   end: 28,
                   range: [27, 28],
-                  name: 'j'
-                }
-              }
+                  name: 'j',
+                },
+              },
             ],
             source: {
               type: 'Literal',
               start: 35,
               end: 43,
               range: [35, 43],
-              value: 'module'
+              value: 'module',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'import {n, o as p} from "module";',
@@ -617,15 +617,15 @@ describe('Module - Import', () => {
                   start: 8,
                   end: 9,
                   range: [8, 9],
-                  name: 'n'
+                  name: 'n',
                 },
                 local: {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
                   range: [8, 9],
-                  name: 'n'
-                }
+                  name: 'n',
+                },
               },
               {
                 type: 'ImportSpecifier',
@@ -637,29 +637,29 @@ describe('Module - Import', () => {
                   start: 11,
                   end: 12,
                   range: [11, 12],
-                  name: 'o'
+                  name: 'o',
                 },
                 local: {
                   type: 'Identifier',
                   start: 16,
                   end: 17,
                   range: [16, 17],
-                  name: 'p'
-                }
-              }
+                  name: 'p',
+                },
+              },
             ],
             source: {
               type: 'Literal',
               start: 24,
               end: 32,
               range: [24, 32],
-              value: 'module'
+              value: 'module',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'import { as, get, set, from } from "baz"',
@@ -686,15 +686,15 @@ describe('Module - Import', () => {
                   start: 9,
                   end: 11,
                   range: [9, 11],
-                  name: 'as'
+                  name: 'as',
                 },
                 local: {
                   type: 'Identifier',
                   start: 9,
                   end: 11,
                   range: [9, 11],
-                  name: 'as'
-                }
+                  name: 'as',
+                },
               },
               {
                 type: 'ImportSpecifier',
@@ -706,15 +706,15 @@ describe('Module - Import', () => {
                   start: 13,
                   end: 16,
                   range: [13, 16],
-                  name: 'get'
+                  name: 'get',
                 },
                 local: {
                   type: 'Identifier',
                   start: 13,
                   end: 16,
                   range: [13, 16],
-                  name: 'get'
-                }
+                  name: 'get',
+                },
               },
               {
                 type: 'ImportSpecifier',
@@ -726,15 +726,15 @@ describe('Module - Import', () => {
                   start: 18,
                   end: 21,
                   range: [18, 21],
-                  name: 'set'
+                  name: 'set',
                 },
                 local: {
                   type: 'Identifier',
                   start: 18,
                   end: 21,
                   range: [18, 21],
-                  name: 'set'
-                }
+                  name: 'set',
+                },
               },
               {
                 type: 'ImportSpecifier',
@@ -746,29 +746,29 @@ describe('Module - Import', () => {
                   start: 23,
                   end: 27,
                   range: [23, 27],
-                  name: 'from'
+                  name: 'from',
                 },
                 local: {
                   type: 'Identifier',
                   start: 23,
                   end: 27,
                   range: [23, 27],
-                  name: 'from'
-                }
-              }
+                  name: 'from',
+                },
+              },
             ],
             source: {
               type: 'Literal',
               start: 35,
               end: 40,
               range: [35, 40],
-              value: 'baz'
+              value: 'baz',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'import x, * as ns from "foo"',
@@ -795,8 +795,8 @@ describe('Module - Import', () => {
                   start: 7,
                   end: 8,
                   range: [7, 8],
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
               {
                 type: 'ImportNamespaceSpecifier',
@@ -808,22 +808,22 @@ describe('Module - Import', () => {
                   start: 15,
                   end: 17,
                   range: [15, 17],
-                  name: 'ns'
-                }
-              }
+                  name: 'ns',
+                },
+              },
             ],
             source: {
               type: 'Literal',
               start: 23,
               end: 28,
               range: [23, 28],
-              value: 'foo'
+              value: 'foo',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'import $ from "foo"',
@@ -839,18 +839,18 @@ describe('Module - Import', () => {
                 type: 'ImportDefaultSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: '$'
-                }
-              }
+                  name: '$',
+                },
+              },
             ],
             source: {
               type: 'Literal',
-              value: 'foo'
+              value: 'foo',
             },
-            attributes: []
-          }
-        ]
-      }
+            attributes: [],
+          },
+        ],
+      },
     ],
     [
       'import from from "foo"',
@@ -866,18 +866,18 @@ describe('Module - Import', () => {
                 type: 'ImportDefaultSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'from'
-                }
-              }
+                  name: 'from',
+                },
+              },
             ],
             source: {
               type: 'Literal',
-              value: 'foo'
+              value: 'foo',
             },
-            attributes: []
-          }
-        ]
-      }
+            attributes: [],
+          },
+        ],
+      },
     ],
     [
       'import * as d from "module";',
@@ -904,22 +904,22 @@ describe('Module - Import', () => {
                   start: 12,
                   end: 13,
                   range: [12, 13],
-                  name: 'd'
-                }
-              }
+                  name: 'd',
+                },
+              },
             ],
             source: {
               type: 'Literal',
               start: 19,
               end: 27,
               range: [19, 27],
-              value: 'module'
+              value: 'module',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'import {n, o as p} from "module";',
@@ -935,33 +935,33 @@ describe('Module - Import', () => {
                 type: 'ImportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'n'
+                  name: 'n',
                 },
                 imported: {
                   type: 'Identifier',
-                  name: 'n'
-                }
+                  name: 'n',
+                },
               },
               {
                 type: 'ImportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'p'
+                  name: 'p',
                 },
                 imported: {
                   type: 'Identifier',
-                  name: 'o'
-                }
-              }
+                  name: 'o',
+                },
+              },
             ],
             source: {
               type: 'Literal',
-              value: 'module'
+              value: 'module',
             },
-            attributes: []
-          }
-        ]
-      }
+            attributes: [],
+          },
+        ],
+      },
     ],
     [
       'import icefapper from "await"',
@@ -977,18 +977,18 @@ describe('Module - Import', () => {
                 type: 'ImportDefaultSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'icefapper'
-                }
-              }
+                  name: 'icefapper',
+                },
+              },
             ],
             source: {
               type: 'Literal',
-              value: 'await'
+              value: 'await',
             },
-            attributes: []
-          }
-        ]
-      }
+            attributes: [],
+          },
+        ],
+      },
     ],
     [
       'import x from "y"',
@@ -1004,18 +1004,18 @@ describe('Module - Import', () => {
                 type: 'ImportDefaultSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
             source: {
               type: 'Literal',
-              value: 'y'
+              value: 'y',
             },
-            attributes: []
-          }
-        ]
-      }
+            attributes: [],
+          },
+        ],
+      },
     ],
     [
       'import {a, b} from "c"',
@@ -1042,15 +1042,15 @@ describe('Module - Import', () => {
                   start: 8,
                   end: 9,
                   range: [8, 9],
-                  name: 'a'
+                  name: 'a',
                 },
                 local: {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
                   range: [8, 9],
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               },
               {
                 type: 'ImportSpecifier',
@@ -1062,29 +1062,29 @@ describe('Module - Import', () => {
                   start: 11,
                   end: 12,
                   range: [11, 12],
-                  name: 'b'
+                  name: 'b',
                 },
                 local: {
                   type: 'Identifier',
                   start: 11,
                   end: 12,
                   range: [11, 12],
-                  name: 'b'
-                }
-              }
+                  name: 'b',
+                },
+              },
             ],
             source: {
               type: 'Literal',
               start: 19,
               end: 22,
               range: [19, 22],
-              value: 'c'
+              value: 'c',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'import * as a from "y"',
@@ -1099,19 +1099,19 @@ describe('Module - Import', () => {
                 type: 'ImportNamespaceSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'a'
-                }
-              }
+                  name: 'a',
+                },
+              },
             ],
             source: {
               type: 'Literal',
-              value: 'y'
+              value: 'y',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'import x, * as a from "y"',
@@ -1138,8 +1138,8 @@ describe('Module - Import', () => {
                   start: 7,
                   end: 8,
                   range: [7, 8],
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
               {
                 type: 'ImportNamespaceSpecifier',
@@ -1151,22 +1151,22 @@ describe('Module - Import', () => {
                   start: 15,
                   end: 16,
                   range: [15, 16],
-                  name: 'a'
-                }
-              }
+                  name: 'a',
+                },
+              },
             ],
             source: {
               type: 'Literal',
               start: 22,
               end: 25,
               range: [22, 25],
-              value: 'y'
+              value: 'y',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'import {} from "y"',
@@ -1179,13 +1179,13 @@ describe('Module - Import', () => {
             specifiers: [],
             source: {
               type: 'Literal',
-              value: 'y'
+              value: 'y',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'import "y"',
@@ -1207,13 +1207,13 @@ describe('Module - Import', () => {
               start: 7,
               end: 10,
               range: [7, 10],
-              value: 'y'
+              value: 'y',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'import {x} from "y"',
@@ -1229,22 +1229,22 @@ describe('Module - Import', () => {
                 type: 'ImportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 imported: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
             source: {
               type: 'Literal',
-              value: 'y'
+              value: 'y',
             },
-            attributes: []
-          }
-        ]
-      }
+            attributes: [],
+          },
+        ],
+      },
     ],
     [
       'import {x,} from "y"',
@@ -1260,22 +1260,22 @@ describe('Module - Import', () => {
                 type: 'ImportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 imported: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
             source: {
               type: 'Literal',
-              value: 'y'
+              value: 'y',
             },
-            attributes: []
-          }
-        ]
-      }
+            attributes: [],
+          },
+        ],
+      },
     ],
     [
       'import {x as z} from "y"',
@@ -1290,23 +1290,23 @@ describe('Module - Import', () => {
                 type: 'ImportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 imported: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
+                  name: 'x',
+                },
+              },
             ],
             source: {
               type: 'Literal',
-              value: 'y'
+              value: 'y',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'import {x as z,} from "y"',
@@ -1333,29 +1333,29 @@ describe('Module - Import', () => {
                   start: 8,
                   end: 9,
                   range: [8, 9],
-                  name: 'x'
+                  name: 'x',
                 },
                 local: {
                   type: 'Identifier',
                   start: 13,
                   end: 14,
                   range: [13, 14],
-                  name: 'z'
-                }
-              }
+                  name: 'z',
+                },
+              },
             ],
             source: {
               type: 'Literal',
               start: 22,
               end: 25,
               range: [22, 25],
-              value: 'y'
+              value: 'y',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'import {x, z} from "y"',
@@ -1370,34 +1370,34 @@ describe('Module - Import', () => {
                 type: 'ImportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 imported: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
               {
                 type: 'ImportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 imported: {
                   type: 'Identifier',
-                  name: 'z'
-                }
-              }
+                  name: 'z',
+                },
+              },
             ],
             source: {
               type: 'Literal',
-              value: 'y'
+              value: 'y',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'import {x, z,} from "y"',
@@ -1412,34 +1412,34 @@ describe('Module - Import', () => {
                 type: 'ImportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 imported: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
               {
                 type: 'ImportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 imported: {
                   type: 'Identifier',
-                  name: 'z'
-                }
-              }
+                  name: 'z',
+                },
+              },
             ],
             source: {
               type: 'Literal',
-              value: 'y'
+              value: 'y',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'import {x as a, z} from "y"',
@@ -1455,33 +1455,33 @@ describe('Module - Import', () => {
                 type: 'ImportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 imported: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
               {
                 type: 'ImportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 imported: {
                   type: 'Identifier',
-                  name: 'z'
-                }
-              }
+                  name: 'z',
+                },
+              },
             ],
             source: {
               type: 'Literal',
-              value: 'y'
+              value: 'y',
             },
-            attributes: []
-          }
-        ]
-      }
+            attributes: [],
+          },
+        ],
+      },
     ],
     [
       'import {x, z as b} from "y"',
@@ -1496,34 +1496,34 @@ describe('Module - Import', () => {
                 type: 'ImportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 imported: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
               {
                 type: 'ImportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 imported: {
                   type: 'Identifier',
-                  name: 'z'
-                }
-              }
+                  name: 'z',
+                },
+              },
             ],
             source: {
               type: 'Literal',
-              value: 'y'
+              value: 'y',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'import {x as a, z as b} from "y"',
@@ -1550,15 +1550,15 @@ describe('Module - Import', () => {
                   start: 8,
                   end: 9,
                   range: [8, 9],
-                  name: 'x'
+                  name: 'x',
                 },
                 local: {
                   type: 'Identifier',
                   start: 13,
                   end: 14,
                   range: [13, 14],
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               },
               {
                 type: 'ImportSpecifier',
@@ -1570,29 +1570,29 @@ describe('Module - Import', () => {
                   start: 16,
                   end: 17,
                   range: [16, 17],
-                  name: 'z'
+                  name: 'z',
                 },
                 local: {
                   type: 'Identifier',
                   start: 21,
                   end: 22,
                   range: [21, 22],
-                  name: 'b'
-                }
-              }
+                  name: 'b',
+                },
+              },
             ],
             source: {
               type: 'Literal',
               start: 29,
               end: 32,
               range: [29, 32],
-              value: 'y'
+              value: 'y',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'import {x as a, z as b,} from "y"',
@@ -1607,34 +1607,34 @@ describe('Module - Import', () => {
                 type: 'ImportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 imported: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
               {
                 type: 'ImportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 imported: {
                   type: 'Identifier',
-                  name: 'z'
-                }
-              }
+                  name: 'z',
+                },
+              },
             ],
             source: {
               type: 'Literal',
-              value: 'y'
+              value: 'y',
             },
-            attributes: []
-          }
+            attributes: [],
+          },
         ],
-        sourceType: 'module'
-      }
+        sourceType: 'module',
+      },
     ],
     [
       'import { default as f2, "foo" as foo } from "./foo";',
@@ -1650,33 +1650,33 @@ describe('Module - Import', () => {
                 type: 'ImportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'f2'
+                  name: 'f2',
                 },
                 imported: {
                   type: 'Identifier',
-                  name: 'default'
-                }
+                  name: 'default',
+                },
               },
               {
                 type: 'ImportSpecifier',
                 local: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 imported: {
                   type: 'Literal',
-                  value: 'foo'
-                }
-              }
+                  value: 'foo',
+                },
+              },
             ],
             source: {
               type: 'Literal',
-              value: './foo'
+              value: './foo',
             },
-            attributes: []
-          }
-        ]
-      }
-    ]
+            attributes: [],
+          },
+        ],
+      },
+    ],
   ]);
 });

@@ -248,7 +248,7 @@ describe('Optional chaining', () => {
     String.raw`x?.voi\u0064`,
     'x?.protected',
     String.raw`x?.prot\u0065cted`,
-    'class C { #m = 1; static m(obj) { return obj?.#m; } }'
+    'class C { #m = 1; static m(obj) { return obj?.#m; } }',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -392,7 +392,7 @@ describe('Optional chaining', () => {
     ['import?.("foo")', Context.OptionsWebCompat],
     ['new new class {}()?.constructor?.();', Context.OptionsWebCompat],
     ['a?.{a} = c', Context.None],
-    ['a.?()', Context.None]
+    ['a.?()', Context.None],
   ]);
 
   pass('Optional chaining (pass)', [
@@ -414,7 +414,7 @@ describe('Optional chaining', () => {
                   name: 'a',
                   start: 0,
                   end: 1,
-                  range: [0, 1]
+                  range: [0, 1],
                 },
                 computed: false,
                 optional: true,
@@ -423,25 +423,25 @@ describe('Optional chaining', () => {
                   name: 'b',
                   start: 3,
                   end: 4,
-                  range: [3, 4]
+                  range: [3, 4],
                 },
                 start: 0,
                 end: 4,
-                range: [0, 4]
+                range: [0, 4],
               },
               start: 0,
               end: 4,
-              range: [0, 4]
+              range: [0, 4],
             },
             start: 0,
             end: 4,
-            range: [0, 4]
-          }
+            range: [0, 4],
+          },
         ],
         start: 0,
         end: 4,
-        range: [0, 4]
-      }
+        range: [0, 4],
+      },
     ],
     [
       'obj.aaa.bbb',
@@ -461,7 +461,7 @@ describe('Optional chaining', () => {
                   name: 'obj',
                   start: 0,
                   end: 3,
-                  range: [0, 3]
+                  range: [0, 3],
                 },
                 computed: false,
                 property: {
@@ -469,11 +469,11 @@ describe('Optional chaining', () => {
                   name: 'aaa',
                   start: 4,
                   end: 7,
-                  range: [4, 7]
+                  range: [4, 7],
                 },
                 start: 0,
                 end: 7,
-                range: [0, 7]
+                range: [0, 7],
               },
               computed: false,
               property: {
@@ -481,21 +481,21 @@ describe('Optional chaining', () => {
                 name: 'bbb',
                 start: 8,
                 end: 11,
-                range: [8, 11]
+                range: [8, 11],
               },
               start: 0,
               end: 11,
-              range: [0, 11]
+              range: [0, 11],
             },
             start: 0,
             end: 11,
-            range: [0, 11]
-          }
+            range: [0, 11],
+          },
         ],
         start: 0,
         end: 11,
-        range: [0, 11]
-      }
+        range: [0, 11],
+      },
     ],
     [
       'obj.aaa?.bbb',
@@ -517,7 +517,7 @@ describe('Optional chaining', () => {
                     name: 'obj',
                     start: 0,
                     end: 3,
-                    range: [0, 3]
+                    range: [0, 3],
                   },
                   computed: false,
                   property: {
@@ -525,11 +525,11 @@ describe('Optional chaining', () => {
                     name: 'aaa',
                     start: 4,
                     end: 7,
-                    range: [4, 7]
+                    range: [4, 7],
                   },
                   start: 0,
                   end: 7,
-                  range: [0, 7]
+                  range: [0, 7],
                 },
                 computed: false,
                 optional: true,
@@ -538,25 +538,25 @@ describe('Optional chaining', () => {
                   name: 'bbb',
                   start: 9,
                   end: 12,
-                  range: [9, 12]
+                  range: [9, 12],
                 },
                 start: 0,
                 end: 12,
-                range: [0, 12]
+                range: [0, 12],
               },
               start: 0,
               end: 12,
-              range: [0, 12]
+              range: [0, 12],
             },
             start: 0,
             end: 12,
-            range: [0, 12]
-          }
+            range: [0, 12],
+          },
         ],
         start: 0,
         end: 12,
-        range: [0, 12]
-      }
+        range: [0, 12],
+      },
     ],
     [
       'obj?.aaa.bbb',
@@ -578,7 +578,7 @@ describe('Optional chaining', () => {
                     name: 'obj',
                     start: 0,
                     end: 3,
-                    range: [0, 3]
+                    range: [0, 3],
                   },
                   computed: false,
                   optional: true,
@@ -587,11 +587,11 @@ describe('Optional chaining', () => {
                     name: 'aaa',
                     start: 5,
                     end: 8,
-                    range: [5, 8]
+                    range: [5, 8],
                   },
                   start: 0,
                   end: 8,
-                  range: [0, 8]
+                  range: [0, 8],
                 },
                 computed: false,
                 property: {
@@ -599,25 +599,25 @@ describe('Optional chaining', () => {
                   name: 'bbb',
                   start: 9,
                   end: 12,
-                  range: [9, 12]
+                  range: [9, 12],
                 },
                 start: 0,
                 end: 12,
-                range: [0, 12]
+                range: [0, 12],
               },
               start: 0,
               end: 12,
-              range: [0, 12]
+              range: [0, 12],
             },
             start: 0,
             end: 12,
-            range: [0, 12]
-          }
+            range: [0, 12],
+          },
         ],
         start: 0,
         end: 12,
-        range: [0, 12]
-      }
+        range: [0, 12],
+      },
     ],
     [
       'obj?.aaa?.bbb',
@@ -639,7 +639,7 @@ describe('Optional chaining', () => {
                     name: 'obj',
                     start: 0,
                     end: 3,
-                    range: [0, 3]
+                    range: [0, 3],
                   },
                   computed: false,
                   optional: true,
@@ -648,11 +648,11 @@ describe('Optional chaining', () => {
                     name: 'aaa',
                     start: 5,
                     end: 8,
-                    range: [5, 8]
+                    range: [5, 8],
                   },
                   start: 0,
                   end: 8,
-                  range: [0, 8]
+                  range: [0, 8],
                 },
                 computed: false,
                 optional: true,
@@ -661,25 +661,25 @@ describe('Optional chaining', () => {
                   name: 'bbb',
                   start: 10,
                   end: 13,
-                  range: [10, 13]
+                  range: [10, 13],
                 },
                 start: 0,
                 end: 13,
-                range: [0, 13]
+                range: [0, 13],
               },
               start: 0,
               end: 13,
-              range: [0, 13]
+              range: [0, 13],
             },
             start: 0,
             end: 13,
-            range: [0, 13]
-          }
+            range: [0, 13],
+          },
         ],
         start: 0,
         end: 13,
-        range: [0, 13]
-      }
+        range: [0, 13],
+      },
     ],
     [
       '(obj.aaa).bbb',
@@ -699,7 +699,7 @@ describe('Optional chaining', () => {
                   name: 'obj',
                   start: 1,
                   end: 4,
-                  range: [1, 4]
+                  range: [1, 4],
                 },
                 computed: false,
                 property: {
@@ -707,11 +707,11 @@ describe('Optional chaining', () => {
                   name: 'aaa',
                   start: 5,
                   end: 8,
-                  range: [5, 8]
+                  range: [5, 8],
                 },
                 start: 1,
                 end: 8,
-                range: [1, 8]
+                range: [1, 8],
               },
               computed: false,
               property: {
@@ -719,21 +719,21 @@ describe('Optional chaining', () => {
                 name: 'bbb',
                 start: 10,
                 end: 13,
-                range: [10, 13]
+                range: [10, 13],
               },
               start: 0,
               end: 13,
-              range: [0, 13]
+              range: [0, 13],
             },
             start: 0,
             end: 13,
-            range: [0, 13]
-          }
+            range: [0, 13],
+          },
         ],
         start: 0,
         end: 13,
-        range: [0, 13]
-      }
+        range: [0, 13],
+      },
     ],
     [
       '(obj.aaa)?.bbb',
@@ -755,7 +755,7 @@ describe('Optional chaining', () => {
                     name: 'obj',
                     start: 1,
                     end: 4,
-                    range: [1, 4]
+                    range: [1, 4],
                   },
                   computed: false,
                   property: {
@@ -763,11 +763,11 @@ describe('Optional chaining', () => {
                     name: 'aaa',
                     start: 5,
                     end: 8,
-                    range: [5, 8]
+                    range: [5, 8],
                   },
                   start: 1,
                   end: 8,
-                  range: [1, 8]
+                  range: [1, 8],
                 },
                 computed: false,
                 optional: true,
@@ -776,25 +776,25 @@ describe('Optional chaining', () => {
                   name: 'bbb',
                   start: 11,
                   end: 14,
-                  range: [11, 14]
+                  range: [11, 14],
                 },
                 start: 0,
                 end: 14,
-                range: [0, 14]
+                range: [0, 14],
               },
               start: 0,
               end: 14,
-              range: [0, 14]
+              range: [0, 14],
             },
             start: 0,
             end: 14,
-            range: [0, 14]
-          }
+            range: [0, 14],
+          },
         ],
         start: 0,
         end: 14,
-        range: [0, 14]
-      }
+        range: [0, 14],
+      },
     ],
     [
       '(obj?.aaa).bbb',
@@ -816,7 +816,7 @@ describe('Optional chaining', () => {
                     name: 'obj',
                     start: 1,
                     end: 4,
-                    range: [1, 4]
+                    range: [1, 4],
                   },
                   computed: false,
                   optional: true,
@@ -825,15 +825,15 @@ describe('Optional chaining', () => {
                     name: 'aaa',
                     start: 6,
                     end: 9,
-                    range: [6, 9]
+                    range: [6, 9],
                   },
                   start: 1,
                   end: 9,
-                  range: [1, 9]
+                  range: [1, 9],
                 },
                 start: 1,
                 end: 9,
-                range: [1, 9]
+                range: [1, 9],
               },
               computed: false,
               property: {
@@ -841,21 +841,21 @@ describe('Optional chaining', () => {
                 name: 'bbb',
                 start: 11,
                 end: 14,
-                range: [11, 14]
+                range: [11, 14],
               },
               start: 0,
               end: 14,
-              range: [0, 14]
+              range: [0, 14],
             },
             start: 0,
             end: 14,
-            range: [0, 14]
-          }
+            range: [0, 14],
+          },
         ],
         start: 0,
         end: 14,
-        range: [0, 14]
-      }
+        range: [0, 14],
+      },
     ],
     [
       '(obj?.aaa)?.bbb',
@@ -879,7 +879,7 @@ describe('Optional chaining', () => {
                       name: 'obj',
                       start: 1,
                       end: 4,
-                      range: [1, 4]
+                      range: [1, 4],
                     },
                     computed: false,
                     optional: true,
@@ -888,15 +888,15 @@ describe('Optional chaining', () => {
                       name: 'aaa',
                       start: 6,
                       end: 9,
-                      range: [6, 9]
+                      range: [6, 9],
                     },
                     start: 1,
                     end: 9,
-                    range: [1, 9]
+                    range: [1, 9],
                   },
                   start: 1,
                   end: 9,
-                  range: [1, 9]
+                  range: [1, 9],
                 },
                 computed: false,
                 optional: true,
@@ -905,25 +905,25 @@ describe('Optional chaining', () => {
                   name: 'bbb',
                   start: 12,
                   end: 15,
-                  range: [12, 15]
+                  range: [12, 15],
                 },
                 start: 0,
                 end: 15,
-                range: [0, 15]
+                range: [0, 15],
               },
               start: 0,
               end: 15,
-              range: [0, 15]
+              range: [0, 15],
             },
             start: 0,
             end: 15,
-            range: [0, 15]
-          }
+            range: [0, 15],
+          },
         ],
         start: 0,
         end: 15,
-        range: [0, 15]
-      }
+        range: [0, 15],
+      },
     ],
     [
       'a?.[x]',
@@ -942,7 +942,7 @@ describe('Optional chaining', () => {
                   name: 'a',
                   range: [0, 1],
                   start: 0,
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 optional: true,
                 property: {
@@ -950,27 +950,27 @@ describe('Optional chaining', () => {
                   name: 'x',
                   range: [4, 5],
                   start: 4,
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 range: [0, 6],
                 start: 0,
-                type: 'MemberExpression'
+                type: 'MemberExpression',
               },
               range: [0, 6],
               start: 0,
-              type: 'ChainExpression'
+              type: 'ChainExpression',
             },
             range: [0, 6],
             start: 0,
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         end: 6,
         range: [0, 6],
         sourceType: 'script',
         start: 0,
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'a?.import("string")?.import.meta??(a)',
@@ -996,8 +996,8 @@ describe('Optional chaining', () => {
                           range: [10, 18],
                           start: 10,
                           type: 'Literal',
-                          value: 'string'
-                        }
+                          value: 'string',
+                        },
                       ],
                       callee: {
                         computed: false,
@@ -1007,7 +1007,7 @@ describe('Optional chaining', () => {
                           name: 'a',
                           range: [0, 1],
                           start: 0,
-                          type: 'Identifier'
+                          type: 'Identifier',
                         },
                         optional: true,
                         property: {
@@ -1015,16 +1015,16 @@ describe('Optional chaining', () => {
                           name: 'import',
                           range: [3, 9],
                           start: 3,
-                          type: 'Identifier'
+                          type: 'Identifier',
                         },
                         range: [0, 9],
                         start: 0,
-                        type: 'MemberExpression'
+                        type: 'MemberExpression',
                       },
                       end: 19,
                       range: [0, 19],
                       start: 0,
-                      type: 'CallExpression'
+                      type: 'CallExpression',
                     },
                     optional: true,
                     property: {
@@ -1032,26 +1032,26 @@ describe('Optional chaining', () => {
                       name: 'import',
                       range: [21, 27],
                       start: 21,
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
                     range: [0, 27],
                     start: 0,
-                    type: 'MemberExpression'
+                    type: 'MemberExpression',
                   },
                   property: {
                     end: 32,
                     name: 'meta',
                     range: [28, 32],
                     start: 28,
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   range: [0, 32],
                   start: 0,
-                  type: 'MemberExpression'
+                  type: 'MemberExpression',
                 },
                 range: [0, 32],
                 start: 0,
-                type: 'ChainExpression'
+                type: 'ChainExpression',
               },
               operator: '??',
               range: [0, 37],
@@ -1060,22 +1060,22 @@ describe('Optional chaining', () => {
                 name: 'a',
                 range: [35, 36],
                 start: 35,
-                type: 'Identifier'
+                type: 'Identifier',
               },
               start: 0,
-              type: 'LogicalExpression'
+              type: 'LogicalExpression',
             },
             range: [0, 37],
             start: 0,
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         end: 37,
         range: [0, 37],
         sourceType: 'script',
         start: 0,
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `a?.()`,
@@ -1095,27 +1095,27 @@ describe('Optional chaining', () => {
                   name: 'a',
                   start: 0,
                   end: 1,
-                  range: [0, 1]
+                  range: [0, 1],
                 },
                 arguments: [],
                 optional: true,
                 start: 0,
                 end: 5,
-                range: [0, 5]
+                range: [0, 5],
               },
               start: 0,
               end: 5,
-              range: [0, 5]
+              range: [0, 5],
             },
             start: 0,
             end: 5,
-            range: [0, 5]
-          }
+            range: [0, 5],
+          },
         ],
         start: 0,
         end: 5,
-        range: [0, 5]
-      }
+        range: [0, 5],
+      },
     ],
     [
       `a?.b[3].c?.(x).d`,
@@ -1143,7 +1143,7 @@ describe('Optional chaining', () => {
                           name: 'a',
                           start: 0,
                           end: 1,
-                          range: [0, 1]
+                          range: [0, 1],
                         },
                         computed: false,
                         optional: true,
@@ -1152,11 +1152,11 @@ describe('Optional chaining', () => {
                           name: 'b',
                           start: 3,
                           end: 4,
-                          range: [3, 4]
+                          range: [3, 4],
                         },
                         start: 0,
                         end: 4,
-                        range: [0, 4]
+                        range: [0, 4],
                       },
                       computed: true,
                       property: {
@@ -1164,11 +1164,11 @@ describe('Optional chaining', () => {
                         value: 3,
                         start: 5,
                         end: 6,
-                        range: [5, 6]
+                        range: [5, 6],
                       },
                       start: 0,
                       end: 7,
-                      range: [0, 7]
+                      range: [0, 7],
                     },
                     computed: false,
                     property: {
@@ -1176,11 +1176,11 @@ describe('Optional chaining', () => {
                       name: 'c',
                       start: 8,
                       end: 9,
-                      range: [8, 9]
+                      range: [8, 9],
                     },
                     start: 0,
                     end: 9,
-                    range: [0, 9]
+                    range: [0, 9],
                   },
                   arguments: [
                     {
@@ -1188,13 +1188,13 @@ describe('Optional chaining', () => {
                       name: 'x',
                       start: 12,
                       end: 13,
-                      range: [12, 13]
-                    }
+                      range: [12, 13],
+                    },
                   ],
                   optional: true,
                   start: 0,
                   end: 14,
-                  range: [0, 14]
+                  range: [0, 14],
                 },
                 computed: false,
                 property: {
@@ -1202,25 +1202,25 @@ describe('Optional chaining', () => {
                   name: 'd',
                   start: 15,
                   end: 16,
-                  range: [15, 16]
+                  range: [15, 16],
                 },
                 start: 0,
                 end: 16,
-                range: [0, 16]
+                range: [0, 16],
               },
               start: 0,
               end: 16,
-              range: [0, 16]
+              range: [0, 16],
             },
             start: 0,
             end: 16,
-            range: [0, 16]
-          }
+            range: [0, 16],
+          },
         ],
         start: 0,
         end: 16,
-        range: [0, 16]
-      }
+        range: [0, 16],
+      },
     ],
     [
       `({})?.a["b"]`,
@@ -1242,7 +1242,7 @@ describe('Optional chaining', () => {
                     properties: [],
                     start: 1,
                     end: 3,
-                    range: [1, 3]
+                    range: [1, 3],
                   },
                   computed: false,
                   optional: true,
@@ -1251,11 +1251,11 @@ describe('Optional chaining', () => {
                     name: 'a',
                     start: 6,
                     end: 7,
-                    range: [6, 7]
+                    range: [6, 7],
                   },
                   start: 0,
                   end: 7,
-                  range: [0, 7]
+                  range: [0, 7],
                 },
                 computed: true,
                 property: {
@@ -1263,25 +1263,25 @@ describe('Optional chaining', () => {
                   value: 'b',
                   start: 8,
                   end: 11,
-                  range: [8, 11]
+                  range: [8, 11],
                 },
                 start: 0,
                 end: 12,
-                range: [0, 12]
+                range: [0, 12],
               },
               start: 0,
               end: 12,
-              range: [0, 12]
+              range: [0, 12],
             },
             start: 0,
             end: 12,
-            range: [0, 12]
-          }
+            range: [0, 12],
+          },
         ],
         start: 0,
         end: 12,
-        range: [0, 12]
-      }
-    ]
+        range: [0, 12],
+      },
+    ],
   ]);
 });

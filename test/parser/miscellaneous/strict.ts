@@ -70,7 +70,7 @@ describe('Miscellaneous - Strict mode', () => {
     String.raw`f = () => { "use strict"; "\1";}`,
     String.raw`f = () => { "use strict"; "\7";}`,
     String.raw`f = () => { "\1"; "use strict";}`,
-    String.raw`f = () => { "\7"; "use strict";}`
+    String.raw`f = () => { "\7"; "use strict";}`,
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -113,7 +113,7 @@ describe('Miscellaneous - Strict mode', () => {
     'function f(){ "use strict"; foo; } with (x) y;',
     'function f(){ "use strict"; foo; } function g() { with (x) y; }',
     'function g() { function f(){ "use strict"; foo; } with (x) y; }',
-    'if (x) { "use strict"; with (x) y; }'
+    'if (x) { "use strict"; with (x) y; }',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

@@ -37,14 +37,14 @@ describe('Expressions - Exponentiation', () => {
     '[ x ] **= [ 2 ]',
     '[ x **= 2 ] = [ 2 ]',
     '{ x } **= { x: 2 }',
-    '{ x: x **= 2 ] = { x: 2 }'
+    '{ x: x **= 2 ] = { x: 2 }',
   ]) {
     it(`let O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, () => {
       t.throws(() => {
         parseSource(
           `let O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`,
           undefined,
-          Context.OptionsNext | Context.Module
+          Context.OptionsNext | Context.Module,
         );
       });
     });
@@ -81,7 +81,7 @@ describe('Expressions - Exponentiation', () => {
     ['(+x ** 2)', Context.None],
     ['(a * +a ** a ** 3)', Context.None],
     ['for (var import.meta of [1]) {}', Context.None],
-    ['async function f() { await 2 ** 2; }', Context.None]
+    ['async function f() { await 2 ** 2; }', Context.None],
   ]);
 
   for (const arg of [
@@ -120,14 +120,14 @@ describe('Expressions - Exponentiation', () => {
     'O.p++ ** 10',
     'x++ ** 10',
     'O.p-- ** 10',
-    'x-- ** 10'
+    'x-- ** 10',
   ]) {
     it(`var O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, () => {
       t.doesNotThrow(() => {
         parseSource(
           `var O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`,
           undefined,
-          Context.OptionsNext | Context.Module
+          Context.OptionsNext | Context.Module,
         );
       });
     });
@@ -164,7 +164,7 @@ describe('Expressions - Exponentiation', () => {
                   name: 'base',
                   start: 1,
                   end: 5,
-                  range: [1, 5]
+                  range: [1, 5],
                 },
                 operator: '**=',
                 right: {
@@ -172,11 +172,11 @@ describe('Expressions - Exponentiation', () => {
                   value: 3,
                   start: 10,
                   end: 11,
-                  range: [10, 11]
+                  range: [10, 11],
                 },
                 start: 1,
                 end: 11,
-                range: [1, 11]
+                range: [1, 11],
               },
               right: {
                 type: 'UnaryExpression',
@@ -186,27 +186,27 @@ describe('Expressions - Exponentiation', () => {
                   value: 27,
                   start: 18,
                   end: 20,
-                  range: [18, 20]
+                  range: [18, 20],
                 },
                 prefix: true,
                 start: 17,
                 end: 20,
-                range: [17, 20]
+                range: [17, 20],
               },
               operator: '===',
               start: 0,
               end: 20,
-              range: [0, 20]
+              range: [0, 20],
             },
             start: 0,
             end: 20,
-            range: [0, 20]
-          }
+            range: [0, 20],
+          },
         ],
         start: 0,
         end: 20,
-        range: [0, 20]
-      }
+        range: [0, 20],
+      },
     ],
     [
       '2 ** 4',
@@ -232,7 +232,7 @@ describe('Expressions - Exponentiation', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                value: 2
+                value: 2,
               },
               operator: '**',
               right: {
@@ -240,13 +240,13 @@ describe('Expressions - Exponentiation', () => {
                 start: 5,
                 end: 6,
                 range: [5, 6],
-                value: 4
-              }
-            }
-          }
+                value: 4,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'new x ** 2;',
@@ -277,9 +277,9 @@ describe('Expressions - Exponentiation', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'x'
+                  name: 'x',
                 },
-                arguments: []
+                arguments: [],
               },
               operator: '**',
               right: {
@@ -287,13 +287,13 @@ describe('Expressions - Exponentiation', () => {
                 start: 9,
                 end: 10,
                 range: [9, 10],
-                value: 2
-              }
-            }
-          }
+                value: 2,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'true ** a',
@@ -308,17 +308,17 @@ describe('Expressions - Exponentiation', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Literal',
-                value: true
+                value: true,
               },
               right: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
-              operator: '**'
-            }
-          }
-        ]
-      }
+              operator: '**',
+            },
+          },
+        ],
+      },
     ],
     [
       '++x ** a',
@@ -335,20 +335,20 @@ describe('Expressions - Exponentiation', () => {
                 type: 'UpdateExpression',
                 argument: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 operator: '++',
-                prefix: true
+                prefix: true,
               },
               right: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
-              operator: '**'
-            }
-          }
-        ]
-      }
+              operator: '**',
+            },
+          },
+        ],
+      },
     ],
     [
       '--x ** a',
@@ -365,20 +365,20 @@ describe('Expressions - Exponentiation', () => {
                 type: 'UpdateExpression',
                 argument: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 operator: '--',
-                prefix: true
+                prefix: true,
               },
               right: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
-              operator: '**'
-            }
-          }
-        ]
-      }
+              operator: '**',
+            },
+          },
+        ],
+      },
     ],
     [
       'x++ ** a',
@@ -395,20 +395,20 @@ describe('Expressions - Exponentiation', () => {
                 type: 'UpdateExpression',
                 argument: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 operator: '++',
-                prefix: false
+                prefix: false,
               },
               right: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
-              operator: '**'
-            }
-          }
-        ]
-      }
+              operator: '**',
+            },
+          },
+        ],
+      },
     ],
     [
       'x-- ** a',
@@ -425,20 +425,20 @@ describe('Expressions - Exponentiation', () => {
                 type: 'UpdateExpression',
                 argument: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 operator: '--',
-                prefix: false
+                prefix: false,
               },
               right: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
-              operator: '**'
-            }
-          }
-        ]
-      }
+              operator: '**',
+            },
+          },
+        ],
+      },
     ],
     [
       '+a * b ** c ** 3',
@@ -456,35 +456,35 @@ describe('Expressions - Exponentiation', () => {
                 operator: '+',
                 argument: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
-                prefix: true
+                prefix: true,
               },
               right: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 right: {
                   type: 'BinaryExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'c'
+                    name: 'c',
                   },
                   right: {
                     type: 'Literal',
-                    value: 3
+                    value: 3,
                   },
-                  operator: '**'
+                  operator: '**',
                 },
-                operator: '**'
+                operator: '**',
               },
-              operator: '*'
-            }
-          }
-        ]
-      }
+              operator: '*',
+            },
+          },
+        ],
+      },
     ],
     [
       '(2 ** 4)',
@@ -499,17 +499,17 @@ describe('Expressions - Exponentiation', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Literal',
-                value: 2
+                value: 2,
               },
               right: {
                 type: 'Literal',
-                value: 4
+                value: 4,
               },
-              operator: '**'
-            }
-          }
-        ]
-      }
+              operator: '**',
+            },
+          },
+        ],
+      },
     ],
     [
       '(new x ** 2)',
@@ -540,9 +540,9 @@ describe('Expressions - Exponentiation', () => {
                   start: 5,
                   end: 6,
                   range: [5, 6],
-                  name: 'x'
+                  name: 'x',
                 },
-                arguments: []
+                arguments: [],
               },
               operator: '**',
               right: {
@@ -550,13 +550,13 @@ describe('Expressions - Exponentiation', () => {
                 start: 10,
                 end: 11,
                 range: [10, 11],
-                value: 2
-              }
-            }
-          }
+                value: 2,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(true ** a)',
@@ -571,17 +571,17 @@ describe('Expressions - Exponentiation', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Literal',
-                value: true
+                value: true,
               },
               right: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
-              operator: '**'
-            }
-          }
-        ]
-      }
+              operator: '**',
+            },
+          },
+        ],
+      },
     ],
     [
       '(++x ** a)',
@@ -614,8 +614,8 @@ describe('Expressions - Exponentiation', () => {
                   start: 3,
                   end: 4,
                   range: [3, 4],
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
               operator: '**',
               right: {
@@ -623,13 +623,13 @@ describe('Expressions - Exponentiation', () => {
                 start: 8,
                 end: 9,
                 range: [8, 9],
-                name: 'a'
-              }
-            }
-          }
+                name: 'a',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(+c * b ** a ** 3)',
@@ -647,35 +647,35 @@ describe('Expressions - Exponentiation', () => {
                 operator: '+',
                 argument: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
-                prefix: true
+                prefix: true,
               },
               right: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 right: {
                   type: 'BinaryExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   right: {
                     type: 'Literal',
-                    value: 3
+                    value: 3,
                   },
-                  operator: '**'
+                  operator: '**',
                 },
-                operator: '**'
+                operator: '**',
               },
-              operator: '*'
-            }
-          }
-        ]
-      }
+              operator: '*',
+            },
+          },
+        ],
+      },
     ],
     [
       '(+1) ** 2',
@@ -693,19 +693,19 @@ describe('Expressions - Exponentiation', () => {
                 operator: '+',
                 argument: {
                   type: 'Literal',
-                  value: 1
+                  value: 1,
                 },
-                prefix: true
+                prefix: true,
               },
               right: {
                 type: 'Literal',
-                value: 2
+                value: 2,
               },
-              operator: '**'
-            }
-          }
-        ]
-      }
+              operator: '**',
+            },
+          },
+        ],
+      },
     ],
     [
       'async function f() { (await 2) ** 2; }',
@@ -718,7 +718,7 @@ describe('Expressions - Exponentiation', () => {
             type: 'FunctionDeclaration',
             id: {
               type: 'Identifier',
-              name: 'f'
+              name: 'f',
             },
             params: [],
             body: {
@@ -732,23 +732,23 @@ describe('Expressions - Exponentiation', () => {
                       type: 'AwaitExpression',
                       argument: {
                         type: 'Literal',
-                        value: 2
-                      }
+                        value: 2,
+                      },
                     },
                     right: {
                       type: 'Literal',
-                      value: 2
+                      value: 2,
                     },
-                    operator: '**'
-                  }
-                }
-              ]
+                    operator: '**',
+                  },
+                },
+              ],
             },
             async: true,
-            generator: false
-          }
-        ]
-      }
+            generator: false,
+          },
+        ],
+      },
     ],
     [
       'async function f() { await (2 ** 2); }',
@@ -761,7 +761,7 @@ describe('Expressions - Exponentiation', () => {
             type: 'FunctionDeclaration',
             id: {
               type: 'Identifier',
-              name: 'f'
+              name: 'f',
             },
             params: [],
             body: {
@@ -775,23 +775,23 @@ describe('Expressions - Exponentiation', () => {
                       type: 'BinaryExpression',
                       left: {
                         type: 'Literal',
-                        value: 2
+                        value: 2,
                       },
                       right: {
                         type: 'Literal',
-                        value: 2
+                        value: 2,
                       },
-                      operator: '**'
-                    }
-                  }
-                }
-              ]
+                      operator: '**',
+                    },
+                  },
+                },
+              ],
             },
             async: true,
-            generator: false
-          }
-        ]
-      }
-    ]
+            generator: false,
+          },
+        ],
+      },
+    ],
   ]);
 });

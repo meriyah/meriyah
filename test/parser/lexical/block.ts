@@ -169,14 +169,14 @@ describe('Lexical - Block', () => {
       for (var x;;);
       const x = 1
     }`,
-      Context.OptionsWebCompat | Context.OptionsLexical
+      Context.OptionsWebCompat | Context.OptionsLexical,
     ],
     [
       `function f(){
       for (var x;;);
       const x = 1
     }`,
-      Context.OptionsWebCompat | Context.OptionsLexical
+      Context.OptionsWebCompat | Context.OptionsLexical,
     ],
     [`# { # }`, Context.OptionsWebCompat | Context.OptionsLexical],
     ['{ # } #', Context.OptionsWebCompat | Context.OptionsLexical],
@@ -184,7 +184,7 @@ describe('Lexical - Block', () => {
     ['{ class async {}; { var async; } }', Context.OptionsWebCompat | Context.OptionsLexical],
     ['try { } catch (e) { # # }', Context.OptionsWebCompat | Context.OptionsLexical],
     ['{ async function *f(){} let f }', Context.OptionsWebCompat | Context.OptionsLexical],
-    ['{ class async {}; { var async; } }', Context.OptionsWebCompat | Context.OptionsLexical]
+    ['{ class async {}; { var async; } }', Context.OptionsWebCompat | Context.OptionsLexical],
   ]);
 
   for (const arg of [
@@ -198,7 +198,7 @@ describe('Lexical - Block', () => {
     'function f() {} ; function f() {}',
     'function g(){ function f() {} ; function f() {} }',
     '{ var f; var f; }',
-    '{ let foo = 1; { let foo = 2; } }'
+    '{ let foo = 1; { let foo = 2; } }',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -254,7 +254,7 @@ describe('Lexical - Block', () => {
           result = 0;
           break;
       }
-    }`
+    }`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

@@ -97,7 +97,7 @@ describe('Miscellaneous - Escaped keywords', () => {
     String.raw`var y = { c\u0061se: x } = { case: 42 };`,
     String.raw`var y = { c\u0061tch: x } = { catch: 42 };`,
     String.raw`var y = { \u0063onst: x } = { const: 42 };`,
-    String.raw`var y = { \u0064ebugger: x } = { debugger: 42 };`
+    String.raw`var y = { \u0064ebugger: x } = { debugger: 42 };`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -296,6 +296,6 @@ describe('Miscellaneous - Escaped keywords', () => {
     [String.raw`var gen = async function *() { var yi\u0065ld; };`, Context.None],
     [String.raw`var obj = { *method() { void yi\u0065ld; } };`, Context.None],
     [String.raw`var gen = function *g() { yi\u0065ld: ; };`, Context.None],
-    [String.raw`({ \u0061sync* m(){}});`, Context.None]
+    [String.raw`({ \u0061sync* m(){}});`, Context.None],
   ]);
 });

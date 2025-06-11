@@ -32,7 +32,7 @@ describe('Statements - For in', () => {
     'for((0) in 0);',
     'for(([0]) in 0);',
     'for(({a: 0}) in 0);',
-    'for(0 in 0);'
+    'for(0 in 0);',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -54,7 +54,7 @@ describe('Statements - For in', () => {
     'for (var a = ++b in c);',
     'for (var a = b in c);',
     'for (var a = 0 in stored = a, {});',
-    'for (var a = (++effects, -1) in x);'
+    'for (var a = (++effects, -1) in x);',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -202,7 +202,7 @@ describe('Statements - For in', () => {
     `for ({}.x = y in y) {}`,
     'for ("foo".x in y',
     `for ([].x = y in y) {}`,
-    'for (a() in b) break'
+    'for (a() in b) break',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -430,7 +430,7 @@ describe('Statements - For in', () => {
     'for (function(){ }[x in y];;);',
     'for (function(){ if (a in b); };;);',
     'for (function(){ a in b; };;);',
-    'for (function(){ a in b; }.foo;;);'
+    'for (function(){ a in b; }.foo;;);',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -608,7 +608,7 @@ describe('Statements - For in', () => {
     ['for ("foo".bar = x in obj);', Context.None],
     ['for ({}.bar = x in obj);', Context.None],
     ['for ([].bar = x in obj);', Context.None],
-    ['for ([]=1 in x);', Context.None]
+    ['for ([]=1 in x);', Context.None],
   ]);
   pass('Statements - For in (pass)', [
     [
@@ -621,7 +621,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'ObjectPattern',
@@ -630,34 +630,34 @@ describe('Statements - For in', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'MemberExpression',
                     object: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'b'
-                    }
+                      name: 'b',
+                    },
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
+                  shorthand: false,
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -670,27 +670,27 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'MemberExpression',
               object: {
                 type: 'Literal',
-                value: 'foo'
+                value: 'foo',
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'bar'
-              }
+                name: 'bar',
+              },
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
     [
       'for ({}.bar in obj);',
@@ -702,27 +702,27 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'MemberExpression',
               object: {
                 type: 'ObjectExpression',
-                properties: []
+                properties: [],
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'bar'
-              }
+                name: 'bar',
+              },
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
     [
       'for ([].bar in obj);',
@@ -734,27 +734,27 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'MemberExpression',
               object: {
                 type: 'ArrayExpression',
-                elements: []
+                elements: [],
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'bar'
-              }
+                name: 'bar',
+              },
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (var {x : y} in obj);',
@@ -766,7 +766,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -783,28 +783,28 @@ describe('Statements - For in', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: false,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
     [
       'for(var x=1 in [1,2,3]) 0',
@@ -819,8 +819,8 @@ describe('Statements - For in', () => {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Literal',
-                value: 0
-              }
+                value: 0,
+              },
             },
             left: {
               type: 'VariableDeclaration',
@@ -830,35 +830,35 @@ describe('Statements - For in', () => {
                   type: 'VariableDeclarator',
                   init: {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   id: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                }
-              ]
+                    name: 'x',
+                  },
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
               elements: [
                 {
                   type: 'Literal',
-                  value: 1
+                  value: 1,
                 },
                 {
                   type: 'Literal',
-                  value: 2
+                  value: 2,
                 },
                 {
                   type: 'Literal',
-                  value: 3
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  value: 3,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'for (var [foo, bar=b] of arr);',
@@ -879,37 +879,37 @@ describe('Statements - For in', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'bar'
+                          name: 'bar',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'b'
-                        }
-                      }
-                    ]
+                          name: 'b',
+                        },
+                      },
+                    ],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             right: {
               type: 'Identifier',
-              name: 'arr'
+              name: 'arr',
             },
             body: {
-              type: 'EmptyStatement'
-            }
-          }
+              type: 'EmptyStatement',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (function* y() { new.target in /(?:()|[]|(?!))/iuy };; (null))  {}',
@@ -922,7 +922,7 @@ describe('Statements - For in', () => {
             type: 'ForStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             init: {
               type: 'FunctionExpression',
@@ -937,13 +937,13 @@ describe('Statements - For in', () => {
                       left: {
                         meta: {
                           type: 'Identifier',
-                          name: 'new'
+                          name: 'new',
                         },
                         type: 'MetaProperty',
                         property: {
                           type: 'Identifier',
-                          name: 'target'
-                        }
+                          name: 'target',
+                        },
                       },
                       right: {
                         type: 'Literal',
@@ -951,30 +951,30 @@ describe('Statements - For in', () => {
                         value: /(?:()|[]|(?!))/iuy,
                         regex: {
                           pattern: '(?:()|[]|(?!))',
-                          flags: 'iuy'
-                        }
+                          flags: 'iuy',
+                        },
                       },
-                      operator: 'in'
-                    }
-                  }
-                ]
+                      operator: 'in',
+                    },
+                  },
+                ],
               },
               async: false,
               generator: true,
 
               id: {
                 type: 'Identifier',
-                name: 'y'
-              }
+                name: 'y',
+              },
             },
             test: null,
             update: {
               type: 'Literal',
-              value: null
-            }
-          }
-        ]
-      }
+              value: null,
+            },
+          },
+        ],
+      },
     ],
     [
       'for (var {[x]: y} of obj);',
@@ -986,7 +986,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForOfStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1003,29 +1003,29 @@ describe('Statements - For in', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         computed: true,
                         value: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: false,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
+              name: 'obj',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
 
     [
@@ -1048,42 +1048,42 @@ describe('Statements - For in', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         computed: false,
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'y'
-                          }
+                            name: 'y',
+                          },
                         },
                         kind: 'init',
                         method: false,
-                        shorthand: true
-                      }
-                    ]
+                        shorthand: true,
+                      },
+                    ],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
+              name: 'obj',
             },
             body: {
-              type: 'EmptyStatement'
-            }
-          }
+              type: 'EmptyStatement',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (var [] in x);',
@@ -1100,24 +1100,24 @@ describe('Statements - For in', () => {
                   type: 'VariableDeclarator',
                   id: {
                     type: 'ArrayPattern',
-                    elements: []
+                    elements: [],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             right: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             body: {
-              type: 'EmptyStatement'
-            }
-          }
+              type: 'EmptyStatement',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (var [foo,] in arr);',
@@ -1129,7 +1129,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1143,20 +1143,20 @@ describe('Statements - For in', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
-                    ]
-                  }
-                }
-              ]
+                        name: 'foo',
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'arr'
-            }
-          }
-        ]
-      }
+              name: 'arr',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (var a = b in c);',
@@ -1173,27 +1173,27 @@ describe('Statements - For in', () => {
                   type: 'VariableDeclarator',
                   id: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   init: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                }
+                    name: 'b',
+                  },
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             right: {
               type: 'Identifier',
-              name: 'c'
+              name: 'c',
             },
             body: {
-              type: 'EmptyStatement'
-            }
-          }
+              type: 'EmptyStatement',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (var [foo,bar] in arr);',
@@ -1231,39 +1231,39 @@ describe('Statements - For in', () => {
                         start: 10,
                         end: 13,
                         range: [10, 13],
-                        name: 'foo'
+                        name: 'foo',
                       },
                       {
                         type: 'Identifier',
                         start: 14,
                         end: 17,
                         range: [14, 17],
-                        name: 'bar'
-                      }
-                    ]
+                        name: 'bar',
+                      },
+                    ],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             right: {
               type: 'Identifier',
               start: 22,
               end: 25,
               range: [22, 25],
-              name: 'arr'
+              name: 'arr',
             },
             body: {
               type: 'EmptyStatement',
               start: 26,
               end: 27,
-              range: [26, 27]
-            }
-          }
+              range: [26, 27],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (let.x in {}) {}',
@@ -1289,35 +1289,35 @@ describe('Statements - For in', () => {
                 start: 5,
                 end: 8,
                 range: [5, 8],
-                name: 'let'
+                name: 'let',
               },
               property: {
                 type: 'Identifier',
                 start: 9,
                 end: 10,
                 range: [9, 10],
-                name: 'x'
+                name: 'x',
               },
-              computed: false
+              computed: false,
             },
             right: {
               type: 'ObjectExpression',
               start: 14,
               end: 16,
               range: [14, 16],
-              properties: []
+              properties: [],
             },
             body: {
               type: 'BlockStatement',
               start: 18,
               end: 20,
               range: [18, 20],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (var [foo,,] in arr);',
@@ -1355,33 +1355,33 @@ describe('Statements - For in', () => {
                         start: 10,
                         end: 13,
                         range: [10, 13],
-                        name: 'foo'
+                        name: 'foo',
                       },
-                      null
-                    ]
+                      null,
+                    ],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             right: {
               type: 'Identifier',
               start: 20,
               end: 23,
               range: [20, 23],
-              name: 'arr'
+              name: 'arr',
             },
             body: {
               type: 'EmptyStatement',
               start: 24,
               end: 25,
-              range: [24, 25]
-            }
-          }
+              range: [24, 25],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (var [foo=a, bar=b] in arr);',
@@ -1424,15 +1424,15 @@ describe('Statements - For in', () => {
                           start: 10,
                           end: 13,
                           range: [10, 13],
-                          name: 'foo'
+                          name: 'foo',
                         },
                         right: {
                           type: 'Identifier',
                           start: 14,
                           end: 15,
                           range: [14, 15],
-                          name: 'a'
-                        }
+                          name: 'a',
+                        },
                       },
                       {
                         type: 'AssignmentPattern',
@@ -1444,40 +1444,40 @@ describe('Statements - For in', () => {
                           start: 17,
                           end: 20,
                           range: [17, 20],
-                          name: 'bar'
+                          name: 'bar',
                         },
                         right: {
                           type: 'Identifier',
                           start: 21,
                           end: 22,
                           range: [21, 22],
-                          name: 'b'
-                        }
-                      }
-                    ]
+                          name: 'b',
+                        },
+                      },
+                    ],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             right: {
               type: 'Identifier',
               start: 27,
               end: 30,
               range: [27, 30],
-              name: 'arr'
+              name: 'arr',
             },
             body: {
               type: 'EmptyStatement',
               start: 31,
               end: 32,
-              range: [31, 32]
-            }
-          }
+              range: [31, 32],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (var [,] in x);',
@@ -1509,30 +1509,30 @@ describe('Statements - For in', () => {
                     start: 9,
                     end: 12,
                     range: [9, 12],
-                    elements: [null]
+                    elements: [null],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             right: {
               type: 'Identifier',
               start: 16,
               end: 17,
               range: [16, 17],
-              name: 'x'
+              name: 'x',
             },
             body: {
               type: 'EmptyStatement',
               start: 18,
               end: 19,
-              range: [18, 19]
-            }
-          }
+              range: [18, 19],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (var [foo] in arr);',
@@ -1544,7 +1544,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1558,20 +1558,20 @@ describe('Statements - For in', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
-                    ]
-                  }
-                }
-              ]
+                        name: 'foo',
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'arr'
-            }
-          }
-        ]
-      }
+              name: 'arr',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (var [foo=a] in arr);',
@@ -1583,7 +1583,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1599,25 +1599,25 @@ describe('Statements - For in', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'a'
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          name: 'a',
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'arr'
-            }
-          }
-        ]
-      }
+              name: 'arr',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (var [foo=a, bar] in arr);',
@@ -1660,47 +1660,47 @@ describe('Statements - For in', () => {
                           start: 10,
                           end: 13,
                           range: [10, 13],
-                          name: 'foo'
+                          name: 'foo',
                         },
                         right: {
                           type: 'Identifier',
                           start: 14,
                           end: 15,
                           range: [14, 15],
-                          name: 'a'
-                        }
+                          name: 'a',
+                        },
                       },
                       {
                         type: 'Identifier',
                         start: 17,
                         end: 20,
                         range: [17, 20],
-                        name: 'bar'
-                      }
-                    ]
+                        name: 'bar',
+                      },
+                    ],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             right: {
               type: 'Identifier',
               start: 25,
               end: 28,
               range: [25, 28],
-              name: 'arr'
+              name: 'arr',
             },
             body: {
               type: 'EmptyStatement',
               start: 29,
               end: 30,
-              range: [29, 30]
-            }
-          }
+              range: [29, 30],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (var [foo, bar=b] in arr);',
@@ -1712,7 +1712,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1726,31 +1726,31 @@ describe('Statements - For in', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'bar'
+                          name: 'bar',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'b'
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          name: 'b',
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'arr'
-            }
-          }
-        ]
-      }
+              name: 'arr',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (var [...foo] in obj);',
@@ -1793,33 +1793,33 @@ describe('Statements - For in', () => {
                           start: 13,
                           end: 16,
                           range: [13, 16],
-                          name: 'foo'
-                        }
-                      }
-                    ]
+                          name: 'foo',
+                        },
+                      },
+                    ],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             right: {
               type: 'Identifier',
               start: 21,
               end: 24,
               range: [21, 24],
-              name: 'obj'
+              name: 'obj',
             },
             body: {
               type: 'EmptyStatement',
               start: 25,
               end: 26,
-              range: [25, 26]
-            }
-          }
+              range: [25, 26],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (var {} in obj);',
@@ -1831,7 +1831,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1842,18 +1842,18 @@ describe('Statements - For in', () => {
                   init: null,
                   id: {
                     type: 'ObjectPattern',
-                    properties: []
-                  }
-                }
-              ]
+                    properties: [],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (var {x,} in obj);',
@@ -1865,7 +1865,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -1882,28 +1882,28 @@ describe('Statements - For in', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (var {x, y} in obj);',
@@ -1949,7 +1949,7 @@ describe('Statements - For in', () => {
                           start: 10,
                           end: 11,
                           range: [10, 11],
-                          name: 'x'
+                          name: 'x',
                         },
                         kind: 'init',
                         value: {
@@ -1957,8 +1957,8 @@ describe('Statements - For in', () => {
                           start: 10,
                           end: 11,
                           range: [10, 11],
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       },
                       {
                         type: 'Property',
@@ -1973,7 +1973,7 @@ describe('Statements - For in', () => {
                           start: 13,
                           end: 14,
                           range: [13, 14],
-                          name: 'y'
+                          name: 'y',
                         },
                         kind: 'init',
                         value: {
@@ -1981,33 +1981,33 @@ describe('Statements - For in', () => {
                           start: 13,
                           end: 14,
                           range: [13, 14],
-                          name: 'y'
-                        }
-                      }
-                    ]
+                          name: 'y',
+                        },
+                      },
+                    ],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             right: {
               type: 'Identifier',
               start: 19,
               end: 22,
               range: [19, 22],
-              name: 'obj'
+              name: 'obj',
             },
             body: {
               type: 'EmptyStatement',
               start: 23,
               end: 24,
-              range: [23, 24]
-            }
-          }
+              range: [23, 24],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (var {x} in obj);',
@@ -2029,35 +2029,35 @@ describe('Statements - For in', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         kind: 'init',
                         method: false,
-                        shorthand: true
-                      }
-                    ]
+                        shorthand: true,
+                      },
+                    ],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
+              name: 'obj',
             },
             body: {
-              type: 'EmptyStatement'
-            }
-          }
+              type: 'EmptyStatement',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (var {x = y} in obj);',
@@ -2103,7 +2103,7 @@ describe('Statements - For in', () => {
                           start: 10,
                           end: 11,
                           range: [10, 11],
-                          name: 'x'
+                          name: 'x',
                         },
                         kind: 'init',
                         value: {
@@ -2116,41 +2116,41 @@ describe('Statements - For in', () => {
                             start: 10,
                             end: 11,
                             range: [10, 11],
-                            name: 'x'
+                            name: 'x',
                           },
                           right: {
                             type: 'Identifier',
                             start: 14,
                             end: 15,
                             range: [14, 15],
-                            name: 'y'
-                          }
-                        }
-                      }
-                    ]
+                            name: 'y',
+                          },
+                        },
+                      },
+                    ],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             right: {
               type: 'Identifier',
               start: 20,
               end: 23,
               range: [20, 23],
-              name: 'obj'
+              name: 'obj',
             },
             body: {
               type: 'EmptyStatement',
               start: 24,
               end: 25,
-              range: [24, 25]
-            }
-          }
+              range: [24, 25],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (a in b);',
@@ -2162,19 +2162,19 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'Identifier',
-              name: 'a'
+              name: 'a',
             },
             right: {
               type: 'Identifier',
-              name: 'b'
-            }
-          }
-        ]
-      }
+              name: 'b',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (a in b); for (a in b); for (a in b);',
@@ -2195,21 +2195,21 @@ describe('Statements - For in', () => {
               start: 5,
               end: 6,
               range: [5, 6],
-              name: 'a'
+              name: 'a',
             },
             right: {
               type: 'Identifier',
               start: 10,
               end: 11,
               range: [10, 11],
-              name: 'b'
+              name: 'b',
             },
             body: {
               type: 'EmptyStatement',
               start: 12,
               end: 13,
-              range: [12, 13]
-            }
+              range: [12, 13],
+            },
           },
           {
             type: 'ForInStatement',
@@ -2221,21 +2221,21 @@ describe('Statements - For in', () => {
               start: 19,
               end: 20,
               range: [19, 20],
-              name: 'a'
+              name: 'a',
             },
             right: {
               type: 'Identifier',
               start: 24,
               end: 25,
               range: [24, 25],
-              name: 'b'
+              name: 'b',
             },
             body: {
               type: 'EmptyStatement',
               start: 26,
               end: 27,
-              range: [26, 27]
-            }
+              range: [26, 27],
+            },
           },
           {
             type: 'ForInStatement',
@@ -2247,25 +2247,25 @@ describe('Statements - For in', () => {
               start: 33,
               end: 34,
               range: [33, 34],
-              name: 'a'
+              name: 'a',
             },
             right: {
               type: 'Identifier',
               start: 38,
               end: 39,
               range: [38, 39],
-              name: 'b'
+              name: 'b',
             },
             body: {
               type: 'EmptyStatement',
               start: 40,
               end: 41,
-              range: [40, 41]
-            }
-          }
+              range: [40, 41],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (let a in b);',
@@ -2277,7 +2277,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -2288,18 +2288,18 @@ describe('Statements - For in', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'b'
-            }
-          }
-        ]
-      }
+              name: 'b',
+            },
+          },
+        ],
+      },
     ],
     [
       'for ([a,b] in x) a;',
@@ -2326,23 +2326,23 @@ describe('Statements - For in', () => {
                   start: 6,
                   end: 7,
                   range: [6, 7],
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
                   range: [8, 9],
-                  name: 'b'
-                }
-              ]
+                  name: 'b',
+                },
+              ],
             },
             right: {
               type: 'Identifier',
               start: 14,
               end: 15,
               range: [14, 15],
-              name: 'x'
+              name: 'x',
             },
             body: {
               type: 'ExpressionStatement',
@@ -2354,13 +2354,13 @@ describe('Statements - For in', () => {
                 start: 17,
                 end: 18,
                 range: [17, 18],
-                name: 'a'
-              }
-            }
-          }
+                name: 'a',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for ([a,b] of x) a;',
@@ -2388,23 +2388,23 @@ describe('Statements - For in', () => {
                   start: 6,
                   end: 7,
                   range: [6, 7],
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
                   range: [8, 9],
-                  name: 'b'
-                }
-              ]
+                  name: 'b',
+                },
+              ],
             },
             right: {
               type: 'Identifier',
               start: 14,
               end: 15,
               range: [14, 15],
-              name: 'x'
+              name: 'x',
             },
             body: {
               type: 'ExpressionStatement',
@@ -2416,13 +2416,13 @@ describe('Statements - For in', () => {
                 start: 17,
                 end: 18,
                 range: [17, 18],
-                name: 'a'
-              }
-            }
-          }
+                name: 'a',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for ({a,b} in x) a;',
@@ -2437,8 +2437,8 @@ describe('Statements - For in', () => {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'a'
-              }
+                name: 'a',
+              },
             },
             left: {
               type: 'ObjectPattern',
@@ -2447,41 +2447,41 @@ describe('Statements - For in', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
+                  shorthand: true,
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
-                }
-              ]
+                  shorthand: true,
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'x'
-            }
-          }
-        ]
-      }
+              name: 'x',
+            },
+          },
+        ],
+      },
     ],
     [
       'for ({a,b} of x) a;',
@@ -2517,7 +2517,7 @@ describe('Statements - For in', () => {
                     start: 6,
                     end: 7,
                     range: [6, 7],
-                    name: 'a'
+                    name: 'a',
                   },
                   kind: 'init',
                   value: {
@@ -2525,8 +2525,8 @@ describe('Statements - For in', () => {
                     start: 6,
                     end: 7,
                     range: [6, 7],
-                    name: 'a'
-                  }
+                    name: 'a',
+                  },
                 },
                 {
                   type: 'Property',
@@ -2541,7 +2541,7 @@ describe('Statements - For in', () => {
                     start: 8,
                     end: 9,
                     range: [8, 9],
-                    name: 'b'
+                    name: 'b',
                   },
                   kind: 'init',
                   value: {
@@ -2549,17 +2549,17 @@ describe('Statements - For in', () => {
                     start: 8,
                     end: 9,
                     range: [8, 9],
-                    name: 'b'
-                  }
-                }
-              ]
+                    name: 'b',
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
               start: 14,
               end: 15,
               range: [14, 15],
-              name: 'x'
+              name: 'x',
             },
             body: {
               type: 'ExpressionStatement',
@@ -2571,13 +2571,13 @@ describe('Statements - For in', () => {
                 start: 17,
                 end: 18,
                 range: [17, 18],
-                name: 'a'
-              }
-            }
-          }
+                name: 'a',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (const [...x] in y){}',
@@ -2620,34 +2620,34 @@ describe('Statements - For in', () => {
                           start: 15,
                           end: 16,
                           range: [15, 16],
-                          name: 'x'
-                        }
-                      }
-                    ]
+                          name: 'x',
+                        },
+                      },
+                    ],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'const'
+              kind: 'const',
             },
             right: {
               type: 'Identifier',
               start: 21,
               end: 22,
               range: [21, 22],
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'BlockStatement',
               start: 23,
               end: 25,
               range: [23, 25],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (const {...x} in y){}',
@@ -2690,34 +2690,34 @@ describe('Statements - For in', () => {
                           start: 15,
                           end: 16,
                           range: [15, 16],
-                          name: 'x'
-                        }
-                      }
-                    ]
+                          name: 'x',
+                        },
+                      },
+                    ],
                   },
-                  init: null
-                }
+                  init: null,
+                },
               ],
-              kind: 'const'
+              kind: 'const',
             },
             right: {
               type: 'Identifier',
               start: 21,
               end: 22,
               range: [21, 22],
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'BlockStatement',
               start: 23,
               end: 25,
               range: [23, 25],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (var a=1;;);',
@@ -2749,18 +2749,18 @@ describe('Statements - For in', () => {
                     start: 9,
                     end: 10,
                     range: [9, 10],
-                    name: 'a'
+                    name: 'a',
                   },
                   init: {
                     type: 'Literal',
                     start: 11,
                     end: 12,
                     range: [11, 12],
-                    value: 1
-                  }
-                }
+                    value: 1,
+                  },
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             test: null,
             update: null,
@@ -2768,12 +2768,12 @@ describe('Statements - For in', () => {
               type: 'EmptyStatement',
               start: 15,
               end: 16,
-              range: [15, 16]
-            }
-          }
+              range: [15, 16],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for (var a in b);',
@@ -2785,7 +2785,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -2796,18 +2796,18 @@ describe('Statements - For in', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'b'
-            }
-          }
-        ]
-      }
+              name: 'b',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (let a in b);',
@@ -2819,7 +2819,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -2830,18 +2830,18 @@ describe('Statements - For in', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'b'
-            }
-          }
-        ]
-      }
+              name: 'b',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (const a in b);',
@@ -2853,7 +2853,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -2864,18 +2864,18 @@ describe('Statements - For in', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'b'
-            }
-          }
-        ]
-      }
+              name: 'b',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (a in b=c);',
@@ -2887,27 +2887,27 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'Identifier',
-              name: 'a'
+              name: 'a',
             },
             right: {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'c'
-              }
-            }
-          }
-        ]
-      }
+                name: 'c',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'for (var a = ++b in c);',
@@ -2919,7 +2919,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -2931,25 +2931,25 @@ describe('Statements - For in', () => {
                     type: 'UpdateExpression',
                     argument: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     operator: '++',
-                    prefix: true
+                    prefix: true,
                   },
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'c'
-            }
-          }
-        ]
-      }
+              name: 'c',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (var a = 0 in stored = a, {});',
@@ -2961,7 +2961,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -2971,14 +2971,14 @@ describe('Statements - For in', () => {
                   type: 'VariableDeclarator',
                   init: {
                     type: 'Literal',
-                    value: 0
+                    value: 0,
                   },
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             right: {
               type: 'SequenceExpression',
@@ -2987,23 +2987,23 @@ describe('Statements - For in', () => {
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'stored'
+                    name: 'stored',
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
+                    name: 'a',
+                  },
                 },
                 {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'for (var a = (++effects, -1) in x);',
@@ -3015,7 +3015,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -3030,36 +3030,36 @@ describe('Statements - For in', () => {
                         type: 'UpdateExpression',
                         argument: {
                           type: 'Identifier',
-                          name: 'effects'
+                          name: 'effects',
                         },
                         operator: '++',
-                        prefix: true
+                        prefix: true,
                       },
                       {
                         type: 'UnaryExpression',
                         operator: '-',
                         argument: {
                           type: 'Literal',
-                          value: 1
+                          value: 1,
                         },
-                        prefix: true
-                      }
-                    ]
+                        prefix: true,
+                      },
+                    ],
                   },
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'x'
-            }
-          }
-        ]
-      }
+              name: 'x',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (var a in stored = a, {a: 0, b: 1, c: 2});',
@@ -3071,7 +3071,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -3082,10 +3082,10 @@ describe('Statements - For in', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             right: {
               type: 'SequenceExpression',
@@ -3094,13 +3094,13 @@ describe('Statements - For in', () => {
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'stored'
+                    name: 'stored',
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
+                    name: 'a',
+                  },
                 },
                 {
                   type: 'ObjectExpression',
@@ -3109,54 +3109,54 @@ describe('Statements - For in', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Literal',
-                        value: 0
+                        value: 0,
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       value: {
                         type: 'Literal',
-                        value: 1
+                        value: 1,
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
+                      shorthand: false,
                     },
                     {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'c'
+                        name: 'c',
                       },
                       value: {
                         type: 'Literal',
-                        value: 2
+                        value: 2,
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'for (var a = (++effects, -1) in stored = a, {a: 0, b: 1, c: 2});',
@@ -3188,7 +3188,7 @@ describe('Statements - For in', () => {
                     start: 9,
                     end: 10,
                     range: [9, 10],
-                    name: 'a'
+                    name: 'a',
                   },
                   init: {
                     type: 'SequenceExpression',
@@ -3208,8 +3208,8 @@ describe('Statements - For in', () => {
                           start: 16,
                           end: 23,
                           range: [16, 23],
-                          name: 'effects'
-                        }
+                          name: 'effects',
+                        },
                       },
                       {
                         type: 'UnaryExpression',
@@ -3223,14 +3223,14 @@ describe('Statements - For in', () => {
                           start: 26,
                           end: 27,
                           range: [26, 27],
-                          value: 1
-                        }
-                      }
-                    ]
-                  }
-                }
+                          value: 1,
+                        },
+                      },
+                    ],
+                  },
+                },
               ],
-              kind: 'var'
+              kind: 'var',
             },
             right: {
               type: 'SequenceExpression',
@@ -3249,15 +3249,15 @@ describe('Statements - For in', () => {
                     start: 32,
                     end: 38,
                     range: [32, 38],
-                    name: 'stored'
+                    name: 'stored',
                   },
                   right: {
                     type: 'Identifier',
                     start: 41,
                     end: 42,
                     range: [41, 42],
-                    name: 'a'
-                  }
+                    name: 'a',
+                  },
                 },
                 {
                   type: 'ObjectExpression',
@@ -3278,16 +3278,16 @@ describe('Statements - For in', () => {
                         start: 45,
                         end: 46,
                         range: [45, 46],
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Literal',
                         start: 48,
                         end: 49,
                         range: [48, 49],
-                        value: 0
+                        value: 0,
                       },
-                      kind: 'init'
+                      kind: 'init',
                     },
                     {
                       type: 'Property',
@@ -3302,16 +3302,16 @@ describe('Statements - For in', () => {
                         start: 51,
                         end: 52,
                         range: [51, 52],
-                        name: 'b'
+                        name: 'b',
                       },
                       value: {
                         type: 'Literal',
                         start: 54,
                         end: 55,
                         range: [54, 55],
-                        value: 1
+                        value: 1,
                       },
-                      kind: 'init'
+                      kind: 'init',
                     },
                     {
                       type: 'Property',
@@ -3326,31 +3326,31 @@ describe('Statements - For in', () => {
                         start: 57,
                         end: 58,
                         range: [57, 58],
-                        name: 'c'
+                        name: 'c',
                       },
                       value: {
                         type: 'Literal',
                         start: 60,
                         end: 61,
                         range: [60, 61],
-                        value: 2
+                        value: 2,
                       },
-                      kind: 'init'
-                    }
-                  ]
-                }
-              ]
+                      kind: 'init',
+                    },
+                  ],
+                },
+              ],
             },
             body: {
               type: 'EmptyStatement',
               start: 63,
               end: 64,
-              range: [63, 64]
-            }
-          }
+              range: [63, 64],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'for ([a.b] in c) d',
@@ -3365,8 +3365,8 @@ describe('Statements - For in', () => {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'd'
-              }
+                name: 'd',
+              },
             },
             left: {
               type: 'ArrayPattern',
@@ -3375,23 +3375,23 @@ describe('Statements - For in', () => {
                   type: 'MemberExpression',
                   object: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   computed: false,
                   property: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                }
-              ]
+                    name: 'b',
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'c'
-            }
-          }
-        ]
-      }
+              name: 'c',
+            },
+          },
+        ],
+      },
     ],
     [
       'for ([a.b].foo in c) d',
@@ -3406,8 +3406,8 @@ describe('Statements - For in', () => {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'd'
-              }
+                name: 'd',
+              },
             },
             left: {
               type: 'MemberExpression',
@@ -3418,29 +3418,29 @@ describe('Statements - For in', () => {
                     type: 'MemberExpression',
                     object: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'b'
-                    }
-                  }
-                ]
+                      name: 'b',
+                    },
+                  },
+                ],
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'foo'
-              }
+                name: 'foo',
+              },
             },
             right: {
               type: 'Identifier',
-              name: 'c'
-            }
-          }
-        ]
-      }
+              name: 'c',
+            },
+          },
+        ],
+      },
     ],
     [
       'for ({a: b.c} in d) e',
@@ -3455,8 +3455,8 @@ describe('Statements - For in', () => {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'e'
-              }
+                name: 'e',
+              },
             },
             left: {
               type: 'ObjectPattern',
@@ -3465,34 +3465,34 @@ describe('Statements - For in', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'MemberExpression',
                     object: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'c'
-                    }
+                      name: 'c',
+                    },
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
+                  shorthand: false,
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'd'
-            }
-          }
-        ]
-      }
+              name: 'd',
+            },
+          },
+        ],
+      },
     ],
     [
       'for ({a: b.c}.foo in d) e',
@@ -3507,8 +3507,8 @@ describe('Statements - For in', () => {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'e'
-              }
+                name: 'e',
+              },
             },
             left: {
               type: 'MemberExpression',
@@ -3519,40 +3519,40 @@ describe('Statements - For in', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'MemberExpression',
                       object: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'c'
-                      }
+                        name: 'c',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'foo'
-              }
+                name: 'foo',
+              },
             },
             right: {
               type: 'Identifier',
-              name: 'd'
-            }
-          }
-        ]
-      }
+              name: 'd',
+            },
+          },
+        ],
+      },
     ],
     [
       'for(let {a} in []) {}',
@@ -3565,7 +3565,7 @@ describe('Statements - For in', () => {
             type: 'ForInStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'VariableDeclaration',
@@ -3582,28 +3582,28 @@ describe('Statements - For in', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
-              elements: []
-            }
-          }
-        ]
-      }
+              elements: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'for(let [a = 1, ...b] in []) {}',
@@ -3616,7 +3616,7 @@ describe('Statements - For in', () => {
             type: 'ForInStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'VariableDeclaration',
@@ -3632,32 +3632,32 @@ describe('Statements - For in', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         right: {
                           type: 'Literal',
-                          value: 1
-                        }
+                          value: 1,
+                        },
                       },
                       {
                         type: 'RestElement',
                         argument: {
                           type: 'Identifier',
-                          name: 'b'
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          name: 'b',
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
-              elements: []
-            }
-          }
-        ]
-      }
+              elements: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'for(const {[Symbol.iterator]: a} in []){}',
@@ -3670,7 +3670,7 @@ describe('Statements - For in', () => {
             type: 'ForInStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'VariableDeclaration',
@@ -3689,34 +3689,34 @@ describe('Statements - For in', () => {
                           type: 'MemberExpression',
                           object: {
                             type: 'Identifier',
-                            name: 'Symbol'
+                            name: 'Symbol',
                           },
                           computed: false,
                           property: {
                             type: 'Identifier',
-                            name: 'iterator'
-                          }
+                            name: 'iterator',
+                          },
                         },
                         computed: true,
                         value: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: false,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
-              elements: []
-            }
-          }
-        ]
-      }
+              elements: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'for({a: a} in []){}',
@@ -3729,7 +3729,7 @@ describe('Statements - For in', () => {
             type: 'ForInStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'ObjectPattern',
@@ -3738,26 +3738,26 @@ describe('Statements - For in', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
+                  shorthand: false,
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
-              elements: []
-            }
-          }
-        ]
-      }
+              elements: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'for({"a": a} in []){}',
@@ -3770,7 +3770,7 @@ describe('Statements - For in', () => {
             type: 'ForInStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'ObjectPattern',
@@ -3779,26 +3779,26 @@ describe('Statements - For in', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 'a'
+                    value: 'a',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
+                  shorthand: false,
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
-              elements: []
-            }
-          }
-        ]
-      }
+              elements: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'for({a=0} in b);',
@@ -3810,7 +3810,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'ObjectPattern',
@@ -3819,33 +3819,33 @@ describe('Statements - For in', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'AssignmentPattern',
                     left: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     right: {
                       type: 'Literal',
-                      value: 0
-                    }
+                      value: 0,
+                    },
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
-                }
-              ]
+                  shorthand: true,
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'b'
-            }
-          }
-        ]
-      }
+              name: 'b',
+            },
+          },
+        ],
+      },
     ],
     [
       'for ({j} in x) { var [foo] = [j] }',
@@ -3870,23 +3870,23 @@ describe('Statements - For in', () => {
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'j'
-                          }
-                        ]
+                            name: 'j',
+                          },
+                        ],
                       },
                       id: {
                         type: 'ArrayPattern',
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'foo'
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              ]
+                            name: 'foo',
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             left: {
               type: 'ObjectPattern',
@@ -3895,26 +3895,26 @@ describe('Statements - For in', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'j'
+                    name: 'j',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'j'
+                    name: 'j',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
-                }
-              ]
+                  shorthand: true,
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'x'
-            }
-          }
-        ]
-      }
+              name: 'x',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (const {j} in x) { function foo() {return j} }',
@@ -3938,20 +3938,20 @@ describe('Statements - For in', () => {
                         type: 'ReturnStatement',
                         argument: {
                           type: 'Identifier',
-                          name: 'j'
-                        }
-                      }
-                    ]
+                          name: 'j',
+                        },
+                      },
+                    ],
                   },
                   async: false,
                   generator: false,
 
                   id: {
                     type: 'Identifier',
-                    name: 'foo'
-                  }
-                }
-              ]
+                    name: 'foo',
+                  },
+                },
+              ],
             },
             left: {
               type: 'VariableDeclaration',
@@ -3968,28 +3968,28 @@ describe('Statements - For in', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'j'
+                          name: 'j',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'j'
+                          name: 'j',
                         },
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'x'
-            }
-          }
-        ]
-      }
+              name: 'x',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (const j in x) { let [foo] = [j] }',
@@ -4014,23 +4014,23 @@ describe('Statements - For in', () => {
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'j'
-                          }
-                        ]
+                            name: 'j',
+                          },
+                        ],
                       },
                       id: {
                         type: 'ArrayPattern',
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'foo'
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              ]
+                            name: 'foo',
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             left: {
               type: 'VariableDeclaration',
@@ -4041,18 +4041,18 @@ describe('Statements - For in', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'j'
-                  }
-                }
-              ]
+                    name: 'j',
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'x'
-            }
-          }
-        ]
-      }
+              name: 'x',
+            },
+          },
+        ],
+      },
     ],
     [
       'for(ind in (hash={2:"b",1:"a",4:"d",3:"c"}))__str+=hash[ind]',
@@ -4069,32 +4069,32 @@ describe('Statements - For in', () => {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: '__str'
+                  name: '__str',
                 },
                 operator: '+=',
                 right: {
                   type: 'MemberExpression',
                   object: {
                     type: 'Identifier',
-                    name: 'hash'
+                    name: 'hash',
                   },
                   computed: true,
                   property: {
                     type: 'Identifier',
-                    name: 'ind'
-                  }
-                }
-              }
+                    name: 'ind',
+                  },
+                },
+              },
             },
             left: {
               type: 'Identifier',
-              name: 'ind'
+              name: 'ind',
             },
             right: {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'hash'
+                name: 'hash',
               },
               operator: '=',
               right: {
@@ -4104,68 +4104,68 @@ describe('Statements - For in', () => {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 2
+                      value: 2,
                     },
                     value: {
                       type: 'Literal',
-                      value: 'b'
+                      value: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
                     value: {
                       type: 'Literal',
-                      value: 'a'
+                      value: 'a',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 4
+                      value: 4,
                     },
                     value: {
                       type: 'Literal',
-                      value: 'd'
+                      value: 'd',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Literal',
-                      value: 3
+                      value: 3,
                     },
                     value: {
                       type: 'Literal',
-                      value: 'c'
+                      value: 'c',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'for ([arguments] in [[]]) ;',
@@ -4177,29 +4177,29 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'ArrayPattern',
               elements: [
                 {
                   type: 'Identifier',
-                  name: 'arguments'
-                }
-              ]
+                  name: 'arguments',
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
               elements: [
                 {
                   type: 'ArrayExpression',
-                  elements: []
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  elements: [],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'for (let x in null, { key: 0 }) {}',
@@ -4212,7 +4212,7 @@ describe('Statements - For in', () => {
             type: 'ForInStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'VariableDeclaration',
@@ -4223,17 +4223,17 @@ describe('Statements - For in', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                }
-              ]
+                    name: 'x',
+                  },
+                },
+              ],
             },
             right: {
               type: 'SequenceExpression',
               expressions: [
                 {
                   type: 'Literal',
-                  value: null
+                  value: null,
                 },
                 {
                   type: 'ObjectExpression',
@@ -4242,24 +4242,24 @@ describe('Statements - For in', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'key'
+                        name: 'key',
                       },
                       value: {
                         type: 'Literal',
-                        value: 0
+                        value: 0,
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -4272,7 +4272,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -4288,33 +4288,33 @@ describe('Statements - For in', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         right: {
                           type: 'BinaryExpression',
                           left: {
                             type: 'Identifier',
-                            name: 'b'
+                            name: 'b',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'c'
+                            name: 'c',
                           },
-                          operator: 'in'
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          operator: 'in',
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Literal',
-              value: null
-            }
-          }
-        ]
-      }
+              value: null,
+            },
+          },
+        ],
+      },
     ],
     [
       'for([{a=0}] in b);',
@@ -4326,7 +4326,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'ArrayPattern',
@@ -4338,35 +4338,35 @@ describe('Statements - For in', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         right: {
                           type: 'Literal',
-                          value: 0
-                        }
+                          value: 0,
+                        },
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
-                    }
-                  ]
-                }
-              ]
+                      shorthand: true,
+                    },
+                  ],
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'b'
-            }
-          }
-        ]
-      }
+              name: 'b',
+            },
+          },
+        ],
+      },
     ],
     /*[
       'for(var a = 0 in b, c);',
@@ -4423,7 +4423,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'VariableDeclaration',
@@ -4434,27 +4434,27 @@ describe('Statements - For in', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             right: {
               type: 'SequenceExpression',
               expressions: [
                 {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 {
                   type: 'Identifier',
-                  name: 'c'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'c',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'for ([...{ x = yield }] in [[{}]]) ;',
@@ -4466,7 +4466,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'ArrayPattern',
@@ -4480,28 +4480,28 @@ describe('Statements - For in', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           right: {
                             type: 'Identifier',
-                            name: 'yield'
-                          }
+                            name: 'yield',
+                          },
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
@@ -4511,15 +4511,15 @@ describe('Statements - For in', () => {
                   elements: [
                     {
                       type: 'ObjectExpression',
-                      properties: []
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      properties: [],
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'for ( [let][1] in obj ) ;',
@@ -4531,7 +4531,7 @@ describe('Statements - For in', () => {
           {
             type: 'ForInStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             left: {
               type: 'MemberExpression',
@@ -4540,23 +4540,23 @@ describe('Statements - For in', () => {
                 elements: [
                   {
                     type: 'Identifier',
-                    name: 'let'
-                  }
-                ]
+                    name: 'let',
+                  },
+                ],
               },
               computed: true,
               property: {
                 type: 'Literal',
-                value: 1
-              }
+                value: 1,
+              },
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
     [
       'for ((x) in { attr: null }) {}',
@@ -4569,11 +4569,11 @@ describe('Statements - For in', () => {
             type: 'ForInStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             right: {
               type: 'ObjectExpression',
@@ -4582,22 +4582,22 @@ describe('Statements - For in', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'attr'
+                    name: 'attr',
                   },
                   value: {
                     type: 'Literal',
-                    value: null
+                    value: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '2; for (var b in { x: 0 }) { 3; }',
@@ -4610,8 +4610,8 @@ describe('Statements - For in', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: 2
-            }
+              value: 2,
+            },
           },
           {
             type: 'ForInStatement',
@@ -4622,10 +4622,10 @@ describe('Statements - For in', () => {
                   type: 'ExpressionStatement',
                   expression: {
                     type: 'Literal',
-                    value: 3
-                  }
-                }
-              ]
+                    value: 3,
+                  },
+                },
+              ],
             },
             left: {
               type: 'VariableDeclaration',
@@ -4636,10 +4636,10 @@ describe('Statements - For in', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                }
-              ]
+                    name: 'b',
+                  },
+                },
+              ],
             },
             right: {
               type: 'ObjectExpression',
@@ -4648,22 +4648,22 @@ describe('Statements - For in', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'Literal',
-                    value: 0
+                    value: 0,
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `for (var p in obj) {
@@ -4697,20 +4697,20 @@ describe('Statements - For in', () => {
                       type: 'MemberExpression',
                       object: {
                         type: 'Identifier',
-                        name: 'obj'
+                        name: 'obj',
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'hasOwnProperty'
-                      }
+                        name: 'hasOwnProperty',
+                      },
                     },
                     arguments: [
                       {
                         type: 'Identifier',
-                        name: 'p'
-                      }
-                    ]
+                        name: 'p',
+                      },
+                    ],
                   },
                   consequent: {
                     type: 'BlockStatement',
@@ -4721,13 +4721,13 @@ describe('Statements - For in', () => {
                           type: 'BinaryExpression',
                           left: {
                             type: 'Identifier',
-                            name: 'p'
+                            name: 'p',
                           },
                           right: {
                             type: 'Literal',
-                            value: 'prop1'
+                            value: 'prop1',
                           },
-                          operator: '==='
+                          operator: '===',
                         },
                         consequent: {
                           type: 'BlockStatement',
@@ -4738,15 +4738,15 @@ describe('Statements - For in', () => {
                                 type: 'UpdateExpression',
                                 argument: {
                                   type: 'Identifier',
-                                  name: 'countProp1'
+                                  name: 'countProp1',
                                 },
                                 operator: '++',
-                                prefix: false
-                              }
-                            }
-                          ]
+                                prefix: false,
+                              },
+                            },
+                          ],
                         },
-                        alternate: null
+                        alternate: null,
                       },
                       {
                         type: 'IfStatement',
@@ -4754,13 +4754,13 @@ describe('Statements - For in', () => {
                           type: 'BinaryExpression',
                           left: {
                             type: 'Identifier',
-                            name: 'p'
+                            name: 'p',
                           },
                           right: {
                             type: 'Literal',
-                            value: 'prop2'
+                            value: 'prop2',
                           },
-                          operator: '==='
+                          operator: '===',
                         },
                         consequent: {
                           type: 'BlockStatement',
@@ -4771,15 +4771,15 @@ describe('Statements - For in', () => {
                                 type: 'UpdateExpression',
                                 argument: {
                                   type: 'Identifier',
-                                  name: 'countProp2'
+                                  name: 'countProp2',
                                 },
                                 operator: '++',
-                                prefix: false
-                              }
-                            }
-                          ]
+                                prefix: false,
+                              },
+                            },
+                          ],
                         },
-                        alternate: null
+                        alternate: null,
                       },
                       {
                         type: 'IfStatement',
@@ -4787,13 +4787,13 @@ describe('Statements - For in', () => {
                           type: 'BinaryExpression',
                           left: {
                             type: 'Identifier',
-                            name: 'p'
+                            name: 'p',
                           },
                           right: {
                             type: 'Literal',
-                            value: 'prop3'
+                            value: 'prop3',
                           },
-                          operator: '==='
+                          operator: '===',
                         },
                         consequent: {
                           type: 'BlockStatement',
@@ -4804,21 +4804,21 @@ describe('Statements - For in', () => {
                                 type: 'UpdateExpression',
                                 argument: {
                                   type: 'Identifier',
-                                  name: 'countProp3'
+                                  name: 'countProp3',
                                 },
                                 operator: '++',
-                                prefix: false
-                              }
-                            }
-                          ]
+                                prefix: false,
+                              },
+                            },
+                          ],
                         },
-                        alternate: null
-                      }
-                    ]
+                        alternate: null,
+                      },
+                    ],
                   },
-                  alternate: null
-                }
-              ]
+                  alternate: null,
+                },
+              ],
             },
             left: {
               type: 'VariableDeclaration',
@@ -4829,18 +4829,18 @@ describe('Statements - For in', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'p'
-                  }
-                }
-              ]
+                    name: 'p',
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'obj'
-            }
-          }
-        ]
-      }
+              name: 'obj',
+            },
+          },
+        ],
+      },
     ],
     [
       'for(x in list) process(x);',
@@ -4857,27 +4857,27 @@ describe('Statements - For in', () => {
                 type: 'CallExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'process'
+                  name: 'process',
                 },
                 arguments: [
                   {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                ]
-              }
+                    name: 'x',
+                  },
+                ],
+              },
             },
             left: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             right: {
               type: 'Identifier',
-              name: 'list'
-            }
-          }
-        ]
-      }
+              name: 'list',
+            },
+          },
+        ],
+      },
     ],
     [
       'for (var x in list) process(x);',
@@ -4894,15 +4894,15 @@ describe('Statements - For in', () => {
                 type: 'CallExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'process'
+                  name: 'process',
                 },
                 arguments: [
                   {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                ]
-              }
+                    name: 'x',
+                  },
+                ],
+              },
             },
             left: {
               type: 'VariableDeclaration',
@@ -4913,18 +4913,18 @@ describe('Statements - For in', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                }
-              ]
+                    name: 'x',
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'list'
-            }
-          }
-        ]
-      }
+              name: 'list',
+            },
+          },
+        ],
+      },
     ],
     [
       'for ([...x] in {ab: a}) {}',
@@ -4937,7 +4937,7 @@ describe('Statements - For in', () => {
             type: 'ForInStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'ArrayPattern',
@@ -4946,10 +4946,10 @@ describe('Statements - For in', () => {
                   type: 'RestElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                }
-              ]
+                    name: 'x',
+                  },
+                },
+              ],
             },
             right: {
               type: 'ObjectExpression',
@@ -4958,22 +4958,22 @@ describe('Statements - For in', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'ab'
+                    name: 'ab',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'for (let {j} in x) { var [foo] = [j] }',
@@ -4998,23 +4998,23 @@ describe('Statements - For in', () => {
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'j'
-                          }
-                        ]
+                            name: 'j',
+                          },
+                        ],
                       },
                       id: {
                         type: 'ArrayPattern',
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'foo'
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              ]
+                            name: 'foo',
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             left: {
               type: 'VariableDeclaration',
@@ -5031,28 +5031,28 @@ describe('Statements - For in', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'j'
+                          name: 'j',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'j'
+                          name: 'j',
                         },
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
-              ]
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             right: {
               type: 'Identifier',
-              name: 'x'
-            }
-          }
-        ]
-      }
+              name: 'x',
+            },
+          },
+        ],
+      },
     ],
     [
       'for(x of "foo" in {}) {}',
@@ -5065,28 +5065,28 @@ describe('Statements - For in', () => {
             type: 'ForOfStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             right: {
               type: 'BinaryExpression',
               left: {
                 type: 'Literal',
-                value: 'foo'
+                value: 'foo',
               },
               right: {
                 type: 'ObjectExpression',
-                properties: []
+                properties: [],
               },
-              operator: 'in'
+              operator: 'in',
             },
-            await: false
-          }
-        ]
-      }
+            await: false,
+          },
+        ],
+      },
     ],
     [
       'for (x in {a: b}) {}',
@@ -5099,11 +5099,11 @@ describe('Statements - For in', () => {
             type: 'ForInStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             right: {
               type: 'ObjectExpression',
@@ -5112,22 +5112,22 @@ describe('Statements - For in', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'function foo(){ "use strict"; for(x in {}, {}) {} }',
@@ -5146,46 +5146,46 @@ describe('Statements - For in', () => {
                   type: 'ExpressionStatement',
                   expression: {
                     type: 'Literal',
-                    value: 'use strict'
+                    value: 'use strict',
                   },
-                  directive: 'use strict'
+                  directive: 'use strict',
                 },
                 {
                   type: 'ForInStatement',
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   right: {
                     type: 'SequenceExpression',
                     expressions: [
                       {
                         type: 'ObjectExpression',
-                        properties: []
+                        properties: [],
                       },
                       {
                         type: 'ObjectExpression',
-                        properties: []
-                      }
-                    ]
-                  }
-                }
-              ]
+                        properties: [],
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
     [
       'for(const x in [1,2,3]) {}',
@@ -5198,7 +5198,7 @@ describe('Statements - For in', () => {
             type: 'ForInStatement',
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             left: {
               type: 'VariableDeclaration',
@@ -5209,31 +5209,31 @@ describe('Statements - For in', () => {
                   init: null,
                   id: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                }
-              ]
+                    name: 'x',
+                  },
+                },
+              ],
             },
             right: {
               type: 'ArrayExpression',
               elements: [
                 {
                   type: 'Literal',
-                  value: 1
+                  value: 1,
                 },
                 {
                   type: 'Literal',
-                  value: 2
+                  value: 2,
                 },
                 {
                   type: 'Literal',
-                  value: 3
-                }
-              ]
-            }
-          }
-        ]
-      }
-    ]
+                  value: 3,
+                },
+              ],
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

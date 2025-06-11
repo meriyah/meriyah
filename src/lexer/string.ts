@@ -10,7 +10,7 @@ export const enum Escape {
   StrictOctal = -2,
   EightOrNine = -3,
   InvalidHex = -4,
-  OutOfRange = -5
+  OutOfRange = -5,
 }
 
 /**

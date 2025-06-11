@@ -5,7 +5,7 @@ import { type ParserState, Flags } from '../common';
 export const enum LexerState {
   None = 0,
   NewLine = 1 << 0,
-  LastIsCR = 1 << 2
+  LastIsCR = 1 << 2,
 }
 
 export const enum NumberKind {
@@ -17,7 +17,7 @@ export const enum NumberKind {
   NonOctalDecimal = 1 << 5,
   Float = 1 << 6,
   ValidBigIntKind = 1 << 7,
-  DecimalNumberKind = Decimal | NonOctalDecimal
+  DecimalNumberKind = Decimal | NonOctalDecimal,
 }
 
 /**

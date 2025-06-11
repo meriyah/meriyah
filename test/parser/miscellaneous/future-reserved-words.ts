@@ -33,7 +33,7 @@ describe('Miscellaneous - Future reserved words', () => {
       'var class = 1;',
       'var super = 1;',
       'var class = 1;',
-      'var class = 1;'
+      'var class = 1;',
     ]) {
       it(`${arg}`, () => {
         t.throws(() => {

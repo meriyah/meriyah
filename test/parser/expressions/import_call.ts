@@ -97,7 +97,7 @@ describe('Next - ImportCall', () => {
     ['import("") >>= 2', Context.None],
     ['import("") >>>= 2', Context.None],
     ['import("") **= 2', Context.None],
-    ['new import(x);', Context.None]
+    ['new import(x);', Context.None],
   ]);
 
   for (const arg of [
@@ -145,7 +145,7 @@ describe('Next - ImportCall', () => {
     'new (import(x));',
     'foo(import("foo").den());',
     'for(x of import(x)) {}',
-    'import(x).then()'
+    'import(x).then()',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -176,8 +176,8 @@ describe('Next - ImportCall', () => {
                   end: 28,
                   range: [22, 28],
                   name: 'doThis',
-                  type: 'Identifier'
-                }
+                  type: 'Identifier',
+                },
               ],
               callee: {
                 computed: false,
@@ -193,33 +193,33 @@ describe('Next - ImportCall', () => {
                     end: 15,
                     range: [7, 15],
                     type: 'Literal',
-                    value: 'lib.js'
+                    value: 'lib.js',
                   },
-                  type: 'ImportExpression'
+                  type: 'ImportExpression',
                 },
                 property: {
                   start: 17,
                   end: 21,
                   range: [17, 21],
                   name: 'then',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'MemberExpression'
+                type: 'MemberExpression',
               },
               start: 0,
               end: 29,
               range: [0, 29],
-              type: 'CallExpression'
+              type: 'CallExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'module',
         start: 0,
         end: 30,
         range: [0, 30],
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `async function bar(){ await import("./nchanged") }`,
@@ -236,29 +236,29 @@ describe('Next - ImportCall', () => {
                       options: null,
                       source: {
                         type: 'Literal',
-                        value: './nchanged'
+                        value: './nchanged',
                       },
-                      type: 'ImportExpression'
+                      type: 'ImportExpression',
                     },
-                    type: 'AwaitExpression'
+                    type: 'AwaitExpression',
                   },
-                  type: 'ExpressionStatement'
-                }
+                  type: 'ExpressionStatement',
+                },
               ],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
             generator: false,
             id: {
               name: 'bar',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             params: [],
-            type: 'FunctionDeclaration'
-          }
+            type: 'FunctionDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'function loadImport(file) { import(file).then(() => {}), console.log("Done."); }',
@@ -278,13 +278,13 @@ describe('Next - ImportCall', () => {
                             async: false,
                             body: {
                               body: [],
-                              type: 'BlockStatement'
+                              type: 'BlockStatement',
                             },
                             expression: false,
                             params: [],
                             type: 'ArrowFunctionExpression',
-                            generator: false
-                          }
+                            generator: false,
+                          },
                         ],
                         callee: {
                           computed: false,
@@ -292,64 +292,64 @@ describe('Next - ImportCall', () => {
                             options: null,
                             source: {
                               name: 'file',
-                              type: 'Identifier'
+                              type: 'Identifier',
                             },
-                            type: 'ImportExpression'
+                            type: 'ImportExpression',
                           },
                           property: {
                             name: 'then',
-                            type: 'Identifier'
+                            type: 'Identifier',
                           },
-                          type: 'MemberExpression'
+                          type: 'MemberExpression',
                         },
-                        type: 'CallExpression'
+                        type: 'CallExpression',
                       },
                       {
                         arguments: [
                           {
                             type: 'Literal',
-                            value: 'Done.'
-                          }
+                            value: 'Done.',
+                          },
                         ],
                         callee: {
                           computed: false,
                           object: {
                             name: 'console',
-                            type: 'Identifier'
+                            type: 'Identifier',
                           },
                           property: {
                             name: 'log',
-                            type: 'Identifier'
+                            type: 'Identifier',
                           },
-                          type: 'MemberExpression'
+                          type: 'MemberExpression',
                         },
-                        type: 'CallExpression'
-                      }
+                        type: 'CallExpression',
+                      },
                     ],
-                    type: 'SequenceExpression'
+                    type: 'SequenceExpression',
                   },
-                  type: 'ExpressionStatement'
-                }
+                  type: 'ExpressionStatement',
+                },
               ],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
             generator: false,
             id: {
               name: 'loadImport',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             params: [
               {
                 name: 'file',
-                type: 'Identifier'
-              }
+                type: 'Identifier',
+              },
             ],
-            type: 'FunctionDeclaration'
-          }
+            type: 'FunctionDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
-    ]
+        type: 'Program',
+      },
+    ],
   ]);
 });

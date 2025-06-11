@@ -18,14 +18,14 @@ function getRollupOutputOptions(format, minified) {
     'meriyah',
     format === 'umd' ? '.umd' : '',
     minified ? '.min' : '',
-    format === 'esm' ? '.mjs' : format === 'cjs' ? '.cjs' : '.js'
+    format === 'esm' ? '.mjs' : format === 'cjs' ? '.cjs' : '.js',
   ].join('');
 
   return {
     name: 'meriyah',
     format,
     file: path.join(DIST, filename),
-    plugins: minified ? [terser()] : []
+    plugins: minified ? [terser()] : [],
   };
 }
 
@@ -36,7 +36,7 @@ function* getEntries() {
     // UMD supports AMD, CommonJS, and IIFE
     'umd',
     // CommonJS
-    'cjs'
+    'cjs',
   ]) {
     yield getRollupOutputOptions(format, false);
 
@@ -60,10 +60,10 @@ const bundle = await rollup({
       typescript: ts,
       clean: true,
       useTsconfigDeclarationDir: true,
-      tsconfig: TSCONFIG
+      tsconfig: TSCONFIG,
     }),
-    json()
-  ]
+    json(),
+  ],
 });
 
 for (const options of getEntries()) {

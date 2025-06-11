@@ -23,7 +23,7 @@ describe('Miscellaneous - Keywords', () => {
     'for',
     'switch',
     'while = 1;',
-    'try = 1;'
+    'try = 1;',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -60,14 +60,14 @@ describe('Miscellaneous - Keywords', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'ObjectExpression',
-                  properties: []
+                  properties: [],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
-              }
-            ]
+                  name: 'foo',
+                },
+              },
+            ],
           },
           {
             type: 'ExpressionStatement',
@@ -75,17 +75,17 @@ describe('Miscellaneous - Keywords', () => {
               type: 'MemberExpression',
               object: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'if'
-              }
-            }
-          }
-        ]
-      }
+                name: 'if',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `var foo = {}; foo.super;`,
@@ -102,14 +102,14 @@ describe('Miscellaneous - Keywords', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'ObjectExpression',
-                  properties: []
+                  properties: [],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
-              }
-            ]
+                  name: 'foo',
+                },
+              },
+            ],
           },
           {
             type: 'ExpressionStatement',
@@ -117,17 +117,17 @@ describe('Miscellaneous - Keywords', () => {
               type: 'MemberExpression',
               object: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'super'
-              }
-            }
-          }
-        ]
-      }
+                name: 'super',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `var foo = {}; foo.arguments;`,
@@ -144,14 +144,14 @@ describe('Miscellaneous - Keywords', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'ObjectExpression',
-                  properties: []
+                  properties: [],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
-              }
-            ]
+                  name: 'foo',
+                },
+              },
+            ],
           },
           {
             type: 'ExpressionStatement',
@@ -159,17 +159,17 @@ describe('Miscellaneous - Keywords', () => {
               type: 'MemberExpression',
               object: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'arguments'
-              }
-            }
-          }
-        ]
-      }
+                name: 'arguments',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `var foo = {}; foo.interface;`,
@@ -186,14 +186,14 @@ describe('Miscellaneous - Keywords', () => {
                 type: 'VariableDeclarator',
                 init: {
                   type: 'ObjectExpression',
-                  properties: []
+                  properties: [],
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
-              }
-            ]
+                  name: 'foo',
+                },
+              },
+            ],
           },
           {
             type: 'ExpressionStatement',
@@ -201,17 +201,17 @@ describe('Miscellaneous - Keywords', () => {
               type: 'MemberExpression',
               object: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'interface'
-              }
-            }
-          }
-        ]
-      }
+                name: 'interface',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `function *a(){({yi\\u0065ld: 0})}`,
@@ -229,7 +229,7 @@ describe('Miscellaneous - Keywords', () => {
                         computed: false,
                         key: {
                           name: 'yield',
-                          type: 'Identifier'
+                          type: 'Identifier',
                         },
                         kind: 'init',
                         method: false,
@@ -237,30 +237,30 @@ describe('Miscellaneous - Keywords', () => {
                         type: 'Property',
                         value: {
                           type: 'Literal',
-                          value: 0
-                        }
-                      }
+                          value: 0,
+                        },
+                      },
                     ],
-                    type: 'ObjectExpression'
+                    type: 'ObjectExpression',
                   },
-                  type: 'ExpressionStatement'
-                }
+                  type: 'ExpressionStatement',
+                },
               ],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
 
             generator: true,
             id: {
               name: 'a',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             params: [],
-            type: 'FunctionDeclaration'
-          }
+            type: 'FunctionDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
-    ]
+        type: 'Program',
+      },
+    ],
   ]);
 });

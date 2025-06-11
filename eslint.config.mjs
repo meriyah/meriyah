@@ -25,16 +25,16 @@ export default [
         {
           VariableDeclarator: {
             array: false,
-            object: true
+            object: true,
           },
           AssignmentExpression: {
             array: false,
-            object: false
-          }
+            object: false,
+          },
         },
         {
-          enforceForRenamedProperties: false
-        }
+          enforceForRenamedProperties: false,
+        },
       ],
       'no-restricted-imports': ['error', 'assert', 'node:assert'],
 
@@ -46,18 +46,18 @@ export default [
       '@typescript-eslint/no-var-requires': 0,
       '@typescript-eslint/no-require-imports': 0,
       'no-fallthrough': 0,
-      'import-x/no-rename-default': 0
-    }
+      'import-x/no-rename-default': 0,
+    },
   },
   {
     ignores: ['src/**/*'],
     rules: {
-      'unicorn/prefer-string-raw': 'error'
-    }
+      'unicorn/prefer-string-raw': 'error',
+    },
   },
   {
     files: ['**/*.mjs'],
-    ...eslintPluginN.configs['flat/recommended-module']
+    ...eslintPluginN.configs['flat/recommended-module'],
   },
   {
     files: ['scripts/**/*.mjs'],
@@ -68,8 +68,8 @@ export default [
       'n/no-extraneous-require': 0,
       'n/no-unpublished-require': 0,
       'n/hashbang': 0,
-      'import-x/no-unresolved': 0
-    }
+      'import-x/no-unresolved': 0,
+    },
   },
   {
     files: ['eslint.config.mjs'],
@@ -78,10 +78,10 @@ export default [
       'import-x/namespace': 0,
       'import-x/default': 0,
       'import-x/no-named-as-default': 0,
-      'import-x/no-named-as-default-member': 0
-    }
+      'import-x/no-named-as-default-member': 0,
+    },
   },
   {
-    ignores: ['dist', 'src/unicode.ts']
-  }
+    ignores: ['dist', 'src/unicode.ts'],
+  },
 ];

@@ -30,6 +30,6 @@ describe('Next - Numeric separators', () => {
     ['"use strict"; 07_7_7', Context.OptionsNext],
     ['"use strict"; 07_7_7_', Context.OptionsNext],
     ['"use strict"; 0__777', Context.OptionsNext],
-    ['"use strict"; 0_7_7_7', Context.OptionsNext]
+    ['"use strict"; 0_7_7_7', Context.OptionsNext],
   ]);
 });

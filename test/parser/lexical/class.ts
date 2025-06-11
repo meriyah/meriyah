@@ -47,7 +47,7 @@ describe('Lexical - Class', () => {
     ['class o {f(){ const x = y; var x; }}', Context.OptionsLexical],
     ['class o {f(){ var x; const x = y; }}', Context.OptionsLexical],
     ['class o {f(){ let x; function x(){} }}', Context.OptionsLexical],
-    ['class o {f(){ function x(){} let x; }}', Context.OptionsLexical]
+    ['class o {f(){ function x(){} let x; }}', Context.OptionsLexical],
   ]);
 
   for (const arg of [
@@ -63,7 +63,7 @@ describe('Lexical - Class', () => {
     'var x; { let x; }',
     '{ let x; } var x;',
     'class x {} function y() { let x; }',
-    'class x {} function y() { let y; }'
+    'class x {} function y() { let y; }',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -97,7 +97,7 @@ describe('Lexical - Class', () => {
     'var x; { let x; }',
     '{ let x; } var x;',
     'class x {} function y() { let x; }',
-    'class x {} function y() { let y; }'
+    'class x {} function y() { let y; }',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

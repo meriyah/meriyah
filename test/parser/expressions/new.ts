@@ -47,7 +47,7 @@ describe('Expressions - New', () => {
     'new 0();',
     'new (!0)();',
     'new (bar = function(foo) {\n    this.foo = foo;\n})(123);',
-    'new (bar = function(foo) {\n    this.foo = foo;\n})();'
+    'new (bar = function(foo) {\n    this.foo = foo;\n})();',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -98,7 +98,7 @@ describe('Expressions - New', () => {
       for (new.target in b);
       for (new.target of b);
     }`,
-      Context.None
+      Context.None,
     ],
     ['new async x => x', Context.None],
     ['new async => x', Context.None],
@@ -155,7 +155,7 @@ describe('Expressions - New', () => {
     ['new.target[await x]', Context.None],
     ['new await x()()', Context.None],
     ['new await x()', Context.None],
-    ['new await x', Context.None]
+    ['new await x', Context.None],
   ]);
 
   pass('Expressions - New (pass)', [
@@ -174,15 +174,15 @@ describe('Expressions - New', () => {
                 type: 'NewExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'await'
+                  name: 'await',
                 },
-                arguments: []
+                arguments: [],
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new foo()();',
@@ -199,15 +199,15 @@ describe('Expressions - New', () => {
                 type: 'NewExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
-                arguments: []
+                arguments: [],
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new (foo)();',
@@ -222,13 +222,13 @@ describe('Expressions - New', () => {
               type: 'NewExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new (foo);',
@@ -243,13 +243,13 @@ describe('Expressions - New', () => {
               type: 'NewExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new a ? b : c',
@@ -260,28 +260,28 @@ describe('Expressions - New', () => {
             expression: {
               alternate: {
                 name: 'c',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               consequent: {
                 name: 'b',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               test: {
                 arguments: [],
                 callee: {
                   name: 'a',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'NewExpression'
+                type: 'NewExpression',
               },
-              type: 'ConditionalExpression'
+              type: 'ConditionalExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'new Foo',
@@ -296,13 +296,13 @@ describe('Expressions - New', () => {
               type: 'NewExpression',
               callee: {
                 type: 'Identifier',
-                name: 'Foo'
+                name: 'Foo',
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new Foo.Bar',
@@ -319,19 +319,19 @@ describe('Expressions - New', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'Foo'
+                  name: 'Foo',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'Bar'
-                }
+                  name: 'Bar',
+                },
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new a.b.c.d',
@@ -352,31 +352,31 @@ describe('Expressions - New', () => {
                     type: 'MemberExpression',
                     object: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'b'
-                    }
+                      name: 'b',
+                    },
                   },
                   computed: false,
                   property: {
                     type: 'Identifier',
-                    name: 'c'
-                  }
+                    name: 'c',
+                  },
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'd'
-                }
+                  name: 'd',
+                },
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new async(x)(y)',
@@ -393,25 +393,25 @@ describe('Expressions - New', () => {
                 type: 'NewExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'async'
+                  name: 'async',
                 },
                 arguments: [
                   {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                ]
+                    name: 'x',
+                  },
+                ],
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'y'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'y',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'new Foo["bar"]',
@@ -428,19 +428,19 @@ describe('Expressions - New', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'Foo'
+                  name: 'Foo',
                 },
                 computed: true,
                 property: {
                   type: 'Literal',
-                  value: 'bar'
-                }
+                  value: 'bar',
+                },
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new Foo()',
@@ -455,13 +455,13 @@ describe('Expressions - New', () => {
               type: 'NewExpression',
               callee: {
                 type: 'Identifier',
-                name: 'Foo'
+                name: 'Foo',
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new Foo.Bar()',
@@ -478,19 +478,19 @@ describe('Expressions - New', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'Foo'
+                  name: 'Foo',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'Bar'
-                }
+                  name: 'Bar',
+                },
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new Foo["bar"]()',
@@ -507,19 +507,19 @@ describe('Expressions - New', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'Foo'
+                  name: 'Foo',
                 },
                 computed: true,
                 property: {
                   type: 'Literal',
-                  value: 'bar'
-                }
+                  value: 'bar',
+                },
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new Foo(X)',
@@ -534,18 +534,18 @@ describe('Expressions - New', () => {
               type: 'NewExpression',
               callee: {
                 type: 'Identifier',
-                name: 'Foo'
+                name: 'Foo',
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'X'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'X',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'new Foo.Bar(X)',
@@ -562,24 +562,24 @@ describe('Expressions - New', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'Foo'
+                  name: 'Foo',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'Bar'
-                }
+                  name: 'Bar',
+                },
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'X'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'X',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'new Foo["bar"](X)',
@@ -596,24 +596,24 @@ describe('Expressions - New', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'Foo'
+                  name: 'Foo',
                 },
                 computed: true,
                 property: {
                   type: 'Literal',
-                  value: 'bar'
-                }
+                  value: 'bar',
+                },
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'X'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'X',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'new Foo(X, Y, Z)',
@@ -628,26 +628,26 @@ describe('Expressions - New', () => {
               type: 'NewExpression',
               callee: {
                 type: 'Identifier',
-                name: 'Foo'
+                name: 'Foo',
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'X'
+                  name: 'X',
                 },
                 {
                   type: 'Identifier',
-                  name: 'Y'
+                  name: 'Y',
                 },
                 {
                   type: 'Identifier',
-                  name: 'Z'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'Z',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'new Foo.Bar(X, Y, Z)',
@@ -664,32 +664,32 @@ describe('Expressions - New', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'Foo'
+                  name: 'Foo',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'Bar'
-                }
+                  name: 'Bar',
+                },
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'X'
+                  name: 'X',
                 },
                 {
                   type: 'Identifier',
-                  name: 'Y'
+                  name: 'Y',
                 },
                 {
                   type: 'Identifier',
-                  name: 'Z'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'Z',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'new Foo["bar"](X, Y, Z)',
@@ -706,32 +706,32 @@ describe('Expressions - New', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'Foo'
+                  name: 'Foo',
                 },
                 computed: true,
                 property: {
                   type: 'Literal',
-                  value: 'bar'
-                }
+                  value: 'bar',
+                },
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'X'
+                  name: 'X',
                 },
                 {
                   type: 'Identifier',
-                  name: 'Y'
+                  name: 'Y',
                 },
                 {
                   type: 'Identifier',
-                  name: 'Z'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'Z',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'new x().y',
@@ -748,19 +748,19 @@ describe('Expressions - New', () => {
                 type: 'NewExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
-                arguments: []
+                arguments: [],
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'y'
-              }
-            }
-          }
-        ]
-      }
+                name: 'y',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'new x()[y]',
@@ -777,19 +777,19 @@ describe('Expressions - New', () => {
                 type: 'NewExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
-                arguments: []
+                arguments: [],
               },
               computed: true,
               property: {
                 type: 'Identifier',
-                name: 'y'
-              }
-            }
-          }
-        ]
-      }
+                name: 'y',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'new x()();',
@@ -806,15 +806,15 @@ describe('Expressions - New', () => {
                 type: 'NewExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
-                arguments: []
+                arguments: [],
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     //['new x()`y`', Context.None,  {}],
     [
@@ -836,31 +836,31 @@ describe('Expressions - New', () => {
                     type: 'MemberExpression',
                     object: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'b'
-                    }
+                      name: 'b',
+                    },
                   },
                   computed: false,
                   property: {
                     type: 'Identifier',
-                    name: 'c'
-                  }
+                    name: 'c',
+                  },
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'd'
-                }
+                  name: 'd',
+                },
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new Foo["bar"]()',
@@ -877,19 +877,19 @@ describe('Expressions - New', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'Foo'
+                  name: 'Foo',
                 },
                 computed: true,
                 property: {
                   type: 'Literal',
-                  value: 'bar'
-                }
+                  value: 'bar',
+                },
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new Foo(X)',
@@ -904,18 +904,18 @@ describe('Expressions - New', () => {
               type: 'NewExpression',
               callee: {
                 type: 'Identifier',
-                name: 'Foo'
+                name: 'Foo',
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'X'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'X',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'new Foo.Bar(X)',
@@ -932,24 +932,24 @@ describe('Expressions - New', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'Foo'
+                  name: 'Foo',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'Bar'
-                }
+                  name: 'Bar',
+                },
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'X'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'X',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'new Foo["bar"](X)',
@@ -966,24 +966,24 @@ describe('Expressions - New', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'Foo'
+                  name: 'Foo',
                 },
                 computed: true,
                 property: {
                   type: 'Literal',
-                  value: 'bar'
-                }
+                  value: 'bar',
+                },
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'X'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'X',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'new Foo(X, Y, Z)',
@@ -998,26 +998,26 @@ describe('Expressions - New', () => {
               type: 'NewExpression',
               callee: {
                 type: 'Identifier',
-                name: 'Foo'
+                name: 'Foo',
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'X'
+                  name: 'X',
                 },
                 {
                   type: 'Identifier',
-                  name: 'Y'
+                  name: 'Y',
                 },
                 {
                   type: 'Identifier',
-                  name: 'Z'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'Z',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'new Foo.Bar(X, Y, Z)',
@@ -1034,32 +1034,32 @@ describe('Expressions - New', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'Foo'
+                  name: 'Foo',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'Bar'
-                }
+                  name: 'Bar',
+                },
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'X'
+                  name: 'X',
                 },
                 {
                   type: 'Identifier',
-                  name: 'Y'
+                  name: 'Y',
                 },
                 {
                   type: 'Identifier',
-                  name: 'Z'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'Z',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'new Foo["bar"](X, Y, Z)',
@@ -1076,32 +1076,32 @@ describe('Expressions - New', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'Foo'
+                  name: 'Foo',
                 },
                 computed: true,
                 property: {
                   type: 'Literal',
-                  value: 'bar'
-                }
+                  value: 'bar',
+                },
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'X'
+                  name: 'X',
                 },
                 {
                   type: 'Identifier',
-                  name: 'Y'
+                  name: 'Y',
                 },
                 {
                   type: 'Identifier',
-                  name: 'Z'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'Z',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'new x().y',
@@ -1118,19 +1118,19 @@ describe('Expressions - New', () => {
                 type: 'NewExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
-                arguments: []
+                arguments: [],
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'y'
-              }
-            }
-          }
-        ]
-      }
+                name: 'y',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'new x()[y]',
@@ -1147,19 +1147,19 @@ describe('Expressions - New', () => {
                 type: 'NewExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
-                arguments: []
+                arguments: [],
               },
               computed: true,
               property: {
                 type: 'Identifier',
-                name: 'y'
-              }
-            }
-          }
-        ]
-      }
+                name: 'y',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'new x()();',
@@ -1176,15 +1176,15 @@ describe('Expressions - New', () => {
                 type: 'NewExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
-                arguments: []
+                arguments: [],
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new x().y = z',
@@ -1203,25 +1203,25 @@ describe('Expressions - New', () => {
                   type: 'NewExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
-                  arguments: []
+                  arguments: [],
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'z'
-              }
-            }
-          }
-        ]
-      }
+                name: 'z',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'new x().y + z',
@@ -1240,25 +1240,25 @@ describe('Expressions - New', () => {
                   type: 'NewExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
-                  arguments: []
+                  arguments: [],
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               },
               right: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
-              operator: '+'
-            }
-          }
-        ]
-      }
+              operator: '+',
+            },
+          },
+        ],
+      },
     ],
     [
       'new x()[y] = z',
@@ -1277,25 +1277,25 @@ describe('Expressions - New', () => {
                   type: 'NewExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
-                  arguments: []
+                  arguments: [],
                 },
                 computed: true,
                 property: {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'z'
-              }
-            }
-          }
-        ]
-      }
+                name: 'z',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'new x()[y] + z',
@@ -1314,25 +1314,25 @@ describe('Expressions - New', () => {
                   type: 'NewExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
-                  arguments: []
+                  arguments: [],
                 },
                 computed: true,
                 property: {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               },
               right: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
-              operator: '+'
-            }
-          }
-        ]
-      }
+              operator: '+',
+            },
+          },
+        ],
+      },
     ],
     [
       '++new x().y',
@@ -1351,22 +1351,22 @@ describe('Expressions - New', () => {
                   type: 'NewExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
-                  arguments: []
+                  arguments: [],
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               },
               operator: '++',
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -1386,22 +1386,22 @@ describe('Expressions - New', () => {
                   type: 'NewExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
-                  arguments: []
+                  arguments: [],
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               },
               operator: '++',
-              prefix: false
-            }
-          }
-        ]
-      }
+              prefix: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete new x()',
@@ -1419,15 +1419,15 @@ describe('Expressions - New', () => {
                 type: 'NewExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
-                arguments: []
+                arguments: [],
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete new x().y',
@@ -1447,21 +1447,21 @@ describe('Expressions - New', () => {
                   type: 'NewExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
-                  arguments: []
+                  arguments: [],
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'typeof new x()',
@@ -1479,15 +1479,15 @@ describe('Expressions - New', () => {
                 type: 'NewExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
-                arguments: []
+                arguments: [],
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'new new A().foo',
@@ -1506,21 +1506,21 @@ describe('Expressions - New', () => {
                   type: 'NewExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'A'
+                    name: 'A',
                   },
-                  arguments: []
+                  arguments: [],
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
+                  name: 'foo',
+                },
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new new A.foo()',
@@ -1539,21 +1539,21 @@ describe('Expressions - New', () => {
                   type: 'MemberExpression',
                   object: {
                     type: 'Identifier',
-                    name: 'A'
+                    name: 'A',
                   },
                   computed: false,
                   property: {
                     type: 'Identifier',
-                    name: 'foo'
-                  }
+                    name: 'foo',
+                  },
                 },
-                arguments: []
+                arguments: [],
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new "foo".__proto__.constructor',
@@ -1572,25 +1572,25 @@ describe('Expressions - New', () => {
                   type: 'MemberExpression',
                   object: {
                     type: 'Literal',
-                    value: 'foo'
+                    value: 'foo',
                   },
                   computed: false,
                   property: {
                     type: 'Identifier',
-                    name: '__proto__'
-                  }
+                    name: '__proto__',
+                  },
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'constructor'
-                }
+                  name: 'constructor',
+                },
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new 1..__proto__.constructor',
@@ -1609,25 +1609,25 @@ describe('Expressions - New', () => {
                   type: 'MemberExpression',
                   object: {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   computed: false,
                   property: {
                     type: 'Identifier',
-                    name: '__proto__'
-                  }
+                    name: '__proto__',
+                  },
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'constructor'
-                }
+                  name: 'constructor',
+                },
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new 0x2.__proto__.constructor',
@@ -1646,25 +1646,25 @@ describe('Expressions - New', () => {
                   type: 'MemberExpression',
                   object: {
                     type: 'Literal',
-                    value: 2
+                    value: 2,
                   },
                   computed: false,
                   property: {
                     type: 'Identifier',
-                    name: '__proto__'
-                  }
+                    name: '__proto__',
+                  },
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'constructor'
-                }
+                  name: 'constructor',
+                },
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new true.__proto__.constructor',
@@ -1683,25 +1683,25 @@ describe('Expressions - New', () => {
                   type: 'MemberExpression',
                   object: {
                     type: 'Literal',
-                    value: true
+                    value: true,
                   },
                   computed: false,
                   property: {
                     type: 'Identifier',
-                    name: '__proto__'
-                  }
+                    name: '__proto__',
+                  },
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'constructor'
-                }
+                  name: 'constructor',
+                },
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'typeof new x().y',
@@ -1721,21 +1721,21 @@ describe('Expressions - New', () => {
                   type: 'NewExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
-                  arguments: []
+                  arguments: [],
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'new new x',
@@ -1752,15 +1752,15 @@ describe('Expressions - New', () => {
                 type: 'NewExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
-                arguments: []
+                arguments: [],
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -1781,16 +1781,16 @@ describe('Expressions - New', () => {
                     type: 'NewExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'A'
+                      name: 'A',
                     },
-                    arguments: []
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    arguments: [],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends new A() {}',
@@ -1803,23 +1803,23 @@ describe('Expressions - New', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'NewExpression',
               callee: {
                 type: 'Identifier',
-                name: 'A'
+                name: 'A',
               },
-              arguments: []
+              arguments: [],
             },
             body: {
               type: 'ClassBody',
-              body: []
-            }
-          }
-        ]
-      }
+              body: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'x({[new A()]:y})',
@@ -1834,7 +1834,7 @@ describe('Expressions - New', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               arguments: [
                 {
@@ -1846,26 +1846,26 @@ describe('Expressions - New', () => {
                         type: 'NewExpression',
                         callee: {
                           type: 'Identifier',
-                          name: 'A'
+                          name: 'A',
                         },
-                        arguments: []
+                        arguments: [],
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'y'
+                        name: 'y',
                       },
                       kind: 'init',
                       computed: true,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'f(new /z/())',
@@ -1880,7 +1880,7 @@ describe('Expressions - New', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'f'
+                name: 'f',
               },
               arguments: [
                 {
@@ -1890,16 +1890,16 @@ describe('Expressions - New', () => {
                     value: /z/,
                     regex: {
                       pattern: 'z',
-                      flags: ''
-                    }
+                      flags: '',
+                    },
                   },
-                  arguments: []
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  arguments: [],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'f(new /z/)',
@@ -1914,7 +1914,7 @@ describe('Expressions - New', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'f'
+                name: 'f',
               },
               arguments: [
                 {
@@ -1924,16 +1924,16 @@ describe('Expressions - New', () => {
                     value: /z/,
                     regex: {
                       pattern: 'z',
-                      flags: ''
-                    }
+                      flags: '',
+                    },
                   },
-                  arguments: []
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  arguments: [],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'f(new /z/.foo)',
@@ -1948,7 +1948,7 @@ describe('Expressions - New', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'f'
+                name: 'f',
               },
               arguments: [
                 {
@@ -1960,22 +1960,22 @@ describe('Expressions - New', () => {
                       value: /z/,
                       regex: {
                         pattern: 'z',
-                        flags: ''
-                      }
+                        flags: '',
+                      },
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'foo'
-                    }
+                      name: 'foo',
+                    },
                   },
-                  arguments: []
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  arguments: [],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'new arguments',
@@ -1990,13 +1990,13 @@ describe('Expressions - New', () => {
               type: 'NewExpression',
               callee: {
                 type: 'Identifier',
-                name: 'arguments'
+                name: 'arguments',
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new async',
@@ -2011,13 +2011,13 @@ describe('Expressions - New', () => {
               type: 'NewExpression',
               callee: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new async (x, y)',
@@ -2032,22 +2032,22 @@ describe('Expressions - New', () => {
               type: 'NewExpression',
               callee: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 {
                   type: 'Identifier',
-                  name: 'y'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'y',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'new async (...x)',
@@ -2062,21 +2062,21 @@ describe('Expressions - New', () => {
               type: 'NewExpression',
               callee: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
               arguments: [
                 {
                   type: 'SpreadElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'x',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'new async function(){}',
@@ -2094,18 +2094,18 @@ describe('Expressions - New', () => {
                 params: [],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: true,
                 generator: false,
 
-                id: null
+                id: null,
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'typeof async',
@@ -2121,13 +2121,13 @@ describe('Expressions - New', () => {
               operator: 'typeof',
               argument: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'typeof async ()',
@@ -2145,15 +2145,15 @@ describe('Expressions - New', () => {
                 type: 'CallExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'async'
+                  name: 'async',
                 },
-                arguments: []
+                arguments: [],
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'typeof async function(){}',
@@ -2172,18 +2172,18 @@ describe('Expressions - New', () => {
                 params: [],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: true,
                 generator: false,
 
-                id: null
+                id: null,
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'new await',
@@ -2198,13 +2198,13 @@ describe('Expressions - New', () => {
               type: 'NewExpression',
               callee: {
                 type: 'Identifier',
-                name: 'await'
+                name: 'await',
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new class{}',
@@ -2223,14 +2223,14 @@ describe('Expressions - New', () => {
                 superClass: null,
                 body: {
                   type: 'ClassBody',
-                  body: []
-                }
+                  body: [],
+                },
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new class extends x{}',
@@ -2248,18 +2248,18 @@ describe('Expressions - New', () => {
                 id: null,
                 superClass: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 body: {
                   type: 'ClassBody',
-                  body: []
-                }
+                  body: [],
+                },
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends (x) {}',
@@ -2272,19 +2272,19 @@ describe('Expressions - New', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             body: {
               type: 'ClassBody',
-              body: []
-            }
-          }
-        ]
-      }
+              body: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new eval()',
@@ -2299,13 +2299,13 @@ describe('Expressions - New', () => {
               type: 'NewExpression',
               callee: {
                 type: 'Identifier',
-                name: 'eval'
+                name: 'eval',
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new false.__proto__.constructor',
@@ -2324,25 +2324,25 @@ describe('Expressions - New', () => {
                   type: 'MemberExpression',
                   object: {
                     type: 'Literal',
-                    value: false
+                    value: false,
                   },
                   computed: false,
                   property: {
                     type: 'Identifier',
-                    name: '__proto__'
-                  }
+                    name: '__proto__',
+                  },
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'constructor'
-                }
+                  name: 'constructor',
+                },
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new function(){}',
@@ -2360,18 +2360,18 @@ describe('Expressions - New', () => {
                 params: [],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
-                id: null
+                id: null,
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new function(){}(x)',
@@ -2389,23 +2389,23 @@ describe('Expressions - New', () => {
                 params: [],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
-                id: null
+                id: null,
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends y { constructor() { new super.foo }}',
@@ -2418,11 +2418,11 @@ describe('Expressions - New', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -2434,7 +2434,7 @@ describe('Expressions - New', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2449,29 +2449,29 @@ describe('Expressions - New', () => {
                             callee: {
                               type: 'MemberExpression',
                               object: {
-                                type: 'Super'
+                                type: 'Super',
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'foo'
-                              }
+                                name: 'foo',
+                              },
                             },
-                            arguments: []
-                          }
-                        }
-                      ]
+                            arguments: [],
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'class x extends y { constructor() { new super() }}',
@@ -2484,11 +2484,11 @@ describe('Expressions - New', () => {
             type: 'ClassDeclaration',
             id: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             superClass: {
               type: 'Identifier',
-              name: 'y'
+              name: 'y',
             },
             body: {
               type: 'ClassBody',
@@ -2500,7 +2500,7 @@ describe('Expressions - New', () => {
                   computed: false,
                   key: {
                     type: 'Identifier',
-                    name: 'constructor'
+                    name: 'constructor',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -2513,23 +2513,23 @@ describe('Expressions - New', () => {
                           expression: {
                             type: 'NewExpression',
                             callee: {
-                              type: 'Super'
+                              type: 'Super',
                             },
-                            arguments: []
-                          }
-                        }
-                      ]
+                            arguments: [],
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    id: null,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'new this',
@@ -2543,13 +2543,13 @@ describe('Expressions - New', () => {
             expression: {
               type: 'NewExpression',
               callee: {
-                type: 'ThisExpression'
+                type: 'ThisExpression',
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'new let',
@@ -2564,13 +2564,13 @@ describe('Expressions - New', () => {
               type: 'NewExpression',
               callee: {
                 type: 'Identifier',
-                name: 'let'
+                name: 'let',
               },
-              arguments: []
-            }
-          }
-        ]
-      }
-    ]
+              arguments: [],
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

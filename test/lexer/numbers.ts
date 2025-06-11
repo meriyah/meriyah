@@ -103,7 +103,7 @@ describe('Lexer - Numberic literals', () => {
       Context.None,
       Token.NumericLiteral,
       '0X14245890abcdefABCE234567890ab234567890abcdeF1234567890abefABCEF',
-      5.694046700000817e74
+      5.694046700000817e74,
     ],
 
     // Binary
@@ -165,7 +165,7 @@ describe('Lexer - Numberic literals', () => {
       Context.None,
       Token.BigIntLiteral,
       '0x12300000000000000000000000000000000n',
-      BigInt('99022168773993092867842010762644549533696')
+      BigInt('99022168773993092867842010762644549533696'),
     ],
 
     // Numeric separators
@@ -177,7 +177,7 @@ describe('Lexer - Numberic literals', () => {
       Context.None,
       Token.NumericLiteral,
       '133333333333333333333333333.12333333333_1233232323232',
-      1.3333333333333334e26
+      1.3333333333333334e26,
     ],
 
     [Context.OptionsRaw, Token.NumericLiteral, '0O01_1', 9],
@@ -187,7 +187,7 @@ describe('Lexer - Numberic literals', () => {
     [Context.None, Token.NumericLiteral, '0B011_11_1_1_11_11111_1111111_1111_11111', 536870911],
     [Context.None, Token.NumericLiteral, '0X0_1', 1],
     [Context.None, Token.NumericLiteral, '0X0_1_0', 16],
-    [Context.None, Token.NumericLiteral, '0Xa', 10]
+    [Context.None, Token.NumericLiteral, '0Xa', 10],
   ];
 
   for (const [ctx, token, op, value] of tokens) {
@@ -200,14 +200,14 @@ describe('Lexer - Numberic literals', () => {
           token: found,
           hasNext: state.index < state.source.length,
           value: state.tokenValue,
-          index: state.index
+          index: state.index,
         },
         {
           token: token,
           hasNext: false,
           value,
-          index: op.length
-        }
+          index: op.length,
+        },
       );
     });
 
@@ -220,14 +220,14 @@ describe('Lexer - Numberic literals', () => {
           token: found,
           hasNext: state.index < state.source.length,
           value: state.tokenValue,
-          index: state.index
+          index: state.index,
         },
         {
           token: token,
           hasNext: true,
           value,
-          index: op.length
-        }
+          index: op.length,
+        },
       );
     });
   }

@@ -25,15 +25,15 @@ describe('Lexical - For statement', () => {
       for (var x;;);
       const x = 1
     }`,
-      Context.OptionsWebCompat | Context.OptionsLexical
+      Context.OptionsWebCompat | Context.OptionsLexical,
     ],
     [
       `function f(){
       for (var x;;);
       const x = 1
     }`,
-      Context.OptionsWebCompat | Context.OptionsLexical
-    ]
+      Context.OptionsWebCompat | Context.OptionsLexical,
+    ],
   ]);
 
   for (const arg of [
@@ -47,7 +47,7 @@ describe('Lexical - For statement', () => {
     'function f() {} ; function f() {}',
     'function g(){ function f() {} ; function f() {} }',
     'for (var x;;) { let x; }',
-    'var x; for (;;) { let x; }'
+    'var x; for (;;) { let x; }',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -72,7 +72,7 @@ describe('Lexical - For statement', () => {
     'try {} catch (e) { for (var e of y) {} }',
     'try {} catch (e) { for (const e = y;;) {} }',
     'for (var x;;) { let x; }',
-    'var x; for (;;) { let x; }'
+    'var x; for (;;) { let x; }',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

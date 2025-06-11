@@ -27,7 +27,7 @@ describe('Expressions - Conditional', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'a'
+                name: 'a',
               },
               operator: '&',
               right: {
@@ -35,13 +35,13 @@ describe('Expressions - Conditional', () => {
                 start: 2,
                 end: 3,
                 range: [2, 3],
-                name: 'b'
-              }
-            }
-          }
+                name: 'b',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a^b',
@@ -60,13 +60,13 @@ describe('Expressions - Conditional', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 1
-                  }
-                }
+                    column: 1,
+                  },
+                },
               },
               right: {
                 type: 'Identifier',
@@ -74,49 +74,49 @@ describe('Expressions - Conditional', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 2
+                    column: 2,
                   },
                   end: {
                     line: 1,
-                    column: 3
-                  }
-                }
+                    column: 3,
+                  },
+                },
               },
               operator: '^',
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 3
-                }
-              }
+                  column: 3,
+                },
+              },
             },
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 3
-              }
-            }
-          }
+                column: 3,
+              },
+            },
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 3
-          }
-        }
-      }
+            column: 3,
+          },
+        },
+      },
     ],
     [
       '~a',
@@ -136,49 +136,49 @@ describe('Expressions - Conditional', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 1
+                    column: 1,
                   },
                   end: {
                     line: 1,
-                    column: 2
-                  }
-                }
+                    column: 2,
+                  },
+                },
               },
               prefix: true,
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 2
-                }
-              }
+                  column: 2,
+                },
+              },
             },
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 2
-              }
-            }
-          }
+                column: 2,
+              },
+            },
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 2
-          }
-        }
-      }
+            column: 2,
+          },
+        },
+      },
     ],
     [
       'a>>b',
@@ -204,7 +204,7 @@ describe('Expressions - Conditional', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'a'
+                name: 'a',
               },
               operator: '>>',
               right: {
@@ -212,13 +212,13 @@ describe('Expressions - Conditional', () => {
                 start: 3,
                 end: 4,
                 range: [3, 4],
-                name: 'b'
-              }
-            }
-          }
+                name: 'b',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a|b',
@@ -233,17 +233,17 @@ describe('Expressions - Conditional', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
-              operator: '|'
-            }
-          }
-        ]
-      }
+              operator: '|',
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -259,17 +259,17 @@ describe('Expressions - Conditional', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
-              operator: '>>>'
-            }
-          }
-        ]
-      }
+              operator: '>>>',
+            },
+          },
+        ],
+      },
     ],
     [
       'x != y',
@@ -284,17 +284,17 @@ describe('Expressions - Conditional', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'Identifier',
-                name: 'y'
+                name: 'y',
               },
-              operator: '!='
-            }
-          }
-        ]
-      }
+              operator: '!=',
+            },
+          },
+        ],
+      },
     ],
     [
       'x <= y',
@@ -309,17 +309,17 @@ describe('Expressions - Conditional', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'Identifier',
-                name: 'y'
+                name: 'y',
               },
-              operator: '<='
-            }
-          }
-        ]
-      }
+              operator: '<=',
+            },
+          },
+        ],
+      },
     ],
     [
       'x << y',
@@ -334,17 +334,17 @@ describe('Expressions - Conditional', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'Identifier',
-                name: 'y'
+                name: 'y',
               },
-              operator: '<<'
-            }
-          }
-        ]
-      }
-    ]
+              operator: '<<',
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

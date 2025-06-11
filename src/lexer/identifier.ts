@@ -48,7 +48,7 @@ export function scanIdentifierSlowCase(
   parser: ParserState,
   context: Context,
   hasEscape: 0 | 1,
-  isValidAsKeyword: number
+  isValidAsKeyword: number,
 ): Token {
   let start = parser.index;
 
@@ -199,7 +199,7 @@ export function scanUnicodeEscape(parser: ParserState): number {
           parser.index,
           parser.line,
           parser.column,
-          Errors.UnicodeOverflow
+          Errors.UnicodeOverflow,
         );
     }
 
@@ -212,7 +212,7 @@ export function scanUnicodeEscape(parser: ParserState): number {
         parser.index,
         parser.line,
         parser.column,
-        Errors.InvalidHexEscapeSequence
+        Errors.InvalidHexEscapeSequence,
       );
     }
     advanceChar(parser); // consumes '}'

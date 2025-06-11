@@ -2125,7 +2125,7 @@ const entities: { [Identifier: string]: string } = {
   zopf: '\uD835\uDD6B',
   zscr: '\uD835\uDCCF',
   zwj: '\u200D',
-  zwnj: '\u200C'
+  zwnj: '\u200C',
 };
 /* spellchecker: enable */
 
@@ -2157,7 +2157,7 @@ const decodeMap: { [Identifier: string]: number } = {
   '155': 8250,
   '156': 339,
   '158': 382,
-  '159': 376
+  '159': 376,
 };
 
 // Used code from https://github.com/fb55/entities (BSD license)

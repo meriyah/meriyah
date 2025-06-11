@@ -26,14 +26,14 @@ describe('Statements - None', () => {
     {
       ;
     }`,
-      Context.None
+      Context.None,
     ],
     ['if (a) function(){}', Context.None],
     ['if (a) class A {}', Context.None],
     ['if (true) function* g() {  } else function* _g() {}', Context.None],
     ['if (true) function* g() {  } else ;', Context.None],
     ['if (true) function* g() {  }', Context.None],
-    ['if (false) ; else function* g() {  }', Context.None]
+    ['if (false) ; else function* g() {  }', Context.None],
   ]);
 
   pass('Statements - If (pass)', [
@@ -50,18 +50,18 @@ describe('Statements - None', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'yield'
+                name: 'yield',
               },
               right: {
                 type: 'UnaryExpression',
                 operator: 'void',
                 argument: {
                   type: 'Literal',
-                  value: 0
+                  value: 0,
                 },
-                prefix: true
+                prefix: true,
               },
-              operator: '==='
+              operator: '===',
             },
             consequent: {
               type: 'BlockStatement',
@@ -72,21 +72,21 @@ describe('Statements - None', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     operator: '=',
                     right: {
                       type: 'Literal',
-                      value: false
-                    }
-                  }
-                }
-              ]
+                      value: false,
+                    },
+                  },
+                },
+              ],
             },
-            alternate: null
-          }
-        ]
-      }
+            alternate: null,
+          },
+        ],
+      },
     ],
     [
       'if (await === void 0) { async = false; }',
@@ -101,18 +101,18 @@ describe('Statements - None', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'await'
+                name: 'await',
               },
               right: {
                 type: 'UnaryExpression',
                 operator: 'void',
                 argument: {
                   type: 'Literal',
-                  value: 0
+                  value: 0,
                 },
-                prefix: true
+                prefix: true,
               },
-              operator: '==='
+              operator: '===',
             },
             consequent: {
               type: 'BlockStatement',
@@ -123,21 +123,21 @@ describe('Statements - None', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     operator: '=',
                     right: {
                       type: 'Literal',
-                      value: false
-                    }
-                  }
-                }
-              ]
+                      value: false,
+                    },
+                  },
+                },
+              ],
             },
-            alternate: null
-          }
-        ]
-      }
+            alternate: null,
+          },
+        ],
+      },
     ],
     [
       'if (async === void 0) { async = false; }',
@@ -152,18 +152,18 @@ describe('Statements - None', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
               right: {
                 type: 'UnaryExpression',
                 operator: 'void',
                 argument: {
                   type: 'Literal',
-                  value: 0
+                  value: 0,
                 },
-                prefix: true
+                prefix: true,
               },
-              operator: '==='
+              operator: '===',
             },
             consequent: {
               type: 'BlockStatement',
@@ -174,21 +174,21 @@ describe('Statements - None', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     operator: '=',
                     right: {
                       type: 'Literal',
-                      value: false
-                    }
-                  }
-                }
-              ]
+                      value: false,
+                    },
+                  },
+                },
+              ],
             },
-            alternate: null
-          }
-        ]
-      }
+            alternate: null,
+          },
+        ],
+      },
     ],
     [
       'if (a) b()',
@@ -201,7 +201,7 @@ describe('Statements - None', () => {
             type: 'IfStatement',
             test: {
               type: 'Identifier',
-              name: 'a'
+              name: 'a',
             },
             consequent: {
               type: 'ExpressionStatement',
@@ -209,15 +209,15 @@ describe('Statements - None', () => {
                 type: 'CallExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
-                arguments: []
-              }
+                arguments: [],
+              },
             },
-            alternate: null
-          }
-        ]
-      }
+            alternate: null,
+          },
+        ],
+      },
     ],
     [
       'if(a)b;else c;',
@@ -230,25 +230,25 @@ describe('Statements - None', () => {
             type: 'IfStatement',
             test: {
               type: 'Identifier',
-              name: 'a'
+              name: 'a',
             },
             consequent: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'b'
-              }
+                name: 'b',
+              },
             },
             alternate: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'c'
-              }
-            }
-          }
-        ]
-      }
+                name: 'c',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'function f() { if (1) { return () => { while (true) hi(); } } }',
@@ -267,7 +267,7 @@ describe('Statements - None', () => {
                   type: 'IfStatement',
                   test: {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   consequent: {
                     type: 'BlockStatement',
@@ -284,7 +284,7 @@ describe('Statements - None', () => {
                                 type: 'WhileStatement',
                                 test: {
                                   type: 'Literal',
-                                  value: true
+                                  value: true,
                                 },
                                 body: {
                                   type: 'ExpressionStatement',
@@ -292,36 +292,36 @@ describe('Statements - None', () => {
                                     type: 'CallExpression',
                                     callee: {
                                       type: 'Identifier',
-                                      name: 'hi'
+                                      name: 'hi',
                                     },
-                                    arguments: []
-                                  }
-                                }
-                              }
-                            ]
+                                    arguments: [],
+                                  },
+                                },
+                              },
+                            ],
                           },
                           params: [],
 
                           async: false,
-                          expression: false
-                        }
-                      }
-                    ]
+                          expression: false,
+                        },
+                      },
+                    ],
                   },
-                  alternate: null
-                }
-              ]
+                  alternate: null,
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'if (1) { eval(42) }',
@@ -334,7 +334,7 @@ describe('Statements - None', () => {
             type: 'IfStatement',
             test: {
               type: 'Literal',
-              value: 1
+              value: 1,
             },
             consequent: {
               type: 'BlockStatement',
@@ -345,22 +345,22 @@ describe('Statements - None', () => {
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'eval'
+                      name: 'eval',
                     },
                     arguments: [
                       {
                         type: 'Literal',
-                        value: 42
-                      }
-                    ]
-                  }
-                }
-              ]
+                        value: 42,
+                      },
+                    ],
+                  },
+                },
+              ],
             },
-            alternate: null
-          }
-        ]
-      }
+            alternate: null,
+          },
+        ],
+      },
     ],
     [
       'if (true) if (false) {} else ; else {}',
@@ -373,29 +373,29 @@ describe('Statements - None', () => {
             type: 'IfStatement',
             test: {
               type: 'Literal',
-              value: true
+              value: true,
             },
             consequent: {
               type: 'IfStatement',
               test: {
                 type: 'Literal',
-                value: false
+                value: false,
               },
               consequent: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               alternate: {
-                type: 'EmptyStatement'
-              }
+                type: 'EmptyStatement',
+              },
             },
             alternate: {
               type: 'BlockStatement',
-              body: []
-            }
-          }
-        ]
-      }
+              body: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'if (true) try {} finally {} else {}',
@@ -408,27 +408,27 @@ describe('Statements - None', () => {
             type: 'IfStatement',
             test: {
               type: 'Literal',
-              value: true
+              value: true,
             },
             consequent: {
               type: 'TryStatement',
               block: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               handler: null,
               finalizer: {
                 type: 'BlockStatement',
-                body: []
-              }
+                body: [],
+              },
             },
             alternate: {
               type: 'BlockStatement',
-              body: []
-            }
-          }
-        ]
-      }
+              body: [],
+            },
+          },
+        ],
+      },
     ],
     [
       'if(a)b',
@@ -441,19 +441,19 @@ describe('Statements - None', () => {
             type: 'IfStatement',
             test: {
               type: 'Identifier',
-              name: 'a'
+              name: 'a',
             },
             consequent: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'b'
-              }
+                name: 'b',
+              },
             },
-            alternate: null
-          }
-        ]
-      }
+            alternate: null,
+          },
+        ],
+      },
     ],
     [
       'if(1)/  foo/',
@@ -466,24 +466,24 @@ describe('Statements - None', () => {
               expression: {
                 regex: {
                   flags: '',
-                  pattern: '  foo'
+                  pattern: '  foo',
                 },
                 type: 'Literal',
                 // eslint-disable-next-line no-regex-spaces
-                value: /  foo/
+                value: /  foo/,
               },
-              type: 'ExpressionStatement'
+              type: 'ExpressionStatement',
             },
             test: {
               type: 'Literal',
-              value: 1
+              value: 1,
             },
-            type: 'IfStatement'
-          }
+            type: 'IfStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'if (foo) bar;',
@@ -496,19 +496,19 @@ describe('Statements - None', () => {
             type: 'IfStatement',
             test: {
               type: 'Identifier',
-              name: 'foo'
+              name: 'foo',
             },
             consequent: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'bar'
-              }
+                name: 'bar',
+              },
             },
-            alternate: null
-          }
-        ]
-      }
+            alternate: null,
+          },
+        ],
+      },
     ],
     [
       'if (foo) a; if (bar) b; else c;',
@@ -521,40 +521,40 @@ describe('Statements - None', () => {
             type: 'IfStatement',
             test: {
               type: 'Identifier',
-              name: 'foo'
+              name: 'foo',
             },
             consequent: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'a'
-              }
+                name: 'a',
+              },
             },
-            alternate: null
+            alternate: null,
           },
           {
             type: 'IfStatement',
             test: {
               type: 'Identifier',
-              name: 'bar'
+              name: 'bar',
             },
             consequent: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'b'
-              }
+                name: 'b',
+              },
             },
             alternate: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'c'
-              }
-            }
-          }
-        ]
-      }
+                name: 'c',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'if (a > 2) {b = c }',
@@ -569,13 +569,13 @@ describe('Statements - None', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'Literal',
-                value: 2
+                value: 2,
               },
-              operator: '>'
+              operator: '>',
             },
             consequent: {
               type: 'BlockStatement',
@@ -586,21 +586,21 @@ describe('Statements - None', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     operator: '=',
                     right: {
                       type: 'Identifier',
-                      name: 'c'
-                    }
-                  }
-                }
-              ]
+                      name: 'c',
+                    },
+                  },
+                },
+              ],
             },
-            alternate: null
-          }
-        ]
-      }
+            alternate: null,
+          },
+        ],
+      },
     ],
     [
       'if(foo) a = b;',
@@ -613,7 +613,7 @@ describe('Statements - None', () => {
             type: 'IfStatement',
             test: {
               type: 'Identifier',
-              name: 'foo'
+              name: 'foo',
             },
             consequent: {
               type: 'ExpressionStatement',
@@ -621,19 +621,19 @@ describe('Statements - None', () => {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'b'
-                }
-              }
+                  name: 'b',
+                },
+              },
             },
-            alternate: null
-          }
-        ]
-      }
+            alternate: null,
+          },
+        ],
+      },
     ],
     [
       'if(1)/  foo/',
@@ -646,24 +646,24 @@ describe('Statements - None', () => {
               expression: {
                 regex: {
                   flags: '',
-                  pattern: '  foo'
+                  pattern: '  foo',
                 },
                 type: 'Literal',
                 // eslint-disable-next-line no-regex-spaces
-                value: /  foo/
+                value: /  foo/,
               },
-              type: 'ExpressionStatement'
+              type: 'ExpressionStatement',
             },
             test: {
               type: 'Literal',
-              value: 1
+              value: 1,
             },
-            type: 'IfStatement'
-          }
+            type: 'IfStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
 
     // Should only pass with AnnexB
@@ -678,27 +678,27 @@ describe('Statements - None', () => {
             type: 'IfStatement',
             test: {
               type: 'Identifier',
-              name: 'a'
+              name: 'a',
             },
             consequent: {
               type: 'FunctionDeclaration',
               params: [],
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               async: false,
               generator: false,
 
               id: {
                 type: 'Identifier',
-                name: 'a'
-              }
+                name: 'a',
+              },
             },
-            alternate: null
-          }
-        ]
-      }
+            alternate: null,
+          },
+        ],
+      },
     ],
     [
       'if (foo) bar;',
@@ -711,19 +711,19 @@ describe('Statements - None', () => {
             type: 'IfStatement',
             test: {
               type: 'Identifier',
-              name: 'foo'
+              name: 'foo',
             },
             consequent: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'bar'
-              }
+                name: 'bar',
+              },
             },
-            alternate: null
-          }
-        ]
-      }
+            alternate: null,
+          },
+        ],
+      },
     ],
     [
       'if (foo) bar; else doo;',
@@ -735,26 +735,26 @@ describe('Statements - None', () => {
             type: 'IfStatement',
             test: {
               type: 'Identifier',
-              name: 'foo'
+              name: 'foo',
             },
             consequent: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'bar'
-              }
+                name: 'bar',
+              },
             },
             alternate: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'doo'
-              }
-            }
-          }
+                name: 'doo',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
-    ]
+        sourceType: 'script',
+      },
+    ],
   ]);
 });

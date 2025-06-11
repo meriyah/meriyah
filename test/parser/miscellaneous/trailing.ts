@@ -74,7 +74,7 @@ describe('Miscellaneous - Trailing comma', () => {
     '(function  a(...b,) {});',
     '(function* a(...b,) {});',
     '(function   (...b,) {});',
-    '(function*  (...b,) {});'
+    '(function*  (...b,) {});',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -157,7 +157,7 @@ describe('Miscellaneous - Trailing comma', () => {
     'a(...[],);',
     'a(1, 2, ...[],);',
     'a(...[], 2, ...[],);',
-    'a, b => 0'
+    'a, b => 0',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -194,7 +194,7 @@ describe('Miscellaneous - Trailing comma', () => {
     'class A {foo(...a,) {}}',
     'class A {static foo(...a,) {}}',
     '(class {foo(...a,) {}})',
-    '(class {static foo(...a,) {}})'
+    '(class {static foo(...a,) {}})',
   ];
 
   for (const arg of invalidRest) {

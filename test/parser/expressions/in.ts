@@ -12,7 +12,7 @@ describe('Expressions -In', () => {
     '+0 in {}',
     '+0 in []',
     '0.001 in a[2]',
-    '0.001 in async[2]'
+    '0.001 in async[2]',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -47,17 +47,17 @@ describe('Expressions -In', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
-              operator: 'in'
-            }
-          }
-        ]
-      }
+              operator: 'in',
+            },
+          },
+        ],
+      },
     ],
     [
       'x in Number',
@@ -68,21 +68,21 @@ describe('Expressions -In', () => {
             expression: {
               left: {
                 name: 'x',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: 'in',
               right: {
                 name: 'Number',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'BinaryExpression'
+              type: 'BinaryExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '(NUMBER = Number, "MAX_VALUE") in NUMBER',
@@ -102,29 +102,29 @@ describe('Expressions -In', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'NUMBER'
+                      name: 'NUMBER',
                     },
                     operator: '=',
                     right: {
                       type: 'Identifier',
-                      name: 'Number'
-                    }
+                      name: 'Number',
+                    },
                   },
                   {
                     type: 'Literal',
-                    value: 'MAX_VALUE'
-                  }
-                ]
+                    value: 'MAX_VALUE',
+                  },
+                ],
               },
               right: {
                 type: 'Identifier',
-                name: 'NUMBER'
+                name: 'NUMBER',
               },
-              operator: 'in'
-            }
-          }
-        ]
-      }
+              operator: 'in',
+            },
+          },
+        ],
+      },
     ],
     [
       '"valueOf" in __proto',
@@ -140,17 +140,17 @@ describe('Expressions -In', () => {
               left: {
                 type: 'Literal',
                 value: 'valueOf',
-                raw: '"valueOf"'
+                raw: '"valueOf"',
               },
               right: {
                 type: 'Identifier',
-                name: '__proto'
+                name: '__proto',
               },
-              operator: 'in'
-            }
-          }
-        ]
-      }
+              operator: 'in',
+            },
+          },
+        ],
+      },
     ],
     [
       '"use strict"',
@@ -164,12 +164,12 @@ describe('Expressions -In', () => {
             expression: {
               type: 'Literal',
               value: 'use strict',
-              raw: '"use strict"'
+              raw: '"use strict"',
             },
-            directive: 'use strict'
-          }
-        ]
-      }
+            directive: 'use strict',
+          },
+        ],
+      },
     ],
     [
       '"any-string"',
@@ -183,12 +183,12 @@ describe('Expressions -In', () => {
             expression: {
               type: 'Literal',
               value: 'any-string',
-              raw: '"any-string"'
+              raw: '"any-string"',
             },
-            directive: 'any-string'
-          }
-        ]
-      }
+            directive: 'any-string',
+          },
+        ],
+      },
     ],
     [
       '"any-string"',
@@ -202,12 +202,12 @@ describe('Expressions -In', () => {
             expression: {
               type: 'Literal',
               value: 'any-string',
-              raw: '"any-string"'
+              raw: '"any-string"',
             },
-            directive: 'any-string'
-          }
-        ]
-      }
+            directive: 'any-string',
+          },
+        ],
+      },
     ],
     [
       '123',
@@ -221,11 +221,11 @@ describe('Expressions -In', () => {
             expression: {
               type: 'Literal',
               value: 123,
-              raw: '123'
-            }
-          }
-        ]
-      }
-    ]
+              raw: '123',
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

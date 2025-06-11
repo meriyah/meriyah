@@ -26,7 +26,7 @@ describe('Lexer - Unicode Escape', () => {
     [Context.None, Token.Identifier | Token.IsEscaped, String.raw`\u{03BB}`, 'λ'],
     [Context.None, Token.Identifier | Token.IsEscaped, String.raw`\u{6728}`, '木'],
     [Context.None, Token.Identifier | Token.IsEscaped, String.raw`\u{7800}`, '砀'],
-    [Context.None, Token.Identifier | Token.IsEscaped, String.raw`\u{4b00}`, '䬀']
+    [Context.None, Token.Identifier | Token.IsEscaped, String.raw`\u{4b00}`, '䬀'],
   ];
 
   for (const [ctx, token, op, value] of tokens) {
@@ -39,14 +39,14 @@ describe('Lexer - Unicode Escape', () => {
           token: found,
           hasNext: state.index < state.source.length,
           value: state.tokenValue,
-          index: state.index
+          index: state.index,
         },
         {
           token: token,
           hasNext: false,
           value,
-          index: op.length
-        }
+          index: op.length,
+        },
       );
     });
 
@@ -59,14 +59,14 @@ describe('Lexer - Unicode Escape', () => {
           token: found,
           hasNext: state.index < state.source.length,
           value: state.tokenValue,
-          index: state.index
+          index: state.index,
         },
         {
           token: token,
           hasNext: true,
           value,
-          index: op.length
-        }
+          index: op.length,
+        },
       );
     });
   }

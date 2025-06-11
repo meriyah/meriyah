@@ -16,17 +16,17 @@ describe('Expressions - Logical', () => {
               type: 'LogicalExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
-              operator: '&&'
-            }
-          }
-        ]
-      }
+              operator: '&&',
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -68,7 +68,7 @@ describe('Expressions - Logical', () => {
                       start: 0,
                       end: 1,
                       range: [0, 1],
-                      name: 'a'
+                      name: 'a',
                     },
                     operator: '==',
                     right: {
@@ -76,8 +76,8 @@ describe('Expressions - Logical', () => {
                       start: 5,
                       end: 6,
                       range: [5, 6],
-                      name: 'b'
-                    }
+                      name: 'b',
+                    },
                   },
                   operator: '!=',
                   right: {
@@ -85,8 +85,8 @@ describe('Expressions - Logical', () => {
                     start: 10,
                     end: 11,
                     range: [10, 11],
-                    name: 'c'
-                  }
+                    name: 'c',
+                  },
                 },
                 operator: '===',
                 right: {
@@ -94,8 +94,8 @@ describe('Expressions - Logical', () => {
                   start: 16,
                   end: 17,
                   range: [16, 17],
-                  name: 'd'
-                }
+                  name: 'd',
+                },
               },
               operator: '!==',
               right: {
@@ -103,13 +103,13 @@ describe('Expressions - Logical', () => {
                 start: 22,
                 end: 23,
                 range: [22, 23],
-                name: 'e'
-              }
-            }
-          }
+                name: 'e',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a & b == c',
@@ -124,25 +124,25 @@ describe('Expressions - Logical', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
-                operator: '=='
+                operator: '==',
               },
-              operator: '&'
-            }
-          }
-        ]
-      }
+              operator: '&',
+            },
+          },
+        ],
+      },
     ],
     [
       'a == b != c === d !== e',
@@ -163,35 +163,35 @@ describe('Expressions - Logical', () => {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
-                    operator: '=='
+                    operator: '==',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'c'
+                    name: 'c',
                   },
-                  operator: '!='
+                  operator: '!=',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'd'
+                  name: 'd',
                 },
-                operator: '==='
+                operator: '===',
               },
               right: {
                 type: 'Identifier',
-                name: 'e'
+                name: 'e',
               },
-              operator: '!=='
-            }
-          }
-        ]
-      }
+              operator: '!==',
+            },
+          },
+        ],
+      },
     ],
     [
       'a !== b === c != d == e',
@@ -212,35 +212,35 @@ describe('Expressions - Logical', () => {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
-                    operator: '!=='
+                    operator: '!==',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'c'
+                    name: 'c',
                   },
-                  operator: '==='
+                  operator: '===',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'd'
+                  name: 'd',
                 },
-                operator: '!='
+                operator: '!=',
               },
               right: {
                 type: 'Identifier',
-                name: 'e'
+                name: 'e',
               },
-              operator: '=='
-            }
-          }
-        ]
-      }
+              operator: '==',
+            },
+          },
+        ],
+      },
     ],
     [
       'a == b & c',
@@ -257,23 +257,23 @@ describe('Expressions - Logical', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
-                operator: '=='
+                operator: '==',
               },
               right: {
                 type: 'Identifier',
-                name: 'c'
+                name: 'c',
               },
-              operator: '&'
-            }
-          }
-        ]
-      }
+              operator: '&',
+            },
+          },
+        ],
+      },
     ],
     [
       'a & b == c',
@@ -288,25 +288,25 @@ describe('Expressions - Logical', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
-                operator: '=='
+                operator: '==',
               },
-              operator: '&'
-            }
-          }
-        ]
-      }
+              operator: '&',
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -322,17 +322,17 @@ describe('Expressions - Logical', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
-              operator: '/'
-            }
-          }
-        ]
-      }
+              operator: '/',
+            },
+          },
+        ],
+      },
     ],
     [
       'a||b',
@@ -347,17 +347,17 @@ describe('Expressions - Logical', () => {
               type: 'LogicalExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
-              operator: '||'
-            }
-          }
-        ]
-      }
+              operator: '||',
+            },
+          },
+        ],
+      },
     ],
     [
       'a < b == c',
@@ -374,23 +374,23 @@ describe('Expressions - Logical', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
-                operator: '<'
+                operator: '<',
               },
               right: {
                 type: 'Identifier',
-                name: 'c'
+                name: 'c',
               },
-              operator: '=='
-            }
-          }
-        ]
-      }
+              operator: '==',
+            },
+          },
+        ],
+      },
     ],
     [
       'a == b <= c',
@@ -405,25 +405,25 @@ describe('Expressions - Logical', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
-                operator: '<='
+                operator: '<=',
               },
-              operator: '=='
-            }
-          }
-        ]
-      }
+              operator: '==',
+            },
+          },
+        ],
+      },
     ],
     [
       'a == b >= c',
@@ -438,25 +438,25 @@ describe('Expressions - Logical', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
-                operator: '>='
+                operator: '>=',
               },
-              operator: '=='
-            }
-          }
-        ]
-      }
+              operator: '==',
+            },
+          },
+        ],
+      },
     ],
     [
       'a >= b !== c >= d',
@@ -473,31 +473,31 @@ describe('Expressions - Logical', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
-                operator: '>='
+                operator: '>=',
               },
               right: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'd'
+                  name: 'd',
                 },
-                operator: '>='
+                operator: '>=',
               },
-              operator: '!=='
-            }
-          }
-        ]
-      }
+              operator: '!==',
+            },
+          },
+        ],
+      },
     ],
     [
       'a << b < c',
@@ -514,23 +514,23 @@ describe('Expressions - Logical', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
-                operator: '<<'
+                operator: '<<',
               },
               right: {
                 type: 'Identifier',
-                name: 'c'
+                name: 'c',
               },
-              operator: '<'
-            }
-          }
-        ]
-      }
+              operator: '<',
+            },
+          },
+        ],
+      },
     ],
     [
       'a < b << c',
@@ -545,25 +545,25 @@ describe('Expressions - Logical', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
-                operator: '<<'
+                operator: '<<',
               },
-              operator: '<'
-            }
-          }
-        ]
-      }
+              operator: '<',
+            },
+          },
+        ],
+      },
     ],
     [
       'a << b >> c >>> d',
@@ -582,29 +582,29 @@ describe('Expressions - Logical', () => {
                   type: 'BinaryExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
-                  operator: '<<'
+                  operator: '<<',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
-                operator: '>>'
+                operator: '>>',
               },
               right: {
                 type: 'Identifier',
-                name: 'd'
+                name: 'd',
               },
-              operator: '>>>'
-            }
-          }
-        ]
-      }
+              operator: '>>>',
+            },
+          },
+        ],
+      },
     ],
     [
       'a >>> b >> c << d',
@@ -623,29 +623,29 @@ describe('Expressions - Logical', () => {
                   type: 'BinaryExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
-                  operator: '>>>'
+                  operator: '>>>',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
-                operator: '>>'
+                operator: '>>',
               },
               right: {
                 type: 'Identifier',
-                name: 'd'
+                name: 'd',
               },
-              operator: '<<'
-            }
-          }
-        ]
-      }
+              operator: '<<',
+            },
+          },
+        ],
+      },
     ],
     [
       'a << b + c',
@@ -660,25 +660,25 @@ describe('Expressions - Logical', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
-                operator: '+'
+                operator: '+',
               },
-              operator: '<<'
-            }
-          }
-        ]
-      }
+              operator: '<<',
+            },
+          },
+        ],
+      },
     ],
     [
       'a + b - c',
@@ -695,23 +695,23 @@ describe('Expressions - Logical', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
-                operator: '+'
+                operator: '+',
               },
               right: {
                 type: 'Identifier',
-                name: 'c'
+                name: 'c',
               },
-              operator: '-'
-            }
-          }
-        ]
-      }
+              operator: '-',
+            },
+          },
+        ],
+      },
     ],
     [
       'a - b + c',
@@ -728,23 +728,23 @@ describe('Expressions - Logical', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
-                operator: '-'
+                operator: '-',
               },
               right: {
                 type: 'Identifier',
-                name: 'c'
+                name: 'c',
               },
-              operator: '+'
-            }
-          }
-        ]
-      }
+              operator: '+',
+            },
+          },
+        ],
+      },
     ],
     [
       'a * b / c % d',
@@ -763,29 +763,29 @@ describe('Expressions - Logical', () => {
                   type: 'BinaryExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
-                  operator: '*'
+                  operator: '*',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
-                operator: '/'
+                operator: '/',
               },
               right: {
                 type: 'Identifier',
-                name: 'd'
+                name: 'd',
               },
-              operator: '%'
-            }
-          }
-        ]
-      }
+              operator: '%',
+            },
+          },
+        ],
+      },
     ],
     [
       'a % b / c * d',
@@ -804,29 +804,29 @@ describe('Expressions - Logical', () => {
                   type: 'BinaryExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
-                  operator: '%'
+                  operator: '%',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
-                operator: '/'
+                operator: '/',
               },
               right: {
                 type: 'Identifier',
-                name: 'd'
+                name: 'd',
               },
-              operator: '*'
-            }
-          }
-        ]
-      }
+              operator: '*',
+            },
+          },
+        ],
+      },
     ],
     [
       'a ** b * c',
@@ -843,23 +843,23 @@ describe('Expressions - Logical', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
-                operator: '**'
+                operator: '**',
               },
               right: {
                 type: 'Identifier',
-                name: 'c'
+                name: 'c',
               },
-              operator: '*'
-            }
-          }
-        ]
-      }
+              operator: '*',
+            },
+          },
+        ],
+      },
     ],
     [
       'a ** b ** c',
@@ -874,25 +874,25 @@ describe('Expressions - Logical', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
-                operator: '**'
+                operator: '**',
               },
-              operator: '**'
-            }
-          }
-        ]
-      }
+              operator: '**',
+            },
+          },
+        ],
+      },
     ],
     [
       'a ** b ** c + d',
@@ -909,31 +909,31 @@ describe('Expressions - Logical', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'BinaryExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'c'
+                    name: 'c',
                   },
-                  operator: '**'
+                  operator: '**',
                 },
-                operator: '**'
+                operator: '**',
               },
               right: {
                 type: 'Identifier',
-                name: 'd'
+                name: 'd',
               },
-              operator: '+'
-            }
-          }
-        ]
-      }
+              operator: '+',
+            },
+          },
+        ],
+      },
     ],
     [
       'a ** b + c ** d',
@@ -950,31 +950,31 @@ describe('Expressions - Logical', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
-                operator: '**'
+                operator: '**',
               },
               right: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'd'
+                  name: 'd',
                 },
-                operator: '**'
+                operator: '**',
               },
-              operator: '+'
-            }
-          }
-        ]
-      }
+              operator: '+',
+            },
+          },
+        ],
+      },
     ],
     [
       'a + b ** c ** d',
@@ -989,33 +989,33 @@ describe('Expressions - Logical', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 right: {
                   type: 'BinaryExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'c'
+                    name: 'c',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'd'
+                    name: 'd',
                   },
-                  operator: '**'
+                  operator: '**',
                 },
-                operator: '**'
+                operator: '**',
               },
-              operator: '+'
-            }
-          }
-        ]
-      }
+              operator: '+',
+            },
+          },
+        ],
+      },
     ],
     [
       'a + b ** c ** d',
@@ -1030,33 +1030,33 @@ describe('Expressions - Logical', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 right: {
                   type: 'BinaryExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'c'
+                    name: 'c',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'd'
+                    name: 'd',
                   },
-                  operator: '**'
+                  operator: '**',
                 },
-                operator: '**'
+                operator: '**',
               },
-              operator: '+'
-            }
-          }
-        ]
-      }
+              operator: '+',
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -1072,17 +1072,17 @@ describe('Expressions - Logical', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
-              operator: '**'
-            }
-          }
-        ]
-      }
+              operator: '**',
+            },
+          },
+        ],
+      },
     ],
     [
       'x() ** b',
@@ -1099,19 +1099,19 @@ describe('Expressions - Logical', () => {
                 type: 'CallExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
-                arguments: []
+                arguments: [],
               },
               right: {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
-              operator: '**'
-            }
-          }
-        ]
-      }
+              operator: '**',
+            },
+          },
+        ],
+      },
     ],
     [
       'a + b + c',
@@ -1128,23 +1128,23 @@ describe('Expressions - Logical', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
-                operator: '+'
+                operator: '+',
               },
               right: {
                 type: 'Identifier',
-                name: 'c'
+                name: 'c',
               },
-              operator: '+'
-            }
-          }
-        ]
-      }
+              operator: '+',
+            },
+          },
+        ],
+      },
     ],
     [
       'a + b * c * d',
@@ -1159,7 +1159,7 @@ describe('Expressions - Logical', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'BinaryExpression',
@@ -1167,25 +1167,25 @@ describe('Expressions - Logical', () => {
                   type: 'BinaryExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'c'
+                    name: 'c',
                   },
-                  operator: '*'
+                  operator: '*',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'd'
+                  name: 'd',
                 },
-                operator: '*'
+                operator: '*',
               },
-              operator: '+'
-            }
-          }
-        ]
-      }
+              operator: '+',
+            },
+          },
+        ],
+      },
     ],
     [
       'a * b + c * d',
@@ -1202,31 +1202,31 @@ describe('Expressions - Logical', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
-                operator: '*'
+                operator: '*',
               },
               right: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'd'
+                  name: 'd',
                 },
-                operator: '*'
+                operator: '*',
               },
-              operator: '+'
-            }
-          }
-        ]
-      }
+              operator: '+',
+            },
+          },
+        ],
+      },
     ],
     [
       'a && b || c',
@@ -1243,23 +1243,23 @@ describe('Expressions - Logical', () => {
                 type: 'LogicalExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
-                operator: '&&'
+                operator: '&&',
               },
               right: {
                 type: 'Identifier',
-                name: 'c'
+                name: 'c',
               },
-              operator: '||'
-            }
-          }
-        ]
-      }
+              operator: '||',
+            },
+          },
+        ],
+      },
     ],
     [
       'a || b && c',
@@ -1274,25 +1274,25 @@ describe('Expressions - Logical', () => {
               type: 'LogicalExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'LogicalExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
-                operator: '&&'
+                operator: '&&',
               },
-              operator: '||'
-            }
-          }
-        ]
-      }
+              operator: '||',
+            },
+          },
+        ],
+      },
     ],
     [
       'a | b && c',
@@ -1309,23 +1309,23 @@ describe('Expressions - Logical', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
-                operator: '|'
+                operator: '|',
               },
               right: {
                 type: 'Identifier',
-                name: 'c'
+                name: 'c',
               },
-              operator: '&&'
-            }
-          }
-        ]
-      }
+              operator: '&&',
+            },
+          },
+        ],
+      },
     ],
     [
       'a && b | c',
@@ -1340,25 +1340,25 @@ describe('Expressions - Logical', () => {
               type: 'LogicalExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
-                operator: '|'
+                operator: '|',
               },
-              operator: '&&'
-            }
-          }
-        ]
-      }
+              operator: '&&',
+            },
+          },
+        ],
+      },
     ],
     [
       'x ? g / f : f * g',
@@ -1373,36 +1373,36 @@ describe('Expressions - Logical', () => {
               type: 'ConditionalExpression',
               test: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               consequent: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'g'
+                  name: 'g',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'f'
+                  name: 'f',
                 },
-                operator: '/'
+                operator: '/',
               },
               alternate: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'f'
+                  name: 'f',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'g'
+                  name: 'g',
                 },
-                operator: '*'
-              }
-            }
-          }
-        ]
-      }
+                operator: '*',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'x * y / z ? a : b',
@@ -1421,32 +1421,32 @@ describe('Expressions - Logical', () => {
                   type: 'BinaryExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
-                  operator: '*'
+                  operator: '*',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
-                operator: '/'
+                operator: '/',
               },
               consequent: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               alternate: {
                 type: 'Identifier',
-                name: 'b'
-              }
-            }
-          }
-        ]
-      }
+                name: 'b',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a ^ b | c',
@@ -1463,23 +1463,23 @@ describe('Expressions - Logical', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
-                operator: '^'
+                operator: '^',
               },
               right: {
                 type: 'Identifier',
-                name: 'c'
+                name: 'c',
               },
-              operator: '|'
-            }
-          }
-        ]
-      }
+              operator: '|',
+            },
+          },
+        ],
+      },
     ],
     [
       'a | b ^ c',
@@ -1494,25 +1494,25 @@ describe('Expressions - Logical', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
-                operator: '^'
+                operator: '^',
               },
-              operator: '|'
-            }
-          }
-        ]
-      }
+              operator: '|',
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -1530,23 +1530,23 @@ describe('Expressions - Logical', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               },
               right: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
-              operator: '/'
-            }
-          }
-        ]
-      }
+              operator: '/',
+            },
+          },
+        ],
+      },
     ],
     [
       'a[b, c]',
@@ -1561,7 +1561,7 @@ describe('Expressions - Logical', () => {
               type: 'MemberExpression',
               object: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               computed: true,
               property: {
@@ -1569,18 +1569,18 @@ describe('Expressions - Logical', () => {
                 expressions: [
                   {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   {
                     type: 'Identifier',
-                    name: 'c'
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    name: 'c',
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a[b]||(c[d]=e)',
@@ -1597,13 +1597,13 @@ describe('Expressions - Logical', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 computed: true,
                 property: {
                   type: 'Identifier',
-                  name: 'b'
-                }
+                  name: 'b',
+                },
               },
               right: {
                 type: 'AssignmentExpression',
@@ -1611,25 +1611,25 @@ describe('Expressions - Logical', () => {
                   type: 'MemberExpression',
                   object: {
                     type: 'Identifier',
-                    name: 'c'
+                    name: 'c',
                   },
                   computed: true,
                   property: {
                     type: 'Identifier',
-                    name: 'd'
-                  }
+                    name: 'd',
+                  },
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'e'
-                }
+                  name: 'e',
+                },
               },
-              operator: '||'
-            }
-          }
-        ]
-      }
+              operator: '||',
+            },
+          },
+        ],
+      },
     ],
     [
       'a&&(b=c)',
@@ -1644,25 +1644,25 @@ describe('Expressions - Logical', () => {
               type: 'LogicalExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 operator: '=',
                 right: {
                   type: 'Identifier',
-                  name: 'c'
-                }
+                  name: 'c',
+                },
               },
-              operator: '&&'
-            }
-          }
-        ]
-      }
-    ]
+              operator: '&&',
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

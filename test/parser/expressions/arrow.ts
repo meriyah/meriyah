@@ -10,7 +10,7 @@ describe('Expressions - Arrow', () => {
     '((a)\n=> a)(1)',
     '((a)/*\n*/=> a)(1)',
     '((a, b)\n=> a + b)(1, 2)',
-    '((a, b)/*\n*/=> a + b)(1, 2)'
+    '((a, b)/*\n*/=> a + b)(1, 2)',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -57,7 +57,7 @@ describe('Expressions - Arrow', () => {
     '(interface, eval) => {}',
     '(interface, arguments) => {}',
     '(eval, interface) => {}',
-    '(arguments, interface) => {}'
+    '(arguments, interface) => {}',
   ]) {
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
@@ -109,7 +109,7 @@ describe('Expressions - Arrow', () => {
     '{x}=(yield)',
     '[x]=(yield)',
     '{x}=f(yield)',
-    '[x]=f(yield)'
+    '[x]=f(yield)',
   ]) {
     it(`(function *g(z = ( ${arg} ) => {}) { });`, () => {
       t.throws(() => {
@@ -221,7 +221,7 @@ describe('Expressions - Arrow', () => {
     "(a['b'], c) => {}",
     "(c, a['b']) => {}",
     '(...a = b) => b',
-    '({ ...[x] }) => {}'
+    '({ ...[x] }) => {}',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -359,7 +359,7 @@ describe('Expressions - Arrow', () => {
     'foo(([x] = 20, y) => x)',
     'foo(foo => x => (x = 20) => (x = 20) => x)',
     'foo(foo => x => x => x => {x})',
-    '((a, b) => { return a + b; })(1, 5), 6'
+    '((a, b) => { return a + b; })(1, 5), 6',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -432,7 +432,7 @@ describe('Expressions - Arrow', () => {
     '`template-head${c}`',
     '`${c}template-tail`',
     '`template-head${c}template-tail`',
-    '`${c}template-tail`'
+    '`${c}template-tail`',
   ]) {
     it(`()${arg} =>{}`, () => {
       t.throws(() => {
@@ -690,7 +690,7 @@ describe('Expressions - Arrow', () => {
     [
       `var af = x
     => {};`,
-      Context.None
+      Context.None,
     ],
     ['var f = (a = 0) => { "use strict"; };', Context.None],
     [')', Context.None],
@@ -837,7 +837,7 @@ describe('Expressions - Arrow', () => {
     ['([{"foo": y.z}]) => b', Context.None],
     ['([{"foo": y.z}] = a) => b', Context.None],
     ['([{1: y.z} = a]) => b', Context.None],
-    ['({333: y.z} = a) => b', Context.None]
+    ['({333: y.z} = a) => b', Context.None],
   ]);
 
   for (const arg of [
@@ -1118,7 +1118,7 @@ describe('Expressions - Arrow', () => {
     'var f = (function() { return z => arguments[0]; }(5));',
     'async(...{x}) => x',
     'async(...[x]) => x',
-    '(...{x}) => x'
+    '(...{x}) => x',
   ]) {
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
@@ -1146,7 +1146,7 @@ describe('Expressions - Arrow', () => {
   for (const arg of [
     'yield => { "use strict"; 0 }',
     'yield => { "lorem"; "use strict"; }',
-    "interface => { 'use strict' }"
+    "interface => { 'use strict' }",
   ]) {
     it(`${arg};`, () => {
       t.throws(() => {
@@ -1185,20 +1185,20 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'let'
-                }
+                  name: 'let',
+                },
               ],
               async: true,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'let => {}',
@@ -1214,20 +1214,20 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'let'
-                }
+                  name: 'let',
+                },
               ],
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -1243,7 +1243,7 @@ describe('Expressions - Arrow', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'f'
+                name: 'f',
               },
               operator: '=',
               right: {
@@ -1251,7 +1251,7 @@ describe('Expressions - Arrow', () => {
                 generator: false,
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 params: [
                   {
@@ -1261,28 +1261,28 @@ describe('Expressions - Arrow', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'ArrayPattern',
-                          elements: [null]
+                          elements: [null],
                         },
                         right: {
                           type: 'CallExpression',
                           callee: {
                             type: 'Identifier',
-                            name: 'g'
+                            name: 'g',
                           },
-                          arguments: []
-                        }
-                      }
-                    ]
-                  }
+                          arguments: [],
+                        },
+                      },
+                    ],
+                  },
                 ],
 
                 async: false,
-                expression: false
-              }
-            }
-          }
-        ]
-      }
+                expression: false,
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -1309,20 +1309,20 @@ describe('Expressions - Arrow', () => {
                         init: null,
                         id: {
                           type: 'Identifier',
-                          name: 'x'
-                        }
-                      }
-                    ]
-                  }
-                ]
+                          name: 'x',
+                        },
+                      },
+                    ],
+                  },
+                ],
               },
               params: [],
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'let => a + b',
@@ -1335,31 +1335,31 @@ describe('Expressions - Arrow', () => {
               body: {
                 left: {
                   name: 'a',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 operator: '+',
                 right: {
                   name: 'b',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'BinaryExpression'
+                type: 'BinaryExpression',
               },
               expression: true,
               params: [
                 {
                   name: 'let',
-                  type: 'Identifier'
-                }
+                  type: 'Identifier',
+                },
               ],
               type: 'ArrowFunctionExpression',
-              generator: false
+              generator: false,
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'async let => {}, let => {}',
@@ -1373,43 +1373,43 @@ describe('Expressions - Arrow', () => {
                   async: true,
                   body: {
                     body: [],
-                    type: 'BlockStatement'
+                    type: 'BlockStatement',
                   },
                   expression: false,
                   params: [
                     {
                       name: 'let',
-                      type: 'Identifier'
-                    }
+                      type: 'Identifier',
+                    },
                   ],
                   type: 'ArrowFunctionExpression',
-                  generator: false
+                  generator: false,
                 },
                 {
                   async: false,
                   body: {
                     body: [],
-                    type: 'BlockStatement'
+                    type: 'BlockStatement',
                   },
                   expression: false,
                   params: [
                     {
                       name: 'let',
-                      type: 'Identifier'
-                    }
+                      type: 'Identifier',
+                    },
                   ],
                   type: 'ArrowFunctionExpression',
-                  generator: false
-                }
+                  generator: false,
+                },
               ],
-              type: 'SequenceExpression'
+              type: 'SequenceExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'let => {}, let => {}',
@@ -1423,43 +1423,43 @@ describe('Expressions - Arrow', () => {
                   async: false,
                   body: {
                     body: [],
-                    type: 'BlockStatement'
+                    type: 'BlockStatement',
                   },
                   expression: false,
                   params: [
                     {
                       name: 'let',
-                      type: 'Identifier'
-                    }
+                      type: 'Identifier',
+                    },
                   ],
                   type: 'ArrowFunctionExpression',
-                  generator: false
+                  generator: false,
                 },
                 {
                   async: false,
                   body: {
                     body: [],
-                    type: 'BlockStatement'
+                    type: 'BlockStatement',
                   },
                   expression: false,
                   params: [
                     {
                       name: 'let',
-                      type: 'Identifier'
-                    }
+                      type: 'Identifier',
+                    },
                   ],
                   type: 'ArrowFunctionExpression',
-                  generator: false
-                }
+                  generator: false,
+                },
               ],
-              type: 'SequenceExpression'
+              type: 'SequenceExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'let => {}',
@@ -1475,20 +1475,20 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'let'
-                }
+                  name: 'let',
+                },
               ],
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'f = ([[,] = g()]) => {}',
@@ -1503,7 +1503,7 @@ describe('Expressions - Arrow', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'f'
+                name: 'f',
               },
               operator: '=',
               right: {
@@ -1511,7 +1511,7 @@ describe('Expressions - Arrow', () => {
                 generator: false,
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 params: [
                   {
@@ -1521,28 +1521,28 @@ describe('Expressions - Arrow', () => {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'ArrayPattern',
-                          elements: [null]
+                          elements: [null],
                         },
                         right: {
                           type: 'CallExpression',
                           callee: {
                             type: 'Identifier',
-                            name: 'g'
+                            name: 'g',
                           },
-                          arguments: []
-                        }
-                      }
-                    ]
-                  }
+                          arguments: [],
+                        },
+                      },
+                    ],
+                  },
                 ],
 
                 async: false,
-                expression: false
-              }
-            }
-          }
-        ]
-      }
+                expression: false,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '([[[[[[[[[[[[[[[[[[[[{a=b}]]]]]]]]]]]]]]]]]]]])=>0;',
@@ -1558,7 +1558,7 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'Literal',
-                value: 0
+                value: 0,
               },
               params: [
                 {
@@ -1628,75 +1628,75 @@ describe('Expressions - Arrow', () => {
                                                                                                       type: 'Property',
                                                                                                       key: {
                                                                                                         type: 'Identifier',
-                                                                                                        name: 'a'
+                                                                                                        name: 'a',
                                                                                                       },
                                                                                                       value: {
                                                                                                         type: 'AssignmentPattern',
                                                                                                         left: {
                                                                                                           type: 'Identifier',
-                                                                                                          name: 'a'
+                                                                                                          name: 'a',
                                                                                                         },
                                                                                                         right: {
                                                                                                           type: 'Identifier',
-                                                                                                          name: 'b'
-                                                                                                        }
+                                                                                                          name: 'b',
+                                                                                                        },
                                                                                                       },
                                                                                                       kind: 'init',
                                                                                                       computed: false,
                                                                                                       method: false,
-                                                                                                      shorthand: true
-                                                                                                    }
-                                                                                                  ]
-                                                                                                }
-                                                                                              ]
-                                                                                            }
-                                                                                          ]
-                                                                                        }
-                                                                                      ]
-                                                                                    }
-                                                                                  ]
-                                                                                }
-                                                                              ]
-                                                                            }
-                                                                          ]
-                                                                        }
-                                                                      ]
-                                                                    }
-                                                                  ]
-                                                                }
-                                                              ]
-                                                            }
-                                                          ]
-                                                        }
-                                                      ]
-                                                    }
-                                                  ]
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
+                                                                                                      shorthand: true,
+                                                                                                    },
+                                                                                                  ],
+                                                                                                },
+                                                                                              ],
+                                                                                            },
+                                                                                          ],
+                                                                                        },
+                                                                                      ],
+                                                                                    },
+                                                                                  ],
+                                                                                },
+                                                                              ],
+                                                                            },
+                                                                          ],
+                                                                        },
+                                                                      ],
+                                                                    },
+                                                                  ],
+                                                                },
+                                                              ],
+                                                            },
+                                                          ],
+                                                        },
+                                                      ],
+                                                    },
+                                                  ],
+                                                },
+                                              ],
+                                            },
+                                          ],
+                                        },
+                                      ],
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
               ],
 
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -1727,8 +1727,8 @@ describe('Expressions - Arrow', () => {
                   start: 0,
                   end: 1,
                   range: [0, 1],
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               ],
               body: {
                 type: 'BinaryExpression',
@@ -1740,7 +1740,7 @@ describe('Expressions - Arrow', () => {
                   start: 5,
                   end: 6,
                   range: [5, 6],
-                  name: 'a'
+                  name: 'a',
                 },
                 operator: '+',
                 right: {
@@ -1748,14 +1748,14 @@ describe('Expressions - Arrow', () => {
                   start: 9,
                   end: 10,
                   range: [9, 10],
-                  name: 'x'
-                }
-              }
-            }
-          }
+                  name: 'x',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a => a / x',
@@ -1785,8 +1785,8 @@ describe('Expressions - Arrow', () => {
                   start: 0,
                   end: 1,
                   range: [0, 1],
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               ],
               body: {
                 type: 'BinaryExpression',
@@ -1798,7 +1798,7 @@ describe('Expressions - Arrow', () => {
                   start: 5,
                   end: 6,
                   range: [5, 6],
-                  name: 'a'
+                  name: 'a',
                 },
                 operator: '/',
                 right: {
@@ -1806,14 +1806,14 @@ describe('Expressions - Arrow', () => {
                   start: 9,
                   end: 10,
                   range: [9, 10],
-                  name: 'x'
-                }
-              }
-            }
-          }
+                  name: 'x',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a => x.foo',
@@ -1843,8 +1843,8 @@ describe('Expressions - Arrow', () => {
                   start: 0,
                   end: 1,
                   range: [0, 1],
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               ],
               body: {
                 type: 'MemberExpression',
@@ -1856,22 +1856,22 @@ describe('Expressions - Arrow', () => {
                   start: 5,
                   end: 6,
                   range: [5, 6],
-                  name: 'x'
+                  name: 'x',
                 },
                 property: {
                   type: 'Identifier',
                   start: 7,
                   end: 10,
                   range: [7, 10],
-                  name: 'foo'
+                  name: 'foo',
                 },
-                computed: false
-              }
-            }
-          }
+                computed: false,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(() => {}) << x',
@@ -1906,8 +1906,8 @@ describe('Expressions - Arrow', () => {
                   start: 7,
                   end: 9,
                   range: [7, 9],
-                  body: []
-                }
+                  body: [],
+                },
               },
               operator: '<<',
               right: {
@@ -1915,13 +1915,13 @@ describe('Expressions - Arrow', () => {
                 start: 14,
                 end: 15,
                 range: [14, 15],
-                name: 'x'
-              }
-            }
-          }
+                name: 'x',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a => x[foo]',
@@ -1951,8 +1951,8 @@ describe('Expressions - Arrow', () => {
                   start: 0,
                   end: 1,
                   range: [0, 1],
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               ],
               body: {
                 type: 'MemberExpression',
@@ -1964,22 +1964,22 @@ describe('Expressions - Arrow', () => {
                   start: 5,
                   end: 6,
                   range: [5, 6],
-                  name: 'x'
+                  name: 'x',
                 },
                 property: {
                   type: 'Identifier',
                   start: 7,
                   end: 10,
                   range: [7, 10],
-                  name: 'foo'
+                  name: 'foo',
                 },
-                computed: true
-              }
-            }
-          }
+                computed: true,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a => x()',
@@ -2009,8 +2009,8 @@ describe('Expressions - Arrow', () => {
                   start: 0,
                   end: 1,
                   range: [0, 1],
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               ],
               body: {
                 type: 'CallExpression',
@@ -2022,15 +2022,15 @@ describe('Expressions - Arrow', () => {
                   start: 5,
                   end: 6,
                   range: [5, 6],
-                  name: 'x'
+                  name: 'x',
                 },
-                arguments: []
-              }
-            }
-          }
+                arguments: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '() => {}\n+function(){}',
@@ -2043,33 +2043,33 @@ describe('Expressions - Arrow', () => {
                 async: false,
                 body: {
                   body: [],
-                  type: 'BlockStatement'
+                  type: 'BlockStatement',
                 },
                 expression: false,
                 params: [],
                 type: 'ArrowFunctionExpression',
-                generator: false
+                generator: false,
               },
               operator: '+',
               right: {
                 async: false,
                 body: {
                   body: [],
-                  type: 'BlockStatement'
+                  type: 'BlockStatement',
                 },
                 id: null,
                 generator: false,
                 params: [],
-                type: 'FunctionExpression'
+                type: 'FunctionExpression',
               },
-              type: 'BinaryExpression'
+              type: 'BinaryExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'fn = (a, b, ...c) => c;',
@@ -2096,7 +2096,7 @@ describe('Expressions - Arrow', () => {
                 start: 0,
                 end: 2,
                 range: [0, 2],
-                name: 'fn'
+                name: 'fn',
               },
               right: {
                 type: 'ArrowFunctionExpression',
@@ -2112,14 +2112,14 @@ describe('Expressions - Arrow', () => {
                     start: 6,
                     end: 7,
                     range: [6, 7],
-                    name: 'a'
+                    name: 'a',
                   },
                   {
                     type: 'Identifier',
                     start: 9,
                     end: 10,
                     range: [9, 10],
-                    name: 'b'
+                    name: 'b',
                   },
                   {
                     type: 'RestElement',
@@ -2131,23 +2131,23 @@ describe('Expressions - Arrow', () => {
                       start: 15,
                       end: 16,
                       range: [15, 16],
-                      name: 'c'
-                    }
-                  }
+                      name: 'c',
+                    },
+                  },
                 ],
                 body: {
                   type: 'Identifier',
                   start: 21,
                   end: 22,
                   range: [21, 22],
-                  name: 'c'
-                }
-              }
-            }
-          }
+                  name: 'c',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(interface)',
@@ -2168,12 +2168,12 @@ describe('Expressions - Arrow', () => {
               start: 1,
               end: 10,
               range: [1, 10],
-              name: 'interface'
-            }
-          }
+              name: 'interface',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({}) => {}',
@@ -2203,21 +2203,21 @@ describe('Expressions - Arrow', () => {
                   start: 1,
                   end: 3,
                   range: [1, 3],
-                  properties: []
-                }
+                  properties: [],
+                },
               ],
               body: {
                 type: 'BlockStatement',
                 start: 8,
                 end: 10,
                 range: [8, 10],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(x = yield = x) => x',
@@ -2252,7 +2252,7 @@ describe('Expressions - Arrow', () => {
                     start: 1,
                     end: 2,
                     range: [1, 2],
-                    name: 'x'
+                    name: 'x',
                   },
                   right: {
                     type: 'AssignmentExpression',
@@ -2265,30 +2265,30 @@ describe('Expressions - Arrow', () => {
                       start: 5,
                       end: 10,
                       range: [5, 10],
-                      name: 'yield'
+                      name: 'yield',
                     },
                     right: {
                       type: 'Identifier',
                       start: 13,
                       end: 14,
                       range: [13, 14],
-                      name: 'x'
-                    }
-                  }
-                }
+                      name: 'x',
+                    },
+                  },
+                },
               ],
               body: {
                 type: 'Identifier',
                 start: 19,
                 end: 20,
                 range: [19, 20],
-                name: 'x'
-              }
-            }
-          }
+                name: 'x',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '([x = yield]) => x',
@@ -2329,31 +2329,31 @@ describe('Expressions - Arrow', () => {
                         start: 2,
                         end: 3,
                         range: [2, 3],
-                        name: 'x'
+                        name: 'x',
                       },
                       right: {
                         type: 'Identifier',
                         start: 6,
                         end: 11,
                         range: [6, 11],
-                        name: 'yield'
-                      }
-                    }
-                  ]
-                }
+                        name: 'yield',
+                      },
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'Identifier',
                 start: 17,
                 end: 18,
                 range: [17, 18],
-                name: 'x'
-              }
-            }
-          }
+                name: 'x',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '([x, {y: [yield]}])',
@@ -2380,7 +2380,7 @@ describe('Expressions - Arrow', () => {
                   start: 2,
                   end: 3,
                   range: [2, 3],
-                  name: 'x'
+                  name: 'x',
                 },
                 {
                   type: 'ObjectExpression',
@@ -2401,7 +2401,7 @@ describe('Expressions - Arrow', () => {
                         start: 6,
                         end: 7,
                         range: [6, 7],
-                        name: 'y'
+                        name: 'y',
                       },
                       value: {
                         type: 'ArrayExpression',
@@ -2414,20 +2414,20 @@ describe('Expressions - Arrow', () => {
                             start: 10,
                             end: 15,
                             range: [10, 15],
-                            name: 'yield'
-                          }
-                        ]
+                            name: 'yield',
+                          },
+                        ],
                       },
-                      kind: 'init'
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                      kind: 'init',
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '([], a) => {}',
@@ -2457,28 +2457,28 @@ describe('Expressions - Arrow', () => {
                   start: 1,
                   end: 3,
                   range: [1, 3],
-                  elements: []
+                  elements: [],
                 },
                 {
                   type: 'Identifier',
                   start: 5,
                   end: 6,
                   range: [5, 6],
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               ],
               body: {
                 type: 'BlockStatement',
                 start: 11,
                 end: 13,
                 range: [11, 13],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a = b) => {}',
@@ -2494,29 +2494,29 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                }
+                    name: 'b',
+                  },
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       `(expect, subject, typeName) => {
@@ -2562,22 +2562,22 @@ describe('Expressions - Arrow', () => {
                   start: 1,
                   end: 7,
                   range: [1, 7],
-                  name: 'expect'
+                  name: 'expect',
                 },
                 {
                   type: 'Identifier',
                   start: 9,
                   end: 16,
                   range: [9, 16],
-                  name: 'subject'
+                  name: 'subject',
                 },
                 {
                   type: 'Identifier',
                   start: 18,
                   end: 26,
                   range: [18, 26],
-                  name: 'typeName'
-                }
+                  name: 'typeName',
+                },
               ],
               body: {
                 type: 'BlockStatement',
@@ -2601,7 +2601,7 @@ describe('Expressions - Arrow', () => {
                         start: 43,
                         end: 51,
                         range: [43, 51],
-                        name: 'typeName'
+                        name: 'typeName',
                       },
                       right: {
                         type: 'ConditionalExpression',
@@ -2626,17 +2626,17 @@ describe('Expressions - Arrow', () => {
                               value: /^reg(?:exp?|ular expression)$/,
                               regex: {
                                 pattern: '^reg(?:exp?|ular expression)$',
-                                flags: ''
-                              }
+                                flags: '',
+                              },
                             },
                             property: {
                               type: 'Identifier',
                               start: 86,
                               end: 90,
                               range: [86, 90],
-                              name: 'test'
+                              name: 'test',
                             },
-                            computed: false
+                            computed: false,
                           },
                           arguments: [
                             {
@@ -2644,26 +2644,26 @@ describe('Expressions - Arrow', () => {
                               start: 91,
                               end: 99,
                               range: [91, 99],
-                              name: 'typeName'
-                            }
-                          ]
+                              name: 'typeName',
+                            },
+                          ],
                         },
                         consequent: {
                           type: 'Literal',
                           start: 115,
                           end: 123,
                           range: [115, 123],
-                          value: 'regexp'
+                          value: 'regexp',
                         },
                         alternate: {
                           type: 'Identifier',
                           start: 138,
                           end: 146,
                           range: [138, 146],
-                          name: 'typeName'
-                        }
-                      }
-                    }
+                          name: 'typeName',
+                        },
+                      },
+                    },
                   },
                   {
                     type: 'ExpressionStatement',
@@ -2691,25 +2691,25 @@ describe('Expressions - Arrow', () => {
                             start: 158,
                             end: 164,
                             range: [158, 164],
-                            name: 'expect'
+                            name: 'expect',
                           },
                           property: {
                             type: 'Identifier',
                             start: 165,
                             end: 175,
                             range: [165, 175],
-                            name: 'argsOutput'
+                            name: 'argsOutput',
                           },
-                          computed: false
+                          computed: false,
                         },
                         property: {
                           type: 'Literal',
                           start: 176,
                           end: 177,
                           range: [176, 177],
-                          value: 0
+                          value: 0,
                         },
-                        computed: true
+                        computed: true,
                       },
                       right: {
                         type: 'ArrowFunctionExpression',
@@ -2725,8 +2725,8 @@ describe('Expressions - Arrow', () => {
                             start: 181,
                             end: 187,
                             range: [181, 187],
-                            name: 'output'
-                          }
+                            name: 'output',
+                          },
                         ],
                         body: {
                           type: 'BlockStatement',
@@ -2754,16 +2754,16 @@ describe('Expressions - Arrow', () => {
                                     start: 205,
                                     end: 211,
                                     range: [205, 211],
-                                    name: 'output'
+                                    name: 'output',
                                   },
                                   property: {
                                     type: 'Identifier',
                                     start: 212,
                                     end: 220,
                                     range: [212, 220],
-                                    name: 'jsString'
+                                    name: 'jsString',
                                   },
-                                  computed: false
+                                  computed: false,
                                 },
                                 arguments: [
                                   {
@@ -2771,15 +2771,15 @@ describe('Expressions - Arrow', () => {
                                     start: 221,
                                     end: 229,
                                     range: [221, 229],
-                                    name: 'typeName'
-                                  }
-                                ]
-                              }
-                            }
-                          ]
-                        }
-                      }
-                    }
+                                    name: 'typeName',
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    },
                   },
                   {
                     type: 'IfStatement',
@@ -2808,16 +2808,16 @@ describe('Expressions - Arrow', () => {
                             start: 260,
                             end: 266,
                             range: [260, 266],
-                            name: 'expect'
+                            name: 'expect',
                           },
                           property: {
                             type: 'Identifier',
                             start: 267,
                             end: 274,
                             range: [267, 274],
-                            name: 'getType'
+                            name: 'getType',
                           },
-                          computed: false
+                          computed: false,
                         },
                         arguments: [
                           {
@@ -2825,10 +2825,10 @@ describe('Expressions - Arrow', () => {
                             start: 275,
                             end: 283,
                             range: [275, 283],
-                            name: 'typeName'
-                          }
-                        ]
-                      }
+                            name: 'typeName',
+                          },
+                        ],
+                      },
                     },
                     consequent: {
                       type: 'BlockStatement',
@@ -2857,25 +2857,25 @@ describe('Expressions - Arrow', () => {
                                 start: 300,
                                 end: 306,
                                 range: [300, 306],
-                                name: 'expect'
+                                name: 'expect',
                               },
                               property: {
                                 type: 'Identifier',
                                 start: 307,
                                 end: 316,
                                 range: [307, 316],
-                                name: 'errorMode'
+                                name: 'errorMode',
                               },
-                              computed: false
+                              computed: false,
                             },
                             right: {
                               type: 'Literal',
                               start: 319,
                               end: 327,
                               range: [319, 327],
-                              value: 'nested'
-                            }
-                          }
+                              value: 'nested',
+                            },
+                          },
                         },
                         {
                           type: 'ExpressionStatement',
@@ -2897,16 +2897,16 @@ describe('Expressions - Arrow', () => {
                                 start: 341,
                                 end: 347,
                                 range: [341, 347],
-                                name: 'expect'
+                                name: 'expect',
                               },
                               property: {
                                 type: 'Identifier',
                                 start: 348,
                                 end: 352,
                                 range: [348, 352],
-                                name: 'fail'
+                                name: 'fail',
                               },
-                              computed: false
+                              computed: false,
                             },
                             arguments: [
                               {
@@ -2923,8 +2923,8 @@ describe('Expressions - Arrow', () => {
                                     start: 353,
                                     end: 359,
                                     range: [353, 359],
-                                    name: 'output'
-                                  }
+                                    name: 'output',
+                                  },
                                 ],
                                 body: {
                                   type: 'BlockStatement',
@@ -2972,16 +2972,16 @@ describe('Expressions - Arrow', () => {
                                                     start: 379,
                                                     end: 385,
                                                     range: [379, 385],
-                                                    name: 'output'
+                                                    name: 'output',
                                                   },
                                                   property: {
                                                     type: 'Identifier',
                                                     start: 403,
                                                     end: 408,
                                                     range: [403, 408],
-                                                    name: 'error'
+                                                    name: 'error',
                                                   },
-                                                  computed: false
+                                                  computed: false,
                                                 },
                                                 arguments: [
                                                   {
@@ -2989,29 +2989,29 @@ describe('Expressions - Arrow', () => {
                                                     start: 409,
                                                     end: 424,
                                                     range: [409, 424],
-                                                    value: 'Unknown type:'
-                                                  }
-                                                ]
+                                                    value: 'Unknown type:',
+                                                  },
+                                                ],
                                               },
                                               property: {
                                                 type: 'Identifier',
                                                 start: 443,
                                                 end: 445,
                                                 range: [443, 445],
-                                                name: 'sp'
+                                                name: 'sp',
                                               },
-                                              computed: false
+                                              computed: false,
                                             },
-                                            arguments: []
+                                            arguments: [],
                                           },
                                           property: {
                                             type: 'Identifier',
                                             start: 465,
                                             end: 473,
                                             range: [465, 473],
-                                            name: 'jsString'
+                                            name: 'jsString',
                                           },
-                                          computed: false
+                                          computed: false,
                                         },
                                         arguments: [
                                           {
@@ -3019,28 +3019,28 @@ describe('Expressions - Arrow', () => {
                                             start: 474,
                                             end: 482,
                                             range: [474, 482],
-                                            name: 'typeName'
-                                          }
-                                        ]
-                                      }
-                                    }
-                                  ]
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      ]
+                                            name: 'typeName',
+                                          },
+                                        ],
+                                      },
+                                    },
+                                  ],
+                                },
+                              },
+                            ],
+                          },
+                        },
+                      ],
                     },
-                    alternate: null
-                  }
-                ]
-              }
-            }
-          }
+                    alternate: null,
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a, b = c) => {}',
@@ -3070,7 +3070,7 @@ describe('Expressions - Arrow', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'AssignmentPattern',
@@ -3082,29 +3082,29 @@ describe('Expressions - Arrow', () => {
                     start: 4,
                     end: 5,
                     range: [4, 5],
-                    name: 'b'
+                    name: 'b',
                   },
                   right: {
                     type: 'Identifier',
                     start: 8,
                     end: 9,
                     range: [8, 9],
-                    name: 'c'
-                  }
-                }
+                    name: 'c',
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
                 start: 14,
                 end: 16,
                 range: [14, 16],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(x, y = 9, z = 8) => {}',
@@ -3134,7 +3134,7 @@ describe('Expressions - Arrow', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  name: 'x'
+                  name: 'x',
                 },
                 {
                   type: 'AssignmentPattern',
@@ -3146,15 +3146,15 @@ describe('Expressions - Arrow', () => {
                     start: 4,
                     end: 5,
                     range: [4, 5],
-                    name: 'y'
+                    name: 'y',
                   },
                   right: {
                     type: 'Literal',
                     start: 8,
                     end: 9,
                     range: [8, 9],
-                    value: 9
-                  }
+                    value: 9,
+                  },
                 },
                 {
                   type: 'AssignmentPattern',
@@ -3166,29 +3166,29 @@ describe('Expressions - Arrow', () => {
                     start: 11,
                     end: 12,
                     range: [11, 12],
-                    name: 'z'
+                    name: 'z',
                   },
                   right: {
                     type: 'Literal',
                     start: 15,
                     end: 16,
                     range: [15, 16],
-                    value: 8
-                  }
-                }
+                    value: 8,
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
                 start: 21,
                 end: 23,
                 range: [21, 23],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({a} = {}) => {}',
@@ -3237,7 +3237,7 @@ describe('Expressions - Arrow', () => {
                           start: 2,
                           end: 3,
                           range: [2, 3],
-                          name: 'a'
+                          name: 'a',
                         },
                         kind: 'init',
                         value: {
@@ -3245,32 +3245,32 @@ describe('Expressions - Arrow', () => {
                           start: 2,
                           end: 3,
                           range: [2, 3],
-                          name: 'a'
-                        }
-                      }
-                    ]
+                          name: 'a',
+                        },
+                      },
+                    ],
                   },
                   right: {
                     type: 'ObjectExpression',
                     start: 7,
                     end: 9,
                     range: [7, 9],
-                    properties: []
-                  }
-                }
+                    properties: [],
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
                 start: 14,
                 end: 16,
                 range: [14, 16],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'let x = ({y=z}=e) => d',
@@ -3297,7 +3297,7 @@ describe('Expressions - Arrow', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'x'
+                  name: 'x',
                 },
                 init: {
                   type: 'ArrowFunctionExpression',
@@ -3332,7 +3332,7 @@ describe('Expressions - Arrow', () => {
                               start: 10,
                               end: 11,
                               range: [10, 11],
-                              name: 'y'
+                              name: 'y',
                             },
                             kind: 'init',
                             value: {
@@ -3345,43 +3345,43 @@ describe('Expressions - Arrow', () => {
                                 start: 10,
                                 end: 11,
                                 range: [10, 11],
-                                name: 'y'
+                                name: 'y',
                               },
                               right: {
                                 type: 'Identifier',
                                 start: 12,
                                 end: 13,
                                 range: [12, 13],
-                                name: 'z'
-                              }
-                            }
-                          }
-                        ]
+                                name: 'z',
+                              },
+                            },
+                          },
+                        ],
                       },
                       right: {
                         type: 'Identifier',
                         start: 15,
                         end: 16,
                         range: [15, 16],
-                        name: 'e'
-                      }
-                    }
+                        name: 'e',
+                      },
+                    },
                   ],
                   body: {
                     type: 'Identifier',
                     start: 21,
                     end: 22,
                     range: [21, 22],
-                    name: 'd'
-                  }
-                }
-              }
+                    name: 'd',
+                  },
+                },
+              },
             ],
-            kind: 'let'
-          }
+            kind: 'let',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '([x] = []) => {}',
@@ -3422,31 +3422,31 @@ describe('Expressions - Arrow', () => {
                         start: 2,
                         end: 3,
                         range: [2, 3],
-                        name: 'x'
-                      }
-                    ]
+                        name: 'x',
+                      },
+                    ],
                   },
                   right: {
                     type: 'ArrayExpression',
                     start: 7,
                     end: 9,
                     range: [7, 9],
-                    elements: []
-                  }
-                }
+                    elements: [],
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
                 start: 14,
                 end: 16,
                 range: [14, 16],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(...a) => 0',
@@ -3462,25 +3462,25 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'Literal',
-                value: 0
+                value: 0,
               },
               params: [
                 {
                   type: 'RestElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
+                    name: 'a',
+                  },
+                },
               ],
 
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'e => "test"',
@@ -3496,22 +3496,22 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'Literal',
-                value: 'test'
+                value: 'test',
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'e'
-                }
+                  name: 'e',
+                },
               ],
 
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'e => { label: 42 }',
@@ -3541,8 +3541,8 @@ describe('Expressions - Arrow', () => {
                   start: 0,
                   end: 1,
                   range: [0, 1],
-                  name: 'e'
-                }
+                  name: 'e',
+                },
               ],
               body: {
                 type: 'BlockStatement',
@@ -3565,24 +3565,24 @@ describe('Expressions - Arrow', () => {
                         start: 14,
                         end: 16,
                         range: [14, 16],
-                        value: 42
-                      }
+                        value: 42,
+                      },
                     },
                     label: {
                       type: 'Identifier',
                       start: 7,
                       end: 12,
                       range: [7, 12],
-                      name: 'label'
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                      name: 'label',
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a, b) => { 42; }',
@@ -3603,29 +3603,29 @@ describe('Expressions - Arrow', () => {
                     type: 'ExpressionStatement',
                     expression: {
                       type: 'Literal',
-                      value: 42
-                    }
-                  }
-                ]
+                      value: 42,
+                    },
+                  },
+                ],
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
-                  name: 'b'
-                }
+                  name: 'b',
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '(x=1) => x * x',
@@ -3660,16 +3660,16 @@ describe('Expressions - Arrow', () => {
                     start: 1,
                     end: 2,
                     range: [1, 2],
-                    name: 'x'
+                    name: 'x',
                   },
                   right: {
                     type: 'Literal',
                     start: 3,
                     end: 4,
                     range: [3, 4],
-                    value: 1
-                  }
-                }
+                    value: 1,
+                  },
+                },
               ],
               body: {
                 type: 'BinaryExpression',
@@ -3681,7 +3681,7 @@ describe('Expressions - Arrow', () => {
                   start: 9,
                   end: 10,
                   range: [9, 10],
-                  name: 'x'
+                  name: 'x',
                 },
                 operator: '*',
                 right: {
@@ -3689,14 +3689,14 @@ describe('Expressions - Arrow', () => {
                   start: 13,
                   end: 14,
                   range: [13, 14],
-                  name: 'x'
-                }
-              }
-            }
-          }
+                  name: 'x',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'arguments => 42',
@@ -3712,22 +3712,22 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'Literal',
-                value: 42
+                value: 42,
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'arguments'
-                }
+                  name: 'arguments',
+                },
               ],
 
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '(eval = 10) => 42',
@@ -3743,29 +3743,29 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'Literal',
-                value: 42
+                value: 42,
               },
               params: [
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'eval'
+                    name: 'eval',
                   },
                   right: {
                     type: 'Literal',
-                    value: 10
-                  }
-                }
+                    value: 10,
+                  },
+                },
               ],
 
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '(x) => ((y, z) => (x, y, z))',
@@ -3787,47 +3787,47 @@ describe('Expressions - Arrow', () => {
                   expressions: [
                     {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     {
                       type: 'Identifier',
-                      name: 'z'
-                    }
-                  ]
+                      name: 'z',
+                    },
+                  ],
                 },
                 params: [
                   {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   {
                     type: 'Identifier',
-                    name: 'z'
-                  }
+                    name: 'z',
+                  },
                 ],
 
                 async: false,
 
-                expression: true
+                expression: true,
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               ],
 
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'foo(() => {})',
@@ -3842,7 +3842,7 @@ describe('Expressions - Arrow', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
@@ -3850,19 +3850,19 @@ describe('Expressions - Arrow', () => {
                   generator: false,
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   params: [],
 
                   async: false,
 
-                  expression: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  expression: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'foo((x, y) => {})',
@@ -3877,7 +3877,7 @@ describe('Expressions - Arrow', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               arguments: [
                 {
@@ -3885,28 +3885,28 @@ describe('Expressions - Arrow', () => {
                   generator: false,
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   params: [
                     {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     {
                       type: 'Identifier',
-                      name: 'y'
-                    }
+                      name: 'y',
+                    },
                   ],
 
                   async: false,
 
-                  expression: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  expression: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'x => { function x() {} }',
@@ -3928,31 +3928,31 @@ describe('Expressions - Arrow', () => {
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
                     id: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
-                ]
+                      name: 'x',
+                    },
+                  },
+                ],
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '(a, ...b) => {}',
@@ -3968,29 +3968,29 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'RestElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                }
+                    name: 'b',
+                  },
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '(...a) => {}',
@@ -4006,25 +4006,25 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'RestElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
+                    name: 'a',
+                  },
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '(a = 1) => {}',
@@ -4040,29 +4040,29 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   right: {
                     type: 'Literal',
-                    value: 1
-                  }
-                }
+                    value: 1,
+                  },
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       `async (eval) => "use strict";`,
@@ -4082,18 +4082,18 @@ describe('Expressions - Arrow', () => {
               params: [
                 {
                   type: 'Identifier',
-                  name: 'eval'
-                }
+                  name: 'eval',
+                },
               ],
               body: {
                 type: 'Literal',
-                value: 'use strict'
-              }
-            }
-          }
+                value: 'use strict',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(x) => { function x() {} }',
@@ -4115,31 +4115,31 @@ describe('Expressions - Arrow', () => {
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
                     id: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
-                ]
+                      name: 'x',
+                    },
+                  },
+                ],
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '([x, y] = z) => x;',
@@ -4155,7 +4155,7 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -4165,28 +4165,28 @@ describe('Expressions - Arrow', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       {
                         type: 'Identifier',
-                        name: 'y'
-                      }
-                    ]
+                        name: 'y',
+                      },
+                    ],
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'z'
-                  }
-                }
+                    name: 'z',
+                  },
+                },
               ],
 
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '([...x]) => x',
@@ -4202,7 +4202,7 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -4212,20 +4212,20 @@ describe('Expressions - Arrow', () => {
                       type: 'RestElement',
                       argument: {
                         type: 'Identifier',
-                        name: 'x'
-                      }
-                    }
-                  ]
-                }
+                        name: 'x',
+                      },
+                    },
+                  ],
+                },
               ],
 
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '([x, ...y]) => x',
@@ -4241,7 +4241,7 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -4249,26 +4249,26 @@ describe('Expressions - Arrow', () => {
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     {
                       type: 'RestElement',
                       argument: {
                         type: 'Identifier',
-                        name: 'y'
-                      }
-                    }
-                  ]
-                }
+                        name: 'y',
+                      },
+                    },
+                  ],
+                },
               ],
 
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '([[x, y] = z]) => x;',
@@ -4284,7 +4284,7 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -4297,30 +4297,30 @@ describe('Expressions - Arrow', () => {
                         elements: [
                           {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           {
                             type: 'Identifier',
-                            name: 'y'
-                          }
-                        ]
+                            name: 'y',
+                          },
+                        ],
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'z'
-                      }
-                    }
-                  ]
-                }
+                        name: 'z',
+                      },
+                    },
+                  ],
+                },
               ],
 
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '() => { let {} = y }',
@@ -4337,32 +4337,32 @@ describe('Expressions - Arrow', () => {
                       {
                         id: {
                           properties: [],
-                          type: 'ObjectPattern'
+                          type: 'ObjectPattern',
                         },
                         init: {
                           name: 'y',
-                          type: 'Identifier'
+                          type: 'Identifier',
                         },
-                        type: 'VariableDeclarator'
-                      }
+                        type: 'VariableDeclarator',
+                      },
                     ],
                     kind: 'let',
-                    type: 'VariableDeclaration'
-                  }
+                    type: 'VariableDeclaration',
+                  },
                 ],
-                type: 'BlockStatement'
+                type: 'BlockStatement',
               },
               expression: false,
               params: [],
               type: 'ArrowFunctionExpression',
-              generator: false
+              generator: false,
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '(x, y)=>x;',
@@ -4378,26 +4378,26 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               ],
 
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '(a = 1, b = 2) => x;',
@@ -4413,40 +4413,40 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   right: {
                     type: 'Literal',
-                    value: 1
-                  }
+                    value: 1,
+                  },
                 },
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   right: {
                     type: 'Literal',
-                    value: 2
-                  }
-                }
+                    value: 2,
+                  },
+                },
               ],
 
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'a = (b) => c;',
@@ -4461,7 +4461,7 @@ describe('Expressions - Arrow', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '=',
               right: {
@@ -4469,23 +4469,23 @@ describe('Expressions - Arrow', () => {
                 generator: false,
                 body: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
                 params: [
                   {
                     type: 'Identifier',
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 ],
 
                 async: false,
 
-                expression: true
-              }
-            }
-          }
-        ]
-      }
+                expression: true,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({x});',
@@ -4503,22 +4503,22 @@ describe('Expressions - Arrow', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({ident: {x: y}}) => x',
@@ -4534,7 +4534,7 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -4544,7 +4544,7 @@ describe('Expressions - Arrow', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'ident'
+                        name: 'ident',
                       },
                       value: {
                         type: 'ObjectPattern',
@@ -4553,35 +4553,35 @@ describe('Expressions - Arrow', () => {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             value: {
                               type: 'Identifier',
-                              name: 'y'
+                              name: 'y',
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: false
-                          }
-                        ]
+                            shorthand: false,
+                          },
+                        ],
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
 
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '({ident: {x}}) => x',
@@ -4597,7 +4597,7 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -4607,7 +4607,7 @@ describe('Expressions - Arrow', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'ident'
+                        name: 'ident',
                       },
                       value: {
                         type: 'ObjectPattern',
@@ -4616,35 +4616,35 @@ describe('Expressions - Arrow', () => {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             value: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: true
-                          }
-                        ]
+                            shorthand: true,
+                          },
+                        ],
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
 
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '({a} = b,) => {}',
@@ -4693,7 +4693,7 @@ describe('Expressions - Arrow', () => {
                           start: 2,
                           end: 3,
                           range: [2, 3],
-                          name: 'a'
+                          name: 'a',
                         },
                         kind: 'init',
                         value: {
@@ -4701,32 +4701,32 @@ describe('Expressions - Arrow', () => {
                           start: 2,
                           end: 3,
                           range: [2, 3],
-                          name: 'a'
-                        }
-                      }
-                    ]
+                          name: 'a',
+                        },
+                      },
+                    ],
                   },
                   right: {
                     type: 'Identifier',
                     start: 7,
                     end: 8,
                     range: [7, 8],
-                    name: 'b'
-                  }
-                }
+                    name: 'b',
+                  },
+                },
               ],
               body: {
                 type: 'BlockStatement',
                 start: 14,
                 end: 16,
                 range: [14, 16],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a, b, (c, d) => 0)',
@@ -4753,14 +4753,14 @@ describe('Expressions - Arrow', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'b'
+                  name: 'b',
                 },
                 {
                   type: 'ArrowFunctionExpression',
@@ -4776,30 +4776,30 @@ describe('Expressions - Arrow', () => {
                       start: 8,
                       end: 9,
                       range: [8, 9],
-                      name: 'c'
+                      name: 'c',
                     },
                     {
                       type: 'Identifier',
                       start: 11,
                       end: 12,
                       range: [11, 12],
-                      name: 'd'
-                    }
+                      name: 'd',
+                    },
                   ],
                   body: {
                     type: 'Literal',
                     start: 17,
                     end: 18,
                     range: [17, 18],
-                    value: 0
-                  }
-                }
-              ]
-            }
-          }
+                    value: 0,
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a, b) => 0, (c, d) => 1',
@@ -4835,23 +4835,23 @@ describe('Expressions - Arrow', () => {
                       start: 1,
                       end: 2,
                       range: [1, 2],
-                      name: 'a'
+                      name: 'a',
                     },
                     {
                       type: 'Identifier',
                       start: 4,
                       end: 5,
                       range: [4, 5],
-                      name: 'b'
-                    }
+                      name: 'b',
+                    },
                   ],
                   body: {
                     type: 'Literal',
                     start: 10,
                     end: 11,
                     range: [10, 11],
-                    value: 0
-                  }
+                    value: 0,
+                  },
                 },
                 {
                   type: 'ArrowFunctionExpression',
@@ -4867,30 +4867,30 @@ describe('Expressions - Arrow', () => {
                       start: 14,
                       end: 15,
                       range: [14, 15],
-                      name: 'c'
+                      name: 'c',
                     },
                     {
                       type: 'Identifier',
                       start: 17,
                       end: 18,
                       range: [17, 18],
-                      name: 'd'
-                    }
+                      name: 'd',
+                    },
                   ],
                   body: {
                     type: 'Literal',
                     start: 23,
                     end: 24,
                     range: [23, 24],
-                    value: 1
-                  }
-                }
-              ]
-            }
-          }
+                    value: 1,
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a, b => {}, a => a + 1)',
@@ -4917,7 +4917,7 @@ describe('Expressions - Arrow', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'ArrowFunctionExpression',
@@ -4933,16 +4933,16 @@ describe('Expressions - Arrow', () => {
                       start: 4,
                       end: 5,
                       range: [4, 5],
-                      name: 'b'
-                    }
+                      name: 'b',
+                    },
                   ],
                   body: {
                     type: 'BlockStatement',
                     start: 9,
                     end: 11,
                     range: [9, 11],
-                    body: []
-                  }
+                    body: [],
+                  },
                 },
                 {
                   type: 'ArrowFunctionExpression',
@@ -4958,8 +4958,8 @@ describe('Expressions - Arrow', () => {
                       start: 13,
                       end: 14,
                       range: [13, 14],
-                      name: 'a'
-                    }
+                      name: 'a',
+                    },
                   ],
                   body: {
                     type: 'BinaryExpression',
@@ -4971,7 +4971,7 @@ describe('Expressions - Arrow', () => {
                       start: 18,
                       end: 19,
                       range: [18, 19],
-                      name: 'a'
+                      name: 'a',
                     },
                     operator: '+',
                     right: {
@@ -4979,16 +4979,16 @@ describe('Expressions - Arrow', () => {
                       start: 22,
                       end: 23,
                       range: [22, 23],
-                      value: 1
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      value: 1,
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '() => a + b - yield / 1',
@@ -5028,7 +5028,7 @@ describe('Expressions - Arrow', () => {
                     start: 6,
                     end: 7,
                     range: [6, 7],
-                    name: 'a'
+                    name: 'a',
                   },
                   operator: '+',
                   right: {
@@ -5036,8 +5036,8 @@ describe('Expressions - Arrow', () => {
                     start: 10,
                     end: 11,
                     range: [10, 11],
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 },
                 operator: '-',
                 right: {
@@ -5050,7 +5050,7 @@ describe('Expressions - Arrow', () => {
                     start: 14,
                     end: 19,
                     range: [14, 19],
-                    name: 'yield'
+                    name: 'yield',
                   },
                   operator: '/',
                   right: {
@@ -5058,15 +5058,15 @@ describe('Expressions - Arrow', () => {
                     start: 22,
                     end: 23,
                     range: [22, 23],
-                    value: 1
-                  }
-                }
-              }
-            }
-          }
+                    value: 1,
+                  },
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({x = 10, y: { z = 10 }}) => [x, z]',
@@ -5110,7 +5110,7 @@ describe('Expressions - Arrow', () => {
                         start: 2,
                         end: 3,
                         range: [2, 3],
-                        name: 'x'
+                        name: 'x',
                       },
                       kind: 'init',
                       value: {
@@ -5123,7 +5123,7 @@ describe('Expressions - Arrow', () => {
                           start: 2,
                           end: 3,
                           range: [2, 3],
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Literal',
@@ -5131,9 +5131,9 @@ describe('Expressions - Arrow', () => {
                           end: 8,
                           range: [6, 8],
                           value: 10,
-                          raw: '10'
-                        }
-                      }
+                          raw: '10',
+                        },
+                      },
                     },
                     {
                       type: 'Property',
@@ -5148,7 +5148,7 @@ describe('Expressions - Arrow', () => {
                         start: 10,
                         end: 11,
                         range: [10, 11],
-                        name: 'y'
+                        name: 'y',
                       },
                       value: {
                         type: 'ObjectPattern',
@@ -5169,7 +5169,7 @@ describe('Expressions - Arrow', () => {
                               start: 15,
                               end: 16,
                               range: [15, 16],
-                              name: 'z'
+                              name: 'z',
                             },
                             kind: 'init',
                             value: {
@@ -5182,7 +5182,7 @@ describe('Expressions - Arrow', () => {
                                 start: 15,
                                 end: 16,
                                 range: [15, 16],
-                                name: 'z'
+                                name: 'z',
                               },
                               right: {
                                 type: 'Literal',
@@ -5190,16 +5190,16 @@ describe('Expressions - Arrow', () => {
                                 end: 21,
                                 range: [19, 21],
                                 value: 10,
-                                raw: '10'
-                              }
-                            }
-                          }
-                        ]
+                                raw: '10',
+                              },
+                            },
+                          },
+                        ],
                       },
-                      kind: 'init'
-                    }
-                  ]
-                }
+                      kind: 'init',
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'ArrayExpression',
@@ -5212,22 +5212,22 @@ describe('Expressions - Arrow', () => {
                     start: 30,
                     end: 31,
                     range: [30, 31],
-                    name: 'x'
+                    name: 'x',
                   },
                   {
                     type: 'Identifier',
                     start: 33,
                     end: 34,
                     range: [33, 34],
-                    name: 'z'
-                  }
-                ]
-              }
-            }
-          }
+                    name: 'z',
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({x = 10}) => x',
@@ -5271,7 +5271,7 @@ describe('Expressions - Arrow', () => {
                         start: 2,
                         end: 3,
                         range: [2, 3],
-                        name: 'x'
+                        name: 'x',
                       },
                       kind: 'init',
                       value: {
@@ -5284,32 +5284,32 @@ describe('Expressions - Arrow', () => {
                           start: 2,
                           end: 3,
                           range: [2, 3],
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Literal',
                           start: 6,
                           end: 8,
                           range: [6, 8],
-                          value: 10
-                        }
-                      }
-                    }
-                  ]
-                }
+                          value: 10,
+                        },
+                      },
+                    },
+                  ],
+                },
               ],
               body: {
                 type: 'Identifier',
                 start: 14,
                 end: 15,
                 range: [14, 15],
-                name: 'x'
-              }
-            }
-          }
+                name: 'x',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a, {}) => {}',
@@ -5339,28 +5339,28 @@ describe('Expressions - Arrow', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'ObjectPattern',
                   start: 4,
                   end: 6,
                   range: [4, 6],
-                  properties: []
-                }
+                  properties: [],
+                },
               ],
               body: {
                 type: 'BlockStatement',
                 start: 11,
                 end: 13,
                 range: [11, 13],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({}, a) => {}',
@@ -5376,26 +5376,26 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'ObjectPattern',
-                  properties: []
+                  properties: [],
                 },
                 {
                   type: 'Identifier',
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '(eval = 10) => 42;',
@@ -5411,29 +5411,29 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'Literal',
-                value: 42
+                value: 42,
               },
               params: [
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'eval'
+                    name: 'eval',
                   },
                   right: {
                     type: 'Literal',
-                    value: 10
-                  }
-                }
+                    value: 10,
+                  },
+                },
               ],
 
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '(a = b, c) => {}',
@@ -5468,36 +5468,36 @@ describe('Expressions - Arrow', () => {
                     start: 1,
                     end: 2,
                     range: [1, 2],
-                    name: 'a'
+                    name: 'a',
                   },
                   right: {
                     type: 'Identifier',
                     start: 5,
                     end: 6,
                     range: [5, 6],
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 },
                 {
                   type: 'Identifier',
                   start: 8,
                   end: 9,
                   range: [8, 9],
-                  name: 'c'
-                }
+                  name: 'c',
+                },
               ],
               body: {
                 type: 'BlockStatement',
                 start: 14,
                 end: 16,
                 range: [14, 16],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(x = 9) => {}',
@@ -5513,29 +5513,29 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   right: {
                     type: 'Literal',
-                    value: 9
-                  }
-                }
+                    value: 9,
+                  },
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '(a) => 00;',
@@ -5565,21 +5565,21 @@ describe('Expressions - Arrow', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               ],
               body: {
                 type: 'Literal',
                 start: 7,
                 end: 9,
                 range: [7, 9],
-                value: 0
-              }
-            }
-          }
+                value: 0,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(x, y) => x + y',
@@ -5597,32 +5597,32 @@ describe('Expressions - Arrow', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
-                operator: '+'
+                operator: '+',
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               ],
 
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '(x, y) => z => z * (x + y)',
@@ -5652,15 +5652,15 @@ describe('Expressions - Arrow', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  name: 'x'
+                  name: 'x',
                 },
                 {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               ],
               body: {
                 type: 'ArrowFunctionExpression',
@@ -5676,8 +5676,8 @@ describe('Expressions - Arrow', () => {
                     start: 10,
                     end: 11,
                     range: [10, 11],
-                    name: 'z'
-                  }
+                    name: 'z',
+                  },
                 ],
                 body: {
                   type: 'BinaryExpression',
@@ -5689,7 +5689,7 @@ describe('Expressions - Arrow', () => {
                     start: 15,
                     end: 16,
                     range: [15, 16],
-                    name: 'z'
+                    name: 'z',
                   },
                   operator: '*',
                   right: {
@@ -5702,7 +5702,7 @@ describe('Expressions - Arrow', () => {
                       start: 20,
                       end: 21,
                       range: [20, 21],
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '+',
                     right: {
@@ -5710,16 +5710,16 @@ describe('Expressions - Arrow', () => {
                       start: 24,
                       end: 25,
                       range: [24, 25],
-                      name: 'y'
-                    }
-                  }
-                }
-              }
-            }
-          }
+                      name: 'y',
+                    },
+                  },
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({a} = {}) => {}',
@@ -5735,7 +5735,7 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
@@ -5747,33 +5747,33 @@ describe('Expressions - Arrow', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
-                      }
-                    ]
+                        shorthand: true,
+                      },
+                    ],
                   },
                   right: {
                     type: 'ObjectExpression',
-                    properties: []
-                  }
-                }
+                    properties: [],
+                  },
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '() => bar',
@@ -5789,17 +5789,17 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'bar'
+                name: 'bar',
               },
               params: [],
 
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '(( [x]=f(yield) )=>{});',
@@ -5815,7 +5815,7 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
@@ -5825,33 +5825,33 @@ describe('Expressions - Arrow', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'x'
-                      }
-                    ]
+                        name: 'x',
+                      },
+                    ],
                   },
                   right: {
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'f'
+                      name: 'f',
                     },
                     arguments: [
                       {
                         type: 'Identifier',
-                        name: 'yield'
-                      }
-                    ]
-                  }
-                }
+                        name: 'yield',
+                      },
+                    ],
+                  },
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '(( {x=f(yield)} )=>{});',
@@ -5867,7 +5867,7 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
@@ -5877,44 +5877,44 @@ describe('Expressions - Arrow', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       value: {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'CallExpression',
                           callee: {
                             type: 'Identifier',
-                            name: 'f'
+                            name: 'f',
                           },
                           arguments: [
                             {
                               type: 'Identifier',
-                              name: 'yield'
-                            }
-                          ]
-                        }
+                              name: 'yield',
+                            },
+                          ],
+                        },
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
-                    }
-                  ]
-                }
+                      shorthand: true,
+                    },
+                  ],
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'for ( f => ( "key" in {}) ; 0;);',
@@ -5926,7 +5926,7 @@ describe('Expressions - Arrow', () => {
           {
             type: 'ForStatement',
             body: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
             init: {
               type: 'ArrowFunctionExpression',
@@ -5935,33 +5935,33 @@ describe('Expressions - Arrow', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Literal',
-                  value: 'key'
+                  value: 'key',
                 },
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
+                  properties: [],
                 },
-                operator: 'in'
+                operator: 'in',
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'f'
-                }
+                  name: 'f',
+                },
               ],
 
               async: false,
 
-              expression: true
+              expression: true,
             },
             test: {
               type: 'Literal',
-              value: 0
+              value: 0,
             },
-            update: null
-          }
-        ]
-      }
+            update: null,
+          },
+        ],
+      },
     ],
     [
       '(x, y) => z => z * (x + y);',
@@ -5982,51 +5982,51 @@ describe('Expressions - Arrow', () => {
                   type: 'BinaryExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'z'
+                    name: 'z',
                   },
                   right: {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
-                    operator: '+'
+                    operator: '+',
                   },
-                  operator: '*'
+                  operator: '*',
                 },
                 params: [
                   {
                     type: 'Identifier',
-                    name: 'z'
-                  }
+                    name: 'z',
+                  },
                 ],
 
                 async: false,
 
-                expression: true
+                expression: true,
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               ],
 
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'x => (y, z) => z * (x + y)',
@@ -6047,51 +6047,51 @@ describe('Expressions - Arrow', () => {
                   type: 'BinaryExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'z'
+                    name: 'z',
                   },
                   right: {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
-                    operator: '+'
+                    operator: '+',
                   },
-                  operator: '*'
+                  operator: '*',
                 },
                 params: [
                   {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   {
                     type: 'Identifier',
-                    name: 'z'
-                  }
+                    name: 'z',
+                  },
                 ],
 
                 async: false,
 
-                expression: true
+                expression: true,
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               ],
 
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'a, b => 0;',
@@ -6107,31 +6107,31 @@ describe('Expressions - Arrow', () => {
               expressions: [
                 {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'ArrowFunctionExpression',
                   generator: false,
                   body: {
                     type: 'Literal',
-                    value: 0
+                    value: 0,
                   },
                   params: [
                     {
                       type: 'Identifier',
-                      name: 'b'
-                    }
+                      name: 'b',
+                    },
                   ],
 
                   async: false,
 
-                  expression: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  expression: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'a, b, (c, d) => 0;',
@@ -6147,39 +6147,39 @@ describe('Expressions - Arrow', () => {
               expressions: [
                 {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 {
                   type: 'ArrowFunctionExpression',
                   generator: false,
                   body: {
                     type: 'Literal',
-                    value: 0
+                    value: 0,
                   },
                   params: [
                     {
                       type: 'Identifier',
-                      name: 'c'
+                      name: 'c',
                     },
                     {
                       type: 'Identifier',
-                      name: 'd'
-                    }
+                      name: 'd',
+                    },
                   ],
 
                   async: false,
 
-                  expression: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  expression: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'var x = ({x = 30}, [y], z) => x',
@@ -6199,7 +6199,7 @@ describe('Expressions - Arrow', () => {
                   generator: false,
                   body: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   params: [
                     {
@@ -6209,54 +6209,54 @@ describe('Expressions - Arrow', () => {
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           value: {
                             type: 'AssignmentPattern',
                             left: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             right: {
                               type: 'Literal',
-                              value: 30
-                            }
+                              value: 30,
+                            },
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: true
-                        }
-                      ]
+                          shorthand: true,
+                        },
+                      ],
                     },
                     {
                       type: 'ArrayPattern',
                       elements: [
                         {
                           type: 'Identifier',
-                          name: 'y'
-                        }
-                      ]
+                          name: 'y',
+                        },
+                      ],
                     },
                     {
                       type: 'Identifier',
-                      name: 'z'
-                    }
+                      name: 'z',
+                    },
                   ],
 
                   async: false,
 
-                  expression: true
+                  expression: true,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var x = ([x = 25]) => x => x => ({x} = {})',
@@ -6289,46 +6289,46 @@ describe('Expressions - Arrow', () => {
                               type: 'Property',
                               key: {
                                 type: 'Identifier',
-                                name: 'x'
+                                name: 'x',
                               },
                               value: {
                                 type: 'Identifier',
-                                name: 'x'
+                                name: 'x',
                               },
                               kind: 'init',
                               computed: false,
                               method: false,
-                              shorthand: true
-                            }
-                          ]
+                              shorthand: true,
+                            },
+                          ],
                         },
                         operator: '=',
                         right: {
                           type: 'ObjectExpression',
-                          properties: []
-                        }
+                          properties: [],
+                        },
                       },
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
 
                       async: false,
 
-                      expression: true
+                      expression: true,
                     },
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'x'
-                      }
+                        name: 'x',
+                      },
                     ],
 
                     async: false,
 
-                    expression: true
+                    expression: true,
                   },
                   params: [
                     {
@@ -6338,30 +6338,30 @@ describe('Expressions - Arrow', () => {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           right: {
                             type: 'Literal',
-                            value: 25
-                          }
-                        }
-                      ]
-                    }
+                            value: 25,
+                          },
+                        },
+                      ],
+                    },
                   ],
 
                   async: false,
 
-                  expression: true
+                  expression: true,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'var x = foo => x => x => x => {x}',
@@ -6395,64 +6395,64 @@ describe('Expressions - Arrow', () => {
                               type: 'ExpressionStatement',
                               expression: {
                                 type: 'Identifier',
-                                name: 'x'
-                              }
-                            }
-                          ]
+                                name: 'x',
+                              },
+                            },
+                          ],
                         },
                         params: [
                           {
                             type: 'Identifier',
-                            name: 'x'
-                          }
+                            name: 'x',
+                          },
                         ],
 
                         async: false,
 
-                        expression: false
+                        expression: false,
                       },
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'x'
-                        }
+                          name: 'x',
+                        },
                       ],
 
                       async: false,
 
-                      expression: true
+                      expression: true,
                     },
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'x'
-                      }
+                        name: 'x',
+                      },
                     ],
 
                     async: false,
 
-                    expression: true
+                    expression: true,
                   },
                   params: [
                     {
                       type: 'Identifier',
-                      name: 'foo'
-                    }
+                      name: 'foo',
+                    },
                   ],
 
                   async: false,
 
-                  expression: true
+                  expression: true,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '(a, b) => 0, (c, d) => 1;',
@@ -6471,50 +6471,50 @@ describe('Expressions - Arrow', () => {
                   generator: false,
                   body: {
                     type: 'Literal',
-                    value: 0
+                    value: 0,
                   },
                   params: [
                     {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     {
                       type: 'Identifier',
-                      name: 'b'
-                    }
+                      name: 'b',
+                    },
                   ],
 
                   async: false,
 
-                  expression: true
+                  expression: true,
                 },
                 {
                   type: 'ArrowFunctionExpression',
                   generator: false,
                   body: {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   params: [
                     {
                       type: 'Identifier',
-                      name: 'c'
+                      name: 'c',
                     },
                     {
                       type: 'Identifier',
-                      name: 'd'
-                    }
+                      name: 'd',
+                    },
                   ],
 
                   async: false,
 
-                  expression: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  expression: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(a, b => {}, a => a + 1);',
@@ -6530,25 +6530,25 @@ describe('Expressions - Arrow', () => {
               expressions: [
                 {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'ArrowFunctionExpression',
                   generator: false,
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   params: [
                     {
                       type: 'Identifier',
-                      name: 'b'
-                    }
+                      name: 'b',
+                    },
                   ],
 
                   async: false,
 
-                  expression: false
+                  expression: false,
                 },
                 {
                   type: 'ArrowFunctionExpression',
@@ -6557,30 +6557,30 @@ describe('Expressions - Arrow', () => {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     right: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
-                    operator: '+'
+                    operator: '+',
                   },
                   params: [
                     {
                       type: 'Identifier',
-                      name: 'a'
-                    }
+                      name: 'a',
+                    },
                   ],
 
                   async: false,
 
-                  expression: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  expression: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '((a, b) => {}, (a => a + 1));',
@@ -6599,22 +6599,22 @@ describe('Expressions - Arrow', () => {
                   generator: false,
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   params: [
                     {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     {
                       type: 'Identifier',
-                      name: 'b'
-                    }
+                      name: 'b',
+                    },
                   ],
 
                   async: false,
 
-                  expression: false
+                  expression: false,
                 },
                 {
                   type: 'ArrowFunctionExpression',
@@ -6623,30 +6623,30 @@ describe('Expressions - Arrow', () => {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     right: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
-                    operator: '+'
+                    operator: '+',
                   },
                   params: [
                     {
                       type: 'Identifier',
-                      name: 'a'
-                    }
+                      name: 'a',
+                    },
                   ],
 
                   async: false,
 
-                  expression: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  expression: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(a, (a, (b, c) => 0));',
@@ -6662,44 +6662,44 @@ describe('Expressions - Arrow', () => {
               expressions: [
                 {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'SequenceExpression',
                   expressions: [
                     {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     {
                       type: 'ArrowFunctionExpression',
                       generator: false,
                       body: {
                         type: 'Literal',
-                        value: 0
+                        value: 0,
                       },
                       params: [
                         {
                           type: 'Identifier',
-                          name: 'b'
+                          name: 'b',
                         },
                         {
                           type: 'Identifier',
-                          name: 'c'
-                        }
+                          name: 'c',
+                        },
                       ],
 
                       async: false,
 
-                      expression: true
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      expression: true,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'foo ? bar : baz => {};',
@@ -6725,14 +6725,14 @@ describe('Expressions - Arrow', () => {
                 start: 0,
                 end: 3,
                 range: [0, 3],
-                name: 'foo'
+                name: 'foo',
               },
               consequent: {
                 type: 'Identifier',
                 start: 6,
                 end: 9,
                 range: [6, 9],
-                name: 'bar'
+                name: 'bar',
               },
               alternate: {
                 type: 'ArrowFunctionExpression',
@@ -6748,22 +6748,22 @@ describe('Expressions - Arrow', () => {
                     start: 12,
                     end: 15,
                     range: [12, 15],
-                    name: 'baz'
-                  }
+                    name: 'baz',
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
                   start: 19,
                   end: 21,
                   range: [19, 21],
-                  body: []
-                }
-              }
-            }
-          }
+                  body: [],
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a, {}) => {};',
@@ -6779,26 +6779,26 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'ObjectPattern',
-                  properties: []
-                }
+                  properties: [],
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '({}, a) => {};',
@@ -6814,26 +6814,26 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'ObjectPattern',
-                  properties: []
+                  properties: [],
                 },
                 {
                   type: 'Identifier',
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '({a}) => {};',
@@ -6849,7 +6849,7 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
@@ -6859,28 +6859,28 @@ describe('Expressions - Arrow', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
-                    }
-                  ]
-                }
+                      shorthand: true,
+                    },
+                  ],
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '(x = 9) => {};',
@@ -6896,29 +6896,29 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   right: {
                     type: 'Literal',
-                    value: 9
-                  }
-                }
+                    value: 9,
+                  },
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '(x, y = 9) => {};',
@@ -6934,33 +6934,33 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   right: {
                     type: 'Literal',
-                    value: 9
-                  }
-                }
+                    value: 9,
+                  },
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '(x = 9, y) => {};',
@@ -6976,33 +6976,33 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   right: {
                     type: 'Literal',
-                    value: 9
-                  }
+                    value: 9,
+                  },
                 },
                 {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '(x, y = 9, z = 8) => {};',
@@ -7018,44 +7018,44 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   right: {
                     type: 'Literal',
-                    value: 9
-                  }
+                    value: 9,
+                  },
                 },
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'z'
+                    name: 'z',
                   },
                   right: {
                     type: 'Literal',
-                    value: 8
-                  }
-                }
+                    value: 8,
+                  },
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '({a} = {}) => {};',
@@ -7071,7 +7071,7 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
@@ -7083,33 +7083,33 @@ describe('Expressions - Arrow', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
-                      }
-                    ]
+                        shorthand: true,
+                      },
+                    ],
                   },
                   right: {
                     type: 'ObjectExpression',
-                    properties: []
-                  }
-                }
+                    properties: [],
+                  },
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '([x] = []) => {};',
@@ -7125,7 +7125,7 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
@@ -7135,24 +7135,24 @@ describe('Expressions - Arrow', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'x'
-                      }
-                    ]
+                        name: 'x',
+                      },
+                    ],
                   },
                   right: {
                     type: 'ArrayExpression',
-                    elements: []
-                  }
-                }
+                    elements: [],
+                  },
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '([x = 0]) => {};',
@@ -7168,7 +7168,7 @@ describe('Expressions - Arrow', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
@@ -7178,24 +7178,24 @@ describe('Expressions - Arrow', () => {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       right: {
                         type: 'Literal',
-                        value: 0
-                      }
-                    }
-                  ]
-                }
+                        value: 0,
+                      },
+                    },
+                  ],
+                },
               ],
 
               async: false,
 
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       `(a) => b;  // 1 args
@@ -7232,17 +7232,17 @@ describe('Expressions - Arrow', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               ],
               body: {
                 type: 'Identifier',
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'b'
-              }
-            }
+                name: 'b',
+              },
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -7263,24 +7263,24 @@ describe('Expressions - Arrow', () => {
                   start: 26,
                   end: 27,
                   range: [26, 27],
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
                   start: 29,
                   end: 30,
                   range: [29, 30],
-                  name: 'b'
-                }
+                  name: 'b',
+                },
               ],
               body: {
                 type: 'Identifier',
                 start: 35,
                 end: 36,
                 range: [35, 36],
-                name: 'c'
-              }
-            }
+                name: 'c',
+              },
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -7301,9 +7301,9 @@ describe('Expressions - Arrow', () => {
                 start: 59,
                 end: 60,
                 range: [59, 60],
-                name: 'b'
-              }
-            }
+                name: 'b',
+              },
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -7324,8 +7324,8 @@ describe('Expressions - Arrow', () => {
                   start: 78,
                   end: 79,
                   range: [78, 79],
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               ],
               body: {
                 type: 'ArrowFunctionExpression',
@@ -7341,18 +7341,18 @@ describe('Expressions - Arrow', () => {
                     start: 85,
                     end: 86,
                     range: [85, 86],
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 ],
                 body: {
                   type: 'Identifier',
                   start: 91,
                   end: 92,
                   range: [91, 92],
-                  name: 'c'
-                }
-              }
-            }
+                  name: 'c',
+                },
+              },
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -7373,8 +7373,8 @@ describe('Expressions - Arrow', () => {
                   start: 134,
                   end: 135,
                   range: [134, 135],
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               ],
               body: {
                 type: 'ArrowFunctionExpression',
@@ -7390,18 +7390,18 @@ describe('Expressions - Arrow', () => {
                     start: 142,
                     end: 143,
                     range: [142, 143],
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 ],
                 body: {
                   type: 'Identifier',
                   start: 148,
                   end: 149,
                   range: [148, 149],
-                  name: 'c'
-                }
-              }
-            }
+                  name: 'c',
+                },
+              },
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -7431,25 +7431,25 @@ describe('Expressions - Arrow', () => {
                     start: 195,
                     end: 196,
                     range: [195, 196],
-                    name: 'b'
+                    name: 'b',
                   },
                   {
                     type: 'Identifier',
                     start: 197,
                     end: 198,
                     range: [197, 198],
-                    name: 'c'
-                  }
+                    name: 'c',
+                  },
                 ],
                 body: {
                   type: 'Identifier',
                   start: 203,
                   end: 204,
                   range: [203, 204],
-                  name: 'd'
-                }
-              }
-            }
+                  name: 'd',
+                },
+              },
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -7470,8 +7470,8 @@ describe('Expressions - Arrow', () => {
                   start: 245,
                   end: 246,
                   range: [245, 246],
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               ],
               body: {
                 type: 'BlockStatement',
@@ -7489,12 +7489,12 @@ describe('Expressions - Arrow', () => {
                       start: 256,
                       end: 257,
                       range: [256, 257],
-                      name: 'b'
-                    }
-                  }
-                ]
-              }
-            }
+                      name: 'b',
+                    },
+                  },
+                ],
+              },
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -7515,21 +7515,21 @@ describe('Expressions - Arrow', () => {
                   start: 264,
                   end: 265,
                   range: [264, 265],
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               ],
               body: {
                 type: 'Literal',
                 start: 269,
                 end: 272,
                 range: [269, 272],
-                value: 'e'
-              }
-            }
-          }
+                value: 'e',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'const a = () => {return (3, 4);};',
@@ -7556,7 +7556,7 @@ describe('Expressions - Arrow', () => {
                   start: 6,
                   end: 7,
                   range: [6, 7],
-                  name: 'a'
+                  name: 'a',
                 },
                 init: {
                   type: 'ArrowFunctionExpression',
@@ -7589,28 +7589,28 @@ describe('Expressions - Arrow', () => {
                               start: 25,
                               end: 26,
                               range: [25, 26],
-                              value: 3
+                              value: 3,
                             },
                             {
                               type: 'Literal',
                               start: 28,
                               end: 29,
                               range: [28, 29],
-                              value: 4
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
+                              value: 4,
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              },
             ],
-            kind: 'const'
-          }
+            kind: 'const',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `(() => {}) || true;
@@ -7646,8 +7646,8 @@ describe('Expressions - Arrow', () => {
                   start: 7,
                   end: 9,
                   range: [7, 9],
-                  body: []
-                }
+                  body: [],
+                },
               },
               operator: '||',
               right: {
@@ -7655,9 +7655,9 @@ describe('Expressions - Arrow', () => {
                 start: 14,
                 end: 18,
                 range: [14, 18],
-                value: true
-              }
-            }
+                value: true,
+              },
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -7683,28 +7683,28 @@ describe('Expressions - Arrow', () => {
                   start: 31,
                   end: 33,
                   range: [31, 33],
-                  body: []
-                }
+                  body: [],
+                },
               },
               consequent: {
                 type: 'Identifier',
                 start: 37,
                 end: 38,
                 range: [37, 38],
-                name: 'a'
+                name: 'a',
               },
               alternate: {
                 type: 'Identifier',
                 start: 41,
                 end: 42,
                 range: [41, 42],
-                name: 'b'
-              }
-            }
-          }
+                name: 'b',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(() => {}) + 2',
@@ -7739,8 +7739,8 @@ describe('Expressions - Arrow', () => {
                   start: 7,
                   end: 9,
                   range: [7, 9],
-                  body: []
-                }
+                  body: [],
+                },
               },
               operator: '+',
               right: {
@@ -7748,13 +7748,13 @@ describe('Expressions - Arrow', () => {
                 start: 13,
                 end: 14,
                 range: [13, 14],
-                value: 2
-              }
-            }
-          }
+                value: 2,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'bar ? ( (x, y) => (u, v) => x*u + y*v ) : baz;',
@@ -7780,7 +7780,7 @@ describe('Expressions - Arrow', () => {
                 start: 0,
                 end: 3,
                 range: [0, 3],
-                name: 'bar'
+                name: 'bar',
               },
               consequent: {
                 type: 'ArrowFunctionExpression',
@@ -7796,15 +7796,15 @@ describe('Expressions - Arrow', () => {
                     start: 9,
                     end: 10,
                     range: [9, 10],
-                    name: 'x'
+                    name: 'x',
                   },
                   {
                     type: 'Identifier',
                     start: 12,
                     end: 13,
                     range: [12, 13],
-                    name: 'y'
-                  }
+                    name: 'y',
+                  },
                 ],
                 body: {
                   type: 'ArrowFunctionExpression',
@@ -7820,15 +7820,15 @@ describe('Expressions - Arrow', () => {
                       start: 19,
                       end: 20,
                       range: [19, 20],
-                      name: 'u'
+                      name: 'u',
                     },
                     {
                       type: 'Identifier',
                       start: 22,
                       end: 23,
                       range: [22, 23],
-                      name: 'v'
-                    }
+                      name: 'v',
+                    },
                   ],
                   body: {
                     type: 'BinaryExpression',
@@ -7845,7 +7845,7 @@ describe('Expressions - Arrow', () => {
                         start: 28,
                         end: 29,
                         range: [28, 29],
-                        name: 'x'
+                        name: 'x',
                       },
                       operator: '*',
                       right: {
@@ -7853,8 +7853,8 @@ describe('Expressions - Arrow', () => {
                         start: 30,
                         end: 31,
                         range: [30, 31],
-                        name: 'u'
-                      }
+                        name: 'u',
+                      },
                     },
                     operator: '+',
                     right: {
@@ -7867,7 +7867,7 @@ describe('Expressions - Arrow', () => {
                         start: 34,
                         end: 35,
                         range: [34, 35],
-                        name: 'y'
+                        name: 'y',
                       },
                       operator: '*',
                       right: {
@@ -7875,24 +7875,24 @@ describe('Expressions - Arrow', () => {
                         start: 36,
                         end: 37,
                         range: [36, 37],
-                        name: 'v'
-                      }
-                    }
-                  }
-                }
+                        name: 'v',
+                      },
+                    },
+                  },
+                },
               },
               alternate: {
                 type: 'Identifier',
                 start: 42,
                 end: 45,
                 range: [42, 45],
-                name: 'baz'
-              }
-            }
-          }
+                name: 'baz',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
-    ]
+        sourceType: 'script',
+      },
+    ],
   ]);
 });

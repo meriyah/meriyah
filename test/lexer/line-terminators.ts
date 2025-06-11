@@ -18,7 +18,7 @@ describe('Lexer - Line terminators', () => {
     [Context.None, Token.Identifier, '\rx', 'x'],
     [Context.None, Token.Identifier, '\u2028x', 'x'],
     [Context.None, Token.Identifier, '\u2029x', 'x'],
-    [Context.None, Token.Identifier, '\u000Ax', 'x']
+    [Context.None, Token.Identifier, '\u000Ax', 'x'],
   ];
 
   for (const [ctx, token, op, value] of tokens) {
@@ -31,14 +31,14 @@ describe('Lexer - Line terminators', () => {
           token: found,
           hasNext: state.index < state.source.length,
           value: state.tokenValue,
-          index: state.index
+          index: state.index,
         },
         {
           token: token,
           hasNext: false,
           value,
-          index: op.length
-        }
+          index: op.length,
+        },
       );
     });
   }

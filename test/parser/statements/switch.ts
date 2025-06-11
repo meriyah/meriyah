@@ -12,7 +12,7 @@ describe('Statements  Switch', () => {
     ['switch(0) { case 0: function f(){ break; } }', Context.None],
     ['switch(0) { default: !function(){ break; }; }', Context.None],
     ['switch(0) { default: function f(){ break; } }', Context.None],
-    ['switch(x) { default: break; case y: break; case z: break; default: break; }', Context.None]
+    ['switch(x) { default: break; case y: break; case z: break; default: break; }', Context.None],
   ]);
 
   pass('Statements  Switch (pass)', [
@@ -30,50 +30,50 @@ describe('Statements  Switch', () => {
             type: 'SwitchStatement',
             discriminant: {
               type: 'Identifier',
-              name: 'X'
+              name: 'X',
             },
             cases: [
               {
                 type: 'SwitchCase',
                 test: {
                   type: 'Identifier',
-                  name: 'k'
+                  name: 'k',
                 },
                 consequent: [
                   {
                     type: 'LabeledStatement',
                     label: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     body: {
                       type: 'LabeledStatement',
                       label: {
                         type: 'Identifier',
-                        name: 'bar'
+                        name: 'bar',
                       },
                       body: {
                         type: 'FunctionDeclaration',
                         params: [],
                         body: {
                           type: 'BlockStatement',
-                          body: []
+                          body: [],
                         },
                         async: false,
                         generator: false,
                         id: {
                           type: 'Identifier',
-                          name: 'f'
-                        }
-                      }
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                          name: 'f',
+                        },
+                      },
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       `for (let i = 0; i < 1; ++i) {
@@ -101,7 +101,7 @@ describe('Statements  Switch', () => {
                                 start: 87,
                                 end: 88,
                                 range: [87, 88],
-                                type: 'Identifier'
+                                type: 'Identifier',
                               },
                               operator: '=',
                               right: {
@@ -109,37 +109,37 @@ describe('Statements  Switch', () => {
                                 end: 92,
                                 range: [91, 92],
                                 type: 'Literal',
-                                value: 3
+                                value: 3,
                               },
                               start: 87,
                               end: 92,
                               range: [87, 92],
-                              type: 'AssignmentExpression'
+                              type: 'AssignmentExpression',
                             },
                             start: 87,
                             end: 93,
                             range: [87, 93],
-                            type: 'ExpressionStatement'
+                            type: 'ExpressionStatement',
                           },
                           label: {
                             name: 'foo',
                             start: 83,
                             end: 86,
                             range: [83, 86],
-                            type: 'Identifier'
+                            type: 'Identifier',
                           },
                           start: 83,
                           end: 93,
                           range: [83, 93],
-                          type: 'LabeledStatement'
+                          type: 'LabeledStatement',
                         },
                         {
                           label: null,
                           start: 108,
                           end: 114,
                           range: [108, 114],
-                          type: 'BreakStatement'
-                        }
+                          type: 'BreakStatement',
+                        },
                       ],
                       start: 61,
                       end: 114,
@@ -149,28 +149,28 @@ describe('Statements  Switch', () => {
                         end: 67,
                         range: [66, 67],
                         type: 'Literal',
-                        value: 2
+                        value: 2,
                       },
-                      type: 'SwitchCase'
-                    }
+                      type: 'SwitchCase',
+                    },
                   ],
                   discriminant: {
                     name: 'a',
                     start: 46,
                     end: 47,
                     range: [46, 47],
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   start: 38,
                   end: 124,
                   range: [38, 124],
-                  type: 'SwitchStatement'
-                }
+                  type: 'SwitchStatement',
+                },
               ],
               start: 28,
               end: 130,
               range: [28, 130],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
             init: {
               declarations: [
@@ -180,26 +180,26 @@ describe('Statements  Switch', () => {
                     start: 9,
                     end: 10,
                     range: [9, 10],
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
                   init: {
                     start: 13,
                     end: 14,
                     range: [13, 14],
                     type: 'Literal',
-                    value: 0
+                    value: 0,
                   },
                   start: 9,
                   end: 14,
                   range: [9, 14],
-                  type: 'VariableDeclarator'
-                }
+                  type: 'VariableDeclarator',
+                },
               ],
               kind: 'let',
               start: 5,
               end: 14,
               range: [5, 14],
-              type: 'VariableDeclaration'
+              type: 'VariableDeclaration',
             },
             start: 0,
             end: 130,
@@ -210,7 +210,7 @@ describe('Statements  Switch', () => {
                 start: 16,
                 end: 17,
                 range: [16, 17],
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '<',
               right: {
@@ -218,12 +218,12 @@ describe('Statements  Switch', () => {
                 end: 21,
                 range: [20, 21],
                 type: 'Literal',
-                value: 1
+                value: 1,
               },
               start: 16,
               end: 21,
               range: [16, 21],
-              type: 'BinaryExpression'
+              type: 'BinaryExpression',
             },
             type: 'ForStatement',
             update: {
@@ -232,23 +232,23 @@ describe('Statements  Switch', () => {
                 start: 25,
                 end: 26,
                 range: [25, 26],
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '++',
               prefix: true,
               start: 23,
               end: 26,
               range: [23, 26],
-              type: 'UpdateExpression'
-            }
-          }
+              type: 'UpdateExpression',
+            },
+          },
         ],
         sourceType: 'script',
         start: 0,
         end: 130,
         range: [0, 130],
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'switch(foo) {}',
@@ -269,13 +269,13 @@ describe('Statements  Switch', () => {
               start: 7,
               end: 10,
               range: [7, 10],
-              name: 'foo'
+              name: 'foo',
             },
-            cases: []
-          }
+            cases: [],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'switch (A) {default: D; case B: C; }',
@@ -296,7 +296,7 @@ describe('Statements  Switch', () => {
               start: 8,
               end: 9,
               range: [8, 9],
-              name: 'A'
+              name: 'A',
             },
             cases: [
               {
@@ -315,11 +315,11 @@ describe('Statements  Switch', () => {
                       start: 21,
                       end: 22,
                       range: [21, 22],
-                      name: 'D'
-                    }
-                  }
+                      name: 'D',
+                    },
+                  },
                 ],
-                test: null
+                test: null,
               },
               {
                 type: 'SwitchCase',
@@ -337,23 +337,23 @@ describe('Statements  Switch', () => {
                       start: 32,
                       end: 33,
                       range: [32, 33],
-                      name: 'C'
-                    }
-                  }
+                      name: 'C',
+                    },
+                  },
                 ],
                 test: {
                   type: 'Identifier',
                   start: 29,
                   end: 30,
                   range: [29, 30],
-                  name: 'B'
-                }
-              }
-            ]
-          }
+                  name: 'B',
+                },
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'switch(a){case 1:default:}',
@@ -366,26 +366,26 @@ describe('Statements  Switch', () => {
             type: 'SwitchStatement',
             discriminant: {
               type: 'Identifier',
-              name: 'a'
+              name: 'a',
             },
             cases: [
               {
                 type: 'SwitchCase',
                 test: {
                   type: 'Literal',
-                  value: 1
+                  value: 1,
                 },
-                consequent: []
+                consequent: [],
               },
               {
                 type: 'SwitchCase',
                 test: null,
-                consequent: []
-              }
-            ]
-          }
-        ]
-      }
+                consequent: [],
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'switch(a){default:case 2:}',
@@ -398,26 +398,26 @@ describe('Statements  Switch', () => {
             type: 'SwitchStatement',
             discriminant: {
               type: 'Identifier',
-              name: 'a'
+              name: 'a',
             },
             cases: [
               {
                 type: 'SwitchCase',
                 test: null,
-                consequent: []
+                consequent: [],
               },
               {
                 type: 'SwitchCase',
                 test: {
                   type: 'Literal',
-                  value: 2
+                  value: 2,
                 },
-                consequent: []
-              }
-            ]
-          }
-        ]
-      }
+                consequent: [],
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'switch (answer) { case 0: hi(); break; default: break }',
@@ -438,7 +438,7 @@ describe('Statements  Switch', () => {
               start: 8,
               end: 14,
               range: [8, 14],
-              name: 'answer'
+              name: 'answer',
             },
             cases: [
               {
@@ -462,26 +462,26 @@ describe('Statements  Switch', () => {
                         start: 26,
                         end: 28,
                         range: [26, 28],
-                        name: 'hi'
+                        name: 'hi',
                       },
-                      arguments: []
-                    }
+                      arguments: [],
+                    },
                   },
                   {
                     type: 'BreakStatement',
                     start: 32,
                     end: 38,
                     range: [32, 38],
-                    label: null
-                  }
+                    label: null,
+                  },
                 ],
                 test: {
                   type: 'Literal',
                   start: 23,
                   end: 24,
                   range: [23, 24],
-                  value: 0
-                }
+                  value: 0,
+                },
               },
               {
                 type: 'SwitchCase',
@@ -494,16 +494,16 @@ describe('Statements  Switch', () => {
                     start: 48,
                     end: 53,
                     range: [48, 53],
-                    label: null
-                  }
+                    label: null,
+                  },
                 ],
-                test: null
-              }
-            ]
-          }
+                test: null,
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'switch(a){case 1:}',
@@ -524,7 +524,7 @@ describe('Statements  Switch', () => {
               start: 7,
               end: 8,
               range: [7, 8],
-              name: 'a'
+              name: 'a',
             },
             cases: [
               {
@@ -538,14 +538,14 @@ describe('Statements  Switch', () => {
                   start: 15,
                   end: 16,
                   range: [15, 16],
-                  value: 1
-                }
-              }
-            ]
-          }
+                  value: 1,
+                },
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'switch (a) { case b: let [x] = y }',
@@ -566,33 +566,33 @@ describe('Statements  Switch', () => {
                               start: 26,
                               end: 27,
                               range: [26, 27],
-                              type: 'Identifier'
-                            }
+                              type: 'Identifier',
+                            },
                           ],
                           start: 25,
                           end: 28,
                           range: [25, 28],
-                          type: 'ArrayPattern'
+                          type: 'ArrayPattern',
                         },
                         init: {
                           start: 31,
                           end: 32,
                           range: [31, 32],
                           name: 'y',
-                          type: 'Identifier'
+                          type: 'Identifier',
                         },
                         start: 25,
                         end: 32,
                         range: [25, 32],
-                        type: 'VariableDeclarator'
-                      }
+                        type: 'VariableDeclarator',
+                      },
                     ],
                     kind: 'let',
                     start: 21,
                     end: 32,
                     range: [21, 32],
-                    type: 'VariableDeclaration'
-                  }
+                    type: 'VariableDeclaration',
+                  },
                 ],
                 start: 13,
                 end: 32,
@@ -602,30 +602,30 @@ describe('Statements  Switch', () => {
                   start: 18,
                   end: 19,
                   range: [18, 19],
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'SwitchCase'
-              }
+                type: 'SwitchCase',
+              },
             ],
             discriminant: {
               name: 'a',
               start: 8,
               end: 9,
               range: [8, 9],
-              type: 'Identifier'
+              type: 'Identifier',
             },
             start: 0,
             end: 34,
             range: [0, 34],
-            type: 'SwitchStatement'
-          }
+            type: 'SwitchStatement',
+          },
         ],
         sourceType: 'script',
         start: 0,
         end: 34,
         range: [0, 34],
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'switch (answer) { case 0: let a; }',
@@ -646,7 +646,7 @@ describe('Statements  Switch', () => {
               start: 8,
               end: 14,
               range: [8, 14],
-              name: 'answer'
+              name: 'answer',
             },
             cases: [
               {
@@ -671,13 +671,13 @@ describe('Statements  Switch', () => {
                           start: 30,
                           end: 31,
                           range: [30, 31],
-                          name: 'a'
+                          name: 'a',
                         },
-                        init: null
-                      }
+                        init: null,
+                      },
                     ],
-                    kind: 'let'
-                  }
+                    kind: 'let',
+                  },
                 ],
                 test: {
                   type: 'Literal',
@@ -685,14 +685,14 @@ describe('Statements  Switch', () => {
                   end: 24,
                   range: [23, 24],
                   value: 0,
-                  raw: '0'
-                }
-              }
-            ]
-          }
+                  raw: '0',
+                },
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'switch (A) {default: B;}',
@@ -704,7 +704,7 @@ describe('Statements  Switch', () => {
             type: 'SwitchStatement',
             discriminant: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             cases: [
               {
@@ -715,16 +715,16 @@ describe('Statements  Switch', () => {
                     type: 'ExpressionStatement',
                     expression: {
                       type: 'Identifier',
-                      name: 'B'
-                    }
-                  }
-                ]
-              }
-            ]
-          }
+                      name: 'B',
+                    },
+                  },
+                ],
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'switch (0) { case 1: var f; default: var f }',
@@ -746,7 +746,7 @@ describe('Statements  Switch', () => {
               end: 9,
               range: [8, 9],
               value: 0,
-              raw: '0'
+              raw: '0',
             },
             cases: [
               {
@@ -771,13 +771,13 @@ describe('Statements  Switch', () => {
                           start: 25,
                           end: 26,
                           range: [25, 26],
-                          name: 'f'
+                          name: 'f',
                         },
-                        init: null
-                      }
+                        init: null,
+                      },
                     ],
-                    kind: 'var'
-                  }
+                    kind: 'var',
+                  },
                 ],
                 test: {
                   type: 'Literal',
@@ -785,8 +785,8 @@ describe('Statements  Switch', () => {
                   end: 19,
                   range: [18, 19],
                   value: 1,
-                  raw: '1'
-                }
+                  raw: '1',
+                },
               },
               {
                 type: 'SwitchCase',
@@ -810,21 +810,21 @@ describe('Statements  Switch', () => {
                           start: 41,
                           end: 42,
                           range: [41, 42],
-                          name: 'f'
+                          name: 'f',
                         },
-                        init: null
-                      }
+                        init: null,
+                      },
                     ],
-                    kind: 'var'
-                  }
+                    kind: 'var',
+                  },
                 ],
-                test: null
-              }
-            ]
-          }
+                test: null,
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'switch (A) {default: B; break;}',
@@ -837,7 +837,7 @@ describe('Statements  Switch', () => {
             type: 'SwitchStatement',
             discriminant: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             cases: [
               {
@@ -848,19 +848,19 @@ describe('Statements  Switch', () => {
                     type: 'ExpressionStatement',
                     expression: {
                       type: 'Identifier',
-                      name: 'B'
-                    }
+                      name: 'B',
+                    },
                   },
                   {
                     type: 'BreakStatement',
-                    label: null
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                    label: null,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'switch (A) {case B: C; break; case D: E; break;}',
@@ -873,53 +873,53 @@ describe('Statements  Switch', () => {
             type: 'SwitchStatement',
             discriminant: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             cases: [
               {
                 type: 'SwitchCase',
                 test: {
                   type: 'Identifier',
-                  name: 'B'
+                  name: 'B',
                 },
                 consequent: [
                   {
                     type: 'ExpressionStatement',
                     expression: {
                       type: 'Identifier',
-                      name: 'C'
-                    }
+                      name: 'C',
+                    },
                   },
                   {
                     type: 'BreakStatement',
-                    label: null
-                  }
-                ]
+                    label: null,
+                  },
+                ],
               },
               {
                 type: 'SwitchCase',
                 test: {
                   type: 'Identifier',
-                  name: 'D'
+                  name: 'D',
                 },
                 consequent: [
                   {
                     type: 'ExpressionStatement',
                     expression: {
                       type: 'Identifier',
-                      name: 'E'
-                    }
+                      name: 'E',
+                    },
                   },
                   {
                     type: 'BreakStatement',
-                    label: null
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                    label: null,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'switch (A) {default: D; case B: C; }',
@@ -932,7 +932,7 @@ describe('Statements  Switch', () => {
             type: 'SwitchStatement',
             discriminant: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             cases: [
               {
@@ -943,31 +943,31 @@ describe('Statements  Switch', () => {
                     type: 'ExpressionStatement',
                     expression: {
                       type: 'Identifier',
-                      name: 'D'
-                    }
-                  }
-                ]
+                      name: 'D',
+                    },
+                  },
+                ],
               },
               {
                 type: 'SwitchCase',
                 test: {
                   type: 'Identifier',
-                  name: 'B'
+                  name: 'B',
                 },
                 consequent: [
                   {
                     type: 'ExpressionStatement',
                     expression: {
                       type: 'Identifier',
-                      name: 'C'
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                      name: 'C',
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'switch (A) {case B: C; default: D;}',
@@ -980,24 +980,24 @@ describe('Statements  Switch', () => {
             type: 'SwitchStatement',
             discriminant: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             cases: [
               {
                 type: 'SwitchCase',
                 test: {
                   type: 'Identifier',
-                  name: 'B'
+                  name: 'B',
                 },
                 consequent: [
                   {
                     type: 'ExpressionStatement',
                     expression: {
                       type: 'Identifier',
-                      name: 'C'
-                    }
-                  }
-                ]
+                      name: 'C',
+                    },
+                  },
+                ],
               },
               {
                 type: 'SwitchCase',
@@ -1007,15 +1007,15 @@ describe('Statements  Switch', () => {
                     type: 'ExpressionStatement',
                     expression: {
                       type: 'Identifier',
-                      name: 'D'
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                      name: 'D',
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'switch (A) {default: B;}',
@@ -1028,7 +1028,7 @@ describe('Statements  Switch', () => {
             type: 'SwitchStatement',
             discriminant: {
               type: 'Identifier',
-              name: 'A'
+              name: 'A',
             },
             cases: [
               {
@@ -1039,15 +1039,15 @@ describe('Statements  Switch', () => {
                     type: 'ExpressionStatement',
                     expression: {
                       type: 'Identifier',
-                      name: 'B'
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
+                      name: 'B',
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
   ]);
 });

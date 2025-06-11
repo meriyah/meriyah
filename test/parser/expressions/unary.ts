@@ -19,7 +19,7 @@ describe('Expressions - Unary', () => {
     'delete this;',
     'delete true;',
     'delete yield;',
-    'delete o[Math.pow(2,30)]'
+    'delete o[Math.pow(2,30)]',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -105,7 +105,7 @@ describe('Expressions - Unary', () => {
     ['typeof async({a = 1});', Context.Strict],
     ['typeof async({a = 1}, {b = 2}, {c = 3} = {});', Context.Strict],
     ['typeof async({a = 1}, {b = 2} = {}, {c = 3} = {});', Context.Strict],
-    ['delete foo', Context.Strict]
+    ['delete foo', Context.Strict],
   ]);
 
   pass('Expressions - Unary (pass)', [
@@ -123,13 +123,13 @@ describe('Expressions - Unary', () => {
               operator: 'typeof',
               argument: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'typeof await',
@@ -145,13 +145,13 @@ describe('Expressions - Unary', () => {
               operator: 'typeof',
               argument: {
                 type: 'Identifier',
-                name: 'await'
+                name: 'await',
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'typeof x',
@@ -167,13 +167,13 @@ describe('Expressions - Unary', () => {
               operator: 'typeof',
               argument: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete true',
@@ -189,13 +189,13 @@ describe('Expressions - Unary', () => {
               operator: 'delete',
               argument: {
                 type: 'Literal',
-                value: true
+                value: true,
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete foo.bar',
@@ -213,19 +213,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'bar'
-                }
+                  name: 'bar',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'typeof async({a});',
@@ -243,7 +243,7 @@ describe('Expressions - Unary', () => {
                 type: 'CallExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'async'
+                  name: 'async',
                 },
                 arguments: [
                   {
@@ -253,26 +253,26 @@ describe('Expressions - Unary', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                ]
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                ],
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'typeof x + y',
@@ -290,19 +290,19 @@ describe('Expressions - Unary', () => {
                 operator: 'typeof',
                 argument: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
-                prefix: true
+                prefix: true,
               },
               right: {
                 type: 'Identifier',
-                name: 'y'
+                name: 'y',
               },
-              operator: '+'
-            }
-          }
-        ]
-      }
+              operator: '+',
+            },
+          },
+        ],
+      },
     ],
     [
       'delete x.y',
@@ -320,19 +320,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete foo()',
@@ -350,15 +350,15 @@ describe('Expressions - Unary', () => {
                 type: 'CallExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
-                arguments: []
+                arguments: [],
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete typeof true',
@@ -377,15 +377,15 @@ describe('Expressions - Unary', () => {
                 operator: 'typeof',
                 argument: {
                   type: 'Literal',
-                  value: true
+                  value: true,
                 },
-                prefix: true
+                prefix: true,
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete (foo.bar);',
@@ -403,19 +403,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'bar'
-                }
+                  name: 'bar',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     /* [
       'delete foo.bar, z;',
@@ -475,20 +475,20 @@ describe('Expressions - Unary', () => {
                   value: /foo/,
                   regex: {
                     pattern: 'foo',
-                    flags: ''
-                  }
+                    flags: '',
+                  },
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'bar'
-                }
+                  name: 'bar',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ((foo).x)',
@@ -521,22 +521,22 @@ describe('Expressions - Unary', () => {
                   start: 9,
                   end: 12,
                   range: [9, 12],
-                  name: 'foo'
+                  name: 'foo',
                 },
                 property: {
                   type: 'Identifier',
                   start: 14,
                   end: 15,
                   range: [14, 15],
-                  name: 'x'
+                  name: 'x',
                 },
-                computed: false
-              }
-            }
-          }
+                computed: false,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'delete ((((foo))).x)',
@@ -569,22 +569,22 @@ describe('Expressions - Unary', () => {
                   start: 11,
                   end: 14,
                   range: [11, 14],
-                  name: 'foo'
+                  name: 'foo',
                 },
                 property: {
                   type: 'Identifier',
                   start: 18,
                   end: 19,
                   range: [18, 19],
-                  name: 'x'
+                  name: 'x',
                 },
-                computed: false
-              }
-            }
-          }
+                computed: false,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     /*[
       '(delete (((x))) \n x)',
@@ -609,25 +609,25 @@ describe('Expressions - Unary', () => {
                   expressions: [
                     {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     {
                       type: 'Identifier',
-                      name: 'b'
-                    }
-                  ]
+                      name: 'b',
+                    },
+                  ],
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'c'
-                }
+                  name: 'c',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ((a)=>b)',
@@ -664,22 +664,22 @@ describe('Expressions - Unary', () => {
                     start: 9,
                     end: 10,
                     range: [9, 10],
-                    name: 'a'
-                  }
+                    name: 'a',
+                  },
                 ],
                 body: {
                   type: 'Identifier',
                   start: 13,
                   end: 14,
                   range: [13, 14],
-                  name: 'b'
-                }
-              }
-            }
-          }
+                  name: 'b',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'delete ((a, b, [c])=>b)',
@@ -716,14 +716,14 @@ describe('Expressions - Unary', () => {
                     start: 9,
                     end: 10,
                     range: [9, 10],
-                    name: 'a'
+                    name: 'a',
                   },
                   {
                     type: 'Identifier',
                     start: 12,
                     end: 13,
                     range: [12, 13],
-                    name: 'b'
+                    name: 'b',
                   },
                   {
                     type: 'ArrayPattern',
@@ -736,24 +736,24 @@ describe('Expressions - Unary', () => {
                         start: 16,
                         end: 17,
                         range: [16, 17],
-                        name: 'c'
-                      }
-                    ]
-                  }
+                        name: 'c',
+                      },
+                    ],
+                  },
                 ],
                 body: {
                   type: 'Identifier',
                   start: 21,
                   end: 22,
                   range: [21, 22],
-                  name: 'b'
-                }
-              }
-            }
-          }
+                  name: 'b',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'delete (((a)=>b).x)',
@@ -774,29 +774,29 @@ describe('Expressions - Unary', () => {
                   generator: false,
                   body: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   params: [
                     {
                       type: 'Identifier',
-                      name: 'a'
-                    }
+                      name: 'a',
+                    },
                   ],
 
                   async: false,
-                  expression: true
+                  expression: true,
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ((()=>b))',
@@ -815,18 +815,18 @@ describe('Expressions - Unary', () => {
                 generator: false,
                 body: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 params: [],
 
                 async: false,
-                expression: true
+                expression: true,
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ((foo).x)',
@@ -844,19 +844,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ((((foo))).x)',
@@ -874,19 +874,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete (a, b).c',
@@ -907,25 +907,25 @@ describe('Expressions - Unary', () => {
                   expressions: [
                     {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     {
                       type: 'Identifier',
-                      name: 'b'
-                    }
-                  ]
+                      name: 'b',
+                    },
+                  ],
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'c'
-                }
+                  name: 'c',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ((a)=>b)',
@@ -944,24 +944,24 @@ describe('Expressions - Unary', () => {
                 generator: false,
                 body: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 params: [
                   {
                     type: 'Identifier',
-                    name: 'a'
-                  }
+                    name: 'a',
+                  },
                 ],
 
                 async: false,
 
-                expression: true
+                expression: true,
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ((a, b, [c])=>b)',
@@ -980,37 +980,37 @@ describe('Expressions - Unary', () => {
                 generator: false,
                 body: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 params: [
                   {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   {
                     type: 'ArrayPattern',
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'c'
-                      }
-                    ]
-                  }
+                        name: 'c',
+                      },
+                    ],
+                  },
                 ],
 
                 async: false,
 
-                expression: true
+                expression: true,
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ((()=>b))',
@@ -1029,19 +1029,19 @@ describe('Expressions - Unary', () => {
                 generator: false,
                 body: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 params: [],
 
                 async: false,
 
-                expression: true
+                expression: true,
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete (((a)=b).x)',
@@ -1061,25 +1061,25 @@ describe('Expressions - Unary', () => {
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete true.__proto__.foo',
@@ -1099,25 +1099,25 @@ describe('Expressions - Unary', () => {
                   type: 'MemberExpression',
                   object: {
                     type: 'Literal',
-                    value: true
+                    value: true,
                   },
                   computed: false,
                   property: {
                     type: 'Identifier',
-                    name: '__proto__'
-                  }
+                    name: '__proto__',
+                  },
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
+                  name: 'foo',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete "x".y',
@@ -1135,19 +1135,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Literal',
-                  value: 'x'
+                  value: 'x',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete [].x',
@@ -1165,19 +1165,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'ArrayExpression',
-                  elements: []
+                  elements: [],
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ("foo", "bar")',
@@ -1196,19 +1196,19 @@ describe('Expressions - Unary', () => {
                 expressions: [
                   {
                     type: 'Literal',
-                    value: 'foo'
+                    value: 'foo',
                   },
                   {
                     type: 'Literal',
-                    value: 'bar'
-                  }
-                ]
+                    value: 'bar',
+                  },
+                ],
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ("foo" + "bar")',
@@ -1226,19 +1226,19 @@ describe('Expressions - Unary', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Literal',
-                  value: 'foo'
+                  value: 'foo',
                 },
                 right: {
                   type: 'Literal',
-                  value: 'bar'
+                  value: 'bar',
                 },
-                operator: '+'
+                operator: '+',
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ("foo".bar = 20)',
@@ -1258,25 +1258,25 @@ describe('Expressions - Unary', () => {
                   type: 'MemberExpression',
                   object: {
                     type: 'Literal',
-                    value: 'foo'
+                    value: 'foo',
                   },
                   computed: false,
                   property: {
                     type: 'Identifier',
-                    name: 'bar'
-                  }
+                    name: 'bar',
+                  },
                 },
                 operator: '=',
                 right: {
                   type: 'Literal',
-                  value: 20
-                }
+                  value: 20,
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ((foo)++)',
@@ -1294,16 +1294,16 @@ describe('Expressions - Unary', () => {
                 type: 'UpdateExpression',
                 argument: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 operator: '++',
-                prefix: false
+                prefix: false,
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete foo.bar',
@@ -1321,19 +1321,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'bar'
-                }
+                  name: 'bar',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete foo[bar]',
@@ -1351,19 +1351,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 computed: true,
                 property: {
                   type: 'Identifier',
-                  name: 'bar'
-                }
+                  name: 'bar',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ( \n () => x)',
@@ -1376,24 +1376,24 @@ describe('Expressions - Unary', () => {
                 async: false,
                 body: {
                   name: 'x',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 expression: true,
 
                 params: [],
                 type: 'ArrowFunctionExpression',
-                generator: false
+                generator: false,
               },
               operator: 'delete',
               prefix: true,
-              type: 'UnaryExpression'
+              type: 'UnaryExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'delete ((foo).x)',
@@ -1411,19 +1411,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ((((foo))).x)',
@@ -1441,19 +1441,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete (a, b).c',
@@ -1474,25 +1474,25 @@ describe('Expressions - Unary', () => {
                   expressions: [
                     {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     {
                       type: 'Identifier',
-                      name: 'b'
-                    }
-                  ]
+                      name: 'b',
+                    },
+                  ],
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'c'
-                }
+                  name: 'c',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ((a)=>b)',
@@ -1511,24 +1511,24 @@ describe('Expressions - Unary', () => {
                 generator: false,
                 body: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 params: [
                   {
                     type: 'Identifier',
-                    name: 'a'
-                  }
+                    name: 'a',
+                  },
                 ],
 
                 async: false,
 
-                expression: true
+                expression: true,
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ((a, b, [c])=>b)',
@@ -1547,37 +1547,37 @@ describe('Expressions - Unary', () => {
                 generator: false,
                 body: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 params: [
                   {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
                   {
                     type: 'ArrayPattern',
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'c'
-                      }
-                    ]
-                  }
+                        name: 'c',
+                      },
+                    ],
+                  },
                 ],
 
                 async: false,
 
-                expression: true
+                expression: true,
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ((()=>b))',
@@ -1596,19 +1596,19 @@ describe('Expressions - Unary', () => {
                 generator: false,
                 body: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 params: [],
 
                 async: false,
 
-                expression: true
+                expression: true,
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete (((a)=b).x)',
@@ -1628,25 +1628,25 @@ describe('Expressions - Unary', () => {
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete true.__proto__.foo',
@@ -1666,25 +1666,25 @@ describe('Expressions - Unary', () => {
                   type: 'MemberExpression',
                   object: {
                     type: 'Literal',
-                    value: true
+                    value: true,
                   },
                   computed: false,
                   property: {
                     type: 'Identifier',
-                    name: '__proto__'
-                  }
+                    name: '__proto__',
+                  },
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
+                  name: 'foo',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete "x".y',
@@ -1702,19 +1702,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Literal',
-                  value: 'x'
+                  value: 'x',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete [].x',
@@ -1732,19 +1732,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'ArrayExpression',
-                  elements: []
+                  elements: [],
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ("foo", "bar")',
@@ -1763,19 +1763,19 @@ describe('Expressions - Unary', () => {
                 expressions: [
                   {
                     type: 'Literal',
-                    value: 'foo'
+                    value: 'foo',
                   },
                   {
                     type: 'Literal',
-                    value: 'bar'
-                  }
-                ]
+                    value: 'bar',
+                  },
+                ],
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ("foo" + "bar")',
@@ -1793,19 +1793,19 @@ describe('Expressions - Unary', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Literal',
-                  value: 'foo'
+                  value: 'foo',
                 },
                 right: {
                   type: 'Literal',
-                  value: 'bar'
+                  value: 'bar',
                 },
-                operator: '+'
+                operator: '+',
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ("foo".bar = 20)',
@@ -1825,25 +1825,25 @@ describe('Expressions - Unary', () => {
                   type: 'MemberExpression',
                   object: {
                     type: 'Literal',
-                    value: 'foo'
+                    value: 'foo',
                   },
                   computed: false,
                   property: {
                     type: 'Identifier',
-                    name: 'bar'
-                  }
+                    name: 'bar',
+                  },
                 },
                 operator: '=',
                 right: {
                   type: 'Literal',
-                  value: 20
-                }
+                  value: 20,
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ((foo)++)',
@@ -1861,16 +1861,16 @@ describe('Expressions - Unary', () => {
                 type: 'UpdateExpression',
                 argument: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 operator: '++',
-                prefix: false
+                prefix: false,
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete foo.bar',
@@ -1888,19 +1888,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'bar'
-                }
+                  name: 'bar',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete foo[bar]',
@@ -1918,19 +1918,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 computed: true,
                 property: {
                   type: 'Identifier',
-                  name: 'bar'
-                }
+                  name: 'bar',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ( \n () => x)',
@@ -1943,24 +1943,24 @@ describe('Expressions - Unary', () => {
                 async: false,
                 body: {
                   name: 'x',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 expression: true,
 
                 params: [],
                 type: 'ArrowFunctionExpression',
-                generator: false
+                generator: false,
               },
               operator: 'delete',
               prefix: true,
-              type: 'UnaryExpression'
+              type: 'UnaryExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'delete x.y',
@@ -1978,19 +1978,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete x.y',
@@ -2008,19 +2008,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete (((a)=b).x)',
@@ -2040,25 +2040,25 @@ describe('Expressions - Unary', () => {
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
+                    name: 'b',
+                  },
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete true.__proto__.foo',
@@ -2078,25 +2078,25 @@ describe('Expressions - Unary', () => {
                   type: 'MemberExpression',
                   object: {
                     type: 'Literal',
-                    value: true
+                    value: true,
                   },
                   computed: false,
                   property: {
                     type: 'Identifier',
-                    name: '__proto__'
-                  }
+                    name: '__proto__',
+                  },
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
+                  name: 'foo',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete "x".y',
@@ -2114,19 +2114,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Literal',
-                  value: 'x'
+                  value: 'x',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete [].x',
@@ -2159,22 +2159,22 @@ describe('Expressions - Unary', () => {
                   start: 7,
                   end: 9,
                   range: [7, 9],
-                  elements: []
+                  elements: [],
                 },
                 property: {
                   type: 'Identifier',
                   start: 10,
                   end: 11,
                   range: [10, 11],
-                  name: 'x'
+                  name: 'x',
                 },
-                computed: false
-              }
-            }
-          }
+                computed: false,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'delete ("foo" + "bar")',
@@ -2192,19 +2192,19 @@ describe('Expressions - Unary', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Literal',
-                  value: 'foo'
+                  value: 'foo',
                 },
                 right: {
                   type: 'Literal',
-                  value: 'bar'
+                  value: 'bar',
                 },
-                operator: '+'
+                operator: '+',
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ("foo".bar = 20)',
@@ -2224,25 +2224,25 @@ describe('Expressions - Unary', () => {
                   type: 'MemberExpression',
                   object: {
                     type: 'Literal',
-                    value: 'foo'
+                    value: 'foo',
                   },
                   computed: false,
                   property: {
                     type: 'Identifier',
-                    name: 'bar'
-                  }
+                    name: 'bar',
+                  },
                 },
                 operator: '=',
                 right: {
                   type: 'Literal',
-                  value: 20
-                }
+                  value: 20,
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete ((foo)++)',
@@ -2277,14 +2277,14 @@ describe('Expressions - Unary', () => {
                   start: 9,
                   end: 12,
                   range: [9, 12],
-                  name: 'foo'
-                }
-              }
-            }
-          }
+                  name: 'foo',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'delete foo.bar',
@@ -2302,19 +2302,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'bar'
-                }
+                  name: 'bar',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete foo[bar]',
@@ -2332,19 +2332,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 computed: true,
                 property: {
                   type: 'Identifier',
-                  name: 'bar'
-                }
+                  name: 'bar',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'async x => delete (((((foo(await x)))))).bar',
@@ -2374,8 +2374,8 @@ describe('Expressions - Unary', () => {
                   start: 6,
                   end: 7,
                   range: [6, 7],
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               ],
               body: {
                 type: 'UnaryExpression',
@@ -2399,7 +2399,7 @@ describe('Expressions - Unary', () => {
                       start: 23,
                       end: 26,
                       range: [23, 26],
-                      name: 'foo'
+                      name: 'foo',
                     },
                     arguments: [
                       {
@@ -2412,26 +2412,26 @@ describe('Expressions - Unary', () => {
                           start: 33,
                           end: 34,
                           range: [33, 34],
-                          name: 'x'
-                        }
-                      }
-                    ]
+                          name: 'x',
+                        },
+                      },
+                    ],
                   },
                   property: {
                     type: 'Identifier',
                     start: 41,
                     end: 44,
                     range: [41, 44],
-                    name: 'bar'
+                    name: 'bar',
                   },
-                  computed: false
-                }
-              }
-            }
-          }
+                  computed: false,
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function *f(){ delete (((((foo(yield)))))).bar }',
@@ -2452,7 +2452,7 @@ describe('Expressions - Unary', () => {
               start: 10,
               end: 11,
               range: [10, 11],
-              name: 'f'
+              name: 'f',
             },
             generator: true,
             async: false,
@@ -2490,7 +2490,7 @@ describe('Expressions - Unary', () => {
                           start: 27,
                           end: 30,
                           range: [27, 30],
-                          name: 'foo'
+                          name: 'foo',
                         },
                         arguments: [
                           {
@@ -2499,27 +2499,27 @@ describe('Expressions - Unary', () => {
                             end: 36,
                             range: [31, 36],
                             delegate: false,
-                            argument: null
-                          }
-                        ]
+                            argument: null,
+                          },
+                        ],
                       },
                       property: {
                         type: 'Identifier',
                         start: 43,
                         end: 46,
                         range: [43, 46],
-                        name: 'bar'
+                        name: 'bar',
                       },
-                      computed: false
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      computed: false,
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function *f(){ delete (((((foo(yield y)))))).bar }',
@@ -2545,40 +2545,40 @@ describe('Expressions - Unary', () => {
                         type: 'CallExpression',
                         callee: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         arguments: [
                           {
                             type: 'YieldExpression',
                             argument: {
                               type: 'Identifier',
-                              name: 'y'
+                              name: 'y',
                             },
-                            delegate: false
-                          }
-                        ]
+                            delegate: false,
+                          },
+                        ],
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'bar'
-                      }
+                        name: 'bar',
+                      },
                     },
-                    prefix: true
-                  }
-                }
-              ]
+                    prefix: true,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'async x => delete ("x"[(await x)])',
@@ -2599,32 +2599,32 @@ describe('Expressions - Unary', () => {
                   type: 'MemberExpression',
                   object: {
                     type: 'Literal',
-                    value: 'x'
+                    value: 'x',
                   },
                   computed: true,
                   property: {
                     type: 'AwaitExpression',
                     argument: {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  }
+                      name: 'x',
+                    },
+                  },
                 },
-                prefix: true
+                prefix: true,
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               ],
 
               async: true,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f(){ delete ("x"[(yield)]) }',
@@ -2648,30 +2648,30 @@ describe('Expressions - Unary', () => {
                       type: 'MemberExpression',
                       object: {
                         type: 'Literal',
-                        value: 'x'
+                        value: 'x',
                       },
                       computed: true,
                       property: {
                         type: 'YieldExpression',
                         argument: null,
-                        delegate: false
-                      }
+                        delegate: false,
+                      },
                     },
-                    prefix: true
-                  }
-                }
-              ]
+                    prefix: true,
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'typeof exports === "object"',
@@ -2689,19 +2689,19 @@ describe('Expressions - Unary', () => {
                 operator: 'typeof',
                 argument: {
                   type: 'Identifier',
-                  name: 'exports'
+                  name: 'exports',
                 },
-                prefix: true
+                prefix: true,
               },
               right: {
                 type: 'Literal',
-                value: 'object'
+                value: 'object',
               },
-              operator: '==='
-            }
-          }
-        ]
-      }
+              operator: '===',
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -2718,20 +2718,20 @@ describe('Expressions - Unary', () => {
               argument: {
                 type: 'MemberExpression',
                 object: {
-                  type: 'ThisExpression'
+                  type: 'ThisExpression',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
               operator: '++',
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '(++this.x)',
@@ -2747,20 +2747,20 @@ describe('Expressions - Unary', () => {
               argument: {
                 type: 'MemberExpression',
                 object: {
-                  type: 'ThisExpression'
+                  type: 'ThisExpression',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
               operator: '++',
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '--this.x',
@@ -2776,20 +2776,20 @@ describe('Expressions - Unary', () => {
               argument: {
                 type: 'MemberExpression',
                 object: {
-                  type: 'ThisExpression'
+                  type: 'ThisExpression',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
               operator: '--',
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '(this.x++)',
@@ -2805,20 +2805,20 @@ describe('Expressions - Unary', () => {
               argument: {
                 type: 'MemberExpression',
                 object: {
-                  type: 'ThisExpression'
+                  type: 'ThisExpression',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
               operator: '++',
-              prefix: false
-            }
-          }
-        ]
-      }
+              prefix: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){ return ++a; }',
@@ -2839,23 +2839,23 @@ describe('Expressions - Unary', () => {
                     type: 'UpdateExpression',
                     argument: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     operator: '++',
-                    prefix: true
-                  }
-                }
-              ]
+                    prefix: true,
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'let x = () => ++a;',
@@ -2877,25 +2877,25 @@ describe('Expressions - Unary', () => {
                     type: 'UpdateExpression',
                     argument: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     operator: '++',
-                    prefix: true
+                    prefix: true,
                   },
                   params: [],
 
                   async: false,
-                  expression: true
+                  expression: true,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'x'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'x',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'if (++a);',
@@ -2910,18 +2910,18 @@ describe('Expressions - Unary', () => {
               type: 'UpdateExpression',
               argument: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '++',
-              prefix: true
+              prefix: true,
             },
             consequent: {
-              type: 'EmptyStatement'
+              type: 'EmptyStatement',
             },
-            alternate: null
-          }
-        ]
-      }
+            alternate: null,
+          },
+        ],
+      },
     ],
     [
       '++(x);',
@@ -2936,14 +2936,14 @@ describe('Expressions - Unary', () => {
               type: 'UpdateExpression',
               argument: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '++',
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '++(((x)));',
@@ -2958,14 +2958,14 @@ describe('Expressions - Unary', () => {
               type: 'UpdateExpression',
               argument: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '++',
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'if (a) --a;',
@@ -2978,7 +2978,7 @@ describe('Expressions - Unary', () => {
             type: 'IfStatement',
             test: {
               type: 'Identifier',
-              name: 'a'
+              name: 'a',
             },
             consequent: {
               type: 'ExpressionStatement',
@@ -2986,16 +2986,16 @@ describe('Expressions - Unary', () => {
                 type: 'UpdateExpression',
                 argument: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 operator: '--',
-                prefix: true
-              }
+                prefix: true,
+              },
             },
-            alternate: null
-          }
-        ]
-      }
+            alternate: null,
+          },
+        ],
+      },
     ],
     [
       '(x)++;',
@@ -3010,14 +3010,14 @@ describe('Expressions - Unary', () => {
               type: 'UpdateExpression',
               argument: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '++',
-              prefix: false
-            }
-          }
-        ]
-      }
+              prefix: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'a\n++b',
@@ -3027,26 +3027,26 @@ describe('Expressions - Unary', () => {
           {
             expression: {
               name: 'a',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'ExpressionStatement'
+            type: 'ExpressionStatement',
           },
           {
             expression: {
               argument: {
                 name: 'b',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '++',
               prefix: true,
-              type: 'UpdateExpression'
+              type: 'UpdateExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'let x = () => ++\na;',
@@ -3058,35 +3058,35 @@ describe('Expressions - Unary', () => {
               {
                 id: {
                   name: 'x',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 init: {
                   async: false,
                   body: {
                     argument: {
                       name: 'a',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
                     operator: '++',
                     prefix: true,
-                    type: 'UpdateExpression'
+                    type: 'UpdateExpression',
                   },
                   expression: true,
 
                   params: [],
                   type: 'ArrowFunctionExpression',
-                  generator: false
+                  generator: false,
                 },
-                type: 'VariableDeclarator'
-              }
+                type: 'VariableDeclarator',
+              },
             ],
             kind: 'let',
-            type: 'VariableDeclaration'
-          }
+            type: 'VariableDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '++\na',
@@ -3097,18 +3097,18 @@ describe('Expressions - Unary', () => {
             expression: {
               argument: {
                 name: 'a',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '++',
               prefix: true,
-              type: 'UpdateExpression'
+              type: 'UpdateExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'a = typeof async (x)',
@@ -3123,7 +3123,7 @@ describe('Expressions - Unary', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '=',
               right: {
@@ -3133,21 +3133,21 @@ describe('Expressions - Unary', () => {
                   type: 'CallExpression',
                   callee: {
                     type: 'Identifier',
-                    name: 'async'
+                    name: 'async',
                   },
                   arguments: [
                     {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  ]
+                      name: 'x',
+                    },
+                  ],
                 },
-                prefix: true
-              }
-            }
-          }
-        ]
-      }
+                prefix: true,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'foo = !a',
@@ -3174,7 +3174,7 @@ describe('Expressions - Unary', () => {
                 start: 0,
                 end: 3,
                 range: [0, 3],
-                name: 'foo'
+                name: 'foo',
               },
               right: {
                 type: 'UnaryExpression',
@@ -3188,14 +3188,14 @@ describe('Expressions - Unary', () => {
                   start: 7,
                   end: 8,
                   range: [7, 8],
-                  name: 'a'
-                }
-              }
-            }
-          }
+                  name: 'a',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(typeof async (x))',
@@ -3213,20 +3213,20 @@ describe('Expressions - Unary', () => {
                 type: 'CallExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'async'
+                  name: 'async',
                 },
                 arguments: [
                   {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                ]
+                    name: 'x',
+                  },
+                ],
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'a(void b)',
@@ -3241,7 +3241,7 @@ describe('Expressions - Unary', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               arguments: [
                 {
@@ -3249,15 +3249,15 @@ describe('Expressions - Unary', () => {
                   operator: 'void',
                   argument: {
                     type: 'Identifier',
-                    name: 'b'
+                    name: 'b',
                   },
-                  prefix: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  prefix: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(delete a.b)',
@@ -3275,19 +3275,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'b'
-                }
+                  name: 'b',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'foo = ~b',
@@ -3314,7 +3314,7 @@ describe('Expressions - Unary', () => {
                 start: 0,
                 end: 3,
                 range: [0, 3],
-                name: 'foo'
+                name: 'foo',
               },
               right: {
                 type: 'UnaryExpression',
@@ -3328,14 +3328,14 @@ describe('Expressions - Unary', () => {
                   start: 7,
                   end: 8,
                   range: [7, 8],
-                  name: 'b'
-                }
-              }
-            }
-          }
+                  name: 'b',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '+null',
@@ -3351,13 +3351,13 @@ describe('Expressions - Unary', () => {
               operator: '+',
               argument: {
                 type: 'Literal',
-                value: null
+                value: null,
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '-function(val){  return val }',
@@ -3376,8 +3376,8 @@ describe('Expressions - Unary', () => {
                 params: [
                   {
                     type: 'Identifier',
-                    name: 'val'
-                  }
+                    name: 'val',
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
@@ -3386,21 +3386,21 @@ describe('Expressions - Unary', () => {
                       type: 'ReturnStatement',
                       argument: {
                         type: 'Identifier',
-                        name: 'val'
-                      }
-                    }
-                  ]
+                        name: 'val',
+                      },
+                    },
+                  ],
                 },
                 async: false,
                 generator: false,
 
-                id: null
+                id: null,
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'foo = !42',
@@ -3415,7 +3415,7 @@ describe('Expressions - Unary', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               operator: '=',
               right: {
@@ -3423,14 +3423,14 @@ describe('Expressions - Unary', () => {
                 operator: '!',
                 argument: {
                   type: 'Literal',
-                  value: 42
+                  value: 42,
                 },
-                prefix: true
-              }
-            }
-          }
-        ]
-      }
+                prefix: true,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a ? b : !c',
@@ -3456,14 +3456,14 @@ describe('Expressions - Unary', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'a'
+                name: 'a',
               },
               consequent: {
                 type: 'Identifier',
                 start: 4,
                 end: 5,
                 range: [4, 5],
-                name: 'b'
+                name: 'b',
               },
               alternate: {
                 type: 'UnaryExpression',
@@ -3477,14 +3477,14 @@ describe('Expressions - Unary', () => {
                   start: 9,
                   end: 10,
                   range: [9, 10],
-                  name: 'c'
-                }
-              }
-            }
-          }
+                  name: 'c',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '![]',
@@ -3500,13 +3500,13 @@ describe('Expressions - Unary', () => {
               operator: '!',
               argument: {
                 type: 'ArrayExpression',
-                elements: []
+                elements: [],
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'foo = (![])',
@@ -3521,7 +3521,7 @@ describe('Expressions - Unary', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               operator: '=',
               right: {
@@ -3529,14 +3529,14 @@ describe('Expressions - Unary', () => {
                 operator: '!',
                 argument: {
                   type: 'ArrayExpression',
-                  elements: []
+                  elements: [],
                 },
-                prefix: true
-              }
-            }
-          }
-        ]
-      }
+                prefix: true,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a = ++a',
@@ -3551,22 +3551,22 @@ describe('Expressions - Unary', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '=',
               right: {
                 type: 'UpdateExpression',
                 argument: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 operator: '++',
-                prefix: true
-              }
-            }
-          }
-        ]
-      }
+                prefix: true,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a = +a',
@@ -3581,7 +3581,7 @@ describe('Expressions - Unary', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '=',
               right: {
@@ -3589,14 +3589,14 @@ describe('Expressions - Unary', () => {
                 operator: '+',
                 argument: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
-                prefix: true
-              }
-            }
-          }
-        ]
-      }
+                prefix: true,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'y = x--',
@@ -3611,22 +3611,22 @@ describe('Expressions - Unary', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'y'
+                name: 'y',
               },
               operator: '=',
               right: {
                 type: 'UpdateExpression',
                 argument: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 operator: '--',
-                prefix: false
-              }
-            }
-          }
-        ]
-      }
+                prefix: false,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '~false',
@@ -3642,13 +3642,13 @@ describe('Expressions - Unary', () => {
               operator: '~',
               argument: {
                 type: 'Literal',
-                value: false
+                value: false,
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'typeof [1,2,3] ',
@@ -3667,23 +3667,23 @@ describe('Expressions - Unary', () => {
                 elements: [
                   {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   {
                     type: 'Literal',
-                    value: 2
+                    value: 2,
                   },
                   {
                     type: 'Literal',
-                    value: 3
-                  }
-                ]
+                    value: 3,
+                  },
+                ],
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'typeof {hi: "world"}',
@@ -3704,24 +3704,24 @@ describe('Expressions - Unary', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'hi'
+                      name: 'hi',
                     },
                     value: {
                       type: 'Literal',
-                      value: 'world'
+                      value: 'world',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'delete lunch.beans;',
@@ -3739,19 +3739,19 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'lunch'
+                  name: 'lunch',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'beans'
-                }
+                  name: 'beans',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'console.log(Math.PI);',
@@ -3768,32 +3768,32 @@ describe('Expressions - Unary', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'console'
+                  name: 'console',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'log'
-                }
+                  name: 'log',
+                },
               },
               arguments: [
                 {
                   type: 'MemberExpression',
                   object: {
                     type: 'Identifier',
-                    name: 'Math'
+                    name: 'Math',
                   },
                   computed: false,
                   property: {
                     type: 'Identifier',
-                    name: 'PI'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'PI',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'typeof void 0',
@@ -3812,15 +3812,15 @@ describe('Expressions - Unary', () => {
                 operator: 'void',
                 argument: {
                   type: 'Literal',
-                  value: 0
+                  value: 0,
                 },
-                prefix: true
+                prefix: true,
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'x == 5 || y == 5',
@@ -3837,31 +3837,31 @@ describe('Expressions - Unary', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 right: {
                   type: 'Literal',
-                  value: 5
+                  value: 5,
                 },
-                operator: '=='
+                operator: '==',
               },
               right: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
                 right: {
                   type: 'Literal',
-                  value: 5
+                  value: 5,
                 },
-                operator: '=='
+                operator: '==',
               },
-              operator: '||'
-            }
-          }
-        ]
-      }
+              operator: '||',
+            },
+          },
+        ],
+      },
     ],
     [
       'void x !== undefined',
@@ -3879,19 +3879,19 @@ describe('Expressions - Unary', () => {
                 operator: 'void',
                 argument: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
-                prefix: true
+                prefix: true,
               },
               right: {
                 type: 'Identifier',
-                name: 'undefined'
+                name: 'undefined',
               },
-              operator: '!=='
-            }
-          }
-        ]
-      }
+              operator: '!==',
+            },
+          },
+        ],
+      },
     ],
     [
       'void (x = 1) !== undefined',
@@ -3911,25 +3911,25 @@ describe('Expressions - Unary', () => {
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   operator: '=',
                   right: {
                     type: 'Literal',
-                    value: 1
-                  }
+                    value: 1,
+                  },
                 },
-                prefix: true
+                prefix: true,
               },
               right: {
                 type: 'Identifier',
-                name: 'undefined'
+                name: 'undefined',
               },
-              operator: '!=='
-            }
-          }
-        ]
-      }
+              operator: '!==',
+            },
+          },
+        ],
+      },
     ],
     [
       'isNaN(+(void 0)) !== true',
@@ -3946,7 +3946,7 @@ describe('Expressions - Unary', () => {
                 type: 'CallExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'isNaN'
+                  name: 'isNaN',
                 },
                 arguments: [
                   {
@@ -3957,23 +3957,23 @@ describe('Expressions - Unary', () => {
                       operator: 'void',
                       argument: {
                         type: 'Literal',
-                        value: 0
+                        value: 0,
                       },
-                      prefix: true
+                      prefix: true,
                     },
-                    prefix: true
-                  }
-                ]
+                    prefix: true,
+                  },
+                ],
               },
               right: {
                 type: 'Literal',
-                value: true
+                value: true,
               },
-              operator: '!=='
-            }
-          }
-        ]
-      }
+              operator: '!==',
+            },
+          },
+        ],
+      },
     ],
     [
       'typeof async (x)',
@@ -3991,20 +3991,20 @@ describe('Expressions - Unary', () => {
                 type: 'CallExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'async'
+                  name: 'async',
                 },
                 arguments: [
                   {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                ]
+                    name: 'x',
+                  },
+                ],
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'let',
@@ -4017,11 +4017,11 @@ describe('Expressions - Unary', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Identifier',
-              name: 'let'
-            }
-          }
-        ]
-      }
+              name: 'let',
+            },
+          },
+        ],
+      },
     ],
     [
       '!love',
@@ -4037,13 +4037,13 @@ describe('Expressions - Unary', () => {
               operator: '!',
               argument: {
                 type: 'Identifier',
-                name: 'love'
+                name: 'love',
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '-a',
@@ -4059,13 +4059,13 @@ describe('Expressions - Unary', () => {
               operator: '-',
               argument: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'void love',
@@ -4081,13 +4081,13 @@ describe('Expressions - Unary', () => {
               operator: 'void',
               argument: {
                 type: 'Identifier',
-                name: 'love'
+                name: 'love',
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'typeof love',
@@ -4103,13 +4103,13 @@ describe('Expressions - Unary', () => {
               operator: 'typeof',
               argument: {
                 type: 'Identifier',
-                name: 'love'
+                name: 'love',
               },
-              prefix: true
-            }
-          }
-        ]
-      }
-    ]
+              prefix: true,
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

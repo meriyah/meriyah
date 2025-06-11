@@ -40,7 +40,7 @@ describe('Statements - Labeled', () => {
     'null',
     'true',
     'false',
-    'enum'
+    'enum',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -110,7 +110,7 @@ describe('Statements - Labeled', () => {
     ['foo: bar: foo: x', Context.None],
     ['a: { a: x }', Context.None],
     ['yield: { function *f(){ break await; } }', Context.None],
-    ['yield: { function *f(){ break await; } }', Context.None]
+    ['yield: { function *f(){ break await; } }', Context.None],
   ]);
 
   pass('Statements - Labeled (pass)', [
@@ -133,7 +133,7 @@ describe('Statements - Labeled', () => {
               start: 10,
               end: 11,
               range: [10, 11],
-              name: 'f'
+              name: 'f',
             },
             generator: true,
             async: false,
@@ -159,23 +159,23 @@ describe('Statements - Labeled', () => {
                       start: 22,
                       end: 23,
                       range: [22, 23],
-                      name: 'x'
-                    }
+                      name: 'x',
+                    },
                   },
                   label: {
                     type: 'Identifier',
                     start: 15,
                     end: 20,
                     range: [15, 20],
-                    name: 'await'
-                  }
-                }
-              ]
-            }
-          }
+                    name: 'await',
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'await: while (await) { continue await; }',
@@ -201,7 +201,7 @@ describe('Statements - Labeled', () => {
                 start: 14,
                 end: 19,
                 range: [14, 19],
-                name: 'await'
+                name: 'await',
               },
               body: {
                 type: 'BlockStatement',
@@ -219,23 +219,23 @@ describe('Statements - Labeled', () => {
                       start: 32,
                       end: 37,
                       range: [32, 37],
-                      name: 'await'
-                    }
-                  }
-                ]
-              }
+                      name: 'await',
+                    },
+                  },
+                ],
+              },
             },
             label: {
               type: 'Identifier',
               start: 0,
               end: 5,
               range: [0, 5],
-              name: 'await'
-            }
-          }
+              name: 'await',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async: while (async) { continue async; }',
@@ -248,13 +248,13 @@ describe('Statements - Labeled', () => {
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'async'
+              name: 'async',
             },
             body: {
               type: 'WhileStatement',
               test: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
               body: {
                 type: 'BlockStatement',
@@ -263,15 +263,15 @@ describe('Statements - Labeled', () => {
                     type: 'ContinueStatement',
                     label: {
                       type: 'Identifier',
-                      name: 'async'
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      name: 'async',
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'let, let, let, let',
@@ -298,35 +298,35 @@ describe('Statements - Labeled', () => {
                   start: 0,
                   end: 3,
                   range: [0, 3],
-                  name: 'let'
+                  name: 'let',
                 },
                 {
                   type: 'Identifier',
                   start: 5,
                   end: 8,
                   range: [5, 8],
-                  name: 'let'
+                  name: 'let',
                 },
                 {
                   type: 'Identifier',
                   start: 10,
                   end: 13,
                   range: [10, 13],
-                  name: 'let'
+                  name: 'let',
                 },
                 {
                   type: 'Identifier',
                   start: 15,
                   end: 18,
                   range: [15, 18],
-                  name: 'let'
-                }
-              ]
-            }
-          }
+                  name: 'let',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'let: foo',
@@ -352,20 +352,20 @@ describe('Statements - Labeled', () => {
                 start: 5,
                 end: 8,
                 range: [5, 8],
-                name: 'foo'
-              }
+                name: 'foo',
+              },
             },
             label: {
               type: 'Identifier',
               start: 0,
               end: 3,
               range: [0, 3],
-              name: 'let'
-            }
-          }
+              name: 'let',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'foo: function bar() {}',
@@ -391,7 +391,7 @@ describe('Statements - Labeled', () => {
                 start: 14,
                 end: 17,
                 range: [14, 17],
-                name: 'bar'
+                name: 'bar',
               },
               generator: false,
               async: false,
@@ -401,20 +401,20 @@ describe('Statements - Labeled', () => {
                 start: 20,
                 end: 22,
                 range: [20, 22],
-                body: []
-              }
+                body: [],
+              },
             },
             label: {
               type: 'Identifier',
               start: 0,
               end: 3,
               range: [0, 3],
-              name: 'foo'
-            }
-          }
+              name: 'foo',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'yield: await',
@@ -427,18 +427,18 @@ describe('Statements - Labeled', () => {
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'yield'
+              name: 'yield',
             },
             body: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'await'
-              }
-            }
-          }
-        ]
-      }
+                name: 'await',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a:package',
@@ -449,20 +449,20 @@ describe('Statements - Labeled', () => {
             body: {
               expression: {
                 name: 'package',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'ExpressionStatement'
+              type: 'ExpressionStatement',
             },
             label: {
               name: 'a',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'LabeledStatement'
-          }
+            type: 'LabeledStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '__proto__: test',
@@ -475,18 +475,18 @@ describe('Statements - Labeled', () => {
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: '__proto__'
+              name: '__proto__',
             },
             body: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'test'
-              }
-            }
-          }
-        ]
-      }
+                name: 'test',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a:{break a;}',
@@ -518,22 +518,22 @@ describe('Statements - Labeled', () => {
                     start: 9,
                     end: 10,
                     range: [9, 10],
-                    name: 'a'
-                  }
-                }
-              ]
+                    name: 'a',
+                  },
+                },
+              ],
             },
             label: {
               type: 'Identifier',
               start: 0,
               end: 1,
               range: [0, 1],
-              name: 'a'
-            }
-          }
+              name: 'a',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async: await',
@@ -546,18 +546,18 @@ describe('Statements - Labeled', () => {
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'async'
+              name: 'async',
             },
             body: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'await'
-              }
-            }
-          }
-        ]
-      }
+                name: 'await',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'start: while (true) break start',
@@ -583,7 +583,7 @@ describe('Statements - Labeled', () => {
                 start: 14,
                 end: 18,
                 range: [14, 18],
-                value: true
+                value: true,
               },
               body: {
                 type: 'BreakStatement',
@@ -595,21 +595,21 @@ describe('Statements - Labeled', () => {
                   start: 26,
                   end: 31,
                   range: [26, 31],
-                  name: 'start'
-                }
-              }
+                  name: 'start',
+                },
+              },
             },
             label: {
               type: 'Identifier',
               start: 0,
               end: 5,
               range: [0, 5],
-              name: 'start'
-            }
-          }
+              name: 'start',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'if (false) {\n L: let\nx = 1; \n }',
@@ -624,44 +624,44 @@ describe('Statements - Labeled', () => {
                   body: {
                     expression: {
                       name: 'let',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
-                    type: 'ExpressionStatement'
+                    type: 'ExpressionStatement',
                   },
                   label: {
                     name: 'L',
-                    type: 'Identifier'
+                    type: 'Identifier',
                   },
-                  type: 'LabeledStatement'
+                  type: 'LabeledStatement',
                 },
                 {
                   expression: {
                     left: {
                       name: 'x',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
                     operator: '=',
                     right: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
-                    type: 'AssignmentExpression'
+                    type: 'AssignmentExpression',
                   },
-                  type: 'ExpressionStatement'
-                }
+                  type: 'ExpressionStatement',
+                },
               ],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
             test: {
               type: 'Literal',
-              value: false
+              value: false,
             },
-            type: 'IfStatement'
-          }
+            type: 'IfStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'foo: bar: function f(){}',
@@ -674,32 +674,32 @@ describe('Statements - Labeled', () => {
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'foo'
+              name: 'foo',
             },
             body: {
               type: 'LabeledStatement',
               label: {
                 type: 'Identifier',
-                name: 'bar'
+                name: 'bar',
               },
               body: {
                 type: 'FunctionDeclaration',
                 params: [],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'foo: bar: third: function f(){}',
@@ -712,39 +712,39 @@ describe('Statements - Labeled', () => {
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'foo'
+              name: 'foo',
             },
             body: {
               type: 'LabeledStatement',
               label: {
                 type: 'Identifier',
-                name: 'bar'
+                name: 'bar',
               },
               body: {
                 type: 'LabeledStatement',
                 label: {
                   type: 'Identifier',
-                  name: 'third'
+                  name: 'third',
                 },
                 body: {
                   type: 'FunctionDeclaration',
                   params: [],
                   body: {
                     type: 'BlockStatement',
-                    body: []
+                    body: [],
                   },
                   async: false,
                   generator: false,
                   id: {
                     type: 'Identifier',
-                    name: 'f'
-                  }
-                }
-              }
-            }
-          }
-        ]
-      }
+                    name: 'f',
+                  },
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'L: let\nx',
@@ -755,27 +755,27 @@ describe('Statements - Labeled', () => {
             body: {
               expression: {
                 name: 'let',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'ExpressionStatement'
+              type: 'ExpressionStatement',
             },
             label: {
               name: 'L',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'LabeledStatement'
+            type: 'LabeledStatement',
           },
           {
             expression: {
               name: 'x',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '__proto__: while (true) { break __proto__; }',
@@ -801,7 +801,7 @@ describe('Statements - Labeled', () => {
                 start: 18,
                 end: 22,
                 range: [18, 22],
-                value: true
+                value: true,
               },
               body: {
                 type: 'BlockStatement',
@@ -819,23 +819,23 @@ describe('Statements - Labeled', () => {
                       start: 32,
                       end: 41,
                       range: [32, 41],
-                      name: '__proto__'
-                    }
-                  }
-                ]
-              }
+                      name: '__proto__',
+                    },
+                  },
+                ],
+              },
             },
             label: {
               type: 'Identifier',
               start: 0,
               end: 9,
               range: [0, 9],
-              name: '__proto__'
-            }
-          }
+              name: '__proto__',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a:{break a;}',
@@ -848,7 +848,7 @@ describe('Statements - Labeled', () => {
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'a'
+              name: 'a',
             },
             body: {
               type: 'BlockStatement',
@@ -857,14 +857,14 @@ describe('Statements - Labeled', () => {
                   type: 'BreakStatement',
                   label: {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
-    ]
+                    name: 'a',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

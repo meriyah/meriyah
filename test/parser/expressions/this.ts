@@ -17,23 +17,23 @@ describe('Expressions - This', () => {
               left: {
                 type: 'MemberExpression',
                 object: {
-                  type: 'ThisExpression'
+                  type: 'ThisExpression',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: '_global'
-                }
+                  name: '_global',
+                },
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: '_global'
-              }
-            }
-          }
-        ]
-      }
+                name: '_global',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'this\n/foo;',
@@ -43,21 +43,21 @@ describe('Expressions - This', () => {
           {
             expression: {
               left: {
-                type: 'ThisExpression'
+                type: 'ThisExpression',
               },
               operator: '/',
               right: {
                 name: 'foo',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'BinaryExpression'
+              type: 'BinaryExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'this\n/foo/g;',
@@ -68,28 +68,28 @@ describe('Expressions - This', () => {
             expression: {
               left: {
                 left: {
-                  type: 'ThisExpression'
+                  type: 'ThisExpression',
                 },
                 operator: '/',
                 right: {
                   name: 'foo',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'BinaryExpression'
+                type: 'BinaryExpression',
               },
               operator: '/',
               right: {
                 name: 'g',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'BinaryExpression'
+              type: 'BinaryExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
-    ]
+        type: 'Program',
+      },
+    ],
   ]);
 });

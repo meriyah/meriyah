@@ -36,7 +36,7 @@ export const enum Context {
   DisallowIn = 1 << 25,
   AllowEscapedKeyword = 1 << 26,
   OptionsUniqueKeyInPattern = 1 << 27,
-  InStaticBlock = 1 << 28
+  InStaticBlock = 1 << 28,
 }
 
 /**
@@ -58,7 +58,7 @@ export const enum PropertyKind {
   Extends = 1 << 11,
   Literal = 1 << 12,
   PrivateField = 1 << 13,
-  GetSet = Getter | Setter
+  GetSet = Getter | Setter,
 }
 
 /**
@@ -83,7 +83,7 @@ export const enum BindingKind {
   AsyncGeneratorFunctionLexical = Async | Generator | FunctionLexical,
   CatchIdentifierOrPattern = CatchIdentifier | CatchPattern,
   LexicalOrFunction = Variable | FunctionLexical,
-  LexicalBinding = Let | Const | FunctionLexical | FunctionStatement | Class
+  LexicalBinding = Let | Const | FunctionLexical | FunctionStatement | Class,
 }
 
 /**
@@ -97,7 +97,7 @@ export const enum Origin {
   Declaration = 1 << 3,
   Arrow = 1 << 4,
   ForStatement = 1 << 5,
-  Export = 1 << 6
+  Export = 1 << 6,
 }
 
 /**
@@ -106,7 +106,7 @@ export const enum Origin {
 export const enum AssignmentKind {
   None = 0,
   Assignable = 1 << 0,
-  CannotAssign = 1 << 1
+  CannotAssign = 1 << 1,
 }
 
 /**
@@ -123,7 +123,7 @@ export const enum DestructuringKind {
   // `__proto__` is a special case and only valid to parse if destructible
   SeenProto = 1 << 6,
   Await = 1 << 7,
-  Yield = 1 << 8
+  Yield = 1 << 8,
 }
 
 /**
@@ -139,19 +139,19 @@ export const enum Flags {
   StrictEvalArguments = 1 << 9,
   DisallowCall = 1 << 10,
   HasOptionalChaining = 1 << 11,
-  EightAndNine = 1 << 12
+  EightAndNine = 1 << 12,
 }
 
 export const enum HoistedClassFlags {
   None,
   Hoisted = 1 << 0,
-  Export = 1 << 1
+  Export = 1 << 1,
 }
 
 export const enum HoistedFunctionFlags {
   None,
   Hoisted = 1 << 0,
-  Export = 1 << 1
+  Export = 1 << 1,
 }
 
 /**
@@ -170,7 +170,7 @@ export const enum ScopeKind {
   FunctionRoot = 1 << 8,
   FunctionParams = 1 << 9,
   ArrowParams = 1 << 10,
-  CatchIdentifier = 1 << 11
+  CatchIdentifier = 1 << 11,
 }
 
 /**
@@ -400,7 +400,7 @@ export function validateBindingIdentifier(
   context: Context,
   kind: BindingKind,
   t: Token,
-  skipEvalArgCheck: 0 | 1
+  skipEvalArgCheck: 0 | 1,
 ): void {
   if (context & Context.Strict) {
     if ((t & Token.FutureReserved) === Token.FutureReserved) {
@@ -542,7 +542,7 @@ export function finishNode<T extends Node>(
   start: number,
   line: number,
   column: number,
-  node: T
+  node: T,
 ): T {
   if (context & Context.OptionsRanges) {
     node.start = start;
@@ -554,12 +554,12 @@ export function finishNode<T extends Node>(
     node.loc = {
       start: {
         line,
-        column
+        column,
       },
       end: {
         line: parser.startLine,
-        column: parser.startColumn
-      }
+        column: parser.startColumn,
+      },
     };
 
     if (parser.sourceFile) {
@@ -614,7 +614,7 @@ export function recordScopeError(parser: ParserState, type: Errors, ...params: s
     column,
     tokenIndex,
     tokenLine,
-    tokenColumn
+    tokenColumn,
   };
 }
 
@@ -624,7 +624,7 @@ export function recordScopeError(parser: ParserState, type: Errors, ...params: s
 export function createScope(): ScopeState {
   return {
     parent: void 0,
-    type: ScopeKind.Block
+    type: ScopeKind.Block,
   };
 }
 
@@ -638,7 +638,7 @@ export function addChildScope(parent: ScopeState | undefined, type: ScopeKind): 
   return {
     parent,
     type,
-    scopeError: void 0
+    scopeError: void 0,
   };
 }
 
@@ -652,7 +652,7 @@ export function addChildScope(parent: ScopeState | undefined, type: ScopeKind): 
 export function addChildPrivateScope(parent: PrivateScopeState | undefined): PrivateScopeState {
   return {
     parent,
-    refs: Object.create(null)
+    refs: Object.create(null),
   };
 }
 
@@ -672,7 +672,7 @@ export function addVarOrBlock(
   scope: ScopeState,
   name: string,
   kind: BindingKind,
-  origin: Origin
+  origin: Origin,
 ) {
   if (kind & BindingKind.Variable) {
     addVarName(parser, context, scope, name, kind);
@@ -700,7 +700,7 @@ export function addBlockName(
   scope: any,
   name: string,
   kind: BindingKind,
-  origin: Origin
+  origin: Origin,
 ) {
   const value = (scope as any)['#' + name];
 
@@ -756,7 +756,7 @@ export function addVarName(
   context: Context,
   scope: ScopeState,
   name: string,
-  kind: BindingKind
+  kind: BindingKind,
 ): void {
   let currentScope: any = scope;
 
@@ -805,7 +805,7 @@ export function addPrivateIdentifier(
   parser: ParserState,
   scope: PrivateScopeState,
   name: string,
-  kind: PropertyKind
+  kind: PropertyKind,
 ): void {
   let focusKind = kind & (PropertyKind.Static | PropertyKind.GetSet);
   // if it's not getter or setter, it should take both place in the check
@@ -841,7 +841,7 @@ export function addPrivateIdentifierRef(parser: ParserState, scope: PrivateScope
   scope.refs[name].push({
     index: parser.tokenIndex,
     line: parser.tokenLine,
-    column: parser.tokenColumn
+    column: parser.tokenColumn,
   });
 }
 
@@ -875,7 +875,7 @@ export function validatePrivateIdentifierRefs(scope: PrivateScopeState): void {
         line,
         column + name.length,
         Errors.InvalidPrivateIdentifier,
-        name
+        name,
       );
     }
   }
@@ -917,7 +917,7 @@ export function pushComment(context: Context, array: any[]): OnComment {
   return function (type: string, value: string, start: number, end: number, loc: SourceLocation) {
     const comment: any = {
       type,
-      value
+      value,
     };
 
     if (context & Context.OptionsRanges) {
@@ -935,7 +935,7 @@ export function pushComment(context: Context, array: any[]): OnComment {
 export function pushToken(context: Context, array: any[]): OnToken {
   return function (token: string, start: number, end: number, loc: SourceLocation) {
     const tokens: any = {
-      token
+      token,
     };
 
     if (context & Context.OptionsRanges) {

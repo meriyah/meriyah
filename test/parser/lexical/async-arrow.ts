@@ -55,7 +55,7 @@ describe('Lexical - Arrows', () => {
     ['(async => { let async; })', Context.OptionsLexical],
     ['(async (a = b => { let b; }))', Context.OptionsLexical],
     ['(async yield => { let yield; })', Context.OptionsLexical],
-    ['(async await => { let await; })', Context.OptionsLexical]
+    ['(async await => { let await; })', Context.OptionsLexical],
   ]);
 
   for (const arg of [
@@ -64,7 +64,7 @@ describe('Lexical - Arrows', () => {
     'x => { function x() {} }',
     'x => { var x; }',
     '() => { let foo; }; foo => {}',
-    '() => { let foo; }; () => { let foo; }'
+    '() => { let foo; }; () => { let foo; }',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -79,7 +79,7 @@ describe('Lexical - Arrows', () => {
     'x => { function x() {} }',
     'x => { var x; }',
     '() => { let foo; }; foo => {}',
-    '() => { let foo; }; () => { let foo; }'
+    '() => { let foo; }; () => { let foo; }',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

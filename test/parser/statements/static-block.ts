@@ -9,7 +9,7 @@ describe('Next - Class static initialization block', () => {
     ['class A {}; class B extends A { static { super() } }', Context.None],
     ['class A { static async {} }', Context.None],
     ['class A { async static {} }', Context.None],
-    ['async function t() { class A { static { await 0 } } }', Context.None]
+    ['async function t() { class A { static { await 0 } } }', Context.None],
   ]);
 
   for (const arg of [
@@ -37,7 +37,7 @@ describe('Next - Class static initialization block', () => {
       static {
         (async (t) => { return await 0; })
       }
-    }`
+    }`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -57,22 +57,22 @@ describe('Next - Class static initialization block', () => {
               body: [
                 {
                   body: [],
-                  type: 'StaticBlock'
-                }
+                  type: 'StaticBlock',
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A { static { this.a } }`,
@@ -88,33 +88,33 @@ describe('Next - Class static initialization block', () => {
                       expression: {
                         computed: false,
                         object: {
-                          type: 'ThisExpression'
+                          type: 'ThisExpression',
                         },
                         property: {
                           name: 'a',
-                          type: 'Identifier'
+                          type: 'Identifier',
                         },
-                        type: 'MemberExpression'
+                        type: 'MemberExpression',
                       },
-                      type: 'ExpressionStatement'
-                    }
+                      type: 'ExpressionStatement',
+                    },
                   ],
-                  type: 'StaticBlock'
-                }
+                  type: 'StaticBlock',
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `class A {}; class B extends A { static { super.a } }`,
@@ -124,17 +124,17 @@ describe('Next - Class static initialization block', () => {
           {
             body: {
               body: [],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
             id: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: null,
-            type: 'ClassDeclaration'
+            type: 'ClassDeclaration',
           },
           {
-            type: 'EmptyStatement'
+            type: 'EmptyStatement',
           },
           {
             body: {
@@ -145,36 +145,36 @@ describe('Next - Class static initialization block', () => {
                       expression: {
                         computed: false,
                         object: {
-                          type: 'Super'
+                          type: 'Super',
                         },
                         property: {
                           name: 'a',
-                          type: 'Identifier'
+                          type: 'Identifier',
                         },
-                        type: 'MemberExpression'
+                        type: 'MemberExpression',
                       },
-                      type: 'ExpressionStatement'
-                    }
+                      type: 'ExpressionStatement',
+                    },
                   ],
-                  type: 'StaticBlock'
-                }
+                  type: 'StaticBlock',
+                },
               ],
-              type: 'ClassBody'
+              type: 'ClassBody',
             },
             id: {
               name: 'B',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             superClass: {
               name: 'A',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'ClassDeclaration'
-          }
+            type: 'ClassDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
-    ]
+        type: 'Program',
+      },
+    ],
   ]);
 });

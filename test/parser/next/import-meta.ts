@@ -106,7 +106,7 @@ describe('Next - Import Meta', () => {
     'a = 1, import.meta;',
     'import.meta.url = 1, import.meta.url = 2;',
     'import.meta, import.meta.url = 1;',
-    'import.meta;'
+    'import.meta;',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -118,7 +118,7 @@ describe('Next - Import Meta', () => {
         parseSource(
           `${arg}`,
           undefined,
-          Context.OptionsNext | Context.OptionsWebCompat | Context.Strict | Context.Module
+          Context.OptionsNext | Context.OptionsWebCompat | Context.Strict | Context.Module,
         );
       });
     });
@@ -137,7 +137,7 @@ describe('Next - Import Meta', () => {
     ['import.meta = 0;', Context.OptionsNext | Context.Strict | Context.Module],
     [
       'async function* f() { for await (import.meta of null) ; }',
-      Context.OptionsNext | Context.Strict | Context.Module
+      Context.OptionsNext | Context.Strict | Context.Module,
     ],
     ['for (import.meta in null) ;', Context.OptionsNext | Context.Strict | Context.Module],
     ['for (import.meta of null) ;', Context.OptionsNext | Context.Strict | Context.Module],
@@ -151,27 +151,27 @@ describe('Next - Import Meta', () => {
     ['var x, y, z; ( [import.meta = 1] = {});', Context.OptionsNext | Context.Strict | Context.Module],
     [
       '"use strict"; let x, y, z; for (x of [import.meta] = {});',
-      Context.OptionsNext | Context.Strict | Context.Module
+      Context.OptionsNext | Context.Strict | Context.Module,
     ],
     [
       '"use strict"; let x, y, z; for (x of [import.meta = 1] = {});',
-      Context.OptionsNext | Context.Strict | Context.Module
+      Context.OptionsNext | Context.Strict | Context.Module,
     ],
     [
       '"use strict"; let x, y, z; for (x of { x: import.meta } = {});',
-      Context.OptionsNext | Context.Strict | Context.Module
+      Context.OptionsNext | Context.Strict | Context.Module,
     ],
     [
       '"use strict"; let x, y, z; for (x in [import.meta] = {});',
-      Context.OptionsNext | Context.Strict | Context.Module
+      Context.OptionsNext | Context.Strict | Context.Module,
     ],
     [
       '"use strict"; let x, y, z; for (x in [import.meta = 1] = {});',
-      Context.OptionsNext | Context.Strict | Context.Module
+      Context.OptionsNext | Context.Strict | Context.Module,
     ],
     [
       '"use strict"; let x, y, z; for (x in { x: import.meta } = {});',
-      Context.OptionsNext | Context.Strict | Context.Module
+      Context.OptionsNext | Context.Strict | Context.Module,
     ],
     ['import.meta++;', Context.OptionsNext | Context.Strict | Context.Module],
     ['for (import.meta of null) ;', Context.OptionsNext | Context.Strict | Context.Module],
@@ -191,7 +191,7 @@ describe('Next - Import Meta', () => {
     ['var import.meta', Context.OptionsNext | Context.Module | Context.Strict],
     [String.raw`import.m\u0065ta;`, Context.OptionsNext | Context.Module | Context.Strict],
     [String.raw`import.\u006deta;`, Context.OptionsNext | Context.Module | Context.Strict],
-    ['import.meta2;', Context.OptionsNext | Context.Module | Context.Strict]
+    ['import.meta2;', Context.OptionsNext | Context.Module | Context.Strict],
   ]);
 
   pass('Next - Import Meta (pass)', [
@@ -211,7 +211,7 @@ describe('Next - Import Meta', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'm'
+                    name: 'm',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -226,37 +226,37 @@ describe('Next - Import Meta', () => {
                             object: {
                               meta: {
                                 type: 'Identifier',
-                                name: 'import'
+                                name: 'import',
                               },
                               type: 'MetaProperty',
                               property: {
                                 type: 'Identifier',
-                                name: 'meta'
-                              }
+                                name: 'meta',
+                              },
                             },
                             computed: false,
                             property: {
                               type: 'Identifier',
-                              name: 'url'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'url',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `if (1) { import.meta }`,
@@ -269,7 +269,7 @@ describe('Next - Import Meta', () => {
             type: 'IfStatement',
             test: {
               type: 'Literal',
-              value: 1
+              value: 1,
             },
             consequent: {
               type: 'BlockStatement',
@@ -279,21 +279,21 @@ describe('Next - Import Meta', () => {
                   expression: {
                     meta: {
                       type: 'Identifier',
-                      name: 'import'
+                      name: 'import',
                     },
                     type: 'MetaProperty',
                     property: {
                       type: 'Identifier',
-                      name: 'meta'
-                    }
-                  }
-                }
-              ]
+                      name: 'meta',
+                    },
+                  },
+                },
+              ],
             },
-            alternate: null
-          }
-        ]
-      }
+            alternate: null,
+          },
+        ],
+      },
     ],
     [
       `var f = function() {import.meta.couldBeMutable = true}`,
@@ -323,42 +323,42 @@ describe('Next - Import Meta', () => {
                             object: {
                               meta: {
                                 type: 'Identifier',
-                                name: 'import'
+                                name: 'import',
                               },
                               type: 'MetaProperty',
                               property: {
                                 type: 'Identifier',
-                                name: 'meta'
-                              }
+                                name: 'meta',
+                              },
                             },
                             computed: false,
                             property: {
                               type: 'Identifier',
-                              name: 'couldBeMutable'
-                            }
+                              name: 'couldBeMutable',
+                            },
                           },
                           operator: '=',
                           right: {
                             type: 'Literal',
-                            value: true
-                          }
-                        }
-                      }
-                    ]
+                            value: true,
+                          },
+                        },
+                      },
+                    ],
                   },
                   async: false,
                   generator: false,
-                  id: null
+                  id: null,
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       `import.meta[0]`,
@@ -374,23 +374,23 @@ describe('Next - Import Meta', () => {
               object: {
                 meta: {
                   type: 'Identifier',
-                  name: 'import'
+                  name: 'import',
                 },
                 type: 'MetaProperty',
                 property: {
                   type: 'Identifier',
-                  name: 'meta'
-                }
+                  name: 'meta',
+                },
               },
               computed: true,
               property: {
                 type: 'Literal',
-                value: 0
-              }
-            }
-          }
-        ]
-      }
+                value: 0,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `do { import.meta } while (0)`,
@@ -409,24 +409,24 @@ describe('Next - Import Meta', () => {
                   expression: {
                     meta: {
                       type: 'Identifier',
-                      name: 'import'
+                      name: 'import',
                     },
                     type: 'MetaProperty',
                     property: {
                       type: 'Identifier',
-                      name: 'meta'
-                    }
-                  }
-                }
-              ]
+                      name: 'meta',
+                    },
+                  },
+                },
+              ],
             },
             test: {
               type: 'Literal',
-              value: 0
-            }
-          }
-        ]
-      }
+              value: 0,
+            },
+          },
+        ],
+      },
     ],
     [
       `import.meta()`,
@@ -442,19 +442,19 @@ describe('Next - Import Meta', () => {
               callee: {
                 meta: {
                   type: 'Identifier',
-                  name: 'import'
+                  name: 'import',
                 },
                 type: 'MetaProperty',
                 property: {
                   type: 'Identifier',
-                  name: 'meta'
-                }
+                  name: 'meta',
+                },
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       `t = [...import.meta]`,
@@ -469,7 +469,7 @@ describe('Next - Import Meta', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 't'
+                name: 't',
               },
               operator: '=',
               right: {
@@ -480,21 +480,21 @@ describe('Next - Import Meta', () => {
                     argument: {
                       meta: {
                         type: 'Identifier',
-                        name: 'import'
+                        name: 'import',
                       },
                       type: 'MetaProperty',
                       property: {
                         type: 'Identifier',
-                        name: 'meta'
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                        name: 'meta',
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `"use strict"; ({m() { while (0) { import.meta } }})`,
@@ -507,9 +507,9 @@ describe('Next - Import Meta', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: 'use strict'
+              value: 'use strict',
             },
-            directive: 'use strict'
+            directive: 'use strict',
           },
           {
             type: 'ExpressionStatement',
@@ -520,7 +520,7 @@ describe('Next - Import Meta', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'm'
+                    name: 'm',
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -532,7 +532,7 @@ describe('Next - Import Meta', () => {
                           type: 'WhileStatement',
                           test: {
                             type: 'Literal',
-                            value: 0
+                            value: 0,
                           },
                           body: {
                             type: 'BlockStatement',
@@ -542,34 +542,34 @@ describe('Next - Import Meta', () => {
                                 expression: {
                                   meta: {
                                     type: 'Identifier',
-                                    name: 'import'
+                                    name: 'import',
                                   },
                                   type: 'MetaProperty',
                                   property: {
                                     type: 'Identifier',
-                                    name: 'meta'
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      ]
+                                    name: 'meta',
+                                  },
+                                },
+                              },
+                            ],
+                          },
+                        },
+                      ],
                     },
                     async: false,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `delete import.meta`,
@@ -586,19 +586,19 @@ describe('Next - Import Meta', () => {
               argument: {
                 meta: {
                   type: 'Identifier',
-                  name: 'import'
+                  name: 'import',
                 },
                 type: 'MetaProperty',
                 property: {
                   type: 'Identifier',
-                  name: 'meta'
-                }
+                  name: 'meta',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       `import.meta.resolve('something')`,
@@ -616,30 +616,30 @@ describe('Next - Import Meta', () => {
                 object: {
                   meta: {
                     type: 'Identifier',
-                    name: 'import'
+                    name: 'import',
                   },
                   type: 'MetaProperty',
                   property: {
                     type: 'Identifier',
-                    name: 'meta'
-                  }
+                    name: 'meta',
+                  },
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'resolve'
-                }
+                  name: 'resolve',
+                },
               },
               arguments: [
                 {
                   type: 'Literal',
-                  value: 'something'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  value: 'something',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `const size = import.meta.scriptElement.dataset.size || 300;`,
@@ -665,47 +665,47 @@ describe('Next - Import Meta', () => {
                         object: {
                           meta: {
                             type: 'Identifier',
-                            name: 'import'
+                            name: 'import',
                           },
                           type: 'MetaProperty',
                           property: {
                             type: 'Identifier',
-                            name: 'meta'
-                          }
+                            name: 'meta',
+                          },
                         },
                         computed: false,
                         property: {
                           type: 'Identifier',
-                          name: 'scriptElement'
-                        }
+                          name: 'scriptElement',
+                        },
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'dataset'
-                      }
+                        name: 'dataset',
+                      },
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'size'
-                    }
+                      name: 'size',
+                    },
                   },
                   right: {
                     type: 'Literal',
-                    value: 300
+                    value: 300,
                   },
-                  operator: '||'
+                  operator: '||',
                 },
                 id: {
                   type: 'Identifier',
-                  name: 'size'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'size',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       `x = import.meta`,
@@ -720,24 +720,24 @@ describe('Next - Import Meta', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '=',
               right: {
                 meta: {
                   type: 'Identifier',
-                  name: 'import'
+                  name: 'import',
                 },
                 type: 'MetaProperty',
                 property: {
                   type: 'Identifier',
-                  name: 'meta'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'meta',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `() => { import.meta }`,
@@ -759,24 +759,24 @@ describe('Next - Import Meta', () => {
                     expression: {
                       meta: {
                         type: 'Identifier',
-                        name: 'import'
+                        name: 'import',
                       },
                       type: 'MetaProperty',
                       property: {
                         type: 'Identifier',
-                        name: 'meta'
-                      }
-                    }
-                  }
-                ]
+                        name: 'meta',
+                      },
+                    },
+                  },
+                ],
               },
               params: [],
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
-    ]
+              expression: false,
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

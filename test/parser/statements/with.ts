@@ -13,7 +13,7 @@ describe('Statements - With', () => {
     [`with ({}) let [a]`, Context.None],
     [`with ({}) let 1`, Context.None],
     [`with ({}) let []`, Context.None],
-    [`while(true) let[a] = 0`, Context.None]
+    [`while(true) let[a] = 0`, Context.None],
   ]);
 
   pass('Statements - With (pass)', [
@@ -28,18 +28,18 @@ describe('Statements - With', () => {
             type: 'WithStatement',
             object: {
               type: 'ObjectExpression',
-              properties: []
+              properties: [],
             },
             body: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'let'
-              }
-            }
-          }
-        ]
-      }
+                name: 'let',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'with ({}) { }',
@@ -49,18 +49,18 @@ describe('Statements - With', () => {
           {
             body: {
               body: [],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
             object: {
               properties: [],
-              type: 'ObjectExpression'
+              type: 'ObjectExpression',
             },
-            type: 'WithStatement'
-          }
+            type: 'WithStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'with (x) foo;',
@@ -73,18 +73,18 @@ describe('Statements - With', () => {
             type: 'WithStatement',
             object: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             body: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'with (x) { foo }',
@@ -97,7 +97,7 @@ describe('Statements - With', () => {
             type: 'WithStatement',
             object: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             body: {
               type: 'BlockStatement',
@@ -106,14 +106,14 @@ describe('Statements - With', () => {
                   type: 'ExpressionStatement',
                   expression: {
                     type: 'Identifier',
-                    name: 'foo'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'foo',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'with (foo) bar;',
@@ -126,18 +126,18 @@ describe('Statements - With', () => {
             type: 'WithStatement',
             object: {
               type: 'Identifier',
-              name: 'foo'
+              name: 'foo',
             },
             body: {
               type: 'ExpressionStatement',
               expression: {
                 type: 'Identifier',
-                name: 'bar'
-              }
-            }
-          }
-        ]
-      }
-    ]
+                name: 'bar',
+              },
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

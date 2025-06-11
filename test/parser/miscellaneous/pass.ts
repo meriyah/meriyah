@@ -15029,7 +15029,7 @@ let kTrapMsgs = [
       static get [(2e308)]() {
       }
 
-    })[((true))])) continue;`
+    })[((true))])) continue;`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

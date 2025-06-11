@@ -56,7 +56,7 @@ describe('Statements - Continue', () => {
       (function(){continue LABEL1;})();
       y++;
       } while(0);`,
-      Context.None
+      Context.None,
     ],
     [
       `try{
@@ -73,7 +73,7 @@ describe('Statements - Continue', () => {
         y++;
       } while(0);
       };`,
-      Context.None
+      Context.None,
     ],
     [
       `try{
@@ -90,13 +90,13 @@ describe('Statements - Continue', () => {
         y++;
       } while(0);
       };`,
-      Context.None
+      Context.None,
     ],
     ['switch (x){ case z:    continue   }', Context.None],
     ['switch (x){ case z:    { continue }  }', Context.None],
     ['switch (x){ case z:    if (x) continue   }', Context.None],
     ['switch (x){ case z:    continue y   }', Context.None],
-    ['switch (x){ case z:    if (x) continue y   }', Context.None]
+    ['switch (x){ case z:    if (x) continue y   }', Context.None],
   ]);
 
   pass('Statements - Continue', [
@@ -111,15 +111,15 @@ describe('Statements - Continue', () => {
             type: 'WhileStatement',
             test: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             body: {
               type: 'ContinueStatement',
-              label: null
-            }
-          }
-        ]
-      }
+              label: null,
+            },
+          },
+        ],
+      },
     ],
     [
       'do continue; while(foo);',
@@ -132,15 +132,15 @@ describe('Statements - Continue', () => {
             type: 'DoWhileStatement',
             body: {
               type: 'ContinueStatement',
-              label: null
+              label: null,
             },
             test: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
     [
       'foo: do continue foo; while(foo);',
@@ -153,7 +153,7 @@ describe('Statements - Continue', () => {
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'foo'
+              name: 'foo',
             },
             body: {
               type: 'DoWhileStatement',
@@ -161,17 +161,17 @@ describe('Statements - Continue', () => {
                 type: 'ContinueStatement',
                 label: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
+                  name: 'foo',
+                },
               },
               test: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '__proto__: while (true) { continue __proto__; }',
@@ -184,13 +184,13 @@ describe('Statements - Continue', () => {
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: '__proto__'
+              name: '__proto__',
             },
             body: {
               type: 'WhileStatement',
               test: {
                 type: 'Literal',
-                value: true
+                value: true,
               },
               body: {
                 type: 'BlockStatement',
@@ -199,15 +199,15 @@ describe('Statements - Continue', () => {
                     type: 'ContinueStatement',
                     label: {
                       type: 'Identifier',
-                      name: '__proto__'
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                      name: '__proto__',
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a: do continue a; while(1);',
@@ -220,7 +220,7 @@ describe('Statements - Continue', () => {
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'a'
+              name: 'a',
             },
             body: {
               type: 'DoWhileStatement',
@@ -228,17 +228,17 @@ describe('Statements - Continue', () => {
                 type: 'ContinueStatement',
                 label: {
                   type: 'Identifier',
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               },
               test: {
                 type: 'Literal',
-                value: 1
-              }
-            }
-          }
-        ]
-      }
+                value: 1,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'a: while (0) { continue \r b; }',
@@ -251,34 +251,34 @@ describe('Statements - Continue', () => {
                 body: [
                   {
                     label: null,
-                    type: 'ContinueStatement'
+                    type: 'ContinueStatement',
                   },
                   {
                     expression: {
                       name: 'b',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
-                    type: 'ExpressionStatement'
-                  }
+                    type: 'ExpressionStatement',
+                  },
                 ],
-                type: 'BlockStatement'
+                type: 'BlockStatement',
               },
               test: {
                 type: 'Literal',
-                value: 0
+                value: 0,
               },
-              type: 'WhileStatement'
+              type: 'WhileStatement',
             },
             label: {
               name: 'a',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'LabeledStatement'
-          }
+            type: 'LabeledStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'a: while (0) { continue /*\n*/ b; }',
@@ -291,34 +291,34 @@ describe('Statements - Continue', () => {
                 body: [
                   {
                     label: null,
-                    type: 'ContinueStatement'
+                    type: 'ContinueStatement',
                   },
                   {
                     expression: {
                       name: 'b',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
-                    type: 'ExpressionStatement'
-                  }
+                    type: 'ExpressionStatement',
+                  },
                 ],
-                type: 'BlockStatement'
+                type: 'BlockStatement',
               },
               test: {
                 type: 'Literal',
-                value: 0
+                value: 0,
               },
-              type: 'WhileStatement'
+              type: 'WhileStatement',
             },
             label: {
               name: 'a',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'LabeledStatement'
-          }
+            type: 'LabeledStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'a: while (0) { continue /*\u2029*/ b; }',
@@ -331,34 +331,34 @@ describe('Statements - Continue', () => {
                 body: [
                   {
                     label: null,
-                    type: 'ContinueStatement'
+                    type: 'ContinueStatement',
                   },
                   {
                     expression: {
                       name: 'b',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
-                    type: 'ExpressionStatement'
-                  }
+                    type: 'ExpressionStatement',
+                  },
                 ],
-                type: 'BlockStatement'
+                type: 'BlockStatement',
               },
               test: {
                 type: 'Literal',
-                value: 0
+                value: 0,
               },
-              type: 'WhileStatement'
+              type: 'WhileStatement',
             },
             label: {
               name: 'a',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'LabeledStatement'
-          }
+            type: 'LabeledStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '() => { do        if (x) continue   ; while(true);}',
@@ -381,29 +381,29 @@ describe('Statements - Continue', () => {
                       type: 'IfStatement',
                       test: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       consequent: {
                         type: 'ContinueStatement',
-                        label: null
+                        label: null,
                       },
-                      alternate: null
+                      alternate: null,
                     },
                     test: {
                       type: 'Literal',
-                      value: true
-                    }
-                  }
-                ]
+                      value: true,
+                    },
+                  },
+                ],
               },
               params: [],
 
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       'for (;;)  {  continue   }',
@@ -419,16 +419,16 @@ describe('Statements - Continue', () => {
               body: [
                 {
                   type: 'ContinueStatement',
-                  label: null
-                }
-              ]
+                  label: null,
+                },
+              ],
             },
             init: null,
             test: null,
-            update: null
-          }
-        ]
-      }
+            update: null,
+          },
+        ],
+      },
     ],
     [
       'for (;;)  { if (x) continue   }',
@@ -446,22 +446,22 @@ describe('Statements - Continue', () => {
                   type: 'IfStatement',
                   test: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   consequent: {
                     type: 'ContinueStatement',
-                    label: null
+                    label: null,
                   },
-                  alternate: null
-                }
-              ]
+                  alternate: null,
+                },
+              ],
             },
             init: null,
             test: null,
-            update: null
-          }
-        ]
-      }
+            update: null,
+          },
+        ],
+      },
     ],
     [
       'function f(){ for (;;)  {     continue    }}',
@@ -483,26 +483,26 @@ describe('Statements - Continue', () => {
                     body: [
                       {
                         type: 'ContinueStatement',
-                        label: null
-                      }
-                    ]
+                        label: null,
+                      },
+                    ],
                   },
                   init: null,
                   test: null,
-                  update: null
-                }
-              ]
+                  update: null,
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'while (true) {  continue   }',
@@ -515,20 +515,20 @@ describe('Statements - Continue', () => {
             type: 'WhileStatement',
             test: {
               type: 'Literal',
-              value: true
+              value: true,
             },
             body: {
               type: 'BlockStatement',
               body: [
                 {
                   type: 'ContinueStatement',
-                  label: null
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  label: null,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'foo: while(true)continue foo;',
@@ -541,25 +541,25 @@ describe('Statements - Continue', () => {
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'foo'
+              name: 'foo',
             },
             body: {
               type: 'WhileStatement',
               test: {
                 type: 'Literal',
-                value: true
+                value: true,
               },
               body: {
                 type: 'ContinueStatement',
                 label: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'foo',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'foo: while (true) { if (x) continue foo; }',
@@ -572,13 +572,13 @@ describe('Statements - Continue', () => {
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'foo'
+              name: 'foo',
             },
             body: {
               type: 'WhileStatement',
               test: {
                 type: 'Literal',
-                value: true
+                value: true,
               },
               body: {
                 type: 'BlockStatement',
@@ -587,23 +587,23 @@ describe('Statements - Continue', () => {
                     type: 'IfStatement',
                     test: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     consequent: {
                       type: 'ContinueStatement',
                       label: {
                         type: 'Identifier',
-                        name: 'foo'
-                      }
+                        name: 'foo',
+                      },
                     },
-                    alternate: null
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
-    ]
+                    alternate: null,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

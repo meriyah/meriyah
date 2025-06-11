@@ -15,7 +15,7 @@ describe('Miscellaneous - Cover grammar', () => {
     (a: any) => `function *f(${a}) {}`,
     (a: any) => `async function f(${a}) {}`,
     (a: any) => `(function f(${a}) {})`,
-    (a: any) => `(async function *f(${a}) {})`
+    (a: any) => `(async function *f(${a}) {})`,
   ];
 
   for (const arg of [
@@ -25,7 +25,7 @@ describe('Miscellaneous - Cover grammar', () => {
     '[[], ...r, ]',
     '[[...r,]]',
     '[[...r,], ]',
-    '[[...r,], a]'
+    '[[...r,], a]',
   ]) {
     for (const fn of destructuringForms) {
       it(fn(`${arg}`), () => {
@@ -63,7 +63,7 @@ describe('Miscellaneous - Cover grammar', () => {
     (p: any) => `(${p}) => {};`,
     (p: any) => `((${p}) => {});`,
     (p: any) => `async (${p}) => {};`,
-    (p: any) => `(async (${p}) => {});`
+    (p: any) => `(async (${p}) => {});`,
   ];
 
   for (const arg of [
@@ -80,7 +80,7 @@ describe('Miscellaneous - Cover grammar', () => {
     '{p: a, q: b}',
     '{a}',
     '{a, b}',
-    '{a = 0}'
+    '{a = 0}',
   ]) {
     for (const fn of functions) {
       it(fn(`${arg}`), () => {
@@ -512,7 +512,7 @@ describe('Miscellaneous - Cover grammar', () => {
     'let {a, ...[]} = {/*...*/}; // invalid;',
     'let {a, ...[b]} = {/*...*/}; // invalid;',
     'let {a, ...{}} = {/*...*/}; // invalid;',
-    'let {a, ...{b}} = {/*...*/}; // invalid;'
+    'let {a, ...{b}} = {/*...*/}; // invalid;',
   ]) {
     it(`function fn() { 'use strict';} fn(${arg});`, () => {
       t.throws(() => {
@@ -531,7 +531,7 @@ describe('Miscellaneous - Cover grammar', () => {
         parseSource(
           `'use strict'; let x, y, z; for (x in ${arg} = z = {});`,
           undefined,
-          Context.OptionsWebCompat | Context.OptionsLexical
+          Context.OptionsWebCompat | Context.OptionsLexical,
         );
       });
     });
@@ -606,7 +606,7 @@ describe('Miscellaneous - Cover grammar', () => {
     '{ var {foo} = {foo: 2}; }; ',
     '{ var {foo=3} = {}; }; ',
     'function foo() {}; ',
-    'async function foo() {}; '
+    'async function foo() {}; ',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -691,7 +691,7 @@ describe('Miscellaneous - Cover grammar', () => {
     '({a: {x = y}, "b": a})',
     '([{constructor(){}}] = b);',
     // doesn't fail in Acorn / Esprima / Espree and Babylon
-    '({ src: ([dest]) } = obj)'
+    '({ src: ([dest]) } = obj)',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -716,7 +716,7 @@ describe('Miscellaneous - Cover grammar', () => {
     '[(a.b)] = 0',
     '({a:(b)} = 0)',
     '({a:(b.c)} = 0)',
-    '({a:(b = 0)})'
+    '({a:(b = 0)})',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -822,7 +822,7 @@ describe('Miscellaneous - Cover grammar', () => {
     '[((((((x = y))))))] = obj',
     'var f = (...x = 10) => x;',
     '(w, ...x, y) => 10',
-    '(...x, y) => 10'
+    '(...x, y) => 10',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -870,7 +870,7 @@ describe('Miscellaneous - Cover grammar', () => {
     // Array destructuring pattern
     '[abc.d]',
     '[super]',
-    '[super()]'
+    '[super()]',
   ]) {
     // Plain function
     it(`function fn(${arg}) {}`, () => {
@@ -936,7 +936,7 @@ describe('Miscellaneous - Cover grammar', () => {
     'x1, {x2, x3}, [x4, x5], x6',
     '{x1:[y1]}',
     '{}',
-    '[,]'
+    '[,]',
   ]) {
     // Plain function
     it(`function fn(${arg}) {}`, () => {
@@ -1051,7 +1051,7 @@ describe('Miscellaneous - Cover grammar', () => {
     'var [let] = answer;',
     'function a([a=0]) {}',
     'function fn1([a, b = 42]) {}',
-    'function fn2([a = 42, b,]) {}'
+    'function fn2([a = 42, b,]) {}',
   ]) {
     // Plain function
     it(`${arg}`, () => {
@@ -1123,7 +1123,7 @@ describe('Miscellaneous - Cover grammar', () => {
     '{[x] : z, ...y}',
     '{[1+1] : z, ...x}',
     '{arguments: x, ...z}',
-    '{ __proto__: x, __proto__: y, ...z}'
+    '{ __proto__: x, __proto__: y, ...z}',
   ]) {
     it(`var ${arg}= {};`, () => {
       t.doesNotThrow(() => {
@@ -1487,7 +1487,7 @@ describe('Miscellaneous - Cover grammar', () => {
     `[{a = 0}.x] = [];`,
     `[...{a = 0}.x] = [];`,
     `({a: {b = 0}.x} = {});`,
-    `({...{b = 0}.x} = {});`
+    `({...{b = 0}.x} = {});`,
   ]) {
     it(`(${arg}= {});`, () => {
       t.throws(() => {
@@ -1651,7 +1651,7 @@ describe('Miscellaneous - Cover grammar', () => {
     [a]:{a},
     a:some_call()[a],
     a:this.a
-} = 0);`
+} = 0);`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -1680,7 +1680,7 @@ describe('Miscellaneous - Cover grammar', () => {
     'var { __proto__: x, __proto__: y } = {}',
     '({ __proto__: x, __proto__: y } = {})',
     'var { x = 10 } = (o = { x = 20 } = {});',
-    'var x; (({ x = 10 } = { x = 20 } = {}) => x)({})'
+    'var x; (({ x = 10 } = { x = 20 } = {}) => x)({})',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -1844,7 +1844,7 @@ describe('Miscellaneous - Cover grammar', () => {
     '[a = 1]',
     '{x = 42, y = 15}',
     '{42e-2 : x}',
-    '{42e-2 : x = 42}'
+    '{42e-2 : x = 42}',
   ]) {
     it(`function fn() { 'use strict';} fn(${arg});`, () => {
       t.doesNotThrow(() => {
@@ -2025,7 +2025,7 @@ describe('Miscellaneous - Cover grammar', () => {
     'a: ((typeof (a))) >>>= a || b.l && c',
     's: l: a[2](4 == 6, 5 = 6)(f[4], 6)',
     'for (var a = 7, b = c < d >= d ; f()[6]++ ; --i()[1]++ ) {}',
-    'if (0) new a(b+c) = 5'
+    'if (0) new a(b+c) = 5',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -3235,7 +3235,7 @@ describe('Miscellaneous - Cover grammar', () => {
     'C.method({x: 1, y: 2, a: 5, b: 3}).next().then(() => {})',
     'f = async function*([arrow = () => {}]) {}',
     'class foo { method() { ({x:super.x} = {}); } }',
-    "class foo { method() { ({x:super['x']} = {}); } }"
+    "class foo { method() { ({x:super['x']} = {}); } }",
   ]) {
     it(`  ${arg}`, () => {
       t.doesNotThrow(() => {

@@ -14,29 +14,29 @@ describe('Lexical - If', () => {
     [
       `if (x) x;
     else async function f(){}`,
-      Context.OptionsLexical
+      Context.OptionsLexical,
     ],
     [
       `if (x) x;
     else async function *f(){}`,
-      Context.OptionsLexical
+      Context.OptionsLexical,
     ],
     [
       `if (x) x;
     else function *f(){}`,
-      Context.OptionsLexical
+      Context.OptionsLexical,
     ],
     [
       `if (x) x;
     else function(){}`,
-      Context.OptionsLexical
+      Context.OptionsLexical,
     ],
     ['if (x) async function f(){}', Context.OptionsLexical],
     ['if (x) {} else if (y) {} else var foo = 1; let foo = 1;', Context.OptionsLexical],
     ['if (x) { if (y) var foo = 1; } let foo = 1;', Context.OptionsLexical | Context.OptionsNext],
     [
       'if (x) { if (y) var foo = 1; } let foo = 1;',
-      Context.OptionsLexical | Context.OptionsWebCompat | Context.OptionsNext
+      Context.OptionsLexical | Context.OptionsWebCompat | Context.OptionsNext,
     ],
     ['const x = a; function x(){};', Context.OptionsLexical | Context.Module | Context.Strict],
     ['if (x) var foo = 1; let foo = 1;', Context.OptionsWebCompat | Context.OptionsLexical | Context.Strict],
@@ -46,7 +46,7 @@ describe('Lexical - If', () => {
     ['if (x) {} else var foo = 1; let foo = 1;', Context.OptionsWebCompat | Context.OptionsLexical],
     ['if (x) var foo = 1; else {} let foo = 1;', Context.OptionsWebCompat | Context.OptionsLexical],
     ['if (x) {} else if (y) {} else var foo = 1; let foo = 1;', Context.OptionsWebCompat | Context.OptionsLexical],
-    ['if (x) { if (y) var foo = 1; } let foo = 1;', Context.OptionsWebCompat | Context.OptionsLexical]
+    ['if (x) { if (y) var foo = 1; } let foo = 1;', Context.OptionsWebCompat | Context.OptionsLexical],
   ]);
 
   for (const arg of ['if (x) var foo = 1; var foo = 1;']) {

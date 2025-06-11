@@ -5,7 +5,7 @@ describe('Expressions - Block', () => {
   fail('Expressions - Array (fail)', [
     ['{ let {x} }', Context.None],
     ['{ let {} }', Context.None],
-    ['{ let [] }', Context.None]
+    ['{ let [] }', Context.None],
   ]);
   pass('Expressions - Block (pass)', [
     [
@@ -17,10 +17,10 @@ describe('Expressions - Block', () => {
         body: [
           {
             type: 'BlockStatement',
-            body: []
-          }
-        ]
-      }
+            body: [],
+          },
+        ],
+      },
     ],
     [
       '{ let x }',
@@ -44,27 +44,27 @@ describe('Expressions - Block', () => {
                       name: 'x',
                       start: 6,
                       end: 7,
-                      range: [6, 7]
+                      range: [6, 7],
                     },
                     start: 6,
                     end: 7,
-                    range: [6, 7]
-                  }
+                    range: [6, 7],
+                  },
                 ],
                 start: 2,
                 end: 7,
-                range: [2, 7]
-              }
+                range: [2, 7],
+              },
             ],
             start: 0,
             end: 9,
-            range: [0, 9]
-          }
+            range: [0, 9],
+          },
         ],
         start: 0,
         end: 9,
-        range: [0, 9]
-      }
+        range: [0, 9],
+      },
     ],
     [
       '{ foo: bar: function f(){} }',
@@ -80,34 +80,34 @@ describe('Expressions - Block', () => {
                 type: 'LabeledStatement',
                 label: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 body: {
                   type: 'LabeledStatement',
                   label: {
                     type: 'Identifier',
-                    name: 'bar'
+                    name: 'bar',
                   },
                   body: {
                     type: 'FunctionDeclaration',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: false,
                     id: {
                       type: 'Identifier',
-                      name: 'f'
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        ]
-      }
+                      name: 'f',
+                    },
+                  },
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '{ let [] = y }',
@@ -140,24 +140,24 @@ describe('Expressions - Block', () => {
                       start: 6,
                       end: 8,
                       range: [6, 8],
-                      elements: []
+                      elements: [],
                     },
                     init: {
                       type: 'Identifier',
                       start: 11,
                       end: 12,
                       range: [11, 12],
-                      name: 'y'
-                    }
-                  }
+                      name: 'y',
+                    },
+                  },
                 ],
-                kind: 'let'
-              }
-            ]
-          }
+                kind: 'let',
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{ let {x} = y }',
@@ -180,7 +180,7 @@ describe('Expressions - Block', () => {
                       name: 'y',
                       start: 12,
                       end: 13,
-                      range: [12, 13]
+                      range: [12, 13],
                     },
                     id: {
                       type: 'ObjectPattern',
@@ -192,14 +192,14 @@ describe('Expressions - Block', () => {
                             name: 'x',
                             start: 7,
                             end: 8,
-                            range: [7, 8]
+                            range: [7, 8],
                           },
                           value: {
                             type: 'Identifier',
                             name: 'x',
                             start: 7,
                             end: 8,
-                            range: [7, 8]
+                            range: [7, 8],
                           },
                           kind: 'init',
                           computed: false,
@@ -207,32 +207,32 @@ describe('Expressions - Block', () => {
                           shorthand: true,
                           start: 7,
                           end: 8,
-                          range: [7, 8]
-                        }
+                          range: [7, 8],
+                        },
                       ],
                       start: 6,
                       end: 9,
-                      range: [6, 9]
+                      range: [6, 9],
                     },
                     start: 6,
                     end: 13,
-                    range: [6, 13]
-                  }
+                    range: [6, 13],
+                  },
                 ],
                 start: 2,
                 end: 13,
-                range: [2, 13]
-              }
+                range: [2, 13],
+              },
             ],
             start: 0,
             end: 15,
-            range: [0, 15]
-          }
+            range: [0, 15],
+          },
         ],
         start: 0,
         end: 15,
-        range: [0, 15]
-      }
+        range: [0, 15],
+      },
     ],
     [
       '{debugger;}',
@@ -253,13 +253,13 @@ describe('Expressions - Block', () => {
                 type: 'DebuggerStatement',
                 start: 1,
                 end: 10,
-                range: [1, 10]
-              }
-            ]
-          }
+                range: [1, 10],
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function f() {} var f;',
@@ -280,7 +280,7 @@ describe('Expressions - Block', () => {
               start: 9,
               end: 10,
               range: [9, 10],
-              name: 'f'
+              name: 'f',
             },
             generator: false,
             async: false,
@@ -290,8 +290,8 @@ describe('Expressions - Block', () => {
               start: 13,
               end: 15,
               range: [13, 15],
-              body: []
-            }
+              body: [],
+            },
           },
           {
             type: 'VariableDeclaration',
@@ -309,16 +309,16 @@ describe('Expressions - Block', () => {
                   start: 20,
                   end: 21,
                   range: [20, 21],
-                  name: 'f'
+                  name: 'f',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
-          }
+            kind: 'var',
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
 
     [
@@ -337,28 +337,28 @@ describe('Expressions - Block', () => {
                 init: null,
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            ]
+                  name: 'f',
+                },
+              },
+            ],
           },
           {
             type: 'FunctionDeclaration',
             params: [],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function x() { { var f; var f } }',
@@ -385,10 +385,10 @@ describe('Expressions - Block', () => {
                           init: null,
                           id: {
                             type: 'Identifier',
-                            name: 'f'
-                          }
-                        }
-                      ]
+                            name: 'f',
+                          },
+                        },
+                      ],
                     },
                     {
                       type: 'VariableDeclaration',
@@ -399,25 +399,25 @@ describe('Expressions - Block', () => {
                           init: null,
                           id: {
                             type: 'Identifier',
-                            name: 'f'
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
+                            name: 'f',
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'x'
-            }
-          }
-        ]
-      }
+              name: 'x',
+            },
+          },
+        ],
+      },
     ],
     [
       '{}\n/foo/',
@@ -426,23 +426,23 @@ describe('Expressions - Block', () => {
         body: [
           {
             body: [],
-            type: 'BlockStatement'
+            type: 'BlockStatement',
           },
           {
             expression: {
               regex: {
                 flags: '',
-                pattern: 'foo'
+                pattern: 'foo',
               },
               type: 'Literal',
-              value: /foo/
+              value: /foo/,
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '{}\n/foo/g',
@@ -451,23 +451,23 @@ describe('Expressions - Block', () => {
         body: [
           {
             body: [],
-            type: 'BlockStatement'
+            type: 'BlockStatement',
           },
           {
             expression: {
               regex: {
                 flags: 'g',
-                pattern: 'foo'
+                pattern: 'foo',
               },
               type: 'Literal',
-              value: /foo/g
+              value: /foo/g,
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '{a}',
@@ -482,14 +482,14 @@ describe('Expressions - Block', () => {
                 type: 'ExpressionStatement',
                 expression: {
                   type: 'Identifier',
-                  name: 'a'
-                }
-              }
-            ]
-          }
+                  name: 'a',
+                },
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{if (false) {} else ;}',
@@ -517,27 +517,27 @@ describe('Expressions - Block', () => {
                   end: 10,
                   range: [5, 10],
                   value: false,
-                  raw: 'false'
+                  raw: 'false',
                 },
                 consequent: {
                   type: 'BlockStatement',
                   start: 12,
                   end: 14,
                   range: [12, 14],
-                  body: []
+                  body: [],
                 },
                 alternate: {
                   type: 'EmptyStatement',
                   start: 20,
                   end: 21,
-                  range: [20, 21]
-                }
-              }
-            ]
-          }
+                  range: [20, 21],
+                },
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{for (;;) ;}',
@@ -566,14 +566,14 @@ describe('Expressions - Block', () => {
                   type: 'EmptyStatement',
                   start: 10,
                   end: 11,
-                  range: [10, 11]
-                }
-              }
-            ]
-          }
+                  range: [10, 11],
+                },
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{with ({}) {}}',
@@ -600,21 +600,21 @@ describe('Expressions - Block', () => {
                   start: 7,
                   end: 9,
                   range: [7, 9],
-                  properties: []
+                  properties: [],
                 },
                 body: {
                   type: 'BlockStatement',
                   start: 11,
                   end: 13,
                   range: [11, 13],
-                  body: []
-                }
-              }
-            ]
-          }
+                  body: [],
+                },
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{ { var f; } var f }',
@@ -630,39 +630,39 @@ describe('Expressions - Block', () => {
                       {
                         id: {
                           name: 'f',
-                          type: 'Identifier'
+                          type: 'Identifier',
                         },
                         init: null,
-                        type: 'VariableDeclarator'
-                      }
+                        type: 'VariableDeclarator',
+                      },
                     ],
                     kind: 'var',
-                    type: 'VariableDeclaration'
-                  }
+                    type: 'VariableDeclaration',
+                  },
                 ],
-                type: 'BlockStatement'
+                type: 'BlockStatement',
               },
               {
                 declarations: [
                   {
                     id: {
                       name: 'f',
-                      type: 'Identifier'
+                      type: 'Identifier',
                     },
                     init: null,
-                    type: 'VariableDeclarator'
-                  }
+                    type: 'VariableDeclarator',
+                  },
                 ],
                 kind: 'var',
-                type: 'VariableDeclaration'
-              }
+                type: 'VariableDeclaration',
+              },
             ],
-            type: 'BlockStatement'
-          }
+            type: 'BlockStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '{ a(); bt(); }',
@@ -694,10 +694,10 @@ describe('Expressions - Block', () => {
                     start: 2,
                     end: 3,
                     range: [2, 3],
-                    name: 'a'
+                    name: 'a',
                   },
-                  arguments: []
-                }
+                  arguments: [],
+                },
               },
               {
                 type: 'ExpressionStatement',
@@ -714,16 +714,16 @@ describe('Expressions - Block', () => {
                     start: 7,
                     end: 9,
                     range: [7, 9],
-                    name: 'bt'
+                    name: 'bt',
                   },
-                  arguments: []
-                }
-              }
-            ]
-          }
+                  arguments: [],
+                },
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{ var {foo=3} = {}; };',
@@ -770,7 +770,7 @@ describe('Expressions - Block', () => {
                             start: 7,
                             end: 10,
                             range: [7, 10],
-                            name: 'foo'
+                            name: 'foo',
                           },
                           kind: 'init',
                           value: {
@@ -783,41 +783,41 @@ describe('Expressions - Block', () => {
                               start: 7,
                               end: 10,
                               range: [7, 10],
-                              name: 'foo'
+                              name: 'foo',
                             },
                             right: {
                               type: 'Literal',
                               start: 11,
                               end: 12,
                               range: [11, 12],
-                              value: 3
-                            }
-                          }
-                        }
-                      ]
+                              value: 3,
+                            },
+                          },
+                        },
+                      ],
                     },
                     init: {
                       type: 'ObjectExpression',
                       start: 16,
                       end: 18,
                       range: [16, 18],
-                      properties: []
-                    }
-                  }
+                      properties: [],
+                    },
+                  },
                 ],
-                kind: 'var'
-              }
-            ]
+                kind: 'var',
+              },
+            ],
           },
           {
             type: 'EmptyStatement',
             start: 21,
             end: 22,
-            range: [21, 22]
-          }
+            range: [21, 22],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{ var foo = 0; }',
@@ -850,24 +850,24 @@ describe('Expressions - Block', () => {
                       start: 6,
                       end: 9,
                       range: [6, 9],
-                      name: 'foo'
+                      name: 'foo',
                     },
                     init: {
                       type: 'Literal',
                       start: 12,
                       end: 13,
                       range: [12, 13],
-                      value: 0
-                    }
-                  }
+                      value: 0,
+                    },
+                  },
                 ],
-                kind: 'var'
-              }
-            ]
-          }
+                kind: 'var',
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{ async function foo() {}; };',
@@ -894,7 +894,7 @@ describe('Expressions - Block', () => {
                   start: 17,
                   end: 20,
                   range: [17, 20],
-                  name: 'foo'
+                  name: 'foo',
                 },
                 generator: false,
                 async: true,
@@ -904,26 +904,26 @@ describe('Expressions - Block', () => {
                   start: 23,
                   end: 25,
                   range: [23, 25],
-                  body: []
-                }
+                  body: [],
+                },
               },
               {
                 type: 'EmptyStatement',
                 start: 25,
                 end: 26,
-                range: [25, 26]
-              }
-            ]
+                range: [25, 26],
+              },
+            ],
           },
           {
             type: 'EmptyStatement',
             start: 28,
             end: 29,
-            range: [28, 29]
-          }
+            range: [28, 29],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{\n  debugger;\n}',
@@ -933,15 +933,15 @@ describe('Expressions - Block', () => {
           {
             body: [
               {
-                type: 'DebuggerStatement'
-              }
+                type: 'DebuggerStatement',
+              },
             ],
-            type: 'BlockStatement'
-          }
+            type: 'BlockStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '{}\n/foo/',
@@ -950,23 +950,23 @@ describe('Expressions - Block', () => {
         body: [
           {
             body: [],
-            type: 'BlockStatement'
+            type: 'BlockStatement',
           },
           {
             expression: {
               regex: {
                 flags: '',
-                pattern: 'foo'
+                pattern: 'foo',
               },
               type: 'Literal',
-              value: /foo/
+              value: /foo/,
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '{ function a() {} ; function b() {} }',
@@ -993,7 +993,7 @@ describe('Expressions - Block', () => {
                   start: 11,
                   end: 12,
                   range: [11, 12],
-                  name: 'a'
+                  name: 'a',
                 },
                 generator: false,
                 async: false,
@@ -1003,14 +1003,14 @@ describe('Expressions - Block', () => {
                   start: 15,
                   end: 17,
                   range: [15, 17],
-                  body: []
-                }
+                  body: [],
+                },
               },
               {
                 type: 'EmptyStatement',
                 start: 18,
                 end: 19,
-                range: [18, 19]
+                range: [18, 19],
               },
               {
                 type: 'FunctionDeclaration',
@@ -1022,7 +1022,7 @@ describe('Expressions - Block', () => {
                   start: 29,
                   end: 30,
                   range: [29, 30],
-                  name: 'b'
+                  name: 'b',
                 },
                 generator: false,
                 async: false,
@@ -1032,14 +1032,14 @@ describe('Expressions - Block', () => {
                   start: 33,
                   end: 35,
                   range: [33, 35],
-                  body: []
-                }
-              }
-            ]
-          }
+                  body: [],
+                },
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{ function f() {} ; function f() {} }',
@@ -1056,38 +1056,38 @@ describe('Expressions - Block', () => {
                 params: [],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
+                  name: 'f',
+                },
               },
               {
-                type: 'EmptyStatement'
+                type: 'EmptyStatement',
               },
               {
                 type: 'FunctionDeclaration',
                 params: [],
                 body: {
                   type: 'BlockStatement',
-                  body: []
+                  body: [],
                 },
                 async: false,
                 generator: false,
 
                 id: {
                   type: 'Identifier',
-                  name: 'f'
-                }
-              }
-            ]
-          }
-        ]
-      }
+                  name: 'f',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       '{foo = b}',
@@ -1120,22 +1120,22 @@ describe('Expressions - Block', () => {
                     start: 1,
                     end: 4,
                     range: [1, 4],
-                    name: 'foo'
+                    name: 'foo',
                   },
                   right: {
                     type: 'Identifier',
                     start: 7,
                     end: 8,
                     range: [7, 8],
-                    name: 'b'
-                  }
-                }
-              }
-            ]
-          }
+                    name: 'b',
+                  },
+                },
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{var foo;}',
@@ -1168,18 +1168,18 @@ describe('Expressions - Block', () => {
                       start: 5,
                       end: 8,
                       range: [5, 8],
-                      name: 'foo'
+                      name: 'foo',
                     },
-                    init: null
-                  }
+                    init: null,
+                  },
                 ],
-                kind: 'var'
-              }
-            ]
-          }
+                kind: 'var',
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '{}\n/foo/g',
@@ -1188,23 +1188,23 @@ describe('Expressions - Block', () => {
         body: [
           {
             body: [],
-            type: 'BlockStatement'
+            type: 'BlockStatement',
           },
           {
             expression: {
               regex: {
                 flags: 'g',
-                pattern: 'foo'
+                pattern: 'foo',
               },
               type: 'Literal',
-              value: /foo/g
+              value: /foo/g,
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
-    ]
+        type: 'Program',
+      },
+    ],
   ]);
 });

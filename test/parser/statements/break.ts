@@ -34,7 +34,7 @@ describe('Statements - Break', () => {
       } while(0);
       function OUT_FUNC(){}
   })();`,
-      Context.None
+      Context.None,
     ],
     [
       `LABEL1 : do {
@@ -42,7 +42,7 @@ describe('Statements - Break', () => {
       (function(){break LABEL1;})();
       y++;
   } while(0);`,
-      Context.None
+      Context.None,
     ],
     [
       `(function(){
@@ -60,7 +60,7 @@ describe('Statements - Break', () => {
     } while(0);
     function OUT_FUNC(){}
   })();`,
-      Context.None
+      Context.None,
     ],
     [
       `(function(){
@@ -78,7 +78,7 @@ describe('Statements - Break', () => {
     } while(0);
     function OUT_FUNC(){}
   })();`,
-      Context.None
+      Context.None,
     ],
     [
       `(function(){
@@ -96,7 +96,7 @@ describe('Statements - Break', () => {
     } while(0);
     function OUT_FUNC(){}
   })();`,
-      Context.None
+      Context.None,
     ],
     [
       `var x=0,y=0;
@@ -114,7 +114,7 @@ describe('Statements - Break', () => {
       y++;
     } while(0);
   }`,
-      Context.None
+      Context.None,
     ],
     ['loop1: while (true) { loop2: function a() { break loop1; } }', Context.None],
     ['loop; while (true) { break loop1; }', Context.None],
@@ -132,7 +132,7 @@ describe('Statements - Break', () => {
     ['function f(){    break    }', Context.None],
     //    ['function f(){    break y   }', Context.None],
     ['() => {    break    }', Context.None],
-    ['() => {    if (x) break   }', Context.None]
+    ['() => {    if (x) break   }', Context.None],
     //  ['() => {    if (x) break y   }', Context.None],
   ]);
 
@@ -149,19 +149,19 @@ describe('Statements - Break', () => {
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'a'
+              name: 'a',
             },
             body: {
               type: 'IfStatement',
               test: {
                 type: 'Literal',
-                value: true
+                value: true,
               },
               consequent: {
                 type: 'LabeledStatement',
                 label: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 body: {
                   type: 'BlockStatement',
@@ -170,24 +170,24 @@ describe('Statements - Break', () => {
                       type: 'BreakStatement',
                       label: {
                         type: 'Identifier',
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     },
                     {
                       type: 'BreakStatement',
                       label: {
                         type: 'Identifier',
-                        name: 'b'
-                      }
-                    }
-                  ]
-                }
+                        name: 'b',
+                      },
+                    },
+                  ],
+                },
               },
               alternate: {
                 type: 'LabeledStatement',
                 label: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 body: {
                   type: 'BlockStatement',
@@ -196,23 +196,23 @@ describe('Statements - Break', () => {
                       type: 'BreakStatement',
                       label: {
                         type: 'Identifier',
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     },
                     {
                       type: 'BreakStatement',
                       label: {
                         type: 'Identifier',
-                        name: 'b'
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        ]
-      }
+                        name: 'b',
+                      },
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'foo: while (true) if (x) break foo;',
@@ -225,33 +225,33 @@ describe('Statements - Break', () => {
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'foo'
+              name: 'foo',
             },
             body: {
               type: 'WhileStatement',
               test: {
                 type: 'Literal',
-                value: true
+                value: true,
               },
               body: {
                 type: 'IfStatement',
                 test: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 consequent: {
                   type: 'BreakStatement',
                   label: {
                     type: 'Identifier',
-                    name: 'foo'
-                  }
+                    name: 'foo',
+                  },
                 },
-                alternate: null
-              }
-            }
-          }
-        ]
-      }
+                alternate: null,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'foo: while(true)break foo;',
@@ -264,25 +264,25 @@ describe('Statements - Break', () => {
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'foo'
+              name: 'foo',
             },
             body: {
               type: 'WhileStatement',
               test: {
                 type: 'Literal',
-                value: true
+                value: true,
               },
               body: {
                 type: 'BreakStatement',
                 label: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
-              }
-            }
-          }
-        ]
-      }
+                  name: 'foo',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){ while (true)       if (x) break   }',
@@ -301,33 +301,33 @@ describe('Statements - Break', () => {
                   type: 'WhileStatement',
                   test: {
                     type: 'Literal',
-                    value: true
+                    value: true,
                   },
                   body: {
                     type: 'IfStatement',
                     test: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     consequent: {
                       type: 'BreakStatement',
-                      label: null
+                      label: null,
                     },
-                    alternate: null
-                  }
-                }
-              ]
+                    alternate: null,
+                  },
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'while (true)    { break }   ',
@@ -340,20 +340,20 @@ describe('Statements - Break', () => {
             type: 'WhileStatement',
             test: {
               type: 'Literal',
-              value: true
+              value: true,
             },
             body: {
               type: 'BlockStatement',
               body: [
                 {
                   type: 'BreakStatement',
-                  label: null
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  label: null,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'function f(){ for (;;)       if (x) break   }',
@@ -374,30 +374,30 @@ describe('Statements - Break', () => {
                     type: 'IfStatement',
                     test: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     consequent: {
                       type: 'BreakStatement',
-                      label: null
+                      label: null,
                     },
-                    alternate: null
+                    alternate: null,
                   },
                   init: null,
                   test: null,
-                  update: null
-                }
-              ]
+                  update: null,
+                },
+              ],
             },
             async: false,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'L: let\nx',
@@ -408,27 +408,27 @@ describe('Statements - Break', () => {
             body: {
               expression: {
                 name: 'let',
-                type: 'Identifier'
+                type: 'Identifier',
               },
-              type: 'ExpressionStatement'
+              type: 'ExpressionStatement',
             },
             label: {
               name: 'L',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'LabeledStatement'
+            type: 'LabeledStatement',
           },
           {
             expression: {
               name: 'x',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       `switch (a) { case 10 /* StringLiteral */:
@@ -446,14 +446,14 @@ describe('Statements - Break', () => {
             type: 'SwitchStatement',
             discriminant: {
               type: 'Identifier',
-              name: 'a'
+              name: 'a',
             },
             cases: [
               {
                 type: 'SwitchCase',
                 test: {
                   type: 'Literal',
-                  value: 10
+                  value: 10,
                 },
                 consequent: [
                   {
@@ -462,7 +462,7 @@ describe('Statements - Break', () => {
                       type: 'CallExpression',
                       callee: {
                         type: 'Identifier',
-                        name: 'lookAhead'
+                        name: 'lookAhead',
                       },
                       arguments: [
                         {
@@ -479,24 +479,24 @@ describe('Statements - Break', () => {
                                     type: 'CallExpression',
                                     callee: {
                                       type: 'Identifier',
-                                      name: 'nextToken'
+                                      name: 'nextToken',
                                     },
-                                    arguments: []
+                                    arguments: [],
                                   },
                                   right: {
                                     type: 'Literal',
-                                    value: 57
+                                    value: 57,
                                   },
-                                  operator: '!=='
-                                }
-                              }
-                            ]
+                                  operator: '!==',
+                                },
+                              },
+                            ],
                           },
                           async: false,
                           generator: false,
-                          id: null
-                        }
-                      ]
+                          id: null,
+                        },
+                      ],
                     },
                     consequent: {
                       type: 'BlockStatement',
@@ -509,39 +509,39 @@ describe('Statements - Break', () => {
                               type: 'MemberExpression',
                               object: {
                                 type: 'Identifier',
-                                name: 'statement'
+                                name: 'statement',
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'expression'
-                              }
+                                name: 'expression',
+                              },
                             },
                             operator: '=',
                             right: {
                               type: 'CallExpression',
                               callee: {
                                 type: 'Identifier',
-                                name: 'parseLiteralNode'
+                                name: 'parseLiteralNode',
                               },
-                              arguments: []
-                            }
-                          }
+                              arguments: [],
+                            },
+                          },
                         },
                         {
                           type: 'BreakStatement',
-                          label: null
-                        }
-                      ]
+                          label: null,
+                        },
+                      ],
                     },
-                    alternate: null
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                    alternate: null,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'switch (a) { case 123: { if (a) {} break } }',
@@ -562,7 +562,7 @@ describe('Statements - Break', () => {
               start: 8,
               end: 9,
               range: [8, 9],
-              name: 'a'
+              name: 'a',
             },
             cases: [
               {
@@ -587,40 +587,40 @@ describe('Statements - Break', () => {
                           start: 29,
                           end: 30,
                           range: [29, 30],
-                          name: 'a'
+                          name: 'a',
                         },
                         consequent: {
                           type: 'BlockStatement',
                           start: 32,
                           end: 34,
                           range: [32, 34],
-                          body: []
+                          body: [],
                         },
-                        alternate: null
+                        alternate: null,
                       },
                       {
                         type: 'BreakStatement',
                         start: 35,
                         end: 40,
                         range: [35, 40],
-                        label: null
-                      }
-                    ]
-                  }
+                        label: null,
+                      },
+                    ],
+                  },
                 ],
                 test: {
                   type: 'Literal',
                   start: 18,
                   end: 21,
                   range: [18, 21],
-                  value: 123
-                }
-              }
-            ]
-          }
+                  value: 123,
+                },
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
 
     [
@@ -658,7 +658,7 @@ describe('Statements - Break', () => {
                     end: 27,
                     range: [23, 27],
                     value: true,
-                    raw: 'true'
+                    raw: 'true',
                   },
                   body: {
                     type: 'BreakStatement',
@@ -670,37 +670,37 @@ describe('Statements - Break', () => {
                       start: 35,
                       end: 38,
                       range: [35, 38],
-                      name: 'foo'
-                    }
-                  }
+                      name: 'foo',
+                    },
+                  },
                 },
                 label: {
                   type: 'Identifier',
                   start: 11,
                   end: 14,
                   range: [11, 14],
-                  name: 'bar'
-                }
+                  name: 'bar',
+                },
               },
               label: {
                 type: 'Identifier',
                 start: 6,
                 end: 9,
                 range: [6, 9],
-                name: 'foo'
-              }
+                name: 'foo',
+              },
             },
             label: {
               type: 'Identifier',
               start: 0,
               end: 4,
               range: [0, 4],
-              name: 'ding'
-            }
-          }
+              name: 'ding',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'switch (x) { default: break; }',
@@ -713,7 +713,7 @@ describe('Statements - Break', () => {
             type: 'SwitchStatement',
             discriminant: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             cases: [
               {
@@ -722,14 +722,14 @@ describe('Statements - Break', () => {
                 consequent: [
                   {
                     type: 'BreakStatement',
-                    label: null
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                    label: null,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'switch (x) { case x: if (foo) break; }',
@@ -742,34 +742,34 @@ describe('Statements - Break', () => {
             type: 'SwitchStatement',
             discriminant: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             cases: [
               {
                 type: 'SwitchCase',
                 test: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 consequent: [
                   {
                     type: 'IfStatement',
                     test: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     consequent: {
                       type: 'BreakStatement',
-                      label: null
+                      label: null,
                     },
-                    alternate: null
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                    alternate: null,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'switch (x) { case x: {break;} }',
@@ -782,14 +782,14 @@ describe('Statements - Break', () => {
             type: 'SwitchStatement',
             discriminant: {
               type: 'Identifier',
-              name: 'x'
+              name: 'x',
             },
             cases: [
               {
                 type: 'SwitchCase',
                 test: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 consequent: [
                   {
@@ -797,16 +797,16 @@ describe('Statements - Break', () => {
                     body: [
                       {
                         type: 'BreakStatement',
-                        label: null
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                        label: null,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     ],
     [
       'foo: switch (x) { case x: break foo; }',
@@ -832,7 +832,7 @@ describe('Statements - Break', () => {
                 start: 13,
                 end: 14,
                 range: [13, 14],
-                name: 'x'
+                name: 'x',
               },
               cases: [
                 {
@@ -851,31 +851,31 @@ describe('Statements - Break', () => {
                         start: 32,
                         end: 35,
                         range: [32, 35],
-                        name: 'foo'
-                      }
-                    }
+                        name: 'foo',
+                      },
+                    },
                   ],
                   test: {
                     type: 'Identifier',
                     start: 23,
                     end: 24,
                     range: [23, 24],
-                    name: 'x'
-                  }
-                }
-              ]
+                    name: 'x',
+                  },
+                },
+              ],
             },
             label: {
               type: 'Identifier',
               start: 0,
               end: 3,
               range: [0, 3],
-              name: 'foo'
-            }
-          }
+              name: 'foo',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'this',
@@ -895,12 +895,12 @@ describe('Statements - Break', () => {
               type: 'ThisExpression',
               start: 0,
               end: 4,
-              range: [0, 4]
-            }
-          }
+              range: [0, 4],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'foo: switch (x) { case x: if (foo) {break foo;} }',
@@ -913,27 +913,27 @@ describe('Statements - Break', () => {
             type: 'LabeledStatement',
             label: {
               type: 'Identifier',
-              name: 'foo'
+              name: 'foo',
             },
             body: {
               type: 'SwitchStatement',
               discriminant: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               cases: [
                 {
                   type: 'SwitchCase',
                   test: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   consequent: [
                     {
                       type: 'IfStatement',
                       test: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       consequent: {
                         type: 'BlockStatement',
@@ -942,20 +942,20 @@ describe('Statements - Break', () => {
                             type: 'BreakStatement',
                             label: {
                               type: 'Identifier',
-                              name: 'foo'
-                            }
-                          }
-                        ]
+                              name: 'foo',
+                            },
+                          },
+                        ],
                       },
-                      alternate: null
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      alternate: null,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'switch (x) { case x: break; }',
@@ -976,7 +976,7 @@ describe('Statements - Break', () => {
               start: 8,
               end: 9,
               range: [8, 9],
-              name: 'x'
+              name: 'x',
             },
             cases: [
               {
@@ -990,22 +990,22 @@ describe('Statements - Break', () => {
                     start: 21,
                     end: 27,
                     range: [21, 27],
-                    label: null
-                  }
+                    label: null,
+                  },
                 ],
                 test: {
                   type: 'Identifier',
                   start: 18,
                   end: 19,
                   range: [18, 19],
-                  name: 'x'
-                }
-              }
-            ]
-          }
+                  name: 'x',
+                },
+              },
+            ],
+          },
         ],
-        sourceType: 'script'
-      }
-    ]
+        sourceType: 'script',
+      },
+    ],
   ]);
 });

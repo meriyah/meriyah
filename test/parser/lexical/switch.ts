@@ -50,14 +50,14 @@ describe('Lexical - Switch', () => {
     ['switch (0) { case 1: async function f() {} default: function f() {} }', Context.OptionsLexical],
     [
       'switch (0) { case 1: async function f() {} default: function f() {} }',
-      Context.OptionsLexical | Context.OptionsWebCompat
+      Context.OptionsLexical | Context.OptionsWebCompat,
     ],
     ['switch (0) { case 1: async function* f() {} default: const f = 0; }', Context.OptionsLexical],
     ['switch (0) { case 1: async function* f() {} default: function f() {} }', Context.OptionsLexical],
     ['switch (0) { case 1: async function* f() {} default: function* f() {} }', Context.OptionsLexical],
     [
       'switch (0) { case 1: async function* f() {} default: let f; }',
-      Context.OptionsLexical | Context.OptionsWebCompat
+      Context.OptionsLexical | Context.OptionsWebCompat,
     ],
     ['switch (0) { case 1: class f {} default: let f; }', Context.OptionsLexical | Context.OptionsWebCompat],
     ['switch (0) { case 1: class f {} default: var f; }', Context.OptionsLexical | Context.OptionsWebCompat],
@@ -65,17 +65,17 @@ describe('Lexical - Switch', () => {
     ['switch (0) { case 1: function f() {} default: let f; }', Context.OptionsLexical | Context.OptionsWebCompat],
     [
       'switch (0) { case 1: async function* f() {} default: let f; }',
-      Context.OptionsLexical | Context.Strict | Context.Module
+      Context.OptionsLexical | Context.Strict | Context.Module,
     ],
     ['switch (0) { case 1: class f {} default: let f; }', Context.OptionsLexical | Context.Strict | Context.Module],
     ['switch (0) { case 1: class f {} default: var f; }', Context.OptionsLexical | Context.Strict | Context.Module],
     [
       'switch (0) { case 1: function f() {} default: const f = 0; }',
-      Context.OptionsLexical | Context.Strict | Context.Module
+      Context.OptionsLexical | Context.Strict | Context.Module,
     ],
     [
       'switch (0) { case 1: function f() {} default: let f; }',
-      Context.OptionsLexical | Context.Strict | Context.Module
+      Context.OptionsLexical | Context.Strict | Context.Module,
     ],
     ['switch (0) { case 1: async function* f() {} default: let f; }', Context.OptionsLexical],
     ['switch (0) { case 1: class f {} default: let f; }', Context.OptionsLexical],
@@ -106,11 +106,11 @@ describe('Lexical - Switch', () => {
     ['switch (0) { case 1: var f = 0; const {f} = x; default: let x; }', Context.OptionsLexical],
     [
       'switch (0) { case 1: let f = 0; var {f} = x; default: let x; }',
-      Context.OptionsLexical | Context.OptionsWebCompat
+      Context.OptionsLexical | Context.OptionsWebCompat,
     ],
     [
       'switch (0) { case 1: const f = 0; default: async function* f() {} }',
-      Context.OptionsLexical | Context.OptionsWebCompat
+      Context.OptionsLexical | Context.OptionsWebCompat,
     ],
     ['switch (0) { case 1: let f = 0; var {f} = x; default: let x; }', Context.OptionsLexical],
     ['switch (0) { case 1: const f = 0; default: async function* f() {} }', Context.OptionsLexical],
@@ -182,16 +182,16 @@ describe('Lexical - Switch', () => {
     ['switch (x) { default: async function f(){} async function f(){} }', Context.OptionsLexical],
     [
       'switch (x) { default: async function f(){} async function f(){} }',
-      Context.OptionsLexical | Context.OptionsWebCompat
+      Context.OptionsLexical | Context.OptionsWebCompat,
     ],
     ['switch (x) { default: async function *f(){} async function *f(){} }', Context.OptionsLexical],
     [
       'switch (x) { default: async function *f(){} async function *f(){} }',
-      Context.OptionsLexical | Context.OptionsWebCompat
+      Context.OptionsLexical | Context.OptionsWebCompat,
     ],
     ['switch (x) { default: function f(){} function f(){} }', Context.OptionsLexical | Context.Strict],
     ['switch (x) { default: function *f(){} function *f(){} }', Context.OptionsLexical],
-    ['switch (x) { default: function *f(){} function *f(){} }', Context.OptionsLexical | Context.OptionsWebCompat]
+    ['switch (x) { default: function *f(){} function *f(){} }', Context.OptionsLexical | Context.OptionsWebCompat],
   ]);
 
   for (const arg of [
@@ -202,7 +202,7 @@ describe('Lexical - Switch', () => {
     'switch (0) { case 1: let f = 0; default: [f] }',
     'switch (0) { case 1: let f = 0; x; default: let x; } var {f} = f',
     'switch (0) { case 1: var f = 0; x; default: var {f} = x; } var {f} = f',
-    'switch (x) { case a: var foo; break; default: var foo; break; }'
+    'switch (x) { case a: var foo; break; default: var foo; break; }',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -240,7 +240,7 @@ describe('Lexical - Switch', () => {
     'switch (x) { case c: function f(){} function f(){} }',
     `switch (0) { case 1: var f; default: var f; }
     switch (0) { case 1: var f; default: var f; }`,
-    'for (let f of [0]) { switch (1) { case 1:function f() {  } }}'
+    'for (let f of [0]) { switch (1) { case 1:function f() {  } }}',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

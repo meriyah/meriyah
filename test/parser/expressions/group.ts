@@ -39,7 +39,7 @@ describe('Expressions - Group', () => {
     'with',
     'null',
     'true',
-    'false' /*'enum',*/
+    'false' /*'enum',*/,
   ]) {
     it(`should fail on '(${arg}) = foo'`, () => {
       t.throws(() => {
@@ -104,7 +104,7 @@ describe('Expressions - Group', () => {
     'foo({get [bar](){}, [zoo](){}});',
     'foo({[bar](){}, get [zoo](){}});',
     'foo({set [bar](c){}, [zoo](){}});',
-    'foo({[bar](){}, set [zoo](e){}});'
+    'foo({[bar](){}, set [zoo](e){}});',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -131,7 +131,7 @@ describe('Expressions - Group', () => {
     // special non-keywords
     'static',
     'eval',
-    'arguments'
+    'arguments',
   ]) {
     it(`should fail on '(${arg} = foo )'`, () => {
       t.throws(() => {
@@ -171,7 +171,7 @@ describe('Expressions - Group', () => {
     '[x].length',
     '{}.length',
     '{x}.length',
-    '{x: y}.length'
+    '{x: y}.length',
   ]) {
     it(`should fail on '(${arg})=> y'`, () => {
       t.throws(() => {
@@ -251,7 +251,7 @@ describe('Expressions - Group', () => {
     '({ident: {x}/x/g}) => x',
     '(a,,) => {}',
     '(...a = x,) => {}',
-    '(...a = x,) => {}'
+    '(...a = x,) => {}',
   ]) {
     it(`should fail on '${arg}'`, () => {
       t.throws(() => {
@@ -599,7 +599,7 @@ describe('Expressions - Group', () => {
     ['`a` = b;', Context.None],
     ['(`a`) => b;', Context.None],
     ['for (`a` of b);', Context.None],
-    ['for (new.target in b);', Context.None]
+    ['for (new.target in b);', Context.None],
   ]);
 
   pass('Expressions - Group (pass)', [
@@ -618,23 +618,23 @@ describe('Expressions - Group', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Literal',
-                  value: 1
+                  value: 1,
                 },
                 right: {
                   type: 'Literal',
-                  value: 2
+                  value: 2,
                 },
-                operator: '+'
+                operator: '+',
               },
               right: {
                 type: 'Literal',
-                value: 3
+                value: 3,
               },
-              operator: '+'
-            }
-          }
-        ]
-      }
+              operator: '+',
+            },
+          },
+        ],
+      },
     ],
     [
       '((((((((((((((((((((((((((((((((((((((((((((((((((0))))))))))))))))))))))))))))))))))))))))))))))))))',
@@ -647,11 +647,11 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: 0
-            }
-          }
-        ]
-      }
+              value: 0,
+            },
+          },
+        ],
+      },
     ],
     [
       '({a: {x = y}} = z)',
@@ -671,7 +671,7 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'ObjectPattern',
@@ -680,42 +680,42 @@ describe('Expressions - Group', () => {
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           value: {
                             type: 'AssignmentPattern',
                             left: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             right: {
                               type: 'Identifier',
-                              name: 'y'
-                            }
+                              name: 'y',
+                            },
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: true
-                        }
-                      ]
+                          shorthand: true,
+                        },
+                      ],
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'z'
-              }
-            }
-          }
-        ]
-      }
+                name: 'z',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({a: {x = y}}) => z',
@@ -731,7 +731,7 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
               params: [
                 {
@@ -741,7 +741,7 @@ describe('Expressions - Group', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'ObjectPattern',
@@ -750,40 +750,40 @@ describe('Expressions - Group', () => {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             value: {
                               type: 'AssignmentPattern',
                               left: {
                                 type: 'Identifier',
-                                name: 'x'
+                                name: 'x',
                               },
                               right: {
                                 type: 'Identifier',
-                                name: 'y'
-                              }
+                                name: 'y',
+                              },
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: true
-                          }
-                        ]
+                            shorthand: true,
+                          },
+                        ],
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '4 + 5 << (6)',
@@ -800,23 +800,23 @@ describe('Expressions - Group', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Literal',
-                  value: 4
+                  value: 4,
                 },
                 right: {
                   type: 'Literal',
-                  value: 5
+                  value: 5,
                 },
-                operator: '+'
+                operator: '+',
               },
               right: {
                 type: 'Literal',
-                value: 6
+                value: 6,
               },
-              operator: '<<'
-            }
-          }
-        ]
-      }
+              operator: '<<',
+            },
+          },
+        ],
+      },
     ],
     [
       '(a) + (b)',
@@ -831,17 +831,17 @@ describe('Expressions - Group', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
-              operator: '+'
-            }
-          }
-        ]
-      }
+              operator: '+',
+            },
+          },
+        ],
+      },
     ],
     [
       '((a))()',
@@ -856,13 +856,13 @@ describe('Expressions - Group', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       '(x, /y/);',
@@ -878,21 +878,21 @@ describe('Expressions - Group', () => {
               expressions: [
                 {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 {
                   type: 'Literal',
                   value: /y/,
                   regex: {
                     pattern: 'y',
-                    flags: ''
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    flags: '',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '((a))((a))',
@@ -907,18 +907,18 @@ describe('Expressions - Group', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'a'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'a',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '((a)) = 0',
@@ -933,17 +933,17 @@ describe('Expressions - Group', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '=',
               right: {
                 type: 'Literal',
-                value: 0
-              }
-            }
-          }
-        ]
-      }
+                value: 0,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '"use strict"; (await) = 1',
@@ -956,9 +956,9 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: 'use strict'
+              value: 'use strict',
             },
-            directive: 'use strict'
+            directive: 'use strict',
           },
           {
             type: 'ExpressionStatement',
@@ -966,17 +966,17 @@ describe('Expressions - Group', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'await'
+                name: 'await',
               },
               operator: '=',
               right: {
                 type: 'Literal',
-                value: 1
-              }
-            }
-          }
-        ]
-      }
+                value: 1,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(a) = 0',
@@ -991,17 +991,17 @@ describe('Expressions - Group', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '=',
               right: {
                 type: 'Literal',
-                value: 0
-              }
-            }
-          }
-        ]
-      }
+                value: 0,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'void (a)',
@@ -1017,13 +1017,13 @@ describe('Expressions - Group', () => {
               operator: 'void',
               argument: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '(a)++',
@@ -1038,14 +1038,14 @@ describe('Expressions - Group', () => {
               type: 'UpdateExpression',
               argument: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '++',
-              prefix: false
-            }
-          }
-        ]
-      }
+              prefix: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '(a)--',
@@ -1060,14 +1060,14 @@ describe('Expressions - Group', () => {
               type: 'UpdateExpression',
               argument: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '--',
-              prefix: false
-            }
-          }
-        ]
-      }
+              prefix: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '(a) ? (b) : (c)',
@@ -1082,20 +1082,20 @@ describe('Expressions - Group', () => {
               type: 'ConditionalExpression',
               test: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               consequent: {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
               alternate: {
                 type: 'Identifier',
-                name: 'c'
-              }
-            }
-          }
-        ]
-      }
+                name: 'c',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(a++)',
@@ -1110,14 +1110,14 @@ describe('Expressions - Group', () => {
               type: 'UpdateExpression',
               argument: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '++',
-              prefix: false
-            }
-          }
-        ]
-      }
+              prefix: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '(void a)',
@@ -1133,13 +1133,13 @@ describe('Expressions - Group', () => {
               operator: 'void',
               argument: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '({Foo} = {});',
@@ -1159,28 +1159,28 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'Foo'
+                      name: 'Foo',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'Foo'
+                      name: 'Foo',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'ObjectExpression',
-                properties: []
-              }
-            }
-          }
-        ]
-      }
+                properties: [],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({foo, bar} = {foo: 0, bar: 1});',
@@ -1200,33 +1200,33 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               operator: '=',
               right: {
@@ -1236,38 +1236,38 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'Literal',
-                      value: 0
+                      value: 0,
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'bar'
+                      name: 'bar',
                     },
                     value: {
                       type: 'Literal',
-                      value: 1
+                      value: 1,
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    shorthand: false,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({} = 0);',
@@ -1282,17 +1282,17 @@ describe('Expressions - Group', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'ObjectPattern',
-                properties: []
+                properties: [],
               },
               operator: '=',
               right: {
                 type: 'Literal',
-                value: 0
-              }
-            }
-          }
-        ]
-      }
+                value: 0,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({foo: true / false});',
@@ -1310,30 +1310,30 @@ describe('Expressions - Group', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Literal',
-                      value: true
+                      value: true,
                     },
                     right: {
                       type: 'Literal',
-                      value: false
+                      value: false,
                     },
-                    operator: '/'
+                    operator: '/',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({ x: x } = a);',
@@ -1353,28 +1353,28 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'a'
-              }
-            }
-          }
-        ]
-      }
+                name: 'a',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({ x } = a);',
@@ -1394,28 +1394,28 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'a'
-              }
-            }
-          }
-        ]
-      }
+                name: 'a',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({ x = 123 } = a);',
@@ -1435,35 +1435,35 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       right: {
                         type: 'Literal',
-                        value: 123
-                      }
+                        value: 123,
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'a'
-              }
-            }
-          }
-        ]
-      }
+                name: 'a',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       `({
@@ -1490,59 +1490,59 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'ObjectPattern',
@@ -1551,29 +1551,29 @@ describe('Expressions - Group', () => {
                           type: 'Property',
                           key: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           value: {
                             type: 'Identifier',
-                            name: 'a'
+                            name: 'a',
                           },
                           kind: 'init',
                           computed: false,
                           method: false,
-                          shorthand: true
-                        }
-                      ]
+                          shorthand: true,
+                        },
+                      ],
                     },
                     kind: 'init',
                     computed: true,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'MemberExpression',
@@ -1581,54 +1581,54 @@ describe('Expressions - Group', () => {
                         type: 'CallExpression',
                         callee: {
                           type: 'Identifier',
-                          name: 'some_call'
+                          name: 'some_call',
                         },
-                        arguments: []
+                        arguments: [],
                       },
                       computed: true,
                       property: {
                         type: 'Identifier',
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'MemberExpression',
                       object: {
-                        type: 'ThisExpression'
+                        type: 'ThisExpression',
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Literal',
-                value: 0
-              }
-            }
-          }
-        ]
-      }
+                value: 0,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'new c(x)(y)',
@@ -1645,25 +1645,25 @@ describe('Expressions - Group', () => {
                 type: 'NewExpression',
                 callee: {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
                 arguments: [
                   {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                ]
+                    name: 'x',
+                  },
+                ],
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'y'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'y',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '"use strict"; ({ x: a, x: b } = q);',
@@ -1676,9 +1676,9 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: 'use strict'
+              value: 'use strict',
             },
-            directive: 'use strict'
+            directive: 'use strict',
           },
           {
             type: 'ExpressionStatement',
@@ -1691,43 +1691,43 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
+                    shorthand: false,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'q'
-              }
-            }
-          }
-        ]
-      }
+                name: 'q',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({ x: y.z } = a)',
@@ -1747,36 +1747,36 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'MemberExpression',
                       object: {
                         type: 'Identifier',
-                        name: 'y'
+                        name: 'y',
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'z'
-                      }
+                        name: 'z',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'a'
-              }
-            }
-          }
-        ]
-      }
+                name: 'a',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({ x: (y) } = a);',
@@ -1796,28 +1796,28 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'a'
-              }
-            }
-          }
-        ]
-      }
+                name: 'a',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '[((((a)))), b] = [];',
@@ -1835,23 +1835,23 @@ describe('Expressions - Group', () => {
                 elements: [
                   {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                ]
+                    name: 'b',
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'ArrayExpression',
-                elements: []
-              }
-            }
-          }
-        ]
-      }
+                elements: [],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '[...{a: b}.c] = []',
@@ -1878,37 +1878,37 @@ describe('Expressions - Group', () => {
                             type: 'Property',
                             key: {
                               type: 'Identifier',
-                              name: 'a'
+                              name: 'a',
                             },
                             value: {
                               type: 'Identifier',
-                              name: 'b'
+                              name: 'b',
                             },
                             kind: 'init',
                             computed: false,
                             method: false,
-                            shorthand: false
-                          }
-                        ]
+                            shorthand: false,
+                          },
+                        ],
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'c'
-                      }
-                    }
-                  }
-                ]
+                        name: 'c',
+                      },
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'ArrayExpression',
-                elements: []
-              }
-            }
-          }
-        ]
-      }
+                elements: [],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '[(a), b] = [];',
@@ -1926,23 +1926,23 @@ describe('Expressions - Group', () => {
                 elements: [
                   {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                ]
+                    name: 'b',
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'ArrayExpression',
-                elements: []
-              }
-            }
-          }
-        ]
-      }
+                elements: [],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(await = "foo")',
@@ -1957,17 +1957,17 @@ describe('Expressions - Group', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'await'
+                name: 'await',
               },
               operator: '=',
               right: {
                 type: 'Literal',
-                value: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                value: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '"use strict"; (await = "foo")',
@@ -1980,9 +1980,9 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: 'use strict'
+              value: 'use strict',
             },
-            directive: 'use strict'
+            directive: 'use strict',
           },
           {
             type: 'ExpressionStatement',
@@ -1990,17 +1990,17 @@ describe('Expressions - Group', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'await'
+                name: 'await',
               },
               operator: '=',
               right: {
                 type: 'Literal',
-                value: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                value: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({a:(b) = c})',
@@ -2018,30 +2018,30 @@ describe('Expressions - Group', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     operator: '=',
                     right: {
                       type: 'Identifier',
-                      name: 'c'
-                    }
+                      name: 'c',
+                    },
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({a:(b) = 0} = 1)',
@@ -2061,35 +2061,35 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       right: {
                         type: 'Literal',
-                        value: 0
-                      }
+                        value: 0,
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Literal',
-                value: 1
-              }
-            }
-          }
-        ]
-      }
+                value: 1,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({a:(b) = c} = 1)',
@@ -2109,35 +2109,35 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'b'
+                        name: 'b',
                       },
                       right: {
                         type: 'Identifier',
-                        name: 'c'
-                      }
+                        name: 'c',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Literal',
-                value: 1
-              }
-            }
-          }
-        ]
-      }
+                value: 1,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(x, y, ...z) => foo',
@@ -2153,31 +2153,31 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
                 {
                   type: 'RestElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'z'
-                  }
-                }
+                    name: 'z',
+                  },
+                },
               ],
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '({ a: (b) } = {})',
@@ -2197,28 +2197,28 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'ObjectExpression',
-                properties: []
-              }
-            }
-          }
-        ]
-      }
+                properties: [],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(async)=2',
@@ -2233,17 +2233,17 @@ describe('Expressions - Group', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
               operator: '=',
               right: {
                 type: 'Literal',
-                value: 2
-              }
-            }
-          }
-        ]
-      }
+                value: 2,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({200:exp})',
@@ -2261,22 +2261,22 @@ describe('Expressions - Group', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 200
+                    value: 200,
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'exp'
+                    name: 'exp',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({*ident(){}})',
@@ -2294,29 +2294,29 @@ describe('Expressions - Group', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'ident'
+                    name: 'ident',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: true,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({*[expr](){}})',
@@ -2334,29 +2334,29 @@ describe('Expressions - Group', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'expr'
+                    name: 'expr',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: true,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: true,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({[expr]:expr})',
@@ -2374,22 +2374,22 @@ describe('Expressions - Group', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'expr'
+                    name: 'expr',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'expr'
+                    name: 'expr',
                   },
                   kind: 'init',
                   computed: true,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({*20(){}})',
@@ -2407,29 +2407,29 @@ describe('Expressions - Group', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 20
+                    value: 20,
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     async: false,
                     generator: true,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({[foo]: x} = y)',
@@ -2449,28 +2449,28 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     kind: 'init',
                     computed: true,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'y'
-              }
-            }
-          }
-        ]
-      }
+                name: 'y',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({[x]: y}) => z;',
@@ -2486,7 +2486,7 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
               params: [
                 {
@@ -2496,26 +2496,26 @@ describe('Expressions - Group', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'y'
+                        name: 'y',
                       },
                       kind: 'init',
                       computed: true,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'x=x=x',
@@ -2526,29 +2526,29 @@ describe('Expressions - Group', () => {
             expression: {
               left: {
                 name: 'x',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               operator: '=',
               right: {
                 left: {
                   name: 'x',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
                 operator: '=',
                 right: {
                   name: 'x',
-                  type: 'Identifier'
+                  type: 'Identifier',
                 },
-                type: 'AssignmentExpression'
+                type: 'AssignmentExpression',
               },
-              type: 'AssignmentExpression'
+              type: 'AssignmentExpression',
             },
-            type: 'ExpressionStatement'
-          }
+            type: 'ExpressionStatement',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       '({"a b c": bar})',
@@ -2566,22 +2566,22 @@ describe('Expressions - Group', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 'a b c'
+                    value: 'a b c',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'bar'
+                    name: 'bar',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({[foo]: bar} = baz)',
@@ -2605,13 +2605,13 @@ describe('Expressions - Group', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 3
+                          column: 3,
                         },
                         end: {
                           line: 1,
-                          column: 6
-                        }
-                      }
+                          column: 6,
+                        },
+                      },
                     },
                     value: {
                       type: 'Identifier',
@@ -2619,13 +2619,13 @@ describe('Expressions - Group', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 9
+                          column: 9,
                         },
                         end: {
                           line: 1,
-                          column: 12
-                        }
-                      }
+                          column: 12,
+                        },
+                      },
                     },
                     kind: 'init',
                     computed: true,
@@ -2634,25 +2634,25 @@ describe('Expressions - Group', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 2
+                        column: 2,
                       },
                       end: {
                         line: 1,
-                        column: 12
-                      }
-                    }
-                  }
+                        column: 12,
+                      },
+                    },
+                  },
                 ],
                 loc: {
                   start: {
                     line: 1,
-                    column: 1
+                    column: 1,
                   },
                   end: {
                     line: 1,
-                    column: 13
-                  }
-                }
+                    column: 13,
+                  },
+                },
               },
               operator: '=',
               right: {
@@ -2661,48 +2661,48 @@ describe('Expressions - Group', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 16
+                    column: 16,
                   },
                   end: {
                     line: 1,
-                    column: 19
-                  }
-                }
+                    column: 19,
+                  },
+                },
               },
               loc: {
                 start: {
                   line: 1,
-                  column: 1
+                  column: 1,
                 },
                 end: {
                   line: 1,
-                  column: 19
-                }
-              }
+                  column: 19,
+                },
+              },
             },
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 20
-              }
-            }
-          }
+                column: 20,
+              },
+            },
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 20
-          }
-        }
-      }
+            column: 20,
+          },
+        },
+      },
     ],
     [
       '(async ());',
@@ -2717,13 +2717,13 @@ describe('Expressions - Group', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
-              arguments: []
-            }
-          }
-        ]
-      }
+              arguments: [],
+            },
+          },
+        ],
+      },
     ],
     [
       '( () => x )',
@@ -2739,16 +2739,16 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [],
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '(x.foo = y)',
@@ -2765,23 +2765,23 @@ describe('Expressions - Group', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
+                  name: 'foo',
+                },
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'y'
-              }
-            }
-          }
-        ]
-      }
+                name: 'y',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(typeof x)',
@@ -2797,13 +2797,13 @@ describe('Expressions - Group', () => {
               operator: 'typeof',
               argument: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '(true)',
@@ -2816,11 +2816,11 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: true
-            }
-          }
-        ]
-      }
+              value: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '(...[destruct]) => x',
@@ -2836,7 +2836,7 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -2846,19 +2846,19 @@ describe('Expressions - Group', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'destruct'
-                      }
-                    ]
-                  }
-                }
+                        name: 'destruct',
+                      },
+                    ],
+                  },
+                },
               ],
               async: false,
 
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '(...{destruct}) => x',
@@ -2874,7 +2874,7 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -2887,26 +2887,26 @@ describe('Expressions - Group', () => {
                         kind: 'init',
                         key: {
                           type: 'Identifier',
-                          name: 'destruct'
+                          name: 'destruct',
                         },
                         computed: false,
                         value: {
                           type: 'Identifier',
-                          name: 'destruct'
+                          name: 'destruct',
                         },
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
               ],
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'async(...ident) => x',
@@ -2922,23 +2922,23 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
                   type: 'RestElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'ident'
-                  }
-                }
+                    name: 'ident',
+                  },
+                },
               ],
               async: true,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       ' async(...[destruct]) => x',
@@ -2954,7 +2954,7 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -2964,18 +2964,18 @@ describe('Expressions - Group', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'destruct'
-                      }
-                    ]
-                  }
-                }
+                        name: 'destruct',
+                      },
+                    ],
+                  },
+                },
               ],
               async: true,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'async(...{destruct}) => x',
@@ -2991,7 +2991,7 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -3003,27 +3003,27 @@ describe('Expressions - Group', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'destruct'
+                          name: 'destruct',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'destruct'
+                          name: 'destruct',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
-                      }
-                    ]
-                  }
-                }
+                        shorthand: true,
+                      },
+                    ],
+                  },
+                },
               ],
               async: true,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '([a]) => b;',
@@ -3039,7 +3039,7 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
               params: [
                 {
@@ -3047,17 +3047,17 @@ describe('Expressions - Group', () => {
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'a'
-                    }
-                  ]
-                }
+                      name: 'a',
+                    },
+                  ],
+                },
               ],
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '([a] = b) => c;',
@@ -3073,7 +3073,7 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'c'
+                name: 'c',
               },
               params: [
                 {
@@ -3083,22 +3083,22 @@ describe('Expressions - Group', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'a'
-                      }
-                    ]
+                        name: 'a',
+                      },
+                    ],
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                }
+                    name: 'b',
+                  },
+                },
               ],
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '([a=[b.c]=d]) => e;',
@@ -3114,7 +3114,7 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'e'
+                name: 'e',
               },
               params: [
                 {
@@ -3124,7 +3124,7 @@ describe('Expressions - Group', () => {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       right: {
                         type: 'AssignmentExpression',
@@ -3135,32 +3135,32 @@ describe('Expressions - Group', () => {
                               type: 'MemberExpression',
                               object: {
                                 type: 'Identifier',
-                                name: 'b'
+                                name: 'b',
                               },
                               computed: false,
                               property: {
                                 type: 'Identifier',
-                                name: 'c'
-                              }
-                            }
-                          ]
+                                name: 'c',
+                              },
+                            },
+                          ],
                         },
                         operator: '=',
                         right: {
                           type: 'Identifier',
-                          name: 'd'
-                        }
-                      }
-                    }
-                  ]
-                }
+                          name: 'd',
+                        },
+                      },
+                    },
+                  ],
+                },
               ],
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '[{x: y.z}]',
@@ -3181,32 +3181,32 @@ describe('Expressions - Group', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       value: {
                         type: 'MemberExpression',
                         object: {
                           type: 'Identifier',
-                          name: 'y'
+                          name: 'y',
                         },
                         computed: false,
                         property: {
                           type: 'Identifier',
-                          name: 'z'
-                        }
+                          name: 'z',
+                        },
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      shorthand: false,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '[{x: y.z}] = a',
@@ -3229,38 +3229,38 @@ describe('Expressions - Group', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         value: {
                           type: 'MemberExpression',
                           object: {
                             type: 'Identifier',
-                            name: 'y'
+                            name: 'y',
                           },
                           computed: false,
                           property: {
                             type: 'Identifier',
-                            name: 'z'
-                          }
+                            name: 'z',
+                          },
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
-                  }
-                ]
+                        shorthand: false,
+                      },
+                    ],
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'a'
-              }
-            }
-          }
-        ]
-      }
+                name: 'a',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(x + foo)',
@@ -3279,13 +3279,13 @@ describe('Expressions - Group', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 1
+                    column: 1,
                   },
                   end: {
                     line: 1,
-                    column: 2
-                  }
-                }
+                    column: 2,
+                  },
+                },
               },
               right: {
                 type: 'Identifier',
@@ -3293,49 +3293,49 @@ describe('Expressions - Group', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 5
+                    column: 5,
                   },
                   end: {
                     line: 1,
-                    column: 8
-                  }
-                }
+                    column: 8,
+                  },
+                },
               },
               operator: '+',
               loc: {
                 start: {
                   line: 1,
-                  column: 1
+                  column: 1,
                 },
                 end: {
                   line: 1,
-                  column: 8
-                }
-              }
+                  column: 8,
+                },
+              },
             },
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 9
-              }
-            }
-          }
+                column: 9,
+              },
+            },
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 9
-          }
-        }
-      }
+            column: 9,
+          },
+        },
+      },
     ],
     [
       '(delete /a/g.x);',
@@ -3356,18 +3356,18 @@ describe('Expressions - Group', () => {
                   value: /a/g,
                   regex: {
                     pattern: 'a',
-                    flags: 'g'
+                    flags: 'g',
                   },
                   loc: {
                     start: {
                       line: 1,
-                      column: 8
+                      column: 8,
                     },
                     end: {
                       line: 1,
-                      column: 12
-                    }
-                  }
+                      column: 12,
+                    },
+                  },
                 },
                 computed: false,
                 property: {
@@ -3376,60 +3376,60 @@ describe('Expressions - Group', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 13
+                      column: 13,
                     },
                     end: {
                       line: 1,
-                      column: 14
-                    }
-                  }
+                      column: 14,
+                    },
+                  },
                 },
                 loc: {
                   start: {
                     line: 1,
-                    column: 8
+                    column: 8,
                   },
                   end: {
                     line: 1,
-                    column: 14
-                  }
-                }
+                    column: 14,
+                  },
+                },
               },
               prefix: true,
               loc: {
                 start: {
                   line: 1,
-                  column: 1
+                  column: 1,
                 },
                 end: {
                   line: 1,
-                  column: 14
-                }
-              }
+                  column: 14,
+                },
+              },
             },
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 16
-              }
-            }
-          }
+                column: 16,
+              },
+            },
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 16
-          }
-        }
-      }
+            column: 16,
+          },
+        },
+      },
     ],
     [
       '(delete /a/.x);',
@@ -3450,20 +3450,20 @@ describe('Expressions - Group', () => {
                   value: /a/,
                   regex: {
                     pattern: 'a',
-                    flags: ''
-                  }
+                    flags: '',
+                  },
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '(...x) => x',
@@ -3479,23 +3479,23 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
                   type: 'RestElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                }
+                    name: 'x',
+                  },
+                },
               ],
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'async("foo".bar);',
@@ -3510,26 +3510,26 @@ describe('Expressions - Group', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
               arguments: [
                 {
                   type: 'MemberExpression',
                   object: {
                     type: 'Literal',
-                    value: 'foo'
+                    value: 'foo',
                   },
                   computed: false,
                   property: {
                     type: 'Identifier',
-                    name: 'bar'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'bar',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(foo.x)',
@@ -3544,17 +3544,17 @@ describe('Expressions - Group', () => {
               type: 'MemberExpression',
               object: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'x'
-              }
-            }
-          }
-        ]
-      }
+                name: 'x',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'async ({x=z}, y) => x;',
@@ -3570,7 +3570,7 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -3580,37 +3580,37 @@ describe('Expressions - Group', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       value: {
                         type: 'AssignmentPattern',
                         left: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Identifier',
-                          name: 'z'
-                        }
+                          name: 'z',
+                        },
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
-                    }
-                  ]
+                      shorthand: true,
+                    },
+                  ],
                 },
                 {
                   type: 'Identifier',
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               ],
               async: true,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'async (foo = yield) => foo',
@@ -3626,27 +3626,27 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               params: [
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'yield'
-                  }
-                }
+                    name: 'yield',
+                  },
+                },
               ],
               async: true,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'async (foo = yield)',
@@ -3661,26 +3661,26 @@ describe('Expressions - Group', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
               arguments: [
                 {
                   type: 'AssignmentExpression',
                   left: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   operator: '=',
                   right: {
                     type: 'Identifier',
-                    name: 'yield'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'yield',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f(){ async (foo = yield) }',
@@ -3701,37 +3701,37 @@ describe('Expressions - Group', () => {
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     arguments: [
                       {
                         type: 'AssignmentExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         operator: '=',
                         right: {
                           type: 'YieldExpression',
                           argument: null,
-                          delegate: false
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          delegate: false,
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'function *f(){ async (foo = yield x) }',
@@ -3752,40 +3752,40 @@ describe('Expressions - Group', () => {
                     type: 'CallExpression',
                     callee: {
                       type: 'Identifier',
-                      name: 'async'
+                      name: 'async',
                     },
                     arguments: [
                       {
                         type: 'AssignmentExpression',
                         left: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         operator: '=',
                         right: {
                           type: 'YieldExpression',
                           argument: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
-                          delegate: false
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+                          delegate: false,
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
             },
             async: false,
             generator: true,
 
             id: {
               type: 'Identifier',
-              name: 'f'
-            }
-          }
-        ]
-      }
+              name: 'f',
+            },
+          },
+        ],
+      },
     ],
     [
       'async (yield) => foo',
@@ -3801,20 +3801,20 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'yield'
-                }
+                  name: 'yield',
+                },
               ],
               async: true,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       'async(x) => y',
@@ -3830,20 +3830,20 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'y'
+                name: 'y',
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               ],
               async: true,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '(foo[x])',
@@ -3858,17 +3858,17 @@ describe('Expressions - Group', () => {
               type: 'MemberExpression',
               object: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               computed: true,
               property: {
                 type: 'Identifier',
-                name: 'x'
-              }
-            }
-          }
-        ]
-      }
+                name: 'x',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(foo) += 3',
@@ -3883,17 +3883,17 @@ describe('Expressions - Group', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
               operator: '+=',
               right: {
                 type: 'Literal',
-                value: 3
-              }
-            }
-          }
-        ]
-      }
+                value: 3,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'async(a);',
@@ -3908,18 +3908,18 @@ describe('Expressions - Group', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'a'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'a',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'async (...x) => x',
@@ -3935,23 +3935,23 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
                   type: 'RestElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                }
+                    name: 'x',
+                  },
+                },
               ],
               async: true,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '(x.foo)',
@@ -3966,17 +3966,17 @@ describe('Expressions - Group', () => {
               type: 'MemberExpression',
               object: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -3996,22 +3996,22 @@ describe('Expressions - Group', () => {
                 generator: false,
                 body: {
                   type: 'Identifier',
-                  name: 'foo'
+                  name: 'foo',
                 },
                 params: [
                   {
                     type: 'Identifier',
-                    name: 'foo'
-                  }
+                    name: 'foo',
+                  },
                 ],
                 async: false,
-                expression: true
+                expression: true,
               },
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '({a} + foo)',
@@ -4031,28 +4031,28 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               right: {
                 type: 'Identifier',
-                name: 'foo'
+                name: 'foo',
               },
-              operator: '+'
-            }
-          }
-        ]
-      }
+              operator: '+',
+            },
+          },
+        ],
+      },
     ],
     [
       '([a = b].foo = x)',
@@ -4074,31 +4074,31 @@ describe('Expressions - Group', () => {
                       type: 'AssignmentExpression',
                       left: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       operator: '=',
                       right: {
                         type: 'Identifier',
-                        name: 'b'
-                      }
-                    }
-                  ]
+                        name: 'b',
+                      },
+                    },
+                  ],
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
+                  name: 'foo',
+                },
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'x'
-              }
-            }
-          }
-        ]
-      }
+                name: 'x',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '([x].foo) = x',
@@ -4118,25 +4118,25 @@ describe('Expressions - Group', () => {
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  ]
+                      name: 'x',
+                    },
+                  ],
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'foo'
-                }
+                  name: 'foo',
+                },
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'x'
-              }
-            }
-          }
-        ]
-      }
+                name: 'x',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '([x].foo)',
@@ -4154,19 +4154,19 @@ describe('Expressions - Group', () => {
                 elements: [
                   {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                ]
+                    name: 'x',
+                  },
+                ],
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'foo'
-              }
-            }
-          }
-        ]
-      }
+                name: 'foo',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({[foo]: bar}) => baz',
@@ -4182,7 +4182,7 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'baz'
+                name: 'baz',
               },
               params: [
                 {
@@ -4192,26 +4192,26 @@ describe('Expressions - Group', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'bar'
+                        name: 'bar',
                       },
                       kind: 'init',
                       computed: true,
                       method: false,
-                      shorthand: false
-                    }
-                  ]
-                }
+                      shorthand: false,
+                    },
+                  ],
+                },
               ],
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '({*"str"(){}})',
@@ -4229,29 +4229,29 @@ describe('Expressions - Group', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 'str'
+                    value: 'str',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     id: null,
                     async: false,
-                    generator: true
+                    generator: true,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({*15(){}})',
@@ -4269,29 +4269,29 @@ describe('Expressions - Group', () => {
                   type: 'Property',
                   key: {
                     type: 'Literal',
-                    value: 15
+                    value: 15,
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [],
                     body: {
                       type: 'BlockStatement',
-                      body: []
+                      body: [],
                     },
                     id: null,
                     async: false,
-                    generator: true
+                    generator: true,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({x, ...y}) => x',
@@ -4307,7 +4307,7 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -4317,33 +4317,33 @@ describe('Expressions - Group', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
+                      shorthand: true,
                     },
                     {
                       type: 'RestElement',
                       argument: {
                         type: 'Identifier',
-                        name: 'y'
-                      }
-                    }
-                  ]
-                }
+                        name: 'y',
+                      },
+                    },
+                  ],
+                },
               ],
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '({...x.y} = z) ',
@@ -4365,26 +4365,26 @@ describe('Expressions - Group', () => {
                       type: 'MemberExpression',
                       object: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'y'
-                      }
-                    }
-                  }
-                ]
+                        name: 'y',
+                      },
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'z'
-              }
-            }
-          }
-        ]
-      }
+                name: 'z',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(z = {...x.y}) => z',
@@ -4400,14 +4400,14 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
               params: [
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'z'
+                    name: 'z',
                   },
                   right: {
                     type: 'ObjectExpression',
@@ -4418,25 +4418,25 @@ describe('Expressions - Group', () => {
                           type: 'MemberExpression',
                           object: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           computed: false,
                           property: {
                             type: 'Identifier',
-                            name: 'y'
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
+                            name: 'y',
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
               ],
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '({...x=y});',
@@ -4456,20 +4456,20 @@ describe('Expressions - Group', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      name: 'y',
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({...x+=y});',
@@ -4489,20 +4489,20 @@ describe('Expressions - Group', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '+=',
                     right: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      name: 'y',
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({...x+y});',
@@ -4522,20 +4522,20 @@ describe('Expressions - Group', () => {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
-                    operator: '+'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    operator: '+',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({...x, ...y});',
@@ -4553,21 +4553,21 @@ describe('Expressions - Group', () => {
                   type: 'SpreadElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
+                    name: 'x',
+                  },
                 },
                 {
                   type: 'SpreadElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'y'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'y',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({...x, y});',
@@ -4585,29 +4585,29 @@ describe('Expressions - Group', () => {
                   type: 'SpreadElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
+                    name: 'x',
+                  },
                 },
                 {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -4624,7 +4624,7 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               params: [
                 {
@@ -4634,18 +4634,18 @@ describe('Expressions - Group', () => {
                       type: 'RestElement',
                       argument: {
                         type: 'Identifier',
-                        name: 'x'
-                      }
-                    }
-                  ]
-                }
+                        name: 'x',
+                      },
+                    },
+                  ],
+                },
               ],
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '([...x]);',
@@ -4663,14 +4663,14 @@ describe('Expressions - Group', () => {
                   type: 'SpreadElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'x',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(z = [...x.y] = z) => z',
@@ -4686,14 +4686,14 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
               params: [
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'z'
+                    name: 'z',
                   },
                   right: {
                     type: 'AssignmentExpression',
@@ -4706,31 +4706,31 @@ describe('Expressions - Group', () => {
                             type: 'MemberExpression',
                             object: {
                               type: 'Identifier',
-                              name: 'x'
+                              name: 'x',
                             },
                             computed: false,
                             property: {
                               type: 'Identifier',
-                              name: 'y'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'y',
+                            },
+                          },
+                        },
+                      ],
                     },
                     operator: '=',
                     right: {
                       type: 'Identifier',
-                      name: 'z'
-                    }
-                  }
-                }
+                      name: 'z',
+                    },
+                  },
+                },
               ],
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '(z = [...x.y]) => z',
@@ -4746,14 +4746,14 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
               params: [
                 {
                   type: 'AssignmentPattern',
                   left: {
                     type: 'Identifier',
-                    name: 'z'
+                    name: 'z',
                   },
                   right: {
                     type: 'ArrayExpression',
@@ -4764,25 +4764,25 @@ describe('Expressions - Group', () => {
                           type: 'MemberExpression',
                           object: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           computed: false,
                           property: {
                             type: 'Identifier',
-                            name: 'y'
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
+                            name: 'y',
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
               ],
               async: false,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '([...x+y]);',
@@ -4802,20 +4802,20 @@ describe('Expressions - Group', () => {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
-                    operator: '+'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    operator: '+',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '([...x]);',
@@ -4833,14 +4833,14 @@ describe('Expressions - Group', () => {
                   type: 'SpreadElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'x',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '([...x=y]);',
@@ -4860,20 +4860,20 @@ describe('Expressions - Group', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      name: 'y',
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(0, a)',
@@ -4889,17 +4889,17 @@ describe('Expressions - Group', () => {
               expressions: [
                 {
                   type: 'Literal',
-                  value: 0
+                  value: 0,
                 },
                 {
                   type: 'Identifier',
-                  name: 'a'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'a',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(a, 0)',
@@ -4915,17 +4915,17 @@ describe('Expressions - Group', () => {
               expressions: [
                 {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Literal',
-                  value: 0
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  value: 0,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(a,a)',
@@ -4941,17 +4941,17 @@ describe('Expressions - Group', () => {
               expressions: [
                 {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
-                  name: 'a'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'a',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '((a,a),(a,a))',
@@ -4970,32 +4970,32 @@ describe('Expressions - Group', () => {
                   expressions: [
                     {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     {
                       type: 'Identifier',
-                      name: 'a'
-                    }
-                  ]
+                      name: 'a',
+                    },
+                  ],
                 },
                 {
                   type: 'SequenceExpression',
                   expressions: [
                     {
                       type: 'Identifier',
-                      name: 'a'
+                      name: 'a',
                     },
                     {
                       type: 'Identifier',
-                      name: 'a'
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      name: 'a',
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '((((((((((((((((((((((((((((((((((((((((a))))))))))))))))))))))))))))))))))))))))',
@@ -5008,11 +5008,11 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Identifier',
-              name: 'a'
-            }
-          }
-        ]
-      }
+              name: 'a',
+            },
+          },
+        ],
+      },
     ],
     [
       '({ x : y } = z = {});',
@@ -5032,36 +5032,36 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 operator: '=',
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              }
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -5082,7 +5082,7 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'MemberExpression',
@@ -5090,40 +5090,40 @@ describe('Expressions - Group', () => {
                         type: 'CallExpression',
                         callee: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
-                        arguments: []
+                        arguments: [],
                       },
                       computed: true,
                       property: {
                         type: 'Identifier',
-                        name: 'y'
-                      }
+                        name: 'y',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 operator: '=',
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              }
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({ x : { foo: foo().y } });',
@@ -5141,7 +5141,7 @@ describe('Expressions - Group', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'ObjectExpression',
@@ -5150,7 +5150,7 @@ describe('Expressions - Group', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
                         value: {
                           type: 'MemberExpression',
@@ -5158,33 +5158,33 @@ describe('Expressions - Group', () => {
                             type: 'CallExpression',
                             callee: {
                               type: 'Identifier',
-                              name: 'foo'
+                              name: 'foo',
                             },
-                            arguments: []
+                            arguments: [],
                           },
                           computed: false,
                           property: {
                             type: 'Identifier',
-                            name: 'y'
-                          }
+                            name: 'y',
+                          },
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: false
-                      }
-                    ]
+                        shorthand: false,
+                      },
+                    ],
                   },
                   kind: 'init',
                   computed: false,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({a} = b,) => {}',
@@ -5200,7 +5200,7 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
@@ -5212,31 +5212,31 @@ describe('Expressions - Group', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         value: {
                           type: 'Identifier',
-                          name: 'a'
+                          name: 'a',
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
-                      }
-                    ]
+                        shorthand: true,
+                      },
+                    ],
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                }
+                    name: 'b',
+                  },
+                },
               ],
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '([x] = y,) => {}',
@@ -5252,7 +5252,7 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
@@ -5262,22 +5262,22 @@ describe('Expressions - Group', () => {
                     elements: [
                       {
                         type: 'Identifier',
-                        name: 'x'
-                      }
-                    ]
+                        name: 'x',
+                      },
+                    ],
                   },
                   right: {
                     type: 'Identifier',
-                    name: 'y'
-                  }
-                }
+                    name: 'y',
+                  },
+                },
               ],
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '({a},) => {}',
@@ -5293,7 +5293,7 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
@@ -5303,26 +5303,26 @@ describe('Expressions - Group', () => {
                       type: 'Property',
                       key: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Identifier',
-                        name: 'a'
+                        name: 'a',
                       },
                       kind: 'init',
                       computed: false,
                       method: false,
-                      shorthand: true
-                    }
-                  ]
-                }
+                      shorthand: true,
+                    },
+                  ],
+                },
               ],
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '([x],) => {}',
@@ -5338,7 +5338,7 @@ describe('Expressions - Group', () => {
               generator: false,
               body: {
                 type: 'BlockStatement',
-                body: []
+                body: [],
               },
               params: [
                 {
@@ -5346,17 +5346,17 @@ describe('Expressions - Group', () => {
                   elements: [
                     {
                       type: 'Identifier',
-                      name: 'x'
-                    }
-                  ]
-                }
+                      name: 'x',
+                    },
+                  ],
+                },
               ],
               async: false,
-              expression: false
-            }
-          }
-        ]
-      }
+              expression: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '({[x]:y} = z);',
@@ -5376,28 +5376,28 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     kind: 'init',
                     computed: true,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'z'
-              }
-            }
-          }
-        ]
-      }
+                name: 'z',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(a) = 1;',
@@ -5412,17 +5412,17 @@ describe('Expressions - Group', () => {
               operator: '=',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'Literal',
-                value: 1
-              }
-            }
-          }
+                value: 1,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({x} = y);',
@@ -5442,28 +5442,28 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'y'
-              }
-            }
-          }
-        ]
-      }
+                name: 'y',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({[x]:y});',
@@ -5481,22 +5481,22 @@ describe('Expressions - Group', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   value: {
                     type: 'Identifier',
-                    name: 'y'
+                    name: 'y',
                   },
                   kind: 'init',
                   computed: true,
                   method: false,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '([ foo()[x] = 10 ] = z = {});',
@@ -5520,40 +5520,40 @@ describe('Expressions - Group', () => {
                         type: 'CallExpression',
                         callee: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
-                        arguments: []
+                        arguments: [],
                       },
                       computed: true,
                       property: {
                         type: 'Identifier',
-                        name: 'x'
-                      }
+                        name: 'x',
+                      },
                     },
                     right: {
                       type: 'Literal',
-                      value: 10
-                    }
-                  }
-                ]
+                      value: 10,
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 operator: '=',
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              }
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '([ x.y = 10 ] = z = {});',
@@ -5575,38 +5575,38 @@ describe('Expressions - Group', () => {
                       type: 'MemberExpression',
                       object: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'y'
-                      }
+                        name: 'y',
+                      },
                     },
                     right: {
                       type: 'Literal',
-                      value: 10
-                    }
-                  }
-                ]
+                      value: 10,
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 operator: '=',
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              }
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '([ x[y] = 10 ] = z = {});',
@@ -5628,38 +5628,38 @@ describe('Expressions - Group', () => {
                       type: 'MemberExpression',
                       object: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       computed: true,
                       property: {
                         type: 'Identifier',
-                        name: 'y'
-                      }
+                        name: 'y',
+                      },
                     },
                     right: {
                       type: 'Literal',
-                      value: 10
-                    }
-                  }
-                ]
+                      value: 10,
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 operator: '=',
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              }
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '([ [ foo().x = 10 ] = {} ] = z = {});',
@@ -5688,47 +5688,47 @@ describe('Expressions - Group', () => {
                               type: 'CallExpression',
                               callee: {
                                 type: 'Identifier',
-                                name: 'foo'
+                                name: 'foo',
                               },
-                              arguments: []
+                              arguments: [],
                             },
                             computed: false,
                             property: {
                               type: 'Identifier',
-                              name: 'x'
-                            }
+                              name: 'x',
+                            },
                           },
                           right: {
                             type: 'Literal',
-                            value: 10
-                          }
-                        }
-                      ]
+                            value: 10,
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'ObjectExpression',
-                      properties: []
-                    }
-                  }
-                ]
+                      properties: [],
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 operator: '=',
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              }
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '([ foo()[x] = 10 ] = z = {});',
@@ -5752,40 +5752,40 @@ describe('Expressions - Group', () => {
                         type: 'CallExpression',
                         callee: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
-                        arguments: []
+                        arguments: [],
                       },
                       computed: true,
                       property: {
                         type: 'Identifier',
-                        name: 'x'
-                      }
+                        name: 'x',
+                      },
                     },
                     right: {
                       type: 'Literal',
-                      value: 10
-                    }
-                  }
-                ]
+                      value: 10,
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 operator: '=',
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              }
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '([ [ foo().x = 10 ] = {} ] = z = {});',
@@ -5814,47 +5814,47 @@ describe('Expressions - Group', () => {
                               type: 'CallExpression',
                               callee: {
                                 type: 'Identifier',
-                                name: 'foo'
+                                name: 'foo',
                               },
-                              arguments: []
+                              arguments: [],
                             },
                             computed: false,
                             property: {
                               type: 'Identifier',
-                              name: 'x'
-                            }
+                              name: 'x',
+                            },
                           },
                           right: {
                             type: 'Literal',
-                            value: 10
-                          }
-                        }
-                      ]
+                            value: 10,
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'ObjectExpression',
-                      properties: []
-                    }
-                  }
-                ]
+                      properties: [],
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 operator: '=',
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              }
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({x = 42, y = 15} = z = {});',
@@ -5874,65 +5874,65 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       right: {
                         type: 'Literal',
-                        value: 42
-                      }
+                        value: 42,
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
+                    shorthand: true,
                   },
                   {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
                     value: {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'y'
+                        name: 'y',
                       },
                       right: {
                         type: 'Literal',
-                        value: 15
-                      }
+                        value: 15,
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 operator: '=',
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              }
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '([(x),,(y)] = z = {});',
@@ -5950,32 +5950,32 @@ describe('Expressions - Group', () => {
                 elements: [
                   {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   null,
                   {
                     type: 'Identifier',
-                    name: 'y'
-                  }
-                ]
+                    name: 'y',
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 operator: '=',
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              }
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '([(x)] = z = {});',
@@ -5993,27 +5993,27 @@ describe('Expressions - Group', () => {
                 elements: [
                   {
                     type: 'Identifier',
-                    name: 'x'
-                  }
-                ]
+                    name: 'x',
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 operator: '=',
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              }
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '([...x, ...y]);',
@@ -6031,21 +6031,21 @@ describe('Expressions - Group', () => {
                   type: 'SpreadElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
+                    name: 'x',
+                  },
                 },
                 {
                   type: 'SpreadElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'y'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    name: 'y',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '([...x, y]);',
@@ -6063,18 +6063,18 @@ describe('Expressions - Group', () => {
                   type: 'SpreadElement',
                   argument: {
                     type: 'Identifier',
-                    name: 'x'
-                  }
+                    name: 'x',
+                  },
                 },
                 {
                   type: 'Identifier',
-                  name: 'y'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'y',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '([...x+y]); ',
@@ -6094,20 +6094,20 @@ describe('Expressions - Group', () => {
                     type: 'BinaryExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     right: {
                       type: 'Identifier',
-                      name: 'y'
+                      name: 'y',
                     },
-                    operator: '+'
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    operator: '+',
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '([...x+=y]);',
@@ -6127,20 +6127,20 @@ describe('Expressions - Group', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '+=',
                     right: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      name: 'y',
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '([...x=y]); ',
@@ -6160,20 +6160,20 @@ describe('Expressions - Group', () => {
                     type: 'AssignmentExpression',
                     left: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     operator: '=',
                     right: {
                       type: 'Identifier',
-                      name: 'y'
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      name: 'y',
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '({[foo()] : z} = z = {});',
@@ -6195,38 +6195,38 @@ describe('Expressions - Group', () => {
                       type: 'CallExpression',
                       callee: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
-                      arguments: []
+                      arguments: [],
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'z'
+                      name: 'z',
                     },
                     kind: 'init',
                     computed: true,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 operator: '=',
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              }
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({[foo()] : (z)} = z = {});',
@@ -6248,38 +6248,38 @@ describe('Expressions - Group', () => {
                       type: 'CallExpression',
                       callee: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
-                      arguments: []
+                      arguments: [],
                     },
                     value: {
                       type: 'Identifier',
-                      name: 'z'
+                      name: 'z',
                     },
                     kind: 'init',
                     computed: true,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 operator: '=',
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              }
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({[foo()] : foo().bar} = z = {});',
@@ -6301,9 +6301,9 @@ describe('Expressions - Group', () => {
                       type: 'CallExpression',
                       callee: {
                         type: 'Identifier',
-                        name: 'foo'
+                        name: 'foo',
                       },
-                      arguments: []
+                      arguments: [],
                     },
                     value: {
                       type: 'MemberExpression',
@@ -6311,40 +6311,40 @@ describe('Expressions - Group', () => {
                         type: 'CallExpression',
                         callee: {
                           type: 'Identifier',
-                          name: 'foo'
+                          name: 'foo',
                         },
-                        arguments: []
+                        arguments: [],
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'bar'
-                      }
+                        name: 'bar',
+                      },
                     },
                     kind: 'init',
                     computed: true,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 operator: '=',
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              }
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '([x,,...z] = z = {});',
@@ -6362,35 +6362,35 @@ describe('Expressions - Group', () => {
                 elements: [
                   {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   null,
                   {
                     type: 'RestElement',
                     argument: {
                       type: 'Identifier',
-                      name: 'z'
-                    }
-                  }
-                ]
+                      name: 'z',
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 operator: '=',
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              }
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({x: ((y, z) => z)["x"]} = z = {});',
@@ -6410,7 +6410,7 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'MemberExpression',
@@ -6419,51 +6419,51 @@ describe('Expressions - Group', () => {
                         generator: false,
                         body: {
                           type: 'Identifier',
-                          name: 'z'
+                          name: 'z',
                         },
                         params: [
                           {
                             type: 'Identifier',
-                            name: 'y'
+                            name: 'y',
                           },
                           {
                             type: 'Identifier',
-                            name: 'z'
-                          }
+                            name: 'z',
+                          },
                         ],
                         async: false,
-                        expression: true
+                        expression: true,
                       },
                       computed: true,
                       property: {
                         type: 'Literal',
-                        value: 'x'
-                      }
+                        value: 'x',
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: false
-                  }
-                ]
+                    shorthand: false,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 operator: '=',
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              }
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '([(({ x } = { x: 1 }) => x).a] = z = {});',
@@ -6486,7 +6486,7 @@ describe('Expressions - Group', () => {
                       generator: false,
                       body: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       params: [
                         {
@@ -6498,18 +6498,18 @@ describe('Expressions - Group', () => {
                                 type: 'Property',
                                 key: {
                                   type: 'Identifier',
-                                  name: 'x'
+                                  name: 'x',
                                 },
                                 value: {
                                   type: 'Identifier',
-                                  name: 'x'
+                                  name: 'x',
                                 },
                                 kind: 'init',
                                 computed: false,
                                 method: false,
-                                shorthand: true
-                              }
-                            ]
+                                shorthand: true,
+                              },
+                            ],
                           },
                           right: {
                             type: 'ObjectExpression',
@@ -6518,49 +6518,49 @@ describe('Expressions - Group', () => {
                                 type: 'Property',
                                 key: {
                                   type: 'Identifier',
-                                  name: 'x'
+                                  name: 'x',
                                 },
                                 value: {
                                   type: 'Literal',
-                                  value: 1
+                                  value: 1,
                                 },
                                 kind: 'init',
                                 computed: false,
                                 method: false,
-                                shorthand: false
-                              }
-                            ]
-                          }
-                        }
+                                shorthand: false,
+                              },
+                            ],
+                          },
+                        },
                       ],
                       async: false,
-                      expression: true
+                      expression: true,
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'a'
-                    }
-                  }
-                ]
+                      name: 'a',
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 operator: '=',
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              }
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '([ ...(a) ] = z = {});',
@@ -6580,28 +6580,28 @@ describe('Expressions - Group', () => {
                     type: 'RestElement',
                     argument: {
                       type: 'Identifier',
-                      name: 'a'
-                    }
-                  }
-                ]
+                      name: 'a',
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 operator: '=',
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              }
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '([ (foo.bar) ] = z = {});',
@@ -6621,33 +6621,33 @@ describe('Expressions - Group', () => {
                     type: 'MemberExpression',
                     object: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'bar'
-                    }
-                  }
-                ]
+                      name: 'bar',
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'AssignmentExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
                 operator: '=',
                 right: {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              }
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(foo)',
@@ -6660,11 +6660,11 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
 
     [
@@ -6678,11 +6678,11 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: 1
-            }
-          }
-        ]
-      }
+              value: 1,
+            },
+          },
+        ],
+      },
     ],
     [
       '("a")',
@@ -6695,11 +6695,11 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'Literal',
-              value: 'a'
-            }
-          }
-        ]
-      }
+              value: 'a',
+            },
+          },
+        ],
+      },
     ],
     [
       '("a","b","c","d","e","f")',
@@ -6715,33 +6715,33 @@ describe('Expressions - Group', () => {
               expressions: [
                 {
                   type: 'Literal',
-                  value: 'a'
+                  value: 'a',
                 },
                 {
                   type: 'Literal',
-                  value: 'b'
+                  value: 'b',
                 },
                 {
                   type: 'Literal',
-                  value: 'c'
+                  value: 'c',
                 },
                 {
                   type: 'Literal',
-                  value: 'd'
+                  value: 'd',
                 },
                 {
                   type: 'Literal',
-                  value: 'e'
+                  value: 'e',
                 },
                 {
                   type: 'Literal',
-                  value: 'f'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  value: 'f',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '[(a)] = 0',
@@ -6759,19 +6759,19 @@ describe('Expressions - Group', () => {
                 elements: [
                   {
                     type: 'Identifier',
-                    name: 'a'
-                  }
-                ]
+                    name: 'a',
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Literal',
-                value: 0
-              }
-            }
-          }
-        ]
-      }
+                value: 0,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '([...x.y] = z)',
@@ -6793,26 +6793,26 @@ describe('Expressions - Group', () => {
                       type: 'MemberExpression',
                       object: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       computed: false,
                       property: {
                         type: 'Identifier',
-                        name: 'y'
-                      }
-                    }
-                  }
-                ]
+                        name: 'y',
+                      },
+                    },
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'z'
-              }
-            }
-          }
-        ]
-      }
+                name: 'z',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'async("foo".bar);',
@@ -6838,7 +6838,7 @@ describe('Expressions - Group', () => {
                 start: 0,
                 end: 5,
                 range: [0, 5],
-                name: 'async'
+                name: 'async',
               },
               arguments: [
                 {
@@ -6851,23 +6851,23 @@ describe('Expressions - Group', () => {
                     start: 6,
                     end: 11,
                     range: [6, 11],
-                    value: 'foo'
+                    value: 'foo',
                   },
                   property: {
                     type: 'Identifier',
                     start: 12,
                     end: 15,
                     range: [12, 15],
-                    name: 'bar'
+                    name: 'bar',
                   },
-                  computed: false
-                }
-              ]
-            }
-          }
+                  computed: false,
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a = b)',
@@ -6894,20 +6894,20 @@ describe('Expressions - Group', () => {
                 start: 1,
                 end: 2,
                 range: [1, 2],
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'Identifier',
                 start: 5,
                 end: 6,
                 range: [5, 6],
-                name: 'b'
-              }
-            }
-          }
+                name: 'b',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '((x));',
@@ -6928,12 +6928,12 @@ describe('Expressions - Group', () => {
               start: 2,
               end: 3,
               range: [2, 3],
-              name: 'x'
-            }
-          }
+              name: 'x',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '((((((((((x))))))))));',
@@ -6954,12 +6954,12 @@ describe('Expressions - Group', () => {
               start: 10,
               end: 11,
               range: [10, 11],
-              name: 'x'
-            }
-          }
+              name: 'x',
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a, b);',
@@ -6986,21 +6986,21 @@ describe('Expressions - Group', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'b'
-                }
-              ]
-            }
-          }
+                  name: 'b',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a = 1, b = 2);',
@@ -7033,15 +7033,15 @@ describe('Expressions - Group', () => {
                     start: 1,
                     end: 2,
                     range: [1, 2],
-                    name: 'a'
+                    name: 'a',
                   },
                   right: {
                     type: 'Literal',
                     start: 5,
                     end: 6,
                     range: [5, 6],
-                    value: 1
-                  }
+                    value: 1,
+                  },
                 },
                 {
                   type: 'AssignmentExpression',
@@ -7054,22 +7054,22 @@ describe('Expressions - Group', () => {
                     start: 8,
                     end: 9,
                     range: [8, 9],
-                    name: 'b'
+                    name: 'b',
                   },
                   right: {
                     type: 'Literal',
                     start: 12,
                     end: 13,
                     range: [12, 13],
-                    value: 2
-                  }
-                }
-              ]
-            }
-          }
+                    value: 2,
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a) = 1;',
@@ -7096,20 +7096,20 @@ describe('Expressions - Group', () => {
                 start: 1,
                 end: 2,
                 range: [1, 2],
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'Literal',
                 start: 6,
                 end: 7,
                 range: [6, 7],
-                value: 1
-              }
-            }
-          }
+                value: 1,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a.b) = 1;',
@@ -7141,29 +7141,29 @@ describe('Expressions - Group', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  name: 'a'
+                  name: 'a',
                 },
                 property: {
                   type: 'Identifier',
                   start: 3,
                   end: 4,
                   range: [3, 4],
-                  name: 'b'
+                  name: 'b',
                 },
-                computed: false
+                computed: false,
               },
               right: {
                 type: 'Literal',
                 start: 8,
                 end: 9,
                 range: [8, 9],
-                value: 1
-              }
-            }
-          }
+                value: 1,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a[b]) = 1;',
@@ -7195,29 +7195,29 @@ describe('Expressions - Group', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  name: 'a'
+                  name: 'a',
                 },
                 property: {
                   type: 'Identifier',
                   start: 3,
                   end: 4,
                   range: [3, 4],
-                  name: 'b'
+                  name: 'b',
                 },
-                computed: true
+                computed: true,
               },
               right: {
                 type: 'Literal',
                 start: 9,
                 end: 10,
                 range: [9, 10],
-                value: 1
-              }
-            }
-          }
+                value: 1,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a.b().c().d) = 1;',
@@ -7269,51 +7269,51 @@ describe('Expressions - Group', () => {
                           start: 1,
                           end: 2,
                           range: [1, 2],
-                          name: 'a'
+                          name: 'a',
                         },
                         property: {
                           type: 'Identifier',
                           start: 3,
                           end: 4,
                           range: [3, 4],
-                          name: 'b'
+                          name: 'b',
                         },
-                        computed: false
+                        computed: false,
                       },
-                      arguments: []
+                      arguments: [],
                     },
                     property: {
                       type: 'Identifier',
                       start: 7,
                       end: 8,
                       range: [7, 8],
-                      name: 'c'
+                      name: 'c',
                     },
-                    computed: false
+                    computed: false,
                   },
-                  arguments: []
+                  arguments: [],
                 },
                 property: {
                   type: 'Identifier',
                   start: 11,
                   end: 12,
                   range: [11, 12],
-                  name: 'd'
+                  name: 'd',
                 },
-                computed: false
+                computed: false,
               },
               right: {
                 type: 'Literal',
                 start: 16,
                 end: 17,
                 range: [16, 17],
-                value: 1
-              }
-            }
-          }
+                value: 1,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(this.a) = 1;',
@@ -7344,29 +7344,29 @@ describe('Expressions - Group', () => {
                   type: 'ThisExpression',
                   start: 1,
                   end: 5,
-                  range: [1, 5]
+                  range: [1, 5],
                 },
                 property: {
                   type: 'Identifier',
                   start: 6,
                   end: 7,
                   range: [6, 7],
-                  name: 'a'
+                  name: 'a',
                 },
-                computed: false
+                computed: false,
               },
               right: {
                 type: 'Literal',
                 start: 11,
                 end: 12,
                 range: [11, 12],
-                value: 1
-              }
-            }
-          }
+                value: 1,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(this[b]) = 1;',
@@ -7397,29 +7397,29 @@ describe('Expressions - Group', () => {
                   type: 'ThisExpression',
                   start: 1,
                   end: 5,
-                  range: [1, 5]
+                  range: [1, 5],
                 },
                 property: {
                   type: 'Identifier',
                   start: 6,
                   end: 7,
                   range: [6, 7],
-                  name: 'b'
+                  name: 'b',
                 },
-                computed: true
+                computed: true,
               },
               right: {
                 type: 'Literal',
                 start: 12,
                 end: 13,
                 range: [12, 13],
-                value: 1
-              }
-            }
-          }
+                value: 1,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[x, y] = z;',
@@ -7437,23 +7437,23 @@ describe('Expressions - Group', () => {
                 elements: [
                   {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   {
                     type: 'Identifier',
-                    name: 'y'
-                  }
-                ]
+                    name: 'y',
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'Identifier',
-                name: 'z'
-              }
-            }
-          }
-        ]
-      }
+                name: 'z',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '([x, y] = z);',
@@ -7486,29 +7486,29 @@ describe('Expressions - Group', () => {
                     start: 2,
                     end: 3,
                     range: [2, 3],
-                    name: 'x'
+                    name: 'x',
                   },
                   {
                     type: 'Identifier',
                     start: 5,
                     end: 6,
                     range: [5, 6],
-                    name: 'y'
-                  }
-                ]
+                    name: 'y',
+                  },
+                ],
               },
               right: {
                 type: 'Identifier',
                 start: 10,
                 end: 11,
                 range: [10, 11],
-                name: 'z'
-              }
-            }
-          }
+                name: 'z',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '([[x, y] = z]);',
@@ -7547,31 +7547,31 @@ describe('Expressions - Group', () => {
                         start: 3,
                         end: 4,
                         range: [3, 4],
-                        name: 'x'
+                        name: 'x',
                       },
                       {
                         type: 'Identifier',
                         start: 6,
                         end: 7,
                         range: [6, 7],
-                        name: 'y'
-                      }
-                    ]
+                        name: 'y',
+                      },
+                    ],
                   },
                   right: {
                     type: 'Identifier',
                     start: 11,
                     end: 12,
                     range: [11, 12],
-                    name: 'z'
-                  }
-                }
-              ]
-            }
-          }
+                    name: 'z',
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a) += 1;',
@@ -7586,17 +7586,17 @@ describe('Expressions - Group', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '+=',
               right: {
                 type: 'Literal',
-                value: 1
-              }
-            }
-          }
-        ]
-      }
+                value: 1,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(a.b) += 1;',
@@ -7613,23 +7613,23 @@ describe('Expressions - Group', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'b'
-                }
+                  name: 'b',
+                },
               },
               operator: '+=',
               right: {
                 type: 'Literal',
-                value: 1
-              }
-            }
-          }
-        ]
-      }
+                value: 1,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(a[b]) += 1;',
@@ -7646,23 +7646,23 @@ describe('Expressions - Group', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 computed: true,
                 property: {
                   type: 'Identifier',
-                  name: 'b'
-                }
+                  name: 'b',
+                },
               },
               operator: '+=',
               right: {
                 type: 'Literal',
-                value: 1
-              }
-            }
-          }
-        ]
-      }
+                value: 1,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(a.b().c().d) += 1;',
@@ -7714,51 +7714,51 @@ describe('Expressions - Group', () => {
                           start: 1,
                           end: 2,
                           range: [1, 2],
-                          name: 'a'
+                          name: 'a',
                         },
                         property: {
                           type: 'Identifier',
                           start: 3,
                           end: 4,
                           range: [3, 4],
-                          name: 'b'
+                          name: 'b',
                         },
-                        computed: false
+                        computed: false,
                       },
-                      arguments: []
+                      arguments: [],
                     },
                     property: {
                       type: 'Identifier',
                       start: 7,
                       end: 8,
                       range: [7, 8],
-                      name: 'c'
+                      name: 'c',
                     },
-                    computed: false
+                    computed: false,
                   },
-                  arguments: []
+                  arguments: [],
                 },
                 property: {
                   type: 'Identifier',
                   start: 11,
                   end: 12,
                   range: [11, 12],
-                  name: 'd'
+                  name: 'd',
                 },
-                computed: false
+                computed: false,
               },
               right: {
                 type: 'Literal',
                 start: 17,
                 end: 18,
                 range: [17, 18],
-                value: 1
-              }
-            }
-          }
+                value: 1,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(this.a) += 1;',
@@ -7774,23 +7774,23 @@ describe('Expressions - Group', () => {
               left: {
                 type: 'MemberExpression',
                 object: {
-                  type: 'ThisExpression'
+                  type: 'ThisExpression',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               },
               operator: '+=',
               right: {
                 type: 'Literal',
-                value: 1
-              }
-            }
-          }
-        ]
-      }
+                value: 1,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '(this[b]) += 1;',
@@ -7806,23 +7806,23 @@ describe('Expressions - Group', () => {
               left: {
                 type: 'MemberExpression',
                 object: {
-                  type: 'ThisExpression'
+                  type: 'ThisExpression',
                 },
                 computed: true,
                 property: {
                   type: 'Identifier',
-                  name: 'b'
-                }
+                  name: 'b',
+                },
               },
               operator: '+=',
               right: {
                 type: 'Literal',
-                value: 1
-              }
-            }
-          }
-        ]
-      }
+                value: 1,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({});',
@@ -7835,11 +7835,11 @@ describe('Expressions - Group', () => {
             type: 'ExpressionStatement',
             expression: {
               type: 'ObjectExpression',
-              properties: []
-            }
-          }
-        ]
-      }
+              properties: [],
+            },
+          },
+        ],
+      },
     ],
     [
       '(a / b);',
@@ -7854,17 +7854,17 @@ describe('Expressions - Group', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'Identifier',
-                name: 'b'
+                name: 'b',
               },
-              operator: '/'
-            }
-          }
-        ]
-      }
+              operator: '/',
+            },
+          },
+        ],
+      },
     ],
     [
       '([delete foo.bar]);',
@@ -7885,21 +7885,21 @@ describe('Expressions - Group', () => {
                     type: 'MemberExpression',
                     object: {
                       type: 'Identifier',
-                      name: 'foo'
+                      name: 'foo',
                     },
                     computed: false,
                     property: {
                       type: 'Identifier',
-                      name: 'bar'
-                    }
+                      name: 'bar',
+                    },
                   },
-                  prefix: true
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  prefix: true,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '([{}]);',
@@ -7915,13 +7915,13 @@ describe('Expressions - Group', () => {
               elements: [
                 {
                   type: 'ObjectExpression',
-                  properties: []
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  properties: [],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(++x);',
@@ -7936,14 +7936,14 @@ describe('Expressions - Group', () => {
               type: 'UpdateExpression',
               argument: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '++',
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '(++x, y);',
@@ -7961,20 +7961,20 @@ describe('Expressions - Group', () => {
                   type: 'UpdateExpression',
                   argument: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   operator: '++',
-                  prefix: true
+                  prefix: true,
                 },
                 {
                   type: 'Identifier',
-                  name: 'y'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'y',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(x--);',
@@ -7989,14 +7989,14 @@ describe('Expressions - Group', () => {
               type: 'UpdateExpression',
               argument: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               operator: '--',
-              prefix: false
-            }
-          }
-        ]
-      }
+              prefix: false,
+            },
+          },
+        ],
+      },
     ],
     [
       '(x--, y);',
@@ -8014,20 +8014,20 @@ describe('Expressions - Group', () => {
                   type: 'UpdateExpression',
                   argument: {
                     type: 'Identifier',
-                    name: 'x'
+                    name: 'x',
                   },
                   operator: '--',
-                  prefix: false
+                  prefix: false,
                 },
                 {
                   type: 'Identifier',
-                  name: 'y'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'y',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '([].x);',
@@ -8042,17 +8042,17 @@ describe('Expressions - Group', () => {
               type: 'MemberExpression',
               object: {
                 type: 'ArrayExpression',
-                elements: []
+                elements: [],
               },
               computed: false,
               property: {
                 type: 'Identifier',
-                name: 'x'
-              }
-            }
-          }
-        ]
-      }
+                name: 'x',
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({} + 1);',
@@ -8067,17 +8067,17 @@ describe('Expressions - Group', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'ObjectExpression',
-                properties: []
+                properties: [],
               },
               right: {
                 type: 'Literal',
-                value: 1
+                value: 1,
               },
-              operator: '+'
-            }
-          }
-        ]
-      }
+              operator: '+',
+            },
+          },
+        ],
+      },
     ],
     [
       '(x + y) >= z',
@@ -8094,23 +8094,23 @@ describe('Expressions - Group', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
-                operator: '+'
+                operator: '+',
               },
               right: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
-              operator: '>='
-            }
-          }
-        ]
-      }
+              operator: '>=',
+            },
+          },
+        ],
+      },
     ],
     [
       '(x + y) <= z',
@@ -8127,23 +8127,23 @@ describe('Expressions - Group', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
-                operator: '+'
+                operator: '+',
               },
               right: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
-              operator: '<='
-            }
-          }
-        ]
-      }
+              operator: '<=',
+            },
+          },
+        ],
+      },
     ],
     [
       '(x + y) != z',
@@ -8160,23 +8160,23 @@ describe('Expressions - Group', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
-                operator: '+'
+                operator: '+',
               },
               right: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
-              operator: '!='
-            }
-          }
-        ]
-      }
+              operator: '!=',
+            },
+          },
+        ],
+      },
     ],
     [
       '(x + y) == z',
@@ -8193,23 +8193,23 @@ describe('Expressions - Group', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
-                operator: '+'
+                operator: '+',
               },
               right: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
-              operator: '=='
-            }
-          }
-        ]
-      }
+              operator: '==',
+            },
+          },
+        ],
+      },
     ],
     [
       '(x) / y',
@@ -8224,17 +8224,17 @@ describe('Expressions - Group', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'Identifier',
-                name: 'y'
+                name: 'y',
               },
-              operator: '/'
-            }
-          }
-        ]
-      }
+              operator: '/',
+            },
+          },
+        ],
+      },
     ],
     [
       '([a.b] = x);',
@@ -8257,7 +8257,7 @@ describe('Expressions - Group', () => {
                       name: 'a',
                       start: 2,
                       end: 3,
-                      range: [2, 3]
+                      range: [2, 3],
                     },
                     computed: false,
                     property: {
@@ -8265,16 +8265,16 @@ describe('Expressions - Group', () => {
                       name: 'b',
                       start: 4,
                       end: 5,
-                      range: [4, 5]
+                      range: [4, 5],
                     },
                     start: 2,
                     end: 5,
-                    range: [2, 5]
-                  }
+                    range: [2, 5],
+                  },
                 ],
                 start: 1,
                 end: 6,
-                range: [1, 6]
+                range: [1, 6],
               },
               operator: '=',
               right: {
@@ -8282,21 +8282,21 @@ describe('Expressions - Group', () => {
                 name: 'x',
                 start: 9,
                 end: 10,
-                range: [9, 10]
+                range: [9, 10],
               },
               start: 1,
               end: 10,
-              range: [1, 10]
+              range: [1, 10],
             },
             start: 0,
             end: 12,
-            range: [0, 12]
-          }
+            range: [0, 12],
+          },
         ],
         start: 0,
         end: 12,
-        range: [0, 12]
-      }
+        range: [0, 12],
+      },
     ],
     [
       '([target()[targetKey()]] = x);',
@@ -8321,12 +8321,12 @@ describe('Expressions - Group', () => {
                         name: 'target',
                         start: 2,
                         end: 8,
-                        range: [2, 8]
+                        range: [2, 8],
                       },
                       arguments: [],
                       start: 2,
                       end: 10,
-                      range: [2, 10]
+                      range: [2, 10],
                     },
                     computed: true,
                     property: {
@@ -8336,21 +8336,21 @@ describe('Expressions - Group', () => {
                         name: 'targetKey',
                         start: 11,
                         end: 20,
-                        range: [11, 20]
+                        range: [11, 20],
                       },
                       arguments: [],
                       start: 11,
                       end: 22,
-                      range: [11, 22]
+                      range: [11, 22],
                     },
                     start: 2,
                     end: 23,
-                    range: [2, 23]
-                  }
+                    range: [2, 23],
+                  },
                 ],
                 start: 1,
                 end: 24,
-                range: [1, 24]
+                range: [1, 24],
               },
               operator: '=',
               right: {
@@ -8358,21 +8358,21 @@ describe('Expressions - Group', () => {
                 name: 'x',
                 start: 27,
                 end: 28,
-                range: [27, 28]
+                range: [27, 28],
               },
               start: 1,
               end: 28,
-              range: [1, 28]
+              range: [1, 28],
             },
             start: 0,
             end: 30,
-            range: [0, 30]
-          }
+            range: [0, 30],
+          },
         ],
         start: 0,
         end: 30,
-        range: [0, 30]
-      }
+        range: [0, 30],
+      },
     ],
     [
       '([target()[targetKey(a=b)]] = x);',
@@ -8397,12 +8397,12 @@ describe('Expressions - Group', () => {
                         name: 'target',
                         start: 2,
                         end: 8,
-                        range: [2, 8]
+                        range: [2, 8],
                       },
                       arguments: [],
                       start: 2,
                       end: 10,
-                      range: [2, 10]
+                      range: [2, 10],
                     },
                     computed: true,
                     property: {
@@ -8412,7 +8412,7 @@ describe('Expressions - Group', () => {
                         name: 'targetKey',
                         start: 11,
                         end: 20,
-                        range: [11, 20]
+                        range: [11, 20],
                       },
                       arguments: [
                         {
@@ -8422,7 +8422,7 @@ describe('Expressions - Group', () => {
                             name: 'a',
                             start: 21,
                             end: 22,
-                            range: [21, 22]
+                            range: [21, 22],
                           },
                           operator: '=',
                           right: {
@@ -8430,25 +8430,25 @@ describe('Expressions - Group', () => {
                             name: 'b',
                             start: 23,
                             end: 24,
-                            range: [23, 24]
+                            range: [23, 24],
                           },
                           start: 21,
                           end: 24,
-                          range: [21, 24]
-                        }
+                          range: [21, 24],
+                        },
                       ],
                       start: 11,
                       end: 25,
-                      range: [11, 25]
+                      range: [11, 25],
                     },
                     start: 2,
                     end: 26,
-                    range: [2, 26]
-                  }
+                    range: [2, 26],
+                  },
                 ],
                 start: 1,
                 end: 27,
-                range: [1, 27]
+                range: [1, 27],
               },
               operator: '=',
               right: {
@@ -8456,21 +8456,21 @@ describe('Expressions - Group', () => {
                 name: 'x',
                 start: 30,
                 end: 31,
-                range: [30, 31]
+                range: [30, 31],
               },
               start: 1,
               end: 31,
-              range: [1, 31]
+              range: [1, 31],
             },
             start: 0,
             end: 33,
-            range: [0, 33]
-          }
+            range: [0, 33],
+          },
         ],
         start: 0,
         end: 33,
-        range: [0, 33]
-      }
+        range: [0, 33],
+      },
     ],
     [
       '([].length) = y',
@@ -8490,7 +8490,7 @@ describe('Expressions - Group', () => {
                   elements: [],
                   start: 1,
                   end: 3,
-                  range: [1, 3]
+                  range: [1, 3],
                 },
                 computed: false,
                 property: {
@@ -8498,11 +8498,11 @@ describe('Expressions - Group', () => {
                   name: 'length',
                   start: 4,
                   end: 10,
-                  range: [4, 10]
+                  range: [4, 10],
                 },
                 start: 1,
                 end: 10,
-                range: [1, 10]
+                range: [1, 10],
               },
               operator: '=',
               right: {
@@ -8510,21 +8510,21 @@ describe('Expressions - Group', () => {
                 name: 'y',
                 start: 14,
                 end: 15,
-                range: [14, 15]
+                range: [14, 15],
               },
               start: 0,
               end: 15,
-              range: [0, 15]
+              range: [0, 15],
             },
             start: 0,
             end: 15,
-            range: [0, 15]
-          }
+            range: [0, 15],
+          },
         ],
         start: 0,
         end: 15,
-        range: [0, 15]
-      }
+        range: [0, 15],
+      },
     ],
     [
       '([x].length) = y',
@@ -8547,12 +8547,12 @@ describe('Expressions - Group', () => {
                       name: 'x',
                       start: 2,
                       end: 3,
-                      range: [2, 3]
-                    }
+                      range: [2, 3],
+                    },
                   ],
                   start: 1,
                   end: 4,
-                  range: [1, 4]
+                  range: [1, 4],
                 },
                 computed: false,
                 property: {
@@ -8560,11 +8560,11 @@ describe('Expressions - Group', () => {
                   name: 'length',
                   start: 5,
                   end: 11,
-                  range: [5, 11]
+                  range: [5, 11],
                 },
                 start: 1,
                 end: 11,
-                range: [1, 11]
+                range: [1, 11],
               },
               operator: '=',
               right: {
@@ -8572,21 +8572,21 @@ describe('Expressions - Group', () => {
                 name: 'y',
                 start: 15,
                 end: 16,
-                range: [15, 16]
+                range: [15, 16],
               },
               start: 0,
               end: 16,
-              range: [0, 16]
+              range: [0, 16],
             },
             start: 0,
             end: 16,
-            range: [0, 16]
-          }
+            range: [0, 16],
+          },
         ],
         start: 0,
         end: 16,
-        range: [0, 16]
-      }
+        range: [0, 16],
+      },
     ],
     [
       '({}.length) = z',
@@ -8606,7 +8606,7 @@ describe('Expressions - Group', () => {
                   properties: [],
                   start: 1,
                   end: 3,
-                  range: [1, 3]
+                  range: [1, 3],
                 },
                 computed: false,
                 property: {
@@ -8614,11 +8614,11 @@ describe('Expressions - Group', () => {
                   name: 'length',
                   start: 4,
                   end: 10,
-                  range: [4, 10]
+                  range: [4, 10],
                 },
                 start: 1,
                 end: 10,
-                range: [1, 10]
+                range: [1, 10],
               },
               operator: '=',
               right: {
@@ -8626,21 +8626,21 @@ describe('Expressions - Group', () => {
                 name: 'z',
                 start: 14,
                 end: 15,
-                range: [14, 15]
+                range: [14, 15],
               },
               start: 0,
               end: 15,
-              range: [0, 15]
+              range: [0, 15],
             },
             start: 0,
             end: 15,
-            range: [0, 15]
-          }
+            range: [0, 15],
+          },
         ],
         start: 0,
         end: 15,
-        range: [0, 15]
-      }
+        range: [0, 15],
+      },
     ],
     [
       '({x: y}.length) = z',
@@ -8665,14 +8665,14 @@ describe('Expressions - Group', () => {
                         name: 'x',
                         start: 2,
                         end: 3,
-                        range: [2, 3]
+                        range: [2, 3],
                       },
                       value: {
                         type: 'Identifier',
                         name: 'y',
                         start: 5,
                         end: 6,
-                        range: [5, 6]
+                        range: [5, 6],
                       },
                       kind: 'init',
                       computed: false,
@@ -8680,12 +8680,12 @@ describe('Expressions - Group', () => {
                       shorthand: false,
                       start: 2,
                       end: 6,
-                      range: [2, 6]
-                    }
+                      range: [2, 6],
+                    },
                   ],
                   start: 1,
                   end: 7,
-                  range: [1, 7]
+                  range: [1, 7],
                 },
                 computed: false,
                 property: {
@@ -8693,11 +8693,11 @@ describe('Expressions - Group', () => {
                   name: 'length',
                   start: 8,
                   end: 14,
-                  range: [8, 14]
+                  range: [8, 14],
                 },
                 start: 1,
                 end: 14,
-                range: [1, 14]
+                range: [1, 14],
               },
               operator: '=',
               right: {
@@ -8705,21 +8705,21 @@ describe('Expressions - Group', () => {
                 name: 'z',
                 start: 18,
                 end: 19,
-                range: [18, 19]
+                range: [18, 19],
               },
               start: 0,
               end: 19,
-              range: [0, 19]
+              range: [0, 19],
             },
             start: 0,
             end: 19,
-            range: [0, 19]
-          }
+            range: [0, 19],
+          },
         ],
         start: 0,
         end: 19,
-        range: [0, 19]
-      }
+        range: [0, 19],
+      },
     ],
     [
       '({x});',
@@ -8740,14 +8740,14 @@ describe('Expressions - Group', () => {
                     name: 'x',
                     start: 2,
                     end: 3,
-                    range: [2, 3]
+                    range: [2, 3],
                   },
                   value: {
                     type: 'Identifier',
                     name: 'x',
                     start: 2,
                     end: 3,
-                    range: [2, 3]
+                    range: [2, 3],
                   },
                   kind: 'init',
                   computed: false,
@@ -8755,22 +8755,22 @@ describe('Expressions - Group', () => {
                   shorthand: true,
                   start: 2,
                   end: 3,
-                  range: [2, 3]
-                }
+                  range: [2, 3],
+                },
               ],
               start: 1,
               end: 4,
-              range: [1, 4]
+              range: [1, 4],
             },
             start: 0,
             end: 6,
-            range: [0, 6]
-          }
+            range: [0, 6],
+          },
         ],
         start: 0,
         end: 6,
-        range: [0, 6]
-      }
+        range: [0, 6],
+      },
     ],
     [
       '({x} = y);',
@@ -8793,14 +8793,14 @@ describe('Expressions - Group', () => {
                       name: 'x',
                       start: 2,
                       end: 3,
-                      range: [2, 3]
+                      range: [2, 3],
                     },
                     value: {
                       type: 'Identifier',
                       name: 'x',
                       start: 2,
                       end: 3,
-                      range: [2, 3]
+                      range: [2, 3],
                     },
                     kind: 'init',
                     computed: false,
@@ -8808,12 +8808,12 @@ describe('Expressions - Group', () => {
                     shorthand: true,
                     start: 2,
                     end: 3,
-                    range: [2, 3]
-                  }
+                    range: [2, 3],
+                  },
                 ],
                 start: 1,
                 end: 4,
-                range: [1, 4]
+                range: [1, 4],
               },
               operator: '=',
               right: {
@@ -8821,21 +8821,21 @@ describe('Expressions - Group', () => {
                 name: 'y',
                 start: 7,
                 end: 8,
-                range: [7, 8]
+                range: [7, 8],
               },
               start: 1,
               end: 8,
-              range: [1, 8]
+              range: [1, 8],
             },
             start: 0,
             end: 10,
-            range: [0, 10]
-          }
+            range: [0, 10],
+          },
         ],
         start: 0,
         end: 10,
-        range: [0, 10]
-      }
+        range: [0, 10],
+      },
     ],
     [
       '({[x]:y});',
@@ -8856,14 +8856,14 @@ describe('Expressions - Group', () => {
                     name: 'x',
                     start: 3,
                     end: 4,
-                    range: [3, 4]
+                    range: [3, 4],
                   },
                   value: {
                     type: 'Identifier',
                     name: 'y',
                     start: 6,
                     end: 7,
-                    range: [6, 7]
+                    range: [6, 7],
                   },
                   kind: 'init',
                   computed: true,
@@ -8871,22 +8871,22 @@ describe('Expressions - Group', () => {
                   shorthand: false,
                   start: 2,
                   end: 7,
-                  range: [2, 7]
-                }
+                  range: [2, 7],
+                },
               ],
               start: 1,
               end: 8,
-              range: [1, 8]
+              range: [1, 8],
             },
             start: 0,
             end: 10,
-            range: [0, 10]
-          }
+            range: [0, 10],
+          },
         ],
         start: 0,
         end: 10,
-        range: [0, 10]
-      }
+        range: [0, 10],
+      },
     ],
     [
       String.raw`(++/[^\x0f+-\x6d+$-)-]/giuy[(0[true] = {})])`,
@@ -8907,8 +8907,8 @@ describe('Expressions - Group', () => {
                   value: /[^\x0f+-\x6d+$-)-]/giuy,
                   regex: {
                     pattern: String.raw`[^\x0f+-\x6d+$-)-]`,
-                    flags: 'giuy'
-                  }
+                    flags: 'giuy',
+                  },
                 },
                 computed: true,
                 property: {
@@ -8917,27 +8917,27 @@ describe('Expressions - Group', () => {
                     type: 'MemberExpression',
                     object: {
                       type: 'Literal',
-                      value: 0
+                      value: 0,
                     },
                     computed: true,
                     property: {
                       type: 'Literal',
-                      value: true
-                    }
+                      value: true,
+                    },
                   },
                   operator: '=',
                   right: {
                     type: 'ObjectExpression',
-                    properties: []
-                  }
-                }
+                    properties: [],
+                  },
+                },
               },
               operator: '++',
-              prefix: true
-            }
-          }
-        ]
-      }
+              prefix: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '({[x]:y} = z);',
@@ -8960,14 +8960,14 @@ describe('Expressions - Group', () => {
                       name: 'x',
                       start: 3,
                       end: 4,
-                      range: [3, 4]
+                      range: [3, 4],
                     },
                     value: {
                       type: 'Identifier',
                       name: 'y',
                       start: 6,
                       end: 7,
-                      range: [6, 7]
+                      range: [6, 7],
                     },
                     kind: 'init',
                     computed: true,
@@ -8975,12 +8975,12 @@ describe('Expressions - Group', () => {
                     shorthand: false,
                     start: 2,
                     end: 7,
-                    range: [2, 7]
-                  }
+                    range: [2, 7],
+                  },
                 ],
                 start: 1,
                 end: 8,
-                range: [1, 8]
+                range: [1, 8],
               },
               operator: '=',
               right: {
@@ -8988,21 +8988,21 @@ describe('Expressions - Group', () => {
                 name: 'z',
                 start: 11,
                 end: 12,
-                range: [11, 12]
+                range: [11, 12],
               },
               start: 1,
               end: 12,
-              range: [1, 12]
+              range: [1, 12],
             },
             start: 0,
             end: 14,
-            range: [0, 14]
-          }
+            range: [0, 14],
+          },
         ],
         start: 0,
         end: 14,
-        range: [0, 14]
-      }
+        range: [0, 14],
+      },
     ],
     [
       '({[x](){}});',
@@ -9023,7 +9023,7 @@ describe('Expressions - Group', () => {
                     name: 'x',
                     start: 3,
                     end: 4,
-                    range: [3, 4]
+                    range: [3, 4],
                   },
                   value: {
                     type: 'FunctionExpression',
@@ -9033,14 +9033,14 @@ describe('Expressions - Group', () => {
                       body: [],
                       start: 7,
                       end: 9,
-                      range: [7, 9]
+                      range: [7, 9],
                     },
                     async: false,
                     generator: false,
                     id: null,
                     start: 5,
                     end: 9,
-                    range: [5, 9]
+                    range: [5, 9],
                   },
                   kind: 'init',
                   computed: true,
@@ -9048,22 +9048,22 @@ describe('Expressions - Group', () => {
                   shorthand: false,
                   start: 2,
                   end: 9,
-                  range: [2, 9]
-                }
+                  range: [2, 9],
+                },
               ],
               start: 1,
               end: 10,
-              range: [1, 10]
+              range: [1, 10],
             },
             start: 0,
             end: 12,
-            range: [0, 12]
-          }
+            range: [0, 12],
+          },
         ],
         start: 0,
         end: 12,
-        range: [0, 12]
-      }
+        range: [0, 12],
+      },
     ],
     [
       '({ident: [foo, bar].join("")})',
@@ -9084,7 +9084,7 @@ describe('Expressions - Group', () => {
                     name: 'ident',
                     start: 2,
                     end: 7,
-                    range: [2, 7]
+                    range: [2, 7],
                   },
                   value: {
                     type: 'CallExpression',
@@ -9098,19 +9098,19 @@ describe('Expressions - Group', () => {
                             name: 'foo',
                             start: 10,
                             end: 13,
-                            range: [10, 13]
+                            range: [10, 13],
                           },
                           {
                             type: 'Identifier',
                             name: 'bar',
                             start: 15,
                             end: 18,
-                            range: [15, 18]
-                          }
+                            range: [15, 18],
+                          },
                         ],
                         start: 9,
                         end: 19,
-                        range: [9, 19]
+                        range: [9, 19],
                       },
                       computed: false,
                       property: {
@@ -9118,11 +9118,11 @@ describe('Expressions - Group', () => {
                         name: 'join',
                         start: 20,
                         end: 24,
-                        range: [20, 24]
+                        range: [20, 24],
                       },
                       start: 9,
                       end: 24,
-                      range: [9, 24]
+                      range: [9, 24],
                     },
                     arguments: [
                       {
@@ -9130,12 +9130,12 @@ describe('Expressions - Group', () => {
                         value: '',
                         start: 25,
                         end: 27,
-                        range: [25, 27]
-                      }
+                        range: [25, 27],
+                      },
                     ],
                     start: 9,
                     end: 28,
-                    range: [9, 28]
+                    range: [9, 28],
                   },
                   kind: 'init',
                   computed: false,
@@ -9143,22 +9143,22 @@ describe('Expressions - Group', () => {
                   shorthand: false,
                   start: 2,
                   end: 28,
-                  range: [2, 28]
-                }
+                  range: [2, 28],
+                },
               ],
               start: 1,
               end: 29,
-              range: [1, 29]
+              range: [1, 29],
             },
             start: 0,
             end: 30,
-            range: [0, 30]
-          }
+            range: [0, 30],
+          },
         ],
         start: 0,
         end: 30,
-        range: [0, 30]
-      }
+        range: [0, 30],
+      },
     ],
     [
       '({ident: [foo, bar] + x})',
@@ -9179,7 +9179,7 @@ describe('Expressions - Group', () => {
                     name: 'ident',
                     start: 2,
                     end: 7,
-                    range: [2, 7]
+                    range: [2, 7],
                   },
                   value: {
                     type: 'BinaryExpression',
@@ -9191,31 +9191,31 @@ describe('Expressions - Group', () => {
                           name: 'foo',
                           start: 10,
                           end: 13,
-                          range: [10, 13]
+                          range: [10, 13],
                         },
                         {
                           type: 'Identifier',
                           name: 'bar',
                           start: 15,
                           end: 18,
-                          range: [15, 18]
-                        }
+                          range: [15, 18],
+                        },
                       ],
                       start: 9,
                       end: 19,
-                      range: [9, 19]
+                      range: [9, 19],
                     },
                     right: {
                       type: 'Identifier',
                       name: 'x',
                       start: 22,
                       end: 23,
-                      range: [22, 23]
+                      range: [22, 23],
                     },
                     operator: '+',
                     start: 9,
                     end: 23,
-                    range: [9, 23]
+                    range: [9, 23],
                   },
                   kind: 'init',
                   computed: false,
@@ -9223,22 +9223,22 @@ describe('Expressions - Group', () => {
                   shorthand: false,
                   start: 2,
                   end: 23,
-                  range: [2, 23]
-                }
+                  range: [2, 23],
+                },
               ],
               start: 1,
               end: 24,
-              range: [1, 24]
+              range: [1, 24],
             },
             start: 0,
             end: 25,
-            range: [0, 25]
-          }
+            range: [0, 25],
+          },
         ],
         start: 0,
         end: 25,
-        range: [0, 25]
-      }
+        range: [0, 25],
+      },
     ],
     [
       '({ident: {x: y}})',
@@ -9273,7 +9273,7 @@ describe('Expressions - Group', () => {
                     start: 2,
                     end: 7,
                     range: [2, 7],
-                    name: 'ident'
+                    name: 'ident',
                   },
                   value: {
                     type: 'ObjectExpression',
@@ -9294,27 +9294,27 @@ describe('Expressions - Group', () => {
                           start: 10,
                           end: 11,
                           range: [10, 11],
-                          name: 'x'
+                          name: 'x',
                         },
                         value: {
                           type: 'Identifier',
                           start: 13,
                           end: 14,
                           range: [13, 14],
-                          name: 'y'
+                          name: 'y',
                         },
-                        kind: 'init'
-                      }
-                    ]
+                        kind: 'init',
+                      },
+                    ],
                   },
-                  kind: 'init'
-                }
-              ]
-            }
-          }
+                  kind: 'init',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({ident: {x}})',
@@ -9349,7 +9349,7 @@ describe('Expressions - Group', () => {
                     start: 2,
                     end: 7,
                     range: [2, 7],
-                    name: 'ident'
+                    name: 'ident',
                   },
                   value: {
                     type: 'ObjectExpression',
@@ -9370,7 +9370,7 @@ describe('Expressions - Group', () => {
                           start: 10,
                           end: 11,
                           range: [10, 11],
-                          name: 'x'
+                          name: 'x',
                         },
                         kind: 'init',
                         value: {
@@ -9378,19 +9378,19 @@ describe('Expressions - Group', () => {
                           start: 10,
                           end: 11,
                           range: [10, 11],
-                          name: 'x'
-                        }
-                      }
-                    ]
+                          name: 'x',
+                        },
+                      },
+                    ],
                   },
-                  kind: 'init'
-                }
-              ]
-            }
-          }
+                  kind: 'init',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({ident: {x: y}.join("")})',
@@ -9425,7 +9425,7 @@ describe('Expressions - Group', () => {
                     start: 2,
                     end: 7,
                     range: [2, 7],
-                    name: 'ident'
+                    name: 'ident',
                   },
                   value: {
                     type: 'CallExpression',
@@ -9456,27 +9456,27 @@ describe('Expressions - Group', () => {
                               start: 10,
                               end: 11,
                               range: [10, 11],
-                              name: 'x'
+                              name: 'x',
                             },
                             value: {
                               type: 'Identifier',
                               start: 13,
                               end: 14,
                               range: [13, 14],
-                              name: 'y'
+                              name: 'y',
                             },
-                            kind: 'init'
-                          }
-                        ]
+                            kind: 'init',
+                          },
+                        ],
                       },
                       property: {
                         type: 'Identifier',
                         start: 16,
                         end: 20,
                         range: [16, 20],
-                        name: 'join'
+                        name: 'join',
                       },
-                      computed: false
+                      computed: false,
                     },
                     arguments: [
                       {
@@ -9484,18 +9484,18 @@ describe('Expressions - Group', () => {
                         start: 21,
                         end: 23,
                         range: [21, 23],
-                        value: ''
-                      }
-                    ]
+                        value: '',
+                      },
+                    ],
                   },
-                  kind: 'init'
-                }
-              ]
-            }
-          }
+                  kind: 'init',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({ident: {x:y}/x})',
@@ -9530,7 +9530,7 @@ describe('Expressions - Group', () => {
                     start: 2,
                     end: 7,
                     range: [2, 7],
-                    name: 'ident'
+                    name: 'ident',
                   },
                   value: {
                     type: 'BinaryExpression',
@@ -9556,18 +9556,18 @@ describe('Expressions - Group', () => {
                             start: 10,
                             end: 11,
                             range: [10, 11],
-                            name: 'x'
+                            name: 'x',
                           },
                           value: {
                             type: 'Identifier',
                             start: 12,
                             end: 13,
                             range: [12, 13],
-                            name: 'y'
+                            name: 'y',
                           },
-                          kind: 'init'
-                        }
-                      ]
+                          kind: 'init',
+                        },
+                      ],
                     },
                     operator: '/',
                     right: {
@@ -9575,17 +9575,17 @@ describe('Expressions - Group', () => {
                       start: 15,
                       end: 16,
                       range: [15, 16],
-                      name: 'x'
-                    }
+                      name: 'x',
+                    },
                   },
-                  kind: 'init'
-                }
-              ]
-            }
-          }
+                  kind: 'init',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({ident: {x:y}/x/g})',
@@ -9606,7 +9606,7 @@ describe('Expressions - Group', () => {
                     name: 'ident',
                     start: 2,
                     end: 7,
-                    range: [2, 7]
+                    range: [2, 7],
                   },
                   value: {
                     type: 'BinaryExpression',
@@ -9622,14 +9622,14 @@ describe('Expressions - Group', () => {
                               name: 'x',
                               start: 10,
                               end: 11,
-                              range: [10, 11]
+                              range: [10, 11],
                             },
                             value: {
                               type: 'Identifier',
                               name: 'y',
                               start: 12,
                               end: 13,
-                              range: [12, 13]
+                              range: [12, 13],
                             },
                             kind: 'init',
                             computed: false,
@@ -9637,36 +9637,36 @@ describe('Expressions - Group', () => {
                             shorthand: false,
                             start: 10,
                             end: 13,
-                            range: [10, 13]
-                          }
+                            range: [10, 13],
+                          },
                         ],
                         start: 9,
                         end: 14,
-                        range: [9, 14]
+                        range: [9, 14],
                       },
                       right: {
                         type: 'Identifier',
                         name: 'x',
                         start: 15,
                         end: 16,
-                        range: [15, 16]
+                        range: [15, 16],
                       },
                       operator: '/',
                       start: 9,
                       end: 16,
-                      range: [9, 16]
+                      range: [9, 16],
                     },
                     right: {
                       type: 'Identifier',
                       name: 'g',
                       start: 17,
                       end: 18,
-                      range: [17, 18]
+                      range: [17, 18],
                     },
                     operator: '/',
                     start: 9,
                     end: 18,
-                    range: [9, 18]
+                    range: [9, 18],
                   },
                   kind: 'init',
                   computed: false,
@@ -9674,22 +9674,22 @@ describe('Expressions - Group', () => {
                   shorthand: false,
                   start: 2,
                   end: 18,
-                  range: [2, 18]
-                }
+                  range: [2, 18],
+                },
               ],
               start: 1,
               end: 19,
-              range: [1, 19]
+              range: [1, 19],
             },
             start: 0,
             end: 20,
-            range: [0, 20]
-          }
+            range: [0, 20],
+          },
         ],
         start: 0,
         end: 20,
-        range: [0, 20]
-      }
+        range: [0, 20],
+      },
     ],
     [
       '(a / b);',
@@ -9715,7 +9715,7 @@ describe('Expressions - Group', () => {
                 start: 1,
                 end: 2,
                 range: [1, 2],
-                name: 'a'
+                name: 'a',
               },
               operator: '/',
               right: {
@@ -9723,13 +9723,13 @@ describe('Expressions - Group', () => {
                 start: 5,
                 end: 6,
                 range: [5, 6],
-                name: 'b'
-              }
-            }
-          }
+                name: 'b',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(delete foo.bar);',
@@ -9762,22 +9762,22 @@ describe('Expressions - Group', () => {
                   start: 8,
                   end: 11,
                   range: [8, 11],
-                  name: 'foo'
+                  name: 'foo',
                 },
                 property: {
                   type: 'Identifier',
                   start: 12,
                   end: 15,
                   range: [12, 15],
-                  name: 'bar'
+                  name: 'bar',
                 },
-                computed: false
-              }
-            }
-          }
+                computed: false,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '([delete foo.bar]);',
@@ -9801,7 +9801,7 @@ describe('Expressions - Group', () => {
                       name: 'foo',
                       start: 9,
                       end: 12,
-                      range: [9, 12]
+                      range: [9, 12],
                     },
                     computed: false,
                     property: {
@@ -9809,31 +9809,31 @@ describe('Expressions - Group', () => {
                       name: 'bar',
                       start: 13,
                       end: 16,
-                      range: [13, 16]
+                      range: [13, 16],
                     },
                     start: 9,
                     end: 16,
-                    range: [9, 16]
+                    range: [9, 16],
                   },
                   prefix: true,
                   start: 2,
                   end: 16,
-                  range: [2, 16]
-                }
+                  range: [2, 16],
+                },
               ],
               start: 1,
               end: 17,
-              range: [1, 17]
+              range: [1, 17],
             },
             start: 0,
             end: 19,
-            range: [0, 19]
-          }
+            range: [0, 19],
+          },
         ],
         start: 0,
         end: 19,
-        range: [0, 19]
-      }
+        range: [0, 19],
+      },
     ],
     [
       '([a / b]);',
@@ -9865,7 +9865,7 @@ describe('Expressions - Group', () => {
                     start: 2,
                     end: 3,
                     range: [2, 3],
-                    name: 'a'
+                    name: 'a',
                   },
                   operator: '/',
                   right: {
@@ -9873,15 +9873,15 @@ describe('Expressions - Group', () => {
                     start: 6,
                     end: 7,
                     range: [6, 7],
-                    name: 'b'
-                  }
-                }
-              ]
-            }
-          }
+                    name: 'b',
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(x--);',
@@ -9899,23 +9899,23 @@ describe('Expressions - Group', () => {
                 name: 'x',
                 start: 1,
                 end: 2,
-                range: [1, 2]
+                range: [1, 2],
               },
               operator: '--',
               prefix: false,
               start: 1,
               end: 4,
-              range: [1, 4]
+              range: [1, 4],
             },
             start: 0,
             end: 6,
-            range: [0, 6]
-          }
+            range: [0, 6],
+          },
         ],
         start: 0,
         end: 6,
-        range: [0, 6]
-      }
+        range: [0, 6],
+      },
     ],
     [
       '(x--, y);',
@@ -9949,22 +9949,22 @@ describe('Expressions - Group', () => {
                     start: 1,
                     end: 2,
                     range: [1, 2],
-                    name: 'x'
-                  }
+                    name: 'x',
+                  },
                 },
                 {
                   type: 'Identifier',
                   start: 6,
                   end: 7,
                   range: [6, 7],
-                  name: 'y'
-                }
-              ]
-            }
-          }
+                  name: 'y',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(x + y) >= z',
@@ -9995,7 +9995,7 @@ describe('Expressions - Group', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  name: 'x'
+                  name: 'x',
                 },
                 operator: '+',
                 right: {
@@ -10003,8 +10003,8 @@ describe('Expressions - Group', () => {
                   start: 5,
                   end: 6,
                   range: [5, 6],
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               },
               operator: '>=',
               right: {
@@ -10012,13 +10012,13 @@ describe('Expressions - Group', () => {
                 start: 11,
                 end: 12,
                 range: [11, 12],
-                name: 'z'
-              }
-            }
-          }
+                name: 'z',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(x + y) <= z',
@@ -10049,7 +10049,7 @@ describe('Expressions - Group', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  name: 'x'
+                  name: 'x',
                 },
                 operator: '+',
                 right: {
@@ -10057,8 +10057,8 @@ describe('Expressions - Group', () => {
                   start: 5,
                   end: 6,
                   range: [5, 6],
-                  name: 'y'
-                }
+                  name: 'y',
+                },
               },
               operator: '<=',
               right: {
@@ -10066,13 +10066,13 @@ describe('Expressions - Group', () => {
                 start: 11,
                 end: 12,
                 range: [11, 12],
-                name: 'z'
-              }
-            }
-          }
+                name: 'z',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(x + y) != z',
@@ -10089,23 +10089,23 @@ describe('Expressions - Group', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
-                operator: '+'
+                operator: '+',
               },
               right: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
-              operator: '!='
-            }
-          }
-        ]
-      }
+              operator: '!=',
+            },
+          },
+        ],
+      },
     ],
     [
       '(x + y) == z',
@@ -10125,41 +10125,41 @@ describe('Expressions - Group', () => {
                   name: 'x',
                   start: 1,
                   end: 2,
-                  range: [1, 2]
+                  range: [1, 2],
                 },
                 right: {
                   type: 'Identifier',
                   name: 'y',
                   start: 5,
                   end: 6,
-                  range: [5, 6]
+                  range: [5, 6],
                 },
                 operator: '+',
                 start: 1,
                 end: 6,
-                range: [1, 6]
+                range: [1, 6],
               },
               right: {
                 type: 'Identifier',
                 name: 'z',
                 start: 11,
                 end: 12,
-                range: [11, 12]
+                range: [11, 12],
               },
               operator: '==',
               start: 0,
               end: 12,
-              range: [0, 12]
+              range: [0, 12],
             },
             start: 0,
             end: 12,
-            range: [0, 12]
-          }
+            range: [0, 12],
+          },
         ],
         start: 0,
         end: 12,
-        range: [0, 12]
-      }
+        range: [0, 12],
+      },
     ],
     [
       '(true)',
@@ -10175,17 +10175,17 @@ describe('Expressions - Group', () => {
               value: true,
               start: 1,
               end: 5,
-              range: [1, 5]
+              range: [1, 5],
             },
             start: 0,
             end: 6,
-            range: [0, 6]
-          }
+            range: [0, 6],
+          },
         ],
         start: 0,
         end: 6,
-        range: [0, 6]
-      }
+        range: [0, 6],
+      },
     ],
 
     [
@@ -10217,7 +10217,7 @@ describe('Expressions - Group', () => {
                   start: 1,
                   end: 4,
                   range: [1, 4],
-                  name: 'foo'
+                  name: 'foo',
                 },
                 operator: '+',
                 right: {
@@ -10230,7 +10230,7 @@ describe('Expressions - Group', () => {
                     start: 8,
                     end: 11,
                     range: [8, 11],
-                    name: 'bar'
+                    name: 'bar',
                   },
                   operator: '+',
                   right: {
@@ -10238,9 +10238,9 @@ describe('Expressions - Group', () => {
                     start: 14,
                     end: 17,
                     range: [14, 17],
-                    name: 'boo'
-                  }
-                }
+                    name: 'boo',
+                  },
+                },
               },
               operator: '+',
               right: {
@@ -10248,13 +10248,13 @@ describe('Expressions - Group', () => {
                 start: 21,
                 end: 25,
                 range: [21, 25],
-                name: 'ding'
-              }
-            }
-          }
+                name: 'ding',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[(a)] = 0',
@@ -10287,22 +10287,22 @@ describe('Expressions - Group', () => {
                     start: 2,
                     end: 3,
                     range: [2, 3],
-                    name: 'a'
-                  }
-                ]
+                    name: 'a',
+                  },
+                ],
               },
               right: {
                 type: 'Literal',
                 start: 8,
                 end: 9,
                 range: [8, 9],
-                value: 0
-              }
-            }
-          }
+                value: 0,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[(a) = 0] = 1',
@@ -10340,30 +10340,30 @@ describe('Expressions - Group', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'a'
+                      name: 'a',
                     },
                     right: {
                       type: 'Literal',
                       start: 7,
                       end: 8,
                       range: [7, 8],
-                      value: 0
-                    }
-                  }
-                ]
+                      value: 0,
+                    },
+                  },
+                ],
               },
               right: {
                 type: 'Literal',
                 start: 12,
                 end: 13,
                 range: [12, 13],
-                value: 1
-              }
-            }
-          }
+                value: 1,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[(a.b)] = 0',
@@ -10401,31 +10401,31 @@ describe('Expressions - Group', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'a'
+                      name: 'a',
                     },
                     property: {
                       type: 'Identifier',
                       start: 4,
                       end: 5,
                       range: [4, 5],
-                      name: 'b'
+                      name: 'b',
                     },
-                    computed: false
-                  }
-                ]
+                    computed: false,
+                  },
+                ],
               },
               right: {
                 type: 'Literal',
                 start: 10,
                 end: 11,
                 range: [10, 11],
-                value: 0
-              }
-            }
-          }
+                value: 0,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({a:(b)} = 0)',
@@ -10466,31 +10466,31 @@ describe('Expressions - Group', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
                       start: 5,
                       end: 6,
                       range: [5, 6],
-                      name: 'b'
+                      name: 'b',
                     },
-                    kind: 'init'
-                  }
-                ]
+                    kind: 'init',
+                  },
+                ],
               },
               right: {
                 type: 'Literal',
                 start: 11,
                 end: 12,
                 range: [11, 12],
-                value: 0
-              }
-            }
-          }
+                value: 0,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({a:(b.c)} = 0)',
@@ -10531,7 +10531,7 @@ describe('Expressions - Group', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'MemberExpression',
@@ -10543,33 +10543,33 @@ describe('Expressions - Group', () => {
                         start: 5,
                         end: 6,
                         range: [5, 6],
-                        name: 'b'
+                        name: 'b',
                       },
                       property: {
                         type: 'Identifier',
                         start: 7,
                         end: 8,
                         range: [7, 8],
-                        name: 'c'
+                        name: 'c',
                       },
-                      computed: false
+                      computed: false,
                     },
-                    kind: 'init'
-                  }
-                ]
+                    kind: 'init',
+                  },
+                ],
               },
               right: {
                 type: 'Literal',
                 start: 13,
                 end: 14,
                 range: [13, 14],
-                value: 0
-              }
-            }
-          }
+                value: 0,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({a:(b = 0)})',
@@ -10604,7 +10604,7 @@ describe('Expressions - Group', () => {
                     start: 2,
                     end: 3,
                     range: [2, 3],
-                    name: 'a'
+                    name: 'a',
                   },
                   value: {
                     type: 'AssignmentExpression',
@@ -10617,24 +10617,24 @@ describe('Expressions - Group', () => {
                       start: 5,
                       end: 6,
                       range: [5, 6],
-                      name: 'b'
+                      name: 'b',
                     },
                     right: {
                       type: 'Literal',
                       start: 9,
                       end: 10,
                       range: [9, 10],
-                      value: 0
-                    }
+                      value: 0,
+                    },
                   },
-                  kind: 'init'
-                }
-              ]
-            }
-          }
+                  kind: 'init',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'c = ({b} = b);',
@@ -10661,7 +10661,7 @@ describe('Expressions - Group', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'c'
+                name: 'c',
               },
               right: {
                 type: 'AssignmentExpression',
@@ -10688,7 +10688,7 @@ describe('Expressions - Group', () => {
                         start: 6,
                         end: 7,
                         range: [6, 7],
-                        name: 'b'
+                        name: 'b',
                       },
                       kind: 'init',
                       value: {
@@ -10696,24 +10696,24 @@ describe('Expressions - Group', () => {
                         start: 6,
                         end: 7,
                         range: [6, 7],
-                        name: 'b'
-                      }
-                    }
-                  ]
+                        name: 'b',
+                      },
+                    },
+                  ],
                 },
                 right: {
                   type: 'Identifier',
                   start: 11,
                   end: 12,
                   range: [11, 12],
-                  name: 'b'
-                }
-              }
-            }
-          }
+                  name: 'b',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({b} = b);',
@@ -10754,7 +10754,7 @@ describe('Expressions - Group', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     value: {
@@ -10762,23 +10762,23 @@ describe('Expressions - Group', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'b'
-                    }
-                  }
-                ]
+                      name: 'b',
+                    },
+                  },
+                ],
               },
               right: {
                 type: 'Identifier',
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'b'
-              }
-            }
-          }
+                name: 'b',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '([b] = b);',
@@ -10811,22 +10811,22 @@ describe('Expressions - Group', () => {
                     start: 2,
                     end: 3,
                     range: [2, 3],
-                    name: 'b'
-                  }
-                ]
+                    name: 'b',
+                  },
+                ],
               },
               right: {
                 type: 'Identifier',
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'b'
-              }
-            }
-          }
+                name: 'b',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({a, b} = {a: 1, b: 2});',
@@ -10867,7 +10867,7 @@ describe('Expressions - Group', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'a'
+                      name: 'a',
                     },
                     kind: 'init',
                     value: {
@@ -10875,8 +10875,8 @@ describe('Expressions - Group', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'a'
-                    }
+                      name: 'a',
+                    },
                   },
                   {
                     type: 'Property',
@@ -10891,7 +10891,7 @@ describe('Expressions - Group', () => {
                       start: 5,
                       end: 6,
                       range: [5, 6],
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     value: {
@@ -10899,10 +10899,10 @@ describe('Expressions - Group', () => {
                       start: 5,
                       end: 6,
                       range: [5, 6],
-                      name: 'b'
-                    }
-                  }
-                ]
+                      name: 'b',
+                    },
+                  },
+                ],
               },
               right: {
                 type: 'ObjectExpression',
@@ -10923,16 +10923,16 @@ describe('Expressions - Group', () => {
                       start: 11,
                       end: 12,
                       range: [11, 12],
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Literal',
                       start: 14,
                       end: 15,
                       range: [14, 15],
-                      value: 1
+                      value: 1,
                     },
-                    kind: 'init'
+                    kind: 'init',
                   },
                   {
                     type: 'Property',
@@ -10947,24 +10947,24 @@ describe('Expressions - Group', () => {
                       start: 17,
                       end: 18,
                       range: [17, 18],
-                      name: 'b'
+                      name: 'b',
                     },
                     value: {
                       type: 'Literal',
                       start: 20,
                       end: 21,
                       range: [20, 21],
-                      value: 2
+                      value: 2,
                     },
-                    kind: 'init'
-                  }
-                ]
-              }
-            }
-          }
+                    kind: 'init',
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[a, b] = [1, 2]',
@@ -10982,13 +10982,13 @@ describe('Expressions - Group', () => {
                 elements: [
                   {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                ]
+                    name: 'b',
+                  },
+                ],
               },
               operator: '=',
               right: {
@@ -10996,18 +10996,18 @@ describe('Expressions - Group', () => {
                 elements: [
                   {
                     type: 'Literal',
-                    value: 1
+                    value: 1,
                   },
                   {
                     type: 'Literal',
-                    value: 2
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
+                    value: 2,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({ responseText: text } = res)',
@@ -11048,31 +11048,31 @@ describe('Expressions - Group', () => {
                       start: 3,
                       end: 15,
                       range: [3, 15],
-                      name: 'responseText'
+                      name: 'responseText',
                     },
                     value: {
                       type: 'Identifier',
                       start: 17,
                       end: 21,
                       range: [17, 21],
-                      name: 'text'
+                      name: 'text',
                     },
-                    kind: 'init'
-                  }
-                ]
+                    kind: 'init',
+                  },
+                ],
               },
               right: {
                 type: 'Identifier',
                 start: 26,
                 end: 29,
                 range: [26, 29],
-                name: 'res'
-              }
-            }
-          }
+                name: 'res',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a) = {}',
@@ -11099,20 +11099,20 @@ describe('Expressions - Group', () => {
                 start: 1,
                 end: 2,
                 range: [1, 2],
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'ObjectExpression',
                 start: 6,
                 end: 8,
                 range: [6, 8],
-                properties: []
-              }
-            }
-          }
+                properties: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a.b) = {}',
@@ -11129,23 +11129,23 @@ describe('Expressions - Group', () => {
                 type: 'MemberExpression',
                 object: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 computed: false,
                 property: {
                   type: 'Identifier',
-                  name: 'b'
-                }
+                  name: 'b',
+                },
               },
               operator: '=',
               right: {
                 type: 'ObjectExpression',
-                properties: []
-              }
-            }
-          }
-        ]
-      }
+                properties: [],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'test = { a: 1 }',
@@ -11172,7 +11172,7 @@ describe('Expressions - Group', () => {
                 start: 0,
                 end: 4,
                 range: [0, 4],
-                name: 'test'
+                name: 'test',
               },
               right: {
                 type: 'ObjectExpression',
@@ -11193,24 +11193,24 @@ describe('Expressions - Group', () => {
                       start: 9,
                       end: 10,
                       range: [9, 10],
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Literal',
                       start: 12,
                       end: 13,
                       range: [12, 13],
-                      value: 1
+                      value: 1,
                     },
-                    kind: 'init'
-                  }
-                ]
-              }
-            }
-          }
+                    kind: 'init',
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(f().a) = 1;',
@@ -11247,31 +11247,31 @@ describe('Expressions - Group', () => {
                     start: 1,
                     end: 2,
                     range: [1, 2],
-                    name: 'f'
+                    name: 'f',
                   },
-                  arguments: []
+                  arguments: [],
                 },
                 property: {
                   type: 'Identifier',
                   start: 5,
                   end: 6,
                   range: [5, 6],
-                  name: 'a'
+                  name: 'a',
                 },
-                computed: false
+                computed: false,
               },
               right: {
                 type: 'Literal',
                 start: 10,
                 end: 11,
                 range: [10, 11],
-                value: 1
-              }
-            }
-          }
+                value: 1,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(obj[0]) = 1;',
@@ -11303,29 +11303,29 @@ describe('Expressions - Group', () => {
                   start: 1,
                   end: 4,
                   range: [1, 4],
-                  name: 'obj'
+                  name: 'obj',
                 },
                 property: {
                   type: 'Literal',
                   start: 5,
                   end: 6,
                   range: [5, 6],
-                  value: 0
+                  value: 0,
                 },
-                computed: true
+                computed: true,
               },
               right: {
                 type: 'Literal',
                 start: 11,
                 end: 12,
                 range: [11, 12],
-                value: 1
-              }
-            }
-          }
+                value: 1,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(obj.a) = 1;',
@@ -11357,29 +11357,29 @@ describe('Expressions - Group', () => {
                   start: 1,
                   end: 4,
                   range: [1, 4],
-                  name: 'obj'
+                  name: 'obj',
                 },
                 property: {
                   type: 'Identifier',
                   start: 5,
                   end: 6,
                   range: [5, 6],
-                  name: 'a'
+                  name: 'a',
                 },
-                computed: false
+                computed: false,
               },
               right: {
                 type: 'Literal',
                 start: 10,
                 end: 11,
                 range: [10, 11],
-                value: 1
-              }
-            }
-          }
+                value: 1,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({a:((((a1))))} = {a:20})',
@@ -11420,18 +11420,18 @@ describe('Expressions - Group', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Identifier',
                       start: 8,
                       end: 10,
                       range: [8, 10],
-                      name: 'a1'
+                      name: 'a1',
                     },
-                    kind: 'init'
-                  }
-                ]
+                    kind: 'init',
+                  },
+                ],
               },
               right: {
                 type: 'ObjectExpression',
@@ -11452,24 +11452,24 @@ describe('Expressions - Group', () => {
                       start: 19,
                       end: 20,
                       range: [19, 20],
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'Literal',
                       start: 21,
                       end: 23,
                       range: [21, 23],
-                      value: 20
+                      value: 20,
                     },
-                    kind: 'init'
-                  }
-                ]
-              }
-            }
-          }
+                    kind: 'init',
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({a:a1 = r1 = 44} = {})',
@@ -11510,7 +11510,7 @@ describe('Expressions - Group', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'AssignmentPattern',
@@ -11522,7 +11522,7 @@ describe('Expressions - Group', () => {
                         start: 4,
                         end: 6,
                         range: [4, 6],
-                        name: 'a1'
+                        name: 'a1',
                       },
                       right: {
                         type: 'AssignmentExpression',
@@ -11535,33 +11535,33 @@ describe('Expressions - Group', () => {
                           start: 9,
                           end: 11,
                           range: [9, 11],
-                          name: 'r1'
+                          name: 'r1',
                         },
                         right: {
                           type: 'Literal',
                           start: 14,
                           end: 16,
                           range: [14, 16],
-                          value: 44
-                        }
-                      }
+                          value: 44,
+                        },
+                      },
                     },
-                    kind: 'init'
-                  }
-                ]
+                    kind: 'init',
+                  },
+                ],
               },
               right: {
                 type: 'ObjectExpression',
                 start: 20,
                 end: 22,
                 range: [20, 22],
-                properties: []
-              }
-            }
-          }
+                properties: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({a:a1 = r1} = {})',
@@ -11602,7 +11602,7 @@ describe('Expressions - Group', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'a'
+                      name: 'a',
                     },
                     value: {
                       type: 'AssignmentPattern',
@@ -11614,32 +11614,32 @@ describe('Expressions - Group', () => {
                         start: 4,
                         end: 6,
                         range: [4, 6],
-                        name: 'a1'
+                        name: 'a1',
                       },
                       right: {
                         type: 'Identifier',
                         start: 9,
                         end: 11,
                         range: [9, 11],
-                        name: 'r1'
-                      }
+                        name: 'r1',
+                      },
                     },
-                    kind: 'init'
-                  }
-                ]
+                    kind: 'init',
+                  },
+                ],
               },
               right: {
                 type: 'ObjectExpression',
                 start: 15,
                 end: 17,
                 range: [15, 17],
-                properties: []
-              }
-            }
-          }
+                properties: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[...{a}] = [{}]',
@@ -11691,7 +11691,7 @@ describe('Expressions - Group', () => {
                             start: 5,
                             end: 6,
                             range: [5, 6],
-                            name: 'a'
+                            name: 'a',
                           },
                           kind: 'init',
                           value: {
@@ -11699,13 +11699,13 @@ describe('Expressions - Group', () => {
                             start: 5,
                             end: 6,
                             range: [5, 6],
-                            name: 'a'
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
+                            name: 'a',
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
               },
               right: {
                 type: 'ArrayExpression',
@@ -11718,15 +11718,15 @@ describe('Expressions - Group', () => {
                     start: 12,
                     end: 14,
                     range: [12, 14],
-                    properties: []
-                  }
-                ]
-              }
-            }
-          }
+                    properties: [],
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({x:z = 1, x1:y = 20} = {});',
@@ -11767,7 +11767,7 @@ describe('Expressions - Group', () => {
                       start: 2,
                       end: 3,
                       range: [2, 3],
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'AssignmentPattern',
@@ -11779,17 +11779,17 @@ describe('Expressions - Group', () => {
                         start: 4,
                         end: 5,
                         range: [4, 5],
-                        name: 'z'
+                        name: 'z',
                       },
                       right: {
                         type: 'Literal',
                         start: 8,
                         end: 9,
                         range: [8, 9],
-                        value: 1
-                      }
+                        value: 1,
+                      },
                     },
-                    kind: 'init'
+                    kind: 'init',
                   },
                   {
                     type: 'Property',
@@ -11804,7 +11804,7 @@ describe('Expressions - Group', () => {
                       start: 11,
                       end: 13,
                       range: [11, 13],
-                      name: 'x1'
+                      name: 'x1',
                     },
                     value: {
                       type: 'AssignmentPattern',
@@ -11816,32 +11816,32 @@ describe('Expressions - Group', () => {
                         start: 14,
                         end: 15,
                         range: [14, 15],
-                        name: 'y'
+                        name: 'y',
                       },
                       right: {
                         type: 'Literal',
                         start: 18,
                         end: 20,
                         range: [18, 20],
-                        value: 20
-                      }
+                        value: 20,
+                      },
                     },
-                    kind: 'init'
-                  }
-                ]
+                    kind: 'init',
+                  },
+                ],
               },
               right: {
                 type: 'ObjectExpression',
                 start: 24,
                 end: 26,
                 range: [24, 26],
-                properties: []
-              }
-            }
-          }
+                properties: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({ x } = { x: 3 });',
@@ -11882,7 +11882,7 @@ describe('Expressions - Group', () => {
                       start: 3,
                       end: 4,
                       range: [3, 4],
-                      name: 'x'
+                      name: 'x',
                     },
                     kind: 'init',
                     value: {
@@ -11890,10 +11890,10 @@ describe('Expressions - Group', () => {
                       start: 3,
                       end: 4,
                       range: [3, 4],
-                      name: 'x'
-                    }
-                  }
-                ]
+                      name: 'x',
+                    },
+                  },
+                ],
               },
               right: {
                 type: 'ObjectExpression',
@@ -11914,24 +11914,24 @@ describe('Expressions - Group', () => {
                       start: 11,
                       end: 12,
                       range: [11, 12],
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'Literal',
                       start: 14,
                       end: 15,
                       range: [14, 15],
-                      value: 3
+                      value: 3,
                     },
-                    kind: 'init'
-                  }
-                ]
-              }
-            }
-          }
+                    kind: 'init',
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[{x:x, y:y}, [a,b,c]]',
@@ -11972,16 +11972,16 @@ describe('Expressions - Group', () => {
                         start: 2,
                         end: 3,
                         range: [2, 3],
-                        name: 'x'
+                        name: 'x',
                       },
                       value: {
                         type: 'Identifier',
                         start: 4,
                         end: 5,
                         range: [4, 5],
-                        name: 'x'
+                        name: 'x',
                       },
-                      kind: 'init'
+                      kind: 'init',
                     },
                     {
                       type: 'Property',
@@ -11996,18 +11996,18 @@ describe('Expressions - Group', () => {
                         start: 7,
                         end: 8,
                         range: [7, 8],
-                        name: 'y'
+                        name: 'y',
                       },
                       value: {
                         type: 'Identifier',
                         start: 9,
                         end: 10,
                         range: [9, 10],
-                        name: 'y'
+                        name: 'y',
                       },
-                      kind: 'init'
-                    }
-                  ]
+                      kind: 'init',
+                    },
+                  ],
                 },
                 {
                   type: 'ArrayExpression',
@@ -12020,30 +12020,30 @@ describe('Expressions - Group', () => {
                       start: 14,
                       end: 15,
                       range: [14, 15],
-                      name: 'a'
+                      name: 'a',
                     },
                     {
                       type: 'Identifier',
                       start: 16,
                       end: 17,
                       range: [16, 17],
-                      name: 'b'
+                      name: 'b',
                     },
                     {
                       type: 'Identifier',
                       start: 18,
                       end: 19,
                       range: [18, 19],
-                      name: 'c'
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                      name: 'c',
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
 
     [
@@ -12087,39 +12087,39 @@ describe('Expressions - Group', () => {
                         start: 1,
                         end: 2,
                         range: [1, 2],
-                        name: 'x'
+                        name: 'x',
                       },
                       property: {
                         type: 'Identifier',
                         start: 3,
                         end: 4,
                         range: [3, 4],
-                        name: 'a'
+                        name: 'a',
                       },
-                      computed: false
+                      computed: false,
                     },
                     right: {
                       type: 'Identifier',
                       start: 5,
                       end: 6,
                       range: [5, 6],
-                      name: 'a'
-                    }
-                  }
-                ]
+                      name: 'a',
+                    },
+                  },
+                ],
               },
               right: {
                 type: 'Literal',
                 start: 10,
                 end: 11,
                 range: [10, 11],
-                value: 0
-              }
-            }
-          }
+                value: 0,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
 
     [
@@ -12140,35 +12140,35 @@ describe('Expressions - Group', () => {
                     type: 'Property',
                     key: {
                       type: 'Identifier',
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'AssignmentPattern',
                       left: {
                         type: 'Identifier',
-                        name: 'x'
+                        name: 'x',
                       },
                       right: {
                         type: 'Literal',
-                        value: 10
-                      }
+                        value: 10,
+                      },
                     },
                     kind: 'init',
                     computed: false,
                     method: false,
-                    shorthand: true
-                  }
-                ]
+                    shorthand: true,
+                  },
+                ],
               },
               operator: '=',
               right: {
                 type: 'ObjectExpression',
-                properties: []
-              }
-            }
-          }
-        ]
-      }
+                properties: [],
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({ q } = { x = 10 } = {});',
@@ -12209,7 +12209,7 @@ describe('Expressions - Group', () => {
                       start: 3,
                       end: 4,
                       range: [3, 4],
-                      name: 'q'
+                      name: 'q',
                     },
                     kind: 'init',
                     value: {
@@ -12217,10 +12217,10 @@ describe('Expressions - Group', () => {
                       start: 3,
                       end: 4,
                       range: [3, 4],
-                      name: 'q'
-                    }
-                  }
-                ]
+                      name: 'q',
+                    },
+                  },
+                ],
               },
               right: {
                 type: 'AssignmentExpression',
@@ -12247,7 +12247,7 @@ describe('Expressions - Group', () => {
                         start: 11,
                         end: 12,
                         range: [11, 12],
-                        name: 'x'
+                        name: 'x',
                       },
                       kind: 'init',
                       value: {
@@ -12260,32 +12260,32 @@ describe('Expressions - Group', () => {
                           start: 11,
                           end: 12,
                           range: [11, 12],
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Literal',
                           start: 15,
                           end: 17,
                           range: [15, 17],
-                          value: 10
-                        }
-                      }
-                    }
-                  ]
+                          value: 10,
+                        },
+                      },
+                    },
+                  ],
                 },
                 right: {
                   type: 'ObjectExpression',
                   start: 22,
                   end: 24,
                   range: [22, 24],
-                  properties: []
-                }
-              }
-            }
-          }
+                  properties: [],
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(true ? { x = true } = {} : { x = false } = {})',
@@ -12311,7 +12311,7 @@ describe('Expressions - Group', () => {
                 start: 1,
                 end: 5,
                 range: [1, 5],
-                value: true
+                value: true,
               },
               consequent: {
                 type: 'AssignmentExpression',
@@ -12338,7 +12338,7 @@ describe('Expressions - Group', () => {
                         start: 10,
                         end: 11,
                         range: [10, 11],
-                        name: 'x'
+                        name: 'x',
                       },
                       kind: 'init',
                       value: {
@@ -12351,26 +12351,26 @@ describe('Expressions - Group', () => {
                           start: 10,
                           end: 11,
                           range: [10, 11],
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Literal',
                           start: 14,
                           end: 18,
                           range: [14, 18],
-                          value: true
-                        }
-                      }
-                    }
-                  ]
+                          value: true,
+                        },
+                      },
+                    },
+                  ],
                 },
                 right: {
                   type: 'ObjectExpression',
                   start: 23,
                   end: 25,
                   range: [23, 25],
-                  properties: []
-                }
+                  properties: [],
+                },
               },
               alternate: {
                 type: 'AssignmentExpression',
@@ -12397,7 +12397,7 @@ describe('Expressions - Group', () => {
                         start: 30,
                         end: 31,
                         range: [30, 31],
-                        name: 'x'
+                        name: 'x',
                       },
                       kind: 'init',
                       value: {
@@ -12410,32 +12410,32 @@ describe('Expressions - Group', () => {
                           start: 30,
                           end: 31,
                           range: [30, 31],
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Literal',
                           start: 34,
                           end: 39,
                           range: [34, 39],
-                          value: false
-                        }
-                      }
-                    }
-                  ]
+                          value: false,
+                        },
+                      },
+                    },
+                  ],
                 },
                 right: {
                   type: 'ObjectExpression',
                   start: 44,
                   end: 46,
                   range: [44, 46],
-                  properties: []
-                }
-              }
-            }
-          }
+                  properties: [],
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(q, { x = 10 } = {});',
@@ -12451,7 +12451,7 @@ describe('Expressions - Group', () => {
               expressions: [
                 {
                   type: 'Identifier',
-                  name: 'q'
+                  name: 'q',
                 },
                 {
                   type: 'AssignmentExpression',
@@ -12462,37 +12462,37 @@ describe('Expressions - Group', () => {
                         type: 'Property',
                         key: {
                           type: 'Identifier',
-                          name: 'x'
+                          name: 'x',
                         },
                         value: {
                           type: 'AssignmentPattern',
                           left: {
                             type: 'Identifier',
-                            name: 'x'
+                            name: 'x',
                           },
                           right: {
                             type: 'Literal',
-                            value: 10
-                          }
+                            value: 10,
+                          },
                         },
                         kind: 'init',
                         computed: false,
                         method: false,
-                        shorthand: true
-                      }
-                    ]
+                        shorthand: true,
+                      },
+                    ],
                   },
                   operator: '=',
                   right: {
                     type: 'ObjectExpression',
-                    properties: []
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                    properties: [],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'function a(a = b += 1, c = d +=1) {}',
@@ -12513,7 +12513,7 @@ describe('Expressions - Group', () => {
               start: 9,
               end: 10,
               range: [9, 10],
-              name: 'a'
+              name: 'a',
             },
             generator: false,
             async: false,
@@ -12528,7 +12528,7 @@ describe('Expressions - Group', () => {
                   start: 11,
                   end: 12,
                   range: [11, 12],
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'AssignmentExpression',
@@ -12541,16 +12541,16 @@ describe('Expressions - Group', () => {
                     start: 15,
                     end: 16,
                     range: [15, 16],
-                    name: 'b'
+                    name: 'b',
                   },
                   right: {
                     type: 'Literal',
                     start: 20,
                     end: 21,
                     range: [20, 21],
-                    value: 1
-                  }
-                }
+                    value: 1,
+                  },
+                },
               },
               {
                 type: 'AssignmentPattern',
@@ -12562,7 +12562,7 @@ describe('Expressions - Group', () => {
                   start: 23,
                   end: 24,
                   range: [23, 24],
-                  name: 'c'
+                  name: 'c',
                 },
                 right: {
                   type: 'AssignmentExpression',
@@ -12575,29 +12575,29 @@ describe('Expressions - Group', () => {
                     start: 27,
                     end: 28,
                     range: [27, 28],
-                    name: 'd'
+                    name: 'd',
                   },
                   right: {
                     type: 'Literal',
                     start: 31,
                     end: 32,
                     range: [31, 32],
-                    value: 1
-                  }
-                }
-              }
+                    value: 1,
+                  },
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
               start: 34,
               end: 36,
               range: [34, 36],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[...z = 1]',
@@ -12635,23 +12635,23 @@ describe('Expressions - Group', () => {
                       start: 4,
                       end: 5,
                       range: [4, 5],
-                      name: 'z'
+                      name: 'z',
                     },
                     right: {
                       type: 'Literal',
                       start: 8,
                       end: 9,
                       range: [8, 9],
-                      value: 1
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      value: 1,
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     /* ['[x, y, ...[z] = [1]]', Context.None, {
       "type": "Program",
@@ -12731,7 +12731,7 @@ describe('Expressions - Group', () => {
                     start: 1,
                     end: 2,
                     range: [1, 2],
-                    name: 'x'
+                    name: 'x',
                   },
                   {
                     type: 'ObjectPattern',
@@ -12752,7 +12752,7 @@ describe('Expressions - Group', () => {
                           start: 5,
                           end: 6,
                           range: [5, 6],
-                          name: 'y'
+                          name: 'y',
                         },
                         kind: 'init',
                         value: {
@@ -12765,20 +12765,20 @@ describe('Expressions - Group', () => {
                             start: 5,
                             end: 6,
                             range: [5, 6],
-                            name: 'y'
+                            name: 'y',
                           },
                           right: {
                             type: 'Literal',
                             start: 9,
                             end: 10,
                             range: [9, 10],
-                            value: 1
-                          }
-                        }
-                      }
-                    ]
-                  }
-                ]
+                            value: 1,
+                          },
+                        },
+                      },
+                    ],
+                  },
+                ],
               },
               right: {
                 type: 'ArrayExpression',
@@ -12791,22 +12791,22 @@ describe('Expressions - Group', () => {
                     start: 16,
                     end: 17,
                     range: [16, 17],
-                    value: 0
+                    value: 0,
                   },
                   {
                     type: 'ObjectExpression',
                     start: 19,
                     end: 21,
                     range: [19, 21],
-                    properties: []
-                  }
-                ]
-              }
-            }
-          }
+                    properties: [],
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[x, {y = 1}] = [0, {}]',
@@ -12839,7 +12839,7 @@ describe('Expressions - Group', () => {
                     start: 1,
                     end: 2,
                     range: [1, 2],
-                    name: 'x'
+                    name: 'x',
                   },
                   {
                     type: 'ObjectPattern',
@@ -12860,7 +12860,7 @@ describe('Expressions - Group', () => {
                           start: 5,
                           end: 6,
                           range: [5, 6],
-                          name: 'y'
+                          name: 'y',
                         },
                         kind: 'init',
                         value: {
@@ -12873,20 +12873,20 @@ describe('Expressions - Group', () => {
                             start: 5,
                             end: 6,
                             range: [5, 6],
-                            name: 'y'
+                            name: 'y',
                           },
                           right: {
                             type: 'Literal',
                             start: 9,
                             end: 10,
                             range: [9, 10],
-                            value: 1
-                          }
-                        }
-                      }
-                    ]
-                  }
-                ]
+                            value: 1,
+                          },
+                        },
+                      },
+                    ],
+                  },
+                ],
               },
               right: {
                 type: 'ArrayExpression',
@@ -12899,22 +12899,22 @@ describe('Expressions - Group', () => {
                     start: 16,
                     end: 17,
                     range: [16, 17],
-                    value: 0
+                    value: 0,
                   },
                   {
                     type: 'ObjectExpression',
                     start: 19,
                     end: 21,
                     range: [19, 21],
-                    properties: []
-                  }
-                ]
-              }
-            }
-          }
+                    properties: [],
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function x([ a, b ]){}',
@@ -12931,28 +12931,28 @@ describe('Expressions - Group', () => {
                 elements: [
                   {
                     type: 'Identifier',
-                    name: 'a'
+                    name: 'a',
                   },
                   {
                     type: 'Identifier',
-                    name: 'b'
-                  }
-                ]
-              }
+                    name: 'b',
+                  },
+                ],
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: false,
             generator: false,
             id: {
               type: 'Identifier',
-              name: 'x'
-            }
-          }
-        ]
-      }
+              name: 'x',
+            },
+          },
+        ],
+      },
     ],
     [
       'a0({});',
@@ -12978,7 +12978,7 @@ describe('Expressions - Group', () => {
                 start: 0,
                 end: 2,
                 range: [0, 2],
-                name: 'a0'
+                name: 'a0',
               },
               arguments: [
                 {
@@ -12986,14 +12986,14 @@ describe('Expressions - Group', () => {
                   start: 3,
                   end: 5,
                   range: [3, 5],
-                  properties: []
-                }
-              ]
-            }
-          }
+                  properties: [],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a) = 0',
@@ -13008,17 +13008,17 @@ describe('Expressions - Group', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '=',
               right: {
                 type: 'Literal',
-                value: 0
-              }
-            }
-          }
-        ]
-      }
+                value: 0,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       '({ a: 1 }).a === 1',
@@ -13063,27 +13063,27 @@ describe('Expressions - Group', () => {
                         start: 3,
                         end: 4,
                         range: [3, 4],
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'Literal',
                         start: 6,
                         end: 7,
                         range: [6, 7],
-                        value: 1
+                        value: 1,
                       },
-                      kind: 'init'
-                    }
-                  ]
+                      kind: 'init',
+                    },
+                  ],
                 },
                 property: {
                   type: 'Identifier',
                   start: 11,
                   end: 12,
                   range: [11, 12],
-                  name: 'a'
+                  name: 'a',
                 },
-                computed: false
+                computed: false,
               },
               operator: '===',
               right: {
@@ -13091,13 +13091,13 @@ describe('Expressions - Group', () => {
                 start: 17,
                 end: 18,
                 range: [17, 18],
-                value: 1
-              }
-            }
-          }
+                value: 1,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '[{x:x = 1, y:y = 2}, [a = 3, b = 4, c = 5]] = {};',
@@ -13144,7 +13144,7 @@ describe('Expressions - Group', () => {
                           start: 2,
                           end: 3,
                           range: [2, 3],
-                          name: 'x'
+                          name: 'x',
                         },
                         value: {
                           type: 'AssignmentPattern',
@@ -13156,7 +13156,7 @@ describe('Expressions - Group', () => {
                             start: 4,
                             end: 5,
                             range: [4, 5],
-                            name: 'x'
+                            name: 'x',
                           },
                           right: {
                             type: 'Literal',
@@ -13164,10 +13164,10 @@ describe('Expressions - Group', () => {
                             end: 9,
                             range: [8, 9],
                             value: 1,
-                            raw: '1'
-                          }
+                            raw: '1',
+                          },
                         },
-                        kind: 'init'
+                        kind: 'init',
                       },
                       {
                         type: 'Property',
@@ -13182,7 +13182,7 @@ describe('Expressions - Group', () => {
                           start: 11,
                           end: 12,
                           range: [11, 12],
-                          name: 'y'
+                          name: 'y',
                         },
                         value: {
                           type: 'AssignmentPattern',
@@ -13194,7 +13194,7 @@ describe('Expressions - Group', () => {
                             start: 13,
                             end: 14,
                             range: [13, 14],
-                            name: 'y'
+                            name: 'y',
                           },
                           right: {
                             type: 'Literal',
@@ -13202,12 +13202,12 @@ describe('Expressions - Group', () => {
                             end: 18,
                             range: [17, 18],
                             value: 2,
-                            raw: '2'
-                          }
+                            raw: '2',
+                          },
                         },
-                        kind: 'init'
-                      }
-                    ]
+                        kind: 'init',
+                      },
+                    ],
                   },
                   {
                     type: 'ArrayPattern',
@@ -13225,7 +13225,7 @@ describe('Expressions - Group', () => {
                           start: 22,
                           end: 23,
                           range: [22, 23],
-                          name: 'a'
+                          name: 'a',
                         },
                         right: {
                           type: 'Literal',
@@ -13233,8 +13233,8 @@ describe('Expressions - Group', () => {
                           end: 27,
                           range: [26, 27],
                           value: 3,
-                          raw: '3'
-                        }
+                          raw: '3',
+                        },
                       },
                       {
                         type: 'AssignmentPattern',
@@ -13246,7 +13246,7 @@ describe('Expressions - Group', () => {
                           start: 29,
                           end: 30,
                           range: [29, 30],
-                          name: 'b'
+                          name: 'b',
                         },
                         right: {
                           type: 'Literal',
@@ -13254,8 +13254,8 @@ describe('Expressions - Group', () => {
                           end: 34,
                           range: [33, 34],
                           value: 4,
-                          raw: '4'
-                        }
+                          raw: '4',
+                        },
                       },
                       {
                         type: 'AssignmentPattern',
@@ -13267,7 +13267,7 @@ describe('Expressions - Group', () => {
                           start: 36,
                           end: 37,
                           range: [36, 37],
-                          name: 'c'
+                          name: 'c',
                         },
                         right: {
                           type: 'Literal',
@@ -13275,25 +13275,25 @@ describe('Expressions - Group', () => {
                           end: 41,
                           range: [40, 41],
                           value: 5,
-                          raw: '5'
-                        }
-                      }
-                    ]
-                  }
-                ]
+                          raw: '5',
+                        },
+                      },
+                    ],
+                  },
+                ],
               },
               right: {
                 type: 'ObjectExpression',
                 start: 46,
                 end: 48,
                 range: [46, 48],
-                properties: []
-              }
-            }
-          }
+                properties: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'f = (argument1, [a,b,c])',
@@ -13320,7 +13320,7 @@ describe('Expressions - Group', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'f'
+                name: 'f',
               },
               right: {
                 type: 'SequenceExpression',
@@ -13333,7 +13333,7 @@ describe('Expressions - Group', () => {
                     start: 5,
                     end: 14,
                     range: [5, 14],
-                    name: 'argument1'
+                    name: 'argument1',
                   },
                   {
                     type: 'ArrayExpression',
@@ -13346,31 +13346,31 @@ describe('Expressions - Group', () => {
                         start: 17,
                         end: 18,
                         range: [17, 18],
-                        name: 'a'
+                        name: 'a',
                       },
                       {
                         type: 'Identifier',
                         start: 19,
                         end: 20,
                         range: [19, 20],
-                        name: 'b'
+                        name: 'b',
                       },
                       {
                         type: 'Identifier',
                         start: 21,
                         end: 22,
                         range: [21, 22],
-                        name: 'c'
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          }
+                        name: 'c',
+                      },
+                    ],
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'f = (argument1, { x : x, y : y = 42 })',
@@ -13388,7 +13388,7 @@ describe('Expressions - Group', () => {
                 name: 'f',
                 start: 0,
                 end: 1,
-                range: [0, 1]
+                range: [0, 1],
               },
               operator: '=',
               right: {
@@ -13399,7 +13399,7 @@ describe('Expressions - Group', () => {
                     name: 'argument1',
                     start: 5,
                     end: 14,
-                    range: [5, 14]
+                    range: [5, 14],
                   },
                   {
                     type: 'ObjectExpression',
@@ -13411,14 +13411,14 @@ describe('Expressions - Group', () => {
                           name: 'x',
                           start: 18,
                           end: 19,
-                          range: [18, 19]
+                          range: [18, 19],
                         },
                         value: {
                           type: 'Identifier',
                           name: 'x',
                           start: 22,
                           end: 23,
-                          range: [22, 23]
+                          range: [22, 23],
                         },
                         kind: 'init',
                         computed: false,
@@ -13426,7 +13426,7 @@ describe('Expressions - Group', () => {
                         shorthand: false,
                         start: 18,
                         end: 23,
-                        range: [18, 23]
+                        range: [18, 23],
                       },
                       {
                         type: 'Property',
@@ -13435,7 +13435,7 @@ describe('Expressions - Group', () => {
                           name: 'y',
                           start: 25,
                           end: 26,
-                          range: [25, 26]
+                          range: [25, 26],
                         },
                         value: {
                           type: 'AssignmentExpression',
@@ -13444,7 +13444,7 @@ describe('Expressions - Group', () => {
                             name: 'y',
                             start: 29,
                             end: 30,
-                            range: [29, 30]
+                            range: [29, 30],
                           },
                           operator: '=',
                           right: {
@@ -13452,11 +13452,11 @@ describe('Expressions - Group', () => {
                             value: 42,
                             start: 33,
                             end: 35,
-                            range: [33, 35]
+                            range: [33, 35],
                           },
                           start: 29,
                           end: 35,
-                          range: [29, 35]
+                          range: [29, 35],
                         },
                         kind: 'init',
                         computed: false,
@@ -13464,31 +13464,31 @@ describe('Expressions - Group', () => {
                         shorthand: false,
                         start: 25,
                         end: 35,
-                        range: [25, 35]
-                      }
+                        range: [25, 35],
+                      },
                     ],
                     start: 16,
                     end: 37,
-                    range: [16, 37]
-                  }
+                    range: [16, 37],
+                  },
                 ],
                 start: 5,
                 end: 37,
-                range: [5, 37]
+                range: [5, 37],
               },
               start: 0,
               end: 38,
-              range: [0, 38]
+              range: [0, 38],
             },
             start: 0,
             end: 38,
-            range: [0, 38]
-          }
+            range: [0, 38],
+          },
         ],
         start: 0,
         end: 38,
-        range: [0, 38]
-      }
+        range: [0, 38],
+      },
     ],
     [
       'f = (argument1, [{x:x = 1, y:y = 2}, [a = 3, b = 4, c = 5]])',
@@ -13515,7 +13515,7 @@ describe('Expressions - Group', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'f'
+                name: 'f',
               },
               right: {
                 type: 'SequenceExpression',
@@ -13528,7 +13528,7 @@ describe('Expressions - Group', () => {
                     start: 5,
                     end: 14,
                     range: [5, 14],
-                    name: 'argument1'
+                    name: 'argument1',
                   },
                   {
                     type: 'ArrayExpression',
@@ -13555,7 +13555,7 @@ describe('Expressions - Group', () => {
                               start: 18,
                               end: 19,
                               range: [18, 19],
-                              name: 'x'
+                              name: 'x',
                             },
                             value: {
                               type: 'AssignmentExpression',
@@ -13568,7 +13568,7 @@ describe('Expressions - Group', () => {
                                 start: 20,
                                 end: 21,
                                 range: [20, 21],
-                                name: 'x'
+                                name: 'x',
                               },
                               right: {
                                 type: 'Literal',
@@ -13576,10 +13576,10 @@ describe('Expressions - Group', () => {
                                 end: 25,
                                 range: [24, 25],
                                 value: 1,
-                                raw: '1'
-                              }
+                                raw: '1',
+                              },
                             },
-                            kind: 'init'
+                            kind: 'init',
                           },
                           {
                             type: 'Property',
@@ -13594,7 +13594,7 @@ describe('Expressions - Group', () => {
                               start: 27,
                               end: 28,
                               range: [27, 28],
-                              name: 'y'
+                              name: 'y',
                             },
                             value: {
                               type: 'AssignmentExpression',
@@ -13607,7 +13607,7 @@ describe('Expressions - Group', () => {
                                 start: 29,
                                 end: 30,
                                 range: [29, 30],
-                                name: 'y'
+                                name: 'y',
                               },
                               right: {
                                 type: 'Literal',
@@ -13615,12 +13615,12 @@ describe('Expressions - Group', () => {
                                 end: 34,
                                 range: [33, 34],
                                 value: 2,
-                                raw: '2'
-                              }
+                                raw: '2',
+                              },
                             },
-                            kind: 'init'
-                          }
-                        ]
+                            kind: 'init',
+                          },
+                        ],
                       },
                       {
                         type: 'ArrayExpression',
@@ -13639,7 +13639,7 @@ describe('Expressions - Group', () => {
                               start: 38,
                               end: 39,
                               range: [38, 39],
-                              name: 'a'
+                              name: 'a',
                             },
                             right: {
                               type: 'Literal',
@@ -13647,8 +13647,8 @@ describe('Expressions - Group', () => {
                               end: 43,
                               range: [42, 43],
                               value: 3,
-                              raw: '3'
-                            }
+                              raw: '3',
+                            },
                           },
                           {
                             type: 'AssignmentExpression',
@@ -13661,7 +13661,7 @@ describe('Expressions - Group', () => {
                               start: 45,
                               end: 46,
                               range: [45, 46],
-                              name: 'b'
+                              name: 'b',
                             },
                             right: {
                               type: 'Literal',
@@ -13669,8 +13669,8 @@ describe('Expressions - Group', () => {
                               end: 50,
                               range: [49, 50],
                               value: 4,
-                              raw: '4'
-                            }
+                              raw: '4',
+                            },
                           },
                           {
                             type: 'AssignmentExpression',
@@ -13683,7 +13683,7 @@ describe('Expressions - Group', () => {
                               start: 52,
                               end: 53,
                               range: [52, 53],
-                              name: 'c'
+                              name: 'c',
                             },
                             right: {
                               type: 'Literal',
@@ -13691,20 +13691,20 @@ describe('Expressions - Group', () => {
                               end: 57,
                               range: [56, 57],
                               value: 5,
-                              raw: '5'
-                            }
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          }
+                              raw: '5',
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(argument1, [a,b,...rest])',
@@ -13731,7 +13731,7 @@ describe('Expressions - Group', () => {
                   start: 1,
                   end: 10,
                   range: [1, 10],
-                  name: 'argument1'
+                  name: 'argument1',
                 },
                 {
                   type: 'ArrayExpression',
@@ -13744,14 +13744,14 @@ describe('Expressions - Group', () => {
                       start: 13,
                       end: 14,
                       range: [13, 14],
-                      name: 'a'
+                      name: 'a',
                     },
                     {
                       type: 'Identifier',
                       start: 15,
                       end: 16,
                       range: [15, 16],
-                      name: 'b'
+                      name: 'b',
                     },
                     {
                       type: 'SpreadElement',
@@ -13763,17 +13763,17 @@ describe('Expressions - Group', () => {
                         start: 20,
                         end: 24,
                         range: [20, 24],
-                        name: 'rest'
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                        name: 'rest',
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'f = ( {[x] : z} )',
@@ -13800,7 +13800,7 @@ describe('Expressions - Group', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'f'
+                name: 'f',
               },
               right: {
                 type: 'ObjectExpression',
@@ -13821,24 +13821,24 @@ describe('Expressions - Group', () => {
                       start: 8,
                       end: 9,
                       range: [8, 9],
-                      name: 'x'
+                      name: 'x',
                     },
                     value: {
                       type: 'Identifier',
                       start: 13,
                       end: 14,
                       range: [13, 14],
-                      name: 'z'
+                      name: 'z',
                     },
-                    kind: 'init'
-                  }
-                ]
-              }
-            }
-          }
+                    kind: 'init',
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'f(argument1, [...rest])',
@@ -13853,12 +13853,12 @@ describe('Expressions - Group', () => {
               type: 'CallExpression',
               callee: {
                 type: 'Identifier',
-                name: 'f'
+                name: 'f',
               },
               arguments: [
                 {
                   type: 'Identifier',
-                  name: 'argument1'
+                  name: 'argument1',
                 },
                 {
                   type: 'ArrayExpression',
@@ -13867,16 +13867,16 @@ describe('Expressions - Group', () => {
                       type: 'SpreadElement',
                       argument: {
                         type: 'Identifier',
-                        name: 'rest'
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        ]
-      }
+                        name: 'rest',
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(0, "b", x);',
@@ -13903,28 +13903,28 @@ describe('Expressions - Group', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  value: 0
+                  value: 0,
                 },
                 {
                   type: 'Literal',
                   start: 4,
                   end: 7,
                   range: [4, 7],
-                  value: 'b'
+                  value: 'b',
                 },
                 {
                   type: 'Identifier',
                   start: 9,
                   end: 10,
                   range: [9, 10],
-                  name: 'x'
-                }
-              ]
-            }
-          }
+                  name: 'x',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a, b, c, 1, 2, 3);',
@@ -13951,49 +13951,49 @@ describe('Expressions - Group', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'b'
+                  name: 'b',
                 },
                 {
                   type: 'Identifier',
                   start: 7,
                   end: 8,
                   range: [7, 8],
-                  name: 'c'
+                  name: 'c',
                 },
                 {
                   type: 'Literal',
                   start: 10,
                   end: 11,
                   range: [10, 11],
-                  value: 1
+                  value: 1,
                 },
                 {
                   type: 'Literal',
                   start: 13,
                   end: 14,
                   range: [13, 14],
-                  value: 2
+                  value: 2,
                 },
                 {
                   type: 'Literal',
                   start: 16,
                   end: 17,
                   range: [16, 17],
-                  value: 3
-                }
-              ]
-            }
-          }
+                  value: 3,
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(a,1,3,b,c,3);',
@@ -14009,33 +14009,33 @@ describe('Expressions - Group', () => {
               expressions: [
                 {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Literal',
-                  value: 1
+                  value: 1,
                 },
                 {
                   type: 'Literal',
-                  value: 3
+                  value: 3,
                 },
                 {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
                 {
                   type: 'Identifier',
-                  name: 'c'
+                  name: 'c',
                 },
                 {
                   type: 'Literal',
-                  value: 3
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  value: 3,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(1, a, b);',
@@ -14051,21 +14051,21 @@ describe('Expressions - Group', () => {
               expressions: [
                 {
                   type: 'Literal',
-                  value: 1
+                  value: 1,
                 },
                 {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Identifier',
-                  name: 'b'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'b',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       '(a, 1, b);',
@@ -14081,21 +14081,21 @@ describe('Expressions - Group', () => {
               expressions: [
                 {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 {
                   type: 'Literal',
-                  value: 1
+                  value: 1,
                 },
                 {
                   type: 'Identifier',
-                  name: 'b'
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  name: 'b',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       `var a;
@@ -14125,12 +14125,12 @@ describe('Expressions - Group', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'a'
+                  name: 'a',
                 },
-                init: null
-              }
+                init: null,
+              },
             ],
-            kind: 'var'
+            kind: 'var',
           },
           {
             type: 'ExpressionStatement',
@@ -14148,16 +14148,16 @@ describe('Expressions - Group', () => {
                 start: 12,
                 end: 13,
                 range: [12, 13],
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'ObjectExpression',
                 start: 17,
                 end: 19,
                 range: [17, 19],
-                properties: []
-              }
-            }
+                properties: [],
+              },
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -14180,25 +14180,25 @@ describe('Expressions - Group', () => {
                   start: 26,
                   end: 27,
                   range: [26, 27],
-                  name: 'a'
+                  name: 'a',
                 },
                 property: {
                   type: 'Identifier',
                   start: 28,
                   end: 29,
                   range: [28, 29],
-                  name: 'b'
+                  name: 'b',
                 },
-                computed: false
+                computed: false,
               },
               right: {
                 type: 'ObjectExpression',
                 start: 33,
                 end: 35,
                 range: [33, 35],
-                properties: []
-              }
-            }
+                properties: [],
+              },
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -14221,29 +14221,29 @@ describe('Expressions - Group', () => {
                   start: 42,
                   end: 43,
                   range: [42, 43],
-                  name: 'a'
+                  name: 'a',
                 },
                 property: {
                   type: 'Literal',
                   start: 44,
                   end: 47,
                   range: [44, 47],
-                  value: 'c'
+                  value: 'c',
                 },
-                computed: true
+                computed: true,
               },
               right: {
                 type: 'ObjectExpression',
                 start: 52,
                 end: 54,
                 range: [52, 54],
-                properties: []
-              }
-            }
-          }
+                properties: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(x)',
@@ -14260,19 +14260,19 @@ describe('Expressions - Group', () => {
               start: 1,
               end: 2,
               range: [1, 2],
-              loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 2 } }
+              loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 2 } },
             },
             start: 0,
             end: 3,
             range: [0, 3],
-            loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 3 } }
-          }
+            loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 3 } },
+          },
         ],
         start: 0,
         end: 3,
         range: [0, 3],
-        loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 3 } }
-      }
+        loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 3 } },
+      },
     ],
     [
       '(x)',
@@ -14291,24 +14291,24 @@ describe('Expressions - Group', () => {
                 start: 1,
                 end: 2,
                 range: [1, 2],
-                loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 2 } }
+                loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 2 } },
               },
               start: 0,
               end: 3,
               range: [0, 3],
-              loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 3 } }
+              loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 3 } },
             },
             start: 0,
             end: 3,
             range: [0, 3],
-            loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 3 } }
-          }
+            loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 3 } },
+          },
         ],
         start: 0,
         end: 3,
         range: [0, 3],
-        loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 3 } }
-      }
+        loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 3 } },
+      },
     ],
     [
       '(a,[b]=c)',
@@ -14328,7 +14328,7 @@ describe('Expressions - Group', () => {
                   start: 1,
                   end: 2,
                   range: [1, 2],
-                  loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 2 } }
+                  loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 2 } },
                 },
                 {
                   type: 'AssignmentExpression',
@@ -14341,13 +14341,13 @@ describe('Expressions - Group', () => {
                         start: 4,
                         end: 5,
                         range: [4, 5],
-                        loc: { start: { line: 1, column: 4 }, end: { line: 1, column: 5 } }
-                      }
+                        loc: { start: { line: 1, column: 4 }, end: { line: 1, column: 5 } },
+                      },
                     ],
                     start: 3,
                     end: 6,
                     range: [3, 6],
-                    loc: { start: { line: 1, column: 3 }, end: { line: 1, column: 6 } }
+                    loc: { start: { line: 1, column: 3 }, end: { line: 1, column: 6 } },
                   },
                   operator: '=',
                   right: {
@@ -14356,30 +14356,30 @@ describe('Expressions - Group', () => {
                     start: 7,
                     end: 8,
                     range: [7, 8],
-                    loc: { start: { line: 1, column: 7 }, end: { line: 1, column: 8 } }
+                    loc: { start: { line: 1, column: 7 }, end: { line: 1, column: 8 } },
                   },
                   start: 3,
                   end: 8,
                   range: [3, 8],
-                  loc: { start: { line: 1, column: 3 }, end: { line: 1, column: 8 } }
-                }
+                  loc: { start: { line: 1, column: 3 }, end: { line: 1, column: 8 } },
+                },
               ],
               start: 1,
               end: 8,
               range: [1, 8],
-              loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 8 } }
+              loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 8 } },
             },
             start: 0,
             end: 9,
             range: [0, 9],
-            loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 9 } }
-          }
+            loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 9 } },
+          },
         ],
         start: 0,
         end: 9,
         range: [0, 9],
-        loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 9 } }
-      }
+        loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 9 } },
+      },
     ],
     [
       '(a,[b]=c)',
@@ -14401,7 +14401,7 @@ describe('Expressions - Group', () => {
                     start: 1,
                     end: 2,
                     range: [1, 2],
-                    loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 2 } }
+                    loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 2 } },
                   },
                   {
                     type: 'AssignmentExpression',
@@ -14414,13 +14414,13 @@ describe('Expressions - Group', () => {
                           start: 4,
                           end: 5,
                           range: [4, 5],
-                          loc: { start: { line: 1, column: 4 }, end: { line: 1, column: 5 } }
-                        }
+                          loc: { start: { line: 1, column: 4 }, end: { line: 1, column: 5 } },
+                        },
                       ],
                       start: 3,
                       end: 6,
                       range: [3, 6],
-                      loc: { start: { line: 1, column: 3 }, end: { line: 1, column: 6 } }
+                      loc: { start: { line: 1, column: 3 }, end: { line: 1, column: 6 } },
                     },
                     operator: '=',
                     right: {
@@ -14429,35 +14429,35 @@ describe('Expressions - Group', () => {
                       start: 7,
                       end: 8,
                       range: [7, 8],
-                      loc: { start: { line: 1, column: 7 }, end: { line: 1, column: 8 } }
+                      loc: { start: { line: 1, column: 7 }, end: { line: 1, column: 8 } },
                     },
                     start: 3,
                     end: 8,
                     range: [3, 8],
-                    loc: { start: { line: 1, column: 3 }, end: { line: 1, column: 8 } }
-                  }
+                    loc: { start: { line: 1, column: 3 }, end: { line: 1, column: 8 } },
+                  },
                 ],
                 start: 1,
                 end: 8,
                 range: [1, 8],
-                loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 8 } }
+                loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 8 } },
               },
               start: 0,
               end: 9,
               range: [0, 9],
-              loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 9 } }
+              loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 9 } },
             },
             start: 0,
             end: 9,
             range: [0, 9],
-            loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 9 } }
-          }
+            loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 9 } },
+          },
         ],
         start: 0,
         end: 9,
         range: [0, 9],
-        loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 9 } }
-      }
-    ]
+        loc: { start: { line: 1, column: 0 }, end: { line: 1, column: 9 } },
+      },
+    ],
   ]);
 });

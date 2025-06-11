@@ -16,22 +16,22 @@ describe('Expressions - Additive', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'async'
+                name: 'async',
               },
               operator: '=',
               right: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'await'
+                  name: 'await',
                 },
-                operator: '+'
-              }
-            }
+                operator: '+',
+              },
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -39,22 +39,22 @@ describe('Expressions - Additive', () => {
               type: 'AssignmentExpression',
               left: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '=',
               right: {
                 type: 'UpdateExpression',
                 argument: {
                   type: 'Identifier',
-                  name: 'async'
+                  name: 'async',
                 },
                 operator: '++',
-                prefix: false
-              }
-            }
-          }
-        ]
-      }
+                prefix: false,
+              },
+            },
+          },
+        ],
+      },
     ],
     [
       'd = a + b;  a = b;',
@@ -81,7 +81,7 @@ describe('Expressions - Additive', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'd'
+                name: 'd',
               },
               right: {
                 type: 'BinaryExpression',
@@ -93,7 +93,7 @@ describe('Expressions - Additive', () => {
                   start: 4,
                   end: 5,
                   range: [4, 5],
-                  name: 'a'
+                  name: 'a',
                 },
                 operator: '+',
                 right: {
@@ -101,10 +101,10 @@ describe('Expressions - Additive', () => {
                   start: 8,
                   end: 9,
                   range: [8, 9],
-                  name: 'b'
-                }
-              }
-            }
+                  name: 'b',
+                },
+              },
+            },
           },
           {
             type: 'ExpressionStatement',
@@ -122,20 +122,20 @@ describe('Expressions - Additive', () => {
                 start: 12,
                 end: 13,
                 range: [12, 13],
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'Identifier',
                 start: 16,
                 end: 17,
                 range: [16, 17],
-                name: 'b'
-              }
-            }
-          }
+                name: 'b',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '--a',
@@ -150,14 +150,14 @@ describe('Expressions - Additive', () => {
               type: 'UpdateExpression',
               argument: {
                 type: 'Identifier',
-                name: 'a'
+                name: 'a',
               },
               operator: '--',
-              prefix: true
-            }
-          }
-        ]
-      }
-    ]
+              prefix: true,
+            },
+          },
+        ],
+      },
+    ],
   ]);
 });

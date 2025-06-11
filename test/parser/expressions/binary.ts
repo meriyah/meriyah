@@ -43,7 +43,7 @@ describe('Expressions - Binary', () => {
     '1 ^= a',
     '(-1) |= a',
     '(- 0) |= a',
-    '1 |= a'
+    '1 |= a',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -251,7 +251,7 @@ describe('Expressions - Binary', () => {
     'var a, b, c',
     'var a = 1, b = 2, c = 3',
     'const a = 1',
-    'const a = (1, 2)'
+    'const a = (1, 2)',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -284,17 +284,17 @@ describe('Expressions - Binary', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Literal',
-                value: 1
+                value: 1,
               },
               right: {
                 type: 'Literal',
-                value: 2
+                value: 2,
               },
-              operator: '+'
-            }
-          }
-        ]
-      }
+              operator: '+',
+            },
+          },
+        ],
+      },
     ],
     [
       'x - y + z',
@@ -311,23 +311,23 @@ describe('Expressions - Binary', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
-                operator: '-'
+                operator: '-',
               },
               right: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
-              operator: '+'
-            }
-          }
-        ]
-      }
+              operator: '+',
+            },
+          },
+        ],
+      },
     ],
     [
       'x + y * z',
@@ -342,25 +342,25 @@ describe('Expressions - Binary', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'z'
+                  name: 'z',
                 },
-                operator: '*'
+                operator: '*',
               },
-              operator: '+'
-            }
-          }
-        ]
-      }
+              operator: '+',
+            },
+          },
+        ],
+      },
     ],
     [
       'x * y % z',
@@ -377,23 +377,23 @@ describe('Expressions - Binary', () => {
                 type: 'BinaryExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'x'
+                  name: 'x',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'y'
+                  name: 'y',
                 },
-                operator: '*'
+                operator: '*',
               },
               right: {
                 type: 'Identifier',
-                name: 'z'
+                name: 'z',
               },
-              operator: '%'
-            }
-          }
-        ]
-      }
+              operator: '%',
+            },
+          },
+        ],
+      },
     ],
     [
       '++x ** y',
@@ -426,8 +426,8 @@ describe('Expressions - Binary', () => {
                   start: 2,
                   end: 3,
                   range: [2, 3],
-                  name: 'x'
-                }
+                  name: 'x',
+                },
               },
               operator: '**',
               right: {
@@ -435,13 +435,13 @@ describe('Expressions - Binary', () => {
                 start: 7,
                 end: 8,
                 range: [7, 8],
-                name: 'y'
-              }
-            }
-          }
+                name: 'y',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '-(x ** y)',
@@ -474,7 +474,7 @@ describe('Expressions - Binary', () => {
                   start: 2,
                   end: 3,
                   range: [2, 3],
-                  name: 'x'
+                  name: 'x',
                 },
                 operator: '**',
                 right: {
@@ -482,14 +482,14 @@ describe('Expressions - Binary', () => {
                   start: 7,
                   end: 8,
                   range: [7, 8],
-                  name: 'y'
-                }
-              }
-            }
-          }
+                  name: 'y',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'x in y',
@@ -504,17 +504,17 @@ describe('Expressions - Binary', () => {
               type: 'BinaryExpression',
               left: {
                 type: 'Identifier',
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'Identifier',
-                name: 'y'
+                name: 'y',
               },
-              operator: 'in'
-            }
-          }
-        ]
-      }
+              operator: 'in',
+            },
+          },
+        ],
+      },
     ],
     [
       'b && c == d',
@@ -540,7 +540,7 @@ describe('Expressions - Binary', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'b'
+                name: 'b',
               },
               operator: '&&',
               right: {
@@ -553,7 +553,7 @@ describe('Expressions - Binary', () => {
                   start: 5,
                   end: 6,
                   range: [5, 6],
-                  name: 'c'
+                  name: 'c',
                 },
                 operator: '==',
                 right: {
@@ -561,14 +561,14 @@ describe('Expressions - Binary', () => {
                   start: 10,
                   end: 11,
                   range: [10, 11],
-                  name: 'd'
-                }
-              }
-            }
-          }
+                  name: 'd',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
 
     [
@@ -596,7 +596,7 @@ describe('Expressions - Binary', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'AssignmentExpression',
@@ -609,7 +609,7 @@ describe('Expressions - Binary', () => {
                   start: 2,
                   end: 3,
                   range: [2, 3],
-                  name: 'b'
+                  name: 'b',
                 },
                 right: {
                   type: 'AssignmentExpression',
@@ -622,7 +622,7 @@ describe('Expressions - Binary', () => {
                     start: 5,
                     end: 6,
                     range: [5, 6],
-                    name: 'c'
+                    name: 'c',
                   },
                   right: {
                     type: 'AssignmentExpression',
@@ -635,7 +635,7 @@ describe('Expressions - Binary', () => {
                       start: 8,
                       end: 9,
                       range: [8, 9],
-                      name: 'd'
+                      name: 'd',
                     },
                     right: {
                       type: 'AssignmentExpression',
@@ -648,7 +648,7 @@ describe('Expressions - Binary', () => {
                         start: 12,
                         end: 13,
                         range: [12, 13],
-                        name: 'e'
+                        name: 'e',
                       },
                       right: {
                         type: 'AssignmentExpression',
@@ -661,7 +661,7 @@ describe('Expressions - Binary', () => {
                           start: 15,
                           end: 16,
                           range: [15, 16],
-                          name: 'f'
+                          name: 'f',
                         },
                         right: {
                           type: 'AssignmentExpression',
@@ -674,7 +674,7 @@ describe('Expressions - Binary', () => {
                             start: 18,
                             end: 19,
                             range: [18, 19],
-                            name: 'g'
+                            name: 'g',
                           },
                           right: {
                             type: 'AssignmentExpression',
@@ -687,7 +687,7 @@ describe('Expressions - Binary', () => {
                               start: 21,
                               end: 22,
                               range: [21, 22],
-                              name: 'h'
+                              name: 'h',
                             },
                             right: {
                               type: 'AssignmentExpression',
@@ -700,7 +700,7 @@ describe('Expressions - Binary', () => {
                                 start: 25,
                                 end: 26,
                                 range: [25, 26],
-                                name: 'i'
+                                name: 'i',
                               },
                               right: {
                                 type: 'AssignmentExpression',
@@ -713,7 +713,7 @@ describe('Expressions - Binary', () => {
                                   start: 29,
                                   end: 30,
                                   range: [29, 30],
-                                  name: 'j'
+                                  name: 'j',
                                 },
                                 right: {
                                   type: 'AssignmentExpression',
@@ -726,7 +726,7 @@ describe('Expressions - Binary', () => {
                                     start: 34,
                                     end: 35,
                                     range: [34, 35],
-                                    name: 'k'
+                                    name: 'k',
                                   },
                                   right: {
                                     type: 'AssignmentExpression',
@@ -739,7 +739,7 @@ describe('Expressions - Binary', () => {
                                       start: 37,
                                       end: 38,
                                       range: [37, 38],
-                                      name: 'l'
+                                      name: 'l',
                                     },
                                     right: {
                                       type: 'AssignmentExpression',
@@ -752,32 +752,32 @@ describe('Expressions - Binary', () => {
                                         start: 40,
                                         end: 41,
                                         range: [40, 41],
-                                        name: 'm'
+                                        name: 'm',
                                       },
                                       right: {
                                         type: 'Identifier',
                                         start: 43,
                                         end: 44,
                                         range: [43, 44],
-                                        name: 'n'
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
+                                        name: 'n',
+                                      },
+                                    },
+                                  },
+                                },
+                              },
+                            },
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a|=b^=c&=d>>>=e>>=f<<=g%=h/=i*=j**=k-=l+=m=n',
@@ -804,7 +804,7 @@ describe('Expressions - Binary', () => {
                 start: 0,
                 end: 1,
                 range: [0, 1],
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'AssignmentExpression',
@@ -817,7 +817,7 @@ describe('Expressions - Binary', () => {
                   start: 3,
                   end: 4,
                   range: [3, 4],
-                  name: 'b'
+                  name: 'b',
                 },
                 right: {
                   type: 'AssignmentExpression',
@@ -830,7 +830,7 @@ describe('Expressions - Binary', () => {
                     start: 6,
                     end: 7,
                     range: [6, 7],
-                    name: 'c'
+                    name: 'c',
                   },
                   right: {
                     type: 'AssignmentExpression',
@@ -843,7 +843,7 @@ describe('Expressions - Binary', () => {
                       start: 9,
                       end: 10,
                       range: [9, 10],
-                      name: 'd'
+                      name: 'd',
                     },
                     right: {
                       type: 'AssignmentExpression',
@@ -856,7 +856,7 @@ describe('Expressions - Binary', () => {
                         start: 14,
                         end: 15,
                         range: [14, 15],
-                        name: 'e'
+                        name: 'e',
                       },
                       right: {
                         type: 'AssignmentExpression',
@@ -869,7 +869,7 @@ describe('Expressions - Binary', () => {
                           start: 18,
                           end: 19,
                           range: [18, 19],
-                          name: 'f'
+                          name: 'f',
                         },
                         right: {
                           type: 'AssignmentExpression',
@@ -882,7 +882,7 @@ describe('Expressions - Binary', () => {
                             start: 22,
                             end: 23,
                             range: [22, 23],
-                            name: 'g'
+                            name: 'g',
                           },
                           right: {
                             type: 'AssignmentExpression',
@@ -895,7 +895,7 @@ describe('Expressions - Binary', () => {
                               start: 25,
                               end: 26,
                               range: [25, 26],
-                              name: 'h'
+                              name: 'h',
                             },
                             right: {
                               type: 'AssignmentExpression',
@@ -908,7 +908,7 @@ describe('Expressions - Binary', () => {
                                 start: 28,
                                 end: 29,
                                 range: [28, 29],
-                                name: 'i'
+                                name: 'i',
                               },
                               right: {
                                 type: 'AssignmentExpression',
@@ -921,7 +921,7 @@ describe('Expressions - Binary', () => {
                                   start: 31,
                                   end: 32,
                                   range: [31, 32],
-                                  name: 'j'
+                                  name: 'j',
                                 },
                                 right: {
                                   type: 'AssignmentExpression',
@@ -934,7 +934,7 @@ describe('Expressions - Binary', () => {
                                     start: 35,
                                     end: 36,
                                     range: [35, 36],
-                                    name: 'k'
+                                    name: 'k',
                                   },
                                   right: {
                                     type: 'AssignmentExpression',
@@ -947,7 +947,7 @@ describe('Expressions - Binary', () => {
                                       start: 38,
                                       end: 39,
                                       range: [38, 39],
-                                      name: 'l'
+                                      name: 'l',
                                     },
                                     right: {
                                       type: 'AssignmentExpression',
@@ -960,32 +960,32 @@ describe('Expressions - Binary', () => {
                                         start: 41,
                                         end: 42,
                                         range: [41, 42],
-                                        name: 'm'
+                                        name: 'm',
                                       },
                                       right: {
                                         type: 'Identifier',
                                         start: 43,
                                         end: 44,
                                         range: [43, 44],
-                                        name: 'n'
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
+                                        name: 'n',
+                                      },
+                                    },
+                                  },
+                                },
+                              },
+                            },
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a || b || c',
@@ -1016,7 +1016,7 @@ describe('Expressions - Binary', () => {
                   start: 0,
                   end: 1,
                   range: [0, 1],
-                  name: 'a'
+                  name: 'a',
                 },
                 operator: '||',
                 right: {
@@ -1024,8 +1024,8 @@ describe('Expressions - Binary', () => {
                   start: 5,
                   end: 6,
                   range: [5, 6],
-                  name: 'b'
-                }
+                  name: 'b',
+                },
               },
               operator: '||',
               right: {
@@ -1033,13 +1033,13 @@ describe('Expressions - Binary', () => {
                 start: 10,
                 end: 11,
                 range: [10, 11],
-                name: 'c'
-              }
-            }
-          }
+                name: 'c',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a && b && c',
@@ -1070,7 +1070,7 @@ describe('Expressions - Binary', () => {
                   start: 0,
                   end: 1,
                   range: [0, 1],
-                  name: 'a'
+                  name: 'a',
                 },
                 operator: '&&',
                 right: {
@@ -1078,8 +1078,8 @@ describe('Expressions - Binary', () => {
                   start: 5,
                   end: 6,
                   range: [5, 6],
-                  name: 'b'
-                }
+                  name: 'b',
+                },
               },
               operator: '&&',
               right: {
@@ -1087,13 +1087,13 @@ describe('Expressions - Binary', () => {
                 start: 10,
                 end: 11,
                 range: [10, 11],
-                name: 'c'
-              }
-            }
-          }
+                name: 'c',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'a && b || c',
@@ -1110,23 +1110,23 @@ describe('Expressions - Binary', () => {
                 type: 'LogicalExpression',
                 left: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'Identifier',
-                  name: 'b'
+                  name: 'b',
                 },
-                operator: '&&'
+                operator: '&&',
               },
               right: {
                 type: 'Identifier',
-                name: 'c'
+                name: 'c',
               },
-              operator: '||'
-            }
-          }
-        ]
-      }
+              operator: '||',
+            },
+          },
+        ],
+      },
     ],
     [
       'a || b && c',
@@ -1145,13 +1145,13 @@ describe('Expressions - Binary', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 1
-                  }
-                }
+                    column: 1,
+                  },
+                },
               },
               right: {
                 type: 'LogicalExpression',
@@ -1161,13 +1161,13 @@ describe('Expressions - Binary', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 5
+                      column: 5,
                     },
                     end: {
                       line: 1,
-                      column: 6
-                    }
-                  }
+                      column: 6,
+                    },
+                  },
                 },
                 right: {
                   type: 'Identifier',
@@ -1175,61 +1175,61 @@ describe('Expressions - Binary', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 10
+                      column: 10,
                     },
                     end: {
                       line: 1,
-                      column: 11
-                    }
-                  }
+                      column: 11,
+                    },
+                  },
                 },
                 operator: '&&',
                 loc: {
                   start: {
                     line: 1,
-                    column: 5
+                    column: 5,
                   },
                   end: {
                     line: 1,
-                    column: 11
-                  }
-                }
+                    column: 11,
+                  },
+                },
               },
               operator: '||',
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 11
-                }
-              }
+                  column: 11,
+                },
+              },
             },
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 11
-              }
-            }
-          }
+                column: 11,
+              },
+            },
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 11
-          }
-        }
-      }
+            column: 11,
+          },
+        },
+      },
     ],
     [
       'a ^ b | c',
@@ -1250,13 +1250,13 @@ describe('Expressions - Binary', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 0
+                      column: 0,
                     },
                     end: {
                       line: 1,
-                      column: 1
-                    }
-                  }
+                      column: 1,
+                    },
+                  },
                 },
                 right: {
                   type: 'Identifier',
@@ -1264,25 +1264,25 @@ describe('Expressions - Binary', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 4
+                      column: 4,
                     },
                     end: {
                       line: 1,
-                      column: 5
-                    }
-                  }
+                      column: 5,
+                    },
+                  },
                 },
                 operator: '^',
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 5
-                  }
-                }
+                    column: 5,
+                  },
+                },
               },
               right: {
                 type: 'Identifier',
@@ -1290,49 +1290,49 @@ describe('Expressions - Binary', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 8
+                    column: 8,
                   },
                   end: {
                     line: 1,
-                    column: 9
-                  }
-                }
+                    column: 9,
+                  },
+                },
               },
               operator: '|',
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 9
-                }
-              }
+                  column: 9,
+                },
+              },
             },
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 9
-              }
-            }
-          }
+                column: 9,
+              },
+            },
+          },
         ],
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 9
-          }
-        }
-      }
+            column: 9,
+          },
+        },
+      },
     ],
     [
       'a == b != c === d !== e',
@@ -1373,7 +1373,7 @@ describe('Expressions - Binary', () => {
                       start: 0,
                       end: 1,
                       range: [0, 1],
-                      name: 'a'
+                      name: 'a',
                     },
                     operator: '==',
                     right: {
@@ -1381,8 +1381,8 @@ describe('Expressions - Binary', () => {
                       start: 5,
                       end: 6,
                       range: [5, 6],
-                      name: 'b'
-                    }
+                      name: 'b',
+                    },
                   },
                   operator: '!=',
                   right: {
@@ -1390,8 +1390,8 @@ describe('Expressions - Binary', () => {
                     start: 10,
                     end: 11,
                     range: [10, 11],
-                    name: 'c'
-                  }
+                    name: 'c',
+                  },
                 },
                 operator: '===',
                 right: {
@@ -1399,8 +1399,8 @@ describe('Expressions - Binary', () => {
                   start: 16,
                   end: 17,
                   range: [16, 17],
-                  name: 'd'
-                }
+                  name: 'd',
+                },
               },
               operator: '!==',
               right: {
@@ -1408,13 +1408,13 @@ describe('Expressions - Binary', () => {
                 start: 22,
                 end: 23,
                 range: [22, 23],
-                name: 'e'
-              }
-            }
-          }
+                name: 'e',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `var a = {b: 'u' + 1 }`,
@@ -1438,13 +1438,13 @@ describe('Expressions - Binary', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 4
+                      column: 4,
                     },
                     end: {
                       line: 1,
-                      column: 5
-                    }
-                  }
+                      column: 5,
+                    },
+                  },
                 },
                 init: {
                   type: 'ObjectExpression',
@@ -1460,13 +1460,13 @@ describe('Expressions - Binary', () => {
                         loc: {
                           start: {
                             line: 1,
-                            column: 9
+                            column: 9,
                           },
                           end: {
                             line: 1,
-                            column: 10
-                          }
-                        }
+                            column: 10,
+                          },
+                        },
                       },
                       value: {
                         type: 'BinaryExpression',
@@ -1479,13 +1479,13 @@ describe('Expressions - Binary', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 12
+                              column: 12,
                             },
                             end: {
                               line: 1,
-                              column: 15
-                            }
-                          }
+                              column: 15,
+                            },
+                          },
                         },
                         right: {
                           type: 'Literal',
@@ -1496,13 +1496,13 @@ describe('Expressions - Binary', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 18
+                              column: 18,
                             },
                             end: {
                               line: 1,
-                              column: 19
-                            }
-                          }
+                              column: 19,
+                            },
+                          },
                         },
                         operator: '+',
                         start: 12,
@@ -1511,13 +1511,13 @@ describe('Expressions - Binary', () => {
                         loc: {
                           start: {
                             line: 1,
-                            column: 12
+                            column: 12,
                           },
                           end: {
                             line: 1,
-                            column: 19
-                          }
-                        }
+                            column: 19,
+                          },
+                        },
                       },
                       kind: 'init',
                       computed: false,
@@ -1529,14 +1529,14 @@ describe('Expressions - Binary', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 9
+                          column: 9,
                         },
                         end: {
                           line: 1,
-                          column: 19
-                        }
-                      }
-                    }
+                          column: 19,
+                        },
+                      },
+                    },
                   ],
                   start: 8,
                   end: 21,
@@ -1544,13 +1544,13 @@ describe('Expressions - Binary', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 8
+                      column: 8,
                     },
                     end: {
                       line: 1,
-                      column: 21
-                    }
-                  }
+                      column: 21,
+                    },
+                  },
                 },
                 start: 4,
                 end: 21,
@@ -1558,14 +1558,14 @@ describe('Expressions - Binary', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 4
+                    column: 4,
                   },
                   end: {
                     line: 1,
-                    column: 21
-                  }
-                }
-              }
+                    column: 21,
+                  },
+                },
+              },
             ],
             start: 0,
             end: 21,
@@ -1573,14 +1573,14 @@ describe('Expressions - Binary', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 21
-              }
-            }
-          }
+                column: 21,
+              },
+            },
+          },
         ],
         start: 0,
         end: 21,
@@ -1588,14 +1588,14 @@ describe('Expressions - Binary', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 21
-          }
-        }
-      }
-    ]
+            column: 21,
+          },
+        },
+      },
+    ],
   ]);
 });

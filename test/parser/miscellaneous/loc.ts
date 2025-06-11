@@ -16,12 +16,12 @@ describe('Miscellaneous - loc', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 5
-          }
+            column: 5,
+          },
         },
         body: [
           {
@@ -32,12 +32,12 @@ describe('Miscellaneous - loc', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 5
-              }
+                column: 5,
+              },
             },
             expression: {
               type: 'ArrayExpression',
@@ -47,12 +47,12 @@ describe('Miscellaneous - loc', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 5
-                }
+                  column: 5,
+                },
               },
               elements: [
                 null,
@@ -65,21 +65,21 @@ describe('Miscellaneous - loc', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 3
+                      column: 3,
                     },
                     end: {
                       line: 1,
-                      column: 4
-                    }
+                      column: 4,
+                    },
                   },
-                  name: 'x'
-                }
-              ]
-            }
-          }
+                  name: 'x',
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `[50..foo] = x`,
@@ -92,12 +92,12 @@ describe('Miscellaneous - loc', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 13
-          }
+            column: 13,
+          },
         },
         body: [
           {
@@ -108,12 +108,12 @@ describe('Miscellaneous - loc', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 13
-              }
+                column: 13,
+              },
             },
             expression: {
               type: 'AssignmentExpression',
@@ -123,12 +123,12 @@ describe('Miscellaneous - loc', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 13
-                }
+                  column: 13,
+                },
               },
               operator: '=',
               left: {
@@ -139,12 +139,12 @@ describe('Miscellaneous - loc', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 9
-                  }
+                    column: 9,
+                  },
                 },
                 elements: [
                   {
@@ -155,12 +155,12 @@ describe('Miscellaneous - loc', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 1
+                        column: 1,
                       },
                       end: {
                         line: 1,
-                        column: 8
-                      }
+                        column: 8,
+                      },
                     },
                     object: {
                       type: 'Literal',
@@ -170,14 +170,14 @@ describe('Miscellaneous - loc', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 1
+                          column: 1,
                         },
                         end: {
                           line: 1,
-                          column: 4
-                        }
+                          column: 4,
+                        },
                       },
-                      value: 50
+                      value: 50,
                     },
                     property: {
                       type: 'Identifier',
@@ -187,18 +187,18 @@ describe('Miscellaneous - loc', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 5
+                          column: 5,
                         },
                         end: {
                           line: 1,
-                          column: 8
-                        }
+                          column: 8,
+                        },
                       },
-                      name: 'foo'
+                      name: 'foo',
                     },
-                    computed: false
-                  }
-                ]
+                    computed: false,
+                  },
+                ],
               },
               right: {
                 type: 'Identifier',
@@ -208,20 +208,20 @@ describe('Miscellaneous - loc', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 12
+                    column: 12,
                   },
                   end: {
                     line: 1,
-                    column: 13
-                  }
+                    column: 13,
+                  },
                 },
-                name: 'x'
-              }
-            }
-          }
+                name: 'x',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `a={"b":c=d}`,
@@ -234,12 +234,12 @@ describe('Miscellaneous - loc', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 11
-          }
+            column: 11,
+          },
         },
         body: [
           {
@@ -250,12 +250,12 @@ describe('Miscellaneous - loc', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 11
-              }
+                column: 11,
+              },
             },
             expression: {
               type: 'AssignmentExpression',
@@ -265,12 +265,12 @@ describe('Miscellaneous - loc', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 11
-                }
+                  column: 11,
+                },
               },
               operator: '=',
               left: {
@@ -281,14 +281,14 @@ describe('Miscellaneous - loc', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 1
-                  }
+                    column: 1,
+                  },
                 },
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'ObjectExpression',
@@ -298,12 +298,12 @@ describe('Miscellaneous - loc', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 2
+                    column: 2,
                   },
                   end: {
                     line: 1,
-                    column: 11
-                  }
+                    column: 11,
+                  },
                 },
                 properties: [
                   {
@@ -314,12 +314,12 @@ describe('Miscellaneous - loc', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 3
+                        column: 3,
                       },
                       end: {
                         line: 1,
-                        column: 10
-                      }
+                        column: 10,
+                      },
                     },
                     method: false,
                     shorthand: false,
@@ -332,14 +332,14 @@ describe('Miscellaneous - loc', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 3
+                          column: 3,
                         },
                         end: {
                           line: 1,
-                          column: 6
-                        }
+                          column: 6,
+                        },
                       },
-                      value: 'b'
+                      value: 'b',
                     },
                     value: {
                       type: 'AssignmentExpression',
@@ -349,12 +349,12 @@ describe('Miscellaneous - loc', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 7
+                          column: 7,
                         },
                         end: {
                           line: 1,
-                          column: 10
-                        }
+                          column: 10,
+                        },
                       },
                       operator: '=',
                       left: {
@@ -365,14 +365,14 @@ describe('Miscellaneous - loc', () => {
                         loc: {
                           start: {
                             line: 1,
-                            column: 7
+                            column: 7,
                           },
                           end: {
                             line: 1,
-                            column: 8
-                          }
+                            column: 8,
+                          },
                         },
-                        name: 'c'
+                        name: 'c',
                       },
                       right: {
                         type: 'Identifier',
@@ -382,25 +382,25 @@ describe('Miscellaneous - loc', () => {
                         loc: {
                           start: {
                             line: 1,
-                            column: 9
+                            column: 9,
                           },
                           end: {
                             line: 1,
-                            column: 10
-                          }
+                            column: 10,
+                          },
                         },
-                        name: 'd'
-                      }
+                        name: 'd',
+                      },
                     },
-                    kind: 'init'
-                  }
-                ]
-              }
-            }
-          }
+                    kind: 'init',
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     /*  [
             `1 -2 / 4`,
@@ -529,12 +529,12 @@ describe('Miscellaneous - loc', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 7
-          }
+            column: 7,
+          },
         },
         body: [
           {
@@ -545,12 +545,12 @@ describe('Miscellaneous - loc', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 7
-              }
+                column: 7,
+              },
             },
             expression: {
               type: 'AssignmentExpression',
@@ -560,12 +560,12 @@ describe('Miscellaneous - loc', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 7
-                }
+                  column: 7,
+                },
               },
               operator: '=',
               left: {
@@ -576,14 +576,14 @@ describe('Miscellaneous - loc', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 1
-                  }
+                    column: 1,
+                  },
                 },
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -593,12 +593,12 @@ describe('Miscellaneous - loc', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 4
+                    column: 4,
                   },
                   end: {
                     line: 1,
-                    column: 7
-                  }
+                    column: 7,
+                  },
                 },
                 properties: [
                   {
@@ -609,12 +609,12 @@ describe('Miscellaneous - loc', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 5
+                        column: 5,
                       },
                       end: {
                         line: 1,
-                        column: 6
-                      }
+                        column: 6,
+                      },
                     },
                     method: false,
                     shorthand: true,
@@ -627,14 +627,14 @@ describe('Miscellaneous - loc', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 5
+                          column: 5,
                         },
                         end: {
                           line: 1,
-                          column: 6
-                        }
+                          column: 6,
+                        },
                       },
-                      name: 'y'
+                      name: 'y',
                     },
                     kind: 'init',
                     value: {
@@ -645,23 +645,23 @@ describe('Miscellaneous - loc', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 5
+                          column: 5,
                         },
                         end: {
                           line: 1,
-                          column: 6
-                        }
+                          column: 6,
+                        },
                       },
-                      name: 'y'
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                      name: 'y',
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `0, [ x = y ] = [];`,
@@ -674,12 +674,12 @@ describe('Miscellaneous - loc', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 18
-          }
+            column: 18,
+          },
         },
         body: [
           {
@@ -690,12 +690,12 @@ describe('Miscellaneous - loc', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 18
-              }
+                column: 18,
+              },
             },
             expression: {
               type: 'SequenceExpression',
@@ -705,12 +705,12 @@ describe('Miscellaneous - loc', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 17
-                }
+                  column: 17,
+                },
               },
               expressions: [
                 {
@@ -721,14 +721,14 @@ describe('Miscellaneous - loc', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 0
+                      column: 0,
                     },
                     end: {
                       line: 1,
-                      column: 1
-                    }
+                      column: 1,
+                    },
                   },
-                  value: 0
+                  value: 0,
                 },
                 {
                   type: 'AssignmentExpression',
@@ -738,12 +738,12 @@ describe('Miscellaneous - loc', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 3
+                      column: 3,
                     },
                     end: {
                       line: 1,
-                      column: 17
-                    }
+                      column: 17,
+                    },
                   },
                   operator: '=',
                   left: {
@@ -754,12 +754,12 @@ describe('Miscellaneous - loc', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 3
+                        column: 3,
                       },
                       end: {
                         line: 1,
-                        column: 12
-                      }
+                        column: 12,
+                      },
                     },
                     elements: [
                       {
@@ -770,12 +770,12 @@ describe('Miscellaneous - loc', () => {
                         loc: {
                           start: {
                             line: 1,
-                            column: 5
+                            column: 5,
                           },
                           end: {
                             line: 1,
-                            column: 10
-                          }
+                            column: 10,
+                          },
                         },
                         left: {
                           type: 'Identifier',
@@ -785,14 +785,14 @@ describe('Miscellaneous - loc', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 5
+                              column: 5,
                             },
                             end: {
                               line: 1,
-                              column: 6
-                            }
+                              column: 6,
+                            },
                           },
-                          name: 'x'
+                          name: 'x',
                         },
                         right: {
                           type: 'Identifier',
@@ -802,17 +802,17 @@ describe('Miscellaneous - loc', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 9
+                              column: 9,
                             },
                             end: {
                               line: 1,
-                              column: 10
-                            }
+                              column: 10,
+                            },
                           },
-                          name: 'y'
-                        }
-                      }
-                    ]
+                          name: 'y',
+                        },
+                      },
+                    ],
                   },
                   right: {
                     type: 'ArrayExpression',
@@ -822,22 +822,22 @@ describe('Miscellaneous - loc', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 15
+                        column: 15,
                       },
                       end: {
                         line: 1,
-                        column: 17
-                      }
+                        column: 17,
+                      },
                     },
-                    elements: []
-                  }
-                }
-              ]
-            }
-          }
+                    elements: [],
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `of = 42`,
@@ -850,12 +850,12 @@ describe('Miscellaneous - loc', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 7
-          }
+            column: 7,
+          },
         },
         body: [
           {
@@ -866,12 +866,12 @@ describe('Miscellaneous - loc', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 7
-              }
+                column: 7,
+              },
             },
             expression: {
               type: 'AssignmentExpression',
@@ -881,12 +881,12 @@ describe('Miscellaneous - loc', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 7
-                }
+                  column: 7,
+                },
               },
               operator: '=',
               left: {
@@ -897,14 +897,14 @@ describe('Miscellaneous - loc', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 2
-                  }
+                    column: 2,
+                  },
                 },
-                name: 'of'
+                name: 'of',
               },
               right: {
                 type: 'Literal',
@@ -914,20 +914,20 @@ describe('Miscellaneous - loc', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 5
+                    column: 5,
                   },
                   end: {
                     line: 1,
-                    column: 7
-                  }
+                    column: 7,
+                  },
                 },
-                value: 42
-              }
-            }
-          }
+                value: 42,
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `a *= b`,
@@ -940,12 +940,12 @@ describe('Miscellaneous - loc', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 6
-          }
+            column: 6,
+          },
         },
         body: [
           {
@@ -956,12 +956,12 @@ describe('Miscellaneous - loc', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 6
-              }
+                column: 6,
+              },
             },
             expression: {
               type: 'AssignmentExpression',
@@ -971,12 +971,12 @@ describe('Miscellaneous - loc', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 6
-                }
+                  column: 6,
+                },
               },
               operator: '*=',
               left: {
@@ -987,14 +987,14 @@ describe('Miscellaneous - loc', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 1
-                  }
+                    column: 1,
+                  },
                 },
-                name: 'a'
+                name: 'a',
               },
               right: {
                 type: 'Identifier',
@@ -1004,20 +1004,20 @@ describe('Miscellaneous - loc', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 5
+                    column: 5,
                   },
                   end: {
                     line: 1,
-                    column: 6
-                  }
+                    column: 6,
+                  },
                 },
-                name: 'b'
-              }
-            }
-          }
+                name: 'b',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `(2[x,x],x)>x`,
@@ -1030,12 +1030,12 @@ describe('Miscellaneous - loc', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 12
-          }
+            column: 12,
+          },
         },
         body: [
           {
@@ -1046,12 +1046,12 @@ describe('Miscellaneous - loc', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 12
-              }
+                column: 12,
+              },
             },
             expression: {
               type: 'BinaryExpression',
@@ -1061,12 +1061,12 @@ describe('Miscellaneous - loc', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 12
-                }
+                  column: 12,
+                },
               },
               left: {
                 type: 'SequenceExpression',
@@ -1076,12 +1076,12 @@ describe('Miscellaneous - loc', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 1
+                    column: 1,
                   },
                   end: {
                     line: 1,
-                    column: 9
-                  }
+                    column: 9,
+                  },
                 },
                 expressions: [
                   {
@@ -1092,12 +1092,12 @@ describe('Miscellaneous - loc', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 1
+                        column: 1,
                       },
                       end: {
                         line: 1,
-                        column: 7
-                      }
+                        column: 7,
+                      },
                     },
                     object: {
                       type: 'Literal',
@@ -1107,14 +1107,14 @@ describe('Miscellaneous - loc', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 1
+                          column: 1,
                         },
                         end: {
                           line: 1,
-                          column: 2
-                        }
+                          column: 2,
+                        },
                       },
-                      value: 2
+                      value: 2,
                     },
                     property: {
                       type: 'SequenceExpression',
@@ -1124,12 +1124,12 @@ describe('Miscellaneous - loc', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 3
+                          column: 3,
                         },
                         end: {
                           line: 1,
-                          column: 6
-                        }
+                          column: 6,
+                        },
                       },
                       expressions: [
                         {
@@ -1140,14 +1140,14 @@ describe('Miscellaneous - loc', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 3
+                              column: 3,
                             },
                             end: {
                               line: 1,
-                              column: 4
-                            }
+                              column: 4,
+                            },
                           },
-                          name: 'x'
+                          name: 'x',
                         },
                         {
                           type: 'Identifier',
@@ -1157,18 +1157,18 @@ describe('Miscellaneous - loc', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 5
+                              column: 5,
                             },
                             end: {
                               line: 1,
-                              column: 6
-                            }
+                              column: 6,
+                            },
                           },
-                          name: 'x'
-                        }
-                      ]
+                          name: 'x',
+                        },
+                      ],
                     },
-                    computed: true
+                    computed: true,
                   },
                   {
                     type: 'Identifier',
@@ -1178,16 +1178,16 @@ describe('Miscellaneous - loc', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 8
+                        column: 8,
                       },
                       end: {
                         line: 1,
-                        column: 9
-                      }
+                        column: 9,
+                      },
                     },
-                    name: 'x'
-                  }
-                ]
+                    name: 'x',
+                  },
+                ],
               },
               operator: '>',
               right: {
@@ -1198,20 +1198,20 @@ describe('Miscellaneous - loc', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 11
+                    column: 11,
                   },
                   end: {
                     line: 1,
-                    column: 12
-                  }
+                    column: 12,
+                  },
                 },
-                name: 'x'
-              }
-            }
-          }
+                name: 'x',
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `a&&(b=c)&&(d=e)`,
@@ -1224,12 +1224,12 @@ describe('Miscellaneous - loc', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 15
-          }
+            column: 15,
+          },
         },
         body: [
           {
@@ -1240,12 +1240,12 @@ describe('Miscellaneous - loc', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 15
-              }
+                column: 15,
+              },
             },
             expression: {
               type: 'LogicalExpression',
@@ -1255,12 +1255,12 @@ describe('Miscellaneous - loc', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 15
-                }
+                  column: 15,
+                },
               },
               left: {
                 type: 'LogicalExpression',
@@ -1270,12 +1270,12 @@ describe('Miscellaneous - loc', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 8
-                  }
+                    column: 8,
+                  },
                 },
                 left: {
                   type: 'Identifier',
@@ -1285,14 +1285,14 @@ describe('Miscellaneous - loc', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 0
+                      column: 0,
                     },
                     end: {
                       line: 1,
-                      column: 1
-                    }
+                      column: 1,
+                    },
                   },
-                  name: 'a'
+                  name: 'a',
                 },
                 operator: '&&',
                 right: {
@@ -1303,12 +1303,12 @@ describe('Miscellaneous - loc', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 4
+                      column: 4,
                     },
                     end: {
                       line: 1,
-                      column: 7
-                    }
+                      column: 7,
+                    },
                   },
                   operator: '=',
                   left: {
@@ -1319,14 +1319,14 @@ describe('Miscellaneous - loc', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 4
+                        column: 4,
                       },
                       end: {
                         line: 1,
-                        column: 5
-                      }
+                        column: 5,
+                      },
                     },
-                    name: 'b'
+                    name: 'b',
                   },
                   right: {
                     type: 'Identifier',
@@ -1336,16 +1336,16 @@ describe('Miscellaneous - loc', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 6
+                        column: 6,
                       },
                       end: {
                         line: 1,
-                        column: 7
-                      }
+                        column: 7,
+                      },
                     },
-                    name: 'c'
-                  }
-                }
+                    name: 'c',
+                  },
+                },
               },
               operator: '&&',
               right: {
@@ -1356,12 +1356,12 @@ describe('Miscellaneous - loc', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 11
+                    column: 11,
                   },
                   end: {
                     line: 1,
-                    column: 14
-                  }
+                    column: 14,
+                  },
                 },
                 operator: '=',
                 left: {
@@ -1372,14 +1372,14 @@ describe('Miscellaneous - loc', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 11
+                      column: 11,
                     },
                     end: {
                       line: 1,
-                      column: 12
-                    }
+                      column: 12,
+                    },
                   },
-                  name: 'd'
+                  name: 'd',
                 },
                 right: {
                   type: 'Identifier',
@@ -1389,21 +1389,21 @@ describe('Miscellaneous - loc', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 13
+                      column: 13,
                     },
                     end: {
                       line: 1,
-                      column: 14
-                    }
+                      column: 14,
+                    },
                   },
-                  name: 'e'
-                }
-              }
-            }
-          }
+                  name: 'e',
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `x = {...y, b}`,
@@ -1416,12 +1416,12 @@ describe('Miscellaneous - loc', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 13
-          }
+            column: 13,
+          },
         },
         body: [
           {
@@ -1432,12 +1432,12 @@ describe('Miscellaneous - loc', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 13
-              }
+                column: 13,
+              },
             },
             expression: {
               type: 'AssignmentExpression',
@@ -1447,12 +1447,12 @@ describe('Miscellaneous - loc', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 13
-                }
+                  column: 13,
+                },
               },
               operator: '=',
               left: {
@@ -1463,14 +1463,14 @@ describe('Miscellaneous - loc', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 1
-                  }
+                    column: 1,
+                  },
                 },
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -1480,12 +1480,12 @@ describe('Miscellaneous - loc', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 4
+                    column: 4,
                   },
                   end: {
                     line: 1,
-                    column: 13
-                  }
+                    column: 13,
+                  },
                 },
                 properties: [
                   {
@@ -1496,12 +1496,12 @@ describe('Miscellaneous - loc', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 5
+                        column: 5,
                       },
                       end: {
                         line: 1,
-                        column: 9
-                      }
+                        column: 9,
+                      },
                     },
                     argument: {
                       type: 'Identifier',
@@ -1511,15 +1511,15 @@ describe('Miscellaneous - loc', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 8
+                          column: 8,
                         },
                         end: {
                           line: 1,
-                          column: 9
-                        }
+                          column: 9,
+                        },
                       },
-                      name: 'y'
-                    }
+                      name: 'y',
+                    },
                   },
                   {
                     type: 'Property',
@@ -1529,12 +1529,12 @@ describe('Miscellaneous - loc', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 11
+                        column: 11,
                       },
                       end: {
                         line: 1,
-                        column: 12
-                      }
+                        column: 12,
+                      },
                     },
                     method: false,
                     shorthand: true,
@@ -1547,14 +1547,14 @@ describe('Miscellaneous - loc', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 11
+                          column: 11,
                         },
                         end: {
                           line: 1,
-                          column: 12
-                        }
+                          column: 12,
+                        },
                       },
-                      name: 'b'
+                      name: 'b',
                     },
                     kind: 'init',
                     value: {
@@ -1565,23 +1565,23 @@ describe('Miscellaneous - loc', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 11
+                          column: 11,
                         },
                         end: {
                           line: 1,
-                          column: 12
-                        }
+                          column: 12,
+                        },
                       },
-                      name: 'b'
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                      name: 'b',
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `x = {...[a, b]}`,
@@ -1594,12 +1594,12 @@ describe('Miscellaneous - loc', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 15
-          }
+            column: 15,
+          },
         },
         body: [
           {
@@ -1610,12 +1610,12 @@ describe('Miscellaneous - loc', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 15
-              }
+                column: 15,
+              },
             },
             expression: {
               type: 'AssignmentExpression',
@@ -1625,12 +1625,12 @@ describe('Miscellaneous - loc', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 15
-                }
+                  column: 15,
+                },
               },
               operator: '=',
               left: {
@@ -1641,14 +1641,14 @@ describe('Miscellaneous - loc', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 1
-                  }
+                    column: 1,
+                  },
                 },
-                name: 'x'
+                name: 'x',
               },
               right: {
                 type: 'ObjectExpression',
@@ -1658,12 +1658,12 @@ describe('Miscellaneous - loc', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 4
+                    column: 4,
                   },
                   end: {
                     line: 1,
-                    column: 15
-                  }
+                    column: 15,
+                  },
                 },
                 properties: [
                   {
@@ -1674,12 +1674,12 @@ describe('Miscellaneous - loc', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 5
+                        column: 5,
                       },
                       end: {
                         line: 1,
-                        column: 14
-                      }
+                        column: 14,
+                      },
                     },
                     argument: {
                       type: 'ArrayExpression',
@@ -1689,12 +1689,12 @@ describe('Miscellaneous - loc', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 8
+                          column: 8,
                         },
                         end: {
                           line: 1,
-                          column: 14
-                        }
+                          column: 14,
+                        },
                       },
                       elements: [
                         {
@@ -1705,14 +1705,14 @@ describe('Miscellaneous - loc', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 9
+                              column: 9,
                             },
                             end: {
                               line: 1,
-                              column: 10
-                            }
+                              column: 10,
+                            },
                           },
-                          name: 'a'
+                          name: 'a',
                         },
                         {
                           type: 'Identifier',
@@ -1722,25 +1722,25 @@ describe('Miscellaneous - loc', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 12
+                              column: 12,
                             },
                             end: {
                               line: 1,
-                              column: 13
-                            }
+                              column: 13,
+                            },
                           },
-                          name: 'b'
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                          name: 'b',
+                        },
+                      ],
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       `[,]`,
@@ -1753,12 +1753,12 @@ describe('Miscellaneous - loc', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 3
-          }
+            column: 3,
+          },
         },
         body: [
           {
@@ -1769,12 +1769,12 @@ describe('Miscellaneous - loc', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 3
-              }
+                column: 3,
+              },
             },
             expression: {
               type: 'ArrayExpression',
@@ -1784,20 +1784,20 @@ describe('Miscellaneous - loc', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 3
-                }
+                  column: 3,
+                },
               },
-              elements: [null]
-            }
-          }
+              elements: [null],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
-    ]
+        sourceType: 'script',
+      },
+    ],
   ]);
 
   it('Miscellaneous - loc (different line endings)', () => {
@@ -1806,11 +1806,11 @@ describe('Miscellaneous - loc', () => {
     const sourceCRLF = sourceLF.replace(/\n/g, '\r\n');
     t.deepEqual(
       parse(sourceLF, {
-        loc: true
+        loc: true,
       }),
       parse(sourceCRLF, {
-        loc: true
-      })
+        loc: true,
+      }),
     );
   });
 });

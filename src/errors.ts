@@ -179,7 +179,7 @@ export const enum Errors {
   InvalidImportMeta,
   InvalidEscapedImportMeta,
   InvalidAwaitAsIdentifier,
-  InvalidAwaitInStaticBlock
+  InvalidAwaitInStaticBlock,
 }
 
 export const errorMessages: {
@@ -370,7 +370,7 @@ export const errorMessages: {
   [Errors.InvalidImportMeta]: "The only valid meta property for import is 'import.meta'",
   [Errors.InvalidEscapedImportMeta]: "'import.meta' must not contain escaped characters",
   [Errors.InvalidAwaitAsIdentifier]: 'cannot use "await" as identifier inside an async function',
-  [Errors.InvalidAwaitInStaticBlock]: 'cannot use "await" in static blocks'
+  [Errors.InvalidAwaitInStaticBlock]: 'cannot use "await" in static blocks',
 };
 
 export class ParseError extends SyntaxError implements _Node {
@@ -399,7 +399,7 @@ export class ParseError extends SyntaxError implements _Node {
     this.range = [start, end];
     this.loc = {
       start: { line: startLine, column: startColumn },
-      end: { line: endLine, column: endColumn }
+      end: { line: endLine, column: endColumn },
     };
     this.description = description;
   }
@@ -422,7 +422,7 @@ export function report(parser: ParserState, type: Errors, ...params: string[]): 
     parser.line,
     parser.column,
     type,
-    ...params
+    ...params,
   );
 }
 
@@ -435,7 +435,7 @@ export function reportScopeError(scope: ScopeError): never {
     scope.line,
     scope.column,
     scope.type,
-    ...scope.params
+    ...scope.params,
   );
 }
 
@@ -480,7 +480,7 @@ export function reportScannerError(
   index: number,
   line: number,
   column: number,
-  type: Errors
+  type: Errors,
 ): never {
   throw new ParseError(tokenIndex, tokenLine, tokenColumn, index, line, column, type);
 }

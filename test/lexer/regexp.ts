@@ -26,7 +26,7 @@ describe('Lexer - Regular expressions', () => {
       Context.AllowRegExp,
       '/^-?(?:[0-9]|[1-9][0-9]+)(?:.[0-9]+)?(?:[eE][-+]?[0-9]+)?\b/',
       '^-?(?:[0-9]|[1-9][0-9]+)(?:.[0-9]+)?(?:[eE][-+]?[0-9]+)?\b',
-      ''
+      '',
     ],
     [Context.AllowRegExp, '/^{/', '^{', ''],
     [Context.AllowRegExp, '/^}/', '^}', ''],
@@ -98,7 +98,7 @@ describe('Lexer - Regular expressions', () => {
       Context.AllowRegExp,
       String.raw`/(((((((((((((((((((((a)))))))))))))))))))))\20/`,
       String.raw`(((((((((((((((((((((a)))))))))))))))))))))\20`,
-      ''
+      '',
     ],
     [Context.AllowRegExp, String.raw`/x\ud810\ud810/`, String.raw`x\ud810\ud810`, ''],
     [Context.AllowRegExp, String.raw`/x\udabcy/`, String.raw`x\udabcy`, ''],
@@ -142,7 +142,7 @@ describe('Lexer - Regular expressions', () => {
     [Context.AllowRegExp, '/.*/s', '.*', 's'],
     [Context.AllowRegExp, '/.*/m', '.*', 'm'],
     [Context.AllowRegExp, '/.*/y', '.*', 'y'],
-    [Context.AllowRegExp, String.raw`/\%([0-9]*)\[(\^)?(\]?[^\]]*)\]/`, String.raw`\%([0-9]*)\[(\^)?(\]?[^\]]*)\]`, '']
+    [Context.AllowRegExp, String.raw`/\%([0-9]*)\[(\^)?(\]?[^\]]*)\]/`, String.raw`\%([0-9]*)\[(\^)?(\]?[^\]]*)\]`, ''],
   ];
 
   if (regexFeatures.unicodeSets) {
@@ -152,15 +152,15 @@ describe('Lexer - Regular expressions', () => {
         Context.AllowRegExp,
         String.raw`/[\p{Script_Extensions=Greek}&&\p{Letter}]/v`,
         String.raw`[\p{Script_Extensions=Greek}&&\p{Letter}]`,
-        'v'
-      ]
+        'v',
+      ],
     );
   }
 
   if (regexFeatures.modifiers) {
     tokens.push(
       // https://github.com/tc39/proposal-regexp-modifiers#examples
-      [Context.AllowRegExp, '/^(?i:[a-z])[a-z]$/', '^(?i:[a-z])[a-z]$', '']
+      [Context.AllowRegExp, '/^(?i:[a-z])[a-z]$/', '^(?i:[a-z])[a-z]$', ''],
     );
   }
 
@@ -171,8 +171,8 @@ describe('Lexer - Regular expressions', () => {
         Context.AllowRegExp,
         '/(?<year>[0-9]{4})-[0-9]{2}|[0-9]{2}-(?<year>[0-9]{4})/',
         '(?<year>[0-9]{4})-[0-9]{2}|[0-9]{2}-(?<year>[0-9]{4})',
-        ''
-      ]
+        '',
+      ],
     );
   }
 
@@ -186,14 +186,14 @@ describe('Lexer - Regular expressions', () => {
           token: found,
           hasNext: state.index < state.source.length,
           value: (state.tokenRegExp as any).pattern,
-          flags: (state.tokenRegExp as any).flags
+          flags: (state.tokenRegExp as any).flags,
         },
         {
           token: Token.RegularExpression,
           hasNext: false,
           value,
-          flags
-        }
+          flags,
+        },
       );
     });
   }

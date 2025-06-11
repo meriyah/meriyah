@@ -30,7 +30,7 @@ describe('Lexer - String', () => {
       Token.StringLiteral,
       '"\
     "',
-      '    '
+      '    ',
     ],
 
     // Russian letters
@@ -95,7 +95,7 @@ describe('Lexer - String', () => {
       Context.None,
       Token.StringLiteral,
       String.raw`"\xF000111FEEEDDAAAB77777999344BBBCCD0"`,
-      'ð00111FEEEDDAAAB77777999344BBBCCD0'
+      'ð00111FEEEDDAAAB77777999344BBBCCD0',
     ],
     [Context.None, Token.StringLiteral, String.raw`"\x128"`, '\u00128'],
     [Context.None, Token.StringLiteral, String.raw`"\xCd#"`, 'Í#'],
@@ -152,7 +152,7 @@ describe('Lexer - String', () => {
     [Context.None, Token.StringLiteral, '"\\\n"', ''],
     [Context.None, Token.StringLiteral, '"a\\\r"', 'a'],
     [Context.None, Token.StringLiteral, '"\\\r\nb"', 'b'],
-    [Context.None, Token.StringLiteral, '"\\\r\n"', '']
+    [Context.None, Token.StringLiteral, '"\\\r\n"', ''],
   ];
 
   for (const [ctx, token, op, value] of tokens) {
@@ -165,14 +165,14 @@ describe('Lexer - String', () => {
           token: found,
           hasNext: state.index < state.source.length,
           value: state.tokenValue,
-          index: state.index
+          index: state.index,
         },
         {
           token: token,
           hasNext: false,
           value,
-          index: op.length
-        }
+          index: op.length,
+        },
       );
     });
 
@@ -185,14 +185,14 @@ describe('Lexer - String', () => {
           token: found,
           hasNext: state.index < state.source.length,
           value: state.tokenValue,
-          index: state.index
+          index: state.index,
         },
         {
           token: token,
           hasNext: true,
           value,
-          index: op.length
-        }
+          index: op.length,
+        },
       );
     });
   }
@@ -239,7 +239,7 @@ describe('Lexer - String', () => {
   fail(
     String.raw`fails on "\u{00000000000000000000110000}"`,
     String.raw`"\u{00000000000000000000110000}"`,
-    Context.None
+    Context.None,
   );
   fail(String.raw`fails on "\7"`, String.raw`"\7"`, Context.Strict);
   fail('fails on "\\7\\\n"', '"\\7\\\n"', Context.Strict);

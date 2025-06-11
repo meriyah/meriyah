@@ -12,7 +12,7 @@ describe('Declarations - Async Function', () => {
     'async function f() { for await (let x in y) {} }',
     'async function f() { for await (const x in y) {} }',
     String.raw`async function foo(p\u0061ckage) { "use strict" }`,
-    'async function foo(package) { "use strict" }'
+    'async function foo(package) { "use strict" }',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -229,7 +229,7 @@ describe('Declarations - Async Function', () => {
             async (b) => {};
     }`,
     'async function foo(package) { }',
-    String.raw`async function foo(p\u0061ckage) { }`
+    String.raw`async function foo(p\u0061ckage) { }`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -313,7 +313,7 @@ describe('Declarations - Async Function', () => {
     'async function x({await}) { return 1 }',
     'async function f() { return {await}; }',
     'async function f() { return {await = 0} = {}; }',
-    'async (a = await => {}) => {}'
+    'async (a = await => {}) => {}',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -355,7 +355,7 @@ describe('Declarations - Async Function', () => {
     'var e = (await, f);',
     'var e = (await = 42)',
     'var e = [await];',
-    'var e = {await};'
+    'var e = {await};',
   ]) {
     it(`async function f() {${arg}}`, () => {
       t.throws(() => {
@@ -473,7 +473,7 @@ describe('Declarations - Async Function', () => {
       }](){}
     }) {
     }`,
-      Context.None
+      Context.None,
     ],
     ['({async get foo() { }})', Context.None],
     ['({async set foo(value) { }})', Context.None],
@@ -534,7 +534,7 @@ describe('Declarations - Async Function', () => {
     ['async function af(a, b = await a) { "use strict"; }', Context.None],
     ['async function af(x) { function f(a = await x) { } f(); } af();', Context.None],
     ['async function af(arguments) { "use strict"; }', Context.None],
-    ['async function af(eval) { "use strict"; }', Context.None]
+    ['async function af(eval) { "use strict"; }', Context.None],
   ]);
 
   pass('Declarations - Async function (pass)', [
@@ -546,29 +546,29 @@ describe('Declarations - Async Function', () => {
           {
             expression: {
               name: 'async',
-              type: 'Identifier'
+              type: 'Identifier',
             },
-            type: 'ExpressionStatement'
+            type: 'ExpressionStatement',
           },
           {
             async: false,
             body: {
               body: [],
-              type: 'BlockStatement'
+              type: 'BlockStatement',
             },
 
             generator: false,
             id: {
               name: 'foo',
-              type: 'Identifier'
+              type: 'Identifier',
             },
             params: [],
-            type: 'FunctionDeclaration'
-          }
+            type: 'FunctionDeclaration',
+          },
         ],
         sourceType: 'script',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'async function *gen() { yield [...yield]; }',
@@ -589,7 +589,7 @@ describe('Declarations - Async Function', () => {
               start: 16,
               end: 19,
               range: [16, 19],
-              name: 'gen'
+              name: 'gen',
             },
             generator: true,
             async: true,
@@ -628,19 +628,19 @@ describe('Declarations - Async Function', () => {
                             end: 39,
                             range: [34, 39],
                             delegate: false,
-                            argument: null
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                            argument: null,
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '"use strict"; async function foo() { function bar() { await = 1; } bar(); }',
@@ -662,9 +662,9 @@ describe('Declarations - Async Function', () => {
               end: 12,
               range: [0, 12],
               value: 'use strict',
-              raw: '"use strict"'
+              raw: '"use strict"',
             },
-            directive: 'use strict'
+            directive: 'use strict',
           },
           {
             type: 'FunctionDeclaration',
@@ -676,7 +676,7 @@ describe('Declarations - Async Function', () => {
               start: 29,
               end: 32,
               range: [29, 32],
-              name: 'foo'
+              name: 'foo',
             },
             generator: false,
             async: true,
@@ -697,7 +697,7 @@ describe('Declarations - Async Function', () => {
                     start: 46,
                     end: 49,
                     range: [46, 49],
-                    name: 'bar'
+                    name: 'bar',
                   },
                   generator: false,
                   async: false,
@@ -724,7 +724,7 @@ describe('Declarations - Async Function', () => {
                             start: 54,
                             end: 59,
                             range: [54, 59],
-                            name: 'await'
+                            name: 'await',
                           },
                           right: {
                             type: 'Literal',
@@ -732,12 +732,12 @@ describe('Declarations - Async Function', () => {
                             end: 63,
                             range: [62, 63],
                             value: 1,
-                            raw: '1'
-                          }
-                        }
-                      }
-                    ]
-                  }
+                            raw: '1',
+                          },
+                        },
+                      },
+                    ],
+                  },
                 },
                 {
                   type: 'ExpressionStatement',
@@ -754,17 +754,17 @@ describe('Declarations - Async Function', () => {
                       start: 67,
                       end: 70,
                       range: [67, 70],
-                      name: 'bar'
+                      name: 'bar',
                     },
-                    arguments: []
-                  }
-                }
-              ]
-            }
-          }
+                    arguments: [],
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'export async function foo() { }',
@@ -777,25 +777,25 @@ describe('Declarations - Async Function', () => {
               async: true,
               body: {
                 body: [],
-                type: 'BlockStatement'
+                type: 'BlockStatement',
               },
 
               generator: false,
               id: {
                 name: 'foo',
-                type: 'Identifier'
+                type: 'Identifier',
               },
               params: [],
-              type: 'FunctionDeclaration'
+              type: 'FunctionDeclaration',
             },
             source: null,
             specifiers: [],
-            type: 'ExportNamedDeclaration'
-          }
+            type: 'ExportNamedDeclaration',
+          },
         ],
         sourceType: 'module',
-        type: 'Program'
-      }
+        type: 'Program',
+      },
     ],
     [
       'async function await() { }',
@@ -816,7 +816,7 @@ describe('Declarations - Async Function', () => {
               start: 15,
               end: 20,
               range: [15, 20],
-              name: 'await'
+              name: 'await',
             },
             generator: false,
             async: true,
@@ -826,12 +826,12 @@ describe('Declarations - Async Function', () => {
               start: 23,
               end: 26,
               range: [23, 26],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(async function foo() { })',
@@ -857,7 +857,7 @@ describe('Declarations - Async Function', () => {
                 start: 16,
                 end: 19,
                 range: [16, 19],
-                name: 'foo'
+                name: 'foo',
               },
               generator: false,
               async: true,
@@ -867,13 +867,13 @@ describe('Declarations - Async Function', () => {
                 start: 22,
                 end: 25,
                 range: [22, 25],
-                body: []
-              }
-            }
-          }
+                body: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async ({a: b = c})',
@@ -886,12 +886,12 @@ describe('Declarations - Async Function', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 18
-          }
+            column: 18,
+          },
         },
         body: [
           {
@@ -902,12 +902,12 @@ describe('Declarations - Async Function', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 18
-              }
+                column: 18,
+              },
             },
             expression: {
               type: 'CallExpression',
@@ -917,12 +917,12 @@ describe('Declarations - Async Function', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 18
-                }
+                  column: 18,
+                },
               },
               callee: {
                 type: 'Identifier',
@@ -932,14 +932,14 @@ describe('Declarations - Async Function', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 5
-                  }
+                    column: 5,
+                  },
                 },
-                name: 'async'
+                name: 'async',
               },
               arguments: [
                 {
@@ -950,12 +950,12 @@ describe('Declarations - Async Function', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 7
+                      column: 7,
                     },
                     end: {
                       line: 1,
-                      column: 17
-                    }
+                      column: 17,
+                    },
                   },
                   properties: [
                     {
@@ -966,12 +966,12 @@ describe('Declarations - Async Function', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 8
+                          column: 8,
                         },
                         end: {
                           line: 1,
-                          column: 16
-                        }
+                          column: 16,
+                        },
                       },
                       method: false,
                       shorthand: false,
@@ -984,14 +984,14 @@ describe('Declarations - Async Function', () => {
                         loc: {
                           start: {
                             line: 1,
-                            column: 8
+                            column: 8,
                           },
                           end: {
                             line: 1,
-                            column: 9
-                          }
+                            column: 9,
+                          },
                         },
-                        name: 'a'
+                        name: 'a',
                       },
                       value: {
                         type: 'AssignmentExpression',
@@ -1001,12 +1001,12 @@ describe('Declarations - Async Function', () => {
                         loc: {
                           start: {
                             line: 1,
-                            column: 11
+                            column: 11,
                           },
                           end: {
                             line: 1,
-                            column: 16
-                          }
+                            column: 16,
+                          },
                         },
                         operator: '=',
                         left: {
@@ -1017,14 +1017,14 @@ describe('Declarations - Async Function', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 11
+                              column: 11,
                             },
                             end: {
                               line: 1,
-                              column: 12
-                            }
+                              column: 12,
+                            },
                           },
-                          name: 'b'
+                          name: 'b',
                         },
                         right: {
                           type: 'Identifier',
@@ -1034,26 +1034,26 @@ describe('Declarations - Async Function', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 15
+                              column: 15,
                             },
                             end: {
                               line: 1,
-                              column: 16
-                            }
+                              column: 16,
+                            },
                           },
-                          name: 'c'
-                        }
+                          name: 'c',
+                        },
                       },
-                      kind: 'init'
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                      kind: 'init',
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({async await() { }})',
@@ -1088,7 +1088,7 @@ describe('Declarations - Async Function', () => {
                     start: 8,
                     end: 13,
                     range: [8, 13],
-                    name: 'await'
+                    name: 'await',
                   },
                   kind: 'init',
                   value: {
@@ -1105,16 +1105,16 @@ describe('Declarations - Async Function', () => {
                       start: 16,
                       end: 19,
                       range: [16, 19],
-                      body: []
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      body: [],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async function foo(a, b) { await a }',
@@ -1135,7 +1135,7 @@ describe('Declarations - Async Function', () => {
               start: 15,
               end: 18,
               range: [15, 18],
-              name: 'foo'
+              name: 'foo',
             },
             generator: false,
             async: true,
@@ -1145,15 +1145,15 @@ describe('Declarations - Async Function', () => {
                 start: 19,
                 end: 20,
                 range: [19, 20],
-                name: 'a'
+                name: 'a',
               },
               {
                 type: 'Identifier',
                 start: 22,
                 end: 23,
                 range: [22, 23],
-                name: 'b'
-              }
+                name: 'b',
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -1176,16 +1176,16 @@ describe('Declarations - Async Function', () => {
                       start: 33,
                       end: 34,
                       range: [33, 34],
-                      name: 'a'
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      name: 'a',
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(async function foo(a) { await a })',
@@ -1211,7 +1211,7 @@ describe('Declarations - Async Function', () => {
                 start: 16,
                 end: 19,
                 range: [16, 19],
-                name: 'foo'
+                name: 'foo',
               },
               generator: false,
               async: true,
@@ -1221,8 +1221,8 @@ describe('Declarations - Async Function', () => {
                   start: 20,
                   end: 21,
                   range: [20, 21],
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               ],
               body: {
                 type: 'BlockStatement',
@@ -1245,17 +1245,17 @@ describe('Declarations - Async Function', () => {
                         start: 31,
                         end: 32,
                         range: [31, 32],
-                        name: 'a'
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                        name: 'a',
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '(async (a) => await a)',
@@ -1273,22 +1273,22 @@ describe('Declarations - Async Function', () => {
                 type: 'AwaitExpression',
                 argument: {
                   type: 'Identifier',
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               },
               params: [
                 {
                   type: 'Identifier',
-                  name: 'a'
-                }
+                  name: 'a',
+                },
               ],
 
               async: true,
-              expression: true
-            }
-          }
-        ]
-      }
+              expression: true,
+            },
+          },
+        ],
+      },
     ],
     [
       '({async foo(a) { await a }})',
@@ -1306,15 +1306,15 @@ describe('Declarations - Async Function', () => {
                   type: 'Property',
                   key: {
                     type: 'Identifier',
-                    name: 'foo'
+                    name: 'foo',
                   },
                   value: {
                     type: 'FunctionExpression',
                     params: [
                       {
                         type: 'Identifier',
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     ],
                     body: {
                       type: 'BlockStatement',
@@ -1325,26 +1325,26 @@ describe('Declarations - Async Function', () => {
                             type: 'AwaitExpression',
                             argument: {
                               type: 'Identifier',
-                              name: 'a'
-                            }
-                          }
-                        }
-                      ]
+                              name: 'a',
+                            },
+                          },
+                        },
+                      ],
                     },
                     async: true,
                     generator: false,
-                    id: null
+                    id: null,
                   },
                   kind: 'init',
                   computed: false,
                   method: true,
-                  shorthand: false
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  shorthand: false,
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
     [
       'async function foo(a, b) { await a + await b }',
@@ -1365,7 +1365,7 @@ describe('Declarations - Async Function', () => {
               start: 15,
               end: 18,
               range: [15, 18],
-              name: 'foo'
+              name: 'foo',
             },
             generator: false,
             async: true,
@@ -1375,15 +1375,15 @@ describe('Declarations - Async Function', () => {
                 start: 19,
                 end: 20,
                 range: [19, 20],
-                name: 'a'
+                name: 'a',
               },
               {
                 type: 'Identifier',
                 start: 22,
                 end: 23,
                 range: [22, 23],
-                name: 'b'
-              }
+                name: 'b',
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -1411,8 +1411,8 @@ describe('Declarations - Async Function', () => {
                         start: 33,
                         end: 34,
                         range: [33, 34],
-                        name: 'a'
-                      }
+                        name: 'a',
+                      },
                     },
                     operator: '+',
                     right: {
@@ -1425,17 +1425,17 @@ describe('Declarations - Async Function', () => {
                         start: 43,
                         end: 44,
                         range: [43, 44],
-                        name: 'b'
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                        name: 'b',
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'function foo() { await + 1 }',
@@ -1448,12 +1448,12 @@ describe('Declarations - Async Function', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 28
-          }
+            column: 28,
+          },
         },
         body: [
           {
@@ -1464,12 +1464,12 @@ describe('Declarations - Async Function', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 28
-              }
+                column: 28,
+              },
             },
             id: {
               type: 'Identifier',
@@ -1479,14 +1479,14 @@ describe('Declarations - Async Function', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 9
+                  column: 9,
                 },
                 end: {
                   line: 1,
-                  column: 12
-                }
+                  column: 12,
+                },
               },
-              name: 'foo'
+              name: 'foo',
             },
             generator: false,
             async: false,
@@ -1499,12 +1499,12 @@ describe('Declarations - Async Function', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 15
+                  column: 15,
                 },
                 end: {
                   line: 1,
-                  column: 28
-                }
+                  column: 28,
+                },
               },
               body: [
                 {
@@ -1515,12 +1515,12 @@ describe('Declarations - Async Function', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 17
+                      column: 17,
                     },
                     end: {
                       line: 1,
-                      column: 26
-                    }
+                      column: 26,
+                    },
                   },
                   expression: {
                     type: 'BinaryExpression',
@@ -1530,12 +1530,12 @@ describe('Declarations - Async Function', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 17
+                        column: 17,
                       },
                       end: {
                         line: 1,
-                        column: 26
-                      }
+                        column: 26,
+                      },
                     },
                     left: {
                       type: 'Identifier',
@@ -1545,14 +1545,14 @@ describe('Declarations - Async Function', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 17
+                          column: 17,
                         },
                         end: {
                           line: 1,
-                          column: 22
-                        }
+                          column: 22,
+                        },
                       },
-                      name: 'await'
+                      name: 'await',
                     },
                     operator: '+',
                     right: {
@@ -1563,23 +1563,23 @@ describe('Declarations - Async Function', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 25
+                          column: 25,
                         },
                         end: {
                           line: 1,
-                          column: 26
-                        }
+                          column: 26,
+                        },
                       },
-                      value: 1
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      value: 1,
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async function foo(a = async function foo() { await b }) {}',
@@ -1592,12 +1592,12 @@ describe('Declarations - Async Function', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 59
-          }
+            column: 59,
+          },
         },
         body: [
           {
@@ -1608,12 +1608,12 @@ describe('Declarations - Async Function', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 59
-              }
+                column: 59,
+              },
             },
             id: {
               type: 'Identifier',
@@ -1623,14 +1623,14 @@ describe('Declarations - Async Function', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 15
+                  column: 15,
                 },
                 end: {
                   line: 1,
-                  column: 18
-                }
+                  column: 18,
+                },
               },
-              name: 'foo'
+              name: 'foo',
             },
             generator: false,
             async: true,
@@ -1643,12 +1643,12 @@ describe('Declarations - Async Function', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 19
+                    column: 19,
                   },
                   end: {
                     line: 1,
-                    column: 55
-                  }
+                    column: 55,
+                  },
                 },
                 left: {
                   type: 'Identifier',
@@ -1658,14 +1658,14 @@ describe('Declarations - Async Function', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 19
+                      column: 19,
                     },
                     end: {
                       line: 1,
-                      column: 20
-                    }
+                      column: 20,
+                    },
                   },
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'FunctionExpression',
@@ -1675,12 +1675,12 @@ describe('Declarations - Async Function', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 23
+                      column: 23,
                     },
                     end: {
                       line: 1,
-                      column: 55
-                    }
+                      column: 55,
+                    },
                   },
                   id: {
                     type: 'Identifier',
@@ -1690,14 +1690,14 @@ describe('Declarations - Async Function', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 38
+                        column: 38,
                       },
                       end: {
                         line: 1,
-                        column: 41
-                      }
+                        column: 41,
+                      },
                     },
-                    name: 'foo'
+                    name: 'foo',
                   },
                   generator: false,
                   async: true,
@@ -1710,12 +1710,12 @@ describe('Declarations - Async Function', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 44
+                        column: 44,
                       },
                       end: {
                         line: 1,
-                        column: 55
-                      }
+                        column: 55,
+                      },
                     },
                     body: [
                       {
@@ -1726,12 +1726,12 @@ describe('Declarations - Async Function', () => {
                         loc: {
                           start: {
                             line: 1,
-                            column: 46
+                            column: 46,
                           },
                           end: {
                             line: 1,
-                            column: 53
-                          }
+                            column: 53,
+                          },
                         },
                         expression: {
                           type: 'AwaitExpression',
@@ -1741,12 +1741,12 @@ describe('Declarations - Async Function', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 46
+                              column: 46,
                             },
                             end: {
                               line: 1,
-                              column: 53
-                            }
+                              column: 53,
+                            },
                           },
                           argument: {
                             type: 'Identifier',
@@ -1756,21 +1756,21 @@ describe('Declarations - Async Function', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 52
+                                column: 52,
                               },
                               end: {
                                 line: 1,
-                                column: 53
-                              }
+                                column: 53,
+                              },
                             },
-                            name: 'b'
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
+                            name: 'b',
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
@@ -1780,19 +1780,19 @@ describe('Declarations - Async Function', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 57
+                  column: 57,
                 },
                 end: {
                   line: 1,
-                  column: 59
-                }
+                  column: 59,
+                },
               },
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async function foo(a = async () => await b) {}',
@@ -1808,7 +1808,7 @@ describe('Declarations - Async Function', () => {
                 type: 'AssignmentPattern',
                 left: {
                   type: 'Identifier',
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'ArrowFunctionExpression',
@@ -1817,30 +1817,30 @@ describe('Declarations - Async Function', () => {
                     type: 'AwaitExpression',
                     argument: {
                       type: 'Identifier',
-                      name: 'b'
-                    }
+                      name: 'b',
+                    },
                   },
                   params: [],
 
                   async: true,
-                  expression: true
-                }
-              }
+                  expression: true,
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
-              body: []
+              body: [],
             },
             async: true,
             generator: false,
 
             id: {
               type: 'Identifier',
-              name: 'foo'
-            }
-          }
-        ]
-      }
+              name: 'foo',
+            },
+          },
+        ],
+      },
     ],
     [
       'async function foo(a = {async bar() { await b }}) {}',
@@ -1861,7 +1861,7 @@ describe('Declarations - Async Function', () => {
               start: 15,
               end: 18,
               range: [15, 18],
-              name: 'foo'
+              name: 'foo',
             },
             generator: false,
             async: true,
@@ -1876,7 +1876,7 @@ describe('Declarations - Async Function', () => {
                   start: 19,
                   end: 20,
                   range: [19, 20],
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'ObjectExpression',
@@ -1897,7 +1897,7 @@ describe('Declarations - Async Function', () => {
                         start: 30,
                         end: 33,
                         range: [30, 33],
-                        name: 'bar'
+                        name: 'bar',
                       },
                       kind: 'init',
                       value: {
@@ -1930,29 +1930,29 @@ describe('Declarations - Async Function', () => {
                                   start: 44,
                                   end: 45,
                                   range: [44, 45],
-                                  name: 'b'
-                                }
-                              }
-                            }
-                          ]
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
+                                  name: 'b',
+                                },
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    },
+                  ],
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
               start: 50,
               end: 52,
               range: [50, 52],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'async function foo(a = class {async bar() { await b }}) {}',
@@ -1973,7 +1973,7 @@ describe('Declarations - Async Function', () => {
               start: 15,
               end: 18,
               range: [15, 18],
-              name: 'foo'
+              name: 'foo',
             },
             generator: false,
             async: true,
@@ -1988,7 +1988,7 @@ describe('Declarations - Async Function', () => {
                   start: 19,
                   end: 20,
                   range: [19, 20],
-                  name: 'a'
+                  name: 'a',
                 },
                 right: {
                   type: 'ClassExpression',
@@ -2016,7 +2016,7 @@ describe('Declarations - Async Function', () => {
                           start: 36,
                           end: 39,
                           range: [36, 39],
-                          name: 'bar'
+                          name: 'bar',
                         },
                         value: {
                           type: 'FunctionExpression',
@@ -2048,30 +2048,30 @@ describe('Declarations - Async Function', () => {
                                     start: 50,
                                     end: 51,
                                     range: [50, 51],
-                                    name: 'b'
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
+                                    name: 'b',
+                                  },
+                                },
+                              },
+                            ],
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              },
             ],
             body: {
               type: 'BlockStatement',
               start: 56,
               end: 58,
               range: [56, 58],
-              body: []
-            }
-          }
+              body: [],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       'f = ({ w = counter(), x = counter(), y = counter(), z = counter() } = { w: null, x: 0, y: false, z: "" }) => {}',
@@ -2084,12 +2084,12 @@ describe('Declarations - Async Function', () => {
         loc: {
           start: {
             line: 1,
-            column: 0
+            column: 0,
           },
           end: {
             line: 1,
-            column: 111
-          }
+            column: 111,
+          },
         },
         body: [
           {
@@ -2100,12 +2100,12 @@ describe('Declarations - Async Function', () => {
             loc: {
               start: {
                 line: 1,
-                column: 0
+                column: 0,
               },
               end: {
                 line: 1,
-                column: 111
-              }
+                column: 111,
+              },
             },
             expression: {
               type: 'AssignmentExpression',
@@ -2115,12 +2115,12 @@ describe('Declarations - Async Function', () => {
               loc: {
                 start: {
                   line: 1,
-                  column: 0
+                  column: 0,
                 },
                 end: {
                   line: 1,
-                  column: 111
-                }
+                  column: 111,
+                },
               },
               operator: '=',
               left: {
@@ -2131,14 +2131,14 @@ describe('Declarations - Async Function', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 0
+                    column: 0,
                   },
                   end: {
                     line: 1,
-                    column: 1
-                  }
+                    column: 1,
+                  },
                 },
-                name: 'f'
+                name: 'f',
               },
               right: {
                 type: 'ArrowFunctionExpression',
@@ -2149,12 +2149,12 @@ describe('Declarations - Async Function', () => {
                 loc: {
                   start: {
                     line: 1,
-                    column: 4
+                    column: 4,
                   },
                   end: {
                     line: 1,
-                    column: 111
-                  }
+                    column: 111,
+                  },
                 },
                 expression: false,
                 async: false,
@@ -2167,12 +2167,12 @@ describe('Declarations - Async Function', () => {
                     loc: {
                       start: {
                         line: 1,
-                        column: 5
+                        column: 5,
                       },
                       end: {
                         line: 1,
-                        column: 104
-                      }
+                        column: 104,
+                      },
                     },
                     left: {
                       type: 'ObjectPattern',
@@ -2182,12 +2182,12 @@ describe('Declarations - Async Function', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 5
+                          column: 5,
                         },
                         end: {
                           line: 1,
-                          column: 67
-                        }
+                          column: 67,
+                        },
                       },
                       properties: [
                         {
@@ -2198,12 +2198,12 @@ describe('Declarations - Async Function', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 7
+                              column: 7,
                             },
                             end: {
                               line: 1,
-                              column: 20
-                            }
+                              column: 20,
+                            },
                           },
                           method: false,
                           shorthand: true,
@@ -2216,14 +2216,14 @@ describe('Declarations - Async Function', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 7
+                                column: 7,
                               },
                               end: {
                                 line: 1,
-                                column: 8
-                              }
+                                column: 8,
+                              },
                             },
-                            name: 'w'
+                            name: 'w',
                           },
                           kind: 'init',
                           value: {
@@ -2234,12 +2234,12 @@ describe('Declarations - Async Function', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 7
+                                column: 7,
                               },
                               end: {
                                 line: 1,
-                                column: 20
-                              }
+                                column: 20,
+                              },
                             },
                             left: {
                               type: 'Identifier',
@@ -2249,14 +2249,14 @@ describe('Declarations - Async Function', () => {
                               loc: {
                                 start: {
                                   line: 1,
-                                  column: 7
+                                  column: 7,
                                 },
                                 end: {
                                   line: 1,
-                                  column: 8
-                                }
+                                  column: 8,
+                                },
                               },
-                              name: 'w'
+                              name: 'w',
                             },
                             right: {
                               type: 'CallExpression',
@@ -2266,12 +2266,12 @@ describe('Declarations - Async Function', () => {
                               loc: {
                                 start: {
                                   line: 1,
-                                  column: 11
+                                  column: 11,
                                 },
                                 end: {
                                   line: 1,
-                                  column: 20
-                                }
+                                  column: 20,
+                                },
                               },
                               callee: {
                                 type: 'Identifier',
@@ -2281,18 +2281,18 @@ describe('Declarations - Async Function', () => {
                                 loc: {
                                   start: {
                                     line: 1,
-                                    column: 11
+                                    column: 11,
                                   },
                                   end: {
                                     line: 1,
-                                    column: 18
-                                  }
+                                    column: 18,
+                                  },
                                 },
-                                name: 'counter'
+                                name: 'counter',
                               },
-                              arguments: []
-                            }
-                          }
+                              arguments: [],
+                            },
+                          },
                         },
                         {
                           type: 'Property',
@@ -2302,12 +2302,12 @@ describe('Declarations - Async Function', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 22
+                              column: 22,
                             },
                             end: {
                               line: 1,
-                              column: 35
-                            }
+                              column: 35,
+                            },
                           },
                           method: false,
                           shorthand: true,
@@ -2320,14 +2320,14 @@ describe('Declarations - Async Function', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 22
+                                column: 22,
                               },
                               end: {
                                 line: 1,
-                                column: 23
-                              }
+                                column: 23,
+                              },
                             },
-                            name: 'x'
+                            name: 'x',
                           },
                           kind: 'init',
                           value: {
@@ -2338,12 +2338,12 @@ describe('Declarations - Async Function', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 22
+                                column: 22,
                               },
                               end: {
                                 line: 1,
-                                column: 35
-                              }
+                                column: 35,
+                              },
                             },
                             left: {
                               type: 'Identifier',
@@ -2353,14 +2353,14 @@ describe('Declarations - Async Function', () => {
                               loc: {
                                 start: {
                                   line: 1,
-                                  column: 22
+                                  column: 22,
                                 },
                                 end: {
                                   line: 1,
-                                  column: 23
-                                }
+                                  column: 23,
+                                },
                               },
-                              name: 'x'
+                              name: 'x',
                             },
                             right: {
                               type: 'CallExpression',
@@ -2370,12 +2370,12 @@ describe('Declarations - Async Function', () => {
                               loc: {
                                 start: {
                                   line: 1,
-                                  column: 26
+                                  column: 26,
                                 },
                                 end: {
                                   line: 1,
-                                  column: 35
-                                }
+                                  column: 35,
+                                },
                               },
                               callee: {
                                 type: 'Identifier',
@@ -2385,18 +2385,18 @@ describe('Declarations - Async Function', () => {
                                 loc: {
                                   start: {
                                     line: 1,
-                                    column: 26
+                                    column: 26,
                                   },
                                   end: {
                                     line: 1,
-                                    column: 33
-                                  }
+                                    column: 33,
+                                  },
                                 },
-                                name: 'counter'
+                                name: 'counter',
                               },
-                              arguments: []
-                            }
-                          }
+                              arguments: [],
+                            },
+                          },
                         },
                         {
                           type: 'Property',
@@ -2406,12 +2406,12 @@ describe('Declarations - Async Function', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 37
+                              column: 37,
                             },
                             end: {
                               line: 1,
-                              column: 50
-                            }
+                              column: 50,
+                            },
                           },
                           method: false,
                           shorthand: true,
@@ -2424,14 +2424,14 @@ describe('Declarations - Async Function', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 37
+                                column: 37,
                               },
                               end: {
                                 line: 1,
-                                column: 38
-                              }
+                                column: 38,
+                              },
                             },
-                            name: 'y'
+                            name: 'y',
                           },
                           kind: 'init',
                           value: {
@@ -2442,12 +2442,12 @@ describe('Declarations - Async Function', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 37
+                                column: 37,
                               },
                               end: {
                                 line: 1,
-                                column: 50
-                              }
+                                column: 50,
+                              },
                             },
                             left: {
                               type: 'Identifier',
@@ -2457,14 +2457,14 @@ describe('Declarations - Async Function', () => {
                               loc: {
                                 start: {
                                   line: 1,
-                                  column: 37
+                                  column: 37,
                                 },
                                 end: {
                                   line: 1,
-                                  column: 38
-                                }
+                                  column: 38,
+                                },
                               },
-                              name: 'y'
+                              name: 'y',
                             },
                             right: {
                               type: 'CallExpression',
@@ -2474,12 +2474,12 @@ describe('Declarations - Async Function', () => {
                               loc: {
                                 start: {
                                   line: 1,
-                                  column: 41
+                                  column: 41,
                                 },
                                 end: {
                                   line: 1,
-                                  column: 50
-                                }
+                                  column: 50,
+                                },
                               },
                               callee: {
                                 type: 'Identifier',
@@ -2489,18 +2489,18 @@ describe('Declarations - Async Function', () => {
                                 loc: {
                                   start: {
                                     line: 1,
-                                    column: 41
+                                    column: 41,
                                   },
                                   end: {
                                     line: 1,
-                                    column: 48
-                                  }
+                                    column: 48,
+                                  },
                                 },
-                                name: 'counter'
+                                name: 'counter',
                               },
-                              arguments: []
-                            }
-                          }
+                              arguments: [],
+                            },
+                          },
                         },
                         {
                           type: 'Property',
@@ -2510,12 +2510,12 @@ describe('Declarations - Async Function', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 52
+                              column: 52,
                             },
                             end: {
                               line: 1,
-                              column: 65
-                            }
+                              column: 65,
+                            },
                           },
                           method: false,
                           shorthand: true,
@@ -2528,14 +2528,14 @@ describe('Declarations - Async Function', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 52
+                                column: 52,
                               },
                               end: {
                                 line: 1,
-                                column: 53
-                              }
+                                column: 53,
+                              },
                             },
-                            name: 'z'
+                            name: 'z',
                           },
                           kind: 'init',
                           value: {
@@ -2546,12 +2546,12 @@ describe('Declarations - Async Function', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 52
+                                column: 52,
                               },
                               end: {
                                 line: 1,
-                                column: 65
-                              }
+                                column: 65,
+                              },
                             },
                             left: {
                               type: 'Identifier',
@@ -2561,14 +2561,14 @@ describe('Declarations - Async Function', () => {
                               loc: {
                                 start: {
                                   line: 1,
-                                  column: 52
+                                  column: 52,
                                 },
                                 end: {
                                   line: 1,
-                                  column: 53
-                                }
+                                  column: 53,
+                                },
                               },
-                              name: 'z'
+                              name: 'z',
                             },
                             right: {
                               type: 'CallExpression',
@@ -2578,12 +2578,12 @@ describe('Declarations - Async Function', () => {
                               loc: {
                                 start: {
                                   line: 1,
-                                  column: 56
+                                  column: 56,
                                 },
                                 end: {
                                   line: 1,
-                                  column: 65
-                                }
+                                  column: 65,
+                                },
                               },
                               callee: {
                                 type: 'Identifier',
@@ -2593,20 +2593,20 @@ describe('Declarations - Async Function', () => {
                                 loc: {
                                   start: {
                                     line: 1,
-                                    column: 56
+                                    column: 56,
                                   },
                                   end: {
                                     line: 1,
-                                    column: 63
-                                  }
+                                    column: 63,
+                                  },
                                 },
-                                name: 'counter'
+                                name: 'counter',
                               },
-                              arguments: []
-                            }
-                          }
-                        }
-                      ]
+                              arguments: [],
+                            },
+                          },
+                        },
+                      ],
                     },
                     right: {
                       type: 'ObjectExpression',
@@ -2616,12 +2616,12 @@ describe('Declarations - Async Function', () => {
                       loc: {
                         start: {
                           line: 1,
-                          column: 70
+                          column: 70,
                         },
                         end: {
                           line: 1,
-                          column: 104
-                        }
+                          column: 104,
+                        },
                       },
                       properties: [
                         {
@@ -2632,12 +2632,12 @@ describe('Declarations - Async Function', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 72
+                              column: 72,
                             },
                             end: {
                               line: 1,
-                              column: 79
-                            }
+                              column: 79,
+                            },
                           },
                           method: false,
                           shorthand: false,
@@ -2650,14 +2650,14 @@ describe('Declarations - Async Function', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 72
+                                column: 72,
                               },
                               end: {
                                 line: 1,
-                                column: 73
-                              }
+                                column: 73,
+                              },
                             },
-                            name: 'w'
+                            name: 'w',
                           },
                           value: {
                             type: 'Literal',
@@ -2667,16 +2667,16 @@ describe('Declarations - Async Function', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 75
+                                column: 75,
                               },
                               end: {
                                 line: 1,
-                                column: 79
-                              }
+                                column: 79,
+                              },
                             },
-                            value: null
+                            value: null,
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -2686,12 +2686,12 @@ describe('Declarations - Async Function', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 81
+                              column: 81,
                             },
                             end: {
                               line: 1,
-                              column: 85
-                            }
+                              column: 85,
+                            },
                           },
                           method: false,
                           shorthand: false,
@@ -2704,14 +2704,14 @@ describe('Declarations - Async Function', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 81
+                                column: 81,
                               },
                               end: {
                                 line: 1,
-                                column: 82
-                              }
+                                column: 82,
+                              },
                             },
-                            name: 'x'
+                            name: 'x',
                           },
                           value: {
                             type: 'Literal',
@@ -2721,16 +2721,16 @@ describe('Declarations - Async Function', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 84
+                                column: 84,
                               },
                               end: {
                                 line: 1,
-                                column: 85
-                              }
+                                column: 85,
+                              },
                             },
-                            value: 0
+                            value: 0,
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -2740,12 +2740,12 @@ describe('Declarations - Async Function', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 87
+                              column: 87,
                             },
                             end: {
                               line: 1,
-                              column: 95
-                            }
+                              column: 95,
+                            },
                           },
                           method: false,
                           shorthand: false,
@@ -2758,14 +2758,14 @@ describe('Declarations - Async Function', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 87
+                                column: 87,
                               },
                               end: {
                                 line: 1,
-                                column: 88
-                              }
+                                column: 88,
+                              },
                             },
-                            name: 'y'
+                            name: 'y',
                           },
                           value: {
                             type: 'Literal',
@@ -2775,16 +2775,16 @@ describe('Declarations - Async Function', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 90
+                                column: 90,
                               },
                               end: {
                                 line: 1,
-                                column: 95
-                              }
+                                column: 95,
+                              },
                             },
-                            value: false
+                            value: false,
                           },
-                          kind: 'init'
+                          kind: 'init',
                         },
                         {
                           type: 'Property',
@@ -2794,12 +2794,12 @@ describe('Declarations - Async Function', () => {
                           loc: {
                             start: {
                               line: 1,
-                              column: 97
+                              column: 97,
                             },
                             end: {
                               line: 1,
-                              column: 102
-                            }
+                              column: 102,
+                            },
                           },
                           method: false,
                           shorthand: false,
@@ -2812,14 +2812,14 @@ describe('Declarations - Async Function', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 97
+                                column: 97,
                               },
                               end: {
                                 line: 1,
-                                column: 98
-                              }
+                                column: 98,
+                              },
                             },
-                            name: 'z'
+                            name: 'z',
                           },
                           value: {
                             type: 'Literal',
@@ -2829,20 +2829,20 @@ describe('Declarations - Async Function', () => {
                             loc: {
                               start: {
                                 line: 1,
-                                column: 100
+                                column: 100,
                               },
                               end: {
                                 line: 1,
-                                column: 102
-                              }
+                                column: 102,
+                              },
                             },
-                            value: ''
+                            value: '',
                           },
-                          kind: 'init'
-                        }
-                      ]
-                    }
-                  }
+                          kind: 'init',
+                        },
+                      ],
+                    },
+                  },
                 ],
                 body: {
                   type: 'BlockStatement',
@@ -2852,21 +2852,21 @@ describe('Declarations - Async Function', () => {
                   loc: {
                     start: {
                       line: 1,
-                      column: 109
+                      column: 109,
                     },
                     end: {
                       line: 1,
-                      column: 111
-                    }
+                      column: 111,
+                    },
                   },
-                  body: []
-                }
-              }
-            }
-          }
+                  body: [],
+                },
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({async = 0} = {})',
@@ -2907,7 +2907,7 @@ describe('Declarations - Async Function', () => {
                       start: 2,
                       end: 7,
                       range: [2, 7],
-                      name: 'async'
+                      name: 'async',
                     },
                     kind: 'init',
                     value: {
@@ -2920,31 +2920,31 @@ describe('Declarations - Async Function', () => {
                         start: 2,
                         end: 7,
                         range: [2, 7],
-                        name: 'async'
+                        name: 'async',
                       },
                       right: {
                         type: 'Literal',
                         start: 10,
                         end: 11,
                         range: [10, 11],
-                        value: 0
-                      }
-                    }
-                  }
-                ]
+                        value: 0,
+                      },
+                    },
+                  },
+                ],
               },
               right: {
                 type: 'ObjectExpression',
                 start: 15,
                 end: 17,
                 range: [15, 17],
-                properties: []
-              }
-            }
-          }
+                properties: [],
+              },
+            },
+          },
         ],
-        sourceType: 'script'
-      }
+        sourceType: 'script',
+      },
     ],
     [
       '({async 100(){}})',
@@ -2979,7 +2979,7 @@ describe('Declarations - Async Function', () => {
                     start: 8,
                     end: 11,
                     range: [8, 11],
-                    value: 100
+                    value: 100,
                   },
                   kind: 'init',
                   value: {
@@ -2996,16 +2996,16 @@ describe('Declarations - Async Function', () => {
                       start: 13,
                       end: 15,
                       range: [13, 15],
-                      body: []
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      body: [],
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
-        sourceType: 'script'
-      }
-    ]
+        sourceType: 'script',
+      },
+    ],
   ]);
 });

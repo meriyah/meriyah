@@ -8,6 +8,6 @@ describe('Expressions - Global code', () => {
     ['super.property;', Context.None],
     ['return;', Context.None],
     ['export default null;', Context.None],
-    ['() => { new.target; };', Context.None]
+    ['() => { new.target; };', Context.None],
   ]);
 });

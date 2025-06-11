@@ -10,7 +10,7 @@ export default defineConfig({
     exclude: [
       'test/test-utils.ts',
       // Skip production test on local by default
-      ...(SHOULD_RUN_PRODUCTION_TEST ? [] : ['test/production/production-tests.ts'])
+      ...(SHOULD_RUN_PRODUCTION_TEST ? [] : ['test/production/production-tests.ts']),
     ],
     watch: false,
     pool: 'threads',
@@ -18,7 +18,7 @@ export default defineConfig({
       enabled: IS_CI,
       provider: 'v8',
       reporter: ['lcov', 'text', 'html'],
-      include: ['src/**/*.ts']
-    }
-  }
+      include: ['src/**/*.ts'],
+    },
+  },
 });

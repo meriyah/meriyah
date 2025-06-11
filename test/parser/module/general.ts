@@ -24,6 +24,6 @@ describe('Module - General', () => {
     ['do return while(false);', Context.Strict | Context.Module],
     ['function foo() { }; export foo;', Context.Strict | Context.Module],
     ['function foo() { export default function() { } }', Context.Strict | Context.Module],
-    ['if (false) {} else export default null;', Context.Strict | Context.Module]
+    ['if (false) {} else export default null;', Context.Strict | Context.Module],
   ]);
 });
