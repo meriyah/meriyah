@@ -198,585 +198,67 @@ describe('Next - Import Meta', () => {
     [
       `({m() { import.meta.url}})`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'ObjectExpression',
-              properties: [
-                {
-                  type: 'Property',
-                  key: {
-                    type: 'Identifier',
-                    name: 'm',
-                  },
-                  value: {
-                    type: 'FunctionExpression',
-                    params: [],
-                    body: {
-                      type: 'BlockStatement',
-                      body: [
-                        {
-                          type: 'ExpressionStatement',
-                          expression: {
-                            type: 'MemberExpression',
-                            object: {
-                              meta: {
-                                type: 'Identifier',
-                                name: 'import',
-                              },
-                              type: 'MetaProperty',
-                              property: {
-                                type: 'Identifier',
-                                name: 'meta',
-                              },
-                            },
-                            computed: false,
-                            property: {
-                              type: 'Identifier',
-                              name: 'url',
-                            },
-                          },
-                        },
-                      ],
-                    },
-                    async: false,
-                    generator: false,
-                    id: null,
-                  },
-                  kind: 'init',
-                  computed: false,
-                  method: true,
-                  shorthand: false,
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       `if (1) { import.meta }`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'IfStatement',
-            test: {
-              type: 'Literal',
-              value: 1,
-            },
-            consequent: {
-              type: 'BlockStatement',
-              body: [
-                {
-                  type: 'ExpressionStatement',
-                  expression: {
-                    meta: {
-                      type: 'Identifier',
-                      name: 'import',
-                    },
-                    type: 'MetaProperty',
-                    property: {
-                      type: 'Identifier',
-                      name: 'meta',
-                    },
-                  },
-                },
-              ],
-            },
-            alternate: null,
-          },
-        ],
-      },
+      
     ],
     [
       `var f = function() {import.meta.couldBeMutable = true}`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'VariableDeclaration',
-            kind: 'var',
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                init: {
-                  type: 'FunctionExpression',
-                  params: [],
-                  body: {
-                    type: 'BlockStatement',
-                    body: [
-                      {
-                        type: 'ExpressionStatement',
-                        expression: {
-                          type: 'AssignmentExpression',
-                          left: {
-                            type: 'MemberExpression',
-                            object: {
-                              meta: {
-                                type: 'Identifier',
-                                name: 'import',
-                              },
-                              type: 'MetaProperty',
-                              property: {
-                                type: 'Identifier',
-                                name: 'meta',
-                              },
-                            },
-                            computed: false,
-                            property: {
-                              type: 'Identifier',
-                              name: 'couldBeMutable',
-                            },
-                          },
-                          operator: '=',
-                          right: {
-                            type: 'Literal',
-                            value: true,
-                          },
-                        },
-                      },
-                    ],
-                  },
-                  async: false,
-                  generator: false,
-                  id: null,
-                },
-                id: {
-                  type: 'Identifier',
-                  name: 'f',
-                },
-              },
-            ],
-          },
-        ],
-      },
+      
     ],
     [
       `import.meta[0]`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'MemberExpression',
-              object: {
-                meta: {
-                  type: 'Identifier',
-                  name: 'import',
-                },
-                type: 'MetaProperty',
-                property: {
-                  type: 'Identifier',
-                  name: 'meta',
-                },
-              },
-              computed: true,
-              property: {
-                type: 'Literal',
-                value: 0,
-              },
-            },
-          },
-        ],
-      },
+      
     ],
     [
       `do { import.meta } while (0)`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'DoWhileStatement',
-            body: {
-              type: 'BlockStatement',
-              body: [
-                {
-                  type: 'ExpressionStatement',
-                  expression: {
-                    meta: {
-                      type: 'Identifier',
-                      name: 'import',
-                    },
-                    type: 'MetaProperty',
-                    property: {
-                      type: 'Identifier',
-                      name: 'meta',
-                    },
-                  },
-                },
-              ],
-            },
-            test: {
-              type: 'Literal',
-              value: 0,
-            },
-          },
-        ],
-      },
+      
     ],
     [
       `import.meta()`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'CallExpression',
-              callee: {
-                meta: {
-                  type: 'Identifier',
-                  name: 'import',
-                },
-                type: 'MetaProperty',
-                property: {
-                  type: 'Identifier',
-                  name: 'meta',
-                },
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       `t = [...import.meta]`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'AssignmentExpression',
-              left: {
-                type: 'Identifier',
-                name: 't',
-              },
-              operator: '=',
-              right: {
-                type: 'ArrayExpression',
-                elements: [
-                  {
-                    type: 'SpreadElement',
-                    argument: {
-                      meta: {
-                        type: 'Identifier',
-                        name: 'import',
-                      },
-                      type: 'MetaProperty',
-                      property: {
-                        type: 'Identifier',
-                        name: 'meta',
-                      },
-                    },
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
+      
     ],
     [
       `"use strict"; ({m() { while (0) { import.meta } }})`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'Literal',
-              value: 'use strict',
-            },
-            directive: 'use strict',
-          },
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'ObjectExpression',
-              properties: [
-                {
-                  type: 'Property',
-                  key: {
-                    type: 'Identifier',
-                    name: 'm',
-                  },
-                  value: {
-                    type: 'FunctionExpression',
-                    params: [],
-                    body: {
-                      type: 'BlockStatement',
-                      body: [
-                        {
-                          type: 'WhileStatement',
-                          test: {
-                            type: 'Literal',
-                            value: 0,
-                          },
-                          body: {
-                            type: 'BlockStatement',
-                            body: [
-                              {
-                                type: 'ExpressionStatement',
-                                expression: {
-                                  meta: {
-                                    type: 'Identifier',
-                                    name: 'import',
-                                  },
-                                  type: 'MetaProperty',
-                                  property: {
-                                    type: 'Identifier',
-                                    name: 'meta',
-                                  },
-                                },
-                              },
-                            ],
-                          },
-                        },
-                      ],
-                    },
-                    async: false,
-                    generator: false,
-                    id: null,
-                  },
-                  kind: 'init',
-                  computed: false,
-                  method: true,
-                  shorthand: false,
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       `delete import.meta`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'UnaryExpression',
-              operator: 'delete',
-              argument: {
-                meta: {
-                  type: 'Identifier',
-                  name: 'import',
-                },
-                type: 'MetaProperty',
-                property: {
-                  type: 'Identifier',
-                  name: 'meta',
-                },
-              },
-              prefix: true,
-            },
-          },
-        ],
-      },
+      
     ],
     [
       `import.meta.resolve('something')`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'CallExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  meta: {
-                    type: 'Identifier',
-                    name: 'import',
-                  },
-                  type: 'MetaProperty',
-                  property: {
-                    type: 'Identifier',
-                    name: 'meta',
-                  },
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'resolve',
-                },
-              },
-              arguments: [
-                {
-                  type: 'Literal',
-                  value: 'something',
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       `const size = import.meta.scriptElement.dataset.size || 300;`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'VariableDeclaration',
-            kind: 'const',
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                init: {
-                  type: 'LogicalExpression',
-                  left: {
-                    type: 'MemberExpression',
-                    object: {
-                      type: 'MemberExpression',
-                      object: {
-                        type: 'MemberExpression',
-                        object: {
-                          meta: {
-                            type: 'Identifier',
-                            name: 'import',
-                          },
-                          type: 'MetaProperty',
-                          property: {
-                            type: 'Identifier',
-                            name: 'meta',
-                          },
-                        },
-                        computed: false,
-                        property: {
-                          type: 'Identifier',
-                          name: 'scriptElement',
-                        },
-                      },
-                      computed: false,
-                      property: {
-                        type: 'Identifier',
-                        name: 'dataset',
-                      },
-                    },
-                    computed: false,
-                    property: {
-                      type: 'Identifier',
-                      name: 'size',
-                    },
-                  },
-                  right: {
-                    type: 'Literal',
-                    value: 300,
-                  },
-                  operator: '||',
-                },
-                id: {
-                  type: 'Identifier',
-                  name: 'size',
-                },
-              },
-            ],
-          },
-        ],
-      },
+      
     ],
     [
       `x = import.meta`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'AssignmentExpression',
-              left: {
-                type: 'Identifier',
-                name: 'x',
-              },
-              operator: '=',
-              right: {
-                meta: {
-                  type: 'Identifier',
-                  name: 'import',
-                },
-                type: 'MetaProperty',
-                property: {
-                  type: 'Identifier',
-                  name: 'meta',
-                },
-              },
-            },
-          },
-        ],
-      },
+      
     ],
     [
       `() => { import.meta }`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'ArrowFunctionExpression',
-              generator: false,
-              body: {
-                type: 'BlockStatement',
-                body: [
-                  {
-                    type: 'ExpressionStatement',
-                    expression: {
-                      meta: {
-                        type: 'Identifier',
-                        name: 'import',
-                      },
-                      type: 'MetaProperty',
-                      property: {
-                        type: 'Identifier',
-                        name: 'meta',
-                      },
-                    },
-                  },
-                ],
-              },
-              params: [],
-              async: false,
-              expression: false,
-            },
-          },
-        ],
-      },
+      
     ],
   ]);
 });

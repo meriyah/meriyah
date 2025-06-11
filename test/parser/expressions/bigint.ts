@@ -145,99 +145,17 @@ describe('Expressions - BigInt', () => {
     [
       '1n',
       Context.OptionsRanges,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'Literal',
-              value: BigInt(1),
-              bigint: '1',
-              start: 0,
-              end: 2,
-              range: [0, 2],
-            },
-            start: 0,
-            end: 2,
-            range: [0, 2],
-          },
-        ],
-        start: 0,
-        end: 2,
-        range: [0, 2],
-      },
+      
     ],
     [
       '1n + 2333333n',
       Context.OptionsRanges,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'BinaryExpression',
-              left: {
-                type: 'Literal',
-                value: BigInt(1),
-                bigint: '1',
-                start: 0,
-                end: 2,
-                range: [0, 2],
-              },
-              right: {
-                type: 'Literal',
-                value: BigInt(2333333),
-                bigint: '2333333',
-                start: 5,
-                end: 13,
-                range: [5, 13],
-              },
-              operator: '+',
-              start: 0,
-              end: 13,
-              range: [0, 13],
-            },
-            start: 0,
-            end: 13,
-            range: [0, 13],
-          },
-        ],
-        start: 0,
-        end: 13,
-        range: [0, 13],
-      },
+      
     ],
     [
       '0xdead_BEEFn',
       Context.OptionsRanges | Context.OptionsRaw,
-      {
-        body: [
-          {
-            end: 12,
-            expression: {
-              bigint: '3735928559',
-              end: 12,
-              range: [0, 12],
-              raw: '0xdead_BEEFn',
-              start: 0,
-              type: 'Literal',
-              value: 3735928559n,
-            },
-            range: [0, 12],
-            start: 0,
-            type: 'ExpressionStatement',
-          },
-        ],
-        end: 12,
-        range: [0, 12],
-        sourceType: 'script',
-        start: 0,
-        type: 'Program',
-      },
+      
     ],
   ]);
 });

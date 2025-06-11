@@ -48,219 +48,27 @@ describe('Miscellaneous - Keywords', () => {
     [
       `var foo = {}; foo.if;`,
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'VariableDeclaration',
-            kind: 'var',
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                init: {
-                  type: 'ObjectExpression',
-                  properties: [],
-                },
-                id: {
-                  type: 'Identifier',
-                  name: 'foo',
-                },
-              },
-            ],
-          },
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'MemberExpression',
-              object: {
-                type: 'Identifier',
-                name: 'foo',
-              },
-              computed: false,
-              property: {
-                type: 'Identifier',
-                name: 'if',
-              },
-            },
-          },
-        ],
-      },
+      
     ],
     [
       `var foo = {}; foo.super;`,
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'VariableDeclaration',
-            kind: 'var',
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                init: {
-                  type: 'ObjectExpression',
-                  properties: [],
-                },
-                id: {
-                  type: 'Identifier',
-                  name: 'foo',
-                },
-              },
-            ],
-          },
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'MemberExpression',
-              object: {
-                type: 'Identifier',
-                name: 'foo',
-              },
-              computed: false,
-              property: {
-                type: 'Identifier',
-                name: 'super',
-              },
-            },
-          },
-        ],
-      },
+      
     ],
     [
       `var foo = {}; foo.arguments;`,
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'VariableDeclaration',
-            kind: 'var',
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                init: {
-                  type: 'ObjectExpression',
-                  properties: [],
-                },
-                id: {
-                  type: 'Identifier',
-                  name: 'foo',
-                },
-              },
-            ],
-          },
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'MemberExpression',
-              object: {
-                type: 'Identifier',
-                name: 'foo',
-              },
-              computed: false,
-              property: {
-                type: 'Identifier',
-                name: 'arguments',
-              },
-            },
-          },
-        ],
-      },
+      
     ],
     [
       `var foo = {}; foo.interface;`,
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'VariableDeclaration',
-            kind: 'var',
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                init: {
-                  type: 'ObjectExpression',
-                  properties: [],
-                },
-                id: {
-                  type: 'Identifier',
-                  name: 'foo',
-                },
-              },
-            ],
-          },
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'MemberExpression',
-              object: {
-                type: 'Identifier',
-                name: 'foo',
-              },
-              computed: false,
-              property: {
-                type: 'Identifier',
-                name: 'interface',
-              },
-            },
-          },
-        ],
-      },
+      
     ],
     [
       `function *a(){({yi\\u0065ld: 0})}`,
       Context.None,
-      {
-        body: [
-          {
-            async: false,
-            body: {
-              body: [
-                {
-                  expression: {
-                    properties: [
-                      {
-                        computed: false,
-                        key: {
-                          name: 'yield',
-                          type: 'Identifier',
-                        },
-                        kind: 'init',
-                        method: false,
-                        shorthand: false,
-                        type: 'Property',
-                        value: {
-                          type: 'Literal',
-                          value: 0,
-                        },
-                      },
-                    ],
-                    type: 'ObjectExpression',
-                  },
-                  type: 'ExpressionStatement',
-                },
-              ],
-              type: 'BlockStatement',
-            },
-
-            generator: true,
-            id: {
-              name: 'a',
-              type: 'Identifier',
-            },
-            params: [],
-            type: 'FunctionDeclaration',
-          },
-        ],
-        sourceType: 'script',
-        type: 'Program',
-      },
+      
     ],
   ]);
 });

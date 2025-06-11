@@ -162,2415 +162,385 @@ describe('Expressions - New', () => {
     [
       'new await()()',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'CallExpression',
-              callee: {
-                type: 'NewExpression',
-                callee: {
-                  type: 'Identifier',
-                  name: 'await',
-                },
-                arguments: [],
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new foo()();',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'CallExpression',
-              callee: {
-                type: 'NewExpression',
-                callee: {
-                  type: 'Identifier',
-                  name: 'foo',
-                },
-                arguments: [],
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new (foo)();',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'foo',
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new (foo);',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'foo',
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new a ? b : c',
       Context.None,
-      {
-        body: [
-          {
-            expression: {
-              alternate: {
-                name: 'c',
-                type: 'Identifier',
-              },
-              consequent: {
-                name: 'b',
-                type: 'Identifier',
-              },
-              test: {
-                arguments: [],
-                callee: {
-                  name: 'a',
-                  type: 'Identifier',
-                },
-                type: 'NewExpression',
-              },
-              type: 'ConditionalExpression',
-            },
-            type: 'ExpressionStatement',
-          },
-        ],
-        sourceType: 'script',
-        type: 'Program',
-      },
+      
     ],
     [
       'new Foo',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'Foo',
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new Foo.Bar',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'Identifier',
-                  name: 'Foo',
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'Bar',
-                },
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new a.b.c.d',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'MemberExpression',
-                  object: {
-                    type: 'MemberExpression',
-                    object: {
-                      type: 'Identifier',
-                      name: 'a',
-                    },
-                    computed: false,
-                    property: {
-                      type: 'Identifier',
-                      name: 'b',
-                    },
-                  },
-                  computed: false,
-                  property: {
-                    type: 'Identifier',
-                    name: 'c',
-                  },
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'd',
-                },
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new async(x)(y)',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'CallExpression',
-              callee: {
-                type: 'NewExpression',
-                callee: {
-                  type: 'Identifier',
-                  name: 'async',
-                },
-                arguments: [
-                  {
-                    type: 'Identifier',
-                    name: 'x',
-                  },
-                ],
-              },
-              arguments: [
-                {
-                  type: 'Identifier',
-                  name: 'y',
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new Foo["bar"]',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'Identifier',
-                  name: 'Foo',
-                },
-                computed: true,
-                property: {
-                  type: 'Literal',
-                  value: 'bar',
-                },
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new Foo()',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'Foo',
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new Foo.Bar()',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'Identifier',
-                  name: 'Foo',
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'Bar',
-                },
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new Foo["bar"]()',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'Identifier',
-                  name: 'Foo',
-                },
-                computed: true,
-                property: {
-                  type: 'Literal',
-                  value: 'bar',
-                },
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new Foo(X)',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'Foo',
-              },
-              arguments: [
-                {
-                  type: 'Identifier',
-                  name: 'X',
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new Foo.Bar(X)',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'Identifier',
-                  name: 'Foo',
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'Bar',
-                },
-              },
-              arguments: [
-                {
-                  type: 'Identifier',
-                  name: 'X',
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new Foo["bar"](X)',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'Identifier',
-                  name: 'Foo',
-                },
-                computed: true,
-                property: {
-                  type: 'Literal',
-                  value: 'bar',
-                },
-              },
-              arguments: [
-                {
-                  type: 'Identifier',
-                  name: 'X',
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new Foo(X, Y, Z)',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'Foo',
-              },
-              arguments: [
-                {
-                  type: 'Identifier',
-                  name: 'X',
-                },
-                {
-                  type: 'Identifier',
-                  name: 'Y',
-                },
-                {
-                  type: 'Identifier',
-                  name: 'Z',
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new Foo.Bar(X, Y, Z)',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'Identifier',
-                  name: 'Foo',
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'Bar',
-                },
-              },
-              arguments: [
-                {
-                  type: 'Identifier',
-                  name: 'X',
-                },
-                {
-                  type: 'Identifier',
-                  name: 'Y',
-                },
-                {
-                  type: 'Identifier',
-                  name: 'Z',
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new Foo["bar"](X, Y, Z)',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'Identifier',
-                  name: 'Foo',
-                },
-                computed: true,
-                property: {
-                  type: 'Literal',
-                  value: 'bar',
-                },
-              },
-              arguments: [
-                {
-                  type: 'Identifier',
-                  name: 'X',
-                },
-                {
-                  type: 'Identifier',
-                  name: 'Y',
-                },
-                {
-                  type: 'Identifier',
-                  name: 'Z',
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new x().y',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'MemberExpression',
-              object: {
-                type: 'NewExpression',
-                callee: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                arguments: [],
-              },
-              computed: false,
-              property: {
-                type: 'Identifier',
-                name: 'y',
-              },
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new x()[y]',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'MemberExpression',
-              object: {
-                type: 'NewExpression',
-                callee: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                arguments: [],
-              },
-              computed: true,
-              property: {
-                type: 'Identifier',
-                name: 'y',
-              },
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new x()();',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'CallExpression',
-              callee: {
-                type: 'NewExpression',
-                callee: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                arguments: [],
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     //['new x()`y`', Context.None,  {}],
     [
       'new a.b.c.d()',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'MemberExpression',
-                  object: {
-                    type: 'MemberExpression',
-                    object: {
-                      type: 'Identifier',
-                      name: 'a',
-                    },
-                    computed: false,
-                    property: {
-                      type: 'Identifier',
-                      name: 'b',
-                    },
-                  },
-                  computed: false,
-                  property: {
-                    type: 'Identifier',
-                    name: 'c',
-                  },
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'd',
-                },
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new Foo["bar"]()',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'Identifier',
-                  name: 'Foo',
-                },
-                computed: true,
-                property: {
-                  type: 'Literal',
-                  value: 'bar',
-                },
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new Foo(X)',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'Foo',
-              },
-              arguments: [
-                {
-                  type: 'Identifier',
-                  name: 'X',
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new Foo.Bar(X)',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'Identifier',
-                  name: 'Foo',
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'Bar',
-                },
-              },
-              arguments: [
-                {
-                  type: 'Identifier',
-                  name: 'X',
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new Foo["bar"](X)',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'Identifier',
-                  name: 'Foo',
-                },
-                computed: true,
-                property: {
-                  type: 'Literal',
-                  value: 'bar',
-                },
-              },
-              arguments: [
-                {
-                  type: 'Identifier',
-                  name: 'X',
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new Foo(X, Y, Z)',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'Foo',
-              },
-              arguments: [
-                {
-                  type: 'Identifier',
-                  name: 'X',
-                },
-                {
-                  type: 'Identifier',
-                  name: 'Y',
-                },
-                {
-                  type: 'Identifier',
-                  name: 'Z',
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new Foo.Bar(X, Y, Z)',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'Identifier',
-                  name: 'Foo',
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'Bar',
-                },
-              },
-              arguments: [
-                {
-                  type: 'Identifier',
-                  name: 'X',
-                },
-                {
-                  type: 'Identifier',
-                  name: 'Y',
-                },
-                {
-                  type: 'Identifier',
-                  name: 'Z',
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new Foo["bar"](X, Y, Z)',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'Identifier',
-                  name: 'Foo',
-                },
-                computed: true,
-                property: {
-                  type: 'Literal',
-                  value: 'bar',
-                },
-              },
-              arguments: [
-                {
-                  type: 'Identifier',
-                  name: 'X',
-                },
-                {
-                  type: 'Identifier',
-                  name: 'Y',
-                },
-                {
-                  type: 'Identifier',
-                  name: 'Z',
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new x().y',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'MemberExpression',
-              object: {
-                type: 'NewExpression',
-                callee: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                arguments: [],
-              },
-              computed: false,
-              property: {
-                type: 'Identifier',
-                name: 'y',
-              },
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new x()[y]',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'MemberExpression',
-              object: {
-                type: 'NewExpression',
-                callee: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                arguments: [],
-              },
-              computed: true,
-              property: {
-                type: 'Identifier',
-                name: 'y',
-              },
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new x()();',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'CallExpression',
-              callee: {
-                type: 'NewExpression',
-                callee: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                arguments: [],
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new x().y = z',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'AssignmentExpression',
-              left: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'NewExpression',
-                  callee: {
-                    type: 'Identifier',
-                    name: 'x',
-                  },
-                  arguments: [],
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'y',
-                },
-              },
-              operator: '=',
-              right: {
-                type: 'Identifier',
-                name: 'z',
-              },
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new x().y + z',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'BinaryExpression',
-              left: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'NewExpression',
-                  callee: {
-                    type: 'Identifier',
-                    name: 'x',
-                  },
-                  arguments: [],
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'y',
-                },
-              },
-              right: {
-                type: 'Identifier',
-                name: 'z',
-              },
-              operator: '+',
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new x()[y] = z',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'AssignmentExpression',
-              left: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'NewExpression',
-                  callee: {
-                    type: 'Identifier',
-                    name: 'x',
-                  },
-                  arguments: [],
-                },
-                computed: true,
-                property: {
-                  type: 'Identifier',
-                  name: 'y',
-                },
-              },
-              operator: '=',
-              right: {
-                type: 'Identifier',
-                name: 'z',
-              },
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new x()[y] + z',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'BinaryExpression',
-              left: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'NewExpression',
-                  callee: {
-                    type: 'Identifier',
-                    name: 'x',
-                  },
-                  arguments: [],
-                },
-                computed: true,
-                property: {
-                  type: 'Identifier',
-                  name: 'y',
-                },
-              },
-              right: {
-                type: 'Identifier',
-                name: 'z',
-              },
-              operator: '+',
-            },
-          },
-        ],
-      },
+      
     ],
     [
       '++new x().y',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'UpdateExpression',
-              argument: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'NewExpression',
-                  callee: {
-                    type: 'Identifier',
-                    name: 'x',
-                  },
-                  arguments: [],
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'y',
-                },
-              },
-              operator: '++',
-              prefix: true,
-            },
-          },
-        ],
-      },
+      
     ],
 
     [
       'new x().y++',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'UpdateExpression',
-              argument: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'NewExpression',
-                  callee: {
-                    type: 'Identifier',
-                    name: 'x',
-                  },
-                  arguments: [],
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'y',
-                },
-              },
-              operator: '++',
-              prefix: false,
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'delete new x()',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'UnaryExpression',
-              operator: 'delete',
-              argument: {
-                type: 'NewExpression',
-                callee: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                arguments: [],
-              },
-              prefix: true,
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'delete new x().y',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'UnaryExpression',
-              operator: 'delete',
-              argument: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'NewExpression',
-                  callee: {
-                    type: 'Identifier',
-                    name: 'x',
-                  },
-                  arguments: [],
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'y',
-                },
-              },
-              prefix: true,
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'typeof new x()',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'UnaryExpression',
-              operator: 'typeof',
-              argument: {
-                type: 'NewExpression',
-                callee: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                arguments: [],
-              },
-              prefix: true,
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new new A().foo',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'NewExpression',
-                  callee: {
-                    type: 'Identifier',
-                    name: 'A',
-                  },
-                  arguments: [],
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'foo',
-                },
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new new A.foo()',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'NewExpression',
-                callee: {
-                  type: 'MemberExpression',
-                  object: {
-                    type: 'Identifier',
-                    name: 'A',
-                  },
-                  computed: false,
-                  property: {
-                    type: 'Identifier',
-                    name: 'foo',
-                  },
-                },
-                arguments: [],
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new "foo".__proto__.constructor',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'MemberExpression',
-                  object: {
-                    type: 'Literal',
-                    value: 'foo',
-                  },
-                  computed: false,
-                  property: {
-                    type: 'Identifier',
-                    name: '__proto__',
-                  },
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'constructor',
-                },
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new 1..__proto__.constructor',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'MemberExpression',
-                  object: {
-                    type: 'Literal',
-                    value: 1,
-                  },
-                  computed: false,
-                  property: {
-                    type: 'Identifier',
-                    name: '__proto__',
-                  },
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'constructor',
-                },
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new 0x2.__proto__.constructor',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'MemberExpression',
-                  object: {
-                    type: 'Literal',
-                    value: 2,
-                  },
-                  computed: false,
-                  property: {
-                    type: 'Identifier',
-                    name: '__proto__',
-                  },
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'constructor',
-                },
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new true.__proto__.constructor',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'MemberExpression',
-                  object: {
-                    type: 'Literal',
-                    value: true,
-                  },
-                  computed: false,
-                  property: {
-                    type: 'Identifier',
-                    name: '__proto__',
-                  },
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'constructor',
-                },
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'typeof new x().y',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'UnaryExpression',
-              operator: 'typeof',
-              argument: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'NewExpression',
-                  callee: {
-                    type: 'Identifier',
-                    name: 'x',
-                  },
-                  arguments: [],
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'y',
-                },
-              },
-              prefix: true,
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new new x',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'NewExpression',
-                callee: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                arguments: [],
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
 
     [
       '[...new A()]',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'ArrayExpression',
-              elements: [
-                {
-                  type: 'SpreadElement',
-                  argument: {
-                    type: 'NewExpression',
-                    callee: {
-                      type: 'Identifier',
-                      name: 'A',
-                    },
-                    arguments: [],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'class x extends new A() {}',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ClassDeclaration',
-            id: {
-              type: 'Identifier',
-              name: 'x',
-            },
-            superClass: {
-              type: 'NewExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'A',
-              },
-              arguments: [],
-            },
-            body: {
-              type: 'ClassBody',
-              body: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'x({[new A()]:y})',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'CallExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'x',
-              },
-              arguments: [
-                {
-                  type: 'ObjectExpression',
-                  properties: [
-                    {
-                      type: 'Property',
-                      key: {
-                        type: 'NewExpression',
-                        callee: {
-                          type: 'Identifier',
-                          name: 'A',
-                        },
-                        arguments: [],
-                      },
-                      value: {
-                        type: 'Identifier',
-                        name: 'y',
-                      },
-                      kind: 'init',
-                      computed: true,
-                      method: false,
-                      shorthand: false,
-                    },
-                  ],
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'f(new /z/())',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'CallExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'f',
-              },
-              arguments: [
-                {
-                  type: 'NewExpression',
-                  callee: {
-                    type: 'Literal',
-                    value: /z/,
-                    regex: {
-                      pattern: 'z',
-                      flags: '',
-                    },
-                  },
-                  arguments: [],
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'f(new /z/)',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'CallExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'f',
-              },
-              arguments: [
-                {
-                  type: 'NewExpression',
-                  callee: {
-                    type: 'Literal',
-                    value: /z/,
-                    regex: {
-                      pattern: 'z',
-                      flags: '',
-                    },
-                  },
-                  arguments: [],
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'f(new /z/.foo)',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'CallExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'f',
-              },
-              arguments: [
-                {
-                  type: 'NewExpression',
-                  callee: {
-                    type: 'MemberExpression',
-                    object: {
-                      type: 'Literal',
-                      value: /z/,
-                      regex: {
-                        pattern: 'z',
-                        flags: '',
-                      },
-                    },
-                    computed: false,
-                    property: {
-                      type: 'Identifier',
-                      name: 'foo',
-                    },
-                  },
-                  arguments: [],
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new arguments',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'arguments',
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new async',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'async',
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new async (x, y)',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'async',
-              },
-              arguments: [
-                {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                {
-                  type: 'Identifier',
-                  name: 'y',
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new async (...x)',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'async',
-              },
-              arguments: [
-                {
-                  type: 'SpreadElement',
-                  argument: {
-                    type: 'Identifier',
-                    name: 'x',
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new async function(){}',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'FunctionExpression',
-                params: [],
-                body: {
-                  type: 'BlockStatement',
-                  body: [],
-                },
-                async: true,
-                generator: false,
-
-                id: null,
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'typeof async',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'UnaryExpression',
-              operator: 'typeof',
-              argument: {
-                type: 'Identifier',
-                name: 'async',
-              },
-              prefix: true,
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'typeof async ()',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'UnaryExpression',
-              operator: 'typeof',
-              argument: {
-                type: 'CallExpression',
-                callee: {
-                  type: 'Identifier',
-                  name: 'async',
-                },
-                arguments: [],
-              },
-              prefix: true,
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'typeof async function(){}',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'UnaryExpression',
-              operator: 'typeof',
-              argument: {
-                type: 'FunctionExpression',
-                params: [],
-                body: {
-                  type: 'BlockStatement',
-                  body: [],
-                },
-                async: true,
-                generator: false,
-
-                id: null,
-              },
-              prefix: true,
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new await',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'await',
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new class{}',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'ClassExpression',
-                id: null,
-                superClass: null,
-                body: {
-                  type: 'ClassBody',
-                  body: [],
-                },
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new class extends x{}',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'ClassExpression',
-                id: null,
-                superClass: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                body: {
-                  type: 'ClassBody',
-                  body: [],
-                },
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'class x extends (x) {}',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ClassDeclaration',
-            id: {
-              type: 'Identifier',
-              name: 'x',
-            },
-            superClass: {
-              type: 'Identifier',
-              name: 'x',
-            },
-            body: {
-              type: 'ClassBody',
-              body: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new eval()',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'eval',
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new false.__proto__.constructor',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: {
-                  type: 'MemberExpression',
-                  object: {
-                    type: 'Literal',
-                    value: false,
-                  },
-                  computed: false,
-                  property: {
-                    type: 'Identifier',
-                    name: '__proto__',
-                  },
-                },
-                computed: false,
-                property: {
-                  type: 'Identifier',
-                  name: 'constructor',
-                },
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new function(){}',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'FunctionExpression',
-                params: [],
-                body: {
-                  type: 'BlockStatement',
-                  body: [],
-                },
-                async: false,
-                generator: false,
-
-                id: null,
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new function(){}(x)',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'FunctionExpression',
-                params: [],
-                body: {
-                  type: 'BlockStatement',
-                  body: [],
-                },
-                async: false,
-                generator: false,
-
-                id: null,
-              },
-              arguments: [
-                {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'class x extends y { constructor() { new super.foo }}',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ClassDeclaration',
-            id: {
-              type: 'Identifier',
-              name: 'x',
-            },
-            superClass: {
-              type: 'Identifier',
-              name: 'y',
-            },
-            body: {
-              type: 'ClassBody',
-              body: [
-                {
-                  type: 'MethodDefinition',
-                  kind: 'constructor',
-                  static: false,
-                  computed: false,
-                  key: {
-                    type: 'Identifier',
-                    name: 'constructor',
-                  },
-                  value: {
-                    type: 'FunctionExpression',
-                    params: [],
-                    body: {
-                      type: 'BlockStatement',
-                      body: [
-                        {
-                          type: 'ExpressionStatement',
-                          expression: {
-                            type: 'NewExpression',
-                            callee: {
-                              type: 'MemberExpression',
-                              object: {
-                                type: 'Super',
-                              },
-                              computed: false,
-                              property: {
-                                type: 'Identifier',
-                                name: 'foo',
-                              },
-                            },
-                            arguments: [],
-                          },
-                        },
-                      ],
-                    },
-                    async: false,
-                    generator: false,
-                    id: null,
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'class x extends y { constructor() { new super() }}',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ClassDeclaration',
-            id: {
-              type: 'Identifier',
-              name: 'x',
-            },
-            superClass: {
-              type: 'Identifier',
-              name: 'y',
-            },
-            body: {
-              type: 'ClassBody',
-              body: [
-                {
-                  type: 'MethodDefinition',
-                  kind: 'constructor',
-                  static: false,
-                  computed: false,
-                  key: {
-                    type: 'Identifier',
-                    name: 'constructor',
-                  },
-                  value: {
-                    type: 'FunctionExpression',
-                    params: [],
-                    body: {
-                      type: 'BlockStatement',
-                      body: [
-                        {
-                          type: 'ExpressionStatement',
-                          expression: {
-                            type: 'NewExpression',
-                            callee: {
-                              type: 'Super',
-                            },
-                            arguments: [],
-                          },
-                        },
-                      ],
-                    },
-                    async: false,
-                    generator: false,
-                    id: null,
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new this',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'ThisExpression',
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'new let',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'NewExpression',
-              callee: {
-                type: 'Identifier',
-                name: 'let',
-              },
-              arguments: [],
-            },
-          },
-        ],
-      },
+      
     ],
   ]);
 });

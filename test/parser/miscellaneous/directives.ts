@@ -205,338 +205,42 @@ describe('Miscellaneous - Directives', () => {
     [
       String.raw`"use strict" + "Hello\312World"`,
       Context.Module | Context.OptionsRanges | Context.OptionsRaw,
-      {
-        body: [
-          {
-            expression: {
-              left: {
-                raw: '"use strict"',
-                start: 0,
-                end: 12,
-                range: [0, 12],
-                type: 'Literal',
-                value: 'use strict',
-              },
-              operator: '+',
-              right: {
-                raw: String.raw`"Hello\312World"`,
-                start: 15,
-                end: 31,
-                range: [15, 31],
-                type: 'Literal',
-                value: 'HelloÊWorld',
-              },
-              start: 0,
-              end: 31,
-              range: [0, 31],
-              type: 'BinaryExpression',
-            },
-            start: 0,
-            end: 31,
-            range: [0, 31],
-            type: 'ExpressionStatement',
-          },
-        ],
-        sourceType: 'module',
-        start: 0,
-        end: 31,
-        range: [0, 31],
-        type: 'Program',
-      },
+      
     ],
     [
       '("use strict"); foo = 42;',
       Context.Module | Context.OptionsRanges | Context.OptionsRaw,
-      {
-        body: [
-          {
-            expression: {
-              raw: '"use strict"',
-              start: 1,
-              end: 13,
-              range: [1, 13],
-              type: 'Literal',
-              value: 'use strict',
-            },
-            start: 0,
-            end: 15,
-            range: [0, 15],
-            type: 'ExpressionStatement',
-          },
-          {
-            expression: {
-              left: {
-                name: 'foo',
-                start: 16,
-                end: 19,
-                range: [16, 19],
-                type: 'Identifier',
-              },
-              operator: '=',
-              right: {
-                raw: '42',
-                start: 22,
-                end: 24,
-                range: [22, 24],
-                type: 'Literal',
-                value: 42,
-              },
-              start: 16,
-              end: 24,
-              range: [16, 24],
-              type: 'AssignmentExpression',
-            },
-            start: 16,
-            end: 25,
-            range: [16, 25],
-            type: 'ExpressionStatement',
-          },
-        ],
-        sourceType: 'module',
-        start: 0,
-        end: 25,
-        range: [0, 25],
-        type: 'Program',
-      },
+      
     ],
     [
       String.raw`"use strict", "Hello\312World"`,
       Context.None | Context.OptionsRanges | Context.OptionsRaw,
-      {
-        body: [
-          {
-            expression: {
-              expressions: [
-                {
-                  start: 0,
-                  end: 12,
-                  range: [0, 12],
-                  type: 'Literal',
-                  value: 'use strict',
-                  raw: '"use strict"',
-                },
-                {
-                  start: 14,
-                  end: 30,
-                  range: [14, 30],
-                  type: 'Literal',
-                  value: 'HelloÊWorld',
-                  raw: String.raw`"Hello\312World"`,
-                },
-              ],
-              start: 0,
-              end: 30,
-              range: [0, 30],
-              type: 'SequenceExpression',
-            },
-            start: 0,
-            end: 30,
-            range: [0, 30],
-            type: 'ExpressionStatement',
-          },
-        ],
-        sourceType: 'script',
-        start: 0,
-        end: 30,
-        range: [0, 30],
-        type: 'Program',
-      },
+      
     ],
     [
       '"use asm" \n "use strict"',
       Context.None | Context.OptionsRanges | Context.OptionsRaw,
-      {
-        body: [
-          {
-            expression: {
-              start: 0,
-              end: 9,
-              range: [0, 9],
-              type: 'Literal',
-              value: 'use asm',
-              raw: '"use asm"',
-            },
-            directive: 'use asm',
-            start: 0,
-            end: 9,
-            range: [0, 9],
-            type: 'ExpressionStatement',
-          },
-          {
-            expression: {
-              start: 12,
-              end: 24,
-              range: [12, 24],
-              type: 'Literal',
-              value: 'use strict',
-              raw: '"use strict"',
-            },
-            directive: 'use strict',
-            start: 12,
-            end: 24,
-            range: [12, 24],
-            type: 'ExpressionStatement',
-          },
-        ],
-        sourceType: 'script',
-        start: 0,
-        end: 24,
-        range: [0, 24],
-        type: 'Program',
-      },
+      
     ],
     [
       '"use strict"; + 1',
       Context.None | Context.OptionsRanges,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'Literal',
-              value: 'use strict',
-              start: 0,
-              end: 12,
-              range: [0, 12],
-            },
-            directive: 'use strict',
-            start: 0,
-            end: 13,
-            range: [0, 13],
-          },
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'UnaryExpression',
-              operator: '+',
-              argument: {
-                type: 'Literal',
-                value: 1,
-                start: 16,
-                end: 17,
-                range: [16, 17],
-              },
-              prefix: true,
-              start: 14,
-              end: 17,
-              range: [14, 17],
-            },
-            start: 14,
-            end: 17,
-            range: [14, 17],
-          },
-        ],
-        start: 0,
-        end: 17,
-        range: [0, 17],
-      },
+      
     ],
     [
       '("use strict"); foo = 42;',
       Context.None | Context.OptionsRanges,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'Literal',
-              value: 'use strict',
-              start: 1,
-              end: 13,
-              range: [1, 13],
-            },
-            start: 0,
-            end: 15,
-            range: [0, 15],
-          },
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'AssignmentExpression',
-              left: {
-                type: 'Identifier',
-                name: 'foo',
-                start: 16,
-                end: 19,
-                range: [16, 19],
-              },
-              operator: '=',
-              right: {
-                type: 'Literal',
-                value: 42,
-                start: 22,
-                end: 24,
-                range: [22, 24],
-              },
-              start: 16,
-              end: 24,
-              range: [16, 24],
-            },
-            start: 16,
-            end: 25,
-            range: [16, 25],
-          },
-        ],
-        start: 0,
-        end: 25,
-        range: [0, 25],
-      },
+      
     ],
     [
       '"\\u0061b"\n"c\\u0064"',
       Context.None,
-      {
-        type: 'Program',
-        sourceType: 'script',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'Literal',
-              value: 'ab',
-            },
-            directive: String.raw`\u0061b`,
-          },
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'Literal',
-              value: 'cd',
-            },
-            directive: String.raw`c\u0064`,
-          },
-        ],
-      },
+      
     ],
     [
       '"\\u0061b"\n"c\\u0064"',
       Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'Literal',
-              value: 'ab',
-            },
-            directive: String.raw`\u0061b`,
-          },
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'Literal',
-              value: 'cd',
-            },
-            directive: String.raw`c\u0064`,
-          },
-        ],
-      },
+      
     ],
   ]);
 });

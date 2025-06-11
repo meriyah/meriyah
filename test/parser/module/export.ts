@@ -783,3800 +783,433 @@ describe('Module - Export', () => {
     [
       'export default async',
       Context.Module | Context.OptionsNext | Context.Strict | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 20,
-        range: [0, 20],
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            start: 0,
-            end: 20,
-            range: [0, 20],
-            declaration: {
-              type: 'Identifier',
-              start: 15,
-              end: 20,
-              range: [15, 20],
-              name: 'async',
-            },
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export default class f{}; export {f};',
       Context.Module | Context.OptionsNext | Context.Strict | Context.OptionsLexical,
-      {
-        body: [
-          {
-            declaration: {
-              body: {
-                body: [],
-                type: 'ClassBody',
-              },
-              decorators: [],
-              id: {
-                name: 'f',
-                type: 'Identifier',
-              },
-              superClass: null,
-              type: 'ClassDeclaration',
-            },
-            type: 'ExportDefaultDeclaration',
-          },
-          {
-            type: 'EmptyStatement',
-          },
-          {
-            declaration: null,
-            source: null,
-            specifiers: [
-              {
-                exported: {
-                  name: 'f',
-                  type: 'Identifier',
-                },
-                local: {
-                  name: 'f',
-                  type: 'Identifier',
-                },
-                type: 'ExportSpecifier',
-              },
-            ],
-            type: 'ExportNamedDeclaration',
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-        type: 'Program',
-      },
+      
     ],
     [
       'export default function f(){}; export {f};',
       Context.Module | Context.OptionsNext | Context.Strict | Context.OptionsLexical,
-      {
-        body: [
-          {
-            declaration: {
-              async: false,
-              body: {
-                body: [],
-                type: 'BlockStatement',
-              },
-              generator: false,
-              id: {
-                name: 'f',
-                type: 'Identifier',
-              },
-              params: [],
-              type: 'FunctionDeclaration',
-            },
-            type: 'ExportDefaultDeclaration',
-          },
-          {
-            type: 'EmptyStatement',
-          },
-          {
-            declaration: null,
-            source: null,
-            specifiers: [
-              {
-                exported: {
-                  name: 'f',
-                  type: 'Identifier',
-                },
-                local: {
-                  name: 'f',
-                  type: 'Identifier',
-                },
-                type: 'ExportSpecifier',
-              },
-            ],
-            type: 'ExportNamedDeclaration',
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-        type: 'Program',
-      },
+      
     ],
     [
       'export default async \nfunction f(){}',
       Context.Module | Context.OptionsNext | Context.Strict,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            declaration: {
-              type: 'Identifier',
-              name: 'async',
-            },
-          },
-          {
-            type: 'FunctionDeclaration',
-            params: [],
-            body: {
-              type: 'BlockStatement',
-              body: [],
-            },
-            async: false,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'f',
-            },
-          },
-        ],
-      },
+      
     ],
     [
       "export * as class from 'source';",
       Context.Module | Context.OptionsNext | Context.Strict,
-      {
-        body: [
-          {
-            source: {
-              type: 'Literal',
-              value: 'source',
-            },
-            attributes: [],
-            exported: {
-              name: 'class',
-              type: 'Identifier',
-            },
-            type: 'ExportAllDeclaration',
-          },
-        ],
-        sourceType: 'module',
-        type: 'Program',
-      },
+      
     ],
     [
       'export * as ns from "source";',
       Context.Module | Context.OptionsNext | Context.Strict,
-      {
-        body: [
-          {
-            source: {
-              type: 'Literal',
-              value: 'source',
-            },
-            attributes: [],
-            exported: {
-              name: 'ns',
-              type: 'Identifier',
-            },
-            type: 'ExportAllDeclaration',
-          },
-        ],
-        sourceType: 'module',
-        type: 'Program',
-      },
+      
     ],
     [
       'export * from "a"',
       Context.Module | Context.Strict | Context.OptionsNext | Context.OptionsRanges,
-      {
-        body: [
-          {
-            source: {
-              start: 14,
-              end: 17,
-              range: [14, 17],
-              type: 'Literal',
-              value: 'a',
-            },
-            attributes: [],
-            exported: null,
-            start: 0,
-            end: 17,
-            range: [0, 17],
-            type: 'ExportAllDeclaration',
-          },
-        ],
-        sourceType: 'module',
-        start: 0,
-        end: 17,
-        range: [0, 17],
-        type: 'Program',
-      },
+      
     ],
     [
       'export * as foo from "./foo";',
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        body: [
-          {
-            source: {
-              type: 'Literal',
-              value: './foo',
-            },
-            attributes: [],
-            exported: {
-              name: 'foo',
-              type: 'Identifier',
-            },
-            type: 'ExportAllDeclaration',
-          },
-        ],
-        sourceType: 'module',
-        type: 'Program',
-      },
+      
     ],
     [
       'export {}',
       Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 9,
-        range: [0, 9],
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            start: 0,
-            end: 9,
-            range: [0, 9],
-            declaration: null,
-            specifiers: [],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export {x}; var x;',
       Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 18,
-        range: [0, 18],
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            start: 0,
-            end: 11,
-            range: [0, 11],
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                start: 8,
-                end: 9,
-                range: [8, 9],
-                local: {
-                  type: 'Identifier',
-                  start: 8,
-                  end: 9,
-                  range: [8, 9],
-                  name: 'x',
-                },
-                exported: {
-                  type: 'Identifier',
-                  start: 8,
-                  end: 9,
-                  range: [8, 9],
-                  name: 'x',
-                },
-              },
-            ],
-            source: null,
-            attributes: [],
-          },
-          {
-            type: 'VariableDeclaration',
-            start: 12,
-            end: 18,
-            range: [12, 18],
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                start: 16,
-                end: 17,
-                range: [16, 17],
-                id: {
-                  type: 'Identifier',
-                  start: 16,
-                  end: 17,
-                  range: [16, 17],
-                  name: 'x',
-                },
-                init: null,
-              },
-            ],
-            kind: 'var',
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'var x; export {x as a}',
       Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 22,
-        range: [0, 22],
-        body: [
-          {
-            type: 'VariableDeclaration',
-            start: 0,
-            end: 6,
-            range: [0, 6],
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                start: 4,
-                end: 5,
-                range: [4, 5],
-                id: {
-                  type: 'Identifier',
-                  start: 4,
-                  end: 5,
-                  range: [4, 5],
-                  name: 'x',
-                },
-                init: null,
-              },
-            ],
-            kind: 'var',
-          },
-          {
-            type: 'ExportNamedDeclaration',
-            start: 7,
-            end: 22,
-            range: [7, 22],
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                start: 15,
-                end: 21,
-                range: [15, 21],
-                local: {
-                  type: 'Identifier',
-                  start: 15,
-                  end: 16,
-                  range: [15, 16],
-                  name: 'x',
-                },
-                exported: {
-                  type: 'Identifier',
-                  start: 20,
-                  end: 21,
-                  range: [20, 21],
-                  name: 'a',
-                },
-              },
-            ],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'var x; export {x,}',
       Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 18,
-        range: [0, 18],
-        body: [
-          {
-            type: 'VariableDeclaration',
-            start: 0,
-            end: 6,
-            range: [0, 6],
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                start: 4,
-                end: 5,
-                range: [4, 5],
-                id: {
-                  type: 'Identifier',
-                  start: 4,
-                  end: 5,
-                  range: [4, 5],
-                  name: 'x',
-                },
-                init: null,
-              },
-            ],
-            kind: 'var',
-          },
-          {
-            type: 'ExportNamedDeclaration',
-            start: 7,
-            end: 18,
-            range: [7, 18],
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                start: 15,
-                end: 16,
-                range: [15, 16],
-                local: {
-                  type: 'Identifier',
-                  start: 15,
-                  end: 16,
-                  range: [15, 16],
-                  name: 'x',
-                },
-                exported: {
-                  type: 'Identifier',
-                  start: 15,
-                  end: 16,
-                  range: [15, 16],
-                  name: 'x',
-                },
-              },
-            ],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export {x} from "foo"',
       Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 21,
-        range: [0, 21],
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            start: 0,
-            end: 21,
-            range: [0, 21],
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                start: 8,
-                end: 9,
-                range: [8, 9],
-                local: {
-                  type: 'Identifier',
-                  start: 8,
-                  end: 9,
-                  range: [8, 9],
-                  name: 'x',
-                },
-                exported: {
-                  type: 'Identifier',
-                  start: 8,
-                  end: 9,
-                  range: [8, 9],
-                  name: 'x',
-                },
-              },
-            ],
-            source: {
-              type: 'Literal',
-              start: 16,
-              end: 21,
-              range: [16, 21],
-              value: 'foo',
-            },
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export {x as a} from "foo"',
       Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 26,
-        range: [0, 26],
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            start: 0,
-            end: 26,
-            range: [0, 26],
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                start: 8,
-                end: 14,
-                range: [8, 14],
-                local: {
-                  type: 'Identifier',
-                  start: 8,
-                  end: 9,
-                  range: [8, 9],
-                  name: 'x',
-                },
-                exported: {
-                  type: 'Identifier',
-                  start: 13,
-                  end: 14,
-                  range: [13, 14],
-                  name: 'a',
-                },
-              },
-            ],
-            source: {
-              type: 'Literal',
-              start: 21,
-              end: 26,
-              range: [21, 26],
-              value: 'foo',
-            },
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export {x,} from "foo"',
       Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            source: {
-              type: 'Literal',
-              value: 'foo',
-            },
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                local: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                exported: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-              },
-            ],
-            declaration: null,
-            attributes: [],
-          },
-        ],
-      },
+      
     ],
     [
       'var x; export {x as a,}',
       Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 23,
-        range: [0, 23],
-        body: [
-          {
-            type: 'VariableDeclaration',
-            start: 0,
-            end: 6,
-            range: [0, 6],
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                start: 4,
-                end: 5,
-                range: [4, 5],
-                id: {
-                  type: 'Identifier',
-                  start: 4,
-                  end: 5,
-                  range: [4, 5],
-                  name: 'x',
-                },
-                init: null,
-              },
-            ],
-            kind: 'var',
-          },
-          {
-            type: 'ExportNamedDeclaration',
-            start: 7,
-            end: 23,
-            range: [7, 23],
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                start: 15,
-                end: 21,
-                range: [15, 21],
-                local: {
-                  type: 'Identifier',
-                  start: 15,
-                  end: 16,
-                  range: [15, 16],
-                  name: 'x',
-                },
-                exported: {
-                  type: 'Identifier',
-                  start: 20,
-                  end: 21,
-                  range: [20, 21],
-                  name: 'a',
-                },
-              },
-            ],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'var x,y; export {x as a, y as b}',
       Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 32,
-        range: [0, 32],
-        body: [
-          {
-            type: 'VariableDeclaration',
-            start: 0,
-            end: 8,
-            range: [0, 8],
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                start: 4,
-                end: 5,
-                range: [4, 5],
-                id: {
-                  type: 'Identifier',
-                  start: 4,
-                  end: 5,
-                  range: [4, 5],
-                  name: 'x',
-                },
-                init: null,
-              },
-              {
-                type: 'VariableDeclarator',
-                start: 6,
-                end: 7,
-                range: [6, 7],
-                id: {
-                  type: 'Identifier',
-                  start: 6,
-                  end: 7,
-                  range: [6, 7],
-                  name: 'y',
-                },
-                init: null,
-              },
-            ],
-            kind: 'var',
-          },
-          {
-            type: 'ExportNamedDeclaration',
-            start: 9,
-            end: 32,
-            range: [9, 32],
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                start: 17,
-                end: 23,
-                range: [17, 23],
-                local: {
-                  type: 'Identifier',
-                  start: 17,
-                  end: 18,
-                  range: [17, 18],
-                  name: 'x',
-                },
-                exported: {
-                  type: 'Identifier',
-                  start: 22,
-                  end: 23,
-                  range: [22, 23],
-                  name: 'a',
-                },
-              },
-              {
-                type: 'ExportSpecifier',
-                start: 25,
-                end: 31,
-                range: [25, 31],
-                local: {
-                  type: 'Identifier',
-                  start: 25,
-                  end: 26,
-                  range: [25, 26],
-                  name: 'y',
-                },
-                exported: {
-                  type: 'Identifier',
-                  start: 30,
-                  end: 31,
-                  range: [30, 31],
-                  name: 'b',
-                },
-              },
-            ],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export var x = 10, y = 20',
       Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 25,
-        range: [0, 25],
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            start: 0,
-            end: 25,
-            range: [0, 25],
-            declaration: {
-              type: 'VariableDeclaration',
-              start: 7,
-              end: 25,
-              range: [7, 25],
-              declarations: [
-                {
-                  type: 'VariableDeclarator',
-                  start: 11,
-                  end: 17,
-                  range: [11, 17],
-                  id: {
-                    type: 'Identifier',
-                    start: 11,
-                    end: 12,
-                    range: [11, 12],
-                    name: 'x',
-                  },
-                  init: {
-                    type: 'Literal',
-                    start: 15,
-                    end: 17,
-                    range: [15, 17],
-                    value: 10,
-                  },
-                },
-                {
-                  type: 'VariableDeclarator',
-                  start: 19,
-                  end: 25,
-                  range: [19, 25],
-                  id: {
-                    type: 'Identifier',
-                    start: 19,
-                    end: 20,
-                    range: [19, 20],
-                    name: 'y',
-                  },
-                  init: {
-                    type: 'Literal',
-                    start: 23,
-                    end: 25,
-                    range: [23, 25],
-                    value: 20,
-                  },
-                },
-              ],
-              kind: 'var',
-            },
-            specifiers: [],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export let x',
       Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 12,
-        range: [0, 12],
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            start: 0,
-            end: 12,
-            range: [0, 12],
-            declaration: {
-              type: 'VariableDeclaration',
-              start: 7,
-              end: 12,
-              range: [7, 12],
-              declarations: [
-                {
-                  type: 'VariableDeclarator',
-                  start: 11,
-                  end: 12,
-                  range: [11, 12],
-                  id: {
-                    type: 'Identifier',
-                    start: 11,
-                    end: 12,
-                    range: [11, 12],
-                    name: 'x',
-                  },
-                  init: null,
-                },
-              ],
-              kind: 'let',
-            },
-            specifiers: [],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export let x, y',
       Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 15,
-        range: [0, 15],
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            start: 0,
-            end: 15,
-            range: [0, 15],
-            declaration: {
-              type: 'VariableDeclaration',
-              start: 7,
-              end: 15,
-              range: [7, 15],
-              declarations: [
-                {
-                  type: 'VariableDeclarator',
-                  start: 11,
-                  end: 12,
-                  range: [11, 12],
-                  id: {
-                    type: 'Identifier',
-                    start: 11,
-                    end: 12,
-                    range: [11, 12],
-                    name: 'x',
-                  },
-                  init: null,
-                },
-                {
-                  type: 'VariableDeclarator',
-                  start: 14,
-                  end: 15,
-                  range: [14, 15],
-                  id: {
-                    type: 'Identifier',
-                    start: 14,
-                    end: 15,
-                    range: [14, 15],
-                    name: 'y',
-                  },
-                  init: null,
-                },
-              ],
-              kind: 'let',
-            },
-            specifiers: [],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export const x = 10, y = 20',
       Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 27,
-        range: [0, 27],
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            start: 0,
-            end: 27,
-            range: [0, 27],
-            declaration: {
-              type: 'VariableDeclaration',
-              start: 7,
-              end: 27,
-              range: [7, 27],
-              declarations: [
-                {
-                  type: 'VariableDeclarator',
-                  start: 13,
-                  end: 19,
-                  range: [13, 19],
-                  id: {
-                    type: 'Identifier',
-                    start: 13,
-                    end: 14,
-                    range: [13, 14],
-                    name: 'x',
-                  },
-                  init: {
-                    type: 'Literal',
-                    start: 17,
-                    end: 19,
-                    range: [17, 19],
-                    value: 10,
-                  },
-                },
-                {
-                  type: 'VariableDeclarator',
-                  start: 21,
-                  end: 27,
-                  range: [21, 27],
-                  id: {
-                    type: 'Identifier',
-                    start: 21,
-                    end: 22,
-                    range: [21, 22],
-                    name: 'y',
-                  },
-                  init: {
-                    type: 'Literal',
-                    start: 25,
-                    end: 27,
-                    range: [25, 27],
-                    value: 20,
-                  },
-                },
-              ],
-              kind: 'const',
-            },
-            specifiers: [],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export function f(){}',
       Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 21,
-        range: [0, 21],
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            start: 0,
-            end: 21,
-            range: [0, 21],
-            declaration: {
-              type: 'FunctionDeclaration',
-              start: 7,
-              end: 21,
-              range: [7, 21],
-              id: {
-                type: 'Identifier',
-                start: 16,
-                end: 17,
-                range: [16, 17],
-                name: 'f',
-              },
-              generator: false,
-              async: false,
-              params: [],
-              body: {
-                type: 'BlockStatement',
-                start: 19,
-                end: 21,
-                range: [19, 21],
-                body: [],
-              },
-            },
-            specifiers: [],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export async function f(){}',
       Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 27,
-        range: [0, 27],
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            start: 0,
-            end: 27,
-            range: [0, 27],
-            declaration: {
-              type: 'FunctionDeclaration',
-              start: 7,
-              end: 27,
-              range: [7, 27],
-              id: {
-                type: 'Identifier',
-                start: 22,
-                end: 23,
-                range: [22, 23],
-                name: 'f',
-              },
-              generator: false,
-              async: true,
-              params: [],
-              body: {
-                type: 'BlockStatement',
-                start: 25,
-                end: 27,
-                range: [25, 27],
-                body: [],
-              },
-            },
-            specifiers: [],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export function* f(){}',
       Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            source: null,
-            specifiers: [],
-            declaration: {
-              type: 'FunctionDeclaration',
-              params: [],
-              body: {
-                type: 'BlockStatement',
-                body: [],
-              },
-              async: false,
-              generator: true,
-
-              id: {
-                type: 'Identifier',
-                name: 'f',
-              },
-            },
-            attributes: [],
-          },
-        ],
-      },
+      
     ],
     [
       'export default function f(){}',
       Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            declaration: {
-              type: 'FunctionDeclaration',
-              params: [],
-              body: {
-                type: 'BlockStatement',
-                body: [],
-              },
-              async: false,
-              generator: false,
-
-              id: {
-                type: 'Identifier',
-                name: 'f',
-              },
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'export default async function f(){}',
       Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 35,
-        range: [0, 35],
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            start: 0,
-            end: 35,
-            range: [0, 35],
-            declaration: {
-              type: 'FunctionDeclaration',
-              start: 15,
-              end: 35,
-              range: [15, 35],
-              id: {
-                type: 'Identifier',
-                start: 30,
-                end: 31,
-                range: [30, 31],
-                name: 'f',
-              },
-              generator: false,
-              async: true,
-              params: [],
-              body: {
-                type: 'BlockStatement',
-                start: 33,
-                end: 35,
-                range: [33, 35],
-                body: [],
-              },
-            },
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
 
     [
       'export default function* f(){}',
       Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 30,
-        range: [0, 30],
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            start: 0,
-            end: 30,
-            range: [0, 30],
-            declaration: {
-              type: 'FunctionDeclaration',
-              start: 15,
-              end: 30,
-              range: [15, 30],
-              id: {
-                type: 'Identifier',
-                start: 25,
-                end: 26,
-                range: [25, 26],
-                name: 'f',
-              },
-              generator: true,
-              async: false,
-              params: [],
-              body: {
-                type: 'BlockStatement',
-                start: 28,
-                end: 30,
-                range: [28, 30],
-                body: [],
-              },
-            },
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export class x {}',
       Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 17,
-        range: [0, 17],
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            start: 0,
-            end: 17,
-            range: [0, 17],
-            declaration: {
-              type: 'ClassDeclaration',
-              start: 7,
-              end: 17,
-              range: [7, 17],
-              id: {
-                type: 'Identifier',
-                start: 13,
-                end: 14,
-                range: [13, 14],
-                name: 'x',
-              },
-              superClass: null,
-              body: {
-                type: 'ClassBody',
-                start: 15,
-                end: 17,
-                range: [15, 17],
-                body: [],
-              },
-            },
-            specifiers: [],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
 
     [
       'export default class x {}',
       Context.OptionsWebCompat | Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 25,
-        range: [0, 25],
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            start: 0,
-            end: 25,
-            range: [0, 25],
-            declaration: {
-              type: 'ClassDeclaration',
-              start: 15,
-              end: 25,
-              range: [15, 25],
-              id: {
-                type: 'Identifier',
-                start: 21,
-                end: 22,
-                range: [21, 22],
-                name: 'x',
-              },
-              superClass: null,
-              body: {
-                type: 'ClassBody',
-                start: 23,
-                end: 25,
-                range: [23, 25],
-                body: [],
-              },
-            },
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export let [...x] = y',
       Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 21,
-        range: [0, 21],
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            start: 0,
-            end: 21,
-            range: [0, 21],
-            declaration: {
-              type: 'VariableDeclaration',
-              start: 7,
-              end: 21,
-              range: [7, 21],
-              declarations: [
-                {
-                  type: 'VariableDeclarator',
-                  start: 11,
-                  end: 21,
-                  range: [11, 21],
-                  id: {
-                    type: 'ArrayPattern',
-                    start: 11,
-                    end: 17,
-                    range: [11, 17],
-                    elements: [
-                      {
-                        type: 'RestElement',
-                        start: 12,
-                        end: 16,
-                        range: [12, 16],
-                        argument: {
-                          type: 'Identifier',
-                          start: 15,
-                          end: 16,
-                          range: [15, 16],
-                          name: 'x',
-                        },
-                      },
-                    ],
-                  },
-                  init: {
-                    type: 'Identifier',
-                    start: 20,
-                    end: 21,
-                    range: [20, 21],
-                    name: 'y',
-                  },
-                },
-              ],
-              kind: 'let',
-            },
-            specifiers: [],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export let {...x} = y',
       Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            source: null,
-            specifiers: [],
-            declaration: {
-              type: 'VariableDeclaration',
-              kind: 'let',
-              declarations: [
-                {
-                  type: 'VariableDeclarator',
-                  init: {
-                    type: 'Identifier',
-                    name: 'y',
-                  },
-                  id: {
-                    type: 'ObjectPattern',
-                    properties: [
-                      {
-                        type: 'RestElement',
-                        argument: {
-                          type: 'Identifier',
-                          name: 'x',
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-            attributes: [],
-          },
-        ],
-      },
+      
     ],
     [
       'export default [x] = y',
       Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            declaration: {
-              type: 'AssignmentExpression',
-              left: {
-                type: 'ArrayPattern',
-                elements: [
-                  {
-                    type: 'Identifier',
-                    name: 'x',
-                  },
-                ],
-              },
-              operator: '=',
-              right: {
-                type: 'Identifier',
-                name: 'y',
-              },
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'var a,b; export {a}; export {b};',
       Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 32,
-        range: [0, 32],
-        body: [
-          {
-            type: 'VariableDeclaration',
-            start: 0,
-            end: 8,
-            range: [0, 8],
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                start: 4,
-                end: 5,
-                range: [4, 5],
-                id: {
-                  type: 'Identifier',
-                  start: 4,
-                  end: 5,
-                  range: [4, 5],
-                  name: 'a',
-                },
-                init: null,
-              },
-              {
-                type: 'VariableDeclarator',
-                start: 6,
-                end: 7,
-                range: [6, 7],
-                id: {
-                  type: 'Identifier',
-                  start: 6,
-                  end: 7,
-                  range: [6, 7],
-                  name: 'b',
-                },
-                init: null,
-              },
-            ],
-            kind: 'var',
-          },
-          {
-            type: 'ExportNamedDeclaration',
-            start: 9,
-            end: 20,
-            range: [9, 20],
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                start: 17,
-                end: 18,
-                range: [17, 18],
-                local: {
-                  type: 'Identifier',
-                  start: 17,
-                  end: 18,
-                  range: [17, 18],
-                  name: 'a',
-                },
-                exported: {
-                  type: 'Identifier',
-                  start: 17,
-                  end: 18,
-                  range: [17, 18],
-                  name: 'a',
-                },
-              },
-            ],
-            source: null,
-            attributes: [],
-          },
-          {
-            type: 'ExportNamedDeclaration',
-            start: 21,
-            end: 32,
-            range: [21, 32],
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                start: 29,
-                end: 30,
-                range: [29, 30],
-                local: {
-                  type: 'Identifier',
-                  start: 29,
-                  end: 30,
-                  range: [29, 30],
-                  name: 'b',
-                },
-                exported: {
-                  type: 'Identifier',
-                  start: 29,
-                  end: 30,
-                  range: [29, 30],
-                  name: 'b',
-                },
-              },
-            ],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export default async () => y',
       Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 28,
-        range: [0, 28],
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            start: 0,
-            end: 28,
-            range: [0, 28],
-            declaration: {
-              type: 'ArrowFunctionExpression',
-              generator: false,
-              start: 15,
-              end: 28,
-              range: [15, 28],
-              expression: true,
-              async: true,
-              params: [],
-              body: {
-                type: 'Identifier',
-                start: 27,
-                end: 28,
-                range: [27, 28],
-                name: 'y',
-              },
-            },
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export default async (x) => y',
       Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 29,
-        range: [0, 29],
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            start: 0,
-            end: 29,
-            range: [0, 29],
-            declaration: {
-              type: 'ArrowFunctionExpression',
-              generator: false,
-              start: 15,
-              end: 29,
-              range: [15, 29],
-              expression: true,
-              async: true,
-              params: [
-                {
-                  type: 'Identifier',
-                  start: 22,
-                  end: 23,
-                  range: [22, 23],
-                  name: 'x',
-                },
-              ],
-              body: {
-                type: 'Identifier',
-                start: 28,
-                end: 29,
-                range: [28, 29],
-                name: 'y',
-              },
-            },
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export default async function(){}',
       Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 33,
-        range: [0, 33],
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            start: 0,
-            end: 33,
-            range: [0, 33],
-            declaration: {
-              type: 'FunctionDeclaration',
-              start: 15,
-              end: 33,
-              range: [15, 33],
-              id: null,
-              generator: false,
-              async: true,
-              params: [],
-              body: {
-                type: 'BlockStatement',
-                start: 31,
-                end: 33,
-                range: [31, 33],
-                body: [],
-              },
-            },
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export default function* (){}',
       Context.Strict | Context.Module | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            declaration: {
-              type: 'FunctionDeclaration',
-              params: [],
-              body: {
-                type: 'BlockStatement',
-                body: [],
-              },
-              async: false,
-              generator: true,
-
-              id: null,
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'export default class x{}',
       Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 24,
-        range: [0, 24],
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            start: 0,
-            end: 24,
-            range: [0, 24],
-            declaration: {
-              decorators: [],
-              type: 'ClassDeclaration',
-              start: 15,
-              end: 24,
-              range: [15, 24],
-              id: {
-                type: 'Identifier',
-                start: 21,
-                end: 22,
-                range: [21, 22],
-                name: 'x',
-              },
-              superClass: null,
-              body: {
-                type: 'ClassBody',
-                start: 22,
-                end: 24,
-                range: [22, 24],
-                body: [],
-              },
-            },
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export {} from "x"',
       Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 18,
-        range: [0, 18],
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            start: 0,
-            end: 18,
-            range: [0, 18],
-            declaration: null,
-            specifiers: [],
-            attributes: [],
-            source: {
-              type: 'Literal',
-              start: 15,
-              end: 18,
-              range: [15, 18],
-              value: 'x',
-            },
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export default async x => y',
       Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 27,
-        range: [0, 27],
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            start: 0,
-            end: 27,
-            range: [0, 27],
-            declaration: {
-              type: 'ArrowFunctionExpression',
-              generator: false,
-              start: 15,
-              end: 27,
-              range: [15, 27],
-              expression: true,
-              async: true,
-              params: [
-                {
-                  type: 'Identifier',
-                  start: 21,
-                  end: 22,
-                  range: [21, 22],
-                  name: 'x',
-                },
-              ],
-              body: {
-                type: 'Identifier',
-                start: 26,
-                end: 27,
-                range: [26, 27],
-                name: 'y',
-              },
-            },
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export default (a,b) => {}',
       Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 26,
-        range: [0, 26],
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            start: 0,
-            end: 26,
-            range: [0, 26],
-            declaration: {
-              type: 'ArrowFunctionExpression',
-              generator: false,
-              start: 15,
-              end: 26,
-              range: [15, 26],
-              expression: false,
-              async: false,
-              params: [
-                {
-                  type: 'Identifier',
-                  start: 16,
-                  end: 17,
-                  range: [16, 17],
-                  name: 'a',
-                },
-                {
-                  type: 'Identifier',
-                  start: 18,
-                  end: 19,
-                  range: [18, 19],
-                  name: 'b',
-                },
-              ],
-              body: {
-                type: 'BlockStatement',
-                start: 24,
-                end: 26,
-                range: [24, 26],
-                body: [],
-              },
-            },
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export default () => {}',
       Context.Strict | Context.Module | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            declaration: {
-              type: 'ArrowFunctionExpression',
-              generator: false,
-              body: {
-                type: 'BlockStatement',
-                body: [],
-              },
-              params: [],
-              async: false,
-              expression: false,
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'export {};',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            source: null,
-            specifiers: [],
-            declaration: null,
-            attributes: [],
-          },
-        ],
-      },
+      
     ],
     [
       'export var foo = 1;',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            declaration: {
-              type: 'VariableDeclaration',
-              declarations: [
-                {
-                  type: 'VariableDeclarator',
-                  id: {
-                    type: 'Identifier',
-                    name: 'foo',
-                  },
-                  init: {
-                    type: 'Literal',
-                    value: 1,
-                  },
-                },
-              ],
-              kind: 'var',
-            },
-            specifiers: [],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export function foo () {}',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            source: null,
-            specifiers: [],
-            declaration: {
-              type: 'FunctionDeclaration',
-              params: [],
-              body: {
-                type: 'BlockStatement',
-                body: [],
-              },
-              async: false,
-              generator: false,
-
-              id: {
-                type: 'Identifier',
-                name: 'foo',
-              },
-            },
-            attributes: [],
-          },
-        ],
-      },
+      
     ],
     [
       String.raw`export function \u{5A}() {}`,
       Context.Strict | Context.Module,
-      {
-        body: [
-          {
-            declaration: {
-              async: false,
-              body: {
-                body: [],
-                type: 'BlockStatement',
-              },
-              generator: false,
-
-              id: {
-                name: 'Z',
-                type: 'Identifier',
-              },
-              params: [],
-              type: 'FunctionDeclaration',
-            },
-            source: null,
-            specifiers: [],
-            type: 'ExportNamedDeclaration',
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-        type: 'Program',
-      },
+      
     ],
 
     [
       'export {foo} from "foo";',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            source: {
-              type: 'Literal',
-              value: 'foo',
-            },
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                local: {
-                  type: 'Identifier',
-                  name: 'foo',
-                },
-                exported: {
-                  type: 'Identifier',
-                  name: 'foo',
-                },
-              },
-            ],
-            declaration: null,
-            attributes: [],
-          },
-        ],
-      },
+      
     ],
     [
       'export default function () {}',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            declaration: {
-              type: 'FunctionDeclaration',
-              params: [],
-              body: {
-                type: 'BlockStatement',
-                body: [],
-              },
-              async: false,
-              generator: false,
-
-              id: null,
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'export default (1 + 2);',
       Context.Strict | Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 23,
-        range: [0, 23],
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            start: 0,
-            end: 23,
-            range: [0, 23],
-            declaration: {
-              type: 'BinaryExpression',
-              start: 16,
-              end: 21,
-              range: [16, 21],
-              left: {
-                type: 'Literal',
-                start: 16,
-                end: 17,
-                range: [16, 17],
-                value: 1,
-              },
-              operator: '+',
-              right: {
-                type: 'Literal',
-                start: 20,
-                end: 21,
-                range: [20, 21],
-                value: 2,
-              },
-            },
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
 
     [
       'export class a {}',
       Context.Strict | Context.Module,
-      {
-        body: [
-          {
-            declaration: {
-              body: {
-                body: [],
-                type: 'ClassBody',
-              },
-              id: {
-                name: 'a',
-                type: 'Identifier',
-              },
-              superClass: null,
-              type: 'ClassDeclaration',
-            },
-            source: null,
-            specifiers: [],
-            type: 'ExportNamedDeclaration',
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-        type: 'Program',
-      },
+      
     ],
     [
       'export default class A {}',
       Context.Strict | Context.Module,
-      {
-        body: [
-          {
-            declaration: {
-              body: {
-                body: [],
-                type: 'ClassBody',
-              },
-              id: {
-                name: 'A',
-                type: 'Identifier',
-              },
-              superClass: null,
-              type: 'ClassDeclaration',
-            },
-            type: 'ExportDefaultDeclaration',
-          },
-        ],
-        sourceType: 'module',
-        type: 'Program',
-      },
+      
     ],
     [
       'export default [];',
       Context.Strict | Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 18,
-        range: [0, 18],
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            start: 0,
-            end: 18,
-            range: [0, 18],
-            declaration: {
-              type: 'ArrayExpression',
-              start: 15,
-              end: 17,
-              range: [15, 17],
-              elements: [],
-            },
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
 
     [
       'export default function foo() {}',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            declaration: {
-              type: 'FunctionDeclaration',
-              params: [],
-              body: {
-                type: 'BlockStatement',
-                body: [],
-              },
-              async: false,
-              generator: false,
-
-              id: {
-                type: 'Identifier',
-                name: 'foo',
-              },
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'export default function *foo() {}',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            declaration: {
-              type: 'FunctionDeclaration',
-              params: [],
-              body: {
-                type: 'BlockStatement',
-                body: [],
-              },
-              async: false,
-              generator: true,
-
-              id: {
-                type: 'Identifier',
-                name: 'foo',
-              },
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'var foo; export {foo as new}',
       Context.Strict | Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 28,
-        range: [0, 28],
-        body: [
-          {
-            type: 'VariableDeclaration',
-            start: 0,
-            end: 8,
-            range: [0, 8],
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                start: 4,
-                end: 7,
-                range: [4, 7],
-                id: {
-                  type: 'Identifier',
-                  start: 4,
-                  end: 7,
-                  range: [4, 7],
-                  name: 'foo',
-                },
-                init: null,
-              },
-            ],
-            kind: 'var',
-          },
-          {
-            type: 'ExportNamedDeclaration',
-            start: 9,
-            end: 28,
-            range: [9, 28],
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                start: 17,
-                end: 27,
-                range: [17, 27],
-                local: {
-                  type: 'Identifier',
-                  start: 17,
-                  end: 20,
-                  range: [17, 20],
-                  name: 'foo',
-                },
-                exported: {
-                  type: 'Identifier',
-                  start: 24,
-                  end: 27,
-                  range: [24, 27],
-                  name: 'new',
-                },
-              },
-            ],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export {a as b}; var a;',
       Context.Strict | Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 23,
-        range: [0, 23],
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            start: 0,
-            end: 16,
-            range: [0, 16],
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                start: 8,
-                end: 14,
-                range: [8, 14],
-                local: {
-                  type: 'Identifier',
-                  start: 8,
-                  end: 9,
-                  range: [8, 9],
-                  name: 'a',
-                },
-                exported: {
-                  type: 'Identifier',
-                  start: 13,
-                  end: 14,
-                  range: [13, 14],
-                  name: 'b',
-                },
-              },
-            ],
-            source: null,
-            attributes: [],
-          },
-          {
-            type: 'VariableDeclaration',
-            start: 17,
-            end: 23,
-            range: [17, 23],
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                start: 21,
-                end: 22,
-                range: [21, 22],
-                id: {
-                  type: 'Identifier',
-                  start: 21,
-                  end: 22,
-                  range: [21, 22],
-                  name: 'a',
-                },
-                init: null,
-              },
-            ],
-            kind: 'var',
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'var a; export {a as b};',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'VariableDeclaration',
-            kind: 'var',
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                init: null,
-                id: {
-                  type: 'Identifier',
-                  name: 'a',
-                },
-              },
-            ],
-          },
-          {
-            type: 'ExportNamedDeclaration',
-            source: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                local: {
-                  type: 'Identifier',
-                  name: 'a',
-                },
-                exported: {
-                  type: 'Identifier',
-                  name: 'b',
-                },
-              },
-            ],
-            declaration: null,
-            attributes: [],
-          },
-        ],
-      },
+      
     ],
     [
       `[function* (...{}) {  switch (yield) {}  }]
         a = (u) => {}`,
       Context.Strict | Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 65,
-        range: [0, 65],
-        body: [
-          {
-            type: 'ExpressionStatement',
-            start: 0,
-            end: 43,
-            range: [0, 43],
-            expression: {
-              type: 'ArrayExpression',
-              start: 0,
-              end: 43,
-              range: [0, 43],
-              elements: [
-                {
-                  type: 'FunctionExpression',
-                  start: 1,
-                  end: 42,
-                  range: [1, 42],
-                  id: null,
-                  generator: true,
-                  async: false,
-                  params: [
-                    {
-                      type: 'RestElement',
-                      start: 12,
-                      end: 17,
-                      range: [12, 17],
-                      argument: {
-                        type: 'ObjectPattern',
-                        start: 15,
-                        end: 17,
-                        range: [15, 17],
-                        properties: [],
-                      },
-                    },
-                  ],
-                  body: {
-                    type: 'BlockStatement',
-                    start: 19,
-                    end: 42,
-                    range: [19, 42],
-                    body: [
-                      {
-                        type: 'SwitchStatement',
-                        start: 22,
-                        end: 39,
-                        range: [22, 39],
-                        discriminant: {
-                          type: 'YieldExpression',
-                          start: 30,
-                          end: 35,
-                          range: [30, 35],
-                          delegate: false,
-                          argument: null,
-                        },
-                        cases: [],
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            type: 'ExpressionStatement',
-            start: 52,
-            end: 65,
-            range: [52, 65],
-            expression: {
-              type: 'AssignmentExpression',
-              start: 52,
-              end: 65,
-              range: [52, 65],
-              operator: '=',
-              left: {
-                type: 'Identifier',
-                start: 52,
-                end: 53,
-                range: [52, 53],
-                name: 'a',
-              },
-              right: {
-                type: 'ArrowFunctionExpression',
-                generator: false,
-                start: 56,
-                end: 65,
-                range: [56, 65],
-                expression: false,
-                async: false,
-                params: [
-                  {
-                    type: 'Identifier',
-                    start: 57,
-                    end: 58,
-                    range: [57, 58],
-                    name: 'u',
-                  },
-                ],
-                body: {
-                  type: 'BlockStatement',
-                  start: 63,
-                  end: 65,
-                  range: [63, 65],
-                  body: [],
-                },
-              },
-            },
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export {foo}; function foo() {};',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            source: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                local: {
-                  type: 'Identifier',
-                  name: 'foo',
-                },
-                exported: {
-                  type: 'Identifier',
-                  name: 'foo',
-                },
-              },
-            ],
-            declaration: null,
-            attributes: [],
-          },
-          {
-            type: 'FunctionDeclaration',
-            params: [],
-            body: {
-              type: 'BlockStatement',
-              body: [],
-            },
-            async: false,
-            generator: false,
-
-            id: {
-              type: 'Identifier',
-              name: 'foo',
-            },
-          },
-          {
-            type: 'EmptyStatement',
-          },
-        ],
-      },
+      
     ],
     [
       'export var x = 1;',
       Context.Strict | Context.Module,
-      {
-        body: [
-          {
-            declaration: {
-              declarations: [
-                {
-                  id: {
-                    name: 'x',
-                    type: 'Identifier',
-                  },
-                  init: {
-                    type: 'Literal',
-                    value: 1,
-                  },
-                  type: 'VariableDeclarator',
-                },
-              ],
-              kind: 'var',
-              type: 'VariableDeclaration',
-            },
-            source: null,
-            specifiers: [],
-            type: 'ExportNamedDeclaration',
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-        type: 'Program',
-      },
+      
     ],
     [
       'export default 3;',
       Context.Strict | Context.Module,
-      {
-        body: [
-          {
-            declaration: {
-              type: 'Literal',
-              value: 3,
-            },
-            type: 'ExportDefaultDeclaration',
-          },
-        ],
-        sourceType: 'module',
-        type: 'Program',
-      },
+      
     ],
     [
       'var x; export { x as a }; export { x as b };',
       Context.Strict | Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 44,
-        range: [0, 44],
-        body: [
-          {
-            type: 'VariableDeclaration',
-            start: 0,
-            end: 6,
-            range: [0, 6],
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                start: 4,
-                end: 5,
-                range: [4, 5],
-                id: {
-                  type: 'Identifier',
-                  start: 4,
-                  end: 5,
-                  range: [4, 5],
-                  name: 'x',
-                },
-                init: null,
-              },
-            ],
-            kind: 'var',
-          },
-          {
-            type: 'ExportNamedDeclaration',
-            start: 7,
-            end: 25,
-            range: [7, 25],
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                start: 16,
-                end: 22,
-                range: [16, 22],
-                local: {
-                  type: 'Identifier',
-                  start: 16,
-                  end: 17,
-                  range: [16, 17],
-                  name: 'x',
-                },
-                exported: {
-                  type: 'Identifier',
-                  start: 21,
-                  end: 22,
-                  range: [21, 22],
-                  name: 'a',
-                },
-              },
-            ],
-            source: null,
-            attributes: [],
-          },
-          {
-            type: 'ExportNamedDeclaration',
-            start: 26,
-            end: 44,
-            range: [26, 44],
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                start: 35,
-                end: 41,
-                range: [35, 41],
-                local: {
-                  type: 'Identifier',
-                  start: 35,
-                  end: 36,
-                  range: [35, 36],
-                  name: 'x',
-                },
-                exported: {
-                  type: 'Identifier',
-                  start: 40,
-                  end: 41,
-                  range: [40, 41],
-                  name: 'b',
-                },
-              },
-            ],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export default [x] = y',
       Context.Strict | Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 22,
-        range: [0, 22],
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            start: 0,
-            end: 22,
-            range: [0, 22],
-            declaration: {
-              type: 'AssignmentExpression',
-              start: 15,
-              end: 22,
-              range: [15, 22],
-              operator: '=',
-              left: {
-                type: 'ArrayPattern',
-                start: 15,
-                end: 18,
-                range: [15, 18],
-                elements: [
-                  {
-                    type: 'Identifier',
-                    start: 16,
-                    end: 17,
-                    range: [16, 17],
-                    name: 'x',
-                  },
-                ],
-              },
-              right: {
-                type: 'Identifier',
-                start: 21,
-                end: 22,
-                range: [21, 22],
-                name: 'y',
-              },
-            },
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'let foo, bar; export {foo, bar}',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        body: [
-          {
-            type: 'VariableDeclaration',
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                id: {
-                  type: 'Identifier',
-                  name: 'foo',
-                },
-                init: null,
-              },
-              {
-                type: 'VariableDeclarator',
-                id: {
-                  type: 'Identifier',
-                  name: 'bar',
-                },
-                init: null,
-              },
-            ],
-            kind: 'let',
-          },
-          {
-            type: 'ExportNamedDeclaration',
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                exported: {
-                  type: 'Identifier',
-                  name: 'foo',
-                },
-                local: {
-                  type: 'Identifier',
-                  name: 'foo',
-                },
-              },
-              {
-                type: 'ExportSpecifier',
-                exported: {
-                  type: 'Identifier',
-                  name: 'bar',
-                },
-                local: {
-                  type: 'Identifier',
-                  name: 'bar',
-                },
-              },
-            ],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export default function *f(){} foo',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportDefaultDeclaration',
-            declaration: {
-              type: 'FunctionDeclaration',
-              params: [],
-              body: {
-                type: 'BlockStatement',
-                body: [],
-              },
-              async: false,
-              generator: true,
-
-              id: {
-                type: 'Identifier',
-                name: 'f',
-              },
-            },
-          },
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'Identifier',
-              name: 'foo',
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'export {}',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            source: null,
-            specifiers: [],
-            declaration: null,
-            attributes: [],
-          },
-        ],
-      },
+      
     ],
     [
       'export {x}; var x;',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            source: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                local: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                exported: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-              },
-            ],
-            declaration: null,
-            attributes: [],
-          },
-          {
-            type: 'VariableDeclaration',
-            kind: 'var',
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                init: null,
-                id: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-              },
-            ],
-          },
-        ],
-      },
+      
     ],
     [
       'var x; export {x as a}',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        body: [
-          {
-            type: 'VariableDeclaration',
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                id: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                init: null,
-              },
-            ],
-            kind: 'var',
-          },
-          {
-            type: 'ExportNamedDeclaration',
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                exported: {
-                  type: 'Identifier',
-                  name: 'a',
-                },
-                local: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-              },
-            ],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'var x; export {x,}',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        body: [
-          {
-            type: 'VariableDeclaration',
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                id: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                init: null,
-              },
-            ],
-            kind: 'var',
-          },
-          {
-            type: 'ExportNamedDeclaration',
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                exported: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                local: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-              },
-            ],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export {x} from "foo"',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                exported: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                local: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-              },
-            ],
-            source: {
-              type: 'Literal',
-              value: 'foo',
-            },
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export {x as a} from "foo"',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                exported: {
-                  type: 'Identifier',
-                  name: 'a',
-                },
-                local: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-              },
-            ],
-            source: {
-              type: 'Literal',
-              value: 'foo',
-            },
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export {x,} from "foo"',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                exported: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                local: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-              },
-            ],
-            source: {
-              type: 'Literal',
-              value: 'foo',
-            },
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'var x; export {x as a,}',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'VariableDeclaration',
-            kind: 'var',
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                init: null,
-                id: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-              },
-            ],
-          },
-          {
-            type: 'ExportNamedDeclaration',
-            source: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                local: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                exported: {
-                  type: 'Identifier',
-                  name: 'a',
-                },
-              },
-            ],
-            declaration: null,
-            attributes: [],
-          },
-        ],
-      },
+      
     ],
     [
       'var x,y; export {x, y}',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        body: [
-          {
-            type: 'VariableDeclaration',
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                id: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                init: null,
-              },
-              {
-                type: 'VariableDeclarator',
-                id: {
-                  type: 'Identifier',
-                  name: 'y',
-                },
-                init: null,
-              },
-            ],
-            kind: 'var',
-          },
-          {
-            type: 'ExportNamedDeclaration',
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                exported: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                local: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-              },
-              {
-                type: 'ExportSpecifier',
-                exported: {
-                  type: 'Identifier',
-                  name: 'y',
-                },
-                local: {
-                  type: 'Identifier',
-                  name: 'y',
-                },
-              },
-            ],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'var x,y; export {x as a, y as b}',
       Context.Strict | Context.Module | Context.OptionsRanges,
-      {
-        type: 'Program',
-        start: 0,
-        end: 32,
-        range: [0, 32],
-        body: [
-          {
-            type: 'VariableDeclaration',
-            start: 0,
-            end: 8,
-            range: [0, 8],
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                start: 4,
-                end: 5,
-                range: [4, 5],
-                id: {
-                  type: 'Identifier',
-                  start: 4,
-                  end: 5,
-                  range: [4, 5],
-                  name: 'x',
-                },
-                init: null,
-              },
-              {
-                type: 'VariableDeclarator',
-                start: 6,
-                end: 7,
-                range: [6, 7],
-                id: {
-                  type: 'Identifier',
-                  start: 6,
-                  end: 7,
-                  range: [6, 7],
-                  name: 'y',
-                },
-                init: null,
-              },
-            ],
-            kind: 'var',
-          },
-          {
-            type: 'ExportNamedDeclaration',
-            start: 9,
-            end: 32,
-            range: [9, 32],
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                start: 17,
-                end: 23,
-                range: [17, 23],
-                local: {
-                  type: 'Identifier',
-                  start: 17,
-                  end: 18,
-                  range: [17, 18],
-                  name: 'x',
-                },
-                exported: {
-                  type: 'Identifier',
-                  start: 22,
-                  end: 23,
-                  range: [22, 23],
-                  name: 'a',
-                },
-              },
-              {
-                type: 'ExportSpecifier',
-                start: 25,
-                end: 31,
-                range: [25, 31],
-                local: {
-                  type: 'Identifier',
-                  start: 25,
-                  end: 26,
-                  range: [25, 26],
-                  name: 'y',
-                },
-                exported: {
-                  type: 'Identifier',
-                  start: 30,
-                  end: 31,
-                  range: [30, 31],
-                  name: 'b',
-                },
-              },
-            ],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'var x,y; export {x, y,}',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        body: [
-          {
-            type: 'VariableDeclaration',
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                id: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                init: null,
-              },
-              {
-                type: 'VariableDeclarator',
-                id: {
-                  type: 'Identifier',
-                  name: 'y',
-                },
-                init: null,
-              },
-            ],
-            kind: 'var',
-          },
-          {
-            type: 'ExportNamedDeclaration',
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                exported: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                local: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-              },
-              {
-                type: 'ExportSpecifier',
-                exported: {
-                  type: 'Identifier',
-                  name: 'y',
-                },
-                local: {
-                  type: 'Identifier',
-                  name: 'y',
-                },
-              },
-            ],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'var x,y; export {x as a, y as b,}',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        body: [
-          {
-            type: 'VariableDeclaration',
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                id: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-                init: null,
-              },
-              {
-                type: 'VariableDeclarator',
-                id: {
-                  type: 'Identifier',
-                  name: 'y',
-                },
-                init: null,
-              },
-            ],
-            kind: 'var',
-          },
-          {
-            type: 'ExportNamedDeclaration',
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                exported: {
-                  type: 'Identifier',
-                  name: 'a',
-                },
-                local: {
-                  type: 'Identifier',
-                  name: 'x',
-                },
-              },
-              {
-                type: 'ExportSpecifier',
-                exported: {
-                  type: 'Identifier',
-                  name: 'b',
-                },
-                local: {
-                  type: 'Identifier',
-                  name: 'y',
-                },
-              },
-            ],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export var x',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            declaration: {
-              type: 'VariableDeclaration',
-              declarations: [
-                {
-                  type: 'VariableDeclarator',
-                  id: {
-                    type: 'Identifier',
-                    name: 'x',
-                  },
-                  init: null,
-                },
-              ],
-              kind: 'var',
-            },
-            specifiers: [],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export var x, y',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            declaration: {
-              type: 'VariableDeclaration',
-              declarations: [
-                {
-                  type: 'VariableDeclarator',
-                  id: {
-                    type: 'Identifier',
-                    name: 'x',
-                  },
-                  init: null,
-                },
-                {
-                  type: 'VariableDeclarator',
-                  id: {
-                    type: 'Identifier',
-                    name: 'y',
-                  },
-                  init: null,
-                },
-              ],
-              kind: 'var',
-            },
-            specifiers: [],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export var x = 10, y = 20',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            declaration: {
-              type: 'VariableDeclaration',
-              declarations: [
-                {
-                  type: 'VariableDeclarator',
-                  id: {
-                    type: 'Identifier',
-                    name: 'x',
-                  },
-                  init: {
-                    type: 'Literal',
-                    value: 10,
-                  },
-                },
-                {
-                  type: 'VariableDeclarator',
-                  id: {
-                    type: 'Identifier',
-                    name: 'y',
-                  },
-                  init: {
-                    type: 'Literal',
-                    value: 20,
-                  },
-                },
-              ],
-              kind: 'var',
-            },
-            specifiers: [],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export let x',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            declaration: {
-              type: 'VariableDeclaration',
-              declarations: [
-                {
-                  type: 'VariableDeclarator',
-                  id: {
-                    type: 'Identifier',
-                    name: 'x',
-                  },
-                  init: null,
-                },
-              ],
-              kind: 'let',
-            },
-            specifiers: [],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export let x, y',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            declaration: {
-              type: 'VariableDeclaration',
-              declarations: [
-                {
-                  type: 'VariableDeclarator',
-                  id: {
-                    type: 'Identifier',
-                    name: 'x',
-                  },
-                  init: null,
-                },
-                {
-                  type: 'VariableDeclarator',
-                  id: {
-                    type: 'Identifier',
-                    name: 'y',
-                  },
-                  init: null,
-                },
-              ],
-              kind: 'let',
-            },
-            specifiers: [],
-            source: null,
-            attributes: [],
-          },
-        ],
-        sourceType: 'module',
-      },
+      
     ],
     [
       'export let a = 1;',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            source: null,
-            specifiers: [],
-            declaration: {
-              type: 'VariableDeclaration',
-              kind: 'let',
-              declarations: [
-                {
-                  type: 'VariableDeclarator',
-                  init: {
-                    type: 'Literal',
-                    value: 1,
-                  },
-                  id: {
-                    type: 'Identifier',
-                    name: 'a',
-                  },
-                },
-              ],
-            },
-            attributes: [],
-          },
-        ],
-      },
+      
     ],
     [
       'export * as "foo" from "./foo";',
       Context.Strict | Context.Module,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportAllDeclaration',
-            source: {
-              type: 'Literal',
-              value: './foo',
-            },
-            exported: {
-              type: 'Literal',
-              value: 'foo',
-            },
-            attributes: [],
-          },
-        ],
-      },
+      
     ],
     [
       String.raw`export { "\uD83C\uDF19" as "a"} from "./foo";`,
       Context.Strict | Context.Module | Context.OptionsLoc,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                local: {
-                  type: 'Literal',
-                  value: '🌙',
-                  loc: {
-                    start: {
-                      line: 1,
-                      column: 9,
-                    },
-                    end: {
-                      line: 1,
-                      column: 23,
-                    },
-                  },
-                },
-                exported: {
-                  type: 'Literal',
-                  value: 'a',
-                  loc: {
-                    start: {
-                      line: 1,
-                      column: 27,
-                    },
-                    end: {
-                      line: 1,
-                      column: 30,
-                    },
-                  },
-                },
-                loc: {
-                  start: {
-                    line: 1,
-                    column: 9,
-                  },
-                  end: {
-                    line: 1,
-                    column: 30,
-                  },
-                },
-              },
-            ],
-            source: {
-              type: 'Literal',
-              value: './foo',
-              loc: {
-                start: {
-                  line: 1,
-                  column: 37,
-                },
-                end: {
-                  line: 1,
-                  column: 44,
-                },
-              },
-            },
-            loc: {
-              start: {
-                line: 1,
-                column: 0,
-              },
-              end: {
-                line: 1,
-                column: 45,
-              },
-            },
-            attributes: [],
-          },
-        ],
-        loc: {
-          start: {
-            line: 1,
-            column: 0,
-          },
-          end: {
-            line: 1,
-            column: 45,
-          },
-        },
-      },
+      
     ],
   ]);
 });

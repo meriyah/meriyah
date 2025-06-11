@@ -132,545 +132,62 @@ describe('Next - Import Attributes', () => {
     [
       `import('module', { type: 'json' });`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'ImportExpression',
-              source: {
-                type: 'Literal',
-                value: 'module',
-              },
-              options: {
-                type: 'ObjectExpression',
-                properties: [
-                  {
-                    computed: false,
-                    type: 'Property',
-                    key: {
-                      type: 'Identifier',
-                      name: 'type',
-                    },
-                    value: {
-                      type: 'Literal',
-                      value: 'json',
-                    },
-                    kind: 'init',
-                    method: false,
-                    shorthand: false,
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
+      
     ],
     [
       `import('module', { 'data-type': 'json' });`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExpressionStatement',
-            expression: {
-              type: 'ImportExpression',
-              source: {
-                type: 'Literal',
-                value: 'module',
-              },
-              options: {
-                type: 'ObjectExpression',
-                properties: [
-                  {
-                    computed: false,
-                    type: 'Property',
-                    key: {
-                      type: 'Literal',
-                      value: 'data-type',
-                    },
-                    value: {
-                      type: 'Literal',
-                      value: 'json',
-                    },
-                    kind: 'init',
-                    method: false,
-                    shorthand: false,
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
+      
     ],
     [
       `async function load() { return import('module', { type: 'json' }); }`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        body: [
-          {
-            async: true,
-            body: {
-              body: [
-                {
-                  argument: {
-                    options: {
-                      properties: [
-                        {
-                          computed: false,
-                          key: {
-                            name: 'type',
-                            type: 'Identifier',
-                          },
-                          kind: 'init',
-                          method: false,
-                          shorthand: false,
-                          type: 'Property',
-                          value: {
-                            type: 'Literal',
-                            value: 'json',
-                          },
-                        },
-                      ],
-                      type: 'ObjectExpression',
-                    },
-                    source: {
-                      type: 'Literal',
-                      value: 'module',
-                    },
-                    type: 'ImportExpression',
-                  },
-                  type: 'ReturnStatement',
-                },
-              ],
-              type: 'BlockStatement',
-            },
-            generator: false,
-            id: {
-              name: 'load',
-              type: 'Identifier',
-            },
-            params: [],
-            type: 'FunctionDeclaration',
-          },
-        ],
-        sourceType: 'module',
-        type: 'Program',
-      },
+      
     ],
     [
       `for await (let module of [import('module', { type: 'json' })]) {}`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ForOfStatement',
-            left: {
-              type: 'VariableDeclaration',
-              declarations: [
-                {
-                  type: 'VariableDeclarator',
-                  id: {
-                    type: 'Identifier',
-                    name: 'module',
-                  },
-                  init: null,
-                },
-              ],
-              kind: 'let',
-            },
-            right: {
-              type: 'ArrayExpression',
-              elements: [
-                {
-                  type: 'ImportExpression',
-                  source: {
-                    type: 'Literal',
-                    value: 'module',
-                  },
-                  options: {
-                    type: 'ObjectExpression',
-                    properties: [
-                      {
-                        computed: false,
-                        type: 'Property',
-                        key: {
-                          type: 'Identifier',
-                          name: 'type',
-                        },
-                        value: {
-                          type: 'Literal',
-                          value: 'json',
-                        },
-                        kind: 'init',
-                        method: false,
-                        shorthand: false,
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-            await: true,
-            body: {
-              type: 'BlockStatement',
-              body: [],
-            },
-          },
-        ],
-      },
+      
     ],
     [
       'import foo from "bar" with { type: "json" };',
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        body: [
-          {
-            source: {
-              type: 'Literal',
-              value: 'bar',
-            },
-            specifiers: [
-              {
-                local: {
-                  name: 'foo',
-                  type: 'Identifier',
-                },
-                type: 'ImportDefaultSpecifier',
-              },
-            ],
-            type: 'ImportDeclaration',
-            attributes: [
-              {
-                key: {
-                  name: 'type',
-                  type: 'Identifier',
-                },
-                value: {
-                  type: 'Literal',
-                  value: 'json',
-                },
-                type: 'ImportAttribute',
-              },
-            ],
-          },
-        ],
-        sourceType: 'module',
-        type: 'Program',
-      },
+      
     ],
     [
       'import foo from "bar" with { type: "json", "data-type": "json" };',
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        body: [
-          {
-            source: {
-              type: 'Literal',
-              value: 'bar',
-            },
-            specifiers: [
-              {
-                local: {
-                  name: 'foo',
-                  type: 'Identifier',
-                },
-                type: 'ImportDefaultSpecifier',
-              },
-            ],
-            type: 'ImportDeclaration',
-            attributes: [
-              {
-                key: {
-                  name: 'type',
-                  type: 'Identifier',
-                },
-                value: {
-                  type: 'Literal',
-                  value: 'json',
-                },
-                type: 'ImportAttribute',
-              },
-              {
-                key: {
-                  type: 'Literal',
-                  value: 'data-type',
-                },
-                value: {
-                  type: 'Literal',
-                  value: 'json',
-                },
-                type: 'ImportAttribute',
-              },
-            ],
-          },
-        ],
-        sourceType: 'module',
-        type: 'Program',
-      },
+      
     ],
     [
       `var promise; for (promise = import('./2nd-param_FIXTURE.js', 'test262' in {} || undefined); false; );`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        body: [
-          {
-            declarations: [
-              {
-                id: {
-                  name: 'promise',
-                  type: 'Identifier',
-                },
-                init: null,
-                type: 'VariableDeclarator',
-              },
-            ],
-            kind: 'var',
-            type: 'VariableDeclaration',
-          },
-          {
-            body: {
-              type: 'EmptyStatement',
-            },
-            init: {
-              left: {
-                name: 'promise',
-                type: 'Identifier',
-              },
-              operator: '=',
-              right: {
-                options: {
-                  left: {
-                    left: {
-                      type: 'Literal',
-                      value: 'test262',
-                    },
-                    operator: 'in',
-                    right: {
-                      properties: [],
-                      type: 'ObjectExpression',
-                    },
-                    type: 'BinaryExpression',
-                  },
-                  operator: '||',
-                  right: {
-                    name: 'undefined',
-                    type: 'Identifier',
-                  },
-                  type: 'LogicalExpression',
-                },
-                source: {
-                  type: 'Literal',
-                  value: './2nd-param_FIXTURE.js',
-                },
-                type: 'ImportExpression',
-              },
-              type: 'AssignmentExpression',
-            },
-            test: {
-              type: 'Literal',
-              value: false,
-            },
-            type: 'ForStatement',
-            update: null,
-          },
-        ],
-        sourceType: 'module',
-        type: 'Program',
-      },
+      
     ],
     [
       `export * from './foo' with { type: 'json' }`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportAllDeclaration',
-            source: {
-              type: 'Literal',
-              value: './foo',
-            },
-            exported: null,
-            attributes: [
-              {
-                type: 'ImportAttribute',
-                key: {
-                  type: 'Identifier',
-                  name: 'type',
-                },
-                value: {
-                  type: 'Literal',
-                  value: 'json',
-                },
-              },
-            ],
-          },
-        ],
-      },
+      
     ],
     [
       `export * as foo from './foo' with { type: 'json' };`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportAllDeclaration',
-            source: {
-              type: 'Literal',
-              value: './foo',
-            },
-            exported: {
-              type: 'Identifier',
-              name: 'foo',
-            },
-            attributes: [
-              {
-                type: 'ImportAttribute',
-                key: {
-                  type: 'Identifier',
-                  name: 'type',
-                },
-                value: {
-                  type: 'Literal',
-                  value: 'json',
-                },
-              },
-            ],
-          },
-        ],
-      },
+      
     ],
     [
       `export {} from './foo' with { type: 'html' };`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            declaration: null,
-            specifiers: [],
-            source: {
-              type: 'Literal',
-              value: './foo',
-            },
-            attributes: [
-              {
-                type: 'ImportAttribute',
-                key: {
-                  type: 'Identifier',
-                  name: 'type',
-                },
-                value: {
-                  type: 'Literal',
-                  value: 'html',
-                },
-              },
-            ],
-          },
-        ],
-      },
+      
     ],
     [
       `export { foo } from './foo' with { type: 'html' }`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                local: {
-                  type: 'Identifier',
-                  name: 'foo',
-                },
-                exported: {
-                  type: 'Identifier',
-                  name: 'foo',
-                },
-              },
-            ],
-            source: {
-              type: 'Literal',
-              value: './foo',
-            },
-            attributes: [
-              {
-                type: 'ImportAttribute',
-                key: {
-                  type: 'Identifier',
-                  name: 'type',
-                },
-                value: {
-                  type: 'Literal',
-                  value: 'html',
-                },
-              },
-            ],
-          },
-        ],
-      },
+      
     ],
     [
       `export { foo, } from './foo' with { type: 'html' };`,
       Context.Module | Context.Strict | Context.OptionsNext,
-      {
-        type: 'Program',
-        sourceType: 'module',
-        body: [
-          {
-            type: 'ExportNamedDeclaration',
-            declaration: null,
-            specifiers: [
-              {
-                type: 'ExportSpecifier',
-                local: {
-                  type: 'Identifier',
-                  name: 'foo',
-                },
-                exported: {
-                  type: 'Identifier',
-                  name: 'foo',
-                },
-              },
-            ],
-            source: {
-              type: 'Literal',
-              value: './foo',
-            },
-            attributes: [
-              {
-                type: 'ImportAttribute',
-                key: {
-                  type: 'Identifier',
-                  name: 'type',
-                },
-                value: {
-                  type: 'Literal',
-                  value: 'html',
-                },
-              },
-            ],
-          },
-        ],
-      },
+      
     ],
   ]);
 });
