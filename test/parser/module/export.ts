@@ -807,7 +807,6 @@ describe('Module - Export', () => {
                 body: [],
                 type: 'ClassBody',
               },
-              decorators: [],
               id: {
                 name: 'f',
                 type: 'Identifier',
@@ -2511,7 +2510,6 @@ describe('Module - Export', () => {
             end: 24,
             range: [0, 24],
             declaration: {
-              decorators: [],
               type: 'ClassDeclaration',
               start: 15,
               end: 24,
