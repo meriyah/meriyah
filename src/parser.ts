@@ -5210,31 +5210,6 @@ export function parseImportExpression(
     options,
   };
 
-  if (context & Context.OptionsNext) {
-    let options: ESTree.Expression | null = null;
-
-    if (parser.getToken() === Token.Comma) {
-      consume(parser, context, Token.Comma);
-
-      if (parser.getToken() !== Token.RightParen) {
-        const expContext = (context | Context.DisallowIn) ^ Context.DisallowIn;
-        options = parseExpression(
-          parser,
-          expContext,
-          privateScope,
-          1,
-          inGroup,
-          parser.tokenIndex,
-          parser.tokenLine,
-          parser.tokenColumn,
-        );
-      }
-    }
-
-    node.options = options;
-    consumeOpt(parser, context, Token.Comma);
-  }
-
   consume(parser, context, Token.RightParen);
 
   return finishNode(parser, context, start, line, column, node);
