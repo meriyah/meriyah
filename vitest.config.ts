@@ -11,6 +11,11 @@ export default defineConfig({
       'test/test-utils.ts',
       // Skip production test on local by default
       ...(SHOULD_RUN_PRODUCTION_TEST ? [] : ['test/production/production-tests.ts']),
+<<<<<<< HEAD
+=======
+      // Skip test 262 on local by default
+      ...(SHOULD_RUN_TEST262 ? [] : ['test/test262-parser-tests/parser-tests.ts']),
+>>>>>>> 0b3ee28 (Format)
     ],
     watch: false,
     pool: 'threads',

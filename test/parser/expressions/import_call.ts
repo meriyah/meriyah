@@ -146,6 +146,22 @@ describe('Next - ImportCall', () => {
     'foo(import("foo").den());',
     'for(x of import(x)) {}',
     'import(x).then()',
+<<<<<<< HEAD
+=======
+    'import(x, y).then(z);',
+    'import(x, y)',
+    'import(x,)',
+    'let f = () => import("", "");',
+    '(async () => { await import("", "") });',
+    'import("", "");',
+    'import("", "");',
+    'import("",);',
+    'import(a, b)',
+    'import(source,)',
+    'let f = () => import("",);',
+    'let f = () => import("", "");',
+    'if (false) {} else import("", "");',
+>>>>>>> 0b3ee28 (Format)
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -196,6 +212,10 @@ describe('Next - ImportCall', () => {
                     value: 'lib.js',
                   },
                   type: 'ImportExpression',
+<<<<<<< HEAD
+=======
+                  options: null,
+>>>>>>> 0b3ee28 (Format)
                 },
                 property: {
                   start: 17,

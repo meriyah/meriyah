@@ -5190,9 +5190,39 @@ export function parseImportExpression(
     parser.tokenLine,
     parser.tokenColumn,
   );
+<<<<<<< HEAD
   const node: ESTree.ImportExpression = {
     type: 'ImportExpression',
     source,
+=======
+
+  let options: ESTree.Expression | null = null;
+
+  if (parser.getToken() === Token.Comma) {
+    consume(parser, context, Token.Comma);
+
+    if (parser.getToken() !== Token.RightParen) {
+      const expContext = (context | Context.DisallowIn) ^ Context.DisallowIn;
+      options = parseExpression(
+        parser,
+        expContext,
+        privateScope,
+        1,
+        inGroup,
+        parser.tokenIndex,
+        parser.tokenLine,
+        parser.tokenColumn,
+      );
+    }
+
+    consumeOpt(parser, context, Token.Comma);
+  }
+
+  const node: ESTree.ImportExpression = {
+    type: 'ImportExpression',
+    source,
+    options,
+>>>>>>> 0b3ee28 (Format)
   };
 
   if (context & Context.OptionsNext) {
