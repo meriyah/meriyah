@@ -1,0 +1,29 @@
+name: Preview
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    if: github.repository == 'meriyah/meriyah'
+    name: Preview release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          cache: 'yarn'
+          cache-dependency-path: ./package.json
+      - run: yarn
+      - run: npm run bundle
+      - run: npx pkg-pr-new publish --compact
