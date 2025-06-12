@@ -10276,7 +10276,7 @@ function parseClassElementList(
   } else if ((parser.getToken() & Token.IsClassField) === Token.IsClassField) {
     kind |= PropertyKind.ClassField;
   } else if (isStatic && token === Token.LeftBrace) {
-    return parseStaticBlock(parser, context | Context.InClass, scope, privateScope, tokenIndex, tokenLine, tokenColumn);
+    return parseStaticBlock(parser, context | Context.InClass, scope, privateScope, start, line, column);
   } else if (token === Token.EscapedFutureReserved) {
     key = parseIdentifier(parser, context);
     if (parser.getToken() !== Token.LeftParen)
