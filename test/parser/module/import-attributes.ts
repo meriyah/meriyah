@@ -58,80 +58,58 @@ describe('Next - Import Attributes', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.Strict | Context.Module);
+        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(
-          `${arg}`,
-          undefined,
-          Context.OptionsNext | Context.OptionsWebCompat | Context.Strict | Context.Module,
-        );
+        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.Strict | Context.Module);
       });
     });
   }
 
   fail('Expressions - Import Attributes (fail)', [
-    ['import("module", { type: "json" }, "extra")', Context.OptionsNext],
     ['import("module", { type: "json" }, "extra")', Context.None],
-    ['import("module", { type: "json", "extra": })', Context.OptionsNext | Context.Strict | Context.Module],
-    ['import("module", ...extra)', Context.OptionsNext | Context.Strict | Context.Module],
-    ['import("module", { type: "json", "extra": "value" ', Context.OptionsNext | Context.Strict | Context.Module],
-    [
-      'import("module", { type: "json", "extra": "value" }, "another")',
-      Context.OptionsNext | Context.Strict | Context.Module,
-    ],
-    ['import("module", { type: "json" }, "extra")', Context.OptionsNext | Context.Strict | Context.Module],
-    [
-      'import foo from "bar" with { type: "json", "data-type": "json"',
-      Context.OptionsNext | Context.Strict | Context.Module,
-    ],
-    ['import foo from "bar" with { type: ', Context.OptionsNext | Context.Strict | Context.Module],
-    ['import foo from "bar" with { type: "json", ', Context.OptionsNext | Context.Strict | Context.Module],
-    ['import foo from "bar" with { type: "json", "data-type": ', Context.OptionsNext | Context.Strict | Context.Module],
-    [
-      'import foo from "bar" with { type: "json", "data-type": "json" ',
-      Context.OptionsNext | Context.Strict | Context.Module,
-    ],
-    [
-      `import {name} from './json-named-bindings_FIXTURE.json' with { type: 'json' };`,
-      Context.OptionsNext | Context.Strict | Context.Module,
-    ],
+    ['import("module", { type: "json" }, "extra")', Context.None],
+    ['import("module", { type: "json", "extra": })', Context.Strict | Context.Module],
+    ['import("module", ...extra)', Context.Strict | Context.Module],
+    ['import("module", { type: "json", "extra": "value" ', Context.Strict | Context.Module],
+    ['import("module", { type: "json", "extra": "value" }, "another")', Context.Strict | Context.Module],
+    ['import("module", { type: "json" }, "extra")', Context.Strict | Context.Module],
+    ['import foo from "bar" with { type: "json", "data-type": "json"', Context.Strict | Context.Module],
+    ['import foo from "bar" with { type: ', Context.Strict | Context.Module],
+    ['import foo from "bar" with { type: "json", ', Context.Strict | Context.Module],
+    ['import foo from "bar" with { type: "json", "data-type": ', Context.Strict | Context.Module],
+    ['import foo from "bar" with { type: "json", "data-type": "json" ', Context.Strict | Context.Module],
+    [`import {name} from './json-named-bindings_FIXTURE.json' with { type: 'json' };`, Context.Strict | Context.Module],
     [
       `import {name} from './json-named-bindings_FIXTURE.json' with { "type": 'json' };`,
-      Context.OptionsNext | Context.Strict | Context.Module,
+      Context.Strict | Context.Module,
     ],
     [
       `import x from './import-attribute-1_FIXTURE.js' with {
       type: 'json',
       'typ\u0065': ''
     };`,
-      Context.OptionsNext | Context.Strict | Context.Module,
+      Context.Strict | Context.Module,
     ],
-    [
-      'import { default as a, foo } from "./foo.json" with { type: "json" };',
-      Context.OptionsNext | Context.Strict | Context.Module,
-    ],
-    [
-      'import a, { foo } from "./foo.json" with { type: "json" };',
-      Context.OptionsNext | Context.Strict | Context.Module,
-    ],
-    [`import 'bar' with { type: 'json' };`, Context.OptionsNext | Context.Module],
-    ['import foo from "bar" with { 1: "foo" };', Context.OptionsNext | Context.Module],
-    ['import foo from "bar" with { type: 1 };', Context.OptionsNext | Context.Module],
-    ['import foo from "bar" with { type: [1] };', Context.OptionsNext | Context.Module],
-    ['import foo from "bar" with { type: null };', Context.OptionsNext | Context.Module],
-    ['import foo from "bar" with { type: undefined };', Context.OptionsNext | Context.Module],
-    ['import foo from "bar" with { type: "json", foo: {} };', Context.OptionsNext | Context.Module],
-    [`export { foo } from './foo.json' with { type: 'json' };`, Context.OptionsNext | Context.Module],
-    [`export foo, { foo2 } from './foo.json' with { "type": 'json' };`, Context.OptionsNext | Context.Module],
+    ['import { default as a, foo } from "./foo.json" with { type: "json" };', Context.Strict | Context.Module],
+    ['import a, { foo } from "./foo.json" with { type: "json" };', Context.Strict | Context.Module],
+    [`import 'bar' with { type: 'json' };`, Context.Module],
+    ['import foo from "bar" with { 1: "foo" };', Context.Module],
+    ['import foo from "bar" with { type: 1 };', Context.Module],
+    ['import foo from "bar" with { type: [1] };', Context.Module],
+    ['import foo from "bar" with { type: null };', Context.Module],
+    ['import foo from "bar" with { type: undefined };', Context.Module],
+    ['import foo from "bar" with { type: "json", foo: {} };', Context.Module],
+    [`export { foo } from './foo.json' with { type: 'json' };`, Context.Module],
+    [`export foo, { foo2 } from './foo.json' with { "type": 'json' };`, Context.Module],
   ]);
 
-  pass('Next - Import Attributes (pass)', [
+  pass('Import Attributes (pass)', [
     [
       `import('module', { type: 'json' });`,
-      Context.Module | Context.Strict | Context.OptionsNext,
+      Context.Module | Context.Strict,
       {
         type: 'Program',
         sourceType: 'module',
@@ -171,7 +149,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `import('module', { 'data-type': 'json' });`,
-      Context.Module | Context.Strict | Context.OptionsNext,
+      Context.Module | Context.Strict,
       {
         type: 'Program',
         sourceType: 'module',
@@ -211,7 +189,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `async function load() { return import('module', { type: 'json' }); }`,
-      Context.Module | Context.Strict | Context.OptionsNext,
+      Context.Module | Context.Strict,
       {
         body: [
           {
@@ -266,7 +244,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `for await (let module of [import('module', { type: 'json' })]) {}`,
-      Context.Module | Context.Strict | Context.OptionsNext,
+      Context.Module | Context.Strict,
       {
         type: 'Program',
         sourceType: 'module',
@@ -330,7 +308,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       'import foo from "bar" with { type: "json" };',
-      Context.Module | Context.Strict | Context.OptionsNext,
+      Context.Module | Context.Strict,
       {
         body: [
           {
@@ -369,7 +347,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       'import foo from "bar" with { type: "json", "data-type": "json" };',
-      Context.Module | Context.Strict | Context.OptionsNext,
+      Context.Module | Context.Strict,
       {
         body: [
           {
@@ -419,7 +397,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `var promise; for (promise = import('./2nd-param_FIXTURE.js', 'test262' in {} || undefined); false; );`,
-      Context.Module | Context.Strict | Context.OptionsNext,
+      Context.Module | Context.Strict,
       {
         body: [
           {
@@ -489,7 +467,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `export * from './foo' with { type: 'json' }`,
-      Context.Module | Context.Strict | Context.OptionsNext,
+      Context.Module | Context.Strict,
       {
         type: 'Program',
         sourceType: 'module',
@@ -520,7 +498,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `export * as foo from './foo' with { type: 'json' };`,
-      Context.Module | Context.Strict | Context.OptionsNext,
+      Context.Module | Context.Strict,
       {
         type: 'Program',
         sourceType: 'module',
@@ -554,7 +532,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `export {} from './foo' with { type: 'html' };`,
-      Context.Module | Context.Strict | Context.OptionsNext,
+      Context.Module | Context.Strict,
       {
         type: 'Program',
         sourceType: 'module',
@@ -586,7 +564,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `export { foo } from './foo' with { type: 'html' }`,
-      Context.Module | Context.Strict | Context.OptionsNext,
+      Context.Module | Context.Strict,
       {
         type: 'Program',
         sourceType: 'module',
@@ -630,7 +608,7 @@ describe('Next - Import Attributes', () => {
     ],
     [
       `export { foo, } from './foo' with { type: 'html' };`,
-      Context.Module | Context.Strict | Context.OptionsNext,
+      Context.Module | Context.Strict,
       {
         type: 'Program',
         sourceType: 'module',

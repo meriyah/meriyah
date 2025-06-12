@@ -199,9 +199,9 @@ describe('Module - Export', () => {
     ['export * as foo from;', Context.Strict | Context.Module],
     ["export * as foo from ';", Context.Strict | Context.Module],
     ["export * as ,foo from 'bar'", Context.Strict | Context.Module],
-    ['export * as foo from;', Context.Strict | Context.Module | Context.OptionsNext],
-    ["export * as foo from ';", Context.Strict | Context.Module | Context.OptionsNext],
-    ["export * as ,foo from 'bar'", Context.Strict | Context.Module | Context.OptionsNext],
+    ['export * as foo from;', Context.Strict | Context.Module],
+    ["export * as foo from ';", Context.Strict | Context.Module],
+    ["export * as ,foo from 'bar'", Context.Strict | Context.Module],
     ['var a; export { a', Context.Strict | Context.Module],
     ['var a; export { a,', Context.Strict | Context.Module],
     ['var a; export { a, ;', Context.Strict | Context.Module],
@@ -734,18 +734,12 @@ describe('Module - Export', () => {
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsNext);
+        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
       });
     });
 
     it(`${arg}`, () => {
-      t.doesNotThrow(() => {
-        parseSource(
-          `${arg}`,
-          undefined,
-          Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsWebCompat,
-        );
-      });
+      parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsWebCompat);
     });
   }
   for (const arg of [
@@ -770,11 +764,7 @@ describe('Module - Export', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(
-          `${arg}`,
-          undefined,
-          Context.Strict | Context.Module | Context.OptionsLexical | Context.OptionsNext,
-        );
+        parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsLexical);
       });
     });
   }
@@ -782,7 +772,7 @@ describe('Module - Export', () => {
   pass('Module - Export (pass)', [
     [
       'export default async',
-      Context.Module | Context.OptionsNext | Context.Strict | Context.OptionsRanges,
+      Context.Module | Context.Strict | Context.OptionsRanges,
       {
         type: 'Program',
         start: 0,
@@ -808,7 +798,7 @@ describe('Module - Export', () => {
     ],
     [
       'export default class f{}; export {f};',
-      Context.Module | Context.OptionsNext | Context.Strict | Context.OptionsLexical,
+      Context.Module | Context.Strict | Context.OptionsLexical,
       {
         body: [
           {
@@ -817,7 +807,6 @@ describe('Module - Export', () => {
                 body: [],
                 type: 'ClassBody',
               },
-              decorators: [],
               id: {
                 name: 'f',
                 type: 'Identifier',
@@ -856,7 +845,7 @@ describe('Module - Export', () => {
     ],
     [
       'export default function f(){}; export {f};',
-      Context.Module | Context.OptionsNext | Context.Strict | Context.OptionsLexical,
+      Context.Module | Context.Strict | Context.OptionsLexical,
       {
         body: [
           {
@@ -905,7 +894,7 @@ describe('Module - Export', () => {
     ],
     [
       'export default async \nfunction f(){}',
-      Context.Module | Context.OptionsNext | Context.Strict,
+      Context.Module | Context.Strict,
       {
         type: 'Program',
         sourceType: 'module',
@@ -937,7 +926,7 @@ describe('Module - Export', () => {
     ],
     [
       "export * as class from 'source';",
-      Context.Module | Context.OptionsNext | Context.Strict,
+      Context.Module | Context.Strict,
       {
         body: [
           {
@@ -959,7 +948,7 @@ describe('Module - Export', () => {
     ],
     [
       'export * as ns from "source";',
-      Context.Module | Context.OptionsNext | Context.Strict,
+      Context.Module | Context.Strict,
       {
         body: [
           {
@@ -981,7 +970,7 @@ describe('Module - Export', () => {
     ],
     [
       'export * from "a"',
-      Context.Module | Context.Strict | Context.OptionsNext | Context.OptionsRanges,
+      Context.Module | Context.Strict | Context.OptionsRanges,
       {
         body: [
           {
@@ -1009,7 +998,7 @@ describe('Module - Export', () => {
     ],
     [
       'export * as foo from "./foo";',
-      Context.Module | Context.Strict | Context.OptionsNext,
+      Context.Module | Context.Strict,
       {
         body: [
           {
@@ -2255,7 +2244,7 @@ describe('Module - Export', () => {
     ],
     [
       'var a,b; export {a}; export {b};',
-      Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
+      Context.Strict | Context.Module | Context.OptionsRanges,
       {
         type: 'Program',
         start: 0,
@@ -2367,7 +2356,7 @@ describe('Module - Export', () => {
     ],
     [
       'export default async () => y',
-      Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
+      Context.Strict | Context.Module | Context.OptionsRanges,
       {
         type: 'Program',
         start: 0,
@@ -2403,7 +2392,7 @@ describe('Module - Export', () => {
     ],
     [
       'export default async (x) => y',
-      Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
+      Context.Strict | Context.Module | Context.OptionsRanges,
       {
         type: 'Program',
         start: 0,
@@ -2447,7 +2436,7 @@ describe('Module - Export', () => {
     ],
     [
       'export default async function(){}',
-      Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
+      Context.Strict | Context.Module | Context.OptionsRanges,
       {
         type: 'Program',
         start: 0,
@@ -2483,7 +2472,7 @@ describe('Module - Export', () => {
     ],
     [
       'export default function* (){}',
-      Context.Strict | Context.Module | Context.OptionsNext,
+      Context.Strict | Context.Module,
       {
         type: 'Program',
         sourceType: 'module',
@@ -2508,7 +2497,7 @@ describe('Module - Export', () => {
     ],
     [
       'export default class x{}',
-      Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
+      Context.Strict | Context.Module | Context.OptionsRanges,
       {
         type: 'Program',
         start: 0,
@@ -2521,7 +2510,6 @@ describe('Module - Export', () => {
             end: 24,
             range: [0, 24],
             declaration: {
-              decorators: [],
               type: 'ClassDeclaration',
               start: 15,
               end: 24,
@@ -2549,7 +2537,7 @@ describe('Module - Export', () => {
     ],
     [
       'export {} from "x"',
-      Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
+      Context.Strict | Context.Module | Context.OptionsRanges,
       {
         type: 'Program',
         start: 0,
@@ -2578,7 +2566,7 @@ describe('Module - Export', () => {
     ],
     [
       'export default async x => y',
-      Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
+      Context.Strict | Context.Module | Context.OptionsRanges,
       {
         type: 'Program',
         start: 0,
@@ -2622,7 +2610,7 @@ describe('Module - Export', () => {
     ],
     [
       'export default (a,b) => {}',
-      Context.Strict | Context.Module | Context.OptionsNext | Context.OptionsRanges,
+      Context.Strict | Context.Module | Context.OptionsRanges,
       {
         type: 'Program',
         start: 0,
@@ -2673,7 +2661,7 @@ describe('Module - Export', () => {
     ],
     [
       'export default () => {}',
-      Context.Strict | Context.Module | Context.OptionsNext,
+      Context.Strict | Context.Module,
       {
         type: 'Program',
         sourceType: 'module',

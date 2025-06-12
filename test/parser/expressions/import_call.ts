@@ -3,10 +3,9 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { parseSource } from '../../../src/parser';
 
-describe('Next - ImportCall', () => {
-  fail('Next - Import call (fail)', [
+describe('ImportCall', () => {
+  fail('Import call (fail)', [
     ['function failsParse() { return import.then(); }', Context.None],
-    ['import(x, y).then(z);', Context.None],
     ['import.then(doLoad);', Context.None],
     ['import(', Context.None],
     ['import)', Context.None],
@@ -26,9 +25,7 @@ describe('Next - ImportCall', () => {
     ['import{', Context.Strict | Context.Module],
     ['import{x', Context.Strict | Context.Module],
     ['import{x}', Context.None],
-    ['import(x, y)', Context.None],
     ['import(...y)', Context.None],
-    ['import(x,)', Context.None],
     ['import(,)', Context.None],
     ['import(,y)', Context.None],
     ['import(;)', Context.None],
@@ -38,13 +35,11 @@ describe('Next - ImportCall', () => {
     ['import = 1', Context.None],
     ['import.wat', Context.None],
     ['new import(x)', Context.None],
-    ['let f = () => import("", "");', Context.None],
     ['let f = () => { import(); };', Context.None],
     ['let f = () => { import(...[""]); }; new import(x)', Context.None],
     ['import("")++', Context.None],
     ['import("") -= 1;', Context.None],
     ['(async () => await import())', Context.None],
-    ['(async () => { await import("", "") });', Context.None],
     ['async function f() { import(...[""]); }', Context.None],
     ['(async () => await import())', Context.None],
     ['async function * f() { await new import("") }', Context.None],
@@ -55,9 +50,6 @@ describe('Next - ImportCall', () => {
     ['(async () => await import())', Context.None],
     ['with (import(...[""])) {}', Context.None],
     ['import();', Context.None],
-    ['import("", "");', Context.None],
-    ['import("", "");', Context.Module | Context.Strict],
-    ['import("",);', Context.None],
     ['[import(1)] = [1];', Context.None],
     ['[import(x).then()] = [1];', Context.None],
     ['(a, import(foo)) => {}', Context.None],
@@ -73,13 +65,8 @@ describe('Next - ImportCall', () => {
     ['function failsParse() { return import.then(); }', Context.None],
     ['var dynImport = import; dynImport("http");', Context.None],
     ['import()', Context.None],
-    ['import(a, b)', Context.None],
     ['import(...[a])', Context.None],
-    ['import(source,)', Context.None],
     ['new import(source)', Context.None],
-    ['let f = () => import("",);', Context.None],
-    ['let f = () => import("", "");', Context.None],
-    ['if (false) {} else import("", "");', Context.None],
     ['new import(source)', Context.None],
     ['(import(foo)) => {}', Context.None],
     ['(import(y=x)) => {}', Context.None],
@@ -146,20 +133,33 @@ describe('Next - ImportCall', () => {
     'foo(import("foo").den());',
     'for(x of import(x)) {}',
     'import(x).then()',
+    'import(x, y).then(z);',
+    'import(x, y)',
+    'import(x,)',
+    'let f = () => import("", "");',
+    '(async () => { await import("", "") });',
+    'import("", "");',
+    'import("", "");',
+    'import("",);',
+    'import(a, b)',
+    'import(source,)',
+    'let f = () => import("",);',
+    'let f = () => import("", "");',
+    'if (false) {} else import("", "");',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, void 0, Context.OptionsNext | Context.Module | Context.Strict);
+        parseSource(`${arg}`, void 0, Context.Module | Context.Strict);
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, void 0, Context.OptionsNext);
+        parseSource(`${arg}`, void 0, Context.None);
       });
     });
   }
 
-  pass('Next - ImportCall (pass)', [
+  pass('ImportCall (pass)', [
     [
       `import("lib.js").then(doThis);`,
       Context.Strict | Context.Module | Context.OptionsRanges,
@@ -196,6 +196,7 @@ describe('Next - ImportCall', () => {
                     value: 'lib.js',
                   },
                   type: 'ImportExpression',
+                  options: null,
                 },
                 property: {
                   start: 17,
@@ -262,7 +263,7 @@ describe('Next - ImportCall', () => {
     ],
     [
       'function loadImport(file) { import(file).then(() => {}), console.log("Done."); }',
-      Context.OptionsNext,
+      Context.None,
       {
         body: [
           {

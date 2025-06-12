@@ -2914,10 +2914,7 @@ function parseImportDeclaration(
     source = parseModuleSpecifier(parser, context);
   }
 
-  let attributes: ESTree.ImportAttribute[] = [];
-  if (context & Context.OptionsNext) {
-    attributes = parseImportAttributes(parser, context, specifiers);
-  }
+  const attributes = parseImportAttributes(parser, context, specifiers);
 
   const node: ESTree.ImportDeclaration = {
     type: 'ImportDeclaration',
@@ -3386,11 +3383,7 @@ function parseExportDeclaration(
 
       source = parseLiteral(parser, context);
 
-      let attributes: ESTree.ImportAttribute[] = [];
-
-      if (context & Context.OptionsNext) {
-        attributes = parseImportAttributes(parser, context);
-      }
+      const attributes = parseImportAttributes(parser, context);
 
       const node: ESTree.ExportAllDeclaration = {
         type: 'ExportAllDeclaration',
@@ -3474,9 +3467,7 @@ function parseExportDeclaration(
 
         source = parseLiteral(parser, context);
 
-        if (context & Context.OptionsNext) {
-          attributes = parseImportAttributes(parser, context, specifiers);
-        }
+        attributes = parseImportAttributes(parser, context, specifiers);
 
         if (scope) {
           tmpExportedNames.forEach((n) => declareUnboundVariable(parser, n));
@@ -5188,35 +5179,34 @@ export function parseImportExpression(
     parser.tokenLine,
     parser.tokenColumn,
   );
+
+  let options: ESTree.Expression | null = null;
+
+  if (parser.getToken() === Token.Comma) {
+    consume(parser, context, Token.Comma);
+
+    if (parser.getToken() !== Token.RightParen) {
+      const expContext = (context | Context.DisallowIn) ^ Context.DisallowIn;
+      options = parseExpression(
+        parser,
+        expContext,
+        privateScope,
+        1,
+        inGroup,
+        parser.tokenIndex,
+        parser.tokenLine,
+        parser.tokenColumn,
+      );
+    }
+
+    consumeOpt(parser, context, Token.Comma);
+  }
+
   const node: ESTree.ImportExpression = {
     type: 'ImportExpression',
     source,
+    options,
   };
-
-  if (context & Context.OptionsNext) {
-    let options: ESTree.Expression | null = null;
-
-    if (parser.getToken() === Token.Comma) {
-      consume(parser, context, Token.Comma);
-
-      if (parser.getToken() !== Token.RightParen) {
-        const expContext = (context | Context.DisallowIn) ^ Context.DisallowIn;
-        options = parseExpression(
-          parser,
-          expContext,
-          privateScope,
-          1,
-          inGroup,
-          parser.tokenIndex,
-          parser.tokenLine,
-          parser.tokenColumn,
-        );
-      }
-    }
-
-    node.options = options;
-    consumeOpt(parser, context, Token.Comma);
-  }
 
   consume(parser, context, Token.RightParen);
 
