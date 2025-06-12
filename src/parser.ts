@@ -8587,7 +8587,10 @@ export function parseParenthesizedExpression(
 
       parser.destructible = destructible;
 
-      return expr;
+      return finishNode(parser, context, piStart, plStart, pcStart, {
+        type: 'ParenthesizedExpression',
+        expression: expr,
+      });
     }
 
     if (isSequence && (parser.getToken() === Token.RightParen || parser.getToken() === Token.Comma)) {

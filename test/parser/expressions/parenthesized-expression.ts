@@ -10,26 +10,39 @@ pass('p', [
         {
           expression: {
             expression: {
+              expression: {
+                loc: {
+                  end: {
+                    column: 3,
+                    line: 1,
+                  },
+                  start: {
+                    column: 2,
+                    line: 1,
+                  },
+                },
+                name: 'a',
+                type: 'Identifier',
+              },
               loc: {
                 end: {
-                  column: 3,
+                  column: 4,
                   line: 1,
                 },
                 start: {
-                  column: 2,
+                  column: 1,
                   line: 1,
                 },
               },
-              name: 'a',
-              type: 'Identifier',
+              type: 'ParenthesizedExpression',
             },
             loc: {
               end: {
-                column: 4,
+                column: 5,
                 line: 1,
               },
               start: {
-                column: 1,
+                column: 0,
                 line: 1,
               },
             },
