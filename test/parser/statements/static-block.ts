@@ -49,7 +49,7 @@ describe('Next - Class static initialization block', () => {
   pass('Next - Class static initialization block (pass)', [
     [
       `class A { static {} }`,
-      Context.None,
+      Context.None | Context.OptionsLoc | Context.OptionsRanges,
       {
         body: [
           {
@@ -57,20 +57,85 @@ describe('Next - Class static initialization block', () => {
               body: [
                 {
                   body: [],
+                  end: 19,
+                  loc: {
+                    end: {
+                      column: 19,
+                      line: 1,
+                    },
+                    start: {
+                      column: 10,
+                      line: 1,
+                    },
+                  },
+                  range: [10, 19],
+                  start: 10,
                   type: 'StaticBlock',
                 },
               ],
+              end: 21,
+              loc: {
+                end: {
+                  column: 21,
+                  line: 1,
+                },
+                start: {
+                  column: 8,
+                  line: 1,
+                },
+              },
+              range: [8, 21],
+              start: 8,
               type: 'ClassBody',
             },
+            end: 21,
             id: {
+              end: 7,
+              loc: {
+                end: {
+                  column: 7,
+                  line: 1,
+                },
+                start: {
+                  column: 6,
+                  line: 1,
+                },
+              },
               name: 'A',
+              range: [6, 7],
+              start: 6,
               type: 'Identifier',
             },
+            loc: {
+              end: {
+                column: 21,
+                line: 1,
+              },
+              start: {
+                column: 0,
+                line: 1,
+              },
+            },
+            range: [0, 21],
+            start: 0,
             superClass: null,
             type: 'ClassDeclaration',
           },
         ],
+        end: 21,
+        loc: {
+          end: {
+            column: 21,
+            line: 1,
+          },
+          start: {
+            column: 0,
+            line: 1,
+          },
+        },
+        range: [0, 21],
         sourceType: 'script',
+        start: 0,
         type: 'Program',
       },
     ],
