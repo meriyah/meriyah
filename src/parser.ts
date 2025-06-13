@@ -10011,9 +10011,14 @@ export function parseOpeningFragment(
  * @param context  Context masks
  * @param inJSXChild
  */
-function parseJSXClosingElement(parser: Parser, context: Context, inJSXChild: 0 | 1): ESTree.JSXClosingElement {
-  const { tokenIndex, tokenLine, tokenColumn } = parser;
-
+function parseJSXClosingElement(
+  parser: Parser,
+  context: Context,
+  inJSXChild: 0 | 1,
+  start: number,
+  line: number,
+  column: number,
+): ESTree.JSXClosingElement {
   consume(parser, context, Token.Divide);
   const name = parseJSXElementName(parser, context);
 
@@ -10027,7 +10032,7 @@ function parseJSXClosingElement(parser: Parser, context: Context, inJSXChild: 0 
     nextToken(parser, context);
   }
 
-  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
+  return finishNode(parser, context, start, line, column, {
     type: 'JSXClosingElement',
     name,
   });
@@ -10124,8 +10129,10 @@ function parseJSXChildOrClosingElement(
   if (parser.getToken() === Token.LeftBrace)
     return parseJSXExpressionContainer(parser, context, privateScope, /*inJSXChild*/ 1, /* isAttr */ 0);
   if (parser.getToken() === Token.LessThan) {
+    const { tokenIndex, tokenLine, tokenColumn } = parser;
     nextToken(parser, context);
-    if (parser.getToken() === Token.Divide) return parseJSXClosingElement(parser, context, inJSXChild);
+    if (parser.getToken() === Token.Divide)
+      return parseJSXClosingElement(parser, context, inJSXChild, tokenIndex, tokenLine, tokenColumn);
     return parseJSXRootElementOrFragment(parser, context, privateScope, /*inJSXChild*/ 1);
   }
 
