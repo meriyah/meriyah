@@ -1827,10 +1827,10 @@ exports[`Next - Public fields > Next - Public fields (pass) > var C = class { st
                     "end": 39,
                     "name": "prototype",
                     "range": [
-                      23,
+                      29,
                       39,
                     ],
-                    "start": 23,
+                    "start": 29,
                     "type": "PrivateIdentifier",
                   },
                   "kind": "method",
