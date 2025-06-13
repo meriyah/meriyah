@@ -683,7 +683,7 @@ export function parseStatement(
       return parseThrowStatement(parser, context, privateScope);
     case Token.BreakKeyword:
       // BreakStatement[?Yield]
-      return parseBreakStatement(parser, context, labels, start, line, column);
+      return parseBreakStatement(parser, context, labels);
     // ContinueStatement[?Yield]
     case Token.ContinueKeyword:
       return parseContinueStatement(parser, context, labels, start, line, column);
@@ -1710,18 +1710,14 @@ export function parseContinueStatement(
  *
  * @param parser  Parser object
  * @param context Context masks
- * @param start Start pos of node
- * @param line
- * @param column
  */
 export function parseBreakStatement(
   parser: ParserState,
   context: Context,
   labels: ESTree.Labels,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.BreakStatement {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   // BreakStatement ::
   //   'break' Identifier? ';'
   nextToken(parser, context | Context.AllowRegExp);
@@ -1736,7 +1732,7 @@ export function parseBreakStatement(
   }
 
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'BreakStatement',
     label,
   });
