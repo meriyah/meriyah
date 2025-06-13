@@ -351,6 +351,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @
                   "line": 2,
                 },
               },
+              "optional": false,
               "range": [
                 4,
                 9,
@@ -517,6 +518,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @
                 "start": 4,
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "end": 7,
                 "loc": {
@@ -701,6 +703,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @
                 "line": 2,
               },
             },
+            "optional": false,
             "range": [
               6,
               8,
@@ -848,6 +851,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @
               "start": 3,
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "end": 6,
               "loc": {
