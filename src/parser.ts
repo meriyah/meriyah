@@ -4737,7 +4737,15 @@ export function parsePrimaryExpression(
       return parseImportCallOrMetaExpression(parser, context, privateScope, inNew, inGroup, start, line, column);
     case Token.LessThan:
       if (context & Context.OptionsJSX)
-        return parseJSXRootElementOrFragment(parser, context, privateScope, /*inJSXChild*/ 0);
+        return parseJSXRootElementOrFragment(
+          parser,
+          context,
+          privateScope,
+          /*inJSXChild*/ 0,
+          parser.tokenIndex,
+          parser.tokenLine,
+          parser.tokenColumn,
+        );
     default:
       if (isValidIdentifier(context, parser.getToken())) return parseIdentifierOrArrow(parser, context, privateScope);
       report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
@@ -9969,18 +9977,19 @@ function parseJSXRootElementOrFragment(
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inJSXChild: 0 | 1,
+  start: number,
+  line: number,
+  column: number,
 ): ESTree.JSXElement | ESTree.JSXFragment {
-  const { tokenIndex, tokenLine, tokenColumn } = parser;
-
   // "<" is pre-consumed in parseJSXChildren
   if (!inJSXChild) consume(parser, context, Token.LessThan);
 
   // JSX fragments
   if (parser.getToken() === Token.GreaterThan) {
-    const openingFragment = parseOpeningFragment(parser, context, tokenIndex, tokenLine, tokenColumn);
+    const openingFragment = parseOpeningFragment(parser, context, start, line, column);
     const [children, closingFragment] = parseJSXChildrenAndClosingFragment(parser, context, privateScope, inJSXChild);
 
-    return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
+    return finishNode(parser, context, start, line, column, {
       type: 'JSXFragment',
       openingFragment,
       children,
@@ -10000,9 +10009,9 @@ function parseJSXRootElementOrFragment(
     context,
     privateScope,
     inJSXChild,
-    tokenIndex,
-    tokenLine,
-    tokenColumn,
+    start,
+    line,
+    column,
   );
 
   if (!openingElement.selfClosing) {
@@ -10012,7 +10021,7 @@ function parseJSXRootElementOrFragment(
     if (isEqualTagName(openingElement.name) !== close) report(parser, Errors.ExpectedJSXClosingTag, close);
   }
 
-  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
+  return finishNode(parser, context, start, line, column, {
     type: 'JSXElement',
     children,
     openingElement,
@@ -10168,7 +10177,15 @@ function parseJSXChildOrClosingElement(
     nextToken(parser, context);
     if (parser.getToken() === Token.Divide)
       return parseJSXClosingElement(parser, context, inJSXChild, tokenIndex, tokenLine, tokenColumn);
-    return parseJSXRootElementOrFragment(parser, context, privateScope, /*inJSXChild*/ 1);
+    return parseJSXRootElementOrFragment(
+      parser,
+      context,
+      privateScope,
+      /*inJSXChild*/ 1,
+      tokenIndex,
+      tokenLine,
+      tokenColumn,
+    );
   }
 
   report(parser, Errors.Unexpected);
@@ -10194,7 +10211,15 @@ function parseJSXChildOrClosingFragment(
     nextToken(parser, context);
     if (parser.getToken() === Token.Divide)
       return parseJSXClosingFragment(parser, context, inJSXChild, tokenIndex, tokenLine, tokenColumn);
-    return parseJSXRootElementOrFragment(parser, context, privateScope, /*inJSXChild*/ 1);
+    return parseJSXRootElementOrFragment(
+      parser,
+      context,
+      privateScope,
+      /*inJSXChild*/ 1,
+      tokenIndex,
+      tokenLine,
+      tokenColumn,
+    );
   }
 
   report(parser, Errors.Unexpected);
@@ -10402,7 +10427,15 @@ function parseJsxAttribute(
         value = parseLiteral(parser, context);
         break;
       case Token.LessThan:
-        value = parseJSXRootElementOrFragment(parser, context, privateScope, /*inJSXChild*/ 0)!;
+        value = parseJSXRootElementOrFragment(
+          parser,
+          context,
+          privateScope,
+          /*inJSXChild*/ 0,
+          parser.tokenIndex,
+          parser.tokenLine,
+          parser.tokenColumn,
+        )!;
         break;
       case Token.LeftBrace:
         value = parseJSXExpressionContainer(parser, context, privateScope, /*inJSXChild*/ 0, 1);
