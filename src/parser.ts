@@ -4878,7 +4878,7 @@ export function parsePrimaryExpression(
     case Token.FalseKeyword:
     case Token.TrueKeyword:
     case Token.NullKeyword:
-      return parseNullOrTrueOrFalseLiteral(parser, context, start, line, column);
+      return parseNullOrTrueOrFalseLiteral(parser, context);
     case Token.ThisKeyword:
       return parseThisExpression(parser, context);
     case Token.RegularExpression:
@@ -5545,13 +5545,8 @@ export function parseLiteral(parser: ParserState, context: Context): ESTree.Lite
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseNullOrTrueOrFalseLiteral(
-  parser: ParserState,
-  context: Context,
-  start: number,
-  line: number,
-  column: number,
-): ESTree.Literal {
+export function parseNullOrTrueOrFalseLiteral(parser: ParserState, context: Context): ESTree.Literal {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
   const raw = KeywordDescTable[parser.getToken() & Token.Type];
   const value = parser.getToken() === Token.NullKeyword ? null : raw === 'true';
 
@@ -5560,9 +5555,9 @@ export function parseNullOrTrueOrFalseLiteral(
   return finishNode(
     parser,
     context,
-    start,
-    line,
-    column,
+    tokenIndex,
+    tokenLine,
+    tokenColumn,
     context & Context.OptionsRaw
       ? {
           type: 'Literal',
@@ -9303,6 +9298,19 @@ export function parseRegExpLiteral(
   line: number,
   column: number,
 ): ESTree.RegExpLiteral {
+  assert.deepEqual(
+    {
+      start,
+      line,
+      column,
+    },
+    {
+      start: parser.tokenIndex,
+      line: parser.tokenLine,
+      column: parser.tokenColumn,
+    },
+  );
+
   const { tokenRaw, tokenRegExp, tokenValue } = parser;
   nextToken(parser, context);
   parser.assignable = AssignmentKind.CannotAssign;
