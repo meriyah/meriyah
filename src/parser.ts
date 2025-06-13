@@ -2387,9 +2387,6 @@ function parseVariableDeclaration(
  *
  * @param parser Parser object
  * @param context Context masks
- * @param start Start pos of node
- * @param line
- * @param column
 
  */
 export function parseForStatement(
@@ -2398,10 +2395,9 @@ export function parseForStatement(
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.ForStatement | ESTree.ForInStatement | ESTree.ForOfStatement {
+  const { tokenIndex: start, tokenLine: line, tokenColumn: column } = parser;
+
   nextToken(parser, context);
 
   const forAwait =
