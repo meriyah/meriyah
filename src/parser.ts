@@ -2426,17 +2426,7 @@ export function parseForStatement(
       parser.tokenColumn,
     );
   } else {
-    init = parseLeftHandSideExpression(
-      parser,
-      context | Context.DisallowIn,
-      privateScope,
-      1,
-      0,
-      1,
-      tokenIndex,
-      tokenLine,
-      tokenColumn,
-    );
+    init = parseLeftHandSideExpression(parser, context | Context.DisallowIn, privateScope, 1, 0, 1);
   }
 
   if ((parser.getToken() & Token.IsInOrOf) === Token.IsInOrOf) {
@@ -3717,17 +3707,7 @@ export function parseBinaryExpression(
         parser.tokenColumn,
         precedence,
         t,
-        parseLeftHandSideExpression(
-          parser,
-          context,
-          privateScope,
-          0,
-          inGroup,
-          1,
-          parser.tokenIndex,
-          parser.tokenLine,
-          parser.tokenColumn,
-        ),
+        parseLeftHandSideExpression(parser, context, privateScope, 0, inGroup, 1),
       ),
       operator: KeywordDescTable[t & Token.Type],
     });
@@ -3769,17 +3749,7 @@ export function parseUnaryExpression(
   if (!isLHS) report(parser, Errors.Unexpected);
   const unaryOperator = parser.getToken();
   nextToken(parser, context | Context.AllowRegExp);
-  const arg = parseLeftHandSideExpression(
-    parser,
-    context,
-    privateScope,
-    0,
-    inGroup,
-    1,
-    parser.tokenIndex,
-    parser.tokenLine,
-    parser.tokenColumn,
-  );
+  const arg = parseLeftHandSideExpression(parser, context, privateScope, 0, inGroup, 1);
   if (parser.getToken() === Token.Exponentiation) report(parser, Errors.InvalidExponentiationLHS);
   if (context & Context.Strict && unaryOperator === Token.DeleteKeyword) {
     if (arg.type === 'Identifier') {
@@ -4025,17 +3995,7 @@ export function parseAwaitExpressionOrIdentifier(
     if (inNew)
       reportMessageAt(start, line, column, parser.startIndex, parser.startLine, parser.startColumn, Errors.Unexpected);
 
-    const argument = parseLeftHandSideExpression(
-      parser,
-      context,
-      privateScope,
-      0,
-      0,
-      1,
-      parser.tokenIndex,
-      parser.tokenLine,
-      parser.tokenColumn,
-    );
+    const argument = parseLeftHandSideExpression(parser, context, privateScope, 0, 0, 1);
 
     if (parser.getToken() === Token.Exponentiation) report(parser, Errors.InvalidExponentiationLHS);
 
@@ -4228,13 +4188,11 @@ export function parseLeftHandSideExpression(
   canAssign: 0 | 1,
   inGroup: 0 | 1,
   isLHS: 0 | 1,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.Expression {
   // LeftHandSideExpression ::
   //   (PrimaryExpression | MemberExpression) ...
 
+  const { tokenIndex: start, tokenLine: line, tokenColumn: column } = parser;
   const expression = parsePrimaryExpression(
     parser,
     context,
@@ -4574,17 +4532,7 @@ export function parseUpdateExpressionPrefixed(
 
   nextToken(parser, context | Context.AllowRegExp);
 
-  const arg = parseLeftHandSideExpression(
-    parser,
-    context,
-    privateScope,
-    0,
-    0,
-    1,
-    parser.tokenIndex,
-    parser.tokenLine,
-    parser.tokenColumn,
-  );
+  const arg = parseLeftHandSideExpression(parser, context, privateScope, 0, 0, 1);
 
   if (parser.assignable & AssignmentKind.CannotAssign) {
     report(parser, Errors.InvalidIncDecTarget);
@@ -6017,7 +5965,7 @@ export function parseArrayExpressionOrPattern(
         if (parser.getToken() !== Token.Comma && parser.getToken() !== Token.RightBracket)
           report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
       } else {
-        left = parseLeftHandSideExpression(parser, context, privateScope, 1, 0, 1, tokenIndex, tokenLine, tokenColumn);
+        left = parseLeftHandSideExpression(parser, context, privateScope, 1, 0, 1);
 
         if (parser.getToken() !== Token.Comma && parser.getToken() !== Token.RightBracket) {
           left = parseAssignmentExpression(
@@ -6321,17 +6269,7 @@ function parseSpreadOrRestElement(
   } else {
     destructible |= DestructuringKind.Assignable;
 
-    argument = parseLeftHandSideExpression(
-      parser,
-      context,
-      privateScope,
-      1,
-      inGroup,
-      1,
-      parser.tokenIndex,
-      parser.tokenLine,
-      parser.tokenColumn,
-    );
+    argument = parseLeftHandSideExpression(parser, context, privateScope, 1, inGroup, 1);
 
     const { tokenIndex, tokenLine, tokenColumn } = parser;
     const token = parser.getToken();
@@ -6931,17 +6869,7 @@ export function parseObjectLiteralOrPattern(
               }
             }
           } else {
-            value = parseLeftHandSideExpression(
-              parser,
-              context,
-              privateScope,
-              1,
-              inGroup,
-              1,
-              tokenIndex,
-              tokenLine,
-              tokenColumn,
-            );
+            value = parseLeftHandSideExpression(parser, context, privateScope, 1, inGroup, 1);
 
             destructible |=
               parser.assignable & AssignmentKind.Assignable
@@ -7281,17 +7209,7 @@ export function parseObjectLiteralOrPattern(
               }
             }
           } else {
-            value = parseLeftHandSideExpression(
-              parser,
-              context,
-              privateScope,
-              1,
-              0,
-              1,
-              tokenIndex,
-              tokenLine,
-              tokenColumn,
-            );
+            value = parseLeftHandSideExpression(parser, context, privateScope, 1, 0, 1);
 
             destructible |=
               parser.assignable & AssignmentKind.Assignable
@@ -7533,17 +7451,7 @@ export function parseObjectLiteralOrPattern(
               }
             }
           } else {
-            value = parseLeftHandSideExpression(
-              parser,
-              context,
-              privateScope,
-              1,
-              0,
-              1,
-              tokenIndex,
-              tokenLine,
-              tokenColumn,
-            );
+            value = parseLeftHandSideExpression(parser, context, privateScope, 1, 0, 1);
 
             destructible |=
               parser.assignable & AssignmentKind.Assignable
@@ -9264,17 +9172,7 @@ export function parseClassDeclaration(
   let inheritedContext = context;
 
   if (consumeOpt(parser, context | Context.AllowRegExp, Token.ExtendsKeyword)) {
-    superClass = parseLeftHandSideExpression(
-      parser,
-      context,
-      privateScope,
-      0,
-      0,
-      0,
-      parser.tokenIndex,
-      parser.tokenLine,
-      parser.tokenColumn,
-    );
+    superClass = parseLeftHandSideExpression(parser, context, privateScope, 0, 0, 0);
     inheritedContext |= Context.SuperCall;
   } else {
     inheritedContext = (inheritedContext | Context.SuperCall) ^ Context.SuperCall;
@@ -9348,17 +9246,7 @@ export function parseClassExpression(
   let inheritedContext = context;
 
   if (consumeOpt(parser, context | Context.AllowRegExp, Token.ExtendsKeyword)) {
-    superClass = parseLeftHandSideExpression(
-      parser,
-      context,
-      privateScope,
-      0,
-      inGroup,
-      0,
-      parser.tokenIndex,
-      parser.tokenLine,
-      parser.tokenColumn,
-    );
+    superClass = parseLeftHandSideExpression(parser, context, privateScope, 0, inGroup, 0);
     inheritedContext |= Context.SuperCall;
   } else {
     inheritedContext = (inheritedContext | Context.SuperCall) ^ Context.SuperCall;
