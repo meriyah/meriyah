@@ -485,11 +485,11 @@ describe('Next - Private methods', () => {
     ['class a {#𐌭人}', Context.OptionsRanges],
     ['class a {#人}', Context.OptionsRanges],
     ['class a {#𐌭}', Context.OptionsRanges],
-    ['class C { get #m() {} }', Context.OptionsRanges | Context.OptionsLoc],
-    ['class C { set #m(v) {} }', Context.OptionsRanges | Context.OptionsLoc],
+    ['class C { get \n#m() {} }', Context.OptionsRanges | Context.OptionsLoc],
+    ['class C { set \n#m(v) {} }', Context.OptionsRanges | Context.OptionsLoc],
     ['class C { async #m() {} }', Context.OptionsRanges | Context.OptionsLoc],
-    ['class C { * #m(v) {} }', Context.OptionsRanges | Context.OptionsLoc],
-    ['class C { async * #m() {} }', Context.OptionsRanges | Context.OptionsLoc],
+    ['class C { * \n#m(v) {} }', Context.OptionsRanges | Context.OptionsLoc],
+    ['class C { async * \n#m() {} }', Context.OptionsRanges | Context.OptionsLoc],
     ['class C { accessor #x = 1 }', Context.OptionsRanges | Context.OptionsLoc | Context.OptionsNext],
   ]);
 });
