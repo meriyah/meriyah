@@ -279,6 +279,7 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > (async () => {}
                 "type": "ArrowFunctionExpression",
               },
               "end": 39,
+              "optional": false,
               "range": [
                 0,
                 39,
@@ -287,6 +288,7 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > (async () => {}
               "type": "CallExpression",
             },
             "end": 62,
+            "optional": false,
             "range": [
               0,
               62,
@@ -295,6 +297,7 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > (async () => {}
             "type": "CallExpression",
           },
           "end": 85,
+          "optional": false,
           "range": [
             0,
             85,
@@ -303,6 +306,7 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > (async () => {}
           "type": "CallExpression",
         },
         "end": 108,
+        "optional": false,
         "range": [
           0,
           108,
@@ -472,6 +476,7 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > (async a => {})
           ],
           "type": "ArrowFunctionExpression",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -547,6 +552,7 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > (async function
           "params": [],
           "type": "FunctionExpression",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -1021,6 +1027,7 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > async (() => 1)
                 "type": "Identifier",
               },
               "end": 15,
+              "optional": false,
               "range": [
                 0,
                 15,
@@ -1029,6 +1036,7 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > async (() => 1)
               "type": "CallExpression",
             },
             "end": 17,
+            "optional": false,
             "range": [
               0,
               17,
@@ -1102,6 +1110,7 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > async ((a)) 1`]
           "type": "Identifier",
         },
         "end": 11,
+        "optional": false,
         "range": [
           0,
           11,
@@ -1211,6 +1220,7 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > async ({a: b = 
           "type": "Identifier",
         },
         "end": 18,
+        "optional": false,
         "range": [
           0,
           18,
@@ -1631,6 +1641,7 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > async x => dele
               "type": "Literal",
               "value": "x",
             },
+            "optional": false,
             "property": {
               "argument": {
                 "end": 31,
@@ -1891,6 +1902,7 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > f(a, async (b, 
           "type": "Identifier",
         },
         "end": 37,
+        "optional": false,
         "range": [
           0,
           37,
@@ -1989,6 +2001,7 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > f(a, async b =>
           "type": "Identifier",
         },
         "end": 24,
+        "optional": false,
         "range": [
           0,
           24,
@@ -2057,6 +2070,7 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > f(async ()=>c) 
           "type": "Identifier",
         },
         "end": 14,
+        "optional": false,
         "range": [
           0,
           14,
@@ -2407,6 +2421,7 @@ exports[`Expressions - Async arrow > Expressions - Async arrow > var f = cond ? 
                         "start": 19,
                         "type": "Identifier",
                       },
+                      "optional": false,
                       "property": {
                         "end": 24,
                         "name": "foo",

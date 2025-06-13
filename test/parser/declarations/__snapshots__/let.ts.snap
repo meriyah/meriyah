@@ -1775,6 +1775,7 @@ exports[`Declarations - Let > Declarations - Let (pass) > for (let();;); 1`] = `
           "name": "let",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "test": null,
@@ -2928,6 +2929,7 @@ exports[`Declarations - Let > Declarations - Let (pass) > let(); 1`] = `
           "name": "let",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -2948,6 +2950,7 @@ exports[`Declarations - Let > Declarations - Let (pass) > let.foo; 1`] = `
           "name": "let",
           "type": "Identifier",
         },
+        "optional": false,
         "property": {
           "name": "foo",
           "type": "Identifier",

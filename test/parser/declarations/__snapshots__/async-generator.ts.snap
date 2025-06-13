@@ -183,6 +183,7 @@ exports[`Declarations - Async Generator > Declarations - const (pass) > async fu
                   "params": [],
                   "type": "FunctionExpression",
                 },
+                "optional": false,
                 "type": "CallExpression",
               },
               "type": "AssignmentPattern",

@@ -58,6 +58,7 @@ exports[`Next - Nullish Coalescing > Next - Null Coalescing (pass) > ({ x: 'hi' 
           },
           "type": "LogicalExpression",
         },
+        "optional": false,
         "property": {
           "name": "x",
           "type": "Identifier",

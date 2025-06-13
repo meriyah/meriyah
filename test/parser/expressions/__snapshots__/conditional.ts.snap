@@ -219,6 +219,7 @@ exports[`Expressions - Conditional > Expressions - Conditional (pass) > Symbol()
                 "type": "Identifier",
               },
               "end": 8,
+              "optional": false,
               "range": [
                 0,
                 8,
@@ -286,6 +287,7 @@ exports[`Expressions - Conditional > Expressions - Conditional (pass) > Symbol()
                 "name": "Symbol",
                 "type": "Identifier",
               },
+              "optional": false,
               "type": "CallExpression",
             },
             "type": "ConditionalExpression",

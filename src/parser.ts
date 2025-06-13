@@ -4597,6 +4597,7 @@ export function parseMemberOrUpdateExpression(
           object: expr,
           computed: false,
           property,
+          optional: false,
         });
         break;
       }
@@ -4632,6 +4633,7 @@ export function parseMemberOrUpdateExpression(
           object: expr,
           computed: true,
           property,
+          optional: false,
         });
 
         if (restoreHasOptionalChaining) {
@@ -4661,6 +4663,7 @@ export function parseMemberOrUpdateExpression(
           type: 'CallExpression',
           callee: expr,
           arguments: args,
+          optional: false,
         });
 
         if (restoreHasOptionalChaining) {
@@ -9106,6 +9109,7 @@ export function parseMemberExpressionNoCall(
           object: expr,
           computed: false,
           property,
+          optional: false,
         }),
         0,
         start,
@@ -9133,6 +9137,7 @@ export function parseMemberExpressionNoCall(
           object: expr,
           computed: true,
           property,
+          optional: false,
         }),
         0,
         start,
@@ -9387,6 +9392,7 @@ export function parseAsyncArrowOrCallExpression(
       type: 'CallExpression',
       callee,
       arguments: [],
+      optional: false,
     });
   }
 
@@ -9591,6 +9597,7 @@ export function parseAsyncArrowOrCallExpression(
         type: 'CallExpression',
         callee,
         arguments: params,
+        optional: false,
       });
     }
 
@@ -9646,6 +9653,7 @@ export function parseAsyncArrowOrCallExpression(
     type: 'CallExpression',
     callee,
     arguments: params,
+    optional: false,
   });
 }
 

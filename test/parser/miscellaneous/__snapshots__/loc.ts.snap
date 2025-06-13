@@ -43,6 +43,7 @@ exports[`Miscellaneous - loc > Miscellaneous - loc (pass) > (2[x,x],x)>x 1`] = `
                 "type": "Literal",
                 "value": 2,
               },
+              "optional": false,
               "property": {
                 "end": 6,
                 "expressions": [
@@ -421,6 +422,7 @@ exports[`Miscellaneous - loc > Miscellaneous - loc (pass) > [50..foo] = x 1`] = 
                 "type": "Literal",
                 "value": 50,
               },
+              "optional": false,
               "property": {
                 "end": 8,
                 "loc": {

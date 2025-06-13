@@ -30,6 +30,7 @@ exports[`Statements - For of > Statements - For of (pass) > for ( let member of 
                             "name": "doSomething",
                             "type": "Identifier",
                           },
+                          "optional": false,
                           "type": "CallExpression",
                         },
                         "type": "ExpressionStatement",
@@ -47,6 +48,7 @@ exports[`Statements - For of > Statements - For of (pass) > for ( let member of 
                 "name": "setTimeout",
                 "type": "Identifier",
               },
+              "optional": false,
               "type": "CallExpression",
             },
             "type": "ExpressionStatement",
@@ -165,6 +167,7 @@ exports[`Statements - For of > Statements - For of (pass) > for ( var i = 0, lis
                     "name": "list",
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "property": {
                     "name": "i",
                     "type": "Identifier",
@@ -194,6 +197,7 @@ exports[`Statements - For of > Statements - For of (pass) > for ( var i = 0, lis
                 "name": "item",
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "name": "foo",
                 "type": "Identifier",
@@ -245,6 +249,7 @@ exports[`Statements - For of > Statements - For of (pass) > for ( var i = 0, lis
             "name": "list",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "name": "length",
             "type": "Identifier",
@@ -365,6 +370,7 @@ exports[`Statements - For of > Statements - For of (pass) > for ([...x.y] of [[4
                 "name": "x",
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "name": "y",
                 "type": "Identifier",
@@ -670,6 +676,7 @@ exports[`Statements - For of > Statements - For of (pass) > for ([a.b] of c) d 1
               "name": "a",
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "name": "b",
               "type": "Identifier",
@@ -713,6 +720,7 @@ exports[`Statements - For of > Statements - For of (pass) > for ([a.b].foo of c)
                 "name": "a",
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "name": "b",
                 "type": "Identifier",
@@ -722,6 +730,7 @@ exports[`Statements - For of > Statements - For of (pass) > for ([a.b].foo of c)
           ],
           "type": "ArrayExpression",
         },
+        "optional": false,
         "property": {
           "name": "foo",
           "type": "Identifier",
@@ -948,6 +957,7 @@ exports[`Statements - For of > Statements - For of (pass) > for ({a: b.c} of d) 
                 "name": "b",
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "name": "c",
                 "type": "Identifier",
@@ -1002,6 +1012,7 @@ exports[`Statements - For of > Statements - For of (pass) > for ({a: b.c}.foo of
                   "name": "b",
                   "type": "Identifier",
                 },
+                "optional": false,
                 "property": {
                   "name": "c",
                   "type": "Identifier",
@@ -1012,6 +1023,7 @@ exports[`Statements - For of > Statements - For of (pass) > for ({a: b.c}.foo of
           ],
           "type": "ObjectExpression",
         },
+        "optional": false,
         "property": {
           "name": "foo",
           "type": "Identifier",

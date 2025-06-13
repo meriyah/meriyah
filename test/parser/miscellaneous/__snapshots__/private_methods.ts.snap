@@ -219,12 +219,14 @@ exports[`Next - Private methods > Next - Private methods (pass) > class A {  #m 
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "m",
                           "type": "PrivateIdentifier",
                         },
                         "type": "MemberExpression",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "ReturnStatement",
@@ -308,6 +310,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class A {  #m(
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "b",
                         "type": "PrivateIdentifier",
@@ -340,12 +343,14 @@ exports[`Next - Private methods > Next - Private methods (pass) > class A {  #m(
                 "object": {
                   "type": "ThisExpression",
                 },
+                "optional": false,
                 "property": {
                   "name": "m",
                   "type": "PrivateIdentifier",
                 },
                 "type": "MemberExpression",
               },
+              "optional": false,
               "type": "CallExpression",
             },
           },
@@ -368,6 +373,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class A {  #m(
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "m",
                         "type": "PrivateIdentifier",
@@ -657,12 +663,14 @@ exports[`Next - Private methods > Next - Private methods (pass) > class A { #foo
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "foo",
                           "type": "PrivateIdentifier",
                         },
                         "type": "MemberExpression",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "ReturnStatement",
@@ -928,6 +936,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class A { #yie
                 "start": 19,
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "end": 22,
                 "name": "c",
@@ -1177,6 +1186,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class A { $(va
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "$_",
                           "type": "PrivateIdentifier",
@@ -1198,6 +1208,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class A { $(va
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "$",
                         "type": "PrivateIdentifier",
@@ -1450,12 +1461,14 @@ exports[`Next - Private methods > Next - Private methods (pass) > class A { meth
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "m",
                           "type": "PrivateIdentifier",
                         },
                         "type": "MemberExpression",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "ReturnStatement",
@@ -1802,6 +1815,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { #m()
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "m",
                         "type": "PrivateIdentifier",
@@ -2764,6 +2778,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { get 
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "℘",
                         "type": "PrivateIdentifier",
@@ -2801,6 +2816,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { get 
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "℘",
                           "type": "PrivateIdentifier",
@@ -3113,6 +3129,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { stat
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "gen",
                         "type": "PrivateIdentifier",
@@ -3240,6 +3257,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { stat
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "gen",
                         "type": "PrivateIdentifier",
@@ -3334,6 +3352,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "publicField",
                           "type": "Identifier",
@@ -3377,6 +3396,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "privateField",
                         "type": "PrivateIdentifier",
@@ -3414,6 +3434,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "privateField",
                           "type": "PrivateIdentifier",
@@ -3462,6 +3483,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "privateFieldValue",
                         "type": "PrivateIdentifier",
@@ -3499,6 +3521,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "privateFieldValue",
                           "type": "PrivateIdentifier",
@@ -3592,6 +3615,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "privateField",
                         "type": "PrivateIdentifier",
@@ -3629,6 +3653,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "privateFieldValue",
                           "type": "PrivateIdentifier",
@@ -3754,6 +3779,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "publicField",
                           "type": "Identifier",
@@ -3797,6 +3823,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "privateField",
                         "type": "PrivateIdentifier",
@@ -3834,6 +3861,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "privateField",
                           "type": "PrivateIdentifier",
@@ -3882,6 +3910,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "privateFieldValue",
                         "type": "PrivateIdentifier",
@@ -3919,6 +3948,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "privateFieldValue",
                           "type": "PrivateIdentifier",
@@ -3967,6 +3997,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "publicField",
                         "type": "Identifier",
@@ -4004,6 +4035,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "publicField",
                           "type": "Identifier",
@@ -4053,6 +4085,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "privateField",
                           "type": "PrivateIdentifier",
@@ -4075,6 +4108,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "publicField",
                           "type": "Identifier",
@@ -4097,6 +4131,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "privateFieldValue",
                           "type": "PrivateIdentifier",
@@ -4110,6 +4145,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                           "object": {
                             "type": "ThisExpression",
                           },
+                          "optional": false,
                           "property": {
                             "name": "privateFieldValue",
                             "type": "PrivateIdentifier",
@@ -4131,6 +4167,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "publicFieldValue",
                           "type": "Identifier",
@@ -4144,6 +4181,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                           "object": {
                             "type": "ThisExpression",
                           },
+                          "optional": false,
                           "property": {
                             "name": "publicFieldValue",
                             "type": "Identifier",
@@ -4165,6 +4203,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "privateFieldValue",
                           "type": "PrivateIdentifier",
@@ -4184,6 +4223,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "publicFieldValue",
                           "type": "Identifier",
@@ -4203,6 +4243,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "privateFieldValue",
                           "type": "PrivateIdentifier",
@@ -4225,6 +4266,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "publicFieldValue",
                           "type": "Identifier",
@@ -4247,6 +4289,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "privateFieldValue",
                           "type": "PrivateIdentifier",
@@ -4261,6 +4304,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                             "object": {
                               "type": "ThisExpression",
                             },
+                            "optional": false,
                             "property": {
                               "name": "privateFieldValue",
                               "type": "PrivateIdentifier",
@@ -4273,6 +4317,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                             "object": {
                               "type": "ThisExpression",
                             },
+                            "optional": false,
                             "property": {
                               "name": "privateFieldValue",
                               "type": "PrivateIdentifier",
@@ -4296,6 +4341,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "publicFieldValue",
                           "type": "Identifier",
@@ -4310,6 +4356,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                             "object": {
                               "type": "ThisExpression",
                             },
+                            "optional": false,
                             "property": {
                               "name": "publicFieldValue",
                               "type": "Identifier",
@@ -4322,6 +4369,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
                             "object": {
                               "type": "ThisExpression",
                             },
+                            "optional": false,
                             "property": {
                               "name": "publicFieldValue",
                               "type": "Identifier",
@@ -4396,6 +4444,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Hotel {
                         "name": "ohNo",
                         "type": "Identifier",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "ReturnStatement",
@@ -4434,6 +4483,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > class Hotel {
                         "name": "makeEvil",
                         "type": "Identifier",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "ReturnStatement",
@@ -4811,12 +4861,14 @@ exports[`Next - Private methods > Next - Private methods (pass) > var C = class 
                               "object": {
                                 "type": "ThisExpression",
                               },
+                              "optional": false,
                               "property": {
                                 "name": "x",
                                 "type": "PrivateIdentifier",
                               },
                               "type": "MemberExpression",
                             },
+                            "optional": false,
                             "type": "CallExpression",
                           },
                           "type": "ReturnStatement",
@@ -4856,12 +4908,14 @@ exports[`Next - Private methods > Next - Private methods (pass) > var C = class 
                               "object": {
                                 "type": "ThisExpression",
                               },
+                              "optional": false,
                               "property": {
                                 "name": "y",
                                 "type": "PrivateIdentifier",
                               },
                               "type": "MemberExpression",
                             },
+                            "optional": false,
                             "type": "CallExpression",
                           },
                           "type": "ReturnStatement",
@@ -4992,6 +5046,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > var C = class 
                               "object": {
                                 "type": "ThisExpression",
                               },
+                              "optional": false,
                               "property": {
                                 "name": "$_",
                                 "type": "PrivateIdentifier",
@@ -5041,6 +5096,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > var C = class 
                               "object": {
                                 "type": "ThisExpression",
                               },
+                              "optional": false,
                               "property": {
                                 "name": "__",
                                 "type": "PrivateIdentifier",
@@ -5185,6 +5241,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > var C = class 
                             "object": {
                               "type": "ThisExpression",
                             },
+                            "optional": false,
                             "property": {
                               "name": "__",
                               "type": "PrivateIdentifier",
@@ -5222,6 +5279,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > var C = class 
                               "object": {
                                 "type": "ThisExpression",
                               },
+                              "optional": false,
                               "property": {
                                 "name": "$_",
                                 "type": "PrivateIdentifier",
@@ -5243,6 +5301,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > var C = class 
                             "object": {
                               "type": "ThisExpression",
                             },
+                            "optional": false,
                             "property": {
                               "name": "$",
                               "type": "PrivateIdentifier",
@@ -5285,6 +5344,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > var C = class 
                               "object": {
                                 "type": "ThisExpression",
                               },
+                              "optional": false,
                               "property": {
                                 "name": "__",
                                 "type": "PrivateIdentifier",
@@ -5306,6 +5366,7 @@ exports[`Next - Private methods > Next - Private methods (pass) > var C = class 
                             "object": {
                               "type": "ThisExpression",
                             },
+                            "optional": false,
                             "property": {
                               "name": "_",
                               "type": "PrivateIdentifier",

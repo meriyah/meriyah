@@ -346,7 +346,7 @@ export interface CallExpression extends _Node {
   type: 'CallExpression';
   callee: any; //Expression | Super;
   arguments: (Expression | SpreadElement)[];
-  optional?: boolean;
+  optional: boolean;
 }
 
 export interface CatchClause extends _Node {
@@ -647,8 +647,8 @@ export interface MemberExpression extends _Node {
   type: 'MemberExpression';
   object: Expression | Super;
   property: Expression | PrivateIdentifier;
-  computed?: boolean;
-  optional?: boolean;
+  computed: boolean;
+  optional: boolean;
 }
 
 export type Pattern = Identifier | ObjectPattern | ArrayPattern | RestElement | AssignmentPattern | MemberExpression;
