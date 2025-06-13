@@ -1,13 +1,13 @@
 import * as t from 'node:assert/strict';
 import { Context } from '../../src/common';
 import { Token } from '../../src/token';
-import { create } from '../../src/parser';
+import { Parser } from '../../src/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
 
 describe('lexer - privatename', () => {
   function pass(name: string, opts: any) {
     it(name, () => {
-      const state = create(opts.source, '', undefined);
+      const state = new Parser(opts.source, '');
       const token = scanSingleToken(state, opts.ctx, 0);
       t.deepEqual(
         {
@@ -35,7 +35,7 @@ describe('lexer - privatename', () => {
 
   function fail(name: string, source: string, context: Context) {
     it(name, () => {
-      const state = create(source, '', undefined);
+      const state = new Parser(source, '');
       t.throws(() => scanSingleToken(state, context, 0));
     });
   }

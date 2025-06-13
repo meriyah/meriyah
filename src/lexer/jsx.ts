@@ -1,6 +1,7 @@
 import { CharFlags, CharTypes } from './charClassifier';
 import { Token } from '../token';
-import { type ParserState, Context } from '../common';
+import { Context } from '../common';
+import { type Parser } from '../parser';
 import { report, Errors } from '../errors';
 import { advanceChar, LexerState, scanSingleToken, scanNewLine, consumeLineFeed } from './';
 import { decodeHTMLStrict } from './decodeHTML';
@@ -12,7 +13,7 @@ import { Chars } from '../chars';
  * @param parser The parser instance
  * @param context Context masks
  */
-export function scanJSXAttributeValue(parser: ParserState, context: Context): Token {
+export function scanJSXAttributeValue(parser: Parser, context: Context): Token {
   // skip "=" before the value
   parser.startIndex = parser.tokenIndex = parser.index;
   parser.startColumn = parser.tokenColumn = parser.column;
@@ -30,7 +31,7 @@ export function scanJSXAttributeValue(parser: ParserState, context: Context): To
  *
  * @param parser The parser object
  */
-export function scanJSXString(parser: ParserState, context: Context): Token {
+export function scanJSXString(parser: Parser, context: Context): Token {
   const quote = parser.currentChar;
   let char = advanceChar(parser);
   const start = parser.index;
@@ -52,7 +53,7 @@ export function scanJSXString(parser: ParserState, context: Context): Token {
  *
  * @param parser The parser object
  */
-export function nextJSXToken(parser: ParserState, context: Context) {
+export function nextJSXToken(parser: Parser, context: Context) {
   parser.startIndex = parser.tokenIndex = parser.index;
   parser.startColumn = parser.tokenColumn = parser.column;
   parser.startLine = parser.tokenLine = parser.line;
@@ -106,7 +107,7 @@ export function nextJSXToken(parser: ParserState, context: Context) {
  *
  * @param parser The parser instance
  */
-export function rescanJSXIdentifier(parser: ParserState): Token {
+export function rescanJSXIdentifier(parser: Parser): Token {
   if ((parser.getToken() & Token.IsIdentifier) === Token.IsIdentifier) {
     const { index } = parser;
     let char = parser.currentChar;

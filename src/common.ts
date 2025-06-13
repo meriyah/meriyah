@@ -1,7 +1,8 @@
 import { Token, KeywordDescTable } from './token';
 import { Errors, ParseError, report } from './errors';
-import { type Node, type Decorator, type SourceLocation } from './estree';
+import { type Node, type SourceLocation } from './estree';
 import { nextToken } from './lexer/scan';
+import { type Parser } from './parser';
 
 /**
  * The core context, passed around everywhere as a simple immutable bit set
@@ -231,51 +232,6 @@ export interface ScopeError {
 }
 
 /**
- * The parser interface.
- */
-export interface ParserState {
-  source: string;
-  // End position of source, same as source.length.
-  end: number;
-
-  flags: Flags;
-
-  // Current pointer, end of current token
-  index: number;
-  line: number;
-  column: number;
-
-  // Start position of current token
-  tokenIndex: number;
-  tokenColumn: number;
-  tokenLine: number;
-
-  // Start position of whitespace/comment before current token,
-  startIndex: number;
-  startColumn: number;
-  startLine: number;
-
-  getToken(): Token;
-  setToken(token: Token, replaceLast?: boolean): Token;
-  onComment: OnComment | void;
-  onInsertedSemicolon: OnInsertedSemicolon | void;
-  onToken: OnToken | void;
-  tokenValue: any;
-  tokenRaw: string;
-  tokenRegExp: void | {
-    pattern: string;
-    flags: string;
-  };
-  sourceFile: string | void;
-  assignable: AssignmentKind | DestructuringKind;
-  destructible: AssignmentKind | DestructuringKind;
-  currentChar: number;
-  exportedNames: any;
-  exportedBindings: any;
-  leadingDecorators: Decorator[];
-}
-
-/**
  * Check for automatic semicolon insertion according to the rules
  * given in `ECMA-262, section 11.9`.
  *
@@ -283,7 +239,7 @@ export interface ParserState {
  * @param context Context masks
  */
 
-export function matchOrInsertSemicolon(parser: ParserState, context: Context): void {
+export function matchOrInsertSemicolon(parser: Parser, context: Context): void {
   if ((parser.flags & Flags.NewLine) === 0 && (parser.getToken() & Token.IsAutoSemicolon) !== Token.IsAutoSemicolon) {
     report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
   }
@@ -294,7 +250,7 @@ export function matchOrInsertSemicolon(parser: ParserState, context: Context): v
   }
 }
 
-export function isValidStrictMode(parser: ParserState, index: number, tokenIndex: number, tokenValue: string): 0 | 1 {
+export function isValidStrictMode(parser: Parser, index: number, tokenIndex: number, tokenValue: string): 0 | 1 {
   if (index - tokenIndex < 13 && tokenValue === 'use strict') {
     if ((parser.getToken() & Token.IsAutoSemicolon) === Token.IsAutoSemicolon || parser.flags & Flags.NewLine) {
       return 1;
@@ -311,7 +267,7 @@ export function isValidStrictMode(parser: ParserState, index: number, tokenIndex
  * @param context Context masks
  * @param token The type of token to consume
  */
-export function optionalBit(parser: ParserState, context: Context, t: Token): 0 | 1 {
+export function optionalBit(parser: Parser, context: Context, t: Token): 0 | 1 {
   if (parser.getToken() !== t) return 0;
   nextToken(parser, context);
   return 1;
@@ -325,7 +281,7 @@ export function optionalBit(parser: ParserState, context: Context, t: Token): 0 
  * @param context Context masks
  * @param token The type of token to consume
  */
-export function consumeOpt(parser: ParserState, context: Context, t: Token): boolean {
+export function consumeOpt(parser: Parser, context: Context, t: Token): boolean {
   if (parser.getToken() !== t) return false;
   nextToken(parser, context);
   return true;
@@ -339,7 +295,7 @@ export function consumeOpt(parser: ParserState, context: Context, t: Token): boo
  * @param context Context masks
  * @param t The type of token to consume
  */
-export function consume(parser: ParserState, context: Context, t: Token): void {
+export function consume(parser: Parser, context: Context, t: Token): void {
   if (parser.getToken() !== t) report(parser, Errors.ExpectedToken, KeywordDescTable[t & Token.Type]);
   nextToken(parser, context);
 }
@@ -351,7 +307,7 @@ export function consume(parser: ParserState, context: Context, t: Token): void {
  * @param parser Parser state
  * @param {*} node
  */
-export function reinterpretToPattern(state: ParserState, node: any): void {
+export function reinterpretToPattern(state: Parser, node: any): void {
   switch (node.type) {
     case 'ArrayExpression': {
       node.type = 'ArrayPattern';
@@ -396,7 +352,7 @@ export function reinterpretToPattern(state: ParserState, node: any): void {
  */
 
 export function validateBindingIdentifier(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   kind: BindingKind,
   t: Token,
@@ -432,7 +388,7 @@ export function validateBindingIdentifier(
   }
 }
 
-export function validateFunctionName(parser: ParserState, context: Context, t: Token): void {
+export function validateFunctionName(parser: Parser, context: Context, t: Token): void {
   if (context & Context.Strict) {
     if ((t & Token.FutureReserved) === Token.FutureReserved) {
       report(parser, Errors.UnexpectedStrictReserved);
@@ -472,7 +428,7 @@ export function validateFunctionName(parser: ParserState, context: Context, t: T
  * @param t Token
  */
 
-export function isStrictReservedWord(parser: ParserState, context: Context, t: Token): boolean {
+export function isStrictReservedWord(parser: Parser, context: Context, t: Token): boolean {
   if (t === Token.AwaitKeyword) {
     if (context & (Context.InAwaitContext | Context.Module)) report(parser, Errors.AwaitIdentInModuleOrAsyncFunc);
     parser.destructible |= DestructuringKind.Await;
@@ -505,7 +461,7 @@ export function isPropertyWithPrivateFieldKey(expr: any): boolean {
  * @param name Current label
  * @param isIterationStatement
  */
-export function isValidLabel(parser: ParserState, labels: any, name: string, isIterationStatement: 0 | 1): 0 | 1 {
+export function isValidLabel(parser: Parser, labels: any, name: string, isIterationStatement: 0 | 1): 0 | 1 {
   while (labels) {
     if (labels['$' + name]) {
       if (isIterationStatement) report(parser, Errors.InvalidNestedStatement);
@@ -526,7 +482,7 @@ export function isValidLabel(parser: ParserState, labels: any, name: string, isI
  * @param labels Object holding the labels
  * @param name Current label
  */
-export function validateAndDeclareLabel(parser: ParserState, labels: any, name: string): void {
+export function validateAndDeclareLabel(parser: Parser, labels: any, name: string): void {
   let set = labels;
   while (set) {
     if (set['$' + name]) report(parser, Errors.LabelRedeclaration, name);
@@ -537,7 +493,7 @@ export function validateAndDeclareLabel(parser: ParserState, labels: any, name: 
 }
 
 export function finishNode<T extends Node>(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   start: number,
   line: number,
@@ -592,7 +548,7 @@ export function isEqualTagName(elementName: any): any {
  * @param context Context masks
  * @param value Binding name to be declared
  */
-export function createArrowHeadParsingScope(parser: ParserState, context: Context, value: string): ScopeState {
+export function createArrowHeadParsingScope(parser: Parser, context: Context, value: string): ScopeState {
   const scope = addChildScope(createScope(), ScopeKind.ArrowParams);
   addBlockName(parser, context, scope, value, BindingKind.ArgumentList, Origin.None);
   return scope;
@@ -604,7 +560,7 @@ export function createArrowHeadParsingScope(parser: ParserState, context: Contex
  * @param parser Parser state
  * @param type Errors type
  */
-export function recordScopeError(parser: ParserState, type: Errors, ...params: string[]): ScopeError {
+export function recordScopeError(parser: Parser, type: Errors, ...params: string[]): ScopeError {
   const { index, line, column, tokenIndex, tokenLine, tokenColumn } = parser;
   return {
     type,
@@ -667,7 +623,7 @@ export function addChildPrivateScope(parent: PrivateScopeState | undefined): Pri
  * @param origin Binding Origin
  */
 export function addVarOrBlock(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState,
   name: string,
@@ -695,7 +651,7 @@ export function addVarOrBlock(
  * @param origin Binding Origin
  */
 export function addBlockName(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: any,
   name: string,
@@ -751,13 +707,7 @@ export function addBlockName(
  * @param name Binding name
  * @param type Binding kind
  */
-export function addVarName(
-  parser: ParserState,
-  context: Context,
-  scope: ScopeState,
-  name: string,
-  kind: BindingKind,
-): void {
+export function addVarName(parser: Parser, context: Context, scope: ScopeState, name: string, kind: BindingKind): void {
   let currentScope: any = scope;
 
   while (currentScope && (currentScope.type & ScopeKind.FunctionRoot) === 0) {
@@ -801,12 +751,7 @@ export function addVarName(
  * @param name Binding name
  * @param type Property kind
  */
-export function addPrivateIdentifier(
-  parser: ParserState,
-  scope: PrivateScopeState,
-  name: string,
-  kind: PropertyKind,
-): void {
+export function addPrivateIdentifier(parser: Parser, scope: PrivateScopeState, name: string, kind: PropertyKind): void {
   let focusKind = kind & (PropertyKind.Static | PropertyKind.GetSet);
   // if it's not getter or setter, it should take both place in the check
   if (!(focusKind & PropertyKind.GetSet)) focusKind |= PropertyKind.GetSet;
@@ -836,7 +781,7 @@ export function addPrivateIdentifier(
  * @param scope PrivateScopeState
  * @param name Binding name
  */
-export function addPrivateIdentifierRef(parser: ParserState, scope: PrivateScopeState, name: string): void {
+export function addPrivateIdentifierRef(parser: Parser, scope: PrivateScopeState, name: string): void {
   scope.refs[name] ??= [];
   scope.refs[name].push({
     index: parser.tokenIndex,
@@ -890,7 +835,7 @@ export function validatePrivateIdentifierRefs(scope: PrivateScopeState): void {
  * @param parser Parser object
  * @param name Exported name
  */
-export function declareUnboundVariable(parser: ParserState, name: string): void {
+export function declareUnboundVariable(parser: Parser, name: string): void {
   if (parser.exportedNames !== void 0 && name !== '') {
     if (parser.exportedNames['#' + name]) {
       report(parser, Errors.DuplicateExportBinding, name);
@@ -907,7 +852,7 @@ export function declareUnboundVariable(parser: ParserState, name: string): void 
  * @param parser Parser object
  * @param name Exported binding name
  */
-export function addBindingToExports(parser: ParserState, name: string): void {
+export function addBindingToExports(parser: Parser, name: string): void {
   if (parser.exportedBindings !== void 0 && name !== '') {
     parser.exportedBindings['#' + name] = 1;
   }
@@ -961,7 +906,7 @@ export function isValidIdentifier(context: Context, t: Token): boolean {
   return (t & Token.Contextual) === Token.Contextual || (t & Token.FutureReserved) === Token.FutureReserved;
 }
 
-export function classifyIdentifier(parser: ParserState, context: Context, t: Token): any {
+export function classifyIdentifier(parser: Parser, context: Context, t: Token): any {
   if ((t & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
     if (context & Context.Strict) report(parser, Errors.StrictEvalArguments);
     parser.flags |= Flags.StrictEvalArguments;

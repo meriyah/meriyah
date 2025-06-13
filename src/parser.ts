@@ -6,7 +6,6 @@ import { scanTemplateTail } from './lexer/template';
 import { rescanJSXIdentifier, nextJSXToken, scanJSXAttributeValue } from './lexer/jsx';
 import {
   Context,
-  type ParserState,
   PropertyKind,
   Origin,
   consumeOpt,
@@ -54,189 +53,184 @@ import {
 } from './common';
 import { Chars } from './chars';
 
-/**
- * Create a new parser instance
- */
+export class Parser {
+  private lastOnToken: [string, number, number, ESTree.SourceLocation] | null = null;
 
-export function create(
-  source: string,
-  sourceFile: string | void,
-  onComment: OnComment | void,
-  onToken: OnToken | void,
-  onInsertedSemicolon: OnInsertedSemicolon | void,
-): ParserState {
-  let token = Token.EOF;
-  let lastOnToken: [string, number, number, ESTree.SourceLocation] | null = null;
-  return {
+  token = Token.EOF;
+  /**
+   * The mutable parser flags, in case any flags need passed by reference.
+   */
+  flags = Flags.None;
+  /**
+   * The current index
+   */
+  index = 0;
+  /**
+   * Beginning of current line
+   */
+  line = 1;
+
+  /**
+   * Beginning of current column
+   */
+  column = 0;
+
+  /**
+   * Start position of whitespace/comment before current token
+   */
+  startIndex = 0;
+
+  /**
+   * The end of the source code
+   */
+  end = 0;
+
+  /**
+   * Start position of text of current token
+   */
+  tokenIndex = 0;
+
+  /**
+   * Start position of the column before newline
+   */
+  startColumn = 0;
+
+  /**
+   * Position in the input code of the first character after the last newline
+   */
+  tokenColumn = 0;
+
+  /**
+   * The number of newlines
+   */
+  tokenLine = 1;
+
+  /**
+   * Start position of text of current token
+   */
+  startLine = 1;
+
+  /**
+   * Holds the scanned token value
+   */
+  tokenValue: any = '';
+
+  /**
+   * Holds the raw text that have been scanned by the lexer
+   */
+  tokenRaw = '';
+
+  /**
+   * Holds the regExp info text that have been collected by the lexer
+   */
+  tokenRegExp: void | {
+    pattern: string;
+    flags: string;
+  } = void 0;
+
+  /**
+   * The code point at the current index
+   */
+  currentChar = 0;
+
+  /**
+   *  https://tc39.es/ecma262/#sec-module-semantics-static-semantics-exportednames
+   */
+  exportedNames: Record<string, number> = {};
+
+  /**
+   * https://tc39.es/ecma262/#sec-exports-static-semantics-exportedbindings
+   */
+
+  exportedBindings: Record<string, number> = {};
+
+  /**
+   * Assignable state
+   */
+  assignable: AssignmentKind | DestructuringKind = 1;
+
+  /**
+   * Destructuring state
+   */
+  destructible: AssignmentKind | DestructuringKind = 0;
+
+  /**
+   * Holds leading decorators before "export" or "class" keywords
+   */
+  leadingDecorators: ESTree.Decorator[] = [];
+
+  constructor(
     /**
      * The source code to be parsed
      */
-    source,
-
-    /**
-     * The mutable parser flags, in case any flags need passed by reference.
-     */
-    flags: Flags.None,
-
-    /**
-     * The current index
-     */
-    index: 0,
-
-    /**
-     * Beginning of current line
-     */
-    line: 1,
-
-    /**
-     * Beginning of current column
-     */
-    column: 0,
-
-    /**
-     * Start position of whitespace/comment before current token
-     */
-    startIndex: 0,
-
-    /**
-     * The end of the source code
-     */
-    end: source.length,
-
-    /**
-     * Start position of text of current token
-     */
-    tokenIndex: 0,
-
-    /**
-     * Start position of the column before newline
-     */
-    startColumn: 0,
-
-    /**
-     * Position in the input code of the first character after the last newline
-     */
-    tokenColumn: 0,
-
-    /**
-     * The number of newlines
-     */
-    tokenLine: 1,
-
-    /**
-     * Start position of text of current token
-     */
-    startLine: 1,
+    public readonly source: string,
 
     /**
      * Used together with source maps. File containing the code being parsed
      */
-
-    sourceFile,
-
-    /**
-     * Holds the scanned token value
-     */
-    tokenValue: '',
-
-    /**
-     * Get the current token in the stream to consume
-     * This function exists as workaround for TS issue
-     * https://github.com/microsoft/TypeScript/issues/9998
-     */
-    getToken() {
-      return token;
-    },
-
-    /**
-     * Set the current token in the stream to consume
-     * This function exists as workaround for TS issue
-     * https://github.com/microsoft/TypeScript/issues/9998
-     */
-    setToken(value: Token, replaceLast = false) {
-      if (onToken) {
-        if (value !== Token.EOF) {
-          const loc = {
-            start: {
-              line: this.tokenLine,
-              column: this.tokenColumn,
-            },
-            end: {
-              line: this.line,
-              column: this.column,
-            },
-          };
-
-          if (!replaceLast && lastOnToken) {
-            onToken(...lastOnToken);
-          }
-          lastOnToken = [convertTokenType(value), this.tokenIndex, this.index, loc];
-        } else {
-          if (lastOnToken) {
-            onToken(...lastOnToken);
-            lastOnToken = null;
-          }
-        }
-      }
-      return (token = value);
-    },
-
-    /**
-     * Holds the raw text that have been scanned by the lexer
-     */
-    tokenRaw: '',
-
-    /**
-     * Holds the regExp info text that have been collected by the lexer
-     */
-    tokenRegExp: void 0,
-
-    /**
-     * The code point at the current index
-     */
-    currentChar: source.charCodeAt(0),
-
-    /**
-     *  https://tc39.es/ecma262/#sec-module-semantics-static-semantics-exportednames
-     */
-    exportedNames: [],
-
-    /**
-     * https://tc39.es/ecma262/#sec-exports-static-semantics-exportedbindings
-     */
-
-    exportedBindings: [],
-
-    /**
-     * Assignable state
-     */
-    assignable: 1,
-
-    /**
-     * Destructuring state
-     */
-    destructible: 0,
-
+    public readonly sourceFile: string | void,
     /**
      * Holds either a function or array used on every comment
      */
-    onComment,
-
+    public readonly onComment: OnComment | void,
     /**
      * Holds either a function or array used on every token
      */
-    onToken,
-
+    public readonly onToken: OnToken | void,
     /**
      * Function invoked with the character offset when automatic semicolon insertion occurs
      */
-    onInsertedSemicolon,
+    public readonly onInsertedSemicolon: OnInsertedSemicolon | void,
+  ) {
+    this.end = source.length;
+    this.currentChar = source.charCodeAt(0);
+  }
 
-    /**
-     * Holds leading decorators before "export" or "class" keywords
-     */
-    leadingDecorators: [],
-  };
+  /**
+   * Get the current token in the stream to consume
+   * This function exists as workaround for TS issue
+   * https://github.com/microsoft/TypeScript/issues/9998
+   */
+  getToken() {
+    return this.token;
+  }
+
+  /**
+   * Set the current token in the stream to consume
+   * This function exists as workaround for TS issue
+   * https://github.com/microsoft/TypeScript/issues/9998
+   */
+  setToken(value: Token, replaceLast = false) {
+    this.token = value;
+
+    const { onToken } = this;
+
+    if (onToken) {
+      if (value !== Token.EOF) {
+        const loc = {
+          start: {
+            line: this.tokenLine,
+            column: this.tokenColumn,
+          },
+          end: {
+            line: this.line,
+            column: this.column,
+          },
+        };
+
+        if (!replaceLast && this.lastOnToken) {
+          onToken(...this.lastOnToken);
+        }
+        this.lastOnToken = [convertTokenType(value), this.tokenIndex, this.index, loc];
+      } else {
+        if (this.lastOnToken) {
+          onToken(...this.lastOnToken);
+          this.lastOnToken = null;
+        }
+      }
+    }
+    return value;
+  }
 }
 
 /**
@@ -312,7 +306,7 @@ export function parseSource(source: string, options: Options | void, context: Co
   }
 
   // Initialize parser state
-  const parser = create(source, sourceFile, onComment, onToken, onInsertedSemicolon);
+  const parser = new Parser(source, sourceFile, onComment, onToken, onInsertedSemicolon);
 
   // See: https://github.com/tc39/proposal-hashbang
   skipHashBang(parser);
@@ -370,7 +364,7 @@ export function parseSource(source: string, options: Options | void, context: Co
  * @param context Context masks
  */
 export function parseStatementList(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
 ): ESTree.Statement[] {
@@ -431,7 +425,7 @@ export function parseStatementList(
  * @param context Context masks
  */
 export function parseModuleItemList(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
 ): ReturnType<typeof parseDirective | typeof parseModuleItem>[] {
@@ -471,7 +465,7 @@ export function parseModuleItemList(
  * @param scope Scope object
  */
 
-export function parseModuleItem(parser: ParserState, context: Context, scope: ScopeState | undefined): any {
+export function parseModuleItem(parser: Parser, context: Context, scope: ScopeState | undefined): any {
   // Support legacy decorators before export keyword.
   parser.leadingDecorators = parseDecorators(parser, context, undefined);
 
@@ -508,7 +502,7 @@ export function parseModuleItem(parser: ParserState, context: Context, scope: Sc
  */
 
 export function parseStatementListItem(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -614,7 +608,7 @@ export function parseStatementListItem(
  */
 
 export function parseStatement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -753,7 +747,7 @@ export function parseStatement(
  */
 
 export function parseExpressionOrLabelledStatement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -905,7 +899,7 @@ export function parseExpressionOrLabelledStatement(
  *
  */
 export function parseBlock<T extends ESTree.BlockStatement | ESTree.StaticBlock = ESTree.BlockStatement>(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -945,7 +939,7 @@ export function parseBlock<T extends ESTree.BlockStatement | ESTree.StaticBlock 
  * @param column
  */
 export function parseReturnStatement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   start: number,
@@ -984,7 +978,7 @@ export function parseReturnStatement(
  * @param column
  */
 export function parseExpressionStatement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   expression: ESTree.Expression,
   start: number,
@@ -1012,7 +1006,7 @@ export function parseExpressionStatement(
  *
  */
 export function parseLabelledStatement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -1090,7 +1084,7 @@ export function parseLabelledStatement(
  */
 
 export function parseAsyncArrowOrAsyncFunctionDeclaration(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -1295,7 +1289,7 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
  */
 
 export function parseDirective(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   expression: ESTree.ArgumentExpression | ESTree.SequenceExpression | ESTree.Expression,
   token: Token,
@@ -1344,7 +1338,7 @@ export function parseDirective(
  */
 
 export function parseEmptyStatement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   start: number,
   line: number,
@@ -1369,7 +1363,7 @@ export function parseEmptyStatement(
 
  */
 export function parseThrowStatement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   start: number,
@@ -1411,7 +1405,7 @@ export function parseThrowStatement(
 
  */
 export function parseIfStatement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -1479,7 +1473,7 @@ export function parseIfStatement(
  * @param column
  */
 export function parseConsequentOrAlternative(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -1531,7 +1525,7 @@ export function parseConsequentOrAlternative(
  * @param column
  */
 export function parseSwitchStatement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -1625,7 +1619,7 @@ export function parseSwitchStatement(
  * @param column
  */
 export function parseWhileStatement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -1669,7 +1663,7 @@ export function parseWhileStatement(
  * @param column
  */
 export function parseIterationStatementBody(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -1698,7 +1692,7 @@ export function parseIterationStatementBody(
  * @param context Context masks
  */
 export function parseContinueStatement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   labels: ESTree.Labels,
   start: number,
@@ -1735,7 +1729,7 @@ export function parseContinueStatement(
  * @param column
  */
 export function parseBreakStatement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   labels: ESTree.Labels,
   start: number,
@@ -1775,7 +1769,7 @@ export function parseBreakStatement(
  * @param column
  */
 export function parseWithStatement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -1834,7 +1828,7 @@ export function parseWithStatement(
  * @param column
  */
 export function parseDebuggerStatement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   start: number,
   line: number,
@@ -1862,7 +1856,7 @@ export function parseDebuggerStatement(
  * @param column
  */
 export function parseTryStatement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -1949,7 +1943,7 @@ export function parseTryStatement(
  * @param column
  */
 export function parseCatchBlock(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -2024,7 +2018,7 @@ export function parseCatchBlock(
  * @param column
  */
 export function parseStaticBlock(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -2067,7 +2061,7 @@ export function parseStaticBlock(
  * @param column
  */
 export function parseDoWhileStatement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -2122,7 +2116,7 @@ export function parseDoWhileStatement(
  * @param column
  */
 export function parseLetIdentOrVarDeclarationStatement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -2282,7 +2276,7 @@ export function parseLetIdentOrVarDeclarationStatement(
  * @param column
  */
 function parseLexicalDeclaration(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -2324,7 +2318,7 @@ function parseLexicalDeclaration(
  * @param column
  */
 export function parseVariableStatement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -2358,7 +2352,7 @@ export function parseVariableStatement(
  * @param origin Binding origin
  */
 export function parseVariableDeclarationList(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -2393,7 +2387,7 @@ export function parseVariableDeclarationList(
  * @param column
  */
 function parseVariableDeclaration(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -2486,7 +2480,7 @@ function parseVariableDeclaration(
 
  */
 export function parseForStatement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -2815,7 +2809,7 @@ export function parseForStatement(
  */
 
 export function parseRestrictedIdentifier(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
 ): ESTree.Identifier {
@@ -2836,7 +2830,7 @@ export function parseRestrictedIdentifier(
  * @param scope Scope object
  */
 function parseImportDeclaration(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
 ): ESTree.ImportDeclaration | ESTree.ExpressionStatement {
@@ -2938,7 +2932,7 @@ function parseImportDeclaration(
  * @param specifiers Array of import specifiers
  */
 function parseImportNamespaceSpecifier(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
 ): ESTree.ImportNamespaceSpecifier {
@@ -2976,7 +2970,7 @@ function parseImportNamespaceSpecifier(
  * @param parser  Parser object
  * @param context Context masks
  */
-function parseModuleSpecifier(parser: ParserState, context: Context): ESTree.Literal {
+function parseModuleSpecifier(parser: Parser, context: Context): ESTree.Literal {
   // ModuleSpecifier :
   //   StringLiteral
   consume(parser, context, Token.FromKeyword);
@@ -2986,7 +2980,7 @@ function parseModuleSpecifier(parser: ParserState, context: Context): ESTree.Lit
 }
 
 function parseImportSpecifierOrNamedImports(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   specifiers: (ESTree.ImportSpecifier | ESTree.ImportDefaultSpecifier | ESTree.ImportNamespaceSpecifier)[],
@@ -3068,7 +3062,7 @@ function parseImportSpecifierOrNamedImports(
  * @param column
  */
 export function parseImportMetaDeclaration(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   start: number,
   line: number,
@@ -3135,7 +3129,7 @@ export function parseImportMetaDeclaration(
  * @param number
  */
 function parseImportCallDeclaration(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   start: number,
@@ -3193,7 +3187,7 @@ function parseImportCallDeclaration(
  * @param context Context masks
  */
 function parseExportDeclaration(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
 ): ESTree.ExportAllDeclaration | ESTree.ExportNamedDeclaration | ESTree.ExportDefaultDeclaration {
@@ -3604,7 +3598,7 @@ function parseExportDeclaration(
  * @param column,
  */
 export function parseExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   canAssign: 0 | 1,
@@ -3644,7 +3638,7 @@ export function parseExpression(
  * @param expr ESTree AST node
  */
 export function parseSequenceExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inGroup: 0 | 1,
@@ -3686,7 +3680,7 @@ export function parseSequenceExpression(
  * @param canAssign
  */
 export function parseExpressions(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inGroup: 0 | 1,
@@ -3716,7 +3710,7 @@ export function parseExpressions(
  * * @param left ESTree AST node
  */
 export function parseAssignmentExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inGroup: 0 | 1,
@@ -3829,7 +3823,7 @@ export function parseAssignmentExpression(
  */
 
 export function parseAssignmentExpressionOrPattern(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inGroup: 0 | 1,
@@ -3887,7 +3881,7 @@ export function parseAssignmentExpressionOrPattern(
  * @param test ESTree AST node
  */
 export function parseConditionalExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   test: ESTree.Expression,
@@ -3942,7 +3936,7 @@ export function parseConditionalExpression(
  * @param left ESTree AST node
  */
 export function parseBinaryExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inGroup: 0 | 1,
@@ -4014,7 +4008,7 @@ export function parseBinaryExpression(
  * @param context Context masks
  */
 export function parseUnaryExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   isLHS: 0 | 1,
@@ -4076,7 +4070,7 @@ export function parseUnaryExpression(
  * @param context Context masks
  */
 export function parseAsyncExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inGroup: 0 | 1,
@@ -4156,7 +4150,7 @@ export function parseAsyncExpression(
  * @param context Context masks
  */
 export function parseYieldExpressionOrIdentifier(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inGroup: 0 | 1,
@@ -4220,7 +4214,7 @@ export function parseYieldExpressionOrIdentifier(
  * @param inNew
  */
 export function parseAwaitExpressionOrIdentifier(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inNew: 0 | 1,
@@ -4341,7 +4335,7 @@ export function parseAwaitExpressionOrIdentifier(
  * @param scopeError
  */
 export function parseFunctionBody(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -4452,7 +4446,7 @@ export function parseFunctionBody(
  * @param context Context masks
  */
 export function parseSuperExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   start: number,
   line: number,
@@ -4495,7 +4489,7 @@ export function parseSuperExpression(
  * @param column
  */
 export function parseLeftHandSideExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   canAssign: 0 | 1,
@@ -4536,7 +4530,7 @@ export function parseLeftHandSideExpression(
  * @param column
  */
 function parseUpdateExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   expr: ESTree.Expression,
   start: number,
@@ -4570,7 +4564,7 @@ function parseUpdateExpression(
  * @param column
  */
 export function parseMemberOrUpdateExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   expr: ESTree.Expression,
@@ -4726,7 +4720,7 @@ export function parseMemberOrUpdateExpression(
  * @param expr  ESTree AST node
  */
 export function parseOptionalChain(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   expr: ESTree.Expression,
@@ -4791,7 +4785,7 @@ export function parseOptionalChain(
  * @param context Context masks
  */
 export function parsePropertyOrPrivatePropertyName(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
 ): any {
@@ -4828,7 +4822,7 @@ export function parsePropertyOrPrivatePropertyName(
  * @param column
  */
 export function parseUpdateExpressionPrefixed(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inNew: 0 | 1,
@@ -4889,7 +4883,7 @@ export function parseUpdateExpressionPrefixed(
  */
 
 export function parsePrimaryExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   kind: BindingKind,
@@ -5080,7 +5074,7 @@ export function parsePrimaryExpression(
  * @param column
  */
 function parseImportCallOrMetaExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inNew: 0 | 1,
@@ -5119,7 +5113,7 @@ function parseImportCallOrMetaExpression(
  */
 
 export function parseImportMetaExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   meta: ESTree.Identifier,
   start: number,
@@ -5157,7 +5151,7 @@ export function parseImportMetaExpression(
  */
 
 export function parseImportExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inGroup: 0 | 1,
@@ -5222,7 +5216,7 @@ export function parseImportExpression(
  */
 
 export function parseImportAttributes(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   specifiers: (ESTree.ImportClause | ESTree.ExportSpecifier)[] | null = null,
 ): ESTree.ImportAttribute[] {
@@ -5282,7 +5276,7 @@ export function parseImportAttributes(
   return attributes;
 }
 
-function parseStringLiteral(parser: ParserState, context: Context): ESTree.Literal {
+function parseStringLiteral(parser: Parser, context: Context): ESTree.Literal {
   if (parser.getToken() === Token.StringLiteral) {
     return parseLiteral(parser, context);
   } else {
@@ -5290,7 +5284,7 @@ function parseStringLiteral(parser: ParserState, context: Context): ESTree.Liter
   }
 }
 
-function parseIdentifierOrStringLiteral(parser: ParserState, context: Context): ESTree.Identifier | ESTree.Literal {
+function parseIdentifierOrStringLiteral(parser: Parser, context: Context): ESTree.Identifier | ESTree.Literal {
   if (parser.getToken() === Token.StringLiteral) {
     return parseLiteral(parser, context);
   } else if (parser.getToken() & Token.IsIdentifier) {
@@ -5306,7 +5300,7 @@ function parseIdentifierOrStringLiteral(parser: ParserState, context: Context): 
  * @param str string to check
  * @returns void when passed the check
  */
-function validateStringWellFormed(parser: ParserState, str: string): void {
+function validateStringWellFormed(parser: Parser, str: string): void {
   const len = str.length;
   for (let i = 0; i < len; i++) {
     const code = str.charCodeAt(i);
@@ -5319,7 +5313,7 @@ function validateStringWellFormed(parser: ParserState, str: string): void {
   }
 }
 
-function parseModuleExportName(parser: ParserState, context: Context): ESTree.Identifier | ESTree.Literal {
+function parseModuleExportName(parser: Parser, context: Context): ESTree.Identifier | ESTree.Literal {
   // ModuleExportName :
   //   IdentifierName
   //   StringLiteral
@@ -5345,7 +5339,7 @@ function parseModuleExportName(parser: ParserState, context: Context): ESTree.Id
  * @param context Context masks
  */
 export function parseBigIntLiteral(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   start: number,
   line: number,
@@ -5375,7 +5369,7 @@ export function parseBigIntLiteral(
  * @param context Context masks
  */
 export function parseTemplateLiteral(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   start: number,
   line: number,
@@ -5466,7 +5460,7 @@ export function parseTemplateLiteral(
  * @param context Context masks
  */
 export function parseTemplate(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
 ): ESTree.TemplateLiteral {
@@ -5529,7 +5523,7 @@ export function parseTemplate(
  * @param tail
  */
 export function parseTemplateElement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   cooked: string | null,
   raw: string,
@@ -5577,7 +5571,7 @@ export function parseTemplateElement(
  * @param context Context masks
  */
 function parseSpreadElement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   start: number,
@@ -5610,7 +5604,7 @@ function parseSpreadElement(
  * @param context Context masks
  */
 export function parseArguments(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inGroup: 0 | 1,
@@ -5664,7 +5658,7 @@ export function parseArguments(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseIdentifier(parser: ParserState, context: Context): ESTree.Identifier {
+export function parseIdentifier(parser: Parser, context: Context): ESTree.Identifier {
   const { tokenValue, tokenIndex, tokenLine, tokenColumn } = parser;
 
   const allowRegex = tokenValue === 'await' && (parser.getToken() & Token.IsEscaped) === 0;
@@ -5682,7 +5676,7 @@ export function parseIdentifier(parser: ParserState, context: Context): ESTree.I
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseLiteral(parser: ParserState, context: Context): ESTree.Literal {
+export function parseLiteral(parser: Parser, context: Context): ESTree.Literal {
   const { tokenValue, tokenRaw, tokenIndex, tokenLine, tokenColumn } = parser;
   if (parser.getToken() === Token.BigIntLiteral) {
     return parseBigIntLiteral(parser, context, tokenIndex, tokenLine, tokenColumn);
@@ -5716,7 +5710,7 @@ export function parseLiteral(parser: ParserState, context: Context): ESTree.Lite
  * @param context Context masks
  */
 export function parseNullOrTrueOrFalseLiteral(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   start: number,
   line: number,
@@ -5752,7 +5746,7 @@ export function parseNullOrTrueOrFalseLiteral(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseThisExpression(parser: ParserState, context: Context): ESTree.ThisExpression {
+export function parseThisExpression(parser: Parser, context: Context): ESTree.ThisExpression {
   const { tokenIndex, tokenLine, tokenColumn } = parser;
   nextToken(parser, context);
   parser.assignable = AssignmentKind.CannotAssign;
@@ -5773,7 +5767,7 @@ export function parseThisExpression(parser: ParserState, context: Context): ESTr
  * @param start
  */
 export function parseFunctionDeclaration(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -5906,7 +5900,7 @@ export function parseFunctionDeclaration(
  * @param isAsync
  */
 export function parseFunctionExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   isAsync: 0 | 1,
@@ -6002,7 +5996,7 @@ export function parseFunctionExpression(
  * @param skipInitializer
  */
 function parseArrayLiteral(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   skipInitializer: 0 | 1,
@@ -6066,7 +6060,7 @@ function parseArrayLiteral(
  */
 
 export function parseArrayExpressionOrPattern(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -6419,7 +6413,7 @@ export function parseArrayExpressionOrPattern(
  */
 
 function parseArrayOrObjectAssignmentPattern(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   destructible: AssignmentKind | DestructuringKind,
@@ -6491,7 +6485,7 @@ function parseArrayOrObjectAssignmentPattern(
  * @param column Start of column
  */
 function parseSpreadOrRestElement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -6808,7 +6802,7 @@ function parseSpreadOrRestElement(
  * @param column Start of column
  */
 export function parseMethodDefinition(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   kind: PropertyKind,
@@ -6881,7 +6875,7 @@ export function parseMethodDefinition(
 
  */
 function parseObjectLiteral(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   skipInitializer: 0 | 1,
@@ -6965,7 +6959,7 @@ function parseObjectLiteral(
  * @param column
  */
 export function parseObjectLiteralOrPattern(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -8128,7 +8122,7 @@ export function parseObjectLiteralOrPattern(
  * @param inGroup
  */
 export function parseMethodFormals(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -8298,7 +8292,7 @@ export function parseMethodFormals(
  * @param context Context masks
  */
 export function parseComputedPropertyName(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inGroup: 0 | 1,
@@ -8331,7 +8325,7 @@ export function parseComputedPropertyName(
  * @param column Start of column
  */
 export function parseParenthesizedExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   canAssign: 0 | 1,
@@ -8674,7 +8668,7 @@ export function parseParenthesizedExpression(
 
  */
 export function parseIdentifierOrArrow(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   start: number,
@@ -8729,7 +8723,7 @@ export function parseIdentifierOrArrow(
  * @param column Start of column
  */
 function parseArrowFromIdentifier(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   value: any,
@@ -8761,7 +8755,7 @@ function parseArrowFromIdentifier(
  * @param column Start of column
  */
 function parseParenthesizedArrow(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -8791,7 +8785,7 @@ function parseParenthesizedArrow(
  * @param column Start of column
  */
 export function parseArrowFunctionExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -8909,7 +8903,7 @@ export function parseArrowFunctionExpression(
  * @param context Context masks
  */
 export function parseFormalParametersOrFormalList(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -9091,7 +9085,7 @@ export function parseFormalParametersOrFormalList(
  * @param column
  */
 export function parseMemberExpressionNoCall(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   expr: ESTree.Expression,
@@ -9193,7 +9187,7 @@ export function parseMemberExpressionNoCall(
  * @returns {(ESTree.Expression | ESTree.MetaProperty)}
  */
 export function parseNewExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inGroup: 0 | 1,
@@ -9287,7 +9281,7 @@ export function parseNewExpression(
  * @param meta ESTree AST node
  */
 export function parseMetaProperty(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   meta: ESTree.Identifier,
   start: number,
@@ -9322,7 +9316,7 @@ export function parseMetaProperty(
  * @param column Column pos of node
  */
 function parseAsyncArrowAfterIdent(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   canAssign: 0 | 1,
@@ -9373,7 +9367,7 @@ function parseAsyncArrowAfterIdent(
  */
 
 export function parseAsyncArrowOrCallExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   callee: ESTree.Identifier | void,
@@ -9679,7 +9673,7 @@ export function parseAsyncArrowOrCallExpression(
  * @param context Context masks
  */
 export function parseRegExpLiteral(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   start: number,
   line: number,
@@ -9710,7 +9704,7 @@ export function parseRegExpLiteral(
  * @param ExportDefault
  */
 export function parseClassDeclaration(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -9829,7 +9823,7 @@ export function parseClassDeclaration(
  * @param context Context masks
  */
 export function parseClassExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inGroup: 0 | 1,
@@ -9915,7 +9909,7 @@ export function parseClassExpression(
  * @param context Context masks
  */
 export function parseDecorators(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
 ): ESTree.Decorator[] {
@@ -9941,7 +9935,7 @@ export function parseDecorators(
  */
 
 export function parseDecoratorList(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   start: number,
@@ -9983,7 +9977,7 @@ export function parseDecoratorList(
  */
 
 export function parseClassBody(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   inheritedContext: Context,
   scope: ScopeState | undefined,
@@ -10119,7 +10113,7 @@ export function parseClassBody(
  * @param isStatic
  */
 function parseClassElementList(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -10371,7 +10365,7 @@ function parseClassElementList(
  * @param context Context masks
  */
 function parsePrivateIdentifier(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   kind: PropertyKind,
@@ -10415,7 +10409,7 @@ function parsePrivateIdentifier(
  */
 
 export function parsePropertyDefinition(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   key: ESTree.PrivateIdentifier | ESTree.Expression | null,
@@ -10519,7 +10513,7 @@ export function parsePropertyDefinition(
  * @param type Binding kind
  */
 export function parseBindingPattern(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
@@ -10563,7 +10557,7 @@ export function parseBindingPattern(
  * @param type Binding kind
  */
 function parseAndClassifyIdentifier(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
   kind: BindingKind,
@@ -10622,7 +10616,7 @@ function parseAndClassifyIdentifier(
  */
 
 function parseJSXRootElementOrFragment(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inJSXChild: 0 | 1,
@@ -10688,7 +10682,7 @@ function parseJSXRootElementOrFragment(
  * @param column
  */
 export function parseOpeningFragment(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   start: number,
   line: number,
@@ -10711,7 +10705,7 @@ export function parseOpeningFragment(
  * @param column
  */
 function parseJSXClosingElement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   inJSXChild: 0 | 1,
   start: number,
@@ -10748,7 +10742,7 @@ function parseJSXClosingElement(
  * @param column
  */
 export function parseJSXClosingFragment(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   inJSXChild: 0 | 1,
   start: number,
@@ -10779,7 +10773,7 @@ export function parseJSXClosingFragment(
  * @param context  Context masks
  */
 export function parseJSXChildrenAndClosingElement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inJSXChild: 0 | 1,
@@ -10809,7 +10803,7 @@ export function parseJSXChildrenAndClosingElement(
  * @param context  Context masks
  */
 export function parseJSXChildrenAndClosingFragment(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inJSXChild: 0 | 1,
@@ -10842,7 +10836,7 @@ export function parseJSXChildrenAndClosingFragment(
  * @param column
  */
 function parseJSXChildOrClosingElement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inJSXChild: 0 | 1,
@@ -10882,7 +10876,7 @@ function parseJSXChildOrClosingElement(
  * @param column
  */
 function parseJSXChildOrClosingFragment(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inJSXChild: 0 | 1,
@@ -10922,7 +10916,7 @@ function parseJSXChildOrClosingFragment(
  * @param column
  */
 export function parseJSXText(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   start: number,
   line: number,
@@ -10953,7 +10947,7 @@ export function parseJSXText(
  * @param column
  */
 function parseJSXOpeningElementOrSelfCloseElement(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inJSXChild: 0 | 1,
@@ -11001,7 +10995,7 @@ function parseJSXOpeningElementOrSelfCloseElement(
  * @param column
  */
 function parseJSXElementName(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   start: number,
   line: number,
@@ -11032,7 +11026,7 @@ function parseJSXElementName(
  * @param column
  */
 export function parseJSXMemberExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   object: ESTree.JSXIdentifier | ESTree.JSXMemberExpression,
   start: number,
@@ -11057,7 +11051,7 @@ export function parseJSXMemberExpression(
  * @param column
  */
 export function parseJSXAttributes(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
 ): (ESTree.JSXAttribute | ESTree.JSXSpreadAttribute)[] {
@@ -11084,7 +11078,7 @@ export function parseJSXAttributes(
  * @param column
  */
 export function parseJSXSpreadAttribute(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   start: number,
@@ -11120,7 +11114,7 @@ export function parseJSXSpreadAttribute(
  * @param column
  */
 function parseJsxAttribute(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   start: number,
@@ -11192,7 +11186,7 @@ function parseJsxAttribute(
  */
 
 function parseJSXNamespacedName(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   namespace: ESTree.JSXIdentifier | ESTree.JSXMemberExpression,
   start: number,
@@ -11219,7 +11213,7 @@ function parseJSXNamespacedName(
  * @param column
  */
 function parseJSXExpressionContainer(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inJSXChild: 0 | 1,
@@ -11269,7 +11263,7 @@ function parseJSXExpressionContainer(
  * @param column
  */
 function parseJSXSpreadChild(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   start: number,
@@ -11304,7 +11298,7 @@ function parseJSXSpreadChild(
  * @param column
  */
 function parseJSXEmptyExpression(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   start: number,
   line: number,
@@ -11332,7 +11326,7 @@ function parseJSXEmptyExpression(
  * @param column
  */
 export function parseJSXIdentifier(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   start: number,
   line: number,

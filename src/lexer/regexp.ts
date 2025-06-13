@@ -1,5 +1,6 @@
 import { Chars } from '../chars';
-import { Context, type ParserState } from '../common';
+import { Context } from '../common';
+import { type Parser } from '../parser';
 import { Token } from '../token';
 import { advanceChar } from './common';
 import { isIdentifierPart } from './charClassifier';
@@ -30,7 +31,7 @@ enum RegexFlags {
  * @param context Context masks
  */
 
-export function scanRegularExpression(parser: ParserState, context: Context): Token {
+export function scanRegularExpression(parser: Parser, context: Context): Token {
   const bodyStart = parser.index;
   // Scan: ('/' | '/=') RegularExpressionBody '/' RegularExpressionFlags
   let preparseState = RegexState.Empty;
@@ -153,7 +154,7 @@ export function scanRegularExpression(parser: ParserState, context: Context): To
  * @param pattern Regexp body
  * @param flags Regexp flags
  */
-function validate(parser: ParserState, pattern: string, flags: string): RegExp | null | Token {
+function validate(parser: Parser, pattern: string, flags: string): RegExp | null | Token {
   try {
     return new RegExp(pattern, flags);
   } catch {
