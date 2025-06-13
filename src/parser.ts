@@ -676,9 +676,6 @@ export function parseStatement(
         scope ? addChildScope(scope, ScopeKind.Block) : scope,
         privateScope,
         labels,
-        start,
-        line,
-        column,
       ) as ESTree.Statement;
 
     // ThrowStatement[?Yield]
@@ -902,10 +899,7 @@ export function parseExpressionOrLabelledStatement(
  * @param context Context masks
  * @param scope  Scope object
  * @param labels Labels object
- * @param start
- * @param line
- * @param column
- *
+ * @param type BlockStatement or StaticBlock
  */
 export function parseBlock<T extends ESTree.BlockStatement | ESTree.StaticBlock = ESTree.BlockStatement>(
   parser: ParserState,
@@ -913,11 +907,10 @@ export function parseBlock<T extends ESTree.BlockStatement | ESTree.StaticBlock 
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
-  start: number,
-  line: number,
-  column: number,
   type: T['type'] = 'BlockStatement',
 ): T {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   // Block ::
   //   '{' StatementList '}'
   const body: ESTree.Statement[] = [];
@@ -930,7 +923,7 @@ export function parseBlock<T extends ESTree.BlockStatement | ESTree.StaticBlock 
 
   consume(parser, context | Context.AllowRegExp, Token.RightBrace);
 
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type,
     body,
   } as T);
@@ -1878,16 +1871,7 @@ export function parseTryStatement(
 
   const firstScope = scope ? addChildScope(scope, ScopeKind.TryStatement) : void 0;
 
-  const block = parseBlock(
-    parser,
-    context,
-    firstScope,
-    privateScope,
-    { $: labels },
-    parser.tokenIndex,
-    parser.tokenLine,
-    parser.tokenColumn,
-  );
+  const block = parseBlock(parser, context, firstScope, privateScope, { $: labels });
   const { tokenIndex, tokenLine, tokenColumn } = parser;
   const handler = consumeOpt(parser, context | Context.AllowRegExp, Token.CatchKeyword)
     ? parseCatchBlock(parser, context, scope, privateScope, labels, tokenIndex, tokenLine, tokenColumn)
@@ -1898,16 +1882,7 @@ export function parseTryStatement(
   if (parser.getToken() === Token.FinallyKeyword) {
     nextToken(parser, context | Context.AllowRegExp);
     const finalizerScope = firstScope ? addChildScope(scope, ScopeKind.CatchStatement) : void 0;
-    const block = parseBlock(
-      parser,
-      context,
-      finalizerScope,
-      privateScope,
-      { $: labels },
-      parser.tokenIndex,
-      parser.tokenLine,
-      parser.tokenColumn,
-    );
+    const block = parseBlock(parser, context, finalizerScope, privateScope, { $: labels });
     finalizer = block;
   }
 
@@ -1980,16 +1955,7 @@ export function parseCatchBlock(
 
   if (scope) additionalScope = addChildScope(scope, ScopeKind.CatchBlock);
 
-  const body = parseBlock(
-    parser,
-    context,
-    additionalScope,
-    privateScope,
-    { $: labels },
-    parser.tokenIndex,
-    parser.tokenLine,
-    parser.tokenColumn,
-  );
+  const body = parseBlock(parser, context, additionalScope, privateScope, { $: labels });
 
   return finishNode(parser, context, start, line, column, {
     type: 'CatchClause',
@@ -2006,18 +1972,12 @@ export function parseCatchBlock(
  * @param parser Parser object
  * @param context Context masks
  * @param scope Scope instance
- * @param start Start pos of node
- * @param line
- * @param column
  */
 export function parseStaticBlock(
   parser: ParserState,
   context: Context,
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.StaticBlock {
   // ClassStaticBlock :
   //   static { ClassStaticBlockBody }
@@ -2040,7 +2000,7 @@ export function parseStaticBlock(
     Context.InStaticBlock |
     Context.AllowNewTarget;
 
-  return parseBlock(parser, context, scope, privateScope, {}, start, line, column, 'StaticBlock');
+  return parseBlock(parser, context, scope, privateScope, {}, 'StaticBlock');
 }
 
 /**
@@ -10250,7 +10210,7 @@ function parseClassElementList(
   } else if ((parser.getToken() & Token.IsClassField) === Token.IsClassField) {
     kind |= PropertyKind.ClassField;
   } else if (isStatic && token === Token.LeftBrace) {
-    return parseStaticBlock(parser, context | Context.InClass, scope, privateScope, start, line, column);
+    return parseStaticBlock(parser, context | Context.InClass, scope, privateScope);
   } else if (token === Token.EscapedFutureReserved) {
     key = parseIdentifier(parser, context);
     if (parser.getToken() !== Token.LeftParen)
