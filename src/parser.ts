@@ -1373,10 +1373,6 @@ export function parseThrowStatement(
  * @param parser Parser object
  * @param context Context masks
  * @param scope Scope instance
- * @param start Start pos of node
-* @param line
-* @param column
-
  */
 export function parseIfStatement(
   parser: ParserState,
@@ -1403,29 +1399,11 @@ export function parseIfStatement(
     parser.tokenColumn,
   );
   consume(parser, context | Context.AllowRegExp, Token.RightParen);
-  const consequent = parseConsequentOrAlternative(
-    parser,
-    context,
-    scope,
-    privateScope,
-    labels,
-    parser.tokenIndex,
-    parser.tokenLine,
-    parser.tokenColumn,
-  );
+  const consequent = parseConsequentOrAlternative(parser, context, scope, privateScope, labels);
   let alternate: ESTree.Statement | null = null;
   if (parser.getToken() === Token.ElseKeyword) {
     nextToken(parser, context | Context.AllowRegExp);
-    alternate = parseConsequentOrAlternative(
-      parser,
-      context,
-      scope,
-      privateScope,
-      labels,
-      parser.tokenIndex,
-      parser.tokenLine,
-      parser.tokenColumn,
-    );
+    alternate = parseConsequentOrAlternative(parser, context, scope, privateScope, labels);
   }
 
   return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
@@ -1441,9 +1419,6 @@ export function parseIfStatement(
  *
  * @param parser  Parser object
  * @param context Context masks
- * @param start Start pos of node
- * @param line
- * @param column
  */
 export function parseConsequentOrAlternative(
   parser: ParserState,
@@ -1451,10 +1426,9 @@ export function parseConsequentOrAlternative(
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.Statement | ESTree.FunctionDeclaration {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   return context & Context.Strict ||
     // Disallow if web compatibility is off
     (context & Context.OptionsWebCompat) === 0 ||
@@ -1480,9 +1454,9 @@ export function parseConsequentOrAlternative(
         0,
         HoistedFunctionFlags.None,
         0,
-        start,
-        line,
-        column,
+        tokenIndex,
+        tokenLine,
+        tokenColumn,
       );
 }
 
@@ -1582,10 +1556,6 @@ export function parseSwitchStatement(
  *
  * @param parser  Parser object
  * @param context Context masks
- * @param start
- * @param start Start pos of node
- * @param line
- * @param column
  */
 export function parseWhileStatement(
   parser: ParserState,
@@ -3590,9 +3560,7 @@ export function parseExpressions(
  * @param start
  * @param line
  * @param column
- * @param left
- *
- * * @param left ESTree AST node
+ * @param left ESTree AST node
  */
 export function parseAssignmentExpression(
   parser: ParserState,
