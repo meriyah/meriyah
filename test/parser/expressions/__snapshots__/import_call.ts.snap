@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Next - ImportCall > Next - ImportCall (pass) > async function bar(){ await import("./nchanged") } 1`] = `
+exports[`ImportCall > ImportCall (pass) > async function bar(){ await import("./nchanged") } 1`] = `
 {
   "body": [
     {
@@ -38,7 +38,7 @@ exports[`Next - ImportCall > Next - ImportCall (pass) > async function bar(){ aw
 }
 `;
 
-exports[`Next - ImportCall > Next - ImportCall (pass) > function loadImport(file) { import(file).then(() => {}), console.log("Done."); } 1`] = `
+exports[`ImportCall > ImportCall (pass) > function loadImport(file) { import(file).then(() => {}), console.log("Done."); } 1`] = `
 {
   "body": [
     {
@@ -128,7 +128,7 @@ exports[`Next - ImportCall > Next - ImportCall (pass) > function loadImport(file
 }
 `;
 
-exports[`Next - ImportCall > Next - ImportCall (pass) > import("lib.js").then(doThis); 1`] = `
+exports[`ImportCall > ImportCall (pass) > import("lib.js").then(doThis); 1`] = `
 {
   "body": [
     {
@@ -151,6 +151,7 @@ exports[`Next - ImportCall > Next - ImportCall (pass) > import("lib.js").then(do
           "end": 21,
           "object": {
             "end": 16,
+            "options": null,
             "range": [
               0,
               16,

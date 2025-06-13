@@ -1921,7 +1921,6 @@ exports[`Module - Export > Module - Export (pass) > export default class f{}; ex
           "body": [],
           "type": "ClassBody",
         },
-        "decorators": [],
         "id": {
           "name": "f",
           "type": "Identifier",
@@ -2028,7 +2027,6 @@ exports[`Module - Export > Module - Export (pass) > export default class x{} 1`]
           "start": 22,
           "type": "ClassBody",
         },
-        "decorators": [],
         "end": 24,
         "id": {
           "end": 22,

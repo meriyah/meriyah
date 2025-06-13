@@ -33,7 +33,6 @@
 These features need to be enabled with the `next` option.
 
 - [Decorators](https://github.com/tc39/proposal-decorators)
-- [Import Attributes](https://github.com/tc39/proposal-import-attributes)
 - [JSON Modules](https://github.com/tc39/proposal-json-modules)
 
 ### Not yet supported stage 3 features:

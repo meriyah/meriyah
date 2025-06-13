@@ -40,3 +40,17 @@ jobs:
       - run: npm run bundle
       - run: npm run test
       - run: npm run lint
+
+  preview:
+    if: github.repository == 'meriyah/meriyah'
+    name: Preview release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          cache: 'yarn'
+          cache-dependency-path: ./package.json
+      - run: yarn
+      - run: npm run bundle
+      - run: npx pkg-pr-new publish --compact
