@@ -664,7 +664,7 @@ export function parseStatement(
     case Token.WhileKeyword:
       return parseWhileStatement(parser, context, scope, privateScope, labels);
     case Token.SwitchKeyword:
-      return parseSwitchStatement(parser, context, scope, privateScope, labels, start, line, column);
+      return parseSwitchStatement(parser, context, scope, privateScope, labels);
     case Token.Semicolon:
       // EmptyStatement
       return parseEmptyStatement(parser, context);
@@ -1494,9 +1494,6 @@ export function parseConsequentOrAlternative(
  *
  * @param parser  Parser object
  * @param context Context masks
- * @param start Start pos of node
- * @param line
- * @param column
  */
 export function parseSwitchStatement(
   parser: ParserState,
@@ -1504,10 +1501,9 @@ export function parseSwitchStatement(
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.SwitchStatement {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   // SwitchStatement ::
   //   'switch' '(' Expression ')' '{' CaseClause* '}'
   // CaseClause ::
@@ -1573,7 +1569,7 @@ export function parseSwitchStatement(
   }
 
   consume(parser, context | Context.AllowRegExp, Token.RightBrace);
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'SwitchStatement',
     discriminant,
     cases,
