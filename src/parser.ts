@@ -1,6 +1,3 @@
-// eslint-disable-next-line no-restricted-imports
-import assert from 'node:assert';
-assert.ok(1 === 1);
 import { convertTokenType, nextToken, skipHashBang } from './lexer';
 import { Token, KeywordDescTable } from './token';
 import type * as ESTree from './estree';
