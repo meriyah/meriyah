@@ -1687,10 +1687,10 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <SolarSystem.Earth.A
                       "type": "JSXIdentifier",
                     },
                     "range": [
-                      13,
+                      1,
                       18,
                     ],
-                    "start": 13,
+                    "start": 1,
                     "type": "JSXMemberExpression",
                   },
                   "property": {
@@ -1704,10 +1704,10 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <SolarSystem.Earth.A
                     "type": "JSXIdentifier",
                   },
                   "range": [
-                    19,
+                    1,
                     26,
                   ],
-                  "start": 19,
+                  "start": 1,
                   "type": "JSXMemberExpression",
                 },
                 "property": {
@@ -1721,10 +1721,10 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <SolarSystem.Earth.A
                   "type": "JSXIdentifier",
                 },
                 "range": [
-                  27,
+                  1,
                   30,
                 ],
-                "start": 27,
+                "start": 1,
                 "type": "JSXMemberExpression",
               },
               "property": {
@@ -1738,10 +1738,10 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <SolarSystem.Earth.A
                 "type": "JSXIdentifier",
               },
               "range": [
-                31,
+                1,
                 41,
               ],
-              "start": 31,
+              "start": 1,
               "type": "JSXMemberExpression",
             },
             "property": {
@@ -1755,10 +1755,10 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <SolarSystem.Earth.A
               "type": "JSXIdentifier",
             },
             "range": [
-              42,
+              1,
               55,
             ],
-            "start": 42,
+            "start": 1,
             "type": "JSXMemberExpression",
           },
           "range": [

@@ -10234,6 +10234,8 @@ function parseJSXElementName(
 ): ESTree.JSXIdentifier | ESTree.JSXMemberExpression | ESTree.JSXNamespacedName {
   rescanJSXIdentifier(parser);
 
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   let key: ESTree.JSXIdentifier | ESTree.JSXMemberExpression = parseJSXIdentifier(parser, context);
 
   // Namespace
@@ -10242,7 +10244,7 @@ function parseJSXElementName(
   // Member expression
   while (consumeOpt(parser, context, Token.Period)) {
     rescanJSXIdentifier(parser);
-    key = parseJSXMemberExpression(parser, context, key);
+    key = parseJSXMemberExpression(parser, context, key, tokenIndex, tokenLine, tokenColumn);
   }
   return key;
 }
@@ -10257,10 +10259,12 @@ export function parseJSXMemberExpression(
   parser: Parser,
   context: Context,
   object: ESTree.JSXIdentifier | ESTree.JSXMemberExpression,
+  start: number,
+  line: number,
+  column: number,
 ): ESTree.JSXMemberExpression {
-  const { tokenIndex, tokenLine, tokenColumn } = parser;
   const property = parseJSXIdentifier(parser, context);
-  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
+  return finishNode(parser, context, start, line, column, {
     type: 'JSXMemberExpression',
     object,
     property,
