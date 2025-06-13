@@ -1695,9 +1695,6 @@ export function parseDebuggerStatement(parser: ParserState, context: Context): E
  * @param parser Parser object
  * @param context Context masks
  * @param scope Scope instance
- * @param start Start pos of node
- * @param line
- * @param column
  */
 export function parseTryStatement(
   parser: ParserState,
@@ -1796,9 +1793,6 @@ export function parseCatchBlock(
         ? BindingKind.CatchPattern
         : BindingKind.CatchIdentifier,
       Origin.None,
-      parser.tokenIndex,
-      parser.tokenLine,
-      parser.tokenColumn,
     );
 
     if (parser.getToken() === Token.Comma) {
@@ -2170,10 +2164,6 @@ export function parseVariableDeclarationList(
  *
  * @param parser  Parser object
  * @param context Context masks
- * @param start Start pos of node
- * @param start Start pos of node
- * @param line
- * @param column
  */
 function parseVariableDeclaration(
   parser: ParserState,
@@ -2196,17 +2186,7 @@ function parseVariableDeclaration(
 
   let init: ESTree.Expression | ESTree.BindingPattern | ESTree.Identifier | null = null;
 
-  const id = parseBindingPattern(
-    parser,
-    context,
-    scope,
-    privateScope,
-    kind,
-    origin,
-    tokenIndex,
-    tokenLine,
-    tokenColumn,
-  );
+  const id = parseBindingPattern(parser, context, scope, privateScope, kind, origin);
 
   if (parser.getToken() === Token.Assign) {
     nextToken(parser, context | Context.AllowRegExp);
@@ -7697,16 +7677,7 @@ export function parseMethodFormals(
         }
       }
 
-      left = parseAndClassifyIdentifier(
-        parser,
-        context,
-        scope,
-        kind | BindingKind.ArgumentList,
-        Origin.None,
-        tokenIndex,
-        tokenLine,
-        tokenColumn,
-      );
+      left = parseAndClassifyIdentifier(parser, context, scope, kind | BindingKind.ArgumentList, Origin.None);
     } else {
       if (parser.getToken() === Token.LeftBrace) {
         left = parseObjectLiteralOrPattern(parser, context, scope, privateScope, 1, inGroup, 1, type, Origin.None);
@@ -8431,16 +8402,7 @@ export function parseFormalParametersOrFormalList(
         }
       }
 
-      left = parseAndClassifyIdentifier(
-        parser,
-        context,
-        scope,
-        kind | BindingKind.ArgumentList,
-        Origin.None,
-        tokenIndex,
-        tokenLine,
-        tokenColumn,
-      );
+      left = parseAndClassifyIdentifier(parser, context, scope, kind | BindingKind.ArgumentList, Origin.None);
     } else {
       if (token === Token.LeftBrace) {
         left = parseObjectLiteralOrPattern(parser, context, scope, privateScope, 1, inGroup, 1, kind, Origin.None);
@@ -9890,9 +9852,6 @@ export function parseBindingPattern(
   privateScope: PrivateScopeState | undefined,
   type: BindingKind,
   origin: Origin,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.BindingPattern {
   // Pattern ::
   //   Identifier
@@ -9903,7 +9862,7 @@ export function parseBindingPattern(
     parser.getToken() & Token.IsIdentifier ||
     ((context & Context.Strict) === 0 && parser.getToken() === Token.EscapedFutureReserved)
   )
-    return parseAndClassifyIdentifier(parser, context, scope, type, origin, start, line, column);
+    return parseAndClassifyIdentifier(parser, context, scope, type, origin);
 
   if ((parser.getToken() & Token.IsPatternStart) !== Token.IsPatternStart)
     report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
@@ -9933,11 +9892,7 @@ function parseAndClassifyIdentifier(
   scope: ScopeState | undefined,
   kind: BindingKind,
   origin: Origin,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.Identifier {
-  const { tokenValue } = parser;
   const token = parser.getToken();
 
   if (context & Context.Strict) {
@@ -9965,6 +9920,7 @@ function parseAndClassifyIdentifier(
     if (context & Context.Module) report(parser, Errors.AwaitIdentInModuleOrAsyncFunc);
   }
 
+  const { tokenValue, tokenIndex: start, tokenLine: line, tokenColumn: column } = parser;
   nextToken(parser, context);
 
   if (scope) addVarOrBlock(parser, context, scope, tokenValue, kind, origin);
