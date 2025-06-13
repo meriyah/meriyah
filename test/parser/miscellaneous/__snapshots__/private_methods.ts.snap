@@ -1835,6 +1835,460 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { #m()
 }
 `;
 
+exports[`Next - Private methods > Next - Private methods (pass) > class C { * #m(v) {} } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 20,
+            "key": {
+              "end": 14,
+              "name": "m",
+              "range": [
+                10,
+                14,
+              ],
+              "start": 10,
+              "type": "PrivateIdentifier",
+            },
+            "kind": "method",
+            "range": [
+              10,
+              20,
+            ],
+            "start": 10,
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "end": 20,
+                "range": [
+                  18,
+                  20,
+                ],
+                "start": 18,
+                "type": "BlockStatement",
+              },
+              "end": 20,
+              "generator": true,
+              "id": null,
+              "params": [
+                {
+                  "end": 16,
+                  "name": "v",
+                  "range": [
+                    15,
+                    16,
+                  ],
+                  "start": 15,
+                  "type": "Identifier",
+                },
+              ],
+              "range": [
+                14,
+                20,
+              ],
+              "start": 14,
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "end": 22,
+        "range": [
+          8,
+          22,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "end": 22,
+      "id": {
+        "end": 7,
+        "name": "C",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        22,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 22,
+  "range": [
+    0,
+    22,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class C { accessor #x = 1 } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "decorators": [],
+            "end": 25,
+            "key": {
+              "end": 21,
+              "name": "x",
+              "range": [
+                10,
+                21,
+              ],
+              "start": 10,
+              "type": "PrivateIdentifier",
+            },
+            "range": [
+              10,
+              25,
+            ],
+            "start": 10,
+            "static": false,
+            "type": "AccessorProperty",
+            "value": {
+              "end": 25,
+              "range": [
+                24,
+                25,
+              ],
+              "start": 24,
+              "type": "Literal",
+              "value": 1,
+            },
+          },
+        ],
+        "end": 27,
+        "range": [
+          8,
+          27,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "decorators": [],
+      "end": 27,
+      "id": {
+        "end": 7,
+        "name": "C",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        27,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 27,
+  "range": [
+    0,
+    27,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class C { async #m() {} } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 23,
+            "key": {
+              "end": 18,
+              "name": "m",
+              "range": [
+                10,
+                18,
+              ],
+              "start": 10,
+              "type": "PrivateIdentifier",
+            },
+            "kind": "method",
+            "range": [
+              10,
+              23,
+            ],
+            "start": 10,
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": true,
+              "body": {
+                "body": [],
+                "end": 23,
+                "range": [
+                  21,
+                  23,
+                ],
+                "start": 21,
+                "type": "BlockStatement",
+              },
+              "end": 23,
+              "generator": false,
+              "id": null,
+              "params": [],
+              "range": [
+                18,
+                23,
+              ],
+              "start": 18,
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "end": 25,
+        "range": [
+          8,
+          25,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "end": 25,
+      "id": {
+        "end": 7,
+        "name": "C",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        25,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 25,
+  "range": [
+    0,
+    25,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class C { async * #m() {} } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 25,
+            "key": {
+              "end": 20,
+              "name": "m",
+              "range": [
+                10,
+                20,
+              ],
+              "start": 10,
+              "type": "PrivateIdentifier",
+            },
+            "kind": "method",
+            "range": [
+              10,
+              25,
+            ],
+            "start": 10,
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": true,
+              "body": {
+                "body": [],
+                "end": 25,
+                "range": [
+                  23,
+                  25,
+                ],
+                "start": 23,
+                "type": "BlockStatement",
+              },
+              "end": 25,
+              "generator": true,
+              "id": null,
+              "params": [],
+              "range": [
+                20,
+                25,
+              ],
+              "start": 20,
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "end": 27,
+        "range": [
+          8,
+          27,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "end": 27,
+      "id": {
+        "end": 7,
+        "name": "C",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        27,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 27,
+  "range": [
+    0,
+    27,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class C { get #m() {} } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 21,
+            "key": {
+              "end": 16,
+              "name": "m",
+              "range": [
+                10,
+                16,
+              ],
+              "start": 10,
+              "type": "PrivateIdentifier",
+            },
+            "kind": "get",
+            "range": [
+              10,
+              21,
+            ],
+            "start": 10,
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "end": 21,
+                "range": [
+                  19,
+                  21,
+                ],
+                "start": 19,
+                "type": "BlockStatement",
+              },
+              "end": 21,
+              "generator": false,
+              "id": null,
+              "params": [],
+              "range": [
+                16,
+                21,
+              ],
+              "start": 16,
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "end": 23,
+        "range": [
+          8,
+          23,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "end": 23,
+      "id": {
+        "end": 7,
+        "name": "C",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        23,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 23,
+  "range": [
+    0,
+    23,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`Next - Private methods > Next - Private methods (pass) > class C { get #℘() {} set #℘(x) {} a() { return this.#℘; } b(value) { this.#℘ = x; } }; 1`] = `
 {
   "body": [
@@ -1988,6 +2442,108 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { get 
     },
   ],
   "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class C { set #m(v) {} } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 22,
+            "key": {
+              "end": 16,
+              "name": "m",
+              "range": [
+                10,
+                16,
+              ],
+              "start": 10,
+              "type": "PrivateIdentifier",
+            },
+            "kind": "set",
+            "range": [
+              10,
+              22,
+            ],
+            "start": 10,
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "end": 22,
+                "range": [
+                  20,
+                  22,
+                ],
+                "start": 20,
+                "type": "BlockStatement",
+              },
+              "end": 22,
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "end": 18,
+                  "name": "v",
+                  "range": [
+                    17,
+                    18,
+                  ],
+                  "start": 17,
+                  "type": "Identifier",
+                },
+              ],
+              "range": [
+                16,
+                22,
+              ],
+              "start": 16,
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "end": 24,
+        "range": [
+          8,
+          24,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "end": 24,
+      "id": {
+        "end": 7,
+        "name": "C",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        24,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 24,
+  "range": [
+    0,
+    24,
+  ],
+  "sourceType": "script",
+  "start": 0,
   "type": "Program",
 }
 `;

@@ -485,5 +485,11 @@ describe('Next - Private methods', () => {
     ['class a {#𐌭人}', Context.OptionsRanges],
     ['class a {#人}', Context.OptionsRanges],
     ['class a {#𐌭}', Context.OptionsRanges],
+    ['class C { get #m() {} }', Context.OptionsRanges],
+    ['class C { set #m(v) {} }', Context.OptionsRanges],
+    ['class C { async #m() {} }', Context.OptionsRanges],
+    ['class C { * #m(v) {} }', Context.OptionsRanges],
+    ['class C { async * #m() {} }', Context.OptionsRanges],
+    ['class C { accessor #x = 1 }', Context.OptionsRanges | Context.OptionsNext],
   ]);
 });
