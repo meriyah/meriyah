@@ -4292,13 +4292,9 @@ export function parseFunctionBody(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseSuperExpression(
-  parser: ParserState,
-  context: Context,
-  start: number,
-  line: number,
-  column: number,
-): ESTree.Super {
+export function parseSuperExpression(parser: ParserState, context: Context): ESTree.Super {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   nextToken(parser, context);
 
   switch (parser.getToken()) {
@@ -4322,7 +4318,7 @@ export function parseSuperExpression(
       report(parser, Errors.UnexpectedToken, 'super');
   }
 
-  return finishNode(parser, context, start, line, column, { type: 'Super' });
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, { type: 'Super' });
 }
 
 /**
@@ -4887,7 +4883,7 @@ export function parsePrimaryExpression(
     case Token.ClassKeyword:
       return parseClassExpression(parser, context, privateScope, inGroup, start, line, column);
     case Token.SuperKeyword:
-      return parseSuperExpression(parser, context, start, line, column);
+      return parseSuperExpression(parser, context);
     case Token.TemplateSpan:
       return parseTemplateLiteral(parser, context, start, line, column);
     case Token.TemplateContinuation:
