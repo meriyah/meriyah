@@ -594,7 +594,7 @@ export function parseStatementListItem(
         column,
       );
     default:
-      return parseStatement(parser, context, scope, privateScope, origin, labels, 1, start, line, column);
+      return parseStatement(parser, context, scope, privateScope, origin, labels, 1);
   }
 }
 
@@ -614,10 +614,9 @@ export function parseStatement(
   origin: Origin,
   labels: ESTree.Labels,
   allowFuncDecl: 0 | 1,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.Statement {
+  const { tokenIndex: start, tokenLine: line, tokenColumn: column } = parser;
+
   // Statement ::
   //   Block
   //   VariableStatement
@@ -1025,18 +1024,7 @@ export function parseLabelledStatement(
           parser.tokenLine,
           parser.tokenColumn,
         )
-      : parseStatement(
-          parser,
-          context,
-          scope,
-          privateScope,
-          origin,
-          labels,
-          allowFuncDecl,
-          parser.tokenIndex,
-          parser.tokenLine,
-          parser.tokenColumn,
-        );
+      : parseStatement(parser, context, scope, privateScope, origin, labels, allowFuncDecl);
 
   return finishNode(parser, context, start, line, column, {
     type: 'LabeledStatement',
@@ -1423,18 +1411,7 @@ export function parseConsequentOrAlternative(
     // Disallow if web compatibility is off
     (context & Context.OptionsWebCompat) === 0 ||
     parser.getToken() !== Token.FunctionKeyword
-    ? parseStatement(
-        parser,
-        context,
-        scope,
-        privateScope,
-        Origin.None,
-        { $: labels },
-        0,
-        parser.tokenIndex,
-        parser.tokenLine,
-        parser.tokenColumn,
-      )
+    ? parseStatement(parser, context, scope, privateScope, Origin.None, { $: labels }, 0)
     : parseFunctionDeclaration(
         parser,
         context,
@@ -1586,9 +1563,6 @@ export function parseWhileStatement(
  *
  * @param parser  Parser object
  * @param context Context masks
- * @param start Start pos of node
- * @param line
- * @param column
  */
 export function parseIterationStatementBody(
   parser: ParserState,
@@ -1605,9 +1579,6 @@ export function parseIterationStatementBody(
     Origin.None,
     { loop: 1, $: labels },
     0,
-    parser.tokenIndex,
-    parser.tokenLine,
-    parser.tokenColumn,
   );
 }
 
@@ -1716,18 +1687,7 @@ export function parseWithStatement(
     parser.tokenColumn,
   );
   consume(parser, context | Context.AllowRegExp, Token.RightParen);
-  const body = parseStatement(
-    parser,
-    context,
-    scope,
-    privateScope,
-    Origin.BlockStatement,
-    labels,
-    0,
-    parser.tokenIndex,
-    parser.tokenLine,
-    parser.tokenColumn,
-  );
+  const body = parseStatement(parser, context, scope, privateScope, Origin.BlockStatement, labels, 0);
   return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'WithStatement',
     object,
