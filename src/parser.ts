@@ -5220,10 +5220,8 @@ function parseSpreadElement(
   parser: ParserState,
   context: Context,
   privateScope: PrivateScopeState | undefined,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.SpreadElement {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
   consume(parser, context | Context.AllowRegExp, Token.Ellipsis);
   const argument = parseExpression(
@@ -5237,7 +5235,7 @@ function parseSpreadElement(
     parser.tokenColumn,
   );
   parser.assignable = AssignmentKind.Assignable;
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'SpreadElement',
     argument,
   });
@@ -5268,9 +5266,7 @@ export function parseArguments(
 
   while (parser.getToken() !== Token.RightParen) {
     if (parser.getToken() === Token.Ellipsis) {
-      args.push(
-        parseSpreadElement(parser, context, privateScope, parser.tokenIndex, parser.tokenLine, parser.tokenColumn),
-      );
+      args.push(parseSpreadElement(parser, context, privateScope));
     } else {
       args.push(
         parseExpression(
@@ -6016,7 +6012,6 @@ export function parseArrayExpressionOrPattern(
  * @param column Start of column
  * @param node ESTree AST node
  */
-
 function parseArrayOrObjectAssignmentPattern(
   parser: ParserState,
   context: Context,
