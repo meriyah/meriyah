@@ -350,7 +350,7 @@ describe('Next - Decorators', () => {
     ['@a class G {}', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
     ['class A { @dec accessor a }', Context.OptionsNext | Context.OptionsLoc],
     ['class A { @dec accessor #a }', Context.OptionsNext],
-    ['@dec() class C {}', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
-    ['@x.y class D {}', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
+    ['@\n dec() class C {}', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
+    ['@\n x.y class D {}', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
   ]);
 });

@@ -80,15 +80,15 @@ exports[`Next - Decorators > Next - Decorators (pass) > (@foo('bar')
                   "line": 1,
                 },
                 "start": {
-                  "column": 1,
+                  "column": 5,
                   "line": 1,
                 },
               },
               "range": [
-                1,
+                5,
                 12,
               ],
-              "start": 1,
+              "start": 5,
               "type": "CallExpression",
             },
             "loc": {
@@ -282,6 +282,320 @@ exports[`Next - Decorators > Next - Decorators (pass) > (class A { @foo get gett
     },
   ],
   "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Decorators > Next - Decorators (pass) > @
+ dec() class C {} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [],
+        "end": 19,
+        "loc": {
+          "end": {
+            "column": 17,
+            "line": 2,
+          },
+          "start": {
+            "column": 15,
+            "line": 2,
+          },
+        },
+        "range": [
+          17,
+          19,
+        ],
+        "start": 17,
+        "type": "ClassBody",
+      },
+      "decorators": [
+        {
+          "end": 8,
+          "expression": {
+            "arguments": [],
+            "callee": {
+              "end": 6,
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 2,
+                },
+              },
+              "name": "dec",
+              "range": [
+                3,
+                6,
+              ],
+              "start": 3,
+              "type": "Identifier",
+            },
+            "end": 8,
+            "loc": {
+              "end": {
+                "column": 6,
+                "line": 2,
+              },
+              "start": {
+                "column": 4,
+                "line": 2,
+              },
+            },
+            "range": [
+              6,
+              8,
+            ],
+            "start": 6,
+            "type": "CallExpression",
+          },
+          "loc": {
+            "end": {
+              "column": 6,
+              "line": 2,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "range": [
+            0,
+            8,
+          ],
+          "start": 0,
+          "type": "Decorator",
+        },
+      ],
+      "end": 19,
+      "id": {
+        "end": 16,
+        "loc": {
+          "end": {
+            "column": 14,
+            "line": 2,
+          },
+          "start": {
+            "column": 13,
+            "line": 2,
+          },
+        },
+        "name": "C",
+        "range": [
+          15,
+          16,
+        ],
+        "start": 15,
+        "type": "Identifier",
+      },
+      "loc": {
+        "end": {
+          "column": 17,
+          "line": 2,
+        },
+        "start": {
+          "column": 7,
+          "line": 2,
+        },
+      },
+      "range": [
+        9,
+        19,
+      ],
+      "start": 9,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 19,
+  "loc": {
+    "end": {
+      "column": 17,
+      "line": 2,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    19,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Next - Decorators > Next - Decorators (pass) > @
+ x.y class D {} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [],
+        "end": 17,
+        "loc": {
+          "end": {
+            "column": 15,
+            "line": 2,
+          },
+          "start": {
+            "column": 13,
+            "line": 2,
+          },
+        },
+        "range": [
+          15,
+          17,
+        ],
+        "start": 15,
+        "type": "ClassBody",
+      },
+      "decorators": [
+        {
+          "end": 6,
+          "expression": {
+            "computed": false,
+            "end": 6,
+            "loc": {
+              "end": {
+                "column": 4,
+                "line": 2,
+              },
+              "start": {
+                "column": 2,
+                "line": 2,
+              },
+            },
+            "object": {
+              "end": 4,
+              "loc": {
+                "end": {
+                  "column": 2,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 2,
+                },
+              },
+              "name": "x",
+              "range": [
+                3,
+                4,
+              ],
+              "start": 3,
+              "type": "Identifier",
+            },
+            "property": {
+              "end": 6,
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 2,
+                },
+              },
+              "name": "y",
+              "range": [
+                5,
+                6,
+              ],
+              "start": 5,
+              "type": "Identifier",
+            },
+            "range": [
+              4,
+              6,
+            ],
+            "start": 4,
+            "type": "MemberExpression",
+          },
+          "loc": {
+            "end": {
+              "column": 4,
+              "line": 2,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "range": [
+            0,
+            6,
+          ],
+          "start": 0,
+          "type": "Decorator",
+        },
+      ],
+      "end": 17,
+      "id": {
+        "end": 14,
+        "loc": {
+          "end": {
+            "column": 12,
+            "line": 2,
+          },
+          "start": {
+            "column": 11,
+            "line": 2,
+          },
+        },
+        "name": "D",
+        "range": [
+          13,
+          14,
+        ],
+        "start": 13,
+        "type": "Identifier",
+      },
+      "loc": {
+        "end": {
+          "column": 15,
+          "line": 2,
+        },
+        "start": {
+          "column": 5,
+          "line": 2,
+        },
+      },
+      "range": [
+        7,
+        17,
+      ],
+      "start": 7,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 17,
+  "loc": {
+    "end": {
+      "column": 15,
+      "line": 2,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    17,
+  ],
+  "sourceType": "script",
+  "start": 0,
   "type": "Program",
 }
 `;
@@ -807,152 +1121,6 @@ exports[`Next - Decorators > Next - Decorators (pass) > @bar export default
     43,
   ],
   "sourceType": "module",
-  "start": 0,
-  "type": "Program",
-}
-`;
-
-exports[`Next - Decorators > Next - Decorators (pass) > @dec() class C {} 1`] = `
-{
-  "body": [
-    {
-      "body": {
-        "body": [],
-        "end": 17,
-        "loc": {
-          "end": {
-            "column": 17,
-            "line": 1,
-          },
-          "start": {
-            "column": 15,
-            "line": 1,
-          },
-        },
-        "range": [
-          15,
-          17,
-        ],
-        "start": 15,
-        "type": "ClassBody",
-      },
-      "decorators": [
-        {
-          "end": 6,
-          "expression": {
-            "arguments": [],
-            "callee": {
-              "end": 4,
-              "loc": {
-                "end": {
-                  "column": 4,
-                  "line": 1,
-                },
-                "start": {
-                  "column": 1,
-                  "line": 1,
-                },
-              },
-              "name": "dec",
-              "range": [
-                1,
-                4,
-              ],
-              "start": 1,
-              "type": "Identifier",
-            },
-            "end": 6,
-            "loc": {
-              "end": {
-                "column": 6,
-                "line": 1,
-              },
-              "start": {
-                "column": 0,
-                "line": 1,
-              },
-            },
-            "range": [
-              0,
-              6,
-            ],
-            "start": 0,
-            "type": "CallExpression",
-          },
-          "loc": {
-            "end": {
-              "column": 6,
-              "line": 1,
-            },
-            "start": {
-              "column": 0,
-              "line": 1,
-            },
-          },
-          "range": [
-            0,
-            6,
-          ],
-          "start": 0,
-          "type": "Decorator",
-        },
-      ],
-      "end": 17,
-      "id": {
-        "end": 14,
-        "loc": {
-          "end": {
-            "column": 14,
-            "line": 1,
-          },
-          "start": {
-            "column": 13,
-            "line": 1,
-          },
-        },
-        "name": "C",
-        "range": [
-          13,
-          14,
-        ],
-        "start": 13,
-        "type": "Identifier",
-      },
-      "loc": {
-        "end": {
-          "column": 17,
-          "line": 1,
-        },
-        "start": {
-          "column": 7,
-          "line": 1,
-        },
-      },
-      "range": [
-        7,
-        17,
-      ],
-      "start": 7,
-      "superClass": null,
-      "type": "ClassDeclaration",
-    },
-  ],
-  "end": 17,
-  "loc": {
-    "end": {
-      "column": 17,
-      "line": 1,
-    },
-    "start": {
-      "column": 0,
-      "line": 1,
-    },
-  },
-  "range": [
-    0,
-    17,
-  ],
-  "sourceType": "script",
   "start": 0,
   "type": "Program",
 }
@@ -1878,172 +2046,6 @@ exports[`Next - Decorators > Next - Decorators (pass) > @pushElement({
     },
   ],
   "sourceType": "module",
-  "type": "Program",
-}
-`;
-
-exports[`Next - Decorators > Next - Decorators (pass) > @x.y class D {} 1`] = `
-{
-  "body": [
-    {
-      "body": {
-        "body": [],
-        "end": 15,
-        "loc": {
-          "end": {
-            "column": 15,
-            "line": 1,
-          },
-          "start": {
-            "column": 13,
-            "line": 1,
-          },
-        },
-        "range": [
-          13,
-          15,
-        ],
-        "start": 13,
-        "type": "ClassBody",
-      },
-      "decorators": [
-        {
-          "end": 4,
-          "expression": {
-            "computed": false,
-            "end": 4,
-            "loc": {
-              "end": {
-                "column": 4,
-                "line": 1,
-              },
-              "start": {
-                "column": 0,
-                "line": 1,
-              },
-            },
-            "object": {
-              "end": 2,
-              "loc": {
-                "end": {
-                  "column": 2,
-                  "line": 1,
-                },
-                "start": {
-                  "column": 1,
-                  "line": 1,
-                },
-              },
-              "name": "x",
-              "range": [
-                1,
-                2,
-              ],
-              "start": 1,
-              "type": "Identifier",
-            },
-            "property": {
-              "end": 4,
-              "loc": {
-                "end": {
-                  "column": 4,
-                  "line": 1,
-                },
-                "start": {
-                  "column": 3,
-                  "line": 1,
-                },
-              },
-              "name": "y",
-              "range": [
-                3,
-                4,
-              ],
-              "start": 3,
-              "type": "Identifier",
-            },
-            "range": [
-              0,
-              4,
-            ],
-            "start": 0,
-            "type": "MemberExpression",
-          },
-          "loc": {
-            "end": {
-              "column": 4,
-              "line": 1,
-            },
-            "start": {
-              "column": 0,
-              "line": 1,
-            },
-          },
-          "range": [
-            0,
-            4,
-          ],
-          "start": 0,
-          "type": "Decorator",
-        },
-      ],
-      "end": 15,
-      "id": {
-        "end": 12,
-        "loc": {
-          "end": {
-            "column": 12,
-            "line": 1,
-          },
-          "start": {
-            "column": 11,
-            "line": 1,
-          },
-        },
-        "name": "D",
-        "range": [
-          11,
-          12,
-        ],
-        "start": 11,
-        "type": "Identifier",
-      },
-      "loc": {
-        "end": {
-          "column": 15,
-          "line": 1,
-        },
-        "start": {
-          "column": 5,
-          "line": 1,
-        },
-      },
-      "range": [
-        5,
-        15,
-      ],
-      "start": 5,
-      "superClass": null,
-      "type": "ClassDeclaration",
-    },
-  ],
-  "end": 15,
-  "loc": {
-    "end": {
-      "column": 15,
-      "line": 1,
-    },
-    "start": {
-      "column": 0,
-      "line": 1,
-    },
-  },
-  "range": [
-    0,
-    15,
-  ],
-  "sourceType": "script",
-  "start": 0,
   "type": "Program",
 }
 `;
