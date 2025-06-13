@@ -3709,9 +3709,6 @@ export function parseUnaryExpression(
   context: Context,
   privateScope: PrivateScopeState | undefined,
   isLHS: 0 | 1,
-  start: number,
-  line: number,
-  column: number,
   inGroup: 0 | 1,
 ): ESTree.UnaryExpression {
   /**
@@ -3727,6 +3724,7 @@ export function parseUnaryExpression(
    *      9) AwaitExpression
    */
   if (!isLHS) report(parser, Errors.Unexpected);
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
   const unaryOperator = parser.getToken();
   nextToken(parser, context | Context.AllowRegExp);
   const arg = parseLeftHandSideExpression(parser, context, privateScope, 0, inGroup, 1);
@@ -3742,7 +3740,7 @@ export function parseUnaryExpression(
 
   parser.assignable = AssignmentKind.CannotAssign;
 
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'UnaryExpression',
     operator: KeywordDescTable[unaryOperator & Token.Type] as ESTree.UnaryOperator,
     argument: arg,
@@ -4669,7 +4667,7 @@ export function parsePrimaryExpression(
     case Token.Subtract:
     case Token.TypeofKeyword:
     case Token.VoidKeyword:
-      return parseUnaryExpression(parser, context, privateScope, isLHS, start, line, column, inGroup);
+      return parseUnaryExpression(parser, context, privateScope, isLHS, inGroup);
     case Token.FunctionKeyword:
       return parseFunctionExpression(parser, context, privateScope, /* isAsync */ 0, inGroup, start, line, column);
     case Token.LeftBrace:
