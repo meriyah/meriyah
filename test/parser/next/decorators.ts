@@ -352,5 +352,13 @@ describe('Next - Decorators', () => {
     ['class A { @dec accessor #a }', Context.OptionsNext],
     ['@\n dec() class C {}', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
     ['@\n x.y class D {}', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
+    [
+      '@\n (dec()) class C {}',
+      Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc | Context.OptionsPreserveParens,
+    ],
+    [
+      '@\n (x.y) class D {}',
+      Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc | Context.OptionsPreserveParens,
+    ],
   ]);
 });
