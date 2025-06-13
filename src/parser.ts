@@ -10589,7 +10589,7 @@ function parseJSXClosingElement(parser: ParserState, context: Context, inJSXChil
   const { tokenIndex, tokenLine, tokenColumn } = parser;
 
   consume(parser, context, Token.Divide);
-  const name = parseJSXElementName(parser, context, parser.tokenIndex, parser.tokenLine, parser.tokenColumn);
+  const name = parseJSXElementName(parser, context);
 
   if (parser.getToken() !== Token.GreaterThan) {
     report(parser, Errors.ExpectedToken, KeywordDescTable[Token.GreaterThan & Token.Type]);
@@ -10834,16 +10834,10 @@ function parseJSXOpeningElementOrSelfCloseElement(
  *
  * @param parser Parser object
  * @param context  Context masks
- * @param start
- * @param line
- * @param column
  */
 function parseJSXElementName(
   parser: ParserState,
   context: Context,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.JSXIdentifier | ESTree.JSXMemberExpression | ESTree.JSXNamespacedName {
   rescanJSXIdentifier(parser);
 
@@ -10855,7 +10849,7 @@ function parseJSXElementName(
   // Member expression
   while (consumeOpt(parser, context, Token.Period)) {
     rescanJSXIdentifier(parser);
-    key = parseJSXMemberExpression(parser, context, key, start, line, column);
+    key = parseJSXMemberExpression(parser, context, key);
   }
   return key;
 }
@@ -10865,20 +10859,16 @@ function parseJSXElementName(
  *
  * @param parser Parser object
  * @param context  Context masks
- * @param start
- * @param line
- * @param column
  */
 export function parseJSXMemberExpression(
   parser: ParserState,
   context: Context,
   object: ESTree.JSXIdentifier | ESTree.JSXMemberExpression,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.JSXMemberExpression {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   const property = parseJSXIdentifier(parser, context);
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'JSXMemberExpression',
     object,
     property,
