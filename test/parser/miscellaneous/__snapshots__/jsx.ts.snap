@@ -4191,7 +4191,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div {...a }>{...b}<
                 "line": 1,
               },
               "start": {
-                "column": 14,
+                "column": 13,
                 "line": 1,
               },
             },
