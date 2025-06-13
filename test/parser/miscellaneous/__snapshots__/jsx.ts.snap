@@ -2682,10 +2682,10 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a:b><a:b></a:b></a:
                   "type": "JSXIdentifier",
                 },
                 "range": [
-                  13,
+                  12,
                   15,
                 ],
-                "start": 13,
+                "start": 12,
                 "type": "JSXNamespacedName",
               },
               "range": [
@@ -2722,10 +2722,10 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a:b><a:b></a:b></a:
                   "type": "JSXIdentifier",
                 },
                 "range": [
-                  7,
+                  6,
                   9,
                 ],
-                "start": 7,
+                "start": 6,
                 "type": "JSXNamespacedName",
               },
               "range": [
@@ -2769,10 +2769,10 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a:b><a:b></a:b></a:
               "type": "JSXIdentifier",
             },
             "range": [
-              19,
+              18,
               21,
             ],
-            "start": 19,
+            "start": 18,
             "type": "JSXNamespacedName",
           },
           "range": [
@@ -2809,10 +2809,10 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a:b><a:b></a:b></a:
               "type": "JSXIdentifier",
             },
             "range": [
-              2,
+              1,
               4,
             ],
-            "start": 2,
+            "start": 1,
             "type": "JSXNamespacedName",
           },
           "range": [
@@ -7512,10 +7512,10 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <n:a /> 1`] = `
               "type": "JSXIdentifier",
             },
             "range": [
-              2,
+              1,
               4,
             ],
-            "start": 2,
+            "start": 1,
             "type": "JSXNamespacedName",
           },
           "range": [

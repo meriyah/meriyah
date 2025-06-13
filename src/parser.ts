@@ -10304,14 +10304,15 @@ function parseJSXElementName(
   parser: Parser,
   context: Context,
 ): ESTree.JSXIdentifier | ESTree.JSXMemberExpression | ESTree.JSXNamespacedName {
-  rescanJSXIdentifier(parser);
-
   const { tokenIndex, tokenLine, tokenColumn } = parser;
+
+  rescanJSXIdentifier(parser);
 
   let key: ESTree.JSXIdentifier | ESTree.JSXMemberExpression = parseJSXIdentifier(parser, context);
 
   // Namespace
-  if (parser.getToken() === Token.Colon) return parseJSXNamespacedName(parser, context, key);
+  if (parser.getToken() === Token.Colon)
+    return parseJSXNamespacedName(parser, context, key, tokenIndex, tokenLine, tokenColumn);
 
   // Member expression
   while (consumeOpt(parser, context, Token.Period)) {
@@ -10416,7 +10417,7 @@ function parseJsxAttribute(
   let name: ESTree.JSXNamespacedName | ESTree.JSXIdentifier = parseJSXIdentifier(parser, context);
 
   if (parser.getToken() === Token.Colon) {
-    name = parseJSXNamespacedName(parser, context, name);
+    name = parseJSXNamespacedName(parser, context, name, tokenIndex, tokenLine, tokenColumn);
   }
 
   // HTML empty attribute
@@ -10464,12 +10465,13 @@ function parseJSXNamespacedName(
   parser: Parser,
   context: Context,
   namespace: ESTree.JSXIdentifier | ESTree.JSXMemberExpression,
+  start: number,
+  line: number,
+  column: number,
 ): ESTree.JSXNamespacedName {
-  const { tokenIndex, tokenLine, tokenColumn } = parser;
-
   consume(parser, context, Token.Colon);
   const name = parseJSXIdentifier(parser, context);
-  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
+  return finishNode(parser, context, start, line, column, {
     type: 'JSXNamespacedName',
     namespace,
     name,
