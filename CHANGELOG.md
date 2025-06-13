@@ -1,3 +1,24 @@
+# [6.1.0](https://github.com/meriyah/meriyah/compare/v6.0.6...v6.1.0) (2025-06-13)
+
+
+### Bug Fixes
+
+* **parser:** `attributes` on `{ExportAll,ExportNamed,Import}Declaration` is now always an array ([#423](https://github.com/meriyah/meriyah/issues/423)) ([30ea976](https://github.com/meriyah/meriyah/commit/30ea9763596050690e342257e19bdc625a0c38c8))
+* **parser:** add missing `generator` property to `ArrowFunctionExpression` ([#424](https://github.com/meriyah/meriyah/issues/424)) ([2fe6b54](https://github.com/meriyah/meriyah/commit/2fe6b54bebe40835d15ac505a210d17cb11dc467))
+* **parser:** fix `bigint` property on `BigintLiteral` ([#422](https://github.com/meriyah/meriyah/issues/422)) ([ad1922d](https://github.com/meriyah/meriyah/commit/ad1922de74ad5f8f2ab63d5e1ee809cce6c0572b))
+* **parser:** fix location of `StaticBlock` ([#434](https://github.com/meriyah/meriyah/issues/434)) ([2b9e923](https://github.com/meriyah/meriyah/commit/2b9e92333088676424234a840ee51ef5f173d959))
+* preserve nested `ParenthesizedExpression` ([#432](https://github.com/meriyah/meriyah/issues/432)) ([ae6cae5](https://github.com/meriyah/meriyah/commit/ae6cae5b1bb049408c4bf87555ad3cecb2841f0c))
+* remove `ESTree` export ([#398](https://github.com/meriyah/meriyah/issues/398)) ([49a96ff](https://github.com/meriyah/meriyah/commit/49a96ffcceda07018c927b81b3025fa3c8ddb16d))
+
+
+### Features
+
+* add `module-sync` condition ([#384](https://github.com/meriyah/meriyah/issues/384)) ([dc4a23e](https://github.com/meriyah/meriyah/commit/dc4a23e5f77ca0294eef7da0dc7a70f3858dfc7d))
+* **parser:** move "Import Attributes" out of "next" option ([#430](https://github.com/meriyah/meriyah/issues/430)) ([c5a87fd](https://github.com/meriyah/meriyah/commit/c5a87fdb7987e37531bde77623f8865028db5958))
+* remove location information from `ParseError.description` ([#390](https://github.com/meriyah/meriyah/issues/390)) ([2729651](https://github.com/meriyah/meriyah/commit/2729651f8fd8a740cf3d76eab87a679a4394a5e7))
+
+
+
 ## [6.0.6](https://github.com/meriyah/meriyah/compare/v6.0.5...v6.0.6) (2025-04-04)
 
 
