@@ -47,6 +47,7 @@ exports[`Expressions - Call > Expressions - Call (pass) >  obj
                             "start": 1,
                             "type": "Identifier",
                           },
+                          "optional": false,
                           "property": {
                             "end": 35,
                             "name": "foo",
@@ -64,6 +65,7 @@ exports[`Expressions - Call > Expressions - Call (pass) >  obj
                           "start": 1,
                           "type": "MemberExpression",
                         },
+                        "optional": false,
                         "property": {
                           "end": 72,
                           "range": [
@@ -81,6 +83,7 @@ exports[`Expressions - Call > Expressions - Call (pass) >  obj
                         "start": 1,
                         "type": "MemberExpression",
                       },
+                      "optional": false,
                       "property": {
                         "end": 112,
                         "name": "baz",
@@ -99,6 +102,7 @@ exports[`Expressions - Call > Expressions - Call (pass) >  obj
                       "type": "MemberExpression",
                     },
                     "end": 114,
+                    "optional": false,
                     "range": [
                       1,
                       114,
@@ -106,6 +110,7 @@ exports[`Expressions - Call > Expressions - Call (pass) >  obj
                     "start": 1,
                     "type": "CallExpression",
                   },
+                  "optional": false,
                   "property": {
                     "end": 157,
                     "name": "foo",
@@ -123,6 +128,7 @@ exports[`Expressions - Call > Expressions - Call (pass) >  obj
                   "start": 1,
                   "type": "MemberExpression",
                 },
+                "optional": false,
                 "property": {
                   "end": 206,
                   "range": [
@@ -141,6 +147,7 @@ exports[`Expressions - Call > Expressions - Call (pass) >  obj
                 "type": "MemberExpression",
               },
               "end": 209,
+              "optional": false,
               "range": [
                 1,
                 209,
@@ -148,6 +155,7 @@ exports[`Expressions - Call > Expressions - Call (pass) >  obj
               "start": 1,
               "type": "CallExpression",
             },
+            "optional": false,
             "property": {
               "end": 260,
               "name": "baz",
@@ -166,6 +174,7 @@ exports[`Expressions - Call > Expressions - Call (pass) >  obj
             "type": "MemberExpression",
           },
           "end": 262,
+          "optional": false,
           "range": [
             1,
             262,
@@ -174,6 +183,7 @@ exports[`Expressions - Call > Expressions - Call (pass) >  obj
           "type": "CallExpression",
         },
         "end": 264,
+        "optional": false,
         "range": [
           1,
           264,
@@ -431,6 +441,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > (function(obj) {}({a: 
           "type": "FunctionExpression",
         },
         "end": 48,
+        "optional": false,
         "range": [
           1,
           48,
@@ -596,6 +607,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > (function(obj) {}({a: 
           "type": "FunctionExpression",
         },
         "end": 40,
+        "optional": false,
         "range": [
           1,
           40,
@@ -645,6 +657,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.b( c() ).d 1`] = `
                 "type": "Identifier",
               },
               "end": 8,
+              "optional": false,
               "range": [
                 5,
                 8,
@@ -666,6 +679,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.b( c() ).d 1`] = `
               "start": 0,
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "end": 3,
               "name": "b",
@@ -684,6 +698,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.b( c() ).d 1`] = `
             "type": "MemberExpression",
           },
           "end": 10,
+          "optional": false,
           "range": [
             0,
             10,
@@ -691,6 +706,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.b( c() ).d 1`] = `
           "start": 0,
           "type": "CallExpression",
         },
+        "optional": false,
         "property": {
           "end": 12,
           "name": "d",
@@ -743,6 +759,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.b( c() ).d.e 1`] = `
                   "name": "c",
                   "type": "Identifier",
                 },
+                "optional": false,
                 "type": "CallExpression",
               },
             ],
@@ -752,20 +769,24 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.b( c() ).d.e 1`] = `
                 "name": "a",
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "name": "b",
                 "type": "Identifier",
               },
               "type": "MemberExpression",
             },
+            "optional": false,
             "type": "CallExpression",
           },
+          "optional": false,
           "property": {
             "name": "d",
             "type": "Identifier",
           },
           "type": "MemberExpression",
         },
+        "optional": false,
         "property": {
           "name": "e",
           "type": "Identifier",
@@ -806,6 +827,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.b( c() ).d.e; 1`] = 
                   "type": "Identifier",
                 },
                 "end": 8,
+                "optional": false,
                 "range": [
                   5,
                   8,
@@ -827,6 +849,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.b( c() ).d.e; 1`] = 
                 "start": 0,
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "end": 3,
                 "name": "b",
@@ -845,6 +868,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.b( c() ).d.e; 1`] = 
               "type": "MemberExpression",
             },
             "end": 10,
+            "optional": false,
             "range": [
               0,
               10,
@@ -852,6 +876,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.b( c() ).d.e; 1`] = 
             "start": 0,
             "type": "CallExpression",
           },
+          "optional": false,
           "property": {
             "end": 12,
             "name": "d",
@@ -869,6 +894,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.b( c() ).d.e; 1`] = 
           "start": 0,
           "type": "MemberExpression",
         },
+        "optional": false,
         "property": {
           "end": 14,
           "name": "e",
@@ -925,6 +951,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.b( foo() ) 1`] = `
               "type": "Identifier",
             },
             "end": 10,
+            "optional": false,
             "range": [
               5,
               10,
@@ -946,6 +973,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.b( foo() ) 1`] = `
             "start": 0,
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "end": 3,
             "name": "b",
@@ -964,6 +992,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.b( foo() ) 1`] = `
           "type": "MemberExpression",
         },
         "end": 12,
+        "optional": false,
         "range": [
           0,
           12,
@@ -1010,6 +1039,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.b( o.bar ) 1`] = `
               "start": 5,
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "end": 10,
               "name": "bar",
@@ -1041,6 +1071,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.b( o.bar ) 1`] = `
             "start": 0,
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "end": 3,
             "name": "b",
@@ -1059,6 +1090,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.b( o.bar ) 1`] = `
           "type": "MemberExpression",
         },
         "end": 12,
+        "optional": false,
         "range": [
           0,
           12,
@@ -1105,6 +1137,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.b( o["bar"] ) 1`] = 
               "start": 5,
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "end": 12,
               "range": [
@@ -1136,6 +1169,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.b( o["bar"] ) 1`] = 
             "start": 0,
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "end": 3,
             "name": "b",
@@ -1154,6 +1188,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.b( o["bar"] ) 1`] = 
           "type": "MemberExpression",
         },
         "end": 15,
+        "optional": false,
         "range": [
           0,
           15,
@@ -1225,6 +1260,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.replace(/ /g, "") 1`
             "start": 0,
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "end": 9,
             "name": "replace",
@@ -1243,6 +1279,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > a.replace(/ /g, "") 1`
           "type": "MemberExpression",
         },
         "end": 19,
+        "optional": false,
         "range": [
           0,
           19,
@@ -1281,8 +1318,10 @@ exports[`Expressions - Call > Expressions - Call (pass) > async()() 1`] = `
             "name": "async",
             "type": "Identifier",
           },
+          "optional": false,
           "type": "CallExpression",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -1305,8 +1344,10 @@ exports[`Expressions - Call > Expressions - Call (pass) > async().a 1`] = `
             "name": "async",
             "type": "Identifier",
           },
+          "optional": false,
           "type": "CallExpression",
         },
+        "optional": false,
         "property": {
           "name": "a",
           "type": "Identifier",
@@ -1384,6 +1425,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > async({a}) 1`] = `
           "type": "Identifier",
         },
         "end": 10,
+        "optional": false,
         "range": [
           0,
           10,
@@ -1512,6 +1554,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > async({c=3} = {}) 1`] 
           "type": "Identifier",
         },
         "end": 17,
+        "optional": false,
         "range": [
           0,
           17,
@@ -1560,8 +1603,10 @@ exports[`Expressions - Call > Expressions - Call (pass) > async(a)(b) 1`] = `
             "name": "async",
             "type": "Identifier",
           },
+          "optional": false,
           "type": "CallExpression",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -1653,6 +1698,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > async(a)(s)(y)(n)(c) 1
                   "type": "Identifier",
                 },
                 "end": 8,
+                "optional": false,
                 "range": [
                   0,
                   8,
@@ -1661,6 +1707,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > async(a)(s)(y)(n)(c) 1
                 "type": "CallExpression",
               },
               "end": 11,
+              "optional": false,
               "range": [
                 0,
                 11,
@@ -1669,6 +1716,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > async(a)(s)(y)(n)(c) 1
               "type": "CallExpression",
             },
             "end": 14,
+            "optional": false,
             "range": [
               0,
               14,
@@ -1677,6 +1725,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > async(a)(s)(y)(n)(c) 1
             "type": "CallExpression",
           },
           "end": 17,
+          "optional": false,
           "range": [
             0,
             17,
@@ -1685,6 +1734,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > async(a)(s)(y)(n)(c) 1
           "type": "CallExpression",
         },
         "end": 20,
+        "optional": false,
         "range": [
           0,
           20,
@@ -1767,6 +1817,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > async(async(async(asyn
                               "type": "Identifier",
                             },
                             "end": 37,
+                            "optional": false,
                             "range": [
                               30,
                               37,
@@ -1786,6 +1837,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > async(async(async(asyn
                           "type": "Identifier",
                         },
                         "end": 38,
+                        "optional": false,
                         "range": [
                           24,
                           38,
@@ -1805,6 +1857,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > async(async(async(asyn
                       "type": "Identifier",
                     },
                     "end": 39,
+                    "optional": false,
                     "range": [
                       18,
                       39,
@@ -1824,6 +1877,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > async(async(async(asyn
                   "type": "Identifier",
                 },
                 "end": 40,
+                "optional": false,
                 "range": [
                   12,
                   40,
@@ -1843,6 +1897,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > async(async(async(asyn
               "type": "Identifier",
             },
             "end": 41,
+            "optional": false,
             "range": [
               6,
               41,
@@ -1862,6 +1917,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > async(async(async(asyn
           "type": "Identifier",
         },
         "end": 42,
+        "optional": false,
         "range": [
           0,
           42,
@@ -1931,6 +1987,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > async(x,) 1`] = `
           "name": "async",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -1961,6 +2018,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > call(await[1]) 1`] = `
               "start": 5,
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "end": 12,
               "range": [
@@ -1990,6 +2048,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > call(await[1]) 1`] = `
           "type": "Identifier",
         },
         "end": 14,
+        "optional": false,
         "range": [
           0,
           14,
@@ -2035,6 +2094,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo("abc", async) 1`] 
           "name": "foo",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -2084,6 +2144,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo("string", async / 
           "name": "foo",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -2145,6 +2206,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo()(1, 2, 3) 1`] = `
             "type": "Identifier",
           },
           "end": 5,
+          "optional": false,
           "range": [
             0,
             5,
@@ -2153,6 +2215,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo()(1, 2, 3) 1`] = `
           "type": "CallExpression",
         },
         "end": 14,
+        "optional": false,
         "range": [
           0,
           14,
@@ -2249,6 +2312,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo()(1, 2, 3, ...{}) 
             "type": "Identifier",
           },
           "end": 5,
+          "optional": false,
           "range": [
             0,
             5,
@@ -2257,6 +2321,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo()(1, 2, 3, ...{}) 
           "type": "CallExpression",
         },
         "end": 21,
+        "optional": false,
         "range": [
           0,
           21,
@@ -2385,6 +2450,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo({c=3} = {}) 1`] = 
           "type": "Identifier",
         },
         "end": 15,
+        "optional": false,
         "range": [
           0,
           15,
@@ -2430,6 +2496,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo(1, async,) 1`] = `
           "name": "foo",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -2463,6 +2530,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo(123, async,await,)
           "name": "foo",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -2488,6 +2556,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo(200) 1`] = `
           "name": "foo",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -2527,6 +2596,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo(a) 1`] = `
           "type": "Identifier",
         },
         "end": 6,
+        "optional": false,
         "range": [
           0,
           6,
@@ -2595,6 +2665,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo(a)(b) 1`] = `
             "type": "Identifier",
           },
           "end": 6,
+          "optional": false,
           "range": [
             0,
             6,
@@ -2603,6 +2674,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo(a)(b) 1`] = `
           "type": "CallExpression",
         },
         "end": 9,
+        "optional": false,
         "range": [
           0,
           9,
@@ -2651,8 +2723,10 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo(a)(b) 2`] = `
             "name": "foo",
             "type": "Identifier",
           },
+          "optional": false,
           "type": "CallExpression",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -2685,8 +2759,10 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo(a)(b) 3`] = `
             "name": "foo",
             "type": "Identifier",
           },
+          "optional": false,
           "type": "CallExpression",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -2740,14 +2816,19 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo(a)(b)(c)(d)(e) 1`]
                   "name": "foo",
                   "type": "Identifier",
                 },
+                "optional": false,
                 "type": "CallExpression",
               },
+              "optional": false,
               "type": "CallExpression",
             },
+            "optional": false,
             "type": "CallExpression",
           },
+          "optional": false,
           "type": "CallExpression",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -2807,6 +2888,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo(a, b, c) 1`] = `
           "type": "Identifier",
         },
         "end": 12,
+        "optional": false,
         "range": [
           0,
           12,
@@ -2848,6 +2930,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo(async,) 1`] = `
           "name": "foo",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -2877,6 +2960,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo(async,await,) 1`] 
           "name": "foo",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -2900,6 +2984,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo(async.abc = await)
                 "name": "async",
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "name": "abc",
                 "type": "Identifier",
@@ -2918,6 +3003,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo(async.abc = await)
           "name": "foo",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -2942,12 +3028,14 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo(async.await[foo]) 
                 "name": "async",
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "name": "await",
                 "type": "Identifier",
               },
               "type": "MemberExpression",
             },
+            "optional": false,
             "property": {
               "name": "foo",
               "type": "Identifier",
@@ -2959,6 +3047,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo(async.await[foo]) 
           "name": "foo",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -3028,6 +3117,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo(x,x=1); 1`] = `
           "type": "Identifier",
         },
         "end": 10,
+        "optional": false,
         "range": [
           0,
           10,
@@ -3073,6 +3163,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo(x,y,) 1`] = `
           "name": "foo",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -3192,6 +3283,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > foo(x=1,y=x,x+y) 1`] =
           "type": "Identifier",
         },
         "end": 16,
+        "optional": false,
         "range": [
           0,
           16,
@@ -3276,6 +3368,7 @@ exports[`Expressions - Call > Expressions - Call (pass) > i(a, b, ...c); 1`] = `
           "type": "Identifier",
         },
         "end": 13,
+        "optional": false,
         "range": [
           0,
           13,

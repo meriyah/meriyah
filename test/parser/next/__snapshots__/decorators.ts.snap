@@ -80,15 +80,16 @@ exports[`Next - Decorators > Next - Decorators (pass) > (@foo('bar')
                   "line": 1,
                 },
                 "start": {
-                  "column": 1,
+                  "column": 5,
                   "line": 1,
                 },
               },
+              "optional": false,
               "range": [
-                1,
+                5,
                 12,
               ],
-              "start": 1,
+              "start": 5,
               "type": "CallExpression",
             },
             "loc": {
@@ -210,6 +211,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > (@foo('bar')
                 "name": "foo",
                 "type": "Identifier",
               },
+              "optional": false,
               "type": "CallExpression",
             },
             "type": "Decorator",
@@ -282,6 +284,676 @@ exports[`Next - Decorators > Next - Decorators (pass) > (class A { @foo get gett
     },
   ],
   "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Decorators > Next - Decorators (pass) > @
+ (dec()) class C {} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [],
+        "end": 21,
+        "loc": {
+          "end": {
+            "column": 19,
+            "line": 2,
+          },
+          "start": {
+            "column": 17,
+            "line": 2,
+          },
+        },
+        "range": [
+          19,
+          21,
+        ],
+        "start": 19,
+        "type": "ClassBody",
+      },
+      "decorators": [
+        {
+          "end": 10,
+          "expression": {
+            "end": 10,
+            "expression": {
+              "arguments": [],
+              "callee": {
+                "end": 7,
+                "loc": {
+                  "end": {
+                    "column": 5,
+                    "line": 2,
+                  },
+                  "start": {
+                    "column": 2,
+                    "line": 2,
+                  },
+                },
+                "name": "dec",
+                "range": [
+                  4,
+                  7,
+                ],
+                "start": 4,
+                "type": "Identifier",
+              },
+              "end": 9,
+              "loc": {
+                "end": {
+                  "column": 7,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 2,
+                  "line": 2,
+                },
+              },
+              "optional": false,
+              "range": [
+                4,
+                9,
+              ],
+              "start": 4,
+              "type": "CallExpression",
+            },
+            "loc": {
+              "end": {
+                "column": 8,
+                "line": 2,
+              },
+              "start": {
+                "column": 1,
+                "line": 2,
+              },
+            },
+            "range": [
+              3,
+              10,
+            ],
+            "start": 3,
+            "type": "ParenthesizedExpression",
+          },
+          "loc": {
+            "end": {
+              "column": 8,
+              "line": 2,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "range": [
+            0,
+            10,
+          ],
+          "start": 0,
+          "type": "Decorator",
+        },
+      ],
+      "end": 21,
+      "id": {
+        "end": 18,
+        "loc": {
+          "end": {
+            "column": 16,
+            "line": 2,
+          },
+          "start": {
+            "column": 15,
+            "line": 2,
+          },
+        },
+        "name": "C",
+        "range": [
+          17,
+          18,
+        ],
+        "start": 17,
+        "type": "Identifier",
+      },
+      "loc": {
+        "end": {
+          "column": 19,
+          "line": 2,
+        },
+        "start": {
+          "column": 9,
+          "line": 2,
+        },
+      },
+      "range": [
+        11,
+        21,
+      ],
+      "start": 11,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 21,
+  "loc": {
+    "end": {
+      "column": 19,
+      "line": 2,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    21,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Next - Decorators > Next - Decorators (pass) > @
+ (x.y) class D {} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [],
+        "end": 19,
+        "loc": {
+          "end": {
+            "column": 17,
+            "line": 2,
+          },
+          "start": {
+            "column": 15,
+            "line": 2,
+          },
+        },
+        "range": [
+          17,
+          19,
+        ],
+        "start": 17,
+        "type": "ClassBody",
+      },
+      "decorators": [
+        {
+          "end": 8,
+          "expression": {
+            "end": 8,
+            "expression": {
+              "computed": false,
+              "end": 7,
+              "loc": {
+                "end": {
+                  "column": 5,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 2,
+                  "line": 2,
+                },
+              },
+              "object": {
+                "end": 5,
+                "loc": {
+                  "end": {
+                    "column": 3,
+                    "line": 2,
+                  },
+                  "start": {
+                    "column": 2,
+                    "line": 2,
+                  },
+                },
+                "name": "x",
+                "range": [
+                  4,
+                  5,
+                ],
+                "start": 4,
+                "type": "Identifier",
+              },
+              "optional": false,
+              "property": {
+                "end": 7,
+                "loc": {
+                  "end": {
+                    "column": 5,
+                    "line": 2,
+                  },
+                  "start": {
+                    "column": 4,
+                    "line": 2,
+                  },
+                },
+                "name": "y",
+                "range": [
+                  6,
+                  7,
+                ],
+                "start": 6,
+                "type": "Identifier",
+              },
+              "range": [
+                4,
+                7,
+              ],
+              "start": 4,
+              "type": "MemberExpression",
+            },
+            "loc": {
+              "end": {
+                "column": 6,
+                "line": 2,
+              },
+              "start": {
+                "column": 1,
+                "line": 2,
+              },
+            },
+            "range": [
+              3,
+              8,
+            ],
+            "start": 3,
+            "type": "ParenthesizedExpression",
+          },
+          "loc": {
+            "end": {
+              "column": 6,
+              "line": 2,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "range": [
+            0,
+            8,
+          ],
+          "start": 0,
+          "type": "Decorator",
+        },
+      ],
+      "end": 19,
+      "id": {
+        "end": 16,
+        "loc": {
+          "end": {
+            "column": 14,
+            "line": 2,
+          },
+          "start": {
+            "column": 13,
+            "line": 2,
+          },
+        },
+        "name": "D",
+        "range": [
+          15,
+          16,
+        ],
+        "start": 15,
+        "type": "Identifier",
+      },
+      "loc": {
+        "end": {
+          "column": 17,
+          "line": 2,
+        },
+        "start": {
+          "column": 7,
+          "line": 2,
+        },
+      },
+      "range": [
+        9,
+        19,
+      ],
+      "start": 9,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 19,
+  "loc": {
+    "end": {
+      "column": 17,
+      "line": 2,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    19,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Next - Decorators > Next - Decorators (pass) > @
+ dec() class C {} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [],
+        "end": 19,
+        "loc": {
+          "end": {
+            "column": 17,
+            "line": 2,
+          },
+          "start": {
+            "column": 15,
+            "line": 2,
+          },
+        },
+        "range": [
+          17,
+          19,
+        ],
+        "start": 17,
+        "type": "ClassBody",
+      },
+      "decorators": [
+        {
+          "end": 8,
+          "expression": {
+            "arguments": [],
+            "callee": {
+              "end": 6,
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 2,
+                },
+              },
+              "name": "dec",
+              "range": [
+                3,
+                6,
+              ],
+              "start": 3,
+              "type": "Identifier",
+            },
+            "end": 8,
+            "loc": {
+              "end": {
+                "column": 6,
+                "line": 2,
+              },
+              "start": {
+                "column": 4,
+                "line": 2,
+              },
+            },
+            "optional": false,
+            "range": [
+              6,
+              8,
+            ],
+            "start": 6,
+            "type": "CallExpression",
+          },
+          "loc": {
+            "end": {
+              "column": 6,
+              "line": 2,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "range": [
+            0,
+            8,
+          ],
+          "start": 0,
+          "type": "Decorator",
+        },
+      ],
+      "end": 19,
+      "id": {
+        "end": 16,
+        "loc": {
+          "end": {
+            "column": 14,
+            "line": 2,
+          },
+          "start": {
+            "column": 13,
+            "line": 2,
+          },
+        },
+        "name": "C",
+        "range": [
+          15,
+          16,
+        ],
+        "start": 15,
+        "type": "Identifier",
+      },
+      "loc": {
+        "end": {
+          "column": 17,
+          "line": 2,
+        },
+        "start": {
+          "column": 7,
+          "line": 2,
+        },
+      },
+      "range": [
+        9,
+        19,
+      ],
+      "start": 9,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 19,
+  "loc": {
+    "end": {
+      "column": 17,
+      "line": 2,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    19,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Next - Decorators > Next - Decorators (pass) > @
+ x.y class D {} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [],
+        "end": 17,
+        "loc": {
+          "end": {
+            "column": 15,
+            "line": 2,
+          },
+          "start": {
+            "column": 13,
+            "line": 2,
+          },
+        },
+        "range": [
+          15,
+          17,
+        ],
+        "start": 15,
+        "type": "ClassBody",
+      },
+      "decorators": [
+        {
+          "end": 6,
+          "expression": {
+            "computed": false,
+            "end": 6,
+            "loc": {
+              "end": {
+                "column": 4,
+                "line": 2,
+              },
+              "start": {
+                "column": 2,
+                "line": 2,
+              },
+            },
+            "object": {
+              "end": 4,
+              "loc": {
+                "end": {
+                  "column": 2,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 2,
+                },
+              },
+              "name": "x",
+              "range": [
+                3,
+                4,
+              ],
+              "start": 3,
+              "type": "Identifier",
+            },
+            "optional": false,
+            "property": {
+              "end": 6,
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 2,
+                },
+              },
+              "name": "y",
+              "range": [
+                5,
+                6,
+              ],
+              "start": 5,
+              "type": "Identifier",
+            },
+            "range": [
+              4,
+              6,
+            ],
+            "start": 4,
+            "type": "MemberExpression",
+          },
+          "loc": {
+            "end": {
+              "column": 4,
+              "line": 2,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "range": [
+            0,
+            6,
+          ],
+          "start": 0,
+          "type": "Decorator",
+        },
+      ],
+      "end": 17,
+      "id": {
+        "end": 14,
+        "loc": {
+          "end": {
+            "column": 12,
+            "line": 2,
+          },
+          "start": {
+            "column": 11,
+            "line": 2,
+          },
+        },
+        "name": "D",
+        "range": [
+          13,
+          14,
+        ],
+        "start": 13,
+        "type": "Identifier",
+      },
+      "loc": {
+        "end": {
+          "column": 15,
+          "line": 2,
+        },
+        "start": {
+          "column": 5,
+          "line": 2,
+        },
+      },
+      "range": [
+        7,
+        17,
+      ],
+      "start": 7,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 17,
+  "loc": {
+    "end": {
+      "column": 15,
+      "line": 2,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    17,
+  ],
+  "sourceType": "script",
+  "start": 0,
   "type": "Program",
 }
 `;
@@ -518,6 +1190,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @a(@b class C {}) @d(@e(
               "name": "a",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -538,6 +1211,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @a(@b class C {}) @d(@e(
                         "name": "e",
                         "type": "Identifier",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "Decorator",
@@ -555,6 +1229,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @a(@b class C {}) @d(@e(
               "name": "d",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -611,6 +1286,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @a(@b class C {}) @d(@e(
               "name": "a",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -631,6 +1307,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @a(@b class C {}) @d(@e(
                         "name": "e",
                         "type": "Identifier",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "Decorator",
@@ -648,6 +1325,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @a(@b class C {}) @d(@e(
               "name": "d",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -870,12 +1548,14 @@ exports[`Next - Decorators > Next - Decorators (pass) > @deco
                           "name": "A",
                           "type": "Identifier",
                         },
+                        "optional": false,
                         "property": {
                           "name": "foo",
                           "type": "PrivateIdentifier",
                         },
                         "type": "MemberExpression",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "ExpressionStatement",
@@ -1053,6 +1733,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @deco
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "get",
                         "type": "PrivateIdentifier",
@@ -1068,6 +1749,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @deco
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "set",
                           "type": "PrivateIdentifier",
@@ -1089,6 +1771,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @deco
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "getset",
                         "type": "PrivateIdentifier",
@@ -1104,6 +1787,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @deco
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "getset",
                           "type": "PrivateIdentifier",
@@ -1176,6 +1860,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @deco1 @deco2() @deco3(f
               "name": "deco2",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -1196,6 +1881,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @deco1 @deco2() @deco3(f
               "name": "deco3",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -1243,6 +1929,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @deco1 @deco2() @deco3(f
               "name": "deco4",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -1385,6 +2072,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @foo('bar')
               "name": "foo",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -1425,6 +2113,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @foo('bar')
               "name": "foo",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -1474,6 +2163,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @foo(class Bar{})
               "name": "foo",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -1592,6 +2282,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @outer({
               "name": "outer",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -1707,6 +2398,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @pushElement({
               "name": "pushElement",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -2149,6 +2841,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > class A {
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "x",
                         "type": "PrivateIdentifier",
@@ -2242,6 +2935,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > class A {  @deco #prop; 
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "foo",
                         "type": "PrivateIdentifier",
@@ -2703,6 +3397,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > class Bar{
                     "name": "outer",
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "type": "CallExpression",
                 },
                 "type": "Decorator",
@@ -3431,12 +4126,14 @@ exports[`Next - Decorators > Next - Decorators (pass) > function writable(w) {
                             "name": "desc",
                             "type": "Identifier",
                           },
+                          "optional": false,
                           "property": {
                             "name": "descriptor",
                             "type": "Identifier",
                           },
                           "type": "MemberExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "writable",
                           "type": "Identifier",
@@ -3501,6 +4198,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > function writable(w) {
                     "name": "writable",
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "type": "CallExpression",
                 },
                 "type": "Decorator",
@@ -3532,6 +4230,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > function writable(w) {
                     "name": "writable",
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "type": "CallExpression",
                 },
                 "type": "Decorator",
@@ -3548,6 +4247,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > function writable(w) {
                     "name": "writable",
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "type": "CallExpression",
                 },
                 "type": "Decorator",
@@ -3585,6 +4285,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > function writable(w) {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "x",
                           "type": "PrivateIdentifier",
@@ -3630,6 +4331,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > function writable(w) {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "y",
                           "type": "PrivateIdentifier",

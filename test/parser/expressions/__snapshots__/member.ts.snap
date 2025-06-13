@@ -23,6 +23,7 @@ exports[`Expressions - Member > Expressions - Member (pass) > (2[x,x],x)>x 1`] =
                 "type": "Literal",
                 "value": 2,
               },
+              "optional": false,
               "property": {
                 "end": 6,
                 "expressions": [
@@ -136,6 +137,7 @@ exports[`Expressions - Member > Expressions - Member (pass) > (a[b]||(c[d]=e)) 1
             "start": 1,
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "end": 4,
             "name": "b",
@@ -173,6 +175,7 @@ exports[`Expressions - Member > Expressions - Member (pass) > (a[b]||(c[d]=e)) 1
               "start": 8,
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "end": 11,
               "name": "d",
@@ -331,6 +334,7 @@ exports[`Expressions - Member > Expressions - Member (pass) > a().b 1`] = `
             "type": "Identifier",
           },
           "end": 3,
+          "optional": false,
           "range": [
             0,
             3,
@@ -338,6 +342,7 @@ exports[`Expressions - Member > Expressions - Member (pass) > a().b 1`] = `
           "start": 0,
           "type": "CallExpression",
         },
+        "optional": false,
         "property": {
           "end": 5,
           "name": "b",
@@ -398,6 +403,7 @@ exports[`Expressions - Member > Expressions - Member (pass) > a.$._.B0 1`] = `
               "start": 0,
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "end": 3,
               "name": "$",
@@ -415,6 +421,7 @@ exports[`Expressions - Member > Expressions - Member (pass) > a.$._.B0 1`] = `
             "start": 0,
             "type": "MemberExpression",
           },
+          "optional": false,
           "property": {
             "end": 5,
             "name": "_",
@@ -432,6 +439,7 @@ exports[`Expressions - Member > Expressions - Member (pass) > a.$._.B0 1`] = `
           "start": 0,
           "type": "MemberExpression",
         },
+        "optional": false,
         "property": {
           "end": 8,
           "name": "B0",
@@ -478,6 +486,7 @@ exports[`Expressions - Member > Expressions - Member (pass) > a.if 1`] = `
           "name": "a",
           "type": "Identifier",
         },
+        "optional": false,
         "property": {
           "name": "if",
           "type": "Identifier",
@@ -502,6 +511,7 @@ exports[`Expressions - Member > Expressions - Member (pass) > a[b, c] 1`] = `
           "name": "a",
           "type": "Identifier",
         },
+        "optional": false,
         "property": {
           "expressions": [
             {
@@ -545,6 +555,7 @@ exports[`Expressions - Member > Expressions - Member (pass) > a[b]||(c[d]=e) 1`]
             "start": 0,
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "end": 3,
             "name": "b",
@@ -582,6 +593,7 @@ exports[`Expressions - Member > Expressions - Member (pass) > a[b]||(c[d]=e) 1`]
               "start": 7,
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "end": 10,
               "name": "d",
@@ -649,6 +661,7 @@ exports[`Expressions - Member > Expressions - Member (pass) > abc.package 1`] = 
           "name": "abc",
           "type": "Identifier",
         },
+        "optional": false,
         "property": {
           "name": "package",
           "type": "Identifier",
@@ -673,6 +686,7 @@ exports[`Expressions - Member > Expressions - Member (pass) > abc.package 2`] = 
           "name": "abc",
           "type": "Identifier",
         },
+        "optional": false,
         "property": {
           "name": "package",
           "type": "Identifier",
@@ -697,6 +711,7 @@ exports[`Expressions - Member > Expressions - Member (pass) > foo.bar 1`] = `
           "name": "foo",
           "type": "Identifier",
         },
+        "optional": false,
         "property": {
           "name": "bar",
           "type": "Identifier",
@@ -722,6 +737,7 @@ exports[`Expressions - Member > Expressions - Member (pass) > x.y / z 1`] = `
             "name": "x",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "name": "y",
             "type": "Identifier",
@@ -761,6 +777,7 @@ exports[`Expressions - Member > Expressions - Member (pass) > x[a, b] 1`] = `
           "start": 0,
           "type": "Identifier",
         },
+        "optional": false,
         "property": {
           "end": 6,
           "expressions": [

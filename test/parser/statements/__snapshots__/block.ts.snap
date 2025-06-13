@@ -86,6 +86,7 @@ exports[`Expressions - Block > Expressions - Block (pass) > { a(); bt(); } 1`] =
               "type": "Identifier",
             },
             "end": 5,
+            "optional": false,
             "range": [
               2,
               5,
@@ -115,6 +116,7 @@ exports[`Expressions - Block > Expressions - Block (pass) > { a(); bt(); } 1`] =
               "type": "Identifier",
             },
             "end": 11,
+            "optional": false,
             "range": [
               7,
               11,

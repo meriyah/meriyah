@@ -85,6 +85,7 @@ exports[`Expressions - Update > Expressions - Update (pass) > ++a.a 1`] = `
             "name": "a",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "name": "a",
             "type": "Identifier",
@@ -169,6 +170,7 @@ exports[`Expressions - Update > Expressions - Update (pass) > --a.a 1`] = `
             "name": "a",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "name": "a",
             "type": "Identifier",
@@ -295,6 +297,7 @@ exports[`Expressions - Update > Expressions - Update (pass) > a.a-- 1`] = `
             "name": "a",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "name": "a",
             "type": "Identifier",

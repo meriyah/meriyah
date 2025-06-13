@@ -266,6 +266,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > ([1 || 1].a = 
             "start": 1,
             "type": "ArrayExpression",
           },
+          "optional": false,
           "property": {
             "end": 11,
             "name": "a",
@@ -520,6 +521,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > ({ tyssjh = ((
           "type": "FunctionExpression",
         },
         "end": 74,
+        "optional": false,
         "range": [
           55,
           74,
@@ -570,6 +572,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > ({...[].x} = x
                   "start": 5,
                   "type": "ArrayExpression",
                 },
+                "optional": false,
                 "property": {
                   "end": 9,
                   "name": "x",
@@ -962,6 +965,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > ({[(a)()]: {}}
                 "type": "Identifier",
               },
               "end": 8,
+              "optional": false,
               "range": [
                 3,
                 8,
@@ -1439,6 +1443,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > ({a: ("string"
                               "start": 33,
                               "type": "Identifier",
                             },
+                            "optional": false,
                             "property": {
                               "end": 36,
                               "name": "c",
@@ -1500,6 +1505,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > ({a: ("string"
                     "start": 18,
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "property": {
                     "end": 21,
                     "range": [
@@ -1518,6 +1524,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > ({a: ("string"
                   "type": "MemberExpression",
                 },
                 "end": 48,
+                "optional": false,
                 "range": [
                   18,
                   48,
@@ -1635,6 +1642,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > ({a: ("string"
                         "start": 31,
                         "type": "Identifier",
                       },
+                      "optional": false,
                       "property": {
                         "end": 34,
                         "name": "c",
@@ -1669,6 +1677,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > ({a: ("string"
                     "start": 18,
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "property": {
                     "end": 21,
                     "range": [
@@ -1687,6 +1696,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > ({a: ("string"
                   "type": "MemberExpression",
                 },
                 "end": 39,
+                "optional": false,
                 "range": [
                   18,
                   39,
@@ -1804,6 +1814,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > ({a: ("string"
                         "start": 27,
                         "type": "Identifier",
                       },
+                      "optional": false,
                       "property": {
                         "end": 30,
                         "name": "c",
@@ -1838,6 +1849,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > ({a: ("string"
                     "start": 18,
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "property": {
                     "end": 21,
                     "range": [
@@ -1856,6 +1868,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > ({a: ("string"
                   "type": "MemberExpression",
                 },
                 "end": 31,
+                "optional": false,
                 "range": [
                   18,
                   31,
@@ -1968,6 +1981,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > ({a: 1 || 1}.a
             "start": 1,
             "type": "ObjectExpression",
           },
+          "optional": false,
           "property": {
             "end": 14,
             "name": "a",
@@ -2094,6 +2108,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > ({a:a}=1)() 1`
           "type": "AssignmentExpression",
         },
         "end": 11,
+        "optional": false,
         "range": [
           0,
           11,
@@ -3184,6 +3199,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > [((((((x.y))))
                 "start": 7,
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "end": 10,
                 "name": "y",
@@ -3273,6 +3289,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > [...[...a[x]]]
                         "start": 8,
                         "type": "Identifier",
                       },
+                      "optional": false,
                       "property": {
                         "end": 11,
                         "name": "x",
@@ -3387,6 +3404,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > [...[...a[x]]]
                         "start": 8,
                         "type": "Identifier",
                       },
+                      "optional": false,
                       "property": {
                         "end": 11,
                         "name": "x",
@@ -3534,6 +3552,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > [...[{prop: 1}
                       "start": 5,
                       "type": "ObjectExpression",
                     },
+                    "optional": false,
                     "property": {
                       "end": 19,
                       "name": "prop",
@@ -4352,6 +4371,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > [[[a.b =[]]]] 
                         "start": 3,
                         "type": "Identifier",
                       },
+                      "optional": false,
                       "property": {
                         "end": 6,
                         "name": "b",
@@ -5863,6 +5883,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > [a,b=0,[c,...a
                         "start": 13,
                         "type": "Identifier",
                       },
+                      "optional": false,
                       "property": {
                         "end": 16,
                         "range": [
@@ -6106,6 +6127,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > [x.a=a] = 0 1`
                   "start": 1,
                   "type": "Identifier",
                 },
+                "optional": false,
                 "property": {
                   "end": 4,
                   "name": "a",
@@ -9037,6 +9059,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for (((x)=>{})
           "start": 6,
           "type": "ArrowFunctionExpression",
         },
+        "optional": false,
         "property": {
           "end": 16,
           "name": "x",
@@ -9250,6 +9273,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for ([x.y];;);
               "start": 6,
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "end": 9,
               "name": "y",
@@ -10014,6 +10038,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for (let x in 
                   "start": 49,
                   "type": "Identifier",
                 },
+                "optional": false,
                 "property": {
                   "argument": {
                     "end": 52,
@@ -10073,6 +10098,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for (let x in 
                     "type": "Identifier",
                   },
                   "end": 73,
+                  "optional": false,
                   "range": [
                     64,
                     73,
@@ -10187,6 +10213,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for (let x in 
                   "start": 19,
                   "type": "Identifier",
                 },
+                "optional": false,
                 "property": {
                   "argument": {
                     "end": 22,
@@ -10246,6 +10273,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for (let x in 
                     "type": "Identifier",
                   },
                   "end": 43,
+                  "optional": false,
                   "range": [
                     34,
                     43,
@@ -10320,6 +10348,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for (x.y of [2
           "start": 5,
           "type": "Identifier",
         },
+        "optional": false,
         "property": {
           "end": 8,
           "name": "y",
@@ -10405,6 +10434,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for (yield[g]-
             "start": 5,
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "end": 12,
             "name": "g",
@@ -10492,6 +10522,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for([a,b[a],{c
               "start": 7,
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "end": 10,
               "name": "a",
@@ -10647,6 +10678,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for([a,b[a],{c
                           "type": "Identifier",
                         },
                         "end": 29,
+                        "optional": false,
                         "range": [
                           26,
                           29,
@@ -10654,6 +10686,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for([a,b[a],{c
                         "start": 26,
                         "type": "CallExpression",
                       },
+                      "optional": false,
                       "property": {
                         "end": 31,
                         "name": "a",
@@ -10684,6 +10717,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for([a,b[a],{c
                         "type": "Literal",
                         "value": 0,
                       },
+                      "optional": false,
                       "property": {
                         "end": 37,
                         "name": "k",
@@ -10715,6 +10749,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for([a,b[a],{c
                           "start": 41,
                           "type": "Identifier",
                         },
+                        "optional": false,
                         "property": {
                           "end": 44,
                           "range": [
@@ -10980,6 +11015,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                       "type": "Identifier",
                                     },
                                     "end": 1447,
+                                    "optional": false,
                                     "range": [
                                       1414,
                                       1447,
@@ -11075,6 +11111,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                           "type": "Identifier",
                                         },
                                         "end": 1552,
+                                        "optional": false,
                                         "range": [
                                           1532,
                                           1552,
@@ -11094,6 +11131,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                       "type": "Identifier",
                                     },
                                     "end": 1553,
+                                    "optional": false,
                                     "range": [
                                       1498,
                                       1553,
@@ -11189,6 +11227,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                           "type": "Identifier",
                                         },
                                         "end": 1658,
+                                        "optional": false,
                                         "range": [
                                           1638,
                                           1658,
@@ -11208,6 +11247,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                       "type": "Identifier",
                                     },
                                     "end": 1659,
+                                    "optional": false,
                                     "range": [
                                       1604,
                                       1659,
@@ -11303,6 +11343,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                           "type": "Identifier",
                                         },
                                         "end": 1764,
+                                        "optional": false,
                                         "range": [
                                           1744,
                                           1764,
@@ -11322,6 +11363,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                       "type": "Identifier",
                                     },
                                     "end": 1765,
+                                    "optional": false,
                                     "range": [
                                       1710,
                                       1765,
@@ -11417,6 +11459,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                           "type": "Identifier",
                                         },
                                         "end": 1870,
+                                        "optional": false,
                                         "range": [
                                           1850,
                                           1870,
@@ -11436,6 +11479,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                       "type": "Identifier",
                                     },
                                     "end": 1871,
+                                    "optional": false,
                                     "range": [
                                       1816,
                                       1871,
@@ -11531,6 +11575,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                           "type": "Identifier",
                                         },
                                         "end": 1976,
+                                        "optional": false,
                                         "range": [
                                           1956,
                                           1976,
@@ -11550,6 +11595,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                       "type": "Identifier",
                                     },
                                     "end": 1977,
+                                    "optional": false,
                                     "range": [
                                       1922,
                                       1977,
@@ -11632,6 +11678,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                       "type": "Identifier",
                                     },
                                     "end": 2063,
+                                    "optional": false,
                                     "range": [
                                       2029,
                                       2063,
@@ -11671,6 +11718,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                               "start": 1345,
                               "type": "Identifier",
                             },
+                            "optional": false,
                             "property": {
                               "end": 1361,
                               "name": "length",
@@ -11883,6 +11931,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                       "type": "Identifier",
                                     },
                                     "end": 548,
+                                    "optional": false,
                                     "range": [
                                       508,
                                       548,
@@ -11978,6 +12027,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                           "type": "Identifier",
                                         },
                                         "end": 660,
+                                        "optional": false,
                                         "range": [
                                           640,
                                           660,
@@ -11997,6 +12047,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                       "type": "Identifier",
                                     },
                                     "end": 661,
+                                    "optional": false,
                                     "range": [
                                       599,
                                       661,
@@ -12092,6 +12143,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                           "type": "Identifier",
                                         },
                                         "end": 773,
+                                        "optional": false,
                                         "range": [
                                           753,
                                           773,
@@ -12111,6 +12163,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                       "type": "Identifier",
                                     },
                                     "end": 774,
+                                    "optional": false,
                                     "range": [
                                       712,
                                       774,
@@ -12206,6 +12259,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                           "type": "Identifier",
                                         },
                                         "end": 886,
+                                        "optional": false,
                                         "range": [
                                           866,
                                           886,
@@ -12225,6 +12279,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                       "type": "Identifier",
                                     },
                                     "end": 887,
+                                    "optional": false,
                                     "range": [
                                       825,
                                       887,
@@ -12320,6 +12375,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                           "type": "Identifier",
                                         },
                                         "end": 999,
+                                        "optional": false,
                                         "range": [
                                           979,
                                           999,
@@ -12339,6 +12395,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                       "type": "Identifier",
                                     },
                                     "end": 1000,
+                                    "optional": false,
                                     "range": [
                                       938,
                                       1000,
@@ -12434,6 +12491,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                           "type": "Identifier",
                                         },
                                         "end": 1112,
+                                        "optional": false,
                                         "range": [
                                           1092,
                                           1112,
@@ -12453,6 +12511,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                       "type": "Identifier",
                                     },
                                     "end": 1113,
+                                    "optional": false,
                                     "range": [
                                       1051,
                                       1113,
@@ -12549,6 +12608,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                           "type": "Identifier",
                                         },
                                         "end": 1214,
+                                        "optional": false,
                                         "range": [
                                           1169,
                                           1214,
@@ -12618,6 +12678,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                                       "type": "Identifier",
                                     },
                                     "end": 1286,
+                                    "optional": false,
                                     "range": [
                                       1241,
                                       1286,
@@ -12657,6 +12718,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                               "start": 439,
                               "type": "Identifier",
                             },
+                            "optional": false,
                             "property": {
                               "end": 455,
                               "name": "length",
@@ -12710,6 +12772,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function bind_
                         "type": "Identifier",
                       },
                       "end": 301,
+                      "optional": false,
                       "range": [
                         284,
                         301,
@@ -12857,6 +12920,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function f() {
                         "type": "Identifier",
                       },
                       "end": 28,
+                      "optional": false,
                       "range": [
                         23,
                         28,
@@ -12876,6 +12940,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function f() {
                     "type": "Identifier",
                   },
                   "end": 29,
+                  "optional": false,
                   "range": [
                     17,
                     29,
@@ -12883,6 +12948,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function f() {
                   "start": 17,
                   "type": "CallExpression",
                 },
+                "optional": false,
                 "property": {
                   "end": 31,
                   "name": "l",
@@ -12901,6 +12967,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function f() {
                 "type": "MemberExpression",
               },
               "end": 35,
+              "optional": false,
               "range": [
                 15,
                 35,
@@ -13233,6 +13300,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function foo()
                     "type": "Identifier",
                   },
                   "end": 43,
+                  "optional": false,
                   "range": [
                     38,
                     43,
@@ -13240,6 +13308,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function foo()
                   "start": 38,
                   "type": "CallExpression",
                 },
+                "optional": false,
                 "property": {
                   "end": 47,
                   "range": [
@@ -13391,6 +13460,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > function z() {
                     "start": 60,
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "property": {
                     "end": 72,
                     "name": "debugger",
@@ -13645,6 +13715,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > if ((b === und
                 "start": 45,
                 "type": "ThisExpression",
               },
+              "optional": false,
               "property": {
                 "end": 51,
                 "name": "b",
@@ -13699,6 +13770,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > if ((b === und
                 "start": 69,
                 "type": "ThisExpression",
               },
+              "optional": false,
               "property": {
                 "end": 75,
                 "name": "c",
@@ -14900,6 +14972,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > let.bar[foo] 1
             "start": 0,
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "end": 7,
             "name": "bar",
@@ -14917,6 +14990,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > let.bar[foo] 1
           "start": 0,
           "type": "MemberExpression",
         },
+        "optional": false,
         "property": {
           "end": 11,
           "name": "foo",
@@ -15389,6 +15463,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > try { } catch 
                   "type": "Identifier",
                 },
                 "end": 26,
+                "optional": false,
                 "range": [
                   20,
                   26,
@@ -17207,6 +17282,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > var a = [1], i
                   "start": 24,
                   "type": "Identifier",
                 },
+                "optional": false,
                 "property": {
                   "argument": {
                     "end": 27,
@@ -17624,6 +17700,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > var private = 
                 "start": 14,
                 "type": "ArrayExpression",
               },
+              "optional": false,
               "property": {
                 "end": 27,
                 "range": [
@@ -17641,6 +17718,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > var private = 
               "start": 14,
               "type": "MemberExpression",
             },
+            "optional": false,
             "property": {
               "end": 30,
               "range": [
@@ -18039,6 +18117,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > var probeBefor
                 "type": "Identifier",
               },
               "end": 153,
+              "optional": false,
               "range": [
                 135,
                 153,
@@ -18309,6 +18388,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > var x = (new F
               "start": 9,
               "type": "NewExpression",
             },
+            "optional": false,
             "property": {
               "end": 19,
               "name": "x",

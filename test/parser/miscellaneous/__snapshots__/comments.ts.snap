@@ -581,6 +581,7 @@ exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > if (x) { /
                 "type": "Identifier",
               },
               "end": 36,
+              "optional": false,
               "range": [
                 28,
                 36,

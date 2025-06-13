@@ -47,6 +47,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class C { constructo
                           "start": 29,
                           "type": "Super",
                         },
+                        "optional": false,
                         "property": {
                           "end": 36,
                           "name": "x",
@@ -169,6 +170,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x { constructo
                           "object": {
                             "type": "Super",
                           },
+                          "optional": false,
                           "property": {
                             "name": "foo",
                             "type": "Identifier",
@@ -239,6 +241,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x { constructo
                         "object": {
                           "type": "Super",
                         },
+                        "optional": false,
                         "property": {
                           "name": "foo",
                           "type": "Identifier",
@@ -322,6 +325,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x { constructo
                         "start": 25,
                         "type": "Super",
                       },
+                      "optional": false,
                       "property": {
                         "end": 34,
                         "name": "foo",
@@ -452,6 +456,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x { constructo
                         "start": 25,
                         "type": "Super",
                       },
+                      "optional": false,
                       "property": {
                         "end": 34,
                         "name": "foo",
@@ -576,6 +581,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x { dsda(){ re
                             "object": {
                               "type": "Super",
                             },
+                            "optional": false,
                             "property": {
                               "name": "foo",
                               "type": "Identifier",
@@ -641,6 +647,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x { fo(){ retu
                         "object": {
                           "type": "Super",
                         },
+                        "optional": false,
                         "property": {
                           "name": "foo",
                           "type": "Identifier",
@@ -704,6 +711,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x { foo(){ sup
                       "object": {
                         "type": "Super",
                       },
+                      "optional": false,
                       "property": {
                         "name": "foo",
                         "type": "Identifier",
@@ -762,6 +770,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x { foo(){ sup
                       "object": {
                         "type": "Super",
                       },
+                      "optional": false,
                       "property": {
                         "name": "foo",
                         "type": "Identifier",
@@ -829,6 +838,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x { foo(x=supe
                     "object": {
                       "type": "Super",
                     },
+                    "optional": false,
                     "property": {
                       "name": "foo",
                       "type": "Identifier",
@@ -891,6 +901,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x { foo(x=supe
                     "object": {
                       "type": "Super",
                     },
+                    "optional": false,
                     "property": {
                       "name": "foo",
                       "type": "Identifier",
@@ -1020,6 +1031,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                           "start": 32,
                           "type": "Super",
                         },
+                        "optional": false,
                         "property": {
                           "end": 39,
                           "name": "a",
@@ -1038,6 +1050,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                         "type": "MemberExpression",
                       },
                       "end": 41,
+                      "optional": false,
                       "range": [
                         32,
                         41,
@@ -1166,6 +1179,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                     "start": 30,
                     "type": "Super",
                   },
+                  "optional": false,
                   "property": {
                     "end": 37,
                     "name": "a",
@@ -1184,6 +1198,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                   "type": "MemberExpression",
                 },
                 "end": 39,
+                "optional": false,
                 "range": [
                   30,
                   39,
@@ -1301,6 +1316,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                             "start": 44,
                             "type": "Super",
                           },
+                          "optional": false,
                           "property": {
                             "end": 51,
                             "name": "a",
@@ -1319,6 +1335,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                           "type": "MemberExpression",
                         },
                         "end": 53,
+                        "optional": false,
                         "range": [
                           44,
                           53,
@@ -1456,6 +1473,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                       "start": 42,
                       "type": "Super",
                     },
+                    "optional": false,
                     "property": {
                       "end": 49,
                       "name": "a",
@@ -1474,6 +1492,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                     "type": "MemberExpression",
                   },
                   "end": 51,
+                  "optional": false,
                   "range": [
                     42,
                     51,
@@ -1628,6 +1647,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                         "name": "f",
                         "type": "Identifier",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "ExpressionStatement",
@@ -1638,6 +1658,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                       "callee": {
                         "type": "Super",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "ExpressionStatement",
@@ -1720,6 +1741,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                       "callee": {
                         "type": "Super",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "ExpressionStatement",
@@ -1779,6 +1801,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                           "object": {
                             "type": "Super",
                           },
+                          "optional": false,
                           "property": {
                             "name": "foo",
                             "type": "Identifier",
@@ -1790,6 +1813,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                         "name": "log",
                         "type": "Identifier",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "ExpressionStatement",
@@ -1800,6 +1824,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                       "callee": {
                         "type": "Super",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "ExpressionStatement",
@@ -1888,6 +1913,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                         "type": "Identifier",
                       },
                       "end": 45,
+                      "optional": false,
                       "range": [
                         36,
                         45,
@@ -1916,6 +1942,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                         "type": "Super",
                       },
                       "end": 54,
+                      "optional": false,
                       "range": [
                         47,
                         54,
@@ -2025,6 +2052,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                       "callee": {
                         "type": "Super",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "ExpressionStatement",
@@ -2102,6 +2130,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                         "type": "Super",
                       },
                       "end": 43,
+                      "optional": false,
                       "range": [
                         36,
                         43,
@@ -2130,6 +2159,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                         "type": "Super",
                       },
                       "end": 52,
+                      "optional": false,
                       "range": [
                         45,
                         52,
@@ -2243,6 +2273,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                       "callee": {
                         "type": "Super",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "ExpressionStatement",
@@ -2304,6 +2335,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                           "callee": {
                             "type": "Super",
                           },
+                          "optional": false,
                           "type": "CallExpression",
                         },
                         "expression": true,
@@ -2394,6 +2426,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                             "start": 54,
                             "type": "Super",
                           },
+                          "optional": false,
                           "property": {
                             "end": 63,
                             "name": "foo",
@@ -2538,6 +2571,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                         "callee": {
                           "type": "Super",
                         },
+                        "optional": false,
                         "type": "CallExpression",
                       },
                       "expression": true,
@@ -2602,6 +2636,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                         "object": {
                           "type": "Super",
                         },
+                        "optional": false,
                         "property": {
                           "name": "foo",
                           "type": "Identifier",
@@ -2670,6 +2705,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                         "object": {
                           "type": "Super",
                         },
+                        "optional": false,
                         "property": {
                           "name": "foo",
                           "type": "Identifier",
@@ -2750,6 +2786,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                             "callee": {
                               "type": "Super",
                             },
+                            "optional": false,
                             "type": "CallExpression",
                           },
                           "type": "AssignmentPattern",
@@ -2826,6 +2863,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                             "object": {
                               "type": "Super",
                             },
+                            "optional": false,
                             "property": {
                               "name": "foo",
                               "type": "Identifier",
@@ -2943,6 +2981,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                               "start": 45,
                               "type": "Super",
                             },
+                            "optional": false,
                             "property": {
                               "end": 54,
                               "name": "foo",
@@ -3083,6 +3122,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                     "callee": {
                       "type": "Super",
                     },
+                    "optional": false,
                     "type": "CallExpression",
                   },
                   "type": "AssignmentPattern",
@@ -3144,6 +3184,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                     "callee": {
                       "type": "Super",
                     },
+                    "optional": false,
                     "type": "CallExpression",
                   },
                   "type": "AssignmentPattern",
@@ -3206,6 +3247,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                       "callee": {
                         "type": "Super",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "ExpressionStatement",
@@ -3288,6 +3330,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                             "object": {
                               "type": "Super",
                             },
+                            "optional": false,
                             "property": {
                               "name": "foo",
                               "type": "Identifier",
@@ -3458,6 +3501,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                           "object": {
                             "type": "Super",
                           },
+                          "optional": false,
                           "property": {
                             "name": "foo",
                             "type": "Identifier",
@@ -3550,6 +3594,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                         "start": 45,
                         "type": "Super",
                       },
+                      "optional": false,
                       "property": {
                         "end": 62,
                         "name": "constructor",
@@ -3567,6 +3612,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
                       "start": 45,
                       "type": "MemberExpression",
                     },
+                    "optional": false,
                     "property": {
                       "end": 73,
                       "name": "properties",
@@ -3697,6 +3743,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > x={ dsda(){ return (
                               "object": {
                                 "type": "Super",
                               },
+                              "optional": false,
                               "property": {
                                 "name": "foo",
                                 "type": "Identifier",
@@ -3766,6 +3813,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > x={ fo(){ return () 
                           "object": {
                             "type": "Super",
                           },
+                          "optional": false,
                           "property": {
                             "name": "foo",
                             "type": "Identifier",
@@ -3837,6 +3885,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > x={ foo(){ return ()
                             "object": {
                               "type": "Super",
                             },
+                            "optional": false,
                             "property": {
                               "name": "foo",
                               "type": "Identifier",
@@ -3942,6 +3991,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > x={ foo(){ super.foo
                           "start": 11,
                           "type": "Super",
                         },
+                        "optional": false,
                         "property": {
                           "end": 20,
                           "name": "foo",
@@ -4049,6 +4099,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > x={ foo(){ super[foo
                         "object": {
                           "type": "Super",
                         },
+                        "optional": false,
                         "property": {
                           "name": "foo",
                           "type": "Identifier",
@@ -4120,6 +4171,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > x={ foo(a = super.fo
                       "object": {
                         "type": "Super",
                       },
+                      "optional": false,
                       "property": {
                         "name": "foo",
                         "type": "Identifier",
@@ -4186,6 +4238,7 @@ exports[`Expressions - Super > Expressions - Super (pass) > x={ foo(a = super[fo
                       "object": {
                         "type": "Super",
                       },
+                      "optional": false,
                       "property": {
                         "name": "foo",
                         "type": "Identifier",

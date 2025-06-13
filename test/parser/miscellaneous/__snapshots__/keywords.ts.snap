@@ -74,6 +74,7 @@ exports[`Miscellaneous - Keywords > Miscellaneous - Keywords (pass) > var foo = 
           "name": "foo",
           "type": "Identifier",
         },
+        "optional": false,
         "property": {
           "name": "arguments",
           "type": "Identifier",
@@ -115,6 +116,7 @@ exports[`Miscellaneous - Keywords > Miscellaneous - Keywords (pass) > var foo = 
           "name": "foo",
           "type": "Identifier",
         },
+        "optional": false,
         "property": {
           "name": "if",
           "type": "Identifier",
@@ -156,6 +158,7 @@ exports[`Miscellaneous - Keywords > Miscellaneous - Keywords (pass) > var foo = 
           "name": "foo",
           "type": "Identifier",
         },
+        "optional": false,
         "property": {
           "name": "interface",
           "type": "Identifier",
@@ -197,6 +200,7 @@ exports[`Miscellaneous - Keywords > Miscellaneous - Keywords (pass) > var foo = 
           "name": "foo",
           "type": "Identifier",
         },
+        "optional": false,
         "property": {
           "name": "super",
           "type": "Identifier",

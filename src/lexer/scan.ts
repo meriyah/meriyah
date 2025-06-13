@@ -1,6 +1,7 @@
 import { Chars } from '../chars';
 import { Token } from '../token';
-import { type ParserState, Context, Flags } from '../common';
+import { Context, Flags } from '../common';
+import { type Parser } from '../parser';
 import { report, Errors } from '../errors';
 import { isIDStart } from '../unicode';
 import {
@@ -170,7 +171,7 @@ export const TokenLookup = [
  * @param parser  Parser object
  * @param context Context masks
  */
-export function nextToken(parser: ParserState, context: Context): void {
+export function nextToken(parser: Parser, context: Context): void {
   parser.flags = (parser.flags | Flags.NewLine) ^ Flags.NewLine;
   parser.startIndex = parser.index;
   parser.startColumn = parser.column;
@@ -178,7 +179,7 @@ export function nextToken(parser: ParserState, context: Context): void {
   parser.setToken(scanSingleToken(parser, context, LexerState.None));
 }
 
-export function scanSingleToken(parser: ParserState, context: Context, state: LexerState): Token {
+export function scanSingleToken(parser: Parser, context: Context, state: LexerState): Token {
   const isStartOfLine = parser.index === 0;
 
   const { source } = parser;

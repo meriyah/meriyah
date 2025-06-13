@@ -69,6 +69,7 @@ exports[`Expressions - Async Generator > Expressions - Async Generator (pass) > 
           "params": [],
           "type": "FunctionExpression",
         },
+        "optional": false,
         "property": {
           "name": "prototype",
           "type": "Identifier",

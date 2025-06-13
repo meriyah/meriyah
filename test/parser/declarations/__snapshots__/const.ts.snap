@@ -2754,6 +2754,7 @@ exports[`Declarations - const > Declarations - const (pass) > var z = {};
               "start": 106,
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "end": 109,
               "name": "b",
@@ -2835,6 +2836,7 @@ exports[`Declarations - const > Declarations - const (pass) > var z = {};
               "type": "Identifier",
             },
             "end": 141,
+            "optional": false,
             "range": [
               138,
               141,

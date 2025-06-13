@@ -62,6 +62,7 @@ exports[`Next - Public fields > Next - Public fields (pass) > {
                             "start": 61,
                             "type": "Identifier",
                           },
+                          "optional": false,
                           "property": {
                             "end": 72,
                             "range": [
@@ -194,6 +195,7 @@ exports[`Next - Public fields > Next - Public fields (pass) > {
                                   "start": 185,
                                   "type": "Identifier",
                                 },
+                                "optional": false,
                                 "property": {
                                   "end": 196,
                                   "range": [
@@ -355,6 +357,7 @@ exports[`Next - Public fields > Next - Public fields (pass) > {
                     "start": 263,
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "property": {
                     "end": 266,
                     "name": "t",
@@ -373,6 +376,7 @@ exports[`Next - Public fields > Next - Public fields (pass) > {
                   "type": "MemberExpression",
                 },
                 "end": 268,
+                "optional": false,
                 "range": [
                   263,
                   268,
@@ -465,6 +469,7 @@ exports[`Next - Public fields > Next - Public fields (pass) > { class X { static
                             "start": 43,
                             "type": "Identifier",
                           },
+                          "optional": false,
                           "property": {
                             "end": 54,
                             "range": [
@@ -1644,6 +1649,7 @@ exports[`Next - Public fields > Next - Public fields (pass) > class X { static p
                 "name": "eval",
                 "type": "Identifier",
               },
+              "optional": false,
               "type": "CallExpression",
             },
           },
@@ -1703,6 +1709,7 @@ exports[`Next - Public fields > Next - Public fields (pass) > const createClass 
                         "type": "Identifier",
                       },
                       "end": 39,
+                      "optional": false,
                       "range": [
                         36,
                         39,
@@ -1827,10 +1834,10 @@ exports[`Next - Public fields > Next - Public fields (pass) > var C = class { st
                     "end": 39,
                     "name": "prototype",
                     "range": [
-                      23,
+                      29,
                       39,
                     ],
-                    "start": 23,
+                    "start": 29,
                     "type": "PrivateIdentifier",
                   },
                   "kind": "method",

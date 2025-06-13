@@ -1,7 +1,8 @@
 import { advanceChar, LexerState, scanNewLine, consumeLineFeed } from './common';
 import { CharTypes, CharFlags } from './charClassifier';
 import { Chars } from '../chars';
-import { Context, type ParserState } from '../common';
+import { Context } from '../common';
+import { type Parser } from '../parser';
 import { report, Errors } from '../errors';
 
 export const enum CommentType {
@@ -19,7 +20,7 @@ export const CommentTypes = ['SingleLine', 'MultiLine', 'HTMLOpen', 'HTMLClose',
  *
  * @param parser  Parser object
  */
-export function skipHashBang(parser: ParserState): void {
+export function skipHashBang(parser: Parser): void {
   // HashbangComment ::
   //   #!  SingleLineCommentChars_opt
   const { source } = parser;
@@ -39,7 +40,7 @@ export function skipHashBang(parser: ParserState): void {
 }
 
 export function skipSingleHTMLComment(
-  parser: ParserState,
+  parser: Parser,
   source: string,
   state: LexerState,
   context: Context,
@@ -59,7 +60,7 @@ export function skipSingleHTMLComment(
  * @param state  Lexer state
  */
 export function skipSingleLineComment(
-  parser: ParserState,
+  parser: Parser,
   source: string,
   state: LexerState,
   type: CommentType,
@@ -112,7 +113,7 @@ export function skipSingleLineComment(
  * @param parser Parser object
  * @param state Lexer state
  */
-export function skipMultiLineComment(parser: ParserState, source: string, state: LexerState): LexerState | void {
+export function skipMultiLineComment(parser: Parser, source: string, state: LexerState): LexerState | void {
   const { index } = parser;
   while (parser.index < parser.end) {
     if (parser.currentChar < 0x2b) {

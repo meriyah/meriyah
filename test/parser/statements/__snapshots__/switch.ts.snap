@@ -923,6 +923,7 @@ exports[`Statements  Switch > Statements  Switch (pass) > switch (answer) { case
                   "type": "Identifier",
                 },
                 "end": 30,
+                "optional": false,
                 "range": [
                   26,
                   30,

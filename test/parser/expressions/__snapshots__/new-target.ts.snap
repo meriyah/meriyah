@@ -684,6 +684,7 @@ exports[`Expressions - New target > Expressions - New target (pass) > foo({bar()
           "name": "foo",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -738,6 +739,7 @@ exports[`Expressions - New target > Expressions - New target (pass) > foo(functi
           "name": "foo",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -1636,6 +1638,7 @@ exports[`Expressions - New target > Expressions - New target (pass) > function f
                 "type": "Identifier",
               },
               "end": 33,
+              "optional": false,
               "range": [
                 14,
                 33,

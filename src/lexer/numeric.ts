@@ -1,4 +1,5 @@
-import { type ParserState, Context, Flags } from '../common';
+import { Context, Flags } from '../common';
+import { type Parser } from '../parser';
 import { Token } from '../token';
 import { advanceChar, toHex, NumberKind } from './common';
 import { CharTypes, CharFlags, isIdentifierStart } from './charClassifier';
@@ -12,7 +13,7 @@ import { report, Errors, reportScannerError } from '../errors';
  * @param context Context masks
  * @param isFloat
  */
-export function scanNumber(parser: ParserState, context: Context, kind: NumberKind): Token {
+export function scanNumber(parser: Parser, context: Context, kind: NumberKind): Token {
   // DecimalLiteral ::
   //   DecimalIntegerLiteral . DecimalDigits_opt
   //   . DecimalDigits
@@ -232,7 +233,7 @@ export function scanNumber(parser: ParserState, context: Context, kind: NumberKi
  * @param parser  Parser object
  * @param char Code point
  */
-export function scanDecimalDigitsOrSeparator(parser: ParserState, char: number): string {
+export function scanDecimalDigitsOrSeparator(parser: Parser, char: number): string {
   let allowSeparator: 0 | 1 = 0;
   let start = parser.index;
   let ret = '';

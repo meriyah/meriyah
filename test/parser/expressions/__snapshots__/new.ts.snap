@@ -15,6 +15,7 @@ exports[`Expressions - New > Expressions - New (pass) > ++new x().y 1`] = `
             },
             "type": "NewExpression",
           },
+          "optional": false,
           "property": {
             "name": "y",
             "type": "Identifier",
@@ -197,6 +198,7 @@ exports[`Expressions - New > Expressions - New (pass) > class x extends y { cons
                         "object": {
                           "type": "Super",
                         },
+                        "optional": false,
                         "property": {
                           "name": "foo",
                           "type": "Identifier",
@@ -275,6 +277,7 @@ exports[`Expressions - New > Expressions - New (pass) > delete new x().y 1`] = `
             },
             "type": "NewExpression",
           },
+          "optional": false,
           "property": {
             "name": "y",
             "type": "Identifier",
@@ -316,6 +319,7 @@ exports[`Expressions - New > Expressions - New (pass) > f(new /z/()) 1`] = `
           "name": "f",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -349,6 +353,7 @@ exports[`Expressions - New > Expressions - New (pass) > f(new /z/) 1`] = `
           "name": "f",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -377,6 +382,7 @@ exports[`Expressions - New > Expressions - New (pass) > f(new /z/.foo) 1`] = `
                 "type": "Literal",
                 "value": /z/,
               },
+              "optional": false,
               "property": {
                 "name": "foo",
                 "type": "Identifier",
@@ -390,6 +396,7 @@ exports[`Expressions - New > Expressions - New (pass) > f(new /z/.foo) 1`] = `
           "name": "f",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -414,12 +421,14 @@ exports[`Expressions - New > Expressions - New (pass) > new "foo".__proto__.cons
               "type": "Literal",
               "value": "foo",
             },
+            "optional": false,
             "property": {
               "name": "__proto__",
               "type": "Identifier",
             },
             "type": "MemberExpression",
           },
+          "optional": false,
           "property": {
             "name": "constructor",
             "type": "Identifier",
@@ -490,12 +499,14 @@ exports[`Expressions - New > Expressions - New (pass) > new 0x2.__proto__.constr
               "type": "Literal",
               "value": 2,
             },
+            "optional": false,
             "property": {
               "name": "__proto__",
               "type": "Identifier",
             },
             "type": "MemberExpression",
           },
+          "optional": false,
           "property": {
             "name": "constructor",
             "type": "Identifier",
@@ -526,12 +537,14 @@ exports[`Expressions - New > Expressions - New (pass) > new 1..__proto__.constru
               "type": "Literal",
               "value": 1,
             },
+            "optional": false,
             "property": {
               "name": "__proto__",
               "type": "Identifier",
             },
             "type": "MemberExpression",
           },
+          "optional": false,
           "property": {
             "name": "constructor",
             "type": "Identifier",
@@ -716,6 +729,7 @@ exports[`Expressions - New > Expressions - New (pass) > new Foo.Bar 1`] = `
             "name": "Foo",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "name": "Bar",
             "type": "Identifier",
@@ -744,6 +758,7 @@ exports[`Expressions - New > Expressions - New (pass) > new Foo.Bar() 1`] = `
             "name": "Foo",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "name": "Bar",
             "type": "Identifier",
@@ -777,6 +792,7 @@ exports[`Expressions - New > Expressions - New (pass) > new Foo.Bar(X) 1`] = `
             "name": "Foo",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "name": "Bar",
             "type": "Identifier",
@@ -810,6 +826,7 @@ exports[`Expressions - New > Expressions - New (pass) > new Foo.Bar(X) 2`] = `
             "name": "Foo",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "name": "Bar",
             "type": "Identifier",
@@ -851,6 +868,7 @@ exports[`Expressions - New > Expressions - New (pass) > new Foo.Bar(X, Y, Z) 1`]
             "name": "Foo",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "name": "Bar",
             "type": "Identifier",
@@ -892,6 +910,7 @@ exports[`Expressions - New > Expressions - New (pass) > new Foo.Bar(X, Y, Z) 2`]
             "name": "Foo",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "name": "Bar",
             "type": "Identifier",
@@ -920,6 +939,7 @@ exports[`Expressions - New > Expressions - New (pass) > new Foo["bar"] 1`] = `
             "name": "Foo",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "type": "Literal",
             "value": "bar",
@@ -948,6 +968,7 @@ exports[`Expressions - New > Expressions - New (pass) > new Foo["bar"]() 1`] = `
             "name": "Foo",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "type": "Literal",
             "value": "bar",
@@ -976,6 +997,7 @@ exports[`Expressions - New > Expressions - New (pass) > new Foo["bar"]() 2`] = `
             "name": "Foo",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "type": "Literal",
             "value": "bar",
@@ -1009,6 +1031,7 @@ exports[`Expressions - New > Expressions - New (pass) > new Foo["bar"](X) 1`] = 
             "name": "Foo",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "type": "Literal",
             "value": "bar",
@@ -1042,6 +1065,7 @@ exports[`Expressions - New > Expressions - New (pass) > new Foo["bar"](X) 2`] = 
             "name": "Foo",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "type": "Literal",
             "value": "bar",
@@ -1083,6 +1107,7 @@ exports[`Expressions - New > Expressions - New (pass) > new Foo["bar"](X, Y, Z) 
             "name": "Foo",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "type": "Literal",
             "value": "bar",
@@ -1124,6 +1149,7 @@ exports[`Expressions - New > Expressions - New (pass) > new Foo["bar"](X, Y, Z) 
             "name": "Foo",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "type": "Literal",
             "value": "bar",
@@ -1187,18 +1213,21 @@ exports[`Expressions - New > Expressions - New (pass) > new a.b.c.d 1`] = `
                 "name": "a",
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "name": "b",
                 "type": "Identifier",
               },
               "type": "MemberExpression",
             },
+            "optional": false,
             "property": {
               "name": "c",
               "type": "Identifier",
             },
             "type": "MemberExpression",
           },
+          "optional": false,
           "property": {
             "name": "d",
             "type": "Identifier",
@@ -1231,18 +1260,21 @@ exports[`Expressions - New > Expressions - New (pass) > new a.b.c.d() 1`] = `
                 "name": "a",
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "name": "b",
                 "type": "Identifier",
               },
               "type": "MemberExpression",
             },
+            "optional": false,
             "property": {
               "name": "c",
               "type": "Identifier",
             },
             "type": "MemberExpression",
           },
+          "optional": false,
           "property": {
             "name": "d",
             "type": "Identifier",
@@ -1407,6 +1439,7 @@ exports[`Expressions - New > Expressions - New (pass) > new async(x)(y) 1`] = `
           },
           "type": "NewExpression",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -1451,6 +1484,7 @@ exports[`Expressions - New > Expressions - New (pass) > new await()() 1`] = `
           },
           "type": "NewExpression",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -1548,12 +1582,14 @@ exports[`Expressions - New > Expressions - New (pass) > new false.__proto__.cons
               "type": "Literal",
               "value": false,
             },
+            "optional": false,
             "property": {
               "name": "__proto__",
               "type": "Identifier",
             },
             "type": "MemberExpression",
           },
+          "optional": false,
           "property": {
             "name": "constructor",
             "type": "Identifier",
@@ -1584,6 +1620,7 @@ exports[`Expressions - New > Expressions - New (pass) > new foo()(); 1`] = `
           },
           "type": "NewExpression",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -1689,6 +1726,7 @@ exports[`Expressions - New > Expressions - New (pass) > new new A().foo 1`] = `
             },
             "type": "NewExpression",
           },
+          "optional": false,
           "property": {
             "name": "foo",
             "type": "Identifier",
@@ -1719,6 +1757,7 @@ exports[`Expressions - New > Expressions - New (pass) > new new A.foo() 1`] = `
               "name": "A",
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "name": "foo",
               "type": "Identifier",
@@ -1794,12 +1833,14 @@ exports[`Expressions - New > Expressions - New (pass) > new true.__proto__.const
               "type": "Literal",
               "value": true,
             },
+            "optional": false,
             "property": {
               "name": "__proto__",
               "type": "Identifier",
             },
             "type": "MemberExpression",
           },
+          "optional": false,
           "property": {
             "name": "constructor",
             "type": "Identifier",
@@ -1830,6 +1871,7 @@ exports[`Expressions - New > Expressions - New (pass) > new x()(); 1`] = `
           },
           "type": "NewExpression",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -1854,6 +1896,7 @@ exports[`Expressions - New > Expressions - New (pass) > new x()(); 2`] = `
           },
           "type": "NewExpression",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -1879,6 +1922,7 @@ exports[`Expressions - New > Expressions - New (pass) > new x().y + z 1`] = `
             },
             "type": "NewExpression",
           },
+          "optional": false,
           "property": {
             "name": "y",
             "type": "Identifier",
@@ -1915,6 +1959,7 @@ exports[`Expressions - New > Expressions - New (pass) > new x().y = z 1`] = `
             },
             "type": "NewExpression",
           },
+          "optional": false,
           "property": {
             "name": "y",
             "type": "Identifier",
@@ -1950,6 +1995,7 @@ exports[`Expressions - New > Expressions - New (pass) > new x().y 1`] = `
           },
           "type": "NewExpression",
         },
+        "optional": false,
         "property": {
           "name": "y",
           "type": "Identifier",
@@ -1978,6 +2024,7 @@ exports[`Expressions - New > Expressions - New (pass) > new x().y 2`] = `
           },
           "type": "NewExpression",
         },
+        "optional": false,
         "property": {
           "name": "y",
           "type": "Identifier",
@@ -2007,6 +2054,7 @@ exports[`Expressions - New > Expressions - New (pass) > new x().y++ 1`] = `
             },
             "type": "NewExpression",
           },
+          "optional": false,
           "property": {
             "name": "y",
             "type": "Identifier",
@@ -2040,6 +2088,7 @@ exports[`Expressions - New > Expressions - New (pass) > new x()[y] + z 1`] = `
             },
             "type": "NewExpression",
           },
+          "optional": false,
           "property": {
             "name": "y",
             "type": "Identifier",
@@ -2076,6 +2125,7 @@ exports[`Expressions - New > Expressions - New (pass) > new x()[y] = z 1`] = `
             },
             "type": "NewExpression",
           },
+          "optional": false,
           "property": {
             "name": "y",
             "type": "Identifier",
@@ -2111,6 +2161,7 @@ exports[`Expressions - New > Expressions - New (pass) > new x()[y] 1`] = `
           },
           "type": "NewExpression",
         },
+        "optional": false,
         "property": {
           "name": "y",
           "type": "Identifier",
@@ -2139,6 +2190,7 @@ exports[`Expressions - New > Expressions - New (pass) > new x()[y] 2`] = `
           },
           "type": "NewExpression",
         },
+        "optional": false,
         "property": {
           "name": "y",
           "type": "Identifier",
@@ -2164,6 +2216,7 @@ exports[`Expressions - New > Expressions - New (pass) > typeof async () 1`] = `
             "name": "async",
             "type": "Identifier",
           },
+          "optional": false,
           "type": "CallExpression",
         },
         "operator": "typeof",
@@ -2267,6 +2320,7 @@ exports[`Expressions - New > Expressions - New (pass) > typeof new x().y 1`] = `
             },
             "type": "NewExpression",
           },
+          "optional": false,
           "property": {
             "name": "y",
             "type": "Identifier",
@@ -2320,6 +2374,7 @@ exports[`Expressions - New > Expressions - New (pass) > x({[new A()]:y}) 1`] = `
           "name": "x",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",

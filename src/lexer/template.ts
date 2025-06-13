@@ -1,4 +1,5 @@
-import { type ParserState, Context } from '../common';
+import { Context } from '../common';
+import { type Parser } from '../parser';
 import { Token } from '../token';
 import { Chars } from '../chars';
 import { advanceChar } from './common';
@@ -8,7 +9,7 @@ import { report, Errors } from '../errors';
 /**
  * Scan a template section. It can start either from the quote or closing brace.
  */
-export function scanTemplate(parser: ParserState, context: Context): Token {
+export function scanTemplate(parser: Parser, context: Context): Token {
   const { index: start } = parser;
   let token: Token = Token.TemplateSpan;
   let ret: string | null = '';
@@ -72,7 +73,7 @@ export function scanTemplate(parser: ParserState, context: Context): Token {
  * @param parser Parser state
  * @param ch Code point
  */
-function scanBadTemplate(parser: ParserState, ch: number): number {
+function scanBadTemplate(parser: Parser, ch: number): number {
   while (ch !== Chars.Backtick) {
     switch (ch) {
       case Chars.Dollar: {
@@ -101,7 +102,7 @@ function scanBadTemplate(parser: ParserState, ch: number): number {
   return ch;
 }
 
-export function scanTemplateTail(parser: ParserState, context: Context): Token {
+export function scanTemplateTail(parser: Parser, context: Context): Token {
   if (parser.index >= parser.end) report(parser, Errors.Unexpected);
   parser.index--;
   parser.column--;

@@ -146,6 +146,7 @@ exports[`Next - Import Meta > Next - Import Meta (pass) > ({m() { import.meta.ur
                         },
                         "type": "MetaProperty",
                       },
+                      "optional": false,
                       "property": {
                         "name": "url",
                         "type": "Identifier",
@@ -202,18 +203,21 @@ exports[`Next - Import Meta > Next - Import Meta (pass) > const size = import.me
                     },
                     "type": "MetaProperty",
                   },
+                  "optional": false,
                   "property": {
                     "name": "scriptElement",
                     "type": "Identifier",
                   },
                   "type": "MemberExpression",
                 },
+                "optional": false,
                 "property": {
                   "name": "dataset",
                   "type": "Identifier",
                 },
                 "type": "MemberExpression",
               },
+              "optional": false,
               "property": {
                 "name": "size",
                 "type": "Identifier",
@@ -355,6 +359,7 @@ exports[`Next - Import Meta > Next - Import Meta (pass) > import.meta() 1`] = `
           },
           "type": "MetaProperty",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -389,12 +394,14 @@ exports[`Next - Import Meta > Next - Import Meta (pass) > import.meta.resolve('s
             },
             "type": "MetaProperty",
           },
+          "optional": false,
           "property": {
             "name": "resolve",
             "type": "Identifier",
           },
           "type": "MemberExpression",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -422,6 +429,7 @@ exports[`Next - Import Meta > Next - Import Meta (pass) > import.meta[0] 1`] = `
           },
           "type": "MetaProperty",
         },
+        "optional": false,
         "property": {
           "type": "Literal",
           "value": 0,
@@ -504,6 +512,7 @@ exports[`Next - Import Meta > Next - Import Meta (pass) > var f = function() {im
                         },
                         "type": "MetaProperty",
                       },
+                      "optional": false,
                       "property": {
                         "name": "couldBeMutable",
                         "type": "Identifier",

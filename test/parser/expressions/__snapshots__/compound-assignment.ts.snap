@@ -30,6 +30,7 @@ exports[`Expressions - Compound assignment > Expressions - Compound assignment (
             "start": 1,
             "type": "NewExpression",
           },
+          "optional": false,
           "property": {
             "end": 13,
             "name": "bar",
@@ -48,6 +49,7 @@ exports[`Expressions - Compound assignment > Expressions - Compound assignment (
           "type": "MemberExpression",
         },
         "end": 15,
+        "optional": false,
         "range": [
           0,
           15,
@@ -206,6 +208,7 @@ exports[`Expressions - Compound assignment > Expressions - Compound assignment (
                 "type": "Identifier",
               },
               "end": 4,
+              "optional": false,
               "range": [
                 0,
                 4,
@@ -213,6 +216,7 @@ exports[`Expressions - Compound assignment > Expressions - Compound assignment (
               "start": 0,
               "type": "CallExpression",
             },
+            "optional": false,
             "property": {
               "end": 6,
               "name": "b",
@@ -231,6 +235,7 @@ exports[`Expressions - Compound assignment > Expressions - Compound assignment (
             "type": "MemberExpression",
           },
           "end": 17,
+          "optional": false,
           "range": [
             0,
             17,
@@ -238,6 +243,7 @@ exports[`Expressions - Compound assignment > Expressions - Compound assignment (
           "start": 0,
           "type": "CallExpression",
         },
+        "optional": false,
         "property": {
           "end": 19,
           "name": "c",
@@ -308,6 +314,7 @@ exports[`Expressions - Compound assignment > Expressions - Compound assignment (
               "start": 0,
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "end": 3,
               "name": "b",
@@ -325,6 +332,7 @@ exports[`Expressions - Compound assignment > Expressions - Compound assignment (
             "start": 0,
             "type": "MemberExpression",
           },
+          "optional": false,
           "property": {
             "end": 5,
             "name": "c",
@@ -343,6 +351,7 @@ exports[`Expressions - Compound assignment > Expressions - Compound assignment (
           "type": "MemberExpression",
         },
         "end": 11,
+        "optional": false,
         "range": [
           0,
           11,
@@ -413,6 +422,7 @@ exports[`Expressions - Compound assignment > Expressions - Compound assignment (
             "start": 0,
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "arguments": [],
             "callee": {
@@ -426,6 +436,7 @@ exports[`Expressions - Compound assignment > Expressions - Compound assignment (
               "type": "Identifier",
             },
             "end": 11,
+            "optional": false,
             "range": [
               5,
               11,
@@ -458,6 +469,7 @@ exports[`Expressions - Compound assignment > Expressions - Compound assignment (
             "type": "Identifier",
           },
           "end": 22,
+          "optional": false,
           "range": [
             16,
             22,
@@ -572,6 +584,7 @@ exports[`Expressions - Compound assignment > Expressions - Compound assignment (
             "name": "obj",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "name": "len",
             "type": "Identifier",
@@ -613,6 +626,7 @@ exports[`Expressions - Compound assignment > Expressions - Compound assignment (
             "start": 0,
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "end": 8,
             "name": "prop",
