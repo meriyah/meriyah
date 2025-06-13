@@ -698,7 +698,7 @@ export function parseStatement(
       return parseWithStatement(parser, context, scope, privateScope, labels, start, line, column);
     case Token.DebuggerKeyword:
       // DebuggerStatement
-      return parseDebuggerStatement(parser, context, start, line, column);
+      return parseDebuggerStatement(parser, context);
     case Token.AsyncKeyword:
       return parseAsyncArrowOrAsyncFunctionDeclaration(
         parser,
@@ -1824,22 +1824,14 @@ export function parseWithStatement(
  *
  * @param parser  Parser object
  * @param context Context masks
- * @param start Start pos of node
- * @param line
- * @param column
  */
-export function parseDebuggerStatement(
-  parser: ParserState,
-  context: Context,
-  start: number,
-  line: number,
-  column: number,
-): ESTree.DebuggerStatement {
+export function parseDebuggerStatement(parser: ParserState, context: Context): ESTree.DebuggerStatement {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
   // DebuggerStatement ::
   //   'debugger' ';'
   nextToken(parser, context | Context.AllowRegExp);
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'DebuggerStatement',
   });
 }
