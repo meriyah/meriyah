@@ -4882,7 +4882,7 @@ export function parsePrimaryExpression(
     case Token.ThisKeyword:
       return parseThisExpression(parser, context);
     case Token.RegularExpression:
-      return parseRegExpLiteral(parser, context, start, line, column);
+      return parseRegExpLiteral(parser, context);
     case Token.Decorator:
     case Token.ClassKeyword:
       return parseClassExpression(parser, context, privateScope, inGroup, start, line, column);
@@ -9291,41 +9291,21 @@ export function parseAsyncArrowOrCallExpression(
  * @param parser Parser object
  * @param context Context masks
  */
-export function parseRegExpLiteral(
-  parser: ParserState,
-  context: Context,
-  start: number,
-  line: number,
-  column: number,
-): ESTree.RegExpLiteral {
-  assert.deepEqual(
-    {
-      start,
-      line,
-      column,
-    },
-    {
-      start: parser.tokenIndex,
-      line: parser.tokenLine,
-      column: parser.tokenColumn,
-    },
-  );
-
-  const { tokenRaw, tokenRegExp, tokenValue } = parser;
+export function parseRegExpLiteral(parser: ParserState, context: Context): ESTree.RegExpLiteral {
+  const { tokenRaw, tokenRegExp, tokenValue, tokenIndex, tokenLine, tokenColumn } = parser;
   nextToken(parser, context);
   parser.assignable = AssignmentKind.CannotAssign;
-  return context & Context.OptionsRaw
-    ? finishNode(parser, context, start, line, column, {
-        type: 'Literal',
-        value: tokenValue,
-        regex: tokenRegExp as { pattern: string; flags: string },
-        raw: tokenRaw,
-      })
-    : finishNode(parser, context, start, line, column, {
-        type: 'Literal',
-        value: tokenValue,
-        regex: tokenRegExp as { pattern: string; flags: string },
-      });
+  const node: ESTree.RegExpLiteral = {
+    type: 'Literal',
+    value: tokenValue,
+    regex: tokenRegExp as { pattern: string; flags: string },
+  };
+
+  if (context & Context.OptionsRaw) {
+    node.raw = tokenRaw;
+  }
+
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, node);
 }
 
 /**
