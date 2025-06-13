@@ -686,7 +686,7 @@ export function parseStatement(
       return parseBreakStatement(parser, context, labels);
     // ContinueStatement[?Yield]
     case Token.ContinueKeyword:
-      return parseContinueStatement(parser, context, labels, start, line, column);
+      return parseContinueStatement(parser, context, labels);
     // TryStatement[?Yield, ?Return]
     case Token.TryKeyword:
       return parseTryStatement(parser, context, scope, privateScope, labels, start, line, column);
@@ -1681,10 +1681,9 @@ export function parseContinueStatement(
   parser: ParserState,
   context: Context,
   labels: ESTree.Labels,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.ContinueStatement {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   // ContinueStatement ::
   //   'continue' Identifier? ';'
   if ((context & Context.InIteration) === 0) report(parser, Errors.IllegalContinue);
@@ -1697,7 +1696,7 @@ export function parseContinueStatement(
       report(parser, Errors.UnknownLabel, tokenValue);
   }
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'ContinueStatement',
     label,
   });
