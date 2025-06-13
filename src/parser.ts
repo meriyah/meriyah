@@ -1979,9 +1979,6 @@ export function parseStaticBlock(
  * @param parser Parser object
  * @param context Context masks
  * @param scope Scope instance
- * @param start Start pos of node
- * @param line
- * @param column
  */
 export function parseDoWhileStatement(
   parser: ParserState,
@@ -1989,10 +1986,9 @@ export function parseDoWhileStatement(
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.DoWhileStatement {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   // DoStatement ::
   //   'do Statement while ( Expression ) ;'
 
@@ -2016,7 +2012,7 @@ export function parseDoWhileStatement(
   // This cannot be implemented in matchOrInsertSemicolon() because it doesn't know
   // this RightParen is the end of a do-while statement.
   consumeOpt(parser, context | Context.AllowRegExp, Token.Semicolon);
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'DoWhileStatement',
     body,
     test,
