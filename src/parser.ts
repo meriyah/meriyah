@@ -660,9 +660,9 @@ export function parseStatement(
     //   IterationStatement[?Yield, ?Return]
     //   SwitchStatement[?Yield, ?Return]
     case Token.DoKeyword:
-      return parseDoWhileStatement(parser, context, scope, privateScope, labels, start, line, column);
+      return parseDoWhileStatement(parser, context, scope, privateScope, labels);
     case Token.WhileKeyword:
-      return parseWhileStatement(parser, context, scope, privateScope, labels, start, line, column);
+      return parseWhileStatement(parser, context, scope, privateScope, labels);
     case Token.SwitchKeyword:
       return parseSwitchStatement(parser, context, scope, privateScope, labels, start, line, column);
     case Token.Semicolon:
@@ -1598,10 +1598,9 @@ export function parseWhileStatement(
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.WhileStatement {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   // WhileStatement ::
   //   'while' '(' Expression ')' Statement
   nextToken(parser, context);
@@ -1618,7 +1617,7 @@ export function parseWhileStatement(
   );
   consume(parser, context | Context.AllowRegExp, Token.RightParen);
   const body = parseIterationStatementBody(parser, context, scope, privateScope, labels);
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'WhileStatement',
     test,
     body,
