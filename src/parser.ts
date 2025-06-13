@@ -5048,7 +5048,7 @@ export function parsePrimaryExpression(
     case Token.NewKeyword:
       return parseNewExpression(parser, context, privateScope, inGroup, start, line, column);
     case Token.BigIntLiteral:
-      return parseBigIntLiteral(parser, context, start, line, column);
+      return parseBigIntLiteral(parser, context);
     case Token.PrivateField:
       return parsePrivateIdentifier(parser, context, privateScope, PropertyKind.None, start, line, column);
     case Token.ImportKeyword:
@@ -5338,14 +5338,8 @@ function parseModuleExportName(parser: ParserState, context: Context): ESTree.Id
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseBigIntLiteral(
-  parser: ParserState,
-  context: Context,
-  start: number,
-  line: number,
-  column: number,
-): ESTree.BigIntLiteral {
-  const { tokenRaw, tokenValue } = parser;
+export function parseBigIntLiteral(parser: ParserState, context: Context): ESTree.BigIntLiteral {
+  const { tokenRaw, tokenValue, tokenIndex, tokenLine, tokenColumn } = parser;
   nextToken(parser, context);
   parser.assignable = AssignmentKind.CannotAssign;
 
@@ -5359,7 +5353,7 @@ export function parseBigIntLiteral(
     node.raw = tokenRaw;
   }
 
-  return finishNode(parser, context, start, line, column, node);
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, node);
 }
 
 /**
@@ -5679,7 +5673,7 @@ export function parseIdentifier(parser: ParserState, context: Context): ESTree.I
 export function parseLiteral(parser: ParserState, context: Context): ESTree.Literal {
   const { tokenValue, tokenRaw, tokenIndex, tokenLine, tokenColumn } = parser;
   if (parser.getToken() === Token.BigIntLiteral) {
-    return parseBigIntLiteral(parser, context, tokenIndex, tokenLine, tokenColumn);
+    return parseBigIntLiteral(parser, context);
   }
 
   nextToken(parser, context);
