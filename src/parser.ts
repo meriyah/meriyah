@@ -680,7 +680,7 @@ export function parseStatement(
 
     // ThrowStatement[?Yield]
     case Token.ThrowKeyword:
-      return parseThrowStatement(parser, context, privateScope, start, line, column);
+      return parseThrowStatement(parser, context, privateScope);
     case Token.BreakKeyword:
       // BreakStatement[?Yield]
       return parseBreakStatement(parser, context, labels, start, line, column);
@@ -1347,19 +1347,15 @@ export function parseEmptyStatement(parser: ParserState, context: Context): ESTr
  *
  * @param parser  Parser object
  * @param context Context masks
- * @param start Start pos of node
-* @param line
-* @param column
 
  */
 export function parseThrowStatement(
   parser: ParserState,
   context: Context,
   privateScope: PrivateScopeState | undefined,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.ThrowStatement {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   // ThrowStatement ::
   //   'throw' Expression ';'
   nextToken(parser, context | Context.AllowRegExp);
@@ -1375,7 +1371,7 @@ export function parseThrowStatement(
     parser.tokenColumn,
   );
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'ThrowStatement',
     argument,
   });
