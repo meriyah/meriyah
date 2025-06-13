@@ -74,6 +74,7 @@ exports[`Declarations - Function > Declarations - Function (pass) > "use strict"
                   "name": "g",
                   "type": "Identifier",
                 },
+                "optional": false,
                 "type": "CallExpression",
               },
               "type": "AssignmentPattern",
@@ -419,6 +420,7 @@ exports[`Declarations - Function > Declarations - Function (pass) > function com
                   "start": 42,
                   "type": "Identifier",
                 },
+                "optional": false,
                 "property": {
                   "end": 50,
                   "name": "length",
@@ -454,6 +456,7 @@ exports[`Declarations - Function > Declarations - Function (pass) > function com
                   "start": 55,
                   "type": "Identifier",
                 },
+                "optional": false,
                 "property": {
                   "end": 63,
                   "name": "length",
@@ -494,6 +497,7 @@ exports[`Declarations - Function > Declarations - Function (pass) > function com
                       "start": 154,
                       "type": "Identifier",
                     },
+                    "optional": false,
                     "property": {
                       "end": 157,
                       "range": [
@@ -606,6 +610,7 @@ exports[`Declarations - Function > Declarations - Function (pass) > function com
                   "start": 125,
                   "type": "Identifier",
                 },
+                "optional": false,
                 "property": {
                   "end": 133,
                   "name": "length",
@@ -1971,6 +1976,7 @@ exports[`Declarations - Function > Declarations - Function (pass) > function sho
                       "type": "Identifier",
                     },
                     "end": 142,
+                    "optional": false,
                     "range": [
                       136,
                       142,

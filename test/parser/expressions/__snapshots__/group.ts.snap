@@ -348,6 +348,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ((a))((a)) 1`] = `
           "name": "a",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -368,6 +369,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ((a))() 1`] = `
           "name": "a",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -470,6 +472,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (++/[^\\x0f+-\\x6d+$
             "type": "Literal",
             "value": /\\[\\^\\\\x0f\\+-\\\\x6d\\+\\$-\\)-\\]/giuy,
           },
+          "optional": false,
           "property": {
             "left": {
               "computed": true,
@@ -477,6 +480,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (++/[^\\x0f+-\\x6d+$
                 "type": "Literal",
                 "value": 0,
               },
+              "optional": false,
               "property": {
                 "type": "Literal",
                 "value": true,
@@ -682,6 +686,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([ (foo.bar) ] = z =
                 "name": "foo",
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "name": "bar",
                 "type": "Identifier",
@@ -773,8 +778,10 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([ [ foo().x = 10 ] 
                           "name": "foo",
                           "type": "Identifier",
                         },
+                        "optional": false,
                         "type": "CallExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "x",
                         "type": "Identifier",
@@ -841,8 +848,10 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([ [ foo().x = 10 ] 
                           "name": "foo",
                           "type": "Identifier",
                         },
+                        "optional": false,
                         "type": "CallExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "x",
                         "type": "Identifier",
@@ -906,8 +915,10 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([ foo()[x] = 10 ] =
                     "name": "foo",
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "type": "CallExpression",
                 },
+                "optional": false,
                 "property": {
                   "name": "x",
                   "type": "Identifier",
@@ -962,8 +973,10 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([ foo()[x] = 10 ] =
                     "name": "foo",
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "type": "CallExpression",
                 },
+                "optional": false,
                 "property": {
                   "name": "x",
                   "type": "Identifier",
@@ -1016,6 +1029,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([ x.y = 10 ] = z = 
                   "name": "x",
                   "type": "Identifier",
                 },
+                "optional": false,
                 "property": {
                   "name": "y",
                   "type": "Identifier",
@@ -1068,6 +1082,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([ x[y] = 10 ] = z =
                   "name": "x",
                   "type": "Identifier",
                 },
+                "optional": false,
                 "property": {
                   "name": "y",
                   "type": "Identifier",
@@ -1170,6 +1185,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([(({ x } = { x: 1 }
                 ],
                 "type": "ArrowFunctionExpression",
               },
+              "optional": false,
               "property": {
                 "name": "a",
                 "type": "Identifier",
@@ -1450,6 +1466,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([...x.y] = z) 1`] =
                   "name": "x",
                   "type": "Identifier",
                 },
+                "optional": false,
                 "property": {
                   "name": "y",
                   "type": "Identifier",
@@ -1730,6 +1747,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([].length) = y 1`] 
             "start": 1,
             "type": "ArrayExpression",
           },
+          "optional": false,
           "property": {
             "end": 10,
             "name": "length",
@@ -1794,6 +1812,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([].x); 1`] = `
           "elements": [],
           "type": "ArrayExpression",
         },
+        "optional": false,
         "property": {
           "name": "x",
           "type": "Identifier",
@@ -1918,6 +1937,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([a = b].foo = x) 1`
             ],
             "type": "ArrayExpression",
           },
+          "optional": false,
           "property": {
             "name": "foo",
             "type": "Identifier",
@@ -1961,6 +1981,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([a.b] = x); 1`] = `
                 "start": 2,
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "end": 5,
                 "name": "b",
@@ -2053,6 +2074,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([a=[b.c]=d]) => e; 
                           "name": "b",
                           "type": "Identifier",
                         },
+                        "optional": false,
                         "property": {
                           "name": "c",
                           "type": "Identifier",
@@ -2236,6 +2258,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([delete foo.bar]); 
                 "name": "foo",
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "name": "bar",
                 "type": "Identifier",
@@ -2278,6 +2301,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([delete foo.bar]); 
                 "start": 9,
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "end": 16,
                 "name": "bar",
@@ -2358,6 +2382,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([target()[targetKey
                   "type": "Identifier",
                 },
                 "end": 10,
+                "optional": false,
                 "range": [
                   2,
                   10,
@@ -2365,6 +2390,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([target()[targetKey
                 "start": 2,
                 "type": "CallExpression",
               },
+              "optional": false,
               "property": {
                 "arguments": [],
                 "callee": {
@@ -2378,6 +2404,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([target()[targetKey
                   "type": "Identifier",
                 },
                 "end": 22,
+                "optional": false,
                 "range": [
                   11,
                   22,
@@ -2463,6 +2490,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([target()[targetKey
                   "type": "Identifier",
                 },
                 "end": 10,
+                "optional": false,
                 "range": [
                   2,
                   10,
@@ -2470,6 +2498,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([target()[targetKey
                 "start": 2,
                 "type": "CallExpression",
               },
+              "optional": false,
               "property": {
                 "arguments": [
                   {
@@ -2514,6 +2543,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([target()[targetKey
                   "type": "Identifier",
                 },
                 "end": 25,
+                "optional": false,
                 "range": [
                   11,
                   25,
@@ -2783,6 +2813,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([x].foo) = x 1`] = 
             ],
             "type": "ArrayExpression",
           },
+          "optional": false,
           "property": {
             "name": "foo",
             "type": "Identifier",
@@ -2819,6 +2850,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([x].foo) 1`] = `
           ],
           "type": "ArrayExpression",
         },
+        "optional": false,
         "property": {
           "name": "foo",
           "type": "Identifier",
@@ -2864,6 +2896,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([x].length) = y 1`]
             "start": 1,
             "type": "ArrayExpression",
           },
+          "optional": false,
           "property": {
             "end": 11,
             "name": "length",
@@ -3033,8 +3066,10 @@ exports[`Expressions - Group > Expressions - Group (pass) > ({
                     "name": "some_call",
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "type": "CallExpression",
                 },
+                "optional": false,
                 "property": {
                   "name": "a",
                   "type": "Identifier",
@@ -3057,6 +3092,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ({
                 "object": {
                   "type": "ThisExpression",
                 },
+                "optional": false,
                 "property": {
                   "name": "a",
                   "type": "Identifier",
@@ -3176,6 +3212,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ({ a: 1 }).a === 1 1
             "start": 1,
             "type": "ObjectExpression",
           },
+          "optional": false,
           "property": {
             "end": 12,
             "name": "a",
@@ -3515,8 +3552,10 @@ exports[`Expressions - Group > Expressions - Group (pass) > ({ x : { foo: foo().
                         "name": "foo",
                         "type": "Identifier",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
+                    "optional": false,
                     "property": {
                       "name": "y",
                       "type": "Identifier",
@@ -3564,8 +3603,10 @@ exports[`Expressions - Group > Expressions - Group (pass) > ({ x : foo()[y] } = 
                     "name": "foo",
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "type": "CallExpression",
                 },
+                "optional": false,
                 "property": {
                   "name": "y",
                   "type": "Identifier",
@@ -4006,6 +4047,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ({ x: y.z } = a) 1`]
                   "name": "y",
                   "type": "Identifier",
                 },
+                "optional": false,
                 "property": {
                   "name": "z",
                   "type": "Identifier",
@@ -4406,6 +4448,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ({...x.y} = z)  1`] 
                   "name": "x",
                   "type": "Identifier",
                 },
+                "optional": false,
                 "property": {
                   "name": "y",
                   "type": "Identifier",
@@ -4511,6 +4554,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ({[foo()] : (z)} = z
                   "name": "foo",
                   "type": "Identifier",
                 },
+                "optional": false,
                 "type": "CallExpression",
               },
               "kind": "init",
@@ -4563,6 +4607,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ({[foo()] : foo().ba
                   "name": "foo",
                   "type": "Identifier",
                 },
+                "optional": false,
                 "type": "CallExpression",
               },
               "kind": "init",
@@ -4577,8 +4622,10 @@ exports[`Expressions - Group > Expressions - Group (pass) > ({[foo()] : foo().ba
                     "name": "foo",
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "type": "CallExpression",
                 },
+                "optional": false,
                 "property": {
                   "name": "bar",
                   "type": "Identifier",
@@ -4627,6 +4674,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ({[foo()] : z} = z =
                   "name": "foo",
                   "type": "Identifier",
                 },
+                "optional": false,
                 "type": "CallExpression",
               },
               "kind": "init",
@@ -5305,6 +5353,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ({}.length) = z 1`] 
             "start": 1,
             "type": "ObjectExpression",
           },
+          "optional": false,
           "property": {
             "end": 10,
             "name": "length",
@@ -6226,6 +6275,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ({a:(b.c)} = 0) 1`] 
                   "start": 5,
                   "type": "Identifier",
                 },
+                "optional": false,
                 "property": {
                   "end": 8,
                   "name": "c",
@@ -7058,6 +7108,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ({ident: [foo, bar].
                   "start": 9,
                   "type": "ArrayExpression",
                 },
+                "optional": false,
                 "property": {
                   "end": 24,
                   "name": "join",
@@ -7076,6 +7127,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ({ident: [foo, bar].
                 "type": "MemberExpression",
               },
               "end": 28,
+              "optional": false,
               "range": [
                 9,
                 28,
@@ -7201,6 +7253,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ({ident: {x: y}.join
                   "start": 9,
                   "type": "ObjectExpression",
                 },
+                "optional": false,
                 "property": {
                   "end": 20,
                   "name": "join",
@@ -7219,6 +7272,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ({ident: {x: y}.join
                 "type": "MemberExpression",
               },
               "end": 24,
+              "optional": false,
               "range": [
                 9,
                 24,
@@ -7889,6 +7943,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ({x: ((y, z) => z)["
                   ],
                   "type": "ArrowFunctionExpression",
                 },
+                "optional": false,
                 "property": {
                   "type": "Literal",
                   "value": "x",
@@ -7976,6 +8031,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > ({x: y}.length) = z 
             "start": 1,
             "type": "ObjectExpression",
           },
+          "optional": false,
           "property": {
             "end": 14,
             "name": "length",
@@ -9748,6 +9804,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (a.b().c().d) += 1; 
                     "start": 1,
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "property": {
                     "end": 4,
                     "name": "b",
@@ -9766,6 +9823,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (a.b().c().d) += 1; 
                   "type": "MemberExpression",
                 },
                 "end": 6,
+                "optional": false,
                 "range": [
                   1,
                   6,
@@ -9773,6 +9831,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (a.b().c().d) += 1; 
                 "start": 1,
                 "type": "CallExpression",
               },
+              "optional": false,
               "property": {
                 "end": 8,
                 "name": "c",
@@ -9791,6 +9850,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (a.b().c().d) += 1; 
               "type": "MemberExpression",
             },
             "end": 10,
+            "optional": false,
             "range": [
               1,
               10,
@@ -9798,6 +9858,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (a.b().c().d) += 1; 
             "start": 1,
             "type": "CallExpression",
           },
+          "optional": false,
           "property": {
             "end": 12,
             "name": "d",
@@ -9882,6 +9943,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (a.b().c().d) = 1; 1
                     "start": 1,
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "property": {
                     "end": 4,
                     "name": "b",
@@ -9900,6 +9962,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (a.b().c().d) = 1; 1
                   "type": "MemberExpression",
                 },
                 "end": 6,
+                "optional": false,
                 "range": [
                   1,
                   6,
@@ -9907,6 +9970,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (a.b().c().d) = 1; 1
                 "start": 1,
                 "type": "CallExpression",
               },
+              "optional": false,
               "property": {
                 "end": 8,
                 "name": "c",
@@ -9925,6 +9989,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (a.b().c().d) = 1; 1
               "type": "MemberExpression",
             },
             "end": 10,
+            "optional": false,
             "range": [
               1,
               10,
@@ -9932,6 +9997,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (a.b().c().d) = 1; 1
             "start": 1,
             "type": "CallExpression",
           },
+          "optional": false,
           "property": {
             "end": 12,
             "name": "d",
@@ -9997,6 +10063,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (a.b) += 1; 1`] = `
             "name": "a",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "name": "b",
             "type": "Identifier",
@@ -10029,6 +10096,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (a.b) = {} 1`] = `
             "name": "a",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "name": "b",
             "type": "Identifier",
@@ -10070,6 +10138,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (a.b) = 1; 1`] = `
             "start": 1,
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "end": 4,
             "name": "b",
@@ -10135,6 +10204,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (a[b]) += 1; 1`] = `
             "name": "a",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "name": "b",
             "type": "Identifier",
@@ -10176,6 +10246,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (a[b]) = 1; 1`] = `
             "start": 1,
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "end": 4,
             "name": "b",
@@ -10335,6 +10406,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (async ()); 1`] = `
           "name": "async",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -10408,6 +10480,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (delete /a/.x); 1`] 
             "type": "Literal",
             "value": /a/,
           },
+          "optional": false,
           "property": {
             "name": "x",
             "type": "Identifier",
@@ -10461,6 +10534,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (delete /a/g.x); 1`]
             "type": "Literal",
             "value": /a/g,
           },
+          "optional": false,
           "property": {
             "loc": {
               "end": {
@@ -10538,6 +10612,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (delete foo.bar); 1`
             "start": 8,
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "end": 15,
             "name": "bar",
@@ -10607,6 +10682,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (f().a) = 1; 1`] = `
               "type": "Identifier",
             },
             "end": 4,
+            "optional": false,
             "range": [
               1,
               4,
@@ -10614,6 +10690,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (f().a) = 1; 1`] = `
             "start": 1,
             "type": "CallExpression",
           },
+          "optional": false,
           "property": {
             "end": 6,
             "name": "a",
@@ -10812,6 +10889,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (foo.x) 1`] = `
           "name": "foo",
           "type": "Identifier",
         },
+        "optional": false,
         "property": {
           "name": "x",
           "type": "Identifier",
@@ -10836,6 +10914,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (foo[x]) 1`] = `
           "name": "foo",
           "type": "Identifier",
         },
+        "optional": false,
         "property": {
           "name": "x",
           "type": "Identifier",
@@ -10870,6 +10949,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (obj.a) = 1; 1`] = `
             "start": 1,
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "end": 6,
             "name": "a",
@@ -10944,6 +11024,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (obj[0]) = 1; 1`] = 
             "start": 1,
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "end": 6,
             "range": [
@@ -11064,6 +11145,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (this.a) += 1; 1`] =
           "object": {
             "type": "ThisExpression",
           },
+          "optional": false,
           "property": {
             "name": "a",
             "type": "Identifier",
@@ -11104,6 +11186,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (this.a) = 1; 1`] = 
             "start": 1,
             "type": "ThisExpression",
           },
+          "optional": false,
           "property": {
             "end": 7,
             "name": "a",
@@ -11168,6 +11251,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (this[b]) += 1; 1`] 
           "object": {
             "type": "ThisExpression",
           },
+          "optional": false,
           "property": {
             "name": "b",
             "type": "Identifier",
@@ -11208,6 +11292,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (this[b]) = 1; 1`] =
             "start": 1,
             "type": "ThisExpression",
           },
+          "optional": false,
           "property": {
             "end": 7,
             "name": "b",
@@ -12269,6 +12354,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (x.foo = y) 1`] = `
             "name": "x",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "name": "foo",
             "type": "Identifier",
@@ -12300,6 +12386,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (x.foo) 1`] = `
           "name": "x",
           "type": "Identifier",
         },
+        "optional": false,
         "property": {
           "name": "foo",
           "type": "Identifier",
@@ -12504,6 +12591,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (z = [...x.y] = z) =
                         "name": "x",
                         "type": "Identifier",
                       },
+                      "optional": false,
                       "property": {
                         "name": "y",
                         "type": "Identifier",
@@ -12562,6 +12650,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (z = [...x.y]) => z 
                       "name": "x",
                       "type": "Identifier",
                     },
+                    "optional": false,
                     "property": {
                       "name": "y",
                       "type": "Identifier",
@@ -12613,6 +12702,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > (z = {...x.y}) => z 
                       "name": "x",
                       "type": "Identifier",
                     },
+                    "optional": false,
                     "property": {
                       "name": "y",
                       "type": "Identifier",
@@ -12903,6 +12993,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > [(a.b)] = 0 1`] = `
                 "start": 2,
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "end": 5,
                 "name": "b",
@@ -12996,6 +13087,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > [...{a: b}.c] = [] 1
                   ],
                   "type": "ObjectExpression",
                 },
+                "optional": false,
                 "property": {
                   "name": "c",
                   "type": "Identifier",
@@ -13240,6 +13332,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > [{x: y.z}] = a 1`] =
                       "name": "y",
                       "type": "Identifier",
                     },
+                    "optional": false,
                     "property": {
                       "name": "z",
                       "type": "Identifier",
@@ -13292,6 +13385,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > [{x: y.z}] 1`] = `
                     "name": "y",
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "property": {
                     "name": "z",
                     "type": "Identifier",
@@ -14136,6 +14230,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > [x.a=a] = 0 1`] = `
                   "start": 1,
                   "type": "Identifier",
                 },
+                "optional": false,
                 "property": {
                   "end": 4,
                   "name": "a",
@@ -14277,6 +14372,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > a0({}); 1`] = `
           "type": "Identifier",
         },
         "end": 6,
+        "optional": false,
         "range": [
           0,
           6,
@@ -14447,6 +14543,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > async (foo = yield) 
           "name": "async",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -14497,6 +14594,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > async("foo".bar); 1`
               "type": "Literal",
               "value": "foo",
             },
+            "optional": false,
             "property": {
               "name": "bar",
               "type": "Identifier",
@@ -14508,6 +14606,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > async("foo".bar); 1`
           "name": "async",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -14538,6 +14637,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > async("foo".bar); 2`
               "type": "Literal",
               "value": "foo",
             },
+            "optional": false,
             "property": {
               "end": 15,
               "name": "bar",
@@ -14567,6 +14667,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > async("foo".bar); 2`
           "type": "Identifier",
         },
         "end": 16,
+        "optional": false,
         "range": [
           0,
           16,
@@ -14686,6 +14787,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > async(a); 1`] = `
           "name": "async",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -15547,6 +15649,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > f(argument1, [...res
           "name": "f",
           "type": "Identifier",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -15588,6 +15691,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > function *f(){ async
                 "name": "async",
                 "type": "Identifier",
               },
+              "optional": false,
               "type": "CallExpression",
             },
             "type": "ExpressionStatement",
@@ -15637,6 +15741,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > function *f(){ async
                 "name": "async",
                 "type": "Identifier",
               },
+              "optional": false,
               "type": "CallExpression",
             },
             "type": "ExpressionStatement",
@@ -15865,6 +15970,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > new c(x)(y) 1`] = `
           },
           "type": "NewExpression",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -16057,6 +16163,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > var a;
             "start": 26,
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "end": 29,
             "name": "b",
@@ -16116,6 +16223,7 @@ exports[`Expressions - Group > Expressions - Group (pass) > var a;
             "start": 42,
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "end": 47,
             "range": [

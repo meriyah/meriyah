@@ -397,6 +397,7 @@ exports[`Statements - For > Statements - For (pass) > for ([a.b] in c) d 1`] = `
               "name": "a",
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "name": "b",
               "type": "Identifier",
@@ -438,6 +439,7 @@ exports[`Statements - For > Statements - For (pass) > for ([a.b] of c) d 1`] = `
               "name": "a",
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "name": "b",
               "type": "Identifier",
@@ -480,6 +482,7 @@ exports[`Statements - For > Statements - For (pass) > for ([a.b].foo in c) d 1`]
                 "name": "a",
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "name": "b",
                 "type": "Identifier",
@@ -489,6 +492,7 @@ exports[`Statements - For > Statements - For (pass) > for ([a.b].foo in c) d 1`]
           ],
           "type": "ArrayExpression",
         },
+        "optional": false,
         "property": {
           "name": "foo",
           "type": "Identifier",
@@ -529,6 +533,7 @@ exports[`Statements - For > Statements - For (pass) > for ([a.b].foo of c) d 1`]
                 "name": "a",
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "name": "b",
                 "type": "Identifier",
@@ -538,6 +543,7 @@ exports[`Statements - For > Statements - For (pass) > for ([a.b].foo of c) d 1`]
           ],
           "type": "ArrayExpression",
         },
+        "optional": false,
         "property": {
           "name": "foo",
           "type": "Identifier",
@@ -577,12 +583,14 @@ exports[`Statements - For > Statements - For (pass) > for (\`<\${new arguments(+
                       "name": "r",
                       "type": "Identifier",
                     },
+                    "optional": false,
                     "property": {
                       "name": "function",
                       "type": "Identifier",
                     },
                     "type": "MemberExpression",
                   },
+                  "optional": false,
                   "property": {
                     "name": "eval",
                     "type": "Identifier",
@@ -717,6 +725,7 @@ exports[`Statements - For > Statements - For (pass) > for ({a: b.c} in d) e 1`] 
                 "name": "b",
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "name": "c",
                 "type": "Identifier",
@@ -769,6 +778,7 @@ exports[`Statements - For > Statements - For (pass) > for ({a: b.c} of d) e 1`] 
                 "name": "b",
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "name": "c",
                 "type": "Identifier",
@@ -822,6 +832,7 @@ exports[`Statements - For > Statements - For (pass) > for ({a: b.c}.foo in d) e 
                   "name": "b",
                   "type": "Identifier",
                 },
+                "optional": false,
                 "property": {
                   "name": "c",
                   "type": "Identifier",
@@ -832,6 +843,7 @@ exports[`Statements - For > Statements - For (pass) > for ({a: b.c}.foo in d) e 
           ],
           "type": "ObjectExpression",
         },
+        "optional": false,
         "property": {
           "name": "foo",
           "type": "Identifier",
@@ -882,6 +894,7 @@ exports[`Statements - For > Statements - For (pass) > for ({a: b.c}.foo of d) e 
                   "name": "b",
                   "type": "Identifier",
                 },
+                "optional": false,
                 "property": {
                   "name": "c",
                   "type": "Identifier",
@@ -892,6 +905,7 @@ exports[`Statements - For > Statements - For (pass) > for ({a: b.c}.foo of d) e 
           ],
           "type": "ObjectExpression",
         },
+        "optional": false,
         "property": {
           "name": "foo",
           "type": "Identifier",
@@ -4026,6 +4040,7 @@ exports[`Statements - For > Statements - For (pass) > let = 4;
           ],
           "type": "ArrayExpression",
         },
+        "optional": false,
         "property": {
           "type": "Literal",
           "value": 0,

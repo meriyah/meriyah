@@ -948,6 +948,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <A aa={aa.bb.cc} bb=
                     "name": "aa",
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "property": {
                     "name": "b",
                     "type": "Identifier",
@@ -1000,12 +1001,14 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <A aa={aa.bb.cc} bb=
                       "name": "aa",
                       "type": "Identifier",
                     },
+                    "optional": false,
                     "property": {
                       "name": "bb",
                       "type": "Identifier",
                     },
                     "type": "MemberExpression",
                   },
+                  "optional": false,
                   "property": {
                     "name": "cc",
                     "type": "Identifier",
@@ -1030,12 +1033,14 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <A aa={aa.bb.cc} bb=
                       "name": "bb",
                       "type": "Identifier",
                     },
+                    "optional": false,
                     "property": {
                       "name": "cc",
                       "type": "Identifier",
                     },
                     "type": "MemberExpression",
                   },
+                  "optional": false,
                   "property": {
                     "name": "dd",
                     "type": "Identifier",
@@ -2078,6 +2083,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <View {...this.props
                 "object": {
                   "type": "ThisExpression",
                 },
+                "optional": false,
                 "property": {
                   "name": "props",
                   "type": "Identifier",
@@ -2092,6 +2098,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <View {...this.props
                 "object": {
                   "type": "ThisExpression",
                 },
+                "optional": false,
                 "property": {
                   "name": "state",
                   "type": "Identifier",
@@ -4502,6 +4509,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div {...this.props}
                 "object": {
                   "type": "ThisExpression",
                 },
+                "optional": false,
                 "property": {
                   "name": "props",
                   "type": "Identifier",
@@ -5301,12 +5309,14 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div style={{ height
                     "object": {
                       "type": "ThisExpression",
                     },
+                    "optional": false,
                     "property": {
                       "name": "state",
                       "type": "Identifier",
                     },
                     "type": "MemberExpression",
                   },
+                  "optional": false,
                   "property": {
                     "name": "x",
                     "type": "Identifier",
@@ -5327,12 +5337,14 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div style={{ height
                     "object": {
                       "type": "ThisExpression",
                     },
+                    "optional": false,
                     "property": {
                       "name": "state",
                       "type": "Identifier",
                     },
                     "type": "MemberExpression",
                   },
+                  "optional": false,
                   "property": {
                     "name": "y",
                     "type": "Identifier",
@@ -5421,6 +5433,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div style={{ height
                   "object": {
                     "type": "ThisExpression",
                   },
+                  "optional": false,
                   "property": {
                     "name": "handleMouseMove",
                     "type": "Identifier",
@@ -6751,6 +6764,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <dl>
                                 "name": "item",
                                 "type": "Identifier",
                               },
+                              "optional": false,
                               "property": {
                                 "name": "term",
                                 "type": "Identifier",
@@ -6792,6 +6806,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <dl>
                                 "name": "item",
                                 "type": "Identifier",
                               },
+                              "optional": false,
                               "property": {
                                 "name": "description",
                                 "type": "Identifier",
@@ -6854,6 +6869,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <dl>
                                 "name": "item",
                                 "type": "Identifier",
                               },
+                              "optional": false,
                               "property": {
                                 "name": "id",
                                 "type": "Identifier",
@@ -6899,18 +6915,21 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <dl>
                     "name": "props",
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "property": {
                     "name": "items",
                     "type": "Identifier",
                   },
                   "type": "MemberExpression",
                 },
+                "optional": false,
                 "property": {
                   "name": "map",
                   "type": "Identifier",
                 },
                 "type": "MemberExpression",
               },
+              "optional": false,
               "type": "CallExpression",
             },
             "type": "JSXExpressionContainer",
@@ -7176,6 +7195,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <h1>Hello {data.targ
                 "name": "data",
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "name": "target",
                 "type": "Identifier",
@@ -7271,6 +7291,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <img src="/cat.jpg" 
                           "name": "mouse",
                           "type": "Identifier",
                         },
+                        "optional": false,
                         "property": {
                           "name": "x",
                           "type": "Identifier",
@@ -7294,6 +7315,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <img src="/cat.jpg" 
                           "name": "mouse",
                           "type": "Identifier",
                         },
+                        "optional": false,
                         "property": {
                           "name": "y",
                           "type": "Identifier",
@@ -8588,12 +8610,14 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > ReactDOM.render(
                 "name": "document",
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "name": "getElementById",
                 "type": "Identifier",
               },
               "type": "MemberExpression",
             },
+            "optional": false,
             "type": "CallExpression",
           },
         ],
@@ -8603,12 +8627,14 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > ReactDOM.render(
             "name": "ReactDOM",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "name": "render",
             "type": "Identifier",
           },
           "type": "MemberExpression",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -9258,6 +9284,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class Columns extend
           "start": 22,
           "type": "Identifier",
         },
+        "optional": false,
         "property": {
           "end": 37,
           "loc": {
@@ -9357,6 +9384,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class SayHello exten
                       "callee": {
                         "type": "Super",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "ExpressionStatement",
@@ -9368,6 +9396,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class SayHello exten
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "state",
                           "type": "Identifier",
@@ -9406,6 +9435,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class SayHello exten
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "handleClick",
                           "type": "Identifier",
@@ -9426,18 +9456,21 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class SayHello exten
                             "object": {
                               "type": "ThisExpression",
                             },
+                            "optional": false,
                             "property": {
                               "name": "handleClick",
                               "type": "Identifier",
                             },
                             "type": "MemberExpression",
                           },
+                          "optional": false,
                           "property": {
                             "name": "bind",
                             "type": "Identifier",
                           },
                           "type": "MemberExpression",
                         },
+                        "optional": false,
                         "type": "CallExpression",
                       },
                       "type": "AssignmentExpression",
@@ -9481,12 +9514,14 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class SayHello exten
                             "object": {
                               "type": "ThisExpression",
                             },
+                            "optional": false,
                             "property": {
                               "name": "state",
                               "type": "Identifier",
                             },
                             "type": "MemberExpression",
                           },
+                          "optional": false,
                           "property": {
                             "name": "message",
                             "type": "Identifier",
@@ -9498,6 +9533,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class SayHello exten
                         "name": "alert",
                         "type": "Identifier",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "ExpressionStatement",
@@ -9555,6 +9591,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class SayHello exten
                                 "object": {
                                   "type": "ThisExpression",
                                 },
+                                "optional": false,
                                 "property": {
                                   "name": "handleClick",
                                   "type": "Identifier",
@@ -9598,6 +9635,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class SayHello exten
           "name": "React",
           "type": "Identifier",
         },
+        "optional": false,
         "property": {
           "name": "Component",
           "type": "Identifier",
@@ -9780,12 +9818,14 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > const c1 = <NoOverlo
                                       "name": "console",
                                       "type": "Identifier",
                                     },
+                                    "optional": false,
                                     "property": {
                                       "name": "log",
                                       "type": "Identifier",
                                     },
                                     "type": "MemberExpression",
                                   },
+                                  "optional": false,
                                   "type": "CallExpression",
                                 },
                                 "type": "ExpressionStatement",
@@ -11810,12 +11850,14 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > var div = (
                       "name": "images",
                       "type": "Identifier",
                     },
+                    "optional": false,
                     "property": {
                       "name": "map",
                       "type": "Identifier",
                     },
                     "type": "MemberExpression",
                   },
+                  "optional": false,
                   "type": "CallExpression",
                 },
                 "type": "JSXExpressionContainer",

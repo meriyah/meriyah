@@ -72,12 +72,14 @@ exports[`ImportCall > ImportCall (pass) > function loadImport(file) { import(fil
                       },
                       "type": "ImportExpression",
                     },
+                    "optional": false,
                     "property": {
                       "name": "then",
                       "type": "Identifier",
                     },
                     "type": "MemberExpression",
                   },
+                  "optional": false,
                   "type": "CallExpression",
                 },
                 {
@@ -93,12 +95,14 @@ exports[`ImportCall > ImportCall (pass) > function loadImport(file) { import(fil
                       "name": "console",
                       "type": "Identifier",
                     },
+                    "optional": false,
                     "property": {
                       "name": "log",
                       "type": "Identifier",
                     },
                     "type": "MemberExpression",
                   },
+                  "optional": false,
                   "type": "CallExpression",
                 },
               ],
@@ -169,6 +173,7 @@ exports[`ImportCall > ImportCall (pass) > import("lib.js").then(doThis); 1`] = `
             "start": 0,
             "type": "ImportExpression",
           },
+          "optional": false,
           "property": {
             "end": 21,
             "name": "then",
@@ -187,6 +192,7 @@ exports[`ImportCall > ImportCall (pass) > import("lib.js").then(doThis); 1`] = `
           "type": "MemberExpression",
         },
         "end": 29,
+        "optional": false,
         "range": [
           0,
           29,

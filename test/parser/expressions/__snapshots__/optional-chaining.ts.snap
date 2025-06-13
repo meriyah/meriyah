@@ -41,6 +41,7 @@ exports[`Optional chaining > Optional chaining (pass) > ({})?.a["b"] 1`] = `
             "start": 0,
             "type": "MemberExpression",
           },
+          "optional": false,
           "property": {
             "end": 11,
             "range": [
@@ -105,6 +106,7 @@ exports[`Optional chaining > Optional chaining (pass) > (obj.aaa).bbb 1`] = `
             "start": 1,
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "end": 8,
             "name": "aaa",
@@ -122,6 +124,7 @@ exports[`Optional chaining > Optional chaining (pass) > (obj.aaa).bbb 1`] = `
           "start": 1,
           "type": "MemberExpression",
         },
+        "optional": false,
         "property": {
           "end": 13,
           "name": "bbb",
@@ -181,6 +184,7 @@ exports[`Optional chaining > Optional chaining (pass) > (obj.aaa)?.bbb 1`] = `
               "start": 1,
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "end": 8,
               "name": "aaa",
@@ -290,6 +294,7 @@ exports[`Optional chaining > Optional chaining (pass) > (obj?.aaa).bbb 1`] = `
           "start": 1,
           "type": "ChainExpression",
         },
+        "optional": false,
         "property": {
           "end": 14,
           "name": "bbb",
@@ -662,6 +667,7 @@ exports[`Optional chaining > Optional chaining (pass) > a?.b[3].c?.(x).d 1`] = `
                   "start": 0,
                   "type": "MemberExpression",
                 },
+                "optional": false,
                 "property": {
                   "end": 6,
                   "range": [
@@ -679,6 +685,7 @@ exports[`Optional chaining > Optional chaining (pass) > a?.b[3].c?.(x).d 1`] = `
                 "start": 0,
                 "type": "MemberExpression",
               },
+              "optional": false,
               "property": {
                 "end": 9,
                 "name": "c",
@@ -705,6 +712,7 @@ exports[`Optional chaining > Optional chaining (pass) > a?.b[3].c?.(x).d 1`] = `
             "start": 0,
             "type": "CallExpression",
           },
+          "optional": false,
           "property": {
             "end": 16,
             "name": "d",
@@ -808,6 +816,7 @@ exports[`Optional chaining > Optional chaining (pass) > a?.import("string")?.imp
                   "type": "MemberExpression",
                 },
                 "end": 19,
+                "optional": false,
                 "range": [
                   0,
                   19,
@@ -833,6 +842,7 @@ exports[`Optional chaining > Optional chaining (pass) > a?.import("string")?.imp
               "start": 0,
               "type": "MemberExpression",
             },
+            "optional": false,
             "property": {
               "end": 32,
               "name": "meta",
@@ -915,6 +925,7 @@ exports[`Optional chaining > Optional chaining (pass) > obj.aaa.bbb 1`] = `
             "start": 0,
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "end": 7,
             "name": "aaa",
@@ -932,6 +943,7 @@ exports[`Optional chaining > Optional chaining (pass) > obj.aaa.bbb 1`] = `
           "start": 0,
           "type": "MemberExpression",
         },
+        "optional": false,
         "property": {
           "end": 11,
           "name": "bbb",
@@ -991,6 +1003,7 @@ exports[`Optional chaining > Optional chaining (pass) > obj.aaa?.bbb 1`] = `
               "start": 0,
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "end": 7,
               "name": "aaa",
@@ -1093,6 +1106,7 @@ exports[`Optional chaining > Optional chaining (pass) > obj?.aaa.bbb 1`] = `
             "start": 0,
             "type": "MemberExpression",
           },
+          "optional": false,
           "property": {
             "end": 12,
             "name": "bbb",

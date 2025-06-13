@@ -84,6 +84,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > (@foo('bar')
                   "line": 1,
                 },
               },
+              "optional": false,
               "range": [
                 1,
                 12,
@@ -210,6 +211,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > (@foo('bar')
                 "name": "foo",
                 "type": "Identifier",
               },
+              "optional": false,
               "type": "CallExpression",
             },
             "type": "Decorator",
@@ -518,6 +520,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @a(@b class C {}) @d(@e(
               "name": "a",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -538,6 +541,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @a(@b class C {}) @d(@e(
                         "name": "e",
                         "type": "Identifier",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "Decorator",
@@ -555,6 +559,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @a(@b class C {}) @d(@e(
               "name": "d",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -611,6 +616,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @a(@b class C {}) @d(@e(
               "name": "a",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -631,6 +637,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @a(@b class C {}) @d(@e(
                         "name": "e",
                         "type": "Identifier",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "Decorator",
@@ -648,6 +655,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @a(@b class C {}) @d(@e(
               "name": "d",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -870,12 +878,14 @@ exports[`Next - Decorators > Next - Decorators (pass) > @deco
                           "name": "A",
                           "type": "Identifier",
                         },
+                        "optional": false,
                         "property": {
                           "name": "foo",
                           "type": "PrivateIdentifier",
                         },
                         "type": "MemberExpression",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "ExpressionStatement",
@@ -1053,6 +1063,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @deco
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "get",
                         "type": "PrivateIdentifier",
@@ -1068,6 +1079,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @deco
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "set",
                           "type": "PrivateIdentifier",
@@ -1089,6 +1101,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @deco
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "getset",
                         "type": "PrivateIdentifier",
@@ -1104,6 +1117,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @deco
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "getset",
                           "type": "PrivateIdentifier",
@@ -1176,6 +1190,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @deco1 @deco2() @deco3(f
               "name": "deco2",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -1196,6 +1211,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @deco1 @deco2() @deco3(f
               "name": "deco3",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -1243,6 +1259,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @deco1 @deco2() @deco3(f
               "name": "deco4",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -1385,6 +1402,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @foo('bar')
               "name": "foo",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -1425,6 +1443,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @foo('bar')
               "name": "foo",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -1474,6 +1493,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @foo(class Bar{})
               "name": "foo",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -1592,6 +1612,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @outer({
               "name": "outer",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -1707,6 +1728,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @pushElement({
               "name": "pushElement",
               "type": "Identifier",
             },
+            "optional": false,
             "type": "CallExpression",
           },
           "type": "Decorator",
@@ -2149,6 +2171,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > class A {
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "x",
                         "type": "PrivateIdentifier",
@@ -2242,6 +2265,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > class A {  @deco #prop; 
                       "object": {
                         "type": "ThisExpression",
                       },
+                      "optional": false,
                       "property": {
                         "name": "foo",
                         "type": "PrivateIdentifier",
@@ -2703,6 +2727,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > class Bar{
                     "name": "outer",
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "type": "CallExpression",
                 },
                 "type": "Decorator",
@@ -3431,12 +3456,14 @@ exports[`Next - Decorators > Next - Decorators (pass) > function writable(w) {
                             "name": "desc",
                             "type": "Identifier",
                           },
+                          "optional": false,
                           "property": {
                             "name": "descriptor",
                             "type": "Identifier",
                           },
                           "type": "MemberExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "writable",
                           "type": "Identifier",
@@ -3501,6 +3528,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > function writable(w) {
                     "name": "writable",
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "type": "CallExpression",
                 },
                 "type": "Decorator",
@@ -3532,6 +3560,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > function writable(w) {
                     "name": "writable",
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "type": "CallExpression",
                 },
                 "type": "Decorator",
@@ -3548,6 +3577,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > function writable(w) {
                     "name": "writable",
                     "type": "Identifier",
                   },
+                  "optional": false,
                   "type": "CallExpression",
                 },
                 "type": "Decorator",
@@ -3585,6 +3615,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > function writable(w) {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "x",
                           "type": "PrivateIdentifier",
@@ -3630,6 +3661,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > function writable(w) {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "y",
                           "type": "PrivateIdentifier",

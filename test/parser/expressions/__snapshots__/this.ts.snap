@@ -66,6 +66,7 @@ exports[`Expressions - This > Expressions - This (pass) > this._global = _global
           "object": {
             "type": "ThisExpression",
           },
+          "optional": false,
           "property": {
             "name": "_global",
             "type": "Identifier",

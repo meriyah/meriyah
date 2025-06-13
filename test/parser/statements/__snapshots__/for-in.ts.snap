@@ -83,6 +83,7 @@ exports[`Statements - For in > Statements - For in (pass) > for ( [let][1] in ob
           ],
           "type": "ArrayExpression",
         },
+        "optional": false,
         "property": {
           "type": "Literal",
           "value": 1,
@@ -114,6 +115,7 @@ exports[`Statements - For in > Statements - For in (pass) > for ("foo".bar in ob
           "type": "Literal",
           "value": "foo",
         },
+        "optional": false,
         "property": {
           "name": "bar",
           "type": "Identifier",
@@ -297,6 +299,7 @@ exports[`Statements - For in > Statements - For in (pass) > for ([].bar in obj);
           "elements": [],
           "type": "ArrayExpression",
         },
+        "optional": false,
         "property": {
           "name": "bar",
           "type": "Identifier",
@@ -503,6 +506,7 @@ exports[`Statements - For in > Statements - For in (pass) > for ([a.b] in c) d 1
               "name": "a",
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "name": "b",
               "type": "Identifier",
@@ -545,6 +549,7 @@ exports[`Statements - For in > Statements - For in (pass) > for ([a.b].foo in c)
                 "name": "a",
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "name": "b",
                 "type": "Identifier",
@@ -554,6 +559,7 @@ exports[`Statements - For in > Statements - For in (pass) > for ([a.b].foo in c)
           ],
           "type": "ArrayExpression",
         },
+        "optional": false,
         "property": {
           "name": "foo",
           "type": "Identifier",
@@ -618,6 +624,7 @@ exports[`Statements - For in > Statements - For in (pass) > for ({}.bar in obj);
           "properties": [],
           "type": "ObjectExpression",
         },
+        "optional": false,
         "property": {
           "name": "bar",
           "type": "Identifier",
@@ -854,6 +861,7 @@ exports[`Statements - For in > Statements - For in (pass) > for ({a: b.c} in d) 
                 "name": "b",
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "name": "c",
                 "type": "Identifier",
@@ -907,6 +915,7 @@ exports[`Statements - For in > Statements - For in (pass) > for ({a: b.c}.foo in
                   "name": "b",
                   "type": "Identifier",
                 },
+                "optional": false,
                 "property": {
                   "name": "c",
                   "type": "Identifier",
@@ -917,6 +926,7 @@ exports[`Statements - For in > Statements - For in (pass) > for ({a: b.c}.foo in
           ],
           "type": "ObjectExpression",
         },
+        "optional": false,
         "property": {
           "name": "foo",
           "type": "Identifier",
@@ -1028,6 +1038,7 @@ exports[`Statements - For in > Statements - For in (pass) > for ({x: a.b} in obj
                 "name": "a",
                 "type": "Identifier",
               },
+              "optional": false,
               "property": {
                 "name": "b",
                 "type": "Identifier",
@@ -1886,6 +1897,7 @@ exports[`Statements - For in > Statements - For in (pass) > for (let.x in {}) {}
           "start": 5,
           "type": "Identifier",
         },
+        "optional": false,
         "property": {
           "end": 10,
           "name": "x",
@@ -4140,12 +4152,14 @@ exports[`Statements - For in > Statements - For in (pass) > for (var p in obj) {
                   "name": "obj",
                   "type": "Identifier",
                 },
+                "optional": false,
                 "property": {
                   "name": "hasOwnProperty",
                   "type": "Identifier",
                 },
                 "type": "MemberExpression",
               },
+              "optional": false,
               "type": "CallExpression",
             },
             "type": "IfStatement",
@@ -4195,6 +4209,7 @@ exports[`Statements - For in > Statements - For in (pass) > for (var x in list) 
             "name": "process",
             "type": "Identifier",
           },
+          "optional": false,
           "type": "CallExpression",
         },
         "type": "ExpressionStatement",
@@ -4463,6 +4478,7 @@ exports[`Statements - For in > Statements - For in (pass) > for(const {[Symbol.i
                       "name": "Symbol",
                       "type": "Identifier",
                     },
+                    "optional": false,
                     "property": {
                       "name": "iterator",
                       "type": "Identifier",
@@ -4564,6 +4580,7 @@ exports[`Statements - For in > Statements - For in (pass) > for(ind in (hash={2:
               "name": "hash",
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "name": "ind",
               "type": "Identifier",
@@ -4926,6 +4943,7 @@ exports[`Statements - For in > Statements - For in (pass) > for(x in list) proce
             "name": "process",
             "type": "Identifier",
           },
+          "optional": false,
           "type": "CallExpression",
         },
         "type": "ExpressionStatement",

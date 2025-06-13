@@ -116,6 +116,7 @@ exports[`Declarations - Async Function > Declarations - Async function (pass) > 
                 "type": "Identifier",
               },
               "end": 72,
+              "optional": false,
               "range": [
                 67,
                 72,
@@ -872,6 +873,7 @@ exports[`Declarations - Async Function > Declarations - Async function (pass) > 
             "line": 1,
           },
         },
+        "optional": false,
         "range": [
           0,
           18,
@@ -2128,6 +2130,7 @@ exports[`Declarations - Async Function > Declarations - Async function (pass) > 
                             "line": 1,
                           },
                         },
+                        "optional": false,
                         "range": [
                           11,
                           20,
@@ -2250,6 +2253,7 @@ exports[`Declarations - Async Function > Declarations - Async function (pass) > 
                             "line": 1,
                           },
                         },
+                        "optional": false,
                         "range": [
                           26,
                           35,
@@ -2372,6 +2376,7 @@ exports[`Declarations - Async Function > Declarations - Async function (pass) > 
                             "line": 1,
                           },
                         },
+                        "optional": false,
                         "range": [
                           41,
                           50,
@@ -2494,6 +2499,7 @@ exports[`Declarations - Async Function > Declarations - Async function (pass) > 
                             "line": 1,
                           },
                         },
+                        "optional": false,
                         "range": [
                           56,
                           65,

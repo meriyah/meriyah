@@ -1380,6 +1380,7 @@ exports[`Expressions - Logical > Expressions - Logical (pass) > a[b, c] 1`] = `
           "name": "a",
           "type": "Identifier",
         },
+        "optional": false,
         "property": {
           "expressions": [
             {
@@ -1414,6 +1415,7 @@ exports[`Expressions - Logical > Expressions - Logical (pass) > a[b]||(c[d]=e) 1
             "name": "a",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "name": "b",
             "type": "Identifier",
@@ -1428,6 +1430,7 @@ exports[`Expressions - Logical > Expressions - Logical (pass) > a[b]||(c[d]=e) 1
               "name": "c",
               "type": "Identifier",
             },
+            "optional": false,
             "property": {
               "name": "d",
               "type": "Identifier",
@@ -1596,6 +1599,7 @@ exports[`Expressions - Logical > Expressions - Logical (pass) > x() ** b 1`] = `
             "name": "x",
             "type": "Identifier",
           },
+          "optional": false,
           "type": "CallExpression",
         },
         "operator": "**",
@@ -1624,6 +1628,7 @@ exports[`Expressions - Logical > Expressions - Logical (pass) > x.y / z 1`] = `
             "name": "x",
             "type": "Identifier",
           },
+          "optional": false,
           "property": {
             "name": "y",
             "type": "Identifier",

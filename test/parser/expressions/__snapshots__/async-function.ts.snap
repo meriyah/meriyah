@@ -126,6 +126,7 @@ exports[`Expressions - Async function > Expressions - Async function (pass) > (a
           "start": 1,
           "type": "FunctionExpression",
         },
+        "optional": false,
         "property": {
           "end": 35,
           "name": "prototype",
@@ -196,6 +197,7 @@ exports[`Expressions - Async function > Expressions - Async function (pass) > (a
                 "params": [],
                 "type": "FunctionExpression",
               },
+              "optional": false,
               "type": "CallExpression",
             },
             "type": "AssignmentPattern",
@@ -1366,6 +1368,7 @@ exports[`Expressions - Async function > Expressions - Async function (pass) > f(
           "type": "Identifier",
         },
         "end": 32,
+        "optional": false,
         "range": [
           0,
           32,

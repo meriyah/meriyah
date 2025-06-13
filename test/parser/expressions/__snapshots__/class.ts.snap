@@ -6405,6 +6405,7 @@ exports[`Expressions - Class > Expressions - Class (pass) > (class A extends B {
                         "callee": {
                           "type": "Super",
                         },
+                        "optional": false,
                         "type": "CallExpression",
                       },
                       "type": "ExpressionStatement",
@@ -6486,6 +6487,7 @@ exports[`Expressions - Class > Expressions - Class (pass) > (class A extends B {
                           "type": "Super",
                         },
                         "end": 44,
+                        "optional": false,
                         "range": [
                           37,
                           44,
@@ -6685,6 +6687,7 @@ exports[`Expressions - Class > Expressions - Class (pass) > (class A extends foo
             "type": "Identifier",
           },
           "end": 22,
+          "optional": false,
           "range": [
             17,
             22,
@@ -6993,6 +6996,7 @@ exports[`Expressions - Class > Expressions - Class (pass) > (class OnlyStaticSet
                           "type": "Identifier",
                         },
                         "end": 66,
+                        "optional": false,
                         "range": [
                           49,
                           66,
@@ -7998,6 +8002,7 @@ exports[`Expressions - Class > Expressions - Class (pass) > (class x {}()) 1`] =
           "superClass": null,
           "type": "ClassExpression",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -8028,12 +8033,14 @@ exports[`Expressions - Class > Expressions - Class (pass) > (class x {}.foo()) 1
             "superClass": null,
             "type": "ClassExpression",
           },
+          "optional": false,
           "property": {
             "name": "foo",
             "type": "Identifier",
           },
           "type": "MemberExpression",
         },
+        "optional": false,
         "type": "CallExpression",
       },
       "type": "ExpressionStatement",
@@ -8062,6 +8069,7 @@ exports[`Expressions - Class > Expressions - Class (pass) > (class x {}.foo) 1`]
           "superClass": null,
           "type": "ClassExpression",
         },
+        "optional": false,
         "property": {
           "name": "foo",
           "type": "Identifier",
@@ -8758,6 +8766,7 @@ exports[`Expressions - Class > Expressions - Class (pass) > (class x{}()) 1`] = 
           "type": "ClassExpression",
         },
         "end": 12,
+        "optional": false,
         "range": [
           1,
           12,
@@ -8824,6 +8833,7 @@ exports[`Expressions - Class > Expressions - Class (pass) > (class x{}.foo()) 1`
             "superClass": null,
             "type": "ClassExpression",
           },
+          "optional": false,
           "property": {
             "end": 14,
             "name": "foo",
@@ -8842,6 +8852,7 @@ exports[`Expressions - Class > Expressions - Class (pass) > (class x{}.foo()) 1`
           "type": "MemberExpression",
         },
         "end": 16,
+        "optional": false,
         "range": [
           1,
           16,
@@ -8906,6 +8917,7 @@ exports[`Expressions - Class > Expressions - Class (pass) > (class x{}.foo) 1`] 
           "superClass": null,
           "type": "ClassExpression",
         },
+        "optional": false,
         "property": {
           "end": 14,
           "name": "foo",
@@ -10161,6 +10173,7 @@ exports[`Expressions - Class > Expressions - Class (pass) > class SimpleParent {
                         "object": {
                           "type": "ThisExpression",
                         },
+                        "optional": false,
                         "property": {
                           "name": "foo",
                           "type": "Identifier",
@@ -10334,6 +10347,7 @@ exports[`Expressions - Class > Expressions - Class (pass) > class SimpleParent {
                       "callee": {
                         "type": "Super",
                       },
+                      "optional": false,
                       "type": "CallExpression",
                     },
                     "type": "ExpressionStatement",
@@ -11542,6 +11556,7 @@ exports[`Expressions - Class > Expressions - Class (pass) > class x extends feh(
           "type": "Identifier",
         },
         "end": 26,
+        "optional": false,
         "range": [
           16,
           26,
@@ -12651,6 +12666,7 @@ exports[`Expressions - Class > Expressions - Class (pass) > var gen = {
               ],
               "type": "ObjectExpression",
             },
+            "optional": false,
             "property": {
               "name": "method",
               "type": "Identifier",

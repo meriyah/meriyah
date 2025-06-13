@@ -434,6 +434,7 @@ exports[`Expressions - Rest > Expressions - Rest (pass) > var func5 = function (
                             "name": "eval",
                             "type": "Identifier",
                           },
+                          "optional": false,
                           "type": "CallExpression",
                         },
                         "type": "ExpressionStatement",
