@@ -3947,7 +3947,7 @@ export function parseYieldExpressionOrIdentifier(
 
   if (context & Context.Strict) report(parser, Errors.DisallowedInContext, 'yield');
 
-  return parseIdentifierOrArrow(parser, context, privateScope, start, line, column);
+  return parseIdentifierOrArrow(parser, context, privateScope);
 }
 
 /**
@@ -3971,7 +3971,7 @@ export function parseAwaitExpressionOrIdentifier(
   if (context & Context.InStaticBlock) report(parser, Errors.InvalidAwaitInStaticBlock);
 
   // Peek next Token first;
-  const possibleIdentifierOrArrowFunc = parseIdentifierOrArrow(parser, context, privateScope, start, line, column);
+  const possibleIdentifierOrArrowFunc = parseIdentifierOrArrow(parser, context, privateScope);
 
   // If got an arrow function, or token after "await" is not an expression.
   const isIdentifier =
@@ -4796,8 +4796,7 @@ export function parsePrimaryExpression(
       if (context & Context.OptionsJSX)
         return parseJSXRootElementOrFragment(parser, context, privateScope, /*inJSXChild*/ 0);
     default:
-      if (isValidIdentifier(context, parser.getToken()))
-        return parseIdentifierOrArrow(parser, context, privateScope, start, line, column);
+      if (isValidIdentifier(context, parser.getToken())) return parseIdentifierOrArrow(parser, context, privateScope);
       report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
   }
 }
@@ -6602,9 +6601,6 @@ function parseObjectLiteral(
  * @param inGroup
  * @param kind Binding kind
  * @param origin Binding origin
- * @param start
- * @param line
- * @param column
  */
 export function parseObjectLiteralOrPattern(
   parser: ParserState,
@@ -8239,19 +8235,13 @@ export function parseParenthesizedExpression(
  *
  * @param parser  Parser object
  * @param context Context masks
- * @param start Start index
- * @param line Start line
- * @param column Start of column
-
  */
 export function parseIdentifierOrArrow(
   parser: ParserState,
   context: Context,
   privateScope: PrivateScopeState | undefined,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.Identifier | ESTree.ArrowFunctionExpression {
+  const { tokenIndex: start, tokenLine: line, tokenColumn: column } = parser;
   const { tokenValue } = parser;
 
   let isNonSimpleParameterList: 0 | 1 = 0;
@@ -9434,7 +9424,6 @@ export function parseDecorators(
  * @param context Context masks
  * @param start
  */
-
 export function parseDecoratorList(
   parser: ParserState,
   context: Context,
