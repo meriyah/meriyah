@@ -120,10 +120,10 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <    ></   > 1`] = `
         "openingFragment": {
           "end": 6,
           "range": [
-            5,
+            0,
             6,
           ],
-          "start": 5,
+          "start": 0,
           "type": "JSXOpeningFragment",
         },
         "range": [
@@ -215,10 +215,10 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > </* open fragment */
         "openingFragment": {
           "end": 21,
           "range": [
-            20,
+            0,
             21,
           ],
-          "start": 20,
+          "start": 0,
           "type": "JSXOpeningFragment",
         },
         "range": [
@@ -500,10 +500,10 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <></> 1`] = `
         "openingFragment": {
           "end": 2,
           "range": [
-            1,
+            0,
             2,
           ],
-          "start": 1,
+          "start": 0,
           "type": "JSXOpeningFragment",
         },
         "range": [
@@ -9119,15 +9119,15 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > class Columns extend
                             "line": 4,
                           },
                           "start": {
-                            "column": 13,
+                            "column": 12,
                             "line": 4,
                           },
                         },
                         "range": [
-                          91,
+                          90,
                           92,
                         ],
-                        "start": 91,
+                        "start": 90,
                         "type": "JSXOpeningFragment",
                       },
                       "range": [

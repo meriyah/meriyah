@@ -9942,7 +9942,7 @@ function parseJSXRootElementOrFragment(
 
   // JSX fragments
   if (parser.getToken() === Token.GreaterThan) {
-    const openingFragment = parseOpeningFragment(parser, context);
+    const openingFragment = parseOpeningFragment(parser, context, tokenIndex, tokenLine, tokenColumn);
     const [children, closingFragment] = parseJSXChildrenAndClosingFragment(parser, context, privateScope, inJSXChild);
 
     return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
@@ -9988,10 +9988,15 @@ function parseJSXRootElementOrFragment(
  * @param parser Parser object
  * @param context  Context masks
  */
-export function parseOpeningFragment(parser: Parser, context: Context): ESTree.JSXOpeningFragment {
-  const { tokenIndex, tokenLine, tokenColumn } = parser;
+export function parseOpeningFragment(
+  parser: Parser,
+  context: Context,
+  start: number,
+  line: number,
+  column: number,
+): ESTree.JSXOpeningFragment {
   nextJSXToken(parser, context);
-  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
+  return finishNode(parser, context, start, line, column, {
     type: 'JSXOpeningFragment',
   });
 }
