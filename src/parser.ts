@@ -581,18 +581,7 @@ export function parseStatementListItem(
     //   async [no LineTerminator here] AsyncArrowBindingIdentifier ...
     //   async [no LineTerminator here] ArrowFormalParameters ...
     case Token.AsyncKeyword:
-      return parseAsyncArrowOrAsyncFunctionDeclaration(
-        parser,
-        context,
-        scope,
-        privateScope,
-        origin,
-        labels,
-        1,
-        start,
-        line,
-        column,
-      );
+      return parseAsyncArrowOrAsyncFunctionDeclaration(parser, context, scope, privateScope, origin, labels, 1);
     default:
       return parseStatement(parser, context, scope, privateScope, origin, labels, 1);
   }
@@ -615,8 +604,6 @@ export function parseStatement(
   labels: ESTree.Labels,
   allowFuncDecl: 0 | 1,
 ): ESTree.Statement {
-  const { tokenIndex: start, tokenLine: line, tokenColumn: column } = parser;
-
   // Statement ::
   //   Block
   //   VariableStatement
@@ -686,18 +673,7 @@ export function parseStatement(
       // DebuggerStatement
       return parseDebuggerStatement(parser, context);
     case Token.AsyncKeyword:
-      return parseAsyncArrowOrAsyncFunctionDeclaration(
-        parser,
-        context,
-        scope,
-        privateScope,
-        origin,
-        labels,
-        0,
-        start,
-        line,
-        column,
-      );
+      return parseAsyncArrowOrAsyncFunctionDeclaration(parser, context, scope, privateScope, origin, labels, 0);
     // Miscellaneous error cases arguably better caught here than elsewhere
     case Token.CatchKeyword:
       report(parser, Errors.CatchWithoutTry);
@@ -1055,9 +1031,6 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
   origin: Origin,
   labels: ESTree.Labels,
   allowFuncDecl: 0 | 1,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.ExpressionStatement | ESTree.LabeledStatement | ESTree.FunctionDeclaration {
   // AsyncArrowFunction[In, Yield, Await]:
   //    async[no LineTerminator here]AsyncArrowBindingIdentifier[?Yield][no LineTerminator here]=>AsyncConciseBody[?In]
@@ -1076,7 +1049,7 @@ export function parseAsyncArrowOrAsyncFunctionDeclaration(
   // AsyncFunctionBody:
   //    FunctionBody[~Yield, +Await]
 
-  const { tokenValue } = parser;
+  const { tokenValue, tokenIndex: start, tokenLine: line, tokenColumn: column } = parser;
   const token = parser.getToken();
 
   let expr: ESTree.Expression = parseIdentifier(parser, context);
