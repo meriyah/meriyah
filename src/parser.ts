@@ -563,7 +563,7 @@ export function parseStatementListItem(
     case Token.ConstKeyword:
       return parseLexicalDeclaration(parser, context, scope, privateScope, BindingKind.Const, Origin.None);
     case Token.LetKeyword:
-      return parseLetIdentOrVarDeclarationStatement(parser, context, scope, privateScope, origin, start, line, column);
+      return parseLetIdentOrVarDeclarationStatement(parser, context, scope, privateScope, origin);
     // ExportDeclaration
     case Token.ExportKeyword:
       report(parser, Errors.InvalidImportExportSloppy, 'export');
@@ -1916,10 +1916,6 @@ export function parseDoWhileStatement(
  * @param context Context masks
  * @param scope Scope object
  * @param origin Binding origin
- * @param start Start pos of node
- * @param start Start pos of node
- * @param line
- * @param column
  */
 export function parseLetIdentOrVarDeclarationStatement(
   parser: ParserState,
@@ -1927,11 +1923,8 @@ export function parseLetIdentOrVarDeclarationStatement(
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
   origin: Origin,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.VariableDeclaration | ESTree.LabeledStatement | ESTree.ExpressionStatement {
-  const { tokenValue } = parser;
+  const { tokenValue, tokenIndex: start, tokenLine: line, tokenColumn: column } = parser;
   const token = parser.getToken();
   let expr: ESTree.Identifier | ESTree.Expression = parseIdentifier(parser, context);
 
