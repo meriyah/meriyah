@@ -1,0 +1,379 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Next - Nullish Coalescing > Next - Null Coalescing (pass) > 'hi' ?? 3 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "type": "Literal",
+          "value": "hi",
+        },
+        "operator": "??",
+        "right": {
+          "type": "Literal",
+          "value": 3,
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Nullish Coalescing > Next - Null Coalescing (pass) > ({ x: 'hi' } ?? 3).x 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "computed": false,
+        "object": {
+          "left": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "type": "Literal",
+                  "value": "hi",
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+          "operator": "??",
+          "right": {
+            "type": "Literal",
+            "value": 3,
+          },
+          "type": "LogicalExpression",
+        },
+        "property": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Nullish Coalescing > Next - Null Coalescing (pass) > (a && b) ?? c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "&&",
+          "right": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "LogicalExpression",
+        },
+        "operator": "??",
+        "right": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Nullish Coalescing > Next - Null Coalescing (pass) > (a || b) ?? c; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "||",
+          "right": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "LogicalExpression",
+        },
+        "operator": "??",
+        "right": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Nullish Coalescing > Next - Null Coalescing (pass) > 1 / null ?? 3 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "type": "Literal",
+            "value": 1,
+          },
+          "operator": "/",
+          "right": {
+            "type": "Literal",
+            "value": null,
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "??",
+        "right": {
+          "type": "Literal",
+          "value": 3,
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Nullish Coalescing > Next - Null Coalescing (pass) > 1 << null ?? 3 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "type": "Literal",
+            "value": 1,
+          },
+          "operator": "<<",
+          "right": {
+            "type": "Literal",
+            "value": null,
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "??",
+        "right": {
+          "type": "Literal",
+          "value": 3,
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Nullish Coalescing > Next - Null Coalescing (pass) > a
+        ?? b
+        ?? c; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "??",
+          "right": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "LogicalExpression",
+        },
+        "operator": "??",
+        "right": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Nullish Coalescing > Next - Null Coalescing (pass) > a ?? (b && c); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "??",
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": "&&",
+          "right": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "LogicalExpression",
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Nullish Coalescing > Next - Null Coalescing (pass) > a ?? (b || c); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "??",
+        "right": {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": "||",
+          "right": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "LogicalExpression",
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Nullish Coalescing > Next - Null Coalescing (pass) > a ?? b ?? c; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "??",
+          "right": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "LogicalExpression",
+        },
+        "operator": "??",
+        "right": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Nullish Coalescing > Next - Null Coalescing (pass) > foo ?? 1; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "operator": "??",
+        "right": {
+          "type": "Literal",
+          "value": 1,
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Nullish Coalescing > Next - Null Coalescing (pass) > undefined ?? 3 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "undefined",
+          "type": "Identifier",
+        },
+        "operator": "??",
+        "right": {
+          "type": "Literal",
+          "value": 3,
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

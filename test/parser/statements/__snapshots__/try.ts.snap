@@ -1,0 +1,2621 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Statements - Try > Statements - Try (pass) > function __f_3() { try { __f_3(); } catch(e) { eval("let fun = ({a} = {a: 30}) => {"); } } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "block": {
+              "body": [
+                {
+                  "expression": {
+                    "arguments": [],
+                    "callee": {
+                      "name": "__f_3",
+                      "type": "Identifier",
+                    },
+                    "type": "CallExpression",
+                  },
+                  "type": "ExpressionStatement",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+            "finalizer": null,
+            "handler": {
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "arguments": [
+                        {
+                          "type": "Literal",
+                          "value": "let fun = ({a} = {a: 30}) => {",
+                        },
+                      ],
+                      "callee": {
+                        "name": "eval",
+                        "type": "Identifier",
+                      },
+                      "type": "CallExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "param": {
+                "name": "e",
+                "type": "Identifier",
+              },
+              "type": "CatchClause",
+            },
+            "type": "TryStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "__f_3",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {
+      var x = 2;
+      probeTry = function() { return x; };
+      throw [];
+    } catch ([_ = (eval('var x = 3;'), probeParam = function() { return x; })]) {
+      var x = 4;
+      probeBlock = function() { return x; };
+    } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [
+          {
+            "declarations": [
+              {
+                "id": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "init": {
+                  "type": "Literal",
+                  "value": 2,
+                },
+                "type": "VariableDeclarator",
+              },
+            ],
+            "kind": "var",
+            "type": "VariableDeclaration",
+          },
+          {
+            "expression": {
+              "left": {
+                "name": "probeTry",
+                "type": "Identifier",
+              },
+              "operator": "=",
+              "right": {
+                "async": false,
+                "body": {
+                  "body": [
+                    {
+                      "argument": {
+                        "name": "x",
+                        "type": "Identifier",
+                      },
+                      "type": "ReturnStatement",
+                    },
+                  ],
+                  "type": "BlockStatement",
+                },
+                "generator": false,
+                "id": null,
+                "params": [],
+                "type": "FunctionExpression",
+              },
+              "type": "AssignmentExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+          {
+            "argument": {
+              "elements": [],
+              "type": "ArrayExpression",
+            },
+            "type": "ThrowStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "declarations": [
+                {
+                  "id": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "init": {
+                    "type": "Literal",
+                    "value": 4,
+                  },
+                  "type": "VariableDeclarator",
+                },
+              ],
+              "kind": "var",
+              "type": "VariableDeclaration",
+            },
+            {
+              "expression": {
+                "left": {
+                  "name": "probeBlock",
+                  "type": "Identifier",
+                },
+                "operator": "=",
+                "right": {
+                  "async": false,
+                  "body": {
+                    "body": [
+                      {
+                        "argument": {
+                          "name": "x",
+                          "type": "Identifier",
+                        },
+                        "type": "ReturnStatement",
+                      },
+                    ],
+                    "type": "BlockStatement",
+                  },
+                  "generator": false,
+                  "id": null,
+                  "params": [],
+                  "type": "FunctionExpression",
+                },
+                "type": "AssignmentExpression",
+              },
+              "type": "ExpressionStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "elements": [
+            {
+              "left": {
+                "name": "_",
+                "type": "Identifier",
+              },
+              "right": {
+                "expressions": [
+                  {
+                    "arguments": [
+                      {
+                        "type": "Literal",
+                        "value": "var x = 3;",
+                      },
+                    ],
+                    "callee": {
+                      "name": "eval",
+                      "type": "Identifier",
+                    },
+                    "type": "CallExpression",
+                  },
+                  {
+                    "left": {
+                      "name": "probeParam",
+                      "type": "Identifier",
+                    },
+                    "operator": "=",
+                    "right": {
+                      "async": false,
+                      "body": {
+                        "body": [
+                          {
+                            "argument": {
+                              "name": "x",
+                              "type": "Identifier",
+                            },
+                            "type": "ReturnStatement",
+                          },
+                        ],
+                        "type": "BlockStatement",
+                      },
+                      "generator": false,
+                      "id": null,
+                      "params": [],
+                      "type": "FunctionExpression",
+                    },
+                    "type": "AssignmentExpression",
+                  },
+                ],
+                "type": "SequenceExpression",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "ArrayPattern",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try { } catch ([]) {} 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "elements": [],
+          "type": "ArrayPattern",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try { } catch ([a = 0]) { } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "elements": [
+            {
+              "left": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "right": {
+                "type": "Literal",
+                "value": 0,
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "ArrayPattern",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try { } catch (a) { { const a = b; } } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "body": [
+                {
+                  "declarations": [
+                    {
+                      "id": {
+                        "name": "a",
+                        "type": "Identifier",
+                      },
+                      "init": {
+                        "name": "b",
+                        "type": "Identifier",
+                      },
+                      "type": "VariableDeclarator",
+                    },
+                  ],
+                  "kind": "const",
+                  "type": "VariableDeclaration",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try { } catch (e) { foo: bar: third: function f(){} } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "body": {
+                "body": {
+                  "body": {
+                    "async": false,
+                    "body": {
+                      "body": [],
+                      "type": "BlockStatement",
+                    },
+                    "generator": false,
+                    "id": {
+                      "name": "f",
+                      "type": "Identifier",
+                    },
+                    "params": [],
+                    "type": "FunctionDeclaration",
+                  },
+                  "label": {
+                    "name": "third",
+                    "type": "Identifier",
+                  },
+                  "type": "LabeledStatement",
+                },
+                "label": {
+                  "name": "bar",
+                  "type": "Identifier",
+                },
+                "type": "LabeledStatement",
+              },
+              "label": {
+                "name": "foo",
+                "type": "Identifier",
+              },
+              "type": "LabeledStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "e",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try { } catch (e) { let a; } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "declarations": [
+                {
+                  "id": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "init": null,
+                  "type": "VariableDeclarator",
+                },
+              ],
+              "kind": "let",
+              "type": "VariableDeclaration",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "e",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try { } catch (e) { say(e) } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "expression": {
+                "arguments": [
+                  {
+                    "name": "e",
+                    "type": "Identifier",
+                  },
+                ],
+                "callee": {
+                  "name": "say",
+                  "type": "Identifier",
+                },
+                "type": "CallExpression",
+              },
+              "type": "ExpressionStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "e",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try { } catch (e) { var x; for (var y of []) {} } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "declarations": [
+                {
+                  "id": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "init": null,
+                  "type": "VariableDeclarator",
+                },
+              ],
+              "kind": "var",
+              "type": "VariableDeclaration",
+            },
+            {
+              "await": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "left": {
+                "declarations": [
+                  {
+                    "id": {
+                      "name": "y",
+                      "type": "Identifier",
+                    },
+                    "init": null,
+                    "type": "VariableDeclarator",
+                  },
+                ],
+                "kind": "var",
+                "type": "VariableDeclaration",
+              },
+              "right": {
+                "elements": [],
+                "type": "ArrayExpression",
+              },
+              "type": "ForOfStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "e",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try { } catch (eval) { } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "eval",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try { throw [1, 2, 3]; } catch ([...x]) {} 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [
+          {
+            "argument": {
+              "elements": [
+                {
+                  "type": "Literal",
+                  "value": 1,
+                },
+                {
+                  "type": "Literal",
+                  "value": 2,
+                },
+                {
+                  "type": "Literal",
+                  "value": 3,
+                },
+              ],
+              "type": "ArrayExpression",
+            },
+            "type": "ThrowStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "elements": [
+            {
+              "argument": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "RestElement",
+            },
+          ],
+          "type": "ArrayPattern",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try { throw null; } catch ({}) {} 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [
+          {
+            "argument": {
+              "type": "Literal",
+              "value": null,
+            },
+            "type": "ThrowStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "properties": [],
+          "type": "ObjectPattern",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try { throw null; } catch (f) {if (false) ; else function f() { return 123; }} 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [
+          {
+            "argument": {
+              "type": "Literal",
+              "value": null,
+            },
+            "type": "ThrowStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "alternate": {
+                "async": false,
+                "body": {
+                  "body": [
+                    {
+                      "argument": {
+                        "type": "Literal",
+                        "value": 123,
+                      },
+                      "type": "ReturnStatement",
+                    },
+                  ],
+                  "type": "BlockStatement",
+                },
+                "generator": false,
+                "id": {
+                  "name": "f",
+                  "type": "Identifier",
+                },
+                "params": [],
+                "type": "FunctionDeclaration",
+              },
+              "consequent": {
+                "type": "EmptyStatement",
+              },
+              "test": {
+                "type": "Literal",
+                "value": false,
+              },
+              "type": "IfStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch 
+ {} 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": null,
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch ([a,b,c]) { } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "elements": [
+            {
+              "name": "a",
+              "type": "Identifier",
+            },
+            {
+              "name": "b",
+              "type": "Identifier",
+            },
+            {
+              "name": "c",
+              "type": "Identifier",
+            },
+          ],
+          "type": "ArrayPattern",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch (a) { } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch (e) { { let e = x; } } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "body": [
+                {
+                  "declarations": [
+                    {
+                      "id": {
+                        "name": "e",
+                        "type": "Identifier",
+                      },
+                      "init": {
+                        "name": "x",
+                        "type": "Identifier",
+                      },
+                      "type": "VariableDeclarator",
+                    },
+                  ],
+                  "kind": "let",
+                  "type": "VariableDeclaration",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "e",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch (e) { for (const e in y) {} } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "left": {
+                "declarations": [
+                  {
+                    "id": {
+                      "name": "e",
+                      "type": "Identifier",
+                    },
+                    "init": null,
+                    "type": "VariableDeclarator",
+                  },
+                ],
+                "kind": "const",
+                "type": "VariableDeclaration",
+              },
+              "right": {
+                "name": "y",
+                "type": "Identifier",
+              },
+              "type": "ForInStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "e",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch (e) { for (const e of y) {} } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "await": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "left": {
+                "declarations": [
+                  {
+                    "id": {
+                      "name": "e",
+                      "type": "Identifier",
+                    },
+                    "init": null,
+                    "type": "VariableDeclarator",
+                  },
+                ],
+                "kind": "const",
+                "type": "VariableDeclaration",
+              },
+              "right": {
+                "name": "y",
+                "type": "Identifier",
+              },
+              "type": "ForOfStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "e",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch (e) { for (const e of y) {} } 2`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "await": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "left": {
+                "declarations": [
+                  {
+                    "id": {
+                      "name": "e",
+                      "type": "Identifier",
+                    },
+                    "init": null,
+                    "type": "VariableDeclarator",
+                  },
+                ],
+                "kind": "const",
+                "type": "VariableDeclaration",
+              },
+              "right": {
+                "name": "y",
+                "type": "Identifier",
+              },
+              "type": "ForOfStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "e",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch (e) { for (let e of y) {} } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "await": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "left": {
+                "declarations": [
+                  {
+                    "id": {
+                      "name": "e",
+                      "type": "Identifier",
+                    },
+                    "init": null,
+                    "type": "VariableDeclarator",
+                  },
+                ],
+                "kind": "let",
+                "type": "VariableDeclaration",
+              },
+              "right": {
+                "name": "y",
+                "type": "Identifier",
+              },
+              "type": "ForOfStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "e",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch (e) { for (let e of y) {} } 2`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "await": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "left": {
+                "declarations": [
+                  {
+                    "id": {
+                      "name": "e",
+                      "type": "Identifier",
+                    },
+                    "init": null,
+                    "type": "VariableDeclarator",
+                  },
+                ],
+                "kind": "let",
+                "type": "VariableDeclaration",
+              },
+              "right": {
+                "name": "y",
+                "type": "Identifier",
+              },
+              "type": "ForOfStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "e",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch (e) { for (var e in y) {} } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "left": {
+                "declarations": [
+                  {
+                    "id": {
+                      "name": "e",
+                      "type": "Identifier",
+                    },
+                    "init": null,
+                    "type": "VariableDeclarator",
+                  },
+                ],
+                "kind": "var",
+                "type": "VariableDeclaration",
+              },
+              "right": {
+                "name": "y",
+                "type": "Identifier",
+              },
+              "type": "ForInStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "e",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch (e) { let b = x; } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "declarations": [
+                {
+                  "id": {
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  "init": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "type": "VariableDeclarator",
+                },
+              ],
+              "kind": "let",
+              "type": "VariableDeclaration",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "e",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch (e) { var e = x; } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "declarations": [
+                {
+                  "id": {
+                    "name": "e",
+                    "type": "Identifier",
+                  },
+                  "init": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "type": "VariableDeclarator",
+                },
+              ],
+              "kind": "var",
+              "type": "VariableDeclaration",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "e",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch (foo) { { let foo; } } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "body": [
+                {
+                  "declarations": [
+                    {
+                      "id": {
+                        "name": "foo",
+                        "type": "Identifier",
+                      },
+                      "init": null,
+                      "type": "VariableDeclarator",
+                    },
+                  ],
+                  "kind": "let",
+                  "type": "VariableDeclaration",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch (foo) {} let foo; 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch (foo) {} var foo; 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch {} 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": null,
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch {} finally {} 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": null,
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch([e=x]){} 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "elements": [
+            {
+              "left": {
+                "name": "e",
+                "type": "Identifier",
+              },
+              "right": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "ArrayPattern",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch([e=x]){} 2`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "elements": [
+            {
+              "left": {
+                "name": "e",
+                "type": "Identifier",
+              },
+              "right": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "AssignmentPattern",
+            },
+          ],
+          "type": "ArrayPattern",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch([e]){} 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "elements": [
+            {
+              "name": "e",
+              "type": "Identifier",
+            },
+          ],
+          "type": "ArrayPattern",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch([e]){} 2`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "elements": [
+            {
+              "name": "e",
+              "type": "Identifier",
+            },
+          ],
+          "type": "ArrayPattern",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch({e=x}){} 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "e",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": true,
+              "type": "Property",
+              "value": {
+                "left": {
+                  "name": "e",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "type": "AssignmentPattern",
+              },
+            },
+          ],
+          "type": "ObjectPattern",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch({e=x}){} 2`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "e",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": true,
+              "type": "Property",
+              "value": {
+                "left": {
+                  "name": "e",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "type": "AssignmentPattern",
+              },
+            },
+          ],
+          "type": "ObjectPattern",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch({e}){} 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "e",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": true,
+              "type": "Property",
+              "value": {
+                "name": "e",
+                "type": "Identifier",
+              },
+            },
+          ],
+          "type": "ObjectPattern",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch(e) { try {} catch (e) {} } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "block": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "finalizer": null,
+              "handler": {
+                "body": {
+                  "body": [],
+                  "type": "BlockStatement",
+                },
+                "param": {
+                  "name": "e",
+                  "type": "Identifier",
+                },
+                "type": "CatchClause",
+              },
+              "type": "TryStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "e",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch(e) {} 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "e",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch(e){} 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "e",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch(x) { with ({}) { x = 1; } } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "left": {
+                        "name": "x",
+                        "type": "Identifier",
+                      },
+                      "operator": "=",
+                      "right": {
+                        "type": "Literal",
+                        "value": 1,
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "object": {
+                "properties": [],
+                "type": "ObjectExpression",
+              },
+              "type": "WithStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} catch(x) { x = 0; } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "expression": {
+                "left": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "operator": "=",
+                "right": {
+                  "type": "Literal",
+                  "value": 0,
+                },
+                "type": "AssignmentExpression",
+              },
+              "type": "ExpressionStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} finally {}
+/foo/g 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "handler": null,
+      "type": "TryStatement",
+    },
+    {
+      "expression": {
+        "regex": {
+          "flags": "g",
+          "pattern": "foo",
+        },
+        "type": "Literal",
+        "value": /foo/g,
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {} finally {} 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "handler": null,
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {try { } catch { } finally { }} catch ({e}) { } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [
+          {
+            "block": {
+              "body": [],
+              "end": 12,
+              "loc": {
+                "end": {
+                  "column": 12,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 9,
+                  "line": 1,
+                },
+              },
+              "range": [
+                9,
+                12,
+              ],
+              "start": 9,
+              "type": "BlockStatement",
+            },
+            "end": 34,
+            "finalizer": {
+              "body": [],
+              "end": 34,
+              "loc": {
+                "end": {
+                  "column": 34,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 31,
+                  "line": 1,
+                },
+              },
+              "range": [
+                31,
+                34,
+              ],
+              "start": 31,
+              "type": "BlockStatement",
+            },
+            "handler": {
+              "body": {
+                "body": [],
+                "end": 22,
+                "loc": {
+                  "end": {
+                    "column": 22,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 19,
+                    "line": 1,
+                  },
+                },
+                "range": [
+                  19,
+                  22,
+                ],
+                "start": 19,
+                "type": "BlockStatement",
+              },
+              "end": 22,
+              "loc": {
+                "end": {
+                  "column": 22,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 13,
+                  "line": 1,
+                },
+              },
+              "param": null,
+              "range": [
+                13,
+                22,
+              ],
+              "start": 13,
+              "type": "CatchClause",
+            },
+            "loc": {
+              "end": {
+                "column": 34,
+                "line": 1,
+              },
+              "start": {
+                "column": 5,
+                "line": 1,
+              },
+            },
+            "range": [
+              5,
+              34,
+            ],
+            "start": 5,
+            "type": "TryStatement",
+          },
+        ],
+        "end": 35,
+        "loc": {
+          "end": {
+            "column": 35,
+            "line": 1,
+          },
+          "start": {
+            "column": 4,
+            "line": 1,
+          },
+        },
+        "range": [
+          4,
+          35,
+        ],
+        "start": 4,
+        "type": "BlockStatement",
+      },
+      "end": 51,
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "end": 51,
+          "loc": {
+            "end": {
+              "column": 51,
+              "line": 1,
+            },
+            "start": {
+              "column": 48,
+              "line": 1,
+            },
+          },
+          "range": [
+            48,
+            51,
+          ],
+          "start": 48,
+          "type": "BlockStatement",
+        },
+        "end": 51,
+        "loc": {
+          "end": {
+            "column": 51,
+            "line": 1,
+          },
+          "start": {
+            "column": 36,
+            "line": 1,
+          },
+        },
+        "param": {
+          "end": 46,
+          "loc": {
+            "end": {
+              "column": 46,
+              "line": 1,
+            },
+            "start": {
+              "column": 43,
+              "line": 1,
+            },
+          },
+          "properties": [
+            {
+              "computed": false,
+              "end": 45,
+              "key": {
+                "end": 45,
+                "loc": {
+                  "end": {
+                    "column": 45,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 44,
+                    "line": 1,
+                  },
+                },
+                "name": "e",
+                "range": [
+                  44,
+                  45,
+                ],
+                "start": 44,
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "loc": {
+                "end": {
+                  "column": 45,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 44,
+                  "line": 1,
+                },
+              },
+              "method": false,
+              "range": [
+                44,
+                45,
+              ],
+              "shorthand": true,
+              "start": 44,
+              "type": "Property",
+              "value": {
+                "end": 45,
+                "loc": {
+                  "end": {
+                    "column": 45,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 44,
+                    "line": 1,
+                  },
+                },
+                "name": "e",
+                "range": [
+                  44,
+                  45,
+                ],
+                "start": 44,
+                "type": "Identifier",
+              },
+            },
+          ],
+          "range": [
+            43,
+            46,
+          ],
+          "start": 43,
+          "type": "ObjectPattern",
+        },
+        "range": [
+          36,
+          51,
+        ],
+        "start": 36,
+        "type": "CatchClause",
+      },
+      "loc": {
+        "end": {
+          "column": 51,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        51,
+      ],
+      "start": 0,
+      "type": "TryStatement",
+    },
+  ],
+  "end": 51,
+  "loc": {
+    "end": {
+      "column": 51,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    51,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try {try { let e; } catch { let e; } finally { let e; }} catch (e) { } 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [
+          {
+            "block": {
+              "body": [
+                {
+                  "declarations": [
+                    {
+                      "id": {
+                        "name": "e",
+                        "type": "Identifier",
+                      },
+                      "init": null,
+                      "type": "VariableDeclarator",
+                    },
+                  ],
+                  "kind": "let",
+                  "type": "VariableDeclaration",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+            "finalizer": {
+              "body": [
+                {
+                  "declarations": [
+                    {
+                      "id": {
+                        "name": "e",
+                        "type": "Identifier",
+                      },
+                      "init": null,
+                      "type": "VariableDeclarator",
+                    },
+                  ],
+                  "kind": "let",
+                  "type": "VariableDeclaration",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+            "handler": {
+              "body": {
+                "body": [
+                  {
+                    "declarations": [
+                      {
+                        "id": {
+                          "name": "e",
+                          "type": "Identifier",
+                        },
+                        "init": null,
+                        "type": "VariableDeclarator",
+                      },
+                    ],
+                    "kind": "let",
+                    "type": "VariableDeclaration",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "param": null,
+              "type": "CatchClause",
+            },
+            "type": "TryStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "e",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > try{}catch(a){} 1`] = `
+{
+  "body": [
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > var foo; try {} catch (_) { const foo = 1; } 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "declarations": [
+                {
+                  "id": {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                  "init": {
+                    "type": "Literal",
+                    "value": 1,
+                  },
+                  "type": "VariableDeclarator",
+                },
+              ],
+              "kind": "const",
+              "type": "VariableDeclaration",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "_",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Try > Statements - Try (pass) > var foo; try {} catch (_) { let foo; } 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "init": null,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "block": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "finalizer": null,
+      "handler": {
+        "body": {
+          "body": [
+            {
+              "declarations": [
+                {
+                  "id": {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                  "init": null,
+                  "type": "VariableDeclarator",
+                },
+              ],
+              "kind": "let",
+              "type": "VariableDeclaration",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "param": {
+          "name": "_",
+          "type": "Identifier",
+        },
+        "type": "CatchClause",
+      },
+      "type": "TryStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

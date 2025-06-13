@@ -1,0 +1,490 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Statements - Continue > Statements - Continue > () => { do        if (x) continue   ; while(true);} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [
+            {
+              "body": {
+                "alternate": null,
+                "consequent": {
+                  "label": null,
+                  "type": "ContinueStatement",
+                },
+                "test": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "type": "IfStatement",
+              },
+              "test": {
+                "type": "Literal",
+                "value": true,
+              },
+              "type": "DoWhileStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > __proto__: while (true) { continue __proto__; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "body": [
+            {
+              "label": {
+                "name": "__proto__",
+                "type": "Identifier",
+              },
+              "type": "ContinueStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "test": {
+          "type": "Literal",
+          "value": true,
+        },
+        "type": "WhileStatement",
+      },
+      "label": {
+        "name": "__proto__",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > a: do continue a; while(1); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "label": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "type": "ContinueStatement",
+        },
+        "test": {
+          "type": "Literal",
+          "value": 1,
+        },
+        "type": "DoWhileStatement",
+      },
+      "label": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > a: while (0) { continue /*
+*/ b; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "body": [
+            {
+              "label": null,
+              "type": "ContinueStatement",
+            },
+            {
+              "expression": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "type": "ExpressionStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "test": {
+          "type": "Literal",
+          "value": 0,
+        },
+        "type": "WhileStatement",
+      },
+      "label": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > a: while (0) { continue /* */ b; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "body": [
+            {
+              "label": null,
+              "type": "ContinueStatement",
+            },
+            {
+              "expression": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "type": "ExpressionStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "test": {
+          "type": "Literal",
+          "value": 0,
+        },
+        "type": "WhileStatement",
+      },
+      "label": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > a: while (0) { continue ␍␊ b; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "body": [
+            {
+              "label": null,
+              "type": "ContinueStatement",
+            },
+            {
+              "expression": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "type": "ExpressionStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "test": {
+          "type": "Literal",
+          "value": 0,
+        },
+        "type": "WhileStatement",
+      },
+      "label": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > do continue; while(foo); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "label": null,
+        "type": "ContinueStatement",
+      },
+      "test": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "DoWhileStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > foo: do continue foo; while(foo); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "label": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "ContinueStatement",
+        },
+        "test": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "DoWhileStatement",
+      },
+      "label": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > foo: while (true) { if (x) continue foo; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "body": [
+            {
+              "alternate": null,
+              "consequent": {
+                "label": {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                "type": "ContinueStatement",
+              },
+              "test": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "IfStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "test": {
+          "type": "Literal",
+          "value": true,
+        },
+        "type": "WhileStatement",
+      },
+      "label": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > foo: while(true)continue foo; 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "label": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "ContinueStatement",
+        },
+        "test": {
+          "type": "Literal",
+          "value": true,
+        },
+        "type": "WhileStatement",
+      },
+      "label": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > for (;;)  {  continue   } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "label": null,
+            "type": "ContinueStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "init": null,
+      "test": null,
+      "type": "ForStatement",
+      "update": null,
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > for (;;)  { if (x) continue   } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "alternate": null,
+            "consequent": {
+              "label": null,
+              "type": "ContinueStatement",
+            },
+            "test": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "type": "IfStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "init": null,
+      "test": null,
+      "type": "ForStatement",
+      "update": null,
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > function f(){ for (;;)  {     continue    }} 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "body": {
+              "body": [
+                {
+                  "label": null,
+                  "type": "ContinueStatement",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+            "init": null,
+            "test": null,
+            "type": "ForStatement",
+            "update": null,
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > while (true) {  continue   } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "label": null,
+            "type": "ContinueStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": true,
+      },
+      "type": "WhileStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Continue > Statements - Continue > while (x) continue 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "label": null,
+        "type": "ContinueStatement",
+      },
+      "test": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "type": "WhileStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

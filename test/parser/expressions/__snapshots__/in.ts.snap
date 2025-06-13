@@ -1,0 +1,186 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions -In > Expressions -In > "any-string" 1`] = `
+{
+  "body": [
+    {
+      "directive": "any-string",
+      "expression": {
+        "raw": ""any-string"",
+        "type": "Literal",
+        "value": "any-string",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions -In > Expressions -In > "any-string" 2`] = `
+{
+  "body": [
+    {
+      "directive": "any-string",
+      "expression": {
+        "raw": ""any-string"",
+        "type": "Literal",
+        "value": "any-string",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions -In > Expressions -In > "use strict" 1`] = `
+{
+  "body": [
+    {
+      "directive": "use strict",
+      "expression": {
+        "raw": ""use strict"",
+        "type": "Literal",
+        "value": "use strict",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions -In > Expressions -In > "valueOf" in __proto 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "raw": ""valueOf"",
+          "type": "Literal",
+          "value": "valueOf",
+        },
+        "operator": "in",
+        "right": {
+          "name": "__proto",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions -In > Expressions -In > (NUMBER = Number, "MAX_VALUE") in NUMBER 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "expressions": [
+            {
+              "left": {
+                "name": "NUMBER",
+                "type": "Identifier",
+              },
+              "operator": "=",
+              "right": {
+                "name": "Number",
+                "type": "Identifier",
+              },
+              "type": "AssignmentExpression",
+            },
+            {
+              "type": "Literal",
+              "value": "MAX_VALUE",
+            },
+          ],
+          "type": "SequenceExpression",
+        },
+        "operator": "in",
+        "right": {
+          "name": "NUMBER",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions -In > Expressions -In > 123 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "raw": "123",
+        "type": "Literal",
+        "value": 123,
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions -In > Expressions -In > x in Number 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "in",
+        "right": {
+          "name": "Number",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions -In > Expressions -In > x in async 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "in",
+        "right": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

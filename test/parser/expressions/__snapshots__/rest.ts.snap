@@ -1,0 +1,582 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - Rest > Expressions - Rest (pass) > class restClass { method(a, b, c, ...[d]) { arguments; return [a, b, c, d]; } }; 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "method",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "name": "arguments",
+                      "type": "Identifier",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                  {
+                    "argument": {
+                      "elements": [
+                        {
+                          "name": "a",
+                          "type": "Identifier",
+                        },
+                        {
+                          "name": "b",
+                          "type": "Identifier",
+                        },
+                        {
+                          "name": "c",
+                          "type": "Identifier",
+                        },
+                        {
+                          "name": "d",
+                          "type": "Identifier",
+                        },
+                      ],
+                      "type": "ArrayExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                {
+                  "name": "c",
+                  "type": "Identifier",
+                },
+                {
+                  "argument": {
+                    "elements": [
+                      {
+                        "name": "d",
+                        "type": "Identifier",
+                      },
+                    ],
+                    "type": "ArrayPattern",
+                  },
+                  "type": "RestElement",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "restClass",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+    {
+      "type": "EmptyStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (pass) > function foo(a, b, c, ...[d]) { arguments; return [a, b, c, d]; } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "name": "arguments",
+              "type": "Identifier",
+            },
+            "type": "ExpressionStatement",
+          },
+          {
+            "argument": {
+              "elements": [
+                {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                {
+                  "name": "c",
+                  "type": "Identifier",
+                },
+                {
+                  "name": "d",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayExpression",
+            },
+            "type": "ReturnStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "name": "a",
+          "type": "Identifier",
+        },
+        {
+          "name": "b",
+          "type": "Identifier",
+        },
+        {
+          "name": "c",
+          "type": "Identifier",
+        },
+        {
+          "argument": {
+            "elements": [
+              {
+                "name": "d",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "type": "RestElement",
+        },
+      ],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (pass) > function fooInline(a, b, c, ...rest) { arguments; this; return [a, b, c, ...rest]; } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "name": "arguments",
+              "type": "Identifier",
+            },
+            "type": "ExpressionStatement",
+          },
+          {
+            "expression": {
+              "type": "ThisExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+          {
+            "argument": {
+              "elements": [
+                {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                {
+                  "name": "c",
+                  "type": "Identifier",
+                },
+                {
+                  "argument": {
+                    "name": "rest",
+                    "type": "Identifier",
+                  },
+                  "type": "SpreadElement",
+                },
+              ],
+              "type": "ArrayExpression",
+            },
+            "type": "ReturnStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "fooInline",
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "name": "a",
+          "type": "Identifier",
+        },
+        {
+          "name": "b",
+          "type": "Identifier",
+        },
+        {
+          "name": "c",
+          "type": "Identifier",
+        },
+        {
+          "argument": {
+            "name": "rest",
+            "type": "Identifier",
+          },
+          "type": "RestElement",
+        },
+      ],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (pass) > function objRest(...{'0': a, '1': b, length}) { return [a, b, length]; } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "argument": {
+              "elements": [
+                {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                {
+                  "name": "length",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayExpression",
+            },
+            "type": "ReturnStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "objRest",
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "argument": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "type": "Literal",
+                  "value": "0",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "type": "Literal",
+                  "value": "1",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "length",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "name": "length",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          "type": "RestElement",
+        },
+      ],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (pass) > function singleRest(...[d]) { return d; } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "argument": {
+              "name": "d",
+              "type": "Identifier",
+            },
+            "type": "ReturnStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "singleRest",
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "argument": {
+            "elements": [
+              {
+                "name": "d",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+          "type": "RestElement",
+        },
+      ],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (pass) > var func5 = function (...[argArr13]) { function foo() { eval(); } }; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "func5",
+            "type": "Identifier",
+          },
+          "init": {
+            "async": false,
+            "body": {
+              "body": [
+                {
+                  "async": false,
+                  "body": {
+                    "body": [
+                      {
+                        "expression": {
+                          "arguments": [],
+                          "callee": {
+                            "name": "eval",
+                            "type": "Identifier",
+                          },
+                          "type": "CallExpression",
+                        },
+                        "type": "ExpressionStatement",
+                      },
+                    ],
+                    "type": "BlockStatement",
+                  },
+                  "generator": false,
+                  "id": {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                  "params": [],
+                  "type": "FunctionDeclaration",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+            "generator": false,
+            "id": null,
+            "params": [
+              {
+                "argument": {
+                  "elements": [
+                    {
+                      "name": "argArr13",
+                      "type": "Identifier",
+                    },
+                  ],
+                  "type": "ArrayPattern",
+                },
+                "type": "RestElement",
+              },
+            ],
+            "type": "FunctionExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Rest > Expressions - Rest (pass) > var obj = { method(a, b, c, ...[d]) { return [a, b, c, d]; } }; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "obj",
+            "type": "Identifier",
+          },
+          "init": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "method",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": true,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "async": false,
+                  "body": {
+                    "body": [
+                      {
+                        "argument": {
+                          "elements": [
+                            {
+                              "name": "a",
+                              "type": "Identifier",
+                            },
+                            {
+                              "name": "b",
+                              "type": "Identifier",
+                            },
+                            {
+                              "name": "c",
+                              "type": "Identifier",
+                            },
+                            {
+                              "name": "d",
+                              "type": "Identifier",
+                            },
+                          ],
+                          "type": "ArrayExpression",
+                        },
+                        "type": "ReturnStatement",
+                      },
+                    ],
+                    "type": "BlockStatement",
+                  },
+                  "generator": false,
+                  "id": null,
+                  "params": [
+                    {
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                    {
+                      "name": "b",
+                      "type": "Identifier",
+                    },
+                    {
+                      "name": "c",
+                      "type": "Identifier",
+                    },
+                    {
+                      "argument": {
+                        "elements": [
+                          {
+                            "name": "d",
+                            "type": "Identifier",
+                          },
+                        ],
+                        "type": "ArrayPattern",
+                      },
+                      "type": "RestElement",
+                    },
+                  ],
+                  "type": "FunctionExpression",
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

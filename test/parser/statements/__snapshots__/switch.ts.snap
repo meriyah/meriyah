@@ -1,0 +1,1263 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Statements  Switch > Statements  Switch (pass) > for (let i = 0; i < 1; ++i) {
+        switch (a) {
+          case 2:
+              foo:a = 3;
+              break;
+        }
+    } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "cases": [
+              {
+                "consequent": [
+                  {
+                    "body": {
+                      "end": 93,
+                      "expression": {
+                        "end": 92,
+                        "left": {
+                          "end": 88,
+                          "name": "a",
+                          "range": [
+                            87,
+                            88,
+                          ],
+                          "start": 87,
+                          "type": "Identifier",
+                        },
+                        "operator": "=",
+                        "range": [
+                          87,
+                          92,
+                        ],
+                        "right": {
+                          "end": 92,
+                          "range": [
+                            91,
+                            92,
+                          ],
+                          "start": 91,
+                          "type": "Literal",
+                          "value": 3,
+                        },
+                        "start": 87,
+                        "type": "AssignmentExpression",
+                      },
+                      "range": [
+                        87,
+                        93,
+                      ],
+                      "start": 87,
+                      "type": "ExpressionStatement",
+                    },
+                    "end": 93,
+                    "label": {
+                      "end": 86,
+                      "name": "foo",
+                      "range": [
+                        83,
+                        86,
+                      ],
+                      "start": 83,
+                      "type": "Identifier",
+                    },
+                    "range": [
+                      83,
+                      93,
+                    ],
+                    "start": 83,
+                    "type": "LabeledStatement",
+                  },
+                  {
+                    "end": 114,
+                    "label": null,
+                    "range": [
+                      108,
+                      114,
+                    ],
+                    "start": 108,
+                    "type": "BreakStatement",
+                  },
+                ],
+                "end": 114,
+                "range": [
+                  61,
+                  114,
+                ],
+                "start": 61,
+                "test": {
+                  "end": 67,
+                  "range": [
+                    66,
+                    67,
+                  ],
+                  "start": 66,
+                  "type": "Literal",
+                  "value": 2,
+                },
+                "type": "SwitchCase",
+              },
+            ],
+            "discriminant": {
+              "end": 47,
+              "name": "a",
+              "range": [
+                46,
+                47,
+              ],
+              "start": 46,
+              "type": "Identifier",
+            },
+            "end": 124,
+            "range": [
+              38,
+              124,
+            ],
+            "start": 38,
+            "type": "SwitchStatement",
+          },
+        ],
+        "end": 130,
+        "range": [
+          28,
+          130,
+        ],
+        "start": 28,
+        "type": "BlockStatement",
+      },
+      "end": 130,
+      "init": {
+        "declarations": [
+          {
+            "end": 14,
+            "id": {
+              "end": 10,
+              "name": "i",
+              "range": [
+                9,
+                10,
+              ],
+              "start": 9,
+              "type": "Identifier",
+            },
+            "init": {
+              "end": 14,
+              "range": [
+                13,
+                14,
+              ],
+              "start": 13,
+              "type": "Literal",
+              "value": 0,
+            },
+            "range": [
+              9,
+              14,
+            ],
+            "start": 9,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "end": 14,
+        "kind": "let",
+        "range": [
+          5,
+          14,
+        ],
+        "start": 5,
+        "type": "VariableDeclaration",
+      },
+      "range": [
+        0,
+        130,
+      ],
+      "start": 0,
+      "test": {
+        "end": 21,
+        "left": {
+          "end": 17,
+          "name": "i",
+          "range": [
+            16,
+            17,
+          ],
+          "start": 16,
+          "type": "Identifier",
+        },
+        "operator": "<",
+        "range": [
+          16,
+          21,
+        ],
+        "right": {
+          "end": 21,
+          "range": [
+            20,
+            21,
+          ],
+          "start": 20,
+          "type": "Literal",
+          "value": 1,
+        },
+        "start": 16,
+        "type": "BinaryExpression",
+      },
+      "type": "ForStatement",
+      "update": {
+        "argument": {
+          "end": 26,
+          "name": "i",
+          "range": [
+            25,
+            26,
+          ],
+          "start": 25,
+          "type": "Identifier",
+        },
+        "end": 26,
+        "operator": "++",
+        "prefix": true,
+        "range": [
+          23,
+          26,
+        ],
+        "start": 23,
+        "type": "UpdateExpression",
+      },
+    },
+  ],
+  "end": 130,
+  "range": [
+    0,
+    130,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements  Switch > Statements  Switch (pass) > switch (0) { case 1: var f; default: var f } 1`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [
+            {
+              "declarations": [
+                {
+                  "end": 26,
+                  "id": {
+                    "end": 26,
+                    "name": "f",
+                    "range": [
+                      25,
+                      26,
+                    ],
+                    "start": 25,
+                    "type": "Identifier",
+                  },
+                  "init": null,
+                  "range": [
+                    25,
+                    26,
+                  ],
+                  "start": 25,
+                  "type": "VariableDeclarator",
+                },
+              ],
+              "end": 27,
+              "kind": "var",
+              "range": [
+                21,
+                27,
+              ],
+              "start": 21,
+              "type": "VariableDeclaration",
+            },
+          ],
+          "end": 27,
+          "range": [
+            13,
+            27,
+          ],
+          "start": 13,
+          "test": {
+            "end": 19,
+            "range": [
+              18,
+              19,
+            ],
+            "raw": "1",
+            "start": 18,
+            "type": "Literal",
+            "value": 1,
+          },
+          "type": "SwitchCase",
+        },
+        {
+          "consequent": [
+            {
+              "declarations": [
+                {
+                  "end": 42,
+                  "id": {
+                    "end": 42,
+                    "name": "f",
+                    "range": [
+                      41,
+                      42,
+                    ],
+                    "start": 41,
+                    "type": "Identifier",
+                  },
+                  "init": null,
+                  "range": [
+                    41,
+                    42,
+                  ],
+                  "start": 41,
+                  "type": "VariableDeclarator",
+                },
+              ],
+              "end": 42,
+              "kind": "var",
+              "range": [
+                37,
+                42,
+              ],
+              "start": 37,
+              "type": "VariableDeclaration",
+            },
+          ],
+          "end": 42,
+          "range": [
+            28,
+            42,
+          ],
+          "start": 28,
+          "test": null,
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "end": 9,
+        "range": [
+          8,
+          9,
+        ],
+        "raw": "0",
+        "start": 8,
+        "type": "Literal",
+        "value": 0,
+      },
+      "end": 44,
+      "range": [
+        0,
+        44,
+      ],
+      "start": 0,
+      "type": "SwitchStatement",
+    },
+  ],
+  "end": 44,
+  "range": [
+    0,
+    44,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements  Switch > Statements  Switch (pass) > switch (A) {case B: C; break; case D: E; break;} 1`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [
+            {
+              "expression": {
+                "name": "C",
+                "type": "Identifier",
+              },
+              "type": "ExpressionStatement",
+            },
+            {
+              "label": null,
+              "type": "BreakStatement",
+            },
+          ],
+          "test": {
+            "name": "B",
+            "type": "Identifier",
+          },
+          "type": "SwitchCase",
+        },
+        {
+          "consequent": [
+            {
+              "expression": {
+                "name": "E",
+                "type": "Identifier",
+              },
+              "type": "ExpressionStatement",
+            },
+            {
+              "label": null,
+              "type": "BreakStatement",
+            },
+          ],
+          "test": {
+            "name": "D",
+            "type": "Identifier",
+          },
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "type": "SwitchStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements  Switch > Statements  Switch (pass) > switch (A) {case B: C; default: D;} 1`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [
+            {
+              "expression": {
+                "name": "C",
+                "type": "Identifier",
+              },
+              "type": "ExpressionStatement",
+            },
+          ],
+          "test": {
+            "name": "B",
+            "type": "Identifier",
+          },
+          "type": "SwitchCase",
+        },
+        {
+          "consequent": [
+            {
+              "expression": {
+                "name": "D",
+                "type": "Identifier",
+              },
+              "type": "ExpressionStatement",
+            },
+          ],
+          "test": null,
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "type": "SwitchStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements  Switch > Statements  Switch (pass) > switch (A) {default: B; break;} 1`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [
+            {
+              "expression": {
+                "name": "B",
+                "type": "Identifier",
+              },
+              "type": "ExpressionStatement",
+            },
+            {
+              "label": null,
+              "type": "BreakStatement",
+            },
+          ],
+          "test": null,
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "type": "SwitchStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements  Switch > Statements  Switch (pass) > switch (A) {default: B;} 1`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [
+            {
+              "expression": {
+                "name": "B",
+                "type": "Identifier",
+              },
+              "type": "ExpressionStatement",
+            },
+          ],
+          "test": null,
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "type": "SwitchStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements  Switch > Statements  Switch (pass) > switch (A) {default: B;} 2`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [
+            {
+              "expression": {
+                "name": "B",
+                "type": "Identifier",
+              },
+              "type": "ExpressionStatement",
+            },
+          ],
+          "test": null,
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "type": "SwitchStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements  Switch > Statements  Switch (pass) > switch (A) {default: D; case B: C; } 1`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [
+            {
+              "end": 23,
+              "expression": {
+                "end": 22,
+                "name": "D",
+                "range": [
+                  21,
+                  22,
+                ],
+                "start": 21,
+                "type": "Identifier",
+              },
+              "range": [
+                21,
+                23,
+              ],
+              "start": 21,
+              "type": "ExpressionStatement",
+            },
+          ],
+          "end": 23,
+          "range": [
+            12,
+            23,
+          ],
+          "start": 12,
+          "test": null,
+          "type": "SwitchCase",
+        },
+        {
+          "consequent": [
+            {
+              "end": 34,
+              "expression": {
+                "end": 33,
+                "name": "C",
+                "range": [
+                  32,
+                  33,
+                ],
+                "start": 32,
+                "type": "Identifier",
+              },
+              "range": [
+                32,
+                34,
+              ],
+              "start": 32,
+              "type": "ExpressionStatement",
+            },
+          ],
+          "end": 34,
+          "range": [
+            24,
+            34,
+          ],
+          "start": 24,
+          "test": {
+            "end": 30,
+            "name": "B",
+            "range": [
+              29,
+              30,
+            ],
+            "start": 29,
+            "type": "Identifier",
+          },
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "end": 9,
+        "name": "A",
+        "range": [
+          8,
+          9,
+        ],
+        "start": 8,
+        "type": "Identifier",
+      },
+      "end": 36,
+      "range": [
+        0,
+        36,
+      ],
+      "start": 0,
+      "type": "SwitchStatement",
+    },
+  ],
+  "end": 36,
+  "range": [
+    0,
+    36,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements  Switch > Statements  Switch (pass) > switch (A) {default: D; case B: C; } 2`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [
+            {
+              "expression": {
+                "name": "D",
+                "type": "Identifier",
+              },
+              "type": "ExpressionStatement",
+            },
+          ],
+          "test": null,
+          "type": "SwitchCase",
+        },
+        {
+          "consequent": [
+            {
+              "expression": {
+                "name": "C",
+                "type": "Identifier",
+              },
+              "type": "ExpressionStatement",
+            },
+          ],
+          "test": {
+            "name": "B",
+            "type": "Identifier",
+          },
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "type": "SwitchStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements  Switch > Statements  Switch (pass) > switch (X) {
+        case k:
+          foo: bar: function f(){}
+      } 1`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [
+            {
+              "body": {
+                "body": {
+                  "async": false,
+                  "body": {
+                    "body": [],
+                    "type": "BlockStatement",
+                  },
+                  "generator": false,
+                  "id": {
+                    "name": "f",
+                    "type": "Identifier",
+                  },
+                  "params": [],
+                  "type": "FunctionDeclaration",
+                },
+                "label": {
+                  "name": "bar",
+                  "type": "Identifier",
+                },
+                "type": "LabeledStatement",
+              },
+              "label": {
+                "name": "foo",
+                "type": "Identifier",
+              },
+              "type": "LabeledStatement",
+            },
+          ],
+          "test": {
+            "name": "k",
+            "type": "Identifier",
+          },
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "name": "X",
+        "type": "Identifier",
+      },
+      "type": "SwitchStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements  Switch > Statements  Switch (pass) > switch (a) { case b: let [x] = y } 1`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [
+            {
+              "declarations": [
+                {
+                  "end": 32,
+                  "id": {
+                    "elements": [
+                      {
+                        "end": 27,
+                        "name": "x",
+                        "range": [
+                          26,
+                          27,
+                        ],
+                        "start": 26,
+                        "type": "Identifier",
+                      },
+                    ],
+                    "end": 28,
+                    "range": [
+                      25,
+                      28,
+                    ],
+                    "start": 25,
+                    "type": "ArrayPattern",
+                  },
+                  "init": {
+                    "end": 32,
+                    "name": "y",
+                    "range": [
+                      31,
+                      32,
+                    ],
+                    "start": 31,
+                    "type": "Identifier",
+                  },
+                  "range": [
+                    25,
+                    32,
+                  ],
+                  "start": 25,
+                  "type": "VariableDeclarator",
+                },
+              ],
+              "end": 32,
+              "kind": "let",
+              "range": [
+                21,
+                32,
+              ],
+              "start": 21,
+              "type": "VariableDeclaration",
+            },
+          ],
+          "end": 32,
+          "range": [
+            13,
+            32,
+          ],
+          "start": 13,
+          "test": {
+            "end": 19,
+            "name": "b",
+            "range": [
+              18,
+              19,
+            ],
+            "start": 18,
+            "type": "Identifier",
+          },
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "end": 9,
+        "name": "a",
+        "range": [
+          8,
+          9,
+        ],
+        "start": 8,
+        "type": "Identifier",
+      },
+      "end": 34,
+      "range": [
+        0,
+        34,
+      ],
+      "start": 0,
+      "type": "SwitchStatement",
+    },
+  ],
+  "end": 34,
+  "range": [
+    0,
+    34,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements  Switch > Statements  Switch (pass) > switch (answer) { case 0: hi(); break; default: break } 1`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [
+            {
+              "end": 31,
+              "expression": {
+                "arguments": [],
+                "callee": {
+                  "end": 28,
+                  "name": "hi",
+                  "range": [
+                    26,
+                    28,
+                  ],
+                  "start": 26,
+                  "type": "Identifier",
+                },
+                "end": 30,
+                "range": [
+                  26,
+                  30,
+                ],
+                "start": 26,
+                "type": "CallExpression",
+              },
+              "range": [
+                26,
+                31,
+              ],
+              "start": 26,
+              "type": "ExpressionStatement",
+            },
+            {
+              "end": 38,
+              "label": null,
+              "range": [
+                32,
+                38,
+              ],
+              "start": 32,
+              "type": "BreakStatement",
+            },
+          ],
+          "end": 38,
+          "range": [
+            18,
+            38,
+          ],
+          "start": 18,
+          "test": {
+            "end": 24,
+            "range": [
+              23,
+              24,
+            ],
+            "start": 23,
+            "type": "Literal",
+            "value": 0,
+          },
+          "type": "SwitchCase",
+        },
+        {
+          "consequent": [
+            {
+              "end": 53,
+              "label": null,
+              "range": [
+                48,
+                53,
+              ],
+              "start": 48,
+              "type": "BreakStatement",
+            },
+          ],
+          "end": 53,
+          "range": [
+            39,
+            53,
+          ],
+          "start": 39,
+          "test": null,
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "end": 14,
+        "name": "answer",
+        "range": [
+          8,
+          14,
+        ],
+        "start": 8,
+        "type": "Identifier",
+      },
+      "end": 55,
+      "range": [
+        0,
+        55,
+      ],
+      "start": 0,
+      "type": "SwitchStatement",
+    },
+  ],
+  "end": 55,
+  "range": [
+    0,
+    55,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements  Switch > Statements  Switch (pass) > switch (answer) { case 0: let a; } 1`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [
+            {
+              "declarations": [
+                {
+                  "end": 31,
+                  "id": {
+                    "end": 31,
+                    "name": "a",
+                    "range": [
+                      30,
+                      31,
+                    ],
+                    "start": 30,
+                    "type": "Identifier",
+                  },
+                  "init": null,
+                  "range": [
+                    30,
+                    31,
+                  ],
+                  "start": 30,
+                  "type": "VariableDeclarator",
+                },
+              ],
+              "end": 32,
+              "kind": "let",
+              "range": [
+                26,
+                32,
+              ],
+              "start": 26,
+              "type": "VariableDeclaration",
+            },
+          ],
+          "end": 32,
+          "range": [
+            18,
+            32,
+          ],
+          "start": 18,
+          "test": {
+            "end": 24,
+            "range": [
+              23,
+              24,
+            ],
+            "raw": "0",
+            "start": 23,
+            "type": "Literal",
+            "value": 0,
+          },
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "end": 14,
+        "name": "answer",
+        "range": [
+          8,
+          14,
+        ],
+        "start": 8,
+        "type": "Identifier",
+      },
+      "end": 34,
+      "range": [
+        0,
+        34,
+      ],
+      "start": 0,
+      "type": "SwitchStatement",
+    },
+  ],
+  "end": 34,
+  "range": [
+    0,
+    34,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements  Switch > Statements  Switch (pass) > switch(a){case 1:} 1`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [],
+          "end": 17,
+          "range": [
+            10,
+            17,
+          ],
+          "start": 10,
+          "test": {
+            "end": 16,
+            "range": [
+              15,
+              16,
+            ],
+            "start": 15,
+            "type": "Literal",
+            "value": 1,
+          },
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "end": 8,
+        "name": "a",
+        "range": [
+          7,
+          8,
+        ],
+        "start": 7,
+        "type": "Identifier",
+      },
+      "end": 18,
+      "range": [
+        0,
+        18,
+      ],
+      "start": 0,
+      "type": "SwitchStatement",
+    },
+  ],
+  "end": 18,
+  "range": [
+    0,
+    18,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements  Switch > Statements  Switch (pass) > switch(a){case 1:default:} 1`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [],
+          "test": {
+            "type": "Literal",
+            "value": 1,
+          },
+          "type": "SwitchCase",
+        },
+        {
+          "consequent": [],
+          "test": null,
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "SwitchStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements  Switch > Statements  Switch (pass) > switch(a){default:case 2:} 1`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [],
+          "test": null,
+          "type": "SwitchCase",
+        },
+        {
+          "consequent": [],
+          "test": {
+            "type": "Literal",
+            "value": 2,
+          },
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "SwitchStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements  Switch > Statements  Switch (pass) > switch(foo) {} 1`] = `
+{
+  "body": [
+    {
+      "cases": [],
+      "discriminant": {
+        "end": 10,
+        "name": "foo",
+        "range": [
+          7,
+          10,
+        ],
+        "start": 7,
+        "type": "Identifier",
+      },
+      "end": 14,
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "SwitchStatement",
+    },
+  ],
+  "end": 14,
+  "range": [
+    0,
+    14,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;

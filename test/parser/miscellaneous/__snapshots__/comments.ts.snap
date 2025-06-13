@@ -1,0 +1,904 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > 
+/*precomment*/-->eol-comment
+var y = 37;
+ 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "init": {
+            "type": "Literal",
+            "value": 37,
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > 
+-->is eol-comment
+var y = 37;
+ 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "init": {
+            "type": "Literal",
+            "value": 37,
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > /* MLC1 
+ */ /* SLDC1 */ /* MLC2 
+ */ /* SLDC2 */ --> is eol-comment
+ 1`] = `
+{
+  "body": [],
+  "end": 69,
+  "range": [
+    0,
+    69,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > /* before */async function /* a */ f /* b */ ( /* c */ x /* d */ , /* e */ y /* f */ ) /* g */ { /* h */ ; /* i */ ; /* j */ }/* after */ 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [
+          {
+            "end": 106,
+            "range": [
+              105,
+              106,
+            ],
+            "start": 105,
+            "type": "EmptyStatement",
+          },
+          {
+            "end": 116,
+            "range": [
+              115,
+              116,
+            ],
+            "start": 115,
+            "type": "EmptyStatement",
+          },
+        ],
+        "end": 126,
+        "range": [
+          95,
+          126,
+        ],
+        "start": 95,
+        "type": "BlockStatement",
+      },
+      "end": 126,
+      "generator": false,
+      "id": {
+        "end": 36,
+        "name": "f",
+        "range": [
+          35,
+          36,
+        ],
+        "start": 35,
+        "type": "Identifier",
+      },
+      "params": [
+        {
+          "end": 56,
+          "name": "x",
+          "range": [
+            55,
+            56,
+          ],
+          "start": 55,
+          "type": "Identifier",
+        },
+        {
+          "end": 76,
+          "name": "y",
+          "range": [
+            75,
+            76,
+          ],
+          "start": 75,
+          "type": "Identifier",
+        },
+      ],
+      "range": [
+        12,
+        126,
+      ],
+      "start": 12,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 137,
+  "range": [
+    0,
+    137,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > /* multiline
+      comment
+      should
+      be
+      ignored */ 42 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "type": "Literal",
+        "value": 42,
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > /**/ --> comment 1`] = `
+{
+  "body": [],
+  "end": 16,
+  "range": [
+    0,
+    16,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > /**/ function a() {} 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [],
+        "end": 20,
+        "range": [
+          18,
+          20,
+        ],
+        "start": 18,
+        "type": "BlockStatement",
+      },
+      "end": 20,
+      "generator": false,
+      "id": {
+        "end": 15,
+        "name": "a",
+        "range": [
+          14,
+          15,
+        ],
+        "start": 14,
+        "type": "Identifier",
+      },
+      "params": [],
+      "range": [
+        5,
+        20,
+      ],
+      "start": 5,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 20,
+  "range": [
+    0,
+    20,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > // 1`] = `
+{
+  "body": [],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > // Single line comment
+      // Single line comment
+      // Single line comment
+      // Single line comment
+      /**/
+      /* MLC on one line */
+      /*
+      MLC
+      on
+      multiple
+      lines
+      */ 1`] = `
+{
+  "body": [],
+  "loc": {
+    "end": {
+      "column": 8,
+      "line": 12,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > // line comment
+      42 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "type": "Literal",
+        "value": 42,
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > --> 1`] = `
+{
+  "body": [],
+  "end": 3,
+  "range": [
+    0,
+    3,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > 42 /* block comment 1 */ /* block comment 2 */ 1`] = `
+{
+  "body": [
+    {
+      "end": 2,
+      "expression": {
+        "end": 2,
+        "range": [
+          0,
+          2,
+        ],
+        "start": 0,
+        "type": "Literal",
+        "value": 42,
+      },
+      "range": [
+        0,
+        2,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 46,
+  "range": [
+    0,
+    46,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > function a() {} 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [],
+        "end": 15,
+        "range": [
+          13,
+          15,
+        ],
+        "start": 13,
+        "type": "BlockStatement",
+      },
+      "end": 15,
+      "generator": false,
+      "id": {
+        "end": 10,
+        "name": "a",
+        "range": [
+          9,
+          10,
+        ],
+        "start": 9,
+        "type": "Identifier",
+      },
+      "params": [],
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 15,
+  "range": [
+    0,
+    15,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > function f() { /* infinite */ while (true) { } /* bar */ var each; } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "body": {
+              "body": [],
+              "end": 46,
+              "range": [
+                43,
+                46,
+              ],
+              "start": 43,
+              "type": "BlockStatement",
+            },
+            "end": 46,
+            "range": [
+              30,
+              46,
+            ],
+            "start": 30,
+            "test": {
+              "end": 41,
+              "range": [
+                37,
+                41,
+              ],
+              "start": 37,
+              "type": "Literal",
+              "value": true,
+            },
+            "type": "WhileStatement",
+          },
+          {
+            "declarations": [
+              {
+                "end": 65,
+                "id": {
+                  "end": 65,
+                  "name": "each",
+                  "range": [
+                    61,
+                    65,
+                  ],
+                  "start": 61,
+                  "type": "Identifier",
+                },
+                "init": null,
+                "range": [
+                  61,
+                  65,
+                ],
+                "start": 61,
+                "type": "VariableDeclarator",
+              },
+            ],
+            "end": 66,
+            "kind": "var",
+            "range": [
+              57,
+              66,
+            ],
+            "start": 57,
+            "type": "VariableDeclaration",
+          },
+        ],
+        "end": 68,
+        "range": [
+          13,
+          68,
+        ],
+        "start": 13,
+        "type": "BlockStatement",
+      },
+      "end": 68,
+      "generator": false,
+      "id": {
+        "end": 10,
+        "name": "f",
+        "range": [
+          9,
+          10,
+        ],
+        "start": 9,
+        "type": "Identifier",
+      },
+      "params": [],
+      "range": [
+        0,
+        68,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 68,
+  "range": [
+    0,
+    68,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > function x(){ /*Jupiter*/ return; /*Saturn*/} 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "argument": null,
+            "end": 33,
+            "range": [
+              26,
+              33,
+            ],
+            "start": 26,
+            "type": "ReturnStatement",
+          },
+        ],
+        "end": 45,
+        "range": [
+          12,
+          45,
+        ],
+        "start": 12,
+        "type": "BlockStatement",
+      },
+      "end": 45,
+      "generator": false,
+      "id": {
+        "end": 10,
+        "name": "x",
+        "range": [
+          9,
+          10,
+        ],
+        "start": 9,
+        "type": "Identifier",
+      },
+      "params": [],
+      "range": [
+        0,
+        45,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 45,
+  "range": [
+    0,
+    45,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > if (x) { /* Some comment */ doThat() } 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "body": [
+          {
+            "end": 36,
+            "expression": {
+              "arguments": [],
+              "callee": {
+                "end": 34,
+                "name": "doThat",
+                "range": [
+                  28,
+                  34,
+                ],
+                "start": 28,
+                "type": "Identifier",
+              },
+              "end": 36,
+              "range": [
+                28,
+                36,
+              ],
+              "start": 28,
+              "type": "CallExpression",
+            },
+            "range": [
+              28,
+              36,
+            ],
+            "start": 28,
+            "type": "ExpressionStatement",
+          },
+        ],
+        "end": 38,
+        "range": [
+          7,
+          38,
+        ],
+        "start": 7,
+        "type": "BlockStatement",
+      },
+      "end": 38,
+      "range": [
+        0,
+        38,
+      ],
+      "start": 0,
+      "test": {
+        "end": 5,
+        "name": "x",
+        "range": [
+          4,
+          5,
+        ],
+        "start": 4,
+        "type": "Identifier",
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "end": 38,
+  "range": [
+    0,
+    38,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > var x = 42;/*
+*/-->is eol-comment
+var y = 37;
+ 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 10,
+          "id": {
+            "end": 5,
+            "name": "x",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": {
+            "end": 10,
+            "range": [
+              8,
+              10,
+            ],
+            "start": 8,
+            "type": "Literal",
+            "value": 42,
+          },
+          "range": [
+            4,
+            10,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 11,
+      "kind": "var",
+      "range": [
+        0,
+        11,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "end": 44,
+          "id": {
+            "end": 39,
+            "name": "y",
+            "range": [
+              38,
+              39,
+            ],
+            "start": 38,
+            "type": "Identifier",
+          },
+          "init": {
+            "end": 44,
+            "range": [
+              42,
+              44,
+            ],
+            "start": 42,
+            "type": "Literal",
+            "value": 37,
+          },
+          "range": [
+            38,
+            44,
+          ],
+          "start": 38,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 45,
+      "kind": "var",
+      "range": [
+        34,
+        45,
+      ],
+      "start": 34,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 46,
+  "range": [
+    0,
+    46,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > var x = 42;/*
+*/-->is eol-comment
+var y = 37;
+ 2`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": {
+            "type": "Literal",
+            "value": 42,
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "init": {
+            "type": "Literal",
+            "value": 37,
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > while (i-->0) {} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [],
+        "end": 16,
+        "range": [
+          14,
+          16,
+        ],
+        "start": 14,
+        "type": "BlockStatement",
+      },
+      "end": 16,
+      "range": [
+        0,
+        16,
+      ],
+      "start": 0,
+      "test": {
+        "end": 12,
+        "left": {
+          "argument": {
+            "end": 8,
+            "name": "i",
+            "range": [
+              7,
+              8,
+            ],
+            "start": 7,
+            "type": "Identifier",
+          },
+          "end": 10,
+          "operator": "--",
+          "prefix": false,
+          "range": [
+            7,
+            10,
+          ],
+          "start": 7,
+          "type": "UpdateExpression",
+        },
+        "operator": ">",
+        "range": [
+          7,
+          12,
+        ],
+        "right": {
+          "end": 12,
+          "range": [
+            11,
+            12,
+          ],
+          "start": 11,
+          "type": "Literal",
+          "value": 0,
+        },
+        "start": 7,
+        "type": "BinaryExpression",
+      },
+      "type": "WhileStatement",
+    },
+  ],
+  "end": 16,
+  "range": [
+    0,
+    16,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > while (true) {
+        /**
+         * comments in empty block
+         */
+      } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [],
+        "end": 81,
+        "range": [
+          13,
+          81,
+        ],
+        "start": 13,
+        "type": "BlockStatement",
+      },
+      "end": 81,
+      "range": [
+        0,
+        81,
+      ],
+      "start": 0,
+      "test": {
+        "end": 11,
+        "range": [
+          7,
+          11,
+        ],
+        "start": 7,
+        "type": "Literal",
+        "value": true,
+      },
+      "type": "WhileStatement",
+    },
+  ],
+  "end": 81,
+  "range": [
+    0,
+    81,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;

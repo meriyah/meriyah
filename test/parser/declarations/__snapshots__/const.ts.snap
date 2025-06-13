@@ -1,0 +1,3799 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Declarations - const > Declarations - const (pass) > "use strict"; const { [eval]: []} = a; 1`] = `
+{
+  "body": [
+    {
+      "directive": "use strict",
+      "expression": {
+        "type": "Literal",
+        "value": "use strict",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [
+              {
+                "computed": true,
+                "key": {
+                  "name": "eval",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "elements": [],
+                  "type": "ArrayPattern",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "const",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - const > Declarations - const (pass) > // ForXStatement
+                for (var {a, ...b} of []) {}
+                for ({a, ...b} of []) {}
+                async function a() {
+                  for await ({a, ...b} of []) {}
+                }
+
+                // skip
+                for ({a} in {}) {}
+                for ({a} of []) {}
+                async function a() {
+                  for await ({a} of []) {}
+                }
+
+                for (a in {}) {}
+                for (a of []) {}
+                async function a() {
+                  for await (a of []) {}
+                } 1`] = `
+{
+  "body": [
+    {
+      "await": false,
+      "body": {
+        "body": [],
+        "end": 61,
+        "range": [
+          59,
+          61,
+        ],
+        "start": 59,
+        "type": "BlockStatement",
+      },
+      "end": 61,
+      "left": {
+        "declarations": [
+          {
+            "end": 51,
+            "id": {
+              "end": 51,
+              "properties": [
+                {
+                  "computed": false,
+                  "end": 44,
+                  "key": {
+                    "end": 44,
+                    "name": "a",
+                    "range": [
+                      43,
+                      44,
+                    ],
+                    "start": 43,
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "range": [
+                    43,
+                    44,
+                  ],
+                  "shorthand": true,
+                  "start": 43,
+                  "type": "Property",
+                  "value": {
+                    "end": 44,
+                    "name": "a",
+                    "range": [
+                      43,
+                      44,
+                    ],
+                    "start": 43,
+                    "type": "Identifier",
+                  },
+                },
+                {
+                  "argument": {
+                    "end": 50,
+                    "name": "b",
+                    "range": [
+                      49,
+                      50,
+                    ],
+                    "start": 49,
+                    "type": "Identifier",
+                  },
+                  "end": 50,
+                  "range": [
+                    46,
+                    50,
+                  ],
+                  "start": 46,
+                  "type": "RestElement",
+                },
+              ],
+              "range": [
+                42,
+                51,
+              ],
+              "start": 42,
+              "type": "ObjectPattern",
+            },
+            "init": null,
+            "range": [
+              42,
+              51,
+            ],
+            "start": 42,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "end": 51,
+        "kind": "var",
+        "range": [
+          38,
+          51,
+        ],
+        "start": 38,
+        "type": "VariableDeclaration",
+      },
+      "range": [
+        33,
+        61,
+      ],
+      "right": {
+        "elements": [],
+        "end": 57,
+        "range": [
+          55,
+          57,
+        ],
+        "start": 55,
+        "type": "ArrayExpression",
+      },
+      "start": 33,
+      "type": "ForOfStatement",
+    },
+    {
+      "await": false,
+      "body": {
+        "body": [],
+        "end": 102,
+        "range": [
+          100,
+          102,
+        ],
+        "start": 100,
+        "type": "BlockStatement",
+      },
+      "end": 102,
+      "left": {
+        "end": 92,
+        "properties": [
+          {
+            "computed": false,
+            "end": 85,
+            "key": {
+              "end": 85,
+              "name": "a",
+              "range": [
+                84,
+                85,
+              ],
+              "start": 84,
+              "type": "Identifier",
+            },
+            "kind": "init",
+            "method": false,
+            "range": [
+              84,
+              85,
+            ],
+            "shorthand": true,
+            "start": 84,
+            "type": "Property",
+            "value": {
+              "end": 85,
+              "name": "a",
+              "range": [
+                84,
+                85,
+              ],
+              "start": 84,
+              "type": "Identifier",
+            },
+          },
+          {
+            "argument": {
+              "end": 91,
+              "name": "b",
+              "range": [
+                90,
+                91,
+              ],
+              "start": 90,
+              "type": "Identifier",
+            },
+            "end": 91,
+            "range": [
+              87,
+              91,
+            ],
+            "start": 87,
+            "type": "RestElement",
+          },
+        ],
+        "range": [
+          83,
+          92,
+        ],
+        "start": 83,
+        "type": "ObjectPattern",
+      },
+      "range": [
+        78,
+        102,
+      ],
+      "right": {
+        "elements": [],
+        "end": 98,
+        "range": [
+          96,
+          98,
+        ],
+        "start": 96,
+        "type": "ArrayExpression",
+      },
+      "start": 78,
+      "type": "ForOfStatement",
+    },
+    {
+      "async": true,
+      "body": {
+        "body": [
+          {
+            "await": true,
+            "body": {
+              "body": [],
+              "end": 188,
+              "range": [
+                186,
+                188,
+              ],
+              "start": 186,
+              "type": "BlockStatement",
+            },
+            "end": 188,
+            "left": {
+              "end": 178,
+              "properties": [
+                {
+                  "computed": false,
+                  "end": 171,
+                  "key": {
+                    "end": 171,
+                    "name": "a",
+                    "range": [
+                      170,
+                      171,
+                    ],
+                    "start": 170,
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "range": [
+                    170,
+                    171,
+                  ],
+                  "shorthand": true,
+                  "start": 170,
+                  "type": "Property",
+                  "value": {
+                    "end": 171,
+                    "name": "a",
+                    "range": [
+                      170,
+                      171,
+                    ],
+                    "start": 170,
+                    "type": "Identifier",
+                  },
+                },
+                {
+                  "argument": {
+                    "end": 177,
+                    "name": "b",
+                    "range": [
+                      176,
+                      177,
+                    ],
+                    "start": 176,
+                    "type": "Identifier",
+                  },
+                  "end": 177,
+                  "range": [
+                    173,
+                    177,
+                  ],
+                  "start": 173,
+                  "type": "RestElement",
+                },
+              ],
+              "range": [
+                169,
+                178,
+              ],
+              "start": 169,
+              "type": "ObjectPattern",
+            },
+            "range": [
+              158,
+              188,
+            ],
+            "right": {
+              "elements": [],
+              "end": 184,
+              "range": [
+                182,
+                184,
+              ],
+              "start": 182,
+              "type": "ArrayExpression",
+            },
+            "start": 158,
+            "type": "ForOfStatement",
+          },
+        ],
+        "end": 206,
+        "range": [
+          138,
+          206,
+        ],
+        "start": 138,
+        "type": "BlockStatement",
+      },
+      "end": 206,
+      "generator": false,
+      "id": {
+        "end": 135,
+        "name": "a",
+        "range": [
+          134,
+          135,
+        ],
+        "start": 134,
+        "type": "Identifier",
+      },
+      "params": [],
+      "range": [
+        119,
+        206,
+      ],
+      "start": 119,
+      "type": "FunctionDeclaration",
+    },
+    {
+      "body": {
+        "body": [],
+        "end": 266,
+        "range": [
+          264,
+          266,
+        ],
+        "start": 264,
+        "type": "BlockStatement",
+      },
+      "end": 266,
+      "left": {
+        "end": 256,
+        "properties": [
+          {
+            "computed": false,
+            "end": 255,
+            "key": {
+              "end": 255,
+              "name": "a",
+              "range": [
+                254,
+                255,
+              ],
+              "start": 254,
+              "type": "Identifier",
+            },
+            "kind": "init",
+            "method": false,
+            "range": [
+              254,
+              255,
+            ],
+            "shorthand": true,
+            "start": 254,
+            "type": "Property",
+            "value": {
+              "end": 255,
+              "name": "a",
+              "range": [
+                254,
+                255,
+              ],
+              "start": 254,
+              "type": "Identifier",
+            },
+          },
+        ],
+        "range": [
+          253,
+          256,
+        ],
+        "start": 253,
+        "type": "ObjectPattern",
+      },
+      "range": [
+        248,
+        266,
+      ],
+      "right": {
+        "end": 262,
+        "properties": [],
+        "range": [
+          260,
+          262,
+        ],
+        "start": 260,
+        "type": "ObjectExpression",
+      },
+      "start": 248,
+      "type": "ForInStatement",
+    },
+    {
+      "await": false,
+      "body": {
+        "body": [],
+        "end": 301,
+        "range": [
+          299,
+          301,
+        ],
+        "start": 299,
+        "type": "BlockStatement",
+      },
+      "end": 301,
+      "left": {
+        "end": 291,
+        "properties": [
+          {
+            "computed": false,
+            "end": 290,
+            "key": {
+              "end": 290,
+              "name": "a",
+              "range": [
+                289,
+                290,
+              ],
+              "start": 289,
+              "type": "Identifier",
+            },
+            "kind": "init",
+            "method": false,
+            "range": [
+              289,
+              290,
+            ],
+            "shorthand": true,
+            "start": 289,
+            "type": "Property",
+            "value": {
+              "end": 290,
+              "name": "a",
+              "range": [
+                289,
+                290,
+              ],
+              "start": 289,
+              "type": "Identifier",
+            },
+          },
+        ],
+        "range": [
+          288,
+          291,
+        ],
+        "start": 288,
+        "type": "ObjectPattern",
+      },
+      "range": [
+        283,
+        301,
+      ],
+      "right": {
+        "elements": [],
+        "end": 297,
+        "range": [
+          295,
+          297,
+        ],
+        "start": 295,
+        "type": "ArrayExpression",
+      },
+      "start": 283,
+      "type": "ForOfStatement",
+    },
+    {
+      "async": true,
+      "body": {
+        "body": [
+          {
+            "await": true,
+            "body": {
+              "body": [],
+              "end": 381,
+              "range": [
+                379,
+                381,
+              ],
+              "start": 379,
+              "type": "BlockStatement",
+            },
+            "end": 381,
+            "left": {
+              "end": 371,
+              "properties": [
+                {
+                  "computed": false,
+                  "end": 370,
+                  "key": {
+                    "end": 370,
+                    "name": "a",
+                    "range": [
+                      369,
+                      370,
+                    ],
+                    "start": 369,
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "range": [
+                    369,
+                    370,
+                  ],
+                  "shorthand": true,
+                  "start": 369,
+                  "type": "Property",
+                  "value": {
+                    "end": 370,
+                    "name": "a",
+                    "range": [
+                      369,
+                      370,
+                    ],
+                    "start": 369,
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "range": [
+                368,
+                371,
+              ],
+              "start": 368,
+              "type": "ObjectPattern",
+            },
+            "range": [
+              357,
+              381,
+            ],
+            "right": {
+              "elements": [],
+              "end": 377,
+              "range": [
+                375,
+                377,
+              ],
+              "start": 375,
+              "type": "ArrayExpression",
+            },
+            "start": 357,
+            "type": "ForOfStatement",
+          },
+        ],
+        "end": 399,
+        "range": [
+          337,
+          399,
+        ],
+        "start": 337,
+        "type": "BlockStatement",
+      },
+      "end": 399,
+      "generator": false,
+      "id": {
+        "end": 334,
+        "name": "a",
+        "range": [
+          333,
+          334,
+        ],
+        "start": 333,
+        "type": "Identifier",
+      },
+      "params": [],
+      "range": [
+        318,
+        399,
+      ],
+      "start": 318,
+      "type": "FunctionDeclaration",
+    },
+    {
+      "body": {
+        "body": [],
+        "end": 433,
+        "range": [
+          431,
+          433,
+        ],
+        "start": 431,
+        "type": "BlockStatement",
+      },
+      "end": 433,
+      "left": {
+        "end": 423,
+        "name": "a",
+        "range": [
+          422,
+          423,
+        ],
+        "start": 422,
+        "type": "Identifier",
+      },
+      "range": [
+        417,
+        433,
+      ],
+      "right": {
+        "end": 429,
+        "properties": [],
+        "range": [
+          427,
+          429,
+        ],
+        "start": 427,
+        "type": "ObjectExpression",
+      },
+      "start": 417,
+      "type": "ForInStatement",
+    },
+    {
+      "await": false,
+      "body": {
+        "body": [],
+        "end": 466,
+        "range": [
+          464,
+          466,
+        ],
+        "start": 464,
+        "type": "BlockStatement",
+      },
+      "end": 466,
+      "left": {
+        "end": 456,
+        "name": "a",
+        "range": [
+          455,
+          456,
+        ],
+        "start": 455,
+        "type": "Identifier",
+      },
+      "range": [
+        450,
+        466,
+      ],
+      "right": {
+        "elements": [],
+        "end": 462,
+        "range": [
+          460,
+          462,
+        ],
+        "start": 460,
+        "type": "ArrayExpression",
+      },
+      "start": 450,
+      "type": "ForOfStatement",
+    },
+    {
+      "async": true,
+      "body": {
+        "body": [
+          {
+            "await": true,
+            "body": {
+              "body": [],
+              "end": 544,
+              "range": [
+                542,
+                544,
+              ],
+              "start": 542,
+              "type": "BlockStatement",
+            },
+            "end": 544,
+            "left": {
+              "end": 534,
+              "name": "a",
+              "range": [
+                533,
+                534,
+              ],
+              "start": 533,
+              "type": "Identifier",
+            },
+            "range": [
+              522,
+              544,
+            ],
+            "right": {
+              "elements": [],
+              "end": 540,
+              "range": [
+                538,
+                540,
+              ],
+              "start": 538,
+              "type": "ArrayExpression",
+            },
+            "start": 522,
+            "type": "ForOfStatement",
+          },
+        ],
+        "end": 562,
+        "range": [
+          502,
+          562,
+        ],
+        "start": 502,
+        "type": "BlockStatement",
+      },
+      "end": 562,
+      "generator": false,
+      "id": {
+        "end": 499,
+        "name": "a",
+        "range": [
+          498,
+          499,
+        ],
+        "start": 498,
+        "type": "Identifier",
+      },
+      "params": [],
+      "range": [
+        483,
+        562,
+      ],
+      "start": 483,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 562,
+  "range": [
+    0,
+    562,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - const > Declarations - const (pass) > const [...bar] = obj; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 20,
+          "id": {
+            "elements": [
+              {
+                "argument": {
+                  "end": 13,
+                  "name": "bar",
+                  "range": [
+                    10,
+                    13,
+                  ],
+                  "start": 10,
+                  "type": "Identifier",
+                },
+                "end": 13,
+                "range": [
+                  7,
+                  13,
+                ],
+                "start": 7,
+                "type": "RestElement",
+              },
+            ],
+            "end": 14,
+            "range": [
+              6,
+              14,
+            ],
+            "start": 6,
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "end": 20,
+            "name": "obj",
+            "range": [
+              17,
+              20,
+            ],
+            "start": 17,
+            "type": "Identifier",
+          },
+          "range": [
+            6,
+            20,
+          ],
+          "start": 6,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 21,
+      "kind": "const",
+      "range": [
+        0,
+        21,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 21,
+  "range": [
+    0,
+    21,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - const > Declarations - const (pass) > const [foo=a,bar=b] = x; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 23,
+          "id": {
+            "elements": [
+              {
+                "end": 12,
+                "left": {
+                  "end": 10,
+                  "name": "foo",
+                  "range": [
+                    7,
+                    10,
+                  ],
+                  "start": 7,
+                  "type": "Identifier",
+                },
+                "range": [
+                  7,
+                  12,
+                ],
+                "right": {
+                  "end": 12,
+                  "name": "a",
+                  "range": [
+                    11,
+                    12,
+                  ],
+                  "start": 11,
+                  "type": "Identifier",
+                },
+                "start": 7,
+                "type": "AssignmentPattern",
+              },
+              {
+                "end": 18,
+                "left": {
+                  "end": 16,
+                  "name": "bar",
+                  "range": [
+                    13,
+                    16,
+                  ],
+                  "start": 13,
+                  "type": "Identifier",
+                },
+                "range": [
+                  13,
+                  18,
+                ],
+                "right": {
+                  "end": 18,
+                  "name": "b",
+                  "range": [
+                    17,
+                    18,
+                  ],
+                  "start": 17,
+                  "type": "Identifier",
+                },
+                "start": 13,
+                "type": "AssignmentPattern",
+              },
+            ],
+            "end": 19,
+            "range": [
+              6,
+              19,
+            ],
+            "start": 6,
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "end": 23,
+            "name": "x",
+            "range": [
+              22,
+              23,
+            ],
+            "start": 22,
+            "type": "Identifier",
+          },
+          "range": [
+            6,
+            23,
+          ],
+          "start": 6,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 24,
+      "kind": "const",
+      "range": [
+        0,
+        24,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 24,
+  "range": [
+    0,
+    24,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - const > Declarations - const (pass) > const [foo] = x, [bar] = y; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 15,
+          "id": {
+            "elements": [
+              {
+                "end": 10,
+                "name": "foo",
+                "range": [
+                  7,
+                  10,
+                ],
+                "start": 7,
+                "type": "Identifier",
+              },
+            ],
+            "end": 11,
+            "range": [
+              6,
+              11,
+            ],
+            "start": 6,
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "end": 15,
+            "name": "x",
+            "range": [
+              14,
+              15,
+            ],
+            "start": 14,
+            "type": "Identifier",
+          },
+          "range": [
+            6,
+            15,
+          ],
+          "start": 6,
+          "type": "VariableDeclarator",
+        },
+        {
+          "end": 26,
+          "id": {
+            "elements": [
+              {
+                "end": 21,
+                "name": "bar",
+                "range": [
+                  18,
+                  21,
+                ],
+                "start": 18,
+                "type": "Identifier",
+              },
+            ],
+            "end": 22,
+            "range": [
+              17,
+              22,
+            ],
+            "start": 17,
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "end": 26,
+            "name": "y",
+            "range": [
+              25,
+              26,
+            ],
+            "start": 25,
+            "type": "Identifier",
+          },
+          "range": [
+            17,
+            26,
+          ],
+          "start": 17,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 27,
+      "kind": "const",
+      "range": [
+        0,
+        27,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 27,
+  "range": [
+    0,
+    27,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - const > Declarations - const (pass) > const {
+          a = ({ ...rest }) => {
+            let { ...b } = {};
+          },
+          c = ({ ...d } = {}),
+        } = {}; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "left": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "async": false,
+                    "body": {
+                      "body": [
+                        {
+                          "declarations": [
+                            {
+                              "id": {
+                                "properties": [
+                                  {
+                                    "argument": {
+                                      "name": "b",
+                                      "type": "Identifier",
+                                    },
+                                    "type": "RestElement",
+                                  },
+                                ],
+                                "type": "ObjectPattern",
+                              },
+                              "init": {
+                                "properties": [],
+                                "type": "ObjectExpression",
+                              },
+                              "type": "VariableDeclarator",
+                            },
+                          ],
+                          "kind": "let",
+                          "type": "VariableDeclaration",
+                        },
+                      ],
+                      "type": "BlockStatement",
+                    },
+                    "expression": false,
+                    "generator": false,
+                    "params": [
+                      {
+                        "properties": [
+                          {
+                            "argument": {
+                              "name": "rest",
+                              "type": "Identifier",
+                            },
+                            "type": "RestElement",
+                          },
+                        ],
+                        "type": "ObjectPattern",
+                      },
+                    ],
+                    "type": "ArrowFunctionExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "c",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "left": {
+                    "name": "c",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "left": {
+                      "properties": [
+                        {
+                          "argument": {
+                            "name": "d",
+                            "type": "Identifier",
+                          },
+                          "type": "RestElement",
+                        },
+                      ],
+                      "type": "ObjectPattern",
+                    },
+                    "operator": "=",
+                    "right": {
+                      "properties": [],
+                      "type": "ObjectExpression",
+                    },
+                    "type": "AssignmentExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "properties": [],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "const",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - const > Declarations - const (pass) > const {
+        [({ ...rest }) => {
+          let { ...b } = {};
+        }]: a,
+        [({ ...d } = {})]: c,
+      } = {}; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [
+              {
+                "computed": true,
+                "key": {
+                  "async": false,
+                  "body": {
+                    "body": [
+                      {
+                        "declarations": [
+                          {
+                            "id": {
+                              "properties": [
+                                {
+                                  "argument": {
+                                    "name": "b",
+                                    "type": "Identifier",
+                                  },
+                                  "type": "RestElement",
+                                },
+                              ],
+                              "type": "ObjectPattern",
+                            },
+                            "init": {
+                              "properties": [],
+                              "type": "ObjectExpression",
+                            },
+                            "type": "VariableDeclarator",
+                          },
+                        ],
+                        "kind": "let",
+                        "type": "VariableDeclaration",
+                      },
+                    ],
+                    "type": "BlockStatement",
+                  },
+                  "expression": false,
+                  "generator": false,
+                  "params": [
+                    {
+                      "properties": [
+                        {
+                          "argument": {
+                            "name": "rest",
+                            "type": "Identifier",
+                          },
+                          "type": "RestElement",
+                        },
+                      ],
+                      "type": "ObjectPattern",
+                    },
+                  ],
+                  "type": "ArrowFunctionExpression",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+              },
+              {
+                "computed": true,
+                "key": {
+                  "left": {
+                    "properties": [
+                      {
+                        "argument": {
+                          "name": "d",
+                          "type": "Identifier",
+                        },
+                        "type": "RestElement",
+                      },
+                    ],
+                    "type": "ObjectPattern",
+                  },
+                  "operator": "=",
+                  "right": {
+                    "properties": [],
+                    "type": "ObjectExpression",
+                  },
+                  "type": "AssignmentExpression",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "name": "c",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "properties": [],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "const",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - const > Declarations - const (pass) > const { [eval]: []} = a; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [
+              {
+                "computed": true,
+                "key": {
+                  "name": "eval",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "elements": [],
+                  "type": "ArrayPattern",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "const",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - const > Declarations - const (pass) > const { a: { ...bar }, b: { ...baz }, ...foo } = obj; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "properties": [
+                    {
+                      "argument": {
+                        "name": "bar",
+                        "type": "Identifier",
+                      },
+                      "type": "RestElement",
+                    },
+                  ],
+                  "type": "ObjectPattern",
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "properties": [
+                    {
+                      "argument": {
+                        "name": "baz",
+                        "type": "Identifier",
+                      },
+                      "type": "RestElement",
+                    },
+                  ],
+                  "type": "ObjectPattern",
+                },
+              },
+              {
+                "argument": {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                "type": "RestElement",
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "name": "obj",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "const",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - const > Declarations - const (pass) > const {foo:a,bar:b} = x; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 23,
+          "id": {
+            "end": 19,
+            "loc": {
+              "end": {
+                "column": 19,
+                "line": 1,
+              },
+              "start": {
+                "column": 6,
+                "line": 1,
+              },
+            },
+            "properties": [
+              {
+                "computed": false,
+                "end": 12,
+                "key": {
+                  "end": 10,
+                  "loc": {
+                    "end": {
+                      "column": 10,
+                      "line": 1,
+                    },
+                    "start": {
+                      "column": 7,
+                      "line": 1,
+                    },
+                  },
+                  "name": "foo",
+                  "range": [
+                    7,
+                    10,
+                  ],
+                  "start": 7,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "loc": {
+                  "end": {
+                    "column": 12,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 7,
+                    "line": 1,
+                  },
+                },
+                "method": false,
+                "range": [
+                  7,
+                  12,
+                ],
+                "shorthand": false,
+                "start": 7,
+                "type": "Property",
+                "value": {
+                  "end": 12,
+                  "loc": {
+                    "end": {
+                      "column": 12,
+                      "line": 1,
+                    },
+                    "start": {
+                      "column": 11,
+                      "line": 1,
+                    },
+                  },
+                  "name": "a",
+                  "range": [
+                    11,
+                    12,
+                  ],
+                  "start": 11,
+                  "type": "Identifier",
+                },
+              },
+              {
+                "computed": false,
+                "end": 18,
+                "key": {
+                  "end": 16,
+                  "loc": {
+                    "end": {
+                      "column": 16,
+                      "line": 1,
+                    },
+                    "start": {
+                      "column": 13,
+                      "line": 1,
+                    },
+                  },
+                  "name": "bar",
+                  "range": [
+                    13,
+                    16,
+                  ],
+                  "start": 13,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "loc": {
+                  "end": {
+                    "column": 18,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 13,
+                    "line": 1,
+                  },
+                },
+                "method": false,
+                "range": [
+                  13,
+                  18,
+                ],
+                "shorthand": false,
+                "start": 13,
+                "type": "Property",
+                "value": {
+                  "end": 18,
+                  "loc": {
+                    "end": {
+                      "column": 18,
+                      "line": 1,
+                    },
+                    "start": {
+                      "column": 17,
+                      "line": 1,
+                    },
+                  },
+                  "name": "b",
+                  "range": [
+                    17,
+                    18,
+                  ],
+                  "start": 17,
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "range": [
+              6,
+              19,
+            ],
+            "start": 6,
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "end": 23,
+            "loc": {
+              "end": {
+                "column": 23,
+                "line": 1,
+              },
+              "start": {
+                "column": 22,
+                "line": 1,
+              },
+            },
+            "name": "x",
+            "range": [
+              22,
+              23,
+            ],
+            "start": 22,
+            "type": "Identifier",
+          },
+          "loc": {
+            "end": {
+              "column": 23,
+              "line": 1,
+            },
+            "start": {
+              "column": 6,
+              "line": 1,
+            },
+          },
+          "range": [
+            6,
+            23,
+          ],
+          "start": 6,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 24,
+      "kind": "const",
+      "loc": {
+        "end": {
+          "column": 24,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        24,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 24,
+  "loc": {
+    "end": {
+      "column": 24,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    24,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - const > Declarations - const (pass) > const a = b 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "init": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "const",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - const > Declarations - const (pass) > const foo = bar; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "init": {
+            "name": "bar",
+            "type": "Identifier",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "const",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - const > Declarations - const (pass) > const x = y, [foo] = z; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 11,
+          "id": {
+            "end": 7,
+            "name": "x",
+            "range": [
+              6,
+              7,
+            ],
+            "start": 6,
+            "type": "Identifier",
+          },
+          "init": {
+            "end": 11,
+            "name": "y",
+            "range": [
+              10,
+              11,
+            ],
+            "start": 10,
+            "type": "Identifier",
+          },
+          "range": [
+            6,
+            11,
+          ],
+          "start": 6,
+          "type": "VariableDeclarator",
+        },
+        {
+          "end": 22,
+          "id": {
+            "elements": [
+              {
+                "end": 17,
+                "name": "foo",
+                "range": [
+                  14,
+                  17,
+                ],
+                "start": 14,
+                "type": "Identifier",
+              },
+            ],
+            "end": 18,
+            "range": [
+              13,
+              18,
+            ],
+            "start": 13,
+            "type": "ArrayPattern",
+          },
+          "init": {
+            "end": 22,
+            "name": "z",
+            "range": [
+              21,
+              22,
+            ],
+            "start": 21,
+            "type": "Identifier",
+          },
+          "range": [
+            13,
+            22,
+          ],
+          "start": 13,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 23,
+      "kind": "const",
+      "range": [
+        0,
+        23,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 23,
+  "range": [
+    0,
+    23,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - const > Declarations - const (pass) > const x = y, {foo} = z; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 11,
+          "id": {
+            "end": 7,
+            "name": "x",
+            "range": [
+              6,
+              7,
+            ],
+            "start": 6,
+            "type": "Identifier",
+          },
+          "init": {
+            "end": 11,
+            "name": "y",
+            "range": [
+              10,
+              11,
+            ],
+            "start": 10,
+            "type": "Identifier",
+          },
+          "range": [
+            6,
+            11,
+          ],
+          "start": 6,
+          "type": "VariableDeclarator",
+        },
+        {
+          "end": 22,
+          "id": {
+            "end": 18,
+            "properties": [
+              {
+                "computed": false,
+                "end": 17,
+                "key": {
+                  "end": 17,
+                  "name": "foo",
+                  "range": [
+                    14,
+                    17,
+                  ],
+                  "start": 14,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  14,
+                  17,
+                ],
+                "shorthand": true,
+                "start": 14,
+                "type": "Property",
+                "value": {
+                  "end": 17,
+                  "name": "foo",
+                  "range": [
+                    14,
+                    17,
+                  ],
+                  "start": 14,
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "range": [
+              13,
+              18,
+            ],
+            "start": 13,
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "end": 22,
+            "name": "z",
+            "range": [
+              21,
+              22,
+            ],
+            "start": 21,
+            "type": "Identifier",
+          },
+          "range": [
+            13,
+            22,
+          ],
+          "start": 13,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 23,
+      "kind": "const",
+      "range": [
+        0,
+        23,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 23,
+  "range": [
+    0,
+    23,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - const > Declarations - const (pass) > for (const [,,] of x); 1`] = `
+{
+  "body": [
+    {
+      "await": false,
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "elements": [
+                null,
+                null,
+              ],
+              "type": "ArrayPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "const",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "type": "ForOfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - const > Declarations - const (pass) > for (const [,] of x); 1`] = `
+{
+  "body": [
+    {
+      "await": false,
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "elements": [
+                null,
+              ],
+              "type": "ArrayPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "const",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "type": "ForOfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - const > Declarations - const (pass) > for (const {a, [x]: y} in obj); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "left": {
+        "declarations": [
+          {
+            "id": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "type": "Property",
+                  "value": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                },
+                {
+                  "computed": true,
+                  "key": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "name": "y",
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "init": null,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "kind": "const",
+        "type": "VariableDeclaration",
+      },
+      "right": {
+        "name": "obj",
+        "type": "Identifier",
+      },
+      "type": "ForInStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - const > Declarations - const (pass) > for (const {x : y, z, a : b = c} in obj); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "end": 41,
+        "range": [
+          40,
+          41,
+        ],
+        "start": 40,
+        "type": "EmptyStatement",
+      },
+      "end": 41,
+      "left": {
+        "declarations": [
+          {
+            "end": 32,
+            "id": {
+              "end": 32,
+              "properties": [
+                {
+                  "computed": false,
+                  "end": 17,
+                  "key": {
+                    "end": 13,
+                    "name": "x",
+                    "range": [
+                      12,
+                      13,
+                    ],
+                    "start": 12,
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "range": [
+                    12,
+                    17,
+                  ],
+                  "shorthand": false,
+                  "start": 12,
+                  "type": "Property",
+                  "value": {
+                    "end": 17,
+                    "name": "y",
+                    "range": [
+                      16,
+                      17,
+                    ],
+                    "start": 16,
+                    "type": "Identifier",
+                  },
+                },
+                {
+                  "computed": false,
+                  "end": 20,
+                  "key": {
+                    "end": 20,
+                    "name": "z",
+                    "range": [
+                      19,
+                      20,
+                    ],
+                    "start": 19,
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "range": [
+                    19,
+                    20,
+                  ],
+                  "shorthand": true,
+                  "start": 19,
+                  "type": "Property",
+                  "value": {
+                    "end": 20,
+                    "name": "z",
+                    "range": [
+                      19,
+                      20,
+                    ],
+                    "start": 19,
+                    "type": "Identifier",
+                  },
+                },
+                {
+                  "computed": false,
+                  "end": 31,
+                  "key": {
+                    "end": 23,
+                    "name": "a",
+                    "range": [
+                      22,
+                      23,
+                    ],
+                    "start": 22,
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "range": [
+                    22,
+                    31,
+                  ],
+                  "shorthand": false,
+                  "start": 22,
+                  "type": "Property",
+                  "value": {
+                    "end": 31,
+                    "left": {
+                      "end": 27,
+                      "name": "b",
+                      "range": [
+                        26,
+                        27,
+                      ],
+                      "start": 26,
+                      "type": "Identifier",
+                    },
+                    "range": [
+                      26,
+                      31,
+                    ],
+                    "right": {
+                      "end": 31,
+                      "name": "c",
+                      "range": [
+                        30,
+                        31,
+                      ],
+                      "start": 30,
+                      "type": "Identifier",
+                    },
+                    "start": 26,
+                    "type": "AssignmentPattern",
+                  },
+                },
+              ],
+              "range": [
+                11,
+                32,
+              ],
+              "start": 11,
+              "type": "ObjectPattern",
+            },
+            "init": null,
+            "range": [
+              11,
+              32,
+            ],
+            "start": 11,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "end": 32,
+        "kind": "const",
+        "range": [
+          5,
+          32,
+        ],
+        "start": 5,
+        "type": "VariableDeclaration",
+      },
+      "range": [
+        0,
+        41,
+      ],
+      "right": {
+        "end": 39,
+        "name": "obj",
+        "range": [
+          36,
+          39,
+        ],
+        "start": 36,
+        "type": "Identifier",
+      },
+      "start": 0,
+      "type": "ForInStatement",
+    },
+  ],
+  "end": 41,
+  "range": [
+    0,
+    41,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - const > Declarations - const (pass) > let {
+                a: [b, ...arrayRest],
+                c = function(...functionRest){},
+                ...objectRest
+              } = {
+                a: [1, 2, 3, 4],
+                d: "oyez"
+              }; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "elements": [
+                    {
+                      "name": "b",
+                      "type": "Identifier",
+                    },
+                    {
+                      "argument": {
+                        "name": "arrayRest",
+                        "type": "Identifier",
+                      },
+                      "type": "RestElement",
+                    },
+                  ],
+                  "type": "ArrayPattern",
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "c",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "left": {
+                    "name": "c",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "async": false,
+                    "body": {
+                      "body": [],
+                      "type": "BlockStatement",
+                    },
+                    "generator": false,
+                    "id": null,
+                    "params": [
+                      {
+                        "argument": {
+                          "name": "functionRest",
+                          "type": "Identifier",
+                        },
+                        "type": "RestElement",
+                      },
+                    ],
+                    "type": "FunctionExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              },
+              {
+                "argument": {
+                  "name": "objectRest",
+                  "type": "Identifier",
+                },
+                "type": "RestElement",
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "elements": [
+                    {
+                      "type": "Literal",
+                      "value": 1,
+                    },
+                    {
+                      "type": "Literal",
+                      "value": 2,
+                    },
+                    {
+                      "type": "Literal",
+                      "value": 3,
+                    },
+                    {
+                      "type": "Literal",
+                      "value": 4,
+                    },
+                  ],
+                  "type": "ArrayExpression",
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "d",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "type": "Literal",
+                  "value": "oyez",
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - const > Declarations - const (pass) > var z = {};
+            var { ...x } = z;
+            var { ...a } = { a: 1 };
+            var { ...x } = a.b;
+            var { ...x } = a();
+            var {x1, ...y1} = z;
+            x1++;
+            var { [a]: b, ...c } = z;
+            var {x1, ...y1} = z;
+            let {x2, y2, ...z2} = z;
+            const {w3, x3, y3, ...z4} = z;
+
+            let {
+              x: { a: xa, [d]: f, ...asdf },
+              y: { ...d },
+              ...g
+            } = complex;
+
+            let { x4: { ...y4 } } = z; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 10,
+          "id": {
+            "end": 5,
+            "name": "z",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": {
+            "end": 10,
+            "properties": [],
+            "range": [
+              8,
+              10,
+            ],
+            "start": 8,
+            "type": "ObjectExpression",
+          },
+          "range": [
+            4,
+            10,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 11,
+      "kind": "var",
+      "range": [
+        0,
+        11,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "end": 40,
+          "id": {
+            "end": 36,
+            "properties": [
+              {
+                "argument": {
+                  "end": 34,
+                  "name": "x",
+                  "range": [
+                    33,
+                    34,
+                  ],
+                  "start": 33,
+                  "type": "Identifier",
+                },
+                "end": 34,
+                "range": [
+                  30,
+                  34,
+                ],
+                "start": 30,
+                "type": "RestElement",
+              },
+            ],
+            "range": [
+              28,
+              36,
+            ],
+            "start": 28,
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "end": 40,
+            "name": "z",
+            "range": [
+              39,
+              40,
+            ],
+            "start": 39,
+            "type": "Identifier",
+          },
+          "range": [
+            28,
+            40,
+          ],
+          "start": 28,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 41,
+      "kind": "var",
+      "range": [
+        24,
+        41,
+      ],
+      "start": 24,
+      "type": "VariableDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "end": 77,
+          "id": {
+            "end": 66,
+            "properties": [
+              {
+                "argument": {
+                  "end": 64,
+                  "name": "a",
+                  "range": [
+                    63,
+                    64,
+                  ],
+                  "start": 63,
+                  "type": "Identifier",
+                },
+                "end": 64,
+                "range": [
+                  60,
+                  64,
+                ],
+                "start": 60,
+                "type": "RestElement",
+              },
+            ],
+            "range": [
+              58,
+              66,
+            ],
+            "start": 58,
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "end": 77,
+            "properties": [
+              {
+                "computed": false,
+                "end": 75,
+                "key": {
+                  "end": 72,
+                  "name": "a",
+                  "range": [
+                    71,
+                    72,
+                  ],
+                  "start": 71,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  71,
+                  75,
+                ],
+                "shorthand": false,
+                "start": 71,
+                "type": "Property",
+                "value": {
+                  "end": 75,
+                  "range": [
+                    74,
+                    75,
+                  ],
+                  "start": 74,
+                  "type": "Literal",
+                  "value": 1,
+                },
+              },
+            ],
+            "range": [
+              69,
+              77,
+            ],
+            "start": 69,
+            "type": "ObjectExpression",
+          },
+          "range": [
+            58,
+            77,
+          ],
+          "start": 58,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 78,
+      "kind": "var",
+      "range": [
+        54,
+        78,
+      ],
+      "start": 54,
+      "type": "VariableDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "end": 109,
+          "id": {
+            "end": 103,
+            "properties": [
+              {
+                "argument": {
+                  "end": 101,
+                  "name": "x",
+                  "range": [
+                    100,
+                    101,
+                  ],
+                  "start": 100,
+                  "type": "Identifier",
+                },
+                "end": 101,
+                "range": [
+                  97,
+                  101,
+                ],
+                "start": 97,
+                "type": "RestElement",
+              },
+            ],
+            "range": [
+              95,
+              103,
+            ],
+            "start": 95,
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "computed": false,
+            "end": 109,
+            "object": {
+              "end": 107,
+              "name": "a",
+              "range": [
+                106,
+                107,
+              ],
+              "start": 106,
+              "type": "Identifier",
+            },
+            "property": {
+              "end": 109,
+              "name": "b",
+              "range": [
+                108,
+                109,
+              ],
+              "start": 108,
+              "type": "Identifier",
+            },
+            "range": [
+              106,
+              109,
+            ],
+            "start": 106,
+            "type": "MemberExpression",
+          },
+          "range": [
+            95,
+            109,
+          ],
+          "start": 95,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 110,
+      "kind": "var",
+      "range": [
+        91,
+        110,
+      ],
+      "start": 91,
+      "type": "VariableDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "end": 141,
+          "id": {
+            "end": 135,
+            "properties": [
+              {
+                "argument": {
+                  "end": 133,
+                  "name": "x",
+                  "range": [
+                    132,
+                    133,
+                  ],
+                  "start": 132,
+                  "type": "Identifier",
+                },
+                "end": 133,
+                "range": [
+                  129,
+                  133,
+                ],
+                "start": 129,
+                "type": "RestElement",
+              },
+            ],
+            "range": [
+              127,
+              135,
+            ],
+            "start": 127,
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "arguments": [],
+            "callee": {
+              "end": 139,
+              "name": "a",
+              "range": [
+                138,
+                139,
+              ],
+              "start": 138,
+              "type": "Identifier",
+            },
+            "end": 141,
+            "range": [
+              138,
+              141,
+            ],
+            "start": 138,
+            "type": "CallExpression",
+          },
+          "range": [
+            127,
+            141,
+          ],
+          "start": 127,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 142,
+      "kind": "var",
+      "range": [
+        123,
+        142,
+      ],
+      "start": 123,
+      "type": "VariableDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "end": 174,
+          "id": {
+            "end": 170,
+            "properties": [
+              {
+                "computed": false,
+                "end": 162,
+                "key": {
+                  "end": 162,
+                  "name": "x1",
+                  "range": [
+                    160,
+                    162,
+                  ],
+                  "start": 160,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  160,
+                  162,
+                ],
+                "shorthand": true,
+                "start": 160,
+                "type": "Property",
+                "value": {
+                  "end": 162,
+                  "name": "x1",
+                  "range": [
+                    160,
+                    162,
+                  ],
+                  "start": 160,
+                  "type": "Identifier",
+                },
+              },
+              {
+                "argument": {
+                  "end": 169,
+                  "name": "y1",
+                  "range": [
+                    167,
+                    169,
+                  ],
+                  "start": 167,
+                  "type": "Identifier",
+                },
+                "end": 169,
+                "range": [
+                  164,
+                  169,
+                ],
+                "start": 164,
+                "type": "RestElement",
+              },
+            ],
+            "range": [
+              159,
+              170,
+            ],
+            "start": 159,
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "end": 174,
+            "name": "z",
+            "range": [
+              173,
+              174,
+            ],
+            "start": 173,
+            "type": "Identifier",
+          },
+          "range": [
+            159,
+            174,
+          ],
+          "start": 159,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 175,
+      "kind": "var",
+      "range": [
+        155,
+        175,
+      ],
+      "start": 155,
+      "type": "VariableDeclaration",
+    },
+    {
+      "end": 193,
+      "expression": {
+        "argument": {
+          "end": 190,
+          "name": "x1",
+          "range": [
+            188,
+            190,
+          ],
+          "start": 188,
+          "type": "Identifier",
+        },
+        "end": 192,
+        "operator": "++",
+        "prefix": false,
+        "range": [
+          188,
+          192,
+        ],
+        "start": 188,
+        "type": "UpdateExpression",
+      },
+      "range": [
+        188,
+        193,
+      ],
+      "start": 188,
+      "type": "ExpressionStatement",
+    },
+    {
+      "declarations": [
+        {
+          "end": 230,
+          "id": {
+            "end": 226,
+            "properties": [
+              {
+                "computed": true,
+                "end": 218,
+                "key": {
+                  "end": 214,
+                  "name": "a",
+                  "range": [
+                    213,
+                    214,
+                  ],
+                  "start": 213,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  212,
+                  218,
+                ],
+                "shorthand": false,
+                "start": 212,
+                "type": "Property",
+                "value": {
+                  "end": 218,
+                  "name": "b",
+                  "range": [
+                    217,
+                    218,
+                  ],
+                  "start": 217,
+                  "type": "Identifier",
+                },
+              },
+              {
+                "argument": {
+                  "end": 224,
+                  "name": "c",
+                  "range": [
+                    223,
+                    224,
+                  ],
+                  "start": 223,
+                  "type": "Identifier",
+                },
+                "end": 224,
+                "range": [
+                  220,
+                  224,
+                ],
+                "start": 220,
+                "type": "RestElement",
+              },
+            ],
+            "range": [
+              210,
+              226,
+            ],
+            "start": 210,
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "end": 230,
+            "name": "z",
+            "range": [
+              229,
+              230,
+            ],
+            "start": 229,
+            "type": "Identifier",
+          },
+          "range": [
+            210,
+            230,
+          ],
+          "start": 210,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 231,
+      "kind": "var",
+      "range": [
+        206,
+        231,
+      ],
+      "start": 206,
+      "type": "VariableDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "end": 263,
+          "id": {
+            "end": 259,
+            "properties": [
+              {
+                "computed": false,
+                "end": 251,
+                "key": {
+                  "end": 251,
+                  "name": "x1",
+                  "range": [
+                    249,
+                    251,
+                  ],
+                  "start": 249,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  249,
+                  251,
+                ],
+                "shorthand": true,
+                "start": 249,
+                "type": "Property",
+                "value": {
+                  "end": 251,
+                  "name": "x1",
+                  "range": [
+                    249,
+                    251,
+                  ],
+                  "start": 249,
+                  "type": "Identifier",
+                },
+              },
+              {
+                "argument": {
+                  "end": 258,
+                  "name": "y1",
+                  "range": [
+                    256,
+                    258,
+                  ],
+                  "start": 256,
+                  "type": "Identifier",
+                },
+                "end": 258,
+                "range": [
+                  253,
+                  258,
+                ],
+                "start": 253,
+                "type": "RestElement",
+              },
+            ],
+            "range": [
+              248,
+              259,
+            ],
+            "start": 248,
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "end": 263,
+            "name": "z",
+            "range": [
+              262,
+              263,
+            ],
+            "start": 262,
+            "type": "Identifier",
+          },
+          "range": [
+            248,
+            263,
+          ],
+          "start": 248,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 264,
+      "kind": "var",
+      "range": [
+        244,
+        264,
+      ],
+      "start": 244,
+      "type": "VariableDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "end": 300,
+          "id": {
+            "end": 296,
+            "properties": [
+              {
+                "computed": false,
+                "end": 284,
+                "key": {
+                  "end": 284,
+                  "name": "x2",
+                  "range": [
+                    282,
+                    284,
+                  ],
+                  "start": 282,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  282,
+                  284,
+                ],
+                "shorthand": true,
+                "start": 282,
+                "type": "Property",
+                "value": {
+                  "end": 284,
+                  "name": "x2",
+                  "range": [
+                    282,
+                    284,
+                  ],
+                  "start": 282,
+                  "type": "Identifier",
+                },
+              },
+              {
+                "computed": false,
+                "end": 288,
+                "key": {
+                  "end": 288,
+                  "name": "y2",
+                  "range": [
+                    286,
+                    288,
+                  ],
+                  "start": 286,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  286,
+                  288,
+                ],
+                "shorthand": true,
+                "start": 286,
+                "type": "Property",
+                "value": {
+                  "end": 288,
+                  "name": "y2",
+                  "range": [
+                    286,
+                    288,
+                  ],
+                  "start": 286,
+                  "type": "Identifier",
+                },
+              },
+              {
+                "argument": {
+                  "end": 295,
+                  "name": "z2",
+                  "range": [
+                    293,
+                    295,
+                  ],
+                  "start": 293,
+                  "type": "Identifier",
+                },
+                "end": 295,
+                "range": [
+                  290,
+                  295,
+                ],
+                "start": 290,
+                "type": "RestElement",
+              },
+            ],
+            "range": [
+              281,
+              296,
+            ],
+            "start": 281,
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "end": 300,
+            "name": "z",
+            "range": [
+              299,
+              300,
+            ],
+            "start": 299,
+            "type": "Identifier",
+          },
+          "range": [
+            281,
+            300,
+          ],
+          "start": 281,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 301,
+      "kind": "let",
+      "range": [
+        277,
+        301,
+      ],
+      "start": 277,
+      "type": "VariableDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "end": 343,
+          "id": {
+            "end": 339,
+            "properties": [
+              {
+                "computed": false,
+                "end": 323,
+                "key": {
+                  "end": 323,
+                  "name": "w3",
+                  "range": [
+                    321,
+                    323,
+                  ],
+                  "start": 321,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  321,
+                  323,
+                ],
+                "shorthand": true,
+                "start": 321,
+                "type": "Property",
+                "value": {
+                  "end": 323,
+                  "name": "w3",
+                  "range": [
+                    321,
+                    323,
+                  ],
+                  "start": 321,
+                  "type": "Identifier",
+                },
+              },
+              {
+                "computed": false,
+                "end": 327,
+                "key": {
+                  "end": 327,
+                  "name": "x3",
+                  "range": [
+                    325,
+                    327,
+                  ],
+                  "start": 325,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  325,
+                  327,
+                ],
+                "shorthand": true,
+                "start": 325,
+                "type": "Property",
+                "value": {
+                  "end": 327,
+                  "name": "x3",
+                  "range": [
+                    325,
+                    327,
+                  ],
+                  "start": 325,
+                  "type": "Identifier",
+                },
+              },
+              {
+                "computed": false,
+                "end": 331,
+                "key": {
+                  "end": 331,
+                  "name": "y3",
+                  "range": [
+                    329,
+                    331,
+                  ],
+                  "start": 329,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  329,
+                  331,
+                ],
+                "shorthand": true,
+                "start": 329,
+                "type": "Property",
+                "value": {
+                  "end": 331,
+                  "name": "y3",
+                  "range": [
+                    329,
+                    331,
+                  ],
+                  "start": 329,
+                  "type": "Identifier",
+                },
+              },
+              {
+                "argument": {
+                  "end": 338,
+                  "name": "z4",
+                  "range": [
+                    336,
+                    338,
+                  ],
+                  "start": 336,
+                  "type": "Identifier",
+                },
+                "end": 338,
+                "range": [
+                  333,
+                  338,
+                ],
+                "start": 333,
+                "type": "RestElement",
+              },
+            ],
+            "range": [
+              320,
+              339,
+            ],
+            "start": 320,
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "end": 343,
+            "name": "z",
+            "range": [
+              342,
+              343,
+            ],
+            "start": 342,
+            "type": "Identifier",
+          },
+          "range": [
+            320,
+            343,
+          ],
+          "start": 320,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 344,
+      "kind": "const",
+      "range": [
+        314,
+        344,
+      ],
+      "start": 314,
+      "type": "VariableDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "end": 478,
+          "id": {
+            "end": 468,
+            "properties": [
+              {
+                "computed": false,
+                "end": 407,
+                "key": {
+                  "end": 379,
+                  "name": "x",
+                  "range": [
+                    378,
+                    379,
+                  ],
+                  "start": 378,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  378,
+                  407,
+                ],
+                "shorthand": false,
+                "start": 378,
+                "type": "Property",
+                "value": {
+                  "end": 407,
+                  "properties": [
+                    {
+                      "computed": false,
+                      "end": 388,
+                      "key": {
+                        "end": 384,
+                        "name": "a",
+                        "range": [
+                          383,
+                          384,
+                        ],
+                        "start": 383,
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "range": [
+                        383,
+                        388,
+                      ],
+                      "shorthand": false,
+                      "start": 383,
+                      "type": "Property",
+                      "value": {
+                        "end": 388,
+                        "name": "xa",
+                        "range": [
+                          386,
+                          388,
+                        ],
+                        "start": 386,
+                        "type": "Identifier",
+                      },
+                    },
+                    {
+                      "computed": true,
+                      "end": 396,
+                      "key": {
+                        "end": 392,
+                        "name": "d",
+                        "range": [
+                          391,
+                          392,
+                        ],
+                        "start": 391,
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "range": [
+                        390,
+                        396,
+                      ],
+                      "shorthand": false,
+                      "start": 390,
+                      "type": "Property",
+                      "value": {
+                        "end": 396,
+                        "name": "f",
+                        "range": [
+                          395,
+                          396,
+                        ],
+                        "start": 395,
+                        "type": "Identifier",
+                      },
+                    },
+                    {
+                      "argument": {
+                        "end": 405,
+                        "name": "asdf",
+                        "range": [
+                          401,
+                          405,
+                        ],
+                        "start": 401,
+                        "type": "Identifier",
+                      },
+                      "end": 405,
+                      "range": [
+                        398,
+                        405,
+                      ],
+                      "start": 398,
+                      "type": "RestElement",
+                    },
+                  ],
+                  "range": [
+                    381,
+                    407,
+                  ],
+                  "start": 381,
+                  "type": "ObjectPattern",
+                },
+              },
+              {
+                "computed": false,
+                "end": 434,
+                "key": {
+                  "end": 424,
+                  "name": "y",
+                  "range": [
+                    423,
+                    424,
+                  ],
+                  "start": 423,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  423,
+                  434,
+                ],
+                "shorthand": false,
+                "start": 423,
+                "type": "Property",
+                "value": {
+                  "end": 434,
+                  "properties": [
+                    {
+                      "argument": {
+                        "end": 432,
+                        "name": "d",
+                        "range": [
+                          431,
+                          432,
+                        ],
+                        "start": 431,
+                        "type": "Identifier",
+                      },
+                      "end": 432,
+                      "range": [
+                        428,
+                        432,
+                      ],
+                      "start": 428,
+                      "type": "RestElement",
+                    },
+                  ],
+                  "range": [
+                    426,
+                    434,
+                  ],
+                  "start": 426,
+                  "type": "ObjectPattern",
+                },
+              },
+              {
+                "argument": {
+                  "end": 454,
+                  "name": "g",
+                  "range": [
+                    453,
+                    454,
+                  ],
+                  "start": 453,
+                  "type": "Identifier",
+                },
+                "end": 454,
+                "range": [
+                  450,
+                  454,
+                ],
+                "start": 450,
+                "type": "RestElement",
+              },
+            ],
+            "range": [
+              362,
+              468,
+            ],
+            "start": 362,
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "end": 478,
+            "name": "complex",
+            "range": [
+              471,
+              478,
+            ],
+            "start": 471,
+            "type": "Identifier",
+          },
+          "range": [
+            362,
+            478,
+          ],
+          "start": 362,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 479,
+      "kind": "let",
+      "range": [
+        358,
+        479,
+      ],
+      "start": 358,
+      "type": "VariableDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "end": 518,
+          "id": {
+            "end": 514,
+            "properties": [
+              {
+                "computed": false,
+                "end": 512,
+                "key": {
+                  "end": 501,
+                  "name": "x4",
+                  "range": [
+                    499,
+                    501,
+                  ],
+                  "start": 499,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  499,
+                  512,
+                ],
+                "shorthand": false,
+                "start": 499,
+                "type": "Property",
+                "value": {
+                  "end": 512,
+                  "properties": [
+                    {
+                      "argument": {
+                        "end": 510,
+                        "name": "y4",
+                        "range": [
+                          508,
+                          510,
+                        ],
+                        "start": 508,
+                        "type": "Identifier",
+                      },
+                      "end": 510,
+                      "range": [
+                        505,
+                        510,
+                      ],
+                      "start": 505,
+                      "type": "RestElement",
+                    },
+                  ],
+                  "range": [
+                    503,
+                    512,
+                  ],
+                  "start": 503,
+                  "type": "ObjectPattern",
+                },
+              },
+            ],
+            "range": [
+              497,
+              514,
+            ],
+            "start": 497,
+            "type": "ObjectPattern",
+          },
+          "init": {
+            "end": 518,
+            "name": "z",
+            "range": [
+              517,
+              518,
+            ],
+            "start": 517,
+            "type": "Identifier",
+          },
+          "range": [
+            497,
+            518,
+          ],
+          "start": 497,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 519,
+      "kind": "let",
+      "range": [
+        493,
+        519,
+      ],
+      "start": 493,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 519,
+  "range": [
+    0,
+    519,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;

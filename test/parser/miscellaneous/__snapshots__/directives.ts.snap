@@ -1,0 +1,437 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Miscellaneous - Directives > Miscellaneous - Directives (pass) > "\\u0061b"
+"c\\u0064" 1`] = `
+{
+  "body": [
+    {
+      "directive": "\\u0061b",
+      "expression": {
+        "type": "Literal",
+        "value": "ab",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "directive": "c\\u0064",
+      "expression": {
+        "type": "Literal",
+        "value": "cd",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Directives > Miscellaneous - Directives (pass) > "\\u0061b"
+"c\\u0064" 2`] = `
+{
+  "body": [
+    {
+      "directive": "\\u0061b",
+      "expression": {
+        "type": "Literal",
+        "value": "ab",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "directive": "c\\u0064",
+      "expression": {
+        "type": "Literal",
+        "value": "cd",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Directives > Miscellaneous - Directives (pass) > "use asm" 
+ "use strict" 1`] = `
+{
+  "body": [
+    {
+      "directive": "use asm",
+      "end": 9,
+      "expression": {
+        "end": 9,
+        "range": [
+          0,
+          9,
+        ],
+        "raw": ""use asm"",
+        "start": 0,
+        "type": "Literal",
+        "value": "use asm",
+      },
+      "range": [
+        0,
+        9,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+    {
+      "directive": "use strict",
+      "end": 24,
+      "expression": {
+        "end": 24,
+        "range": [
+          12,
+          24,
+        ],
+        "raw": ""use strict"",
+        "start": 12,
+        "type": "Literal",
+        "value": "use strict",
+      },
+      "range": [
+        12,
+        24,
+      ],
+      "start": 12,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 24,
+  "range": [
+    0,
+    24,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Directives > Miscellaneous - Directives (pass) > "use strict" + "Hello\\312World" 1`] = `
+{
+  "body": [
+    {
+      "end": 31,
+      "expression": {
+        "end": 31,
+        "left": {
+          "end": 12,
+          "range": [
+            0,
+            12,
+          ],
+          "raw": ""use strict"",
+          "start": 0,
+          "type": "Literal",
+          "value": "use strict",
+        },
+        "operator": "+",
+        "range": [
+          0,
+          31,
+        ],
+        "right": {
+          "end": 31,
+          "range": [
+            15,
+            31,
+          ],
+          "raw": ""Hello\\312World"",
+          "start": 15,
+          "type": "Literal",
+          "value": "HelloÊWorld",
+        },
+        "start": 0,
+        "type": "BinaryExpression",
+      },
+      "range": [
+        0,
+        31,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 31,
+  "range": [
+    0,
+    31,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Directives > Miscellaneous - Directives (pass) > "use strict", "Hello\\312World" 1`] = `
+{
+  "body": [
+    {
+      "end": 30,
+      "expression": {
+        "end": 30,
+        "expressions": [
+          {
+            "end": 12,
+            "range": [
+              0,
+              12,
+            ],
+            "raw": ""use strict"",
+            "start": 0,
+            "type": "Literal",
+            "value": "use strict",
+          },
+          {
+            "end": 30,
+            "range": [
+              14,
+              30,
+            ],
+            "raw": ""Hello\\312World"",
+            "start": 14,
+            "type": "Literal",
+            "value": "HelloÊWorld",
+          },
+        ],
+        "range": [
+          0,
+          30,
+        ],
+        "start": 0,
+        "type": "SequenceExpression",
+      },
+      "range": [
+        0,
+        30,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 30,
+  "range": [
+    0,
+    30,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Directives > Miscellaneous - Directives (pass) > "use strict"; + 1 1`] = `
+{
+  "body": [
+    {
+      "directive": "use strict",
+      "end": 13,
+      "expression": {
+        "end": 12,
+        "range": [
+          0,
+          12,
+        ],
+        "start": 0,
+        "type": "Literal",
+        "value": "use strict",
+      },
+      "range": [
+        0,
+        13,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+    {
+      "end": 17,
+      "expression": {
+        "argument": {
+          "end": 17,
+          "range": [
+            16,
+            17,
+          ],
+          "start": 16,
+          "type": "Literal",
+          "value": 1,
+        },
+        "end": 17,
+        "operator": "+",
+        "prefix": true,
+        "range": [
+          14,
+          17,
+        ],
+        "start": 14,
+        "type": "UnaryExpression",
+      },
+      "range": [
+        14,
+        17,
+      ],
+      "start": 14,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 17,
+  "range": [
+    0,
+    17,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Directives > Miscellaneous - Directives (pass) > ("use strict"); foo = 42; 1`] = `
+{
+  "body": [
+    {
+      "end": 15,
+      "expression": {
+        "end": 13,
+        "range": [
+          1,
+          13,
+        ],
+        "raw": ""use strict"",
+        "start": 1,
+        "type": "Literal",
+        "value": "use strict",
+      },
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+    {
+      "end": 25,
+      "expression": {
+        "end": 24,
+        "left": {
+          "end": 19,
+          "name": "foo",
+          "range": [
+            16,
+            19,
+          ],
+          "start": 16,
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "range": [
+          16,
+          24,
+        ],
+        "right": {
+          "end": 24,
+          "range": [
+            22,
+            24,
+          ],
+          "raw": "42",
+          "start": 22,
+          "type": "Literal",
+          "value": 42,
+        },
+        "start": 16,
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        16,
+        25,
+      ],
+      "start": 16,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 25,
+  "range": [
+    0,
+    25,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Directives > Miscellaneous - Directives (pass) > ("use strict"); foo = 42; 2`] = `
+{
+  "body": [
+    {
+      "end": 15,
+      "expression": {
+        "end": 13,
+        "range": [
+          1,
+          13,
+        ],
+        "start": 1,
+        "type": "Literal",
+        "value": "use strict",
+      },
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+    {
+      "end": 25,
+      "expression": {
+        "end": 24,
+        "left": {
+          "end": 19,
+          "name": "foo",
+          "range": [
+            16,
+            19,
+          ],
+          "start": 16,
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "range": [
+          16,
+          24,
+        ],
+        "right": {
+          "end": 24,
+          "range": [
+            22,
+            24,
+          ],
+          "start": 22,
+          "type": "Literal",
+          "value": 42,
+        },
+        "start": 16,
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        16,
+        25,
+      ],
+      "start": 16,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 25,
+  "range": [
+    0,
+    25,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;

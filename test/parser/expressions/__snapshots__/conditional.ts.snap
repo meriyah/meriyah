@@ -1,0 +1,1351 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > "1" ? "" : "1" 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "type": "Literal",
+          "value": "1",
+        },
+        "consequent": {
+          "type": "Literal",
+          "value": "",
+        },
+        "test": {
+          "type": "Literal",
+          "value": "1",
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > "1" ? y : "" 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "type": "Literal",
+          "value": "",
+        },
+        "consequent": {
+          "name": "y",
+          "type": "Identifier",
+        },
+        "test": {
+          "type": "Literal",
+          "value": "1",
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > ("1" ? "" : "1") 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "type": "Literal",
+          "value": "1",
+        },
+        "consequent": {
+          "type": "Literal",
+          "value": "",
+        },
+        "test": {
+          "type": "Literal",
+          "value": "1",
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > (false ? false : true) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "type": "Literal",
+          "value": true,
+        },
+        "consequent": {
+          "type": "Literal",
+          "value": false,
+        },
+        "test": {
+          "type": "Literal",
+          "value": false,
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > (y ? y : true) 1`] = `
+{
+  "body": [
+    {
+      "end": 14,
+      "expression": {
+        "alternate": {
+          "end": 13,
+          "range": [
+            9,
+            13,
+          ],
+          "start": 9,
+          "type": "Literal",
+          "value": true,
+        },
+        "consequent": {
+          "end": 6,
+          "name": "y",
+          "range": [
+            5,
+            6,
+          ],
+          "start": 5,
+          "type": "Identifier",
+        },
+        "end": 13,
+        "range": [
+          1,
+          13,
+        ],
+        "start": 1,
+        "test": {
+          "end": 2,
+          "name": "y",
+          "range": [
+            1,
+            2,
+          ],
+          "start": 1,
+          "type": "Identifier",
+        },
+        "type": "ConditionalExpression",
+      },
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 14,
+  "range": [
+    0,
+    14,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > Symbol() ? 1 : 2, 1 1`] = `
+{
+  "body": [
+    {
+      "end": 19,
+      "expression": {
+        "end": 19,
+        "expressions": [
+          {
+            "alternate": {
+              "end": 16,
+              "range": [
+                15,
+                16,
+              ],
+              "start": 15,
+              "type": "Literal",
+              "value": 2,
+            },
+            "consequent": {
+              "end": 12,
+              "range": [
+                11,
+                12,
+              ],
+              "start": 11,
+              "type": "Literal",
+              "value": 1,
+            },
+            "end": 16,
+            "range": [
+              0,
+              16,
+            ],
+            "start": 0,
+            "test": {
+              "arguments": [],
+              "callee": {
+                "end": 6,
+                "name": "Symbol",
+                "range": [
+                  0,
+                  6,
+                ],
+                "start": 0,
+                "type": "Identifier",
+              },
+              "end": 8,
+              "range": [
+                0,
+                8,
+              ],
+              "start": 0,
+              "type": "CallExpression",
+            },
+            "type": "ConditionalExpression",
+          },
+          {
+            "end": 19,
+            "range": [
+              18,
+              19,
+            ],
+            "start": 18,
+            "type": "Literal",
+            "value": 1,
+          },
+        ],
+        "range": [
+          0,
+          19,
+        ],
+        "start": 0,
+        "type": "SequenceExpression",
+      },
+      "range": [
+        0,
+        19,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 19,
+  "range": [
+    0,
+    19,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > Symbol() ? 1 : 2, 1 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "alternate": {
+              "type": "Literal",
+              "value": 2,
+            },
+            "consequent": {
+              "type": "Literal",
+              "value": 1,
+            },
+            "test": {
+              "arguments": [],
+              "callee": {
+                "name": "Symbol",
+                "type": "Identifier",
+              },
+              "type": "CallExpression",
+            },
+            "type": "ConditionalExpression",
+          },
+          {
+            "type": "Literal",
+            "value": 1,
+          },
+        ],
+        "type": "SequenceExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > a === b ? c : d % e 1`] = `
+{
+  "body": [
+    {
+      "end": 19,
+      "expression": {
+        "alternate": {
+          "end": 19,
+          "left": {
+            "end": 15,
+            "name": "d",
+            "range": [
+              14,
+              15,
+            ],
+            "start": 14,
+            "type": "Identifier",
+          },
+          "operator": "%",
+          "range": [
+            14,
+            19,
+          ],
+          "right": {
+            "end": 19,
+            "name": "e",
+            "range": [
+              18,
+              19,
+            ],
+            "start": 18,
+            "type": "Identifier",
+          },
+          "start": 14,
+          "type": "BinaryExpression",
+        },
+        "consequent": {
+          "end": 11,
+          "name": "c",
+          "range": [
+            10,
+            11,
+          ],
+          "start": 10,
+          "type": "Identifier",
+        },
+        "end": 19,
+        "range": [
+          0,
+          19,
+        ],
+        "start": 0,
+        "test": {
+          "end": 7,
+          "left": {
+            "end": 1,
+            "name": "a",
+            "range": [
+              0,
+              1,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+          "operator": "===",
+          "range": [
+            0,
+            7,
+          ],
+          "right": {
+            "end": 7,
+            "name": "b",
+            "range": [
+              6,
+              7,
+            ],
+            "start": 6,
+            "type": "Identifier",
+          },
+          "start": 0,
+          "type": "BinaryExpression",
+        },
+        "type": "ConditionalExpression",
+      },
+      "range": [
+        0,
+        19,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 19,
+  "range": [
+    0,
+    19,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > a === b ? c : d % e 2`] = `
+{
+  "body": [
+    {
+      "end": 19,
+      "expression": {
+        "alternate": {
+          "end": 19,
+          "left": {
+            "end": 15,
+            "name": "d",
+            "range": [
+              14,
+              15,
+            ],
+            "start": 14,
+            "type": "Identifier",
+          },
+          "operator": "%",
+          "range": [
+            14,
+            19,
+          ],
+          "right": {
+            "end": 19,
+            "name": "e",
+            "range": [
+              18,
+              19,
+            ],
+            "start": 18,
+            "type": "Identifier",
+          },
+          "start": 14,
+          "type": "BinaryExpression",
+        },
+        "consequent": {
+          "end": 11,
+          "name": "c",
+          "range": [
+            10,
+            11,
+          ],
+          "start": 10,
+          "type": "Identifier",
+        },
+        "end": 19,
+        "range": [
+          0,
+          19,
+        ],
+        "start": 0,
+        "test": {
+          "end": 7,
+          "left": {
+            "end": 1,
+            "name": "a",
+            "range": [
+              0,
+              1,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+          "operator": "===",
+          "range": [
+            0,
+            7,
+          ],
+          "right": {
+            "end": 7,
+            "name": "b",
+            "range": [
+              6,
+              7,
+            ],
+            "start": 6,
+            "type": "Identifier",
+          },
+          "start": 0,
+          "type": "BinaryExpression",
+        },
+        "type": "ConditionalExpression",
+      },
+      "range": [
+        0,
+        19,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 19,
+  "range": [
+    0,
+    19,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > a === b ? c : d % e; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "left": {
+            "name": "d",
+            "type": "Identifier",
+          },
+          "operator": "%",
+          "right": {
+            "name": "e",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "consequent": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "test": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "===",
+          "right": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > a ? !b : !c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "argument": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "operator": "!",
+          "prefix": true,
+          "type": "UnaryExpression",
+        },
+        "consequent": {
+          "argument": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": "!",
+          "prefix": true,
+          "type": "UnaryExpression",
+        },
+        "test": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > a ? !b : !c; 1`] = `
+{
+  "body": [
+    {
+      "end": 12,
+      "expression": {
+        "alternate": {
+          "argument": {
+            "end": 11,
+            "name": "c",
+            "range": [
+              10,
+              11,
+            ],
+            "start": 10,
+            "type": "Identifier",
+          },
+          "end": 11,
+          "operator": "!",
+          "prefix": true,
+          "range": [
+            9,
+            11,
+          ],
+          "start": 9,
+          "type": "UnaryExpression",
+        },
+        "consequent": {
+          "argument": {
+            "end": 6,
+            "name": "b",
+            "range": [
+              5,
+              6,
+            ],
+            "start": 5,
+            "type": "Identifier",
+          },
+          "end": 6,
+          "operator": "!",
+          "prefix": true,
+          "range": [
+            4,
+            6,
+          ],
+          "start": 4,
+          "type": "UnaryExpression",
+        },
+        "end": 11,
+        "range": [
+          0,
+          11,
+        ],
+        "start": 0,
+        "test": {
+          "end": 1,
+          "name": "a",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "type": "ConditionalExpression",
+      },
+      "range": [
+        0,
+        12,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 12,
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > a ? b : c = d 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "left": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "operator": "=",
+          "right": {
+            "name": "d",
+            "type": "Identifier",
+          },
+          "type": "AssignmentExpression",
+        },
+        "consequent": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "test": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > a ? b = d : c 1`] = `
+{
+  "body": [
+    {
+      "end": 13,
+      "expression": {
+        "alternate": {
+          "end": 13,
+          "name": "c",
+          "range": [
+            12,
+            13,
+          ],
+          "start": 12,
+          "type": "Identifier",
+        },
+        "consequent": {
+          "end": 9,
+          "left": {
+            "end": 5,
+            "name": "b",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "operator": "=",
+          "range": [
+            4,
+            9,
+          ],
+          "right": {
+            "end": 9,
+            "name": "d",
+            "range": [
+              8,
+              9,
+            ],
+            "start": 8,
+            "type": "Identifier",
+          },
+          "start": 4,
+          "type": "AssignmentExpression",
+        },
+        "end": 13,
+        "range": [
+          0,
+          13,
+        ],
+        "start": 0,
+        "test": {
+          "end": 1,
+          "name": "a",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "type": "ConditionalExpression",
+      },
+      "range": [
+        0,
+        13,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 13,
+  "range": [
+    0,
+    13,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > a=b?c:d 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "alternate": {
+            "name": "d",
+            "type": "Identifier",
+          },
+          "consequent": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "test": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "ConditionalExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > a=b?c:d 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "alternate": {
+            "name": "d",
+            "type": "Identifier",
+          },
+          "consequent": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "test": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "ConditionalExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > a?b:c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "consequent": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "test": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > a?b:c=d 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "left": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "operator": "=",
+          "right": {
+            "name": "d",
+            "type": "Identifier",
+          },
+          "type": "AssignmentExpression",
+        },
+        "consequent": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "test": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > a?b=c:d 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "name": "d",
+          "type": "Identifier",
+        },
+        "consequent": {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": "=",
+          "right": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "AssignmentExpression",
+        },
+        "test": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > a?b=c:d 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "name": "d",
+          "type": "Identifier",
+        },
+        "consequent": {
+          "left": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "operator": "=",
+          "right": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "AssignmentExpression",
+        },
+        "test": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > foo => bar ? zoo : doo 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "alternate": {
+            "name": "doo",
+            "type": "Identifier",
+          },
+          "consequent": {
+            "name": "zoo",
+            "type": "Identifier",
+          },
+          "test": {
+            "name": "bar",
+            "type": "Identifier",
+          },
+          "type": "ConditionalExpression",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "foo",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > foo ? .3 : 0 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "type": "Literal",
+          "value": 0,
+        },
+        "consequent": {
+          "type": "Literal",
+          "value": 0.3,
+        },
+        "test": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > foo?.3:0 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "type": "Literal",
+          "value": 0,
+        },
+        "consequent": {
+          "type": "Literal",
+          "value": 0.3,
+        },
+        "test": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > foo?.3:0 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "type": "Literal",
+          "value": 0,
+        },
+        "consequent": {
+          "type": "Literal",
+          "value": 0.3,
+        },
+        "test": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > true ? foo : bar 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "name": "bar",
+          "type": "Identifier",
+        },
+        "consequent": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "test": {
+          "type": "Literal",
+          "value": true,
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > true ? y : false 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "type": "Literal",
+          "value": false,
+        },
+        "consequent": {
+          "name": "y",
+          "type": "Identifier",
+        },
+        "test": {
+          "type": "Literal",
+          "value": true,
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > true ? y : z 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "name": "z",
+          "type": "Identifier",
+        },
+        "consequent": {
+          "name": "y",
+          "type": "Identifier",
+        },
+        "test": {
+          "type": "Literal",
+          "value": true,
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > x && y ? 1 : 2 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "type": "Literal",
+          "value": 2,
+        },
+        "consequent": {
+          "type": "Literal",
+          "value": 1,
+        },
+        "test": {
+          "left": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "operator": "&&",
+          "right": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "LogicalExpression",
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > x && y ? a : b 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "consequent": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "test": {
+          "left": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "operator": "&&",
+          "right": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "LogicalExpression",
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (pass) > x = (0) ? 1 : 2 1`] = `
+{
+  "body": [
+    {
+      "end": 15,
+      "expression": {
+        "end": 15,
+        "left": {
+          "end": 1,
+          "name": "x",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "range": [
+          0,
+          15,
+        ],
+        "right": {
+          "alternate": {
+            "end": 15,
+            "range": [
+              14,
+              15,
+            ],
+            "start": 14,
+            "type": "Literal",
+            "value": 2,
+          },
+          "consequent": {
+            "end": 11,
+            "range": [
+              10,
+              11,
+            ],
+            "start": 10,
+            "type": "Literal",
+            "value": 1,
+          },
+          "end": 15,
+          "range": [
+            4,
+            15,
+          ],
+          "start": 4,
+          "test": {
+            "end": 6,
+            "range": [
+              5,
+              6,
+            ],
+            "start": 5,
+            "type": "Literal",
+            "value": 0,
+          },
+          "type": "ConditionalExpression",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 15,
+  "range": [
+    0,
+    15,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;

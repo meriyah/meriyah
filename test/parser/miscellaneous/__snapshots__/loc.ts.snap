@@ -1,0 +1,1950 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Miscellaneous - loc > Miscellaneous - loc (pass) > (2[x,x],x)>x 1`] = `
+{
+  "body": [
+    {
+      "end": 12,
+      "expression": {
+        "end": 12,
+        "left": {
+          "end": 9,
+          "expressions": [
+            {
+              "computed": true,
+              "end": 7,
+              "loc": {
+                "end": {
+                  "column": 7,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 1,
+                },
+              },
+              "object": {
+                "end": 2,
+                "loc": {
+                  "end": {
+                    "column": 2,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 1,
+                    "line": 1,
+                  },
+                },
+                "range": [
+                  1,
+                  2,
+                ],
+                "start": 1,
+                "type": "Literal",
+                "value": 2,
+              },
+              "property": {
+                "end": 6,
+                "expressions": [
+                  {
+                    "end": 4,
+                    "loc": {
+                      "end": {
+                        "column": 4,
+                        "line": 1,
+                      },
+                      "start": {
+                        "column": 3,
+                        "line": 1,
+                      },
+                    },
+                    "name": "x",
+                    "range": [
+                      3,
+                      4,
+                    ],
+                    "start": 3,
+                    "type": "Identifier",
+                  },
+                  {
+                    "end": 6,
+                    "loc": {
+                      "end": {
+                        "column": 6,
+                        "line": 1,
+                      },
+                      "start": {
+                        "column": 5,
+                        "line": 1,
+                      },
+                    },
+                    "name": "x",
+                    "range": [
+                      5,
+                      6,
+                    ],
+                    "start": 5,
+                    "type": "Identifier",
+                  },
+                ],
+                "loc": {
+                  "end": {
+                    "column": 6,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 3,
+                    "line": 1,
+                  },
+                },
+                "range": [
+                  3,
+                  6,
+                ],
+                "start": 3,
+                "type": "SequenceExpression",
+              },
+              "range": [
+                1,
+                7,
+              ],
+              "start": 1,
+              "type": "MemberExpression",
+            },
+            {
+              "end": 9,
+              "loc": {
+                "end": {
+                  "column": 9,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 8,
+                  "line": 1,
+                },
+              },
+              "name": "x",
+              "range": [
+                8,
+                9,
+              ],
+              "start": 8,
+              "type": "Identifier",
+            },
+          ],
+          "loc": {
+            "end": {
+              "column": 9,
+              "line": 1,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+            },
+          },
+          "range": [
+            1,
+            9,
+          ],
+          "start": 1,
+          "type": "SequenceExpression",
+        },
+        "loc": {
+          "end": {
+            "column": 12,
+            "line": 1,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "operator": ">",
+        "range": [
+          0,
+          12,
+        ],
+        "right": {
+          "end": 12,
+          "loc": {
+            "end": {
+              "column": 12,
+              "line": 1,
+            },
+            "start": {
+              "column": 11,
+              "line": 1,
+            },
+          },
+          "name": "x",
+          "range": [
+            11,
+            12,
+          ],
+          "start": 11,
+          "type": "Identifier",
+        },
+        "start": 0,
+        "type": "BinaryExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 12,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        12,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 12,
+  "loc": {
+    "end": {
+      "column": 12,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - loc > Miscellaneous - loc (pass) > [,,x] 1`] = `
+{
+  "body": [
+    {
+      "end": 5,
+      "expression": {
+        "elements": [
+          null,
+          null,
+          {
+            "end": 4,
+            "loc": {
+              "end": {
+                "column": 4,
+                "line": 1,
+              },
+              "start": {
+                "column": 3,
+                "line": 1,
+              },
+            },
+            "name": "x",
+            "range": [
+              3,
+              4,
+            ],
+            "start": 3,
+            "type": "Identifier",
+          },
+        ],
+        "end": 5,
+        "loc": {
+          "end": {
+            "column": 5,
+            "line": 1,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "range": [
+          0,
+          5,
+        ],
+        "start": 0,
+        "type": "ArrayExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 5,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        5,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 5,
+  "loc": {
+    "end": {
+      "column": 5,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    5,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - loc > Miscellaneous - loc (pass) > [,] 1`] = `
+{
+  "body": [
+    {
+      "end": 3,
+      "expression": {
+        "elements": [
+          null,
+        ],
+        "end": 3,
+        "loc": {
+          "end": {
+            "column": 3,
+            "line": 1,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "range": [
+          0,
+          3,
+        ],
+        "start": 0,
+        "type": "ArrayExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 3,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        3,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 3,
+  "loc": {
+    "end": {
+      "column": 3,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    3,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - loc > Miscellaneous - loc (pass) > [50..foo] = x 1`] = `
+{
+  "body": [
+    {
+      "end": 13,
+      "expression": {
+        "end": 13,
+        "left": {
+          "elements": [
+            {
+              "computed": false,
+              "end": 8,
+              "loc": {
+                "end": {
+                  "column": 8,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 1,
+                },
+              },
+              "object": {
+                "end": 4,
+                "loc": {
+                  "end": {
+                    "column": 4,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 1,
+                    "line": 1,
+                  },
+                },
+                "range": [
+                  1,
+                  4,
+                ],
+                "start": 1,
+                "type": "Literal",
+                "value": 50,
+              },
+              "property": {
+                "end": 8,
+                "loc": {
+                  "end": {
+                    "column": 8,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 5,
+                    "line": 1,
+                  },
+                },
+                "name": "foo",
+                "range": [
+                  5,
+                  8,
+                ],
+                "start": 5,
+                "type": "Identifier",
+              },
+              "range": [
+                1,
+                8,
+              ],
+              "start": 1,
+              "type": "MemberExpression",
+            },
+          ],
+          "end": 9,
+          "loc": {
+            "end": {
+              "column": 9,
+              "line": 1,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "range": [
+            0,
+            9,
+          ],
+          "start": 0,
+          "type": "ArrayPattern",
+        },
+        "loc": {
+          "end": {
+            "column": 13,
+            "line": 1,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "operator": "=",
+        "range": [
+          0,
+          13,
+        ],
+        "right": {
+          "end": 13,
+          "loc": {
+            "end": {
+              "column": 13,
+              "line": 1,
+            },
+            "start": {
+              "column": 12,
+              "line": 1,
+            },
+          },
+          "name": "x",
+          "range": [
+            12,
+            13,
+          ],
+          "start": 12,
+          "type": "Identifier",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 13,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        13,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 13,
+  "loc": {
+    "end": {
+      "column": 13,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    13,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - loc > Miscellaneous - loc (pass) > 0, [ x = y ] = []; 1`] = `
+{
+  "body": [
+    {
+      "end": 18,
+      "expression": {
+        "end": 17,
+        "expressions": [
+          {
+            "end": 1,
+            "loc": {
+              "end": {
+                "column": 1,
+                "line": 1,
+              },
+              "start": {
+                "column": 0,
+                "line": 1,
+              },
+            },
+            "range": [
+              0,
+              1,
+            ],
+            "start": 0,
+            "type": "Literal",
+            "value": 0,
+          },
+          {
+            "end": 17,
+            "left": {
+              "elements": [
+                {
+                  "end": 10,
+                  "left": {
+                    "end": 6,
+                    "loc": {
+                      "end": {
+                        "column": 6,
+                        "line": 1,
+                      },
+                      "start": {
+                        "column": 5,
+                        "line": 1,
+                      },
+                    },
+                    "name": "x",
+                    "range": [
+                      5,
+                      6,
+                    ],
+                    "start": 5,
+                    "type": "Identifier",
+                  },
+                  "loc": {
+                    "end": {
+                      "column": 10,
+                      "line": 1,
+                    },
+                    "start": {
+                      "column": 5,
+                      "line": 1,
+                    },
+                  },
+                  "range": [
+                    5,
+                    10,
+                  ],
+                  "right": {
+                    "end": 10,
+                    "loc": {
+                      "end": {
+                        "column": 10,
+                        "line": 1,
+                      },
+                      "start": {
+                        "column": 9,
+                        "line": 1,
+                      },
+                    },
+                    "name": "y",
+                    "range": [
+                      9,
+                      10,
+                    ],
+                    "start": 9,
+                    "type": "Identifier",
+                  },
+                  "start": 5,
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "end": 12,
+              "loc": {
+                "end": {
+                  "column": 12,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 1,
+                },
+              },
+              "range": [
+                3,
+                12,
+              ],
+              "start": 3,
+              "type": "ArrayPattern",
+            },
+            "loc": {
+              "end": {
+                "column": 17,
+                "line": 1,
+              },
+              "start": {
+                "column": 3,
+                "line": 1,
+              },
+            },
+            "operator": "=",
+            "range": [
+              3,
+              17,
+            ],
+            "right": {
+              "elements": [],
+              "end": 17,
+              "loc": {
+                "end": {
+                  "column": 17,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 15,
+                  "line": 1,
+                },
+              },
+              "range": [
+                15,
+                17,
+              ],
+              "start": 15,
+              "type": "ArrayExpression",
+            },
+            "start": 3,
+            "type": "AssignmentExpression",
+          },
+        ],
+        "loc": {
+          "end": {
+            "column": 17,
+            "line": 1,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "range": [
+          0,
+          17,
+        ],
+        "start": 0,
+        "type": "SequenceExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 18,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        18,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 18,
+  "loc": {
+    "end": {
+      "column": 18,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    18,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - loc > Miscellaneous - loc (pass) > a *= b 1`] = `
+{
+  "body": [
+    {
+      "end": 6,
+      "expression": {
+        "end": 6,
+        "left": {
+          "end": 1,
+          "loc": {
+            "end": {
+              "column": 1,
+              "line": 1,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "name": "a",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "loc": {
+          "end": {
+            "column": 6,
+            "line": 1,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "operator": "*=",
+        "range": [
+          0,
+          6,
+        ],
+        "right": {
+          "end": 6,
+          "loc": {
+            "end": {
+              "column": 6,
+              "line": 1,
+            },
+            "start": {
+              "column": 5,
+              "line": 1,
+            },
+          },
+          "name": "b",
+          "range": [
+            5,
+            6,
+          ],
+          "start": 5,
+          "type": "Identifier",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 6,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        6,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 6,
+  "loc": {
+    "end": {
+      "column": 6,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    6,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - loc > Miscellaneous - loc (pass) > a&&(b=c)&&(d=e) 1`] = `
+{
+  "body": [
+    {
+      "end": 15,
+      "expression": {
+        "end": 15,
+        "left": {
+          "end": 8,
+          "left": {
+            "end": 1,
+            "loc": {
+              "end": {
+                "column": 1,
+                "line": 1,
+              },
+              "start": {
+                "column": 0,
+                "line": 1,
+              },
+            },
+            "name": "a",
+            "range": [
+              0,
+              1,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+          "loc": {
+            "end": {
+              "column": 8,
+              "line": 1,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "operator": "&&",
+          "range": [
+            0,
+            8,
+          ],
+          "right": {
+            "end": 7,
+            "left": {
+              "end": 5,
+              "loc": {
+                "end": {
+                  "column": 5,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 4,
+                  "line": 1,
+                },
+              },
+              "name": "b",
+              "range": [
+                4,
+                5,
+              ],
+              "start": 4,
+              "type": "Identifier",
+            },
+            "loc": {
+              "end": {
+                "column": 7,
+                "line": 1,
+              },
+              "start": {
+                "column": 4,
+                "line": 1,
+              },
+            },
+            "operator": "=",
+            "range": [
+              4,
+              7,
+            ],
+            "right": {
+              "end": 7,
+              "loc": {
+                "end": {
+                  "column": 7,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 6,
+                  "line": 1,
+                },
+              },
+              "name": "c",
+              "range": [
+                6,
+                7,
+              ],
+              "start": 6,
+              "type": "Identifier",
+            },
+            "start": 4,
+            "type": "AssignmentExpression",
+          },
+          "start": 0,
+          "type": "LogicalExpression",
+        },
+        "loc": {
+          "end": {
+            "column": 15,
+            "line": 1,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "operator": "&&",
+        "range": [
+          0,
+          15,
+        ],
+        "right": {
+          "end": 14,
+          "left": {
+            "end": 12,
+            "loc": {
+              "end": {
+                "column": 12,
+                "line": 1,
+              },
+              "start": {
+                "column": 11,
+                "line": 1,
+              },
+            },
+            "name": "d",
+            "range": [
+              11,
+              12,
+            ],
+            "start": 11,
+            "type": "Identifier",
+          },
+          "loc": {
+            "end": {
+              "column": 14,
+              "line": 1,
+            },
+            "start": {
+              "column": 11,
+              "line": 1,
+            },
+          },
+          "operator": "=",
+          "range": [
+            11,
+            14,
+          ],
+          "right": {
+            "end": 14,
+            "loc": {
+              "end": {
+                "column": 14,
+                "line": 1,
+              },
+              "start": {
+                "column": 13,
+                "line": 1,
+              },
+            },
+            "name": "e",
+            "range": [
+              13,
+              14,
+            ],
+            "start": 13,
+            "type": "Identifier",
+          },
+          "start": 11,
+          "type": "AssignmentExpression",
+        },
+        "start": 0,
+        "type": "LogicalExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 15,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 15,
+  "loc": {
+    "end": {
+      "column": 15,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    15,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - loc > Miscellaneous - loc (pass) > a={"b":c=d} 1`] = `
+{
+  "body": [
+    {
+      "end": 11,
+      "expression": {
+        "end": 11,
+        "left": {
+          "end": 1,
+          "loc": {
+            "end": {
+              "column": 1,
+              "line": 1,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "name": "a",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "loc": {
+          "end": {
+            "column": 11,
+            "line": 1,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "operator": "=",
+        "range": [
+          0,
+          11,
+        ],
+        "right": {
+          "end": 11,
+          "loc": {
+            "end": {
+              "column": 11,
+              "line": 1,
+            },
+            "start": {
+              "column": 2,
+              "line": 1,
+            },
+          },
+          "properties": [
+            {
+              "computed": false,
+              "end": 10,
+              "key": {
+                "end": 6,
+                "loc": {
+                  "end": {
+                    "column": 6,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 3,
+                    "line": 1,
+                  },
+                },
+                "range": [
+                  3,
+                  6,
+                ],
+                "start": 3,
+                "type": "Literal",
+                "value": "b",
+              },
+              "kind": "init",
+              "loc": {
+                "end": {
+                  "column": 10,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 1,
+                },
+              },
+              "method": false,
+              "range": [
+                3,
+                10,
+              ],
+              "shorthand": false,
+              "start": 3,
+              "type": "Property",
+              "value": {
+                "end": 10,
+                "left": {
+                  "end": 8,
+                  "loc": {
+                    "end": {
+                      "column": 8,
+                      "line": 1,
+                    },
+                    "start": {
+                      "column": 7,
+                      "line": 1,
+                    },
+                  },
+                  "name": "c",
+                  "range": [
+                    7,
+                    8,
+                  ],
+                  "start": 7,
+                  "type": "Identifier",
+                },
+                "loc": {
+                  "end": {
+                    "column": 10,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 7,
+                    "line": 1,
+                  },
+                },
+                "operator": "=",
+                "range": [
+                  7,
+                  10,
+                ],
+                "right": {
+                  "end": 10,
+                  "loc": {
+                    "end": {
+                      "column": 10,
+                      "line": 1,
+                    },
+                    "start": {
+                      "column": 9,
+                      "line": 1,
+                    },
+                  },
+                  "name": "d",
+                  "range": [
+                    9,
+                    10,
+                  ],
+                  "start": 9,
+                  "type": "Identifier",
+                },
+                "start": 7,
+                "type": "AssignmentExpression",
+              },
+            },
+          ],
+          "range": [
+            2,
+            11,
+          ],
+          "start": 2,
+          "type": "ObjectExpression",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 11,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        11,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 11,
+  "loc": {
+    "end": {
+      "column": 11,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    11,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - loc > Miscellaneous - loc (pass) > of = 42 1`] = `
+{
+  "body": [
+    {
+      "end": 7,
+      "expression": {
+        "end": 7,
+        "left": {
+          "end": 2,
+          "loc": {
+            "end": {
+              "column": 2,
+              "line": 1,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "name": "of",
+          "range": [
+            0,
+            2,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "loc": {
+          "end": {
+            "column": 7,
+            "line": 1,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "operator": "=",
+        "range": [
+          0,
+          7,
+        ],
+        "right": {
+          "end": 7,
+          "loc": {
+            "end": {
+              "column": 7,
+              "line": 1,
+            },
+            "start": {
+              "column": 5,
+              "line": 1,
+            },
+          },
+          "range": [
+            5,
+            7,
+          ],
+          "start": 5,
+          "type": "Literal",
+          "value": 42,
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 7,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        7,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 7,
+  "loc": {
+    "end": {
+      "column": 7,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    7,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - loc > Miscellaneous - loc (pass) > x = {...[a, b]} 1`] = `
+{
+  "body": [
+    {
+      "end": 15,
+      "expression": {
+        "end": 15,
+        "left": {
+          "end": 1,
+          "loc": {
+            "end": {
+              "column": 1,
+              "line": 1,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "name": "x",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "loc": {
+          "end": {
+            "column": 15,
+            "line": 1,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "operator": "=",
+        "range": [
+          0,
+          15,
+        ],
+        "right": {
+          "end": 15,
+          "loc": {
+            "end": {
+              "column": 15,
+              "line": 1,
+            },
+            "start": {
+              "column": 4,
+              "line": 1,
+            },
+          },
+          "properties": [
+            {
+              "argument": {
+                "elements": [
+                  {
+                    "end": 10,
+                    "loc": {
+                      "end": {
+                        "column": 10,
+                        "line": 1,
+                      },
+                      "start": {
+                        "column": 9,
+                        "line": 1,
+                      },
+                    },
+                    "name": "a",
+                    "range": [
+                      9,
+                      10,
+                    ],
+                    "start": 9,
+                    "type": "Identifier",
+                  },
+                  {
+                    "end": 13,
+                    "loc": {
+                      "end": {
+                        "column": 13,
+                        "line": 1,
+                      },
+                      "start": {
+                        "column": 12,
+                        "line": 1,
+                      },
+                    },
+                    "name": "b",
+                    "range": [
+                      12,
+                      13,
+                    ],
+                    "start": 12,
+                    "type": "Identifier",
+                  },
+                ],
+                "end": 14,
+                "loc": {
+                  "end": {
+                    "column": 14,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 8,
+                    "line": 1,
+                  },
+                },
+                "range": [
+                  8,
+                  14,
+                ],
+                "start": 8,
+                "type": "ArrayExpression",
+              },
+              "end": 14,
+              "loc": {
+                "end": {
+                  "column": 14,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 5,
+                  "line": 1,
+                },
+              },
+              "range": [
+                5,
+                14,
+              ],
+              "start": 5,
+              "type": "SpreadElement",
+            },
+          ],
+          "range": [
+            4,
+            15,
+          ],
+          "start": 4,
+          "type": "ObjectExpression",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 15,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 15,
+  "loc": {
+    "end": {
+      "column": 15,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    15,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - loc > Miscellaneous - loc (pass) > x = {...y, b} 1`] = `
+{
+  "body": [
+    {
+      "end": 13,
+      "expression": {
+        "end": 13,
+        "left": {
+          "end": 1,
+          "loc": {
+            "end": {
+              "column": 1,
+              "line": 1,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "name": "x",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "loc": {
+          "end": {
+            "column": 13,
+            "line": 1,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "operator": "=",
+        "range": [
+          0,
+          13,
+        ],
+        "right": {
+          "end": 13,
+          "loc": {
+            "end": {
+              "column": 13,
+              "line": 1,
+            },
+            "start": {
+              "column": 4,
+              "line": 1,
+            },
+          },
+          "properties": [
+            {
+              "argument": {
+                "end": 9,
+                "loc": {
+                  "end": {
+                    "column": 9,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 8,
+                    "line": 1,
+                  },
+                },
+                "name": "y",
+                "range": [
+                  8,
+                  9,
+                ],
+                "start": 8,
+                "type": "Identifier",
+              },
+              "end": 9,
+              "loc": {
+                "end": {
+                  "column": 9,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 5,
+                  "line": 1,
+                },
+              },
+              "range": [
+                5,
+                9,
+              ],
+              "start": 5,
+              "type": "SpreadElement",
+            },
+            {
+              "computed": false,
+              "end": 12,
+              "key": {
+                "end": 12,
+                "loc": {
+                  "end": {
+                    "column": 12,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 11,
+                    "line": 1,
+                  },
+                },
+                "name": "b",
+                "range": [
+                  11,
+                  12,
+                ],
+                "start": 11,
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "loc": {
+                "end": {
+                  "column": 12,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 11,
+                  "line": 1,
+                },
+              },
+              "method": false,
+              "range": [
+                11,
+                12,
+              ],
+              "shorthand": true,
+              "start": 11,
+              "type": "Property",
+              "value": {
+                "end": 12,
+                "loc": {
+                  "end": {
+                    "column": 12,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 11,
+                    "line": 1,
+                  },
+                },
+                "name": "b",
+                "range": [
+                  11,
+                  12,
+                ],
+                "start": 11,
+                "type": "Identifier",
+              },
+            },
+          ],
+          "range": [
+            4,
+            13,
+          ],
+          "start": 4,
+          "type": "ObjectExpression",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 13,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        13,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 13,
+  "loc": {
+    "end": {
+      "column": 13,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    13,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - loc > Miscellaneous - loc (pass) > x = {y} 1`] = `
+{
+  "body": [
+    {
+      "end": 7,
+      "expression": {
+        "end": 7,
+        "left": {
+          "end": 1,
+          "loc": {
+            "end": {
+              "column": 1,
+              "line": 1,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "name": "x",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "loc": {
+          "end": {
+            "column": 7,
+            "line": 1,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "operator": "=",
+        "range": [
+          0,
+          7,
+        ],
+        "right": {
+          "end": 7,
+          "loc": {
+            "end": {
+              "column": 7,
+              "line": 1,
+            },
+            "start": {
+              "column": 4,
+              "line": 1,
+            },
+          },
+          "properties": [
+            {
+              "computed": false,
+              "end": 6,
+              "key": {
+                "end": 6,
+                "loc": {
+                  "end": {
+                    "column": 6,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 5,
+                    "line": 1,
+                  },
+                },
+                "name": "y",
+                "range": [
+                  5,
+                  6,
+                ],
+                "start": 5,
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "loc": {
+                "end": {
+                  "column": 6,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 5,
+                  "line": 1,
+                },
+              },
+              "method": false,
+              "range": [
+                5,
+                6,
+              ],
+              "shorthand": true,
+              "start": 5,
+              "type": "Property",
+              "value": {
+                "end": 6,
+                "loc": {
+                  "end": {
+                    "column": 6,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 5,
+                    "line": 1,
+                  },
+                },
+                "name": "y",
+                "range": [
+                  5,
+                  6,
+                ],
+                "start": 5,
+                "type": "Identifier",
+              },
+            },
+          ],
+          "range": [
+            4,
+            7,
+          ],
+          "start": 4,
+          "type": "ObjectExpression",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 7,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        7,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 7,
+  "loc": {
+    "end": {
+      "column": 7,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    7,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;

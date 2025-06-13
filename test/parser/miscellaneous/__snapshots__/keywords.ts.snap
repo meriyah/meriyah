@@ -1,0 +1,212 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Miscellaneous - Keywords > Miscellaneous - Keywords (pass) > function *a(){({yi\\u0065ld: 0})} 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "yield",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "type": "Property",
+                  "value": {
+                    "type": "Literal",
+                    "value": 0,
+                  },
+                },
+              ],
+              "type": "ObjectExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Keywords > Miscellaneous - Keywords (pass) > var foo = {}; foo.arguments; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "init": {
+            "properties": [],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "expression": {
+        "computed": false,
+        "object": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "property": {
+          "name": "arguments",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Keywords > Miscellaneous - Keywords (pass) > var foo = {}; foo.if; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "init": {
+            "properties": [],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "expression": {
+        "computed": false,
+        "object": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "property": {
+          "name": "if",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Keywords > Miscellaneous - Keywords (pass) > var foo = {}; foo.interface; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "init": {
+            "properties": [],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "expression": {
+        "computed": false,
+        "object": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "property": {
+          "name": "interface",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - Keywords > Miscellaneous - Keywords (pass) > var foo = {}; foo.super; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "init": {
+            "properties": [],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "expression": {
+        "computed": false,
+        "object": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "property": {
+          "name": "super",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

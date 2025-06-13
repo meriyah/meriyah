@@ -1,0 +1,4013 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - Template > Expressions - Template (pass) > (tag = () => {})\`'\\00a0'\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "quasi": {
+          "expressions": [],
+          "quasis": [
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": null,
+                "raw": "'\\00a0'",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "tag": {
+          "left": {
+            "name": "tag",
+            "type": "Identifier",
+          },
+          "operator": "=",
+          "right": {
+            "async": false,
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "expression": false,
+            "generator": false,
+            "params": [],
+            "type": "ArrowFunctionExpression",
+          },
+          "type": "AssignmentExpression",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`\${ {class: 1} }\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "class",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "type": "Literal",
+                  "value": 1,
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`\${ {delete: 1} }\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "delete",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "type": "Literal",
+                  "value": 1,
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`\${ {enum: 1} }\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "enum",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "type": "Literal",
+                  "value": 1,
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`\${ {function: 1} }\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "function",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "type": "Literal",
+                  "value": 1,
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`\${ foo({class: 1}) }\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "arguments": [
+              {
+                "properties": [
+                  {
+                    "computed": false,
+                    "key": {
+                      "name": "class",
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "shorthand": false,
+                    "type": "Property",
+                    "value": {
+                      "type": "Literal",
+                      "value": 1,
+                    },
+                  },
+                ],
+                "type": "ObjectExpression",
+              },
+            ],
+            "callee": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "type": "CallExpression",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`\${/\\d/.exec("1")[0]}\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "computed": true,
+            "object": {
+              "arguments": [
+                {
+                  "type": "Literal",
+                  "value": "1",
+                },
+              ],
+              "callee": {
+                "computed": false,
+                "object": {
+                  "regex": {
+                    "flags": "",
+                    "pattern": "\\d",
+                  },
+                  "type": "Literal",
+                  "value": /\\\\d/,
+                },
+                "property": {
+                  "name": "exec",
+                  "type": "Identifier",
+                },
+                "type": "MemberExpression",
+              },
+              "type": "CallExpression",
+            },
+            "property": {
+              "type": "Literal",
+              "value": 0,
+            },
+            "type": "MemberExpression",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`\${b()}\${c()}\` 1`] = `
+{
+  "body": [
+    {
+      "end": 14,
+      "expression": {
+        "end": 14,
+        "expressions": [
+          {
+            "arguments": [],
+            "callee": {
+              "end": 4,
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 1,
+                },
+              },
+              "name": "b",
+              "range": [
+                3,
+                4,
+              ],
+              "start": 3,
+              "type": "Identifier",
+            },
+            "end": 6,
+            "loc": {
+              "end": {
+                "column": 6,
+                "line": 1,
+              },
+              "start": {
+                "column": 3,
+                "line": 1,
+              },
+            },
+            "range": [
+              3,
+              6,
+            ],
+            "start": 3,
+            "type": "CallExpression",
+          },
+          {
+            "arguments": [],
+            "callee": {
+              "end": 10,
+              "loc": {
+                "end": {
+                  "column": 10,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 9,
+                  "line": 1,
+                },
+              },
+              "name": "c",
+              "range": [
+                9,
+                10,
+              ],
+              "start": 9,
+              "type": "Identifier",
+            },
+            "end": 12,
+            "loc": {
+              "end": {
+                "column": 12,
+                "line": 1,
+              },
+              "start": {
+                "column": 9,
+                "line": 1,
+              },
+            },
+            "range": [
+              9,
+              12,
+            ],
+            "start": 9,
+            "type": "CallExpression",
+          },
+        ],
+        "loc": {
+          "end": {
+            "column": 14,
+            "line": 1,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "quasis": [
+          {
+            "end": 1,
+            "loc": {
+              "end": {
+                "column": 1,
+                "line": 1,
+              },
+              "start": {
+                "column": 1,
+                "line": 1,
+              },
+            },
+            "range": [
+              1,
+              1,
+            ],
+            "start": 1,
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+          {
+            "end": 7,
+            "loc": {
+              "end": {
+                "column": 7,
+                "line": 1,
+              },
+              "start": {
+                "column": 7,
+                "line": 1,
+              },
+            },
+            "range": [
+              7,
+              7,
+            ],
+            "start": 7,
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+          {
+            "end": 13,
+            "loc": {
+              "end": {
+                "column": 13,
+                "line": 1,
+              },
+              "start": {
+                "column": 13,
+                "line": 1,
+              },
+            },
+            "range": [
+              13,
+              13,
+            ],
+            "start": 13,
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+        ],
+        "range": [
+          0,
+          14,
+        ],
+        "start": 0,
+        "type": "TemplateLiteral",
+      },
+      "loc": {
+        "end": {
+          "column": 14,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 14,
+  "loc": {
+    "end": {
+      "column": 14,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    14,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`\${x\`)\`, y}\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "expressions": [
+              {
+                "quasi": {
+                  "expressions": [],
+                  "quasis": [
+                    {
+                      "tail": true,
+                      "type": "TemplateElement",
+                      "value": {
+                        "cooked": ")",
+                        "raw": ")",
+                      },
+                    },
+                  ],
+                  "type": "TemplateLiteral",
+                },
+                "tag": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "type": "TaggedTemplateExpression",
+              },
+              {
+                "name": "y",
+                "type": "Identifier",
+              },
+            ],
+            "type": "SequenceExpression",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`\${x} + \${y} = \${x + y}\` === "5 + 10 = 15" 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "expressions": [
+            {
+              "name": "x",
+              "type": "Identifier",
+            },
+            {
+              "name": "y",
+              "type": "Identifier",
+            },
+            {
+              "left": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "operator": "+",
+              "right": {
+                "name": "y",
+                "type": "Identifier",
+              },
+              "type": "BinaryExpression",
+            },
+          ],
+          "quasis": [
+            {
+              "tail": false,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": "",
+                "raw": "",
+              },
+            },
+            {
+              "tail": false,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": " + ",
+                "raw": " + ",
+              },
+            },
+            {
+              "tail": false,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": " = ",
+                "raw": " = ",
+              },
+            },
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": "",
+                "raw": "",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "operator": "===",
+        "right": {
+          "type": "Literal",
+          "value": "5 + 10 = 15",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`\${y, x\`)\`}\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "expressions": [
+              {
+                "name": "y",
+                "type": "Identifier",
+              },
+              {
+                "quasi": {
+                  "expressions": [],
+                  "quasis": [
+                    {
+                      "tail": true,
+                      "type": "TemplateElement",
+                      "value": {
+                        "cooked": ")",
+                        "raw": ")",
+                      },
+                    },
+                  ],
+                  "type": "TemplateLiteral",
+                },
+                "tag": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "type": "TaggedTemplateExpression",
+              },
+            ],
+            "type": "SequenceExpression",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "",
+              "raw": "",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`a \${()=>{}} b\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "async": false,
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "expression": false,
+            "generator": false,
+            "params": [],
+            "type": "ArrowFunctionExpression",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "a ",
+              "raw": "a ",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": " b",
+              "raw": " b",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`a \${(k)=>{x}} b\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "async": false,
+            "body": {
+              "body": [
+                {
+                  "expression": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "type": "ExpressionStatement",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+            "expression": false,
+            "generator": false,
+            "params": [
+              {
+                "name": "k",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "a ",
+              "raw": "a ",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": " b",
+              "raw": " b",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`a \${function(){}} b\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "async": false,
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "generator": false,
+            "id": null,
+            "params": [],
+            "type": "FunctionExpression",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "a ",
+              "raw": "a ",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": " b",
+              "raw": " b",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`a\${b=c}d\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "left": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "operator": "=",
+            "right": {
+              "name": "c",
+              "type": "Identifier",
+            },
+            "type": "AssignmentExpression",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "a",
+              "raw": "a",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "d",
+              "raw": "d",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`bar\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [],
+        "quasis": [
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "bar",
+              "raw": "bar",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`foo \${a} and \${b} and \${c} baz\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "name": "a",
+            "type": "Identifier",
+          },
+          {
+            "name": "b",
+            "type": "Identifier",
+          },
+          {
+            "name": "c",
+            "type": "Identifier",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "foo ",
+              "raw": "foo ",
+            },
+          },
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": " and ",
+              "raw": " and ",
+            },
+          },
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": " and ",
+              "raw": " and ",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": " baz",
+              "raw": " baz",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`foo \${a} and \${b} and \${c} baz\` 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "name": "a",
+            "type": "Identifier",
+          },
+          {
+            "name": "b",
+            "type": "Identifier",
+          },
+          {
+            "name": "c",
+            "type": "Identifier",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "foo ",
+              "raw": "foo ",
+            },
+          },
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": " and ",
+              "raw": " and ",
+            },
+          },
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": " and ",
+              "raw": " and ",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": " baz",
+              "raw": " baz",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`foo\${\`foo\${bar}baz\`}baz\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "expressions": [
+              {
+                "name": "bar",
+                "type": "Identifier",
+              },
+            ],
+            "quasis": [
+              {
+                "tail": false,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": "foo",
+                  "raw": "foo",
+                },
+              },
+              {
+                "tail": true,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": "baz",
+                  "raw": "baz",
+                },
+              },
+            ],
+            "type": "TemplateLiteral",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "foo",
+              "raw": "foo",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "baz",
+              "raw": "baz",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`foo\${\`foo\${bar}baz\`}baz\` 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "expressions": [
+              {
+                "name": "bar",
+                "type": "Identifier",
+              },
+            ],
+            "quasis": [
+              {
+                "tail": false,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": "foo",
+                  "raw": "foo",
+                },
+              },
+              {
+                "tail": true,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": "baz",
+                  "raw": "baz",
+                },
+              },
+            ],
+            "type": "TemplateLiteral",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "foo",
+              "raw": "foo",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "baz",
+              "raw": "baz",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`foo\${\`foo\`}baz\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "expressions": [],
+            "quasis": [
+              {
+                "tail": true,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": "foo",
+                  "raw": "foo",
+                },
+              },
+            ],
+            "type": "TemplateLiteral",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "foo",
+              "raw": "foo",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "baz",
+              "raw": "baz",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`foo\${\`foo\`}baz\` 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "expressions": [],
+            "quasis": [
+              {
+                "tail": true,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": "foo",
+                  "raw": "foo",
+                },
+              },
+            ],
+            "type": "TemplateLiteral",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "foo",
+              "raw": "foo",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "baz",
+              "raw": "baz",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`foo\${{}}baz\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "properties": [],
+            "type": "ObjectExpression",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "foo",
+              "raw": "foo",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "baz",
+              "raw": "baz",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`foo\${{}}baz\` 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "properties": [],
+            "type": "ObjectExpression",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "foo",
+              "raw": "foo",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "baz",
+              "raw": "baz",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`foo\${{a,b} = x}baz\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "left": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "type": "Property",
+                  "value": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                },
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "type": "Property",
+                  "value": {
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "operator": "=",
+            "right": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "type": "AssignmentExpression",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "foo",
+              "raw": "foo",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "baz",
+              "raw": "baz",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`foo\${{a,b} = x}baz\` 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "left": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "type": "Property",
+                  "value": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                },
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "type": "Property",
+                  "value": {
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "operator": "=",
+            "right": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "type": "AssignmentExpression",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "foo",
+              "raw": "foo",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "baz",
+              "raw": "baz",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`foo\${{a,b}}baz\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "foo",
+              "raw": "foo",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "baz",
+              "raw": "baz",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`foo\${{a,b}}baz\` 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "foo",
+              "raw": "foo",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "baz",
+              "raw": "baz",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`foo\${bar}baz\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "name": "bar",
+            "type": "Identifier",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "foo",
+              "raw": "foo",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "baz",
+              "raw": "baz",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`foo\${bar}baz\` 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "name": "bar",
+            "type": "Identifier",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "foo",
+              "raw": "foo",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "baz",
+              "raw": "baz",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > \`outer\${{x: {y: 10}}}bar\${\`nested\${function(){return 1;}}endnest\`}end\`; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "properties": [
+                    {
+                      "computed": false,
+                      "key": {
+                        "name": "y",
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "shorthand": false,
+                      "type": "Property",
+                      "value": {
+                        "type": "Literal",
+                        "value": 10,
+                      },
+                    },
+                  ],
+                  "type": "ObjectExpression",
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+          {
+            "expressions": [
+              {
+                "async": false,
+                "body": {
+                  "body": [
+                    {
+                      "argument": {
+                        "type": "Literal",
+                        "value": 1,
+                      },
+                      "type": "ReturnStatement",
+                    },
+                  ],
+                  "type": "BlockStatement",
+                },
+                "generator": false,
+                "id": null,
+                "params": [],
+                "type": "FunctionExpression",
+              },
+            ],
+            "quasis": [
+              {
+                "tail": false,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": "nested",
+                  "raw": "nested",
+                },
+              },
+              {
+                "tail": true,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": "endnest",
+                  "raw": "endnest",
+                },
+              },
+            ],
+            "type": "TemplateLiteral",
+          },
+        ],
+        "quasis": [
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "outer",
+              "raw": "outer",
+            },
+          },
+          {
+            "tail": false,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "bar",
+              "raw": "bar",
+            },
+          },
+          {
+            "tail": true,
+            "type": "TemplateElement",
+            "value": {
+              "cooked": "end",
+              "raw": "end",
+            },
+          },
+        ],
+        "type": "TemplateLiteral",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > {\`foo \${a} and \${b} and \${\`w \${d} x \${e} y \${f} z\`} baz\`} 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "expression": {
+            "expressions": [
+              {
+                "name": "a",
+                "type": "Identifier",
+              },
+              {
+                "name": "b",
+                "type": "Identifier",
+              },
+              {
+                "expressions": [
+                  {
+                    "name": "d",
+                    "type": "Identifier",
+                  },
+                  {
+                    "name": "e",
+                    "type": "Identifier",
+                  },
+                  {
+                    "name": "f",
+                    "type": "Identifier",
+                  },
+                ],
+                "quasis": [
+                  {
+                    "tail": false,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": "w ",
+                      "raw": "w ",
+                    },
+                  },
+                  {
+                    "tail": false,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": " x ",
+                      "raw": " x ",
+                    },
+                  },
+                  {
+                    "tail": false,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": " y ",
+                      "raw": " y ",
+                    },
+                  },
+                  {
+                    "tail": true,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": " z",
+                      "raw": " z",
+                    },
+                  },
+                ],
+                "type": "TemplateLiteral",
+              },
+            ],
+            "quasis": [
+              {
+                "tail": false,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": "foo ",
+                  "raw": "foo ",
+                },
+              },
+              {
+                "tail": false,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": " and ",
+                  "raw": " and ",
+                },
+              },
+              {
+                "tail": false,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": " and ",
+                  "raw": " and ",
+                },
+              },
+              {
+                "tail": true,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": " baz",
+                  "raw": " baz",
+                },
+              },
+            ],
+            "type": "TemplateLiteral",
+          },
+          "type": "ExpressionStatement",
+        },
+      ],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > {\`foo \${a} and \${b} and \${\`w \${d} x \${e} y \${f} z\`} baz\`} 2`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "expression": {
+            "expressions": [
+              {
+                "name": "a",
+                "type": "Identifier",
+              },
+              {
+                "name": "b",
+                "type": "Identifier",
+              },
+              {
+                "expressions": [
+                  {
+                    "name": "d",
+                    "type": "Identifier",
+                  },
+                  {
+                    "name": "e",
+                    "type": "Identifier",
+                  },
+                  {
+                    "name": "f",
+                    "type": "Identifier",
+                  },
+                ],
+                "quasis": [
+                  {
+                    "tail": false,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": "w ",
+                      "raw": "w ",
+                    },
+                  },
+                  {
+                    "tail": false,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": " x ",
+                      "raw": " x ",
+                    },
+                  },
+                  {
+                    "tail": false,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": " y ",
+                      "raw": " y ",
+                    },
+                  },
+                  {
+                    "tail": true,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": " z",
+                      "raw": " z",
+                    },
+                  },
+                ],
+                "type": "TemplateLiteral",
+              },
+            ],
+            "quasis": [
+              {
+                "tail": false,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": "foo ",
+                  "raw": "foo ",
+                },
+              },
+              {
+                "tail": false,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": " and ",
+                  "raw": " and ",
+                },
+              },
+              {
+                "tail": false,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": " and ",
+                  "raw": " and ",
+                },
+              },
+              {
+                "tail": true,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": " baz",
+                  "raw": " baz",
+                },
+              },
+            ],
+            "type": "TemplateLiteral",
+          },
+          "type": "ExpressionStatement",
+        },
+      ],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > {\`foo \${a} and \${b} and \${c} baz\`} 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "expression": {
+            "expressions": [
+              {
+                "name": "a",
+                "type": "Identifier",
+              },
+              {
+                "name": "b",
+                "type": "Identifier",
+              },
+              {
+                "name": "c",
+                "type": "Identifier",
+              },
+            ],
+            "quasis": [
+              {
+                "tail": false,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": "foo ",
+                  "raw": "foo ",
+                },
+              },
+              {
+                "tail": false,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": " and ",
+                  "raw": " and ",
+                },
+              },
+              {
+                "tail": false,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": " and ",
+                  "raw": " and ",
+                },
+              },
+              {
+                "tail": true,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": " baz",
+                  "raw": " baz",
+                },
+              },
+            ],
+            "type": "TemplateLiteral",
+          },
+          "type": "ExpressionStatement",
+        },
+      ],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > {\`foo \${a} and \${b} and \${c} baz\`} 2`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "expression": {
+            "expressions": [
+              {
+                "name": "a",
+                "type": "Identifier",
+              },
+              {
+                "name": "b",
+                "type": "Identifier",
+              },
+              {
+                "name": "c",
+                "type": "Identifier",
+              },
+            ],
+            "quasis": [
+              {
+                "tail": false,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": "foo ",
+                  "raw": "foo ",
+                },
+              },
+              {
+                "tail": false,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": " and ",
+                  "raw": " and ",
+                },
+              },
+              {
+                "tail": false,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": " and ",
+                  "raw": " and ",
+                },
+              },
+              {
+                "tail": true,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": " baz",
+                  "raw": " baz",
+                },
+              },
+            ],
+            "type": "TemplateLiteral",
+          },
+          "type": "ExpressionStatement",
+        },
+      ],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > {\`foo \${a} baz\`} 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "expression": {
+            "expressions": [
+              {
+                "name": "a",
+                "type": "Identifier",
+              },
+            ],
+            "quasis": [
+              {
+                "tail": false,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": "foo ",
+                  "raw": "foo ",
+                },
+              },
+              {
+                "tail": true,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": " baz",
+                  "raw": " baz",
+                },
+              },
+            ],
+            "type": "TemplateLiteral",
+          },
+          "type": "ExpressionStatement",
+        },
+      ],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > {\`foo \${a} baz\`} 2`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "expression": {
+            "expressions": [
+              {
+                "name": "a",
+                "type": "Identifier",
+              },
+            ],
+            "quasis": [
+              {
+                "tail": false,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": "foo ",
+                  "raw": "foo ",
+                },
+              },
+              {
+                "tail": true,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": " baz",
+                  "raw": " baz",
+                },
+              },
+            ],
+            "type": "TemplateLiteral",
+          },
+          "type": "ExpressionStatement",
+        },
+      ],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > {\`foo baz\`} 1`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "expression": {
+            "expressions": [],
+            "quasis": [
+              {
+                "tail": true,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": "foo baz",
+                  "raw": "foo baz",
+                },
+              },
+            ],
+            "type": "TemplateLiteral",
+          },
+          "type": "ExpressionStatement",
+        },
+      ],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > {\`foo baz\`} 2`] = `
+{
+  "body": [
+    {
+      "body": [
+        {
+          "expression": {
+            "expressions": [],
+            "quasis": [
+              {
+                "tail": true,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": "foo baz",
+                  "raw": "foo baz",
+                },
+              },
+            ],
+            "type": "TemplateLiteral",
+          },
+          "type": "ExpressionStatement",
+        },
+      ],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > String.raw\`{␍␊tf1adeflang1025ansiansicpg1252\\uc1\`; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "quasi": {
+          "expressions": [],
+          "quasis": [
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": null,
+                "raw": "{
+tf1adeflang1025ansiansicpg1252\\uc1",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "tag": {
+          "computed": false,
+          "object": {
+            "name": "String",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "raw",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > a.foo\`bar\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "quasi": {
+          "expressions": [],
+          "quasis": [
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": "bar",
+                "raw": "bar",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "tag": {
+          "computed": false,
+          "object": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > abc\`bar\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "quasi": {
+          "expressions": [],
+          "quasis": [
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": "bar",
+                "raw": "bar",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "tag": {
+          "name": "abc",
+          "type": "Identifier",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > f\`x\${/foo/}y\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "quasi": {
+          "expressions": [
+            {
+              "regex": {
+                "flags": "",
+                "pattern": "foo",
+              },
+              "type": "Literal",
+              "value": /foo/,
+            },
+          ],
+          "quasis": [
+            {
+              "tail": false,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": "x",
+                "raw": "x",
+              },
+            },
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": "y",
+                "raw": "y",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "tag": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > foo\`x\${a}y\${b}z\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "quasi": {
+          "expressions": [
+            {
+              "name": "a",
+              "type": "Identifier",
+            },
+            {
+              "name": "b",
+              "type": "Identifier",
+            },
+          ],
+          "quasis": [
+            {
+              "tail": false,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": "x",
+                "raw": "x",
+              },
+            },
+            {
+              "tail": false,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": "y",
+                "raw": "y",
+              },
+            },
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": "z",
+                "raw": "z",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "tag": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > function *f(){   x = \`1 \${ yield } 2 \${ 3 } 4\`   } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "left": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "operator": "=",
+              "right": {
+                "expressions": [
+                  {
+                    "argument": null,
+                    "delegate": false,
+                    "type": "YieldExpression",
+                  },
+                  {
+                    "type": "Literal",
+                    "value": 3,
+                  },
+                ],
+                "quasis": [
+                  {
+                    "tail": false,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": "1 ",
+                      "raw": "1 ",
+                    },
+                  },
+                  {
+                    "tail": false,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": " 2 ",
+                      "raw": " 2 ",
+                    },
+                  },
+                  {
+                    "tail": true,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": " 4",
+                      "raw": " 4",
+                    },
+                  },
+                ],
+                "type": "TemplateLiteral",
+              },
+              "type": "AssignmentExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > function *f(){   x = \`1 \${ yield } 2\`   } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "left": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "operator": "=",
+              "right": {
+                "expressions": [
+                  {
+                    "argument": null,
+                    "delegate": false,
+                    "type": "YieldExpression",
+                  },
+                ],
+                "quasis": [
+                  {
+                    "tail": false,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": "1 ",
+                      "raw": "1 ",
+                    },
+                  },
+                  {
+                    "tail": true,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": " 2",
+                      "raw": " 2",
+                    },
+                  },
+                ],
+                "type": "TemplateLiteral",
+              },
+              "type": "AssignmentExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > function *f(){   x = \`1 \${ yield } 2\`   } 2`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "left": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "operator": "=",
+              "right": {
+                "expressions": [
+                  {
+                    "argument": null,
+                    "delegate": false,
+                    "type": "YieldExpression",
+                  },
+                ],
+                "quasis": [
+                  {
+                    "tail": false,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": "1 ",
+                      "raw": "1 ",
+                    },
+                  },
+                  {
+                    "tail": true,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": " 2",
+                      "raw": " 2",
+                    },
+                  },
+                ],
+                "type": "TemplateLiteral",
+              },
+              "type": "AssignmentExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > function *f(){   x = \`1 \${ yield x } 2 \${ 3 } 4\`   } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "left": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "operator": "=",
+              "right": {
+                "expressions": [
+                  {
+                    "argument": {
+                      "name": "x",
+                      "type": "Identifier",
+                    },
+                    "delegate": false,
+                    "type": "YieldExpression",
+                  },
+                  {
+                    "type": "Literal",
+                    "value": 3,
+                  },
+                ],
+                "quasis": [
+                  {
+                    "tail": false,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": "1 ",
+                      "raw": "1 ",
+                    },
+                  },
+                  {
+                    "tail": false,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": " 2 ",
+                      "raw": " 2 ",
+                    },
+                  },
+                  {
+                    "tail": true,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": " 4",
+                      "raw": " 4",
+                    },
+                  },
+                ],
+                "type": "TemplateLiteral",
+              },
+              "type": "AssignmentExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > function *f(){   x = \`1 \${ yield x } 2\`   } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "left": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "operator": "=",
+              "right": {
+                "expressions": [
+                  {
+                    "argument": {
+                      "name": "x",
+                      "type": "Identifier",
+                    },
+                    "delegate": false,
+                    "type": "YieldExpression",
+                  },
+                ],
+                "quasis": [
+                  {
+                    "tail": false,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": "1 ",
+                      "raw": "1 ",
+                    },
+                  },
+                  {
+                    "tail": true,
+                    "type": "TemplateElement",
+                    "value": {
+                      "cooked": " 2",
+                      "raw": " 2",
+                    },
+                  },
+                ],
+                "type": "TemplateLiteral",
+              },
+              "type": "AssignmentExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > function a() {
+return \`1234\${b}\`;
+}
+ 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "argument": {
+              "end": 32,
+              "expressions": [
+                {
+                  "end": 30,
+                  "loc": {
+                    "end": {
+                      "column": 15,
+                      "line": 2,
+                    },
+                    "start": {
+                      "column": 14,
+                      "line": 2,
+                    },
+                  },
+                  "name": "b",
+                  "range": [
+                    29,
+                    30,
+                  ],
+                  "start": 29,
+                  "type": "Identifier",
+                },
+              ],
+              "loc": {
+                "end": {
+                  "column": 17,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 2,
+                },
+              },
+              "quasis": [
+                {
+                  "end": 27,
+                  "loc": {
+                    "end": {
+                      "column": 12,
+                      "line": 2,
+                    },
+                    "start": {
+                      "column": 8,
+                      "line": 2,
+                    },
+                  },
+                  "range": [
+                    23,
+                    27,
+                  ],
+                  "start": 23,
+                  "tail": false,
+                  "type": "TemplateElement",
+                  "value": {
+                    "cooked": "1234",
+                    "raw": "1234",
+                  },
+                },
+                {
+                  "end": 31,
+                  "loc": {
+                    "end": {
+                      "column": 16,
+                      "line": 2,
+                    },
+                    "start": {
+                      "column": 16,
+                      "line": 2,
+                    },
+                  },
+                  "range": [
+                    31,
+                    31,
+                  ],
+                  "start": 31,
+                  "tail": true,
+                  "type": "TemplateElement",
+                  "value": {
+                    "cooked": "",
+                    "raw": "",
+                  },
+                },
+              ],
+              "range": [
+                22,
+                32,
+              ],
+              "start": 22,
+              "type": "TemplateLiteral",
+            },
+            "end": 33,
+            "loc": {
+              "end": {
+                "column": 18,
+                "line": 2,
+              },
+              "start": {
+                "column": 0,
+                "line": 2,
+              },
+            },
+            "range": [
+              15,
+              33,
+            ],
+            "start": 15,
+            "type": "ReturnStatement",
+          },
+        ],
+        "end": 35,
+        "loc": {
+          "end": {
+            "column": 1,
+            "line": 3,
+          },
+          "start": {
+            "column": 13,
+            "line": 1,
+          },
+        },
+        "range": [
+          13,
+          35,
+        ],
+        "start": 13,
+        "type": "BlockStatement",
+      },
+      "end": 35,
+      "generator": false,
+      "id": {
+        "end": 10,
+        "loc": {
+          "end": {
+            "column": 10,
+            "line": 1,
+          },
+          "start": {
+            "column": 9,
+            "line": 1,
+          },
+        },
+        "name": "a",
+        "range": [
+          9,
+          10,
+        ],
+        "start": 9,
+        "type": "Identifier",
+      },
+      "loc": {
+        "end": {
+          "column": 1,
+          "line": 3,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "params": [],
+      "range": [
+        0,
+        35,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 36,
+  "loc": {
+    "end": {
+      "column": 0,
+      "line": 4,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    36,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > tag('a')('b')\`'\\00a0'\`; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "quasi": {
+          "expressions": [],
+          "quasis": [
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": null,
+                "raw": "'\\00a0'",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "tag": {
+          "arguments": [
+            {
+              "type": "Literal",
+              "value": "b",
+            },
+          ],
+          "callee": {
+            "arguments": [
+              {
+                "type": "Literal",
+                "value": "a",
+              },
+            ],
+            "callee": {
+              "name": "tag",
+              "type": "Identifier",
+            },
+            "type": "CallExpression",
+          },
+          "type": "CallExpression",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > tag('a')(b)(c, ...d)\`'\\00a0'\`; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "quasi": {
+          "expressions": [],
+          "quasis": [
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": null,
+                "raw": "'\\00a0'",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "tag": {
+          "arguments": [
+            {
+              "name": "c",
+              "type": "Identifier",
+            },
+            {
+              "argument": {
+                "name": "d",
+                "type": "Identifier",
+              },
+              "type": "SpreadElement",
+            },
+          ],
+          "callee": {
+            "arguments": [
+              {
+                "name": "b",
+                "type": "Identifier",
+              },
+            ],
+            "callee": {
+              "arguments": [
+                {
+                  "type": "Literal",
+                  "value": "a",
+                },
+              ],
+              "callee": {
+                "name": "tag",
+                "type": "Identifier",
+              },
+              "type": "CallExpression",
+            },
+            "type": "CallExpression",
+          },
+          "type": "CallExpression",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > tag('a')\`'\\00a0'\`; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "quasi": {
+          "expressions": [],
+          "quasis": [
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": null,
+                "raw": "'\\00a0'",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "tag": {
+          "arguments": [
+            {
+              "type": "Literal",
+              "value": "a",
+            },
+          ],
+          "callee": {
+            "name": "tag",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > tag()(...a)\`'\\00a0'\`; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "quasi": {
+          "expressions": [],
+          "quasis": [
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": null,
+                "raw": "'\\00a0'",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "tag": {
+          "arguments": [
+            {
+              "argument": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "type": "SpreadElement",
+            },
+          ],
+          "callee": {
+            "arguments": [],
+            "callee": {
+              "name": "tag",
+              "type": "Identifier",
+            },
+            "type": "CallExpression",
+          },
+          "type": "CallExpression",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > tag()\`'\\00a0'\`; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "quasi": {
+          "expressions": [],
+          "quasis": [
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": null,
+                "raw": "'\\00a0'",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "tag": {
+          "arguments": [],
+          "callee": {
+            "name": "tag",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > tagA\`a\`
+tagB\`b\` 1`] = `
+{
+  "body": [
+    {
+      "end": 7,
+      "expression": {
+        "end": 7,
+        "loc": {
+          "end": {
+            "column": 7,
+            "line": 1,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "quasi": {
+          "end": 7,
+          "expressions": [],
+          "loc": {
+            "end": {
+              "column": 7,
+              "line": 1,
+            },
+            "start": {
+              "column": 4,
+              "line": 1,
+            },
+          },
+          "quasis": [
+            {
+              "end": 6,
+              "loc": {
+                "end": {
+                  "column": 6,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 5,
+                  "line": 1,
+                },
+              },
+              "range": [
+                5,
+                6,
+              ],
+              "start": 5,
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": "a",
+                "raw": "a",
+              },
+            },
+          ],
+          "range": [
+            4,
+            7,
+          ],
+          "start": 4,
+          "type": "TemplateLiteral",
+        },
+        "range": [
+          0,
+          7,
+        ],
+        "start": 0,
+        "tag": {
+          "end": 4,
+          "loc": {
+            "end": {
+              "column": 4,
+              "line": 1,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "name": "tagA",
+          "range": [
+            0,
+            4,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 7,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        7,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+    {
+      "end": 15,
+      "expression": {
+        "end": 15,
+        "loc": {
+          "end": {
+            "column": 7,
+            "line": 2,
+          },
+          "start": {
+            "column": 0,
+            "line": 2,
+          },
+        },
+        "quasi": {
+          "end": 15,
+          "expressions": [],
+          "loc": {
+            "end": {
+              "column": 7,
+              "line": 2,
+            },
+            "start": {
+              "column": 4,
+              "line": 2,
+            },
+          },
+          "quasis": [
+            {
+              "end": 14,
+              "loc": {
+                "end": {
+                  "column": 6,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 5,
+                  "line": 2,
+                },
+              },
+              "range": [
+                13,
+                14,
+              ],
+              "start": 13,
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": "b",
+                "raw": "b",
+              },
+            },
+          ],
+          "range": [
+            12,
+            15,
+          ],
+          "start": 12,
+          "type": "TemplateLiteral",
+        },
+        "range": [
+          8,
+          15,
+        ],
+        "start": 8,
+        "tag": {
+          "end": 12,
+          "loc": {
+            "end": {
+              "column": 4,
+              "line": 2,
+            },
+            "start": {
+              "column": 0,
+              "line": 2,
+            },
+          },
+          "name": "tagB",
+          "range": [
+            8,
+            12,
+          ],
+          "start": 8,
+          "type": "Identifier",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 7,
+          "line": 2,
+        },
+        "start": {
+          "column": 0,
+          "line": 2,
+        },
+      },
+      "range": [
+        8,
+        15,
+      ],
+      "start": 8,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 15,
+  "loc": {
+    "end": {
+      "column": 7,
+      "line": 2,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    15,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > test\`\\u{0\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "quasi": {
+          "expressions": [],
+          "quasis": [
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": null,
+                "raw": "\\u{0",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "tag": {
+          "name": "test",
+          "type": "Identifier",
+        },
+        "type": "TaggedTemplateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > var await = \`simple template\`; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "await",
+            "type": "Identifier",
+          },
+          "init": {
+            "expressions": [],
+            "quasis": [
+              {
+                "tail": true,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": "simple template",
+                  "raw": "simple template",
+                },
+              },
+            ],
+            "type": "TemplateLiteral",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > var y = \`{ \${x} }\`; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "init": {
+            "expressions": [
+              {
+                "name": "x",
+                "type": "Identifier",
+              },
+            ],
+            "quasis": [
+              {
+                "tail": false,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": "{ ",
+                  "raw": "{ ",
+                },
+              },
+              {
+                "tail": true,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": " }",
+                  "raw": " }",
+                },
+              },
+            ],
+            "type": "TemplateLiteral",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > var y = \`{\${x}}\`; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "init": {
+            "expressions": [
+              {
+                "name": "x",
+                "type": "Identifier",
+              },
+            ],
+            "quasis": [
+              {
+                "tail": false,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": "{",
+                  "raw": "{",
+                },
+              },
+              {
+                "tail": true,
+                "type": "TemplateElement",
+                "value": {
+                  "cooked": "}",
+                  "raw": "}",
+                },
+              },
+            ],
+            "type": "TemplateLiteral",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > x = \`1 \${ yield } 2 \${ 3 } 4\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "expressions": [
+            {
+              "name": "yield",
+              "type": "Identifier",
+            },
+            {
+              "type": "Literal",
+              "value": 3,
+            },
+          ],
+          "quasis": [
+            {
+              "tail": false,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": "1 ",
+                "raw": "1 ",
+              },
+            },
+            {
+              "tail": false,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": " 2 ",
+                "raw": " 2 ",
+              },
+            },
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": " 4",
+                "raw": " 4",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Template > Expressions - Template (pass) > x = \`1 \${ yield } 2\` 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "expressions": [
+            {
+              "name": "yield",
+              "type": "Identifier",
+            },
+          ],
+          "quasis": [
+            {
+              "tail": false,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": "1 ",
+                "raw": "1 ",
+              },
+            },
+            {
+              "tail": true,
+              "type": "TemplateElement",
+              "value": {
+                "cooked": " 2",
+                "raw": " 2",
+              },
+            },
+          ],
+          "type": "TemplateLiteral",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

@@ -1,0 +1,7795 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (( [x]=f(yield) )=>{}); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "left": {
+              "elements": [
+                {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "right": {
+              "arguments": [
+                {
+                  "name": "yield",
+                  "type": "Identifier",
+                },
+              ],
+              "callee": {
+                "name": "f",
+                "type": "Identifier",
+              },
+              "type": "CallExpression",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (( {x=f(yield)} )=>{}); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "left": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "right": {
+                    "arguments": [
+                      {
+                        "name": "yield",
+                        "type": "Identifier",
+                      },
+                    ],
+                    "callee": {
+                      "name": "f",
+                      "type": "Identifier",
+                    },
+                    "type": "CallExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (() => {}) + 2 1`] = `
+{
+  "body": [
+    {
+      "end": 14,
+      "expression": {
+        "end": 14,
+        "left": {
+          "async": false,
+          "body": {
+            "body": [],
+            "end": 9,
+            "range": [
+              7,
+              9,
+            ],
+            "start": 7,
+            "type": "BlockStatement",
+          },
+          "end": 9,
+          "expression": false,
+          "generator": false,
+          "params": [],
+          "range": [
+            1,
+            9,
+          ],
+          "start": 1,
+          "type": "ArrowFunctionExpression",
+        },
+        "operator": "+",
+        "range": [
+          0,
+          14,
+        ],
+        "right": {
+          "end": 14,
+          "range": [
+            13,
+            14,
+          ],
+          "start": 13,
+          "type": "Literal",
+          "value": 2,
+        },
+        "start": 0,
+        "type": "BinaryExpression",
+      },
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 14,
+  "range": [
+    0,
+    14,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (() => {}) << x 1`] = `
+{
+  "body": [
+    {
+      "end": 15,
+      "expression": {
+        "end": 15,
+        "left": {
+          "async": false,
+          "body": {
+            "body": [],
+            "end": 9,
+            "range": [
+              7,
+              9,
+            ],
+            "start": 7,
+            "type": "BlockStatement",
+          },
+          "end": 9,
+          "expression": false,
+          "generator": false,
+          "params": [],
+          "range": [
+            1,
+            9,
+          ],
+          "start": 1,
+          "type": "ArrowFunctionExpression",
+        },
+        "operator": "<<",
+        "range": [
+          0,
+          15,
+        ],
+        "right": {
+          "end": 15,
+          "name": "x",
+          "range": [
+            14,
+            15,
+          ],
+          "start": 14,
+          "type": "Identifier",
+        },
+        "start": 0,
+        "type": "BinaryExpression",
+      },
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 15,
+  "range": [
+    0,
+    15,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (() => {}) || true;
+    (() => {}) ? a : b; 1`] = `
+{
+  "body": [
+    {
+      "end": 19,
+      "expression": {
+        "end": 18,
+        "left": {
+          "async": false,
+          "body": {
+            "body": [],
+            "end": 9,
+            "range": [
+              7,
+              9,
+            ],
+            "start": 7,
+            "type": "BlockStatement",
+          },
+          "end": 9,
+          "expression": false,
+          "generator": false,
+          "params": [],
+          "range": [
+            1,
+            9,
+          ],
+          "start": 1,
+          "type": "ArrowFunctionExpression",
+        },
+        "operator": "||",
+        "range": [
+          0,
+          18,
+        ],
+        "right": {
+          "end": 18,
+          "range": [
+            14,
+            18,
+          ],
+          "start": 14,
+          "type": "Literal",
+          "value": true,
+        },
+        "start": 0,
+        "type": "LogicalExpression",
+      },
+      "range": [
+        0,
+        19,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+    {
+      "end": 43,
+      "expression": {
+        "alternate": {
+          "end": 42,
+          "name": "b",
+          "range": [
+            41,
+            42,
+          ],
+          "start": 41,
+          "type": "Identifier",
+        },
+        "consequent": {
+          "end": 38,
+          "name": "a",
+          "range": [
+            37,
+            38,
+          ],
+          "start": 37,
+          "type": "Identifier",
+        },
+        "end": 42,
+        "range": [
+          24,
+          42,
+        ],
+        "start": 24,
+        "test": {
+          "async": false,
+          "body": {
+            "body": [],
+            "end": 33,
+            "range": [
+              31,
+              33,
+            ],
+            "start": 31,
+            "type": "BlockStatement",
+          },
+          "end": 33,
+          "expression": false,
+          "generator": false,
+          "params": [],
+          "range": [
+            25,
+            33,
+          ],
+          "start": 25,
+          "type": "ArrowFunctionExpression",
+        },
+        "type": "ConditionalExpression",
+      },
+      "range": [
+        24,
+        43,
+      ],
+      "start": 24,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 43,
+  "range": [
+    0,
+    43,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ((a, b) => {}, (a => a + 1)); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "async": false,
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "expression": false,
+            "generator": false,
+            "params": [
+              {
+                "name": "a",
+                "type": "Identifier",
+              },
+              {
+                "name": "b",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+          {
+            "async": false,
+            "body": {
+              "left": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "operator": "+",
+              "right": {
+                "type": "Literal",
+                "value": 1,
+              },
+              "type": "BinaryExpression",
+            },
+            "expression": true,
+            "generator": false,
+            "params": [
+              {
+                "name": "a",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+        ],
+        "type": "SequenceExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > () => { let {} = y } 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [
+            {
+              "declarations": [
+                {
+                  "id": {
+                    "properties": [],
+                    "type": "ObjectPattern",
+                  },
+                  "init": {
+                    "name": "y",
+                    "type": "Identifier",
+                  },
+                  "type": "VariableDeclarator",
+                },
+              ],
+              "kind": "let",
+              "type": "VariableDeclaration",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > () => { let x } 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [
+            {
+              "declarations": [
+                {
+                  "id": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "init": null,
+                  "type": "VariableDeclarator",
+                },
+              ],
+              "kind": "let",
+              "type": "VariableDeclaration",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > () => {}
++function(){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "expression": false,
+          "generator": false,
+          "params": [],
+          "type": "ArrowFunctionExpression",
+        },
+        "operator": "+",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": null,
+          "params": [],
+          "type": "FunctionExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > () => a + b - yield / 1 1`] = `
+{
+  "body": [
+    {
+      "end": 23,
+      "expression": {
+        "async": false,
+        "body": {
+          "end": 23,
+          "left": {
+            "end": 11,
+            "left": {
+              "end": 7,
+              "name": "a",
+              "range": [
+                6,
+                7,
+              ],
+              "start": 6,
+              "type": "Identifier",
+            },
+            "operator": "+",
+            "range": [
+              6,
+              11,
+            ],
+            "right": {
+              "end": 11,
+              "name": "b",
+              "range": [
+                10,
+                11,
+              ],
+              "start": 10,
+              "type": "Identifier",
+            },
+            "start": 6,
+            "type": "BinaryExpression",
+          },
+          "operator": "-",
+          "range": [
+            6,
+            23,
+          ],
+          "right": {
+            "end": 23,
+            "left": {
+              "end": 19,
+              "name": "yield",
+              "range": [
+                14,
+                19,
+              ],
+              "start": 14,
+              "type": "Identifier",
+            },
+            "operator": "/",
+            "range": [
+              14,
+              23,
+            ],
+            "right": {
+              "end": 23,
+              "range": [
+                22,
+                23,
+              ],
+              "start": 22,
+              "type": "Literal",
+              "value": 1,
+            },
+            "start": 14,
+            "type": "BinaryExpression",
+          },
+          "start": 6,
+          "type": "BinaryExpression",
+        },
+        "end": 23,
+        "expression": true,
+        "generator": false,
+        "params": [],
+        "range": [
+          0,
+          23,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        23,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 23,
+  "range": [
+    0,
+    23,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > () => bar 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "name": "bar",
+          "type": "Identifier",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (...a) => {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "argument": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "type": "RestElement",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (...a) => 0 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "type": "Literal",
+          "value": 0,
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "argument": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "type": "RestElement",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ([...x]) => x 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "elements": [
+              {
+                "argument": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "type": "RestElement",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ([[[[[[[[[[[[[[[[[[[[{a=b}]]]]]]]]]]]]]]]]]]]])=>0; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "type": "Literal",
+          "value": 0,
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "elements": [
+              {
+                "elements": [
+                  {
+                    "elements": [
+                      {
+                        "elements": [
+                          {
+                            "elements": [
+                              {
+                                "elements": [
+                                  {
+                                    "elements": [
+                                      {
+                                        "elements": [
+                                          {
+                                            "elements": [
+                                              {
+                                                "elements": [
+                                                  {
+                                                    "elements": [
+                                                      {
+                                                        "elements": [
+                                                          {
+                                                            "elements": [
+                                                              {
+                                                                "elements": [
+                                                                  {
+                                                                    "elements": [
+                                                                      {
+                                                                        "elements": [
+                                                                          {
+                                                                            "elements": [
+                                                                              {
+                                                                                "elements": [
+                                                                                  {
+                                                                                    "elements": [
+                                                                                      {
+                                                                                        "elements": [
+                                                                                          {
+                                                                                            "properties": [
+                                                                                              {
+                                                                                                "computed": false,
+                                                                                                "key": {
+                                                                                                  "name": "a",
+                                                                                                  "type": "Identifier",
+                                                                                                },
+                                                                                                "kind": "init",
+                                                                                                "method": false,
+                                                                                                "shorthand": true,
+                                                                                                "type": "Property",
+                                                                                                "value": {
+                                                                                                  "left": {
+                                                                                                    "name": "a",
+                                                                                                    "type": "Identifier",
+                                                                                                  },
+                                                                                                  "right": {
+                                                                                                    "name": "b",
+                                                                                                    "type": "Identifier",
+                                                                                                  },
+                                                                                                  "type": "AssignmentPattern",
+                                                                                                },
+                                                                                              },
+                                                                                            ],
+                                                                                            "type": "ObjectPattern",
+                                                                                          },
+                                                                                        ],
+                                                                                        "type": "ArrayPattern",
+                                                                                      },
+                                                                                    ],
+                                                                                    "type": "ArrayPattern",
+                                                                                  },
+                                                                                ],
+                                                                                "type": "ArrayPattern",
+                                                                              },
+                                                                            ],
+                                                                            "type": "ArrayPattern",
+                                                                          },
+                                                                        ],
+                                                                        "type": "ArrayPattern",
+                                                                      },
+                                                                    ],
+                                                                    "type": "ArrayPattern",
+                                                                  },
+                                                                ],
+                                                                "type": "ArrayPattern",
+                                                              },
+                                                            ],
+                                                            "type": "ArrayPattern",
+                                                          },
+                                                        ],
+                                                        "type": "ArrayPattern",
+                                                      },
+                                                    ],
+                                                    "type": "ArrayPattern",
+                                                  },
+                                                ],
+                                                "type": "ArrayPattern",
+                                              },
+                                            ],
+                                            "type": "ArrayPattern",
+                                          },
+                                        ],
+                                        "type": "ArrayPattern",
+                                      },
+                                    ],
+                                    "type": "ArrayPattern",
+                                  },
+                                ],
+                                "type": "ArrayPattern",
+                              },
+                            ],
+                            "type": "ArrayPattern",
+                          },
+                        ],
+                        "type": "ArrayPattern",
+                      },
+                    ],
+                    "type": "ArrayPattern",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ([[x, y] = z]) => x; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "elements": [
+              {
+                "left": {
+                  "elements": [
+                    {
+                      "name": "x",
+                      "type": "Identifier",
+                    },
+                    {
+                      "name": "y",
+                      "type": "Identifier",
+                    },
+                  ],
+                  "type": "ArrayPattern",
+                },
+                "right": {
+                  "name": "z",
+                  "type": "Identifier",
+                },
+                "type": "AssignmentPattern",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ([], a) => {} 1`] = `
+{
+  "body": [
+    {
+      "end": 13,
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "end": 13,
+          "range": [
+            11,
+            13,
+          ],
+          "start": 11,
+          "type": "BlockStatement",
+        },
+        "end": 13,
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "elements": [],
+            "end": 3,
+            "range": [
+              1,
+              3,
+            ],
+            "start": 1,
+            "type": "ArrayPattern",
+          },
+          {
+            "end": 6,
+            "name": "a",
+            "range": [
+              5,
+              6,
+            ],
+            "start": 5,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          0,
+          13,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        13,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 13,
+  "range": [
+    0,
+    13,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ([x = 0]) => {}; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "elements": [
+              {
+                "left": {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "right": {
+                  "type": "Literal",
+                  "value": 0,
+                },
+                "type": "AssignmentPattern",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ([x = yield]) => x 1`] = `
+{
+  "body": [
+    {
+      "end": 18,
+      "expression": {
+        "async": false,
+        "body": {
+          "end": 18,
+          "name": "x",
+          "range": [
+            17,
+            18,
+          ],
+          "start": 17,
+          "type": "Identifier",
+        },
+        "end": 18,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "elements": [
+              {
+                "end": 11,
+                "left": {
+                  "end": 3,
+                  "name": "x",
+                  "range": [
+                    2,
+                    3,
+                  ],
+                  "start": 2,
+                  "type": "Identifier",
+                },
+                "range": [
+                  2,
+                  11,
+                ],
+                "right": {
+                  "end": 11,
+                  "name": "yield",
+                  "range": [
+                    6,
+                    11,
+                  ],
+                  "start": 6,
+                  "type": "Identifier",
+                },
+                "start": 2,
+                "type": "AssignmentPattern",
+              },
+            ],
+            "end": 12,
+            "range": [
+              1,
+              12,
+            ],
+            "start": 1,
+            "type": "ArrayPattern",
+          },
+        ],
+        "range": [
+          0,
+          18,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        18,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 18,
+  "range": [
+    0,
+    18,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ([x, ...y]) => x 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "elements": [
+              {
+                "name": "x",
+                "type": "Identifier",
+              },
+              {
+                "argument": {
+                  "name": "y",
+                  "type": "Identifier",
+                },
+                "type": "RestElement",
+              },
+            ],
+            "type": "ArrayPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ([x, {y: [yield]}]) 1`] = `
+{
+  "body": [
+    {
+      "end": 19,
+      "expression": {
+        "elements": [
+          {
+            "end": 3,
+            "name": "x",
+            "range": [
+              2,
+              3,
+            ],
+            "start": 2,
+            "type": "Identifier",
+          },
+          {
+            "end": 17,
+            "properties": [
+              {
+                "computed": false,
+                "end": 16,
+                "key": {
+                  "end": 7,
+                  "name": "y",
+                  "range": [
+                    6,
+                    7,
+                  ],
+                  "start": 6,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  6,
+                  16,
+                ],
+                "shorthand": false,
+                "start": 6,
+                "type": "Property",
+                "value": {
+                  "elements": [
+                    {
+                      "end": 15,
+                      "name": "yield",
+                      "range": [
+                        10,
+                        15,
+                      ],
+                      "start": 10,
+                      "type": "Identifier",
+                    },
+                  ],
+                  "end": 16,
+                  "range": [
+                    9,
+                    16,
+                  ],
+                  "start": 9,
+                  "type": "ArrayExpression",
+                },
+              },
+            ],
+            "range": [
+              5,
+              17,
+            ],
+            "start": 5,
+            "type": "ObjectExpression",
+          },
+        ],
+        "end": 18,
+        "range": [
+          1,
+          18,
+        ],
+        "start": 1,
+        "type": "ArrayExpression",
+      },
+      "range": [
+        0,
+        19,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 19,
+  "range": [
+    0,
+    19,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ([x, y] = z) => x; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "left": {
+              "elements": [
+                {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                {
+                  "name": "y",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "right": {
+              "name": "z",
+              "type": "Identifier",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ([x] = []) => {} 1`] = `
+{
+  "body": [
+    {
+      "end": 16,
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "end": 16,
+          "range": [
+            14,
+            16,
+          ],
+          "start": 14,
+          "type": "BlockStatement",
+        },
+        "end": 16,
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "end": 9,
+            "left": {
+              "elements": [
+                {
+                  "end": 3,
+                  "name": "x",
+                  "range": [
+                    2,
+                    3,
+                  ],
+                  "start": 2,
+                  "type": "Identifier",
+                },
+              ],
+              "end": 4,
+              "range": [
+                1,
+                4,
+              ],
+              "start": 1,
+              "type": "ArrayPattern",
+            },
+            "range": [
+              1,
+              9,
+            ],
+            "right": {
+              "elements": [],
+              "end": 9,
+              "range": [
+                7,
+                9,
+              ],
+              "start": 7,
+              "type": "ArrayExpression",
+            },
+            "start": 1,
+            "type": "AssignmentPattern",
+          },
+        ],
+        "range": [
+          0,
+          16,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        16,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 16,
+  "range": [
+    0,
+    16,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ([x] = []) => {}; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "left": {
+              "elements": [
+                {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "right": {
+              "elements": [],
+              "type": "ArrayExpression",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ({}) => {} 1`] = `
+{
+  "body": [
+    {
+      "end": 10,
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "end": 10,
+          "range": [
+            8,
+            10,
+          ],
+          "start": 8,
+          "type": "BlockStatement",
+        },
+        "end": 10,
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "end": 3,
+            "properties": [],
+            "range": [
+              1,
+              3,
+            ],
+            "start": 1,
+            "type": "ObjectPattern",
+          },
+        ],
+        "range": [
+          0,
+          10,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        10,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 10,
+  "range": [
+    0,
+    10,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ({}, a) => {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "properties": [],
+            "type": "ObjectPattern",
+          },
+          {
+            "name": "a",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ({}, a) => {}; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "properties": [],
+            "type": "ObjectPattern",
+          },
+          {
+            "name": "a",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ({a} = {}) => {} 1`] = `
+{
+  "body": [
+    {
+      "end": 16,
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "end": 16,
+          "range": [
+            14,
+            16,
+          ],
+          "start": 14,
+          "type": "BlockStatement",
+        },
+        "end": 16,
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "end": 9,
+            "left": {
+              "end": 4,
+              "properties": [
+                {
+                  "computed": false,
+                  "end": 3,
+                  "key": {
+                    "end": 3,
+                    "name": "a",
+                    "range": [
+                      2,
+                      3,
+                    ],
+                    "start": 2,
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "range": [
+                    2,
+                    3,
+                  ],
+                  "shorthand": true,
+                  "start": 2,
+                  "type": "Property",
+                  "value": {
+                    "end": 3,
+                    "name": "a",
+                    "range": [
+                      2,
+                      3,
+                    ],
+                    "start": 2,
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "range": [
+                1,
+                4,
+              ],
+              "start": 1,
+              "type": "ObjectPattern",
+            },
+            "range": [
+              1,
+              9,
+            ],
+            "right": {
+              "end": 9,
+              "properties": [],
+              "range": [
+                7,
+                9,
+              ],
+              "start": 7,
+              "type": "ObjectExpression",
+            },
+            "start": 1,
+            "type": "AssignmentPattern",
+          },
+        ],
+        "range": [
+          0,
+          16,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        16,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 16,
+  "range": [
+    0,
+    16,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ({a} = {}) => {} 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "left": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "type": "Property",
+                  "value": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "right": {
+              "properties": [],
+              "type": "ObjectExpression",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ({a} = {}) => {}; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "left": {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "type": "Property",
+                  "value": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "type": "ObjectPattern",
+            },
+            "right": {
+              "properties": [],
+              "type": "ObjectExpression",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ({a} = b,) => {} 1`] = `
+{
+  "body": [
+    {
+      "end": 16,
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "end": 16,
+          "range": [
+            14,
+            16,
+          ],
+          "start": 14,
+          "type": "BlockStatement",
+        },
+        "end": 16,
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "end": 8,
+            "left": {
+              "end": 4,
+              "properties": [
+                {
+                  "computed": false,
+                  "end": 3,
+                  "key": {
+                    "end": 3,
+                    "name": "a",
+                    "range": [
+                      2,
+                      3,
+                    ],
+                    "start": 2,
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "range": [
+                    2,
+                    3,
+                  ],
+                  "shorthand": true,
+                  "start": 2,
+                  "type": "Property",
+                  "value": {
+                    "end": 3,
+                    "name": "a",
+                    "range": [
+                      2,
+                      3,
+                    ],
+                    "start": 2,
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "range": [
+                1,
+                4,
+              ],
+              "start": 1,
+              "type": "ObjectPattern",
+            },
+            "range": [
+              1,
+              8,
+            ],
+            "right": {
+              "end": 8,
+              "name": "b",
+              "range": [
+                7,
+                8,
+              ],
+              "start": 7,
+              "type": "Identifier",
+            },
+            "start": 1,
+            "type": "AssignmentPattern",
+          },
+        ],
+        "range": [
+          0,
+          16,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        16,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 16,
+  "range": [
+    0,
+    16,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ({a}) => {}; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "type": "Property",
+                "value": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ({ident: {x: y}}) => x 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "ident",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "properties": [
+                    {
+                      "computed": false,
+                      "key": {
+                        "name": "x",
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "shorthand": false,
+                      "type": "Property",
+                      "value": {
+                        "name": "y",
+                        "type": "Identifier",
+                      },
+                    },
+                  ],
+                  "type": "ObjectPattern",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ({ident: {x}}) => x 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "ident",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "properties": [
+                    {
+                      "computed": false,
+                      "key": {
+                        "name": "x",
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "shorthand": true,
+                      "type": "Property",
+                      "value": {
+                        "name": "x",
+                        "type": "Identifier",
+                      },
+                    },
+                  ],
+                  "type": "ObjectPattern",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ({x = 10, y: { z = 10 }}) => [x, z] 1`] = `
+{
+  "body": [
+    {
+      "end": 35,
+      "expression": {
+        "async": false,
+        "body": {
+          "elements": [
+            {
+              "end": 31,
+              "name": "x",
+              "range": [
+                30,
+                31,
+              ],
+              "start": 30,
+              "type": "Identifier",
+            },
+            {
+              "end": 34,
+              "name": "z",
+              "range": [
+                33,
+                34,
+              ],
+              "start": 33,
+              "type": "Identifier",
+            },
+          ],
+          "end": 35,
+          "range": [
+            29,
+            35,
+          ],
+          "start": 29,
+          "type": "ArrayExpression",
+        },
+        "end": 35,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 24,
+            "properties": [
+              {
+                "computed": false,
+                "end": 8,
+                "key": {
+                  "end": 3,
+                  "name": "x",
+                  "range": [
+                    2,
+                    3,
+                  ],
+                  "start": 2,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  2,
+                  8,
+                ],
+                "shorthand": true,
+                "start": 2,
+                "type": "Property",
+                "value": {
+                  "end": 8,
+                  "left": {
+                    "end": 3,
+                    "name": "x",
+                    "range": [
+                      2,
+                      3,
+                    ],
+                    "start": 2,
+                    "type": "Identifier",
+                  },
+                  "range": [
+                    2,
+                    8,
+                  ],
+                  "right": {
+                    "end": 8,
+                    "range": [
+                      6,
+                      8,
+                    ],
+                    "raw": "10",
+                    "start": 6,
+                    "type": "Literal",
+                    "value": 10,
+                  },
+                  "start": 2,
+                  "type": "AssignmentPattern",
+                },
+              },
+              {
+                "computed": false,
+                "end": 23,
+                "key": {
+                  "end": 11,
+                  "name": "y",
+                  "range": [
+                    10,
+                    11,
+                  ],
+                  "start": 10,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  10,
+                  23,
+                ],
+                "shorthand": false,
+                "start": 10,
+                "type": "Property",
+                "value": {
+                  "end": 23,
+                  "properties": [
+                    {
+                      "computed": false,
+                      "end": 21,
+                      "key": {
+                        "end": 16,
+                        "name": "z",
+                        "range": [
+                          15,
+                          16,
+                        ],
+                        "start": 15,
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "range": [
+                        15,
+                        21,
+                      ],
+                      "shorthand": true,
+                      "start": 15,
+                      "type": "Property",
+                      "value": {
+                        "end": 21,
+                        "left": {
+                          "end": 16,
+                          "name": "z",
+                          "range": [
+                            15,
+                            16,
+                          ],
+                          "start": 15,
+                          "type": "Identifier",
+                        },
+                        "range": [
+                          15,
+                          21,
+                        ],
+                        "right": {
+                          "end": 21,
+                          "range": [
+                            19,
+                            21,
+                          ],
+                          "raw": "10",
+                          "start": 19,
+                          "type": "Literal",
+                          "value": 10,
+                        },
+                        "start": 15,
+                        "type": "AssignmentPattern",
+                      },
+                    },
+                  ],
+                  "range": [
+                    13,
+                    23,
+                  ],
+                  "start": 13,
+                  "type": "ObjectPattern",
+                },
+              },
+            ],
+            "range": [
+              1,
+              24,
+            ],
+            "start": 1,
+            "type": "ObjectPattern",
+          },
+        ],
+        "range": [
+          0,
+          35,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        35,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 35,
+  "range": [
+    0,
+    35,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ({x = 10}) => x 1`] = `
+{
+  "body": [
+    {
+      "end": 15,
+      "expression": {
+        "async": false,
+        "body": {
+          "end": 15,
+          "name": "x",
+          "range": [
+            14,
+            15,
+          ],
+          "start": 14,
+          "type": "Identifier",
+        },
+        "end": 15,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 9,
+            "properties": [
+              {
+                "computed": false,
+                "end": 8,
+                "key": {
+                  "end": 3,
+                  "name": "x",
+                  "range": [
+                    2,
+                    3,
+                  ],
+                  "start": 2,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  2,
+                  8,
+                ],
+                "shorthand": true,
+                "start": 2,
+                "type": "Property",
+                "value": {
+                  "end": 8,
+                  "left": {
+                    "end": 3,
+                    "name": "x",
+                    "range": [
+                      2,
+                      3,
+                    ],
+                    "start": 2,
+                    "type": "Identifier",
+                  },
+                  "range": [
+                    2,
+                    8,
+                  ],
+                  "right": {
+                    "end": 8,
+                    "range": [
+                      6,
+                      8,
+                    ],
+                    "start": 6,
+                    "type": "Literal",
+                    "value": 10,
+                  },
+                  "start": 2,
+                  "type": "AssignmentPattern",
+                },
+              },
+            ],
+            "range": [
+              1,
+              9,
+            ],
+            "start": 1,
+            "type": "ObjectPattern",
+          },
+        ],
+        "range": [
+          0,
+          15,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 15,
+  "range": [
+    0,
+    15,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > ({x}); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "properties": [
+          {
+            "computed": false,
+            "key": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "type": "Property",
+            "value": {
+              "name": "x",
+              "type": "Identifier",
+            },
+          },
+        ],
+        "type": "ObjectExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (a = 1) => {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "left": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "right": {
+              "type": "Literal",
+              "value": 1,
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (a = 1, b = 2) => x; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "left": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "right": {
+              "type": "Literal",
+              "value": 1,
+            },
+            "type": "AssignmentPattern",
+          },
+          {
+            "left": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "right": {
+              "type": "Literal",
+              "value": 2,
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (a = b) => {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "left": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "right": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (a = b, c) => {} 1`] = `
+{
+  "body": [
+    {
+      "end": 16,
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "end": 16,
+          "range": [
+            14,
+            16,
+          ],
+          "start": 14,
+          "type": "BlockStatement",
+        },
+        "end": 16,
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "end": 6,
+            "left": {
+              "end": 2,
+              "name": "a",
+              "range": [
+                1,
+                2,
+              ],
+              "start": 1,
+              "type": "Identifier",
+            },
+            "range": [
+              1,
+              6,
+            ],
+            "right": {
+              "end": 6,
+              "name": "b",
+              "range": [
+                5,
+                6,
+              ],
+              "start": 5,
+              "type": "Identifier",
+            },
+            "start": 1,
+            "type": "AssignmentPattern",
+          },
+          {
+            "end": 9,
+            "name": "c",
+            "range": [
+              8,
+              9,
+            ],
+            "start": 8,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          0,
+          16,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        16,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 16,
+  "range": [
+    0,
+    16,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (a) => 00; 1`] = `
+{
+  "body": [
+    {
+      "end": 10,
+      "expression": {
+        "async": false,
+        "body": {
+          "end": 9,
+          "range": [
+            7,
+            9,
+          ],
+          "start": 7,
+          "type": "Literal",
+          "value": 0,
+        },
+        "end": 9,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 2,
+            "name": "a",
+            "range": [
+              1,
+              2,
+            ],
+            "start": 1,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          0,
+          9,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        10,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 10,
+  "range": [
+    0,
+    10,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (a) => b;  // 1 args
+    (a, b) => c;  // n args
+    () => b;  // 0 args
+    (a) => (b) => c;  // func returns func returns func
+    (a) => ((b) => c);  // So these parens are dropped
+    () => (b,c) => d;  // func returns func returns func
+    a=>{return b;}
+    a => 'e';  // Dropping the parens 1`] = `
+{
+  "body": [
+    {
+      "end": 9,
+      "expression": {
+        "async": false,
+        "body": {
+          "end": 8,
+          "name": "b",
+          "range": [
+            7,
+            8,
+          ],
+          "start": 7,
+          "type": "Identifier",
+        },
+        "end": 8,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 2,
+            "name": "a",
+            "range": [
+              1,
+              2,
+            ],
+            "start": 1,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          0,
+          8,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        9,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+    {
+      "end": 37,
+      "expression": {
+        "async": false,
+        "body": {
+          "end": 36,
+          "name": "c",
+          "range": [
+            35,
+            36,
+          ],
+          "start": 35,
+          "type": "Identifier",
+        },
+        "end": 36,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 27,
+            "name": "a",
+            "range": [
+              26,
+              27,
+            ],
+            "start": 26,
+            "type": "Identifier",
+          },
+          {
+            "end": 30,
+            "name": "b",
+            "range": [
+              29,
+              30,
+            ],
+            "start": 29,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          25,
+          36,
+        ],
+        "start": 25,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        25,
+        37,
+      ],
+      "start": 25,
+      "type": "ExpressionStatement",
+    },
+    {
+      "end": 61,
+      "expression": {
+        "async": false,
+        "body": {
+          "end": 60,
+          "name": "b",
+          "range": [
+            59,
+            60,
+          ],
+          "start": 59,
+          "type": "Identifier",
+        },
+        "end": 60,
+        "expression": true,
+        "generator": false,
+        "params": [],
+        "range": [
+          53,
+          60,
+        ],
+        "start": 53,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        53,
+        61,
+      ],
+      "start": 53,
+      "type": "ExpressionStatement",
+    },
+    {
+      "end": 93,
+      "expression": {
+        "async": false,
+        "body": {
+          "async": false,
+          "body": {
+            "end": 92,
+            "name": "c",
+            "range": [
+              91,
+              92,
+            ],
+            "start": 91,
+            "type": "Identifier",
+          },
+          "end": 92,
+          "expression": true,
+          "generator": false,
+          "params": [
+            {
+              "end": 86,
+              "name": "b",
+              "range": [
+                85,
+                86,
+              ],
+              "start": 85,
+              "type": "Identifier",
+            },
+          ],
+          "range": [
+            84,
+            92,
+          ],
+          "start": 84,
+          "type": "ArrowFunctionExpression",
+        },
+        "end": 92,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 79,
+            "name": "a",
+            "range": [
+              78,
+              79,
+            ],
+            "start": 78,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          77,
+          92,
+        ],
+        "start": 77,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        77,
+        93,
+      ],
+      "start": 77,
+      "type": "ExpressionStatement",
+    },
+    {
+      "end": 151,
+      "expression": {
+        "async": false,
+        "body": {
+          "async": false,
+          "body": {
+            "end": 149,
+            "name": "c",
+            "range": [
+              148,
+              149,
+            ],
+            "start": 148,
+            "type": "Identifier",
+          },
+          "end": 149,
+          "expression": true,
+          "generator": false,
+          "params": [
+            {
+              "end": 143,
+              "name": "b",
+              "range": [
+                142,
+                143,
+              ],
+              "start": 142,
+              "type": "Identifier",
+            },
+          ],
+          "range": [
+            141,
+            149,
+          ],
+          "start": 141,
+          "type": "ArrowFunctionExpression",
+        },
+        "end": 150,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 135,
+            "name": "a",
+            "range": [
+              134,
+              135,
+            ],
+            "start": 134,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          133,
+          150,
+        ],
+        "start": 133,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        133,
+        151,
+      ],
+      "start": 133,
+      "type": "ExpressionStatement",
+    },
+    {
+      "end": 205,
+      "expression": {
+        "async": false,
+        "body": {
+          "async": false,
+          "body": {
+            "end": 204,
+            "name": "d",
+            "range": [
+              203,
+              204,
+            ],
+            "start": 203,
+            "type": "Identifier",
+          },
+          "end": 204,
+          "expression": true,
+          "generator": false,
+          "params": [
+            {
+              "end": 196,
+              "name": "b",
+              "range": [
+                195,
+                196,
+              ],
+              "start": 195,
+              "type": "Identifier",
+            },
+            {
+              "end": 198,
+              "name": "c",
+              "range": [
+                197,
+                198,
+              ],
+              "start": 197,
+              "type": "Identifier",
+            },
+          ],
+          "range": [
+            194,
+            204,
+          ],
+          "start": 194,
+          "type": "ArrowFunctionExpression",
+        },
+        "end": 204,
+        "expression": true,
+        "generator": false,
+        "params": [],
+        "range": [
+          188,
+          204,
+        ],
+        "start": 188,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        188,
+        205,
+      ],
+      "start": 188,
+      "type": "ExpressionStatement",
+    },
+    {
+      "end": 259,
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [
+            {
+              "argument": {
+                "end": 257,
+                "name": "b",
+                "range": [
+                  256,
+                  257,
+                ],
+                "start": 256,
+                "type": "Identifier",
+              },
+              "end": 258,
+              "range": [
+                249,
+                258,
+              ],
+              "start": 249,
+              "type": "ReturnStatement",
+            },
+          ],
+          "end": 259,
+          "range": [
+            248,
+            259,
+          ],
+          "start": 248,
+          "type": "BlockStatement",
+        },
+        "end": 259,
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "end": 246,
+            "name": "a",
+            "range": [
+              245,
+              246,
+            ],
+            "start": 245,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          245,
+          259,
+        ],
+        "start": 245,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        245,
+        259,
+      ],
+      "start": 245,
+      "type": "ExpressionStatement",
+    },
+    {
+      "end": 273,
+      "expression": {
+        "async": false,
+        "body": {
+          "end": 272,
+          "range": [
+            269,
+            272,
+          ],
+          "start": 269,
+          "type": "Literal",
+          "value": "e",
+        },
+        "end": 272,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 265,
+            "name": "a",
+            "range": [
+              264,
+              265,
+            ],
+            "start": 264,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          264,
+          272,
+        ],
+        "start": 264,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        264,
+        273,
+      ],
+      "start": 264,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 297,
+  "range": [
+    0,
+    297,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (a, (a, (b, c) => 0)); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "name": "a",
+            "type": "Identifier",
+          },
+          {
+            "expressions": [
+              {
+                "name": "a",
+                "type": "Identifier",
+              },
+              {
+                "async": false,
+                "body": {
+                  "type": "Literal",
+                  "value": 0,
+                },
+                "expression": true,
+                "generator": false,
+                "params": [
+                  {
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  {
+                    "name": "c",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrowFunctionExpression",
+              },
+            ],
+            "type": "SequenceExpression",
+          },
+        ],
+        "type": "SequenceExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (a, ...b) => {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "name": "a",
+            "type": "Identifier",
+          },
+          {
+            "argument": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "type": "RestElement",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (a, {}) => {} 1`] = `
+{
+  "body": [
+    {
+      "end": 13,
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "end": 13,
+          "range": [
+            11,
+            13,
+          ],
+          "start": 11,
+          "type": "BlockStatement",
+        },
+        "end": 13,
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "end": 2,
+            "name": "a",
+            "range": [
+              1,
+              2,
+            ],
+            "start": 1,
+            "type": "Identifier",
+          },
+          {
+            "end": 6,
+            "properties": [],
+            "range": [
+              4,
+              6,
+            ],
+            "start": 4,
+            "type": "ObjectPattern",
+          },
+        ],
+        "range": [
+          0,
+          13,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        13,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 13,
+  "range": [
+    0,
+    13,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (a, {}) => {}; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "name": "a",
+            "type": "Identifier",
+          },
+          {
+            "properties": [],
+            "type": "ObjectPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (a, b = c) => {} 1`] = `
+{
+  "body": [
+    {
+      "end": 16,
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "end": 16,
+          "range": [
+            14,
+            16,
+          ],
+          "start": 14,
+          "type": "BlockStatement",
+        },
+        "end": 16,
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "end": 2,
+            "name": "a",
+            "range": [
+              1,
+              2,
+            ],
+            "start": 1,
+            "type": "Identifier",
+          },
+          {
+            "end": 9,
+            "left": {
+              "end": 5,
+              "name": "b",
+              "range": [
+                4,
+                5,
+              ],
+              "start": 4,
+              "type": "Identifier",
+            },
+            "range": [
+              4,
+              9,
+            ],
+            "right": {
+              "end": 9,
+              "name": "c",
+              "range": [
+                8,
+                9,
+              ],
+              "start": 8,
+              "type": "Identifier",
+            },
+            "start": 4,
+            "type": "AssignmentPattern",
+          },
+        ],
+        "range": [
+          0,
+          16,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        16,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 16,
+  "range": [
+    0,
+    16,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (a, b => {}, a => a + 1) 1`] = `
+{
+  "body": [
+    {
+      "end": 24,
+      "expression": {
+        "end": 23,
+        "expressions": [
+          {
+            "end": 2,
+            "name": "a",
+            "range": [
+              1,
+              2,
+            ],
+            "start": 1,
+            "type": "Identifier",
+          },
+          {
+            "async": false,
+            "body": {
+              "body": [],
+              "end": 11,
+              "range": [
+                9,
+                11,
+              ],
+              "start": 9,
+              "type": "BlockStatement",
+            },
+            "end": 11,
+            "expression": false,
+            "generator": false,
+            "params": [
+              {
+                "end": 5,
+                "name": "b",
+                "range": [
+                  4,
+                  5,
+                ],
+                "start": 4,
+                "type": "Identifier",
+              },
+            ],
+            "range": [
+              4,
+              11,
+            ],
+            "start": 4,
+            "type": "ArrowFunctionExpression",
+          },
+          {
+            "async": false,
+            "body": {
+              "end": 23,
+              "left": {
+                "end": 19,
+                "name": "a",
+                "range": [
+                  18,
+                  19,
+                ],
+                "start": 18,
+                "type": "Identifier",
+              },
+              "operator": "+",
+              "range": [
+                18,
+                23,
+              ],
+              "right": {
+                "end": 23,
+                "range": [
+                  22,
+                  23,
+                ],
+                "start": 22,
+                "type": "Literal",
+                "value": 1,
+              },
+              "start": 18,
+              "type": "BinaryExpression",
+            },
+            "end": 23,
+            "expression": true,
+            "generator": false,
+            "params": [
+              {
+                "end": 14,
+                "name": "a",
+                "range": [
+                  13,
+                  14,
+                ],
+                "start": 13,
+                "type": "Identifier",
+              },
+            ],
+            "range": [
+              13,
+              23,
+            ],
+            "start": 13,
+            "type": "ArrowFunctionExpression",
+          },
+        ],
+        "range": [
+          1,
+          23,
+        ],
+        "start": 1,
+        "type": "SequenceExpression",
+      },
+      "range": [
+        0,
+        24,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 24,
+  "range": [
+    0,
+    24,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (a, b => {}, a => a + 1); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "name": "a",
+            "type": "Identifier",
+          },
+          {
+            "async": false,
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "expression": false,
+            "generator": false,
+            "params": [
+              {
+                "name": "b",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+          {
+            "async": false,
+            "body": {
+              "left": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "operator": "+",
+              "right": {
+                "type": "Literal",
+                "value": 1,
+              },
+              "type": "BinaryExpression",
+            },
+            "expression": true,
+            "generator": false,
+            "params": [
+              {
+                "name": "a",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+        ],
+        "type": "SequenceExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (a, b) => { 42; } 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [
+            {
+              "expression": {
+                "type": "Literal",
+                "value": 42,
+              },
+              "type": "ExpressionStatement",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "name": "a",
+            "type": "Identifier",
+          },
+          {
+            "name": "b",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (a, b) => 0, (c, d) => 1 1`] = `
+{
+  "body": [
+    {
+      "end": 24,
+      "expression": {
+        "end": 24,
+        "expressions": [
+          {
+            "async": false,
+            "body": {
+              "end": 11,
+              "range": [
+                10,
+                11,
+              ],
+              "start": 10,
+              "type": "Literal",
+              "value": 0,
+            },
+            "end": 11,
+            "expression": true,
+            "generator": false,
+            "params": [
+              {
+                "end": 2,
+                "name": "a",
+                "range": [
+                  1,
+                  2,
+                ],
+                "start": 1,
+                "type": "Identifier",
+              },
+              {
+                "end": 5,
+                "name": "b",
+                "range": [
+                  4,
+                  5,
+                ],
+                "start": 4,
+                "type": "Identifier",
+              },
+            ],
+            "range": [
+              0,
+              11,
+            ],
+            "start": 0,
+            "type": "ArrowFunctionExpression",
+          },
+          {
+            "async": false,
+            "body": {
+              "end": 24,
+              "range": [
+                23,
+                24,
+              ],
+              "start": 23,
+              "type": "Literal",
+              "value": 1,
+            },
+            "end": 24,
+            "expression": true,
+            "generator": false,
+            "params": [
+              {
+                "end": 15,
+                "name": "c",
+                "range": [
+                  14,
+                  15,
+                ],
+                "start": 14,
+                "type": "Identifier",
+              },
+              {
+                "end": 18,
+                "name": "d",
+                "range": [
+                  17,
+                  18,
+                ],
+                "start": 17,
+                "type": "Identifier",
+              },
+            ],
+            "range": [
+              13,
+              24,
+            ],
+            "start": 13,
+            "type": "ArrowFunctionExpression",
+          },
+        ],
+        "range": [
+          0,
+          24,
+        ],
+        "start": 0,
+        "type": "SequenceExpression",
+      },
+      "range": [
+        0,
+        24,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 24,
+  "range": [
+    0,
+    24,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (a, b) => 0, (c, d) => 1; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "async": false,
+            "body": {
+              "type": "Literal",
+              "value": 0,
+            },
+            "expression": true,
+            "generator": false,
+            "params": [
+              {
+                "name": "a",
+                "type": "Identifier",
+              },
+              {
+                "name": "b",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+          {
+            "async": false,
+            "body": {
+              "type": "Literal",
+              "value": 1,
+            },
+            "expression": true,
+            "generator": false,
+            "params": [
+              {
+                "name": "c",
+                "type": "Identifier",
+              },
+              {
+                "name": "d",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+        ],
+        "type": "SequenceExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (a, b, (c, d) => 0) 1`] = `
+{
+  "body": [
+    {
+      "end": 19,
+      "expression": {
+        "end": 18,
+        "expressions": [
+          {
+            "end": 2,
+            "name": "a",
+            "range": [
+              1,
+              2,
+            ],
+            "start": 1,
+            "type": "Identifier",
+          },
+          {
+            "end": 5,
+            "name": "b",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          {
+            "async": false,
+            "body": {
+              "end": 18,
+              "range": [
+                17,
+                18,
+              ],
+              "start": 17,
+              "type": "Literal",
+              "value": 0,
+            },
+            "end": 18,
+            "expression": true,
+            "generator": false,
+            "params": [
+              {
+                "end": 9,
+                "name": "c",
+                "range": [
+                  8,
+                  9,
+                ],
+                "start": 8,
+                "type": "Identifier",
+              },
+              {
+                "end": 12,
+                "name": "d",
+                "range": [
+                  11,
+                  12,
+                ],
+                "start": 11,
+                "type": "Identifier",
+              },
+            ],
+            "range": [
+              7,
+              18,
+            ],
+            "start": 7,
+            "type": "ArrowFunctionExpression",
+          },
+        ],
+        "range": [
+          1,
+          18,
+        ],
+        "start": 1,
+        "type": "SequenceExpression",
+      },
+      "range": [
+        0,
+        19,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 19,
+  "range": [
+    0,
+    19,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (eval = 10) => 42 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "type": "Literal",
+          "value": 42,
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "left": {
+              "name": "eval",
+              "type": "Identifier",
+            },
+            "right": {
+              "type": "Literal",
+              "value": 10,
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (eval = 10) => 42; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "type": "Literal",
+          "value": 42,
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "left": {
+              "name": "eval",
+              "type": "Identifier",
+            },
+            "right": {
+              "type": "Literal",
+              "value": 10,
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (expect, subject, typeName) => {
+          typeName = /^reg(?:exp?|ular expression)$/.test(typeName)
+            ? 'regexp'
+            : typeName;
+          expect.argsOutput[0] = output => {
+            output.jsString(typeName);
+          };
+          if (!expect.getType(typeName)) {
+            expect.errorMode = 'nested';
+            expect.fail(output => {
+              output
+                .error('Unknown type:')
+                .sp()
+                .jsString(typeName);
+            });
+          }
+        } 1`] = `
+{
+  "body": [
+    {
+      "end": 522,
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [
+            {
+              "end": 147,
+              "expression": {
+                "end": 146,
+                "left": {
+                  "end": 51,
+                  "name": "typeName",
+                  "range": [
+                    43,
+                    51,
+                  ],
+                  "start": 43,
+                  "type": "Identifier",
+                },
+                "operator": "=",
+                "range": [
+                  43,
+                  146,
+                ],
+                "right": {
+                  "alternate": {
+                    "end": 146,
+                    "name": "typeName",
+                    "range": [
+                      138,
+                      146,
+                    ],
+                    "start": 138,
+                    "type": "Identifier",
+                  },
+                  "consequent": {
+                    "end": 123,
+                    "range": [
+                      115,
+                      123,
+                    ],
+                    "start": 115,
+                    "type": "Literal",
+                    "value": "regexp",
+                  },
+                  "end": 146,
+                  "range": [
+                    54,
+                    146,
+                  ],
+                  "start": 54,
+                  "test": {
+                    "arguments": [
+                      {
+                        "end": 99,
+                        "name": "typeName",
+                        "range": [
+                          91,
+                          99,
+                        ],
+                        "start": 91,
+                        "type": "Identifier",
+                      },
+                    ],
+                    "callee": {
+                      "computed": false,
+                      "end": 90,
+                      "object": {
+                        "end": 85,
+                        "range": [
+                          54,
+                          85,
+                        ],
+                        "regex": {
+                          "flags": "",
+                          "pattern": "^reg(?:exp?|ular expression)$",
+                        },
+                        "start": 54,
+                        "type": "Literal",
+                        "value": /\\^reg\\(\\?:exp\\?\\|ular expression\\)\\$/,
+                      },
+                      "property": {
+                        "end": 90,
+                        "name": "test",
+                        "range": [
+                          86,
+                          90,
+                        ],
+                        "start": 86,
+                        "type": "Identifier",
+                      },
+                      "range": [
+                        54,
+                        90,
+                      ],
+                      "start": 54,
+                      "type": "MemberExpression",
+                    },
+                    "end": 100,
+                    "range": [
+                      54,
+                      100,
+                    ],
+                    "start": 54,
+                    "type": "CallExpression",
+                  },
+                  "type": "ConditionalExpression",
+                },
+                "start": 43,
+                "type": "AssignmentExpression",
+              },
+              "range": [
+                43,
+                147,
+              ],
+              "start": 43,
+              "type": "ExpressionStatement",
+            },
+            {
+              "end": 244,
+              "expression": {
+                "end": 243,
+                "left": {
+                  "computed": true,
+                  "end": 178,
+                  "object": {
+                    "computed": false,
+                    "end": 175,
+                    "object": {
+                      "end": 164,
+                      "name": "expect",
+                      "range": [
+                        158,
+                        164,
+                      ],
+                      "start": 158,
+                      "type": "Identifier",
+                    },
+                    "property": {
+                      "end": 175,
+                      "name": "argsOutput",
+                      "range": [
+                        165,
+                        175,
+                      ],
+                      "start": 165,
+                      "type": "Identifier",
+                    },
+                    "range": [
+                      158,
+                      175,
+                    ],
+                    "start": 158,
+                    "type": "MemberExpression",
+                  },
+                  "property": {
+                    "end": 177,
+                    "range": [
+                      176,
+                      177,
+                    ],
+                    "start": 176,
+                    "type": "Literal",
+                    "value": 0,
+                  },
+                  "range": [
+                    158,
+                    178,
+                  ],
+                  "start": 158,
+                  "type": "MemberExpression",
+                },
+                "operator": "=",
+                "range": [
+                  158,
+                  243,
+                ],
+                "right": {
+                  "async": false,
+                  "body": {
+                    "body": [
+                      {
+                        "end": 231,
+                        "expression": {
+                          "arguments": [
+                            {
+                              "end": 229,
+                              "name": "typeName",
+                              "range": [
+                                221,
+                                229,
+                              ],
+                              "start": 221,
+                              "type": "Identifier",
+                            },
+                          ],
+                          "callee": {
+                            "computed": false,
+                            "end": 220,
+                            "object": {
+                              "end": 211,
+                              "name": "output",
+                              "range": [
+                                205,
+                                211,
+                              ],
+                              "start": 205,
+                              "type": "Identifier",
+                            },
+                            "property": {
+                              "end": 220,
+                              "name": "jsString",
+                              "range": [
+                                212,
+                                220,
+                              ],
+                              "start": 212,
+                              "type": "Identifier",
+                            },
+                            "range": [
+                              205,
+                              220,
+                            ],
+                            "start": 205,
+                            "type": "MemberExpression",
+                          },
+                          "end": 230,
+                          "range": [
+                            205,
+                            230,
+                          ],
+                          "start": 205,
+                          "type": "CallExpression",
+                        },
+                        "range": [
+                          205,
+                          231,
+                        ],
+                        "start": 205,
+                        "type": "ExpressionStatement",
+                      },
+                    ],
+                    "end": 243,
+                    "range": [
+                      191,
+                      243,
+                    ],
+                    "start": 191,
+                    "type": "BlockStatement",
+                  },
+                  "end": 243,
+                  "expression": false,
+                  "generator": false,
+                  "params": [
+                    {
+                      "end": 187,
+                      "name": "output",
+                      "range": [
+                        181,
+                        187,
+                      ],
+                      "start": 181,
+                      "type": "Identifier",
+                    },
+                  ],
+                  "range": [
+                    181,
+                    243,
+                  ],
+                  "start": 181,
+                  "type": "ArrowFunctionExpression",
+                },
+                "start": 158,
+                "type": "AssignmentExpression",
+              },
+              "range": [
+                158,
+                244,
+              ],
+              "start": 158,
+              "type": "ExpressionStatement",
+            },
+            {
+              "alternate": null,
+              "consequent": {
+                "body": [
+                  {
+                    "end": 328,
+                    "expression": {
+                      "end": 327,
+                      "left": {
+                        "computed": false,
+                        "end": 316,
+                        "object": {
+                          "end": 306,
+                          "name": "expect",
+                          "range": [
+                            300,
+                            306,
+                          ],
+                          "start": 300,
+                          "type": "Identifier",
+                        },
+                        "property": {
+                          "end": 316,
+                          "name": "errorMode",
+                          "range": [
+                            307,
+                            316,
+                          ],
+                          "start": 307,
+                          "type": "Identifier",
+                        },
+                        "range": [
+                          300,
+                          316,
+                        ],
+                        "start": 300,
+                        "type": "MemberExpression",
+                      },
+                      "operator": "=",
+                      "range": [
+                        300,
+                        327,
+                      ],
+                      "right": {
+                        "end": 327,
+                        "range": [
+                          319,
+                          327,
+                        ],
+                        "start": 319,
+                        "type": "Literal",
+                        "value": "nested",
+                      },
+                      "start": 300,
+                      "type": "AssignmentExpression",
+                    },
+                    "range": [
+                      300,
+                      328,
+                    ],
+                    "start": 300,
+                    "type": "ExpressionStatement",
+                  },
+                  {
+                    "end": 500,
+                    "expression": {
+                      "arguments": [
+                        {
+                          "async": false,
+                          "body": {
+                            "body": [
+                              {
+                                "end": 484,
+                                "expression": {
+                                  "arguments": [
+                                    {
+                                      "end": 482,
+                                      "name": "typeName",
+                                      "range": [
+                                        474,
+                                        482,
+                                      ],
+                                      "start": 474,
+                                      "type": "Identifier",
+                                    },
+                                  ],
+                                  "callee": {
+                                    "computed": false,
+                                    "end": 473,
+                                    "object": {
+                                      "arguments": [],
+                                      "callee": {
+                                        "computed": false,
+                                        "end": 445,
+                                        "object": {
+                                          "arguments": [
+                                            {
+                                              "end": 424,
+                                              "range": [
+                                                409,
+                                                424,
+                                              ],
+                                              "start": 409,
+                                              "type": "Literal",
+                                              "value": "Unknown type:",
+                                            },
+                                          ],
+                                          "callee": {
+                                            "computed": false,
+                                            "end": 408,
+                                            "object": {
+                                              "end": 385,
+                                              "name": "output",
+                                              "range": [
+                                                379,
+                                                385,
+                                              ],
+                                              "start": 379,
+                                              "type": "Identifier",
+                                            },
+                                            "property": {
+                                              "end": 408,
+                                              "name": "error",
+                                              "range": [
+                                                403,
+                                                408,
+                                              ],
+                                              "start": 403,
+                                              "type": "Identifier",
+                                            },
+                                            "range": [
+                                              379,
+                                              408,
+                                            ],
+                                            "start": 379,
+                                            "type": "MemberExpression",
+                                          },
+                                          "end": 425,
+                                          "range": [
+                                            379,
+                                            425,
+                                          ],
+                                          "start": 379,
+                                          "type": "CallExpression",
+                                        },
+                                        "property": {
+                                          "end": 445,
+                                          "name": "sp",
+                                          "range": [
+                                            443,
+                                            445,
+                                          ],
+                                          "start": 443,
+                                          "type": "Identifier",
+                                        },
+                                        "range": [
+                                          379,
+                                          445,
+                                        ],
+                                        "start": 379,
+                                        "type": "MemberExpression",
+                                      },
+                                      "end": 447,
+                                      "range": [
+                                        379,
+                                        447,
+                                      ],
+                                      "start": 379,
+                                      "type": "CallExpression",
+                                    },
+                                    "property": {
+                                      "end": 473,
+                                      "name": "jsString",
+                                      "range": [
+                                        465,
+                                        473,
+                                      ],
+                                      "start": 465,
+                                      "type": "Identifier",
+                                    },
+                                    "range": [
+                                      379,
+                                      473,
+                                    ],
+                                    "start": 379,
+                                    "type": "MemberExpression",
+                                  },
+                                  "end": 483,
+                                  "range": [
+                                    379,
+                                    483,
+                                  ],
+                                  "start": 379,
+                                  "type": "CallExpression",
+                                },
+                                "range": [
+                                  379,
+                                  484,
+                                ],
+                                "start": 379,
+                                "type": "ExpressionStatement",
+                              },
+                            ],
+                            "end": 498,
+                            "range": [
+                              363,
+                              498,
+                            ],
+                            "start": 363,
+                            "type": "BlockStatement",
+                          },
+                          "end": 498,
+                          "expression": false,
+                          "generator": false,
+                          "params": [
+                            {
+                              "end": 359,
+                              "name": "output",
+                              "range": [
+                                353,
+                                359,
+                              ],
+                              "start": 353,
+                              "type": "Identifier",
+                            },
+                          ],
+                          "range": [
+                            353,
+                            498,
+                          ],
+                          "start": 353,
+                          "type": "ArrowFunctionExpression",
+                        },
+                      ],
+                      "callee": {
+                        "computed": false,
+                        "end": 352,
+                        "object": {
+                          "end": 347,
+                          "name": "expect",
+                          "range": [
+                            341,
+                            347,
+                          ],
+                          "start": 341,
+                          "type": "Identifier",
+                        },
+                        "property": {
+                          "end": 352,
+                          "name": "fail",
+                          "range": [
+                            348,
+                            352,
+                          ],
+                          "start": 348,
+                          "type": "Identifier",
+                        },
+                        "range": [
+                          341,
+                          352,
+                        ],
+                        "start": 341,
+                        "type": "MemberExpression",
+                      },
+                      "end": 499,
+                      "range": [
+                        341,
+                        499,
+                      ],
+                      "start": 341,
+                      "type": "CallExpression",
+                    },
+                    "range": [
+                      341,
+                      500,
+                    ],
+                    "start": 341,
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "end": 512,
+                "range": [
+                  286,
+                  512,
+                ],
+                "start": 286,
+                "type": "BlockStatement",
+              },
+              "end": 512,
+              "range": [
+                255,
+                512,
+              ],
+              "start": 255,
+              "test": {
+                "argument": {
+                  "arguments": [
+                    {
+                      "end": 283,
+                      "name": "typeName",
+                      "range": [
+                        275,
+                        283,
+                      ],
+                      "start": 275,
+                      "type": "Identifier",
+                    },
+                  ],
+                  "callee": {
+                    "computed": false,
+                    "end": 274,
+                    "object": {
+                      "end": 266,
+                      "name": "expect",
+                      "range": [
+                        260,
+                        266,
+                      ],
+                      "start": 260,
+                      "type": "Identifier",
+                    },
+                    "property": {
+                      "end": 274,
+                      "name": "getType",
+                      "range": [
+                        267,
+                        274,
+                      ],
+                      "start": 267,
+                      "type": "Identifier",
+                    },
+                    "range": [
+                      260,
+                      274,
+                    ],
+                    "start": 260,
+                    "type": "MemberExpression",
+                  },
+                  "end": 284,
+                  "range": [
+                    260,
+                    284,
+                  ],
+                  "start": 260,
+                  "type": "CallExpression",
+                },
+                "end": 284,
+                "operator": "!",
+                "prefix": true,
+                "range": [
+                  259,
+                  284,
+                ],
+                "start": 259,
+                "type": "UnaryExpression",
+              },
+              "type": "IfStatement",
+            },
+          ],
+          "end": 522,
+          "range": [
+            31,
+            522,
+          ],
+          "start": 31,
+          "type": "BlockStatement",
+        },
+        "end": 522,
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "end": 7,
+            "name": "expect",
+            "range": [
+              1,
+              7,
+            ],
+            "start": 1,
+            "type": "Identifier",
+          },
+          {
+            "end": 16,
+            "name": "subject",
+            "range": [
+              9,
+              16,
+            ],
+            "start": 9,
+            "type": "Identifier",
+          },
+          {
+            "end": 26,
+            "name": "typeName",
+            "range": [
+              18,
+              26,
+            ],
+            "start": 18,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          0,
+          522,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        522,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 522,
+  "range": [
+    0,
+    522,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (interface) 1`] = `
+{
+  "body": [
+    {
+      "end": 11,
+      "expression": {
+        "end": 10,
+        "name": "interface",
+        "range": [
+          1,
+          10,
+        ],
+        "start": 1,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        11,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 11,
+  "range": [
+    0,
+    11,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (x = 9) => {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "left": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "right": {
+              "type": "Literal",
+              "value": 9,
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (x = 9) => {}; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "left": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "right": {
+              "type": "Literal",
+              "value": 9,
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (x = 9, y) => {}; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "left": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "right": {
+              "type": "Literal",
+              "value": 9,
+            },
+            "type": "AssignmentPattern",
+          },
+          {
+            "name": "y",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (x = yield = x) => x 1`] = `
+{
+  "body": [
+    {
+      "end": 20,
+      "expression": {
+        "async": false,
+        "body": {
+          "end": 20,
+          "name": "x",
+          "range": [
+            19,
+            20,
+          ],
+          "start": 19,
+          "type": "Identifier",
+        },
+        "end": 20,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 14,
+            "left": {
+              "end": 2,
+              "name": "x",
+              "range": [
+                1,
+                2,
+              ],
+              "start": 1,
+              "type": "Identifier",
+            },
+            "range": [
+              1,
+              14,
+            ],
+            "right": {
+              "end": 14,
+              "left": {
+                "end": 10,
+                "name": "yield",
+                "range": [
+                  5,
+                  10,
+                ],
+                "start": 5,
+                "type": "Identifier",
+              },
+              "operator": "=",
+              "range": [
+                5,
+                14,
+              ],
+              "right": {
+                "end": 14,
+                "name": "x",
+                "range": [
+                  13,
+                  14,
+                ],
+                "start": 13,
+                "type": "Identifier",
+              },
+              "start": 5,
+              "type": "AssignmentExpression",
+            },
+            "start": 1,
+            "type": "AssignmentPattern",
+          },
+        ],
+        "range": [
+          0,
+          20,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        20,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 20,
+  "range": [
+    0,
+    20,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (x) => ((y, z) => (x, y, z)) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "async": false,
+          "body": {
+            "expressions": [
+              {
+                "name": "x",
+                "type": "Identifier",
+              },
+              {
+                "name": "y",
+                "type": "Identifier",
+              },
+              {
+                "name": "z",
+                "type": "Identifier",
+              },
+            ],
+            "type": "SequenceExpression",
+          },
+          "expression": true,
+          "generator": false,
+          "params": [
+            {
+              "name": "y",
+              "type": "Identifier",
+            },
+            {
+              "name": "z",
+              "type": "Identifier",
+            },
+          ],
+          "type": "ArrowFunctionExpression",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "x",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (x) => { function x() {} } 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [
+            {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "params": [],
+              "type": "FunctionDeclaration",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "name": "x",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (x, y = 9) => {}; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "name": "x",
+            "type": "Identifier",
+          },
+          {
+            "left": {
+              "name": "y",
+              "type": "Identifier",
+            },
+            "right": {
+              "type": "Literal",
+              "value": 9,
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (x, y = 9, z = 8) => {} 1`] = `
+{
+  "body": [
+    {
+      "end": 23,
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "end": 23,
+          "range": [
+            21,
+            23,
+          ],
+          "start": 21,
+          "type": "BlockStatement",
+        },
+        "end": 23,
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "end": 2,
+            "name": "x",
+            "range": [
+              1,
+              2,
+            ],
+            "start": 1,
+            "type": "Identifier",
+          },
+          {
+            "end": 9,
+            "left": {
+              "end": 5,
+              "name": "y",
+              "range": [
+                4,
+                5,
+              ],
+              "start": 4,
+              "type": "Identifier",
+            },
+            "range": [
+              4,
+              9,
+            ],
+            "right": {
+              "end": 9,
+              "range": [
+                8,
+                9,
+              ],
+              "start": 8,
+              "type": "Literal",
+              "value": 9,
+            },
+            "start": 4,
+            "type": "AssignmentPattern",
+          },
+          {
+            "end": 16,
+            "left": {
+              "end": 12,
+              "name": "z",
+              "range": [
+                11,
+                12,
+              ],
+              "start": 11,
+              "type": "Identifier",
+            },
+            "range": [
+              11,
+              16,
+            ],
+            "right": {
+              "end": 16,
+              "range": [
+                15,
+                16,
+              ],
+              "start": 15,
+              "type": "Literal",
+              "value": 8,
+            },
+            "start": 11,
+            "type": "AssignmentPattern",
+          },
+        ],
+        "range": [
+          0,
+          23,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        23,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 23,
+  "range": [
+    0,
+    23,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (x, y = 9, z = 8) => {}; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "name": "x",
+            "type": "Identifier",
+          },
+          {
+            "left": {
+              "name": "y",
+              "type": "Identifier",
+            },
+            "right": {
+              "type": "Literal",
+              "value": 9,
+            },
+            "type": "AssignmentPattern",
+          },
+          {
+            "left": {
+              "name": "z",
+              "type": "Identifier",
+            },
+            "right": {
+              "type": "Literal",
+              "value": 8,
+            },
+            "type": "AssignmentPattern",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (x, y) => x + y 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "left": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "operator": "+",
+          "right": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "x",
+            "type": "Identifier",
+          },
+          {
+            "name": "y",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (x, y) => z => z * (x + y) 1`] = `
+{
+  "body": [
+    {
+      "end": 26,
+      "expression": {
+        "async": false,
+        "body": {
+          "async": false,
+          "body": {
+            "end": 26,
+            "left": {
+              "end": 16,
+              "name": "z",
+              "range": [
+                15,
+                16,
+              ],
+              "start": 15,
+              "type": "Identifier",
+            },
+            "operator": "*",
+            "range": [
+              15,
+              26,
+            ],
+            "right": {
+              "end": 25,
+              "left": {
+                "end": 21,
+                "name": "x",
+                "range": [
+                  20,
+                  21,
+                ],
+                "start": 20,
+                "type": "Identifier",
+              },
+              "operator": "+",
+              "range": [
+                20,
+                25,
+              ],
+              "right": {
+                "end": 25,
+                "name": "y",
+                "range": [
+                  24,
+                  25,
+                ],
+                "start": 24,
+                "type": "Identifier",
+              },
+              "start": 20,
+              "type": "BinaryExpression",
+            },
+            "start": 15,
+            "type": "BinaryExpression",
+          },
+          "end": 26,
+          "expression": true,
+          "generator": false,
+          "params": [
+            {
+              "end": 11,
+              "name": "z",
+              "range": [
+                10,
+                11,
+              ],
+              "start": 10,
+              "type": "Identifier",
+            },
+          ],
+          "range": [
+            10,
+            26,
+          ],
+          "start": 10,
+          "type": "ArrowFunctionExpression",
+        },
+        "end": 26,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 2,
+            "name": "x",
+            "range": [
+              1,
+              2,
+            ],
+            "start": 1,
+            "type": "Identifier",
+          },
+          {
+            "end": 5,
+            "name": "y",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          0,
+          26,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        26,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 26,
+  "range": [
+    0,
+    26,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (x, y) => z => z * (x + y); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "async": false,
+          "body": {
+            "left": {
+              "name": "z",
+              "type": "Identifier",
+            },
+            "operator": "*",
+            "right": {
+              "left": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "operator": "+",
+              "right": {
+                "name": "y",
+                "type": "Identifier",
+              },
+              "type": "BinaryExpression",
+            },
+            "type": "BinaryExpression",
+          },
+          "expression": true,
+          "generator": false,
+          "params": [
+            {
+              "name": "z",
+              "type": "Identifier",
+            },
+          ],
+          "type": "ArrowFunctionExpression",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "x",
+            "type": "Identifier",
+          },
+          {
+            "name": "y",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (x, y)=>x; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "x",
+            "type": "Identifier",
+          },
+          {
+            "name": "y",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > (x=1) => x * x 1`] = `
+{
+  "body": [
+    {
+      "end": 14,
+      "expression": {
+        "async": false,
+        "body": {
+          "end": 14,
+          "left": {
+            "end": 10,
+            "name": "x",
+            "range": [
+              9,
+              10,
+            ],
+            "start": 9,
+            "type": "Identifier",
+          },
+          "operator": "*",
+          "range": [
+            9,
+            14,
+          ],
+          "right": {
+            "end": 14,
+            "name": "x",
+            "range": [
+              13,
+              14,
+            ],
+            "start": 13,
+            "type": "Identifier",
+          },
+          "start": 9,
+          "type": "BinaryExpression",
+        },
+        "end": 14,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 4,
+            "left": {
+              "end": 2,
+              "name": "x",
+              "range": [
+                1,
+                2,
+              ],
+              "start": 1,
+              "type": "Identifier",
+            },
+            "range": [
+              1,
+              4,
+            ],
+            "right": {
+              "end": 4,
+              "range": [
+                3,
+                4,
+              ],
+              "start": 3,
+              "type": "Literal",
+              "value": 1,
+            },
+            "start": 1,
+            "type": "AssignmentPattern",
+          },
+        ],
+        "range": [
+          0,
+          14,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 14,
+  "range": [
+    0,
+    14,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > a = (b) => c; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "expression": true,
+          "generator": false,
+          "params": [
+            {
+              "name": "b",
+              "type": "Identifier",
+            },
+          ],
+          "type": "ArrowFunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > a => a + x 1`] = `
+{
+  "body": [
+    {
+      "end": 10,
+      "expression": {
+        "async": false,
+        "body": {
+          "end": 10,
+          "left": {
+            "end": 6,
+            "name": "a",
+            "range": [
+              5,
+              6,
+            ],
+            "start": 5,
+            "type": "Identifier",
+          },
+          "operator": "+",
+          "range": [
+            5,
+            10,
+          ],
+          "right": {
+            "end": 10,
+            "name": "x",
+            "range": [
+              9,
+              10,
+            ],
+            "start": 9,
+            "type": "Identifier",
+          },
+          "start": 5,
+          "type": "BinaryExpression",
+        },
+        "end": 10,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 1,
+            "name": "a",
+            "range": [
+              0,
+              1,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          0,
+          10,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        10,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 10,
+  "range": [
+    0,
+    10,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > a => a / x 1`] = `
+{
+  "body": [
+    {
+      "end": 10,
+      "expression": {
+        "async": false,
+        "body": {
+          "end": 10,
+          "left": {
+            "end": 6,
+            "name": "a",
+            "range": [
+              5,
+              6,
+            ],
+            "start": 5,
+            "type": "Identifier",
+          },
+          "operator": "/",
+          "range": [
+            5,
+            10,
+          ],
+          "right": {
+            "end": 10,
+            "name": "x",
+            "range": [
+              9,
+              10,
+            ],
+            "start": 9,
+            "type": "Identifier",
+          },
+          "start": 5,
+          "type": "BinaryExpression",
+        },
+        "end": 10,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 1,
+            "name": "a",
+            "range": [
+              0,
+              1,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          0,
+          10,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        10,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 10,
+  "range": [
+    0,
+    10,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > a => x() 1`] = `
+{
+  "body": [
+    {
+      "end": 8,
+      "expression": {
+        "async": false,
+        "body": {
+          "arguments": [],
+          "callee": {
+            "end": 6,
+            "name": "x",
+            "range": [
+              5,
+              6,
+            ],
+            "start": 5,
+            "type": "Identifier",
+          },
+          "end": 8,
+          "range": [
+            5,
+            8,
+          ],
+          "start": 5,
+          "type": "CallExpression",
+        },
+        "end": 8,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 1,
+            "name": "a",
+            "range": [
+              0,
+              1,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          0,
+          8,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        8,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 8,
+  "range": [
+    0,
+    8,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > a => x.foo 1`] = `
+{
+  "body": [
+    {
+      "end": 10,
+      "expression": {
+        "async": false,
+        "body": {
+          "computed": false,
+          "end": 10,
+          "object": {
+            "end": 6,
+            "name": "x",
+            "range": [
+              5,
+              6,
+            ],
+            "start": 5,
+            "type": "Identifier",
+          },
+          "property": {
+            "end": 10,
+            "name": "foo",
+            "range": [
+              7,
+              10,
+            ],
+            "start": 7,
+            "type": "Identifier",
+          },
+          "range": [
+            5,
+            10,
+          ],
+          "start": 5,
+          "type": "MemberExpression",
+        },
+        "end": 10,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 1,
+            "name": "a",
+            "range": [
+              0,
+              1,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          0,
+          10,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        10,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 10,
+  "range": [
+    0,
+    10,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > a => x[foo] 1`] = `
+{
+  "body": [
+    {
+      "end": 11,
+      "expression": {
+        "async": false,
+        "body": {
+          "computed": true,
+          "end": 11,
+          "object": {
+            "end": 6,
+            "name": "x",
+            "range": [
+              5,
+              6,
+            ],
+            "start": 5,
+            "type": "Identifier",
+          },
+          "property": {
+            "end": 10,
+            "name": "foo",
+            "range": [
+              7,
+              10,
+            ],
+            "start": 7,
+            "type": "Identifier",
+          },
+          "range": [
+            5,
+            11,
+          ],
+          "start": 5,
+          "type": "MemberExpression",
+        },
+        "end": 11,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 1,
+            "name": "a",
+            "range": [
+              0,
+              1,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          0,
+          11,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        11,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 11,
+  "range": [
+    0,
+    11,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > a, b => 0; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "name": "a",
+            "type": "Identifier",
+          },
+          {
+            "async": false,
+            "body": {
+              "type": "Literal",
+              "value": 0,
+            },
+            "expression": true,
+            "generator": false,
+            "params": [
+              {
+                "name": "b",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+        ],
+        "type": "SequenceExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > a, b, (c, d) => 0; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "name": "a",
+            "type": "Identifier",
+          },
+          {
+            "name": "b",
+            "type": "Identifier",
+          },
+          {
+            "async": false,
+            "body": {
+              "type": "Literal",
+              "value": 0,
+            },
+            "expression": true,
+            "generator": false,
+            "params": [
+              {
+                "name": "c",
+                "type": "Identifier",
+              },
+              {
+                "name": "d",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+        ],
+        "type": "SequenceExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > arguments => 42 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "type": "Literal",
+          "value": 42,
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "arguments",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > async (eval) => "use strict"; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "type": "Literal",
+          "value": "use strict",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "eval",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > async let => {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "name": "let",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > async let => {}, let => {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "async": true,
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "expression": false,
+            "generator": false,
+            "params": [
+              {
+                "name": "let",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+          {
+            "async": false,
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "expression": false,
+            "generator": false,
+            "params": [
+              {
+                "name": "let",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+        ],
+        "type": "SequenceExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > bar ? ( (x, y) => (u, v) => x*u + y*v ) : baz; 1`] = `
+{
+  "body": [
+    {
+      "end": 46,
+      "expression": {
+        "alternate": {
+          "end": 45,
+          "name": "baz",
+          "range": [
+            42,
+            45,
+          ],
+          "start": 42,
+          "type": "Identifier",
+        },
+        "consequent": {
+          "async": false,
+          "body": {
+            "async": false,
+            "body": {
+              "end": 37,
+              "left": {
+                "end": 31,
+                "left": {
+                  "end": 29,
+                  "name": "x",
+                  "range": [
+                    28,
+                    29,
+                  ],
+                  "start": 28,
+                  "type": "Identifier",
+                },
+                "operator": "*",
+                "range": [
+                  28,
+                  31,
+                ],
+                "right": {
+                  "end": 31,
+                  "name": "u",
+                  "range": [
+                    30,
+                    31,
+                  ],
+                  "start": 30,
+                  "type": "Identifier",
+                },
+                "start": 28,
+                "type": "BinaryExpression",
+              },
+              "operator": "+",
+              "range": [
+                28,
+                37,
+              ],
+              "right": {
+                "end": 37,
+                "left": {
+                  "end": 35,
+                  "name": "y",
+                  "range": [
+                    34,
+                    35,
+                  ],
+                  "start": 34,
+                  "type": "Identifier",
+                },
+                "operator": "*",
+                "range": [
+                  34,
+                  37,
+                ],
+                "right": {
+                  "end": 37,
+                  "name": "v",
+                  "range": [
+                    36,
+                    37,
+                  ],
+                  "start": 36,
+                  "type": "Identifier",
+                },
+                "start": 34,
+                "type": "BinaryExpression",
+              },
+              "start": 28,
+              "type": "BinaryExpression",
+            },
+            "end": 37,
+            "expression": true,
+            "generator": false,
+            "params": [
+              {
+                "end": 20,
+                "name": "u",
+                "range": [
+                  19,
+                  20,
+                ],
+                "start": 19,
+                "type": "Identifier",
+              },
+              {
+                "end": 23,
+                "name": "v",
+                "range": [
+                  22,
+                  23,
+                ],
+                "start": 22,
+                "type": "Identifier",
+              },
+            ],
+            "range": [
+              18,
+              37,
+            ],
+            "start": 18,
+            "type": "ArrowFunctionExpression",
+          },
+          "end": 37,
+          "expression": true,
+          "generator": false,
+          "params": [
+            {
+              "end": 10,
+              "name": "x",
+              "range": [
+                9,
+                10,
+              ],
+              "start": 9,
+              "type": "Identifier",
+            },
+            {
+              "end": 13,
+              "name": "y",
+              "range": [
+                12,
+                13,
+              ],
+              "start": 12,
+              "type": "Identifier",
+            },
+          ],
+          "range": [
+            8,
+            37,
+          ],
+          "start": 8,
+          "type": "ArrowFunctionExpression",
+        },
+        "end": 45,
+        "range": [
+          0,
+          45,
+        ],
+        "start": 0,
+        "test": {
+          "end": 3,
+          "name": "bar",
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "type": "ConditionalExpression",
+      },
+      "range": [
+        0,
+        46,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 46,
+  "range": [
+    0,
+    46,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > const a = () => {return (3, 4);}; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 32,
+          "id": {
+            "end": 7,
+            "name": "a",
+            "range": [
+              6,
+              7,
+            ],
+            "start": 6,
+            "type": "Identifier",
+          },
+          "init": {
+            "async": false,
+            "body": {
+              "body": [
+                {
+                  "argument": {
+                    "end": 29,
+                    "expressions": [
+                      {
+                        "end": 26,
+                        "range": [
+                          25,
+                          26,
+                        ],
+                        "start": 25,
+                        "type": "Literal",
+                        "value": 3,
+                      },
+                      {
+                        "end": 29,
+                        "range": [
+                          28,
+                          29,
+                        ],
+                        "start": 28,
+                        "type": "Literal",
+                        "value": 4,
+                      },
+                    ],
+                    "range": [
+                      25,
+                      29,
+                    ],
+                    "start": 25,
+                    "type": "SequenceExpression",
+                  },
+                  "end": 31,
+                  "range": [
+                    17,
+                    31,
+                  ],
+                  "start": 17,
+                  "type": "ReturnStatement",
+                },
+              ],
+              "end": 32,
+              "range": [
+                16,
+                32,
+              ],
+              "start": 16,
+              "type": "BlockStatement",
+            },
+            "end": 32,
+            "expression": false,
+            "generator": false,
+            "params": [],
+            "range": [
+              10,
+              32,
+            ],
+            "start": 10,
+            "type": "ArrowFunctionExpression",
+          },
+          "range": [
+            6,
+            32,
+          ],
+          "start": 6,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 33,
+      "kind": "const",
+      "range": [
+        0,
+        33,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 33,
+  "range": [
+    0,
+    33,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > e => "test" 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "type": "Literal",
+          "value": "test",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "e",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > e => { label: 42 } 1`] = `
+{
+  "body": [
+    {
+      "end": 18,
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [
+            {
+              "body": {
+                "end": 16,
+                "expression": {
+                  "end": 16,
+                  "range": [
+                    14,
+                    16,
+                  ],
+                  "start": 14,
+                  "type": "Literal",
+                  "value": 42,
+                },
+                "range": [
+                  14,
+                  16,
+                ],
+                "start": 14,
+                "type": "ExpressionStatement",
+              },
+              "end": 16,
+              "label": {
+                "end": 12,
+                "name": "label",
+                "range": [
+                  7,
+                  12,
+                ],
+                "start": 7,
+                "type": "Identifier",
+              },
+              "range": [
+                7,
+                16,
+              ],
+              "start": 7,
+              "type": "LabeledStatement",
+            },
+          ],
+          "end": 18,
+          "range": [
+            5,
+            18,
+          ],
+          "start": 5,
+          "type": "BlockStatement",
+        },
+        "end": 18,
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "end": 1,
+            "name": "e",
+            "range": [
+              0,
+              1,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          0,
+          18,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        18,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 18,
+  "range": [
+    0,
+    18,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > f = ([[,] = g()]) => {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "expression": false,
+          "generator": false,
+          "params": [
+            {
+              "elements": [
+                {
+                  "left": {
+                    "elements": [
+                      null,
+                    ],
+                    "type": "ArrayPattern",
+                  },
+                  "right": {
+                    "arguments": [],
+                    "callee": {
+                      "name": "g",
+                      "type": "Identifier",
+                    },
+                    "type": "CallExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "ArrowFunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > f = ([[,] = g()]) => {} 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "expression": false,
+          "generator": false,
+          "params": [
+            {
+              "elements": [
+                {
+                  "left": {
+                    "elements": [
+                      null,
+                    ],
+                    "type": "ArrayPattern",
+                  },
+                  "right": {
+                    "arguments": [],
+                    "callee": {
+                      "name": "g",
+                      "type": "Identifier",
+                    },
+                    "type": "CallExpression",
+                  },
+                  "type": "AssignmentPattern",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "ArrowFunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > fn = (a, b, ...c) => c; 1`] = `
+{
+  "body": [
+    {
+      "end": 23,
+      "expression": {
+        "end": 22,
+        "left": {
+          "end": 2,
+          "name": "fn",
+          "range": [
+            0,
+            2,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "range": [
+          0,
+          22,
+        ],
+        "right": {
+          "async": false,
+          "body": {
+            "end": 22,
+            "name": "c",
+            "range": [
+              21,
+              22,
+            ],
+            "start": 21,
+            "type": "Identifier",
+          },
+          "end": 22,
+          "expression": true,
+          "generator": false,
+          "params": [
+            {
+              "end": 7,
+              "name": "a",
+              "range": [
+                6,
+                7,
+              ],
+              "start": 6,
+              "type": "Identifier",
+            },
+            {
+              "end": 10,
+              "name": "b",
+              "range": [
+                9,
+                10,
+              ],
+              "start": 9,
+              "type": "Identifier",
+            },
+            {
+              "argument": {
+                "end": 16,
+                "name": "c",
+                "range": [
+                  15,
+                  16,
+                ],
+                "start": 15,
+                "type": "Identifier",
+              },
+              "end": 16,
+              "range": [
+                12,
+                16,
+              ],
+              "start": 12,
+              "type": "RestElement",
+            },
+          ],
+          "range": [
+            5,
+            22,
+          ],
+          "start": 5,
+          "type": "ArrowFunctionExpression",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        0,
+        23,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 23,
+  "range": [
+    0,
+    23,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > foo ? bar : baz => {}; 1`] = `
+{
+  "body": [
+    {
+      "end": 22,
+      "expression": {
+        "alternate": {
+          "async": false,
+          "body": {
+            "body": [],
+            "end": 21,
+            "range": [
+              19,
+              21,
+            ],
+            "start": 19,
+            "type": "BlockStatement",
+          },
+          "end": 21,
+          "expression": false,
+          "generator": false,
+          "params": [
+            {
+              "end": 15,
+              "name": "baz",
+              "range": [
+                12,
+                15,
+              ],
+              "start": 12,
+              "type": "Identifier",
+            },
+          ],
+          "range": [
+            12,
+            21,
+          ],
+          "start": 12,
+          "type": "ArrowFunctionExpression",
+        },
+        "consequent": {
+          "end": 9,
+          "name": "bar",
+          "range": [
+            6,
+            9,
+          ],
+          "start": 6,
+          "type": "Identifier",
+        },
+        "end": 21,
+        "range": [
+          0,
+          21,
+        ],
+        "start": 0,
+        "test": {
+          "end": 3,
+          "name": "foo",
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "type": "ConditionalExpression",
+      },
+      "range": [
+        0,
+        22,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 22,
+  "range": [
+    0,
+    22,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > foo(() => {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "async": false,
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "expression": false,
+            "generator": false,
+            "params": [],
+            "type": "ArrowFunctionExpression",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > foo((x, y) => {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "async": false,
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "expression": false,
+            "generator": false,
+            "params": [
+              {
+                "name": "x",
+                "type": "Identifier",
+              },
+              {
+                "name": "y",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > for ( f => ( "key" in {}) ; 0;); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "type": "EmptyStatement",
+      },
+      "init": {
+        "async": false,
+        "body": {
+          "left": {
+            "type": "Literal",
+            "value": "key",
+          },
+          "operator": "in",
+          "right": {
+            "properties": [],
+            "type": "ObjectExpression",
+          },
+          "type": "BinaryExpression",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "f",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "test": {
+        "type": "Literal",
+        "value": 0,
+      },
+      "type": "ForStatement",
+      "update": null,
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > let => {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "name": "let",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > let => {} 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "name": "let",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > let => {}, let => {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "async": false,
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "expression": false,
+            "generator": false,
+            "params": [
+              {
+                "name": "let",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+          {
+            "async": false,
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "expression": false,
+            "generator": false,
+            "params": [
+              {
+                "name": "let",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+        ],
+        "type": "SequenceExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > let => a + b 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "+",
+          "right": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "let",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > let x = ({y=z}=e) => d 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "end": 22,
+          "id": {
+            "end": 5,
+            "name": "x",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "init": {
+            "async": false,
+            "body": {
+              "end": 22,
+              "name": "d",
+              "range": [
+                21,
+                22,
+              ],
+              "start": 21,
+              "type": "Identifier",
+            },
+            "end": 22,
+            "expression": true,
+            "generator": false,
+            "params": [
+              {
+                "end": 16,
+                "left": {
+                  "end": 14,
+                  "properties": [
+                    {
+                      "computed": false,
+                      "end": 13,
+                      "key": {
+                        "end": 11,
+                        "name": "y",
+                        "range": [
+                          10,
+                          11,
+                        ],
+                        "start": 10,
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "range": [
+                        10,
+                        13,
+                      ],
+                      "shorthand": true,
+                      "start": 10,
+                      "type": "Property",
+                      "value": {
+                        "end": 13,
+                        "left": {
+                          "end": 11,
+                          "name": "y",
+                          "range": [
+                            10,
+                            11,
+                          ],
+                          "start": 10,
+                          "type": "Identifier",
+                        },
+                        "range": [
+                          10,
+                          13,
+                        ],
+                        "right": {
+                          "end": 13,
+                          "name": "z",
+                          "range": [
+                            12,
+                            13,
+                          ],
+                          "start": 12,
+                          "type": "Identifier",
+                        },
+                        "start": 10,
+                        "type": "AssignmentPattern",
+                      },
+                    },
+                  ],
+                  "range": [
+                    9,
+                    14,
+                  ],
+                  "start": 9,
+                  "type": "ObjectPattern",
+                },
+                "range": [
+                  9,
+                  16,
+                ],
+                "right": {
+                  "end": 16,
+                  "name": "e",
+                  "range": [
+                    15,
+                    16,
+                  ],
+                  "start": 15,
+                  "type": "Identifier",
+                },
+                "start": 9,
+                "type": "AssignmentPattern",
+              },
+            ],
+            "range": [
+              8,
+              22,
+            ],
+            "start": 8,
+            "type": "ArrowFunctionExpression",
+          },
+          "range": [
+            4,
+            22,
+          ],
+          "start": 4,
+          "type": "VariableDeclarator",
+        },
+      ],
+      "end": 22,
+      "kind": "let",
+      "range": [
+        0,
+        22,
+      ],
+      "start": 0,
+      "type": "VariableDeclaration",
+    },
+  ],
+  "end": 22,
+  "range": [
+    0,
+    22,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > var x = ([x = 25]) => x => x => ({x} = {}) 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": {
+            "async": false,
+            "body": {
+              "async": false,
+              "body": {
+                "async": false,
+                "body": {
+                  "left": {
+                    "properties": [
+                      {
+                        "computed": false,
+                        "key": {
+                          "name": "x",
+                          "type": "Identifier",
+                        },
+                        "kind": "init",
+                        "method": false,
+                        "shorthand": true,
+                        "type": "Property",
+                        "value": {
+                          "name": "x",
+                          "type": "Identifier",
+                        },
+                      },
+                    ],
+                    "type": "ObjectPattern",
+                  },
+                  "operator": "=",
+                  "right": {
+                    "properties": [],
+                    "type": "ObjectExpression",
+                  },
+                  "type": "AssignmentExpression",
+                },
+                "expression": true,
+                "generator": false,
+                "params": [
+                  {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrowFunctionExpression",
+              },
+              "expression": true,
+              "generator": false,
+              "params": [
+                {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrowFunctionExpression",
+            },
+            "expression": true,
+            "generator": false,
+            "params": [
+              {
+                "elements": [
+                  {
+                    "left": {
+                      "name": "x",
+                      "type": "Identifier",
+                    },
+                    "right": {
+                      "type": "Literal",
+                      "value": 25,
+                    },
+                    "type": "AssignmentPattern",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > var x = ({x = 30}, [y], z) => x 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": {
+            "async": false,
+            "body": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "expression": true,
+            "generator": false,
+            "params": [
+              {
+                "properties": [
+                  {
+                    "computed": false,
+                    "key": {
+                      "name": "x",
+                      "type": "Identifier",
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "shorthand": true,
+                    "type": "Property",
+                    "value": {
+                      "left": {
+                        "name": "x",
+                        "type": "Identifier",
+                      },
+                      "right": {
+                        "type": "Literal",
+                        "value": 30,
+                      },
+                      "type": "AssignmentPattern",
+                    },
+                  },
+                ],
+                "type": "ObjectPattern",
+              },
+              {
+                "elements": [
+                  {
+                    "name": "y",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrayPattern",
+              },
+              {
+                "name": "z",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > var x = foo => x => x => x => {x} 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": {
+            "async": false,
+            "body": {
+              "async": false,
+              "body": {
+                "async": false,
+                "body": {
+                  "async": false,
+                  "body": {
+                    "body": [
+                      {
+                        "expression": {
+                          "name": "x",
+                          "type": "Identifier",
+                        },
+                        "type": "ExpressionStatement",
+                      },
+                    ],
+                    "type": "BlockStatement",
+                  },
+                  "expression": false,
+                  "generator": false,
+                  "params": [
+                    {
+                      "name": "x",
+                      "type": "Identifier",
+                    },
+                  ],
+                  "type": "ArrowFunctionExpression",
+                },
+                "expression": true,
+                "generator": false,
+                "params": [
+                  {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                ],
+                "type": "ArrowFunctionExpression",
+              },
+              "expression": true,
+              "generator": false,
+              "params": [
+                {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrowFunctionExpression",
+            },
+            "expression": true,
+            "generator": false,
+            "params": [
+              {
+                "name": "foo",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > x => (y, z) => z * (x + y) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "async": false,
+          "body": {
+            "left": {
+              "name": "z",
+              "type": "Identifier",
+            },
+            "operator": "*",
+            "right": {
+              "left": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "operator": "+",
+              "right": {
+                "name": "y",
+                "type": "Identifier",
+              },
+              "type": "BinaryExpression",
+            },
+            "type": "BinaryExpression",
+          },
+          "expression": true,
+          "generator": false,
+          "params": [
+            {
+              "name": "y",
+              "type": "Identifier",
+            },
+            {
+              "name": "z",
+              "type": "Identifier",
+            },
+          ],
+          "type": "ArrowFunctionExpression",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "x",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Arrow > Expressions - Arrow (pass) > x => { function x() {} } 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": false,
+        "body": {
+          "body": [
+            {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "params": [],
+              "type": "FunctionDeclaration",
+            },
+          ],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "name": "x",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

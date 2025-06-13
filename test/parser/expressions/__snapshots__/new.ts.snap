@@ -1,0 +1,2331 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - New > Expressions - New (pass) > ++new x().y 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "arguments": [],
+            "callee": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "type": "NewExpression",
+          },
+          "property": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "++",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > [...new A()] 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "elements": [
+          {
+            "argument": {
+              "arguments": [],
+              "callee": {
+                "name": "A",
+                "type": "Identifier",
+              },
+              "type": "NewExpression",
+            },
+            "type": "SpreadElement",
+          },
+        ],
+        "type": "ArrayExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > class x extends (x) {} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > class x extends new A() {} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "arguments": [],
+        "callee": {
+          "name": "A",
+          "type": "Identifier",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > class x extends y { constructor() { new super() }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "arguments": [],
+                      "callee": {
+                        "type": "Super",
+                      },
+                      "type": "NewExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > class x extends y { constructor() { new super.foo }} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "arguments": [],
+                      "callee": {
+                        "computed": false,
+                        "object": {
+                          "type": "Super",
+                        },
+                        "property": {
+                          "name": "foo",
+                          "type": "Identifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "type": "NewExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": {
+        "name": "y",
+        "type": "Identifier",
+      },
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > delete new x() 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "arguments": [],
+          "callee": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "NewExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > delete new x().y 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "arguments": [],
+            "callee": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "type": "NewExpression",
+          },
+          "property": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > f(new /z/()) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "arguments": [],
+            "callee": {
+              "regex": {
+                "flags": "",
+                "pattern": "z",
+              },
+              "type": "Literal",
+              "value": /z/,
+            },
+            "type": "NewExpression",
+          },
+        ],
+        "callee": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > f(new /z/) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "arguments": [],
+            "callee": {
+              "regex": {
+                "flags": "",
+                "pattern": "z",
+              },
+              "type": "Literal",
+              "value": /z/,
+            },
+            "type": "NewExpression",
+          },
+        ],
+        "callee": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > f(new /z/.foo) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "arguments": [],
+            "callee": {
+              "computed": false,
+              "object": {
+                "regex": {
+                  "flags": "",
+                  "pattern": "z",
+                },
+                "type": "Literal",
+                "value": /z/,
+              },
+              "property": {
+                "name": "foo",
+                "type": "Identifier",
+              },
+              "type": "MemberExpression",
+            },
+            "type": "NewExpression",
+          },
+        ],
+        "callee": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new "foo".__proto__.constructor 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "computed": false,
+          "object": {
+            "computed": false,
+            "object": {
+              "type": "Literal",
+              "value": "foo",
+            },
+            "property": {
+              "name": "__proto__",
+              "type": "Identifier",
+            },
+            "type": "MemberExpression",
+          },
+          "property": {
+            "name": "constructor",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new (foo)(); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new (foo); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new 0x2.__proto__.constructor 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "computed": false,
+          "object": {
+            "computed": false,
+            "object": {
+              "type": "Literal",
+              "value": 2,
+            },
+            "property": {
+              "name": "__proto__",
+              "type": "Identifier",
+            },
+            "type": "MemberExpression",
+          },
+          "property": {
+            "name": "constructor",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new 1..__proto__.constructor 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "computed": false,
+          "object": {
+            "computed": false,
+            "object": {
+              "type": "Literal",
+              "value": 1,
+            },
+            "property": {
+              "name": "__proto__",
+              "type": "Identifier",
+            },
+            "type": "MemberExpression",
+          },
+          "property": {
+            "name": "constructor",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new Foo 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "name": "Foo",
+          "type": "Identifier",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new Foo() 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "name": "Foo",
+          "type": "Identifier",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new Foo(X) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "X",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "name": "Foo",
+          "type": "Identifier",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new Foo(X) 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "X",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "name": "Foo",
+          "type": "Identifier",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new Foo(X, Y, Z) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "X",
+            "type": "Identifier",
+          },
+          {
+            "name": "Y",
+            "type": "Identifier",
+          },
+          {
+            "name": "Z",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "name": "Foo",
+          "type": "Identifier",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new Foo(X, Y, Z) 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "X",
+            "type": "Identifier",
+          },
+          {
+            "name": "Y",
+            "type": "Identifier",
+          },
+          {
+            "name": "Z",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "name": "Foo",
+          "type": "Identifier",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new Foo.Bar 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "computed": false,
+          "object": {
+            "name": "Foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "Bar",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new Foo.Bar() 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "computed": false,
+          "object": {
+            "name": "Foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "Bar",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new Foo.Bar(X) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "X",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "computed": false,
+          "object": {
+            "name": "Foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "Bar",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new Foo.Bar(X) 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "X",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "computed": false,
+          "object": {
+            "name": "Foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "Bar",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new Foo.Bar(X, Y, Z) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "X",
+            "type": "Identifier",
+          },
+          {
+            "name": "Y",
+            "type": "Identifier",
+          },
+          {
+            "name": "Z",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "computed": false,
+          "object": {
+            "name": "Foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "Bar",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new Foo.Bar(X, Y, Z) 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "X",
+            "type": "Identifier",
+          },
+          {
+            "name": "Y",
+            "type": "Identifier",
+          },
+          {
+            "name": "Z",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "computed": false,
+          "object": {
+            "name": "Foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "Bar",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new Foo["bar"] 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "computed": true,
+          "object": {
+            "name": "Foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "type": "Literal",
+            "value": "bar",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new Foo["bar"]() 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "computed": true,
+          "object": {
+            "name": "Foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "type": "Literal",
+            "value": "bar",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new Foo["bar"]() 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "computed": true,
+          "object": {
+            "name": "Foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "type": "Literal",
+            "value": "bar",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new Foo["bar"](X) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "X",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "computed": true,
+          "object": {
+            "name": "Foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "type": "Literal",
+            "value": "bar",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new Foo["bar"](X) 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "X",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "computed": true,
+          "object": {
+            "name": "Foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "type": "Literal",
+            "value": "bar",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new Foo["bar"](X, Y, Z) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "X",
+            "type": "Identifier",
+          },
+          {
+            "name": "Y",
+            "type": "Identifier",
+          },
+          {
+            "name": "Z",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "computed": true,
+          "object": {
+            "name": "Foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "type": "Literal",
+            "value": "bar",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new Foo["bar"](X, Y, Z) 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "X",
+            "type": "Identifier",
+          },
+          {
+            "name": "Y",
+            "type": "Identifier",
+          },
+          {
+            "name": "Z",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "computed": true,
+          "object": {
+            "name": "Foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "type": "Literal",
+            "value": "bar",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new a ? b : c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "consequent": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "test": {
+          "arguments": [],
+          "callee": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "type": "NewExpression",
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new a.b.c.d 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "computed": false,
+          "object": {
+            "computed": false,
+            "object": {
+              "computed": false,
+              "object": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "property": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "type": "MemberExpression",
+            },
+            "property": {
+              "name": "c",
+              "type": "Identifier",
+            },
+            "type": "MemberExpression",
+          },
+          "property": {
+            "name": "d",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new a.b.c.d() 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "computed": false,
+          "object": {
+            "computed": false,
+            "object": {
+              "computed": false,
+              "object": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "property": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "type": "MemberExpression",
+            },
+            "property": {
+              "name": "c",
+              "type": "Identifier",
+            },
+            "type": "MemberExpression",
+          },
+          "property": {
+            "name": "d",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new arguments 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "name": "arguments",
+          "type": "Identifier",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new async (...x) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "argument": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "type": "SpreadElement",
+          },
+        ],
+        "callee": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new async (x, y) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "x",
+            "type": "Identifier",
+          },
+          {
+            "name": "y",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new async 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new async function(){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "async": true,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": null,
+          "params": [],
+          "type": "FunctionExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new async(x)(y) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "y",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "arguments": [
+            {
+              "name": "x",
+              "type": "Identifier",
+            },
+          ],
+          "callee": {
+            "name": "async",
+            "type": "Identifier",
+          },
+          "type": "NewExpression",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new await 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "name": "await",
+          "type": "Identifier",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new await()() 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "arguments": [],
+          "callee": {
+            "name": "await",
+            "type": "Identifier",
+          },
+          "type": "NewExpression",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new class extends x{} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "body": {
+            "body": [],
+            "type": "ClassBody",
+          },
+          "id": null,
+          "superClass": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ClassExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new class{} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "body": {
+            "body": [],
+            "type": "ClassBody",
+          },
+          "id": null,
+          "superClass": null,
+          "type": "ClassExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new eval() 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "name": "eval",
+          "type": "Identifier",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new false.__proto__.constructor 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "computed": false,
+          "object": {
+            "computed": false,
+            "object": {
+              "type": "Literal",
+              "value": false,
+            },
+            "property": {
+              "name": "__proto__",
+              "type": "Identifier",
+            },
+            "type": "MemberExpression",
+          },
+          "property": {
+            "name": "constructor",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new foo()(); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "arguments": [],
+          "callee": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "NewExpression",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new function(){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": null,
+          "params": [],
+          "type": "FunctionExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new function(){}(x) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "x",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "async": false,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": null,
+          "params": [],
+          "type": "FunctionExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new let 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "name": "let",
+          "type": "Identifier",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new new A().foo 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "computed": false,
+          "object": {
+            "arguments": [],
+            "callee": {
+              "name": "A",
+              "type": "Identifier",
+            },
+            "type": "NewExpression",
+          },
+          "property": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new new A.foo() 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "arguments": [],
+          "callee": {
+            "computed": false,
+            "object": {
+              "name": "A",
+              "type": "Identifier",
+            },
+            "property": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "type": "MemberExpression",
+          },
+          "type": "NewExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new new x 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "arguments": [],
+          "callee": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "NewExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new this 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "type": "ThisExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new true.__proto__.constructor 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "computed": false,
+          "object": {
+            "computed": false,
+            "object": {
+              "type": "Literal",
+              "value": true,
+            },
+            "property": {
+              "name": "__proto__",
+              "type": "Identifier",
+            },
+            "type": "MemberExpression",
+          },
+          "property": {
+            "name": "constructor",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "NewExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new x()(); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "arguments": [],
+          "callee": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "NewExpression",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new x()(); 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "arguments": [],
+          "callee": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "NewExpression",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new x().y + z 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "computed": false,
+          "object": {
+            "arguments": [],
+            "callee": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "type": "NewExpression",
+          },
+          "property": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "+",
+        "right": {
+          "name": "z",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new x().y = z 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "computed": false,
+          "object": {
+            "arguments": [],
+            "callee": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "type": "NewExpression",
+          },
+          "property": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "=",
+        "right": {
+          "name": "z",
+          "type": "Identifier",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new x().y 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "computed": false,
+        "object": {
+          "arguments": [],
+          "callee": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "NewExpression",
+        },
+        "property": {
+          "name": "y",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new x().y 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "computed": false,
+        "object": {
+          "arguments": [],
+          "callee": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "NewExpression",
+        },
+        "property": {
+          "name": "y",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new x().y++ 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "arguments": [],
+            "callee": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "type": "NewExpression",
+          },
+          "property": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "++",
+        "prefix": false,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new x()[y] + z 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "computed": true,
+          "object": {
+            "arguments": [],
+            "callee": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "type": "NewExpression",
+          },
+          "property": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "+",
+        "right": {
+          "name": "z",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new x()[y] = z 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "computed": true,
+          "object": {
+            "arguments": [],
+            "callee": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "type": "NewExpression",
+          },
+          "property": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "=",
+        "right": {
+          "name": "z",
+          "type": "Identifier",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new x()[y] 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "computed": true,
+        "object": {
+          "arguments": [],
+          "callee": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "NewExpression",
+        },
+        "property": {
+          "name": "y",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > new x()[y] 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "computed": true,
+        "object": {
+          "arguments": [],
+          "callee": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "NewExpression",
+        },
+        "property": {
+          "name": "y",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > typeof async () 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "arguments": [],
+          "callee": {
+            "name": "async",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "operator": "typeof",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > typeof async 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "operator": "typeof",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > typeof async function(){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "async": true,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": null,
+          "params": [],
+          "type": "FunctionExpression",
+        },
+        "operator": "typeof",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > typeof new x() 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "arguments": [],
+          "callee": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "NewExpression",
+        },
+        "operator": "typeof",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > typeof new x().y 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "arguments": [],
+            "callee": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "type": "NewExpression",
+          },
+          "property": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "typeof",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - New > Expressions - New (pass) > x({[new A()]:y}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "properties": [
+              {
+                "computed": true,
+                "key": {
+                  "arguments": [],
+                  "callee": {
+                    "name": "A",
+                    "type": "Identifier",
+                  },
+                  "type": "NewExpression",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "name": "y",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+        ],
+        "callee": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

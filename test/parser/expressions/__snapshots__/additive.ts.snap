@@ -1,0 +1,187 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - Additive > Expressions - Additive (pass) > --a 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "--",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Additive > Expressions - Additive (pass) > async = a + await;  a = async++; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "left": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "+",
+          "right": {
+            "name": "await",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "argument": {
+            "name": "async",
+            "type": "Identifier",
+          },
+          "operator": "++",
+          "prefix": false,
+          "type": "UpdateExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Additive > Expressions - Additive (pass) > d = a + b;  a = b; 1`] = `
+{
+  "body": [
+    {
+      "end": 10,
+      "expression": {
+        "end": 9,
+        "left": {
+          "end": 1,
+          "name": "d",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "range": [
+          0,
+          9,
+        ],
+        "right": {
+          "end": 9,
+          "left": {
+            "end": 5,
+            "name": "a",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          "operator": "+",
+          "range": [
+            4,
+            9,
+          ],
+          "right": {
+            "end": 9,
+            "name": "b",
+            "range": [
+              8,
+              9,
+            ],
+            "start": 8,
+            "type": "Identifier",
+          },
+          "start": 4,
+          "type": "BinaryExpression",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        0,
+        10,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+    {
+      "end": 18,
+      "expression": {
+        "end": 17,
+        "left": {
+          "end": 13,
+          "name": "a",
+          "range": [
+            12,
+            13,
+          ],
+          "start": 12,
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "range": [
+          12,
+          17,
+        ],
+        "right": {
+          "end": 17,
+          "name": "b",
+          "range": [
+            16,
+            17,
+          ],
+          "start": 16,
+          "type": "Identifier",
+        },
+        "start": 12,
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        12,
+        18,
+      ],
+      "start": 12,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 18,
+  "range": [
+    0,
+    18,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;

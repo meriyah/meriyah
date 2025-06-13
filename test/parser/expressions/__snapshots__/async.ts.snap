@@ -1,0 +1,3260 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - Async > Expressions - Async (pass) > ({async foo () 
+ {}}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "properties": [
+          {
+            "computed": false,
+            "key": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "kind": "init",
+            "method": true,
+            "shorthand": false,
+            "type": "Property",
+            "value": {
+              "async": true,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ObjectExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > ({async foo() {}}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "properties": [
+          {
+            "computed": false,
+            "key": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "kind": "init",
+            "method": true,
+            "shorthand": false,
+            "type": "Property",
+            "value": {
+              "async": true,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ObjectExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > (async () => {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > (async (a, ...b) => a) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "a",
+            "type": "Identifier",
+          },
+          {
+            "argument": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "type": "RestElement",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > (async x => x) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "x",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > (async(bullshit) => {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "name": "bullshit",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async
+: foo 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "expression": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "label": {
+        "name": "async",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async 
+ (x, y) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "x",
+            "type": "Identifier",
+          },
+          {
+            "name": "y",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async 
+ / x / g 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "async",
+            "type": "Identifier",
+          },
+          "operator": "/",
+          "right": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "/",
+        "right": {
+          "name": "g",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async 
+ / x 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "operator": "/",
+        "right": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async (x) + 2 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "arguments": [
+            {
+              "name": "x",
+              "type": "Identifier",
+            },
+          ],
+          "callee": {
+            "name": "async",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "operator": "+",
+        "right": {
+          "type": "Literal",
+          "value": 2,
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async + 10; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "operator": "+",
+        "right": {
+          "type": "Literal",
+          "value": 10,
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async = 5 + 5; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "left": {
+            "type": "Literal",
+            "value": 5,
+          },
+          "operator": "+",
+          "right": {
+            "type": "Literal",
+            "value": 5,
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async foo => bar; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "name": "bar",
+          "type": "Identifier",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "foo",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async function test(){
+        const someVar = null;
+        async foo => {}
+      } 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [
+          {
+            "declarations": [
+              {
+                "id": {
+                  "name": "someVar",
+                  "type": "Identifier",
+                },
+                "init": {
+                  "type": "Literal",
+                  "value": null,
+                },
+                "type": "VariableDeclarator",
+              },
+            ],
+            "kind": "const",
+            "type": "VariableDeclaration",
+          },
+          {
+            "expression": {
+              "async": true,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "expression": false,
+              "generator": false,
+              "params": [
+                {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrowFunctionExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "test",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async function test(){
+        const someVar = null;
+        const done = async foo => {}
+      } 1`] = `
+{
+  "body": [
+    {
+      "async": true,
+      "body": {
+        "body": [
+          {
+            "declarations": [
+              {
+                "id": {
+                  "name": "someVar",
+                  "type": "Identifier",
+                },
+                "init": {
+                  "type": "Literal",
+                  "value": null,
+                },
+                "type": "VariableDeclarator",
+              },
+            ],
+            "kind": "const",
+            "type": "VariableDeclaration",
+          },
+          {
+            "declarations": [
+              {
+                "id": {
+                  "name": "done",
+                  "type": "Identifier",
+                },
+                "init": {
+                  "async": true,
+                  "body": {
+                    "body": [],
+                    "type": "BlockStatement",
+                  },
+                  "expression": false,
+                  "generator": false,
+                  "params": [
+                    {
+                      "name": "foo",
+                      "type": "Identifier",
+                    },
+                  ],
+                  "type": "ArrowFunctionExpression",
+                },
+                "type": "VariableDeclarator",
+              },
+            ],
+            "kind": "const",
+            "type": "VariableDeclaration",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "test",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async g => (x = [await y]) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "left": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "operator": "=",
+          "right": {
+            "elements": [
+              {
+                "argument": {
+                  "name": "y",
+                  "type": "Identifier",
+                },
+                "type": "AwaitExpression",
+              },
+            ],
+            "type": "ArrayExpression",
+          },
+          "type": "AssignmentExpression",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "g",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async in {} 1`] = `
+{
+  "body": [
+    {
+      "end": 11,
+      "expression": {
+        "end": 11,
+        "left": {
+          "end": 5,
+          "name": "async",
+          "range": [
+            0,
+            5,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "operator": "in",
+        "range": [
+          0,
+          11,
+        ],
+        "right": {
+          "end": 11,
+          "properties": [],
+          "range": [
+            9,
+            11,
+          ],
+          "start": 9,
+          "type": "ObjectExpression",
+        },
+        "start": 0,
+        "type": "BinaryExpression",
+      },
+      "range": [
+        0,
+        11,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 11,
+  "range": [
+    0,
+    11,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async instanceof {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "operator": "instanceof",
+        "right": {
+          "properties": [],
+          "type": "ObjectExpression",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async r => result = [...{ x = await x }] = y; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "left": {
+            "name": "result",
+            "type": "Identifier",
+          },
+          "operator": "=",
+          "right": {
+            "left": {
+              "elements": [
+                {
+                  "argument": {
+                    "properties": [
+                      {
+                        "computed": false,
+                        "key": {
+                          "name": "x",
+                          "type": "Identifier",
+                        },
+                        "kind": "init",
+                        "method": false,
+                        "shorthand": true,
+                        "type": "Property",
+                        "value": {
+                          "left": {
+                            "name": "x",
+                            "type": "Identifier",
+                          },
+                          "right": {
+                            "argument": {
+                              "name": "x",
+                              "type": "Identifier",
+                            },
+                            "type": "AwaitExpression",
+                          },
+                          "type": "AssignmentPattern",
+                        },
+                      },
+                    ],
+                    "type": "ObjectPattern",
+                  },
+                  "type": "RestElement",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+            "operator": "=",
+            "right": {
+              "name": "y",
+              "type": "Identifier",
+            },
+            "type": "AssignmentExpression",
+          },
+          "type": "AssignmentExpression",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "r",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async() * b 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "arguments": [],
+          "callee": {
+            "name": "async",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "operator": "*",
+        "right": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async(), x 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "arguments": [],
+            "callee": {
+              "name": "async",
+              "type": "Identifier",
+            },
+            "type": "CallExpression",
+          },
+          {
+            "name": "x",
+            "type": "Identifier",
+          },
+        ],
+        "type": "SequenceExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async(...a); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "argument": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "type": "SpreadElement",
+          },
+        ],
+        "callee": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async(...a, b); 1`] = `
+{
+  "body": [
+    {
+      "end": 15,
+      "expression": {
+        "arguments": [
+          {
+            "argument": {
+              "end": 10,
+              "name": "a",
+              "range": [
+                9,
+                10,
+              ],
+              "start": 9,
+              "type": "Identifier",
+            },
+            "end": 10,
+            "range": [
+              6,
+              10,
+            ],
+            "start": 6,
+            "type": "SpreadElement",
+          },
+          {
+            "end": 13,
+            "name": "b",
+            "range": [
+              12,
+              13,
+            ],
+            "start": 12,
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "end": 5,
+          "name": "async",
+          "range": [
+            0,
+            5,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 14,
+        "range": [
+          0,
+          14,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 15,
+  "range": [
+    0,
+    15,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async(a, ...b); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "a",
+            "type": "Identifier",
+          },
+          {
+            "argument": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "type": "SpreadElement",
+          },
+        ],
+        "callee": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async(a, b) * c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "arguments": [
+            {
+              "name": "a",
+              "type": "Identifier",
+            },
+            {
+              "name": "b",
+              "type": "Identifier",
+            },
+          ],
+          "callee": {
+            "name": "async",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "operator": "*",
+        "right": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async/x 1`] = `
+{
+  "body": [
+    {
+      "end": 7,
+      "expression": {
+        "end": 7,
+        "left": {
+          "end": 5,
+          "name": "async",
+          "range": [
+            0,
+            5,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "operator": "/",
+        "range": [
+          0,
+          7,
+        ],
+        "right": {
+          "end": 7,
+          "name": "x",
+          "range": [
+            6,
+            7,
+          ],
+          "start": 6,
+          "type": "Identifier",
+        },
+        "start": 0,
+        "type": "BinaryExpression",
+      },
+      "range": [
+        0,
+        7,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 7,
+  "range": [
+    0,
+    7,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > async: foo 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "expression": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "label": {
+        "name": "async",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > class x {
+async foo() {}} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": true,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > class x {async foo 
+ () {}} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": true,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > class x {async foo() {}} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": true,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > const a = {
+        foo: () => {
+        },
+        bar: async event => {
+        }
+      } 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "init": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "async": false,
+                  "body": {
+                    "body": [],
+                    "type": "BlockStatement",
+                  },
+                  "expression": false,
+                  "generator": false,
+                  "params": [],
+                  "type": "ArrowFunctionExpression",
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "bar",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "async": true,
+                  "body": {
+                    "body": [],
+                    "type": "BlockStatement",
+                  },
+                  "expression": false,
+                  "generator": false,
+                  "params": [
+                    {
+                      "name": "event",
+                      "type": "Identifier",
+                    },
+                  ],
+                  "type": "ArrowFunctionExpression",
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "const",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > const a = {
+        foo: () => {
+        },
+        bar: async event => {
+        },
+        baz: async event => {
+        }
+      }
+
+      const a = {
+        foo: () => {
+        },
+        bar: async event => {
+        }
+      }
+       1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "init": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "async": false,
+                  "body": {
+                    "body": [],
+                    "type": "BlockStatement",
+                  },
+                  "expression": false,
+                  "generator": false,
+                  "params": [],
+                  "type": "ArrowFunctionExpression",
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "bar",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "async": true,
+                  "body": {
+                    "body": [],
+                    "type": "BlockStatement",
+                  },
+                  "expression": false,
+                  "generator": false,
+                  "params": [
+                    {
+                      "name": "event",
+                      "type": "Identifier",
+                    },
+                  ],
+                  "type": "ArrowFunctionExpression",
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "baz",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "async": true,
+                  "body": {
+                    "body": [],
+                    "type": "BlockStatement",
+                  },
+                  "expression": false,
+                  "generator": false,
+                  "params": [
+                    {
+                      "name": "event",
+                      "type": "Identifier",
+                    },
+                  ],
+                  "type": "ArrowFunctionExpression",
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "const",
+      "type": "VariableDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "init": {
+            "properties": [
+              {
+                "computed": false,
+                "key": {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "async": false,
+                  "body": {
+                    "body": [],
+                    "type": "BlockStatement",
+                  },
+                  "expression": false,
+                  "generator": false,
+                  "params": [],
+                  "type": "ArrowFunctionExpression",
+                },
+              },
+              {
+                "computed": false,
+                "key": {
+                  "name": "bar",
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "async": true,
+                  "body": {
+                    "body": [],
+                    "type": "BlockStatement",
+                  },
+                  "expression": false,
+                  "generator": false,
+                  "params": [
+                    {
+                      "name": "event",
+                      "type": "Identifier",
+                    },
+                  ],
+                  "type": "ArrowFunctionExpression",
+                },
+              },
+            ],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "const",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > const someVar = null;
+          const done = async foo => {} 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "someVar",
+            "type": "Identifier",
+          },
+          "init": {
+            "type": "Literal",
+            "value": null,
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "const",
+      "type": "VariableDeclaration",
+    },
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "done",
+            "type": "Identifier",
+          },
+          "init": {
+            "async": true,
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "expression": false,
+            "generator": false,
+            "params": [
+              {
+                "name": "foo",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "const",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > f = a + b + async
+() + d 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "left": {
+            "left": {
+              "left": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "operator": "+",
+              "right": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "type": "BinaryExpression",
+            },
+            "operator": "+",
+            "right": {
+              "arguments": [],
+              "callee": {
+                "name": "async",
+                "type": "Identifier",
+              },
+              "type": "CallExpression",
+            },
+            "type": "BinaryExpression",
+          },
+          "operator": "+",
+          "right": {
+            "name": "d",
+            "type": "Identifier",
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > f = a + b + async() + d 1`] = `
+{
+  "body": [
+    {
+      "end": 23,
+      "expression": {
+        "end": 23,
+        "left": {
+          "end": 1,
+          "name": "f",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "range": [
+          0,
+          23,
+        ],
+        "right": {
+          "end": 23,
+          "left": {
+            "end": 19,
+            "left": {
+              "end": 9,
+              "left": {
+                "end": 5,
+                "name": "a",
+                "range": [
+                  4,
+                  5,
+                ],
+                "start": 4,
+                "type": "Identifier",
+              },
+              "operator": "+",
+              "range": [
+                4,
+                9,
+              ],
+              "right": {
+                "end": 9,
+                "name": "b",
+                "range": [
+                  8,
+                  9,
+                ],
+                "start": 8,
+                "type": "Identifier",
+              },
+              "start": 4,
+              "type": "BinaryExpression",
+            },
+            "operator": "+",
+            "range": [
+              4,
+              19,
+            ],
+            "right": {
+              "arguments": [],
+              "callee": {
+                "end": 17,
+                "name": "async",
+                "range": [
+                  12,
+                  17,
+                ],
+                "start": 12,
+                "type": "Identifier",
+              },
+              "end": 19,
+              "range": [
+                12,
+                19,
+              ],
+              "start": 12,
+              "type": "CallExpression",
+            },
+            "start": 4,
+            "type": "BinaryExpression",
+          },
+          "operator": "+",
+          "range": [
+            4,
+            23,
+          ],
+          "right": {
+            "end": 23,
+            "name": "d",
+            "range": [
+              22,
+              23,
+            ],
+            "start": 22,
+            "type": "Identifier",
+          },
+          "start": 4,
+          "type": "BinaryExpression",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        0,
+        23,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 23,
+  "range": [
+    0,
+    23,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > f = async function g(){} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "async": true,
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": {
+            "name": "g",
+            "type": "Identifier",
+          },
+          "params": [],
+          "type": "FunctionExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > f(a + async in b) 1`] = `
+{
+  "body": [
+    {
+      "end": 17,
+      "expression": {
+        "arguments": [
+          {
+            "end": 16,
+            "left": {
+              "end": 11,
+              "left": {
+                "end": 3,
+                "name": "a",
+                "range": [
+                  2,
+                  3,
+                ],
+                "start": 2,
+                "type": "Identifier",
+              },
+              "operator": "+",
+              "range": [
+                2,
+                11,
+              ],
+              "right": {
+                "end": 11,
+                "name": "async",
+                "range": [
+                  6,
+                  11,
+                ],
+                "start": 6,
+                "type": "Identifier",
+              },
+              "start": 2,
+              "type": "BinaryExpression",
+            },
+            "operator": "in",
+            "range": [
+              2,
+              16,
+            ],
+            "right": {
+              "end": 16,
+              "name": "b",
+              "range": [
+                15,
+                16,
+              ],
+              "start": 15,
+              "type": "Identifier",
+            },
+            "start": 2,
+            "type": "BinaryExpression",
+          },
+        ],
+        "callee": {
+          "end": 1,
+          "name": "f",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 17,
+        "range": [
+          0,
+          17,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        17,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 17,
+  "range": [
+    0,
+    17,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > f(a + async instanceof b) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "left": {
+              "left": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "operator": "+",
+              "right": {
+                "name": "async",
+                "type": "Identifier",
+              },
+              "type": "BinaryExpression",
+            },
+            "operator": "instanceof",
+            "right": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "type": "BinaryExpression",
+          },
+        ],
+        "callee": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > f(a, b) * c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "arguments": [
+            {
+              "name": "a",
+              "type": "Identifier",
+            },
+            {
+              "name": "b",
+              "type": "Identifier",
+            },
+          ],
+          "callee": {
+            "name": "f",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "operator": "*",
+        "right": {
+          "name": "c",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > f(async ()) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "arguments": [],
+            "callee": {
+              "name": "async",
+              "type": "Identifier",
+            },
+            "type": "CallExpression",
+          },
+        ],
+        "callee": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > f(async ()=>c) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "async": true,
+            "body": {
+              "name": "c",
+              "type": "Identifier",
+            },
+            "expression": true,
+            "generator": false,
+            "params": [],
+            "type": "ArrowFunctionExpression",
+          },
+        ],
+        "callee": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > f(async => x) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "async": false,
+            "body": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "expression": true,
+            "generator": false,
+            "params": [
+              {
+                "name": "async",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+        ],
+        "callee": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > f(async foo=>c) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "async": true,
+            "body": {
+              "name": "c",
+              "type": "Identifier",
+            },
+            "expression": true,
+            "generator": false,
+            "params": [
+              {
+                "name": "foo",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+        ],
+        "callee": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > f(async function(){}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "async": true,
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "generator": false,
+            "id": null,
+            "params": [],
+            "type": "FunctionExpression",
+          },
+        ],
+        "callee": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > f(async in {}) 1`] = `
+{
+  "body": [
+    {
+      "end": 14,
+      "expression": {
+        "arguments": [
+          {
+            "end": 13,
+            "left": {
+              "end": 7,
+              "name": "async",
+              "range": [
+                2,
+                7,
+              ],
+              "start": 2,
+              "type": "Identifier",
+            },
+            "operator": "in",
+            "range": [
+              2,
+              13,
+            ],
+            "right": {
+              "end": 13,
+              "properties": [],
+              "range": [
+                11,
+                13,
+              ],
+              "start": 11,
+              "type": "ObjectExpression",
+            },
+            "start": 2,
+            "type": "BinaryExpression",
+          },
+        ],
+        "callee": {
+          "end": 1,
+          "name": "f",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 14,
+        "range": [
+          0,
+          14,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 14,
+  "range": [
+    0,
+    14,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > f(async instanceof {}) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "left": {
+              "name": "async",
+              "type": "Identifier",
+            },
+            "operator": "instanceof",
+            "right": {
+              "properties": [],
+              "type": "ObjectExpression",
+            },
+            "type": "BinaryExpression",
+          },
+        ],
+        "callee": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > f(async) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "async",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "name": "f",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > foo(async () => foo) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "async": true,
+            "body": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "expression": true,
+            "generator": false,
+            "params": [],
+            "type": "ArrowFunctionExpression",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > foo(async()) 1`] = `
+{
+  "body": [
+    {
+      "end": 12,
+      "expression": {
+        "arguments": [
+          {
+            "arguments": [],
+            "callee": {
+              "end": 9,
+              "name": "async",
+              "range": [
+                4,
+                9,
+              ],
+              "start": 4,
+              "type": "Identifier",
+            },
+            "end": 11,
+            "range": [
+              4,
+              11,
+            ],
+            "start": 4,
+            "type": "CallExpression",
+          },
+        ],
+        "callee": {
+          "end": 3,
+          "name": "foo",
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 12,
+        "range": [
+          0,
+          12,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        12,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 12,
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > foo(async(), x) 1`] = `
+{
+  "body": [
+    {
+      "end": 15,
+      "expression": {
+        "arguments": [
+          {
+            "arguments": [],
+            "callee": {
+              "end": 9,
+              "name": "async",
+              "range": [
+                4,
+                9,
+              ],
+              "start": 4,
+              "type": "Identifier",
+            },
+            "end": 11,
+            "range": [
+              4,
+              11,
+            ],
+            "start": 4,
+            "type": "CallExpression",
+          },
+          {
+            "end": 14,
+            "name": "x",
+            "range": [
+              13,
+              14,
+            ],
+            "start": 13,
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "end": 3,
+          "name": "foo",
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 15,
+        "range": [
+          0,
+          15,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 15,
+  "range": [
+    0,
+    15,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > foo(async(x,y,z)) 1`] = `
+{
+  "body": [
+    {
+      "end": 17,
+      "expression": {
+        "arguments": [
+          {
+            "arguments": [
+              {
+                "end": 11,
+                "name": "x",
+                "range": [
+                  10,
+                  11,
+                ],
+                "start": 10,
+                "type": "Identifier",
+              },
+              {
+                "end": 13,
+                "name": "y",
+                "range": [
+                  12,
+                  13,
+                ],
+                "start": 12,
+                "type": "Identifier",
+              },
+              {
+                "end": 15,
+                "name": "z",
+                "range": [
+                  14,
+                  15,
+                ],
+                "start": 14,
+                "type": "Identifier",
+              },
+            ],
+            "callee": {
+              "end": 9,
+              "name": "async",
+              "range": [
+                4,
+                9,
+              ],
+              "start": 4,
+              "type": "Identifier",
+            },
+            "end": 16,
+            "range": [
+              4,
+              16,
+            ],
+            "start": 4,
+            "type": "CallExpression",
+          },
+        ],
+        "callee": {
+          "end": 3,
+          "name": "foo",
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 17,
+        "range": [
+          0,
+          17,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        17,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 17,
+  "range": [
+    0,
+    17,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > foo(async(x,y,z), a, b) 1`] = `
+{
+  "body": [
+    {
+      "end": 23,
+      "expression": {
+        "arguments": [
+          {
+            "arguments": [
+              {
+                "end": 11,
+                "name": "x",
+                "range": [
+                  10,
+                  11,
+                ],
+                "start": 10,
+                "type": "Identifier",
+              },
+              {
+                "end": 13,
+                "name": "y",
+                "range": [
+                  12,
+                  13,
+                ],
+                "start": 12,
+                "type": "Identifier",
+              },
+              {
+                "end": 15,
+                "name": "z",
+                "range": [
+                  14,
+                  15,
+                ],
+                "start": 14,
+                "type": "Identifier",
+              },
+            ],
+            "callee": {
+              "end": 9,
+              "name": "async",
+              "range": [
+                4,
+                9,
+              ],
+              "start": 4,
+              "type": "Identifier",
+            },
+            "end": 16,
+            "range": [
+              4,
+              16,
+            ],
+            "start": 4,
+            "type": "CallExpression",
+          },
+          {
+            "end": 19,
+            "name": "a",
+            "range": [
+              18,
+              19,
+            ],
+            "start": 18,
+            "type": "Identifier",
+          },
+          {
+            "end": 22,
+            "name": "b",
+            "range": [
+              21,
+              22,
+            ],
+            "start": 21,
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "end": 3,
+          "name": "foo",
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 23,
+        "range": [
+          0,
+          23,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        23,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 23,
+  "range": [
+    0,
+    23,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > foo(async) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "async",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > foo(async.foo) 1`] = `
+{
+  "body": [
+    {
+      "end": 14,
+      "expression": {
+        "arguments": [
+          {
+            "computed": false,
+            "end": 13,
+            "object": {
+              "end": 9,
+              "name": "async",
+              "range": [
+                4,
+                9,
+              ],
+              "start": 4,
+              "type": "Identifier",
+            },
+            "property": {
+              "end": 13,
+              "name": "foo",
+              "range": [
+                10,
+                13,
+              ],
+              "start": 10,
+              "type": "Identifier",
+            },
+            "range": [
+              4,
+              13,
+            ],
+            "start": 4,
+            "type": "MemberExpression",
+          },
+        ],
+        "callee": {
+          "end": 3,
+          "name": "foo",
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 14,
+        "range": [
+          0,
+          14,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 14,
+  "range": [
+    0,
+    14,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > foo(async[x]) 1`] = `
+{
+  "body": [
+    {
+      "end": 13,
+      "expression": {
+        "arguments": [
+          {
+            "computed": true,
+            "end": 12,
+            "object": {
+              "end": 9,
+              "name": "async",
+              "range": [
+                4,
+                9,
+              ],
+              "start": 4,
+              "type": "Identifier",
+            },
+            "property": {
+              "end": 11,
+              "name": "x",
+              "range": [
+                10,
+                11,
+              ],
+              "start": 10,
+              "type": "Identifier",
+            },
+            "range": [
+              4,
+              12,
+            ],
+            "start": 4,
+            "type": "MemberExpression",
+          },
+        ],
+        "callee": {
+          "end": 3,
+          "name": "foo",
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 13,
+        "range": [
+          0,
+          13,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        13,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 13,
+  "range": [
+    0,
+    13,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > foo, async() 1`] = `
+{
+  "body": [
+    {
+      "end": 12,
+      "expression": {
+        "end": 12,
+        "expressions": [
+          {
+            "end": 3,
+            "name": "foo",
+            "range": [
+              0,
+              3,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+          {
+            "arguments": [],
+            "callee": {
+              "end": 10,
+              "name": "async",
+              "range": [
+                5,
+                10,
+              ],
+              "start": 5,
+              "type": "Identifier",
+            },
+            "end": 12,
+            "range": [
+              5,
+              12,
+            ],
+            "start": 5,
+            "type": "CallExpression",
+          },
+        ],
+        "range": [
+          0,
+          12,
+        ],
+        "start": 0,
+        "type": "SequenceExpression",
+      },
+      "range": [
+        0,
+        12,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 12,
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > foo, async() 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          {
+            "arguments": [],
+            "callee": {
+              "name": "async",
+              "type": "Identifier",
+            },
+            "type": "CallExpression",
+          },
+        ],
+        "type": "SequenceExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > function *f(){ async(x); } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "arguments": [
+                {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+              ],
+              "callee": {
+                "name": "async",
+                "type": "Identifier",
+              },
+              "type": "CallExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > function f() {for (let in {}) {}} 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "body": {
+              "body": [],
+              "type": "BlockStatement",
+            },
+            "left": {
+              "name": "let",
+              "type": "Identifier",
+            },
+            "right": {
+              "properties": [],
+              "type": "ObjectExpression",
+            },
+            "type": "ForInStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > log(async().foo); 1`] = `
+{
+  "body": [
+    {
+      "end": 17,
+      "expression": {
+        "arguments": [
+          {
+            "computed": false,
+            "end": 15,
+            "object": {
+              "arguments": [],
+              "callee": {
+                "end": 9,
+                "name": "async",
+                "range": [
+                  4,
+                  9,
+                ],
+                "start": 4,
+                "type": "Identifier",
+              },
+              "end": 11,
+              "range": [
+                4,
+                11,
+              ],
+              "start": 4,
+              "type": "CallExpression",
+            },
+            "property": {
+              "end": 15,
+              "name": "foo",
+              "range": [
+                12,
+                15,
+              ],
+              "start": 12,
+              "type": "Identifier",
+            },
+            "range": [
+              4,
+              15,
+            ],
+            "start": 4,
+            "type": "MemberExpression",
+          },
+        ],
+        "callee": {
+          "end": 3,
+          "name": "log",
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 16,
+        "range": [
+          0,
+          16,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        17,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 17,
+  "range": [
+    0,
+    17,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > log(async()[foo]); 1`] = `
+{
+  "body": [
+    {
+      "end": 18,
+      "expression": {
+        "arguments": [
+          {
+            "computed": true,
+            "end": 16,
+            "object": {
+              "arguments": [],
+              "callee": {
+                "end": 9,
+                "name": "async",
+                "range": [
+                  4,
+                  9,
+                ],
+                "start": 4,
+                "type": "Identifier",
+              },
+              "end": 11,
+              "range": [
+                4,
+                11,
+              ],
+              "start": 4,
+              "type": "CallExpression",
+            },
+            "property": {
+              "end": 15,
+              "name": "foo",
+              "range": [
+                12,
+                15,
+              ],
+              "start": 12,
+              "type": "Identifier",
+            },
+            "range": [
+              4,
+              16,
+            ],
+            "start": 4,
+            "type": "MemberExpression",
+          },
+        ],
+        "callee": {
+          "end": 3,
+          "name": "log",
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 17,
+        "range": [
+          0,
+          17,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        18,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 18,
+  "range": [
+    0,
+    18,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > true ? async.waterfall() : null; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "alternate": {
+          "type": "Literal",
+          "value": null,
+        },
+        "consequent": {
+          "arguments": [],
+          "callee": {
+            "computed": false,
+            "object": {
+              "name": "async",
+              "type": "Identifier",
+            },
+            "property": {
+              "name": "waterfall",
+              "type": "Identifier",
+            },
+            "type": "MemberExpression",
+          },
+          "type": "CallExpression",
+        },
+        "test": {
+          "type": "Literal",
+          "value": true,
+        },
+        "type": "ConditionalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > x + async 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "+",
+        "right": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > x / async 1`] = `
+{
+  "body": [
+    {
+      "end": 9,
+      "expression": {
+        "end": 9,
+        "left": {
+          "end": 1,
+          "name": "x",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "operator": "/",
+        "range": [
+          0,
+          9,
+        ],
+        "right": {
+          "end": 9,
+          "name": "async",
+          "range": [
+            4,
+            9,
+          ],
+          "start": 4,
+          "type": "Identifier",
+        },
+        "start": 0,
+        "type": "BinaryExpression",
+      },
+      "range": [
+        0,
+        9,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 9,
+  "range": [
+    0,
+    9,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Async > Expressions - Async (pass) > x = async () => x, y 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "left": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "operator": "=",
+            "right": {
+              "async": true,
+              "body": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "expression": true,
+              "generator": false,
+              "params": [],
+              "type": "ArrowFunctionExpression",
+            },
+            "type": "AssignmentExpression",
+          },
+          {
+            "name": "y",
+            "type": "Identifier",
+          },
+        ],
+        "type": "SequenceExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

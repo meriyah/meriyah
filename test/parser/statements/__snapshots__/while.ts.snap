@@ -1,0 +1,366 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Statements - While > Statements - While (pass) > a: while (true) continue a; 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "label": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "type": "ContinueStatement",
+        },
+        "test": {
+          "type": "Literal",
+          "value": true,
+        },
+        "type": "WhileStatement",
+      },
+      "label": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - While > Statements - While (pass) > var i = 0;
+      woohoo:{
+        while(true){
+          i++;
+          if ( i == 10 ) {
+            break woohoo;
+          }
+        }
+      } 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "i",
+            "type": "Identifier",
+          },
+          "init": {
+            "type": "Literal",
+            "value": 0,
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+    {
+      "body": {
+        "body": [
+          {
+            "body": {
+              "body": [
+                {
+                  "expression": {
+                    "argument": {
+                      "name": "i",
+                      "type": "Identifier",
+                    },
+                    "operator": "++",
+                    "prefix": false,
+                    "type": "UpdateExpression",
+                  },
+                  "type": "ExpressionStatement",
+                },
+                {
+                  "alternate": null,
+                  "consequent": {
+                    "body": [
+                      {
+                        "label": {
+                          "name": "woohoo",
+                          "type": "Identifier",
+                        },
+                        "type": "BreakStatement",
+                      },
+                    ],
+                    "type": "BlockStatement",
+                  },
+                  "test": {
+                    "left": {
+                      "name": "i",
+                      "type": "Identifier",
+                    },
+                    "operator": "==",
+                    "right": {
+                      "type": "Literal",
+                      "value": 10,
+                    },
+                    "type": "BinaryExpression",
+                  },
+                  "type": "IfStatement",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+            "test": {
+              "type": "Literal",
+              "value": true,
+            },
+            "type": "WhileStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "label": {
+        "name": "woohoo",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - While > Statements - While (pass) > while (1) /foo/ 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "expression": {
+          "regex": {
+            "flags": "",
+            "pattern": "foo",
+          },
+          "type": "Literal",
+          "value": /foo/,
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": 1,
+      },
+      "type": "WhileStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - While > Statements - While (pass) > while (false) let // ASI
+      x = 1; 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "expression": {
+          "name": "let",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": false,
+      },
+      "type": "WhileStatement",
+    },
+    {
+      "expression": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "type": "Literal",
+          "value": 1,
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - While > Statements - While (pass) > while (false) let // ASI
+  {} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "expression": {
+          "name": "let",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": false,
+      },
+      "type": "WhileStatement",
+    },
+    {
+      "body": [],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - While > Statements - While (pass) > while (foo) bar; 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "expression": {
+          "name": "bar",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "WhileStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - While > Statements - While (pass) > while (i-->1) {} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "test": {
+        "left": {
+          "argument": {
+            "name": "i",
+            "type": "Identifier",
+          },
+          "operator": "--",
+          "prefix": false,
+          "type": "UpdateExpression",
+        },
+        "operator": ">",
+        "right": {
+          "type": "Literal",
+          "value": 1,
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "WhileStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - While > Statements - While (pass) > while (this) try {} catch (h) {} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "block": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "finalizer": null,
+        "handler": {
+          "body": {
+            "body": [],
+            "type": "BlockStatement",
+          },
+          "param": {
+            "name": "h",
+            "type": "Identifier",
+          },
+          "type": "CatchClause",
+        },
+        "type": "TryStatement",
+      },
+      "test": {
+        "type": "ThisExpression",
+      },
+      "type": "WhileStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - While > Statements - While (pass) > while (x < 10) { x++; y--; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "argument": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "operator": "++",
+              "prefix": false,
+              "type": "UpdateExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+          {
+            "expression": {
+              "argument": {
+                "name": "y",
+                "type": "Identifier",
+              },
+              "operator": "--",
+              "prefix": false,
+              "type": "UpdateExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "test": {
+        "left": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "<",
+        "right": {
+          "type": "Literal",
+          "value": 10,
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "WhileStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

@@ -1,0 +1,4298 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A {
+          static #x;
+          static #y = 1;
+        } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "x",
+              "type": "PrivateIdentifier",
+            },
+            "static": true,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "y",
+              "type": "PrivateIdentifier",
+            },
+            "static": true,
+            "type": "PropertyDefinition",
+            "value": {
+              "type": "Literal",
+              "value": 1,
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A {  #a; m() {} #b; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "a",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "m",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "b",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A {  #a; m() {} } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "a",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "m",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A {  #m = async function() { return 'foo'; };  method() { return this.#m(); } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "m",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "async": true,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "type": "Literal",
+                      "value": "foo",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "method",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "arguments": [],
+                      "callee": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "m",
+                          "type": "PrivateIdentifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "type": "CallExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A {  #m() { return 42; } get bGetter() { return this.#b; } #b = this.#m(); get ref() { return this.#m; } constructor() {} } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "m",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "type": "Literal",
+                      "value": 42,
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "bGetter",
+              "type": "Identifier",
+            },
+            "kind": "get",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "computed": false,
+                      "object": {
+                        "type": "ThisExpression",
+                      },
+                      "property": {
+                        "name": "b",
+                        "type": "PrivateIdentifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "b",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "arguments": [],
+              "callee": {
+                "computed": false,
+                "object": {
+                  "type": "ThisExpression",
+                },
+                "property": {
+                  "name": "m",
+                  "type": "PrivateIdentifier",
+                },
+                "type": "MemberExpression",
+              },
+              "type": "CallExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "ref",
+              "type": "Identifier",
+            },
+            "kind": "get",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "computed": false,
+                      "object": {
+                        "type": "ThisExpression",
+                      },
+                      "property": {
+                        "name": "m",
+                        "type": "PrivateIdentifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { #$_; #℘_; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "$_",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "℘_",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { #\\u{61}
+static #\\u0062() {} } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "a",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "b",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "method",
+            "static": true,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { #a; #b; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 13,
+            "key": {
+              "end": 12,
+              "name": "a",
+              "range": [
+                10,
+                12,
+              ],
+              "start": 10,
+              "type": "PrivateIdentifier",
+            },
+            "range": [
+              10,
+              13,
+            ],
+            "start": 10,
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+          {
+            "computed": false,
+            "end": 17,
+            "key": {
+              "end": 16,
+              "name": "b",
+              "range": [
+                14,
+                16,
+              ],
+              "start": 14,
+              "type": "PrivateIdentifier",
+            },
+            "range": [
+              14,
+              17,
+            ],
+            "start": 14,
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+        ],
+        "end": 19,
+        "range": [
+          8,
+          19,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "end": 19,
+      "id": {
+        "end": 7,
+        "name": "A",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        19,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 19,
+  "range": [
+    0,
+    19,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { #foo = () => 'bar';  method() {
+        return this.#foo();
+      } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "foo",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "type": "Literal",
+                "value": "bar",
+              },
+              "expression": true,
+              "generator": false,
+              "params": [],
+              "type": "ArrowFunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "method",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "arguments": [],
+                      "callee": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "foo",
+                          "type": "PrivateIdentifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "type": "CallExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { #foo = bar; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "foo",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "name": "bar",
+              "type": "Identifier",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { #foo() { #bar } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "foo",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "name": "bar",
+                      "type": "PrivateIdentifier",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { #key() {} } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "key",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { #key; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "key",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { #yield
+ = 0; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "yield",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "type": "Literal",
+              "value": 0,
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { #yield = b[c]; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 24,
+            "key": {
+              "end": 16,
+              "name": "yield",
+              "range": [
+                10,
+                16,
+              ],
+              "start": 10,
+              "type": "PrivateIdentifier",
+            },
+            "range": [
+              10,
+              24,
+            ],
+            "start": 10,
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "computed": true,
+              "end": 23,
+              "object": {
+                "end": 20,
+                "name": "b",
+                "range": [
+                  19,
+                  20,
+                ],
+                "start": 19,
+                "type": "Identifier",
+              },
+              "property": {
+                "end": 22,
+                "name": "c",
+                "range": [
+                  21,
+                  22,
+                ],
+                "start": 21,
+                "type": "Identifier",
+              },
+              "range": [
+                19,
+                23,
+              ],
+              "start": 19,
+              "type": "MemberExpression",
+            },
+          },
+        ],
+        "end": 26,
+        "range": [
+          8,
+          26,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "end": 26,
+      "id": {
+        "end": 7,
+        "name": "A",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        26,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 26,
+  "range": [
+    0,
+    26,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { #yield = foo + bar; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 29,
+            "key": {
+              "end": 16,
+              "name": "yield",
+              "range": [
+                10,
+                16,
+              ],
+              "start": 10,
+              "type": "PrivateIdentifier",
+            },
+            "range": [
+              10,
+              29,
+            ],
+            "start": 10,
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "end": 28,
+              "left": {
+                "end": 22,
+                "name": "foo",
+                "range": [
+                  19,
+                  22,
+                ],
+                "start": 19,
+                "type": "Identifier",
+              },
+              "operator": "+",
+              "range": [
+                19,
+                28,
+              ],
+              "right": {
+                "end": 28,
+                "name": "bar",
+                "range": [
+                  25,
+                  28,
+                ],
+                "start": 25,
+                "type": "Identifier",
+              },
+              "start": 19,
+              "type": "BinaryExpression",
+            },
+          },
+        ],
+        "end": 31,
+        "range": [
+          8,
+          31,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "end": 31,
+      "id": {
+        "end": 7,
+        "name": "A",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        31,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 31,
+  "range": [
+    0,
+    31,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { #yield; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 17,
+            "key": {
+              "end": 16,
+              "name": "yield",
+              "range": [
+                10,
+                16,
+              ],
+              "start": 10,
+              "type": "PrivateIdentifier",
+            },
+            "range": [
+              10,
+              17,
+            ],
+            "start": 10,
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+        ],
+        "end": 19,
+        "range": [
+          8,
+          19,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "end": 19,
+      "id": {
+        "end": 7,
+        "name": "A",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        19,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 19,
+  "range": [
+    0,
+    19,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { $(value) { this.#$_ = value; return this.#$; } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "$",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "left": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "$_",
+                          "type": "PrivateIdentifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "=",
+                      "right": {
+                        "name": "value",
+                        "type": "Identifier",
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                  {
+                    "argument": {
+                      "computed": false,
+                      "object": {
+                        "type": "ThisExpression",
+                      },
+                      "property": {
+                        "name": "$",
+                        "type": "PrivateIdentifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "name": "value",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { get #foo/*{ declareWith }*/() {} } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "foo",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "get",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { m() { return 42; } #a;  #__;  #NJ_;  #℘_ ; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "m",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "type": "Literal",
+                      "value": 42,
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "a",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "__",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "NJ_",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "℘_",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { m() {} #a; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "m",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "a",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { method() { return this.#m(); } #m = function () { return 'foo'; };  } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "method",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "arguments": [],
+                      "callee": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "m",
+                          "type": "PrivateIdentifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "type": "CallExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "m",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "type": "Literal",
+                      "value": "foo",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { static #foo(bar) {} } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "foo",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "method",
+            "static": true,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "name": "bar",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { static #key; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "key",
+              "type": "PrivateIdentifier",
+            },
+            "static": true,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { static async #_(value) { return await value;} } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "_",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "method",
+            "static": true,
+            "type": "MethodDefinition",
+            "value": {
+              "async": true,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "argument": {
+                        "name": "value",
+                        "type": "Identifier",
+                      },
+                      "type": "AwaitExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "name": "value",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class A { static set #foo/*{ declareWith }*/(param) {} } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "foo",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "set",
+            "static": true,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "name": "param",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class B { #x = 0; #y = 1; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "x",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "type": "Literal",
+              "value": 0,
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "y",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "type": "Literal",
+              "value": 1,
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "B",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class C { #m() { return 42; } get ref() { return this.#m; } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "m",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "type": "Literal",
+                      "value": 42,
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "ref",
+              "type": "Identifier",
+            },
+            "kind": "get",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "computed": false,
+                      "object": {
+                        "type": "ThisExpression",
+                      },
+                      "property": {
+                        "name": "m",
+                        "type": "PrivateIdentifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "C",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class C { get #℘() {} set #℘(x) {} a() { return this.#℘; } b(value) { this.#℘ = x; } }; 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "℘",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "get",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "℘",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "set",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "computed": false,
+                      "object": {
+                        "type": "ThisExpression",
+                      },
+                      "property": {
+                        "name": "℘",
+                        "type": "PrivateIdentifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "left": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "℘",
+                          "type": "PrivateIdentifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "=",
+                      "right": {
+                        "name": "x",
+                        "type": "Identifier",
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "name": "value",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "C",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+    {
+      "type": "EmptyStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class C { static *#gen() { yield [...yield yield]; } static get gen() { return this.#gen; } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "gen",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "method",
+            "static": true,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "argument": {
+                        "elements": [
+                          {
+                            "argument": {
+                              "argument": {
+                                "argument": null,
+                                "delegate": false,
+                                "type": "YieldExpression",
+                              },
+                              "delegate": false,
+                              "type": "YieldExpression",
+                            },
+                            "type": "SpreadElement",
+                          },
+                        ],
+                        "type": "ArrayExpression",
+                      },
+                      "delegate": false,
+                      "type": "YieldExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": true,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "gen",
+              "type": "Identifier",
+            },
+            "kind": "get",
+            "static": true,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "computed": false,
+                      "object": {
+                        "type": "ThisExpression",
+                      },
+                      "property": {
+                        "name": "gen",
+                        "type": "PrivateIdentifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "C",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class C { static async *#gen() { yield { ...yield,  y: 1, ...yield yield, }; } static get gen() { return this.#gen; } } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "gen",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "method",
+            "static": true,
+            "type": "MethodDefinition",
+            "value": {
+              "async": true,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "argument": {
+                        "properties": [
+                          {
+                            "argument": {
+                              "argument": null,
+                              "delegate": false,
+                              "type": "YieldExpression",
+                            },
+                            "type": "SpreadElement",
+                          },
+                          {
+                            "computed": false,
+                            "key": {
+                              "name": "y",
+                              "type": "Identifier",
+                            },
+                            "kind": "init",
+                            "method": false,
+                            "shorthand": false,
+                            "type": "Property",
+                            "value": {
+                              "type": "Literal",
+                              "value": 1,
+                            },
+                          },
+                          {
+                            "argument": {
+                              "argument": {
+                                "argument": null,
+                                "delegate": false,
+                                "type": "YieldExpression",
+                              },
+                              "delegate": false,
+                              "type": "YieldExpression",
+                            },
+                            "type": "SpreadElement",
+                          },
+                        ],
+                        "type": "ObjectExpression",
+                      },
+                      "delegate": false,
+                      "type": "YieldExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": true,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "gen",
+              "type": "Identifier",
+            },
+            "kind": "get",
+            "static": true,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "computed": false,
+                      "object": {
+                        "type": "ThisExpression",
+                      },
+                      "property": {
+                        "name": "gen",
+                        "type": "PrivateIdentifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "C",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
+            #privateField = "top secret string";
+
+            constructor() {
+              this.publicField = "not secret string";
+            }
+
+            get #privateFieldValue() {
+              return this.#privateField;
+            }
+
+            set #privateFieldValue(newValue) {
+              this.#privateField = newValue;
+            }
+
+            publicGetPrivateField() {
+              return this.#privateFieldValue;
+            }
+
+            publicSetPrivateField(newValue) {
+              this.#privateFieldValue = newValue;
+            }
+          }  1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "privateField",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "type": "Literal",
+              "value": "top secret string",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "left": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "publicField",
+                          "type": "Identifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "=",
+                      "right": {
+                        "type": "Literal",
+                        "value": "not secret string",
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "privateFieldValue",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "get",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "computed": false,
+                      "object": {
+                        "type": "ThisExpression",
+                      },
+                      "property": {
+                        "name": "privateField",
+                        "type": "PrivateIdentifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "privateFieldValue",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "set",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "left": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "privateField",
+                          "type": "PrivateIdentifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "=",
+                      "right": {
+                        "name": "newValue",
+                        "type": "Identifier",
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "name": "newValue",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "publicGetPrivateField",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "computed": false,
+                      "object": {
+                        "type": "ThisExpression",
+                      },
+                      "property": {
+                        "name": "privateFieldValue",
+                        "type": "PrivateIdentifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "publicSetPrivateField",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "left": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "privateFieldValue",
+                          "type": "PrivateIdentifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "=",
+                      "right": {
+                        "name": "newValue",
+                        "type": "Identifier",
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "name": "newValue",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "Cl",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
+          #privateField = 0;
+
+          get #privateFieldValue() {
+            return this.#privateField;
+          }
+
+          constructor() {
+            this.#privateFieldValue = 1;
+          }
+        } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "privateField",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "type": "Literal",
+              "value": 0,
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "privateFieldValue",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "get",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "computed": false,
+                      "object": {
+                        "type": "ThisExpression",
+                      },
+                      "property": {
+                        "name": "privateField",
+                        "type": "PrivateIdentifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "left": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "privateFieldValue",
+                          "type": "PrivateIdentifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "=",
+                      "right": {
+                        "type": "Literal",
+                        "value": 1,
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "Cl",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class Cl {
+        #privateField = "top secret string";
+
+        constructor() {
+          this.publicField = "not secret string";
+        }
+
+        get #privateFieldValue() {
+          return this.#privateField;
+        }
+
+        set #privateFieldValue(newValue) {
+          this.#privateField = newValue;
+        }
+
+        publicGetPrivateField() {
+          return this.#privateFieldValue;
+        }
+
+        publicSetPrivateField(newValue) {
+          this.#privateFieldValue = newValue;
+        }
+
+        get publicFieldValue() {
+          return this.publicField;
+        }
+
+        set publicFieldValue(newValue) {
+          this.publicField = newValue;
+        }
+
+        testUpdates() {
+          this.#privateField = 0;
+          this.publicField = 0;
+          this.#privateFieldValue = this.#privateFieldValue++;
+          this.publicFieldValue = this.publicFieldValue++;
+
+          ++this.#privateFieldValue;
+          ++this.publicFieldValue;
+
+          this.#privateFieldValue += 1;
+          this.publicFieldValue += 1;
+
+          this.#privateFieldValue = -(this.#privateFieldValue ** this.#privateFieldValue);
+          this.publicFieldValue = -(this.publicFieldValue ** this.publicFieldValue);
+        }
+      } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "privateField",
+              "type": "PrivateIdentifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "type": "Literal",
+              "value": "top secret string",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "constructor",
+              "type": "Identifier",
+            },
+            "kind": "constructor",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "left": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "publicField",
+                          "type": "Identifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "=",
+                      "right": {
+                        "type": "Literal",
+                        "value": "not secret string",
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "privateFieldValue",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "get",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "computed": false,
+                      "object": {
+                        "type": "ThisExpression",
+                      },
+                      "property": {
+                        "name": "privateField",
+                        "type": "PrivateIdentifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "privateFieldValue",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "set",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "left": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "privateField",
+                          "type": "PrivateIdentifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "=",
+                      "right": {
+                        "name": "newValue",
+                        "type": "Identifier",
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "name": "newValue",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "publicGetPrivateField",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "computed": false,
+                      "object": {
+                        "type": "ThisExpression",
+                      },
+                      "property": {
+                        "name": "privateFieldValue",
+                        "type": "PrivateIdentifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "publicSetPrivateField",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "left": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "privateFieldValue",
+                          "type": "PrivateIdentifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "=",
+                      "right": {
+                        "name": "newValue",
+                        "type": "Identifier",
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "name": "newValue",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "publicFieldValue",
+              "type": "Identifier",
+            },
+            "kind": "get",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "computed": false,
+                      "object": {
+                        "type": "ThisExpression",
+                      },
+                      "property": {
+                        "name": "publicField",
+                        "type": "Identifier",
+                      },
+                      "type": "MemberExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "publicFieldValue",
+              "type": "Identifier",
+            },
+            "kind": "set",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "left": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "publicField",
+                          "type": "Identifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "=",
+                      "right": {
+                        "name": "newValue",
+                        "type": "Identifier",
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "name": "newValue",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "testUpdates",
+              "type": "Identifier",
+            },
+            "kind": "method",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "expression": {
+                      "left": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "privateField",
+                          "type": "PrivateIdentifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "=",
+                      "right": {
+                        "type": "Literal",
+                        "value": 0,
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                  {
+                    "expression": {
+                      "left": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "publicField",
+                          "type": "Identifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "=",
+                      "right": {
+                        "type": "Literal",
+                        "value": 0,
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                  {
+                    "expression": {
+                      "left": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "privateFieldValue",
+                          "type": "PrivateIdentifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "=",
+                      "right": {
+                        "argument": {
+                          "computed": false,
+                          "object": {
+                            "type": "ThisExpression",
+                          },
+                          "property": {
+                            "name": "privateFieldValue",
+                            "type": "PrivateIdentifier",
+                          },
+                          "type": "MemberExpression",
+                        },
+                        "operator": "++",
+                        "prefix": false,
+                        "type": "UpdateExpression",
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                  {
+                    "expression": {
+                      "left": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "publicFieldValue",
+                          "type": "Identifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "=",
+                      "right": {
+                        "argument": {
+                          "computed": false,
+                          "object": {
+                            "type": "ThisExpression",
+                          },
+                          "property": {
+                            "name": "publicFieldValue",
+                            "type": "Identifier",
+                          },
+                          "type": "MemberExpression",
+                        },
+                        "operator": "++",
+                        "prefix": false,
+                        "type": "UpdateExpression",
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                  {
+                    "expression": {
+                      "argument": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "privateFieldValue",
+                          "type": "PrivateIdentifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "++",
+                      "prefix": true,
+                      "type": "UpdateExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                  {
+                    "expression": {
+                      "argument": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "publicFieldValue",
+                          "type": "Identifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "++",
+                      "prefix": true,
+                      "type": "UpdateExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                  {
+                    "expression": {
+                      "left": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "privateFieldValue",
+                          "type": "PrivateIdentifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "+=",
+                      "right": {
+                        "type": "Literal",
+                        "value": 1,
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                  {
+                    "expression": {
+                      "left": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "publicFieldValue",
+                          "type": "Identifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "+=",
+                      "right": {
+                        "type": "Literal",
+                        "value": 1,
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                  {
+                    "expression": {
+                      "left": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "privateFieldValue",
+                          "type": "PrivateIdentifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "=",
+                      "right": {
+                        "argument": {
+                          "left": {
+                            "computed": false,
+                            "object": {
+                              "type": "ThisExpression",
+                            },
+                            "property": {
+                              "name": "privateFieldValue",
+                              "type": "PrivateIdentifier",
+                            },
+                            "type": "MemberExpression",
+                          },
+                          "operator": "**",
+                          "right": {
+                            "computed": false,
+                            "object": {
+                              "type": "ThisExpression",
+                            },
+                            "property": {
+                              "name": "privateFieldValue",
+                              "type": "PrivateIdentifier",
+                            },
+                            "type": "MemberExpression",
+                          },
+                          "type": "BinaryExpression",
+                        },
+                        "operator": "-",
+                        "prefix": true,
+                        "type": "UnaryExpression",
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                  {
+                    "expression": {
+                      "left": {
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                        },
+                        "property": {
+                          "name": "publicFieldValue",
+                          "type": "Identifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "=",
+                      "right": {
+                        "argument": {
+                          "left": {
+                            "computed": false,
+                            "object": {
+                              "type": "ThisExpression",
+                            },
+                            "property": {
+                              "name": "publicFieldValue",
+                              "type": "Identifier",
+                            },
+                            "type": "MemberExpression",
+                          },
+                          "operator": "**",
+                          "right": {
+                            "computed": false,
+                            "object": {
+                              "type": "ThisExpression",
+                            },
+                            "property": {
+                              "name": "publicFieldValue",
+                              "type": "Identifier",
+                            },
+                            "type": "MemberExpression",
+                          },
+                          "type": "BinaryExpression",
+                        },
+                        "operator": "-",
+                        "prefix": true,
+                        "type": "UnaryExpression",
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "Cl",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class Hotel {
+        get #evil() {
+          return ohNo();
+        }
+        set #evil(x) {
+          return makeEvil(x);
+        }
+      } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "evil",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "get",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "arguments": [],
+                      "callee": {
+                        "name": "ohNo",
+                        "type": "Identifier",
+                      },
+                      "type": "CallExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [],
+              "type": "FunctionExpression",
+            },
+          },
+          {
+            "computed": false,
+            "key": {
+              "name": "evil",
+              "type": "PrivateIdentifier",
+            },
+            "kind": "set",
+            "static": false,
+            "type": "MethodDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [
+                  {
+                    "argument": {
+                      "arguments": [
+                        {
+                          "name": "x",
+                          "type": "Identifier",
+                        },
+                      ],
+                      "callee": {
+                        "name": "makeEvil",
+                        "type": "Identifier",
+                      },
+                      "type": "CallExpression",
+                    },
+                    "type": "ReturnStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "generator": false,
+              "id": null,
+              "params": [
+                {
+                  "name": "x",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "Hotel",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class a {#人} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 11,
+            "key": {
+              "end": 11,
+              "name": "人",
+              "range": [
+                9,
+                11,
+              ],
+              "start": 9,
+              "type": "PrivateIdentifier",
+            },
+            "range": [
+              9,
+              11,
+            ],
+            "start": 9,
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+        ],
+        "end": 12,
+        "range": [
+          8,
+          12,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "end": 12,
+      "id": {
+        "end": 7,
+        "name": "a",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        12,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 12,
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class a {#𐌭} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 12,
+            "key": {
+              "end": 12,
+              "name": "𐌭",
+              "range": [
+                9,
+                12,
+              ],
+              "start": 9,
+              "type": "PrivateIdentifier",
+            },
+            "range": [
+              9,
+              12,
+            ],
+            "start": 9,
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+        ],
+        "end": 13,
+        "range": [
+          8,
+          13,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "end": 13,
+      "id": {
+        "end": 7,
+        "name": "a",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        13,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 13,
+  "range": [
+    0,
+    13,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > class a {#𐌭人} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 13,
+            "key": {
+              "end": 13,
+              "name": "𐌭人",
+              "range": [
+                9,
+                13,
+              ],
+              "start": 9,
+              "type": "PrivateIdentifier",
+            },
+            "range": [
+              9,
+              13,
+            ],
+            "start": 9,
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+        ],
+        "end": 14,
+        "range": [
+          8,
+          14,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "end": 14,
+      "id": {
+        "end": 7,
+        "name": "a",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 14,
+  "range": [
+    0,
+    14,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > var C = class {
+        ;;;;
+        ;;;;;;;;;;;;;
+        ;;;;
+        static #x(value) {
+          return value / 2;
+        }
+        static #y(value) {
+          return value * 2;
+        }
+        static x() {
+          return this.#x(84);
+        }
+        static y() {
+          return this.#y(43);
+        }
+      }  1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "C",
+            "type": "Identifier",
+          },
+          "init": {
+            "body": {
+              "body": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "x",
+                    "type": "PrivateIdentifier",
+                  },
+                  "kind": "method",
+                  "static": true,
+                  "type": "MethodDefinition",
+                  "value": {
+                    "async": false,
+                    "body": {
+                      "body": [
+                        {
+                          "argument": {
+                            "left": {
+                              "name": "value",
+                              "type": "Identifier",
+                            },
+                            "operator": "/",
+                            "right": {
+                              "type": "Literal",
+                              "value": 2,
+                            },
+                            "type": "BinaryExpression",
+                          },
+                          "type": "ReturnStatement",
+                        },
+                      ],
+                      "type": "BlockStatement",
+                    },
+                    "generator": false,
+                    "id": null,
+                    "params": [
+                      {
+                        "name": "value",
+                        "type": "Identifier",
+                      },
+                    ],
+                    "type": "FunctionExpression",
+                  },
+                },
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "y",
+                    "type": "PrivateIdentifier",
+                  },
+                  "kind": "method",
+                  "static": true,
+                  "type": "MethodDefinition",
+                  "value": {
+                    "async": false,
+                    "body": {
+                      "body": [
+                        {
+                          "argument": {
+                            "left": {
+                              "name": "value",
+                              "type": "Identifier",
+                            },
+                            "operator": "*",
+                            "right": {
+                              "type": "Literal",
+                              "value": 2,
+                            },
+                            "type": "BinaryExpression",
+                          },
+                          "type": "ReturnStatement",
+                        },
+                      ],
+                      "type": "BlockStatement",
+                    },
+                    "generator": false,
+                    "id": null,
+                    "params": [
+                      {
+                        "name": "value",
+                        "type": "Identifier",
+                      },
+                    ],
+                    "type": "FunctionExpression",
+                  },
+                },
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "kind": "method",
+                  "static": true,
+                  "type": "MethodDefinition",
+                  "value": {
+                    "async": false,
+                    "body": {
+                      "body": [
+                        {
+                          "argument": {
+                            "arguments": [
+                              {
+                                "type": "Literal",
+                                "value": 84,
+                              },
+                            ],
+                            "callee": {
+                              "computed": false,
+                              "object": {
+                                "type": "ThisExpression",
+                              },
+                              "property": {
+                                "name": "x",
+                                "type": "PrivateIdentifier",
+                              },
+                              "type": "MemberExpression",
+                            },
+                            "type": "CallExpression",
+                          },
+                          "type": "ReturnStatement",
+                        },
+                      ],
+                      "type": "BlockStatement",
+                    },
+                    "generator": false,
+                    "id": null,
+                    "params": [],
+                    "type": "FunctionExpression",
+                  },
+                },
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "y",
+                    "type": "Identifier",
+                  },
+                  "kind": "method",
+                  "static": true,
+                  "type": "MethodDefinition",
+                  "value": {
+                    "async": false,
+                    "body": {
+                      "body": [
+                        {
+                          "argument": {
+                            "arguments": [
+                              {
+                                "type": "Literal",
+                                "value": 43,
+                              },
+                            ],
+                            "callee": {
+                              "computed": false,
+                              "object": {
+                                "type": "ThisExpression",
+                              },
+                              "property": {
+                                "name": "y",
+                                "type": "PrivateIdentifier",
+                              },
+                              "type": "MemberExpression",
+                            },
+                            "type": "CallExpression",
+                          },
+                          "type": "ReturnStatement",
+                        },
+                      ],
+                      "type": "BlockStatement",
+                    },
+                    "generator": false,
+                    "id": null,
+                    "params": [],
+                    "type": "FunctionExpression",
+                  },
+                },
+              ],
+              "type": "ClassBody",
+            },
+            "id": null,
+            "superClass": null,
+            "type": "ClassExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > var C = class {
+        static *m() { return 42; } #$_; #__;  #℘_;   set #$(value) { this.#$_ = value;
+        }
+        set #_(value) {
+          this.#__ = value;
+        }
+      } 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "C",
+            "type": "Identifier",
+          },
+          "init": {
+            "body": {
+              "body": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "m",
+                    "type": "Identifier",
+                  },
+                  "kind": "method",
+                  "static": true,
+                  "type": "MethodDefinition",
+                  "value": {
+                    "async": false,
+                    "body": {
+                      "body": [
+                        {
+                          "argument": {
+                            "type": "Literal",
+                            "value": 42,
+                          },
+                          "type": "ReturnStatement",
+                        },
+                      ],
+                      "type": "BlockStatement",
+                    },
+                    "generator": true,
+                    "id": null,
+                    "params": [],
+                    "type": "FunctionExpression",
+                  },
+                },
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "$_",
+                    "type": "PrivateIdentifier",
+                  },
+                  "static": false,
+                  "type": "PropertyDefinition",
+                  "value": null,
+                },
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "__",
+                    "type": "PrivateIdentifier",
+                  },
+                  "static": false,
+                  "type": "PropertyDefinition",
+                  "value": null,
+                },
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "℘_",
+                    "type": "PrivateIdentifier",
+                  },
+                  "static": false,
+                  "type": "PropertyDefinition",
+                  "value": null,
+                },
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "$",
+                    "type": "PrivateIdentifier",
+                  },
+                  "kind": "set",
+                  "static": false,
+                  "type": "MethodDefinition",
+                  "value": {
+                    "async": false,
+                    "body": {
+                      "body": [
+                        {
+                          "expression": {
+                            "left": {
+                              "computed": false,
+                              "object": {
+                                "type": "ThisExpression",
+                              },
+                              "property": {
+                                "name": "$_",
+                                "type": "PrivateIdentifier",
+                              },
+                              "type": "MemberExpression",
+                            },
+                            "operator": "=",
+                            "right": {
+                              "name": "value",
+                              "type": "Identifier",
+                            },
+                            "type": "AssignmentExpression",
+                          },
+                          "type": "ExpressionStatement",
+                        },
+                      ],
+                      "type": "BlockStatement",
+                    },
+                    "generator": false,
+                    "id": null,
+                    "params": [
+                      {
+                        "name": "value",
+                        "type": "Identifier",
+                      },
+                    ],
+                    "type": "FunctionExpression",
+                  },
+                },
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "_",
+                    "type": "PrivateIdentifier",
+                  },
+                  "kind": "set",
+                  "static": false,
+                  "type": "MethodDefinition",
+                  "value": {
+                    "async": false,
+                    "body": {
+                      "body": [
+                        {
+                          "expression": {
+                            "left": {
+                              "computed": false,
+                              "object": {
+                                "type": "ThisExpression",
+                              },
+                              "property": {
+                                "name": "__",
+                                "type": "PrivateIdentifier",
+                              },
+                              "type": "MemberExpression",
+                            },
+                            "operator": "=",
+                            "right": {
+                              "name": "value",
+                              "type": "Identifier",
+                            },
+                            "type": "AssignmentExpression",
+                          },
+                          "type": "ExpressionStatement",
+                        },
+                      ],
+                      "type": "BlockStatement",
+                    },
+                    "generator": false,
+                    "id": null,
+                    "params": [
+                      {
+                        "name": "value",
+                        "type": "Identifier",
+                      },
+                    ],
+                    "type": "FunctionExpression",
+                  },
+                },
+              ],
+              "type": "ClassBody",
+            },
+            "id": null,
+            "superClass": null,
+            "type": "ClassExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Private methods > Next - Private methods (pass) > var C = class {
+        static async *m() { return 42; } #$_; #__;
+
+        get #_() {
+          return this.#__;
+        }
+        $(value) {
+          this.#$_ = value;
+          return this.#$;
+        }
+        _(value) {
+          this.#__ = value;
+          return this.#_;
+        }
+
+      } 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "C",
+            "type": "Identifier",
+          },
+          "init": {
+            "body": {
+              "body": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "m",
+                    "type": "Identifier",
+                  },
+                  "kind": "method",
+                  "static": true,
+                  "type": "MethodDefinition",
+                  "value": {
+                    "async": true,
+                    "body": {
+                      "body": [
+                        {
+                          "argument": {
+                            "type": "Literal",
+                            "value": 42,
+                          },
+                          "type": "ReturnStatement",
+                        },
+                      ],
+                      "type": "BlockStatement",
+                    },
+                    "generator": true,
+                    "id": null,
+                    "params": [],
+                    "type": "FunctionExpression",
+                  },
+                },
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "$_",
+                    "type": "PrivateIdentifier",
+                  },
+                  "static": false,
+                  "type": "PropertyDefinition",
+                  "value": null,
+                },
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "__",
+                    "type": "PrivateIdentifier",
+                  },
+                  "static": false,
+                  "type": "PropertyDefinition",
+                  "value": null,
+                },
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "_",
+                    "type": "PrivateIdentifier",
+                  },
+                  "kind": "get",
+                  "static": false,
+                  "type": "MethodDefinition",
+                  "value": {
+                    "async": false,
+                    "body": {
+                      "body": [
+                        {
+                          "argument": {
+                            "computed": false,
+                            "object": {
+                              "type": "ThisExpression",
+                            },
+                            "property": {
+                              "name": "__",
+                              "type": "PrivateIdentifier",
+                            },
+                            "type": "MemberExpression",
+                          },
+                          "type": "ReturnStatement",
+                        },
+                      ],
+                      "type": "BlockStatement",
+                    },
+                    "generator": false,
+                    "id": null,
+                    "params": [],
+                    "type": "FunctionExpression",
+                  },
+                },
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "$",
+                    "type": "Identifier",
+                  },
+                  "kind": "method",
+                  "static": false,
+                  "type": "MethodDefinition",
+                  "value": {
+                    "async": false,
+                    "body": {
+                      "body": [
+                        {
+                          "expression": {
+                            "left": {
+                              "computed": false,
+                              "object": {
+                                "type": "ThisExpression",
+                              },
+                              "property": {
+                                "name": "$_",
+                                "type": "PrivateIdentifier",
+                              },
+                              "type": "MemberExpression",
+                            },
+                            "operator": "=",
+                            "right": {
+                              "name": "value",
+                              "type": "Identifier",
+                            },
+                            "type": "AssignmentExpression",
+                          },
+                          "type": "ExpressionStatement",
+                        },
+                        {
+                          "argument": {
+                            "computed": false,
+                            "object": {
+                              "type": "ThisExpression",
+                            },
+                            "property": {
+                              "name": "$",
+                              "type": "PrivateIdentifier",
+                            },
+                            "type": "MemberExpression",
+                          },
+                          "type": "ReturnStatement",
+                        },
+                      ],
+                      "type": "BlockStatement",
+                    },
+                    "generator": false,
+                    "id": null,
+                    "params": [
+                      {
+                        "name": "value",
+                        "type": "Identifier",
+                      },
+                    ],
+                    "type": "FunctionExpression",
+                  },
+                },
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "_",
+                    "type": "Identifier",
+                  },
+                  "kind": "method",
+                  "static": false,
+                  "type": "MethodDefinition",
+                  "value": {
+                    "async": false,
+                    "body": {
+                      "body": [
+                        {
+                          "expression": {
+                            "left": {
+                              "computed": false,
+                              "object": {
+                                "type": "ThisExpression",
+                              },
+                              "property": {
+                                "name": "__",
+                                "type": "PrivateIdentifier",
+                              },
+                              "type": "MemberExpression",
+                            },
+                            "operator": "=",
+                            "right": {
+                              "name": "value",
+                              "type": "Identifier",
+                            },
+                            "type": "AssignmentExpression",
+                          },
+                          "type": "ExpressionStatement",
+                        },
+                        {
+                          "argument": {
+                            "computed": false,
+                            "object": {
+                              "type": "ThisExpression",
+                            },
+                            "property": {
+                              "name": "_",
+                              "type": "PrivateIdentifier",
+                            },
+                            "type": "MemberExpression",
+                          },
+                          "type": "ReturnStatement",
+                        },
+                      ],
+                      "type": "BlockStatement",
+                    },
+                    "generator": false,
+                    "id": null,
+                    "params": [
+                      {
+                        "name": "value",
+                        "type": "Identifier",
+                      },
+                    ],
+                    "type": "FunctionExpression",
+                  },
+                },
+              ],
+              "type": "ClassBody",
+            },
+            "id": null,
+            "superClass": null,
+            "type": "ClassExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "var",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

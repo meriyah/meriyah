@@ -1,0 +1,4064 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > ![] 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "elements": [],
+          "type": "ArrayExpression",
+        },
+        "operator": "!",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > !love 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "name": "love",
+          "type": "Identifier",
+        },
+        "operator": "!",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > (++this.x) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "type": "ThisExpression",
+          },
+          "property": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "++",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > (delete a.b) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > (this.x++) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "type": "ThisExpression",
+          },
+          "property": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "++",
+        "prefix": false,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > (typeof async (x)) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "arguments": [
+            {
+              "name": "x",
+              "type": "Identifier",
+            },
+          ],
+          "callee": {
+            "name": "async",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "operator": "typeof",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > (x)++; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "++",
+        "prefix": false,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > ++
+a 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "++",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > ++(((x))); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "++",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > ++(x); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "++",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > ++this.x 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "type": "ThisExpression",
+          },
+          "property": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "++",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > +null 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "type": "Literal",
+          "value": null,
+        },
+        "operator": "+",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > ~false 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "type": "Literal",
+          "value": false,
+        },
+        "operator": "~",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > --this.x 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "type": "ThisExpression",
+          },
+          "property": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "--",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > -a 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "-",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > -function(val){  return val } 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "async": false,
+          "body": {
+            "body": [
+              {
+                "argument": {
+                  "name": "val",
+                  "type": "Identifier",
+                },
+                "type": "ReturnStatement",
+              },
+            ],
+            "type": "BlockStatement",
+          },
+          "generator": false,
+          "id": null,
+          "params": [
+            {
+              "name": "val",
+              "type": "Identifier",
+            },
+          ],
+          "type": "FunctionExpression",
+        },
+        "operator": "-",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > a
+++b 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "ExpressionStatement",
+    },
+    {
+      "expression": {
+        "argument": {
+          "name": "b",
+          "type": "Identifier",
+        },
+        "operator": "++",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > a = ++a 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "argument": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "++",
+          "prefix": true,
+          "type": "UpdateExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > a = +a 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "argument": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "+",
+          "prefix": true,
+          "type": "UnaryExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > a = typeof async (x) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "argument": {
+            "arguments": [
+              {
+                "name": "x",
+                "type": "Identifier",
+              },
+            ],
+            "callee": {
+              "name": "async",
+              "type": "Identifier",
+            },
+            "type": "CallExpression",
+          },
+          "operator": "typeof",
+          "prefix": true,
+          "type": "UnaryExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > a ? b : !c 1`] = `
+{
+  "body": [
+    {
+      "end": 10,
+      "expression": {
+        "alternate": {
+          "argument": {
+            "end": 10,
+            "name": "c",
+            "range": [
+              9,
+              10,
+            ],
+            "start": 9,
+            "type": "Identifier",
+          },
+          "end": 10,
+          "operator": "!",
+          "prefix": true,
+          "range": [
+            8,
+            10,
+          ],
+          "start": 8,
+          "type": "UnaryExpression",
+        },
+        "consequent": {
+          "end": 5,
+          "name": "b",
+          "range": [
+            4,
+            5,
+          ],
+          "start": 4,
+          "type": "Identifier",
+        },
+        "end": 10,
+        "range": [
+          0,
+          10,
+        ],
+        "start": 0,
+        "test": {
+          "end": 1,
+          "name": "a",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "type": "ConditionalExpression",
+      },
+      "range": [
+        0,
+        10,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 10,
+  "range": [
+    0,
+    10,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > a(void b) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "argument": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "operator": "void",
+            "prefix": true,
+            "type": "UnaryExpression",
+          },
+        ],
+        "callee": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > async x => delete ("x"[(await x)]) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "argument": {
+            "computed": true,
+            "object": {
+              "type": "Literal",
+              "value": "x",
+            },
+            "property": {
+              "argument": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "AwaitExpression",
+            },
+            "type": "MemberExpression",
+          },
+          "operator": "delete",
+          "prefix": true,
+          "type": "UnaryExpression",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "x",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > async x => delete (((((foo(await x)))))).bar 1`] = `
+{
+  "body": [
+    {
+      "end": 44,
+      "expression": {
+        "async": true,
+        "body": {
+          "argument": {
+            "computed": false,
+            "end": 44,
+            "object": {
+              "arguments": [
+                {
+                  "argument": {
+                    "end": 34,
+                    "name": "x",
+                    "range": [
+                      33,
+                      34,
+                    ],
+                    "start": 33,
+                    "type": "Identifier",
+                  },
+                  "end": 34,
+                  "range": [
+                    27,
+                    34,
+                  ],
+                  "start": 27,
+                  "type": "AwaitExpression",
+                },
+              ],
+              "callee": {
+                "end": 26,
+                "name": "foo",
+                "range": [
+                  23,
+                  26,
+                ],
+                "start": 23,
+                "type": "Identifier",
+              },
+              "end": 35,
+              "range": [
+                23,
+                35,
+              ],
+              "start": 23,
+              "type": "CallExpression",
+            },
+            "property": {
+              "end": 44,
+              "name": "bar",
+              "range": [
+                41,
+                44,
+              ],
+              "start": 41,
+              "type": "Identifier",
+            },
+            "range": [
+              18,
+              44,
+            ],
+            "start": 18,
+            "type": "MemberExpression",
+          },
+          "end": 44,
+          "operator": "delete",
+          "prefix": true,
+          "range": [
+            11,
+            44,
+          ],
+          "start": 11,
+          "type": "UnaryExpression",
+        },
+        "end": 44,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 7,
+            "name": "x",
+            "range": [
+              6,
+              7,
+            ],
+            "start": 6,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          0,
+          44,
+        ],
+        "start": 0,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        0,
+        44,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 44,
+  "range": [
+    0,
+    44,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > console.log(Math.PI); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "computed": false,
+            "object": {
+              "name": "Math",
+              "type": "Identifier",
+            },
+            "property": {
+              "name": "PI",
+              "type": "Identifier",
+            },
+            "type": "MemberExpression",
+          },
+        ],
+        "callee": {
+          "computed": false,
+          "object": {
+            "name": "console",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "log",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete "x".y 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "type": "Literal",
+            "value": "x",
+          },
+          "property": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete "x".y 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "type": "Literal",
+            "value": "x",
+          },
+          "property": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete "x".y 3`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "type": "Literal",
+            "value": "x",
+          },
+          "property": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ( 
+ () => x) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "async": false,
+          "body": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "expression": true,
+          "generator": false,
+          "params": [],
+          "type": "ArrowFunctionExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ( 
+ () => x) 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "async": false,
+          "body": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "expression": true,
+          "generator": false,
+          "params": [],
+          "type": "ArrowFunctionExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ("foo" + "bar") 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "left": {
+            "type": "Literal",
+            "value": "foo",
+          },
+          "operator": "+",
+          "right": {
+            "type": "Literal",
+            "value": "bar",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ("foo" + "bar") 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "left": {
+            "type": "Literal",
+            "value": "foo",
+          },
+          "operator": "+",
+          "right": {
+            "type": "Literal",
+            "value": "bar",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ("foo" + "bar") 3`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "left": {
+            "type": "Literal",
+            "value": "foo",
+          },
+          "operator": "+",
+          "right": {
+            "type": "Literal",
+            "value": "bar",
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ("foo", "bar") 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "expressions": [
+            {
+              "type": "Literal",
+              "value": "foo",
+            },
+            {
+              "type": "Literal",
+              "value": "bar",
+            },
+          ],
+          "type": "SequenceExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ("foo", "bar") 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "expressions": [
+            {
+              "type": "Literal",
+              "value": "foo",
+            },
+            {
+              "type": "Literal",
+              "value": "bar",
+            },
+          ],
+          "type": "SequenceExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ("foo".bar = 20) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "left": {
+            "computed": false,
+            "object": {
+              "type": "Literal",
+              "value": "foo",
+            },
+            "property": {
+              "name": "bar",
+              "type": "Identifier",
+            },
+            "type": "MemberExpression",
+          },
+          "operator": "=",
+          "right": {
+            "type": "Literal",
+            "value": 20,
+          },
+          "type": "AssignmentExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ("foo".bar = 20) 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "left": {
+            "computed": false,
+            "object": {
+              "type": "Literal",
+              "value": "foo",
+            },
+            "property": {
+              "name": "bar",
+              "type": "Identifier",
+            },
+            "type": "MemberExpression",
+          },
+          "operator": "=",
+          "right": {
+            "type": "Literal",
+            "value": 20,
+          },
+          "type": "AssignmentExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ("foo".bar = 20) 3`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "left": {
+            "computed": false,
+            "object": {
+              "type": "Literal",
+              "value": "foo",
+            },
+            "property": {
+              "name": "bar",
+              "type": "Identifier",
+            },
+            "type": "MemberExpression",
+          },
+          "operator": "=",
+          "right": {
+            "type": "Literal",
+            "value": 20,
+          },
+          "type": "AssignmentExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ((((foo))).x) 1`] = `
+{
+  "body": [
+    {
+      "end": 20,
+      "expression": {
+        "argument": {
+          "computed": false,
+          "end": 19,
+          "object": {
+            "end": 14,
+            "name": "foo",
+            "range": [
+              11,
+              14,
+            ],
+            "start": 11,
+            "type": "Identifier",
+          },
+          "property": {
+            "end": 19,
+            "name": "x",
+            "range": [
+              18,
+              19,
+            ],
+            "start": 18,
+            "type": "Identifier",
+          },
+          "range": [
+            8,
+            19,
+          ],
+          "start": 8,
+          "type": "MemberExpression",
+        },
+        "end": 20,
+        "operator": "delete",
+        "prefix": true,
+        "range": [
+          0,
+          20,
+        ],
+        "start": 0,
+        "type": "UnaryExpression",
+      },
+      "range": [
+        0,
+        20,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 20,
+  "range": [
+    0,
+    20,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ((((foo))).x) 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ((((foo))).x) 3`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ((()=>b)) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "async": false,
+          "body": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "expression": true,
+          "generator": false,
+          "params": [],
+          "type": "ArrowFunctionExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ((()=>b)) 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "async": false,
+          "body": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "expression": true,
+          "generator": false,
+          "params": [],
+          "type": "ArrowFunctionExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ((()=>b)) 3`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "async": false,
+          "body": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "expression": true,
+          "generator": false,
+          "params": [],
+          "type": "ArrowFunctionExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete (((a)=>b).x) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "async": false,
+            "body": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "expression": true,
+            "generator": false,
+            "params": [
+              {
+                "name": "a",
+                "type": "Identifier",
+              },
+            ],
+            "type": "ArrowFunctionExpression",
+          },
+          "property": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete (((a)=b).x) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "left": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "operator": "=",
+            "right": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "type": "AssignmentExpression",
+          },
+          "property": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete (((a)=b).x) 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "left": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "operator": "=",
+            "right": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "type": "AssignmentExpression",
+          },
+          "property": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete (((a)=b).x) 3`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "left": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "operator": "=",
+            "right": {
+              "name": "b",
+              "type": "Identifier",
+            },
+            "type": "AssignmentExpression",
+          },
+          "property": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ((a)=>b) 1`] = `
+{
+  "body": [
+    {
+      "end": 15,
+      "expression": {
+        "argument": {
+          "async": false,
+          "body": {
+            "end": 14,
+            "name": "b",
+            "range": [
+              13,
+              14,
+            ],
+            "start": 13,
+            "type": "Identifier",
+          },
+          "end": 14,
+          "expression": true,
+          "generator": false,
+          "params": [
+            {
+              "end": 10,
+              "name": "a",
+              "range": [
+                9,
+                10,
+              ],
+              "start": 9,
+              "type": "Identifier",
+            },
+          ],
+          "range": [
+            8,
+            14,
+          ],
+          "start": 8,
+          "type": "ArrowFunctionExpression",
+        },
+        "end": 15,
+        "operator": "delete",
+        "prefix": true,
+        "range": [
+          0,
+          15,
+        ],
+        "start": 0,
+        "type": "UnaryExpression",
+      },
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 15,
+  "range": [
+    0,
+    15,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ((a)=>b) 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "async": false,
+          "body": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "expression": true,
+          "generator": false,
+          "params": [
+            {
+              "name": "a",
+              "type": "Identifier",
+            },
+          ],
+          "type": "ArrowFunctionExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ((a)=>b) 3`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "async": false,
+          "body": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "expression": true,
+          "generator": false,
+          "params": [
+            {
+              "name": "a",
+              "type": "Identifier",
+            },
+          ],
+          "type": "ArrowFunctionExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ((a, b, [c])=>b) 1`] = `
+{
+  "body": [
+    {
+      "end": 23,
+      "expression": {
+        "argument": {
+          "async": false,
+          "body": {
+            "end": 22,
+            "name": "b",
+            "range": [
+              21,
+              22,
+            ],
+            "start": 21,
+            "type": "Identifier",
+          },
+          "end": 22,
+          "expression": true,
+          "generator": false,
+          "params": [
+            {
+              "end": 10,
+              "name": "a",
+              "range": [
+                9,
+                10,
+              ],
+              "start": 9,
+              "type": "Identifier",
+            },
+            {
+              "end": 13,
+              "name": "b",
+              "range": [
+                12,
+                13,
+              ],
+              "start": 12,
+              "type": "Identifier",
+            },
+            {
+              "elements": [
+                {
+                  "end": 17,
+                  "name": "c",
+                  "range": [
+                    16,
+                    17,
+                  ],
+                  "start": 16,
+                  "type": "Identifier",
+                },
+              ],
+              "end": 18,
+              "range": [
+                15,
+                18,
+              ],
+              "start": 15,
+              "type": "ArrayPattern",
+            },
+          ],
+          "range": [
+            8,
+            22,
+          ],
+          "start": 8,
+          "type": "ArrowFunctionExpression",
+        },
+        "end": 23,
+        "operator": "delete",
+        "prefix": true,
+        "range": [
+          0,
+          23,
+        ],
+        "start": 0,
+        "type": "UnaryExpression",
+      },
+      "range": [
+        0,
+        23,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 23,
+  "range": [
+    0,
+    23,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ((a, b, [c])=>b) 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "async": false,
+          "body": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "expression": true,
+          "generator": false,
+          "params": [
+            {
+              "name": "a",
+              "type": "Identifier",
+            },
+            {
+              "name": "b",
+              "type": "Identifier",
+            },
+            {
+              "elements": [
+                {
+                  "name": "c",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "ArrowFunctionExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ((a, b, [c])=>b) 3`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "async": false,
+          "body": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "expression": true,
+          "generator": false,
+          "params": [
+            {
+              "name": "a",
+              "type": "Identifier",
+            },
+            {
+              "name": "b",
+              "type": "Identifier",
+            },
+            {
+              "elements": [
+                {
+                  "name": "c",
+                  "type": "Identifier",
+                },
+              ],
+              "type": "ArrayPattern",
+            },
+          ],
+          "type": "ArrowFunctionExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ((foo)++) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "argument": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "operator": "++",
+          "prefix": false,
+          "type": "UpdateExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ((foo)++) 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "argument": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "operator": "++",
+          "prefix": false,
+          "type": "UpdateExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ((foo)++) 3`] = `
+{
+  "body": [
+    {
+      "end": 16,
+      "expression": {
+        "argument": {
+          "argument": {
+            "end": 12,
+            "name": "foo",
+            "range": [
+              9,
+              12,
+            ],
+            "start": 9,
+            "type": "Identifier",
+          },
+          "end": 15,
+          "operator": "++",
+          "prefix": false,
+          "range": [
+            8,
+            15,
+          ],
+          "start": 8,
+          "type": "UpdateExpression",
+        },
+        "end": 16,
+        "operator": "delete",
+        "prefix": true,
+        "range": [
+          0,
+          16,
+        ],
+        "start": 0,
+        "type": "UnaryExpression",
+      },
+      "range": [
+        0,
+        16,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 16,
+  "range": [
+    0,
+    16,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ((foo).x) 1`] = `
+{
+  "body": [
+    {
+      "end": 16,
+      "expression": {
+        "argument": {
+          "computed": false,
+          "end": 15,
+          "object": {
+            "end": 12,
+            "name": "foo",
+            "range": [
+              9,
+              12,
+            ],
+            "start": 9,
+            "type": "Identifier",
+          },
+          "property": {
+            "end": 15,
+            "name": "x",
+            "range": [
+              14,
+              15,
+            ],
+            "start": 14,
+            "type": "Identifier",
+          },
+          "range": [
+            8,
+            15,
+          ],
+          "start": 8,
+          "type": "MemberExpression",
+        },
+        "end": 16,
+        "operator": "delete",
+        "prefix": true,
+        "range": [
+          0,
+          16,
+        ],
+        "start": 0,
+        "type": "UnaryExpression",
+      },
+      "range": [
+        0,
+        16,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 16,
+  "range": [
+    0,
+    16,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ((foo).x) 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete ((foo).x) 3`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete (a, b).c 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "expressions": [
+              {
+                "name": "a",
+                "type": "Identifier",
+              },
+              {
+                "name": "b",
+                "type": "Identifier",
+              },
+            ],
+            "type": "SequenceExpression",
+          },
+          "property": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete (a, b).c 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "expressions": [
+              {
+                "name": "a",
+                "type": "Identifier",
+              },
+              {
+                "name": "b",
+                "type": "Identifier",
+              },
+            ],
+            "type": "SequenceExpression",
+          },
+          "property": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete (a, b).c 3`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "expressions": [
+              {
+                "name": "a",
+                "type": "Identifier",
+              },
+              {
+                "name": "b",
+                "type": "Identifier",
+              },
+            ],
+            "type": "SequenceExpression",
+          },
+          "property": {
+            "name": "c",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete (foo.bar); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "bar",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete /foo/.bar; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "regex": {
+              "flags": "",
+              "pattern": "foo",
+            },
+            "type": "Literal",
+            "value": /foo/,
+          },
+          "property": {
+            "name": "bar",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete [].x 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "elements": [],
+            "type": "ArrayExpression",
+          },
+          "property": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete [].x 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "elements": [],
+            "type": "ArrayExpression",
+          },
+          "property": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete [].x 3`] = `
+{
+  "body": [
+    {
+      "end": 11,
+      "expression": {
+        "argument": {
+          "computed": false,
+          "end": 11,
+          "object": {
+            "elements": [],
+            "end": 9,
+            "range": [
+              7,
+              9,
+            ],
+            "start": 7,
+            "type": "ArrayExpression",
+          },
+          "property": {
+            "end": 11,
+            "name": "x",
+            "range": [
+              10,
+              11,
+            ],
+            "start": 10,
+            "type": "Identifier",
+          },
+          "range": [
+            7,
+            11,
+          ],
+          "start": 7,
+          "type": "MemberExpression",
+        },
+        "end": 11,
+        "operator": "delete",
+        "prefix": true,
+        "range": [
+          0,
+          11,
+        ],
+        "start": 0,
+        "type": "UnaryExpression",
+      },
+      "range": [
+        0,
+        11,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 11,
+  "range": [
+    0,
+    11,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete foo() 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "arguments": [],
+          "callee": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete foo.bar 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "bar",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete foo.bar 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "bar",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete foo.bar 3`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "bar",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete foo.bar 4`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "bar",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete foo[bar] 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": true,
+          "object": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "bar",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete foo[bar] 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": true,
+          "object": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "bar",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete foo[bar] 3`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": true,
+          "object": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "bar",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete lunch.beans; 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "name": "lunch",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "beans",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete true 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "type": "Literal",
+          "value": true,
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete true.__proto__.foo 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "computed": false,
+            "object": {
+              "type": "Literal",
+              "value": true,
+            },
+            "property": {
+              "name": "__proto__",
+              "type": "Identifier",
+            },
+            "type": "MemberExpression",
+          },
+          "property": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete true.__proto__.foo 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "computed": false,
+            "object": {
+              "type": "Literal",
+              "value": true,
+            },
+            "property": {
+              "name": "__proto__",
+              "type": "Identifier",
+            },
+            "type": "MemberExpression",
+          },
+          "property": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete true.__proto__.foo 3`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "computed": false,
+            "object": {
+              "type": "Literal",
+              "value": true,
+            },
+            "property": {
+              "name": "__proto__",
+              "type": "Identifier",
+            },
+            "type": "MemberExpression",
+          },
+          "property": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete typeof true 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "argument": {
+            "type": "Literal",
+            "value": true,
+          },
+          "operator": "typeof",
+          "prefix": true,
+          "type": "UnaryExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete x.y 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete x.y 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > delete x.y 3`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "computed": false,
+          "object": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "property": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "operator": "delete",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > foo = !42 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "argument": {
+            "type": "Literal",
+            "value": 42,
+          },
+          "operator": "!",
+          "prefix": true,
+          "type": "UnaryExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > foo = !a 1`] = `
+{
+  "body": [
+    {
+      "end": 8,
+      "expression": {
+        "end": 8,
+        "left": {
+          "end": 3,
+          "name": "foo",
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "range": [
+          0,
+          8,
+        ],
+        "right": {
+          "argument": {
+            "end": 8,
+            "name": "a",
+            "range": [
+              7,
+              8,
+            ],
+            "start": 7,
+            "type": "Identifier",
+          },
+          "end": 8,
+          "operator": "!",
+          "prefix": true,
+          "range": [
+            6,
+            8,
+          ],
+          "start": 6,
+          "type": "UnaryExpression",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        0,
+        8,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 8,
+  "range": [
+    0,
+    8,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > foo = (![]) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "argument": {
+            "elements": [],
+            "type": "ArrayExpression",
+          },
+          "operator": "!",
+          "prefix": true,
+          "type": "UnaryExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > foo = ~b 1`] = `
+{
+  "body": [
+    {
+      "end": 8,
+      "expression": {
+        "end": 8,
+        "left": {
+          "end": 3,
+          "name": "foo",
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "range": [
+          0,
+          8,
+        ],
+        "right": {
+          "argument": {
+            "end": 8,
+            "name": "b",
+            "range": [
+              7,
+              8,
+            ],
+            "start": 7,
+            "type": "Identifier",
+          },
+          "end": 8,
+          "operator": "~",
+          "prefix": true,
+          "range": [
+            6,
+            8,
+          ],
+          "start": 6,
+          "type": "UnaryExpression",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "range": [
+        0,
+        8,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 8,
+  "range": [
+    0,
+    8,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > function *f(){ delete ("x"[(yield)]) } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "argument": {
+                "computed": true,
+                "object": {
+                  "type": "Literal",
+                  "value": "x",
+                },
+                "property": {
+                  "argument": null,
+                  "delegate": false,
+                  "type": "YieldExpression",
+                },
+                "type": "MemberExpression",
+              },
+              "operator": "delete",
+              "prefix": true,
+              "type": "UnaryExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > function *f(){ delete (((((foo(yield y)))))).bar } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "argument": {
+                "computed": false,
+                "object": {
+                  "arguments": [
+                    {
+                      "argument": {
+                        "name": "y",
+                        "type": "Identifier",
+                      },
+                      "delegate": false,
+                      "type": "YieldExpression",
+                    },
+                  ],
+                  "callee": {
+                    "name": "foo",
+                    "type": "Identifier",
+                  },
+                  "type": "CallExpression",
+                },
+                "property": {
+                  "name": "bar",
+                  "type": "Identifier",
+                },
+                "type": "MemberExpression",
+              },
+              "operator": "delete",
+              "prefix": true,
+              "type": "UnaryExpression",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": true,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > function *f(){ delete (((((foo(yield)))))).bar } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "end": 46,
+            "expression": {
+              "argument": {
+                "computed": false,
+                "end": 46,
+                "object": {
+                  "arguments": [
+                    {
+                      "argument": null,
+                      "delegate": false,
+                      "end": 36,
+                      "range": [
+                        31,
+                        36,
+                      ],
+                      "start": 31,
+                      "type": "YieldExpression",
+                    },
+                  ],
+                  "callee": {
+                    "end": 30,
+                    "name": "foo",
+                    "range": [
+                      27,
+                      30,
+                    ],
+                    "start": 27,
+                    "type": "Identifier",
+                  },
+                  "end": 37,
+                  "range": [
+                    27,
+                    37,
+                  ],
+                  "start": 27,
+                  "type": "CallExpression",
+                },
+                "property": {
+                  "end": 46,
+                  "name": "bar",
+                  "range": [
+                    43,
+                    46,
+                  ],
+                  "start": 43,
+                  "type": "Identifier",
+                },
+                "range": [
+                  22,
+                  46,
+                ],
+                "start": 22,
+                "type": "MemberExpression",
+              },
+              "end": 46,
+              "operator": "delete",
+              "prefix": true,
+              "range": [
+                15,
+                46,
+              ],
+              "start": 15,
+              "type": "UnaryExpression",
+            },
+            "range": [
+              15,
+              46,
+            ],
+            "start": 15,
+            "type": "ExpressionStatement",
+          },
+        ],
+        "end": 48,
+        "range": [
+          13,
+          48,
+        ],
+        "start": 13,
+        "type": "BlockStatement",
+      },
+      "end": 48,
+      "generator": true,
+      "id": {
+        "end": 11,
+        "name": "f",
+        "range": [
+          10,
+          11,
+        ],
+        "start": 10,
+        "type": "Identifier",
+      },
+      "params": [],
+      "range": [
+        0,
+        48,
+      ],
+      "start": 0,
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "end": 48,
+  "range": [
+    0,
+    48,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > function f(){ return ++a; } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "argument": {
+              "argument": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "operator": "++",
+              "prefix": true,
+              "type": "UpdateExpression",
+            },
+            "type": "ReturnStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > if (++a); 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "type": "EmptyStatement",
+      },
+      "test": {
+        "argument": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "operator": "++",
+        "prefix": true,
+        "type": "UpdateExpression",
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > if (a) --a; 1`] = `
+{
+  "body": [
+    {
+      "alternate": null,
+      "consequent": {
+        "expression": {
+          "argument": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "operator": "--",
+          "prefix": true,
+          "type": "UpdateExpression",
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "IfStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > isNaN(+(void 0)) !== true 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "arguments": [
+            {
+              "argument": {
+                "argument": {
+                  "type": "Literal",
+                  "value": 0,
+                },
+                "operator": "void",
+                "prefix": true,
+                "type": "UnaryExpression",
+              },
+              "operator": "+",
+              "prefix": true,
+              "type": "UnaryExpression",
+            },
+          ],
+          "callee": {
+            "name": "isNaN",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "operator": "!==",
+        "right": {
+          "type": "Literal",
+          "value": true,
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > let 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "name": "let",
+        "type": "Identifier",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > let x = () => ++
+a; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": {
+            "async": false,
+            "body": {
+              "argument": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "operator": "++",
+              "prefix": true,
+              "type": "UpdateExpression",
+            },
+            "expression": true,
+            "generator": false,
+            "params": [],
+            "type": "ArrowFunctionExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > let x = () => ++a; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "init": {
+            "async": false,
+            "body": {
+              "argument": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "operator": "++",
+              "prefix": true,
+              "type": "UpdateExpression",
+            },
+            "expression": true,
+            "generator": false,
+            "params": [],
+            "type": "ArrowFunctionExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "let",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > typeof [1,2,3]  1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "elements": [
+            {
+              "type": "Literal",
+              "value": 1,
+            },
+            {
+              "type": "Literal",
+              "value": 2,
+            },
+            {
+              "type": "Literal",
+              "value": 3,
+            },
+          ],
+          "type": "ArrayExpression",
+        },
+        "operator": "typeof",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > typeof {hi: "world"} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "properties": [
+            {
+              "computed": false,
+              "key": {
+                "name": "hi",
+                "type": "Identifier",
+              },
+              "kind": "init",
+              "method": false,
+              "shorthand": false,
+              "type": "Property",
+              "value": {
+                "type": "Literal",
+                "value": "world",
+              },
+            },
+          ],
+          "type": "ObjectExpression",
+        },
+        "operator": "typeof",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > typeof async (x) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "arguments": [
+            {
+              "name": "x",
+              "type": "Identifier",
+            },
+          ],
+          "callee": {
+            "name": "async",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "operator": "typeof",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > typeof async 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "operator": "typeof",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > typeof async({a}); 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "arguments": [
+            {
+              "properties": [
+                {
+                  "computed": false,
+                  "key": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "type": "Property",
+                  "value": {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                },
+              ],
+              "type": "ObjectExpression",
+            },
+          ],
+          "callee": {
+            "name": "async",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "operator": "typeof",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > typeof await 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "name": "await",
+          "type": "Identifier",
+        },
+        "operator": "typeof",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > typeof exports === "object" 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "argument": {
+            "name": "exports",
+            "type": "Identifier",
+          },
+          "operator": "typeof",
+          "prefix": true,
+          "type": "UnaryExpression",
+        },
+        "operator": "===",
+        "right": {
+          "type": "Literal",
+          "value": "object",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > typeof love 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "name": "love",
+          "type": "Identifier",
+        },
+        "operator": "typeof",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > typeof void 0 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "argument": {
+            "type": "Literal",
+            "value": 0,
+          },
+          "operator": "void",
+          "prefix": true,
+          "type": "UnaryExpression",
+        },
+        "operator": "typeof",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > typeof x + y 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "argument": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "operator": "typeof",
+          "prefix": true,
+          "type": "UnaryExpression",
+        },
+        "operator": "+",
+        "right": {
+          "name": "y",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > typeof x 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "operator": "typeof",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > void (x = 1) !== undefined 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "argument": {
+            "left": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "operator": "=",
+            "right": {
+              "type": "Literal",
+              "value": 1,
+            },
+            "type": "AssignmentExpression",
+          },
+          "operator": "void",
+          "prefix": true,
+          "type": "UnaryExpression",
+        },
+        "operator": "!==",
+        "right": {
+          "name": "undefined",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > void love 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "argument": {
+          "name": "love",
+          "type": "Identifier",
+        },
+        "operator": "void",
+        "prefix": true,
+        "type": "UnaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > void x !== undefined 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "argument": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "operator": "void",
+          "prefix": true,
+          "type": "UnaryExpression",
+        },
+        "operator": "!==",
+        "right": {
+          "name": "undefined",
+          "type": "Identifier",
+        },
+        "type": "BinaryExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > x == 5 || y == 5 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "left": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "operator": "==",
+          "right": {
+            "type": "Literal",
+            "value": 5,
+          },
+          "type": "BinaryExpression",
+        },
+        "operator": "||",
+        "right": {
+          "left": {
+            "name": "y",
+            "type": "Identifier",
+          },
+          "operator": "==",
+          "right": {
+            "type": "Literal",
+            "value": 5,
+          },
+          "type": "BinaryExpression",
+        },
+        "type": "LogicalExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Unary > Expressions - Unary (pass) > y = x-- 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "left": {
+          "name": "y",
+          "type": "Identifier",
+        },
+        "operator": "=",
+        "right": {
+          "argument": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "operator": "--",
+          "prefix": false,
+          "type": "UpdateExpression",
+        },
+        "type": "AssignmentExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

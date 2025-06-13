@@ -1,0 +1,118 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Statements - With > Statements - With (pass) > with ({}) { } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [],
+        "type": "BlockStatement",
+      },
+      "object": {
+        "properties": [],
+        "type": "ObjectExpression",
+      },
+      "type": "WithStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - With > Statements - With (pass) > with ({}) let 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "expression": {
+          "name": "let",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "object": {
+        "properties": [],
+        "type": "ObjectExpression",
+      },
+      "type": "WithStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - With > Statements - With (pass) > with (foo) bar; 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "expression": {
+          "name": "bar",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "object": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "WithStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - With > Statements - With (pass) > with (x) { foo } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "expression": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "type": "ExpressionStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "object": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "type": "WithStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - With > Statements - With (pass) > with (x) foo; 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "expression": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "object": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "type": "WithStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

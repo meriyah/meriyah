@@ -1,0 +1,3303 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - Call > Expressions - Call (pass) >  obj
+                          .foo
+                              ["bar"]
+                                  .baz()
+                                      .foo
+                                          ["bar"]()
+                                              .baz()() 1`] = `
+{
+  "body": [
+    {
+      "end": 264,
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "arguments": [],
+          "callee": {
+            "computed": false,
+            "end": 260,
+            "object": {
+              "arguments": [],
+              "callee": {
+                "computed": true,
+                "end": 207,
+                "object": {
+                  "computed": false,
+                  "end": 157,
+                  "object": {
+                    "arguments": [],
+                    "callee": {
+                      "computed": false,
+                      "end": 112,
+                      "object": {
+                        "computed": true,
+                        "end": 73,
+                        "object": {
+                          "computed": false,
+                          "end": 35,
+                          "object": {
+                            "end": 4,
+                            "name": "obj",
+                            "range": [
+                              1,
+                              4,
+                            ],
+                            "start": 1,
+                            "type": "Identifier",
+                          },
+                          "property": {
+                            "end": 35,
+                            "name": "foo",
+                            "range": [
+                              32,
+                              35,
+                            ],
+                            "start": 32,
+                            "type": "Identifier",
+                          },
+                          "range": [
+                            1,
+                            35,
+                          ],
+                          "start": 1,
+                          "type": "MemberExpression",
+                        },
+                        "property": {
+                          "end": 72,
+                          "range": [
+                            67,
+                            72,
+                          ],
+                          "start": 67,
+                          "type": "Literal",
+                          "value": "bar",
+                        },
+                        "range": [
+                          1,
+                          73,
+                        ],
+                        "start": 1,
+                        "type": "MemberExpression",
+                      },
+                      "property": {
+                        "end": 112,
+                        "name": "baz",
+                        "range": [
+                          109,
+                          112,
+                        ],
+                        "start": 109,
+                        "type": "Identifier",
+                      },
+                      "range": [
+                        1,
+                        112,
+                      ],
+                      "start": 1,
+                      "type": "MemberExpression",
+                    },
+                    "end": 114,
+                    "range": [
+                      1,
+                      114,
+                    ],
+                    "start": 1,
+                    "type": "CallExpression",
+                  },
+                  "property": {
+                    "end": 157,
+                    "name": "foo",
+                    "range": [
+                      154,
+                      157,
+                    ],
+                    "start": 154,
+                    "type": "Identifier",
+                  },
+                  "range": [
+                    1,
+                    157,
+                  ],
+                  "start": 1,
+                  "type": "MemberExpression",
+                },
+                "property": {
+                  "end": 206,
+                  "range": [
+                    201,
+                    206,
+                  ],
+                  "start": 201,
+                  "type": "Literal",
+                  "value": "bar",
+                },
+                "range": [
+                  1,
+                  207,
+                ],
+                "start": 1,
+                "type": "MemberExpression",
+              },
+              "end": 209,
+              "range": [
+                1,
+                209,
+              ],
+              "start": 1,
+              "type": "CallExpression",
+            },
+            "property": {
+              "end": 260,
+              "name": "baz",
+              "range": [
+                257,
+                260,
+              ],
+              "start": 257,
+              "type": "Identifier",
+            },
+            "range": [
+              1,
+              260,
+            ],
+            "start": 1,
+            "type": "MemberExpression",
+          },
+          "end": 262,
+          "range": [
+            1,
+            262,
+          ],
+          "start": 1,
+          "type": "CallExpression",
+        },
+        "end": 264,
+        "range": [
+          1,
+          264,
+        ],
+        "start": 1,
+        "type": "CallExpression",
+      },
+      "range": [
+        1,
+        264,
+      ],
+      "start": 1,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 264,
+  "range": [
+    0,
+    264,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > "foo", async 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "expressions": [
+          {
+            "type": "Literal",
+            "value": "foo",
+          },
+          {
+            "name": "async",
+            "type": "Identifier",
+          },
+        ],
+        "type": "SequenceExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > (function(obj) {}({a: 1, b: 2, ...{c: 3, d: 4}})); 1`] = `
+{
+  "body": [
+    {
+      "end": 50,
+      "expression": {
+        "arguments": [
+          {
+            "end": 47,
+            "properties": [
+              {
+                "computed": false,
+                "end": 23,
+                "key": {
+                  "end": 20,
+                  "name": "a",
+                  "range": [
+                    19,
+                    20,
+                  ],
+                  "start": 19,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  19,
+                  23,
+                ],
+                "shorthand": false,
+                "start": 19,
+                "type": "Property",
+                "value": {
+                  "end": 23,
+                  "range": [
+                    22,
+                    23,
+                  ],
+                  "start": 22,
+                  "type": "Literal",
+                  "value": 1,
+                },
+              },
+              {
+                "computed": false,
+                "end": 29,
+                "key": {
+                  "end": 26,
+                  "name": "b",
+                  "range": [
+                    25,
+                    26,
+                  ],
+                  "start": 25,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  25,
+                  29,
+                ],
+                "shorthand": false,
+                "start": 25,
+                "type": "Property",
+                "value": {
+                  "end": 29,
+                  "range": [
+                    28,
+                    29,
+                  ],
+                  "start": 28,
+                  "type": "Literal",
+                  "value": 2,
+                },
+              },
+              {
+                "argument": {
+                  "end": 46,
+                  "properties": [
+                    {
+                      "computed": false,
+                      "end": 39,
+                      "key": {
+                        "end": 36,
+                        "name": "c",
+                        "range": [
+                          35,
+                          36,
+                        ],
+                        "start": 35,
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "range": [
+                        35,
+                        39,
+                      ],
+                      "shorthand": false,
+                      "start": 35,
+                      "type": "Property",
+                      "value": {
+                        "end": 39,
+                        "range": [
+                          38,
+                          39,
+                        ],
+                        "start": 38,
+                        "type": "Literal",
+                        "value": 3,
+                      },
+                    },
+                    {
+                      "computed": false,
+                      "end": 45,
+                      "key": {
+                        "end": 42,
+                        "name": "d",
+                        "range": [
+                          41,
+                          42,
+                        ],
+                        "start": 41,
+                        "type": "Identifier",
+                      },
+                      "kind": "init",
+                      "method": false,
+                      "range": [
+                        41,
+                        45,
+                      ],
+                      "shorthand": false,
+                      "start": 41,
+                      "type": "Property",
+                      "value": {
+                        "end": 45,
+                        "range": [
+                          44,
+                          45,
+                        ],
+                        "start": 44,
+                        "type": "Literal",
+                        "value": 4,
+                      },
+                    },
+                  ],
+                  "range": [
+                    34,
+                    46,
+                  ],
+                  "start": 34,
+                  "type": "ObjectExpression",
+                },
+                "end": 46,
+                "range": [
+                  31,
+                  46,
+                ],
+                "start": 31,
+                "type": "SpreadElement",
+              },
+            ],
+            "range": [
+              18,
+              47,
+            ],
+            "start": 18,
+            "type": "ObjectExpression",
+          },
+        ],
+        "callee": {
+          "async": false,
+          "body": {
+            "body": [],
+            "end": 17,
+            "range": [
+              15,
+              17,
+            ],
+            "start": 15,
+            "type": "BlockStatement",
+          },
+          "end": 17,
+          "generator": false,
+          "id": null,
+          "params": [
+            {
+              "end": 13,
+              "name": "obj",
+              "range": [
+                10,
+                13,
+              ],
+              "start": 10,
+              "type": "Identifier",
+            },
+          ],
+          "range": [
+            1,
+            17,
+          ],
+          "start": 1,
+          "type": "FunctionExpression",
+        },
+        "end": 48,
+        "range": [
+          1,
+          48,
+        ],
+        "start": 1,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        50,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 50,
+  "range": [
+    0,
+    50,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > (function(obj) {}({a: 1, b: 2, ...null})); 1`] = `
+{
+  "body": [
+    {
+      "end": 42,
+      "expression": {
+        "arguments": [
+          {
+            "end": 39,
+            "properties": [
+              {
+                "computed": false,
+                "end": 23,
+                "key": {
+                  "end": 20,
+                  "name": "a",
+                  "range": [
+                    19,
+                    20,
+                  ],
+                  "start": 19,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  19,
+                  23,
+                ],
+                "shorthand": false,
+                "start": 19,
+                "type": "Property",
+                "value": {
+                  "end": 23,
+                  "range": [
+                    22,
+                    23,
+                  ],
+                  "start": 22,
+                  "type": "Literal",
+                  "value": 1,
+                },
+              },
+              {
+                "computed": false,
+                "end": 29,
+                "key": {
+                  "end": 26,
+                  "name": "b",
+                  "range": [
+                    25,
+                    26,
+                  ],
+                  "start": 25,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  25,
+                  29,
+                ],
+                "shorthand": false,
+                "start": 25,
+                "type": "Property",
+                "value": {
+                  "end": 29,
+                  "range": [
+                    28,
+                    29,
+                  ],
+                  "start": 28,
+                  "type": "Literal",
+                  "value": 2,
+                },
+              },
+              {
+                "argument": {
+                  "end": 38,
+                  "range": [
+                    34,
+                    38,
+                  ],
+                  "start": 34,
+                  "type": "Literal",
+                  "value": null,
+                },
+                "end": 38,
+                "range": [
+                  31,
+                  38,
+                ],
+                "start": 31,
+                "type": "SpreadElement",
+              },
+            ],
+            "range": [
+              18,
+              39,
+            ],
+            "start": 18,
+            "type": "ObjectExpression",
+          },
+        ],
+        "callee": {
+          "async": false,
+          "body": {
+            "body": [],
+            "end": 17,
+            "range": [
+              15,
+              17,
+            ],
+            "start": 15,
+            "type": "BlockStatement",
+          },
+          "end": 17,
+          "generator": false,
+          "id": null,
+          "params": [
+            {
+              "end": 13,
+              "name": "obj",
+              "range": [
+                10,
+                13,
+              ],
+              "start": 10,
+              "type": "Identifier",
+            },
+          ],
+          "range": [
+            1,
+            17,
+          ],
+          "start": 1,
+          "type": "FunctionExpression",
+        },
+        "end": 40,
+        "range": [
+          1,
+          40,
+        ],
+        "start": 1,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        42,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 42,
+  "range": [
+    0,
+    42,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > a.b( c() ).d 1`] = `
+{
+  "body": [
+    {
+      "end": 12,
+      "expression": {
+        "computed": false,
+        "end": 12,
+        "object": {
+          "arguments": [
+            {
+              "arguments": [],
+              "callee": {
+                "end": 6,
+                "name": "c",
+                "range": [
+                  5,
+                  6,
+                ],
+                "start": 5,
+                "type": "Identifier",
+              },
+              "end": 8,
+              "range": [
+                5,
+                8,
+              ],
+              "start": 5,
+              "type": "CallExpression",
+            },
+          ],
+          "callee": {
+            "computed": false,
+            "end": 3,
+            "object": {
+              "end": 1,
+              "name": "a",
+              "range": [
+                0,
+                1,
+              ],
+              "start": 0,
+              "type": "Identifier",
+            },
+            "property": {
+              "end": 3,
+              "name": "b",
+              "range": [
+                2,
+                3,
+              ],
+              "start": 2,
+              "type": "Identifier",
+            },
+            "range": [
+              0,
+              3,
+            ],
+            "start": 0,
+            "type": "MemberExpression",
+          },
+          "end": 10,
+          "range": [
+            0,
+            10,
+          ],
+          "start": 0,
+          "type": "CallExpression",
+        },
+        "property": {
+          "end": 12,
+          "name": "d",
+          "range": [
+            11,
+            12,
+          ],
+          "start": 11,
+          "type": "Identifier",
+        },
+        "range": [
+          0,
+          12,
+        ],
+        "start": 0,
+        "type": "MemberExpression",
+      },
+      "range": [
+        0,
+        12,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 12,
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > a.b( c() ).d.e 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "computed": false,
+        "object": {
+          "computed": false,
+          "object": {
+            "arguments": [
+              {
+                "arguments": [],
+                "callee": {
+                  "name": "c",
+                  "type": "Identifier",
+                },
+                "type": "CallExpression",
+              },
+            ],
+            "callee": {
+              "computed": false,
+              "object": {
+                "name": "a",
+                "type": "Identifier",
+              },
+              "property": {
+                "name": "b",
+                "type": "Identifier",
+              },
+              "type": "MemberExpression",
+            },
+            "type": "CallExpression",
+          },
+          "property": {
+            "name": "d",
+            "type": "Identifier",
+          },
+          "type": "MemberExpression",
+        },
+        "property": {
+          "name": "e",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > a.b( c() ).d.e; 1`] = `
+{
+  "body": [
+    {
+      "end": 15,
+      "expression": {
+        "computed": false,
+        "end": 14,
+        "object": {
+          "computed": false,
+          "end": 12,
+          "object": {
+            "arguments": [
+              {
+                "arguments": [],
+                "callee": {
+                  "end": 6,
+                  "name": "c",
+                  "range": [
+                    5,
+                    6,
+                  ],
+                  "start": 5,
+                  "type": "Identifier",
+                },
+                "end": 8,
+                "range": [
+                  5,
+                  8,
+                ],
+                "start": 5,
+                "type": "CallExpression",
+              },
+            ],
+            "callee": {
+              "computed": false,
+              "end": 3,
+              "object": {
+                "end": 1,
+                "name": "a",
+                "range": [
+                  0,
+                  1,
+                ],
+                "start": 0,
+                "type": "Identifier",
+              },
+              "property": {
+                "end": 3,
+                "name": "b",
+                "range": [
+                  2,
+                  3,
+                ],
+                "start": 2,
+                "type": "Identifier",
+              },
+              "range": [
+                0,
+                3,
+              ],
+              "start": 0,
+              "type": "MemberExpression",
+            },
+            "end": 10,
+            "range": [
+              0,
+              10,
+            ],
+            "start": 0,
+            "type": "CallExpression",
+          },
+          "property": {
+            "end": 12,
+            "name": "d",
+            "range": [
+              11,
+              12,
+            ],
+            "start": 11,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            12,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "property": {
+          "end": 14,
+          "name": "e",
+          "range": [
+            13,
+            14,
+          ],
+          "start": 13,
+          "type": "Identifier",
+        },
+        "range": [
+          0,
+          14,
+        ],
+        "start": 0,
+        "type": "MemberExpression",
+      },
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 15,
+  "range": [
+    0,
+    15,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > a.b( foo() ) 1`] = `
+{
+  "body": [
+    {
+      "end": 12,
+      "expression": {
+        "arguments": [
+          {
+            "arguments": [],
+            "callee": {
+              "end": 8,
+              "name": "foo",
+              "range": [
+                5,
+                8,
+              ],
+              "start": 5,
+              "type": "Identifier",
+            },
+            "end": 10,
+            "range": [
+              5,
+              10,
+            ],
+            "start": 5,
+            "type": "CallExpression",
+          },
+        ],
+        "callee": {
+          "computed": false,
+          "end": 3,
+          "object": {
+            "end": 1,
+            "name": "a",
+            "range": [
+              0,
+              1,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+          "property": {
+            "end": 3,
+            "name": "b",
+            "range": [
+              2,
+              3,
+            ],
+            "start": 2,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "end": 12,
+        "range": [
+          0,
+          12,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        12,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 12,
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > a.b( o.bar ) 1`] = `
+{
+  "body": [
+    {
+      "end": 12,
+      "expression": {
+        "arguments": [
+          {
+            "computed": false,
+            "end": 10,
+            "object": {
+              "end": 6,
+              "name": "o",
+              "range": [
+                5,
+                6,
+              ],
+              "start": 5,
+              "type": "Identifier",
+            },
+            "property": {
+              "end": 10,
+              "name": "bar",
+              "range": [
+                7,
+                10,
+              ],
+              "start": 7,
+              "type": "Identifier",
+            },
+            "range": [
+              5,
+              10,
+            ],
+            "start": 5,
+            "type": "MemberExpression",
+          },
+        ],
+        "callee": {
+          "computed": false,
+          "end": 3,
+          "object": {
+            "end": 1,
+            "name": "a",
+            "range": [
+              0,
+              1,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+          "property": {
+            "end": 3,
+            "name": "b",
+            "range": [
+              2,
+              3,
+            ],
+            "start": 2,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "end": 12,
+        "range": [
+          0,
+          12,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        12,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 12,
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > a.b( o["bar"] ) 1`] = `
+{
+  "body": [
+    {
+      "end": 15,
+      "expression": {
+        "arguments": [
+          {
+            "computed": true,
+            "end": 13,
+            "object": {
+              "end": 6,
+              "name": "o",
+              "range": [
+                5,
+                6,
+              ],
+              "start": 5,
+              "type": "Identifier",
+            },
+            "property": {
+              "end": 12,
+              "range": [
+                7,
+                12,
+              ],
+              "start": 7,
+              "type": "Literal",
+              "value": "bar",
+            },
+            "range": [
+              5,
+              13,
+            ],
+            "start": 5,
+            "type": "MemberExpression",
+          },
+        ],
+        "callee": {
+          "computed": false,
+          "end": 3,
+          "object": {
+            "end": 1,
+            "name": "a",
+            "range": [
+              0,
+              1,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+          "property": {
+            "end": 3,
+            "name": "b",
+            "range": [
+              2,
+              3,
+            ],
+            "start": 2,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "end": 15,
+        "range": [
+          0,
+          15,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 15,
+  "range": [
+    0,
+    15,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > a.replace(/ /g, "") 1`] = `
+{
+  "body": [
+    {
+      "end": 19,
+      "expression": {
+        "arguments": [
+          {
+            "end": 14,
+            "range": [
+              10,
+              14,
+            ],
+            "regex": {
+              "flags": "g",
+              "pattern": " ",
+            },
+            "start": 10,
+            "type": "Literal",
+            "value": / /g,
+          },
+          {
+            "end": 18,
+            "range": [
+              16,
+              18,
+            ],
+            "start": 16,
+            "type": "Literal",
+            "value": "",
+          },
+        ],
+        "callee": {
+          "computed": false,
+          "end": 9,
+          "object": {
+            "end": 1,
+            "name": "a",
+            "range": [
+              0,
+              1,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+          "property": {
+            "end": 9,
+            "name": "replace",
+            "range": [
+              2,
+              9,
+            ],
+            "start": 2,
+            "type": "Identifier",
+          },
+          "range": [
+            0,
+            9,
+          ],
+          "start": 0,
+          "type": "MemberExpression",
+        },
+        "end": 19,
+        "range": [
+          0,
+          19,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        19,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 19,
+  "range": [
+    0,
+    19,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > async()() 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "arguments": [],
+          "callee": {
+            "name": "async",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > async().a 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "computed": false,
+        "object": {
+          "arguments": [],
+          "callee": {
+            "name": "async",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "property": {
+          "name": "a",
+          "type": "Identifier",
+        },
+        "type": "MemberExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > async({a}) 1`] = `
+{
+  "body": [
+    {
+      "end": 10,
+      "expression": {
+        "arguments": [
+          {
+            "end": 9,
+            "properties": [
+              {
+                "computed": false,
+                "end": 8,
+                "key": {
+                  "end": 8,
+                  "name": "a",
+                  "range": [
+                    7,
+                    8,
+                  ],
+                  "start": 7,
+                  "type": "Identifier",
+                },
+                "kind": "init",
+                "method": false,
+                "range": [
+                  7,
+                  8,
+                ],
+                "shorthand": true,
+                "start": 7,
+                "type": "Property",
+                "value": {
+                  "end": 8,
+                  "name": "a",
+                  "range": [
+                    7,
+                    8,
+                  ],
+                  "start": 7,
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "range": [
+              6,
+              9,
+            ],
+            "start": 6,
+            "type": "ObjectExpression",
+          },
+        ],
+        "callee": {
+          "end": 5,
+          "name": "async",
+          "range": [
+            0,
+            5,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 10,
+        "range": [
+          0,
+          10,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        10,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 10,
+  "range": [
+    0,
+    10,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > async({c=3} = {}) 1`] = `
+{
+  "body": [
+    {
+      "end": 17,
+      "expression": {
+        "arguments": [
+          {
+            "end": 16,
+            "left": {
+              "end": 11,
+              "properties": [
+                {
+                  "computed": false,
+                  "end": 10,
+                  "key": {
+                    "end": 8,
+                    "name": "c",
+                    "range": [
+                      7,
+                      8,
+                    ],
+                    "start": 7,
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "range": [
+                    7,
+                    10,
+                  ],
+                  "shorthand": true,
+                  "start": 7,
+                  "type": "Property",
+                  "value": {
+                    "end": 10,
+                    "left": {
+                      "end": 8,
+                      "name": "c",
+                      "range": [
+                        7,
+                        8,
+                      ],
+                      "start": 7,
+                      "type": "Identifier",
+                    },
+                    "range": [
+                      7,
+                      10,
+                    ],
+                    "right": {
+                      "end": 10,
+                      "range": [
+                        9,
+                        10,
+                      ],
+                      "start": 9,
+                      "type": "Literal",
+                      "value": 3,
+                    },
+                    "start": 7,
+                    "type": "AssignmentPattern",
+                  },
+                },
+              ],
+              "range": [
+                6,
+                11,
+              ],
+              "start": 6,
+              "type": "ObjectPattern",
+            },
+            "operator": "=",
+            "range": [
+              6,
+              16,
+            ],
+            "right": {
+              "end": 16,
+              "properties": [],
+              "range": [
+                14,
+                16,
+              ],
+              "start": 14,
+              "type": "ObjectExpression",
+            },
+            "start": 6,
+            "type": "AssignmentExpression",
+          },
+        ],
+        "callee": {
+          "end": 5,
+          "name": "async",
+          "range": [
+            0,
+            5,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 17,
+        "range": [
+          0,
+          17,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        17,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 17,
+  "range": [
+    0,
+    17,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > async(a)(b) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "b",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "arguments": [
+            {
+              "name": "a",
+              "type": "Identifier",
+            },
+          ],
+          "callee": {
+            "name": "async",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > async(a)(s)(y)(n)(c) 1`] = `
+{
+  "body": [
+    {
+      "end": 20,
+      "expression": {
+        "arguments": [
+          {
+            "end": 19,
+            "name": "c",
+            "range": [
+              18,
+              19,
+            ],
+            "start": 18,
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "arguments": [
+            {
+              "end": 16,
+              "name": "n",
+              "range": [
+                15,
+                16,
+              ],
+              "start": 15,
+              "type": "Identifier",
+            },
+          ],
+          "callee": {
+            "arguments": [
+              {
+                "end": 13,
+                "name": "y",
+                "range": [
+                  12,
+                  13,
+                ],
+                "start": 12,
+                "type": "Identifier",
+              },
+            ],
+            "callee": {
+              "arguments": [
+                {
+                  "end": 10,
+                  "name": "s",
+                  "range": [
+                    9,
+                    10,
+                  ],
+                  "start": 9,
+                  "type": "Identifier",
+                },
+              ],
+              "callee": {
+                "arguments": [
+                  {
+                    "end": 7,
+                    "name": "a",
+                    "range": [
+                      6,
+                      7,
+                    ],
+                    "start": 6,
+                    "type": "Identifier",
+                  },
+                ],
+                "callee": {
+                  "end": 5,
+                  "name": "async",
+                  "range": [
+                    0,
+                    5,
+                  ],
+                  "start": 0,
+                  "type": "Identifier",
+                },
+                "end": 8,
+                "range": [
+                  0,
+                  8,
+                ],
+                "start": 0,
+                "type": "CallExpression",
+              },
+              "end": 11,
+              "range": [
+                0,
+                11,
+              ],
+              "start": 0,
+              "type": "CallExpression",
+            },
+            "end": 14,
+            "range": [
+              0,
+              14,
+            ],
+            "start": 0,
+            "type": "CallExpression",
+          },
+          "end": 17,
+          "range": [
+            0,
+            17,
+          ],
+          "start": 0,
+          "type": "CallExpression",
+        },
+        "end": 20,
+        "range": [
+          0,
+          20,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        20,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 20,
+  "range": [
+    0,
+    20,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > async(a)=> {} 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "body": [],
+          "type": "BlockStatement",
+        },
+        "expression": false,
+        "generator": false,
+        "params": [
+          {
+            "name": "a",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > async(async(async(async(async(async()))))) 1`] = `
+{
+  "body": [
+    {
+      "end": 42,
+      "expression": {
+        "arguments": [
+          {
+            "arguments": [
+              {
+                "arguments": [
+                  {
+                    "arguments": [
+                      {
+                        "arguments": [
+                          {
+                            "arguments": [],
+                            "callee": {
+                              "end": 35,
+                              "name": "async",
+                              "range": [
+                                30,
+                                35,
+                              ],
+                              "start": 30,
+                              "type": "Identifier",
+                            },
+                            "end": 37,
+                            "range": [
+                              30,
+                              37,
+                            ],
+                            "start": 30,
+                            "type": "CallExpression",
+                          },
+                        ],
+                        "callee": {
+                          "end": 29,
+                          "name": "async",
+                          "range": [
+                            24,
+                            29,
+                          ],
+                          "start": 24,
+                          "type": "Identifier",
+                        },
+                        "end": 38,
+                        "range": [
+                          24,
+                          38,
+                        ],
+                        "start": 24,
+                        "type": "CallExpression",
+                      },
+                    ],
+                    "callee": {
+                      "end": 23,
+                      "name": "async",
+                      "range": [
+                        18,
+                        23,
+                      ],
+                      "start": 18,
+                      "type": "Identifier",
+                    },
+                    "end": 39,
+                    "range": [
+                      18,
+                      39,
+                    ],
+                    "start": 18,
+                    "type": "CallExpression",
+                  },
+                ],
+                "callee": {
+                  "end": 17,
+                  "name": "async",
+                  "range": [
+                    12,
+                    17,
+                  ],
+                  "start": 12,
+                  "type": "Identifier",
+                },
+                "end": 40,
+                "range": [
+                  12,
+                  40,
+                ],
+                "start": 12,
+                "type": "CallExpression",
+              },
+            ],
+            "callee": {
+              "end": 11,
+              "name": "async",
+              "range": [
+                6,
+                11,
+              ],
+              "start": 6,
+              "type": "Identifier",
+            },
+            "end": 41,
+            "range": [
+              6,
+              41,
+            ],
+            "start": 6,
+            "type": "CallExpression",
+          },
+        ],
+        "callee": {
+          "end": 5,
+          "name": "async",
+          "range": [
+            0,
+            5,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 42,
+        "range": [
+          0,
+          42,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        42,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 42,
+  "range": [
+    0,
+    42,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > async(x,) => x 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "async": true,
+        "body": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "name": "x",
+            "type": "Identifier",
+          },
+        ],
+        "type": "ArrowFunctionExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > async(x,) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "x",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "name": "async",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > call(await[1]) 1`] = `
+{
+  "body": [
+    {
+      "end": 14,
+      "expression": {
+        "arguments": [
+          {
+            "computed": true,
+            "end": 13,
+            "object": {
+              "end": 10,
+              "name": "await",
+              "range": [
+                5,
+                10,
+              ],
+              "start": 5,
+              "type": "Identifier",
+            },
+            "property": {
+              "end": 12,
+              "range": [
+                11,
+                12,
+              ],
+              "start": 11,
+              "type": "Literal",
+              "value": 1,
+            },
+            "range": [
+              5,
+              13,
+            ],
+            "start": 5,
+            "type": "MemberExpression",
+          },
+        ],
+        "callee": {
+          "end": 4,
+          "name": "call",
+          "range": [
+            0,
+            4,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 14,
+        "range": [
+          0,
+          14,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 14,
+  "range": [
+    0,
+    14,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo("abc", async) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "type": "Literal",
+            "value": "abc",
+          },
+          {
+            "name": "async",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo("string", async / 1 -2, await,) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "type": "Literal",
+            "value": "string",
+          },
+          {
+            "left": {
+              "left": {
+                "name": "async",
+                "type": "Identifier",
+              },
+              "operator": "/",
+              "right": {
+                "type": "Literal",
+                "value": 1,
+              },
+              "type": "BinaryExpression",
+            },
+            "operator": "-",
+            "right": {
+              "type": "Literal",
+              "value": 2,
+            },
+            "type": "BinaryExpression",
+          },
+          {
+            "name": "await",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo()(1, 2, 3) 1`] = `
+{
+  "body": [
+    {
+      "end": 14,
+      "expression": {
+        "arguments": [
+          {
+            "end": 7,
+            "range": [
+              6,
+              7,
+            ],
+            "start": 6,
+            "type": "Literal",
+            "value": 1,
+          },
+          {
+            "end": 10,
+            "range": [
+              9,
+              10,
+            ],
+            "start": 9,
+            "type": "Literal",
+            "value": 2,
+          },
+          {
+            "end": 13,
+            "range": [
+              12,
+              13,
+            ],
+            "start": 12,
+            "type": "Literal",
+            "value": 3,
+          },
+        ],
+        "callee": {
+          "arguments": [],
+          "callee": {
+            "end": 3,
+            "name": "foo",
+            "range": [
+              0,
+              3,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+          "end": 5,
+          "range": [
+            0,
+            5,
+          ],
+          "start": 0,
+          "type": "CallExpression",
+        },
+        "end": 14,
+        "range": [
+          0,
+          14,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 14,
+  "range": [
+    0,
+    14,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo()(1, 2, 3, ...{}) 1`] = `
+{
+  "body": [
+    {
+      "end": 21,
+      "expression": {
+        "arguments": [
+          {
+            "end": 7,
+            "range": [
+              6,
+              7,
+            ],
+            "start": 6,
+            "type": "Literal",
+            "value": 1,
+          },
+          {
+            "end": 10,
+            "range": [
+              9,
+              10,
+            ],
+            "start": 9,
+            "type": "Literal",
+            "value": 2,
+          },
+          {
+            "end": 13,
+            "range": [
+              12,
+              13,
+            ],
+            "start": 12,
+            "type": "Literal",
+            "value": 3,
+          },
+          {
+            "argument": {
+              "end": 20,
+              "properties": [],
+              "range": [
+                18,
+                20,
+              ],
+              "start": 18,
+              "type": "ObjectExpression",
+            },
+            "end": 20,
+            "range": [
+              15,
+              20,
+            ],
+            "start": 15,
+            "type": "SpreadElement",
+          },
+        ],
+        "callee": {
+          "arguments": [],
+          "callee": {
+            "end": 3,
+            "name": "foo",
+            "range": [
+              0,
+              3,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+          "end": 5,
+          "range": [
+            0,
+            5,
+          ],
+          "start": 0,
+          "type": "CallExpression",
+        },
+        "end": 21,
+        "range": [
+          0,
+          21,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        21,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 21,
+  "range": [
+    0,
+    21,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo({c=3} = {}) 1`] = `
+{
+  "body": [
+    {
+      "end": 15,
+      "expression": {
+        "arguments": [
+          {
+            "end": 14,
+            "left": {
+              "end": 9,
+              "properties": [
+                {
+                  "computed": false,
+                  "end": 8,
+                  "key": {
+                    "end": 6,
+                    "name": "c",
+                    "range": [
+                      5,
+                      6,
+                    ],
+                    "start": 5,
+                    "type": "Identifier",
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "range": [
+                    5,
+                    8,
+                  ],
+                  "shorthand": true,
+                  "start": 5,
+                  "type": "Property",
+                  "value": {
+                    "end": 8,
+                    "left": {
+                      "end": 6,
+                      "name": "c",
+                      "range": [
+                        5,
+                        6,
+                      ],
+                      "start": 5,
+                      "type": "Identifier",
+                    },
+                    "range": [
+                      5,
+                      8,
+                    ],
+                    "right": {
+                      "end": 8,
+                      "range": [
+                        7,
+                        8,
+                      ],
+                      "start": 7,
+                      "type": "Literal",
+                      "value": 3,
+                    },
+                    "start": 5,
+                    "type": "AssignmentPattern",
+                  },
+                },
+              ],
+              "range": [
+                4,
+                9,
+              ],
+              "start": 4,
+              "type": "ObjectPattern",
+            },
+            "operator": "=",
+            "range": [
+              4,
+              14,
+            ],
+            "right": {
+              "end": 14,
+              "properties": [],
+              "range": [
+                12,
+                14,
+              ],
+              "start": 12,
+              "type": "ObjectExpression",
+            },
+            "start": 4,
+            "type": "AssignmentExpression",
+          },
+        ],
+        "callee": {
+          "end": 3,
+          "name": "foo",
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 15,
+        "range": [
+          0,
+          15,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        15,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 15,
+  "range": [
+    0,
+    15,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo(1, async,) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "type": "Literal",
+            "value": 1,
+          },
+          {
+            "name": "async",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo(123, async,await,) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "type": "Literal",
+            "value": 123,
+          },
+          {
+            "name": "async",
+            "type": "Identifier",
+          },
+          {
+            "name": "await",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo(200) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "type": "Literal",
+            "value": 200,
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo(a) 1`] = `
+{
+  "body": [
+    {
+      "end": 6,
+      "expression": {
+        "arguments": [
+          {
+            "end": 5,
+            "name": "a",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "end": 3,
+          "name": "foo",
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 6,
+        "range": [
+          0,
+          6,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        6,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 6,
+  "range": [
+    0,
+    6,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo(a)(b) 1`] = `
+{
+  "body": [
+    {
+      "end": 9,
+      "expression": {
+        "arguments": [
+          {
+            "end": 8,
+            "name": "b",
+            "range": [
+              7,
+              8,
+            ],
+            "start": 7,
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "arguments": [
+            {
+              "end": 5,
+              "name": "a",
+              "range": [
+                4,
+                5,
+              ],
+              "start": 4,
+              "type": "Identifier",
+            },
+          ],
+          "callee": {
+            "end": 3,
+            "name": "foo",
+            "range": [
+              0,
+              3,
+            ],
+            "start": 0,
+            "type": "Identifier",
+          },
+          "end": 6,
+          "range": [
+            0,
+            6,
+          ],
+          "start": 0,
+          "type": "CallExpression",
+        },
+        "end": 9,
+        "range": [
+          0,
+          9,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        9,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 9,
+  "range": [
+    0,
+    9,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo(a)(b) 2`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "b",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "arguments": [
+            {
+              "name": "a",
+              "type": "Identifier",
+            },
+          ],
+          "callee": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo(a)(b) 3`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "b",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "arguments": [
+            {
+              "name": "a",
+              "type": "Identifier",
+            },
+          ],
+          "callee": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "CallExpression",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo(a)(b)(c)(d)(e) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "e",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "arguments": [
+            {
+              "name": "d",
+              "type": "Identifier",
+            },
+          ],
+          "callee": {
+            "arguments": [
+              {
+                "name": "c",
+                "type": "Identifier",
+              },
+            ],
+            "callee": {
+              "arguments": [
+                {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+              ],
+              "callee": {
+                "arguments": [
+                  {
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                ],
+                "callee": {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                "type": "CallExpression",
+              },
+              "type": "CallExpression",
+            },
+            "type": "CallExpression",
+          },
+          "type": "CallExpression",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo(a, b, c) 1`] = `
+{
+  "body": [
+    {
+      "end": 12,
+      "expression": {
+        "arguments": [
+          {
+            "end": 5,
+            "name": "a",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          {
+            "end": 8,
+            "name": "b",
+            "range": [
+              7,
+              8,
+            ],
+            "start": 7,
+            "type": "Identifier",
+          },
+          {
+            "end": 11,
+            "name": "c",
+            "range": [
+              10,
+              11,
+            ],
+            "start": 10,
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "end": 3,
+          "name": "foo",
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 12,
+        "range": [
+          0,
+          12,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        12,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 12,
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo(async,) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "async",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo(async,await,) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "async",
+            "type": "Identifier",
+          },
+          {
+            "name": "await",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo(async.abc = await) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "left": {
+              "computed": false,
+              "object": {
+                "name": "async",
+                "type": "Identifier",
+              },
+              "property": {
+                "name": "abc",
+                "type": "Identifier",
+              },
+              "type": "MemberExpression",
+            },
+            "operator": "=",
+            "right": {
+              "name": "await",
+              "type": "Identifier",
+            },
+            "type": "AssignmentExpression",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo(async.await[foo]) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "computed": true,
+            "object": {
+              "computed": false,
+              "object": {
+                "name": "async",
+                "type": "Identifier",
+              },
+              "property": {
+                "name": "await",
+                "type": "Identifier",
+              },
+              "type": "MemberExpression",
+            },
+            "property": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "type": "MemberExpression",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo(x,x=1); 1`] = `
+{
+  "body": [
+    {
+      "end": 11,
+      "expression": {
+        "arguments": [
+          {
+            "end": 5,
+            "name": "x",
+            "range": [
+              4,
+              5,
+            ],
+            "start": 4,
+            "type": "Identifier",
+          },
+          {
+            "end": 9,
+            "left": {
+              "end": 7,
+              "name": "x",
+              "range": [
+                6,
+                7,
+              ],
+              "start": 6,
+              "type": "Identifier",
+            },
+            "operator": "=",
+            "range": [
+              6,
+              9,
+            ],
+            "right": {
+              "end": 9,
+              "range": [
+                8,
+                9,
+              ],
+              "start": 8,
+              "type": "Literal",
+              "value": 1,
+            },
+            "start": 6,
+            "type": "AssignmentExpression",
+          },
+        ],
+        "callee": {
+          "end": 3,
+          "name": "foo",
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 10,
+        "range": [
+          0,
+          10,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        11,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 11,
+  "range": [
+    0,
+    11,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo(x,y,) 1`] = `
+{
+  "body": [
+    {
+      "expression": {
+        "arguments": [
+          {
+            "name": "x",
+            "type": "Identifier",
+          },
+          {
+            "name": "y",
+            "type": "Identifier",
+          },
+        ],
+        "callee": {
+          "name": "foo",
+          "type": "Identifier",
+        },
+        "type": "CallExpression",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > foo(x=1,y=x,x+y) 1`] = `
+{
+  "body": [
+    {
+      "end": 16,
+      "expression": {
+        "arguments": [
+          {
+            "end": 7,
+            "left": {
+              "end": 5,
+              "name": "x",
+              "range": [
+                4,
+                5,
+              ],
+              "start": 4,
+              "type": "Identifier",
+            },
+            "operator": "=",
+            "range": [
+              4,
+              7,
+            ],
+            "right": {
+              "end": 7,
+              "range": [
+                6,
+                7,
+              ],
+              "start": 6,
+              "type": "Literal",
+              "value": 1,
+            },
+            "start": 4,
+            "type": "AssignmentExpression",
+          },
+          {
+            "end": 11,
+            "left": {
+              "end": 9,
+              "name": "y",
+              "range": [
+                8,
+                9,
+              ],
+              "start": 8,
+              "type": "Identifier",
+            },
+            "operator": "=",
+            "range": [
+              8,
+              11,
+            ],
+            "right": {
+              "end": 11,
+              "name": "x",
+              "range": [
+                10,
+                11,
+              ],
+              "start": 10,
+              "type": "Identifier",
+            },
+            "start": 8,
+            "type": "AssignmentExpression",
+          },
+          {
+            "end": 15,
+            "left": {
+              "end": 13,
+              "name": "x",
+              "range": [
+                12,
+                13,
+              ],
+              "start": 12,
+              "type": "Identifier",
+            },
+            "operator": "+",
+            "range": [
+              12,
+              15,
+            ],
+            "right": {
+              "end": 15,
+              "name": "y",
+              "range": [
+                14,
+                15,
+              ],
+              "start": 14,
+              "type": "Identifier",
+            },
+            "start": 12,
+            "type": "BinaryExpression",
+          },
+        ],
+        "callee": {
+          "end": 3,
+          "name": "foo",
+          "range": [
+            0,
+            3,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 16,
+        "range": [
+          0,
+          16,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        16,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 16,
+  "range": [
+    0,
+    16,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > i(a, b, ...c); 1`] = `
+{
+  "body": [
+    {
+      "end": 14,
+      "expression": {
+        "arguments": [
+          {
+            "end": 3,
+            "name": "a",
+            "range": [
+              2,
+              3,
+            ],
+            "start": 2,
+            "type": "Identifier",
+          },
+          {
+            "end": 6,
+            "name": "b",
+            "range": [
+              5,
+              6,
+            ],
+            "start": 5,
+            "type": "Identifier",
+          },
+          {
+            "argument": {
+              "end": 12,
+              "name": "c",
+              "range": [
+                11,
+                12,
+              ],
+              "start": 11,
+              "type": "Identifier",
+            },
+            "end": 12,
+            "range": [
+              8,
+              12,
+            ],
+            "start": 8,
+            "type": "SpreadElement",
+          },
+        ],
+        "callee": {
+          "end": 1,
+          "name": "i",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "end": 13,
+        "range": [
+          0,
+          13,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        14,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 14,
+  "range": [
+    0,
+    14,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;

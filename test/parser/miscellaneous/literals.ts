@@ -58,73 +58,9 @@ describe('Miscellaneous - Literal', () => {
   }
 
   pass('Miscellaneous - Literal (pass)', [
-    [
-      String.raw`('\\\'')`,
-      Context.None,
-      {
-        body: [
-          {
-            expression: {
-              type: 'Literal',
-              value: String.raw`\'`,
-            },
-            type: 'ExpressionStatement',
-          },
-        ],
-        sourceType: 'script',
-        type: 'Program',
-      },
-    ],
-    [
-      '("x")',
-      Context.None,
-      {
-        body: [
-          {
-            expression: {
-              type: 'Literal',
-              value: 'x',
-            },
-            type: 'ExpressionStatement',
-          },
-        ],
-        sourceType: 'script',
-        type: 'Program',
-      },
-    ],
-    [
-      String.raw`('\0')`,
-      Context.None,
-      {
-        body: [
-          {
-            expression: {
-              type: 'Literal',
-              value: '\u0000',
-            },
-            type: 'ExpressionStatement',
-          },
-        ],
-        sourceType: 'script',
-        type: 'Program',
-      },
-    ],
-    [
-      String.raw`('\7a')`,
-      Context.None,
-      {
-        body: [
-          {
-            expression: {
-              type: 'Literal',
-              value: '\u0007a',
-            },
-            type: 'ExpressionStatement',
-          },
-        ],
-        sourceType: 'script',
-        type: 'Program',
-      },
-    ],
+    [String.raw`('\\\'')`, Context.None],
+    ['("x")', Context.None],
+    [String.raw`('\0')`, Context.None],
+    [String.raw`('\7a')`, Context.None],
   ]);
 });

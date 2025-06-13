@@ -1,0 +1,1451 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Module - Import > Module - Export > import "y" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "end": 10,
+      "range": [
+        0,
+        10,
+      ],
+      "source": {
+        "end": 10,
+        "range": [
+          7,
+          10,
+        ],
+        "start": 7,
+        "type": "Literal",
+        "value": "y",
+      },
+      "specifiers": [],
+      "start": 0,
+      "type": "ImportDeclaration",
+    },
+  ],
+  "end": 10,
+  "range": [
+    0,
+    10,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import $ from "foo" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "foo",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "$",
+            "type": "Identifier",
+          },
+          "type": "ImportDefaultSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import * as a from "y" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "y",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "type": "ImportNamespaceSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import * as d from "module"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "end": 28,
+      "range": [
+        0,
+        28,
+      ],
+      "source": {
+        "end": 27,
+        "range": [
+          19,
+          27,
+        ],
+        "start": 19,
+        "type": "Literal",
+        "value": "module",
+      },
+      "specifiers": [
+        {
+          "end": 13,
+          "local": {
+            "end": 13,
+            "name": "d",
+            "range": [
+              12,
+              13,
+            ],
+            "start": 12,
+            "type": "Identifier",
+          },
+          "range": [
+            7,
+            13,
+          ],
+          "start": 7,
+          "type": "ImportNamespaceSpecifier",
+        },
+      ],
+      "start": 0,
+      "type": "ImportDeclaration",
+    },
+  ],
+  "end": 28,
+  "range": [
+    0,
+    28,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import { as, get, set, from } from "baz" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "end": 40,
+      "range": [
+        0,
+        40,
+      ],
+      "source": {
+        "end": 40,
+        "range": [
+          35,
+          40,
+        ],
+        "start": 35,
+        "type": "Literal",
+        "value": "baz",
+      },
+      "specifiers": [
+        {
+          "end": 11,
+          "imported": {
+            "end": 11,
+            "name": "as",
+            "range": [
+              9,
+              11,
+            ],
+            "start": 9,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 11,
+            "name": "as",
+            "range": [
+              9,
+              11,
+            ],
+            "start": 9,
+            "type": "Identifier",
+          },
+          "range": [
+            9,
+            11,
+          ],
+          "start": 9,
+          "type": "ImportSpecifier",
+        },
+        {
+          "end": 16,
+          "imported": {
+            "end": 16,
+            "name": "get",
+            "range": [
+              13,
+              16,
+            ],
+            "start": 13,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 16,
+            "name": "get",
+            "range": [
+              13,
+              16,
+            ],
+            "start": 13,
+            "type": "Identifier",
+          },
+          "range": [
+            13,
+            16,
+          ],
+          "start": 13,
+          "type": "ImportSpecifier",
+        },
+        {
+          "end": 21,
+          "imported": {
+            "end": 21,
+            "name": "set",
+            "range": [
+              18,
+              21,
+            ],
+            "start": 18,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 21,
+            "name": "set",
+            "range": [
+              18,
+              21,
+            ],
+            "start": 18,
+            "type": "Identifier",
+          },
+          "range": [
+            18,
+            21,
+          ],
+          "start": 18,
+          "type": "ImportSpecifier",
+        },
+        {
+          "end": 27,
+          "imported": {
+            "end": 27,
+            "name": "from",
+            "range": [
+              23,
+              27,
+            ],
+            "start": 23,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 27,
+            "name": "from",
+            "range": [
+              23,
+              27,
+            ],
+            "start": 23,
+            "type": "Identifier",
+          },
+          "range": [
+            23,
+            27,
+          ],
+          "start": 23,
+          "type": "ImportSpecifier",
+        },
+      ],
+      "start": 0,
+      "type": "ImportDeclaration",
+    },
+  ],
+  "end": 40,
+  "range": [
+    0,
+    40,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import { default as f2, "foo" as foo } from "./foo"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "./foo",
+      },
+      "specifiers": [
+        {
+          "imported": {
+            "name": "default",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "f2",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+        {
+          "imported": {
+            "type": "Literal",
+            "value": "foo",
+          },
+          "local": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import {} from "y" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "end": 18,
+      "range": [
+        0,
+        18,
+      ],
+      "source": {
+        "end": 18,
+        "range": [
+          15,
+          18,
+        ],
+        "start": 15,
+        "type": "Literal",
+        "value": "y",
+      },
+      "specifiers": [],
+      "start": 0,
+      "type": "ImportDeclaration",
+    },
+  ],
+  "end": 18,
+  "range": [
+    0,
+    18,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import {} from "y" 2`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "y",
+      },
+      "specifiers": [],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import {a, b} from "c" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "end": 22,
+      "range": [
+        0,
+        22,
+      ],
+      "source": {
+        "end": 22,
+        "range": [
+          19,
+          22,
+        ],
+        "start": 19,
+        "type": "Literal",
+        "value": "c",
+      },
+      "specifiers": [
+        {
+          "end": 9,
+          "imported": {
+            "end": 9,
+            "name": "a",
+            "range": [
+              8,
+              9,
+            ],
+            "start": 8,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 9,
+            "name": "a",
+            "range": [
+              8,
+              9,
+            ],
+            "start": 8,
+            "type": "Identifier",
+          },
+          "range": [
+            8,
+            9,
+          ],
+          "start": 8,
+          "type": "ImportSpecifier",
+        },
+        {
+          "end": 12,
+          "imported": {
+            "end": 12,
+            "name": "b",
+            "range": [
+              11,
+              12,
+            ],
+            "start": 11,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 12,
+            "name": "b",
+            "range": [
+              11,
+              12,
+            ],
+            "start": 11,
+            "type": "Identifier",
+          },
+          "range": [
+            11,
+            12,
+          ],
+          "start": 11,
+          "type": "ImportSpecifier",
+        },
+      ],
+      "start": 0,
+      "type": "ImportDeclaration",
+    },
+  ],
+  "end": 22,
+  "range": [
+    0,
+    22,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import {n, o as p} from "module"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "end": 33,
+      "range": [
+        0,
+        33,
+      ],
+      "source": {
+        "end": 32,
+        "range": [
+          24,
+          32,
+        ],
+        "start": 24,
+        "type": "Literal",
+        "value": "module",
+      },
+      "specifiers": [
+        {
+          "end": 9,
+          "imported": {
+            "end": 9,
+            "name": "n",
+            "range": [
+              8,
+              9,
+            ],
+            "start": 8,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 9,
+            "name": "n",
+            "range": [
+              8,
+              9,
+            ],
+            "start": 8,
+            "type": "Identifier",
+          },
+          "range": [
+            8,
+            9,
+          ],
+          "start": 8,
+          "type": "ImportSpecifier",
+        },
+        {
+          "end": 17,
+          "imported": {
+            "end": 12,
+            "name": "o",
+            "range": [
+              11,
+              12,
+            ],
+            "start": 11,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 17,
+            "name": "p",
+            "range": [
+              16,
+              17,
+            ],
+            "start": 16,
+            "type": "Identifier",
+          },
+          "range": [
+            11,
+            17,
+          ],
+          "start": 11,
+          "type": "ImportSpecifier",
+        },
+      ],
+      "start": 0,
+      "type": "ImportDeclaration",
+    },
+  ],
+  "end": 33,
+  "range": [
+    0,
+    33,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import {n, o as p} from "module"; 2`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "module",
+      },
+      "specifiers": [
+        {
+          "imported": {
+            "name": "n",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "n",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+        {
+          "imported": {
+            "name": "o",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "p",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import {x as a, z as b,} from "y" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "y",
+      },
+      "specifiers": [
+        {
+          "imported": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+        {
+          "imported": {
+            "name": "z",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import {x as a, z as b} from "y" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "end": 32,
+      "range": [
+        0,
+        32,
+      ],
+      "source": {
+        "end": 32,
+        "range": [
+          29,
+          32,
+        ],
+        "start": 29,
+        "type": "Literal",
+        "value": "y",
+      },
+      "specifiers": [
+        {
+          "end": 14,
+          "imported": {
+            "end": 9,
+            "name": "x",
+            "range": [
+              8,
+              9,
+            ],
+            "start": 8,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 14,
+            "name": "a",
+            "range": [
+              13,
+              14,
+            ],
+            "start": 13,
+            "type": "Identifier",
+          },
+          "range": [
+            8,
+            14,
+          ],
+          "start": 8,
+          "type": "ImportSpecifier",
+        },
+        {
+          "end": 22,
+          "imported": {
+            "end": 17,
+            "name": "z",
+            "range": [
+              16,
+              17,
+            ],
+            "start": 16,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 22,
+            "name": "b",
+            "range": [
+              21,
+              22,
+            ],
+            "start": 21,
+            "type": "Identifier",
+          },
+          "range": [
+            16,
+            22,
+          ],
+          "start": 16,
+          "type": "ImportSpecifier",
+        },
+      ],
+      "start": 0,
+      "type": "ImportDeclaration",
+    },
+  ],
+  "end": 32,
+  "range": [
+    0,
+    32,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import {x as a, z} from "y" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "y",
+      },
+      "specifiers": [
+        {
+          "imported": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "a",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+        {
+          "imported": {
+            "name": "z",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "z",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import {x as z,} from "y" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "end": 25,
+      "range": [
+        0,
+        25,
+      ],
+      "source": {
+        "end": 25,
+        "range": [
+          22,
+          25,
+        ],
+        "start": 22,
+        "type": "Literal",
+        "value": "y",
+      },
+      "specifiers": [
+        {
+          "end": 14,
+          "imported": {
+            "end": 9,
+            "name": "x",
+            "range": [
+              8,
+              9,
+            ],
+            "start": 8,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 14,
+            "name": "z",
+            "range": [
+              13,
+              14,
+            ],
+            "start": 13,
+            "type": "Identifier",
+          },
+          "range": [
+            8,
+            14,
+          ],
+          "start": 8,
+          "type": "ImportSpecifier",
+        },
+      ],
+      "start": 0,
+      "type": "ImportDeclaration",
+    },
+  ],
+  "end": 25,
+  "range": [
+    0,
+    25,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import {x as z} from "y" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "y",
+      },
+      "specifiers": [
+        {
+          "imported": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "z",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import {x, z as b} from "y" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "y",
+      },
+      "specifiers": [
+        {
+          "imported": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+        {
+          "imported": {
+            "name": "z",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import {x, z,} from "y" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "y",
+      },
+      "specifiers": [
+        {
+          "imported": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+        {
+          "imported": {
+            "name": "z",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "z",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import {x, z} from "y" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "y",
+      },
+      "specifiers": [
+        {
+          "imported": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+        {
+          "imported": {
+            "name": "z",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "z",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import {x,} from "y" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "y",
+      },
+      "specifiers": [
+        {
+          "imported": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import {x} from "y" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "y",
+      },
+      "specifiers": [
+        {
+          "imported": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "local": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ImportSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import e, {f as g, h as i, j} from "module"; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "end": 44,
+      "range": [
+        0,
+        44,
+      ],
+      "source": {
+        "end": 43,
+        "range": [
+          35,
+          43,
+        ],
+        "start": 35,
+        "type": "Literal",
+        "value": "module",
+      },
+      "specifiers": [
+        {
+          "end": 8,
+          "local": {
+            "end": 8,
+            "name": "e",
+            "range": [
+              7,
+              8,
+            ],
+            "start": 7,
+            "type": "Identifier",
+          },
+          "range": [
+            7,
+            8,
+          ],
+          "start": 7,
+          "type": "ImportDefaultSpecifier",
+        },
+        {
+          "end": 17,
+          "imported": {
+            "end": 12,
+            "name": "f",
+            "range": [
+              11,
+              12,
+            ],
+            "start": 11,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 17,
+            "name": "g",
+            "range": [
+              16,
+              17,
+            ],
+            "start": 16,
+            "type": "Identifier",
+          },
+          "range": [
+            11,
+            17,
+          ],
+          "start": 11,
+          "type": "ImportSpecifier",
+        },
+        {
+          "end": 25,
+          "imported": {
+            "end": 20,
+            "name": "h",
+            "range": [
+              19,
+              20,
+            ],
+            "start": 19,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 25,
+            "name": "i",
+            "range": [
+              24,
+              25,
+            ],
+            "start": 24,
+            "type": "Identifier",
+          },
+          "range": [
+            19,
+            25,
+          ],
+          "start": 19,
+          "type": "ImportSpecifier",
+        },
+        {
+          "end": 28,
+          "imported": {
+            "end": 28,
+            "name": "j",
+            "range": [
+              27,
+              28,
+            ],
+            "start": 27,
+            "type": "Identifier",
+          },
+          "local": {
+            "end": 28,
+            "name": "j",
+            "range": [
+              27,
+              28,
+            ],
+            "start": 27,
+            "type": "Identifier",
+          },
+          "range": [
+            27,
+            28,
+          ],
+          "start": 27,
+          "type": "ImportSpecifier",
+        },
+      ],
+      "start": 0,
+      "type": "ImportDeclaration",
+    },
+  ],
+  "end": 44,
+  "range": [
+    0,
+    44,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import from from "foo" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "foo",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "from",
+            "type": "Identifier",
+          },
+          "type": "ImportDefaultSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import icefapper from "await" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "await",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "icefapper",
+            "type": "Identifier",
+          },
+          "type": "ImportDefaultSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import x from "y" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "source": {
+        "type": "Literal",
+        "value": "y",
+      },
+      "specifiers": [
+        {
+          "local": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "ImportDefaultSpecifier",
+        },
+      ],
+      "type": "ImportDeclaration",
+    },
+  ],
+  "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import x, * as a from "y" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "end": 25,
+      "range": [
+        0,
+        25,
+      ],
+      "source": {
+        "end": 25,
+        "range": [
+          22,
+          25,
+        ],
+        "start": 22,
+        "type": "Literal",
+        "value": "y",
+      },
+      "specifiers": [
+        {
+          "end": 8,
+          "local": {
+            "end": 8,
+            "name": "x",
+            "range": [
+              7,
+              8,
+            ],
+            "start": 7,
+            "type": "Identifier",
+          },
+          "range": [
+            7,
+            8,
+          ],
+          "start": 7,
+          "type": "ImportDefaultSpecifier",
+        },
+        {
+          "end": 16,
+          "local": {
+            "end": 16,
+            "name": "a",
+            "range": [
+              15,
+              16,
+            ],
+            "start": 15,
+            "type": "Identifier",
+          },
+          "range": [
+            10,
+            16,
+          ],
+          "start": 10,
+          "type": "ImportNamespaceSpecifier",
+        },
+      ],
+      "start": 0,
+      "type": "ImportDeclaration",
+    },
+  ],
+  "end": 25,
+  "range": [
+    0,
+    25,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Module - Import > Module - Export > import x, * as ns from "foo" 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "end": 28,
+      "range": [
+        0,
+        28,
+      ],
+      "source": {
+        "end": 28,
+        "range": [
+          23,
+          28,
+        ],
+        "start": 23,
+        "type": "Literal",
+        "value": "foo",
+      },
+      "specifiers": [
+        {
+          "end": 8,
+          "local": {
+            "end": 8,
+            "name": "x",
+            "range": [
+              7,
+              8,
+            ],
+            "start": 7,
+            "type": "Identifier",
+          },
+          "range": [
+            7,
+            8,
+          ],
+          "start": 7,
+          "type": "ImportDefaultSpecifier",
+        },
+        {
+          "end": 17,
+          "local": {
+            "end": 17,
+            "name": "ns",
+            "range": [
+              15,
+              17,
+            ],
+            "start": 15,
+            "type": "Identifier",
+          },
+          "range": [
+            10,
+            17,
+          ],
+          "start": 10,
+          "type": "ImportNamespaceSpecifier",
+        },
+      ],
+      "start": 0,
+      "type": "ImportDeclaration",
+    },
+  ],
+  "end": 28,
+  "range": [
+    0,
+    28,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;

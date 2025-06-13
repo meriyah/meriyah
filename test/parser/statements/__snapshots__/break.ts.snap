@@ -1,0 +1,969 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Statements - Break > Statements - Break (pass) > L: let
+x 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "expression": {
+          "name": "let",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "label": {
+        "name": "L",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+    {
+      "expression": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Break > Statements - Break (pass) > a: if (true) b: { break a; break b; }
+      else b: { break a; break b; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "alternate": {
+          "body": {
+            "body": [
+              {
+                "label": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "type": "BreakStatement",
+              },
+              {
+                "label": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "type": "BreakStatement",
+              },
+            ],
+            "type": "BlockStatement",
+          },
+          "label": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "LabeledStatement",
+        },
+        "consequent": {
+          "body": {
+            "body": [
+              {
+                "label": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "type": "BreakStatement",
+              },
+              {
+                "label": {
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "type": "BreakStatement",
+              },
+            ],
+            "type": "BlockStatement",
+          },
+          "label": {
+            "name": "b",
+            "type": "Identifier",
+          },
+          "type": "LabeledStatement",
+        },
+        "test": {
+          "type": "Literal",
+          "value": true,
+        },
+        "type": "IfStatement",
+      },
+      "label": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Break > Statements - Break (pass) > ding: foo: bar: while (true) break foo; 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "body": {
+            "body": {
+              "end": 39,
+              "label": {
+                "end": 38,
+                "name": "foo",
+                "range": [
+                  35,
+                  38,
+                ],
+                "start": 35,
+                "type": "Identifier",
+              },
+              "range": [
+                29,
+                39,
+              ],
+              "start": 29,
+              "type": "BreakStatement",
+            },
+            "end": 39,
+            "range": [
+              16,
+              39,
+            ],
+            "start": 16,
+            "test": {
+              "end": 27,
+              "range": [
+                23,
+                27,
+              ],
+              "raw": "true",
+              "start": 23,
+              "type": "Literal",
+              "value": true,
+            },
+            "type": "WhileStatement",
+          },
+          "end": 39,
+          "label": {
+            "end": 14,
+            "name": "bar",
+            "range": [
+              11,
+              14,
+            ],
+            "start": 11,
+            "type": "Identifier",
+          },
+          "range": [
+            11,
+            39,
+          ],
+          "start": 11,
+          "type": "LabeledStatement",
+        },
+        "end": 39,
+        "label": {
+          "end": 9,
+          "name": "foo",
+          "range": [
+            6,
+            9,
+          ],
+          "start": 6,
+          "type": "Identifier",
+        },
+        "range": [
+          6,
+          39,
+        ],
+        "start": 6,
+        "type": "LabeledStatement",
+      },
+      "end": 39,
+      "label": {
+        "end": 4,
+        "name": "ding",
+        "range": [
+          0,
+          4,
+        ],
+        "start": 0,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        39,
+      ],
+      "start": 0,
+      "type": "LabeledStatement",
+    },
+  ],
+  "end": 39,
+  "range": [
+    0,
+    39,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Break > Statements - Break (pass) > foo: switch (x) { case x: break foo; } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "cases": [
+          {
+            "consequent": [
+              {
+                "end": 36,
+                "label": {
+                  "end": 35,
+                  "name": "foo",
+                  "range": [
+                    32,
+                    35,
+                  ],
+                  "start": 32,
+                  "type": "Identifier",
+                },
+                "range": [
+                  26,
+                  36,
+                ],
+                "start": 26,
+                "type": "BreakStatement",
+              },
+            ],
+            "end": 36,
+            "range": [
+              18,
+              36,
+            ],
+            "start": 18,
+            "test": {
+              "end": 24,
+              "name": "x",
+              "range": [
+                23,
+                24,
+              ],
+              "start": 23,
+              "type": "Identifier",
+            },
+            "type": "SwitchCase",
+          },
+        ],
+        "discriminant": {
+          "end": 14,
+          "name": "x",
+          "range": [
+            13,
+            14,
+          ],
+          "start": 13,
+          "type": "Identifier",
+        },
+        "end": 38,
+        "range": [
+          5,
+          38,
+        ],
+        "start": 5,
+        "type": "SwitchStatement",
+      },
+      "end": 38,
+      "label": {
+        "end": 3,
+        "name": "foo",
+        "range": [
+          0,
+          3,
+        ],
+        "start": 0,
+        "type": "Identifier",
+      },
+      "range": [
+        0,
+        38,
+      ],
+      "start": 0,
+      "type": "LabeledStatement",
+    },
+  ],
+  "end": 38,
+  "range": [
+    0,
+    38,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Break > Statements - Break (pass) > foo: switch (x) { case x: if (foo) {break foo;} } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "cases": [
+          {
+            "consequent": [
+              {
+                "alternate": null,
+                "consequent": {
+                  "body": [
+                    {
+                      "label": {
+                        "name": "foo",
+                        "type": "Identifier",
+                      },
+                      "type": "BreakStatement",
+                    },
+                  ],
+                  "type": "BlockStatement",
+                },
+                "test": {
+                  "name": "foo",
+                  "type": "Identifier",
+                },
+                "type": "IfStatement",
+              },
+            ],
+            "test": {
+              "name": "x",
+              "type": "Identifier",
+            },
+            "type": "SwitchCase",
+          },
+        ],
+        "discriminant": {
+          "name": "x",
+          "type": "Identifier",
+        },
+        "type": "SwitchStatement",
+      },
+      "label": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Break > Statements - Break (pass) > foo: while (true) if (x) break foo; 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "alternate": null,
+          "consequent": {
+            "label": {
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "type": "BreakStatement",
+          },
+          "test": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "IfStatement",
+        },
+        "test": {
+          "type": "Literal",
+          "value": true,
+        },
+        "type": "WhileStatement",
+      },
+      "label": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Break > Statements - Break (pass) > foo: while(true)break foo; 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": {
+          "label": {
+            "name": "foo",
+            "type": "Identifier",
+          },
+          "type": "BreakStatement",
+        },
+        "test": {
+          "type": "Literal",
+          "value": true,
+        },
+        "type": "WhileStatement",
+      },
+      "label": {
+        "name": "foo",
+        "type": "Identifier",
+      },
+      "type": "LabeledStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Break > Statements - Break (pass) > function f(){ for (;;)       if (x) break   } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "body": {
+              "alternate": null,
+              "consequent": {
+                "label": null,
+                "type": "BreakStatement",
+              },
+              "test": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "IfStatement",
+            },
+            "init": null,
+            "test": null,
+            "type": "ForStatement",
+            "update": null,
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Break > Statements - Break (pass) > function f(){ while (true)       if (x) break   } 1`] = `
+{
+  "body": [
+    {
+      "async": false,
+      "body": {
+        "body": [
+          {
+            "body": {
+              "alternate": null,
+              "consequent": {
+                "label": null,
+                "type": "BreakStatement",
+              },
+              "test": {
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "IfStatement",
+            },
+            "test": {
+              "type": "Literal",
+              "value": true,
+            },
+            "type": "WhileStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "generator": false,
+      "id": {
+        "name": "f",
+        "type": "Identifier",
+      },
+      "params": [],
+      "type": "FunctionDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Break > Statements - Break (pass) > switch (a) { case 10 /* StringLiteral */:
+        if (lookAhead(function () { return nextToken() !== 57 /* ColonToken */; })) {
+            statement.expression = parseLiteralNode();
+            break;
+        }
+} 1`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [
+            {
+              "alternate": null,
+              "consequent": {
+                "body": [
+                  {
+                    "expression": {
+                      "left": {
+                        "computed": false,
+                        "object": {
+                          "name": "statement",
+                          "type": "Identifier",
+                        },
+                        "property": {
+                          "name": "expression",
+                          "type": "Identifier",
+                        },
+                        "type": "MemberExpression",
+                      },
+                      "operator": "=",
+                      "right": {
+                        "arguments": [],
+                        "callee": {
+                          "name": "parseLiteralNode",
+                          "type": "Identifier",
+                        },
+                        "type": "CallExpression",
+                      },
+                      "type": "AssignmentExpression",
+                    },
+                    "type": "ExpressionStatement",
+                  },
+                  {
+                    "label": null,
+                    "type": "BreakStatement",
+                  },
+                ],
+                "type": "BlockStatement",
+              },
+              "test": {
+                "arguments": [
+                  {
+                    "async": false,
+                    "body": {
+                      "body": [
+                        {
+                          "argument": {
+                            "left": {
+                              "arguments": [],
+                              "callee": {
+                                "name": "nextToken",
+                                "type": "Identifier",
+                              },
+                              "type": "CallExpression",
+                            },
+                            "operator": "!==",
+                            "right": {
+                              "type": "Literal",
+                              "value": 57,
+                            },
+                            "type": "BinaryExpression",
+                          },
+                          "type": "ReturnStatement",
+                        },
+                      ],
+                      "type": "BlockStatement",
+                    },
+                    "generator": false,
+                    "id": null,
+                    "params": [],
+                    "type": "FunctionExpression",
+                  },
+                ],
+                "callee": {
+                  "name": "lookAhead",
+                  "type": "Identifier",
+                },
+                "type": "CallExpression",
+              },
+              "type": "IfStatement",
+            },
+          ],
+          "test": {
+            "type": "Literal",
+            "value": 10,
+          },
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "name": "a",
+        "type": "Identifier",
+      },
+      "type": "SwitchStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Break > Statements - Break (pass) > switch (a) { case 123: { if (a) {} break } } 1`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [
+            {
+              "body": [
+                {
+                  "alternate": null,
+                  "consequent": {
+                    "body": [],
+                    "end": 34,
+                    "range": [
+                      32,
+                      34,
+                    ],
+                    "start": 32,
+                    "type": "BlockStatement",
+                  },
+                  "end": 34,
+                  "range": [
+                    25,
+                    34,
+                  ],
+                  "start": 25,
+                  "test": {
+                    "end": 30,
+                    "name": "a",
+                    "range": [
+                      29,
+                      30,
+                    ],
+                    "start": 29,
+                    "type": "Identifier",
+                  },
+                  "type": "IfStatement",
+                },
+                {
+                  "end": 40,
+                  "label": null,
+                  "range": [
+                    35,
+                    40,
+                  ],
+                  "start": 35,
+                  "type": "BreakStatement",
+                },
+              ],
+              "end": 42,
+              "range": [
+                23,
+                42,
+              ],
+              "start": 23,
+              "type": "BlockStatement",
+            },
+          ],
+          "end": 42,
+          "range": [
+            13,
+            42,
+          ],
+          "start": 13,
+          "test": {
+            "end": 21,
+            "range": [
+              18,
+              21,
+            ],
+            "start": 18,
+            "type": "Literal",
+            "value": 123,
+          },
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "end": 9,
+        "name": "a",
+        "range": [
+          8,
+          9,
+        ],
+        "start": 8,
+        "type": "Identifier",
+      },
+      "end": 44,
+      "range": [
+        0,
+        44,
+      ],
+      "start": 0,
+      "type": "SwitchStatement",
+    },
+  ],
+  "end": 44,
+  "range": [
+    0,
+    44,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Break > Statements - Break (pass) > switch (x) { case x: {break;} } 1`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [
+            {
+              "body": [
+                {
+                  "label": null,
+                  "type": "BreakStatement",
+                },
+              ],
+              "type": "BlockStatement",
+            },
+          ],
+          "test": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "type": "SwitchStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Break > Statements - Break (pass) > switch (x) { case x: break; } 1`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [
+            {
+              "end": 27,
+              "label": null,
+              "range": [
+                21,
+                27,
+              ],
+              "start": 21,
+              "type": "BreakStatement",
+            },
+          ],
+          "end": 27,
+          "range": [
+            13,
+            27,
+          ],
+          "start": 13,
+          "test": {
+            "end": 19,
+            "name": "x",
+            "range": [
+              18,
+              19,
+            ],
+            "start": 18,
+            "type": "Identifier",
+          },
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "end": 9,
+        "name": "x",
+        "range": [
+          8,
+          9,
+        ],
+        "start": 8,
+        "type": "Identifier",
+      },
+      "end": 29,
+      "range": [
+        0,
+        29,
+      ],
+      "start": 0,
+      "type": "SwitchStatement",
+    },
+  ],
+  "end": 29,
+  "range": [
+    0,
+    29,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Break > Statements - Break (pass) > switch (x) { case x: if (foo) break; } 1`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [
+            {
+              "alternate": null,
+              "consequent": {
+                "label": null,
+                "type": "BreakStatement",
+              },
+              "test": {
+                "name": "foo",
+                "type": "Identifier",
+              },
+              "type": "IfStatement",
+            },
+          ],
+          "test": {
+            "name": "x",
+            "type": "Identifier",
+          },
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "type": "SwitchStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Break > Statements - Break (pass) > switch (x) { default: break; } 1`] = `
+{
+  "body": [
+    {
+      "cases": [
+        {
+          "consequent": [
+            {
+              "label": null,
+              "type": "BreakStatement",
+            },
+          ],
+          "test": null,
+          "type": "SwitchCase",
+        },
+      ],
+      "discriminant": {
+        "name": "x",
+        "type": "Identifier",
+      },
+      "type": "SwitchStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Break > Statements - Break (pass) > this 1`] = `
+{
+  "body": [
+    {
+      "end": 4,
+      "expression": {
+        "end": 4,
+        "range": [
+          0,
+          4,
+        ],
+        "start": 0,
+        "type": "ThisExpression",
+      },
+      "range": [
+        0,
+        4,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 4,
+  "range": [
+    0,
+    4,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Statements - Break > Statements - Break (pass) > while (true)    { break }    1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "label": null,
+            "type": "BreakStatement",
+          },
+        ],
+        "type": "BlockStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": true,
+      },
+      "type": "WhileStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
