@@ -57,15 +57,15 @@ exports[`Next - Class static initialization block > Next - Class static initiali
                 "line": 1,
               },
               "start": {
-                "column": 17,
+                "column": 10,
                 "line": 1,
               },
             },
             "range": [
-              17,
+              10,
               19,
             ],
-            "start": 17,
+            "start": 10,
             "type": "StaticBlock",
           },
         ],
