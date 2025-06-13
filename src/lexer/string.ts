@@ -1,4 +1,5 @@
-import { type ParserState, Context, Flags } from '../common';
+import { Context, Flags } from '../common';
+import { type Parser } from '../parser';
 import { Token } from '../token';
 import { Chars } from '../chars';
 import { report, Errors } from '../errors';
@@ -16,7 +17,7 @@ export const enum Escape {
 /**
  * Scan a string token.
  */
-export function scanString(parser: ParserState, context: Context, quote: number): Token {
+export function scanString(parser: Parser, context: Context, quote: number): Token {
   const { index: start } = parser;
 
   let ret: string | void = '';
@@ -56,7 +57,7 @@ export function scanString(parser: ParserState, context: Context, quote: number)
 
 // TODO! Use table lookup
 
-export function parseEscape(parser: ParserState, context: Context, first: number, isTemplate: 0 | 1 = 0): number {
+export function parseEscape(parser: Parser, context: Context, first: number, isTemplate: 0 | 1 = 0): number {
   switch (first) {
     // https://tc39.github.io/ecma262/#prod-SingleEscapeCharacter
     // one of ' " \ b f n r t v
@@ -223,7 +224,7 @@ export function parseEscape(parser: ParserState, context: Context, first: number
   }
 }
 
-export function handleStringError(state: ParserState, code: Escape, isTemplate: 0 | 1): void {
+export function handleStringError(state: Parser, code: Escape, isTemplate: 0 | 1): void {
   switch (code) {
     case Escape.Empty:
       return;

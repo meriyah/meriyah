@@ -1,7 +1,7 @@
 import * as t from 'node:assert/strict';
 import { Context } from '../../src/common';
 import { Token } from '../../src/token';
-import { create } from '../../src/parser';
+import { Parser } from '../../src/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
 
 describe('Lexer - Template', () => {
@@ -38,7 +38,7 @@ describe('Lexer - Template', () => {
 
     for (const [ctx, token, op, value] of tokens) {
       it(`scans '${op}' at the end`, () => {
-        const state = create(op, '', undefined);
+        const state = new Parser(op, '');
         const found = scanSingleToken(state, ctx, 0);
 
         t.deepEqual(
@@ -58,7 +58,7 @@ describe('Lexer - Template', () => {
       });
 
       it(`scans '${op}' with more to go`, () => {
-        const state = create(`${op} `, '', undefined);
+        const state = new Parser(`${op} `, '');
         const found = scanSingleToken(state, ctx, 0);
 
         t.deepEqual(
@@ -88,7 +88,7 @@ describe('Lexer - Template', () => {
 
     for (const [ctx, token, op, value] of tokens) {
       it(`scans '${op}' at the end`, () => {
-        const state = create(op, '', undefined);
+        const state = new Parser(op, '');
         const found = scanSingleToken(state, ctx, 0);
 
         t.deepEqual(
@@ -140,7 +140,7 @@ describe('Lexer - Template', () => {
 
     for (const [ctx, token, op, value] of tokens) {
       it(`scans '${op}' at the end`, () => {
-        const state = create(op, '', undefined);
+        const state = new Parser(op, '');
         const found = scanSingleToken(state, ctx, 0);
 
         t.deepEqual(
@@ -159,7 +159,7 @@ describe('Lexer - Template', () => {
 
   function fail(name: string, source: string, context: Context) {
     it(name, () => {
-      const state = create(source, '', undefined);
+      const state = new Parser(source, '');
       t.throws(() => scanSingleToken(state, context, 0));
     });
   }

@@ -1,4 +1,5 @@
-import { type ParserState, Context } from '../common';
+import { Context } from '../common';
+import { type Parser } from '../parser';
 import { Token, descKeywordTable } from '../token';
 import { Chars } from '../chars';
 import { advanceChar, consumePossibleSurrogatePair, toHex } from './common';
@@ -13,7 +14,7 @@ import { report, reportScannerError, Errors } from '../errors';
  * @param parser  Parser object
  * @param context Context masks
  */
-export function scanIdentifier(parser: ParserState, context: Context, isValidAsKeyword: 0 | 1): Token {
+export function scanIdentifier(parser: Parser, context: Context, isValidAsKeyword: 0 | 1): Token {
   while (isIdPart[advanceChar(parser)]);
   parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
 
@@ -29,7 +30,7 @@ export function scanIdentifier(parser: ParserState, context: Context, isValidAsK
  * @param parser  Parser object
  * @param context Context masks
  */
-export function scanUnicodeIdentifier(parser: ParserState, context: Context): Token {
+export function scanUnicodeIdentifier(parser: Parser, context: Context): Token {
   const cookedChar = scanIdentifierUnicodeEscape(parser);
   if (!isIdentifierStart(cookedChar)) report(parser, Errors.InvalidUnicodeEscapeSequence);
   parser.tokenValue = String.fromCodePoint(cookedChar);
@@ -45,7 +46,7 @@ export function scanUnicodeIdentifier(parser: ParserState, context: Context): To
  * @param isValidAsKeyword
  */
 export function scanIdentifierSlowCase(
-  parser: ParserState,
+  parser: Parser,
   context: Context,
   hasEscape: 0 | 1,
   isValidAsKeyword: number,
@@ -148,7 +149,7 @@ export function scanIdentifierSlowCase(
  *
  * @param parser  Parser object
  */
-export function scanPrivateIdentifier(parser: ParserState): Token {
+export function scanPrivateIdentifier(parser: Parser): Token {
   let char = advanceChar(parser);
   // When nextChar is Backslash "\", it's
   // #\uXXXX unicode escaped private identifier.
@@ -167,7 +168,7 @@ export function scanPrivateIdentifier(parser: ParserState): Token {
  *
  * @param parser  Parser object
  */
-export function scanIdentifierUnicodeEscape(parser: ParserState): number {
+export function scanIdentifierUnicodeEscape(parser: Parser): number {
   // Check for Unicode escape of the form '\uXXXX'
   // and return code point value if valid Unicode escape is found.
   if (parser.source.charCodeAt(parser.index + 1) !== Chars.LowerU) {
@@ -182,7 +183,7 @@ export function scanIdentifierUnicodeEscape(parser: ParserState): number {
  *
  * @param parser  Parser object
  */
-export function scanUnicodeEscape(parser: ParserState): number {
+export function scanUnicodeEscape(parser: Parser): number {
   // Accept both \uXXXX and \u{XXXXXX}
   let codePoint = 0;
   const char = parser.currentChar;

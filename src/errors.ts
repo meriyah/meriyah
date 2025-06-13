@@ -1,5 +1,6 @@
 import { type _Node, type SourceLocation } from './estree';
-import { type ParserState, type ScopeError } from './common';
+import { type ScopeError } from './common';
+import { type Parser } from './parser';
 
 export const enum Errors {
   Unexpected,
@@ -408,12 +409,12 @@ export class ParseError extends SyntaxError implements _Node {
  * Throws an error
  *
  * @export
- * @param {ParserState} state
+ * @param {Parser} state
  * @param {Errors} type
  * @param {...string[]} params
  * @returns {never}
  */
-export function report(parser: ParserState, type: Errors, ...params: string[]): never {
+export function report(parser: Parser, type: Errors, ...params: string[]): never {
   throw new ParseError(
     parser.tokenIndex,
     parser.tokenLine,
@@ -443,7 +444,7 @@ export function reportScopeError(scope: ScopeError): never {
  * Throws an error at a given position
  *
  * @export
- * @param {ParserState} state
+ * @param {Parser} state
  * @param {number} index
  * @param {number} line
  * @param {number} column
@@ -467,7 +468,7 @@ export function reportMessageAt(
  * Throws an error at a given position
  *
  * @export
- * @param {ParserState} state
+ * @param {Parser} state
  * @param {number} index
  * @param {number} line
  * @param {number} column
