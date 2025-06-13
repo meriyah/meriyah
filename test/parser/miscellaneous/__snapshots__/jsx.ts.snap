@@ -293,11 +293,11 @@ a
             "type": "JSXIdentifier",
           },
           "range": [
-            9,
+            0,
             12,
           ],
           "selfClosing": false,
-          "start": 9,
+          "start": 0,
           "type": "JSXOpeningElement",
         },
         "range": [
@@ -1762,11 +1762,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <SolarSystem.Earth.A
             "type": "JSXMemberExpression",
           },
           "range": [
-            1,
+            0,
             58,
           ],
           "selfClosing": true,
-          "start": 1,
+          "start": 0,
           "type": "JSXOpeningElement",
         },
         "range": [
@@ -2816,11 +2816,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a:b><a:b></a:b></a:
             "type": "JSXNamespacedName",
           },
           "range": [
-            1,
+            0,
             5,
           ],
           "selfClosing": false,
-          "start": 1,
+          "start": 0,
           "type": "JSXOpeningElement",
         },
         "range": [
@@ -3040,11 +3040,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a><  /a> 1`] = `
             "type": "JSXIdentifier",
           },
           "range": [
-            1,
+            0,
             3,
           ],
           "selfClosing": false,
-          "start": 1,
+          "start": 0,
           "type": "JSXOpeningElement",
         },
         "range": [
@@ -3148,11 +3148,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <a><// line
             "type": "JSXIdentifier",
           },
           "range": [
-            1,
+            0,
             3,
           ],
           "selfClosing": false,
-          "start": 1,
+          "start": 0,
           "type": "JSXOpeningElement",
         },
         "range": [
@@ -3766,11 +3766,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div >xxx{111}xxx{22
             "type": "JSXIdentifier",
           },
           "range": [
-            1,
+            0,
             6,
           ],
           "selfClosing": false,
-          "start": 1,
+          "start": 0,
           "type": "JSXOpeningElement",
         },
         "range": [
@@ -3909,11 +3909,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div >xxx{function()
                           "type": "JSXIdentifier",
                         },
                         "range": [
-                          29,
+                          28,
                           42,
                         ],
                         "selfClosing": false,
-                        "start": 29,
+                        "start": 28,
                         "type": "JSXOpeningElement",
                       },
                       "range": [
@@ -4022,11 +4022,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div >xxx{function()
             "type": "JSXIdentifier",
           },
           "range": [
-            1,
+            0,
             6,
           ],
           "selfClosing": false,
-          "start": 1,
+          "start": 0,
           "type": "JSXOpeningElement",
         },
         "range": [
@@ -4087,11 +4087,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div {...[<div/>]} /
                         "type": "JSXIdentifier",
                       },
                       "range": [
-                        11,
+                        10,
                         16,
                       ],
                       "selfClosing": true,
-                      "start": 11,
+                      "start": 10,
                       "type": "JSXOpeningElement",
                     },
                     "range": [
@@ -4131,11 +4131,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div {...[<div/>]} /
             "type": "JSXIdentifier",
           },
           "range": [
-            1,
+            0,
             21,
           ],
           "selfClosing": true,
-          "start": 1,
+          "start": 0,
           "type": "JSXOpeningElement",
         },
         "range": [
@@ -4271,7 +4271,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div {...a }>{...b}<
               "line": 1,
             },
             "start": {
-              "column": 1,
+              "column": 0,
               "line": 1,
             },
           },
@@ -4969,7 +4969,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div id={aa} class="
               "line": 1,
             },
             "start": {
-              "column": 1,
+              "column": 0,
               "line": 1,
             },
           },
@@ -4994,11 +4994,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div id={aa} class="
             "type": "JSXIdentifier",
           },
           "range": [
-            1,
+            0,
             32,
           ],
           "selfClosing": false,
-          "start": 1,
+          "start": 0,
           "type": "JSXOpeningElement",
         },
         "range": [
@@ -5736,11 +5736,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div> foo:bar</div> 
             "type": "JSXIdentifier",
           },
           "range": [
-            1,
+            0,
             5,
           ],
           "selfClosing": false,
-          "start": 1,
+          "start": 0,
           "type": "JSXOpeningElement",
         },
         "range": [
@@ -5857,7 +5857,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div>&nbsp;&amp;</di
               "line": 1,
             },
             "start": {
-              "column": 1,
+              "column": 0,
               "line": 1,
             },
           },
@@ -5882,11 +5882,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div>&nbsp;&amp;</di
             "type": "JSXIdentifier",
           },
           "range": [
-            1,
+            0,
             5,
           ],
           "selfClosing": false,
-          "start": 1,
+          "start": 0,
           "type": "JSXOpeningElement",
         },
         "range": [
@@ -5976,11 +5976,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div></div> 1`] = `
             "type": "JSXIdentifier",
           },
           "range": [
-            1,
+            0,
             5,
           ],
           "selfClosing": false,
-          "start": 1,
+          "start": 0,
           "type": "JSXOpeningElement",
         },
         "range": [
@@ -6338,7 +6338,7 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div>{ }</div> 1`] =
               "line": 1,
             },
             "start": {
-              "column": 1,
+              "column": 0,
               "line": 1,
             },
           },
@@ -6363,11 +6363,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div>{ }</div> 1`] =
             "type": "JSXIdentifier",
           },
           "range": [
-            1,
+            0,
             5,
           ],
           "selfClosing": false,
-          "start": 1,
+          "start": 0,
           "type": "JSXOpeningElement",
         },
         "range": [
@@ -6655,11 +6655,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div>{111}</div> 1`]
             "type": "JSXIdentifier",
           },
           "range": [
-            1,
+            0,
             5,
           ],
           "selfClosing": false,
-          "start": 1,
+          "start": 0,
           "type": "JSXOpeningElement",
         },
         "range": [
@@ -7409,11 +7409,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <img width={320}/> 1
             "type": "JSXIdentifier",
           },
           "range": [
-            1,
+            0,
             18,
           ],
           "selfClosing": true,
-          "start": 1,
+          "start": 0,
           "type": "JSXOpeningElement",
         },
         "range": [
@@ -7519,11 +7519,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <n:a /> 1`] = `
             "type": "JSXNamespacedName",
           },
           "range": [
-            1,
+            0,
             7,
           ],
           "selfClosing": true,
-          "start": 1,
+          "start": 0,
           "type": "JSXOpeningElement",
         },
         "range": [
@@ -8031,11 +8031,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <title>{ {caption} }
             "type": "JSXIdentifier",
           },
           "range": [
-            1,
+            0,
             7,
           ],
           "selfClosing": false,
-          "start": 1,
+          "start": 0,
           "type": "JSXOpeningElement",
         },
         "range": [
@@ -8445,11 +8445,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <ul><li>111</li><li>
             "type": "JSXIdentifier",
           },
           "range": [
-            1,
+            0,
             4,
           ],
           "selfClosing": false,
-          "start": 1,
+          "start": 0,
           "type": "JSXOpeningElement",
         },
         "range": [
@@ -12572,11 +12572,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > var rewrites4 = <div
                 "type": "JSXIdentifier",
               },
               "range": [
-                17,
+                16,
                 36,
               ],
               "selfClosing": false,
-              "start": 17,
+              "start": 16,
               "type": "JSXOpeningElement",
             },
             "range": [
@@ -12814,11 +12814,11 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > var rewrites6 = <div
                 "type": "JSXIdentifier",
               },
               "range": [
-                17,
+                16,
                 29,
               ],
               "selfClosing": false,
-              "start": 17,
+              "start": 16,
               "type": "JSXOpeningElement",
             },
             "range": [
