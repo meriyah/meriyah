@@ -6250,15 +6250,15 @@ exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > <div>{ }</div> 1`] =
                   "line": 1,
                 },
                 "start": {
-                  "column": 7,
+                  "column": 6,
                   "line": 1,
                 },
               },
               "range": [
-                7,
+                6,
                 7,
               ],
-              "start": 7,
+              "start": 6,
               "type": "JSXEmptyExpression",
             },
             "loc": {
