@@ -6172,9 +6172,6 @@ export function parseArrayExpressionOrPattern(
           0,
           inGroup,
           isPattern,
-          tokenIndex,
-          tokenLine,
-          tokenColumn,
         );
         destructible |= parser.destructible;
         if (parser.getToken() !== Token.Comma && parser.getToken() !== Token.RightBracket)
@@ -6337,10 +6334,9 @@ function parseSpreadOrRestElement(
   isAsync: 0 | 1,
   inGroup: 0 | 1,
   isPattern: 0 | 1,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.SpreadElement | ESTree.RestElement {
+  const { tokenIndex: start, tokenLine: line, tokenColumn: column } = parser;
+
   nextToken(parser, context | Context.AllowRegExp); // skip '...'
 
   let argument: ESTree.Expression | null = null;
@@ -6814,6 +6810,18 @@ export function parseObjectLiteralOrPattern(
   line: number,
   column: number,
 ): ESTree.ObjectExpression | ESTree.ObjectPattern | ESTree.AssignmentExpression {
+  assert.deepEqual(
+    {
+      start,
+      line,
+      column,
+    },
+    {
+      start: parser.tokenIndex,
+      line: parser.tokenLine,
+      column: parser.tokenColumn,
+    },
+  );
   /**
    *
    * ObjectLiteral :
@@ -6882,9 +6890,6 @@ export function parseObjectLiteralOrPattern(
           0,
           inGroup,
           isPattern,
-          tokenIndex,
-          tokenLine,
-          tokenColumn,
         ),
       );
     } else {
@@ -8069,9 +8074,6 @@ export function parseMethodFormals(
           0,
           inGroup,
           1,
-          tokenIndex,
-          tokenLine,
-          tokenColumn,
         );
       }
 
@@ -8342,21 +8344,7 @@ export function parseParenthesizedExpression(
         }
       }
     } else if (token === Token.Ellipsis) {
-      expr = parseSpreadOrRestElement(
-        parser,
-        context,
-        scope,
-        privateScope,
-        Token.RightParen,
-        kind,
-        origin,
-        0,
-        1,
-        0,
-        tokenIndex,
-        tokenLine,
-        tokenColumn,
-      );
+      expr = parseSpreadOrRestElement(parser, context, scope, privateScope, Token.RightParen, kind, origin, 0, 1, 0);
 
       if (parser.destructible & DestructuringKind.CannotDestruct) report(parser, Errors.InvalidRestArg);
 
@@ -8858,9 +8846,6 @@ export function parseFormalParametersOrFormalList(
           0,
           inGroup,
           1,
-          tokenIndex,
-          tokenLine,
-          tokenColumn,
         );
       } else {
         report(parser, Errors.UnexpectedToken, KeywordDescTable[token & Token.Type]);
@@ -9398,21 +9383,7 @@ export function parseAsyncArrowOrCallExpression(
         }
       }
     } else if (token === Token.Ellipsis) {
-      expr = parseSpreadOrRestElement(
-        parser,
-        context,
-        scope,
-        privateScope,
-        Token.RightParen,
-        kind,
-        origin,
-        1,
-        1,
-        0,
-        tokenIndex,
-        tokenLine,
-        tokenColumn,
-      );
+      expr = parseSpreadOrRestElement(parser, context, scope, privateScope, Token.RightParen, kind, origin, 1, 1, 0);
 
       destructible |=
         (parser.getToken() === Token.RightParen ? 0 : DestructuringKind.CannotDestruct) | parser.destructible;
