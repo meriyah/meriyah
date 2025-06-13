@@ -10917,18 +10917,14 @@ export function parseJSXAttributes(
  *
  * @param parser Parser object
  * @param context  Context masks
- * @param start
- * @param line
- * @param column
  */
 export function parseJSXSpreadAttribute(
   parser: ParserState,
   context: Context,
   privateScope: PrivateScopeState | undefined,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.JSXSpreadAttribute {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   nextToken(parser, context); // skips: '{'
   consume(parser, context, Token.Ellipsis);
   const expression = parseExpression(
@@ -10942,7 +10938,7 @@ export function parseJSXSpreadAttribute(
     parser.tokenColumn,
   );
   consume(parser, context, Token.RightBrace);
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'JSXSpreadAttribute',
     argument: expression,
   });
@@ -10953,9 +10949,6 @@ export function parseJSXSpreadAttribute(
  *
  * @param parser Parser object
  * @param context  Context masks
- * @param start
- * @param line
- * @param column
  */
 function parseJsxAttribute(
   parser: ParserState,
@@ -10964,8 +10957,7 @@ function parseJsxAttribute(
 ): ESTree.JSXAttribute | ESTree.JSXSpreadAttribute {
   const { tokenIndex, tokenLine, tokenColumn } = parser;
 
-  if (parser.getToken() === Token.LeftBrace)
-    return parseJSXSpreadAttribute(parser, context, privateScope, tokenIndex, tokenLine, tokenColumn);
+  if (parser.getToken() === Token.LeftBrace) return parseJSXSpreadAttribute(parser, context, privateScope);
   rescanJSXIdentifier(parser);
   let value: ESTree.JSXAttributeValue | null = null;
   let name: ESTree.JSXNamespacedName | ESTree.JSXIdentifier = parseJSXIdentifier(parser, context);
