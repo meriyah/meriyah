@@ -4950,7 +4950,7 @@ export function parsePrimaryExpression(
       return parseImportCallOrMetaExpression(parser, context, privateScope, inNew, inGroup, start, line, column);
     case Token.LessThan:
       if (context & Context.OptionsJSX)
-        return parseJSXRootElementOrFragment(parser, context, privateScope, /*inJSXChild*/ 0, start, line, column);
+        return parseJSXRootElementOrFragment(parser, context, privateScope, /*inJSXChild*/ 0);
     default:
       if (isValidIdentifier(context, parser.getToken()))
         return parseIdentifierOrArrow(parser, context, privateScope, start, line, column);
@@ -10499,9 +10499,6 @@ function parseAndClassifyIdentifier(
  * @param parser Parser object
  * @param context  Context masks
  * @param inJSXChild
- * @param start
- * @param line
- * @param column
  */
 
 function parseJSXRootElementOrFragment(
@@ -10509,10 +10506,9 @@ function parseJSXRootElementOrFragment(
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inJSXChild: 0 | 1,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.JSXElement | ESTree.JSXFragment {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   // "<" is pre-consumed in parseJSXChildren
   if (!inJSXChild) consume(parser, context, Token.LessThan);
 
@@ -10521,7 +10517,7 @@ function parseJSXRootElementOrFragment(
     const openingFragment = parseOpeningFragment(parser, context);
     const [children, closingFragment] = parseJSXChildrenAndClosingFragment(parser, context, privateScope, inJSXChild);
 
-    return finishNode(parser, context, start, line, column, {
+    return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
       type: 'JSXFragment',
       openingFragment,
       children,
@@ -10541,9 +10537,9 @@ function parseJSXRootElementOrFragment(
     context,
     privateScope,
     inJSXChild,
-    start,
-    line,
-    column,
+    tokenIndex,
+    tokenLine,
+    tokenColumn,
   );
 
   if (!openingElement.selfClosing) {
@@ -10553,7 +10549,7 @@ function parseJSXRootElementOrFragment(
     if (isEqualTagName(openingElement.name) !== close) report(parser, Errors.ExpectedJSXClosingTag, close);
   }
 
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'JSXElement',
     children,
     openingElement,
@@ -10566,9 +10562,6 @@ function parseJSXRootElementOrFragment(
  *
  * @param parser Parser object
  * @param context  Context masks
- * @param start
- * @param line
- * @param column
  */
 export function parseOpeningFragment(parser: ParserState, context: Context): ESTree.JSXOpeningFragment {
   const { tokenIndex, tokenLine, tokenColumn } = parser;
@@ -10651,15 +10644,7 @@ export function parseJSXChildrenAndClosingElement(
 ): [ESTree.JSXChild[], ESTree.JSXClosingElement] {
   const children: ESTree.JSXChild[] = [];
   while (true) {
-    const child = parseJSXChildOrClosingElement(
-      parser,
-      context,
-      privateScope,
-      inJSXChild,
-      parser.tokenIndex,
-      parser.tokenLine,
-      parser.tokenColumn,
-    );
+    const child = parseJSXChildOrClosingElement(parser, context, privateScope, inJSXChild);
     if (child.type === 'JSXClosingElement') {
       return [children, child];
     }
@@ -10681,15 +10666,7 @@ export function parseJSXChildrenAndClosingFragment(
 ): [ESTree.JSXChild[], ESTree.JSXClosingFragment] {
   const children: ESTree.JSXChild[] = [];
   while (true) {
-    const child = parseJSXChildOrClosingFragment(
-      parser,
-      context,
-      privateScope,
-      inJSXChild,
-      parser.tokenIndex,
-      parser.tokenLine,
-      parser.tokenColumn,
-    );
+    const child = parseJSXChildOrClosingFragment(parser, context, privateScope, inJSXChild);
     if (child.type === 'JSXClosingFragment') {
       return [children, child];
     }
@@ -10702,18 +10679,12 @@ export function parseJSXChildrenAndClosingFragment(
  *
  * @param parser Parser object
  * @param context  Context masks
- * @param start
- * @param line
- * @param column
  */
 function parseJSXChildOrClosingElement(
   parser: ParserState,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inJSXChild: 0 | 1,
-  start: number,
-  line: number,
-  column: number,
 ) {
   if (parser.getToken() === Token.JSXText) return parseJSXText(parser, context);
   if (parser.getToken() === Token.LeftBrace)
@@ -10721,7 +10692,7 @@ function parseJSXChildOrClosingElement(
   if (parser.getToken() === Token.LessThan) {
     nextToken(parser, context);
     if (parser.getToken() === Token.Divide) return parseJSXClosingElement(parser, context, inJSXChild);
-    return parseJSXRootElementOrFragment(parser, context, privateScope, /*inJSXChild*/ 1, start, line, column);
+    return parseJSXRootElementOrFragment(parser, context, privateScope, /*inJSXChild*/ 1);
   }
 
   report(parser, Errors.Unexpected);
@@ -10732,18 +10703,12 @@ function parseJSXChildOrClosingElement(
  *
  * @param parser Parser object
  * @param context  Context masks
- * @param start
- * @param line
- * @param column
  */
 function parseJSXChildOrClosingFragment(
   parser: ParserState,
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inJSXChild: 0 | 1,
-  start: number,
-  line: number,
-  column: number,
 ) {
   if (parser.getToken() === Token.JSXText) return parseJSXText(parser, context);
   if (parser.getToken() === Token.LeftBrace)
@@ -10751,7 +10716,7 @@ function parseJSXChildOrClosingFragment(
   if (parser.getToken() === Token.LessThan) {
     nextToken(parser, context);
     if (parser.getToken() === Token.Divide) return parseJSXClosingFragment(parser, context, inJSXChild);
-    return parseJSXRootElementOrFragment(parser, context, privateScope, /*inJSXChild*/ 1, start, line, column);
+    return parseJSXRootElementOrFragment(parser, context, privateScope, /*inJSXChild*/ 1);
   }
 
   report(parser, Errors.Unexpected);
@@ -10880,9 +10845,6 @@ export function parseJSXMemberExpression(
  *
  * @param parser Parser object
  * @param context  Context masks
- * @param start
- * @param line
- * @param column
  */
 export function parseJSXAttributes(
   parser: ParserState,
@@ -10895,9 +10857,7 @@ export function parseJSXAttributes(
     parser.getToken() !== Token.GreaterThan &&
     parser.getToken() !== Token.EOF
   ) {
-    attributes.push(
-      parseJsxAttribute(parser, context, privateScope, parser.tokenIndex, parser.tokenLine, parser.tokenColumn),
-    );
+    attributes.push(parseJsxAttribute(parser, context, privateScope));
   }
   return attributes;
 }
@@ -10959,21 +10919,12 @@ function parseJsxAttribute(
   // HTML empty attribute
   if (parser.getToken() === Token.Assign) {
     const token = scanJSXAttributeValue(parser, context);
-    const { tokenIndex, tokenLine, tokenColumn } = parser;
     switch (token) {
       case Token.StringLiteral:
         value = parseLiteral(parser, context);
         break;
       case Token.LessThan:
-        value = parseJSXRootElementOrFragment(
-          parser,
-          context,
-          privateScope,
-          /*inJSXChild*/ 0,
-          tokenIndex,
-          tokenLine,
-          tokenColumn,
-        )!;
+        value = parseJSXRootElementOrFragment(parser, context, privateScope, /*inJSXChild*/ 0)!;
         break;
       case Token.LeftBrace:
         value = parseJSXExpressionContainer(parser, context, privateScope, /*inJSXChild*/ 0, 1);
