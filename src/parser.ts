@@ -651,7 +651,7 @@ export function parseStatement(
       return parseVariableStatement(parser, context, scope, privateScope, Origin.None, start, line, column);
     // [+Return] ReturnStatement[?Yield]
     case Token.ReturnKeyword:
-      return parseReturnStatement(parser, context, privateScope, start, line, column);
+      return parseReturnStatement(parser, context, privateScope);
     case Token.IfKeyword:
       return parseIfStatement(parser, context, scope, privateScope, labels, start, line, column);
     case Token.ForKeyword:
@@ -936,18 +936,14 @@ export function parseBlock<T extends ESTree.BlockStatement | ESTree.StaticBlock 
  *
  * @param parser Parser object
  * @param context Context masks
- * @param start
- * @param line
- * @param column
  */
 export function parseReturnStatement(
   parser: ParserState,
   context: Context,
   privateScope: PrivateScopeState | undefined,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.ReturnStatement {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   // ReturnStatement ::
   //   'return' [no line terminator] Expression? ';'
   if ((context & Context.InReturnContext) === 0) report(parser, Errors.IllegalReturn);
@@ -961,7 +957,7 @@ export function parseReturnStatement(
 
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'ReturnStatement',
     argument,
   });
