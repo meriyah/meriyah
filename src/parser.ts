@@ -10537,9 +10537,6 @@ function parseJSXRootElementOrFragment(
     context,
     privateScope,
     inJSXChild,
-    tokenIndex,
-    tokenLine,
-    tokenColumn,
   );
 
   if (!openingElement.selfClosing) {
@@ -10760,17 +10757,16 @@ function parseJSXOpeningElementOrSelfCloseElement(
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inJSXChild: 0 | 1,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.JSXOpeningElement {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   if (
     (parser.getToken() & Token.IsIdentifier) !== Token.IsIdentifier &&
     (parser.getToken() & Token.Keyword) !== Token.Keyword
   )
     report(parser, Errors.Unexpected);
 
-  const tagName = parseJSXElementName(parser, context, parser.tokenIndex, parser.tokenLine, parser.tokenColumn);
+  const tagName = parseJSXElementName(parser, context);
   const attributes = parseJSXAttributes(parser, context, privateScope);
   const selfClosing = parser.getToken() === Token.Divide;
 
@@ -10786,7 +10782,7 @@ function parseJSXOpeningElementOrSelfCloseElement(
     nextToken(parser, context);
   }
 
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'JSXOpeningElement',
     name: tagName,
     attributes,
