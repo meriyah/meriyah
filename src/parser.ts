@@ -9950,7 +9950,17 @@ export function parseDecoratorList(
     column,
   );
 
-  expression = parseMemberOrUpdateExpression(parser, context, privateScope, expression, 0, 0, start, line, column);
+  expression = parseMemberOrUpdateExpression(
+    parser,
+    context,
+    privateScope,
+    expression,
+    0,
+    0,
+    parser.tokenIndex,
+    parser.tokenLine,
+    parser.tokenColumn,
+  );
 
   return finishNode(parser, context, start, line, column, {
     type: 'Decorator',
