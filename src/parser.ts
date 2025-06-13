@@ -689,7 +689,7 @@ export function parseStatement(
       return parseContinueStatement(parser, context, labels);
     // TryStatement[?Yield, ?Return]
     case Token.TryKeyword:
-      return parseTryStatement(parser, context, scope, privateScope, labels, start, line, column);
+      return parseTryStatement(parser, context, scope, privateScope, labels);
     // WithStatement[?Yield, ?Return]
     case Token.WithKeyword:
       return parseWithStatement(parser, context, scope, privateScope, labels, start, line, column);
@@ -1834,10 +1834,9 @@ export function parseTryStatement(
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.TryStatement {
+  const { tokenIndex: start, tokenLine: line, tokenColumn: column } = parser;
+
   // TryStatement ::
   //   'try' Block Catch
   //   'try' Block Finally
