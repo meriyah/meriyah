@@ -5002,19 +5002,14 @@ function parseImportCallOrMetaExpression(
  * @param parser  Parser object
  * @param context Context masks
  * @param meta ESTree AST node
- * @param start
- * @param line
- * @param column
  */
-
 export function parseImportMetaExpression(
   parser: ParserState,
   context: Context,
   meta: ESTree.Identifier,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.MetaProperty {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   if ((context & Context.Module) === 0) report(parser, Errors.ImportMetaOutsideModule);
 
   nextToken(parser, context); // skips: '.'
@@ -5027,7 +5022,7 @@ export function parseImportMetaExpression(
 
   parser.assignable = AssignmentKind.CannotAssign;
 
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'MetaProperty',
     meta,
     property: parseIdentifier(parser, context),
@@ -10748,9 +10743,6 @@ export function parseJSXText(parser: ParserState, context: Context): ESTree.JSXT
  * @param parser Parser object
  * @param context  Context masks
  * @param inJSXChild
- * @param start
- * @param line
- * @param column
  */
 function parseJSXOpeningElementOrSelfCloseElement(
   parser: ParserState,
@@ -10943,9 +10935,6 @@ function parseJsxAttribute(
  * @param parser Parser object
  * @param context  Context masks
  * @param namespace
- * @param start
- * @param line
- * @param column
  */
 
 function parseJSXNamespacedName(
