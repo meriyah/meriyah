@@ -584,7 +584,7 @@ export function parseStatementListItem(
         case Token.LeftParen:
           return parseImportCallDeclaration(parser, context, privateScope, start, line, column);
         case Token.Period:
-          return parseImportMetaDeclaration(parser, context, start, line, column);
+          return parseImportMetaDeclaration(parser, context);
         default:
           report(parser, Errors.InvalidImportExportSloppy, 'import');
       }
@@ -2803,7 +2803,7 @@ function parseImportDeclaration(
         case Token.LeftParen:
           return parseImportCallDeclaration(parser, context, undefined, start, line, column);
         case Token.Period:
-          return parseImportMetaDeclaration(parser, context, start, line, column);
+          return parseImportMetaDeclaration(parser, context);
         default:
           report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
       }
@@ -2961,17 +2961,10 @@ function parseImportSpecifierOrNamedImports(
  * @param parser  Parser object
  * @param context Context masks
  * @param meta  ESTree AST node
- * @param start
- * @param line
- * @param column
  */
-export function parseImportMetaDeclaration(
-  parser: ParserState,
-  context: Context,
-  start: number,
-  line: number,
-  column: number,
-): ESTree.ExpressionStatement {
+export function parseImportMetaDeclaration(parser: ParserState, context: Context): ESTree.ExpressionStatement {
+  const { tokenIndex: start, tokenLine: line, tokenColumn: column } = parser;
+
   let expr: ESTree.Expression = parseImportMetaExpression(
     parser,
     context,
@@ -2979,9 +2972,6 @@ export function parseImportMetaDeclaration(
       type: 'Identifier',
       name: 'import',
     }),
-    start,
-    line,
-    column,
   );
 
   /** MemberExpression :
@@ -4984,7 +4974,7 @@ function parseImportCallOrMetaExpression(
   let expr: ESTree.Identifier | ESTree.ImportExpression = parseIdentifier(parser, context);
 
   if (parser.getToken() === Token.Period) {
-    return parseImportMetaExpression(parser, context, expr, start, line, column);
+    return parseImportMetaExpression(parser, context, expr);
   }
 
   if (inNew) report(parser, Errors.InvalidImportNew);
