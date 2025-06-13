@@ -1846,6 +1846,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { * #m
             "end": 20,
             "key": {
               "end": 14,
+              "loc": {
+                "end": {
+                  "column": 14,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 12,
+                  "line": 1,
+                },
+              },
               "name": "m",
               "range": [
                 12,
@@ -1855,6 +1865,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { * #m
               "type": "PrivateIdentifier",
             },
             "kind": "method",
+            "loc": {
+              "end": {
+                "column": 20,
+                "line": 1,
+              },
+              "start": {
+                "column": 10,
+                "line": 1,
+              },
+            },
             "range": [
               10,
               20,
@@ -1867,6 +1887,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { * #m
               "body": {
                 "body": [],
                 "end": 20,
+                "loc": {
+                  "end": {
+                    "column": 20,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 18,
+                    "line": 1,
+                  },
+                },
                 "range": [
                   18,
                   20,
@@ -1877,9 +1907,29 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { * #m
               "end": 20,
               "generator": true,
               "id": null,
+              "loc": {
+                "end": {
+                  "column": 20,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 14,
+                  "line": 1,
+                },
+              },
               "params": [
                 {
                   "end": 16,
+                  "loc": {
+                    "end": {
+                      "column": 16,
+                      "line": 1,
+                    },
+                    "start": {
+                      "column": 15,
+                      "line": 1,
+                    },
+                  },
                   "name": "v",
                   "range": [
                     15,
@@ -1899,6 +1949,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { * #m
           },
         ],
         "end": 22,
+        "loc": {
+          "end": {
+            "column": 22,
+            "line": 1,
+          },
+          "start": {
+            "column": 8,
+            "line": 1,
+          },
+        },
         "range": [
           8,
           22,
@@ -1909,6 +1969,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { * #m
       "end": 22,
       "id": {
         "end": 7,
+        "loc": {
+          "end": {
+            "column": 7,
+            "line": 1,
+          },
+          "start": {
+            "column": 6,
+            "line": 1,
+          },
+        },
         "name": "C",
         "range": [
           6,
@@ -1916,6 +1986,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { * #m
         ],
         "start": 6,
         "type": "Identifier",
+      },
+      "loc": {
+        "end": {
+          "column": 22,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
       },
       "range": [
         0,
@@ -1927,6 +2007,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { * #m
     },
   ],
   "end": 22,
+  "loc": {
+    "end": {
+      "column": 22,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
   "range": [
     0,
     22,
@@ -1949,6 +2039,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { acce
             "end": 25,
             "key": {
               "end": 21,
+              "loc": {
+                "end": {
+                  "column": 21,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 19,
+                  "line": 1,
+                },
+              },
               "name": "x",
               "range": [
                 19,
@@ -1956,6 +2056,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { acce
               ],
               "start": 19,
               "type": "PrivateIdentifier",
+            },
+            "loc": {
+              "end": {
+                "column": 25,
+                "line": 1,
+              },
+              "start": {
+                "column": 10,
+                "line": 1,
+              },
             },
             "range": [
               10,
@@ -1966,6 +2076,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { acce
             "type": "AccessorProperty",
             "value": {
               "end": 25,
+              "loc": {
+                "end": {
+                  "column": 25,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 24,
+                  "line": 1,
+                },
+              },
               "range": [
                 24,
                 25,
@@ -1977,6 +2097,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { acce
           },
         ],
         "end": 27,
+        "loc": {
+          "end": {
+            "column": 27,
+            "line": 1,
+          },
+          "start": {
+            "column": 8,
+            "line": 1,
+          },
+        },
         "range": [
           8,
           27,
@@ -1988,6 +2118,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { acce
       "end": 27,
       "id": {
         "end": 7,
+        "loc": {
+          "end": {
+            "column": 7,
+            "line": 1,
+          },
+          "start": {
+            "column": 6,
+            "line": 1,
+          },
+        },
         "name": "C",
         "range": [
           6,
@@ -1995,6 +2135,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { acce
         ],
         "start": 6,
         "type": "Identifier",
+      },
+      "loc": {
+        "end": {
+          "column": 27,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
       },
       "range": [
         0,
@@ -2006,6 +2156,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { acce
     },
   ],
   "end": 27,
+  "loc": {
+    "end": {
+      "column": 27,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
   "range": [
     0,
     27,
@@ -2027,6 +2187,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { asyn
             "end": 23,
             "key": {
               "end": 18,
+              "loc": {
+                "end": {
+                  "column": 18,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 16,
+                  "line": 1,
+                },
+              },
               "name": "m",
               "range": [
                 16,
@@ -2036,6 +2206,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { asyn
               "type": "PrivateIdentifier",
             },
             "kind": "method",
+            "loc": {
+              "end": {
+                "column": 23,
+                "line": 1,
+              },
+              "start": {
+                "column": 10,
+                "line": 1,
+              },
+            },
             "range": [
               10,
               23,
@@ -2048,6 +2228,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { asyn
               "body": {
                 "body": [],
                 "end": 23,
+                "loc": {
+                  "end": {
+                    "column": 23,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 21,
+                    "line": 1,
+                  },
+                },
                 "range": [
                   21,
                   23,
@@ -2058,6 +2248,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { asyn
               "end": 23,
               "generator": false,
               "id": null,
+              "loc": {
+                "end": {
+                  "column": 23,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 18,
+                  "line": 1,
+                },
+              },
               "params": [],
               "range": [
                 18,
@@ -2069,6 +2269,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { asyn
           },
         ],
         "end": 25,
+        "loc": {
+          "end": {
+            "column": 25,
+            "line": 1,
+          },
+          "start": {
+            "column": 8,
+            "line": 1,
+          },
+        },
         "range": [
           8,
           25,
@@ -2079,6 +2289,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { asyn
       "end": 25,
       "id": {
         "end": 7,
+        "loc": {
+          "end": {
+            "column": 7,
+            "line": 1,
+          },
+          "start": {
+            "column": 6,
+            "line": 1,
+          },
+        },
         "name": "C",
         "range": [
           6,
@@ -2086,6 +2306,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { asyn
         ],
         "start": 6,
         "type": "Identifier",
+      },
+      "loc": {
+        "end": {
+          "column": 25,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
       },
       "range": [
         0,
@@ -2097,6 +2327,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { asyn
     },
   ],
   "end": 25,
+  "loc": {
+    "end": {
+      "column": 25,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
   "range": [
     0,
     25,
@@ -2118,6 +2358,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { asyn
             "end": 25,
             "key": {
               "end": 20,
+              "loc": {
+                "end": {
+                  "column": 20,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 18,
+                  "line": 1,
+                },
+              },
               "name": "m",
               "range": [
                 18,
@@ -2127,6 +2377,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { asyn
               "type": "PrivateIdentifier",
             },
             "kind": "method",
+            "loc": {
+              "end": {
+                "column": 25,
+                "line": 1,
+              },
+              "start": {
+                "column": 10,
+                "line": 1,
+              },
+            },
             "range": [
               10,
               25,
@@ -2139,6 +2399,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { asyn
               "body": {
                 "body": [],
                 "end": 25,
+                "loc": {
+                  "end": {
+                    "column": 25,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 23,
+                    "line": 1,
+                  },
+                },
                 "range": [
                   23,
                   25,
@@ -2149,6 +2419,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { asyn
               "end": 25,
               "generator": true,
               "id": null,
+              "loc": {
+                "end": {
+                  "column": 25,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 20,
+                  "line": 1,
+                },
+              },
               "params": [],
               "range": [
                 20,
@@ -2160,6 +2440,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { asyn
           },
         ],
         "end": 27,
+        "loc": {
+          "end": {
+            "column": 27,
+            "line": 1,
+          },
+          "start": {
+            "column": 8,
+            "line": 1,
+          },
+        },
         "range": [
           8,
           27,
@@ -2170,6 +2460,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { asyn
       "end": 27,
       "id": {
         "end": 7,
+        "loc": {
+          "end": {
+            "column": 7,
+            "line": 1,
+          },
+          "start": {
+            "column": 6,
+            "line": 1,
+          },
+        },
         "name": "C",
         "range": [
           6,
@@ -2177,6 +2477,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { asyn
         ],
         "start": 6,
         "type": "Identifier",
+      },
+      "loc": {
+        "end": {
+          "column": 27,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
       },
       "range": [
         0,
@@ -2188,6 +2498,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { asyn
     },
   ],
   "end": 27,
+  "loc": {
+    "end": {
+      "column": 27,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
   "range": [
     0,
     27,
@@ -2209,6 +2529,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { get 
             "end": 21,
             "key": {
               "end": 16,
+              "loc": {
+                "end": {
+                  "column": 16,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 14,
+                  "line": 1,
+                },
+              },
               "name": "m",
               "range": [
                 14,
@@ -2218,6 +2548,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { get 
               "type": "PrivateIdentifier",
             },
             "kind": "get",
+            "loc": {
+              "end": {
+                "column": 21,
+                "line": 1,
+              },
+              "start": {
+                "column": 10,
+                "line": 1,
+              },
+            },
             "range": [
               10,
               21,
@@ -2230,6 +2570,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { get 
               "body": {
                 "body": [],
                 "end": 21,
+                "loc": {
+                  "end": {
+                    "column": 21,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 19,
+                    "line": 1,
+                  },
+                },
                 "range": [
                   19,
                   21,
@@ -2240,6 +2590,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { get 
               "end": 21,
               "generator": false,
               "id": null,
+              "loc": {
+                "end": {
+                  "column": 21,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 16,
+                  "line": 1,
+                },
+              },
               "params": [],
               "range": [
                 16,
@@ -2251,6 +2611,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { get 
           },
         ],
         "end": 23,
+        "loc": {
+          "end": {
+            "column": 23,
+            "line": 1,
+          },
+          "start": {
+            "column": 8,
+            "line": 1,
+          },
+        },
         "range": [
           8,
           23,
@@ -2261,6 +2631,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { get 
       "end": 23,
       "id": {
         "end": 7,
+        "loc": {
+          "end": {
+            "column": 7,
+            "line": 1,
+          },
+          "start": {
+            "column": 6,
+            "line": 1,
+          },
+        },
         "name": "C",
         "range": [
           6,
@@ -2268,6 +2648,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { get 
         ],
         "start": 6,
         "type": "Identifier",
+      },
+      "loc": {
+        "end": {
+          "column": 23,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
       },
       "range": [
         0,
@@ -2279,6 +2669,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { get 
     },
   ],
   "end": 23,
+  "loc": {
+    "end": {
+      "column": 23,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
   "range": [
     0,
     23,
@@ -2457,6 +2857,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { set 
             "end": 22,
             "key": {
               "end": 16,
+              "loc": {
+                "end": {
+                  "column": 16,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 14,
+                  "line": 1,
+                },
+              },
               "name": "m",
               "range": [
                 14,
@@ -2466,6 +2876,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { set 
               "type": "PrivateIdentifier",
             },
             "kind": "set",
+            "loc": {
+              "end": {
+                "column": 22,
+                "line": 1,
+              },
+              "start": {
+                "column": 10,
+                "line": 1,
+              },
+            },
             "range": [
               10,
               22,
@@ -2478,6 +2898,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { set 
               "body": {
                 "body": [],
                 "end": 22,
+                "loc": {
+                  "end": {
+                    "column": 22,
+                    "line": 1,
+                  },
+                  "start": {
+                    "column": 20,
+                    "line": 1,
+                  },
+                },
                 "range": [
                   20,
                   22,
@@ -2488,9 +2918,29 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { set 
               "end": 22,
               "generator": false,
               "id": null,
+              "loc": {
+                "end": {
+                  "column": 22,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 16,
+                  "line": 1,
+                },
+              },
               "params": [
                 {
                   "end": 18,
+                  "loc": {
+                    "end": {
+                      "column": 18,
+                      "line": 1,
+                    },
+                    "start": {
+                      "column": 17,
+                      "line": 1,
+                    },
+                  },
                   "name": "v",
                   "range": [
                     17,
@@ -2510,6 +2960,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { set 
           },
         ],
         "end": 24,
+        "loc": {
+          "end": {
+            "column": 24,
+            "line": 1,
+          },
+          "start": {
+            "column": 8,
+            "line": 1,
+          },
+        },
         "range": [
           8,
           24,
@@ -2520,6 +2980,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { set 
       "end": 24,
       "id": {
         "end": 7,
+        "loc": {
+          "end": {
+            "column": 7,
+            "line": 1,
+          },
+          "start": {
+            "column": 6,
+            "line": 1,
+          },
+        },
         "name": "C",
         "range": [
           6,
@@ -2527,6 +2997,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { set 
         ],
         "start": 6,
         "type": "Identifier",
+      },
+      "loc": {
+        "end": {
+          "column": 24,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
       },
       "range": [
         0,
@@ -2538,6 +3018,16 @@ exports[`Next - Private methods > Next - Private methods (pass) > class C { set 
     },
   ],
   "end": 24,
+  "loc": {
+    "end": {
+      "column": 24,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
   "range": [
     0,
     24,
