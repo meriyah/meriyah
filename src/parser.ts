@@ -653,7 +653,7 @@ export function parseStatement(
     case Token.ReturnKeyword:
       return parseReturnStatement(parser, context, privateScope);
     case Token.IfKeyword:
-      return parseIfStatement(parser, context, scope, privateScope, labels, start, line, column);
+      return parseIfStatement(parser, context, scope, privateScope, labels);
     case Token.ForKeyword:
       return parseForStatement(parser, context, scope, privateScope, labels, start, line, column);
     // BreakableStatement[Yield, Return]:
@@ -1384,10 +1384,9 @@ export function parseIfStatement(
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.IfStatement {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   // IfStatement ::
   //   'if' '(' Expression ')' Statement ('else' Statement)?
   nextToken(parser, context);
@@ -1429,7 +1428,7 @@ export function parseIfStatement(
     );
   }
 
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'IfStatement',
     test,
     consequent,
