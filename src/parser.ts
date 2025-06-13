@@ -11095,8 +11095,7 @@ function parseJSXExpressionContainer(
 ): ESTree.JSXExpressionContainer | ESTree.JSXSpreadChild {
   nextToken(parser, context | Context.AllowRegExp);
   const { tokenIndex, tokenLine, tokenColumn } = parser;
-  if (parser.getToken() === Token.Ellipsis)
-    return parseJSXSpreadChild(parser, context, privateScope, start, line, column);
+  if (parser.getToken() === Token.Ellipsis) return parseJSXSpreadChild(parser, context, privateScope);
 
   let expression: ESTree.Expression | ESTree.JSXEmptyExpression | null = null;
 
@@ -11129,18 +11128,14 @@ function parseJSXExpressionContainer(
  *
  * @param parser Parser object
  * @param context  Context masks
- * @param start
- * @param line
- * @param column
  */
 function parseJSXSpreadChild(
   parser: ParserState,
   context: Context,
   privateScope: PrivateScopeState | undefined,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.JSXSpreadChild {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   consume(parser, context, Token.Ellipsis);
   const expression = parseExpression(
     parser,
@@ -11153,7 +11148,7 @@ function parseJSXSpreadChild(
     parser.tokenColumn,
   );
   consume(parser, context, Token.RightBrace);
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'JSXSpreadChild',
     expression,
   });
@@ -11185,9 +11180,6 @@ function parseJSXEmptyExpression(parser: ParserState, context: Context): ESTree.
  *
  * @param parser Parser object
  * @param context  Context masks
- * @param start
- * @param line
- * @param column
  */
 export function parseJSXIdentifier(parser: ParserState, context: Context): ESTree.JSXIdentifier {
   const { tokenIndex, tokenLine, tokenColumn } = parser;
