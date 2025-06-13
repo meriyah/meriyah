@@ -4799,15 +4799,7 @@ export function parsePropertyOrPrivatePropertyName(
   }
 
   return parser.getToken() === Token.PrivateField
-    ? parsePrivateIdentifier(
-        parser,
-        context,
-        privateScope,
-        PropertyKind.None,
-        parser.tokenIndex,
-        parser.tokenLine,
-        parser.tokenColumn,
-      )
+    ? parsePrivateIdentifier(parser, context, privateScope, PropertyKind.None)
     : parseIdentifier(parser, context);
 }
 
@@ -5050,7 +5042,7 @@ export function parsePrimaryExpression(
     case Token.BigIntLiteral:
       return parseBigIntLiteral(parser, context, start, line, column);
     case Token.PrivateField:
-      return parsePrivateIdentifier(parser, context, privateScope, PropertyKind.None, start, line, column);
+      return parsePrivateIdentifier(parser, context, privateScope, PropertyKind.None);
     case Token.ImportKeyword:
       return parseImportCallOrMetaExpression(parser, context, privateScope, inNew, inGroup, start, line, column);
     case Token.LessThan:
@@ -10256,9 +10248,6 @@ function parseClassElementList(
       privateScope,
       // #privateId without get/set prefix is both GetSet.
       PropertyKind.GetSet,
-      tokenIndex,
-      tokenLine,
-      tokenColumn,
     );
   } else if ((parser.getToken() & Token.IsClassField) === Token.IsClassField) {
     kind |= PropertyKind.ClassField;
@@ -10287,7 +10276,7 @@ function parseClassElementList(
       key = parseComputedPropertyName(parser, context, privateScope, /* inGroup */ 0);
     } else if (parser.getToken() === Token.PrivateField) {
       kind |= PropertyKind.PrivateField;
-      key = parsePrivateIdentifier(parser, context, privateScope, kind, tokenIndex, tokenLine, tokenColumn);
+      key = parsePrivateIdentifier(parser, context, privateScope, kind);
     } else report(parser, Errors.InvalidKeyToken);
   }
 
@@ -10369,10 +10358,9 @@ function parsePrivateIdentifier(
   context: Context,
   privateScope: PrivateScopeState | undefined,
   kind: PropertyKind,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.PrivateIdentifier {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   // PrivateIdentifier::
   //    #IdentifierName
   nextToken(parser, context); // skip: '#'
@@ -10392,7 +10380,7 @@ function parsePrivateIdentifier(
 
   nextToken(parser, context);
 
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'PrivateIdentifier',
     name: tokenValue,
   });
