@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-restricted-imports, @typescript-eslint/no-unused-vars
+import assert from 'node:assert';
 import { convertTokenType, nextToken, skipHashBang } from './lexer';
 import { Token, KeywordDescTable } from './token';
 import type * as ESTree from './estree';
@@ -1338,20 +1340,12 @@ export function parseDirective(
  *
  * @param parser  Parser object
  * @param context Context masks
- * @param start Start pos of node
- * @param line
- * @param column
  */
 
-export function parseEmptyStatement(
-  parser: ParserState,
-  context: Context,
-  start: number,
-  line: number,
-  column: number,
-): ESTree.EmptyStatement {
+export function parseEmptyStatement(parser: ParserState, context: Context): ESTree.EmptyStatement {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
   nextToken(parser, context | Context.AllowRegExp);
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'EmptyStatement',
   });
 }
