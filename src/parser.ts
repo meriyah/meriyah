@@ -648,14 +648,14 @@ export function parseStatement(
   switch (parser.getToken()) {
     // VariableStatement[?Yield]
     case Token.VarKeyword:
-      return parseVariableStatement(parser, context, scope, privateScope, Origin.None, start, line, column);
+      return parseVariableStatement(parser, context, scope, privateScope, Origin.None);
     // [+Return] ReturnStatement[?Yield]
     case Token.ReturnKeyword:
       return parseReturnStatement(parser, context, privateScope);
     case Token.IfKeyword:
       return parseIfStatement(parser, context, scope, privateScope, labels);
     case Token.ForKeyword:
-      return parseForStatement(parser, context, scope, privateScope, labels, start, line, column);
+      return parseForStatement(parser, context, scope, privateScope, labels);
     // BreakableStatement[Yield, Return]:
     //   IterationStatement[?Yield, ?Return]
     //   SwitchStatement[?Yield, ?Return]
@@ -2225,10 +2225,6 @@ function parseLexicalDeclaration(
  * @param context Context masks
  * @param scope Scope object
  * @param origin Binding origin
- * @param start Start pos of node
- * @param start Start pos of node
- * @param line
- * @param column
  */
 export function parseVariableStatement(
   parser: ParserState,
@@ -2236,10 +2232,9 @@ export function parseVariableStatement(
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
   origin: Origin,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.VariableDeclaration {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   // VariableDeclarations ::
   //  ('var') (Identifier ('=' AssignmentExpression)?)+[',']
   //
@@ -2247,7 +2242,7 @@ export function parseVariableStatement(
   const declarations = parseVariableDeclarationList(parser, context, scope, privateScope, BindingKind.Variable, origin);
 
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'VariableDeclaration',
     kind: 'var',
     declarations,
@@ -3446,16 +3441,7 @@ function parseExportDeclaration(
       );
       break;
     case Token.VarKeyword:
-      declaration = parseVariableStatement(
-        parser,
-        context,
-        scope,
-        undefined,
-        Origin.Export,
-        parser.tokenIndex,
-        parser.tokenLine,
-        parser.tokenColumn,
-      );
+      declaration = parseVariableStatement(parser, context, scope, undefined, Origin.Export);
       break;
     case Token.AsyncKeyword: {
       const { tokenIndex, tokenLine, tokenColumn } = parser;
