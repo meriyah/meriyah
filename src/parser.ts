@@ -561,17 +561,7 @@ export function parseStatementListItem(
     // LexicalDeclaration[In, ?Yield]
     // LetOrConst BindingList[?In, ?Yield]
     case Token.ConstKeyword:
-      return parseLexicalDeclaration(
-        parser,
-        context,
-        scope,
-        privateScope,
-        BindingKind.Const,
-        Origin.None,
-        start,
-        line,
-        column,
-      );
+      return parseLexicalDeclaration(parser, context, scope, privateScope, BindingKind.Const, Origin.None);
     case Token.LetKeyword:
       return parseLetIdentOrVarDeclarationStatement(parser, context, scope, privateScope, origin, start, line, column);
     // ExportDeclaration
@@ -2153,10 +2143,6 @@ export function parseLetIdentOrVarDeclarationStatement(
  * @param type Binding kind
  * @param origin Binding origin
  * @param type Binding kind
- * @param start Start pos of node
- * @param start Start pos of node
- * @param line
- * @param column
  */
 function parseLexicalDeclaration(
   parser: ParserState,
@@ -2165,10 +2151,9 @@ function parseLexicalDeclaration(
   privateScope: PrivateScopeState | undefined,
   kind: BindingKind,
   origin: Origin,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.VariableDeclaration {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   // BindingList ::
   //  LexicalBinding
   //    BindingIdentifier
@@ -2179,7 +2164,7 @@ function parseLexicalDeclaration(
 
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'VariableDeclaration',
     kind: kind & BindingKind.Let ? 'let' : 'const',
     declarations,
@@ -3369,30 +3354,10 @@ function parseExportDeclaration(
       break;
 
     case Token.LetKeyword:
-      declaration = parseLexicalDeclaration(
-        parser,
-        context,
-        scope,
-        undefined,
-        BindingKind.Let,
-        Origin.Export,
-        parser.tokenIndex,
-        parser.tokenLine,
-        parser.tokenColumn,
-      );
+      declaration = parseLexicalDeclaration(parser, context, scope, undefined, BindingKind.Let, Origin.Export);
       break;
     case Token.ConstKeyword:
-      declaration = parseLexicalDeclaration(
-        parser,
-        context,
-        scope,
-        undefined,
-        BindingKind.Const,
-        Origin.Export,
-        parser.tokenIndex,
-        parser.tokenLine,
-        parser.tokenColumn,
-      );
+      declaration = parseLexicalDeclaration(parser, context, scope, undefined, BindingKind.Const, Origin.Export);
       break;
     case Token.VarKeyword:
       declaration = parseVariableStatement(parser, context, scope, undefined, Origin.Export);
@@ -3668,7 +3633,6 @@ export function parseAssignmentExpression(
  * @param column
  * @param left
  */
-
 export function parseAssignmentExpressionOrPattern(
   parser: ParserState,
   context: Context,
@@ -4724,7 +4688,6 @@ export function parseUpdateExpressionPrefixed(
  * @param line
  * @param column
  */
-
 export function parsePrimaryExpression(
   parser: ParserState,
   context: Context,
@@ -6271,9 +6234,6 @@ function parseArrayOrObjectAssignmentPattern(
  * @param origin Binding origin
  * @param isAsync
  * @param isGroup
- * @param start Start index
- * @param line Start line
- * @param column Start of column
  */
 function parseSpreadOrRestElement(
   parser: ParserState,
