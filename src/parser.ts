@@ -692,7 +692,7 @@ export function parseStatement(
       return parseTryStatement(parser, context, scope, privateScope, labels);
     // WithStatement[?Yield, ?Return]
     case Token.WithKeyword:
-      return parseWithStatement(parser, context, scope, privateScope, labels, start, line, column);
+      return parseWithStatement(parser, context, scope, privateScope, labels);
     case Token.DebuggerKeyword:
       // DebuggerStatement
       return parseDebuggerStatement(parser, context);
@@ -1745,9 +1745,6 @@ export function parseBreakStatement(
  * @param parser Parser object
  * @param context Context masks
  * @param scope Scope instance
- * @param start Start pos of node
- * @param line
- * @param column
  */
 export function parseWithStatement(
   parser: ParserState,
@@ -1755,10 +1752,9 @@ export function parseWithStatement(
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.WithStatement {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   // WithStatement ::
   //   'with' '(' Expression ')' Statement
 
@@ -1790,7 +1786,7 @@ export function parseWithStatement(
     parser.tokenLine,
     parser.tokenColumn,
   );
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'WithStatement',
     object,
     body,
