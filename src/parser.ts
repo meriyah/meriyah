@@ -729,18 +729,7 @@ export function parseStatement(
       report(parser, Errors.ClassForbiddenAsStatement);
 
     default:
-      return parseExpressionOrLabelledStatement(
-        parser,
-        context,
-        scope,
-        privateScope,
-        origin,
-        labels,
-        allowFuncDecl,
-        start,
-        line,
-        column,
-      );
+      return parseExpressionOrLabelledStatement(parser, context, scope, privateScope, origin, labels, allowFuncDecl);
   }
 }
 
@@ -760,10 +749,9 @@ export function parseExpressionOrLabelledStatement(
   origin: Origin,
   labels: ESTree.Labels,
   allowFuncDecl: 0 | 1,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.ExpressionStatement | ESTree.LabeledStatement {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   // ExpressionStatement | LabelledStatement ::
   //   Expression ';'
   //   Identifier ':' Statement
@@ -825,9 +813,9 @@ export function parseExpressionOrLabelledStatement(
       expr,
       token,
       allowFuncDecl,
-      start,
-      line,
-      column,
+      tokenIndex,
+      tokenLine,
+      tokenColumn,
     );
   }
   /** MemberExpression :
@@ -849,7 +837,7 @@ export function parseExpressionOrLabelledStatement(
    *
    */
 
-  expr = parseMemberOrUpdateExpression(parser, context, privateScope, expr, 0, 0, start, line, column);
+  expr = parseMemberOrUpdateExpression(parser, context, privateScope, expr, 0, 0, tokenIndex, tokenLine, tokenColumn);
 
   /** AssignmentExpression :
    *   1. ConditionalExpression
@@ -863,9 +851,9 @@ export function parseExpressionOrLabelledStatement(
     privateScope,
     0,
     0,
-    start,
-    line,
-    column,
+    tokenIndex,
+    tokenLine,
+    tokenColumn,
     expr as ESTree.ArgumentExpression,
   );
 
@@ -878,7 +866,7 @@ export function parseExpressionOrLabelledStatement(
    *
    */
   if (parser.getToken() === Token.Comma) {
-    expr = parseSequenceExpression(parser, context, privateScope, 0, start, line, column, expr);
+    expr = parseSequenceExpression(parser, context, privateScope, 0, tokenIndex, tokenLine, tokenColumn, expr);
   }
 
   /**
@@ -886,7 +874,7 @@ export function parseExpressionOrLabelledStatement(
    *  [lookahead ∉ { {, function, async [no LineTerminator here] function, class, let [ }]Expression[+In, ?Yield, ?Await]
    */
 
-  return parseExpressionStatement(parser, context, expr, start, line, column);
+  return parseExpressionStatement(parser, context, expr, tokenIndex, tokenLine, tokenColumn);
 }
 
 /**
