@@ -10717,16 +10717,7 @@ function parseJSXChildOrClosingElement(
 ) {
   if (parser.getToken() === Token.JSXText) return parseJSXText(parser, context);
   if (parser.getToken() === Token.LeftBrace)
-    return parseJSXExpressionContainer(
-      parser,
-      context,
-      privateScope,
-      /*inJSXChild*/ 1,
-      /* isAttr */ 0,
-      start,
-      line,
-      column,
-    );
+    return parseJSXExpressionContainer(parser, context, privateScope, /*inJSXChild*/ 1, /* isAttr */ 0);
   if (parser.getToken() === Token.LessThan) {
     nextToken(parser, context);
     if (parser.getToken() === Token.Divide) return parseJSXClosingElement(parser, context, inJSXChild);
@@ -10756,16 +10747,7 @@ function parseJSXChildOrClosingFragment(
 ) {
   if (parser.getToken() === Token.JSXText) return parseJSXText(parser, context);
   if (parser.getToken() === Token.LeftBrace)
-    return parseJSXExpressionContainer(
-      parser,
-      context,
-      privateScope,
-      /*inJSXChild*/ 1,
-      /* isAttr */ 0,
-      start,
-      line,
-      column,
-    );
+    return parseJSXExpressionContainer(parser, context, privateScope, /*inJSXChild*/ 1, /* isAttr */ 0);
   if (parser.getToken() === Token.LessThan) {
     nextToken(parser, context);
     if (parser.getToken() === Token.Divide) return parseJSXClosingFragment(parser, context, inJSXChild);
@@ -11013,16 +10995,7 @@ function parseJsxAttribute(
         )!;
         break;
       case Token.LeftBrace:
-        value = parseJSXExpressionContainer(
-          parser,
-          context,
-          privateScope,
-          /*inJSXChild*/ 0,
-          1,
-          tokenIndex,
-          tokenLine,
-          tokenColumn,
-        );
+        value = parseJSXExpressionContainer(parser, context, privateScope, /*inJSXChild*/ 0, 1);
         break;
       default:
         report(parser, Errors.InvalidJSXAttributeValue);
@@ -11070,9 +11043,6 @@ function parseJSXNamespacedName(
  * @param parser Parser object
  * @param context  Context masks
  * @param inJSXChild
- * @param start
- * @param line
- * @param column
  */
 function parseJSXExpressionContainer(
   parser: ParserState,
@@ -11080,10 +11050,9 @@ function parseJSXExpressionContainer(
   privateScope: PrivateScopeState | undefined,
   inJSXChild: 0 | 1,
   isAttr: 0 | 1,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.JSXExpressionContainer | ESTree.JSXSpreadChild {
+  const { tokenIndex: start, tokenLine: line, tokenColumn: column } = parser;
+
   nextToken(parser, context | Context.AllowRegExp);
   const { tokenIndex, tokenLine, tokenColumn } = parser;
   if (parser.getToken() === Token.Ellipsis) return parseJSXSpreadChild(parser, context, privateScope);
