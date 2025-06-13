@@ -4704,7 +4704,7 @@ export function parsePrimaryExpression(
     case Token.TemplateContinuation:
       return parseTemplate(parser, context, privateScope);
     case Token.NewKeyword:
-      return parseNewExpression(parser, context, privateScope, inGroup, start, line, column);
+      return parseNewExpression(parser, context, privateScope, inGroup);
     case Token.BigIntLiteral:
       return parseBigIntLiteral(parser, context);
     case Token.PrivateField:
@@ -8590,9 +8590,6 @@ export function parseNewExpression(
   context: Context,
   privateScope: PrivateScopeState | undefined,
   inGroup: 0 | 1,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.NewExpression | ESTree.Expression | ESTree.MetaProperty {
   // NewExpression ::
   //   ('new')+ MemberExpression
@@ -8613,6 +8610,7 @@ export function parseNewExpression(
   // - `new foo()();`
   // - `new (await foo);`
   // - `new x(await foo);`
+  const { tokenIndex: start, tokenLine: line, tokenColumn: column } = parser;
   const id = parseIdentifier(parser, context | Context.AllowRegExp);
   const { tokenIndex, tokenLine, tokenColumn } = parser;
 
