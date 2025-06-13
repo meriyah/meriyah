@@ -10961,12 +10961,11 @@ function parseJsxAttribute(
   parser: ParserState,
   context: Context,
   privateScope: PrivateScopeState | undefined,
-  start: number,
-  line: number,
-  column: number,
 ): ESTree.JSXAttribute | ESTree.JSXSpreadAttribute {
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   if (parser.getToken() === Token.LeftBrace)
-    return parseJSXSpreadAttribute(parser, context, privateScope, start, line, column);
+    return parseJSXSpreadAttribute(parser, context, privateScope, tokenIndex, tokenLine, tokenColumn);
   rescanJSXIdentifier(parser);
   let value: ESTree.JSXAttributeValue | null = null;
   let name: ESTree.JSXNamespacedName | ESTree.JSXIdentifier = parseJSXIdentifier(parser, context);
@@ -11002,7 +11001,7 @@ function parseJsxAttribute(
     }
   }
 
-  return finishNode(parser, context, start, line, column, {
+  return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'JSXAttribute',
     value,
     name,
