@@ -712,8 +712,6 @@ export function parseExpressionOrLabelledStatement(
   labels: ESTree.Labels,
   allowFuncDecl: 0 | 1,
 ): ESTree.ExpressionStatement | ESTree.LabeledStatement {
-  const { tokenIndex, tokenLine, tokenColumn } = parser;
-
   // ExpressionStatement | LabelledStatement ::
   //   Expression ';'
   //   Identifier ':' Statement
@@ -721,7 +719,7 @@ export function parseExpressionOrLabelledStatement(
   // ExpressionStatement[Yield] :
   //   [lookahead not in {{, function, class, let [}] Expression[In, ?Yield] ;
 
-  const { tokenValue } = parser;
+  const { tokenValue, tokenIndex, tokenLine, tokenColumn } = parser;
   const token = parser.getToken();
 
   let expr: ESTree.Expression;
@@ -859,11 +857,12 @@ export function parseBlock<T extends ESTree.BlockStatement | ESTree.StaticBlock 
   labels: ESTree.Labels,
   type: T['type'] = 'BlockStatement',
 ): T {
-  const { tokenIndex, tokenLine, tokenColumn } = parser;
-
   // Block ::
   //   '{' StatementList '}'
+
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
   const body: ESTree.Statement[] = [];
+
   consume(parser, context | Context.AllowRegExp, Token.LeftBrace);
   while (parser.getToken() !== Token.RightBrace) {
     body.push(
@@ -892,12 +891,12 @@ export function parseReturnStatement(
   context: Context,
   privateScope: PrivateScopeState | undefined,
 ): ESTree.ReturnStatement {
-  const { tokenIndex, tokenLine, tokenColumn } = parser;
-
   // ReturnStatement ::
   //   'return' [no line terminator] Expression? ';'
+
   if ((context & Context.InReturnContext) === 0) report(parser, Errors.IllegalReturn);
 
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
   nextToken(parser, context | Context.AllowRegExp);
 
   const argument =
@@ -1412,13 +1411,14 @@ export function parseSwitchStatement(
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
 ): ESTree.SwitchStatement {
-  const { tokenIndex, tokenLine, tokenColumn } = parser;
-
   // SwitchStatement ::
   //   'switch' '(' Expression ')' '{' CaseClause* '}'
   // CaseClause ::
   //   'case' Expression ':' StatementList
   //   'default' ':' StatementList
+
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   nextToken(parser, context);
   consume(parser, context | Context.AllowRegExp, Token.LeftParen);
   const discriminant = parseExpressions(
@@ -1501,10 +1501,11 @@ export function parseWhileStatement(
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
 ): ESTree.WhileStatement {
-  const { tokenIndex, tokenLine, tokenColumn } = parser;
-
   // WhileStatement ::
   //   'while' '(' Expression ')' Statement
+
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   nextToken(parser, context);
   consume(parser, context | Context.AllowRegExp, Token.LeftParen);
   const test = parseExpressions(
@@ -1565,11 +1566,13 @@ export function parseContinueStatement(
   context: Context,
   labels: ESTree.Labels,
 ): ESTree.ContinueStatement {
-  const { tokenIndex, tokenLine, tokenColumn } = parser;
-
   // ContinueStatement ::
   //   'continue' Identifier? ';'
+
   if ((context & Context.InIteration) === 0) report(parser, Errors.IllegalContinue);
+
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   nextToken(parser, context);
   let label: ESTree.Identifier | undefined | null = null;
   if ((parser.flags & Flags.NewLine) === 0 && parser.getToken() & Token.IsIdentifier) {
@@ -1598,10 +1601,11 @@ export function parseBreakStatement(
   context: Context,
   labels: ESTree.Labels,
 ): ESTree.BreakStatement {
-  const { tokenIndex, tokenLine, tokenColumn } = parser;
-
   // BreakStatement ::
   //   'break' Identifier? ';'
+
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   nextToken(parser, context | Context.AllowRegExp);
   let label: ESTree.Identifier | undefined | null = null;
   if ((parser.flags & Flags.NewLine) === 0 && parser.getToken() & Token.IsIdentifier) {
@@ -1636,10 +1640,10 @@ export function parseWithStatement(
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
 ): ESTree.WithStatement {
-  const { tokenIndex, tokenLine, tokenColumn } = parser;
-
   // WithStatement ::
   //   'with' '(' Expression ')' Statement
+
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
 
   nextToken(parser, context);
 
@@ -1674,9 +1678,10 @@ export function parseWithStatement(
  * @param context Context masks
  */
 export function parseDebuggerStatement(parser: ParserState, context: Context): ESTree.DebuggerStatement {
-  const { tokenIndex, tokenLine, tokenColumn } = parser;
   // DebuggerStatement ::
   //   'debugger' ';'
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   nextToken(parser, context | Context.AllowRegExp);
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
   return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
@@ -1700,8 +1705,6 @@ export function parseTryStatement(
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
 ): ESTree.TryStatement {
-  const { tokenIndex: start, tokenLine: line, tokenColumn: column } = parser;
-
   // TryStatement ::
   //   'try' Block Catch
   //   'try' Block Finally
@@ -1717,6 +1720,8 @@ export function parseTryStatement(
   // CatchParameter ::
   //   BindingIdentifier
   //   BindingPattern
+
+  const { tokenIndex: start, tokenLine: line, tokenColumn: column } = parser;
 
   nextToken(parser, context | Context.AllowRegExp);
 
@@ -1865,10 +1870,10 @@ export function parseDoWhileStatement(
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
 ): ESTree.DoWhileStatement {
-  const { tokenIndex, tokenLine, tokenColumn } = parser;
-
   // DoStatement ::
   //   'do Statement while ( Expression ) ;'
+
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
 
   nextToken(parser, context | Context.AllowRegExp);
   const body = parseIterationStatementBody(parser, context, scope, privateScope, labels);
@@ -2069,12 +2074,13 @@ function parseLexicalDeclaration(
   kind: BindingKind,
   origin: Origin,
 ): ESTree.VariableDeclaration {
-  const { tokenIndex, tokenLine, tokenColumn } = parser;
-
   // BindingList ::
   //  LexicalBinding
   //    BindingIdentifier
   //    BindingPattern
+
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   nextToken(parser, context);
 
   const declarations = parseVariableDeclarationList(parser, context, scope, privateScope, kind, origin);
@@ -2105,11 +2111,12 @@ export function parseVariableStatement(
   privateScope: PrivateScopeState | undefined,
   origin: Origin,
 ): ESTree.VariableDeclaration {
-  const { tokenIndex, tokenLine, tokenColumn } = parser;
-
   // VariableDeclarations ::
   //  ('var') (Identifier ('=' AssignmentExpression)?)+[',']
   //
+
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   nextToken(parser, context);
   const declarations = parseVariableDeclarationList(parser, context, scope, privateScope, BindingKind.Variable, origin);
 
@@ -2593,9 +2600,8 @@ function parseImportDeclaration(
   //
   // NameSpaceImport :
   //   '*' 'as' ImportedBinding
-  const start = parser.tokenIndex;
-  const line = parser.tokenLine;
-  const column = parser.tokenColumn;
+
+  const { tokenIndex: start, tokenLine: line, tokenColumn: column } = parser;
 
   nextToken(parser, context);
 
@@ -2684,7 +2690,9 @@ function parseImportNamespaceSpecifier(
 ): ESTree.ImportNamespaceSpecifier {
   // NameSpaceImport:
   //  * as ImportedBinding
+
   const { tokenIndex, tokenLine, tokenColumn } = parser;
+
   nextToken(parser, context);
   consume(parser, context, Token.AsKeyword);
 
@@ -4767,10 +4775,9 @@ export function parseImportMetaExpression(
   context: Context,
   meta: ESTree.Identifier,
 ): ESTree.MetaProperty {
-  const { tokenIndex, tokenLine, tokenColumn } = parser;
-
   if ((context & Context.Module) === 0) report(parser, Errors.ImportMetaOutsideModule);
 
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
   nextToken(parser, context); // skips: '.'
   const token = parser.getToken();
   if (token !== Token.Meta && parser.tokenValue !== 'meta') {
@@ -6514,8 +6521,6 @@ export function parseObjectLiteralOrPattern(
   kind: BindingKind,
   origin: Origin,
 ): ESTree.ObjectExpression | ESTree.ObjectPattern | ESTree.AssignmentExpression {
-  const { tokenIndex: start, tokenLine: line, tokenColumn: column } = parser;
-
   /**
    *
    * ObjectLiteral :
@@ -6558,6 +6563,8 @@ export function parseObjectLiteralOrPattern(
    *   PropertyName : AssignmentExpression
    *   MethodDefinition
    */
+
+  const { tokenIndex: start, tokenLine: line, tokenColumn: column } = parser;
 
   nextToken(parser, context);
 
@@ -10181,14 +10188,13 @@ function parseJSXOpeningElementOrSelfCloseElement(
   privateScope: PrivateScopeState | undefined,
   inJSXChild: 0 | 1,
 ): ESTree.JSXOpeningElement {
-  const { tokenIndex, tokenLine, tokenColumn } = parser;
-
   if (
     (parser.getToken() & Token.IsIdentifier) !== Token.IsIdentifier &&
     (parser.getToken() & Token.Keyword) !== Token.Keyword
   )
     report(parser, Errors.Unexpected);
 
+  const { tokenIndex, tokenLine, tokenColumn } = parser;
   const tagName = parseJSXElementName(parser, context);
   const attributes = parseJSXAttributes(parser, context, privateScope);
   const selfClosing = parser.getToken() === Token.Divide;
@@ -10250,7 +10256,6 @@ export function parseJSXMemberExpression(
   object: ESTree.JSXIdentifier | ESTree.JSXMemberExpression,
 ): ESTree.JSXMemberExpression {
   const { tokenIndex, tokenLine, tokenColumn } = parser;
-
   const property = parseJSXIdentifier(parser, context);
   return finishNode(parser, context, tokenIndex, tokenLine, tokenColumn, {
     type: 'JSXMemberExpression',
