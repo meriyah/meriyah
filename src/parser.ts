@@ -2176,6 +2176,7 @@ export function parseForStatement(
   } else if (token === Token.Semicolon) {
     if (forAwait) report(parser, Errors.InvalidForAwait);
   } else if ((token & Token.IsPatternStart) === Token.IsPatternStart) {
+    const patternStart = parser.tokenStart;
     init =
       token === Token.LeftBrace
         ? parseObjectLiteralOrPattern(
@@ -2217,7 +2218,7 @@ export function parseForStatement(
       init as ESTree.Expression,
       0,
       0,
-      parser.tokenStart,
+      patternStart,
     );
   } else {
     init = parseLeftHandSideExpression(parser, context | Context.DisallowIn, privateScope, 1, 0, 1);
