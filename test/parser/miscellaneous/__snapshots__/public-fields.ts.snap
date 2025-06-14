@@ -38,10 +38,10 @@ exports[`Next - Public fields > Next - Public fields (pass) > {
                   "type": "Identifier",
                 },
                 "range": [
-                  37,
+                  30,
                   76,
                 ],
-                "start": 37,
+                "start": 30,
                 "static": true,
                 "type": "PropertyDefinition",
                 "value": {
@@ -167,10 +167,10 @@ exports[`Next - Public fields > Next - Public fields (pass) > {
                   "type": "Identifier",
                 },
                 "range": [
-                  139,
+                  132,
                   235,
                 ],
-                "start": 139,
+                "start": 132,
                 "static": true,
                 "type": "PropertyDefinition",
                 "value": {
@@ -445,10 +445,10 @@ exports[`Next - Public fields > Next - Public fields (pass) > { class X { static
                   "type": "Identifier",
                 },
                 "range": [
-                  19,
+                  12,
                   58,
                 ],
-                "start": 19,
+                "start": 12,
                 "static": true,
                 "type": "PropertyDefinition",
                 "value": {
@@ -1406,15 +1406,15 @@ exports[`Next - Public fields > Next - Public fields (pass) > class C { static x
                 "line": 1,
               },
               "start": {
-                "column": 17,
+                "column": 10,
                 "line": 1,
               },
             },
             "range": [
-              17,
+              10,
               18,
             ],
-            "start": 17,
+            "start": 10,
             "static": true,
             "type": "PropertyDefinition",
             "value": null,

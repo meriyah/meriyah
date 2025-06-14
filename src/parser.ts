@@ -8170,7 +8170,7 @@ function parseClassElementList(
   }
 
   if (kind & PropertyKind.Accessor || (parser.getToken() !== Token.LeftParen && (kind & PropertyKind.GetSet) === 0)) {
-    return parsePropertyDefinition(parser, context, privateScope, key, kind, decorators, tokenStart);
+    return parsePropertyDefinition(parser, context, privateScope, key, kind, decorators, start);
   }
 
   const value = parseMethodDefinition(
