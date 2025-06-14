@@ -309,5 +309,8 @@ describe('Miscellaneous - ranges', () => {
     ],
     ['a--', Context.OptionsRanges],
     ['--a', Context.OptionsRanges],
+    ['for (\n[x][0];;);', Context.OptionsRanges | Context.OptionsLoc],
+    ['for (\n[x][0] in y);', Context.OptionsRanges | Context.OptionsLoc],
+    ['for (\n[x][0] of y);', Context.OptionsRanges | Context.OptionsLoc],
   ]);
 });
