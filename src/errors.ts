@@ -1,5 +1,5 @@
 import { type _Node, type SourceLocation } from './estree';
-import { type ScopeError } from './common';
+import { type ScopeError, type Location } from './common';
 import { type Parser } from './parser';
 
 export const enum Errors {
@@ -452,16 +452,23 @@ export function reportScopeError(scope: ScopeError): never {
  * @param {...string[]} params
  */
 export function reportMessageAt(
-  tokenIndex: number,
-  tokenLine: number,
-  tokenColumn: number,
+  tokenLocation: Location,
   index: number,
   line: number,
   column: number,
   type: Errors,
   ...params: string[]
 ): never {
-  throw new ParseError(tokenIndex, tokenLine, tokenColumn, index, line, column, type, ...params);
+  throw new ParseError(
+    tokenLocation.index,
+    tokenLocation.line,
+    tokenLocation.column,
+    index,
+    line,
+    column,
+    type,
+    ...params,
+  );
 }
 
 /**

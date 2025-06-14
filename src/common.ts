@@ -492,25 +492,18 @@ export function validateAndDeclareLabel(parser: Parser, labels: any, name: strin
   labels['$' + name] = 1;
 }
 
-export function finishNode<T extends Node>(
-  parser: Parser,
-  context: Context,
-  start: number,
-  line: number,
-  column: number,
-  node: T,
-): T {
+export function finishNode<T extends Node>(parser: Parser, context: Context, start: Location, node: T): T {
   if (context & Context.OptionsRanges) {
-    node.start = start;
+    node.start = start.index;
     node.end = parser.startIndex;
-    node.range = [start, parser.startIndex];
+    node.range = [start.index, parser.startIndex];
   }
 
   if (context & Context.OptionsLoc) {
     node.loc = {
       start: {
-        line,
-        column,
+        line: start.line,
+        column: start.column,
       },
       end: {
         line: parser.startLine,
@@ -914,3 +907,9 @@ export function classifyIdentifier(parser: Parser, context: Context, t: Token): 
 
   if (!isValidIdentifier(context, t)) report(parser, Errors.Unexpected);
 }
+
+export type Location = {
+  index: number;
+  line: number;
+  column: number;
+};

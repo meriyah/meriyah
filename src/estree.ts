@@ -455,6 +455,7 @@ export interface ExportSpecifier extends _Node {
 export interface ExpressionStatement extends _Node {
   type: 'ExpressionStatement';
   expression: Expression;
+  directive?: string;
 }
 
 export interface ForInStatement extends _Node {
