@@ -1,5 +1,6 @@
 import { Context } from '../../../src/common';
 import * as t from 'node:assert/strict';
+import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
 import { pass } from '../../test-utils';
 

@@ -1,4 +1,5 @@
 import * as t from 'node:assert/strict';
+import { describe, it } from 'vitest';
 import { Context } from '../../../src/common';
 import { pass } from '../../test-utils';
 import { parse } from '../../../src/meriyah';

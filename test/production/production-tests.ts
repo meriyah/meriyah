@@ -1,9 +1,8 @@
-import { describe } from 'vitest';
+import { describe, it  } from 'vitest';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import * as t from 'node:assert/strict';
-
 const DIST_DIRECTORY = new URL('../../dist/', import.meta.url);
 
 describe('Production test', async function () {

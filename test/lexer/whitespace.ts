@@ -1,4 +1,6 @@
 import * as t from 'node:assert/strict';
+import { describe, it } from 'vitest';
+
 import { Flags, Context } from '../../src/common';
 import { Parser } from '../../src/parser';
 import { scanSingleToken } from '../../src/lexer/scan';

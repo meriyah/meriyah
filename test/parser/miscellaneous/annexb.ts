@@ -1,5 +1,7 @@
 import { Context } from '../../../src/common';
 import * as t from 'node:assert/strict';
+import { describe, it } from 'vitest';
+
 import { parseSource } from '../../../src/parser';
 
 describe('Miscellaneous - Web compatibility (AnnexB)', () => {

@@ -1,4 +1,6 @@
 import * as t from 'node:assert/strict';
+import { describe, it } from 'vitest';
+
 import { parseModule, parseScript, parse } from '../../../src/meriyah';
 
 describe('Expressions - API', () => {
