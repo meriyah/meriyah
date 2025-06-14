@@ -386,10 +386,10 @@ export function parseStatementList(
 
   while (parser.getToken() === Token.StringLiteral) {
     // "use strict" must be the exact literal without escape sequences or line continuation.
-    const { index, tokenValue, tokenStart } = parser;
+    const { index, tokenValue, tokenStart, tokenIndex } = parser;
     const token = parser.getToken();
     const expr = parseLiteral(parser, context);
-    if (isValidStrictMode(parser, index, tokenStart.index, tokenValue)) {
+    if (isValidStrictMode(parser, index, tokenIndex, tokenValue)) {
       context |= Context.Strict;
 
       if (parser.flags & Flags.Octal) {
