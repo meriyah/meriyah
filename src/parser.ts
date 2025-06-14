@@ -6912,8 +6912,6 @@ function parseArrowFromIdentifier(
  * @param params
  * @param isAsync
  * @param start Start index
- * @param line Start line
- * @param column Start of column
  */
 function parseParenthesizedArrow(
   parser: Parser,
@@ -6940,8 +6938,6 @@ function parseParenthesizedArrow(
  * @param params
  * @param isAsync
  * @param start Start index
- * @param line Start line
- * @param column Start of column
  */
 export function parseArrowFunctionExpression(
   parser: Parser,
@@ -7182,8 +7178,6 @@ export function parseFormalParametersOrFormalList(
  * @param expr  ESTree AST node
  * @param inGroup
  * @param start
- * @param line
- * @param column
  */
 export function parseMemberExpressionNoCall(
   parser: Parser,
@@ -7376,8 +7370,6 @@ export function parseMetaProperty(
  * @param context  Context masks
  * @param canAssign Either true or false
  * @param start Start pos of node
- * @param line Line pos of node
- * @param column Column pos of node
  */
 function parseAsyncArrowAfterIdent(
   parser: Parser,
@@ -7422,10 +7414,7 @@ function parseAsyncArrowAfterIdent(
  * @param origin Binding origin
  * @param flags Mutual parser flags
  * @param start Start pos of node
- * @param line Line pos of node
- * @param column Column pos of node
  */
-
 export function parseAsyncArrowOrCallExpression(
   parser: Parser,
   context: Context,
