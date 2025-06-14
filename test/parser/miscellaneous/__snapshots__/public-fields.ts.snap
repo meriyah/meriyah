@@ -1371,6 +1371,134 @@ exports[`Next - Public fields > Next - Public fields (pass) > class A { set; } 1
 }
 `;
 
+exports[`Next - Public fields > Next - Public fields (pass) > class C { static x } 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "end": 18,
+            "key": {
+              "end": 18,
+              "loc": {
+                "end": {
+                  "column": 18,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 17,
+                  "line": 1,
+                },
+              },
+              "name": "x",
+              "range": [
+                17,
+                18,
+              ],
+              "start": 17,
+              "type": "Identifier",
+            },
+            "loc": {
+              "end": {
+                "column": 18,
+                "line": 1,
+              },
+              "start": {
+                "column": 17,
+                "line": 1,
+              },
+            },
+            "range": [
+              17,
+              18,
+            ],
+            "start": 17,
+            "static": true,
+            "type": "PropertyDefinition",
+            "value": null,
+          },
+        ],
+        "end": 20,
+        "loc": {
+          "end": {
+            "column": 20,
+            "line": 1,
+          },
+          "start": {
+            "column": 8,
+            "line": 1,
+          },
+        },
+        "range": [
+          8,
+          20,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "end": 20,
+      "id": {
+        "end": 7,
+        "loc": {
+          "end": {
+            "column": 7,
+            "line": 1,
+          },
+          "start": {
+            "column": 6,
+            "line": 1,
+          },
+        },
+        "name": "C",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "loc": {
+        "end": {
+          "column": 20,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        20,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 20,
+  "loc": {
+    "end": {
+      "column": 20,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    20,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`Next - Public fields > Next - Public fields (pass) > class Foo { x = 1; } 1`] = `
 {
   "body": [
