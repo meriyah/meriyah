@@ -8931,7 +8931,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for (
             "line": 2,
           },
           "start": {
-            "column": 3,
+            "column": 0,
             "line": 2,
           },
         },
@@ -8998,10 +8998,10 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for (
           "value": 0,
         },
         "range": [
-          9,
+          6,
           12,
         ],
-        "start": 9,
+        "start": 6,
         "type": "MemberExpression",
       },
       "loc": {
@@ -9098,7 +9098,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for (
             "line": 2,
           },
           "start": {
-            "column": 3,
+            "column": 0,
             "line": 2,
           },
         },
@@ -9165,10 +9165,10 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for (
           "value": 0,
         },
         "range": [
-          9,
+          6,
           12,
         ],
-        "start": 9,
+        "start": 6,
         "type": "MemberExpression",
       },
       "loc": {
@@ -9264,7 +9264,7 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for (
             "line": 2,
           },
           "start": {
-            "column": 3,
+            "column": 0,
             "line": 2,
           },
         },
@@ -9331,10 +9331,10 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for (
           "value": 0,
         },
         "range": [
-          9,
+          6,
           12,
         ],
-        "start": 9,
+        "start": 6,
         "type": "MemberExpression",
       },
       "loc": {
