@@ -6642,7 +6642,7 @@ export function parseParenthesizedExpression(
 ): any {
   parser.flags = (parser.flags | Flags.NonSimpleParameterList) ^ Flags.NonSimpleParameterList;
 
-  const { tokenIndex: piStart, tokenLine: plStart, tokenColumn: pcStart } = parser;
+  const parenthesesStart = parser.tokenStart;
 
   nextToken(parser, context | Context.AllowRegExp | Context.AllowEscapedKeyword);
 
@@ -6666,7 +6666,7 @@ export function parseParenthesizedExpression(
   let isNonSimpleParameterList: 0 | 1 = 0;
   let hasStrictReserved: 0 | 1 = 0;
 
-  const { tokenIndex: iStart, tokenLine: lStart, tokenColumn: cStart } = parser;
+  const tokenAfterParenthesesStart = parser.tokenStart;
 
   parser.assignable = AssignmentKind.Assignable;
 
@@ -6781,15 +6781,10 @@ export function parseParenthesizedExpression(
 
         parser.assignable = AssignmentKind.CannotAssign;
 
-        expr = finishNode(
-          parser,
-          context,
-          { index: iStart, line: lStart, column: cStart },
-          {
-            type: 'SequenceExpression',
-            expressions,
-          },
-        );
+        expr = finishNode(parser, context, tokenAfterParenthesesStart, {
+          type: 'SequenceExpression',
+          expressions,
+        });
       }
 
       consume(parser, context, Token.RightParen);
@@ -6797,15 +6792,10 @@ export function parseParenthesizedExpression(
       parser.destructible = destructible;
 
       return context & Context.OptionsPreserveParens
-        ? finishNode(
-            parser,
-            context,
-            { index: piStart, line: plStart, column: pcStart },
-            {
-              type: 'ParenthesizedExpression',
-              expression: expr,
-            },
-          )
+        ? finishNode(parser, context, parenthesesStart, {
+            type: 'ParenthesizedExpression',
+            expression: expr,
+          })
         : expr;
     }
 
@@ -6829,15 +6819,10 @@ export function parseParenthesizedExpression(
   if (isSequence) {
     parser.assignable = AssignmentKind.CannotAssign;
 
-    expr = finishNode(
-      parser,
-      context,
-      { index: iStart, line: lStart, column: cStart },
-      {
-        type: 'SequenceExpression',
-        expressions,
-      },
-    );
+    expr = finishNode(parser, context, tokenAfterParenthesesStart, {
+      type: 'SequenceExpression',
+      expressions,
+    });
   }
 
   consume(parser, context, Token.RightParen);
@@ -6885,15 +6870,10 @@ export function parseParenthesizedExpression(
   parser.destructible = ((parser.destructible | DestructuringKind.Yield) ^ DestructuringKind.Yield) | destructible;
 
   return context & Context.OptionsPreserveParens
-    ? finishNode(
-        parser,
-        context,
-        { index: piStart, line: plStart, column: pcStart },
-        {
-          type: 'ParenthesizedExpression',
-          expression: expr,
-        },
-      )
+    ? finishNode(parser, context, parenthesesStart, {
+        type: 'ParenthesizedExpression',
+        expression: expr,
+      })
     : expr;
 }
 
