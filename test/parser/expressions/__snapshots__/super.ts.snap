@@ -3569,10 +3569,10 @@ exports[`Expressions - Super > Expressions - Super (pass) > class x extends y { 
               "type": "Identifier",
             },
             "range": [
-              27,
+              20,
               76,
             ],
-            "start": 27,
+            "start": 20,
             "static": true,
             "type": "PropertyDefinition",
             "value": {
