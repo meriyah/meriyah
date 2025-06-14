@@ -1,4 +1,5 @@
 import * as t from 'node:assert/strict';
+import { describe, it } from 'vitest';
 import { type SourceLocation } from '../../../src/estree';
 import { parseScript } from '../../../src/meriyah';
 

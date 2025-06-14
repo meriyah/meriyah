@@ -1,6 +1,7 @@
+import * as t from 'node:assert/strict';
+import { describe, it } from 'vitest';
 import { Context } from '../../../src/common';
 import { fail } from '../../test-utils';
-import * as t from 'node:assert/strict';
 import { parseSource } from '../../../src/parser';
 
 describe('Next - Hashbang grammar', () => {

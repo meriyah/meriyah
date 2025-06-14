@@ -1,3 +1,4 @@
+import { describe } from 'vitest';
 import { Context } from '../../../src/common';
 import { pass } from '../../test-utils';
 

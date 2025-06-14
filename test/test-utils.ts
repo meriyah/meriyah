@@ -1,7 +1,7 @@
 import * as t from 'node:assert/strict';
+import { describe, it, expect } from 'vitest';
 import { parseSource } from '../src/parser';
 import { type Context } from '../src/common';
-import { expect } from 'vitest';
 
 export const pass = (name: string, valid: [string, Context][]): void => {
   describe(name, () => {

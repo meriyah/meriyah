@@ -1,6 +1,7 @@
 import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
 
 describe('Expressions - Async function', () => {

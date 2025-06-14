@@ -36,6 +36,7 @@ export default [
           enforceForRenamedProperties: false,
         },
       ],
+      'no-undef': 'error',
       'no-restricted-imports': ['error', 'assert', 'node:assert'],
 
       // TODO: enable it when all problems addressed
@@ -58,6 +59,10 @@ export default [
   {
     files: ['**/*.mjs'],
     ...eslintPluginN.configs['flat/recommended-module'],
+  },
+  {
+    files: ['test/**/*.ts', 'scripts/**/*.mjs', 'vitest.config.ts'],
+    languageOptions: { globals: { ...globals.node } },
   },
   {
     files: ['scripts/**/*.mjs'],

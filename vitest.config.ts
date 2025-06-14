@@ -6,7 +6,6 @@ const SHOULD_RUN_TEST262 = IS_CI || Boolean(process.env.SHOULD_RUN_TEST262);
 
 export default defineConfig({
   test: {
-    globals: true,
     include: ['test/**/*.ts'],
     exclude: [
       'test/test-utils.ts',
