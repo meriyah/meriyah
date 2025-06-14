@@ -879,8 +879,6 @@ export function parseReturnStatement(
  * @param context Context masks
  * @param expression AST node
  * @param start
- * @param line
- * @param column
  */
 export function parseExpressionStatement(
   parser: Parser,
@@ -904,9 +902,6 @@ export function parseExpressionStatement(
  * @param token Token to validate
  * @param allowFuncDecl Allow / disallow func statement
  * @param start
- * @param line
- * @param column
- *
  */
 export function parseLabelledStatement(
   parser: Parser,
@@ -965,10 +960,6 @@ export function parseLabelledStatement(
  * @param context Context masks
  * @param labels
  * @param allowFuncDecl Allow / disallow func statement
- * @param start Start position of current AST node
- * @param start
- * @param line
- * @param column
  */
 
 export function parseAsyncArrowOrAsyncFunctionDeclaration(
@@ -1633,8 +1624,6 @@ export function parseTryStatement(
  * @param context Context masks
  * @param scope Scope instance
  * @param start Start pos of node
- * @param line
- * @param column
  */
 export function parseCatchBlock(
   parser: Parser,
@@ -3024,8 +3013,6 @@ function parseExportDeclaration(
  * @param canAssign
  * @param inGroup,
  * @param start,
- * @param line,
- * @param column,
  */
 export function parseExpression(
   parser: Parser,
@@ -3104,8 +3091,6 @@ export function parseExpressions(
  * @param inGroup
  * @param isPattern
  * @param start
- * @param line
- * @param column
  * @param left ESTree AST node
  */
 export function parseAssignmentExpression(
@@ -3192,8 +3177,6 @@ export function parseAssignmentExpression(
  * @param inGroup
  * @param isPattern
  * @param start
- * @param line
- * @param column
  * @param left
  */
 export function parseAssignmentExpressionOrPattern(
@@ -3709,9 +3692,6 @@ export function parseSuperExpression(parser: Parser, context: Context): ESTree.S
  * @param parser  Parser object
  * @param context Context masks
  * @param canAssign
- * @param start
- * @param line
- * @param column
  */
 export function parseLeftHandSideExpression(
   parser: Parser,
@@ -3747,8 +3727,6 @@ export function parseLeftHandSideExpression(
  * @param context Context masks
  * @param inNew
  * @param start
- * @param line
- * @param column
  */
 function parseUpdateExpression(parser: Parser, context: Context, expr: ESTree.Expression, start: Location) {
   if (parser.assignable & AssignmentKind.CannotAssign) report(parser, Errors.InvalidIncDecTarget);
@@ -3774,8 +3752,6 @@ function parseUpdateExpression(parser: Parser, context: Context, expr: ESTree.Ex
  * @param expr ESTree AST node
  * @param inGroup
  * @param start
- * @param line
- * @param column
  */
 export function parseMemberOrUpdateExpression(
   parser: Parser,
@@ -4014,8 +3990,6 @@ export function parsePropertyOrPrivatePropertyName(
  * @param context Context masks
  * @param inNew
  * @param start
- * @param line
- * @param column
  */
 export function parseUpdateExpressionPrefixed(
   parser: Parser,
@@ -4062,8 +4036,6 @@ export function parseUpdateExpressionPrefixed(
  * @param canAssign
  * @param inGroup
  * @param start
- * @param line
- * @param column
  */
 export function parsePrimaryExpression(
   parser: Parser,
@@ -4225,8 +4197,6 @@ export function parsePrimaryExpression(
  * @param context Context masks
  * @param inGroup
  * @param start
- * @param line
- * @param column
  */
 function parseImportCallOrMetaExpression(
   parser: Parser,
@@ -4293,10 +4263,7 @@ export function parseImportMetaExpression(
  * @param context Context masks
  * @param inGroup
  * @param start
- * @param line
- * @param column
  */
-
 export function parseImportExpression(
   parser: Parser,
   context: Context,
@@ -5351,8 +5318,6 @@ export function parseArrayExpressionOrPattern(
  * @param destructible
  * @param inGroup
  * @param start Start index
- * @param line Start line
- * @param column Start of column
  * @param node ESTree AST node
  */
 function parseArrayOrObjectAssignmentPattern(
@@ -5603,8 +5568,6 @@ function parseSpreadOrRestElement(
  * @param kind
  * @param inGroup
  * @param start Start index
- * @param line Start line
- * @param column Start of column
  */
 export function parseMethodDefinition(
   parser: Parser,
@@ -6628,8 +6591,6 @@ export function parseComputedPropertyName(
  * @param context Context masks
  * @param assignable
  * @param start Start index
- * @param line Start line
- * @param column Start of column
  */
 export function parseParenthesizedExpression(
   parser: Parser,
@@ -6923,8 +6884,6 @@ export function parseIdentifierOrArrow(
  * @param params
  * @param isAsync
  * @param start Start index
- * @param line Start line
- * @param column Start of column
  */
 function parseArrowFromIdentifier(
   parser: Parser,
