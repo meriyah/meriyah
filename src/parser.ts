@@ -7770,6 +7770,7 @@ export function parseClassBody(
   const body: (ESTree.MethodDefinition | ESTree.PropertyDefinition | ESTree.AccessorProperty | ESTree.StaticBlock)[] =
     [];
   let decorators: ESTree.Decorator[];
+  const decoratorStart = parser.tokenStart;
 
   while (parser.getToken() !== Token.RightBrace) {
     let length = 0;
@@ -7801,7 +7802,7 @@ export function parseClassBody(
         decorators,
         0,
         inGroup,
-        parser.tokenStart,
+        length > 0 ? decoratorStart : parser.tokenStart,
       ),
     );
   }
