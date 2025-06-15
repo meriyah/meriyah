@@ -9,7 +9,6 @@ import {
   type Location,
   type AssignmentKind,
   type DestructuringKind,
-  Context,
 } from '../common';
 
 export class Parser {
@@ -128,6 +127,10 @@ export class Parser {
      * Used together with source maps. File containing the code being parsed
      */
     public readonly sourceFile: string | void,
+
+    private readonly shouldAddLoc: boolean | void,
+    private readonly shouldAddRanges: boolean | void,
+
     /**
      * Holds either a function or array used on every comment
      */
@@ -199,14 +202,14 @@ export class Parser {
     };
   }
 
-  finishNode<T extends ESTree.Node>(context: Context, start: Location, node: T): T {
-    if (context & Context.OptionsRanges) {
+  finishNode<T extends ESTree.Node>(node: T, start: Location): T {
+    if (this.shouldAddRanges) {
       node.start = start.index;
       node.end = this.startIndex;
       node.range = [start.index, this.startIndex];
     }
 
-    if (context & Context.OptionsLoc) {
+    if (this.shouldAddLoc) {
       node.loc = {
         start: {
           line: start.line,
