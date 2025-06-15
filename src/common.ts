@@ -1,6 +1,6 @@
 import { Token, KeywordDescTable } from './token';
 import { Errors, ParseError, report } from './errors';
-import { type Node, type SourceLocation } from './estree';
+import type * as ESTree from './estree';
 import { nextToken } from './lexer/scan';
 import { type Parser } from './parser';
 
@@ -177,7 +177,7 @@ export const enum ScopeKind {
 /**
  * Comment process function.
  */
-export type OnComment = (type: string, value: string, start: number, end: number, loc: SourceLocation) => any;
+export type OnComment = (type: string, value: string, start: number, end: number, loc: ESTree.SourceLocation) => any;
 
 /**
  * Function calls when semicolon inserted.
@@ -187,7 +187,7 @@ export type OnInsertedSemicolon = (pos: number) => any;
 /**
  * Token process function.
  */
-export type OnToken = (token: string, start: number, end: number, loc: SourceLocation) => any;
+export type OnToken = (token: string, start: number, end: number, loc: ESTree.SourceLocation) => any;
 
 /**
  * Lexical scope interface
@@ -490,33 +490,6 @@ export function validateAndDeclareLabel(parser: Parser, labels: any, name: strin
   }
 
   labels['$' + name] = 1;
-}
-
-export function finishNode<T extends Node>(parser: Parser, context: Context, start: Location, node: T): T {
-  if (context & Context.OptionsRanges) {
-    node.start = start.index;
-    node.end = parser.startIndex;
-    node.range = [start.index, parser.startIndex];
-  }
-
-  if (context & Context.OptionsLoc) {
-    node.loc = {
-      start: {
-        line: start.line,
-        column: start.column,
-      },
-      end: {
-        line: parser.startLine,
-        column: parser.startColumn,
-      },
-    };
-
-    if (parser.sourceFile) {
-      node.loc.source = parser.sourceFile;
-    }
-  }
-
-  return node;
 }
 
 /** @internal */
@@ -852,7 +825,7 @@ export function addBindingToExports(parser: Parser, name: string): void {
 }
 
 export function pushComment(context: Context, array: any[]): OnComment {
-  return function (type: string, value: string, start: number, end: number, loc: SourceLocation) {
+  return function (type: string, value: string, start: number, end: number, loc: ESTree.SourceLocation) {
     const comment: any = {
       type,
       value,
@@ -871,7 +844,7 @@ export function pushComment(context: Context, array: any[]): OnComment {
 }
 
 export function pushToken(context: Context, array: any[]): OnToken {
-  return function (token: string, start: number, end: number, loc: SourceLocation) {
+  return function (token: string, start: number, end: number, loc: ESTree.SourceLocation) {
     const tokens: any = {
       token,
     };

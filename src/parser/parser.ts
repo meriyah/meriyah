@@ -9,6 +9,7 @@ import {
   type Location,
   type AssignmentKind,
   type DestructuringKind,
+  Context,
 } from '../common';
 
 export class Parser {
@@ -196,5 +197,32 @@ export class Parser {
       line: this.tokenLine,
       column: this.tokenColumn,
     };
+  }
+
+  finishNode<T extends ESTree.Node>(context: Context, start: Location, node: T): T {
+    if (context & Context.OptionsRanges) {
+      node.start = start.index;
+      node.end = this.startIndex;
+      node.range = [start.index, this.startIndex];
+    }
+
+    if (context & Context.OptionsLoc) {
+      node.loc = {
+        start: {
+          line: start.line,
+          column: start.column,
+        },
+        end: {
+          line: this.startLine,
+          column: this.startColumn,
+        },
+      };
+
+      if (this.sourceFile) {
+        node.loc.source = this.sourceFile;
+      }
+    }
+
+    return node;
   }
 }
