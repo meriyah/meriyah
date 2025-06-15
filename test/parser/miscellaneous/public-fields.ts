@@ -209,8 +209,5 @@ describe('Next - Public fields', () => {
     [`class A { a = b = c }`, Context.OptionsNext | Context.OptionsRanges],
     [`class A { a = b += c }`, Context.OptionsNext | Context.OptionsRanges],
     ['class C { static x }', Context.OptionsRanges | Context.OptionsLoc],
-    [`class A { @dec\nx }`, Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
-    [`class A { @dec\nx(){} }`, Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
-    [`class A { @dec\naccessor x }`, Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
   ]);
 });
