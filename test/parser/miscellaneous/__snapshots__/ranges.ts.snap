@@ -8897,6 +8897,487 @@ exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > foo; bar; goo;
 }
 `;
 
+exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for (
+[x][0] in y); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "end": 19,
+        "loc": {
+          "end": {
+            "column": 13,
+            "line": 2,
+          },
+          "start": {
+            "column": 12,
+            "line": 2,
+          },
+        },
+        "range": [
+          18,
+          19,
+        ],
+        "start": 18,
+        "type": "EmptyStatement",
+      },
+      "end": 19,
+      "left": {
+        "computed": true,
+        "end": 12,
+        "loc": {
+          "end": {
+            "column": 6,
+            "line": 2,
+          },
+          "start": {
+            "column": 0,
+            "line": 2,
+          },
+        },
+        "object": {
+          "elements": [
+            {
+              "end": 8,
+              "loc": {
+                "end": {
+                  "column": 2,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 2,
+                },
+              },
+              "name": "x",
+              "range": [
+                7,
+                8,
+              ],
+              "start": 7,
+              "type": "Identifier",
+            },
+          ],
+          "end": 9,
+          "loc": {
+            "end": {
+              "column": 3,
+              "line": 2,
+            },
+            "start": {
+              "column": 0,
+              "line": 2,
+            },
+          },
+          "range": [
+            6,
+            9,
+          ],
+          "start": 6,
+          "type": "ArrayExpression",
+        },
+        "optional": false,
+        "property": {
+          "end": 11,
+          "loc": {
+            "end": {
+              "column": 5,
+              "line": 2,
+            },
+            "start": {
+              "column": 4,
+              "line": 2,
+            },
+          },
+          "range": [
+            10,
+            11,
+          ],
+          "start": 10,
+          "type": "Literal",
+          "value": 0,
+        },
+        "range": [
+          6,
+          12,
+        ],
+        "start": 6,
+        "type": "MemberExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 13,
+          "line": 2,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        19,
+      ],
+      "right": {
+        "end": 17,
+        "loc": {
+          "end": {
+            "column": 11,
+            "line": 2,
+          },
+          "start": {
+            "column": 10,
+            "line": 2,
+          },
+        },
+        "name": "y",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "start": 0,
+      "type": "ForInStatement",
+    },
+  ],
+  "end": 19,
+  "loc": {
+    "end": {
+      "column": 13,
+      "line": 2,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    19,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for (
+[x][0] of y); 1`] = `
+{
+  "body": [
+    {
+      "await": false,
+      "body": {
+        "end": 19,
+        "loc": {
+          "end": {
+            "column": 13,
+            "line": 2,
+          },
+          "start": {
+            "column": 12,
+            "line": 2,
+          },
+        },
+        "range": [
+          18,
+          19,
+        ],
+        "start": 18,
+        "type": "EmptyStatement",
+      },
+      "end": 19,
+      "left": {
+        "computed": true,
+        "end": 12,
+        "loc": {
+          "end": {
+            "column": 6,
+            "line": 2,
+          },
+          "start": {
+            "column": 0,
+            "line": 2,
+          },
+        },
+        "object": {
+          "elements": [
+            {
+              "end": 8,
+              "loc": {
+                "end": {
+                  "column": 2,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 2,
+                },
+              },
+              "name": "x",
+              "range": [
+                7,
+                8,
+              ],
+              "start": 7,
+              "type": "Identifier",
+            },
+          ],
+          "end": 9,
+          "loc": {
+            "end": {
+              "column": 3,
+              "line": 2,
+            },
+            "start": {
+              "column": 0,
+              "line": 2,
+            },
+          },
+          "range": [
+            6,
+            9,
+          ],
+          "start": 6,
+          "type": "ArrayExpression",
+        },
+        "optional": false,
+        "property": {
+          "end": 11,
+          "loc": {
+            "end": {
+              "column": 5,
+              "line": 2,
+            },
+            "start": {
+              "column": 4,
+              "line": 2,
+            },
+          },
+          "range": [
+            10,
+            11,
+          ],
+          "start": 10,
+          "type": "Literal",
+          "value": 0,
+        },
+        "range": [
+          6,
+          12,
+        ],
+        "start": 6,
+        "type": "MemberExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 13,
+          "line": 2,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        19,
+      ],
+      "right": {
+        "end": 17,
+        "loc": {
+          "end": {
+            "column": 11,
+            "line": 2,
+          },
+          "start": {
+            "column": 10,
+            "line": 2,
+          },
+        },
+        "name": "y",
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "Identifier",
+      },
+      "start": 0,
+      "type": "ForOfStatement",
+    },
+  ],
+  "end": 19,
+  "loc": {
+    "end": {
+      "column": 13,
+      "line": 2,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    19,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for (
+[x][0];;); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "end": 16,
+        "loc": {
+          "end": {
+            "column": 10,
+            "line": 2,
+          },
+          "start": {
+            "column": 9,
+            "line": 2,
+          },
+        },
+        "range": [
+          15,
+          16,
+        ],
+        "start": 15,
+        "type": "EmptyStatement",
+      },
+      "end": 16,
+      "init": {
+        "computed": true,
+        "end": 12,
+        "loc": {
+          "end": {
+            "column": 6,
+            "line": 2,
+          },
+          "start": {
+            "column": 0,
+            "line": 2,
+          },
+        },
+        "object": {
+          "elements": [
+            {
+              "end": 8,
+              "loc": {
+                "end": {
+                  "column": 2,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 1,
+                  "line": 2,
+                },
+              },
+              "name": "x",
+              "range": [
+                7,
+                8,
+              ],
+              "start": 7,
+              "type": "Identifier",
+            },
+          ],
+          "end": 9,
+          "loc": {
+            "end": {
+              "column": 3,
+              "line": 2,
+            },
+            "start": {
+              "column": 0,
+              "line": 2,
+            },
+          },
+          "range": [
+            6,
+            9,
+          ],
+          "start": 6,
+          "type": "ArrayExpression",
+        },
+        "optional": false,
+        "property": {
+          "end": 11,
+          "loc": {
+            "end": {
+              "column": 5,
+              "line": 2,
+            },
+            "start": {
+              "column": 4,
+              "line": 2,
+            },
+          },
+          "range": [
+            10,
+            11,
+          ],
+          "start": 10,
+          "type": "Literal",
+          "value": 0,
+        },
+        "range": [
+          6,
+          12,
+        ],
+        "start": 6,
+        "type": "MemberExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 10,
+          "line": 2,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        16,
+      ],
+      "start": 0,
+      "test": null,
+      "type": "ForStatement",
+      "update": null,
+    },
+  ],
+  "end": 16,
+  "loc": {
+    "end": {
+      "column": 10,
+      "line": 2,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    16,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`Miscellaneous - ranges > Miscellaneous - ranges (pass) > for ( let[x] of [[34]] ) {} 1`] = `
 {
   "body": [
