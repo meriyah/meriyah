@@ -84,7 +84,7 @@ export interface Options {
   // Enable React JSX parsing
   jsx?: boolean;
   // Allows comment extraction. Accepts either a callback function or an array
-  onComment?: Comment[] | OnComment;
+  onComment?: ESTree.Comment[] | OnComment;
   // Allows detection of automatic semicolon insertion. Accepts a callback function that will be passed the character offset where the semicolon was inserted
   onInsertedSemicolon?: OnInsertedSemicolon;
   // Allows token extraction. Accepts either a callback function or an array

@@ -1,4 +1,5 @@
 import * as t from 'node:assert/strict';
+import { describe, it } from 'vitest';
 import { decodeHTMLStrict } from '../../src/lexer/decodeHTML';
 
 describe('decodeHTMLStrict', () => {
