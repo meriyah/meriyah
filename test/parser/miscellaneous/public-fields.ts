@@ -207,5 +207,6 @@ describe('Next - Public fields', () => {
     [`class A { foo; }`, Context.OptionsNext | Context.OptionsRanges],
     [`class A { a = b = c }`, Context.OptionsNext | Context.OptionsRanges],
     [`class A { a = b += c }`, Context.OptionsNext | Context.OptionsRanges],
+    ['class C { static x }', Context.OptionsRanges | Context.OptionsLoc],
   ]);
 });
