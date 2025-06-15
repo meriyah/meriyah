@@ -154,28 +154,23 @@ export function parseSource(source: string, options: Options | void, context: Co
     body = parseStatementList(parser, context | Context.InGlobal, scope);
   }
 
-  const node: ESTree.Program = {
-    type: 'Program',
-    sourceType,
-    body,
-  };
-
-  if (context & Context.OptionsRanges) {
-    node.start = 0;
-    node.end = source.length;
-    node.range = [0, source.length];
-  }
-
-  if (context & Context.OptionsLoc) {
-    node.loc = {
-      start: { line: 1, column: 0 },
-      end: { line: parser.line, column: parser.column },
-    };
-
-    if (parser.sourceFile) node.loc.source = sourceFile;
-  }
-
-  return node;
+  return finishNode(
+    {
+      ...parser,
+      startIndex: parser.index,
+      startLine: parser.line,
+      startColumn: parser.column,
+    },
+    context,
+    0,
+    1,
+    0,
+    {
+      type: 'Program',
+      sourceType,
+      body,
+    },
+  );
 }
 
 /**
