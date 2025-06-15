@@ -349,7 +349,7 @@ describe('Next - Decorators', () => {
     ['@a(@b class C {}) @d(@e() class F {}) class G {}', Context.OptionsNext],
     ['@a(@b class C {}) @d(@e() class F {}) class G {}', Context.OptionsNext | Context.Module],
     ['@a class G {}', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
-    ['class A { @dec accessor a }', Context.OptionsNext | Context.OptionsLoc],
+    ['class A { @dec accessor a }', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
     ['class A { @dec accessor #a }', Context.OptionsNext],
     ['@\n dec() class C {}', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
     ['@\n x.y class D {}', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
@@ -363,6 +363,5 @@ describe('Next - Decorators', () => {
     ],
     [`class A { @dec\nx }`, Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
     [`class A { @dec\nx(){} }`, Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
-    [`class A { @dec\naccessor x }`, Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
   ]);
 });
