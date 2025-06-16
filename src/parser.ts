@@ -2592,6 +2592,7 @@ function parseExportDeclaration(
   //    'export' Declaration
   //    'export' 'default'
   const start = parser.tokenStart;
+  const { leadingDecorators } = parser;
 
   // https://tc39.github.io/ecma262/#sec-exports
   nextToken(parser, context | Context.AllowRegExp);
@@ -2623,9 +2624,14 @@ function parseExportDeclaration(
         );
         break;
       }
+
       // export default ClassDeclaration[Default]
       // export default  @decl ClassDeclaration[Default]
       case Token.Decorator:
+        if (leadingDecorators.length > 0) {
+          report(parser, Errors.UnexpectedToken, '@');
+        }
+      // Fall through
       case Token.ClassKeyword:
         declaration = parseClassDeclaration(
           parser,
@@ -2848,6 +2854,11 @@ function parseExportDeclaration(
       break;
     }
 
+    case Token.Decorator:
+      if (leadingDecorators.length > 0) {
+        report(parser, Errors.UnexpectedToken, '@');
+      }
+    // Fall through
     case Token.ClassKeyword:
       declaration = parseClassDeclaration(
         parser,
@@ -7714,7 +7725,6 @@ export function parseClassDeclaration(
   let decorators = parseDecorators(parser, context, privateScope);
 
   if (parser.leadingDecorators.length) {
-    parser.leadingDecorators.push(...decorators);
     decorators = parser.leadingDecorators;
     parser.leadingDecorators = [];
   }

@@ -2661,47 +2661,6 @@ exports[`Next - Decorators > Next - Decorators (pass) > @foo(class Bar{})
 }
 `;
 
-exports[`Next - Decorators > Next - Decorators (pass) > @lo export default @bar
-          class Foo { } 1`] = `
-{
-  "body": [
-    {
-      "declaration": {
-        "body": {
-          "body": [],
-          "type": "ClassBody",
-        },
-        "decorators": [
-          {
-            "expression": {
-              "name": "lo",
-              "type": "Identifier",
-            },
-            "type": "Decorator",
-          },
-          {
-            "expression": {
-              "name": "bar",
-              "type": "Identifier",
-            },
-            "type": "Decorator",
-          },
-        ],
-        "id": {
-          "name": "Foo",
-          "type": "Identifier",
-        },
-        "superClass": null,
-        "type": "ClassDeclaration",
-      },
-      "type": "ExportDefaultDeclaration",
-    },
-  ],
-  "sourceType": "module",
-  "type": "Program",
-}
-`;
-
 exports[`Next - Decorators > Next - Decorators (pass) > @outer({
             store: @inner class Foo {}
           })
