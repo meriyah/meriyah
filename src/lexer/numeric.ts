@@ -1,5 +1,5 @@
 import { Context, Flags } from '../common';
-import { type Parser } from '../parser';
+import { type Parser } from '../parser/parser';
 import { Token } from '../token';
 import { advanceChar, toHex, NumberKind } from './common';
 import { CharTypes, CharFlags, isIdentifierStart } from './charClassifier';

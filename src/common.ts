@@ -2,7 +2,7 @@ import { Token, KeywordDescTable } from './token';
 import { Errors, ParseError, report } from './errors';
 import type * as ESTree from './estree';
 import { nextToken } from './lexer/scan';
-import { type Parser } from './parser';
+import { type Parser } from './parser/parser';
 
 /**
  * The core context, passed around everywhere as a simple immutable bit set
@@ -246,7 +246,7 @@ export function matchOrInsertSemicolon(parser: Parser, context: Context): void {
 
   if (!consumeOpt(parser, context, Token.Semicolon)) {
     // Automatic semicolon insertion has occurred
-    parser.onInsertedSemicolon?.(parser.startIndex);
+    parser.options.onInsertedSemicolon?.(parser.startIndex);
   }
 }
 
