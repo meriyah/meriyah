@@ -1,3 +1,6 @@
+import { convertTokenType } from '../lexer';
+import { Token } from '../token';
+import type * as ESTree from '../estree';
 import {
   type Location,
   Flags,
@@ -7,9 +10,6 @@ import {
   type AssignmentKind,
   type DestructuringKind,
 } from './../common';
-import { convertTokenType } from '../lexer';
-import { Token } from '../token';
-import type * as ESTree from '../estree';
 
 export type ParserOptions = {
   shouldAddLoc?: boolean;
