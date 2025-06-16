@@ -2848,6 +2848,7 @@ function parseExportDeclaration(
       break;
     }
 
+    case Token.Decorator:
     case Token.ClassKeyword:
       declaration = parseClassDeclaration(
         parser,
@@ -7711,12 +7712,15 @@ export function parseClassDeclaration(
   //   DecoratorList[?Yield, ?Await]opt classClassTail[?Yield, ?Await]
   //
 
-  let decorators = parseDecorators(parser, context, privateScope);
-
-  if (parser.leadingDecorators.length) {
-    parser.leadingDecorators.push(...decorators);
-    decorators = parser.leadingDecorators;
-    parser.leadingDecorators = [];
+  let decorators = parser.leadingDecorators;
+  if (decorators.length) {
+    if (parser.getToken() === Token.Decorator) {
+      report(parser, Errors.UnexpectedToken, '@');
+    }
+    decorators = [...decorators];
+    parser.leadingDecorators.length = 0;
+  } else {
+    decorators = parseDecorators(parser, context, privateScope);
   }
 
   context = (context | Context.InConstructor | Context.Strict) ^ Context.InConstructor;

@@ -77,11 +77,9 @@ describe('Next - Decorators', () => {
     ['class A { accessor a() {}}', Context.OptionsNext | Context.Module | Context.Strict],
     ['class A { @dec accessor a() {}}', Context.OptionsNext | Context.Module | Context.Strict],
     ['class A { accessor @dec a}', Context.OptionsNext | Context.Module | Context.Strict],
-    ['export @bar class Foo { }', Context.OptionsNext | Context.Module | Context.Strict],
     [`class A {  constructor(@foo x) {} }`, Context.OptionsNext | Context.Module | Context.Strict],
-    //[`@decorate`, Context.OptionsNext],
+    [`@decorate`, Context.OptionsNext],
     [`class A { @abc constructor(){} }`, Context.OptionsNext | Context.Module | Context.Strict],
-    ['export @bar class Foo { }', Context.OptionsNext | Context.Module | Context.Strict],
     ['export default @decorator class Foo {}', Context.Module | Context.Strict],
     ['class Foo {@abc constructor(){}', Context.OptionsNext],
     ['class A { @dec }', Context.OptionsNext],
@@ -104,6 +102,8 @@ describe('Next - Decorators', () => {
     ['(@bar function foo() {})', Context.OptionsNext],
     ['@bar;', Context.OptionsNext],
     ['@bar();', Context.OptionsNext],
+    ['@foo export @bar class A {}', Context.OptionsNext | Context.Module],
+    ['@foo export default @bar class A {}', Context.OptionsNext | Context.Module],
   ]);
 
   pass('Next - Decorators (pass)', [
@@ -130,11 +130,6 @@ describe('Next - Decorators', () => {
     ],
     [
       `export default @bar
-          class Foo { }`,
-      Context.OptionsNext | Context.Module | Context.Strict,
-    ],
-    [
-      `@lo export default @bar
           class Foo { }`,
       Context.OptionsNext | Context.Module | Context.Strict,
     ],
@@ -369,7 +364,7 @@ describe('Next - Decorators', () => {
       '@dec export default class {};',
       Context.OptionsNext | Context.Module | Context.OptionsRanges | Context.OptionsLoc,
     ],
-    // ['export @dec class E {};', Context.OptionsNext | Context.Module | Context.OptionsRanges | Context.OptionsLoc],
+    ['export @dec class E {};', Context.OptionsNext | Context.Module | Context.OptionsRanges | Context.OptionsLoc],
     [
       'export default @dec class {};',
       Context.OptionsNext | Context.Module | Context.OptionsRanges | Context.OptionsLoc,
