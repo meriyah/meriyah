@@ -406,12 +406,7 @@ export class ParseError extends SyntaxError implements _Node {
  * @returns {never}
  */
 export function report(parser: Parser, type: Errors, ...params: string[]): never {
-  throw new ParseError(
-    parser.tokenStart,
-    { index: parser.index, line: parser.line, column: parser.column },
-    type,
-    ...params,
-  );
+  throw new ParseError(parser.tokenStart, parser.currentLocation, type, ...params);
 }
 
 export function reportScopeError(scope: ScopeError): never {

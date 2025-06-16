@@ -167,7 +167,7 @@ export function parseSource(source: string, options: Options | void, context: Co
       body,
     },
     { index: 0, line: 1, column: 0 },
-    { index: parser.index, line: parser.line, column: parser.column },
+    parser.currentLocation,
   );
 }
 
