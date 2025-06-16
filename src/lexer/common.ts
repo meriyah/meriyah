@@ -1,7 +1,7 @@
 import { Token } from '../token';
 import { Chars } from '../chars';
 import { Flags } from '../common';
-import { type Parser } from '../parser';
+import { type Parser } from '../parser/parser';
 
 export const enum LexerState {
   None = 0,

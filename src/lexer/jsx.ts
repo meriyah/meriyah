@@ -1,7 +1,7 @@
 import { CharFlags, CharTypes } from './charClassifier';
 import { Token } from '../token';
 import { Context } from '../common';
-import { type Parser } from '../parser';
+import { type Parser } from '../parser/parser';
 import { report, Errors } from '../errors';
 import { advanceChar, LexerState, scanSingleToken, scanNewLine, consumeLineFeed } from './';
 import { decodeHTMLStrict } from './decodeHTML';

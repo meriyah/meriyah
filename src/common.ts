@@ -2,7 +2,7 @@ import { Token, KeywordDescTable } from './token';
 import { Errors, ParseError, report } from './errors';
 import type * as ESTree from './estree';
 import { nextToken } from './lexer/scan';
-import { type Parser } from './parser';
+import { type Parser } from './parser/parser';
 
 /**
  * The core context, passed around everywhere as a simple immutable bit set
@@ -177,7 +177,13 @@ export const enum ScopeKind {
 /**
  * Comment process function.
  */
-export type OnComment = (type: string, value: string, start: number, end: number, loc: ESTree.SourceLocation) => any;
+export type OnComment = (
+  type: ESTree.CommentType,
+  value: string,
+  start: number,
+  end: number,
+  loc: ESTree.SourceLocation,
+) => any;
 
 /**
  * Function calls when semicolon inserted.
@@ -246,7 +252,7 @@ export function matchOrInsertSemicolon(parser: Parser, context: Context): void {
 
   if (!consumeOpt(parser, context, Token.Semicolon)) {
     // Automatic semicolon insertion has occurred
-    parser.onInsertedSemicolon?.(parser.startIndex);
+    parser.options.onInsertedSemicolon?.(parser.startIndex);
   }
 }
 
@@ -822,43 +828,6 @@ export function addBindingToExports(parser: Parser, name: string): void {
   if (parser.exportedBindings !== void 0 && name !== '') {
     parser.exportedBindings['#' + name] = 1;
   }
-}
-
-export function pushComment(context: Context, array: any[]): OnComment {
-  return function (type: string, value: string, start: number, end: number, loc: ESTree.SourceLocation) {
-    const comment: any = {
-      type,
-      value,
-    };
-
-    if (context & Context.OptionsRanges) {
-      comment.start = start;
-      comment.end = end;
-      comment.range = [start, end];
-    }
-    if (context & Context.OptionsLoc) {
-      comment.loc = loc;
-    }
-    array.push(comment);
-  };
-}
-
-export function pushToken(context: Context, array: any[]): OnToken {
-  return function (token: string, start: number, end: number, loc: ESTree.SourceLocation) {
-    const tokens: any = {
-      token,
-    };
-
-    if (context & Context.OptionsRanges) {
-      tokens.start = start;
-      tokens.end = end;
-      tokens.range = [start, end];
-    }
-    if (context & Context.OptionsLoc) {
-      tokens.loc = loc;
-    }
-    array.push(tokens);
-  };
 }
 
 export function isValidIdentifier(context: Context, t: Token): boolean {

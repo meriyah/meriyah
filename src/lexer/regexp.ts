@@ -1,6 +1,6 @@
 import { Chars } from '../chars';
 import { Context } from '../common';
-import { type Parser } from '../parser';
+import { type Parser } from '../parser/parser';
 import { Token } from '../token';
 import { advanceChar } from './common';
 import { isIdentifierPart } from './charClassifier';

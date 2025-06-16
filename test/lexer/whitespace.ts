@@ -1,14 +1,14 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { Flags, Context } from '../../src/common';
-import { Parser } from '../../src/parser';
+import { Parser } from '../../src/parser/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
 
 describe('Lexer - Whitespace', () => {
   function pass(name: string, opts: any) {
     it(name, () => {
       const { source, ...otherOpts } = opts;
-      const state = new Parser(source, '');
+      const state = new Parser(source);
       scanSingleToken(state, Context.OptionsWebCompat, 0);
       t.deepEqual(
         {
