@@ -7712,9 +7712,6 @@ export function parseClassDeclaration(
   //
 
   let decorators = parseDecorators(parser, context, privateScope);
-  if (decorators.length) {
-    start = parser.tokenStart;
-  }
 
   if (parser.leadingDecorators.length) {
     parser.leadingDecorators.push(...decorators);
@@ -7821,9 +7818,6 @@ export function parseClassExpression(
   let superClass: ESTree.Expression | null = null;
 
   const decorators = parseDecorators(parser, context, privateScope);
-  if (decorators.length) {
-    start = parser.tokenStart;
-  }
 
   context = (context | Context.Strict | Context.InConstructor) ^ Context.InConstructor;
 

@@ -352,6 +352,7 @@ describe('Next - Decorators', () => {
     ['class A { @dec accessor a }', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
     ['class A { @dec accessor #a }', Context.OptionsNext],
     ['@\n dec() class C {}', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
+    ['(@\n dec() class C {})', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
     ['@\n x.y class D {}', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
     [
       '@\n (dec()) class C {}',
@@ -363,5 +364,15 @@ describe('Next - Decorators', () => {
     ],
     [`class A { @dec\nx }`, Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
     [`class A { @dec\nx(){} }`, Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
+    ['@dec export class E {};', Context.OptionsNext | Context.Module | Context.OptionsRanges | Context.OptionsLoc],
+    [
+      '@dec export default class {};',
+      Context.OptionsNext | Context.Module | Context.OptionsRanges | Context.OptionsLoc,
+    ],
+    // ['export @dec class E {};', Context.OptionsNext | Context.Module | Context.OptionsRanges | Context.OptionsLoc],
+    [
+      'export default @dec class {};',
+      Context.OptionsNext | Context.Module | Context.OptionsRanges | Context.OptionsLoc,
+    ],
   ]);
 });
