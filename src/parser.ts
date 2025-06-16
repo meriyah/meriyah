@@ -275,8 +275,12 @@ export function parseModuleItemList(
  */
 
 export function parseModuleItem(parser: Parser, context: Context, scope: ScopeState | undefined): any {
-  // Support legacy decorators before export keyword.
-  parser.leadingDecorators = parseDecorators(parser, context, undefined);
+  if (parser.getToken() === Token.Decorator) {
+    Object.assign(parser.leadingDecorators, {
+      start: parser.tokenStart,
+      decorators: parseDecorators(parser, context, undefined),
+    });
+  }
 
   // ecma262/#prod-ModuleItem
   // ModuleItem :
@@ -296,7 +300,7 @@ export function parseModuleItem(parser: Parser, context: Context, scope: ScopeSt
       moduleItem = parseStatementListItem(parser, context, scope, undefined, Origin.TopLevel, {});
   }
 
-  if (parser.leadingDecorators.length) {
+  if (parser.leadingDecorators?.decorators.length) {
     report(parser, Errors.InvalidLeadingDecorator);
   }
   return moduleItem;
@@ -353,7 +357,7 @@ export function parseStatementListItem(
 
     case Token.Decorator: // @decorator
     case Token.ClassKeyword: // ClassDeclaration[?Yield, ~Default]
-      return parseClassDeclaration(parser, context, scope, privateScope, HoistedClassFlags.None, start);
+      return parseClassDeclaration(parser, context, scope, privateScope, HoistedClassFlags.None);
     // LexicalDeclaration[In, ?Yield]
     // LetOrConst BindingList[?In, ?Yield]
     case Token.ConstKeyword:
@@ -2589,7 +2593,7 @@ function parseExportDeclaration(
   //    'export' VariableStatement
   //    'export' Declaration
   //    'export' 'default'
-  const start = parser.tokenStart;
+  const start = parser.leadingDecorators.decorators.length ? parser.leadingDecorators.start! : parser.tokenStart;
 
   // https://tc39.github.io/ecma262/#sec-exports
   nextToken(parser, context | Context.AllowRegExp);
@@ -2625,14 +2629,7 @@ function parseExportDeclaration(
       // export default  @decl ClassDeclaration[Default]
       case Token.Decorator:
       case Token.ClassKeyword:
-        declaration = parseClassDeclaration(
-          parser,
-          context,
-          scope,
-          undefined,
-          HoistedClassFlags.Hoisted,
-          parser.tokenStart,
-        );
+        declaration = parseClassDeclaration(parser, context, scope, undefined, HoistedClassFlags.Hoisted);
         break;
 
       // export default HoistableDeclaration[Default]
@@ -2848,14 +2845,7 @@ function parseExportDeclaration(
 
     case Token.Decorator:
     case Token.ClassKeyword:
-      declaration = parseClassDeclaration(
-        parser,
-        context,
-        scope,
-        undefined,
-        HoistedClassFlags.Export,
-        parser.tokenStart,
-      );
+      declaration = parseClassDeclaration(parser, context, scope, undefined, HoistedClassFlags.Export);
       break;
     case Token.FunctionKeyword:
       declaration = parseFunctionDeclaration(
@@ -7701,7 +7691,6 @@ export function parseClassDeclaration(
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
   flags: HoistedClassFlags,
-  start: Location,
 ): ESTree.ClassDeclaration {
   // ClassDeclaration ::
   //   'class' Identifier ('extends' LeftHandSideExpression)? '{' ClassBody '}'
@@ -7710,14 +7699,17 @@ export function parseClassDeclaration(
   //   DecoratorList[?Yield, ?Await]opt classClassTail[?Yield, ?Await]
   //
 
-  let decorators = parser.leadingDecorators;
-  if (decorators.length) {
+  let start;
+  let decorators;
+  if (parser.leadingDecorators.decorators.length) {
     if (parser.getToken() === Token.Decorator) {
       report(parser, Errors.UnexpectedToken, '@');
     }
-    decorators = [...decorators];
-    parser.leadingDecorators.length = 0;
+    start = parser.leadingDecorators.start!;
+    decorators = [...parser.leadingDecorators.decorators];
+    parser.leadingDecorators.decorators.length = 0;
   } else {
+    start = parser.tokenStart;
     decorators = parseDecorators(parser, context, privateScope);
   }
 
