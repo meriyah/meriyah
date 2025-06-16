@@ -4595,6 +4595,173 @@ exports[`Next - Decorators > Next - Decorators (pass) > class Foo { @foo set bar
 }
 `;
 
+exports[`Next - Decorators > Next - Decorators (pass) > export @dec class E {}; 1`] = `
+{
+  "body": [
+    {
+      "attributes": [],
+      "declaration": {
+        "body": {
+          "body": [],
+          "end": 22,
+          "loc": {
+            "end": {
+              "column": 22,
+              "line": 1,
+            },
+            "start": {
+              "column": 20,
+              "line": 1,
+            },
+          },
+          "range": [
+            20,
+            22,
+          ],
+          "start": 20,
+          "type": "ClassBody",
+        },
+        "decorators": [
+          {
+            "end": 11,
+            "expression": {
+              "end": 11,
+              "loc": {
+                "end": {
+                  "column": 11,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 8,
+                  "line": 1,
+                },
+              },
+              "name": "dec",
+              "range": [
+                8,
+                11,
+              ],
+              "start": 8,
+              "type": "Identifier",
+            },
+            "loc": {
+              "end": {
+                "column": 11,
+                "line": 1,
+              },
+              "start": {
+                "column": 7,
+                "line": 1,
+              },
+            },
+            "range": [
+              7,
+              11,
+            ],
+            "start": 7,
+            "type": "Decorator",
+          },
+        ],
+        "end": 22,
+        "id": {
+          "end": 19,
+          "loc": {
+            "end": {
+              "column": 19,
+              "line": 1,
+            },
+            "start": {
+              "column": 18,
+              "line": 1,
+            },
+          },
+          "name": "E",
+          "range": [
+            18,
+            19,
+          ],
+          "start": 18,
+          "type": "Identifier",
+        },
+        "loc": {
+          "end": {
+            "column": 22,
+            "line": 1,
+          },
+          "start": {
+            "column": 7,
+            "line": 1,
+          },
+        },
+        "range": [
+          7,
+          22,
+        ],
+        "start": 7,
+        "superClass": null,
+        "type": "ClassDeclaration",
+      },
+      "end": 22,
+      "loc": {
+        "end": {
+          "column": 22,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        22,
+      ],
+      "source": null,
+      "specifiers": [],
+      "start": 0,
+      "type": "ExportNamedDeclaration",
+    },
+    {
+      "end": 23,
+      "loc": {
+        "end": {
+          "column": 23,
+          "line": 1,
+        },
+        "start": {
+          "column": 22,
+          "line": 1,
+        },
+      },
+      "range": [
+        22,
+        23,
+      ],
+      "start": 22,
+      "type": "EmptyStatement",
+    },
+  ],
+  "end": 23,
+  "loc": {
+    "end": {
+      "column": 23,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    23,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`Next - Decorators > Next - Decorators (pass) > export default
           @bar class Foo { } 1`] = `
 {

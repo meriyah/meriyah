@@ -2623,7 +2623,6 @@ function parseExportDeclaration(
         );
         break;
       }
-
       // export default ClassDeclaration[Default]
       // export default  @decl ClassDeclaration[Default]
       case Token.Decorator:

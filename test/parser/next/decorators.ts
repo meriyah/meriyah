@@ -364,7 +364,7 @@ describe('Next - Decorators', () => {
       '@dec export default class {};',
       Context.OptionsNext | Context.Module | Context.OptionsRanges | Context.OptionsLoc,
     ],
-    // ['export @dec class E {};', Context.OptionsNext | Context.Module | Context.OptionsRanges | Context.OptionsLoc],
+    ['export @dec class E {};', Context.OptionsNext | Context.Module | Context.OptionsRanges | Context.OptionsLoc],
     [
       'export default @dec class {};',
       Context.OptionsNext | Context.Module | Context.OptionsRanges | Context.OptionsLoc,
