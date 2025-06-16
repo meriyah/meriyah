@@ -4,6 +4,7 @@ import { Chars } from '../chars';
 import { Context } from '../common';
 import { type Parser } from '../parser/parser';
 import { report, Errors } from '../errors';
+import type * as ESTree from '../estree';
 
 export const enum CommentType {
   Single,
@@ -13,7 +14,13 @@ export const enum CommentType {
   HashBang,
 }
 
-export const CommentTypes = ['SingleLine', 'MultiLine', 'HTMLOpen', 'HTMLClose', 'HashbangComment'];
+export const CommentTypes: ESTree.CommentType[] = [
+  'SingleLine',
+  'MultiLine',
+  'HTMLOpen',
+  'HTMLClose',
+  'HashbangComment',
+];
 
 /**
  * Skips hashbang (stage 3)

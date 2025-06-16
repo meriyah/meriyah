@@ -14,8 +14,6 @@ import {
   type OnComment,
   type OnInsertedSemicolon,
   type OnToken,
-  pushComment,
-  pushToken,
   reinterpretToPattern,
   DestructuringKind,
   AssignmentKind,
@@ -52,7 +50,7 @@ import {
   type Location,
 } from './common';
 import { Chars } from './chars';
-import { Parser, type ParserOptions } from './parser/parser';
+import { Parser, type ParserOptions, pushComment, pushToken } from './parser/parser';
 
 /**
  * The parser options.
@@ -122,13 +120,15 @@ export function parseSource(source: string, options: Options | void, context: Co
     // Accepts either a callback function to be invoked or an array to collect comments (as the node is constructed)
     if (options.onComment != null) {
       parserOptions.onComment = Array.isArray(options.onComment)
-        ? pushComment(context, options.onComment)
+        ? pushComment(options.onComment, parserOptions)
         : options.onComment;
     }
     if (options.onInsertedSemicolon != null) parserOptions.onInsertedSemicolon = options.onInsertedSemicolon;
     // Accepts either a callback function to be invoked or an array to collect tokens
     if (options.onToken != null) {
-      parserOptions.onToken = Array.isArray(options.onToken) ? pushToken(context, options.onToken) : options.onToken;
+      parserOptions.onToken = Array.isArray(options.onToken)
+        ? pushToken(options.onToken, parserOptions)
+        : options.onToken;
     }
   }
 

@@ -230,3 +230,40 @@ export class Parser {
     return node;
   }
 }
+
+export function pushComment(comments: ESTree.Comment[], options: ParserOptions): OnComment {
+  return function (type: ESTree.CommentType, value: string, start: number, end: number, loc: ESTree.SourceLocation) {
+    const comment: ESTree.Comment = {
+      type,
+      value,
+    };
+
+    if (options.shouldAddRanges) {
+      comment.start = start;
+      comment.end = end;
+      comment.range = [start, end];
+    }
+    if (options.shouldAddLoc) {
+      comment.loc = loc;
+    }
+    comments.push(comment);
+  };
+}
+
+export function pushToken(tokens: any[], options: ParserOptions): OnToken {
+  return function (type: string, start: number, end: number, loc: ESTree.SourceLocation) {
+    const token: any = {
+      token: type,
+    };
+
+    if (options.shouldAddRanges) {
+      token.start = start;
+      token.end = end;
+      token.range = [start, end];
+    }
+    if (options.shouldAddLoc) {
+      token.loc = loc;
+    }
+    tokens.push(token);
+  };
+}
