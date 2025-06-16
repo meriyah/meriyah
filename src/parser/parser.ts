@@ -136,7 +136,10 @@ export class Parser {
   /**
    * Holds leading decorators before "export" or "class" keywords
    */
-  leadingDecorators: ESTree.Decorator[] = [];
+  leadingDecorators: {
+    start?: Location;
+    decorators: ESTree.Decorator[];
+  } = { decorators: [] };
 
   constructor(
     /**
