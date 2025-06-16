@@ -529,16 +529,11 @@ export function createArrowHeadParsingScope(parser: Parser, context: Context, va
  * @param type Errors type
  */
 export function recordScopeError(parser: Parser, type: Errors, ...params: string[]): ScopeError {
-  const { index, line, column, tokenStart } = parser;
   return {
     type,
     params,
-    start: tokenStart,
-    end: {
-      index,
-      line,
-      column,
-    },
+    start: parser.tokenStart,
+    end: parser.currentLocation,
   };
 }
 
