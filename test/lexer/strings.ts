@@ -2,7 +2,7 @@ import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { Context } from '../../src/common';
 import { Token } from '../../src/token';
-import { Parser } from '../../src/parser';
+import { Parser } from '../../src/parser/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
 
 describe('Lexer - String', () => {
@@ -158,7 +158,7 @@ describe('Lexer - String', () => {
 
   for (const [ctx, token, op, value] of tokens) {
     it(`scans '${op}' at the end`, () => {
-      const state = new Parser(op, '');
+      const state = new Parser(op);
       const found = scanSingleToken(state, ctx, 0);
 
       t.deepEqual(
@@ -178,7 +178,7 @@ describe('Lexer - String', () => {
     });
 
     it(`scans '${op}' with more to go`, () => {
-      const state = new Parser(`${op} `, '');
+      const state = new Parser(`${op} `);
       const found = scanSingleToken(state, ctx, 0);
 
       t.deepEqual(
@@ -200,7 +200,7 @@ describe('Lexer - String', () => {
 
   function fail(name: string, source: string, context: Context) {
     it(name, () => {
-      const state = new Parser(source, '');
+      const state = new Parser(source);
       t.throws(() => scanSingleToken(state, context, 0));
     });
   }

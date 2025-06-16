@@ -11,6 +11,27 @@ import {
   type DestructuringKind,
 } from '../common';
 
+export type ParserOptions = {
+  shouldAddLoc?: boolean;
+  shouldAddRanges?: boolean;
+  /**
+   * Used together with source maps. File containing the code being parsed
+   */
+  sourceFile?: string;
+  /**
+   * Holds either a function or array used on every comment
+   */
+  onComment?: OnComment;
+  /**
+   * Function invoked with the character offset when automatic semicolon insertion occurs
+   */
+  onInsertedSemicolon?: OnInsertedSemicolon;
+  /**
+   * Holds either a function or array used on every token
+   */
+  onToken?: OnToken;
+};
+
 export class Parser {
   private lastOnToken: [string, number, number, ESTree.SourceLocation] | null = null;
 
@@ -122,27 +143,7 @@ export class Parser {
      * The source code to be parsed
      */
     public readonly source: string,
-
-    /**
-     * Used together with source maps. File containing the code being parsed
-     */
-    public readonly sourceFile: string | void,
-
-    private readonly shouldAddLoc: boolean | void,
-    private readonly shouldAddRanges: boolean | void,
-
-    /**
-     * Holds either a function or array used on every comment
-     */
-    public readonly onComment: OnComment | void,
-    /**
-     * Holds either a function or array used on every token
-     */
-    public readonly onToken: OnToken | void,
-    /**
-     * Function invoked with the character offset when automatic semicolon insertion occurs
-     */
-    public readonly onInsertedSemicolon: OnInsertedSemicolon | void,
+    public readonly options: ParserOptions = {},
   ) {
     this.end = source.length;
     this.currentChar = source.charCodeAt(0);
@@ -165,7 +166,7 @@ export class Parser {
   setToken(value: Token, replaceLast = false) {
     this.token = value;
 
-    const { onToken } = this;
+    const { onToken } = this.options;
 
     if (onToken) {
       if (value !== Token.EOF) {
@@ -203,13 +204,13 @@ export class Parser {
   }
 
   finishNode<T extends ESTree.Node>(node: T, start: Location): T {
-    if (this.shouldAddRanges) {
+    if (this.options.shouldAddRanges) {
       node.start = start.index;
       node.end = this.startIndex;
       node.range = [start.index, this.startIndex];
     }
 
-    if (this.shouldAddLoc) {
+    if (this.options.shouldAddLoc) {
       node.loc = {
         start: {
           line: start.line,
@@ -221,11 +222,48 @@ export class Parser {
         },
       };
 
-      if (this.sourceFile) {
-        node.loc.source = this.sourceFile;
+      if (this.options.sourceFile) {
+        node.loc.source = this.options.sourceFile;
       }
     }
 
     return node;
   }
+}
+
+export function pushComment(comments: ESTree.Comment[], options: ParserOptions): OnComment {
+  return function (type: ESTree.CommentType, value: string, start: number, end: number, loc: ESTree.SourceLocation) {
+    const comment: ESTree.Comment = {
+      type,
+      value,
+    };
+
+    if (options.shouldAddRanges) {
+      comment.start = start;
+      comment.end = end;
+      comment.range = [start, end];
+    }
+    if (options.shouldAddLoc) {
+      comment.loc = loc;
+    }
+    comments.push(comment);
+  };
+}
+
+export function pushToken(tokens: any[], options: ParserOptions): OnToken {
+  return function (type: string, start: number, end: number, loc: ESTree.SourceLocation) {
+    const token: any = {
+      token: type,
+    };
+
+    if (options.shouldAddRanges) {
+      token.start = start;
+      token.end = end;
+      token.range = [start, end];
+    }
+    if (options.shouldAddLoc) {
+      token.loc = loc;
+    }
+    tokens.push(token);
+  };
 }

@@ -2,8 +2,9 @@ import { advanceChar, LexerState, scanNewLine, consumeLineFeed } from './common'
 import { CharTypes, CharFlags } from './charClassifier';
 import { Chars } from '../chars';
 import { Context } from '../common';
-import { type Parser } from '../parser';
+import { type Parser } from '../parser/parser';
 import { report, Errors } from '../errors';
+import type * as ESTree from '../estree';
 
 export const enum CommentType {
   Single,
@@ -13,7 +14,13 @@ export const enum CommentType {
   HashBang,
 }
 
-export const CommentTypes = ['SingleLine', 'MultiLine', 'HTMLOpen', 'HTMLClose', 'HashbangComment'];
+export const CommentTypes: ESTree.CommentType[] = [
+  'SingleLine',
+  'MultiLine',
+  'HTMLOpen',
+  'HTMLClose',
+  'HashbangComment',
+];
 
 /**
  * Skips hashbang (stage 3)
@@ -88,7 +95,7 @@ export function skipSingleLineComment(
     parser.tokenLine = parser.line;
     parser.tokenColumn = parser.column;
   }
-  if (parser.onComment) {
+  if (parser.options.onComment) {
     const loc = {
       start: {
         line,
@@ -102,7 +109,13 @@ export function skipSingleLineComment(
     // For Single, start before "//",
     // For HTMLOpen, start before "<!--",
     // For HTMLClose, start before "\n-->"
-    parser.onComment(CommentTypes[type & 0xff], source.slice(index, parser.tokenIndex), start, parser.tokenIndex, loc);
+    parser.options.onComment(
+      CommentTypes[type & 0xff],
+      source.slice(index, parser.tokenIndex),
+      start,
+      parser.tokenIndex,
+      loc,
+    );
   }
   return state | LexerState.NewLine;
 }
@@ -125,7 +138,7 @@ export function skipMultiLineComment(parser: Parser, source: string, state: Lexe
         }
         if (advanceChar(parser) === Chars.Slash) {
           advanceChar(parser);
-          if (parser.onComment) {
+          if (parser.options.onComment) {
             const loc = {
               start: {
                 line: parser.tokenLine,
@@ -136,7 +149,7 @@ export function skipMultiLineComment(parser: Parser, source: string, state: Lexe
                 column: parser.column,
               },
             };
-            parser.onComment(
+            parser.options.onComment(
               CommentTypes[CommentType.Multi & 0xff],
               source.slice(index, parser.index - 2),
               index - 2, // start before '/*'

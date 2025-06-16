@@ -14,8 +14,6 @@ import {
   type OnComment,
   type OnInsertedSemicolon,
   type OnToken,
-  pushComment,
-  pushToken,
   reinterpretToPattern,
   DestructuringKind,
   AssignmentKind,
@@ -52,7 +50,7 @@ import {
   type Location,
 } from './common';
 import { Chars } from './chars';
-import { Parser } from './parser/parser';
+import { Parser, type ParserOptions, pushComment, pushToken } from './parser/parser';
 
 /**
  * The parser options.
@@ -96,10 +94,6 @@ export interface Options {
  * Consumes a sequence of tokens and produces an syntax tree
  */
 export function parseSource(source: string, options: Options | void, context: Context): ESTree.Program {
-  let sourceFile = '';
-  let onComment;
-  let onInsertedSemicolon;
-  let onToken;
   if (options != null) {
     if (options.module) context |= Context.Module | Context.Strict;
     if (options.next) context |= Context.OptionsNext;
@@ -114,28 +108,32 @@ export function parseSource(source: string, options: Options | void, context: Co
     if (options.preserveParens) context |= Context.OptionsPreserveParens;
     if (options.impliedStrict) context |= Context.Strict;
     if (options.jsx) context |= Context.OptionsJSX;
-    if (options.source) sourceFile = options.source;
+  }
+
+  const parserOptions: ParserOptions = {
+    shouldAddLoc: Boolean(context & Context.OptionsLoc),
+    shouldAddRanges: Boolean(context & Context.OptionsRanges),
+  };
+  if (options != null) {
+    if (options.source) parserOptions.sourceFile = options.source;
+
     // Accepts either a callback function to be invoked or an array to collect comments (as the node is constructed)
     if (options.onComment != null) {
-      onComment = Array.isArray(options.onComment) ? pushComment(context, options.onComment) : options.onComment;
+      parserOptions.onComment = Array.isArray(options.onComment)
+        ? pushComment(options.onComment, parserOptions)
+        : options.onComment;
     }
-    if (options.onInsertedSemicolon != null) onInsertedSemicolon = options.onInsertedSemicolon;
+    if (options.onInsertedSemicolon != null) parserOptions.onInsertedSemicolon = options.onInsertedSemicolon;
     // Accepts either a callback function to be invoked or an array to collect tokens
     if (options.onToken != null) {
-      onToken = Array.isArray(options.onToken) ? pushToken(context, options.onToken) : options.onToken;
+      parserOptions.onToken = Array.isArray(options.onToken)
+        ? pushToken(options.onToken, parserOptions)
+        : options.onToken;
     }
   }
 
   // Initialize parser state
-  const parser = new Parser(
-    source,
-    sourceFile,
-    /* shouldAddLoc */ Boolean(context & Context.OptionsLoc),
-    /* shouldAddRanges */ Boolean(context & Context.OptionsRanges),
-    onComment,
-    onToken,
-    onInsertedSemicolon,
-  );
+  const parser = new Parser(source, parserOptions);
 
   // See: https://github.com/tc39/proposal-hashbang
   skipHashBang(parser);
@@ -180,7 +178,7 @@ export function parseSource(source: string, options: Options | void, context: Co
       end: { line: parser.line, column: parser.column },
     };
 
-    if (parser.sourceFile) node.loc.source = sourceFile;
+    if (parser.options.sourceFile) node.loc.source = parser.options.sourceFile;
   }
 
   return node;
@@ -9100,5 +9098,3 @@ export function parseJSXIdentifier(parser: Parser, context: Context): ESTree.JSX
     start,
   );
 }
-
-export { Parser } from './parser/parser';

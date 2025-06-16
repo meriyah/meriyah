@@ -1,13 +1,13 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { Flags } from '../../src/common';
-import { Parser } from '../../src/parser';
+import { Parser } from '../../src/parser/parser';
 import { skipHashBang } from '../../src/lexer';
 
 describe('Lexer - skiphashbang', () => {
   function pass(name: string, opts: any) {
     it(name, () => {
-      const state = new Parser(opts.source, '');
+      const state = new Parser(opts.source);
       skipHashBang(state);
       t.deepEqual(
         {

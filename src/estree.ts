@@ -34,12 +34,9 @@ export type ArgumentExpression =
 
 export type CommentType = 'SingleLine' | 'MultiLine' | 'HTMLOpen' | 'HTMLClose' | 'HashbangComment';
 
-export interface Comment {
+export interface Comment extends _Node {
   type: CommentType;
   value: string;
-  start?: number;
-  end?: number;
-  loc?: SourceLocation | null;
 }
 
 export type Node =

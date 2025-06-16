@@ -1,5 +1,5 @@
 import { Context } from '../common';
-import { type Parser } from '../parser';
+import { type Parser } from '../parser/parser';
 import { Token, descKeywordTable } from '../token';
 import { Chars } from '../chars';
 import { advanceChar, consumePossibleSurrogatePair, toHex } from './common';
