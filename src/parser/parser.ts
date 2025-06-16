@@ -9,7 +9,7 @@ import {
   type OnToken,
   type AssignmentKind,
   type DestructuringKind,
-} from './../common';
+} from '../common';
 
 export type ParserOptions = {
   shouldAddLoc?: boolean;
