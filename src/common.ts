@@ -229,12 +229,8 @@ export interface PrivateScopeState {
 export interface ScopeError {
   type: Errors;
   params: string[];
-  index: number;
-  line: number;
-  column: number;
-  tokenIndex: number;
-  tokenLine: number;
-  tokenColumn: number;
+  start: Location;
+  end: Location;
 }
 
 /**
@@ -533,16 +529,16 @@ export function createArrowHeadParsingScope(parser: Parser, context: Context, va
  * @param type Errors type
  */
 export function recordScopeError(parser: Parser, type: Errors, ...params: string[]): ScopeError {
-  const { index, line, column, tokenIndex, tokenLine, tokenColumn } = parser;
+  const { index, line, column, tokenStart } = parser;
   return {
     type,
     params,
-    index,
-    line,
-    column,
-    tokenIndex,
-    tokenLine,
-    tokenColumn,
+    start: tokenStart,
+    end: {
+      index,
+      line,
+      column,
+    },
   };
 }
 
@@ -785,12 +781,8 @@ export function validatePrivateIdentifierRefs(scope: PrivateScopeState): void {
     if (!isPrivateIdentifierDefined(name, scope)) {
       const { index, line, column } = scope.refs[name][0];
       throw new ParseError(
-        index,
-        line,
-        column,
-        index + name.length,
-        line,
-        column + name.length,
+        { index, line, column },
+        { index: index + name.length, line, column: column + name.length },
         Errors.InvalidPrivateIdentifier,
         name,
       );

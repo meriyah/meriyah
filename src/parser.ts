@@ -198,11 +198,11 @@ export function parseStatementList(
       context |= Context.Strict;
 
       if (parser.flags & Flags.Octal) {
-        reportMessageAt(parser.tokenStart, parser.index, parser.line, parser.column, Errors.StrictOctalLiteral);
+        reportMessageAt(parser.tokenStart, parser.currentLocation, Errors.StrictOctalLiteral);
       }
 
       if (parser.flags & Flags.EightAndNine) {
-        reportMessageAt(parser.tokenStart, parser.index, parser.line, parser.column, Errors.StrictEightAndNine);
+        reportMessageAt(parser.tokenStart, parser.currentLocation, Errors.StrictEightAndNine);
       }
     }
     statements.push(parseDirective(parser, context, expr, token, tokenStart));
@@ -1905,9 +1905,7 @@ function parseVariableDeclaration(
       ) {
         reportMessageAt(
           tokenStart,
-          parser.index,
-          parser.line,
-          parser.column,
+          parser.currentLocation,
           Errors.ForInOfLoopInitializer,
           parser.getToken() === Token.OfKeyword ? 'of' : 'in',
         );
@@ -2337,9 +2335,7 @@ function parseImportNamespaceSpecifier(
   if ((parser.getToken() & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
     reportMessageAt(
       tokenStart,
-      parser.index,
-      parser.line,
-      parser.column,
+      parser.currentLocation,
       Errors.UnexpectedToken,
       KeywordDescTable[parser.getToken() & Token.Type],
     );
@@ -3421,22 +3417,22 @@ export function parseAwaitExpressionOrIdentifier(
 
   if (isIdentifier) {
     if (context & Context.InAwaitContext)
-      reportMessageAt(start, parser.startIndex, parser.startLine, parser.startColumn, Errors.InvalidAwaitAsIdentifier);
+      reportMessageAt(
+        start,
+        { index: parser.startIndex, line: parser.startLine, column: parser.startColumn },
+        Errors.InvalidAwaitAsIdentifier,
+      );
     if (context & Context.Module)
       reportMessageAt(
         start,
-        parser.startIndex,
-        parser.startLine,
-        parser.startColumn,
+        { index: parser.startIndex, line: parser.startLine, column: parser.startColumn },
         Errors.AwaitIdentInModuleOrAsyncFunc,
       );
 
     if (context & Context.InArgumentList && context & Context.InAwaitContext)
       reportMessageAt(
         start,
-        parser.startIndex,
-        parser.startLine,
-        parser.startColumn,
+        { index: parser.startIndex, line: parser.startLine, column: parser.startColumn },
         Errors.AwaitIdentInModuleOrAsyncFunc,
       );
     // "await" can be identifier out of async func.
@@ -3445,12 +3441,21 @@ export function parseAwaitExpressionOrIdentifier(
 
   // "await" is start of await expression.
   if (context & Context.InArgumentList) {
-    reportMessageAt(start, parser.startIndex, parser.startLine, parser.startColumn, Errors.AwaitInParameter);
+    reportMessageAt(
+      start,
+      { index: parser.startIndex, line: parser.startLine, column: parser.startColumn },
+      Errors.AwaitInParameter,
+    );
   }
 
   // await expression is only allowed in async func or at module top level.
   if (context & Context.InAwaitContext || (context & Context.Module && context & Context.InGlobal)) {
-    if (inNew) reportMessageAt(start, parser.startIndex, parser.startLine, parser.startColumn, Errors.Unexpected);
+    if (inNew)
+      reportMessageAt(
+        start,
+        { index: parser.startIndex, line: parser.startLine, column: parser.startColumn },
+        Errors.Unexpected,
+      );
 
     const argument = parseLeftHandSideExpression(parser, context, privateScope, 0, 0, 1);
 
@@ -3468,7 +3473,11 @@ export function parseAwaitExpressionOrIdentifier(
   }
 
   if (context & Context.Module)
-    reportMessageAt(start, parser.startIndex, parser.startLine, parser.startColumn, Errors.AwaitOutsideAsync);
+    reportMessageAt(
+      start,
+      { index: parser.startIndex, line: parser.startLine, column: parser.startColumn },
+      Errors.AwaitOutsideAsync,
+    );
   // Fallback to identifier in script mode
   return possibleIdentifierOrArrowFunc;
 }
@@ -3509,15 +3518,15 @@ export function parseFunctionBody(
         // in the body of a function with non-simple parameter list, on
         // 29/7/2015. https://goo.gl/ueA7Ln
         if (parser.flags & Flags.NonSimpleParameterList) {
-          reportMessageAt(tokenStart, parser.index, parser.line, parser.column, Errors.IllegalUseStrict);
+          reportMessageAt(tokenStart, parser.currentLocation, Errors.IllegalUseStrict);
         }
 
         if (parser.flags & Flags.Octal) {
-          reportMessageAt(tokenStart, parser.index, parser.line, parser.column, Errors.StrictOctalLiteral);
+          reportMessageAt(tokenStart, parser.currentLocation, Errors.StrictOctalLiteral);
         }
 
         if (parser.flags & Flags.EightAndNine) {
-          reportMessageAt(tokenStart, parser.index, parser.line, parser.column, Errors.StrictEightAndNine);
+          reportMessageAt(tokenStart, parser.currentLocation, Errors.StrictEightAndNine);
         }
 
         if (scopeError) reportScopeError(scopeError);
@@ -6334,9 +6343,7 @@ export function parseObjectLiteralOrPattern(
           } else {
             reportMessageAt(
               parser.tokenStart,
-              parser.index,
-              parser.line,
-              parser.column,
+              parser.currentLocation,
               token === Token.AsyncKeyword
                 ? Errors.InvalidAsyncGetter
                 : token === Token.GetKeyword || parser.getToken() === Token.SetKeyword

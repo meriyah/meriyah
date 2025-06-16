@@ -382,25 +382,16 @@ export class ParseError extends SyntaxError implements _Node {
 
   public description: string;
 
-  constructor(
-    start: number,
-    startLine: number,
-    startColumn: number,
-    end: number,
-    endLine: number,
-    endColumn: number,
-    type: Errors,
-    ...params: string[]
-  ) {
+  constructor(start: Location, end: Location, type: Errors, ...params: string[]) {
     const description = errorMessages[type].replace(/%(\d+)/g, (_: string, i: number) => params[i]);
-    const message = '[' + startLine + ':' + startColumn + '-' + endLine + ':' + endColumn + ']: ' + description;
+    const message = '[' + start.line + ':' + start.column + '-' + end.line + ':' + end.column + ']: ' + description;
     super(message);
-    this.start = start;
-    this.end = end;
-    this.range = [start, end];
+    this.start = start.index;
+    this.end = end.index;
+    this.range = [start.index, end.index];
     this.loc = {
-      start: { line: startLine, column: startColumn },
-      end: { line: endLine, column: endColumn },
+      start: { line: start.line, column: start.column },
+      end: { line: end.line, column: end.column },
     };
     this.description = description;
   }
@@ -416,28 +407,15 @@ export class ParseError extends SyntaxError implements _Node {
  */
 export function report(parser: Parser, type: Errors, ...params: string[]): never {
   throw new ParseError(
-    parser.tokenIndex,
-    parser.tokenLine,
-    parser.tokenColumn,
-    parser.index,
-    parser.line,
-    parser.column,
+    parser.tokenStart,
+    { index: parser.index, line: parser.line, column: parser.column },
     type,
     ...params,
   );
 }
 
 export function reportScopeError(scope: ScopeError): never {
-  throw new ParseError(
-    scope.tokenIndex,
-    scope.tokenLine,
-    scope.tokenColumn,
-    scope.index,
-    scope.line,
-    scope.column,
-    scope.type,
-    ...scope.params,
-  );
+  throw new ParseError(scope.start, scope.end, scope.type, ...scope.params);
 }
 
 /**
@@ -445,30 +423,13 @@ export function reportScopeError(scope: ScopeError): never {
  *
  * @export
  * @param {Parser} state
- * @param {number} index
- * @param {number} line
- * @param {number} column
+ * @param {Location} start
+ * @param {Location} end
  * @param {Errors} type
  * @param {...string[]} params
  */
-export function reportMessageAt(
-  tokenLocation: Location,
-  index: number,
-  line: number,
-  column: number,
-  type: Errors,
-  ...params: string[]
-): never {
-  throw new ParseError(
-    tokenLocation.index,
-    tokenLocation.line,
-    tokenLocation.column,
-    index,
-    line,
-    column,
-    type,
-    ...params,
-  );
+export function reportMessageAt(start: Location, end: Location, type: Errors, ...params: string[]): never {
+  throw new ParseError(start, end, type, ...params);
 }
 
 /**
@@ -476,19 +437,10 @@ export function reportMessageAt(
  *
  * @export
  * @param {Parser} state
- * @param {number} index
- * @param {number} line
- * @param {number} column
+ * @param {Location} start
+ * @param {Location} end
  * @param {Errors} type
  */
-export function reportScannerError(
-  tokenIndex: number,
-  tokenLine: number,
-  tokenColumn: number,
-  index: number,
-  line: number,
-  column: number,
-  type: Errors,
-): never {
-  throw new ParseError(tokenIndex, tokenLine, tokenColumn, index, line, column, type);
+export function reportScannerError(start: Location, end: Location, type: Errors): never {
+  throw new ParseError(start, end, type);
 }

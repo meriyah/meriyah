@@ -124,12 +124,8 @@ export function scanNumber(parser: Parser, context: Context, kind: NumberKind): 
             char = advanceChar(parser);
             if (char === Chars.Underscore || kind & NumberKind.NonOctalDecimal) {
               reportScannerError(
-                parser.index,
-                parser.line,
-                parser.column,
-                parser.index + 1,
-                parser.line,
-                parser.column,
+                parser.currentLocation,
+                { index: parser.index + 1, line: parser.line, column: parser.column },
                 Errors.ContinuousNumericSeparator,
               );
             }
@@ -144,12 +140,8 @@ export function scanNumber(parser: Parser, context: Context, kind: NumberKind): 
 
         if (allowSeparator) {
           reportScannerError(
-            parser.index,
-            parser.line,
-            parser.column,
-            parser.index + 1,
-            parser.line,
-            parser.column,
+            parser.currentLocation,
+            { index: parser.index + 1, line: parser.line, column: parser.column },
             Errors.TrailingNumericSeparator,
           );
         }
@@ -243,12 +235,8 @@ export function scanDecimalDigitsOrSeparator(parser: Parser, char: number): stri
       char = advanceChar(parser);
       if (char === Chars.Underscore) {
         reportScannerError(
-          parser.index,
-          parser.line,
-          parser.column,
-          parser.index + 1,
-          parser.line,
-          parser.column,
+          parser.currentLocation,
+          { index: parser.index + 1, line: parser.line, column: parser.column },
           Errors.ContinuousNumericSeparator,
         );
       }
@@ -263,12 +251,8 @@ export function scanDecimalDigitsOrSeparator(parser: Parser, char: number): stri
 
   if (allowSeparator) {
     reportScannerError(
-      parser.index,
-      parser.line,
-      parser.column,
-      parser.index + 1,
-      parser.line,
-      parser.column,
+      parser.currentLocation,
+      { index: parser.index + 1, line: parser.line, column: parser.column },
       Errors.TrailingNumericSeparator,
     );
   }
