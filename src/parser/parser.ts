@@ -216,12 +216,7 @@ export class Parser {
           line: start.line,
           column: start.column,
         },
-        end: end
-          ? { line: end.line, column: end.column }
-          : {
-              line: this.startLine,
-              column: this.startColumn,
-            },
+        end: end ? { line: end.line, column: end.column } : { line: this.startLine, column: this.startColumn },
       };
 
       if (this.sourceFile) {
