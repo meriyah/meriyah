@@ -160,28 +160,15 @@ export function parseSource(source: string, options: Options | void, context: Co
     body = parseStatementList(parser, context | Context.InGlobal, scope);
   }
 
-  const node: ESTree.Program = {
-    type: 'Program',
-    sourceType,
-    body,
-  };
-
-  if (context & Context.OptionsRanges) {
-    node.start = 0;
-    node.end = source.length;
-    node.range = [0, source.length];
-  }
-
-  if (context & Context.OptionsLoc) {
-    node.loc = {
-      start: { line: 1, column: 0 },
-      end: { line: parser.line, column: parser.column },
-    };
-
-    if (parser.options.sourceFile) node.loc.source = parser.options.sourceFile;
-  }
-
-  return node;
+  return parser.finishNode(
+    {
+      type: 'Program',
+      sourceType,
+      body,
+    },
+    { index: 0, line: 1, column: 0 },
+    { index: parser.index, line: parser.line, column: parser.column },
+  );
 }
 
 /**
@@ -9060,18 +9047,14 @@ function parseJSXSpreadChild(
  * @param parser Parser object
  */
 function parseJSXEmptyExpression(parser: Parser, start: Location): ESTree.JSXEmptyExpression {
-  // Since " }" is treated as single token, we have to artificially break
-  // it into " " and "}".
-  // Move token start from beginning of whitespace(s) to beginning of "}",
-  // so JSXEmptyExpression can have correct end loc.
-  parser.startIndex = parser.tokenIndex;
-  parser.startLine = parser.tokenLine;
-  parser.startColumn = parser.tokenColumn;
   return parser.finishNode(
     {
       type: 'JSXEmptyExpression',
     },
     start,
+    // Since " }" is treated as single token, we have to artificially break
+    // it into " " and "}".
+    parser.tokenStart,
   );
 }
 

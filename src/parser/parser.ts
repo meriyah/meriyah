@@ -203,11 +203,12 @@ export class Parser {
     };
   }
 
-  finishNode<T extends ESTree.Node>(node: T, start: Location): T {
+  finishNode<T extends ESTree.Node>(node: T, start: Location, end: Location | void): T {
     if (this.options.shouldAddRanges) {
       node.start = start.index;
-      node.end = this.startIndex;
-      node.range = [start.index, this.startIndex];
+      const endIndex = end ? end.index : this.startIndex;
+      node.end = endIndex;
+      node.range = [start.index, endIndex];
     }
 
     if (this.options.shouldAddLoc) {
@@ -216,10 +217,7 @@ export class Parser {
           line: start.line,
           column: start.column,
         },
-        end: {
-          line: this.startLine,
-          column: this.startColumn,
-        },
+        end: end ? { line: end.line, column: end.column } : { line: this.startLine, column: this.startColumn },
       };
 
       if (this.options.sourceFile) {
