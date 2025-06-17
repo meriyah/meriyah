@@ -1,15 +1,21 @@
 import * as t from 'node:assert/strict';
 import { describe, it, expect } from 'vitest';
-import { parseSource } from '../src/parser';
-import { type Context } from '../src/common';
+import { parseSource, type Options } from '../src/parser';
+import { Context } from '../src/common';
 
-export const pass = (name: string, valid: [string, Context][]): void => {
+export const pass = (name: string, valid: (string | { code: string; options?: Options })[]): void => {
   describe(name, () => {
-    for (const [source, ctx] of valid) {
+    for (let testCase of valid) {
+      if (typeof testCase === 'string') {
+        testCase = { code: testCase };
+      }
+
+      const { code, options } = testCase;
+
       // https://github.com/vitest-dev/vitest/issues/8151
-      const title = source.replaceAll('\r', '␍␊');
+      const title = code.replaceAll('\r', '␍␊');
       it(title, () => {
-        const parseResult = parseSource(source, undefined, ctx);
+        const parseResult = parseSource(code, options, Context.None);
         expect(parseResult).toMatchSnapshot();
       });
     }
