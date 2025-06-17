@@ -1,18 +1,17 @@
 import { describe } from 'vitest';
-import { Context } from '../../../src/common';
 import { pass } from '../../test-utils';
 
 describe('Expressions - Conditional', () => {
   pass('Expressions - Conditional (pass)', [
-    ['a&b', Context.OptionsRanges],
-    ['a^b', Context.OptionsLoc],
-    ['~a', Context.OptionsLoc],
-    ['a>>b', Context.OptionsRanges],
-    ['a|b', Context.None],
+    { code: 'a&b', options: { ranges: true } },
+    { code: 'a^b', options: { loc: true } },
+    { code: '~a', options: { loc: true } },
+    { code: 'a>>b', options: { ranges: true } },
+    'a|b',
 
-    ['a>>>b', Context.None],
-    ['x != y', Context.None],
-    ['x <= y', Context.None],
-    ['x << y', Context.None],
+    'a>>>b',
+    'x != y',
+    'x <= y',
+    'x << y',
   ]);
 });
