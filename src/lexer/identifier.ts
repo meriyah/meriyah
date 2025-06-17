@@ -194,12 +194,8 @@ export function scanUnicodeEscape(parser: Parser): number {
       codePoint = (codePoint << 4) | toHex(parser.currentChar);
       if (codePoint > Chars.NonBMPMax)
         reportScannerError(
-          begin,
-          parser.line,
-          parser.column,
-          parser.index,
-          parser.line,
-          parser.column,
+          { index: begin, line: parser.line, column: parser.column },
+          parser.currentLocation,
           Errors.UnicodeOverflow,
         );
     }
@@ -207,12 +203,8 @@ export function scanUnicodeEscape(parser: Parser): number {
     // At least 4 characters have to be read
     if ((parser.currentChar as number) !== Chars.RightBrace) {
       reportScannerError(
-        begin,
-        parser.line,
-        parser.column,
-        parser.index,
-        parser.line,
-        parser.column,
+        { index: begin, line: parser.line, column: parser.column },
+        parser.currentLocation,
         Errors.InvalidHexEscapeSequence,
       );
     }

@@ -2,11 +2,11 @@ import { convertTokenType } from '../lexer';
 import { Token } from '../token';
 import type * as ESTree from '../estree';
 import {
+  type Location,
   Flags,
   type OnComment,
   type OnInsertedSemicolon,
   type OnToken,
-  type Location,
   type AssignmentKind,
   type DestructuringKind,
 } from '../common';
@@ -204,6 +204,10 @@ export class Parser {
       line: this.tokenLine,
       column: this.tokenColumn,
     };
+  }
+
+  get currentLocation(): Location {
+    return { index: this.index, line: this.line, column: this.column };
   }
 
   finishNode<T extends ESTree.Node>(node: T, start: Location, end: Location | void): T {
