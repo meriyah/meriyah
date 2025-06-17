@@ -107,34 +107,34 @@ describe('Next - Decorators', () => {
   ]);
 
   pass('Next - Decorators (pass)', [
-    [`class A { @dec name = 0; }`, Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
-    [`class A {  @deco #prop; #foo = 2; test() {  this.#foo; }}`, Context.OptionsNext],
-    [`(class A { @foo get getter(){} })`, Context.OptionsNext | Context.Module | Context.Strict],
-    [
-      `export default @id class Sample {
+    { code: `class A { @dec name = 0; }`, options: { next: true, ranges: true, loc: true } },
+    { code: `class A {  @deco #prop; #foo = 2; test() {  this.#foo; }}`, options: { next: true } },
+    { code: `(class A { @foo get getter(){} })`, options: { module: true, next: true } },
+    {
+      code: `export default @id class Sample {
         method() {
           class Child {}
         }
       }`,
-      Context.OptionsNext | Context.Module | Context.Strict,
-    ],
-    [
-      `@bar export default
+      options: { module: true, next: true },
+    },
+    {
+      code: `@bar export default
           class Foo { }`,
-      Context.OptionsNext | Context.Module | Context.Strict | Context.OptionsRanges | Context.OptionsLoc,
-    ],
-    [
-      `export default
+      options: { next: true, module: true, ranges: true, loc: true },
+    },
+    {
+      code: `export default
           @bar class Foo { }`,
-      Context.OptionsNext | Context.Module | Context.Strict | Context.OptionsRanges | Context.OptionsLoc,
-    ],
-    [
-      `export default @bar
+      options: { next: true, module: true, ranges: true, loc: true },
+    },
+    {
+      code: `export default @bar
           class Foo { }`,
-      Context.OptionsNext | Context.Module | Context.Strict,
-    ],
-    [
-      `@pushElement({
+      options: { module: true, next: true },
+    },
+    {
+      code: `@pushElement({
         kind: "initializer",
         placement: "own",
         initializer() {
@@ -143,63 +143,63 @@ describe('Next - Decorators', () => {
       })
       class A {}
       new A();`,
-      Context.OptionsNext | Context.Module | Context.Strict,
-    ],
-    [
-      `@decorator
+      options: { module: true, next: true },
+    },
+    {
+      code: `@decorator
            class Foo {
             async f1() {}
             *f2() {}
             async *f3() {}
           }`,
-      Context.OptionsNext,
-    ],
-    [`export default (@decorator class Foo {})`, Context.OptionsNext | Context.Module | Context.Strict],
-    [
-      `class Foo {
+      options: { next: true },
+    },
+    { code: `export default (@decorator class Foo {})`, options: { module: true, next: true } },
+    {
+      code: `class Foo {
         @A * b() {}
       }`,
-      Context.OptionsNext,
-    ],
-    [
-      `function deco() {}
+      options: { next: true },
+    },
+    {
+      code: `function deco() {}
 
       class Foo {
         @deco
         *generatorMethod() {}
       }`,
-      Context.OptionsNext,
-    ],
-    [`@deco1 @deco2() @deco3(foo, bar) @deco4({foo, bar}) class Foo {}`, Context.OptionsNext],
-    [
-      `@foo('bar')
+      options: { next: true },
+    },
+    { code: `@deco1 @deco2() @deco3(foo, bar) @deco4({foo, bar}) class Foo {}`, options: { next: true } },
+    {
+      code: `@foo('bar')
   class Foo {}`,
-      Context.OptionsNext,
-    ],
-    [
-      `@foo('bar')
+      options: { next: true },
+    },
+    {
+      code: `@foo('bar')
   class Foo {}`,
-      Context.OptionsNext | Context.Module,
-    ],
-    [
-      `(@foo('bar')
+      options: { next: true, module: true },
+    },
+    {
+      code: `(@foo('bar')
   class Foo {})`,
-      Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc,
-    ],
-    [
-      `(@foo('bar')
+      options: { next: true, ranges: true, loc: true },
+    },
+    {
+      code: `(@foo('bar')
   class Foo {})`,
-      Context.OptionsNext | Context.Module,
-    ],
-    [
-      `class Foo {
+      options: { next: true, module: true },
+    },
+    {
+      code: `class Foo {
     @dec
     static bar() {}
   }`,
-      Context.OptionsNext,
-    ],
-    [
-      `class A {
+      options: { next: true },
+    },
+    {
+      code: `class A {
         @(({ key }) => { pn = key; })
         #x = 1;
 
@@ -207,10 +207,10 @@ describe('Next - Decorators', () => {
           return this.#x;
         }
       }`,
-      Context.OptionsNext,
-    ],
-    [
-      `@deco
+      options: { next: true },
+    },
+    {
+      code: `@deco
         class A {
           get #get() {}
 
@@ -226,10 +226,10 @@ describe('Next - Decorators', () => {
             this.#getset = 2;
           }
         }`,
-      Context.OptionsNext,
-    ],
-    [
-      `@deco
+      options: { next: true },
+    },
+    {
+      code: `@deco
           class A {
             static #foo() {}
 
@@ -237,17 +237,17 @@ describe('Next - Decorators', () => {
               A.#foo();
             }
           }`,
-      Context.OptionsNext,
-    ],
-    [
-      `class A {
+      options: { next: true },
+    },
+    {
+      code: `class A {
               @(({ key }) => { pn = key; })
               #x;
             }`,
-      Context.OptionsNext,
-    ],
-    [
-      `function writable(w) {
+      options: { next: true },
+    },
+    {
+      code: `function writable(w) {
                 return desc => {
                   desc.descriptor.writable = w;
                 }
@@ -269,37 +269,37 @@ describe('Next - Decorators', () => {
                   this.#y = 1;
                 }
               }`,
-      Context.OptionsNext,
-    ],
-    [
-      `class A {
+      options: { next: true },
+    },
+    {
+      code: `class A {
                   @(_ => el = _)
                   static foo() {}
                 }`,
-      Context.OptionsNext,
-    ],
-    [
-      `@foo(class Bar{})
+      options: { next: true },
+    },
+    {
+      code: `@foo(class Bar{})
     class Foo {}`,
-      Context.OptionsNext,
-    ],
-    [
-      `class A {
+      options: { next: true },
+    },
+    {
+      code: `class A {
           @foo get getter(){}
         }`,
-      Context.OptionsNext,
-    ],
-    [
-      `@outer({
+      options: { next: true },
+    },
+    {
+      code: `@outer({
             store: @inner class Foo {}
           })
           class Bar {
 
           }`,
-      Context.OptionsNext,
-    ],
-    [
-      `class Bar{
+      options: { next: true },
+    },
+    {
+      code: `class Bar{
               @outer(
                 @classDec class {
                   @inner
@@ -308,66 +308,54 @@ describe('Next - Decorators', () => {
               )
               outerMethod() {}
             }`,
-      Context.OptionsNext,
-    ],
-    [
-      `@({
+      options: { next: true },
+    },
+    {
+      code: `@({
                 store: @inner class Foo {}
               })
               class Bar {
 
               }`,
-      Context.OptionsNext,
-    ],
-    [
-      `class A {
+      options: { next: true },
+    },
+    {
+      code: `class A {
                     @dec #name = 0
                   }`,
-      Context.OptionsNext,
-    ],
-    [
-      `class Foo {
+      options: { next: true },
+    },
+    {
+      code: `class Foo {
                       @dec
                       static bar() {}
                     }`,
-      Context.OptionsNext,
-    ],
-    [
-      `class A {
+      options: { next: true },
+    },
+    {
+      code: `class A {
                         @dec static #name = 0
                       }`,
-      Context.OptionsNext,
-    ],
-    [`class Foo { @foo @bar bar() {} }`, Context.OptionsNext],
-    [`var Foo = @foo class Foo {}`, Context.OptionsNext],
-    [`class Foo { @foo set bar(f) {} }`, Context.OptionsNext],
-    ['@a(@b class C {}) @d(@e() class F {}) class G {}', Context.OptionsNext],
-    ['@a(@b class C {}) @d(@e() class F {}) class G {}', Context.OptionsNext | Context.Module],
-    ['@a class G {}', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
-    ['class A { @dec accessor a }', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
-    ['class A { @dec accessor #a }', Context.OptionsNext],
-    ['@\n dec() class C {}', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
-    ['(@\n dec() class C {})', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
-    ['@\n x.y class D {}', Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
-    [
-      '@\n (dec()) class C {}',
-      Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc | Context.OptionsPreserveParens,
-    ],
-    [
-      '@\n (x.y) class D {}',
-      Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc | Context.OptionsPreserveParens,
-    ],
-    [`class A { @dec\nx }`, Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
-    [`class A { @dec\nx(){} }`, Context.OptionsNext | Context.OptionsRanges | Context.OptionsLoc],
-    ['@dec export class E {};', Context.OptionsNext | Context.Module | Context.OptionsRanges | Context.OptionsLoc],
-    [
-      '@dec export default class {};',
-      Context.OptionsNext | Context.Module | Context.OptionsRanges | Context.OptionsLoc,
-    ],
-    ['export @dec class E {};', Context.OptionsNext | Context.Module | Context.OptionsRanges | Context.OptionsLoc],
-    [
-      'export default @dec class {};',
-      Context.OptionsNext | Context.Module | Context.OptionsRanges | Context.OptionsLoc,
-    ],
+      options: { next: true },
+    },
+    { code: `class Foo { @foo @bar bar() {} }`, options: { next: true } },
+    { code: `var Foo = @foo class Foo {}`, options: { next: true } },
+    { code: `class Foo { @foo set bar(f) {} }`, options: { next: true } },
+    { code: '@a(@b class C {}) @d(@e() class F {}) class G {}', options: { next: true } },
+    { code: '@a(@b class C {}) @d(@e() class F {}) class G {}', options: { next: true, module: true } },
+    { code: '@a class G {}', options: { next: true, ranges: true, loc: true } },
+    { code: 'class A { @dec accessor a }', options: { next: true, ranges: true, loc: true } },
+    { code: 'class A { @dec accessor #a }', options: { next: true } },
+    { code: '@\n dec() class C {}', options: { next: true, ranges: true, loc: true } },
+    { code: '(@\n dec() class C {})', options: { next: true, ranges: true, loc: true } },
+    { code: '@\n x.y class D {}', options: { next: true, ranges: true, loc: true } },
+    { code: '@\n (dec()) class C {}', options: { next: true, ranges: true, loc: true, preserveParens: true } },
+    { code: '@\n (x.y) class D {}', options: { next: true, ranges: true, loc: true, preserveParens: true } },
+    { code: `class A { @dec\nx }`, options: { next: true, ranges: true, loc: true } },
+    { code: `class A { @dec\nx(){} }`, options: { next: true, ranges: true, loc: true } },
+    { code: '@dec export class E {};', options: { next: true, module: true, ranges: true, loc: true } },
+    { code: '@dec export default class {};', options: { next: true, module: true, ranges: true, loc: true } },
+    { code: 'export @dec class E {};', options: { next: true, module: true, ranges: true, loc: true } },
+    { code: 'export default @dec class {};', options: { next: true, module: true, ranges: true, loc: true } },
   ]);
 });
