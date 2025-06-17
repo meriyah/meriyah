@@ -342,6 +342,109 @@ exports[`Next - Import Meta > Next - Import Meta (pass) > if (1) { import.meta }
 }
 `;
 
+exports[`Next - Import Meta > Next - Import Meta (pass) > import.meta 1`] = `
+{
+  "body": [
+    {
+      "end": 11,
+      "expression": {
+        "end": 11,
+        "loc": {
+          "end": {
+            "column": 11,
+            "line": 1,
+          },
+          "start": {
+            "column": 6,
+            "line": 1,
+          },
+        },
+        "meta": {
+          "end": 6,
+          "loc": {
+            "end": {
+              "column": 6,
+              "line": 1,
+            },
+            "start": {
+              "column": 6,
+              "line": 1,
+            },
+          },
+          "name": "import",
+          "range": [
+            6,
+            6,
+          ],
+          "start": 6,
+          "type": "Identifier",
+        },
+        "property": {
+          "end": 11,
+          "loc": {
+            "end": {
+              "column": 11,
+              "line": 1,
+            },
+            "start": {
+              "column": 7,
+              "line": 1,
+            },
+          },
+          "name": "meta",
+          "range": [
+            7,
+            11,
+          ],
+          "start": 7,
+          "type": "Identifier",
+        },
+        "range": [
+          6,
+          11,
+        ],
+        "start": 6,
+        "type": "MetaProperty",
+      },
+      "loc": {
+        "end": {
+          "column": 11,
+          "line": 1,
+        },
+        "start": {
+          "column": 6,
+          "line": 1,
+        },
+      },
+      "range": [
+        6,
+        11,
+      ],
+      "start": 6,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 11,
+  "loc": {
+    "end": {
+      "column": 11,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    11,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`Next - Import Meta > Next - Import Meta (pass) > import.meta() 1`] = `
 {
   "body": [
@@ -408,6 +511,150 @@ exports[`Next - Import Meta > Next - Import Meta (pass) > import.meta.resolve('s
     },
   ],
   "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Meta > Next - Import Meta (pass) > import.meta.url 1`] = `
+{
+  "body": [
+    {
+      "end": 15,
+      "expression": {
+        "computed": false,
+        "end": 15,
+        "loc": {
+          "end": {
+            "column": 15,
+            "line": 1,
+          },
+          "start": {
+            "column": 6,
+            "line": 1,
+          },
+        },
+        "object": {
+          "end": 11,
+          "loc": {
+            "end": {
+              "column": 11,
+              "line": 1,
+            },
+            "start": {
+              "column": 6,
+              "line": 1,
+            },
+          },
+          "meta": {
+            "end": 6,
+            "loc": {
+              "end": {
+                "column": 6,
+                "line": 1,
+              },
+              "start": {
+                "column": 6,
+                "line": 1,
+              },
+            },
+            "name": "import",
+            "range": [
+              6,
+              6,
+            ],
+            "start": 6,
+            "type": "Identifier",
+          },
+          "property": {
+            "end": 11,
+            "loc": {
+              "end": {
+                "column": 11,
+                "line": 1,
+              },
+              "start": {
+                "column": 7,
+                "line": 1,
+              },
+            },
+            "name": "meta",
+            "range": [
+              7,
+              11,
+            ],
+            "start": 7,
+            "type": "Identifier",
+          },
+          "range": [
+            6,
+            11,
+          ],
+          "start": 6,
+          "type": "MetaProperty",
+        },
+        "optional": false,
+        "property": {
+          "end": 15,
+          "loc": {
+            "end": {
+              "column": 15,
+              "line": 1,
+            },
+            "start": {
+              "column": 12,
+              "line": 1,
+            },
+          },
+          "name": "url",
+          "range": [
+            12,
+            15,
+          ],
+          "start": 12,
+          "type": "Identifier",
+        },
+        "range": [
+          6,
+          15,
+        ],
+        "start": 6,
+        "type": "MemberExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 15,
+          "line": 1,
+        },
+        "start": {
+          "column": 6,
+          "line": 1,
+        },
+      },
+      "range": [
+        6,
+        15,
+      ],
+      "start": 6,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 15,
+  "loc": {
+    "end": {
+      "column": 15,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    15,
+  ],
+  "sourceType": "module",
+  "start": 0,
   "type": "Program",
 }
 `;
@@ -544,6 +791,335 @@ exports[`Next - Import Meta > Next - Import Meta (pass) > var f = function() {im
     },
   ],
   "sourceType": "module",
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Meta > Next - Import Meta (pass) > x = 
+import.meta 1`] = `
+{
+  "body": [
+    {
+      "end": 16,
+      "expression": {
+        "end": 16,
+        "left": {
+          "end": 1,
+          "loc": {
+            "end": {
+              "column": 1,
+              "line": 1,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "name": "x",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "loc": {
+          "end": {
+            "column": 11,
+            "line": 2,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "operator": "=",
+        "range": [
+          0,
+          16,
+        ],
+        "right": {
+          "end": 16,
+          "loc": {
+            "end": {
+              "column": 11,
+              "line": 2,
+            },
+            "start": {
+              "column": 6,
+              "line": 2,
+            },
+          },
+          "meta": {
+            "end": 11,
+            "loc": {
+              "end": {
+                "column": 6,
+                "line": 2,
+              },
+              "start": {
+                "column": 0,
+                "line": 2,
+              },
+            },
+            "name": "import",
+            "range": [
+              5,
+              11,
+            ],
+            "start": 5,
+            "type": "Identifier",
+          },
+          "property": {
+            "end": 16,
+            "loc": {
+              "end": {
+                "column": 11,
+                "line": 2,
+              },
+              "start": {
+                "column": 7,
+                "line": 2,
+              },
+            },
+            "name": "meta",
+            "range": [
+              12,
+              16,
+            ],
+            "start": 12,
+            "type": "Identifier",
+          },
+          "range": [
+            11,
+            16,
+          ],
+          "start": 11,
+          "type": "MetaProperty",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 11,
+          "line": 2,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        16,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 16,
+  "loc": {
+    "end": {
+      "column": 11,
+      "line": 2,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    16,
+  ],
+  "sourceType": "module",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Next - Import Meta > Next - Import Meta (pass) > x = 
+import.meta.url 1`] = `
+{
+  "body": [
+    {
+      "end": 20,
+      "expression": {
+        "end": 20,
+        "left": {
+          "end": 1,
+          "loc": {
+            "end": {
+              "column": 1,
+              "line": 1,
+            },
+            "start": {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "name": "x",
+          "range": [
+            0,
+            1,
+          ],
+          "start": 0,
+          "type": "Identifier",
+        },
+        "loc": {
+          "end": {
+            "column": 15,
+            "line": 2,
+          },
+          "start": {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "operator": "=",
+        "range": [
+          0,
+          20,
+        ],
+        "right": {
+          "computed": false,
+          "end": 20,
+          "loc": {
+            "end": {
+              "column": 15,
+              "line": 2,
+            },
+            "start": {
+              "column": 0,
+              "line": 2,
+            },
+          },
+          "object": {
+            "end": 16,
+            "loc": {
+              "end": {
+                "column": 11,
+                "line": 2,
+              },
+              "start": {
+                "column": 6,
+                "line": 2,
+              },
+            },
+            "meta": {
+              "end": 11,
+              "loc": {
+                "end": {
+                  "column": 6,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 0,
+                  "line": 2,
+                },
+              },
+              "name": "import",
+              "range": [
+                5,
+                11,
+              ],
+              "start": 5,
+              "type": "Identifier",
+            },
+            "property": {
+              "end": 16,
+              "loc": {
+                "end": {
+                  "column": 11,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 2,
+                },
+              },
+              "name": "meta",
+              "range": [
+                12,
+                16,
+              ],
+              "start": 12,
+              "type": "Identifier",
+            },
+            "range": [
+              11,
+              16,
+            ],
+            "start": 11,
+            "type": "MetaProperty",
+          },
+          "optional": false,
+          "property": {
+            "end": 20,
+            "loc": {
+              "end": {
+                "column": 15,
+                "line": 2,
+              },
+              "start": {
+                "column": 12,
+                "line": 2,
+              },
+            },
+            "name": "url",
+            "range": [
+              17,
+              20,
+            ],
+            "start": 17,
+            "type": "Identifier",
+          },
+          "range": [
+            5,
+            20,
+          ],
+          "start": 5,
+          "type": "MemberExpression",
+        },
+        "start": 0,
+        "type": "AssignmentExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 15,
+          "line": 2,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        20,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 20,
+  "loc": {
+    "end": {
+      "column": 15,
+      "line": 2,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    20,
+  ],
+  "sourceType": "module",
+  "start": 0,
   "type": "Program",
 }
 `;
