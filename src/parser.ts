@@ -361,7 +361,7 @@ export function parseStatementListItem(
         case Token.LeftParen:
           return parseImportCallDeclaration(parser, context, privateScope, start);
         case Token.Period:
-          return parseImportMetaDeclaration(parser, context);
+          return parseImportMetaDeclaration(parser, context, start);
         default:
           report(parser, Errors.InvalidImportExportSloppy, 'import');
       }
@@ -2290,7 +2290,7 @@ function parseImportDeclaration(
         case Token.LeftParen:
           return parseImportCallDeclaration(parser, context, undefined, start);
         case Token.Period:
-          return parseImportMetaDeclaration(parser, context);
+          return parseImportMetaDeclaration(parser, context, start);
         default:
           report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
       }
@@ -2453,9 +2453,11 @@ function parseImportSpecifierOrNamedImports(
  * @param context Context masks
  * @param meta  ESTree AST node
  */
-export function parseImportMetaDeclaration(parser: Parser, context: Context): ESTree.ExpressionStatement {
-  const start = parser.tokenStart;
-
+export function parseImportMetaDeclaration(
+  parser: Parser,
+  context: Context,
+  start: Location,
+): ESTree.ExpressionStatement {
   let expr: ESTree.Expression = parseImportMetaExpression(
     parser,
     context,
@@ -2466,6 +2468,7 @@ export function parseImportMetaDeclaration(parser: Parser, context: Context): ES
       },
       start,
     ),
+    start,
   );
 
   /** MemberExpression :
@@ -4156,7 +4159,7 @@ function parseImportCallOrMetaExpression(
   let expr: ESTree.Identifier | ESTree.ImportExpression = parseIdentifier(parser, context);
 
   if (parser.getToken() === Token.Period) {
-    return parseImportMetaExpression(parser, context, expr);
+    return parseImportMetaExpression(parser, context, expr, start);
   }
 
   if (inNew) report(parser, Errors.InvalidImportNew);
@@ -4179,10 +4182,10 @@ export function parseImportMetaExpression(
   parser: Parser,
   context: Context,
   meta: ESTree.Identifier,
+  start: Location,
 ): ESTree.MetaProperty {
   if ((context & Context.Module) === 0) report(parser, Errors.ImportMetaOutsideModule);
 
-  const { tokenStart } = parser;
   nextToken(parser, context); // skips: '.'
   const token = parser.getToken();
   if (token !== Token.Meta && parser.tokenValue !== 'meta') {
@@ -4199,7 +4202,7 @@ export function parseImportMetaExpression(
       meta,
       property: parseIdentifier(parser, context),
     },
-    tokenStart,
+    start,
   );
 }
 

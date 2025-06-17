@@ -212,5 +212,9 @@ describe('Next - Import Meta', () => {
     ],
     [`x = import.meta`, Context.Module | Context.Strict | Context.OptionsNext],
     [`() => { import.meta }`, Context.Module | Context.Strict | Context.OptionsNext],
+    ['x = \nimport.meta', Context.Module | Context.Strict | Context.OptionsLoc | Context.OptionsRanges],
+    ['x = \nimport.meta.url', Context.Module | Context.Strict | Context.OptionsLoc | Context.OptionsRanges],
+    ['import.meta', Context.Module | Context.Strict | Context.OptionsLoc | Context.OptionsRanges],
+    ['import.meta.url', Context.Module | Context.Strict | Context.OptionsLoc | Context.OptionsRanges],
   ]);
 });
