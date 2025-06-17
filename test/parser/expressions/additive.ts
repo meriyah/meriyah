@@ -1,11 +1,10 @@
 import { describe } from 'vitest';
-import { Context } from '../../../src/common';
 import { pass } from '../../test-utils';
 
 describe('Expressions - Additive', () => {
   pass('Expressions - Additive (pass)', [
-    ['async = a + await;  a = async++;', Context.OptionsWebCompat],
-    ['d = a + b;  a = b;', Context.OptionsRanges],
-    ['--a', Context.None],
+    { code: 'async = a + await;  a = async++;', options: { webcompat: true } },
+    { code: 'd = a + b;  a = b;', options: { ranges: true } },
+    '--a',
   ]);
 });
