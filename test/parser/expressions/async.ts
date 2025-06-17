@@ -135,18 +135,17 @@ describe('Expressions - Async', () => {
     ['await \n / x', Context.Module],
   ]);
   pass('Expressions - Async (pass)', [
-    ['async(), x', Context.None],
-    ['async/x', Context.OptionsRanges],
-    ['x / async', Context.OptionsRanges],
-    ['async \n / x / g', Context.None],
-    ['async \n / x', Context.None],
+    'async(), x',
+    { code: 'async/x', options: { ranges: true } },
+    { code: 'x / async', options: { ranges: true } },
+    'async \n / x / g',
+    'async \n / x',
 
-    ['function *f(){ async(x); }', Context.None],
-    ['async g => (x = [await y])', Context.None],
-    ['true ? async.waterfall() : null;', Context.Module | Context.Strict],
-    ['async r => result = [...{ x = await x }] = y;', Context.None],
-    [
-      `const a = {
+    'function *f(){ async(x); }',
+    'async g => (x = [await y])',
+    { code: 'true ? async.waterfall() : null;', options: { module: true } },
+    'async r => result = [...{ x = await x }] = y;',
+    `const a = {
         foo: () => {
         },
         bar: async event => {
@@ -162,20 +161,15 @@ describe('Expressions - Async', () => {
         }
       }
       `,
-      Context.None,
-    ],
-    [
-      `const a = {
+    `const a = {
         foo: () => {
         },
         bar: async event => {
         }
       }`,
-      Context.None,
-    ],
-    ['function f() {for (let in {}) {}}', Context.None],
-    ['({async foo () \n {}})', Context.None],
-    ['class x {async foo() {}}', Context.None],
+    'function f() {for (let in {}) {}}',
+    '({async foo () \n {}})',
+    'class x {async foo() {}}',
     /*  [
       '\\u0061sync\np => {}',
       Context.None,
@@ -210,74 +204,65 @@ describe('Expressions - Async', () => {
         type: 'Program'
       }
     ],*/
-    ['class x {\nasync foo() {}}', Context.None],
-    ['class x {async foo \n () {}}', Context.None],
-    ['foo, async()', Context.OptionsRanges],
-    ['foo(async())', Context.OptionsRanges],
-    [
-      `async function test(){
+    'class x {\nasync foo() {}}',
+    'class x {async foo \n () {}}',
+    { code: 'foo, async()', options: { ranges: true } },
+    { code: 'foo(async())', options: { ranges: true } },
+    `async function test(){
         const someVar = null;
         async foo => {}
       }`,
-      Context.None,
-    ],
-    [
-      `const someVar = null;
+    `const someVar = null;
           const done = async foo => {}`,
-      Context.None,
-    ],
-    [
-      `async function test(){
+    `async function test(){
         const someVar = null;
         const done = async foo => {}
       }`,
-      Context.None,
-    ],
-    ['foo(async(), x)', Context.OptionsRanges],
-    ['foo(async(x,y,z))', Context.OptionsRanges],
-    ['foo(async(x,y,z), a, b)', Context.OptionsRanges],
-    ['foo(async[x])', Context.OptionsRanges],
-    ['foo(async)', Context.None],
-    ['foo(async.foo)', Context.OptionsRanges],
-    ['f(async ()=>c)', Context.None],
-    ['f(async foo=>c)', Context.None],
-    ['f(async function(){})', Context.None],
-    ['f(async ())', Context.None],
-    ['f(async)', Context.None],
-    ['f(async => x)', Context.None],
-    ['async: foo', Context.None],
-    ['async\n: foo', Context.None],
-    ['async = 5 + 5;', Context.None],
-    ['async + 10;', Context.None],
-    ['x + async', Context.None],
-    ['async foo => bar;', Context.None],
+    { code: 'foo(async(), x)', options: { ranges: true } },
+    { code: 'foo(async(x,y,z))', options: { ranges: true } },
+    { code: 'foo(async(x,y,z), a, b)', options: { ranges: true } },
+    { code: 'foo(async[x])', options: { ranges: true } },
+    'foo(async)',
+    { code: 'foo(async.foo)', options: { ranges: true } },
+    'f(async ()=>c)',
+    'f(async foo=>c)',
+    'f(async function(){})',
+    'f(async ())',
+    'f(async)',
+    'f(async => x)',
+    'async: foo',
+    'async\n: foo',
+    'async = 5 + 5;',
+    'async + 10;',
+    'x + async',
+    'async foo => bar;',
     // ['(async\nfunction f(){await x})', Context.None, {}],
-    ['f = async function g(){}', Context.None],
-    ['f = a + b + async() + d', Context.OptionsRanges],
-    ['f = a + b + async\n() + d', Context.None],
-    ['async in {}', Context.OptionsRanges],
-    ['async instanceof {}', Context.None],
-    ['f(async in {})', Context.OptionsRanges],
-    ['f(async instanceof {})', Context.None],
-    ['f(a + async in b)', Context.OptionsRanges],
-    ['f(a + async instanceof b)', Context.None],
-    ['log(async().foo);', Context.OptionsRanges],
-    ['log(async()[foo]);', Context.OptionsRanges],
-    ['foo(async () => foo)', Context.None],
-    ['(async (a, ...b) => a)', Context.None],
-    ['async(...a);', Context.None],
-    ['async(a, ...b);', Context.None],
-    ['async(...a, b);', Context.OptionsRanges],
-    ['async \n (x, y)', Context.None],
-    ['(async () => {})', Context.None],
-    ['(async x => x)', Context.None],
-    ['async() * b', Context.None],
-    ['f(a, b) * c', Context.None],
-    ['async(a, b) * c', Context.None],
-    ['foo, async()', Context.None],
-    ['async (x) + 2', Context.None],
-    ['x = async () => x, y', Context.None],
-    ['({async foo() {}})', Context.None],
-    ['(async(bullshit) => {})', Context.None],
+    'f = async function g(){}',
+    { code: 'f = a + b + async() + d', options: { ranges: true } },
+    'f = a + b + async\n() + d',
+    { code: 'async in {}', options: { ranges: true } },
+    'async instanceof {}',
+    { code: 'f(async in {})', options: { ranges: true } },
+    'f(async instanceof {})',
+    { code: 'f(a + async in b)', options: { ranges: true } },
+    'f(a + async instanceof b)',
+    { code: 'log(async().foo);', options: { ranges: true } },
+    { code: 'log(async()[foo]);', options: { ranges: true } },
+    'foo(async () => foo)',
+    '(async (a, ...b) => a)',
+    'async(...a);',
+    'async(a, ...b);',
+    { code: 'async(...a, b);', options: { ranges: true } },
+    'async \n (x, y)',
+    '(async () => {})',
+    '(async x => x)',
+    'async() * b',
+    'f(a, b) * c',
+    'async(a, b) * c',
+    'foo, async()',
+    'async (x) + 2',
+    'x = async () => x, y',
+    '({async foo() {}})',
+    '(async(bullshit) => {})',
   ]);
 });
