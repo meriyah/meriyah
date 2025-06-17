@@ -35,13 +35,13 @@ describe('Expressions -In', () => {
   }
 
   pass('Expressions -In', [
-    ['x in async', Context.None],
-    ['x in Number', Context.None],
-    ['(NUMBER = Number, "MAX_VALUE") in NUMBER', Context.None],
-    ['"valueOf" in __proto', Context.OptionsRaw],
-    ['"use strict"', Context.OptionsRaw],
-    ['"any-string"', Context.OptionsRaw],
-    ['"any-string"', Context.OptionsRaw],
-    ['123', Context.OptionsRaw],
+    'x in async',
+    'x in Number',
+    '(NUMBER = Number, "MAX_VALUE") in NUMBER',
+    { code: '"valueOf" in __proto', options: { raw: true } },
+    { code: '"use strict"', options: { raw: true } },
+    { code: '"any-string"', options: { raw: true } },
+    { code: '"any-string"', options: { raw: true } },
+    { code: '123', options: { raw: true } },
   ]);
 });
