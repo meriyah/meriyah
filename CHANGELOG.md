@@ -1,3 +1,20 @@
+## [6.1.1](https://github.com/meriyah/meriyah/compare/v6.1.0...v6.1.1) (2025-06-17)
+
+
+### Bug Fixes
+
+* **parser:** `CallExpression.optional` and `MemberExpression.{optional,computed}` is always a boolean ([#439](https://github.com/meriyah/meriyah/issues/439)) ([4bc2599](https://github.com/meriyah/meriyah/commit/4bc2599c054b0e8c932cd03fb8df9222f9e59c3c))
+* **parser:** allow decorators after `export`, forbid decorators appears both before and after `export`/`export default` ([#455](https://github.com/meriyah/meriyah/issues/455)) ([78f49f5](https://github.com/meriyah/meriyah/commit/78f49f50ce0401fdca5b3b15ee2c6e7af5144cd0))
+* **parser:** fix `MemeberExpression` location inside `For{,Of,In}Statement` ([#447](https://github.com/meriyah/meriyah/issues/447)) ([e86318d](https://github.com/meriyah/meriyah/commit/e86318d3f3cda713d58603b9973dbdbd73d839bc))
+* **parser:** fix location of `Decorator.expression` ([#438](https://github.com/meriyah/meriyah/issues/438)) ([4956772](https://github.com/meriyah/meriyah/commit/49567723752bc0017cea304a6c268c8b670bbbbb))
+* **parser:** fix location of `PrivateIdentifier` ([#437](https://github.com/meriyah/meriyah/issues/437)) ([cba2219](https://github.com/meriyah/meriyah/commit/cba22190eaa80a3ebfab40280b57d33960eb4a29))
+* **parser:** fix location of static class property ([#448](https://github.com/meriyah/meriyah/issues/448)) ([1f5c2cc](https://github.com/meriyah/meriyah/commit/1f5c2ccec291446249b1a29bee80bbd49513fd23))
+* **parser:** include decorators in `ClassDeclaration`, `ExportDeclaration`, and `ExportDefaultDeclaration` ([#457](https://github.com/meriyah/meriyah/issues/457)) ([0f0b198](https://github.com/meriyah/meriyah/commit/0f0b198bf8fb03ed6469bcc176a2fbcd26d2b251))
+* **parser:** include decorators in range of `Class{Expression,Declaration}` ([#452](https://github.com/meriyah/meriyah/issues/452)) ([82f2ea4](https://github.com/meriyah/meriyah/commit/82f2ea4cd9bd335119e665cbc259f7e5b9810356))
+* **parser:** include decorators in range of class members ([#450](https://github.com/meriyah/meriyah/issues/450)) ([da156b4](https://github.com/meriyah/meriyah/commit/da156b42dad4f5ca4fcbd0d02411f7243ea61bd1))
+
+
+
 # [6.1.0](https://github.com/meriyah/meriyah/compare/v6.0.6...v6.1.0) (2025-06-13)
 
 
