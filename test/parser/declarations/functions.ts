@@ -580,12 +580,12 @@ describe('Declarations - Function', () => {
   }
 
   pass('Declarations - Function (pass)', [
-    ['function w(casecase){y:j:function casecase(){}}', Context.OptionsWebCompat | Context.OptionsRanges],
-    ['function* x() { for (const [j = yield] in (x) => {}) {} }', Context.None],
-    ['"use strict"; function* g() { yield; }; f = ([...[,]] = g()) => {};', Context.None],
-    [`function foo(package) {}`, Context.None],
-    [
-      `function compareArray(a, b) {
+    { code: 'function w(casecase){y:j:function casecase(){}}', options: { webcompat: true, ranges: true } },
+    'function* x() { for (const [j = yield] in (x) => {}) {} }',
+    '"use strict"; function* g() { yield; }; f = ([...[,]] = g()) => {};',
+    `function foo(package) {}`,
+    {
+      code: `function compareArray(a, b) {
         if (b.length !== a.length) {
             return;
         }
@@ -593,10 +593,10 @@ describe('Declarations - Function', () => {
             b[0];
         }
     }`,
-      Context.OptionsRanges | Context.OptionsRaw,
-    ],
-    [
-      `function shouldThrow(func, errorMessage) {
+      options: { ranges: true, raw: true },
+    },
+    {
+      code: `function shouldThrow(func, errorMessage) {
           var errorThrown = false;
           var error = null;
           try {
@@ -606,28 +606,28 @@ describe('Declarations - Function', () => {
               error = e;
           }
       }`,
-      Context.OptionsRanges | Context.OptionsRaw,
-    ],
-    ['function f([foo,,bar] = x){}', Context.OptionsLoc],
-    ['function f(){ foo: bar: function f(){} }', Context.OptionsWebCompat],
-    ['function f(){ let f; }', Context.OptionsLoc],
-    ['function f() {let f}', Context.None],
-    ['function* a( [ {  x  =  y  }  =  a ] )  { }', Context.OptionsLoc],
-    ['function a( a = b  ) {} n => {  "use strict"; }', Context.None],
-    ['function f() {var f}', Context.None],
-    ['function a([ { a = x }, {} = b]) {}', Context.OptionsLoc],
-    ['function f(){} function f(){}', Context.OptionsLoc],
-    ['function g() {  function f(){} function f(){} }', Context.OptionsLoc],
-    ['function f(x) { { const x = y } }', Context.OptionsRanges],
-    ['function f(){ foo = new.target }', Context.OptionsRanges],
-    ['function f(x) {var x}', Context.OptionsRanges],
-    ['function f(x) {{var x}}', Context.None],
-    ['function foo() {}', Context.None],
-    ['function f(){}\n/foo/', Context.None],
+      options: { ranges: true, raw: true },
+    },
+    { code: 'function f([foo,,bar] = x){}', options: { loc: true } },
+    { code: 'function f(){ foo: bar: function f(){} }', options: { webcompat: true } },
+    { code: 'function f(){ let f; }', options: { loc: true } },
+    'function f() {let f}',
+    { code: 'function* a( [ {  x  =  y  }  =  a ] )  { }', options: { loc: true } },
+    'function a( a = b  ) {} n => {  "use strict"; }',
+    'function f() {var f}',
+    { code: 'function a([ { a = x }, {} = b]) {}', options: { loc: true } },
+    { code: 'function f(){} function f(){}', options: { loc: true } },
+    { code: 'function g() {  function f(){} function f(){} }', options: { loc: true } },
+    { code: 'function f(x) { { const x = y } }', options: { ranges: true } },
+    { code: 'function f(){ foo = new.target }', options: { ranges: true } },
+    { code: 'function f(x) {var x}', options: { ranges: true } },
+    'function f(x) {{var x}}',
+    'function foo() {}',
+    'function f(){}\n/foo/',
 
-    ['function f(){}\n/foo/', Context.None],
-    ['function f(){}\n/foo/g', Context.None],
+    'function f(){}\n/foo/',
+    'function f(){}\n/foo/g',
 
-    ['typeof function f(){}\n/foo/g', Context.None],
+    'typeof function f(){}\n/foo/g',
   ]);
 });
