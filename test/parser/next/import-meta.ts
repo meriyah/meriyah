@@ -202,7 +202,7 @@ describe('Next - Import Meta', () => {
     { code: `import.meta[0]`, options: { module: true, next: true } },
     { code: `do { import.meta } while (0)`, options: { module: true, next: true } },
     { code: `import.meta()`, options: { module: true, next: true } },
-    { code: `t = [import.meta]`, options: { module: true, next: true } },
+    { code: `t = [...import.meta]`, options: { module: true, next: true } },
     { code: `"use strict"; ({m() { while (0) { import.meta } }})`, options: { module: true, next: true } },
     { code: `delete import.meta`, options: { module: true, next: true } },
     { code: `import.meta.resolve('something')`, options: { module: true, next: true } },
