@@ -201,15 +201,15 @@ describe('Expressions - Async Generator', () => {
   ]);
 
   pass('Expressions - Async Generator (pass)', [
-    ['(async function* h([cls = class {}, xCls = class X {}, xCls2 = class { static name() {} }]) { })', Context.None],
-    ['(async function* h([fn = function () {}, xFn = function x() {}] = []) { })', Context.None],
-    ['(async function* h([{ x, y, z } = { x: 44, y: 55, z: 66 }]) { })', Context.None],
-    ['(async function *([{ x }]) { })', Context.None],
-    ['(async function*({ w: { x, y, z } = { x: 4, y: 5, z: 6 } } = { w: undefined }) { })', Context.None],
-    ['(async function *foo() { }.prototype)', Context.None],
-    ['(async function *foo([...x] = 123) { })', Context.None],
-    ['(async function *foo(x, y = x, z = y) { })', Context.None],
+    '(async function* h([cls = class {}, xCls = class X {}, xCls2 = class { static name() {} }]) { })',
+    '(async function* h([fn = function () {}, xFn = function x() {}] = []) { })',
+    '(async function* h([{ x, y, z } = { x: 44, y: 55, z: 66 }]) { })',
+    '(async function *([{ x }]) { })',
+    '(async function*({ w: { x, y, z } = { x: 4, y: 5, z: 6 } } = { w: undefined }) { })',
+    '(async function *foo() { }.prototype)',
+    '(async function *foo([...x] = 123) { })',
+    '(async function *foo(x, y = x, z = y) { })',
 
-    ['(async function* h([]) { })', Context.None],
+    '(async function* h([]) { })',
   ]);
 });

@@ -41,19 +41,19 @@ describe('Expressions - Member', () => {
   }
 
   pass('Expressions - Member (pass)', [
-    ['abc.package', Context.None],
-    ['abc.package', Context.Module | Context.Strict],
-    ['x[a, b]', Context.OptionsRanges],
-    ['(2[x,x],x)>x', Context.OptionsRanges],
-    ['foo.bar', Context.None],
-    ['(a[b]||(c[d]=e))', Context.OptionsRanges],
-    ['a&&(b=c)&&(d=e)', Context.None],
-    ['a.$._.B0', Context.OptionsRanges],
-    ['a.if', Context.None],
-    ['a().b', Context.OptionsRanges],
-    ['x.y / z', Context.None],
-    ['a[b, c]', Context.None],
-    ['a[b]||(c[d]=e)', Context.OptionsRanges],
-    ['a&&(b=c)', Context.None],
+    'abc.package',
+    { code: 'abc.package', options: { module: true } },
+    { code: 'x[a, b]', options: { ranges: true } },
+    { code: '(2[x,x],x)>x', options: { ranges: true } },
+    'foo.bar',
+    { code: '(a[b]||(c[d]=e))', options: { ranges: true } },
+    'a&&(b=c)&&(d=e)',
+    { code: 'a.$._.B0', options: { ranges: true } },
+    'a.if',
+    { code: 'a().b', options: { ranges: true } },
+    'x.y / z',
+    'a[b, c]',
+    { code: 'a[b]||(c[d]=e)', options: { ranges: true } },
+    'a&&(b=c)',
   ]);
 });

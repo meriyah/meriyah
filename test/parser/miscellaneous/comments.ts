@@ -217,8 +217,8 @@ describe('Miscellaneous - Comments', () => {
   }
 
   pass('Miscellaneous - Comments (pass)', [
-    [
-      `// Single line comment
+    {
+      code: `// Single line comment
       // Single line comment
       // Single line comment
       // Single line comment
@@ -230,50 +230,44 @@ describe('Miscellaneous - Comments', () => {
       multiple
       lines
       */`,
-      Context.OptionsNext | Context.OptionsLoc,
-    ],
-    ['/**/ --> comment', Context.OptionsRanges | Context.OptionsWebCompat],
-    ['var x = 42;/*\n*/-->is eol-comment\nvar y = 37;\n', Context.OptionsRanges | Context.OptionsWebCompat],
-    [
-      '/* MLC1 \n */ /* SLDC1 */ /* MLC2 \n */ /* SLDC2 */ --> is eol-comment\n',
-      Context.OptionsRanges | Context.OptionsWebCompat,
-    ],
-    [
-      '/* before */async function /* a */ f /* b */ ( /* c */ x /* d */ , /* e */ y /* f */ ) /* g */ { /* h */ ; /* i */ ; /* j */ }/* after */',
-      Context.OptionsRanges,
-    ],
-    ['var x = 42;/*\n*/-->is eol-comment\nvar y = 37;\n', Context.OptionsWebCompat],
-    ['\n/*precomment*/-->eol-comment\nvar y = 37;\n', Context.OptionsWebCompat],
-    ['\n-->is eol-comment\nvar y = 37;\n', Context.OptionsWebCompat],
-    ['-->', Context.OptionsWebCompat | Context.OptionsRanges],
-    ['42 /* block comment 1 */ /* block comment 2 */', Context.OptionsRanges],
-    [
-      `/* multiline
+      options: { next: true, loc: true },
+    },
+    { code: '/**/ --> comment', options: { ranges: true, webcompat: true } },
+    { code: 'var x = 42;/*\n*/-->is eol-comment\nvar y = 37;\n', options: { ranges: true, webcompat: true } },
+    {
+      code: '/* MLC1 \n */ /* SLDC1 */ /* MLC2 \n */ /* SLDC2 */ --> is eol-comment\n',
+      options: { ranges: true, webcompat: true },
+    },
+    {
+      code: '/* before */async function /* a */ f /* b */ ( /* c */ x /* d */ , /* e */ y /* f */ ) /* g */ { /* h */ ; /* i */ ; /* j */ }/* after */',
+      options: { ranges: true },
+    },
+    { code: 'var x = 42;/*\n*/-->is eol-comment\nvar y = 37;\n', options: { webcompat: true } },
+    { code: '\n/*precomment*/-->eol-comment\nvar y = 37;\n', options: { webcompat: true } },
+    { code: '\n-->is eol-comment\nvar y = 37;\n', options: { webcompat: true } },
+    { code: '-->', options: { webcompat: true, ranges: true } },
+    { code: '42 /* block comment 1 */ /* block comment 2 */', options: { ranges: true } },
+    `/* multiline
       comment
       should
       be
       ignored */ 42`,
-      Context.None,
-    ],
-    [
-      `// line comment
+    `// line comment
       42`,
-      Context.None,
-    ],
-    ['//', Context.None],
-    ['if (x) { /* Some comment */ doThat() }', Context.OptionsRanges],
-    ['function f() { /* infinite */ while (true) { } /* bar */ var each; }', Context.OptionsRanges],
-    ['while (i-->0) {}', Context.OptionsRanges],
-    ['function x(){ /*Jupiter*/ return; /*Saturn*/}', Context.OptionsRanges],
-    ['function a() {}', Context.OptionsRanges],
-    ['/**/ function a() {}', Context.OptionsRanges],
-    [
-      `while (true) {
+    '//',
+    { code: 'if (x) { /* Some comment */ doThat() }', options: { ranges: true } },
+    { code: 'function f() { /* infinite */ while (true) { } /* bar */ var each; }', options: { ranges: true } },
+    { code: 'while (i-->0) {}', options: { ranges: true } },
+    { code: 'function x(){ /*Jupiter*/ return; /*Saturn*/}', options: { ranges: true } },
+    { code: 'function a() {}', options: { ranges: true } },
+    { code: '/**/ function a() {}', options: { ranges: true } },
+    {
+      code: `while (true) {
         /**
          * comments in empty block
          */
       }`,
-      Context.OptionsRanges,
-    ],
+      options: { ranges: true },
+    },
   ]);
 });

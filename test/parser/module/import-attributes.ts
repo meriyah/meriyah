@@ -108,20 +108,20 @@ describe('Next - Import Attributes', () => {
   ]);
 
   pass('Import Attributes (pass)', [
-    [`import('module', { type: 'json' });`, Context.Module | Context.Strict],
-    [`import('module', { 'data-type': 'json' });`, Context.Module | Context.Strict],
-    [`async function load() { return import('module', { type: 'json' }); }`, Context.Module | Context.Strict],
-    [`for await (let module of [import('module', { type: 'json' })]) {}`, Context.Module | Context.Strict],
-    ['import foo from "bar" with { type: "json" };', Context.Module | Context.Strict],
-    ['import foo from "bar" with { type: "json", "data-type": "json" };', Context.Module | Context.Strict],
-    [
-      `var promise; for (promise = import('./2nd-param_FIXTURE.js', 'test262' in {} || undefined); false; );`,
-      Context.Module | Context.Strict,
-    ],
-    [`export * from './foo' with { type: 'json' }`, Context.Module | Context.Strict],
-    [`export * as foo from './foo' with { type: 'json' };`, Context.Module | Context.Strict],
-    [`export {} from './foo' with { type: 'html' };`, Context.Module | Context.Strict],
-    [`export { foo } from './foo' with { type: 'html' }`, Context.Module | Context.Strict],
-    [`export { foo, } from './foo' with { type: 'html' };`, Context.Module | Context.Strict],
+    { code: `import('module', { type: 'json' });`, options: { module: true } },
+    { code: `import('module', { 'data-type': 'json' });`, options: { module: true } },
+    { code: `async function load() { return import('module', { type: 'json' }); }`, options: { module: true } },
+    { code: `for await (let module of [import('module', { type: 'json' })]) {}`, options: { module: true } },
+    { code: 'import foo from "bar" with { type: "json" };', options: { module: true } },
+    { code: 'import foo from "bar" with { type: "json", "data-type": "json" };', options: { module: true } },
+    {
+      code: `var promise; for (promise = import('./2nd-param_FIXTURE.js', 'test262' in {} || undefined); false; );`,
+      options: { module: true },
+    },
+    { code: `export * from './foo' with { type: 'json' }`, options: { module: true } },
+    { code: `export * as foo from './foo' with { type: 'json' };`, options: { module: true } },
+    { code: `export {} from './foo' with { type: 'html' };`, options: { module: true } },
+    { code: `export { foo } from './foo' with { type: 'html' }`, options: { module: true } },
+    { code: `export { foo, } from './foo' with { type: 'html' };`, options: { module: true } },
   ]);
 });

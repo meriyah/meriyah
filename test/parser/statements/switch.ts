@@ -17,37 +17,37 @@ describe('Statements  Switch', () => {
   ]);
 
   pass('Statements  Switch (pass)', [
-    [
-      `switch (X) {
+    {
+      code: `switch (X) {
         case k:
           foo: bar: function f(){}
       }`,
-      Context.OptionsWebCompat,
-    ],
-    [
-      `for (let i = 0; i < 1; ++i) {
+      options: { webcompat: true },
+    },
+    {
+      code: `for (let i = 0; i < 1; ++i) {
         switch (a) {
           case 2:
               foo:a = 3;
               break;
         }
     }`,
-      Context.OptionsRanges,
-    ],
-    ['switch(foo) {}', Context.OptionsRanges],
-    ['switch (A) {default: D; case B: C; }', Context.OptionsRanges],
-    ['switch(a){case 1:default:}', Context.None],
-    ['switch(a){default:case 2:}', Context.None],
-    ['switch (answer) { case 0: hi(); break; default: break }', Context.OptionsRanges],
-    ['switch(a){case 1:}', Context.OptionsRanges],
-    ['switch (a) { case b: let [x] = y }', Context.OptionsRanges | Context.OptionsRaw],
-    ['switch (answer) { case 0: let a; }', Context.OptionsRanges | Context.OptionsRaw],
-    ['switch (A) {default: B;}', Context.None],
-    ['switch (0) { case 1: var f; default: var f }', Context.OptionsRanges | Context.OptionsRaw],
-    ['switch (A) {default: B; break;}', Context.None],
-    ['switch (A) {case B: C; break; case D: E; break;}', Context.None],
-    ['switch (A) {default: D; case B: C; }', Context.None],
-    ['switch (A) {case B: C; default: D;}', Context.None],
-    ['switch (A) {default: B;}', Context.None],
+      options: { ranges: true },
+    },
+    { code: 'switch(foo) {}', options: { ranges: true } },
+    { code: 'switch (A) {default: D; case B: C; }', options: { ranges: true } },
+    'switch(a){case 1:default:}',
+    'switch(a){default:case 2:}',
+    { code: 'switch (answer) { case 0: hi(); break; default: break }', options: { ranges: true } },
+    { code: 'switch(a){case 1:}', options: { ranges: true } },
+    { code: 'switch (a) { case b: let [x] = y }', options: { ranges: true, raw: true } },
+    { code: 'switch (answer) { case 0: let a; }', options: { ranges: true, raw: true } },
+    'switch (A) {default: B;}',
+    { code: 'switch (0) { case 1: var f; default: var f }', options: { ranges: true, raw: true } },
+    'switch (A) {default: B; break;}',
+    'switch (A) {case B: C; break; case D: E; break;}',
+    'switch (A) {default: D; case B: C; }',
+    'switch (A) {case B: C; default: D;}',
+    'switch (A) {default: B;}',
   ]);
 });

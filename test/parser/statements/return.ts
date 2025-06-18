@@ -16,27 +16,24 @@ describe('Statements - Return', () => {
   ]);
 
   pass('Statements - Return (pass)', [
-    ['function a() { return a, b, c; }', Context.OptionsRanges],
-    ['x => {return}', Context.None],
-    ['(a, b) => {return}', Context.None],
-    ['function *f() { return }', Context.None],
-    ['{return}', Context.InReturnContext],
-    ['function f(){   {return}    }', Context.None],
-    ['function f(){   return 15;    }', Context.None],
-    ['function *f() { return }', Context.None],
-    ['async function f(){ return; }', Context.None],
-    ['class x { constructor(){ return }}', Context.None],
-    ['class x {foo(){ return }}', Context.None],
-    ['() => {return}', Context.None],
-    ['function f(){   return;return    };', Context.None],
-    ['function f(){   return\nreturn   }', Context.None],
-    [
-      `//
+    { code: 'function a() { return a, b, c; }', options: { ranges: true } },
+    'x => {return}',
+    '(a, b) => {return}',
+    'function *f() { return }',
+    { code: '{return}', options: { globalReturn: true } },
+    'function f(){   {return}    }',
+    'function f(){   return 15;    }',
+    'function *f() { return }',
+    'async function f(){ return; }',
+    'class x { constructor(){ return }}',
+    'class x {foo(){ return }}',
+    '() => {return}',
+    'function f(){   return;return    };',
+    'function f(){   return\nreturn   }',
+    `//
       function a() {
           return;
       };`,
-      Context.None,
-    ],
-    ['function a(x) { return x+y; }', Context.OptionsLoc | Context.OptionsRanges],
+    { code: 'function a(x) { return x+y; }', options: { loc: true, ranges: true } },
   ]);
 });

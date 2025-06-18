@@ -31,56 +31,56 @@ describe('Statements - Do while', () => {
   ]);
 
   pass('Statements - Do while (pass)', [
-    [`do;while(0) 0;`, Context.None],
-    [
-      `do x
+    `do;while(0) 0;`,
+    {
+      code: `do x
     while ({ [y]: {} ? null : false  })`,
-      Context.OptionsRanges,
-    ],
-    ['do async \n while (y)', Context.None],
-    ['do async \n () \n while (y)', Context.None],
-    ['do while (x) continue \n while (x);', Context.None],
-    [
-      `do if(x=>{});else n
+      options: { ranges: true },
+    },
+    'do async \n while (y)',
+    'do async \n () \n while (y)',
+    'do while (x) continue \n while (x);',
+    {
+      code: `do if(x=>{});else n
       while(y)`,
-      Context.OptionsRanges,
-    ],
-    [
-      `do
+      options: { ranges: true },
+    },
+    {
+      code: `do
       if(x=>{});
     while(y)`,
-      Context.OptionsRanges,
-    ],
-    [
-      `do
+      options: { ranges: true },
+    },
+    {
+      code: `do
       for((function(){});;)x
     while(x);`,
-      Context.OptionsRanges,
-    ],
-    [
-      `do
+      options: { ranges: true },
+    },
+    {
+      code: `do
         (function(){})
       while(y)`,
-      Context.OptionsRanges,
-    ],
-    ['do h(function(){});while(x)', Context.OptionsWebCompat],
-    ['do if(8)function s(){}while(y)', Context.OptionsWebCompat],
-    [
-      `
+      options: { ranges: true },
+    },
+    { code: 'do h(function(){});while(x)', options: { webcompat: true } },
+    { code: 'do if(8)function s(){}while(y)', options: { webcompat: true } },
+    {
+      code: `
 do if(8)function s(){}
 while(y)
 `,
-      Context.OptionsWebCompat,
-    ],
+      options: { webcompat: true },
+    },
 
-    [
-      `do
+    {
+      code: `do
       ()=>x
     while(c)`,
-      Context.OptionsWebCompat | Context.OptionsRanges,
-    ],
-    ['do foo; while (bar);', Context.OptionsWebCompat | Context.OptionsRanges],
-    ['do {} while (false) false', Context.OptionsWebCompat],
-    ['do { } while (a); /^.*$/.test(b)', Context.OptionsWebCompat],
+      options: { webcompat: true, ranges: true },
+    },
+    { code: 'do foo; while (bar);', options: { webcompat: true, ranges: true } },
+    { code: 'do {} while (false) false', options: { webcompat: true } },
+    { code: 'do { } while (a); /^.*$/.test(b)', options: { webcompat: true } },
   ]);
 });

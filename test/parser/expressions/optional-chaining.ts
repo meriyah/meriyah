@@ -397,19 +397,19 @@ describe('Optional chaining', () => {
   ]);
 
   pass('Optional chaining (pass)', [
-    [`a?.b`, Context.OptionsRanges | Context.OptionsWebCompat],
-    ['obj.aaa.bbb', Context.OptionsRanges | Context.OptionsWebCompat],
-    ['obj.aaa?.bbb', Context.OptionsRanges | Context.OptionsWebCompat],
-    ['obj?.aaa.bbb', Context.OptionsRanges | Context.OptionsWebCompat],
-    ['obj?.aaa?.bbb', Context.OptionsRanges | Context.OptionsWebCompat],
-    ['(obj.aaa).bbb', Context.OptionsRanges | Context.OptionsWebCompat],
-    ['(obj.aaa)?.bbb', Context.OptionsRanges | Context.OptionsWebCompat],
-    ['(obj?.aaa).bbb', Context.OptionsRanges | Context.OptionsWebCompat],
-    ['(obj?.aaa)?.bbb', Context.OptionsRanges | Context.OptionsWebCompat],
-    ['a?.[x]', Context.OptionsRanges | Context.OptionsWebCompat],
-    ['a?.import("string")?.import.meta??(a)', Context.OptionsRanges | Context.OptionsWebCompat],
-    [`a?.()`, Context.OptionsRanges | Context.OptionsWebCompat],
-    [`a?.b[3].c?.(x).d`, Context.OptionsRanges | Context.OptionsWebCompat],
-    [`({})?.a["b"]`, Context.OptionsRanges | Context.OptionsWebCompat],
+    { code: `a?.b`, options: { webcompat: true, ranges: true } },
+    { code: 'obj.aaa.bbb', options: { webcompat: true, ranges: true } },
+    { code: 'obj.aaa?.bbb', options: { webcompat: true, ranges: true } },
+    { code: 'obj?.aaa.bbb', options: { webcompat: true, ranges: true } },
+    { code: 'obj?.aaa?.bbb', options: { webcompat: true, ranges: true } },
+    { code: '(obj.aaa).bbb', options: { webcompat: true, ranges: true } },
+    { code: '(obj.aaa)?.bbb', options: { webcompat: true, ranges: true } },
+    { code: '(obj?.aaa).bbb', options: { webcompat: true, ranges: true } },
+    { code: '(obj?.aaa)?.bbb', options: { webcompat: true, ranges: true } },
+    { code: 'a?.[x]', options: { webcompat: true, ranges: true } },
+    { code: 'a?.import("string")?.import.meta??(a)', options: { webcompat: true, ranges: true } },
+    { code: `a?.()`, options: { webcompat: true, ranges: true } },
+    { code: `a?.b[3].c?.(x).d`, options: { webcompat: true, ranges: true } },
+    { code: `({})?.a["b"]`, options: { webcompat: true, ranges: true } },
   ]);
 });

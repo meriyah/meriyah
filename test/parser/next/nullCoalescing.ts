@@ -123,22 +123,22 @@ describe('Next - Nullish Coalescing', () => {
   ]);
 
   pass('Next - Null Coalescing (pass)', [
-    [`({ x: 'hi' } ?? 3).x`, Context.OptionsNext],
-    [`'hi' ?? 3`, Context.OptionsNext],
-    [`undefined ?? 3`, Context.OptionsNext],
-    [`1 << null ?? 3`, Context.OptionsNext],
-    [`1 / null ?? 3`, Context.OptionsNext],
-    [`a ?? (b && c);`, Context.OptionsNext],
-    [
-      `a
+    { code: `({ x: 'hi' } ?? 3).x`, options: { next: true } },
+    { code: `'hi' ?? 3`, options: { next: true } },
+    { code: `undefined ?? 3`, options: { next: true } },
+    { code: `1 << null ?? 3`, options: { next: true } },
+    { code: `1 / null ?? 3`, options: { next: true } },
+    { code: `a ?? (b && c);`, options: { next: true } },
+    {
+      code: `a
         ?? b
         ?? c;`,
-      Context.OptionsNext,
-    ],
-    [`foo ?? 1;`, Context.OptionsNext],
-    [`a ?? b ?? c;`, Context.OptionsNext],
-    [`a ?? (b || c);`, Context.OptionsNext],
-    [`(a || b) ?? c;`, Context.OptionsNext],
-    [`(a && b) ?? c`, Context.OptionsNext],
+      options: { next: true },
+    },
+    { code: `foo ?? 1;`, options: { next: true } },
+    { code: `a ?? b ?? c;`, options: { next: true } },
+    { code: `a ?? (b || c);`, options: { next: true } },
+    { code: `(a || b) ?? c;`, options: { next: true } },
+    { code: `(a && b) ?? c`, options: { next: true } },
   ]);
 });

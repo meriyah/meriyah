@@ -171,12 +171,12 @@ describe('Expressions - Rest', () => {
   ]);
 
   pass('Expressions - Rest (pass)', [
-    ['var obj = { method(a, b, c, ...[d]) { return [a, b, c, d]; } };', Context.None],
-    ["function objRest(...{'0': a, '1': b, length}) { return [a, b, length]; }", Context.None],
-    ['function singleRest(...[d]) { return d; }', Context.None],
-    ['function foo(a, b, c, ...[d]) { arguments; return [a, b, c, d]; }', Context.None],
-    ['class restClass { method(a, b, c, ...[d]) { arguments; return [a, b, c, d]; } };', Context.None],
-    ['function fooInline(a, b, c, ...rest) { arguments; this; return [a, b, c, ...rest]; }', Context.None],
-    ['var func5 = function (...[argArr13]) { function foo() { eval(); } };', Context.None],
+    'var obj = { method(a, b, c, ...[d]) { return [a, b, c, d]; } };',
+    "function objRest(...{'0': a, '1': b, length}) { return [a, b, length]; }",
+    'function singleRest(...[d]) { return d; }',
+    'function foo(a, b, c, ...[d]) { arguments; return [a, b, c, d]; }',
+    'class restClass { method(a, b, c, ...[d]) { arguments; return [a, b, c, d]; } };',
+    'function fooInline(a, b, c, ...rest) { arguments; this; return [a, b, c, ...rest]; }',
+    'var func5 = function (...[argArr13]) { function foo() { eval(); } };',
   ]);
 });

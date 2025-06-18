@@ -58,10 +58,5 @@ describe('Miscellaneous - Literal', () => {
     });
   }
 
-  pass('Miscellaneous - Literal (pass)', [
-    [String.raw`('\\\'')`, Context.None],
-    ['("x")', Context.None],
-    [String.raw`('\0')`, Context.None],
-    [String.raw`('\7a')`, Context.None],
-  ]);
+  pass('Miscellaneous - Literal (pass)', [String.raw`('\\\'')`, '("x")', String.raw`('\0')`, String.raw`('\7a')`]);
 });

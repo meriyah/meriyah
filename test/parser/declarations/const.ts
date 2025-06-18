@@ -295,40 +295,34 @@ describe('Declarations - const', () => {
   ]);
 
   pass('Declarations - const (pass)', [
-    ['"use strict"; const { [eval]: []} = a;', Context.None],
-    ['const { [eval]: []} = a;', Context.None],
-    ['const [foo] = x, [bar] = y;', Context.OptionsRanges],
-    ['const x = y, [foo] = z;', Context.OptionsRanges],
-    ['const [foo=a,bar=b] = x;', Context.OptionsRanges],
-    ['const [...bar] = obj;', Context.OptionsRanges],
-    ['const x = y, {foo} = z;', Context.OptionsRanges],
-    ['const {foo:a,bar:b} = x;', Context.OptionsLoc | Context.OptionsRanges],
-    ['const a = b', Context.None],
-    ['for (const [,,] of x);', Context.None],
-    ['for (const [,] of x);', Context.None],
-    ['for (const {a, [x]: y} in obj);', Context.None],
-    ['for (const {x : y, z, a : b = c} in obj);', Context.OptionsRanges],
-    [
-      `const {
+    '"use strict"; const { [eval]: []} = a;',
+    'const { [eval]: []} = a;',
+    { code: 'const [foo] = x, [bar] = y;', options: { ranges: true } },
+    { code: 'const x = y, [foo] = z;', options: { ranges: true } },
+    { code: 'const [foo=a,bar=b] = x;', options: { ranges: true } },
+    { code: 'const [...bar] = obj;', options: { ranges: true } },
+    { code: 'const x = y, {foo} = z;', options: { ranges: true } },
+    { code: 'const {foo:a,bar:b} = x;', options: { ranges: true, loc: true } },
+    'const a = b',
+    'for (const [,,] of x);',
+    'for (const [,] of x);',
+    'for (const {a, [x]: y} in obj);',
+    { code: 'for (const {x : y, z, a : b = c} in obj);', options: { ranges: true } },
+    `const {
         [({ ...rest }) => {
           let { ...b } = {};
         }]: a,
         [({ ...d } = {})]: c,
       } = {};`,
-      Context.None,
-    ],
-    [
-      `const {
+    `const {
           a = ({ ...rest }) => {
             let { ...b } = {};
           },
           c = ({ ...d } = {}),
         } = {};`,
-      Context.None,
-    ],
-    ['const { a: { ...bar }, b: { ...baz }, ...foo } = obj;', Context.None],
-    [
-      `var z = {};
+    'const { a: { ...bar }, b: { ...baz }, ...foo } = obj;',
+    {
+      code: `var z = {};
             var { ...x } = z;
             var { ...a } = { a: 1 };
             var { ...x } = a.b;
@@ -347,10 +341,9 @@ describe('Declarations - const', () => {
             } = complex;
 
             let { x4: { ...y4 } } = z;`,
-      Context.OptionsRanges,
-    ],
-    [
-      `let {
+      options: { ranges: true },
+    },
+    `let {
                 a: [b, ...arrayRest],
                 c = function(...functionRest){},
                 ...objectRest
@@ -358,10 +351,8 @@ describe('Declarations - const', () => {
                 a: [1, 2, 3, 4],
                 d: "oyez"
               };`,
-      Context.None,
-    ],
-    [
-      `// ForXStatement
+    {
+      code: `// ForXStatement
                 for (var {a, ...b} of []) {}
                 for ({a, ...b} of []) {}
                 async function a() {
@@ -380,8 +371,8 @@ describe('Declarations - const', () => {
                 async function a() {
                   for await (a of []) {}
                 }`,
-      Context.OptionsRanges,
-    ],
-    ['const foo = bar;', Context.None],
+      options: { ranges: true },
+    },
+    'const foo = bar;',
   ]);
 });

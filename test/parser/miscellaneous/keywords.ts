@@ -46,10 +46,10 @@ describe('Miscellaneous - Keywords', () => {
   }
 
   pass('Miscellaneous - Keywords (pass)', [
-    [`var foo = {}; foo.if;`, Context.None],
-    [`var foo = {}; foo.super;`, Context.None],
-    [`var foo = {}; foo.arguments;`, Context.None],
-    [`var foo = {}; foo.interface;`, Context.None],
-    [`function *a(){({yi\\u0065ld: 0})}`, Context.None],
+    `var foo = {}; foo.if;`,
+    `var foo = {}; foo.super;`,
+    `var foo = {}; foo.arguments;`,
+    `var foo = {}; foo.interface;`,
+    `function *a(){({yi\\u0065ld: 0})}`,
   ]);
 });
