@@ -181,6 +181,7 @@ describe('Statements - Try', () => {
       options: { webcompat: true },
     },
     'try{}catch(a){}',
+    'try { } catch (eval) { }',
     'try { } catch (e) { say(e) }',
     'try { } catch ([a = 0]) { }',
     'try { } catch (e) { let a; }',
