@@ -29,6 +29,8 @@ export const serializeParserError = (code: string, error: unknown) => {
   return `${error.name} ${message}\n${codeFrame}`;
 };
 
+const toTestTile = (code) => code.replaceAll('\r', '␍␊');
+
 export const pass = (
   name: string,
   valid: (string | { code: string; options?: Options; context?: Context; only?: true })[],
@@ -46,8 +48,7 @@ export const pass = (
       }
 
       // https://github.com/vitest-dev/vitest/issues/8151
-      const title = code.replaceAll('\r', '␍␊');
-      (only ? it.only : it)(title, () => {
+      (only ? it.only : it)(toTestTile(code), () => {
         const parseResult = parseSource(code, options, context ?? Context.None);
         expect(parseResult).toMatchSnapshot();
       });
@@ -58,7 +59,7 @@ export const pass = (
 export const fail = (name: string, invalid: [string, Context][]): void => {
   describe(name, () => {
     for (const [source, ctx] of invalid) {
-      it(source, () => {
+      it(toTestTile(source), () => {
         let error;
         try {
           parseSource(source, undefined, ctx);

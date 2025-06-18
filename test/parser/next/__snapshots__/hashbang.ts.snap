@@ -8,25 +8,6 @@ exports[`Next - Hashbang grammar > Next - Hashbang grammar (fail) >
     | ^ '#' not followed by identifier"
 `;
 
-exports[`Next - Hashbang grammar > Next - Hashbang grammar (fail) > 
-#!
- 1`] = `
-"SyntaxError [2:0-2:1]: '#' not followed by identifier
-  1 |
-> 2 | #!
-    | ^ '#' not followed by identifier
-  3 |"
-`;
-
-exports[`Next - Hashbang grammar > Next - Hashbang grammar (fail) > #!
- 1`] = `
-"SyntaxError [2:0-2:1]: '#' not followed by identifier
-  1 |
-> 2 | #!
-    | ^ '#' not followed by identifier
-  3 |"
-`;
-
 exports[`Next - Hashbang grammar > Next - Hashbang grammar (fail) >  #! 1`] = `
 "SyntaxError [1:1-1:2]: '#' not followed by identifier
 > 1 |  #!
@@ -155,4 +136,23 @@ exports[`Next - Hashbang grammar > Next - Hashbang grammar (fail) > function fn(
 > 1 | function fn(a = #\\u0021
     |                  ^ Illegal Unicode escape sequence
   2 | ) {}"
+`;
+
+exports[`Next - Hashbang grammar > Next - Hashbang grammar (fail) > ␍␊
+#!
+ 1`] = `
+"SyntaxError [2:0-2:1]: '#' not followed by identifier
+  1 |
+> 2 | #!
+    | ^ '#' not followed by identifier
+  3 |"
+`;
+
+exports[`Next - Hashbang grammar > Next - Hashbang grammar (fail) > ␍␊#!
+ 1`] = `
+"SyntaxError [2:0-2:1]: '#' not followed by identifier
+  1 |
+> 2 | #!
+    | ^ '#' not followed by identifier
+  3 |"
 `;
