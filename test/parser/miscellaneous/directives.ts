@@ -203,7 +203,11 @@ describe('Miscellaneous - Directives', () => {
   ]);
 
   pass('Miscellaneous - Directives (pass)', [
-    { code: String.raw`"use strict" + "Hello\312World"`, options: { module: true, ranges: true, raw: true } },
+    {
+      code: String.raw`"use strict" + "Hello\312World"`,
+      options: { ranges: true, raw: true },
+      context: Context.Module,
+    },
     { code: '("use strict"); foo = 42;', options: { module: true, ranges: true, raw: true } },
     { code: String.raw`"use strict", "Hello\312World"`, options: { ranges: true, raw: true } },
     { code: '"use asm" \n "use strict"', options: { ranges: true, raw: true } },
