@@ -3,9 +3,11 @@ import { describe, it, expect } from 'vitest';
 import { parseSource, type Options } from '../src/parser';
 import { Context } from '../src/common';
 
+const IS_CI = Boolean(process.env.CI);
+
 export const pass = (
   name: string,
-  valid: (string | { code: string; options?: Options; context?: Context })[],
+  valid: (string | { code: string; options?: Options; context?: Context; only?: true })[],
 ): void => {
   describe(name, () => {
     for (let testCase of valid) {
@@ -13,11 +15,15 @@ export const pass = (
         testCase = { code: testCase };
       }
 
-      const { code, options, context } = testCase;
+      const { code, options, context, only } = testCase;
+
+      if (IS_CI && only) {
+        throw new Error(`Please remove 'only'.`);
+      }
 
       // https://github.com/vitest-dev/vitest/issues/8151
       const title = code.replaceAll('\r', '␍␊');
-      it(title, () => {
+      (only ? it.only : it)(title, () => {
         const parseResult = parseSource(code, options, context ?? Context.None);
         expect(parseResult).toMatchSnapshot();
       });
