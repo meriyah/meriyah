@@ -1327,7 +1327,7 @@ describe('Expressions - Class', () => {
     'var C = class { static async *gen() { yield { ...yield, y: 1, ...yield yield, };}}',
     {
       code: 'class c { static *[false]() { "use strict"; } set [this] (q) { "use strict"; } set [true] (u) { "use strict"; } }',
-      options: { webcompat: true },
+      options: { ranges: true },
     },
     { code: 'var C = class { static async *gen() { yield [...yield yield]; }}', options: { ranges: true } },
     '(class A {*"foo"(){}})',
