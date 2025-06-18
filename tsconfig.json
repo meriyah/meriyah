@@ -18,10 +18,12 @@
     "sourceMap": true,
     "strict": true,
     "stripInternal": true,
-    "target": "ES2021",
+    "target": "esnext",
     "resolveJsonModule": true,
     "types": ["node", "./types/test262-parser-runner.d.ts"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "noEmit": true,
+    "module": "esnext"
   },
   "include": ["src", "test"]
 }

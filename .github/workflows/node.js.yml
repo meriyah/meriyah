@@ -37,7 +37,7 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: ./package.json
       - run: yarn
-      - run: npm run bundle
+      - run: npm run build
       - run: npm run test
       - run: npm run lint
 
@@ -52,5 +52,5 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: ./package.json
       - run: yarn
-      - run: npm run bundle
+      - run: npm run build
       - run: npx pkg-pr-new publish --compact
