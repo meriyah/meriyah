@@ -543,7 +543,7 @@ describe('Declarations - Async Function', () => {
     { code: 'async function *gen() { yield [...yield]; }', options: { impliedStrict: true, ranges: true } },
     {
       code: '"use strict"; async function foo() { function bar() { await = 1; } bar(); }',
-      options: { module: true, ranges: true, raw: true },
+      options: { impliedStrict: true, ranges: true, raw: true },
     },
     { code: 'export async function foo() { }', options: { module: true } },
     { code: 'async function await() { }', options: { ranges: true } },
