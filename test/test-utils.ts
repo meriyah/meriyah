@@ -29,7 +29,7 @@ export const serializeParserError = (code: string, error: unknown) => {
   return `${error.name} ${message}\n${codeFrame}`;
 };
 
-const toTestTile = (code) => code.replaceAll('\r', '␍␊');
+const toTestTile = (code: string) => code.replaceAll('\r', '␍␊');
 
 export const pass = (
   name: string,
