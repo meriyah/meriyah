@@ -1,5 +1,1363 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Expressions - Yield > Expressions - Yield (fail) > "function *gf(b, a = 1 + yield) { 1`] = `
+"SyntaxError [1:0-1:33]: Unterminated string literal
+> 1 | "function *gf(b, a = 1 + yield) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Unterminated string literal"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > ("string" = ({x} = (function* y(z) { (yield) }))) => (p); 1`] = `
+"SyntaxError [1:10-1:11]: Invalid left-hand side in assignment
+> 1 | ("string" = ({x} = (function* y(z) { (yield) }))) => (p);
+    |           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > ([yield] = x) 1`] = `
+"SyntaxError [1:2-1:7]: 'yield' may not be used as an identifier in this context
+> 1 | ([yield] = x)
+    |   ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > ([yield]) => x 1`] = `
+"SyntaxError [1:2-1:7]: 'yield' may not be used as an identifier in this context
+> 1 | ([yield]) => x
+    |   ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > ({ *g1() {   return {yield}  }}) 1`] = `
+"SyntaxError [1:26-1:27]: 'yield' may not be used as an identifier in this context
+> 1 | ({ *g1() {   return {yield}  }})
+    |                           ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > ({x} = yield) => {} 1`] = `
+"SyntaxError [1:7-1:12]: 'yield' may not be used as an identifier in this context
+> 1 | ({x} = yield) => {}
+    |        ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > ({yield} = x) 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected strict mode reserved word
+> 1 | ({yield} = x)
+    |        ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > ({yield}) => x 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected strict mode reserved word
+> 1 | ({yield}) => x
+    |        ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > ({yield}) 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected strict mode reserved word
+> 1 | ({yield})
+    |        ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > (a = yield 3) {} 1`] = `
+"SyntaxError [1:11-1:12]: Expected ')'
+> 1 | (a = yield 3) {}
+    |            ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > (a=yield) {} 1`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: '{'
+> 1 | (a=yield) {}
+    |           ^ Unexpected token: '{'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > (function *(x, ...yield){}) 1`] = `
+"SyntaxError [1:23-1:24]: Yield expression not allowed in formal parameter
+> 1 | (function *(x, ...yield){})
+    |                        ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > (function *f(){  ({*g(x=yield){}})  }) 1`] = `
+"SyntaxError [1:29-1:30]: Yield expression not allowed in formal parameter
+> 1 | (function *f(){  ({*g(x=yield){}})  })
+    |                              ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > (x = delete ((yield) = f)) => {} 1`] = `
+"SyntaxError [1:14-1:19]: 'yield' may not be used as an identifier in this context
+> 1 | (x = delete ((yield) = f)) => {}
+    |               ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > (x = x + yield); 1`] = `
+"SyntaxError [1:9-1:14]: 'yield' may not be used as an identifier in this context
+> 1 | (x = x + yield);
+    |          ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > (x = x) = x; 1`] = `
+"SyntaxError [1:8-1:9]: Invalid left-hand side in assignment
+> 1 | (x = x) = x;
+    |         ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > (yield = 1) {} 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: '{'
+> 1 | (yield = 1) {}
+    |             ^ Unexpected token: '{'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > (yield 3) {} 1`] = `
+"SyntaxError [1:7-1:8]: Expected ')'
+> 1 | (yield 3) {}
+    |        ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > (yield) = 1; 1`] = `
+"SyntaxError [1:1-1:6]: 'yield' may not be used as an identifier in this context
+> 1 | (yield) = 1;
+    |  ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > { (x = [yield y]) => z } 1`] = `
+"SyntaxError [1:14-1:15]: Expected ']'
+> 1 | { (x = [yield y]) => z }
+    |               ^ Expected ']'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > { (x = [yield y]) } 1`] = `
+"SyntaxError [1:14-1:15]: Expected ']'
+> 1 | { (x = [yield y]) }
+    |               ^ Expected ']'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > { (x = {[yield y]: 1}) => z } 1`] = `
+"SyntaxError [1:15-1:16]: Expected ']'
+> 1 | { (x = {[yield y]: 1}) => z }
+    |                ^ Expected ']'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > { (x = {[yield y]: 1}) } 1`] = `
+"SyntaxError [1:15-1:16]: Expected ']'
+> 1 | { (x = {[yield y]: 1}) }
+    |                ^ Expected ']'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > { (x = y + foo(a, yield y)) => x; } 1`] = `
+"SyntaxError [1:24-1:25]: Expected ')'
+> 1 | { (x = y + foo(a, yield y)) => x; }
+    |                         ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > { (x = y + foo(a, yield y)); } 1`] = `
+"SyntaxError [1:24-1:25]: Expected ')'
+> 1 | { (x = y + foo(a, yield y)); }
+    |                         ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > { (x = y + yield y) => x; } 1`] = `
+"SyntaxError [1:17-1:18]: Expected ')'
+> 1 | { (x = y + yield y) => x; }
+    |                  ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > { (x = y + yield y); } 1`] = `
+"SyntaxError [1:17-1:18]: Expected ')'
+> 1 | { (x = y + yield y); }
+    |                  ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > { (x = y + yield z) => {}; } 1`] = `
+"SyntaxError [1:17-1:18]: Expected ')'
+> 1 | { (x = y + yield z) => {}; }
+    |                  ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > { (x = y = yield z) => {}; } 1`] = `
+"SyntaxError [1:17-1:18]: Expected ')'
+> 1 | { (x = y = yield z) => {}; }
+    |                  ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > { (x = y = yield z); } 1`] = `
+"SyntaxError [1:17-1:18]: Expected ')'
+> 1 | { (x = y = yield z); }
+    |                  ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > { (x = yield) = {}; } 1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | { (x = yield) = {}; }
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > 5 + yield x + y 1`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: 'identifier'
+> 1 | 5 + yield x + y
+    |           ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > 5 + yield x 1`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: 'identifier'
+> 1 | 5 + yield x
+    |           ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > async (x = yield y) 1`] = `
+"SyntaxError [1:17-1:18]: Expected ')'
+> 1 | async (x = yield y)
+    |                  ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > async (yield x) 1`] = `
+"SyntaxError [1:13-1:14]: Expected ')'
+> 1 | async (yield x)
+    |              ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > async (yield) = f 1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | async (yield) = f
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > async function f(){ yield a,b; } 1`] = `
+"SyntaxError [1:26-1:27]: Unexpected token: 'identifier'
+> 1 | async function f(){ yield a,b; }
+    |                           ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > call(yield x + y) 1`] = `
+"SyntaxError [1:11-1:12]: Expected ')'
+> 1 | call(yield x + y)
+    |            ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > call(yield x) 1`] = `
+"SyntaxError [1:11-1:12]: Expected ')'
+> 1 | call(yield x)
+    |            ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > fuction *f() {  return +yield foo;  } 1`] = `
+"SyntaxError [1:13-1:14]: Unexpected token: '{'
+> 1 | fuction *f() {  return +yield foo;  }
+    |              ^ Unexpected token: '{'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *a(){({yield} = {})} 1`] = `
+"SyntaxError [1:21-1:22]: 'yield' may not be used as an identifier in this context
+> 1 | function *a(){({yield} = {})}
+    |                      ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *a(){yield
+*a} 1`] = `
+"SyntaxError [2:0-2:1]: Unexpected token: '*'
+  1 | function *a(){yield
+> 2 | *a}
+    | ^ Unexpected token: '*'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *a(){yield*} 1`] = `
+"SyntaxError [1:20-1:21]: Unexpected token: '}'
+> 1 | function *a(){yield*}
+    |                     ^ Unexpected token: '}'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f() {  return !yield;  } 1`] = `
+"SyntaxError [1:30-1:31]: Invalid left-hand side in assignment
+> 1 | function *f() {  return !yield;  }
+    |                               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f() {  return +yield;  } 1`] = `
+"SyntaxError [1:30-1:31]: Invalid left-hand side in assignment
+> 1 | function *f() {  return +yield;  }
+    |                               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f() {  return --yield;  } 1`] = `
+"SyntaxError [1:31-1:32]: Invalid left-hand side in assignment
+> 1 | function *f() {  return --yield;  }
+    |                                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f() {  return await yield foo;  } 1`] = `
+"SyntaxError [1:30-1:35]: Unexpected token: 'yield'
+> 1 | function *f() {  return await yield foo;  }
+    |                               ^^^^^ Unexpected token: 'yield'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f() {  return delete yield foo;  } 1`] = `
+"SyntaxError [1:37-1:40]: Invalid left-hand side in assignment
+> 1 | function *f() {  return delete yield foo;  }
+    |                                      ^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f() {  return delete yield;  } 1`] = `
+"SyntaxError [1:36-1:37]: Invalid left-hand side in assignment
+> 1 | function *f() {  return delete yield;  }
+    |                                     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f() {  return typeof yield foo;  } 1`] = `
+"SyntaxError [1:37-1:40]: Invalid left-hand side in assignment
+> 1 | function *f() {  return typeof yield foo;  }
+    |                                      ^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f() {  return typeof yield;  } 1`] = `
+"SyntaxError [1:36-1:37]: Invalid left-hand side in assignment
+> 1 | function *f() {  return typeof yield;  }
+    |                                     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f() {  return void yield foo;  } 1`] = `
+"SyntaxError [1:35-1:38]: Invalid left-hand side in assignment
+> 1 | function *f() {  return void yield foo;  }
+    |                                    ^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f() {  return void yield;  } 1`] = `
+"SyntaxError [1:34-1:35]: Invalid left-hand side in assignment
+> 1 | function *f() {  return void yield;  }
+    |                                   ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f() { yield ? 1 : 1 ; } 1`] = `
+"SyntaxError [1:22-1:23]: Can not have a \`yield\` expression on the left side of a ternary
+> 1 | function *f() { yield ? 1 : 1 ; }
+    |                       ^ Can not have a \`yield\` expression on the left side of a ternary"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f() { yield ? yield : yield ; } 1`] = `
+"SyntaxError [1:22-1:23]: Can not have a \`yield\` expression on the left side of a ternary
+> 1 | function *f() { yield ? yield : yield ; }
+    |                       ^ Can not have a \`yield\` expression on the left side of a ternary"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){  ({*g(x=yield){}})  } 1`] = `
+"SyntaxError [1:28-1:29]: Yield expression not allowed in formal parameter
+> 1 | function *f(){  ({*g(x=yield){}})  }
+    |                             ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){  class x extends yield y{}  } 1`] = `
+"SyntaxError [1:38-1:39]: Invalid left-hand side in assignment
+> 1 | function *f(){  class x extends yield y{}  }
+    |                                       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){  class x{*foo(a=yield x){}}  } 1`] = `
+"SyntaxError [1:37-1:38]: Yield expression not allowed in formal parameter
+> 1 | function *f(){  class x{*foo(a=yield x){}}  }
+    |                                      ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){  class x{*foo(a=yield){}}  } 1`] = `
+"SyntaxError [1:36-1:37]: Yield expression not allowed in formal parameter
+> 1 | function *f(){  class x{*foo(a=yield){}}  }
+    |                                     ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){  class x{constructor(a=yield x){}}  } 1`] = `
+"SyntaxError [1:38-1:43]: 'yield' may not be used as an identifier in this context
+> 1 | function *f(){  class x{constructor(a=yield x){}}  }
+    |                                       ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){  class x{constructor(a=yield){}}  } 1`] = `
+"SyntaxError [1:38-1:43]: 'yield' may not be used as an identifier in this context
+> 1 | function *f(){  class x{constructor(a=yield){}}  }
+    |                                       ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){  class x{foo(a=yield x){}}  } 1`] = `
+"SyntaxError [1:30-1:35]: 'yield' may not be used as an identifier in this context
+> 1 | function *f(){  class x{foo(a=yield x){}}  }
+    |                               ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){  return (x=yield) => x;  } 1`] = `
+"SyntaxError [1:33-1:35]: Yield expression not allowed in formal parameter
+> 1 | function *f(){  return (x=yield) => x;  }
+    |                                  ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){  return *(x=yield y) => x;  } 1`] = `
+"SyntaxError [1:23-1:24]: Unexpected token: '*'
+> 1 | function *f(){  return *(x=yield y) => x;  }
+    |                        ^ Unexpected token: '*'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){  return *(x=yield y) => x;  } 2`] = `
+"SyntaxError [1:23-1:24]: Unexpected token: '*'
+> 1 | function *f(){  return *(x=yield y) => x;  }
+    |                        ^ Unexpected token: '*'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){  return *(x=yield) => x;  } 1`] = `
+"SyntaxError [1:23-1:24]: Unexpected token: '*'
+> 1 | function *f(){  return *(x=yield) => x;  }
+    |                        ^ Unexpected token: '*'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){  return function(x=yield y) {};  } 1`] = `
+"SyntaxError [1:40-1:41]: Expected ')'
+> 1 | function *f(){  return function(x=yield y) {};  }
+    |                                         ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){  return function*(x=yield y) {};  } 1`] = `
+"SyntaxError [1:41-1:42]: Yield expression not allowed in formal parameter
+> 1 | function *f(){  return function*(x=yield y) {};  }
+    |                                          ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){  return function*(x=yield) {};  } 1`] = `
+"SyntaxError [1:40-1:41]: Yield expression not allowed in formal parameter
+> 1 | function *f(){  return function*(x=yield) {};  }
+    |                                         ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){  x = {*foo(a=yield x){}}  } 1`] = `
+"SyntaxError [1:34-1:35]: Yield expression not allowed in formal parameter
+> 1 | function *f(){  x = {*foo(a=yield x){}}  }
+    |                                   ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){  x = {*foo(a=yield){}}  } 1`] = `
+"SyntaxError [1:33-1:34]: Yield expression not allowed in formal parameter
+> 1 | function *f(){  x = {*foo(a=yield){}}  }
+    |                                  ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){  x = {foo(a=yield x){}}  } 1`] = `
+"SyntaxError [1:33-1:34]: Expected ')'
+> 1 | function *f(){  x = {foo(a=yield x){}}  }
+    |                                  ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){  x = {foo(a=yield x){}}  } 2`] = `
+"SyntaxError [1:33-1:34]: Expected ')'
+> 1 | function *f(){  x = {foo(a=yield x){}}  }
+    |                                  ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){ ([x] = yield x) => {} } 1`] = `
+"SyntaxError [1:31-1:33]: Yield expression not allowed in formal parameter
+> 1 | function *f(){ ([x] = yield x) => {} }
+    |                                ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){ ({x} = yield x) => {} } 1`] = `
+"SyntaxError [1:31-1:33]: Yield expression not allowed in formal parameter
+> 1 | function *f(){ ({x} = yield x) => {} }
+    |                                ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){ (yield) = 1; } 1`] = `
+"SyntaxError [1:23-1:24]: Invalid left-hand side in assignment
+> 1 | function *f(){ (yield) = 1; }
+    |                        ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){ async (x = (yield y)) => {} } 1`] = `
+"SyntaxError [1:37-1:39]: Yield expression not allowed in formal parameter
+> 1 | function *f(){ async (x = (yield y)) => {} }
+    |                                      ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){ async (x = (yield)) => {} } 1`] = `
+"SyntaxError [1:35-1:37]: Yield expression not allowed in formal parameter
+> 1 | function *f(){ async (x = (yield)) => {} }
+    |                                    ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){ async (x = yield y) => {} } 1`] = `
+"SyntaxError [1:35-1:37]: Yield expression not allowed in formal parameter
+> 1 | function *f(){ async (x = yield y) => {} }
+    |                                    ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){ async (x = yield) => {} } 1`] = `
+"SyntaxError [1:33-1:35]: Yield expression not allowed in formal parameter
+> 1 | function *f(){ async (x = yield) => {} }
+    |                                  ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){ async (x = z = yield y) => {} } 1`] = `
+"SyntaxError [1:39-1:41]: Yield expression not allowed in formal parameter
+> 1 | function *f(){ async (x = z = yield y) => {} }
+    |                                        ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){ async (x = z = yield) => {} } 1`] = `
+"SyntaxError [1:37-1:39]: Yield expression not allowed in formal parameter
+> 1 | function *f(){ async (x = z = yield) => {} }
+    |                                      ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){ return function(x = yield y){}; } 1`] = `
+"SyntaxError [1:41-1:42]: Expected ')'
+> 1 | function *f(){ return function(x = yield y){}; }
+    |                                          ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(){ yield = 1; } 1`] = `
+"SyntaxError [1:21-1:22]: Invalid left-hand side in assignment
+> 1 | function *f(){ yield = 1; }
+    |                      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(x = (yield) = f) {} 1`] = `
+"SyntaxError [1:22-1:23]: Yield expression not allowed in formal parameter
+> 1 | function *f(x = (yield) = f) {}
+    |                       ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(x = delete ((yield) = f)) {} 1`] = `
+"SyntaxError [1:30-1:31]: Yield expression not allowed in formal parameter
+> 1 | function *f(x = delete ((yield) = f)) {}
+    |                               ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(x=yield){ } 1`] = `
+"SyntaxError [1:19-1:20]: Yield expression not allowed in formal parameter
+> 1 | function *f(x=yield){ }
+    |                    ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(yield){ } 1`] = `
+"SyntaxError [1:12-1:17]: Yield expression not allowed in formal parameter
+> 1 | function *f(yield){ }
+    |             ^^^^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *f(yield){} 1`] = `
+"SyntaxError [1:12-1:17]: Yield expression not allowed in formal parameter
+> 1 | function *f(yield){}
+    |             ^^^^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { (x = u + yield z) => {}; } 1`] = `
+"SyntaxError [1:31-1:32]: Invalid left-hand side in assignment
+> 1 | function *g() { (x = u + yield z) => {}; }
+    |                                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { (x = y + yield y) => x; } 1`] = `
+"SyntaxError [1:31-1:32]: Invalid left-hand side in assignment
+> 1 | function *g() { (x = y + yield y) => x; }
+    |                                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { (x = y + yield y); } 1`] = `
+"SyntaxError [1:31-1:32]: Invalid left-hand side in assignment
+> 1 | function *g() { (x = y + yield y); }
+    |                                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { (x = y + yield z) => {}; } 1`] = `
+"SyntaxError [1:31-1:32]: Invalid left-hand side in assignment
+> 1 | function *g() { (x = y + yield z) => {}; }
+    |                                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { (x = y + yield) => x; } 1`] = `
+"SyntaxError [1:30-1:31]: Invalid left-hand side in assignment
+> 1 | function *g() { (x = y + yield) => x; }
+    |                               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { (x = y + yield); } 1`] = `
+"SyntaxError [1:30-1:31]: Invalid left-hand side in assignment
+> 1 | function *g() { (x = y + yield); }
+    |                               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { (x = y = yield z) => {}; } 1`] = `
+"SyntaxError [1:34-1:36]: Yield expression not allowed in formal parameter
+> 1 | function *g() { (x = y = yield z) => {}; }
+    |                                   ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { (x = yield) = {}; } 1`] = `
+"SyntaxError [1:28-1:29]: Invalid left-hand side in assignment
+> 1 | function *g() { (x = yield) = {}; }
+    |                             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { (x = yield) => {}; } 1`] = `
+"SyntaxError [1:28-1:30]: Yield expression not allowed in formal parameter
+> 1 | function *g() { (x = yield) => {}; }
+    |                             ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { async (x = y + foo(a, yield y)) => x; } 1`] = `
+"SyntaxError [1:48-1:50]: Yield expression not allowed in formal parameter
+> 1 | function *g() { async (x = y + foo(a, yield y)) => x; }
+    |                                                 ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { async (x = y + yield y) => x; } 1`] = `
+"SyntaxError [1:37-1:38]: Invalid left-hand side in assignment
+> 1 | function *g() { async (x = y + yield y) => x; }
+    |                                      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { async (x = y + yield y); } 1`] = `
+"SyntaxError [1:37-1:38]: Invalid left-hand side in assignment
+> 1 | function *g() { async (x = y + yield y); }
+    |                                      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { async (x = y + yield z) => {}; } 1`] = `
+"SyntaxError [1:37-1:38]: Invalid left-hand side in assignment
+> 1 | function *g() { async (x = y + yield z) => {}; }
+    |                                      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { async (x = y + yield) => x; } 1`] = `
+"SyntaxError [1:36-1:37]: Invalid left-hand side in assignment
+> 1 | function *g() { async (x = y + yield) => x; }
+    |                                     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { async (x = y + yield); } 1`] = `
+"SyntaxError [1:36-1:37]: Invalid left-hand side in assignment
+> 1 | function *g() { async (x = y + yield); }
+    |                                     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { async (x = y = yield z) => {}; } 1`] = `
+"SyntaxError [1:40-1:42]: Yield expression not allowed in formal parameter
+> 1 | function *g() { async (x = y = yield z) => {}; }
+    |                                         ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { async (x = yield) = {}; } 1`] = `
+"SyntaxError [1:34-1:35]: Invalid left-hand side in assignment
+> 1 | function *g() { async (x = yield) = {}; }
+    |                                   ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { async (x = yield) => {}; } 1`] = `
+"SyntaxError [1:34-1:36]: Yield expression not allowed in formal parameter
+> 1 | function *g() { async (x = yield) => {}; }
+    |                                   ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { async yield = {}; } 1`] = `
+"SyntaxError [1:22-1:27]: Unexpected token: 'yield'
+> 1 | function *g() { async yield = {}; }
+    |                       ^^^^^ Unexpected token: 'yield'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { async yield => {}; } 1`] = `
+"SyntaxError [1:22-1:27]: Unexpected token: 'yield'
+> 1 | function *g() { async yield => {}; }
+    |                       ^^^^^ Unexpected token: 'yield'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { function f(x = x + foo(a, yield y)) {}; } 1`] = `
+"SyntaxError [1:48-1:49]: Expected ')'
+> 1 | function *g() { function f(x = x + foo(a, yield y)) {}; }
+    |                                                 ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { function f(x = x + yield y) {}; } 1`] = `
+"SyntaxError [1:41-1:42]: Expected ')'
+> 1 | function *g() { function f(x = x + yield y) {}; }
+    |                                          ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { function f(x = y = yield z) {}; } 1`] = `
+"SyntaxError [1:41-1:42]: Expected ')'
+> 1 | function *g() { function f(x = y = yield z) {}; }
+    |                                          ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { new yield } 1`] = `
+"SyntaxError [1:26-1:27]: Invalid left-hand side in assignment
+> 1 | function *g() { new yield }
+    |                           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { new yield foo} 1`] = `
+"SyntaxError [1:26-1:29]: Invalid left-hand side in assignment
+> 1 | function *g() { new yield foo}
+    |                           ^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { yield = {}; } 1`] = `
+"SyntaxError [1:22-1:23]: Invalid left-hand side in assignment
+> 1 | function *g() { yield = {}; }
+    |                       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g() { yield => {}; } 1`] = `
+"SyntaxError [1:22-1:24]: Unexpected token: '=>'
+> 1 | function *g() { yield => {}; }
+    |                       ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g(){ (x = {[yield y]: 1}) => z } 1`] = `
+"SyntaxError [1:36-1:38]: Yield expression not allowed in formal parameter
+> 1 | function *g(){ (x = {[yield y]: 1}) => z }
+    |                                     ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g(){ (x = {[yield]: 1}) => z } 1`] = `
+"SyntaxError [1:34-1:36]: Yield expression not allowed in formal parameter
+> 1 | function *g(){ (x = {[yield]: 1}) => z }
+    |                                   ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g(){ async (x = [yield y]) => z } 1`] = `
+"SyntaxError [1:37-1:39]: Yield expression not allowed in formal parameter
+> 1 | function *g(){ async (x = [yield y]) => z }
+    |                                      ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g(){ async (x = [yield]) => z } 1`] = `
+"SyntaxError [1:35-1:37]: Yield expression not allowed in formal parameter
+> 1 | function *g(){ async (x = [yield]) => z }
+    |                                    ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g(){ async (x = {[yield y]: 1}) => z } 1`] = `
+"SyntaxError [1:42-1:44]: Yield expression not allowed in formal parameter
+> 1 | function *g(){ async (x = {[yield y]: 1}) => z }
+    |                                           ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g(){ async (x = {[yield]: 1}) => z } 1`] = `
+"SyntaxError [1:40-1:42]: Yield expression not allowed in formal parameter
+> 1 | function *g(){ async (x = {[yield]: 1}) => z }
+    |                                         ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *g(a, b, c, ...yield){} 1`] = `
+"SyntaxError [1:29-1:30]: Yield expression not allowed in formal parameter
+> 1 | function *g(a, b, c, ...yield){}
+    |                              ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *gf() { (a = (yield) => {}) => {}; } 1`] = `
+"SyntaxError [1:30-1:32]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | function *gf() { (a = (yield) => {}) => {}; }
+    |                               ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *gf(){ function yield(){}; } 1`] = `
+"SyntaxError [1:25-1:30]: 'yield' may not be used as an identifier in this context
+> 1 | function *gf(){ function yield(){}; }
+    |                          ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *gf({yield}){} 1`] = `
+"SyntaxError [1:19-1:20]: 'yield' may not be used as an identifier in this context
+> 1 | function *gf({yield}){}
+    |                    ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *gf(a = (10, yield, 20)) {} 1`] = `
+"SyntaxError [1:27-1:28]: Yield expression not allowed in formal parameter
+> 1 | function *gf(a = (10, yield, 20)) {}
+    |                            ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *gf(b, a = 1 + yield) {} 1`] = `
+"SyntaxError [1:29-1:30]: Yield expression not allowed in formal parameter
+> 1 | function *gf(b, a = 1 + yield) {}
+    |                              ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function *gf(b, yield) {} 1`] = `
+"SyntaxError [1:16-1:21]: Yield expression not allowed in formal parameter
+> 1 | function *gf(b, yield) {}
+    |                 ^^^^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function f(){  class x{*foo(a=yield x){}}  } 1`] = `
+"SyntaxError [1:36-1:37]: Yield expression not allowed in formal parameter
+> 1 | function f(){  class x{*foo(a=yield x){}}  }
+    |                                     ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function f(){  class x{*foo(a=yield){}}  } 1`] = `
+"SyntaxError [1:35-1:36]: Yield expression not allowed in formal parameter
+> 1 | function f(){  class x{*foo(a=yield){}}  }
+    |                                    ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function f(){  class x{foo(a=yield x){}}  } 1`] = `
+"SyntaxError [1:29-1:34]: 'yield' may not be used as an identifier in this context
+> 1 | function f(){  class x{foo(a=yield x){}}  }
+    |                              ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function f(){  class x{foo(a=yield){}}  } 1`] = `
+"SyntaxError [1:29-1:34]: 'yield' may not be used as an identifier in this context
+> 1 | function f(){  class x{foo(a=yield){}}  }
+    |                              ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function f(){  return (x=yield y) => x;  } 1`] = `
+"SyntaxError [1:31-1:32]: Expected ')'
+> 1 | function f(){  return (x=yield y) => x;  }
+    |                                ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function f(){  return *(x=yield y) => x;  } 1`] = `
+"SyntaxError [1:22-1:23]: Unexpected token: '*'
+> 1 | function f(){  return *(x=yield y) => x;  }
+    |                       ^ Unexpected token: '*'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function f(){  return *(x=yield) => x;  } 1`] = `
+"SyntaxError [1:22-1:23]: Unexpected token: '*'
+> 1 | function f(){  return *(x=yield) => x;  }
+    |                       ^ Unexpected token: '*'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function f(){  return function(x=yield y) {};  } 1`] = `
+"SyntaxError [1:39-1:40]: Expected ')'
+> 1 | function f(){  return function(x=yield y) {};  }
+    |                                        ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function f(){  return function*(x=yield y) {};  } 1`] = `
+"SyntaxError [1:40-1:41]: Yield expression not allowed in formal parameter
+> 1 | function f(){  return function*(x=yield y) {};  }
+    |                                         ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function f(){  return function*(x=yield) {};  } 1`] = `
+"SyntaxError [1:39-1:40]: Yield expression not allowed in formal parameter
+> 1 | function f(){  return function*(x=yield) {};  }
+    |                                        ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function f(){  x = {*foo(a=yield x){}}  } 1`] = `
+"SyntaxError [1:33-1:34]: Yield expression not allowed in formal parameter
+> 1 | function f(){  x = {*foo(a=yield x){}}  }
+    |                                  ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function f(){  x = {*foo(a=yield){}}  } 1`] = `
+"SyntaxError [1:32-1:33]: Yield expression not allowed in formal parameter
+> 1 | function f(){  x = {*foo(a=yield){}}  }
+    |                                 ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function f(){  x = {foo(a=yield x){}}  } 1`] = `
+"SyntaxError [1:32-1:33]: Expected ')'
+> 1 | function f(){  x = {foo(a=yield x){}}  }
+    |                                 ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function f(){ 5 + yield x + y; } 1`] = `
+"SyntaxError [1:24-1:25]: Unexpected token: 'identifier'
+> 1 | function f(){ 5 + yield x + y; }
+    |                         ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function f(){ call(yield x + y); } 1`] = `
+"SyntaxError [1:25-1:26]: Expected ')'
+> 1 | function f(){ call(yield x + y); }
+    |                          ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function f(){ call(yield x); } 1`] = `
+"SyntaxError [1:25-1:26]: Expected ')'
+> 1 | function f(){ call(yield x); }
+    |                          ^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function f(){ yield x + y; } 1`] = `
+"SyntaxError [1:20-1:21]: Unexpected token: 'identifier'
+> 1 | function f(){ yield x + y; }
+    |                     ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function f(){ yield x; } 1`] = `
+"SyntaxError [1:20-1:21]: Unexpected token: 'identifier'
+> 1 | function f(){ yield x; }
+    |                     ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* f(){ 5 + yield } 1`] = `
+"SyntaxError [1:25-1:26]: Invalid left-hand side in assignment
+> 1 | function* f(){ 5 + yield }
+    |                          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* f(){ 5 + yield x + y; } 1`] = `
+"SyntaxError [1:25-1:26]: Invalid left-hand side in assignment
+> 1 | function* f(){ 5 + yield x + y; }
+    |                          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* f(){ 5 + yield x; } 1`] = `
+"SyntaxError [1:25-1:26]: Invalid left-hand side in assignment
+> 1 | function* f(){ 5 + yield x; }
+    |                          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* foo() { class x extends (async yield* (e = "x") => {}) {} } 1`] = `
+"SyntaxError [1:41-1:46]: Expected ')'
+> 1 | function* foo() { class x extends (async yield* (e = "x") => {}) {} }
+    |                                          ^^^^^ Expected ')'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* g() { (function yield() {}) } 1`] = `
+"SyntaxError [1:26-1:31]: Unexpected strict mode reserved word
+> 1 | function* g() { (function yield() {}) }
+    |                           ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* g() { yield 3 + yield 4; } 1`] = `
+"SyntaxError [1:32-1:33]: Invalid left-hand side in assignment
+> 1 | function* g() { yield 3 + yield 4; }
+    |                                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* g() { yield 3 + yield; } 1`] = `
+"SyntaxError [1:31-1:32]: Invalid left-hand side in assignment
+> 1 | function* g() { yield 3 + yield; }
+    |                                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { (yield) = 10; } 1`] = `
+"SyntaxError [1:25-1:26]: Invalid left-hand side in assignment
+> 1 | function* gf() { (yield) = 10; }
+    |                          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { (yield)++; } 1`] = `
+"SyntaxError [1:24-1:26]: Invalid increment/decrement operand
+> 1 | function* gf() { (yield)++; }
+    |                         ^^ Invalid increment/decrement operand"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { +yield 2; } 1`] = `
+"SyntaxError [1:24-1:25]: Invalid left-hand side in assignment
+> 1 | function* gf() { +yield 2; }
+    |                         ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { +yield; } 1`] = `
+"SyntaxError [1:23-1:24]: Invalid left-hand side in assignment
+> 1 | function* gf() { +yield; }
+    |                        ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { +yield; } 2`] = `
+"SyntaxError [1:23-1:24]: Invalid left-hand side in assignment
+> 1 | function* gf() { +yield; }
+    |                        ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { 1 + yield 2; } 1`] = `
+"SyntaxError [1:27-1:28]: Invalid left-hand side in assignment
+> 1 | function* gf() { 1 + yield 2; }
+    |                            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { 1 + yield* "foo"; } 1`] = `
+"SyntaxError [1:26-1:27]: Invalid left-hand side in assignment
+> 1 | function* gf() { 1 + yield* "foo"; }
+    |                           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { 1 + yield; } 1`] = `
+"SyntaxError [1:26-1:27]: Invalid left-hand side in assignment
+> 1 | function* gf() { 1 + yield; }
+    |                           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { class yield { } } 1`] = `
+"SyntaxError [1:23-1:28]: 'yield' may not be used as an identifier in this context
+> 1 | function* gf() { class yield { } }
+    |                        ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { const yield = 10; } 1`] = `
+"SyntaxError [1:23-1:28]: Yield expression not allowed in formal parameter
+> 1 | function* gf() { const yield = 10; }
+    |                        ^^^^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { const yield = 10; } 2`] = `
+"SyntaxError [1:23-1:28]: Yield expression not allowed in formal parameter
+> 1 | function* gf() { const yield = 10; }
+    |                        ^^^^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { function yield() { } } 1`] = `
+"SyntaxError [1:26-1:31]: 'yield' may not be used as an identifier in this context
+> 1 | function* gf() { function yield() { } }
+    |                           ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { function* yield() { } } 1`] = `
+"SyntaxError [1:27-1:32]: 'yield' may not be used as an identifier in this context
+> 1 | function* gf() { function* yield() { } }
+    |                            ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { let yield;  1`] = `
+"SyntaxError [1:21-1:26]: Yield expression not allowed in formal parameter
+> 1 | function* gf() { let yield; 
+    |                      ^^^^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { let yield; } 1`] = `
+"SyntaxError [1:21-1:26]: Yield expression not allowed in formal parameter
+> 1 | function* gf() { let yield; }
+    |                      ^^^^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { var a = (x = yield 0) => { }; } 1`] = `
+"SyntaxError [1:39-1:41]: Yield expression not allowed in formal parameter
+> 1 | function* gf() { var a = (x = yield 0) => { }; }
+    |                                        ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { var a = (x = yield) => { }; } 1`] = `
+"SyntaxError [1:37-1:39]: Yield expression not allowed in formal parameter
+> 1 | function* gf() { var a = (x = yield) => { }; }
+    |                                      ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { var a = (x = yield* 0) => { }; } 1`] = `
+"SyntaxError [1:40-1:42]: Yield expression not allowed in formal parameter
+> 1 | function* gf() { var a = (x = yield* 0) => { }; }
+    |                                         ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { var a = (x, y = yield 0, z = 0) => { }; } 1`] = `
+"SyntaxError [1:49-1:51]: Yield expression not allowed in formal parameter
+> 1 | function* gf() { var a = (x, y = yield 0, z = 0) => { }; }
+    |                                                  ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { var a = (x, y = yield* 0, z = 0) => { }; } 1`] = `
+"SyntaxError [1:50-1:52]: Yield expression not allowed in formal parameter
+> 1 | function* gf() { var a = (x, y = yield* 0, z = 0) => { }; }
+    |                                                   ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { var a = (x, y = yield, z = 0) => { }; } 1`] = `
+"SyntaxError [1:47-1:49]: Yield expression not allowed in formal parameter
+> 1 | function* gf() { var a = (x, y = yield, z = 0) => { }; }
+    |                                                ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { var a = (x, y, yield) => { }; } 1`] = `
+"SyntaxError [1:39-1:41]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | function* gf() { var a = (x, y, yield) => { }; }
+    |                                        ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { var a = (x, y, z = yield 0) => { }; } 1`] = `
+"SyntaxError [1:45-1:47]: Yield expression not allowed in formal parameter
+> 1 | function* gf() { var a = (x, y, z = yield 0) => { }; }
+    |                                              ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { var a = (x, y, z = yield) => { }; } 1`] = `
+"SyntaxError [1:43-1:45]: Yield expression not allowed in formal parameter
+> 1 | function* gf() { var a = (x, y, z = yield) => { }; }
+    |                                            ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { var a = (x, y, z = yield* 0) => { }; } 1`] = `
+"SyntaxError [1:46-1:48]: Yield expression not allowed in formal parameter
+> 1 | function* gf() { var a = (x, y, z = yield* 0) => { }; }
+    |                                               ^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { var a = (x, yield, y) => { }; } 1`] = `
+"SyntaxError [1:39-1:41]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | function* gf() { var a = (x, yield, y) => { }; }
+    |                                        ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { var a = (yield) => { }; } 1`] = `
+"SyntaxError [1:33-1:35]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | function* gf() { var a = (yield) => { }; }
+    |                                  ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { var a = yield => { }; } 1`] = `
+"SyntaxError [1:31-1:33]: Unexpected token: '=>'
+> 1 | function* gf() { var a = yield => { }; }
+    |                                ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { var gfe = function* yield() { } } 1`] = `
+"SyntaxError [1:37-1:42]: 'yield' may not be used as an identifier in this context
+> 1 | function* gf() { var gfe = function* yield() { } }
+    |                                      ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { var gfe = function* yield() { } } 2`] = `
+"SyntaxError [1:37-1:42]: 'yield' may not be used as an identifier in this context
+> 1 | function* gf() { var gfe = function* yield() { } }
+    |                                      ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { var o = { yield }; } 1`] = `
+"SyntaxError [1:33-1:34]: 'yield' may not be used as an identifier in this context
+> 1 | function* gf() { var o = { yield }; }
+    |                                  ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { var yield; } 1`] = `
+"SyntaxError [1:21-1:26]: Yield expression not allowed in formal parameter
+> 1 | function* gf() { var yield; }
+    |                      ^^^^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { yield++; } 1`] = `
+"SyntaxError [1:24-1:25]: Unexpected token: ';'
+> 1 | function* gf() { yield++; }
+    |                         ^ Unexpected token: ';'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() { yield++; } 2`] = `
+"SyntaxError [1:24-1:25]: Unexpected token: ';'
+> 1 | function* gf() { yield++; }
+    |                         ^ Unexpected token: ';'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() {var a = yield in {};} 1`] = `
+"SyntaxError [1:30-1:32]: Unexpected token: 'in'
+> 1 | function* gf() {var a = yield in {};}
+    |                               ^^ Unexpected token: 'in'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function* gf() {yield in {};} 1`] = `
+"SyntaxError [1:22-1:24]: Unexpected token: 'in'
+> 1 | function* gf() {yield in {};}
+    |                       ^^ Unexpected token: 'in'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g() { ({yield = 0} = 0); } 1`] = `
+"SyntaxError [1:23-1:24]: 'yield' may not be used as an identifier in this context
+> 1 | function*g() { ({yield = 0} = 0); }
+    |                        ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g() { ({yield = 0}); } 1`] = `
+"SyntaxError [1:23-1:24]: 'yield' may not be used as an identifier in this context
+> 1 | function*g() { ({yield = 0}); }
+    |                        ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g() { ({yield = 0}); } 2`] = `
+"SyntaxError [1:23-1:24]: 'yield' may not be used as an identifier in this context
+> 1 | function*g() { ({yield = 0}); }
+    |                        ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g() { ({yield} = 0); } 1`] = `
+"SyntaxError [1:22-1:23]: 'yield' may not be used as an identifier in this context
+> 1 | function*g() { ({yield} = 0); }
+    |                       ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g() { ({yield}); } 1`] = `
+"SyntaxError [1:22-1:23]: 'yield' may not be used as an identifier in this context
+> 1 | function*g() { ({yield}); }
+    |                       ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g() { 0, {yield} = {}; } 1`] = `
+"SyntaxError [1:24-1:25]: 'yield' may not be used as an identifier in this context
+> 1 | function*g() { 0, {yield} = {}; }
+    |                         ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g() { 0, {yield} = {}; } 2`] = `
+"SyntaxError [1:24-1:25]: 'yield' may not be used as an identifier in this context
+> 1 | function*g() { 0, {yield} = {}; }
+    |                         ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g() { for ({yield = 0} in 0); } 1`] = `
+"SyntaxError [1:27-1:28]: 'yield' may not be used as an identifier in this context
+> 1 | function*g() { for ({yield = 0} in 0); }
+    |                            ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g() { for ({yield} in [{}]); } 1`] = `
+"SyntaxError [1:26-1:27]: 'yield' may not be used as an identifier in this context
+> 1 | function*g() { for ({yield} in [{}]); }
+    |                           ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g() { for ({yield} in 0); } 1`] = `
+"SyntaxError [1:26-1:27]: 'yield' may not be used as an identifier in this context
+> 1 | function*g() { for ({yield} in 0); }
+    |                           ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g() { for ({yield} of [{}]); } 1`] = `
+"SyntaxError [1:26-1:27]: 'yield' may not be used as an identifier in this context
+> 1 | function*g() { for ({yield} of [{}]); }
+    |                           ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g() { for ({yield} of [{}]); } 2`] = `
+"SyntaxError [1:26-1:27]: 'yield' may not be used as an identifier in this context
+> 1 | function*g() { for ({yield} of [{}]); }
+    |                           ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g() { let yield; } 1`] = `
+"SyntaxError [1:19-1:24]: Yield expression not allowed in formal parameter
+> 1 | function*g() { let yield; }
+    |                    ^^^^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g() { try {} catch (yield) {} } 1`] = `
+"SyntaxError [1:29-1:34]: Yield expression not allowed in formal parameter
+> 1 | function*g() { try {} catch (yield) {} }
+    |                              ^^^^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g() { var {yield = 0} = 0; } 1`] = `
+"SyntaxError [1:26-1:27]: 'yield' may not be used as an identifier in this context
+> 1 | function*g() { var {yield = 0} = 0; }
+    |                           ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g() { var {yield} = 0; } 1`] = `
+"SyntaxError [1:25-1:26]: 'yield' may not be used as an identifier in this context
+> 1 | function*g() { var {yield} = 0; }
+    |                          ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g() { var yield; } 1`] = `
+"SyntaxError [1:19-1:24]: Yield expression not allowed in formal parameter
+> 1 | function*g() { var yield; }
+    |                    ^^^^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g(){ function yield(){}; } 1`] = `
+"SyntaxError [1:23-1:28]: 'yield' may not be used as an identifier in this context
+> 1 | function*g(){ function yield(){}; }
+    |                        ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g(){ var yield = 1; } 1`] = `
+"SyntaxError [1:18-1:23]: Yield expression not allowed in formal parameter
+> 1 | function*g(){ var yield = 1; }
+    |                   ^^^^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g(){ var yield; } 1`] = `
+"SyntaxError [1:18-1:23]: Yield expression not allowed in formal parameter
+> 1 | function*g(){ var yield; }
+    |                   ^^^^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g([yield]){} 1`] = `
+"SyntaxError [1:17-1:18]: Yield expression not allowed in formal parameter
+> 1 | function*g([yield]){}
+    |                  ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g([yield]){} 2`] = `
+"SyntaxError [1:17-1:18]: Yield expression not allowed in formal parameter
+> 1 | function*g([yield]){}
+    |                  ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g({a: yield}){} 1`] = `
+"SyntaxError [1:20-1:21]: Yield expression not allowed in formal parameter
+> 1 | function*g({a: yield}){}
+    |                     ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g({yield}){} 1`] = `
+"SyntaxError [1:17-1:18]: 'yield' may not be used as an identifier in this context
+> 1 | function*g({yield}){}
+    |                  ^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g(yield = 0){} 1`] = `
+"SyntaxError [1:11-1:16]: Yield expression not allowed in formal parameter
+> 1 | function*g(yield = 0){}
+    |            ^^^^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g(yield = 0){} 2`] = `
+"SyntaxError [1:11-1:16]: Yield expression not allowed in formal parameter
+> 1 | function*g(yield = 0){}
+    |            ^^^^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > function*g(yield){} 1`] = `
+"SyntaxError [1:11-1:16]: Yield expression not allowed in formal parameter
+> 1 | function*g(yield){}
+    |            ^^^^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > gf = function* (b, a = yield) {} 1`] = `
+"SyntaxError [1:28-1:29]: Yield expression not allowed in formal parameter
+> 1 | gf = function* (b, a = yield) {}
+    |                             ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > gf = function* (b, yield) {} 1`] = `
+"SyntaxError [1:19-1:24]: Yield expression not allowed in formal parameter
+> 1 | gf = function* (b, yield) {}
+    |                    ^^^^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > label: function* a(){} 1`] = `
+"SyntaxError [1:7-1:15]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | label: function* a(){}
+    |        ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > let gfe = function* yield() { } 1`] = `
+"SyntaxError [1:20-1:25]: 'yield' may not be used as an identifier in this context
+> 1 | let gfe = function* yield() { }
+    |                     ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > var g = function* yield() {}; 1`] = `
+"SyntaxError [1:18-1:23]: 'yield' may not be used as an identifier in this context
+> 1 | var g = function* yield() {};
+    |                   ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > var obj = { *gf(b, a = yield) {} } 1`] = `
+"SyntaxError [1:28-1:29]: Yield expression not allowed in formal parameter
+> 1 | var obj = { *gf(b, a = yield) {} }
+    |                             ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > var obj = { *gf(b, yield) {} } 1`] = `
+"SyntaxError [1:19-1:24]: Yield expression not allowed in formal parameter
+> 1 | var obj = { *gf(b, yield) {} }
+    |                    ^^^^^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > yield x + y 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: 'identifier'
+> 1 | yield x + y
+    |       ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Yield > Expressions - Yield (fail) > yield x 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: 'identifier'
+> 1 | yield x
+    |       ^ Unexpected token: 'identifier'"
+`;
+
 exports[`Expressions - Yield > Expressions - Yield (pass) >  function* g22() { yield (1 + (yield 2) + 3); yield (4 + (yield 5) + 6); } 1`] = `
 {
   "body": [

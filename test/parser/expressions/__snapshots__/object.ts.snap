@@ -1,5 +1,2531 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Expressions - Object > Expressions - Object (fail) > "foo": (x) = (1) = "bar" 1`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: ':'
+> 1 | "foo": (x) = (1) = "bar"
+    |      ^ Unexpected token: ':'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > "use strict"; ({ [...a]  })- 1`] = `
+"SyntaxError [1:18-1:21]: Unexpected token: '...'
+> 1 | "use strict"; ({ [...a]  })-
+    |                   ^^^ Unexpected token: '...'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > "use strict"; ({ [...a] = [] }) 1`] = `
+"SyntaxError [1:18-1:21]: Unexpected token: '...'
+> 1 | "use strict"; ({ [...a] = [] })
+    |                   ^^^ Unexpected token: '...'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > "use\\040strict"; 1`] = `
+"SyntaxError [1:0-1:5]: Octal escape sequences are not allowed in strict mode
+> 1 | "use\\040strict";
+    | ^^^^^ Octal escape sequences are not allowed in strict mode"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ( { get x() {} } = 0) 1`] = `
+"SyntaxError [1:19-1:20]: Invalid left-hand side in assignment
+> 1 | ( { get x() {} } = 0)
+    |                    ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ( {...{}} = {} ) 1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | ( {...{}} = {} )
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > (([a, ...b = 0]) => {}) 1`] = `
+"SyntaxError [1:17-1:19]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (([a, ...b = 0]) => {})
+    |                  ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > (({ x = 10 } = { x = 20 }) => x)({}) 1`] = `
+"SyntaxError [1:25-1:26]: Invalid shorthand property initializer
+> 1 | (({ x = 10 } = { x = 20 }) => x)({})
+    |                          ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > (({a, ...b = 0}) => {}) 1`] = `
+"SyntaxError [1:17-1:19]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (({a, ...b = 0}) => {})
+    |                  ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > (({x:y}) += x) 1`] = `
+"SyntaxError [1:9-1:11]: Invalid left-hand side in assignment
+> 1 | (({x:y}) += x)
+    |          ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > (...a) 1`] = `
+"SyntaxError [1:5-1:6]: Expected '=>'
+> 1 | (...a)
+    |      ^ Expected '=>'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > (["a"]) = [] 1`] = `
+"SyntaxError [1:8-1:9]: Invalid left-hand side in assignment
+> 1 | (["a"]) = []
+    |         ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > (["x"]) = 0 1`] = `
+"SyntaxError [1:8-1:9]: Invalid left-hand side in assignment
+> 1 | (["x"]) = 0
+    |         ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ([{web: false, __proto__: a, __proto__: b}]); 1`] = `
+"SyntaxError [1:44-1:45]: Property name __proto__ appears more than once in object literal
+> 1 | ([{web: false, __proto__: a, __proto__: b}]);
+    |                                             ^ Property name __proto__ appears more than once in object literal"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ([a.[b]]) => 0 1`] = `
+"SyntaxError [1:4-1:5]: Dot property must be an identifier
+> 1 | ([a.[b]]) => 0
+    |     ^ Dot property must be an identifier"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ([a.b]) => 0 1`] = `
+"SyntaxError [1:8-1:10]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([a.b]) => 0
+    |         ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ([a.b]) => 0 2`] = `
+"SyntaxError [1:8-1:10]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([a.b]) => 0
+    |         ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ([a]) = [] 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ([a]) = []
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ([a]) = [] 2`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ([a]) = []
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ([a]) = 0 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ([a]) = 0
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ([b]) = b; 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ([b]) = b;
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ([x]) = 0 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ([x]) = 0
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({
+      async
+      foo() {}
+  }) 1`] = `
+"SyntaxError [3:6-3:9]: Async methods are a restricted production and cannot have a newline following it
+  1 | ({
+  2 |       async
+> 3 |       foo() {}
+    |       ^^^ Async methods are a restricted production and cannot have a newline following it
+  4 |   })"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({  async 0 : 0 }) 1`] = `
+"SyntaxError [1:12-1:13]: Expected '('
+> 1 | ({  async 0 : 0 })
+    |             ^ Expected '('"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({  async get x(){} }) 1`] = `
+"SyntaxError [1:14-1:15]: Expected '('
+> 1 | ({  async get x(){} })
+    |               ^ Expected '('"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ "async foo (arguments) { "use strict"; } }) 1`] = `
+"SyntaxError [1:29-1:32]: Object literal keys that are strings or numbers must be a method or have a colon
+> 1 | ({ "async foo (arguments) { "use strict"; } })
+    |                              ^^^ Object literal keys that are strings or numbers must be a method or have a colon"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ * *x(){} }) 1`] = `
+"SyntaxError [1:5-1:6]: Invalid object literal key character after generator star
+> 1 | ({ * *x(){} })
+    |      ^ Invalid object literal key character after generator star"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ *set x(y){} }) 1`] = `
+"SyntaxError [1:8-1:9]: 'set' can not be generator method
+> 1 | ({ *set x(y){} })
+    |         ^ 'set' can not be generator method"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ *x: 0 }) 1`] = `
+"SyntaxError [1:5-1:6]: 'identifier' can not be generator method
+> 1 | ({ *x: 0 })
+    |      ^ 'identifier' can not be generator method"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ , }) 1`] = `
+"SyntaxError [1:3-1:4]: Unexpected token: ','
+> 1 | ({ , })
+    |    ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ ... }) 1`] = `
+"SyntaxError [1:7-1:8]: The rest operator is missing an argument
+> 1 | ({ ... })
+    |        ^ The rest operator is missing an argument"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ [...a] = [] }) 1`] = `
+"SyntaxError [1:4-1:7]: Unexpected token: '...'
+> 1 | ({ [...a] = [] })
+    |     ^^^ Unexpected token: '...'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ __proto__: null, other: null, "__proto__": null }) => foo; 1`] = `
+"SyntaxError [1:54-1:56]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({ __proto__: null, other: null, "__proto__": null }) => foo;
+    |                                                       ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ a, b }) = {a: 1, b: 2} 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ({ a, b }) = {a: 1, b: 2}
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ a: () {}a }) 1`] = `
+"SyntaxError [1:9-1:10]: Expected '=>'
+> 1 | ({ a: () {}a })
+    |          ^ Expected '=>'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ a: ()a }) 1`] = `
+"SyntaxError [1:8-1:9]: Expected '=>'
+> 1 | ({ a: ()a })
+    |         ^ Expected '=>'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ async get *x(){} }) 1`] = `
+"SyntaxError [1:13-1:14]: Expected '('
+> 1 | ({ async get *x(){} })
+    |              ^ Expected '('"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ async get : 0 }) 1`] = `
+"SyntaxError [1:13-1:14]: Expected '('
+> 1 | ({ async get : 0 })
+    |              ^ Expected '('"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ async set x(y){} }) 1`] = `
+"SyntaxError [1:13-1:14]: Expected '('
+> 1 | ({ async set x(y){} })
+    |              ^ Expected '('"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ async}) = 0 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ({ async}) = 0
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ get *x(){} }) 1`] = `
+"SyntaxError [1:7-1:8]: A getter cannot be a generator
+> 1 | ({ get *x(){} })
+    |        ^ A getter cannot be a generator"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ obj:20 }) = 42 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | ({ obj:20 }) = 42
+    |              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ q } = { x = 10 }); 1`] = `
+"SyntaxError [1:19-1:20]: Invalid shorthand property initializer
+> 1 | ({ q } = { x = 10 });
+    |                    ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ x } = {x: ...[1,2,3]}) 1`] = `
+"SyntaxError [1:13-1:16]: Unexpected token: '...'
+> 1 | ({ x } = {x: ...[1,2,3]})
+    |              ^^^ Unexpected token: '...'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ x*(){} }) 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: '*'
+> 1 | ({ x*(){} })
+    |     ^ Unexpected token: '*'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"a": b}) = a; 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ({"a": b}) = a;
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"a"}) = 0; 1`] = `
+"SyntaxError [1:5-1:6]: Object literal keys that are strings or numbers must be a method or have a colon
+> 1 | ({"a"}) = 0;
+    |      ^ Object literal keys that are strings or numbers must be a method or have a colon"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"expr"(){}} = x); 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | ({"expr"(){}} = x);
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"foo": (x) = [1] = "bar"}); 1`] = `
+"SyntaxError [1:21-1:26]: Invalid left-hand side in assignment
+> 1 | ({"foo": (x) = [1] = "bar"});
+    |                      ^^^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"foo": [1 = 2] = foo}); 1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | ({"foo": [1 = 2] = foo});
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"foo": [1 = 2]} = foo); 1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | ({"foo": [1 = 2]} = foo);
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"foo": [1 = 2]}); 1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | ({"foo": [1 = 2]});
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"foo": [x] = [1] = "bar"}); 1`] = `
+"SyntaxError [1:21-1:26]: Invalid left-hand side in assignment
+> 1 | ({"foo": [x] = [1] = "bar"});
+    |                      ^^^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"foo": [x].foo()}=y); 1`] = `
+"SyntaxError [1:20-1:21]: Invalid left-hand side in assignment
+> 1 | ({"foo": [x].foo()}=y);
+    |                     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"foo": {1 = 2}}); 1`] = `
+"SyntaxError [1:12-1:13]: Object literal keys that are strings or numbers must be a method or have a colon
+> 1 | ({"foo": {1 = 2}});
+    |             ^ Object literal keys that are strings or numbers must be a method or have a colon"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"foo": {x} = [1] = "bar"}); 1`] = `
+"SyntaxError [1:21-1:26]: Invalid left-hand side in assignment
+> 1 | ({"foo": {x} = [1] = "bar"});
+    |                      ^^^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"foo": 1 = 2}); 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ({"foo": 1 = 2});
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"foo": x() = 1}) => x 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | ({"foo": x() = 1}) => x
+    |              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"foo": x() = a} = b) => c 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | ({"foo": x() = a} = b) => c
+    |              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"foo": x() = x} = x) 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | ({"foo": x() = x} = x)
+    |              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"foo": x() = x}) => x 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | ({"foo": x() = x}) => x
+    |              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"x" = 42, y = 15}) 1`] = `
+"SyntaxError [1:6-1:7]: Object literal keys that are strings or numbers must be a method or have a colon
+> 1 | ({"x" = 42, y = 15})
+    |       ^ Object literal keys that are strings or numbers must be a method or have a colon"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"x": [y + x]} = x) 1`] = `
+"SyntaxError [1:18-1:19]: Invalid left-hand side in assignment
+> 1 | ({"x": [y + x]} = x)
+    |                   ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"x": [y + x]} = x) 2`] = `
+"SyntaxError [1:18-1:19]: Invalid left-hand side in assignment
+> 1 | ({"x": [y + x]} = x)
+    |                   ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"x": [y + x]}) => x 1`] = `
+"SyntaxError [1:17-1:19]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({"x": [y + x]}) => x
+    |                  ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"x": [y + x]}) => x 2`] = `
+"SyntaxError [1:17-1:19]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({"x": [y + x]}) => x
+    |                  ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"x": [y].slice(0)} = x) 1`] = `
+"SyntaxError [1:23-1:24]: Invalid left-hand side in assignment
+> 1 | ({"x": [y].slice(0)} = x)
+    |                        ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"x": [y].slice(0)}) => x 1`] = `
+"SyntaxError [1:22-1:24]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({"x": [y].slice(0)}) => x
+    |                       ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"x": {a: y + x}.slice(0)} = x) 1`] = `
+"SyntaxError [1:30-1:31]: Invalid left-hand side in assignment
+> 1 | ({"x": {a: y + x}.slice(0)} = x)
+    |                               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"x": {a: y + x}.slice(0)}) => x 1`] = `
+"SyntaxError [1:29-1:31]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({"x": {a: y + x}.slice(0)}) => x
+    |                              ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"x": {a: y + x}} = x) 1`] = `
+"SyntaxError [1:21-1:22]: Invalid left-hand side in assignment
+> 1 | ({"x": {a: y + x}} = x)
+    |                      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"x": {a: y + x}}) => x 1`] = `
+"SyntaxError [1:20-1:22]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({"x": {a: y + x}}) => x
+    |                     ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"x": 600..xyz}) => x 1`] = `
+"SyntaxError [1:18-1:20]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({"x": 600..xyz}) => x
+    |                   ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"x": 600} = x) 1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | ({"x": 600} = x)
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"x": 600}) => x 1`] = `
+"SyntaxError [1:13-1:15]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({"x": 600}) => x
+    |              ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"x": y+z} = x) 1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | ({"x": y+z} = x)
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({"x": y+z}) => x 1`] = `
+"SyntaxError [1:13-1:15]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({"x": y+z}) => x
+    |              ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({) 1`] = `
+"SyntaxError [1:2-1:3]: Unexpected token: ')'
+> 1 | ({)
+    |   ^ Unexpected token: ')'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({* async x(){}}) 1`] = `
+"SyntaxError [1:10-1:11]: Found \`* async x(){}\` but this should be \`async * x(){}\`
+> 1 | ({* async x(){}})
+    |           ^ Found \`* async x(){}\` but this should be \`async * x(){}\`"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({* get x(){}}) 1`] = `
+"SyntaxError [1:8-1:9]: Getters and setters can not be generators
+> 1 | ({* get x(){}})
+    |         ^ Getters and setters can not be generators"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({* set x(){}}) 1`] = `
+"SyntaxError [1:8-1:9]: 'set' can not be generator method
+> 1 | ({* set x(){}})
+    |         ^ 'set' can not be generator method"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*"expr"(){}} = x); 1`] = `
+"SyntaxError [1:17-1:18]: Invalid left-hand side in assignment
+> 1 | ({*"expr"(){}} = x);
+    |                  ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*: x(){}}) 1`] = `
+"SyntaxError [1:3-1:4]: Invalid object literal key character after generator star
+> 1 | ({*: x(){}})
+    |    ^ Invalid object literal key character after generator star"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*[expr](){}} = x); 1`] = `
+"SyntaxError [1:17-1:18]: Invalid left-hand side in assignment
+> 1 | ({*[expr](){}} = x);
+    |                  ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*1(){}} = x); 1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | ({*1(){}} = x);
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*a([a.b]){}}) 1`] = `
+"SyntaxError [1:10-1:11]: The binding declaration is not destructible
+> 1 | ({*a([a.b]){}})
+    |           ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*async x(){}}) 1`] = `
+"SyntaxError [1:9-1:10]: Found \`* async x(){}\` but this should be \`async * x(){}\`
+> 1 | ({*async x(){}})
+    |          ^ Found \`* async x(){}\` but this should be \`async * x(){}\`"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*async x(){}}) 2`] = `
+"SyntaxError [1:9-1:10]: Found \`* async x(){}\` but this should be \`async * x(){}\`
+> 1 | ({*async x(){}})
+    |          ^ Found \`* async x(){}\` but this should be \`async * x(){}\`"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*foo(){}} = x); 1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | ({*foo(){}} = x);
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*foo: x(){}}) 1`] = `
+"SyntaxError [1:6-1:7]: 'identifier' can not be generator method
+> 1 | ({*foo: x(){}})
+    |       ^ 'identifier' can not be generator method"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*get x(){}}) 1`] = `
+"SyntaxError [1:7-1:8]: Getters and setters can not be generators
+> 1 | ({*get x(){}})
+    |        ^ Getters and setters can not be generators"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*get x(){}}) 2`] = `
+"SyntaxError [1:7-1:8]: Getters and setters can not be generators
+> 1 | ({*get x(){}})
+    |        ^ Getters and setters can not be generators"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*get x(){}}) 3`] = `
+"SyntaxError [1:7-1:8]: Getters and setters can not be generators
+> 1 | ({*get x(){}})
+    |        ^ Getters and setters can not be generators"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*get x(){}}) 4`] = `
+"SyntaxError [1:7-1:8]: Getters and setters can not be generators
+> 1 | ({*get x(){}})
+    |        ^ Getters and setters can not be generators"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*ident x(){}}) 1`] = `
+"SyntaxError [1:9-1:10]: 'identifier' can not be generator method
+> 1 | ({*ident x(){}})
+    |          ^ 'identifier' can not be generator method"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*ident x(){}}) 2`] = `
+"SyntaxError [1:9-1:10]: 'identifier' can not be generator method
+> 1 | ({*ident x(){}})
+    |          ^ 'identifier' can not be generator method"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*ident: x}) 1`] = `
+"SyntaxError [1:8-1:9]: 'identifier' can not be generator method
+> 1 | ({*ident: x})
+    |         ^ 'identifier' can not be generator method"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*ident: x}) 2`] = `
+"SyntaxError [1:8-1:9]: 'identifier' can not be generator method
+> 1 | ({*ident: x})
+    |         ^ 'identifier' can not be generator method"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*ident: x}) 3`] = `
+"SyntaxError [1:8-1:9]: 'identifier' can not be generator method
+> 1 | ({*ident: x})
+    |         ^ 'identifier' can not be generator method"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*set x(){}}) 1`] = `
+"SyntaxError [1:7-1:8]: 'set' can not be generator method
+> 1 | ({*set x(){}})
+    |        ^ 'set' can not be generator method"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*set x(){}}) 2`] = `
+"SyntaxError [1:7-1:8]: 'set' can not be generator method
+> 1 | ({*set x(){}})
+    |        ^ 'set' can not be generator method"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({*x: 0}) 1`] = `
+"SyntaxError [1:4-1:5]: 'identifier' can not be generator method
+> 1 | ({*x: 0})
+    |     ^ 'identifier' can not be generator method"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({+2 : x}) = {}; 1`] = `
+"SyntaxError [1:2-1:3]: Unexpected token: '+'
+> 1 | ({+2 : x}) = {};
+    |   ^ Unexpected token: '+'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({,} = {}); 1`] = `
+"SyntaxError [1:2-1:3]: Unexpected token: ','
+> 1 | ({,} = {});
+    |   ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({..."foo".foo=x}) => x 1`] = `
+"SyntaxError [1:19-1:21]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({..."foo".foo=x}) => x
+    |                    ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({..."foo"=x}) => x 1`] = `
+"SyntaxError [1:10-1:11]: Invalid left-hand side in assignment
+> 1 | ({..."foo"=x}) => x
+    |           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...(a,b)}) => {} 1`] = `
+"SyntaxError [1:13-1:15]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({...(a,b)}) => {}
+    |              ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...(a,b)}) => {} 2`] = `
+"SyntaxError [1:13-1:15]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({...(a,b)}) => {}
+    |              ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...(obj)}) => {} 1`] = `
+"SyntaxError [1:13-1:15]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({...(obj)}) => {}
+    |              ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...(obj)}) => {} 2`] = `
+"SyntaxError [1:13-1:15]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({...(obj)}) => {}
+    |              ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...(x) }) => {} 1`] = `
+"SyntaxError [1:12-1:14]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({...(x) }) => {}
+    |             ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...[a, b]} = x) 1`] = `
+"SyntaxError [1:15-1:16]: Invalid left-hand side in assignment
+> 1 | ({...[a, b]} = x)
+    |                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...[a,b]} = foo) 1`] = `
+"SyntaxError [1:14-1:17]: Invalid left-hand side in assignment
+> 1 | ({...[a,b]} = foo)
+    |               ^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...[a,b]}) => {} 1`] = `
+"SyntaxError [1:13-1:15]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({...[a,b]}) => {}
+    |              ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...[x] }) => {} 1`] = `
+"SyntaxError [1:12-1:14]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({...[x] }) => {}
+    |             ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...{}} = {}) 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ({...{}} = {})
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...{a, b}} = x) 1`] = `
+"SyntaxError [1:15-1:16]: Invalid left-hand side in assignment
+> 1 | ({...{a, b}} = x)
+    |                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...{a,b}} = foo) 1`] = `
+"SyntaxError [1:14-1:17]: Invalid left-hand side in assignment
+> 1 | ({...{a,b}} = foo)
+    |               ^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...{a,b}}) => {} 1`] = `
+"SyntaxError [1:13-1:15]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({...{a,b}}) => {}
+    |              ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...{x} }) => {} 1`] = `
+"SyntaxError [1:12-1:14]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({...{x} }) => {}
+    |             ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...{x} }= {}); 1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | ({...{x} }= {});
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...}) 1`] = `
+"SyntaxError [1:5-1:6]: The rest operator is missing an argument
+> 1 | ({...})
+    |      ^ The rest operator is missing an argument"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...a+b} = x) 1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | ({...a+b} = x)
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...a+b}) => x 1`] = `
+"SyntaxError [1:11-1:13]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({...a+b}) => x
+    |            ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...a, ...b, ...c} = {...a, ...b, ...c}) 1`] = `
+"SyntaxError [1:22-1:23]: Invalid left-hand side in assignment
+> 1 | ({...a, ...b, ...c} = {...a, ...b, ...c})
+    |                       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...a, ...b} = x) 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | ({...a, ...b} = x)
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...a, ...b}) => x 1`] = `
+"SyntaxError [1:15-1:17]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({...a, ...b}) => x
+    |                ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...a,} = {}); 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ({...a,} = {});
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...a,} = {}); 2`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ({...a,} = {});
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...a=b} = x) 1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | ({...a=b} = x)
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...a=b}) => x 1`] = `
+"SyntaxError [1:11-1:13]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({...a=b}) => x
+    |            ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...obj1,...obj2} = foo) 1`] = `
+"SyntaxError [1:21-1:24]: Invalid left-hand side in assignment
+> 1 | ({...obj1,...obj2} = foo)
+    |                      ^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...obj1,...obj2} = foo) 2`] = `
+"SyntaxError [1:21-1:24]: Invalid left-hand side in assignment
+> 1 | ({...obj1,...obj2} = foo)
+    |                      ^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...obj1,} = foo) 1`] = `
+"SyntaxError [1:14-1:17]: Invalid left-hand side in assignment
+> 1 | ({...obj1,} = foo)
+    |               ^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...obj1,a} = foo) 1`] = `
+"SyntaxError [1:15-1:18]: Invalid left-hand side in assignment
+> 1 | ({...obj1,a} = foo)
+    |                ^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...obj1,a} = foo) 2`] = `
+"SyntaxError [1:15-1:18]: Invalid left-hand side in assignment
+> 1 | ({...obj1,a} = foo)
+    |                ^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...rest, b} = {}) 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | ({...rest, b} = {})
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...x = 1} = {}) 1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | ({...x = 1} = {})
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...x) 1`] = `
+"SyntaxError [1:6-1:7]: Expected '}'
+> 1 | ({...x)
+    |       ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({...x,}) => z 1`] = `
+"SyntaxError [1:10-1:12]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({...x,}) => z
+    |           ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({;} 1`] = `
+"SyntaxError [1:2-1:3]: Unexpected token: ';'
+> 1 | ({;}
+    |   ^ Unexpected token: ';'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({;x:y,a:b}) 1`] = `
+"SyntaxError [1:2-1:3]: Unexpected token: ';'
+> 1 | ({;x:y,a:b})
+    |   ^ Unexpected token: ';'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({[a]: b => []} = [2]) 1`] = `
+"SyntaxError [1:18-1:19]: Invalid left-hand side in assignment
+> 1 | ({[a]: b => []} = [2])
+    |                   ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({[expr](){}} = x); 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | ({[expr](){}} = x);
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({[fgrumpy] 1(){}}) 1`] = `
+"SyntaxError [1:12-1:13]: A computed property name must be followed by a colon or paren
+> 1 | ({[fgrumpy] 1(){}})
+    |             ^ A computed property name must be followed by a colon or paren"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({[foo]() {}} = y) 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | ({[foo]() {}} = y)
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({[foo]: x()} = x) => y 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | ({[foo]: x()} = x) => y
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({[foo]-(a) {}}) 1`] = `
+"SyntaxError [1:7-1:8]: A computed property name must be followed by a colon or paren
+> 1 | ({[foo]-(a) {}})
+    |        ^ A computed property name must be followed by a colon or paren"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({[x] = 42, y = 15}) 1`] = `
+"SyntaxError [1:6-1:7]: A computed property name must be followed by a colon or paren
+> 1 | ({[x] = 42, y = 15})
+    |       ^ A computed property name must be followed by a colon or paren"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({{eval}) => x); 1`] = `
+"SyntaxError [1:2-1:3]: Unexpected token: '{'
+> 1 | ({{eval}) => x);
+    |   ^ Unexpected token: '{'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({0} = 0) 1`] = `
+"SyntaxError [1:3-1:4]: Object literal keys that are strings or numbers must be a method or have a colon
+> 1 | ({0} = 0)
+    |    ^ Object literal keys that are strings or numbers must be a method or have a colon"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({1(){}} = x); 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ({1(){}} = x);
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({1} ? a : b) 1`] = `
+"SyntaxError [1:3-1:4]: Object literal keys that are strings or numbers must be a method or have a colon
+> 1 | ({1} ? a : b)
+    |    ^ Object literal keys that are strings or numbers must be a method or have a colon"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({1}) = {} 1`] = `
+"SyntaxError [1:3-1:4]: Object literal keys that are strings or numbers must be a method or have a colon
+> 1 | ({1}) = {}
+    |    ^ Object literal keys that are strings or numbers must be a method or have a colon"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({3200: foo() = x}) => x 1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | ({3200: foo() = x}) => x
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({3200: x() = a} = b) => c 1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | ({3200: x() = a} = b) => c
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({3200: x() = x} = x) 1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | ({3200: x() = x} = x)
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({3200: x() = x}) => x 1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | ({3200: x() = x}) => x
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({Object = 0, String = 0}) = {}; 1`] = `
+"SyntaxError [1:27-1:28]: Expected '=>'
+> 1 | ({Object = 0, String = 0}) = {};
+    |                            ^ Expected '=>'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a ...b}) 1`] = `
+"SyntaxError [1:4-1:7]: Unexpected character after object literal property name
+> 1 | ({a ...b})
+    |     ^^^ Unexpected character after object literal property name"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a = 0}); 1`] = `
+"SyntaxError [1:9-1:10]: Expected '=>'
+> 1 | ({a = 0});
+    |          ^ Expected '=>'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a([a.b]){}}) 1`] = `
+"SyntaxError [1:9-1:10]: The binding declaration is not destructible
+> 1 | ({a([a.b]){}})
+    |          ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a([a.b]){}}) 2`] = `
+"SyntaxError [1:9-1:10]: The binding declaration is not destructible
+> 1 | ({a([a.b]){}})
+    |          ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a({e: a.b}){}}) 1`] = `
+"SyntaxError [1:12-1:13]: The binding declaration is not destructible
+> 1 | ({a({e: a.b}){}})
+    |             ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a({e: a.b}){}}) 2`] = `
+"SyntaxError [1:12-1:13]: The binding declaration is not destructible
+> 1 | ({a({e: a.b}){}})
+    |             ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a, b}) = {a: 1, b:2} 1`] = `
+"SyntaxError [1:9-1:10]: Invalid left-hand side in assignment
+> 1 | ({a, b}) = {a: 1, b:2}
+    |          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a, b}) = {a: 1, b:2} 2`] = `
+"SyntaxError [1:9-1:10]: Invalid left-hand side in assignment
+> 1 | ({a, b}) = {a: 1, b:2}
+    |          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a.b} = 0) 1`] = `
+"SyntaxError [1:3-1:4]: Unexpected character after object literal property name
+> 1 | ({a.b} = 0)
+    |    ^ Unexpected character after object literal property name"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a: ({d = 1,c = 1}.c) = 2} = {}); 1`] = `
+"SyntaxError [1:19-1:20]: Pattern can not have a tail
+> 1 | ({a: ({d = 1,c = 1}.c) = 2} = {});
+    |                    ^ Pattern can not have a tail"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a: [foo]-(a) {}}) 1`] = `
+"SyntaxError [1:15-1:16]: Expected '}'
+> 1 | ({a: [foo]-(a) {}})
+    |                ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a: {d = 1,c = 1}.c = 2} = {}); 1`] = `
+"SyntaxError [1:18-1:19]: Invalid destructuring assignment target
+> 1 | ({a: {d = 1,c = 1}.c = 2} = {});
+    |                   ^ Invalid destructuring assignment target"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a: b + c} = [2]) 1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | ({a: b + c} = [2])
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a: b => []} = [2]) 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | ({a: b => []} = [2])
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a: b()} = x) => y 1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | ({a: b()} = x) => y
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a:this}=0) 1`] = `
+"SyntaxError [1:10-1:11]: Invalid left-hand side in assignment
+> 1 | ({a:this}=0)
+    |           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a} += 0); 1`] = `
+"SyntaxError [1:5-1:7]: Invalid left-hand side in assignment
+> 1 | ({a} += 0);
+    |      ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a}) = {} 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ({a}) = {}
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a}) = 0 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ({a}) = 0
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({a}) = 0; 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ({a}) = 0;
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({async 8(){}) 1`] = `
+"SyntaxError [1:13-1:14]: Expected '}'
+> 1 | ({async 8(){})
+    |              ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({async 8(){}); 1`] = `
+"SyntaxError [1:13-1:14]: Expected '}'
+> 1 | ({async 8(){});
+    |              ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({async async}); 1`] = `
+"SyntaxError [1:13-1:14]: Expected '('
+> 1 | ({async async});
+    |              ^ Expected '('"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({async foo: 1}); 1`] = `
+"SyntaxError [1:11-1:12]: Expected '('
+> 1 | ({async foo: 1});
+    |            ^ Expected '('"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({async get : 0}) 1`] = `
+"SyntaxError [1:12-1:13]: Expected '('
+> 1 | ({async get : 0})
+    |             ^ Expected '('"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({async get foo() { }}) 1`] = `
+"SyntaxError [1:12-1:15]: Expected '('
+> 1 | ({async get foo() { }})
+    |             ^^^ Expected '('"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({async get foo(){}}); 1`] = `
+"SyntaxError [1:12-1:15]: Expected '('
+> 1 | ({async get foo(){}});
+    |             ^^^ Expected '('"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({async set foo(){}}); 1`] = `
+"SyntaxError [1:12-1:15]: Expected '('
+> 1 | ({async set foo(){}});
+    |             ^^^ Expected '('"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({async set foo(value) { }}) 1`] = `
+"SyntaxError [1:12-1:15]: Expected '('
+> 1 | ({async set foo(value) { }})
+    |             ^^^ Expected '('"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({async set foo(value) { }}) 2`] = `
+"SyntaxError [1:12-1:15]: Expected '('
+> 1 | ({async set foo(value) { }})
+    |             ^^^ Expected '('"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({await}) => null 1`] = `
+"SyntaxError [1:7-1:8]: Can not use \`await\` as identifier in module or async func
+> 1 | ({await}) => null
+    |        ^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({b => []} = [2]) 1`] = `
+"SyntaxError [1:4-1:6]: Unexpected character after object literal property name
+> 1 | ({b => []} = [2])
+    |     ^^ Unexpected character after object literal property name"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({b}) = b; 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ({b}) = b;
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({break = bones}) 1`] = `
+"SyntaxError [1:8-1:9]: Invalid keyword
+> 1 | ({break = bones})
+    |         ^ Invalid keyword"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({break}) 1`] = `
+"SyntaxError [1:7-1:8]: Invalid keyword
+> 1 | ({break})
+    |        ^ Invalid keyword"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({eval} = x); 1`] = `
+"SyntaxError [1:10-1:11]: Invalid left-hand side in assignment
+> 1 | ({eval} = x);
+    |           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({eval}) => x); 1`] = `
+"SyntaxError [1:13-1:14]: Unexpected token: ')'
+> 1 | ({eval}) => x);
+    |              ^ Unexpected token: ')'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({foo += bar}) 1`] = `
+"SyntaxError [1:6-1:8]: Unexpected character after object literal property name
+> 1 | ({foo += bar})
+    |       ^^ Unexpected character after object literal property name"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({foo += bar}) 2`] = `
+"SyntaxError [1:6-1:8]: Unexpected character after object literal property name
+> 1 | ({foo += bar})
+    |       ^^ Unexpected character after object literal property name"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({foo(){}} = x); 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | ({foo(){}} = x);
+    |              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({foo: {x:y} += x}) 1`] = `
+"SyntaxError [1:13-1:15]: Invalid left-hand side in assignment
+> 1 | ({foo: {x:y} += x})
+    |              ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({foo: x() = a} = b) => c 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ({foo: x() = a} = b) => c
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({foo: x() = a} = b) => c 2`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ({foo: x() = a} = b) => c
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({foo: x() = a} = b) => c 3`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ({foo: x() = a} = b) => c
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({foo: x() = x} = x) 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ({foo: x() = x} = x)
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({foo: x() = x} = x) 2`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ({foo: x() = x} = x)
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({foo: x() = x} = x) 3`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ({foo: x() = x} = x)
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({foo: x() = x}) => x 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ({foo: x() = x}) => x
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({foo: x() = x}) => x 2`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ({foo: x() = x}) => x
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({foo: x() = x}) => x 3`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | ({foo: x() = x}) => x
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({g\\u0065t m() {} }); 1`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: 'escaped keyword'
+> 1 | ({g\\u0065t m() {} });
+    |      ^ Unexpected token: 'escaped keyword'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get "x"(){}) 1`] = `
+"SyntaxError [1:13-1:14]: Expected '}'
+> 1 | ({get "x"(){})
+    |              ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get *"x"(){}}) 1`] = `
+"SyntaxError [1:6-1:7]: A getter cannot be a generator
+> 1 | ({get *"x"(){}})
+    |       ^ A getter cannot be a generator"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get *[expr](){}}) 1`] = `
+"SyntaxError [1:6-1:7]: A getter cannot be a generator
+> 1 | ({get *[expr](){}})
+    |       ^ A getter cannot be a generator"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get *[x](){}}) 1`] = `
+"SyntaxError [1:6-1:7]: A getter cannot be a generator
+> 1 | ({get *[x](){}})
+    |       ^ A getter cannot be a generator"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get *5(){}}) 1`] = `
+"SyntaxError [1:6-1:7]: A getter cannot be a generator
+> 1 | ({get *5(){}})
+    |       ^ A getter cannot be a generator"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get *10(){}}) 1`] = `
+"SyntaxError [1:6-1:7]: A getter cannot be a generator
+> 1 | ({get *10(){}})
+    |       ^ A getter cannot be a generator"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get *ident(){}}) 1`] = `
+"SyntaxError [1:6-1:7]: A getter cannot be a generator
+> 1 | ({get *ident(){}})
+    |       ^ A getter cannot be a generator"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get +:3}) 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected character after object literal property name
+> 1 | ({get +:3})
+    |       ^ Unexpected character after object literal property name"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get +:3}) 2`] = `
+"SyntaxError [1:6-1:7]: Unexpected character after object literal property name
+> 1 | ({get +:3})
+    |       ^ Unexpected character after object literal property name"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get [x](){}) 1`] = `
+"SyntaxError [1:13-1:14]: Expected '}'
+> 1 | ({get [x](){})
+    |              ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get [x](y){}); 1`] = `
+"SyntaxError [1:10-1:11]: Getter functions must have exactly no arguments
+> 1 | ({get [x](y){});
+    |           ^ Getter functions must have exactly no arguments"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get 8(){}) 1`] = `
+"SyntaxError [1:11-1:12]: Expected '}'
+> 1 | ({get 8(){})
+    |            ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get 8(){}); 1`] = `
+"SyntaxError [1:11-1:12]: Expected '}'
+> 1 | ({get 8(){});
+    |            ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get a(){}})=0 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | ({get a(){}})=0
+    |              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get a(a) {}}) 1`] = `
+"SyntaxError [1:8-1:9]: Getter functions must have exactly no arguments
+> 1 | ({get a(a) {}})
+    |         ^ Getter functions must have exactly no arguments"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get bar(x) {}) 1`] = `
+"SyntaxError [1:10-1:11]: Getter functions must have exactly no arguments
+> 1 | ({get bar(x) {})
+    |           ^ Getter functions must have exactly no arguments"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get bar(x) {}) 2`] = `
+"SyntaxError [1:10-1:11]: Getter functions must have exactly no arguments
+> 1 | ({get bar(x) {})
+    |           ^ Getter functions must have exactly no arguments"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get bar(x) {}) 3`] = `
+"SyntaxError [1:10-1:11]: Getter functions must have exactly no arguments
+> 1 | ({get bar(x) {})
+    |           ^ Getter functions must have exactly no arguments"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get bar(x) {}) 4`] = `
+"SyntaxError [1:10-1:11]: Getter functions must have exactly no arguments
+> 1 | ({get bar(x) {})
+    |           ^ Getter functions must have exactly no arguments"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get bar(x) {}) 5`] = `
+"SyntaxError [1:10-1:11]: Getter functions must have exactly no arguments
+> 1 | ({get bar(x) {})
+    |           ^ Getter functions must have exactly no arguments"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get set foo(){}}); 1`] = `
+"SyntaxError [1:10-1:13]: Expected '('
+> 1 | ({get set foo(){}});
+    |           ^^^ Expected '('"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({get x() {}}) => {} 1`] = `
+"SyntaxError [1:15-1:17]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({get x() {}}) => {}
+    |                ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ident: [foo, bar].join("") = x} = x) 1`] = `
+"SyntaxError [1:36-1:37]: Invalid left-hand side in assignment
+> 1 | ({ident: [foo, bar].join("") = x} = x)
+    |                                     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({ident: [foo, bar].join("")} = x) 1`] = `
+"SyntaxError [1:32-1:33]: Invalid left-hand side in assignment
+> 1 | ({ident: [foo, bar].join("")} = x)
+    |                                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({implements}) => null 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected strict mode reserved word
+> 1 | ({implements}) => null
+    |             ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({interface}) => null 1`] = `
+"SyntaxError [1:11-1:12]: Unexpected strict mode reserved word
+> 1 | ({interface}) => null
+    |            ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({set "x"(y){}) 1`] = `
+"SyntaxError [1:14-1:15]: Expected '}'
+> 1 | ({set "x"(y){})
+    |               ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({set "x"(y){}); 1`] = `
+"SyntaxError [1:14-1:15]: Expected '}'
+> 1 | ({set "x"(y){});
+    |               ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({set *5(ident){}}) 1`] = `
+"SyntaxError [1:6-1:7]: A setter cannot be a generator
+> 1 | ({set *5(ident){}})
+    |       ^ A setter cannot be a generator"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({set *ident(ident){}})  1`] = `
+"SyntaxError [1:6-1:7]: A setter cannot be a generator
+> 1 | ({set *ident(ident){}}) 
+    |       ^ A setter cannot be a generator"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({set [x](y){}); 1`] = `
+"SyntaxError [1:14-1:15]: Expected '}'
+> 1 | ({set [x](y){});
+    |               ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({set 8(){}); 1`] = `
+"SyntaxError [1:8-1:9]: Setter functions must have exactly one argument
+> 1 | ({set 8(){});
+    |         ^ Setter functions must have exactly one argument"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({set 8(y){}) 1`] = `
+"SyntaxError [1:12-1:13]: Expected '}'
+> 1 | ({set 8(y){})
+    |             ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({set 8(y){}) 2`] = `
+"SyntaxError [1:12-1:13]: Expected '}'
+> 1 | ({set 8(y){})
+    |             ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({set a() {}}) 1`] = `
+"SyntaxError [1:8-1:9]: Setter functions must have exactly one argument
+> 1 | ({set a() {}})
+    |         ^ Setter functions must have exactly one argument"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({set a(...foo) {}}) 1`] = `
+"SyntaxError [1:8-1:11]: Setter function argument must not be a rest parameter
+> 1 | ({set a(...foo) {}})
+    |         ^^^ Setter function argument must not be a rest parameter"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({set a([a.b]){}}) 1`] = `
+"SyntaxError [1:13-1:14]: The binding declaration is not destructible
+> 1 | ({set a([a.b]){}})
+    |              ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({set a([a.b]){}}) 2`] = `
+"SyntaxError [1:13-1:14]: The binding declaration is not destructible
+> 1 | ({set a([a.b]){}})
+    |              ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({set a({e: a.b}){}}) 1`] = `
+"SyntaxError [1:16-1:17]: The binding declaration is not destructible
+> 1 | ({set a({e: a.b}){}})
+    |                 ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({set a({e: a.b}){}}) 2`] = `
+"SyntaxError [1:16-1:17]: The binding declaration is not destructible
+> 1 | ({set a({e: a.b}){}})
+    |                 ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({static async x(){}}) 1`] = `
+"SyntaxError [1:9-1:14]: Unexpected token
+> 1 | ({static async x(){}})
+    |          ^^^^^ Unexpected token"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({static x: 0}) 1`] = `
+"SyntaxError [1:9-1:10]: Unexpected token
+> 1 | ({static x: 0})
+    |          ^ Unexpected token"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({web: false, __proto__: a, __proto__: b}); 1`] = `
+"SyntaxError [1:42-1:43]: Property name __proto__ appears more than once in object literal
+> 1 | ({web: false, __proto__: a, __proto__: b});
+    |                                           ^ Property name __proto__ appears more than once in object literal"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({x = 42, y = 15}) 1`] = `
+"SyntaxError [1:17-1:18]: Expected '=>'
+> 1 | ({x = 42, y = 15})
+    |                  ^ Expected '=>'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({x+=y}) 1`] = `
+"SyntaxError [1:3-1:5]: Unexpected character after object literal property name
+> 1 | ({x+=y})
+    |    ^^ Unexpected character after object literal property name"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({x, y}) = {} 1`] = `
+"SyntaxError [1:9-1:10]: Invalid left-hand side in assignment
+> 1 | ({x, y}) = {}
+    |          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({x: [..] = y}) 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: '.'
+> 1 | ({x: [..] = y})
+    |       ^ Unexpected token: '.'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({x: [..]}) 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: '.'
+> 1 | ({x: [..]})
+    |       ^ Unexpected token: '.'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({x: { y = 10 } }) 1`] = `
+"SyntaxError [1:17-1:18]: Expected '=>'
+> 1 | ({x: { y = 10 } })
+    |                  ^ Expected '=>'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({x: {..} = y}) 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: '.'
+> 1 | ({x: {..} = y})
+    |       ^ Unexpected token: '.'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({x: {..}}) 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: '.'
+> 1 | ({x: {..}})
+    |       ^ Unexpected token: '.'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({x:y;}) 1`] = `
+"SyntaxError [1:5-1:6]: Expected '}'
+> 1 | ({x:y;})
+    |      ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({x:y;a:b}) 1`] = `
+"SyntaxError [1:5-1:6]: Expected '}'
+> 1 | ({x:y;a:b})
+    |      ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({x:y} += x) 1`] = `
+"SyntaxError [1:7-1:9]: Invalid left-hand side in assignment
+> 1 | ({x:y} += x)
+    |        ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({x:y} += x) 2`] = `
+"SyntaxError [1:7-1:9]: Invalid left-hand side in assignment
+> 1 | ({x:y} += x)
+    |        ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({x:y} += x) 3`] = `
+"SyntaxError [1:7-1:9]: Invalid left-hand side in assignment
+> 1 | ({x:y} += x)
+    |        ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({x}) = foo 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | ({x}) = foo
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ({yield}) => null 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected strict mode reserved word
+> 1 | ({yield}) => null
+    |        ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > (1 + 1) = 10 1`] = `
+"SyntaxError [1:8-1:9]: Invalid left-hand side in assignment
+> 1 | (1 + 1) = 10
+    |         ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > (a = b) = {}; 1`] = `
+"SyntaxError [1:8-1:9]: Invalid left-hand side in assignment
+> 1 | (a = b) = {};
+    |         ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > (a = b) = {}; 2`] = `
+"SyntaxError [1:8-1:9]: Invalid left-hand side in assignment
+> 1 | (a = b) = {};
+    |         ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > (a, (b)) => 42 1`] = `
+"SyntaxError [1:9-1:11]: Unexpected token: '=>'
+> 1 | (a, (b)) => 42
+    |          ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > (function* ({e: a.b}) {}) 1`] = `
+"SyntaxError [1:20-1:21]: The binding declaration is not destructible
+> 1 | (function* ({e: a.b}) {})
+    |                     ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > (true ? { x = true } : { x = false }) 1`] = `
+"SyntaxError [1:21-1:22]: Invalid shorthand property initializer
+> 1 | (true ? { x = true } : { x = false })
+    |                      ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > (x=1)=2 1`] = `
+"SyntaxError [1:5-1:6]: Invalid left-hand side in assignment
+> 1 | (x=1)=2
+    |      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > (x=1)=y 1`] = `
+"SyntaxError [1:5-1:6]: Invalid left-hand side in assignment
+> 1 | (x=1)=y
+    |      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > *async x(){} 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '*'
+> 1 | *async x(){}
+    | ^ Unexpected token: '*'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > ...(x => y) = {}; 1`] = `
+"SyntaxError [1:0-1:3]: Unexpected token: '...'
+> 1 | ...(x => y) = {};
+    | ^^^ Unexpected token: '...'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > [(a = 0)] = 1 1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | [(a = 0)] = 1
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > [, x, ...y,] = 0 1`] = `
+"SyntaxError [1:15-1:16]: Invalid left-hand side in assignment
+> 1 | [, x, ...y,] = 0
+    |                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > [...a, ] = b 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | [...a, ] = b
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > [...rest,] = {}; 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | [...rest,] = {};
+    |              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > [{ __proto__: null, other: null, "__proto__": null }]; 1`] = `
+"SyntaxError [1:53-1:54]: Property name __proto__ appears more than once in object literal
+> 1 | [{ __proto__: null, other: null, "__proto__": null }];
+    |                                                      ^ Property name __proto__ appears more than once in object literal"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > [{ x = 10 }] 1`] = `
+"SyntaxError [1:11-1:12]: Invalid shorthand property initializer
+> 1 | [{ x = 10 }]
+    |            ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > [{a=0},{b=0},0] = 0 1`] = `
+"SyntaxError [1:18-1:19]: Invalid left-hand side in assignment
+> 1 | [{a=0},{b=0},0] = 0
+    |                   ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > { 1: [] = a } 1`] = `
+"SyntaxError [1:3-1:4]: Unexpected token: ':'
+> 1 | { 1: [] = a }
+    |    ^ Unexpected token: ':'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > { 1: [] [a] } 1`] = `
+"SyntaxError [1:3-1:4]: Unexpected token: ':'
+> 1 | { 1: [] [a] }
+    |    ^ Unexpected token: ':'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > { 1: {} + a } 1`] = `
+"SyntaxError [1:3-1:4]: Unexpected token: ':'
+> 1 | { 1: {} + a }
+    |    ^ Unexpected token: ':'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > { 1: {} /- a } 1`] = `
+"SyntaxError [1:3-1:4]: Unexpected token: ':'
+> 1 | { 1: {} /- a }
+    |    ^ Unexpected token: ':'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > { 1: {} = a } 1`] = `
+"SyntaxError [1:3-1:4]: Unexpected token: ':'
+> 1 | { 1: {} = a }
+    |    ^ Unexpected token: ':'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > { 1: {} ? a : b } 1`] = `
+"SyntaxError [1:3-1:4]: Unexpected token: ':'
+> 1 | { 1: {} ? a : b }
+    |    ^ Unexpected token: ':'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > { 1: {} [a] } 1`] = `
+"SyntaxError [1:3-1:4]: Unexpected token: ':'
+> 1 | { 1: {} [a] }
+    |    ^ Unexpected token: ':'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > { x = 10 } = (o = { x = 20 }); 1`] = `
+"SyntaxError [1:11-1:12]: Unexpected token: '='
+> 1 | { x = 10 } = (o = { x = 20 });
+    |            ^ Unexpected token: '='"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > {...x) 1`] = `
+"SyntaxError [1:1-1:4]: Unexpected token: '...'
+> 1 | {...x)
+    |  ^^^ Unexpected token: '...'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > {[1+1] : z} = {}; 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: ':'
+> 1 | {[1+1] : z} = {};
+    |        ^ Unexpected token: ':'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > 0, {...rest, b} = {} 1`] = `
+"SyntaxError [1:18-1:19]: Invalid left-hand side in assignment
+> 1 | 0, {...rest, b} = {}
+    |                   ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > 0, {...rest, b} = {} 2`] = `
+"SyntaxError [1:18-1:19]: Invalid left-hand side in assignment
+> 1 | 0, {...rest, b} = {}
+    |                   ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > a = { a: async (){} } 1`] = `
+"SyntaxError [1:17-1:18]: Expected '}'
+> 1 | a = { a: async (){} }
+    |                  ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > a = { x: [(x, y)] } = { 1: [] = [(a = b)] }; 1`] = `
+"SyntaxError [1:22-1:23]: Invalid left-hand side in assignment
+> 1 | a = { x: [(x, y)] } = { 1: [] = [(a = b)] };
+    |                       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > a = { x: [(x, y)] } = { x: [] }; 1`] = `
+"SyntaxError [1:22-1:23]: Invalid left-hand side in assignment
+> 1 | a = { x: [(x, y)] } = { x: [] };
+    |                       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > a = { x: [(x, y)] } = { x: null } 1`] = `
+"SyntaxError [1:22-1:23]: Invalid left-hand side in assignment
+> 1 | a = { x: [(x, y)] } = { x: null }
+    |                       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > a = { x: [(x, y)] } = {}; 1`] = `
+"SyntaxError [1:22-1:23]: Invalid left-hand side in assignment
+> 1 | a = { x: [(x, y)] } = {};
+    |                       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > a = { x: [(x, y)] } = 51 1`] = `
+"SyntaxError [1:22-1:24]: Invalid left-hand side in assignment
+> 1 | a = { x: [(x, y)] } = 51
+    |                       ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > a = { x: [(x, y)] } = b 1`] = `
+"SyntaxError [1:22-1:23]: Invalid left-hand side in assignment
+> 1 | a = { x: [(x, y)] } = b
+    |                       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > a = { x: [(x, y)] } = false 1`] = `
+"SyntaxError [1:22-1:27]: Invalid left-hand side in assignment
+> 1 | a = { x: [(x, y)] } = false
+    |                       ^^^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > a = { x: [(x, y)] } = null 1`] = `
+"SyntaxError [1:22-1:26]: Invalid left-hand side in assignment
+> 1 | a = { x: [(x, y)] } = null
+    |                       ^^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > a = { x: [(x, y)] } = undefined 1`] = `
+"SyntaxError [1:22-1:31]: Invalid left-hand side in assignment
+> 1 | a = { x: [(x, y)] } = undefined
+    |                       ^^^^^^^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > a = {"a"} = b 1`] = `
+"SyntaxError [1:8-1:9]: Object literal keys that are strings or numbers must be a method or have a colon
+> 1 | a = {"a"} = b
+    |         ^ Object literal keys that are strings or numbers must be a method or have a colon"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > a = {1} = b 1`] = `
+"SyntaxError [1:6-1:7]: Object literal keys that are strings or numbers must be a method or have a colon
+> 1 | a = {1} = b
+    |       ^ Object literal keys that are strings or numbers must be a method or have a colon"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > async ({ __proto__: null, other: null, "__proto__": null }) => foo; 1`] = `
+"SyntaxError [1:60-1:62]: Invalid left-hand side in async arrow
+> 1 | async ({ __proto__: null, other: null, "__proto__": null }) => foo;
+    |                                                             ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > async (foo = ({static *[await oops](){}})) => {} 1`] = `
+"SyntaxError [1:22-1:23]: Unexpected token: '*'
+> 1 | async (foo = ({static *[await oops](){}})) => {}
+    |                       ^ Unexpected token: '*'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > async 0 : 0" 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: 'number'
+> 1 | async 0 : 0"
+    |       ^ Unexpected token: 'number'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > async function g() {   s = {"foo": await /brains/ = x} = x   } 1`] = `
+"SyntaxError [1:50-1:51]: Invalid left-hand side in assignment
+> 1 | async function g() {   s = {"foo": await /brains/ = x} = x   }
+    |                                                   ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > async function g() {   s = {"foo": await /brains/ = x} = x   } 2`] = `
+"SyntaxError [1:50-1:51]: Invalid left-hand side in assignment
+> 1 | async function g() {   s = {"foo": await /brains/ = x} = x   }
+    |                                                   ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > async function g() {   s = {"foo": await = x} = x   } 1`] = `
+"SyntaxError [1:35-1:40]: cannot use "await" as identifier inside an async function
+> 1 | async function g() {   s = {"foo": await = x} = x   }
+    |                                    ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > async function g() {   s = {"foo": await a = x} = x   } 1`] = `
+"SyntaxError [1:43-1:44]: Invalid left-hand side in assignment
+> 1 | async function g() {   s = {"foo": await a = x} = x   }
+    |                                            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > async get *x(){} 1`] = `
+"SyntaxError [1:10-1:11]: Expected '=>'
+> 1 | async get *x(){}
+    |           ^ Expected '=>'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > async get x(){} 1`] = `
+"SyntaxError [1:10-1:11]: Expected '=>'
+> 1 | async get x(){}
+    |           ^ Expected '=>'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > async set x(y){} 1`] = `
+"SyntaxError [1:10-1:11]: Expected '=>'
+> 1 | async set x(y){}
+    |           ^ Expected '=>'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > async x*(){} 1`] = `
+"SyntaxError [1:7-1:8]: Expected '=>'
+> 1 | async x*(){}
+    |        ^ Expected '=>'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > call({[x]}) 1`] = `
+"SyntaxError [1:9-1:10]: A computed property name must be followed by a colon or paren
+> 1 | call({[x]})
+    |          ^ A computed property name must be followed by a colon or paren"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > class foo { method() { ({x:super()} = {}); } } 1`] = `
+"SyntaxError [1:32-1:33]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class foo { method() { ({x:super()} = {}); } }
+    |                                 ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > f = ( [a,,..rest,...rest1] ) => {}; 1`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: '.'
+> 1 | f = ( [a,,..rest,...rest1] ) => {};
+    |           ^ Unexpected token: '.'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > f = ( { ,, ...x } ) => {}; 1`] = `
+"SyntaxError [1:8-1:9]: Unexpected token: ','
+> 1 | f = ( { ,, ...x } ) => {};
+    |         ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > f = ( { ...*method() {} } ) => {}; 1`] = `
+"SyntaxError [1:11-1:12]: Unexpected token: '*'
+> 1 | f = ( { ...*method() {} } ) => {};
+    |            ^ Unexpected token: '*'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > f = ( {+2 : x} ) => {}; 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: '+'
+> 1 | f = ( {+2 : x} ) => {};
+    |        ^ Unexpected token: '+'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > f = ( {...x[0] } ) => {}; 1`] = `
+"SyntaxError [1:19-1:21]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | f = ( {...x[0] } ) => {};
+    |                    ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > f = ( a++ ) => {}; 1`] = `
+"SyntaxError [1:12-1:14]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | f = ( a++ ) => {};
+    |             ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > f = ([...[z] = 1] ) => {}; 1`] = `
+"SyntaxError [1:20-1:22]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | f = ([...[z] = 1] ) => {};
+    |                     ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > f = ([...z = 1] ) => {}; 1`] = `
+"SyntaxError [1:18-1:20]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | f = ([...z = 1] ) => {};
+    |                   ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > f = (argument1, {...[ x = 5 ] }) => {}; 1`] = `
+"SyntaxError [1:33-1:35]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | f = (argument1, {...[ x = 5 ] }) => {};
+    |                                  ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > f = (this ) => {}; 1`] = `
+"SyntaxError [1:12-1:14]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | f = (this ) => {};
+    |             ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > foo({ __proto__: null, other: null, "__proto__": null }); 1`] = `
+"SyntaxError [1:55-1:56]: Property name __proto__ appears more than once in object literal
+> 1 | foo({ __proto__: null, other: null, "__proto__": null });
+    |                                                        ^ Property name __proto__ appears more than once in object literal"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > for(var [z] = function ([a]) { } in []) {} 1`] = `
+"SyntaxError [1:8-1:35]: 'for-in' loop head declarations can not have an initializer
+> 1 | for(var [z] = function ([a]) { } in []) {}
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > function *f(){   s = {"foo": yield / x}   } 1`] = `
+"SyntaxError [1:35-1:43]: Unterminated regular expression
+> 1 | function *f(){   s = {"foo": yield / x}   }
+    |                                    ^^^^^^^^ Unterminated regular expression"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > function *f(){   s = {"foo": yield / x}   } 2`] = `
+"SyntaxError [1:35-1:43]: Unterminated regular expression
+> 1 | function *f(){   s = {"foo": yield / x}   }
+    |                                    ^^^^^^^^ Unterminated regular expression"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > function *f(){   s = {foo: yield / x}   } 1`] = `
+"SyntaxError [1:33-1:41]: Unterminated regular expression
+> 1 | function *f(){   s = {foo: yield / x}   }
+    |                                  ^^^^^^^^ Unterminated regular expression"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > function *g() {   s = {"foo": yield /brains/ = x} = x   } 1`] = `
+"SyntaxError [1:45-1:46]: Invalid left-hand side in assignment
+> 1 | function *g() {   s = {"foo": yield /brains/ = x} = x   }
+    |                                              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > function *g() {   s = {"foo": yield = x} = x   } 1`] = `
+"SyntaxError [1:36-1:37]: Invalid left-hand side in assignment
+> 1 | function *g() {   s = {"foo": yield = x} = x   }
+    |                                     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > function *g() {   s = {"foo": yield a = x} = x   } 1`] = `
+"SyntaxError [1:45-1:46]: Invalid left-hand side in assignment
+> 1 | function *g() {   s = {"foo": yield a = x} = x   }
+    |                                              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > function f( {[1+1]} ) {} 1`] = `
+"SyntaxError [1:18-1:19]: A computed property name must be followed by a colon or paren
+> 1 | function f( {[1+1]} ) {}
+    |                   ^ A computed property name must be followed by a colon or paren"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > function f({ ...x, ...y } ) {} 1`] = `
+"SyntaxError [1:26-1:27]: The binding declaration is not destructible
+> 1 | function f({ ...x, ...y } ) {}
+    |                           ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > function f({...[a, b]}){} 1`] = `
+"SyntaxError [1:22-1:23]: The binding declaration is not destructible
+> 1 | function f({...[a, b]}){}
+    |                       ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > function foo() { return {}; }; ({x:foo()} = {}); 1`] = `
+"SyntaxError [1:44-1:45]: Invalid left-hand side in assignment
+> 1 | function foo() { return {}; }; ({x:foo()} = {});
+    |                                             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > function foo() { return {}; }; let {x:foo()} = {}; 1`] = `
+"SyntaxError [1:45-1:46]: The binding declaration is not destructible
+> 1 | function foo() { return {}; }; let {x:foo()} = {};
+    |                                              ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > function foo() { return {}; }; var {x:foo().x} = {}; 1`] = `
+"SyntaxError [1:47-1:48]: The binding declaration is not destructible
+> 1 | function foo() { return {}; }; var {x:foo().x} = {};
+    |                                                ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > let [...[a] = []] = [[]]; 1`] = `
+"SyntaxError [1:18-1:19]: The binding declaration is not destructible
+> 1 | let [...[a] = []] = [[]];
+    |                   ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > let [...{x} = {}] = [{}]; 1`] = `
+"SyntaxError [1:18-1:19]: The binding declaration is not destructible
+> 1 | let [...{x} = {}] = [{}];
+    |                   ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > let {...(a,b)} = foo 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | let {...(a,b)} = foo
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > let {...(obj)} = foo 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | let {...(obj)} = foo
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > let {...[a,b]} = foo 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | let {...[a,b]} = foo
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > let {...{...{x, y}}} = {} 1`] = `
+"SyntaxError [1:21-1:22]: The binding declaration is not destructible
+> 1 | let {...{...{x, y}}} = {}
+    |                      ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > let {...{a,b}} = foo 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | let {...{a,b}} = foo
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > let {...{x, y}} = {} 1`] = `
+"SyntaxError [1:16-1:17]: The binding declaration is not destructible
+> 1 | let {...{x, y}} = {}
+    |                 ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > let {...obj1,...obj2} = foo 1`] = `
+"SyntaxError [1:22-1:23]: The binding declaration is not destructible
+> 1 | let {...obj1,...obj2} = foo
+    |                       ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > let {...obj1,} = foo 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | let {...obj1,} = foo
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > let {...obj1,a} = foo 1`] = `
+"SyntaxError [1:16-1:17]: The binding declaration is not destructible
+> 1 | let {...obj1,a} = foo
+    |                 ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > let {...x, ...y} = {} 1`] = `
+"SyntaxError [1:17-1:18]: The binding declaration is not destructible
+> 1 | let {...x, ...y} = {}
+    |                  ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > let a, r1; ({a:(a1 = r1) = 44} = {}) 1`] = `
+"SyntaxError [1:25-1:26]: Invalid left-hand side in assignment
+> 1 | let a, r1; ({a:(a1 = r1) = 44} = {})
+    |                          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > let o = {true, false, super, this, null}; 1`] = `
+"SyntaxError [1:13-1:14]: Invalid keyword
+> 1 | let o = {true, false, super, this, null};
+    |              ^ Invalid keyword"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > obj = {x = 0} 1`] = `
+"SyntaxError [1:12-1:13]: Invalid shorthand property initializer
+> 1 | obj = {x = 0}
+    |             ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": await /fail/g = x} = x 1`] = `
+"SyntaxError [1:18-1:25]: Expected '}'
+> 1 | s = {"foo": await /fail/g = x} = x
+    |                   ^^^^^^^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": await /fail/g = x} = x 2`] = `
+"SyntaxError [1:18-1:25]: Expected '}'
+> 1 | s = {"foo": await /fail/g = x} = x
+    |                   ^^^^^^^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": await = x} = x 1`] = `
+"SyntaxError [1:12-1:17]: Can not use \`await\` as identifier in module or async func
+> 1 | s = {"foo": await = x} = x
+    |             ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": await a = x} = x 1`] = `
+"SyntaxError [1:18-1:19]: Expected '}'
+> 1 | s = {"foo": await a = x} = x
+    |                   ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": false = x} = x 1`] = `
+"SyntaxError [1:18-1:19]: Invalid left-hand side in assignment
+> 1 | s = {"foo": false = x} = x
+    |                   ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": null = x} = x 1`] = `
+"SyntaxError [1:17-1:18]: Invalid left-hand side in assignment
+> 1 | s = {"foo": null = x} = x
+    |                  ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": super = x} = x 1`] = `
+"SyntaxError [1:18-1:19]: Unexpected token: 'super'
+> 1 | s = {"foo": super = x} = x
+    |                   ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": this = x} = x 1`] = `
+"SyntaxError [1:17-1:18]: Invalid left-hand side in assignment
+> 1 | s = {"foo": this = x} = x
+    |                  ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": this = x} = x 2`] = `
+"SyntaxError [1:17-1:18]: Invalid left-hand side in assignment
+> 1 | s = {"foo": this = x} = x
+    |                  ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": true = x} 1`] = `
+"SyntaxError [1:17-1:18]: Invalid left-hand side in assignment
+> 1 | s = {"foo": true = x}
+    |                  ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": yield / x} 1`] = `
+"SyntaxError [1:12-1:17]: 'yield' may not be used as an identifier in this context
+> 1 | s = {"foo": yield / x}
+    |             ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": yield / x} 2`] = `
+"SyntaxError [1:12-1:17]: 'yield' may not be used as an identifier in this context
+> 1 | s = {"foo": yield / x}
+    |             ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": yield / x} 3`] = `
+"SyntaxError [1:12-1:17]: 'yield' may not be used as an identifier in this context
+> 1 | s = {"foo": yield / x}
+    |             ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": yield /fail/g = x} = x 1`] = `
+"SyntaxError [1:26-1:27]: Invalid left-hand side in assignment
+> 1 | s = {"foo": yield /fail/g = x} = x
+    |                           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": yield /fail/g = x} = x 2`] = `
+"SyntaxError [1:26-1:27]: Invalid left-hand side in assignment
+> 1 | s = {"foo": yield /fail/g = x} = x
+    |                           ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": yield /x/} 1`] = `
+"SyntaxError [1:12-1:17]: 'yield' may not be used as an identifier in this context
+> 1 | s = {"foo": yield /x/}
+    |             ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": yield /x/g} 1`] = `
+"SyntaxError [1:12-1:17]: 'yield' may not be used as an identifier in this context
+> 1 | s = {"foo": yield /x/g}
+    |             ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": yield = x} = x 1`] = `
+"SyntaxError [1:12-1:17]: 'yield' may not be used as an identifier in this context
+> 1 | s = {"foo": yield = x} = x
+    |             ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": yield a = x} = x 1`] = `
+"SyntaxError [1:18-1:19]: Expected '}'
+> 1 | s = {"foo": yield a = x} = x
+    |                   ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": yield} 1`] = `
+"SyntaxError [1:12-1:17]: 'yield' may not be used as an identifier in this context
+> 1 | s = {"foo": yield}
+    |             ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {"foo": yield} 2`] = `
+"SyntaxError [1:12-1:17]: 'yield' may not be used as an identifier in this context
+> 1 | s = {"foo": yield}
+    |             ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {foo: yield / x} 1`] = `
+"SyntaxError [1:10-1:15]: 'yield' may not be used as an identifier in this context
+> 1 | s = {foo: yield / x}
+    |           ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {foo: yield /x/} 1`] = `
+"SyntaxError [1:19-1:20]: Unexpected token: '}'
+> 1 | s = {foo: yield /x/}
+    |                    ^ Unexpected token: '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {foo: yield /x/g} 1`] = `
+"SyntaxError [1:10-1:15]: 'yield' may not be used as an identifier in this context
+> 1 | s = {foo: yield /x/g}
+    |           ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > s = {foo: yield} 1`] = `
+"SyntaxError [1:10-1:15]: 'yield' may not be used as an identifier in this context
+> 1 | s = {foo: yield}
+    |           ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > var {,} = {} 1`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: ','
+> 1 | var {,} = {}
+    |      ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > var {x:y+1} = {}; 1`] = `
+"SyntaxError [1:12-1:13]: The binding declaration is not destructible
+> 1 | var {x:y+1} = {};
+    |             ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > var {x:y--} = {}; 1`] = `
+"SyntaxError [1:12-1:13]: The binding declaration is not destructible
+> 1 | var {x:y--} = {};
+    |             ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > var a = 1; ({x, y = {a = 1}} = {}); 1`] = `
+"SyntaxError [1:27-1:28]: Invalid shorthand property initializer
+> 1 | var a = 1; ({x, y = {a = 1}} = {});
+    |                            ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > var a = 1; ({x, y = 1, z = 2} = {a = 2}); 1`] = `
+"SyntaxError [1:39-1:40]: Invalid shorthand property initializer
+> 1 | var a = 1; ({x, y = 1, z = 2} = {a = 2});
+    |                                        ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > var x = 012; 1`] = `
+"SyntaxError [1:8-1:9]: Octal escape sequences are not allowed in strict mode
+> 1 | var x = 012;
+    |         ^ Octal escape sequences are not allowed in strict mode"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > var y; ({x:y+1} = {}); 1`] = `
+"SyntaxError [1:18-1:19]: Invalid left-hand side in assignment
+> 1 | var y; ({x:y+1} = {});
+    |                   ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > var y; ({x:y--} = {}); 1`] = `
+"SyntaxError [1:18-1:19]: Invalid left-hand side in assignment
+> 1 | var y; ({x:y--} = {});
+    |                   ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > wrap({a=b}); 1`] = `
+"SyntaxError [1:10-1:11]: Invalid shorthand property initializer
+> 1 | wrap({a=b});
+    |           ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x = [{__proto__: 1, __proto__: 2}] 1`] = `
+"SyntaxError [1:33-1:34]: Property name __proto__ appears more than once in object literal
+> 1 | x = [{__proto__: 1, __proto__: 2}]
+    |                                  ^ Property name __proto__ appears more than once in object literal"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x = { "a": {} ++a } 1`] = `
+"SyntaxError [1:16-1:17]: Expected '}'
+> 1 | x = { "a": {} ++a }
+    |                 ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x = { "a": {} /= a } 1`] = `
+"SyntaxError [1:14-1:16]: Invalid left-hand side in assignment
+> 1 | x = { "a": {} /= a }
+    |               ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x = { [a]: {} ++a } 1`] = `
+"SyntaxError [1:16-1:17]: Expected '}'
+> 1 | x = { [a]: {} ++a }
+    |                 ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x = { [a]: {} /= a } 1`] = `
+"SyntaxError [1:14-1:16]: Invalid left-hand side in assignment
+> 1 | x = { [a]: {} /= a }
+    |               ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x = { __proto__: null, other: null, "__proto__": null }; 1`] = `
+"SyntaxError [1:55-1:56]: Property name __proto__ appears more than once in object literal
+> 1 | x = { __proto__: null, other: null, "__proto__": null };
+    |                                                        ^ Property name __proto__ appears more than once in object literal"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x = { 1: {} ++a } 1`] = `
+"SyntaxError [1:14-1:15]: Expected '}'
+> 1 | x = { 1: {} ++a }
+    |               ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x = { 1: {} /= a } 1`] = `
+"SyntaxError [1:12-1:14]: Invalid left-hand side in assignment
+> 1 | x = { 1: {} /= a }
+    |             ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x = { a: {} ++a } 1`] = `
+"SyntaxError [1:14-1:15]: Expected '}'
+> 1 | x = { a: {} ++a }
+    |               ^ Expected '}'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x = { a: {} /= a } 1`] = `
+"SyntaxError [1:12-1:14]: Invalid left-hand side in assignment
+> 1 | x = { a: {} /= a }
+    |             ^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x = { async f: function() {} } 1`] = `
+"SyntaxError [1:13-1:14]: Expected '('
+> 1 | x = { async f: function() {} }
+    |              ^ Expected '('"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x = { async f: function() {} } 2`] = `
+"SyntaxError [1:13-1:14]: Expected '('
+> 1 | x = { async f: function() {} }
+    |              ^ Expected '('"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x = { async f: function() {} } 3`] = `
+"SyntaxError [1:13-1:14]: Expected '('
+> 1 | x = { async f: function() {} }
+    |              ^ Expected '('"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x = {'__proto__': 1, "__proto__": 2} 1`] = `
+"SyntaxError [1:35-1:36]: Property name __proto__ appears more than once in object literal
+> 1 | x = {'__proto__': 1, "__proto__": 2}
+    |                                    ^ Property name __proto__ appears more than once in object literal"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x = {'__proto__': 1, __proto__: 2} 1`] = `
+"SyntaxError [1:33-1:34]: Property name __proto__ appears more than once in object literal
+> 1 | x = {'__proto__': 1, __proto__: 2}
+    |                                  ^ Property name __proto__ appears more than once in object literal"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x = {'__proto__': 1, __proto__: 2} 2`] = `
+"SyntaxError [1:33-1:34]: Property name __proto__ appears more than once in object literal
+> 1 | x = {'__proto__': 1, __proto__: 2}
+    |                                  ^ Property name __proto__ appears more than once in object literal"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x = {__proto__: 1, "__proto__": 2} 1`] = `
+"SyntaxError [1:33-1:34]: Property name __proto__ appears more than once in object literal
+> 1 | x = {__proto__: 1, "__proto__": 2}
+    |                                  ^ Property name __proto__ appears more than once in object literal"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x({get "abc": x}); 1`] = `
+"SyntaxError [1:12-1:13]: Expected '('
+> 1 | x({get "abc": x});
+    |             ^ Expected '('"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x({get 123: x}); 1`] = `
+"SyntaxError [1:10-1:11]: Expected '('
+> 1 | x({get 123: x});
+    |           ^ Expected '('"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x, {x: foo + y, bar} = doo 1`] = `
+"SyntaxError [1:23-1:26]: Invalid left-hand side in assignment
+> 1 | x, {x: foo + y, bar} = doo
+    |                        ^^^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x={..."foo".foo=x} = x 1`] = `
+"SyntaxError [1:21-1:22]: Invalid left-hand side in assignment
+> 1 | x={..."foo".foo=x} = x
+    |                      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x={..."foo"=x} = x 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | x={..."foo"=x} = x
+    |            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x={...true} = x 1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | x={...true} = x
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x={...true} => x 1`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | x={...true} => x
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Object > Expressions - Object (fail) > x={...x=y}=z 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in assignment
+> 1 | x={...x=y}=z
+    |            ^ Invalid left-hand side in assignment"
+`;
+
 exports[`Expressions - Object > Expressions - Object (pass) > (({a = 0} = {}) => a)({}) 1`] = `
 {
   "body": [

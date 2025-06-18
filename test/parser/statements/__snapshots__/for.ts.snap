@@ -1,5 +1,59 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Statements - For > Statements - For (pass) > for ( ; false; ) class C {} 1`] = `
+"SyntaxError [1:17-1:22]: Class declaration can't appear in single-statement context
+> 1 | for ( ; false; ) class C {}
+    |                  ^^^^^ Class declaration can't appear in single-statement context"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ( ; false; ) class C {} 2`] = `
+"SyntaxError [1:17-1:22]: Class declaration can't appear in single-statement context
+> 1 | for ( ; false; ) class C {}
+    |                  ^^^^^ Class declaration can't appear in single-statement context"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ( ; false; ) function f() {} 1`] = `
+"SyntaxError [1:17-1:25]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | for ( ; false; ) function f() {}
+    |                  ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ( ; false; ) function f() {} 2`] = `
+"SyntaxError [1:17-1:25]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | for ( ; false; ) function f() {}
+    |                  ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ( ; false; ) function* g() {} 1`] = `
+"SyntaxError [1:17-1:25]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | for ( ; false; ) function* g() {}
+    |                  ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ( ; false; ) label1: label2: function f() {} 1`] = `
+"SyntaxError [1:33-1:41]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | for ( ; false; ) label1: label2: function f() {}
+    |                                  ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ( ; false; ) label1: label2: function f() {} 2`] = `
+"SyntaxError [1:33-1:41]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | for ( ; false; ) label1: label2: function f() {}
+    |                                  ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (((x)=>{}) in y); 1`] = `
+"SyntaxError [1:15-1:17]: Invalid left-hand side in for-in
+> 1 | for (((x)=>{}) in y);
+    |                ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (((x)=>{}) of y); 1`] = `
+"SyntaxError [1:15-1:17]: Invalid left-hand side in for-of
+> 1 | for (((x)=>{}) of y);
+    |                ^^ Invalid left-hand side in for-of"
+`;
+
 exports[`Statements - For > Statements - For (pass) > for (() => { this in null };;); 1`] = `
 {
   "body": [
@@ -143,6 +197,36 @@ exports[`Statements - For > Statements - For (pass) > for ((a * b + c) * d;b;c);
   "sourceType": "script",
   "type": "Program",
 }
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ((i in {})); 1`] = `
+"SyntaxError [1:14-1:15]: Expected ';'
+> 1 | for ((i in {}));
+    |               ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ((x)=>{} in y); 1`] = `
+"SyntaxError [1:13-1:15]: Unexpected token: 'in'
+> 1 | for ((x)=>{} in y);
+    |              ^^ Unexpected token: 'in'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ((x)=>{} of y); 1`] = `
+"SyntaxError [1:13-1:15]: Invalid left-hand side in for-of
+> 1 | for ((x)=>{} of y);
+    |              ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ((x)=>{}.x in y); 1`] = `
+"SyntaxError [1:12-1:13]: Block body arrows can not be immediately accessed without a group
+> 1 | for ((x)=>{}.x in y);
+    |             ^ Block body arrows can not be immediately accessed without a group"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ((x)=>{}.x of y); 1`] = `
+"SyntaxError [1:12-1:13]: Block body arrows can not be immediately accessed without a group
+> 1 | for ((x)=>{}.x of y);
+    |             ^ Block body arrows can not be immediately accessed without a group"
 `;
 
 exports[`Statements - For > Statements - For (pass) > for (;;) let 
@@ -378,6 +462,18 @@ exports[`Statements - For > Statements - For (pass) > for (;b;c); 2`] = `
 }
 `;
 
+exports[`Statements - For > Statements - For (pass) > for ([...{ get x() {} }] in [[[]]]) ; 1`] = `
+"SyntaxError [1:25-1:27]: Invalid left-hand side in for-in
+> 1 | for ([...{ get x() {} }] in [[[]]]) ;
+    |                          ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ([{__proto__: 1, __proto__: 2}];;); 1`] = `
+"SyntaxError [1:35-1:36]: Property name __proto__ appears more than once in object literal
+> 1 | for ([{__proto__: 1, __proto__: 2}];;);
+    |                                    ^ Property name __proto__ appears more than once in object literal"
+`;
+
 exports[`Statements - For > Statements - For (pass) > for ([a.b] in c) d 1`] = `
 {
   "body": [
@@ -459,6 +555,18 @@ exports[`Statements - For > Statements - For (pass) > for ([a.b] of c) d 1`] = `
   "sourceType": "script",
   "type": "Program",
 }
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ([a.b](foo) of c) d 1`] = `
+"SyntaxError [1:16-1:18]: Invalid left-hand side in for-of
+> 1 | for ([a.b](foo) of c) d
+    |                 ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ([a.b]++ of c) d 1`] = `
+"SyntaxError [1:13-1:15]: Invalid left-hand side in for-of
+> 1 | for ([a.b]++ of c) d
+    |              ^^ Invalid left-hand side in for-of"
 `;
 
 exports[`Statements - For > Statements - For (pass) > for ([a.b].foo in c) d 1`] = `
@@ -560,6 +668,18 @@ exports[`Statements - For > Statements - For (pass) > for ([a.b].foo of c) d 1`]
   "sourceType": "script",
   "type": "Program",
 }
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ([a.b]\`foo\` of c) d 1`] = `
+"SyntaxError [1:16-1:18]: Invalid left-hand side in for-of
+> 1 | for ([a.b]\`foo\` of c) d
+    |                 ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ([x + y] = z;;); 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | for ([x + y] = z;;);
+    |              ^ Invalid left-hand side in assignment"
 `;
 
 exports[`Statements - For > Statements - For (pass) > for (\`<\${new arguments(++r.function[eval], () => {}, function () {""}, (a)in this, true)}\`; x ^= arguments;) {} 1`] = `
@@ -696,6 +816,24 @@ exports[`Statements - For > Statements - For (pass) > for (\`<\${new arguments(+
 }
 `;
 
+exports[`Statements - For > Statements - For (pass) > for ({__proto__: 1, __proto__: 2};;); 1`] = `
+"SyntaxError [1:33-1:34]: Property name __proto__ appears more than once in object literal
+> 1 | for ({__proto__: 1, __proto__: 2};;);
+    |                                  ^ Property name __proto__ appears more than once in object literal"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ({}); 1`] = `
+"SyntaxError [1:7-1:8]: Expected ';'
+> 1 | for ({});
+    |        ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ({}.bar = x in obj); 1`] = `
+"SyntaxError [1:16-1:18]: Expected ';'
+> 1 | for ({}.bar = x in obj);
+    |                 ^^ Expected ';'"
+`;
+
 exports[`Statements - For > Statements - For (pass) > for ({a: b.c} in d) e 1`] = `
 {
   "body": [
@@ -799,6 +937,12 @@ exports[`Statements - For > Statements - For (pass) > for ({a: b.c} of d) e 1`] 
   "sourceType": "script",
   "type": "Program",
 }
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ({a: b.c}() of d) e 1`] = `
+"SyntaxError [1:16-1:18]: Invalid left-hand side in for-of
+> 1 | for ({a: b.c}() of d) e
+    |                 ^^ Invalid left-hand side in for-of"
 `;
 
 exports[`Statements - For > Statements - For (pass) > for ({a: b.c}.foo in d) e 1`] = `
@@ -924,6 +1068,24 @@ exports[`Statements - For > Statements - For (pass) > for ({a: b.c}.foo of d) e 
 }
 `;
 
+exports[`Statements - For > Statements - For (pass) > for ({a: b.c}\`z\` of d) e 1`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in for-of
+> 1 | for ({a: b.c}\`z\` of d) e
+    |                  ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ({a: b.c}-- of d) e 1`] = `
+"SyntaxError [1:16-1:18]: Invalid left-hand side in for-of
+> 1 | for ({a: b.c}-- of d) e
+    |                 ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ({a: x + y} = z;;); 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | for ({a: x + y} = z;;);
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
 exports[`Statements - For > Statements - For (pass) > for ({x = y} = (z);;) {} 1`] = `
 {
   "body": [
@@ -975,6 +1137,12 @@ exports[`Statements - For > Statements - For (pass) > for ({x = y} = (z);;) {} 1
   "sourceType": "script",
   "type": "Program",
 }
+`;
+
+exports[`Statements - For > Statements - For (pass) > for ({x=y} ;;) b; 1`] = `
+"SyntaxError [1:11-1:12]: Invalid left-hand side in for-loop
+> 1 | for ({x=y} ;;) b;
+    |            ^ Invalid left-hand side in for-loop"
 `;
 
 exports[`Statements - For > Statements - For (pass) > for (a * b + c * d;b;c); 1`] = `
@@ -1181,6 +1349,54 @@ exports[`Statements - For > Statements - For (pass) > for (a + b * c * d;b;c); 1
 }
 `;
 
+exports[`Statements - For > Statements - For (pass) > for (a + b); 1`] = `
+"SyntaxError [1:10-1:11]: Expected ';'
+> 1 | for (a + b);
+    |           ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (a += b of x); 1`] = `
+"SyntaxError [1:12-1:14]: Expected ';'
+> 1 | for (a += b of x);
+    |             ^^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (a = b in c) {} 1`] = `
+"SyntaxError [1:11-1:13]: Expected ';'
+> 1 | for (a = b in c) {}
+    |            ^^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (a = b in x); 1`] = `
+"SyntaxError [1:11-1:13]: Expected ';'
+> 1 | for (a = b in x);
+    |            ^^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (a = b of x); 1`] = `
+"SyntaxError [1:11-1:13]: Expected ';'
+> 1 | for (a = b of x);
+    |            ^^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (a ? b : c in x); 1`] = `
+"SyntaxError [1:15-1:17]: Expected ';'
+> 1 | for (a ? b : c in x);
+    |                ^^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (a ? b : c of x); 1`] = `
+"SyntaxError [1:15-1:17]: Expected ';'
+> 1 | for (a ? b : c of x);
+    |                ^^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (a ? b : c of x); 2`] = `
+"SyntaxError [1:15-1:17]: Expected ';'
+> 1 | for (a ? b : c of x);
+    |                ^^ Expected ';'"
+`;
+
 exports[`Statements - For > Statements - For (pass) > for (a in b); 1`] = `
 {
   "body": [
@@ -1289,6 +1505,18 @@ exports[`Statements - For > Statements - For (pass) > for (a of b=c); 1`] = `
   "sourceType": "script",
   "type": "Program",
 }
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (a); 1`] = `
+"SyntaxError [1:6-1:7]: Expected ';'
+> 1 | for (a);
+    |       ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (a, b); 1`] = `
+"SyntaxError [1:9-1:10]: Expected ';'
+> 1 | for (a, b);
+    |          ^ Expected ';'"
 `;
 
 exports[`Statements - For > Statements - For (pass) > for (a;;); 1`] = `
@@ -1483,6 +1711,178 @@ exports[`Statements - For > Statements - For (pass) > for (a;b;c); 2`] = `
 }
 `;
 
+exports[`Statements - For > Statements - For (pass) > for (const
+foo();;); 1`] = `
+"SyntaxError [2:3-2:4]: Missing initializer in const declaration
+  1 | for (const
+> 2 | foo();;);
+    |    ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const
+foo); 1`] = `
+"SyntaxError [2:3-2:4]: Missing initializer in const declaration
+  1 | for (const
+> 2 | foo);
+    |    ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [,,] = x); 1`] = `
+"SyntaxError [1:19-1:20]: Expected ';'
+> 1 | for (const [,,] = x);
+    |                    ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [,foo] = arr); 1`] = `
+"SyntaxError [1:23-1:24]: Expected ';'
+> 1 | for (const [,foo] = arr);
+    |                        ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [... ...foo] = obj); 1`] = `
+"SyntaxError [1:16-1:19]: Unexpected token: '...'
+> 1 | for (const [... ...foo] = obj);
+    |                 ^^^ Unexpected token: '...'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [... ...foo] = obj;;); 1`] = `
+"SyntaxError [1:16-1:19]: Unexpected token: '...'
+> 1 | for (const [... ...foo] = obj;;);
+    |                 ^^^ Unexpected token: '...'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...,] = obj); 1`] = `
+"SyntaxError [1:15-1:16]: Unexpected token: ','
+> 1 | for (const [...,] = obj);
+    |                ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...,] = obj;;); 1`] = `
+"SyntaxError [1:15-1:16]: Unexpected token: ','
+> 1 | for (const [...,] = obj;;);
+    |                ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...,] = obj;;); 2`] = `
+"SyntaxError [1:15-1:16]: Unexpected token: ','
+> 1 | for (const [...,] = obj;;);
+    |                ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...,] in obj); 1`] = `
+"SyntaxError [1:15-1:16]: Unexpected token: ','
+> 1 | for (const [...,] in obj);
+    |                ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...[foo, bar],,] = obj); 1`] = `
+"SyntaxError [1:29-1:30]: The binding declaration is not destructible
+> 1 | for (const [...[foo, bar],,] = obj);
+    |                              ^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...[foo, bar],,] = obj;;); 1`] = `
+"SyntaxError [1:29-1:30]: The binding declaration is not destructible
+> 1 | for (const [...[foo, bar],,] = obj;;);
+    |                              ^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...[foo, bar],,] in obj); 1`] = `
+"SyntaxError [1:29-1:31]: The binding declaration is not destructible
+> 1 | for (const [...[foo, bar],,] in obj);
+    |                              ^^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...[foo, bar],] = obj;;); 1`] = `
+"SyntaxError [1:28-1:29]: The binding declaration is not destructible
+> 1 | for (const [...[foo, bar],] = obj;;);
+    |                             ^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...[foo, bar],] in obj); 1`] = `
+"SyntaxError [1:28-1:30]: The binding declaration is not destructible
+> 1 | for (const [...[foo, bar],] in obj);
+    |                             ^^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...] = obj); 1`] = `
+"SyntaxError [1:15-1:16]: The rest operator is missing an argument
+> 1 | for (const [...] = obj);
+    |                ^ The rest operator is missing an argument"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...] = obj;;); 1`] = `
+"SyntaxError [1:15-1:16]: The rest operator is missing an argument
+> 1 | for (const [...] = obj;;);
+    |                ^ The rest operator is missing an argument"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...] in obj); 1`] = `
+"SyntaxError [1:15-1:16]: The rest operator is missing an argument
+> 1 | for (const [...] in obj);
+    |                ^ The rest operator is missing an argument"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...{ x }, y] = [1, 2, 3]; a < 1; ) {} 1`] = `
+"SyntaxError [1:25-1:26]: The binding declaration is not destructible
+> 1 | for (const [...{ x }, y] = [1, 2, 3]; a < 1; ) {}
+    |                          ^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...bar = foo] = obj;;); 1`] = `
+"SyntaxError [1:26-1:27]: The binding declaration is not destructible
+> 1 | for (const [...bar = foo] = obj;;);
+    |                           ^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...foo, bar] = obj); 1`] = `
+"SyntaxError [1:25-1:26]: The binding declaration is not destructible
+> 1 | for (const [...foo, bar] = obj);
+    |                          ^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...foo, bar] = obj;;); 1`] = `
+"SyntaxError [1:25-1:26]: The binding declaration is not destructible
+> 1 | for (const [...foo, bar] = obj;;);
+    |                          ^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...foo, bar] in obj); 1`] = `
+"SyntaxError [1:25-1:27]: The binding declaration is not destructible
+> 1 | for (const [...foo, bar] in obj);
+    |                          ^^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...foo,,] = obj); 1`] = `
+"SyntaxError [1:22-1:23]: The binding declaration is not destructible
+> 1 | for (const [...foo,,] = obj);
+    |                       ^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...foo,,] in obj); 1`] = `
+"SyntaxError [1:22-1:24]: The binding declaration is not destructible
+> 1 | for (const [...foo,,] in obj);
+    |                       ^^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...foo,] = obj;;); 1`] = `
+"SyntaxError [1:21-1:22]: The binding declaration is not destructible
+> 1 | for (const [...foo,] = obj;;);
+    |                      ^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...foo,] in obj); 1`] = `
+"SyntaxError [1:21-1:23]: The binding declaration is not destructible
+> 1 | for (const [...foo,] in obj);
+    |                      ^^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [...foo] = obj); 1`] = `
+"SyntaxError [1:25-1:26]: Expected ';'
+> 1 | for (const [...foo] = obj);
+    |                          ^ Expected ';'"
+`;
+
 exports[`Statements - For > Statements - For (pass) > for (const [...x] in y){} 1`] = `
 {
   "body": [
@@ -1609,6 +2009,228 @@ exports[`Statements - For > Statements - For (pass) > for (const [...x] in y){} 
 }
 `;
 
+exports[`Statements - For > Statements - For (pass) > for (const [..x] = obj); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: '.'
+> 1 | for (const [..x] = obj);
+    |             ^ Unexpected token: '.'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [..x] = obj;;); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: '.'
+> 1 | for (const [..x] = obj;;);
+    |             ^ Unexpected token: '.'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [..x] in obj); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: '.'
+> 1 | for (const [..x] in obj);
+    |             ^ Unexpected token: '.'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [..x] of obj); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: '.'
+> 1 | for (const [..x] of obj);
+    |             ^ Unexpected token: '.'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [.x] = obj;;); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: '.'
+> 1 | for (const [.x] = obj;;);
+    |             ^ Unexpected token: '.'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [.x] in obj); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: '.'
+> 1 | for (const [.x] in obj);
+    |             ^ Unexpected token: '.'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [.x] of obj); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: '.'
+> 1 | for (const [.x] of obj);
+    |             ^ Unexpected token: '.'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [a=[...b], ...c] = obj); 1`] = `
+"SyntaxError [1:33-1:34]: Expected ';'
+> 1 | for (const [a=[...b], ...c] = obj);
+    |                                  ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [foo = x]); 1`] = `
+"SyntaxError [1:20-1:21]: Missing initializer in const declaration
+> 1 | for (const [foo = x]);
+    |                     ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [foo = x]); 2`] = `
+"SyntaxError [1:20-1:21]: Missing initializer in const declaration
+> 1 | for (const [foo = x]);
+    |                     ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [foo = x]); 3`] = `
+"SyntaxError [1:20-1:21]: Missing initializer in const declaration
+> 1 | for (const [foo = x]);
+    |                     ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [foo = x];;); 1`] = `
+"SyntaxError [1:20-1:21]: Missing initializer in const declaration
+> 1 | for (const [foo = x];;);
+    |                     ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [foo, ...bar] = obj); 1`] = `
+"SyntaxError [1:30-1:31]: Expected ';'
+> 1 | for (const [foo, ...bar] = obj);
+    |                               ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [foo,,] = arr); 1`] = `
+"SyntaxError [1:24-1:25]: Expected ';'
+> 1 | for (const [foo,,] = arr);
+    |                         ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [foo,bar] = arr); 1`] = `
+"SyntaxError [1:26-1:27]: Expected ';'
+> 1 | for (const [foo,bar] = arr);
+    |                           ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [foo=a, bar] = arr); 1`] = `
+"SyntaxError [1:29-1:30]: Expected ';'
+> 1 | for (const [foo=a, bar] = arr);
+    |                              ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [foo] = arr, bar); 1`] = `
+"SyntaxError [1:27-1:28]: Missing initializer in const declaration
+> 1 | for (const [foo] = arr, bar);
+    |                            ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [foo]); 1`] = `
+"SyntaxError [1:16-1:17]: Missing initializer in const declaration
+> 1 | for (const [foo]);
+    |                 ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [foo]); 2`] = `
+"SyntaxError [1:16-1:17]: Missing initializer in const declaration
+> 1 | for (const [foo]);
+    |                 ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [foo], bar in arr); 1`] = `
+"SyntaxError [1:16-1:17]: Missing initializer in const declaration
+> 1 | for (const [foo], bar in arr);
+    |                 ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [foo], bar); 1`] = `
+"SyntaxError [1:16-1:17]: Missing initializer in const declaration
+> 1 | for (const [foo], bar);
+    |                 ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [foo], bar;;); 1`] = `
+"SyntaxError [1:16-1:17]: Missing initializer in const declaration
+> 1 | for (const [foo], bar;;);
+    |                 ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [foo];;); 1`] = `
+"SyntaxError [1:16-1:17]: Missing initializer in const declaration
+> 1 | for (const [foo];;);
+    |                 ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [z, z]; ; ) ; 1`] = `
+"SyntaxError [1:17-1:18]: Missing initializer in const declaration
+> 1 | for (const [z, z]; ; ) ;
+    |                  ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const [z]; ; ) ; 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in const declaration
+> 1 | for (const [z]; ; ) ;
+    |               ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {,,} = obj;;); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | for (const {,,} = obj;;);
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {,,} in obj); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | for (const {,,} in obj);
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {,,} of obj); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | for (const {,,} of obj);
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {,,x} = obj;;); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | for (const {,,x} = obj;;);
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {,,x} of obj); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | for (const {,,x} of obj);
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {,} = obj); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | for (const {,} = obj);
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {,} = obj;;); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | for (const {,} = obj;;);
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {,} in obj); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | for (const {,} in obj);
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {,} of obj); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | for (const {,} of obj);
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {,x} = obj); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | for (const {,x} = obj);
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {,x} = obj;;); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | for (const {,x} = obj;;);
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {,x} in obj); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | for (const {,x} in obj);
+    |             ^ Unexpected token: ','"
+`;
+
 exports[`Statements - For > Statements - For (pass) > for (const {...x} in y){} 1`] = `
 {
   "body": [
@@ -1651,6 +2273,288 @@ exports[`Statements - For > Statements - For (pass) > for (const {...x} in y){} 
 }
 `;
 
+exports[`Statements - For > Statements - For (pass) > for (const {[x] = y} = z); 1`] = `
+"SyntaxError [1:16-1:17]: A computed property name must be followed by a colon or paren
+> 1 | for (const {[x] = y} = z);
+    |                 ^ A computed property name must be followed by a colon or paren"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {[x] = y} = z;;); 1`] = `
+"SyntaxError [1:16-1:17]: A computed property name must be followed by a colon or paren
+> 1 | for (const {[x] = y} = z;;);
+    |                 ^ A computed property name must be followed by a colon or paren"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {[x] = y} in obj); 1`] = `
+"SyntaxError [1:16-1:17]: A computed property name must be followed by a colon or paren
+> 1 | for (const {[x] = y} in obj);
+    |                 ^ A computed property name must be followed by a colon or paren"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {[x]: y = z}); 1`] = `
+"SyntaxError [1:23-1:24]: Missing initializer in const declaration
+> 1 | for (const {[x]: y = z});
+    |                        ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {[x]: y = z};;); 1`] = `
+"SyntaxError [1:23-1:24]: Missing initializer in const declaration
+> 1 | for (const {[x]: y = z};;);
+    |                        ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {[x]: y} = z); 1`] = `
+"SyntaxError [1:23-1:24]: Expected ';'
+> 1 | for (const {[x]: y} = z);
+    |                        ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {[x]: y};;); 1`] = `
+"SyntaxError [1:19-1:20]: Missing initializer in const declaration
+> 1 | for (const {[x]: y};;);
+    |                    ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {[x]} = z); 1`] = `
+"SyntaxError [1:15-1:16]: A computed property name must be followed by a colon or paren
+> 1 | for (const {[x]} = z);
+    |                ^ A computed property name must be followed by a colon or paren"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {[x]} = z;;); 1`] = `
+"SyntaxError [1:15-1:16]: A computed property name must be followed by a colon or paren
+> 1 | for (const {[x]} = z;;);
+    |                ^ A computed property name must be followed by a colon or paren"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {[x]};;); 1`] = `
+"SyntaxError [1:15-1:16]: A computed property name must be followed by a colon or paren
+> 1 | for (const {[x]};;);
+    |                ^ A computed property name must be followed by a colon or paren"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {a:=c} = z); 1`] = `
+"SyntaxError [1:14-1:15]: Unexpected token: '='
+> 1 | for (const {a:=c} = z);
+    |               ^ Unexpected token: '='"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {a:=c} = z;;); 1`] = `
+"SyntaxError [1:14-1:15]: Unexpected token: '='
+> 1 | for (const {a:=c} = z;;);
+    |               ^ Unexpected token: '='"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x : y = z} = obj); 1`] = `
+"SyntaxError [1:28-1:29]: Expected ';'
+> 1 | for (const {x : y = z} = obj);
+    |                             ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x : y, z : a} = obj); 1`] = `
+"SyntaxError [1:31-1:32]: Expected ';'
+> 1 | for (const {x : y, z : a} = obj);
+    |                                ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x : y, z, a : b = c} = obj); 1`] = `
+"SyntaxError [1:38-1:39]: Expected ';'
+> 1 | for (const {x : y, z, a : b = c} = obj);
+    |                                       ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x : y} = obj); 1`] = `
+"SyntaxError [1:24-1:25]: Expected ';'
+> 1 | for (const {x : y} = obj);
+    |                         ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x = y, z = a} = obj); 1`] = `
+"SyntaxError [1:31-1:32]: Expected ';'
+> 1 | for (const {x = y, z = a} = obj);
+    |                                ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x = y} = obj); 1`] = `
+"SyntaxError [1:24-1:25]: Expected ';'
+> 1 | for (const {x = y} = obj);
+    |                         ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x, y} = obj); 1`] = `
+"SyntaxError [1:23-1:24]: Expected ';'
+> 1 | for (const {x, y} = obj);
+    |                        ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x,, y} = obj); 1`] = `
+"SyntaxError [1:14-1:15]: Unexpected token: ','
+> 1 | for (const {x,, y} = obj);
+    |               ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x,, y} = obj;;); 1`] = `
+"SyntaxError [1:14-1:15]: Unexpected token: ','
+> 1 | for (const {x,, y} = obj;;);
+    |               ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x,, y} in obj); 1`] = `
+"SyntaxError [1:14-1:15]: Unexpected token: ','
+> 1 | for (const {x,, y} in obj);
+    |               ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x,, y} of obj); 1`] = `
+"SyntaxError [1:14-1:15]: Unexpected token: ','
+> 1 | for (const {x,, y} of obj);
+    |               ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x,,} = obj;;); 1`] = `
+"SyntaxError [1:14-1:15]: Unexpected token: ','
+> 1 | for (const {x,,} = obj;;);
+    |               ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x,,} in obj); 1`] = `
+"SyntaxError [1:14-1:15]: Unexpected token: ','
+> 1 | for (const {x,,} in obj);
+    |               ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x:y=z} = obj, {a:b=c}); 1`] = `
+"SyntaxError [1:33-1:34]: Missing initializer in const declaration
+> 1 | for (const {x:y=z} = obj, {a:b=c});
+    |                                  ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x:y=z} = obj, {a:b=c}); 2`] = `
+"SyntaxError [1:33-1:34]: Missing initializer in const declaration
+> 1 | for (const {x:y=z} = obj, {a:b=c});
+    |                                  ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x:y=z} = obj, {a:b=c};;); 1`] = `
+"SyntaxError [1:33-1:34]: Missing initializer in const declaration
+> 1 | for (const {x:y=z} = obj, {a:b=c};;);
+    |                                  ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x:y=z}); 1`] = `
+"SyntaxError [1:18-1:19]: Missing initializer in const declaration
+> 1 | for (const {x:y=z});
+    |                   ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x:y=z}, {a:b=c} = obj); 1`] = `
+"SyntaxError [1:18-1:19]: Missing initializer in const declaration
+> 1 | for (const {x:y=z}, {a:b=c} = obj);
+    |                   ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x:y=z}, {a:b=c} = obj;;); 1`] = `
+"SyntaxError [1:18-1:19]: Missing initializer in const declaration
+> 1 | for (const {x:y=z}, {a:b=c} = obj;;);
+    |                   ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x:y=z}, {a:b=c} in obj); 1`] = `
+"SyntaxError [1:18-1:19]: Missing initializer in const declaration
+> 1 | for (const {x:y=z}, {a:b=c} in obj);
+    |                   ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x:y=z};;); 1`] = `
+"SyntaxError [1:18-1:19]: Missing initializer in const declaration
+> 1 | for (const {x:y=z};;);
+    |                   ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x:y}); 1`] = `
+"SyntaxError [1:16-1:17]: Missing initializer in const declaration
+> 1 | for (const {x:y});
+    |                 ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x:y};;); 1`] = `
+"SyntaxError [1:16-1:17]: Missing initializer in const declaration
+> 1 | for (const {x:y};;);
+    |                 ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x=y}); 1`] = `
+"SyntaxError [1:16-1:17]: Missing initializer in const declaration
+> 1 | for (const {x=y});
+    |                 ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x} = a, obj); 1`] = `
+"SyntaxError [1:23-1:24]: Missing initializer in const declaration
+> 1 | for (const {x} = a, obj);
+    |                        ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x} = a, obj;;); 1`] = `
+"SyntaxError [1:23-1:24]: Missing initializer in const declaration
+> 1 | for (const {x} = a, obj;;);
+    |                        ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x} = a, y = obj); 1`] = `
+"SyntaxError [1:27-1:28]: Expected ';'
+> 1 | for (const {x} = a, y = obj);
+    |                            ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x} = obj); 1`] = `
+"SyntaxError [1:20-1:21]: Expected ';'
+> 1 | for (const {x} = obj);
+    |                     ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x}); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in const declaration
+> 1 | for (const {x});
+    |               ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x}, {y} = z); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in const declaration
+> 1 | for (const {x}, {y} = z);
+    |               ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x}, {y} = z;;); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in const declaration
+> 1 | for (const {x}, {y} = z;;);
+    |               ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x}, y); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in const declaration
+> 1 | for (const {x}, y);
+    |               ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x}, y); 2`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in const declaration
+> 1 | for (const {x}, y);
+    |               ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x}, y); 3`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in const declaration
+> 1 | for (const {x}, y);
+    |               ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const {x}, y;;); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in const declaration
+> 1 | for (const {x}, y;;);
+    |               ^ Missing initializer in const declaration"
+`;
+
 exports[`Statements - For > Statements - For (pass) > for (const a in b); 1`] = `
 {
   "body": [
@@ -1682,6 +2586,168 @@ exports[`Statements - For > Statements - For (pass) > for (const a in b); 1`] = 
   "sourceType": "script",
   "type": "Program",
 }
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const a,b,c;;); 1`] = `
+"SyntaxError [1:12-1:13]: Missing initializer in const declaration
+> 1 | for (const a,b,c;;);
+    |             ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const a;;); 1`] = `
+"SyntaxError [1:12-1:13]: Missing initializer in const declaration
+> 1 | for (const a;;);
+    |             ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const foo = arr, [bar] = arr2); 1`] = `
+"SyntaxError [1:34-1:35]: Expected ';'
+> 1 | for (const foo = arr, [bar] = arr2);
+    |                                   ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const foo = bar in x); 1`] = `
+"SyntaxError [1:11-1:23]: 'for-in' loop head declarations can not have an initializer
+> 1 | for (const foo = bar in x);
+    |            ^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const foo = bar of x); 1`] = `
+"SyntaxError [1:11-1:23]: 'for-of' loop head declarations can not have an initializer
+> 1 | for (const foo = bar of x);
+    |            ^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const foo = bar, zoo = boo in x); 1`] = `
+"SyntaxError [1:22-1:34]: 'for-in' loop head declarations can not have an initializer
+> 1 | for (const foo = bar, zoo = boo in x);
+    |                       ^^^^^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const foo = bar, zoo = boo of x); 1`] = `
+"SyntaxError [1:22-1:34]: 'for-of' loop head declarations can not have an initializer
+> 1 | for (const foo = bar, zoo = boo of x);
+    |                       ^^^^^^^^^^^^ 'for-of' loop head declarations can not have an initializer"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const foo = bar, zoo = boo); 1`] = `
+"SyntaxError [1:31-1:32]: Expected ';'
+> 1 | for (const foo = bar, zoo = boo);
+    |                                ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const foo); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in const declaration
+> 1 | for (const foo);
+    |               ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const foo, [bar] = arr2); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in const declaration
+> 1 | for (const foo, [bar] = arr2);
+    |               ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const foo, [bar] = arr2;;); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in const declaration
+> 1 | for (const foo, [bar] = arr2;;);
+    |               ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const foo, [bar] in arr); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in const declaration
+> 1 | for (const foo, [bar] in arr);
+    |               ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const foo, [bar] of arr); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in const declaration
+> 1 | for (const foo, [bar] of arr);
+    |               ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const foo, [bar]); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in const declaration
+> 1 | for (const foo, [bar]);
+    |               ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const foo, [bar];;); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in const declaration
+> 1 | for (const foo, [bar];;);
+    |               ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const foo, bar of x); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in const declaration
+> 1 | for (const foo, bar of x);
+    |               ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const foo, bar); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in const declaration
+> 1 | for (const foo, bar);
+    |               ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const foo, zoo of x); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in const declaration
+> 1 | for (const foo, zoo of x);
+    |               ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const foo;;); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in const declaration
+> 1 | for (const foo;;);
+    |               ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const x = 5, y; ; ) ; 1`] = `
+"SyntaxError [1:19-1:20]: Missing initializer in const declaration
+> 1 | for (const x = 5, y; ; ) ;
+    |                    ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const x = y, {z}); 1`] = `
+"SyntaxError [1:21-1:22]: Missing initializer in const declaration
+> 1 | for (const x = y, {z});
+    |                      ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const x = y, {z};;); 1`] = `
+"SyntaxError [1:21-1:22]: Missing initializer in const declaration
+> 1 | for (const x = y, {z};;);
+    |                      ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const x, {y} = obj); 1`] = `
+"SyntaxError [1:12-1:13]: Missing initializer in const declaration
+> 1 | for (const x, {y} = obj);
+    |             ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const x, {y} = obj;;); 1`] = `
+"SyntaxError [1:12-1:13]: Missing initializer in const declaration
+> 1 | for (const x, {y} = obj;;);
+    |             ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const x, {y} in obj); 1`] = `
+"SyntaxError [1:12-1:13]: Missing initializer in const declaration
+> 1 | for (const x, {y} in obj);
+    |             ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const x, {y};;); 1`] = `
+"SyntaxError [1:12-1:13]: Missing initializer in const declaration
+> 1 | for (const x, {y};;);
+    |             ^ Missing initializer in const declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (const x; ; ) ; 1`] = `
+"SyntaxError [1:12-1:13]: Missing initializer in const declaration
+> 1 | for (const x; ; ) ;
+    |             ^ Missing initializer in const declaration"
 `;
 
 exports[`Statements - For > Statements - For (pass) > for (foo=10;;); 1`] = `
@@ -1818,6 +2884,12 @@ exports[`Statements - For > Statements - For (pass) > for (let [,] = x;;); 1`] =
 }
 `;
 
+exports[`Statements - For > Statements - For (pass) > for (let [...{ x } = []] = []; a < 1; ) {} 1`] = `
+"SyntaxError [1:25-1:26]: The binding declaration is not destructible
+> 1 | for (let [...{ x } = []] = []; a < 1; ) {}
+    |                          ^ The binding declaration is not destructible"
+`;
+
 exports[`Statements - For > Statements - For (pass) > for (let [...foo] = obj;;); 1`] = `
 {
   "body": [
@@ -1860,6 +2932,30 @@ exports[`Statements - For > Statements - For (pass) > for (let [...foo] = obj;;)
 }
 `;
 
+exports[`Statements - For > Statements - For (pass) > for (let [...x = []] = []; a < 1; ) {} 1`] = `
+"SyntaxError [1:21-1:22]: The binding declaration is not destructible
+> 1 | for (let [...x = []] = []; a < 1; ) {}
+    |                      ^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (let [...x = []] = []; a < 1; ) {} 2`] = `
+"SyntaxError [1:21-1:22]: The binding declaration is not destructible
+> 1 | for (let [...x = []] = []; a < 1; ) {}
+    |                      ^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (let [] = 0, [];;); 1`] = `
+"SyntaxError [1:19-1:20]: Missing initializer in destructuring declaration
+> 1 | for (let [] = 0, [];;);
+    |                    ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (let [] = 0, {};;); 1`] = `
+"SyntaxError [1:19-1:20]: Missing initializer in destructuring declaration
+> 1 | for (let [] = 0, {};;);
+    |                    ^ Missing initializer in destructuring declaration"
+`;
+
 exports[`Statements - For > Statements - For (pass) > for (let [] = x;;); 1`] = `
 {
   "body": [
@@ -1892,6 +2988,18 @@ exports[`Statements - For > Statements - For (pass) > for (let [] = x;;); 1`] = 
   "sourceType": "script",
   "type": "Program",
 }
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (let [];;); 1`] = `
+"SyntaxError [1:11-1:12]: Missing initializer in destructuring declaration
+> 1 | for (let [];;);
+    |            ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (let [a = 0];;); 1`] = `
+"SyntaxError [1:16-1:17]: Missing initializer in destructuring declaration
+> 1 | for (let [a = 0];;);
+    |                 ^ Missing initializer in destructuring declaration"
 `;
 
 exports[`Statements - For > Statements - For (pass) > for (let [foo, ...bar] = obj;;); 1`] = `
@@ -2378,6 +3486,24 @@ exports[`Statements - For > Statements - For (pass) > for (let [foo] = arr;;); 1
 }
 `;
 
+exports[`Statements - For > Statements - For (pass) > for (let [z, z]; ; ) ; 1`] = `
+"SyntaxError [1:15-1:16]: Missing initializer in destructuring declaration
+> 1 | for (let [z, z]; ; ) ;
+    |                ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (let {};;); 1`] = `
+"SyntaxError [1:11-1:12]: Missing initializer in destructuring declaration
+> 1 | for (let {};;);
+    |            ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (let {a = 0};;); 1`] = `
+"SyntaxError [1:16-1:17]: Missing initializer in destructuring declaration
+> 1 | for (let {a = 0};;);
+    |                 ^ Missing initializer in destructuring declaration"
+`;
+
 exports[`Statements - For > Statements - For (pass) > for (let {x} = obj;;); 1`] = `
 {
   "body": [
@@ -2426,6 +3552,24 @@ exports[`Statements - For > Statements - For (pass) > for (let {x} = obj;;); 1`]
   "sourceType": "script",
   "type": "Program",
 }
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (let a = 0, [];;); 1`] = `
+"SyntaxError [1:18-1:19]: Missing initializer in destructuring declaration
+> 1 | for (let a = 0, [];;);
+    |                   ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (let a = 0, {};;); 1`] = `
+"SyntaxError [1:18-1:19]: Missing initializer in destructuring declaration
+> 1 | for (let a = 0, {};;);
+    |                   ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (let a = b in c) {} 1`] = `
+"SyntaxError [1:9-1:17]: 'for-in' loop head declarations can not have an initializer
+> 1 | for (let a = b in c) {}
+    |          ^^^^^^^^ 'for-in' loop head declarations can not have an initializer"
 `;
 
 exports[`Statements - For > Statements - For (pass) > for (let a of b); 1`] = `
@@ -2940,7 +4084,25 @@ exports[`Statements - For > Statements - For (pass) > for (let in x) y 1`] = `
 }
 `;
 
+exports[`Statements - For > Statements - For (pass) > for (let x of a,b) c 1`] = `
+"SyntaxError [1:15-1:16]: Expected ')'
+> 1 | for (let x of a,b) c
+    |                ^ Expected ')'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (let x of y, z) {} 1`] = `
+"SyntaxError [1:15-1:16]: Expected ')'
+> 1 | for (let x of y, z) {}
+    |                ^ Expected ')'"
+`;
+
 exports[`Statements - For > Statements - For (pass) > for (let=10;;); 1`] = `
+"SyntaxError [1:8-1:9]: Identifier "let" disallowed as left-hand side expression in strict mode
+> 1 | for (let=10;;);
+    |         ^ Identifier "let" disallowed as left-hand side expression in strict mode"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (let=10;;); 2`] = `
 {
   "body": [
     {
@@ -3010,6 +4172,408 @@ exports[`Statements - For > Statements - For (pass) > for (true ? a in b : {}; f
   "sourceType": "script",
   "type": "Program",
 }
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [,,] = x); 1`] = `
+"SyntaxError [1:17-1:18]: Expected ';'
+> 1 | for (var [,,] = x);
+    |                  ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [,,foo] = arr); 1`] = `
+"SyntaxError [1:22-1:23]: Expected ';'
+> 1 | for (var [,,foo] = arr);
+    |                       ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [,] = x); 1`] = `
+"SyntaxError [1:16-1:17]: Expected ';'
+> 1 | for (var [,] = x);
+    |                 ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [,foo] = arr); 1`] = `
+"SyntaxError [1:21-1:22]: Expected ';'
+> 1 | for (var [,foo] = arr);
+    |                      ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [...[ x ] = []] = []; a < 1; ) {} 1`] = `
+"SyntaxError [1:25-1:26]: The binding declaration is not destructible
+> 1 | for (var [...[ x ] = []] = []; a < 1; ) {}
+    |                          ^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [...[foo, bar],,] = obj); 1`] = `
+"SyntaxError [1:27-1:28]: The binding declaration is not destructible
+> 1 | for (var [...[foo, bar],,] = obj);
+    |                            ^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [...[foo, bar],] = obj); 1`] = `
+"SyntaxError [1:26-1:27]: The binding declaration is not destructible
+> 1 | for (var [...[foo, bar],] = obj);
+    |                           ^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [...[foo, bar]] = obj); 1`] = `
+"SyntaxError [1:30-1:31]: Expected ';'
+> 1 | for (var [...[foo, bar]] = obj);
+    |                               ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [...] = obj); 1`] = `
+"SyntaxError [1:13-1:14]: The rest operator is missing an argument
+> 1 | for (var [...] = obj);
+    |              ^ The rest operator is missing an argument"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [...bar = foo] = obj); 1`] = `
+"SyntaxError [1:24-1:25]: The binding declaration is not destructible
+> 1 | for (var [...bar = foo] = obj);
+    |                         ^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [...foo, bar] = obj); 1`] = `
+"SyntaxError [1:23-1:24]: The binding declaration is not destructible
+> 1 | for (var [...foo, bar] = obj);
+    |                        ^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [...foo,,] = obj); 1`] = `
+"SyntaxError [1:20-1:21]: The binding declaration is not destructible
+> 1 | for (var [...foo,,] = obj);
+    |                     ^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [...foo,] = obj); 1`] = `
+"SyntaxError [1:19-1:20]: The binding declaration is not destructible
+> 1 | for (var [...foo,] = obj);
+    |                    ^ The binding declaration is not destructible"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [...foo] = obj); 1`] = `
+"SyntaxError [1:23-1:24]: Expected ';'
+> 1 | for (var [...foo] = obj);
+    |                        ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [] = x); 1`] = `
+"SyntaxError [1:15-1:16]: Expected ';'
+> 1 | for (var [] = x);
+    |                ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [foo = x]); 1`] = `
+"SyntaxError [1:18-1:19]: Missing initializer in destructuring declaration
+> 1 | for (var [foo = x]);
+    |                   ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [foo, ...bar] = obj); 1`] = `
+"SyntaxError [1:28-1:29]: Expected ';'
+> 1 | for (var [foo, ...bar] = obj);
+    |                             ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [foo, bar=b] = arr); 1`] = `
+"SyntaxError [1:27-1:28]: Expected ';'
+> 1 | for (var [foo, bar=b] = arr);
+    |                            ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [foo,,] = arr); 1`] = `
+"SyntaxError [1:22-1:23]: Expected ';'
+> 1 | for (var [foo,,] = arr);
+    |                       ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [foo,,bar] = arr); 1`] = `
+"SyntaxError [1:25-1:26]: Expected ';'
+> 1 | for (var [foo,,bar] = arr);
+    |                          ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [foo,] = arr); 1`] = `
+"SyntaxError [1:21-1:22]: Expected ';'
+> 1 | for (var [foo,] = arr);
+    |                      ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [foo,bar] = arr); 1`] = `
+"SyntaxError [1:24-1:25]: Expected ';'
+> 1 | for (var [foo,bar] = arr);
+    |                         ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [foo=a, bar=b] = arr); 1`] = `
+"SyntaxError [1:29-1:30]: Expected ';'
+> 1 | for (var [foo=a, bar=b] = arr);
+    |                              ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [foo=a, bar] = arr); 1`] = `
+"SyntaxError [1:27-1:28]: Expected ';'
+> 1 | for (var [foo=a, bar] = arr);
+    |                            ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [foo=a] = arr); 1`] = `
+"SyntaxError [1:22-1:23]: Expected ';'
+> 1 | for (var [foo=a] = arr);
+    |                       ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [foo] = arr); 1`] = `
+"SyntaxError [1:20-1:21]: Expected ';'
+> 1 | for (var [foo] = arr);
+    |                     ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [foo] = arr, [bar] = arr2); 1`] = `
+"SyntaxError [1:34-1:35]: Expected ';'
+> 1 | for (var [foo] = arr, [bar] = arr2);
+    |                                   ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [foo] = arr, [bar] = arr2); 2`] = `
+"SyntaxError [1:34-1:35]: Expected ';'
+> 1 | for (var [foo] = arr, [bar] = arr2);
+    |                                   ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [foo] = arr, bar = arr2); 1`] = `
+"SyntaxError [1:32-1:33]: Expected ';'
+> 1 | for (var [foo] = arr, bar = arr2);
+    |                                 ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [foo] = arr, bar); 1`] = `
+"SyntaxError [1:25-1:26]: Expected ';'
+> 1 | for (var [foo] = arr, bar);
+    |                          ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [foo]); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in destructuring declaration
+> 1 | for (var [foo]);
+    |               ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [foo], bar); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in destructuring declaration
+> 1 | for (var [foo], bar);
+    |               ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var [x, ...[foo, bar]] = obj); 1`] = `
+"SyntaxError [1:33-1:34]: Expected ';'
+> 1 | for (var [x, ...[foo, bar]] = obj);
+    |                                  ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {,,} = obj); 1`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: ','
+> 1 | for (var {,,} = obj);
+    |           ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {,,x} = obj); 1`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: ','
+> 1 | for (var {,,x} = obj);
+    |           ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {,,x} = obj); 2`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: ','
+> 1 | for (var {,,x} = obj);
+    |           ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {,,x} = obj); 3`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: ','
+> 1 | for (var {,,x} = obj);
+    |           ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {,,x} = obj); 4`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: ','
+> 1 | for (var {,,x} = obj);
+    |           ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {,} = obj); 1`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: ','
+> 1 | for (var {,} = obj);
+    |           ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {,x} = obj); 1`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: ','
+> 1 | for (var {,x} = obj);
+    |           ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {[x]: y = z} = a); 1`] = `
+"SyntaxError [1:25-1:26]: Expected ';'
+> 1 | for (var {[x]: y = z} = a);
+    |                          ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {[x]: y = z}); 1`] = `
+"SyntaxError [1:21-1:22]: Missing initializer in destructuring declaration
+> 1 | for (var {[x]: y = z});
+    |                      ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {[x]: y} = z); 1`] = `
+"SyntaxError [1:21-1:22]: Expected ';'
+> 1 | for (var {[x]: y} = z);
+    |                      ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {[x]: y}); 1`] = `
+"SyntaxError [1:17-1:18]: Missing initializer in destructuring declaration
+> 1 | for (var {[x]: y});
+    |                  ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {[x]} = z); 1`] = `
+"SyntaxError [1:13-1:14]: A computed property name must be followed by a colon or paren
+> 1 | for (var {[x]} = z);
+    |              ^ A computed property name must be followed by a colon or paren"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {} = obj); 1`] = `
+"SyntaxError [1:17-1:18]: Expected ';'
+> 1 | for (var {} = obj);
+    |                  ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {a, [x]: y} = a); 1`] = `
+"SyntaxError [1:24-1:25]: Expected ';'
+> 1 | for (var {a, [x]: y} = a);
+    |                         ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {a:=c} = z); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: '='
+> 1 | for (var {a:=c} = z);
+    |             ^ Unexpected token: '='"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {x = y, z = a} = obj); 1`] = `
+"SyntaxError [1:29-1:30]: Expected ';'
+> 1 | for (var {x = y, z = a} = obj);
+    |                              ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {x = y, z} = obj); 1`] = `
+"SyntaxError [1:25-1:26]: Expected ';'
+> 1 | for (var {x = y, z} = obj);
+    |                          ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {x = y} = obj); 1`] = `
+"SyntaxError [1:22-1:23]: Expected ';'
+> 1 | for (var {x = y} = obj);
+    |                       ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {x, y = z} = obj); 1`] = `
+"SyntaxError [1:25-1:26]: Expected ';'
+> 1 | for (var {x, y = z} = obj);
+    |                          ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {x, y} = obj); 1`] = `
+"SyntaxError [1:21-1:22]: Expected ';'
+> 1 | for (var {x, y} = obj);
+    |                      ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {x,, y} = obj); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | for (var {x,, y} = obj);
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {x,,} = obj); 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: ','
+> 1 | for (var {x,,} = obj);
+    |             ^ Unexpected token: ','"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {x,} = obj); 1`] = `
+"SyntaxError [1:19-1:20]: Expected ';'
+> 1 | for (var {x,} = obj);
+    |                    ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {x:y=z} = obj, {a:b=c}); 1`] = `
+"SyntaxError [1:31-1:32]: Missing initializer in destructuring declaration
+> 1 | for (var {x:y=z} = obj, {a:b=c});
+    |                                ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {x:y=z}); 1`] = `
+"SyntaxError [1:16-1:17]: Missing initializer in destructuring declaration
+> 1 | for (var {x:y=z});
+    |                 ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {x:y=z}, {a:b=c} = obj); 1`] = `
+"SyntaxError [1:16-1:17]: Missing initializer in destructuring declaration
+> 1 | for (var {x:y=z}, {a:b=c} = obj);
+    |                 ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {x=y}); 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in destructuring declaration
+> 1 | for (var {x=y});
+    |               ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {x} = a, {y} = obj); 1`] = `
+"SyntaxError [1:27-1:28]: Expected ';'
+> 1 | for (var {x} = a, {y} = obj);
+    |                            ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {x} = a, obj); 1`] = `
+"SyntaxError [1:21-1:22]: Expected ';'
+> 1 | for (var {x} = a, obj);
+    |                      ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {x} = a, y = obj); 1`] = `
+"SyntaxError [1:25-1:26]: Expected ';'
+> 1 | for (var {x} = a, y = obj);
+    |                          ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {x} = obj); 1`] = `
+"SyntaxError [1:18-1:19]: Expected ';'
+> 1 | for (var {x} = obj);
+    |                   ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {x}, {y} = z); 1`] = `
+"SyntaxError [1:12-1:13]: Missing initializer in destructuring declaration
+> 1 | for (var {x}, {y} = z);
+    |             ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {x}, y); 1`] = `
+"SyntaxError [1:12-1:13]: Missing initializer in destructuring declaration
+> 1 | for (var {x}, y);
+    |             ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var {x}, y); 2`] = `
+"SyntaxError [1:12-1:13]: Missing initializer in destructuring declaration
+> 1 | for (var {x}, y);
+    |             ^ Missing initializer in destructuring declaration"
 `;
 
 exports[`Statements - For > Statements - For (pass) > for (var a = (++effects, -1) in stored = a, {a: 0, b: 1, c: 2}); 1`] = `
@@ -3313,6 +4877,18 @@ exports[`Statements - For > Statements - For (pass) > for (var a = b in c); 1`] 
   "sourceType": "script",
   "type": "Program",
 }
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var a in arr;1;){ break; } 1`] = `
+"SyntaxError [1:17-1:18]: Expected ')'
+> 1 | for (var a in arr;1;){ break; }
+    |                  ^ Expected ')'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var a in arr;1;){ break; } 2`] = `
+"SyntaxError [1:17-1:18]: Expected ')'
+> 1 | for (var a in arr;1;){ break; }
+    |                  ^ Expected ')'"
 `;
 
 exports[`Statements - For > Statements - For (pass) > for (var a in stored = a, {a: 0, b: 1, c: 2}); 1`] = `
@@ -3906,6 +5482,18 @@ exports[`Statements - For > Statements - For (pass) > for (var a=1;;); 1`] = `
 }
 `;
 
+exports[`Statements - For > Statements - For (pass) > for (var foo = arr, [bar] = arr2); 1`] = `
+"SyntaxError [1:32-1:33]: Expected ';'
+> 1 | for (var foo = arr, [bar] = arr2);
+    |                                 ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var foo, [bar]); 1`] = `
+"SyntaxError [1:19-1:20]: Missing initializer in destructuring declaration
+> 1 | for (var foo, [bar]);
+    |                    ^ Missing initializer in destructuring declaration"
+`;
+
 exports[`Statements - For > Statements - For (pass) > for (var x = 0; x < 1000000; x++); 1`] = `
 {
   "body": [
@@ -3959,6 +5547,66 @@ exports[`Statements - For > Statements - For (pass) > for (var x = 0; x < 100000
 }
 `;
 
+exports[`Statements - For > Statements - For (pass) > for (var x = a, {y} = obj); 1`] = `
+"SyntaxError [1:25-1:26]: Expected ';'
+> 1 | for (var x = a, {y} = obj);
+    |                          ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var x = y, {z}); 1`] = `
+"SyntaxError [1:19-1:20]: Missing initializer in destructuring declaration
+> 1 | for (var x = y, {z});
+    |                    ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (var x, {y} = obj); 1`] = `
+"SyntaxError [1:21-1:22]: Expected ';'
+> 1 | for (var x, {y} = obj);
+    |                      ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (x of y) foo: bar: function f(){} 1`] = `
+"SyntaxError [1:23-1:31]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | for (x of y) foo: bar: function f(){}
+    |                        ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (x of y) foo: function f(){} 1`] = `
+"SyntaxError [1:18-1:26]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | for (x of y) foo: function f(){}
+    |                   ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (x=>{} of y); 1`] = `
+"SyntaxError [1:11-1:13]: Invalid left-hand side in for-of
+> 1 | for (x=>{} of y);
+    |            ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (x=>{}.x in y); 1`] = `
+"SyntaxError [1:10-1:11]: Block body arrows can not be immediately accessed without a group
+> 1 | for (x=>{}.x in y);
+    |           ^ Block body arrows can not be immediately accessed without a group"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (x=>{}.x of y); 1`] = `
+"SyntaxError [1:10-1:11]: Block body arrows can not be immediately accessed without a group
+> 1 | for (x=>{}.x of y);
+    |           ^ Block body arrows can not be immediately accessed without a group"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (x=>x in y;;); 1`] = `
+"SyntaxError [1:10-1:12]: Invalid left-hand side in for-in
+> 1 | for (x=>x in y;;);
+    |           ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for (yield;;); 1`] = `
+"SyntaxError [1:5-1:10]: 'yield' may not be used as an identifier in this context
+> 1 | for (yield;;);
+    |      ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
 exports[`Statements - For > Statements - For (pass) > for(()=>{a in b};;); 1`] = `
 {
   "body": [
@@ -4001,6 +5649,90 @@ exports[`Statements - For > Statements - For (pass) > for(()=>{a in b};;); 1`] =
   "sourceType": "script",
   "type": "Program",
 }
+`;
+
+exports[`Statements - For > Statements - For (pass) > for({a=0};;); 1`] = `
+"SyntaxError [1:9-1:10]: Invalid left-hand side in for-loop
+> 1 | for({a=0};;);
+    |          ^ Invalid left-hand side in for-loop"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for({var index=0; index+=1;} index++<=10; index*2;) {	[].add(""+index);}; 1`] = `
+"SyntaxError [1:9-1:14]: Unexpected token
+> 1 | for({var index=0; index+=1;} index++<=10; index*2;) {	[].add(""+index);};
+    |          ^^^^^ Unexpected token"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for(delete((1)?y:x in y) in z)x 1`] = `
+"SyntaxError [1:25-1:27]: Invalid left-hand side in for-in
+> 1 | for(delete((1)?y:x in y) in z)x
+    |                          ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for(delete(x in y) in z)x 1`] = `
+"SyntaxError [1:19-1:21]: Invalid left-hand side in for-in
+> 1 | for(delete(x in y) in z)x
+    |                    ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for(index=0; index<10; index+=4; index++; index--) ; 1`] = `
+"SyntaxError [1:31-1:32]: Expected ')'
+> 1 | for(index=0; index<10; index+=4; index++; index--) ;
+    |                                ^ Expected ')'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for(x of 3)break/ 1`] = `
+"SyntaxError [1:16-1:17]: Unexpected token: '/'
+> 1 | for(x of 3)break/
+    |                 ^ Unexpected token: '/'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for(x of 3)continue/ 1`] = `
+"SyntaxError [1:19-1:20]: Unexpected token: '/'
+> 1 | for(x of 3)continue/
+    |                    ^ Unexpected token: '/'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > for(x of 3)p/ 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: 'end of source'
+> 1 | for(x of 3)p/
+    |             ^ Unexpected token: 'end of source'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > function *f(){   for (yield of y);   } 1`] = `
+"SyntaxError [1:31-1:32]: Expected ';'
+> 1 | function *f(){   for (yield of y);   }
+    |                                ^ Expected ';'"
+`;
+
+exports[`Statements - For > Statements - For (pass) > function *f(){   for (yield x in y in z);   } 1`] = `
+"SyntaxError [1:30-1:32]: Invalid left-hand side in for-in
+> 1 | function *f(){   for (yield x in y in z);   }
+    |                               ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For > Statements - For (pass) > function *f(){   for (yield x in y of z);   } 1`] = `
+"SyntaxError [1:30-1:32]: Invalid left-hand side in for-in
+> 1 | function *f(){   for (yield x in y of z);   }
+    |                               ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For > Statements - For (pass) > function *f(){   for (yield x in y;;); 1`] = `
+"SyntaxError [1:30-1:32]: Invalid left-hand side in for-in
+> 1 | function *f(){   for (yield x in y;;);
+    |                               ^^ Invalid left-hand side in for-in"
+`;
+
+exports[`Statements - For > Statements - For (pass) > function *f(){   for (yield x of y);   } 1`] = `
+"SyntaxError [1:30-1:32]: Invalid left-hand side in for-of
+> 1 | function *f(){   for (yield x of y);   }
+    |                               ^^ Invalid left-hand side in for-of"
+`;
+
+exports[`Statements - For > Statements - For (pass) > function *f(){ for (yield of obj); } 1`] = `
+"SyntaxError [1:29-1:32]: Expected ';'
+> 1 | function *f(){ for (yield of obj); }
+    |                              ^^^ Expected ';'"
 `;
 
 exports[`Statements - For > Statements - For (pass) > let = 4;
@@ -4055,4 +5787,10 @@ exports[`Statements - For > Statements - For (pass) > let = 4;
   "sourceType": "script",
   "type": "Program",
 }
+`;
+
+exports[`Statements - For > Statements - For (pass) > let {...{a,b}} = foo 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | let {...{a,b}} = foo
+    |                ^ The binding declaration is not destructible"
 `;

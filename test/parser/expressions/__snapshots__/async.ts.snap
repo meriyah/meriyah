@@ -1,5 +1,243 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Expressions - Async > Expressions - Async (fail) > "use strict"; (async function arguments () {  }) 1`] = `
+"SyntaxError [1:30-1:39]: Unexpected eval or arguments in strict mode
+> 1 | "use strict"; (async function arguments () {  })
+    |                               ^^^^^^^^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > "use strict"; (async function eval () { }) 1`] = `
+"SyntaxError [1:30-1:34]: Unexpected eval or arguments in strict mode
+> 1 | "use strict"; (async function eval () { })
+    |                               ^^^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > (async function(...x = []) {}) 1`] = `
+"SyntaxError [1:25-1:26]: The binding declaration is not destructible
+> 1 | (async function(...x = []) {})
+    |                          ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async
+function f(){await x} 1`] = `
+"SyntaxError [2:19-2:20]: Unexpected token: 'identifier'
+  1 | async
+> 2 | function f(){await x}
+    |                    ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async
+function f(){await x} 2`] = `
+"SyntaxError [2:19-2:20]: Unexpected token: 'identifier'
+  1 | async
+> 2 | function f(){await x}
+    |                    ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async
+function f(){await x} 3`] = `
+"SyntaxError [2:19-2:20]: Unexpected token: 'identifier'
+  1 | async
+> 2 | function f(){await x}
+    |                    ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async
+function f(){await x} 4`] = `
+"SyntaxError [2:19-2:20]: Unexpected token: 'identifier'
+  1 | async
+> 2 | function f(){await x}
+    |                    ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async (a, ...b+b=c) => a; 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | async (a, ...b+b=c) => a;
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async (a, ...b=fail) => a; 1`] = `
+"SyntaxError [1:21-1:23]: Invalid left-hand side in async arrow
+> 1 | async (a, ...b=fail) => a;
+    |                      ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async (a, ...b=fail) => a; 2`] = `
+"SyntaxError [1:21-1:23]: Invalid left-hand side in async arrow
+> 1 | async (a, ...b=fail) => a;
+    |                      ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async (a, ...b=true) => a; 1`] = `
+"SyntaxError [1:21-1:23]: Invalid left-hand side in async arrow
+> 1 | async (a, ...b=true) => a;
+    |                      ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async (a, ...true) => a; 1`] = `
+"SyntaxError [1:19-1:21]: Invalid left-hand side in async arrow
+> 1 | async (a, ...true) => a;
+    |                    ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async (a, ...true=b) => a; 1`] = `
+"SyntaxError [1:17-1:18]: Invalid destructuring assignment target
+> 1 | async (a, ...true=b) => a;
+    |                  ^ Invalid destructuring assignment target"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async function f(){ return await => {}; } 1`] = `
+"SyntaxError [1:27-1:38]: cannot use "await" as identifier inside an async function
+> 1 | async function f(){ return await => {}; }
+    |                            ^^^^^^^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async let [] = y 1`] = `
+"SyntaxError [1:10-1:11]: Expected '=>'
+> 1 | async let [] = y
+    |           ^ Expected '=>'"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async let [] 1`] = `
+"SyntaxError [1:10-1:11]: Expected '=>'
+> 1 | async let []
+    |           ^ Expected '=>'"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async let [x] = y 1`] = `
+"SyntaxError [1:10-1:11]: Expected '=>'
+> 1 | async let [x] = y
+    |           ^ Expected '=>'"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async let [x] 1`] = `
+"SyntaxError [1:10-1:11]: Expected '=>'
+> 1 | async let [x]
+    |           ^ Expected '=>'"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async let [x] 2`] = `
+"SyntaxError [1:10-1:11]: Expected '=>'
+> 1 | async let [x]
+    |           ^ Expected '=>'"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async let {} = y 1`] = `
+"SyntaxError [1:10-1:11]: Expected '=>'
+> 1 | async let {} = y
+    |           ^ Expected '=>'"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async let {} 1`] = `
+"SyntaxError [1:10-1:11]: Expected '=>'
+> 1 | async let {}
+    |           ^ Expected '=>'"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async let {x} = y 1`] = `
+"SyntaxError [1:10-1:11]: Expected '=>'
+> 1 | async let {x} = y
+    |           ^ Expected '=>'"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async let x 1`] = `
+"SyntaxError [1:10-1:11]: Expected '=>'
+> 1 | async let x
+    |           ^ Expected '=>'"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async while (1) {} 1`] = `
+"SyntaxError [1:6-1:11]: Unexpected token: 'while'
+> 1 | async while (1) {}
+    |       ^^^^^ Unexpected token: 'while'"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async(await); 1`] = `
+"SyntaxError [1:6-1:11]: Can not use \`await\` as identifier in module or async func
+> 1 | async(await);
+    |       ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > async(yield); 1`] = `
+"SyntaxError [1:6-1:11]: 'yield' may not be used as an identifier in this context
+> 1 | async(yield);
+    |       ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > await 
+ / x 1`] = `
+"SyntaxError [2:1-2:4]: Unterminated regular expression
+  1 | await 
+> 2 |  / x
+    |  ^^^ Unterminated regular expression"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > await => { let x; } 1`] = `
+"SyntaxError [1:0-1:19]: cannot use "await" as identifier inside an async function
+> 1 | await => { let x; }
+    | ^^^^^^^^^^^^^^^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > await/x 1`] = `
+"SyntaxError [1:5-1:7]: Unterminated regular expression
+> 1 | await/x
+    |      ^^ Unterminated regular expression"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > class X { async(async => {}) {} } 1`] = `
+"SyntaxError [1:22-1:24]: Expected ')'
+> 1 | class X { async(async => {}) {} }
+    |                       ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > f(async
+foo=>c) 1`] = `
+"SyntaxError [2:0-2:3]: Expected ')'
+  1 | f(async
+> 2 | foo=>c)
+    | ^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > f(async
+function(){}) 1`] = `
+"SyntaxError [2:0-2:8]: Expected ')'
+  1 | f(async
+> 2 | function(){})
+    | ^^^^^^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > foo(async[]) 1`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: ']'
+> 1 | foo(async[])
+    |           ^ Unexpected token: ']'"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > function f() {for (let in {}) {}} 1`] = `
+"SyntaxError [1:23-1:25]: Identifier "let" disallowed as left-hand side expression in strict mode
+> 1 | function f() {for (let in {}) {}}
+    |                        ^^ Identifier "let" disallowed as left-hand side expression in strict mode"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > let async => async 1`] = `
+"SyntaxError [1:10-1:12]: Unexpected token: '=>'
+> 1 | let async => async
+    |           ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > let f = async
+function g(){await x} 1`] = `
+"SyntaxError [2:19-2:20]: Unexpected token: 'identifier'
+  1 | let f = async
+> 2 | function g(){await x}
+    |                    ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Async > Expressions - Async (fail) > var O = { async method() {var [ await ] = 1;} 1`] = `
+"SyntaxError [1:32-1:37]: cannot use "await" as identifier inside an async function
+> 1 | var O = { async method() {var [ await ] = 1;}
+    |                                 ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
 exports[`Expressions - Async > Expressions - Async (pass) > ({async foo () 
  {}}) 1`] = `
 {

@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - Generators > Expressions - Generators (pass) > foo
+++ 1`] = `
+"SyntaxError [2:0-2:2]: Unexpected token: 'end of source'
+  1 | foo
+> 2 | ++
+    | ^^ Unexpected token: 'end of source'"
+`;
+
+exports[`Expressions - Generators > Expressions - Generators (pass) > if (foo
+++); 1`] = `
+"SyntaxError [2:0-2:2]: Expected ')'
+  1 | if (foo
+> 2 | ++);
+    | ^^ Expected ')'"
+`;

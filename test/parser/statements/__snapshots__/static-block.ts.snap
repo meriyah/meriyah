@@ -1,5 +1,35 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Next - Class static initialization block > Next - Class static initialization block (fail) > async function t() { class A { static { await 0 } } } 1`] = `
+"SyntaxError [1:40-1:45]: cannot use "await" in static blocks
+> 1 | async function t() { class A { static { await 0 } } }
+    |                                         ^^^^^ cannot use "await" in static blocks"
+`;
+
+exports[`Next - Class static initialization block > Next - Class static initialization block (fail) > class A { async static {} } 1`] = `
+"SyntaxError [1:23-1:24]: Unexpected token: '{'
+> 1 | class A { async static {} }
+    |                        ^ Unexpected token: '{'"
+`;
+
+exports[`Next - Class static initialization block > Next - Class static initialization block (fail) > class A { static { super() } } 1`] = `
+"SyntaxError [1:24-1:25]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class A { static { super() } }
+    |                         ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Next - Class static initialization block > Next - Class static initialization block (fail) > class A { static async {} } 1`] = `
+"SyntaxError [1:23-1:24]: Invalid key token
+> 1 | class A { static async {} }
+    |                        ^ Invalid key token"
+`;
+
+exports[`Next - Class static initialization block > Next - Class static initialization block (fail) > class A {}; class B extends A { static { super() } } 1`] = `
+"SyntaxError [1:46-1:47]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class A {}; class B extends A { static { super() } }
+    |                                               ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
 exports[`Next - Class static initialization block > Next - Class static initialization block (pass) > class A { static { this.a } } 1`] = `
 {
   "body": [

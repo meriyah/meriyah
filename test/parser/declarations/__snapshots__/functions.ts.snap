@@ -2623,3 +2623,489 @@ exports[`Declarations - Function > Declarations - Function (pass) > typeof funct
   "type": "Program",
 }
 `;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > "use strict"; function eval() {} 1`] = `
+"SyntaxError [1:23-1:27]: Unexpected eval or arguments in strict mode
+> 1 | "use strict"; function eval() {}
+    |                        ^^^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > class c {foo(x=package=y){ "use strict"; }} 1`] = `
+"SyntaxError [1:15-1:22]: Unexpected token: 'package'
+> 1 | class c {foo(x=package=y){ "use strict"; }}
+    |                ^^^^^^^ Unexpected token: 'package'"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > f = function f(x=package=10){ "use strict"; } 1`] = `
+"SyntaxError [1:30-1:43]: Illegal 'use strict' directive in function with non-simple parameter list
+> 1 | f = function f(x=package=10){ "use strict"; }
+    |                               ^^^^^^^^^^^^^ Illegal 'use strict' directive in function with non-simple parameter list"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > f(x = eval = 10) => { "use strict"; } 1`] = `
+"SyntaxError [1:17-1:19]: Unexpected token: '=>'
+> 1 | f(x = eval = 10) => { "use strict"; }
+    |                  ^^ Unexpected token: '=>'"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > f(x=package=10) => { "use strict"; } 1`] = `
+"SyntaxError [1:16-1:18]: Unexpected token: '=>'
+> 1 | f(x=package=10) => { "use strict"; }
+    |                 ^^ Unexpected token: '=>'"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function *await() {} 1`] = `
+"SyntaxError [1:10-1:15]: Can not use \`await\` as identifier in module or async func
+> 1 | function *await() {}
+    |           ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function *f(){ class x { foo(x=new (yield)()){} }  } 1`] = `
+"SyntaxError [1:36-1:41]: 'yield' may not be used as an identifier in this context
+> 1 | function *f(){ class x { foo(x=new (yield)()){} }  }
+    |                                     ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function *f(){ class x { foo(x=yield y){} }  } 1`] = `
+"SyntaxError [1:31-1:36]: 'yield' may not be used as an identifier in this context
+> 1 | function *f(){ class x { foo(x=yield y){} }  }
+    |                                ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function *f(){ class x { foo(x=yield){} }  } 1`] = `
+"SyntaxError [1:31-1:36]: 'yield' may not be used as an identifier in this context
+> 1 | function *f(){ class x { foo(x=yield){} }  }
+    |                                ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function *f(){ class x { foo(yield){} }  } 1`] = `
+"SyntaxError [1:29-1:34]: Unexpected strict mode reserved word
+> 1 | function *f(){ class x { foo(yield){} }  }
+    |                              ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function *f(){ class x extends yield { }  } 1`] = `
+"SyntaxError [1:37-1:38]: Invalid left-hand side in assignment
+> 1 | function *f(){ class x extends yield { }  }
+    |                                      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function *f(){ class x extends yield y { }  } 1`] = `
+"SyntaxError [1:37-1:38]: Invalid left-hand side in assignment
+> 1 | function *f(){ class x extends yield y { }  }
+    |                                      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function *f(){ class yield { }  } 1`] = `
+"SyntaxError [1:21-1:26]: 'yield' may not be used as an identifier in this context
+> 1 | function *f(){ class yield { }  }
+    |                      ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function 00004() { "use strict"; 00004; } 1`] = `
+"SyntaxError [1:9-1:14]: Unexpected token: 'number'
+> 1 | function 00004() { "use strict"; 00004; }
+    |          ^^^^^ Unexpected token: 'number'"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function a({x: {}.length}){} 1`] = `
+"SyntaxError [1:25-1:26]: The binding declaration is not destructible
+> 1 | function a({x: {}.length}){}
+    |                          ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function a({x: {x: y}.length}){} 1`] = `
+"SyntaxError [1:29-1:30]: The binding declaration is not destructible
+> 1 | function a({x: {x: y}.length}){}
+    |                              ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function a({x: class{}}){} 1`] = `
+"SyntaxError [1:23-1:24]: The binding declaration is not destructible
+> 1 | function a({x: class{}}){}
+    |                        ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function a({x: false}){} 1`] = `
+"SyntaxError [1:21-1:22]: The binding declaration is not destructible
+> 1 | function a({x: false}){}
+    |                      ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function a({x: null}){} 1`] = `
+"SyntaxError [1:20-1:21]: The binding declaration is not destructible
+> 1 | function a({x: null}){}
+    |                     ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function a({x: typeof x}){} 1`] = `
+"SyntaxError [1:24-1:25]: The binding declaration is not destructible
+> 1 | function a({x: typeof x}){}
+    |                         ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function a({x: void x}){} 1`] = `
+"SyntaxError [1:22-1:23]: The binding declaration is not destructible
+> 1 | function a({x: void x}){}
+    |                       ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function arguments() {"use strict";} 1`] = `
+"SyntaxError [1:35-1:36]: Unexpected eval or arguments in strict mode
+> 1 | function arguments() {"use strict";}
+    |                                    ^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function await() {} 1`] = `
+"SyntaxError [1:9-1:14]: Can not use \`await\` as identifier in module or async func
+> 1 | function await() {}
+    |          ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function eval() {"use strict";} 1`] = `
+"SyntaxError [1:30-1:31]: Unexpected eval or arguments in strict mode
+> 1 | function eval() {"use strict";}
+    |                               ^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f() { class await { }   } 1`] = `
+"SyntaxError [1:21-1:26]: Can not use \`await\` as identifier in module or async func
+> 1 | function f() { class await { }   }
+    |                      ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f() { class x { foo(await y){} }   } 1`] = `
+"SyntaxError [1:35-1:36]: Expected ')'
+> 1 | function f() { class x { foo(await y){} }   }
+    |                                    ^ Expected ')'"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f() { class x { foo(x=await y){} }   } 1`] = `
+"SyntaxError [1:31-1:36]: Await expression not allowed in formal parameter
+> 1 | function f() { class x { foo(x=await y){} }   }
+    |                                ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f() { class x extends await { }   } 1`] = `
+"SyntaxError [1:31-1:36]: Await is only valid in async functions
+> 1 | function f() { class x extends await { }   }
+    |                                ^^^^^ Await is only valid in async functions"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f() { class x extends await y { }   } 1`] = `
+"SyntaxError [1:37-1:38]: Expected '{'
+> 1 | function f() { class x extends await y { }   }
+    |                                      ^ Expected '{'"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f() { class x extends foo(await y) { }   } 1`] = `
+"SyntaxError [1:41-1:42]: Expected ')'
+> 1 | function f() { class x extends foo(await y) { }   }
+    |                                          ^ Expected ')'"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class x { [yield y](){} }  } 1`] = `
+"SyntaxError [1:25-1:30]: 'yield' may not be used as an identifier in this context
+> 1 | function f(){ class x { [yield y](){} }  }
+    |                          ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class x { [yield y](){} }  } 2`] = `
+"SyntaxError [1:25-1:30]: 'yield' may not be used as an identifier in this context
+> 1 | function f(){ class x { [yield y](){} }  }
+    |                          ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class x { [yield](){} }  } 1`] = `
+"SyntaxError [1:25-1:30]: 'yield' may not be used as an identifier in this context
+> 1 | function f(){ class x { [yield](){} }  }
+    |                          ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class x { [yield](){} }  } 2`] = `
+"SyntaxError [1:25-1:30]: 'yield' may not be used as an identifier in this context
+> 1 | function f(){ class x { [yield](){} }  }
+    |                          ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class x { foo(x=new (yield)()){} }  } 1`] = `
+"SyntaxError [1:35-1:40]: 'yield' may not be used as an identifier in this context
+> 1 | function f(){ class x { foo(x=new (yield)()){} }  }
+    |                                    ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class x { foo(x=new (yield)()){} }  } 2`] = `
+"SyntaxError [1:35-1:40]: 'yield' may not be used as an identifier in this context
+> 1 | function f(){ class x { foo(x=new (yield)()){} }  }
+    |                                    ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class x { foo(x=yield y){} }  } 1`] = `
+"SyntaxError [1:30-1:35]: 'yield' may not be used as an identifier in this context
+> 1 | function f(){ class x { foo(x=yield y){} }  }
+    |                               ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class x { foo(x=yield y){} }  } 2`] = `
+"SyntaxError [1:30-1:35]: 'yield' may not be used as an identifier in this context
+> 1 | function f(){ class x { foo(x=yield y){} }  }
+    |                               ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class x { foo(x=yield){} }  } 1`] = `
+"SyntaxError [1:30-1:35]: 'yield' may not be used as an identifier in this context
+> 1 | function f(){ class x { foo(x=yield){} }  }
+    |                               ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class x { foo(x=yield){} }  } 2`] = `
+"SyntaxError [1:30-1:35]: 'yield' may not be used as an identifier in this context
+> 1 | function f(){ class x { foo(x=yield){} }  }
+    |                               ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class x { foo(yield){} }  } 1`] = `
+"SyntaxError [1:28-1:33]: Unexpected strict mode reserved word
+> 1 | function f(){ class x { foo(yield){} }  }
+    |                             ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class x { foo(yield){} }  } 2`] = `
+"SyntaxError [1:28-1:33]: Unexpected strict mode reserved word
+> 1 | function f(){ class x { foo(yield){} }  }
+    |                             ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class x extends foo(yield y) { }  } 1`] = `
+"SyntaxError [1:34-1:39]: 'yield' may not be used as an identifier in this context
+> 1 | function f(){ class x extends foo(yield y) { }  }
+    |                                   ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class x extends foo(yield y) { }  } 2`] = `
+"SyntaxError [1:34-1:39]: 'yield' may not be used as an identifier in this context
+> 1 | function f(){ class x extends foo(yield y) { }  }
+    |                                   ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class x extends foo(yield) { }  } 1`] = `
+"SyntaxError [1:34-1:39]: 'yield' may not be used as an identifier in this context
+> 1 | function f(){ class x extends foo(yield) { }  }
+    |                                   ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class x extends foo(yield) { }  } 2`] = `
+"SyntaxError [1:34-1:39]: 'yield' may not be used as an identifier in this context
+> 1 | function f(){ class x extends foo(yield) { }  }
+    |                                   ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class x extends yield { }  } 1`] = `
+"SyntaxError [1:30-1:35]: 'yield' may not be used as an identifier in this context
+> 1 | function f(){ class x extends yield { }  }
+    |                               ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class x extends yield { }  } 2`] = `
+"SyntaxError [1:30-1:35]: 'yield' may not be used as an identifier in this context
+> 1 | function f(){ class x extends yield { }  }
+    |                               ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class x extends yield y { }  } 1`] = `
+"SyntaxError [1:30-1:35]: 'yield' may not be used as an identifier in this context
+> 1 | function f(){ class x extends yield y { }  }
+    |                               ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class x extends yield y { }  } 2`] = `
+"SyntaxError [1:30-1:35]: 'yield' may not be used as an identifier in this context
+> 1 | function f(){ class x extends yield y { }  }
+    |                               ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class yield { }  } 1`] = `
+"SyntaxError [1:20-1:25]: Unexpected strict mode reserved word
+> 1 | function f(){ class yield { }  }
+    |                     ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(){ class yield { }  } 2`] = `
+"SyntaxError [1:20-1:25]: Unexpected strict mode reserved word
+> 1 | function f(){ class yield { }  }
+    |                     ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(,,){} 1`] = `
+"SyntaxError [1:11-1:12]: Expected ')'
+> 1 | function f(,,){}
+    |            ^ Expected ')'"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f([x=x()=x]){} 1`] = `
+"SyntaxError [1:17-1:18]: Invalid left-hand side in assignment
+> 1 | function f([x=x()=x]){}
+    |                  ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(async function() {}) { } 1`] = `
+"SyntaxError [1:17-1:25]: Expected ')'
+> 1 | function f(async function() {}) { }
+    |                  ^^^^^^^^ Expected ')'"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(x = let = 10) {} 1`] = `
+"SyntaxError [1:19-1:20]: The identifier 'let' must not be in expression position in strict mode
+> 1 | function f(x = let = 10) {}
+    |                    ^ The identifier 'let' must not be in expression position in strict mode"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(x = package = 10) { "use strict"; } 1`] = `
+"SyntaxError [1:31-1:44]: Illegal 'use strict' directive in function with non-simple parameter list
+> 1 | function f(x = package = 10) { "use strict"; }
+    |                                ^^^^^^^^^^^^^ Illegal 'use strict' directive in function with non-simple parameter list"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(x = package = 10) {} 1`] = `
+"SyntaxError [1:15-1:22]: Unexpected token: 'package'
+> 1 | function f(x = package = 10) {}
+    |                ^^^^^^^ Unexpected token: 'package'"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(x = yield = 10) {} 1`] = `
+"SyntaxError [1:15-1:20]: 'yield' may not be used as an identifier in this context
+> 1 | function f(x = yield = 10) {}
+    |                ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function f(x= package =10){ "use strict"; } 1`] = `
+"SyntaxError [1:28-1:41]: Illegal 'use strict' directive in function with non-simple parameter list
+> 1 | function f(x= package =10){ "use strict"; }
+    |                             ^^^^^^^^^^^^^ Illegal 'use strict' directive in function with non-simple parameter list"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function foo() { "use strict"; 00004; } 1`] = `
+"SyntaxError [1:31-1:32]: Octal escape sequences are not allowed in strict mode
+> 1 | function foo() { "use strict"; 00004; }
+    |                                ^ Octal escape sequences are not allowed in strict mode"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function foo() { 00004; } 1`] = `
+"SyntaxError [1:17-1:18]: Octal escape sequences are not allowed in strict mode
+> 1 | function foo() { 00004; }
+    |                  ^ Octal escape sequences are not allowed in strict mode"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function foo(001, 003) { "use strict"; } 1`] = `
+"SyntaxError [1:13-1:16]: Unexpected token: 'number'
+> 1 | function foo(001, 003) { "use strict"; }
+    |              ^^^ Unexpected token: 'number'"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function foo(001, 003) { "use strict"; } 2`] = `
+"SyntaxError [1:13-1:16]: Unexpected token: 'number'
+> 1 | function foo(001, 003) { "use strict"; }
+    |              ^^^ Unexpected token: 'number'"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function foo(p\\141ckage) { } 1`] = `
+"SyntaxError [1:13-1:14]: Illegal Unicode escape sequence
+> 1 | function foo(p\\141ckage) { }
+    |              ^ Illegal Unicode escape sequence"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function foo(p\\u0061ckage) { "use strict"; } 1`] = `
+"SyntaxError [1:37-1:38]: Unexpected strict mode reserved word
+> 1 | function foo(p\\u0061ckage) { "use strict"; }
+    |                                      ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function foo(p\\x61ckage) { "use strict"; } 1`] = `
+"SyntaxError [1:13-1:14]: Illegal Unicode escape sequence
+> 1 | function foo(p\\x61ckage) { "use strict"; }
+    |              ^ Illegal Unicode escape sequence"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function foo(p\\x61ckage) { } 1`] = `
+"SyntaxError [1:13-1:14]: Illegal Unicode escape sequence
+> 1 | function foo(p\\x61ckage) { }
+    |              ^ Illegal Unicode escape sequence"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function foo(package) { "use strict"; } 1`] = `
+"SyntaxError [1:38-1:39]: Unexpected strict mode reserved word
+> 1 | function foo(package) { "use strict"; }
+    |                                       ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function super() {"use strict";} 1`] = `
+"SyntaxError [1:9-1:14]: Invalid keyword
+> 1 | function super() {"use strict";}
+    |          ^^^^^ Invalid keyword"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function test({...[]}) {} 1`] = `
+"SyntaxError [1:21-1:22]: The binding declaration is not destructible
+> 1 | function test({...[]}) {}
+    |                      ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function test({...{}}) {} 1`] = `
+"SyntaxError [1:21-1:22]: The binding declaration is not destructible
+> 1 | function test({...{}}) {}
+    |                      ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function test({...x = 1}) {} 1`] = `
+"SyntaxError [1:24-1:25]: The binding declaration is not destructible
+> 1 | function test({...x = 1}) {}
+    |                         ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function test({...x = 1}) {} 2`] = `
+"SyntaxError [1:24-1:25]: The binding declaration is not destructible
+> 1 | function test({...x = 1}) {}
+    |                         ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function test({...x = 1}) {} 3`] = `
+"SyntaxError [1:24-1:25]: The binding declaration is not destructible
+> 1 | function test({...x = 1}) {}
+    |                         ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > function w(casecase){y:j:function casecase(){}} 1`] = `
+"SyntaxError [1:25-1:33]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | function w(casecase){y:j:function casecase(){}}
+    |                          ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > o = {foo(x = implements = y){ "use strict"; }} 1`] = `
+"SyntaxError [1:30-1:43]: Illegal 'use strict' directive in function with non-simple parameter list
+> 1 | o = {foo(x = implements = y){ "use strict"; }}
+    |                               ^^^^^^^^^^^^^ Illegal 'use strict' directive in function with non-simple parameter list"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > o = {foo(x = let = y){ "use strict"; }} 1`] = `
+"SyntaxError [1:23-1:36]: Illegal 'use strict' directive in function with non-simple parameter list
+> 1 | o = {foo(x = let = y){ "use strict"; }}
+    |                        ^^^^^^^^^^^^^ Illegal 'use strict' directive in function with non-simple parameter list"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > o = {foo(x = package = y){ "use strict"; }} 1`] = `
+"SyntaxError [1:27-1:40]: Illegal 'use strict' directive in function with non-simple parameter list
+> 1 | o = {foo(x = package = y){ "use strict"; }}
+    |                            ^^^^^^^^^^^^^ Illegal 'use strict' directive in function with non-simple parameter list"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > o = {foo(x= eval = y){ "use strict"; }} 1`] = `
+"SyntaxError [1:23-1:36]: Illegal 'use strict' directive in function with non-simple parameter list
+> 1 | o = {foo(x= eval = y){ "use strict"; }}
+    |                        ^^^^^^^^^^^^^ Illegal 'use strict' directive in function with non-simple parameter list"
+`;
+
+exports[`Declarations - Function > Declarations - Functions (fail) > o = {foo(x=package=y){ "use strict"; }} 1`] = `
+"SyntaxError [1:23-1:36]: Illegal 'use strict' directive in function with non-simple parameter list
+> 1 | o = {foo(x=package=y){ "use strict"; }}
+    |                        ^^^^^^^^^^^^^ Illegal 'use strict' directive in function with non-simple parameter list"
+`;

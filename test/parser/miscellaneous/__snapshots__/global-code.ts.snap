@@ -1,0 +1,37 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Expressions - Global code > Expressions - Yield (fail) > () => { new.target; }; 1`] = `
+"SyntaxError [1:12-1:18]: new.target only allowed within functions or static blocks
+> 1 | () => { new.target; };
+    |             ^^^^^^ new.target only allowed within functions or static blocks"
+`;
+
+exports[`Expressions - Global code > Expressions - Yield (fail) > () => { super(); }; 1`] = `
+"SyntaxError [1:13-1:14]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | () => { super(); };
+    |              ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Global code > Expressions - Yield (fail) > () => { super.foo; }; 1`] = `
+"SyntaxError [1:13-1:14]: Member access on super must be in a method
+> 1 | () => { super.foo; };
+    |              ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Global code > Expressions - Yield (fail) > export default null; 1`] = `
+"SyntaxError [1:0-1:6]: The export keyword can only be used with the module goal
+> 1 | export default null;
+    | ^^^^^^ The export keyword can only be used with the module goal"
+`;
+
+exports[`Expressions - Global code > Expressions - Yield (fail) > return; 1`] = `
+"SyntaxError [1:0-1:6]: Illegal return statement
+> 1 | return;
+    | ^^^^^^ Illegal return statement"
+`;
+
+exports[`Expressions - Global code > Expressions - Yield (fail) > super.property; 1`] = `
+"SyntaxError [1:5-1:6]: Member access on super must be in a method
+> 1 | super.property;
+    |      ^ Member access on super must be in a method"
+`;

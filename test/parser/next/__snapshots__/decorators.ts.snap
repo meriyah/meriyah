@@ -1,5 +1,185 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Next - Decorators > Next - Decorators (fail) > (@bar const foo = 1); 1`] = `
+"SyntaxError [1:16-1:17]: Expected '{'
+> 1 | (@bar const foo = 1);
+    |                 ^ Expected '{'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > (@bar function foo() {}) 1`] = `
+"SyntaxError [1:18-1:19]: Expected '{'
+> 1 | (@bar function foo() {})
+    |                   ^ Expected '{'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @bar const foo = 1; 1`] = `
+"SyntaxError [1:15-1:16]: Expected '{'
+> 1 | @bar const foo = 1;
+    |                ^ Expected '{'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @bar export * from "./foo"; 1`] = `
+"SyntaxError [1:26-1:27]: Leading decorators must be attached to a class declaration
+> 1 | @bar export * from "./foo";
+    |                           ^ Leading decorators must be attached to a class declaration"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @bar export {Foo}; 1`] = `
+"SyntaxError [1:17-1:18]: Leading decorators must be attached to a class declaration
+> 1 | @bar export {Foo};
+    |                  ^ Leading decorators must be attached to a class declaration"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @bar export const foo = 1; 1`] = `
+"SyntaxError [1:25-1:26]: Leading decorators must be attached to a class declaration
+> 1 | @bar export const foo = 1;
+    |                          ^ Leading decorators must be attached to a class declaration"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @bar export const lo = {a: class Foo {}}; 1`] = `
+"SyntaxError [1:40-1:41]: Leading decorators must be attached to a class declaration
+> 1 | @bar export const lo = {a: class Foo {}};
+    |                                         ^ Leading decorators must be attached to a class declaration"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @bar export default function foo() {} 1`] = `
+"SyntaxError [1:36-1:37]: Leading decorators must be attached to a class declaration
+> 1 | @bar export default function foo() {}
+    |                                     ^ Leading decorators must be attached to a class declaration"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @bar function foo() {} 1`] = `
+"SyntaxError [1:17-1:18]: Expected '{'
+> 1 | @bar function foo() {}
+    |                  ^ Expected '{'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @bar(); 1`] = `
+"SyntaxError [1:6-1:7]: Class declaration must have a name in this context
+> 1 | @bar();
+    |       ^ Class declaration must have a name in this context"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @bar; 1`] = `
+"SyntaxError [1:4-1:5]: Class declaration must have a name in this context
+> 1 | @bar;
+    |     ^ Class declaration must have a name in this context"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @decorate 1`] = `
+"SyntaxError [1:1-1:9]: Class declaration must have a name in this context
+> 1 | @decorate
+    |  ^^^^^^^^ Class declaration must have a name in this context"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @foo export @bar class A {} 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: '@'
+> 1 | @foo export @bar class A {}
+    |             ^ Unexpected token: '@'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > @foo export default @bar class A {} 1`] = `
+"SyntaxError [1:20-1:21]: Unexpected token: '@'
+> 1 | @foo export default @bar class A {}
+    |                     ^ Unexpected token: '@'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class A {  constructor(@foo x) {} } 1`] = `
+"SyntaxError [1:23-1:24]: Expected ')'
+> 1 | class A {  constructor(@foo x) {} }
+    |                        ^ Expected ')'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class A { @abc constructor(){} } 1`] = `
+"SyntaxError [1:15-1:26]: Decorators can't be used with a constructor
+> 1 | class A { @abc constructor(){} }
+    |                ^^^^^^^^^^^ Decorators can't be used with a constructor"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class A { @dec ;} 1`] = `
+"SyntaxError [1:16-1:17]: Decorators must not be followed by a semicolon
+> 1 | class A { @dec ;}
+    |                 ^ Decorators must not be followed by a semicolon"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class A { @dec } 1`] = `
+"SyntaxError [1:15-1:16]: Trailing decorator may be followed by method
+> 1 | class A { @dec }
+    |                ^ Trailing decorator may be followed by method"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class A { @dec accessor a() {}} 1`] = `
+"SyntaxError [1:25-1:26]: Unexpected token: '('
+> 1 | class A { @dec accessor a() {}}
+    |                          ^ Unexpected token: '('"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class A { @foo && bar method() {}  } 1`] = `
+"SyntaxError [1:15-1:17]: Unexpected token: '&&'
+> 1 | class A { @foo && bar method() {}  }
+    |                ^^ Unexpected token: '&&'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class A { @foo && bar; method() {}  } 1`] = `
+"SyntaxError [1:15-1:17]: Unexpected token: '&&'
+> 1 | class A { @foo && bar; method() {}  }
+    |                ^^ Unexpected token: '&&'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class A { accessor @dec a} 1`] = `
+"SyntaxError [1:19-1:20]: Invalid key token
+> 1 | class A { accessor @dec a}
+    |                    ^ Invalid key token"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class A { accessor a() {}} 1`] = `
+"SyntaxError [1:20-1:21]: Unexpected token: '('
+> 1 | class A { accessor a() {}}
+    |                     ^ Unexpected token: '('"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class Foo {  @a; m(){}} 1`] = `
+"SyntaxError [1:17-1:18]: Decorators must not be followed by a semicolon
+> 1 | class Foo {  @a; m(){}}
+    |                  ^ Decorators must not be followed by a semicolon"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class Foo { @abc constructor(){} } 1`] = `
+"SyntaxError [1:17-1:28]: Decorators can't be used with a constructor
+> 1 | class Foo { @abc constructor(){} }
+    |                  ^^^^^^^^^^^ Decorators can't be used with a constructor"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class Foo { @abc constructor(){} } 2`] = `
+"SyntaxError [1:17-1:28]: Decorators can't be used with a constructor
+> 1 | class Foo { @abc constructor(){} }
+    |                  ^^^^^^^^^^^ Decorators can't be used with a constructor"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class Foo { constructor(@foo x) {} } 1`] = `
+"SyntaxError [1:24-1:25]: Expected ')'
+> 1 | class Foo { constructor(@foo x) {} }
+    |                         ^ Expected ')'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > class Foo {@abc constructor(){} 1`] = `
+"SyntaxError [1:16-1:27]: Decorators can't be used with a constructor
+> 1 | class Foo {@abc constructor(){}
+    |                 ^^^^^^^^^^^ Decorators can't be used with a constructor"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > export default @decorator class Foo {} 1`] = `
+"SyntaxError [1:26-1:31]: Expected '{'
+> 1 | export default @decorator class Foo {}
+    |                           ^^^^^ Expected '{'"
+`;
+
+exports[`Next - Decorators > Next - Decorators (fail) > var obj = { method(@foo x) {} }; 1`] = `
+"SyntaxError [1:19-1:20]: Expected ')'
+> 1 | var obj = { method(@foo x) {} };
+    |                    ^ Expected ')'"
+`;
+
 exports[`Next - Decorators > Next - Decorators (pass) > (@
  dec() class C {}) 1`] = `
 {

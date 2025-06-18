@@ -1,5 +1,485 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`ImportCall > Import call (fail) > ({import(1)} = {"a": 1}); 1`] = `
+"SyntaxError [1:9-1:10]: Expected ')'
+> 1 | ({import(1)} = {"a": 1});
+    |          ^ Expected ')'"
+`;
+
+exports[`ImportCall > Import call (fail) > ({import(foo)} = {"a": 1}); 1`] = `
+"SyntaxError [1:13-1:14]: Expected '{'
+> 1 | ({import(foo)} = {"a": 1});
+    |              ^ Expected '{'"
+`;
+
+exports[`ImportCall > Import call (fail) > ({import(y=x)} = {"a": 1}); 1`] = `
+"SyntaxError [1:13-1:14]: Expected '{'
+> 1 | ({import(y=x)} = {"a": 1});
+    |              ^ Expected '{'"
+`;
+
+exports[`ImportCall > Import call (fail) > (1, import(1)) => {} 1`] = `
+"SyntaxError [1:15-1:17]: Unexpected token: '=>'
+> 1 | (1, import(1)) => {}
+    |                ^^ Unexpected token: '=>'"
+`;
+
+exports[`ImportCall > Import call (fail) > (1, import(foo)) => {} 1`] = `
+"SyntaxError [1:17-1:19]: Unexpected token: '=>'
+> 1 | (1, import(foo)) => {}
+    |                  ^^ Unexpected token: '=>'"
+`;
+
+exports[`ImportCall > Import call (fail) > (1, import(x).then()) => {} 1`] = `
+"SyntaxError [1:22-1:24]: Unexpected token: '=>'
+> 1 | (1, import(x).then()) => {}
+    |                       ^^ Unexpected token: '=>'"
+`;
+
+exports[`ImportCall > Import call (fail) > (a, import(foo)) => {} 1`] = `
+"SyntaxError [1:17-1:19]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a, import(foo)) => {}
+    |                  ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`ImportCall > Import call (fail) > (a, import(x).then()) => {} 1`] = `
+"SyntaxError [1:22-1:24]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a, import(x).then()) => {}
+    |                       ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`ImportCall > Import call (fail) > (async () => await import()) 1`] = `
+"SyntaxError [1:26-1:27]: Unexpected token: ')'
+> 1 | (async () => await import())
+    |                           ^ Unexpected token: ')'"
+`;
+
+exports[`ImportCall > Import call (fail) > (async () => await import()) 2`] = `
+"SyntaxError [1:26-1:27]: Unexpected token: ')'
+> 1 | (async () => await import())
+    |                           ^ Unexpected token: ')'"
+`;
+
+exports[`ImportCall > Import call (fail) > (async () => await import()) 3`] = `
+"SyntaxError [1:26-1:27]: Unexpected token: ')'
+> 1 | (async () => await import())
+    |                           ^ Unexpected token: ')'"
+`;
+
+exports[`ImportCall > Import call (fail) > (import(1)) => {} 1`] = `
+"SyntaxError [1:12-1:14]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (import(1)) => {}
+    |             ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`ImportCall > Import call (fail) > (import(foo)) => {} 1`] = `
+"SyntaxError [1:14-1:16]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (import(foo)) => {}
+    |               ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`ImportCall > Import call (fail) > (import(foo)) => {} 2`] = `
+"SyntaxError [1:14-1:16]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (import(foo)) => {}
+    |               ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`ImportCall > Import call (fail) > (import(import(x))) => {} 1`] = `
+"SyntaxError [1:20-1:22]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (import(import(x))) => {}
+    |                     ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`ImportCall > Import call (fail) > (import(y=x)) => {} 1`] = `
+"SyntaxError [1:14-1:16]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (import(y=x)) => {}
+    |               ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`ImportCall > Import call (fail) > (import(y=x)) => {} 2`] = `
+"SyntaxError [1:14-1:16]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (import(y=x)) => {}
+    |               ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`ImportCall > Import call (fail) > [import(1)] = [1]; 1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | [import(1)] = [1];
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`ImportCall > Import call (fail) > [import(import(x))] = [1]; 1`] = `
+"SyntaxError [1:22-1:23]: Invalid left-hand side in assignment
+> 1 | [import(import(x))] = [1];
+    |                       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`ImportCall > Import call (fail) > [import(x).then()] = [1]; 1`] = `
+"SyntaxError [1:21-1:22]: Invalid left-hand side in assignment
+> 1 | [import(x).then()] = [1];
+    |                      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`ImportCall > Import call (fail) > [import(x).then()] = [1]; 2`] = `
+"SyntaxError [1:21-1:22]: Invalid left-hand side in assignment
+> 1 | [import(x).then()] = [1];
+    |                      ^ Invalid left-hand side in assignment"
+`;
+
+exports[`ImportCall > Import call (fail) > [import(y=x)] = [1]; 1`] = `
+"SyntaxError [1:16-1:17]: Invalid left-hand side in assignment
+> 1 | [import(y=x)] = [1];
+    |                 ^ Invalid left-hand side in assignment"
+`;
+
+exports[`ImportCall > Import call (fail) > [import] 1`] = `
+"SyntaxError [1:7-1:8]: Expected '('
+> 1 | [import]
+    |        ^ Expected '('"
+`;
+
+exports[`ImportCall > Import call (fail) > {import} 1`] = `
+"SyntaxError [1:7-1:8]: The import keyword can only be used with the module goal
+> 1 | {import}
+    |        ^ The import keyword can only be used with the module goal"
+`;
+
+exports[`ImportCall > Import call (fail) > async function * f() { await new import("") } 1`] = `
+"SyntaxError [1:39-1:40]: Cannot use new with import(...)
+> 1 | async function * f() { await new import("") }
+    |                                        ^ Cannot use new with import(...)"
+`;
+
+exports[`ImportCall > Import call (fail) > async function f() { import(...[""]); } 1`] = `
+"SyntaxError [1:28-1:31]: ... is not allowed in import()
+> 1 | async function f() { import(...[""]); }
+    |                             ^^^ ... is not allowed in import()"
+`;
+
+exports[`ImportCall > Import call (fail) > do { import(...[""]); } while (false); 1`] = `
+"SyntaxError [1:12-1:15]: ... is not allowed in import()
+> 1 | do { import(...[""]); } while (false);
+    |             ^^^ ... is not allowed in import()"
+`;
+
+exports[`ImportCall > Import call (fail) > function failsParse() { return import.then(); } 1`] = `
+"SyntaxError [1:37-1:38]: Cannot use "import.meta" outside a module
+> 1 | function failsParse() { return import.then(); }
+    |                                      ^ Cannot use "import.meta" outside a module"
+`;
+
+exports[`ImportCall > Import call (fail) > function failsParse() { return import.then(); } 2`] = `
+"SyntaxError [1:37-1:38]: Cannot use "import.meta" outside a module
+> 1 | function failsParse() { return import.then(); }
+    |                                      ^ Cannot use "import.meta" outside a module"
+`;
+
+exports[`ImportCall > Import call (fail) > function fn() { new import(""); } 1`] = `
+"SyntaxError [1:26-1:27]: Cannot use new with import(...)
+> 1 | function fn() { new import(""); }
+    |                           ^ Cannot use new with import(...)"
+`;
+
+exports[`ImportCall > Import call (fail) > if (true) { import(...[""]); } 1`] = `
+"SyntaxError [1:19-1:22]: ... is not allowed in import()
+> 1 | if (true) { import(...[""]); }
+    |                    ^^^ ... is not allowed in import()"
+`;
+
+exports[`ImportCall > Import call (fail) > import = 1 1`] = `
+"SyntaxError [1:7-1:8]: The import keyword can only be used with the module goal
+> 1 | import = 1
+    |        ^ The import keyword can only be used with the module goal"
+`;
+
+exports[`ImportCall > Import call (fail) > import = x 1`] = `
+"SyntaxError [1:7-1:8]: The import keyword can only be used with the module goal
+> 1 | import = x
+    |        ^ The import keyword can only be used with the module goal"
+`;
+
+exports[`ImportCall > Import call (fail) > import( 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: 'end of source'
+> 1 | import(
+    |       ^ Unexpected token: 'end of source'"
+`;
+
+exports[`ImportCall > Import call (fail) > import("") **= 2 1`] = `
+"SyntaxError [1:11-1:14]: Unexpected token: '**='
+> 1 | import("") **= 2
+    |            ^^^ Unexpected token: '**='"
+`;
+
+exports[`ImportCall > Import call (fail) > import("") ++ 1`] = `
+"SyntaxError [1:11-1:13]: Invalid increment/decrement operand
+> 1 | import("") ++
+    |            ^^ Invalid increment/decrement operand"
+`;
+
+exports[`ImportCall > Import call (fail) > import("") += 5 1`] = `
+"SyntaxError [1:11-1:13]: Unexpected token: '+='
+> 1 | import("") += 5
+    |            ^^ Unexpected token: '+='"
+`;
+
+exports[`ImportCall > Import call (fail) > import("") <<= 2 1`] = `
+"SyntaxError [1:11-1:14]: Unexpected token: '<<='
+> 1 | import("") <<= 2
+    |            ^^^ Unexpected token: '<<='"
+`;
+
+exports[`ImportCall > Import call (fail) > import("") = 2 1`] = `
+"SyntaxError [1:11-1:12]: Unexpected token: '='
+> 1 | import("") = 2
+    |            ^ Unexpected token: '='"
+`;
+
+exports[`ImportCall > Import call (fail) > import("") >>= 2 1`] = `
+"SyntaxError [1:11-1:14]: Unexpected token: '>>='
+> 1 | import("") >>= 2
+    |            ^^^ Unexpected token: '>>='"
+`;
+
+exports[`ImportCall > Import call (fail) > import("") >>>= 2 1`] = `
+"SyntaxError [1:11-1:15]: Unexpected token: '>>>='
+> 1 | import("") >>>= 2
+    |            ^^^^ Unexpected token: '>>>='"
+`;
+
+exports[`ImportCall > Import call (fail) > import("") -= 1; 1`] = `
+"SyntaxError [1:11-1:13]: Unexpected token: '-='
+> 1 | import("") -= 1;
+    |            ^^ Unexpected token: '-='"
+`;
+
+exports[`ImportCall > Import call (fail) > import("") -= 5 1`] = `
+"SyntaxError [1:11-1:13]: Unexpected token: '-='
+> 1 | import("") -= 5
+    |            ^^ Unexpected token: '-='"
+`;
+
+exports[`ImportCall > Import call (fail) > import("") -- 1`] = `
+"SyntaxError [1:11-1:13]: Invalid increment/decrement operand
+> 1 | import("") --
+    |            ^^ Invalid increment/decrement operand"
+`;
+
+exports[`ImportCall > Import call (fail) > import("")++ 1`] = `
+"SyntaxError [1:10-1:12]: Invalid increment/decrement operand
+> 1 | import("")++
+    |           ^^ Invalid increment/decrement operand"
+`;
+
+exports[`ImportCall > Import call (fail) > import("x 1`] = `
+"SyntaxError [1:7-1:9]: Unterminated string literal
+> 1 | import("x
+    |        ^^ Unterminated string literal"
+`;
+
+exports[`ImportCall > Import call (fail) > import("x"] 1`] = `
+"SyntaxError [1:10-1:11]: Expected ')'
+> 1 | import("x"]
+    |           ^ Expected ')'"
+`;
+
+exports[`ImportCall > Import call (fail) > import() 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: ')'
+> 1 | import()
+    |        ^ Unexpected token: ')'"
+`;
+
+exports[`ImportCall > Import call (fail) > import() 2`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: ')'
+> 1 | import()
+    |        ^ Unexpected token: ')'"
+`;
+
+exports[`ImportCall > Import call (fail) > import(); 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: ')'
+> 1 | import();
+    |        ^ Unexpected token: ')'"
+`;
+
+exports[`ImportCall > Import call (fail) > import(,) 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: ','
+> 1 | import(,)
+    |        ^ Unexpected token: ','"
+`;
+
+exports[`ImportCall > Import call (fail) > import(,y) 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: ','
+> 1 | import(,y)
+    |        ^ Unexpected token: ','"
+`;
+
+exports[`ImportCall > Import call (fail) > import(...[a]) 1`] = `
+"SyntaxError [1:7-1:10]: ... is not allowed in import()
+> 1 | import(...[a])
+    |        ^^^ ... is not allowed in import()"
+`;
+
+exports[`ImportCall > Import call (fail) > import(...y) 1`] = `
+"SyntaxError [1:7-1:10]: ... is not allowed in import()
+> 1 | import(...y)
+    |        ^^^ ... is not allowed in import()"
+`;
+
+exports[`ImportCall > Import call (fail) > import(;) 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: ';'
+> 1 | import(;)
+    |        ^ Unexpected token: ';'"
+`;
+
+exports[`ImportCall > Import call (fail) > import) 1`] = `
+"SyntaxError [1:6-1:7]: The import keyword can only be used with the module goal
+> 1 | import)
+    |       ^ The import keyword can only be used with the module goal"
+`;
+
+exports[`ImportCall > Import call (fail) > import+ 1`] = `
+"SyntaxError [1:6-1:7]: The import keyword can only be used with the module goal
+> 1 | import+
+    |       ^ The import keyword can only be used with the module goal"
+`;
+
+exports[`ImportCall > Import call (fail) > import.then(doLoad); 1`] = `
+"SyntaxError [1:6-1:7]: Cannot use "import.meta" outside a module
+> 1 | import.then(doLoad);
+    |       ^ Cannot use "import.meta" outside a module"
+`;
+
+exports[`ImportCall > Import call (fail) > import.wat 1`] = `
+"SyntaxError [1:6-1:7]: Cannot use "import.meta" outside a module
+> 1 | import.wat
+    |       ^ Cannot use "import.meta" outside a module"
+`;
+
+exports[`ImportCall > Import call (fail) > import[ 1`] = `
+"SyntaxError [1:6-1:7]: The import keyword can only be used with the module goal
+> 1 | import[
+    |       ^ The import keyword can only be used with the module goal"
+`;
+
+exports[`ImportCall > Import call (fail) > import["x") 1`] = `
+"SyntaxError [1:6-1:7]: The import keyword can only be used with the module goal
+> 1 | import["x")
+    |       ^ The import keyword can only be used with the module goal"
+`;
+
+exports[`ImportCall > Import call (fail) > import[] 1`] = `
+"SyntaxError [1:6-1:7]: The import keyword can only be used with the module goal
+> 1 | import[]
+    |       ^ The import keyword can only be used with the module goal"
+`;
+
+exports[`ImportCall > Import call (fail) > import[] 2`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: '['
+> 1 | import[]
+    |       ^ Unexpected token: '['"
+`;
+
+exports[`ImportCall > Import call (fail) > import[x] 1`] = `
+"SyntaxError [1:6-1:7]: The import keyword can only be used with the module goal
+> 1 | import[x]
+    |       ^ The import keyword can only be used with the module goal"
+`;
+
+exports[`ImportCall > Import call (fail) > import[x] 2`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: '['
+> 1 | import[x]
+    |       ^ Unexpected token: '['"
+`;
+
+exports[`ImportCall > Import call (fail) > import] 1`] = `
+"SyntaxError [1:6-1:7]: The import keyword can only be used with the module goal
+> 1 | import]
+    |       ^ The import keyword can only be used with the module goal"
+`;
+
+exports[`ImportCall > Import call (fail) > import] 2`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: ']'
+> 1 | import]
+    |       ^ Unexpected token: ']'"
+`;
+
+exports[`ImportCall > Import call (fail) > import{ 1`] = `
+"SyntaxError [1:6-1:7]: The import keyword can only be used with the module goal
+> 1 | import{
+    |       ^ The import keyword can only be used with the module goal"
+`;
+
+exports[`ImportCall > Import call (fail) > import{ 2`] = `
+"SyntaxError [1:6-1:7]: Expected '}'
+> 1 | import{
+    |       ^ Expected '}'"
+`;
+
+exports[`ImportCall > Import call (fail) > import{x 1`] = `
+"SyntaxError [1:7-1:8]: Expected ','
+> 1 | import{x
+    |        ^ Expected ','"
+`;
+
+exports[`ImportCall > Import call (fail) > import{x} 1`] = `
+"SyntaxError [1:6-1:7]: The import keyword can only be used with the module goal
+> 1 | import{x}
+    |       ^ The import keyword can only be used with the module goal"
+`;
+
+exports[`ImportCall > Import call (fail) > label: { import(); }; 1`] = `
+"SyntaxError [1:16-1:17]: Unexpected token: ')'
+> 1 | label: { import(); };
+    |                 ^ Unexpected token: ')'"
+`;
+
+exports[`ImportCall > Import call (fail) > let f = () => { import(); }; 1`] = `
+"SyntaxError [1:23-1:24]: Unexpected token: ')'
+> 1 | let f = () => { import(); };
+    |                        ^ Unexpected token: ')'"
+`;
+
+exports[`ImportCall > Import call (fail) > let f = () => { import(...[""]); }; new import(x) 1`] = `
+"SyntaxError [1:23-1:26]: ... is not allowed in import()
+> 1 | let f = () => { import(...[""]); }; new import(x)
+    |                        ^^^ ... is not allowed in import()"
+`;
+
+exports[`ImportCall > Import call (fail) > new import(source) 1`] = `
+"SyntaxError [1:10-1:11]: Cannot use new with import(...)
+> 1 | new import(source)
+    |           ^ Cannot use new with import(...)"
+`;
+
+exports[`ImportCall > Import call (fail) > new import(source) 2`] = `
+"SyntaxError [1:10-1:11]: Cannot use new with import(...)
+> 1 | new import(source)
+    |           ^ Cannot use new with import(...)"
+`;
+
+exports[`ImportCall > Import call (fail) > new import(x) 1`] = `
+"SyntaxError [1:10-1:11]: Cannot use new with import(...)
+> 1 | new import(x)
+    |           ^ Cannot use new with import(...)"
+`;
+
+exports[`ImportCall > Import call (fail) > new import(x); 1`] = `
+"SyntaxError [1:10-1:11]: Cannot use new with import(...)
+> 1 | new import(x);
+    |           ^ Cannot use new with import(...)"
+`;
+
+exports[`ImportCall > Import call (fail) > var dynImport = import; dynImport("http"); 1`] = `
+"SyntaxError [1:22-1:23]: Expected '('
+> 1 | var dynImport = import; dynImport("http");
+    |                       ^ Expected '('"
+`;
+
+exports[`ImportCall > Import call (fail) > with (import(...[""])) {} 1`] = `
+"SyntaxError [1:13-1:16]: ... is not allowed in import()
+> 1 | with (import(...[""])) {}
+    |              ^^^ ... is not allowed in import()"
+`;
+
 exports[`ImportCall > ImportCall (pass) > async function bar(){ await import("./nchanged") } 1`] = `
 {
   "body": [

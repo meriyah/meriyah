@@ -1,5 +1,79 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Statements - With > Statements - With (fail) > while(true) let[a] = 0 1`] = `
+"SyntaxError [1:15-1:16]: \`let 
+ [\` is a restricted production at the start of a statement
+> 1 | while(true) let[a] = 0
+    |                ^ \`let 
+ [\` is a restricted production at the start of a statement"
+`;
+
+exports[`Statements - With > Statements - With (fail) > with ({}) { } 1`] = `
+"SyntaxError [1:5-1:6]: Strict mode code may not include a with statement
+> 1 | with ({}) { }
+    |      ^ Strict mode code may not include a with statement"
+`;
+
+exports[`Statements - With > Statements - With (fail) > with ({}) async function f() {} 1`] = `
+"SyntaxError [1:16-1:24]: Async functions can only be declared at the top level or inside a block
+> 1 | with ({}) async function f() {}
+    |                 ^^^^^^^^ Async functions can only be declared at the top level or inside a block"
+`;
+
+exports[`Statements - With > Statements - With (fail) > with ({}) function f() {} 1`] = `
+"SyntaxError [1:10-1:18]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | with ({}) function f() {}
+    |           ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - With > Statements - With (fail) > with ({}) let [] 1`] = `
+"SyntaxError [1:14-1:15]: \`let 
+ [\` is a restricted production at the start of a statement
+> 1 | with ({}) let []
+    |               ^ \`let 
+ [\` is a restricted production at the start of a statement"
+`;
+
+exports[`Statements - With > Statements - With (fail) > with ({}) let [a] = [42]; 1`] = `
+"SyntaxError [1:14-1:15]: \`let 
+ [\` is a restricted production at the start of a statement
+> 1 | with ({}) let [a] = [42];
+    |               ^ \`let 
+ [\` is a restricted production at the start of a statement"
+`;
+
+exports[`Statements - With > Statements - With (fail) > with ({}) let [a] 1`] = `
+"SyntaxError [1:14-1:15]: \`let 
+ [\` is a restricted production at the start of a statement
+> 1 | with ({}) let [a]
+    |               ^ \`let 
+ [\` is a restricted production at the start of a statement"
+`;
+
+exports[`Statements - With > Statements - With (fail) > with ({}) let 1 1`] = `
+"SyntaxError [1:14-1:15]: Unexpected token: 'number'
+> 1 | with ({}) let 1
+    |               ^ Unexpected token: 'number'"
+`;
+
+exports[`Statements - With > Statements - With (fail) > with ({}) let x; 1`] = `
+"SyntaxError [1:14-1:15]: Unexpected token: 'identifier'
+> 1 | with ({}) let x;
+    |               ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Statements - With > Statements - With (fail) > with (x) foo; 1`] = `
+"SyntaxError [1:5-1:6]: Strict mode code may not include a with statement
+> 1 | with (x) foo;
+    |      ^ Strict mode code may not include a with statement"
+`;
+
+exports[`Statements - With > Statements - With (fail) > with(1) b: function a(){} 1`] = `
+"SyntaxError [1:11-1:19]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | with(1) b: function a(){}
+    |            ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
 exports[`Statements - With > Statements - With (pass) > with ({}) { } 1`] = `
 {
   "body": [

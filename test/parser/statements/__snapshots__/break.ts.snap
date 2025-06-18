@@ -1,5 +1,326 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Statements - Break > Declarations - Break > () => {    break    } 1`] = `
+"SyntaxError [1:20-1:21]: Illegal break statement
+> 1 | () => {    break    }
+    |                     ^ Illegal break statement"
+`;
+
+exports[`Statements - Break > Declarations - Break > () => {    if (x) break   } 1`] = `
+"SyntaxError [1:26-1:27]: Illegal break statement
+> 1 | () => {    if (x) break   }
+    |                           ^ Illegal break statement"
+`;
+
+exports[`Statements - Break > Declarations - Break > (function(){
+      OuterLabel : var x=0, y=0;
+      LABEL_DO_LOOP : do {
+          LABEL_IN : x++;
+          if(x===10)
+              return;
+          break LABEL_ANOTHER_LOOP;
+          LABEL_IN_2 : y++;
+          function IN_DO_FUNC(){}
+      } while(0);
+      LABEL_ANOTHER_LOOP : do {
+          ;
+      } while(0);
+      function OUT_FUNC(){}
+  })(); 1`] = `
+"SyntaxError [7:34-7:35]: Undefined label 'LABEL_ANOTHER_LOOP'
+   5 |           if(x===10)
+   6 |               return;
+>  7 |           break LABEL_ANOTHER_LOOP;
+     |                                   ^ Undefined label 'LABEL_ANOTHER_LOOP'
+   8 |           LABEL_IN_2 : y++;
+   9 |           function IN_DO_FUNC(){}
+  10 |       } while(0);"
+`;
+
+exports[`Statements - Break > Declarations - Break > (function(){
+    OuterLabel : var x=0, y=0;
+    LABEL_DO_LOOP : do {
+        LABEL_IN : x++;
+        if(x===10)
+            return;
+        break IN_DO_FUNC;
+        LABEL_IN_2 : y++;
+        function IN_DO_FUNC(){}
+    } while(0);
+    LABEL_ANOTHER_LOOP : do {
+        ;
+    } while(0);
+    function OUT_FUNC(){}
+  })(); 1`] = `
+"SyntaxError [7:24-7:25]: Undefined label 'IN_DO_FUNC'
+   5 |         if(x===10)
+   6 |             return;
+>  7 |         break IN_DO_FUNC;
+     |                         ^ Undefined label 'IN_DO_FUNC'
+   8 |         LABEL_IN_2 : y++;
+   9 |         function IN_DO_FUNC(){}
+  10 |     } while(0);"
+`;
+
+exports[`Statements - Break > Declarations - Break > (function(){
+    OuterLabel : var x=0, y=0;
+    LABEL_DO_LOOP : do {
+        LABEL_IN : x++;
+        if(x===10)
+            return;
+        break LABEL_IN;
+        LABEL_IN_2 : y++;
+        function IN_DO_FUNC(){}
+    } while(0);
+    LABEL_ANOTHER_LOOP : do {
+        ;
+    } while(0);
+    function OUT_FUNC(){}
+  })(); 1`] = `
+"SyntaxError [7:22-7:23]: Undefined label 'LABEL_IN'
+   5 |         if(x===10)
+   6 |             return;
+>  7 |         break LABEL_IN;
+     |                       ^ Undefined label 'LABEL_IN'
+   8 |         LABEL_IN_2 : y++;
+   9 |         function IN_DO_FUNC(){}
+  10 |     } while(0);"
+`;
+
+exports[`Statements - Break > Declarations - Break > (function(){
+    OuterLabel : var x=0, y=0;
+    LABEL_DO_LOOP : do {
+        LABEL_IN : x++;
+        if(x===10)
+            return;
+        break LABEL_IN;
+        LABEL_IN_2 : y++;
+        function IN_DO_FUNC(){}
+    } while(0);
+    LABEL_ANOTHER_LOOP : do {
+        ;
+    } while(0);
+    function OUT_FUNC(){}
+  })(); 2`] = `
+"SyntaxError [7:22-7:23]: Undefined label 'LABEL_IN'
+   5 |         if(x===10)
+   6 |             return;
+>  7 |         break LABEL_IN;
+     |                       ^ Undefined label 'LABEL_IN'
+   8 |         LABEL_IN_2 : y++;
+   9 |         function IN_DO_FUNC(){}
+  10 |     } while(0);"
+`;
+
+exports[`Statements - Break > Declarations - Break > {  break foo; var y=2; } 1`] = `
+"SyntaxError [1:12-1:13]: Undefined label 'foo'
+> 1 | {  break foo; var y=2; }
+    |             ^ Undefined label 'foo'"
+`;
+
+exports[`Statements - Break > Declarations - Break > { break } 1`] = `
+"SyntaxError [1:8-1:9]: Illegal break statement
+> 1 | { break }
+    |         ^ Illegal break statement"
+`;
+
+exports[`Statements - Break > Declarations - Break > { break } 2`] = `
+"SyntaxError [1:8-1:9]: Illegal break statement
+> 1 | { break }
+    |         ^ Illegal break statement"
+`;
+
+exports[`Statements - Break > Declarations - Break > LABEL1 : do {
+      x++;
+      (function(){break LABEL1;})();
+      y++;
+  } while(0); 1`] = `
+"SyntaxError [3:30-3:31]: Undefined label 'LABEL1'
+  1 | LABEL1 : do {
+  2 |       x++;
+> 3 |       (function(){break LABEL1;})();
+    |                               ^ Undefined label 'LABEL1'
+  4 |       y++;
+  5 |   } while(0);"
+`;
+
+exports[`Statements - Break > Declarations - Break > break
+break; 1`] = `
+"SyntaxError [2:0-2:5]: Illegal break statement
+  1 | break
+> 2 | break;
+    | ^^^^^ Illegal break statement"
+`;
+
+exports[`Statements - Break > Declarations - Break > break 1`] = `
+"SyntaxError [1:0-1:5]: Illegal break statement
+> 1 | break
+    | ^^^^^ Illegal break statement"
+`;
+
+exports[`Statements - Break > Declarations - Break > break; 1`] = `
+"SyntaxError [1:5-1:6]: Illegal break statement
+> 1 | break;
+    |      ^ Illegal break statement"
+`;
+
+exports[`Statements - Break > Declarations - Break > break; break; 1`] = `
+"SyntaxError [1:5-1:6]: Illegal break statement
+> 1 | break; break;
+    |      ^ Illegal break statement"
+`;
+
+exports[`Statements - Break > Declarations - Break > do     break y   ; while(true); 1`] = `
+"SyntaxError [1:17-1:18]: Undefined label 'y'
+> 1 | do     break y   ; while(true);
+    |                  ^ Undefined label 'y'"
+`;
+
+exports[`Statements - Break > Declarations - Break > do     if (x) break y   ; while(true); 1`] = `
+"SyntaxError [1:24-1:25]: Undefined label 'y'
+> 1 | do     if (x) break y   ; while(true);
+    |                         ^ Undefined label 'y'"
+`;
+
+exports[`Statements - Break > Declarations - Break > for (;;)    if (x) break y   } 1`] = `
+"SyntaxError [1:29-1:30]: Undefined label 'y'
+> 1 | for (;;)    if (x) break y   }
+    |                              ^ Undefined label 'y'"
+`;
+
+exports[`Statements - Break > Declarations - Break > function f(){    break    } 1`] = `
+"SyntaxError [1:26-1:27]: Illegal break statement
+> 1 | function f(){    break    }
+    |                           ^ Illegal break statement"
+`;
+
+exports[`Statements - Break > Declarations - Break > function f(){    break    } 2`] = `
+"SyntaxError [1:26-1:27]: Illegal break statement
+> 1 | function f(){    break    }
+    |                           ^ Illegal break statement"
+`;
+
+exports[`Statements - Break > Declarations - Break > function f(){    break y   } 1`] = `
+"SyntaxError [1:27-1:28]: Undefined label 'y'
+> 1 | function f(){    break y   }
+    |                            ^ Undefined label 'y'"
+`;
+
+exports[`Statements - Break > Declarations - Break > function f(){    if (x) break   } 1`] = `
+"SyntaxError [1:32-1:33]: Illegal break statement
+> 1 | function f(){    if (x) break   }
+    |                                 ^ Illegal break statement"
+`;
+
+exports[`Statements - Break > Declarations - Break > function f(){ do        if (x) break y   ; while(true);} 1`] = `
+"SyntaxError [1:41-1:42]: Undefined label 'y'
+> 1 | function f(){ do        if (x) break y   ; while(true);}
+    |                                          ^ Undefined label 'y'"
+`;
+
+exports[`Statements - Break > Declarations - Break > function f(){ for (;;)       break y   } 1`] = `
+"SyntaxError [1:39-1:40]: Undefined label 'y'
+> 1 | function f(){ for (;;)       break y   }
+    |                                        ^ Undefined label 'y'"
+`;
+
+exports[`Statements - Break > Declarations - Break > function f(){ switch (x){ case z:       break y   }} 1`] = `
+"SyntaxError [1:50-1:51]: Undefined label 'y'
+> 1 | function f(){ switch (x){ case z:       break y   }}
+    |                                                   ^ Undefined label 'y'"
+`;
+
+exports[`Statements - Break > Declarations - Break > function f(){ switch (x){ case z:       if (x) break y   }} 1`] = `
+"SyntaxError [1:57-1:58]: Undefined label 'y'
+> 1 | function f(){ switch (x){ case z:       if (x) break y   }}
+    |                                                          ^ Undefined label 'y'"
+`;
+
+exports[`Statements - Break > Declarations - Break > function f(){ while (true)       break y   } 1`] = `
+"SyntaxError [1:43-1:44]: Undefined label 'y'
+> 1 | function f(){ while (true)       break y   }
+    |                                            ^ Undefined label 'y'"
+`;
+
+exports[`Statements - Break > Declarations - Break > if (x) break 1`] = `
+"SyntaxError [1:7-1:12]: Illegal break statement
+> 1 | if (x) break
+    |        ^^^^^ Illegal break statement"
+`;
+
+exports[`Statements - Break > Declarations - Break > if (x) break 2`] = `
+"SyntaxError [1:7-1:12]: Illegal break statement
+> 1 | if (x) break
+    |        ^^^^^ Illegal break statement"
+`;
+
+exports[`Statements - Break > Declarations - Break > loop; while (true) { break loop1; } 1`] = `
+"SyntaxError [1:32-1:33]: Undefined label 'loop1'
+> 1 | loop; while (true) { break loop1; }
+    |                                 ^ Undefined label 'loop1'"
+`;
+
+exports[`Statements - Break > Declarations - Break > loop1: function a() {}  while (true) { continue loop1; } 1`] = `
+"SyntaxError [1:7-1:15]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | loop1: function a() {}  while (true) { continue loop1; }
+    |        ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - Break > Declarations - Break > loop1: while (true) { loop2: function a() { break loop1; } } 1`] = `
+"SyntaxError [1:29-1:37]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | loop1: while (true) { loop2: function a() { break loop1; } }
+    |                              ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - Break > Declarations - Break > loop1: while (true) { loop2: function a() { break loop2; } } 1`] = `
+"SyntaxError [1:29-1:37]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | loop1: while (true) { loop2: function a() { break loop2; } }
+    |                              ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
+exports[`Statements - Break > Declarations - Break > switch (x){ case z:    break y   } 1`] = `
+"SyntaxError [1:33-1:34]: Undefined label 'y'
+> 1 | switch (x){ case z:    break y   }
+    |                                  ^ Undefined label 'y'"
+`;
+
+exports[`Statements - Break > Declarations - Break > switch (x){ case z:    if (x) break y   } 1`] = `
+"SyntaxError [1:40-1:41]: Undefined label 'y'
+> 1 | switch (x){ case z:    if (x) break y   }
+    |                                         ^ Undefined label 'y'"
+`;
+
+exports[`Statements - Break > Declarations - Break > var x=0,y=0;
+  try{
+    LABEL1 : do {
+      x++;
+      throw "gonna leave it";
+      y++;
+    } while(0);
+    $ERROR('#1: throw "gonna leave it" lead to throwing exception');
+  } catch(e){
+    break;
+    LABEL2 : do {
+      x++;
+      y++;
+    } while(0);
+  } 1`] = `
+"SyntaxError [10:9-10:10]: Illegal break statement
+   8 |     $ERROR('#1: throw "gonna leave it" lead to throwing exception');
+   9 |   } catch(e){
+> 10 |     break;
+     |          ^ Illegal break statement
+  11 |     LABEL2 : do {
+  12 |       x++;
+  13 |       y++;"
+`;
+
+exports[`Statements - Break > Declarations - Break > x: foo; break x; 1`] = `
+"SyntaxError [1:15-1:16]: Undefined label 'x'
+> 1 | x: foo; break x;
+    |                ^ Undefined label 'x'"
+`;
+
 exports[`Statements - Break > Statements - Break (pass) > L: let
 x 1`] = `
 {

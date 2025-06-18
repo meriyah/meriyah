@@ -1,5 +1,29 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Expressions - Member > Expressions - Member (fail) > a.[b].c().d.toString() 1`] = `
+"SyntaxError [1:2-1:3]: Dot property must be an identifier
+> 1 | a.[b].c().d.toString()
+    |   ^ Dot property must be an identifier"
+`;
+
+exports[`Expressions - Member > Expressions - Member (fail) > abc.123 1`] = `
+"SyntaxError [1:3-1:7]: Unexpected token: 'number'
+> 1 | abc.123
+    |    ^^^^ Unexpected token: 'number'"
+`;
+
+exports[`Expressions - Member > Expressions - Member (fail) > abc.£ 1`] = `
+"SyntaxError [1:4-1:4]: Illegal character '£'
+> 1 | abc.£
+    |     ^ Illegal character '£'"
+`;
+
+exports[`Expressions - Member > Expressions - Member (fail) > abc???.£ 1`] = `
+"SyntaxError [1:5-1:7]: Unexpected token: '?.'
+> 1 | abc???.£
+    |      ^^ Unexpected token: '?.'"
+`;
+
 exports[`Expressions - Member > Expressions - Member (pass) > (2[x,x],x)>x 1`] = `
 {
   "body": [

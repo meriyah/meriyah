@@ -1,5 +1,46 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Miscellaneous - Directives > Miscellaneous - Directives (fail) > "use strict" 
+ "Hello\\312World" 1`] = `
+"SyntaxError [2:1-2:17]: Octal literals are not allowed in strict mode
+  1 | "use strict" 
+> 2 |  "Hello\\312World"
+    |  ^^^^^^^^^^^^^^^^ Octal literals are not allowed in strict mode"
+`;
+
+exports[`Miscellaneous - Directives > Miscellaneous - Directives (fail) > "use strict" "Hello\\312World" 1`] = `
+"SyntaxError [1:13-1:29]: Unexpected token: 'string'
+> 1 | "use strict" "Hello\\312World"
+    |              ^^^^^^^^^^^^^^^^ Unexpected token: 'string'"
+`;
+
+exports[`Miscellaneous - Directives > Miscellaneous - Directives (fail) > "use strict"; var static; 1`] = `
+"SyntaxError [1:18-1:24]: Unexpected strict mode reserved word
+> 1 | "use strict"; var static;
+    |                   ^^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Miscellaneous - Directives > Miscellaneous - Directives (fail) > \\u0061sync function f(){} 1`] = `
+"SyntaxError [1:5-1:13]: Unexpected token: 'function'
+> 1 | \\u0061sync function f(){}
+    |      ^^^^^^^^ Unexpected token: 'function'"
+`;
+
+exports[`Miscellaneous - Directives > Miscellaneous - Directives (fail) > function a() { "use strict" 
+ "Hello\\312World" } 1`] = `
+"SyntaxError [1:15-2:17]: Octal literals are not allowed in strict mode
+> 1 | function a() { "use strict" 
+    |                ^^^^^^^^^^^^^
+> 2 |  "Hello\\312World" }
+    | ^^^^^^^^^^^^^^^^^^ Octal literals are not allowed in strict mode"
+`;
+
+exports[`Miscellaneous - Directives > Miscellaneous - Directives (fail) > function a() { "use strict" "Hello\\312World" } 1`] = `
+"SyntaxError [1:28-1:44]: Unexpected token: 'string'
+> 1 | function a() { "use strict" "Hello\\312World" }
+    |                             ^^^^^^^^^^^^^^^^ Unexpected token: 'string'"
+`;
+
 exports[`Miscellaneous - Directives > Miscellaneous - Directives (pass) > "\\u0061b"
 "c\\u0064" 1`] = `
 {
