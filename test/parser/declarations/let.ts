@@ -650,7 +650,7 @@ describe('Declarations - Let', () => {
     { code: 'let {x, y} = obj;', options: { ranges: true } },
 
     `a = let;
-  {code:]`,
+      []`,
     { code: 'let {x} = a, {y} = obj;', options: { ranges: true } },
   ]);
 });
