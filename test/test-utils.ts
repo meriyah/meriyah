@@ -1,9 +1,33 @@
-import * as t from 'node:assert/strict';
 import { describe, it, expect } from 'vitest';
+import { codeFrameColumns } from '@babel/code-frame';
 import { parseSource, type Options } from '../src/parser';
 import { Context } from '../src/common';
+import { ParseError } from '../src/errors';
 
 const IS_CI = Boolean(process.env.CI);
+
+export const serializeParserError = (code: string, error: unknown) => {
+  if (!(error instanceof ParseError)) {
+    throw error;
+  }
+
+  const {
+    message,
+    loc: { start, end },
+    description,
+  } = error;
+
+  const codeFrame = codeFrameColumns(
+    code,
+    {
+      start: { line: start.line, column: start.column + 1 },
+      end: { line: end.line, column: end.column + 1 },
+    },
+    { highlightCode: false, message: description },
+  );
+
+  return `${error.name} ${message}\n${codeFrame}`;
+};
 
 export const pass = (
   name: string,
@@ -35,9 +59,18 @@ export const fail = (name: string, invalid: [string, Context][]): void => {
   describe(name, () => {
     for (const [source, ctx] of invalid) {
       it(source, () => {
-        t.throws(() => {
+        let error;
+        try {
           parseSource(source, undefined, ctx);
-        });
+        } catch (parseError) {
+          error = parseError;
+        }
+
+        if (!error) {
+          throw new Error('Expect a ParserError thrown');
+        }
+
+        expect(serializeParserError(source, error)).toMatchSnapshot();
       });
     }
   });

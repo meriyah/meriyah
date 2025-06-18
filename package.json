@@ -78,9 +78,11 @@
     "generate-test262-whitelist": "npm run bundle && node scripts/generate-test262-whitelist.mjs"
   },
   "devDependencies": {
+    "@babel/code-frame": "^7.27.1",
     "@eslint/js": "^9.24.0",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-terser": "^0.4.4",
+    "@types/babel__code-frame": "^7.0.6",
     "@types/node": "^22.14.0",
     "@unicode/unicode-16.0.0": "^1.6.5",
     "@vitest/coverage-v8": "^3.1.1",
