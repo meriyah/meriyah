@@ -1,11 +1,6 @@
 import { describe } from 'vitest';
-import { Context } from '../../../src/common';
 import { pass } from '../../test-utils';
 
 describe('Expressions - This', () => {
-  pass('Expressions - This (pass)', [
-    ['this._global = _global;', Context.None],
-    ['this\n/foo;', Context.None],
-    ['this\n/foo/g;', Context.None],
-  ]);
+  pass('Expressions - This (pass)', ['this._global = _global;', 'this\n/foo;', 'this\n/foo/g;']);
 });
