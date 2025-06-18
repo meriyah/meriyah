@@ -225,7 +225,7 @@ describe('Module - Export', () => {
     ['export default async x \n() => {}', Context.Strict | Context.Module],
     ['{export default 3}', Context.Strict | Context.Module],
     ['while (1) export default 3', Context.Strict | Context.Module],
-    ['export {a,b}', Context.Strict | Context.Module],
+    ['export {a,,b}', Context.Strict | Context.Module],
     ['export {function} from a', Context.Strict | Context.Module],
     ['export let[a] = 0 export let[b] = 0', Context.Strict | Context.Module],
     ['export 3', Context.Strict | Context.Module],
