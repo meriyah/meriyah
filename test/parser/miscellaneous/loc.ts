@@ -1,14 +1,13 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { Context } from '../../../src/common';
 import { pass } from '../../test-utils';
 import { parse } from '../../../src/meriyah';
 
 describe('Miscellaneous - loc', () => {
   pass('Miscellaneous - loc (pass)', [
-    [`[,,x]`, Context.OptionsRanges | Context.OptionsLoc],
-    [`[50..foo] = x`, Context.OptionsRanges | Context.OptionsLoc],
-    [`a={"b":c=d}`, Context.OptionsRanges | Context.OptionsLoc],
+    { code: `[,,x]`, options: { ranges: true, loc: true } },
+    { code: `[50..foo] = x`, options: { ranges: true, loc: true } },
+    { code: `a={"b":c=d}`, options: { ranges: true, loc: true } },
     /*  [
             `1 -2 / 4`,
             Context.OptionsRanges | Context.OptionsLoc,
@@ -125,15 +124,15 @@ describe('Miscellaneous - loc', () => {
               ],
               "sourceType": "script"
             }], */
-    [`x = {y}`, Context.OptionsRanges | Context.OptionsLoc],
-    [`0, [ x = y ] = [];`, Context.OptionsRanges | Context.OptionsLoc],
-    [`of = 42`, Context.OptionsRanges | Context.OptionsLoc],
-    [`a *= b`, Context.OptionsRanges | Context.OptionsLoc],
-    [`(2[x,x],x)>x`, Context.OptionsRanges | Context.OptionsLoc],
-    [`a&&(b=c)&&(d=e)`, Context.OptionsRanges | Context.OptionsLoc],
-    [`x = {...y, b}`, Context.OptionsRanges | Context.OptionsLoc],
-    [`x = {...[a, b]}`, Context.OptionsRanges | Context.OptionsLoc],
-    [`[,]`, Context.OptionsRanges | Context.OptionsLoc],
+    { code: `x = {y}`, options: { ranges: true, loc: true } },
+    { code: `0, [ x = y ] = [];`, options: { ranges: true, loc: true } },
+    { code: `of = 42`, options: { ranges: true, loc: true } },
+    { code: `a *= b`, options: { ranges: true, loc: true } },
+    { code: `(2[x,x],x)>x`, options: { ranges: true, loc: true } },
+    { code: `a&&(b=c)&&(d=e)`, options: { ranges: true, loc: true } },
+    { code: `x = {...y, b}`, options: { ranges: true, loc: true } },
+    { code: `x = {...[a, b]}`, options: { ranges: true, loc: true } },
+    { code: `[,]`, options: { ranges: true, loc: true } },
   ]);
 
   it('Miscellaneous - loc (different line endings)', () => {
