@@ -29,7 +29,7 @@ describe('Miscellaneous - ranges', () => {
     };`,
       options: { ranges: true },
     },
-    { code: '([,])=>0', options: { ranges: true } },
+    { code: '([,,])=>0', options: { ranges: true } },
     { code: 'for([a,b[a],{c,d=e,[f]:[g,h().a,(0).k,...i[0]]}] in 0);', options: { ranges: true } },
     { code: '({x = 10, y: { z = 10 }}) => [x, z]', options: { ranges: true } },
     { code: '(x, y = 9, ...a) => {}', options: { ranges: true } },
