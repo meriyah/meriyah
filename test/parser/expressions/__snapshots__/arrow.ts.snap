@@ -1,5 +1,1943 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Expressions - Arrow > Expressions - Array (fail) > !()=>{} 1`] = `
+"SyntaxError [1:3-1:5]: \`=>\` is an invalid assignment target
+> 1 | !()=>{}
+    |    ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > "a" => {} 1`] = `
+"SyntaxError [1:4-1:6]: Unexpected token: '=>'
+> 1 | "a" => {}
+    |     ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > "use strict"; (a) => 00; 1`] = `
+"SyntaxError [1:21-1:22]: Octal escape sequences are not allowed in strict mode
+> 1 | "use strict"; (a) => 00;
+    |                      ^ Octal escape sequences are not allowed in strict mode"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > "use strict"; let => {} 1`] = `
+"SyntaxError [1:18-1:20]: \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode
+> 1 | "use strict"; let => {}
+    |                   ^^ \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ("a") => {} 1`] = `
+"SyntaxError [1:6-1:8]: Unexpected token: '=>'
+> 1 | ("a") => {}
+    |       ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ("a", b) => {} 1`] = `
+"SyntaxError [1:9-1:11]: Unexpected token: '=>'
+> 1 | ("a", b) => {}
+    |          ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ("a", b) => {} 2`] = `
+"SyntaxError [1:9-1:11]: Unexpected token: '=>'
+> 1 | ("a", b) => {}
+    |          ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (()) => 0 1`] = `
+"SyntaxError [1:3-1:4]: Expected '=>'
+> 1 | (()) => 0
+    |    ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (()) => 0 2`] = `
+"SyntaxError [1:3-1:4]: Expected '=>'
+> 1 | (()) => 0
+    |    ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ((a)
+=> a)(1) 1`] = `
+"SyntaxError [2:0-2:2]: No line break is allowed after '=>'
+  1 | ((a)
+> 2 | => a)(1)
+    | ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ((a)/*
+*/=> a)(1) 1`] = `
+"SyntaxError [2:2-2:4]: No line break is allowed after '=>'
+  1 | ((a)/*
+> 2 | */=> a)(1)
+    |   ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ((a, b)
+=> a + b)(1, 2) 1`] = `
+"SyntaxError [2:0-2:2]: No line break is allowed after '=>'
+  1 | ((a, b)
+> 2 | => a + b)(1, 2)
+    | ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ((a, b)/*
+*/=> a + b)(1, 2) 1`] = `
+"SyntaxError [2:2-2:4]: No line break is allowed after '=>'
+  1 | ((a, b)/*
+> 2 | */=> a + b)(1, 2)
+    |   ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ((x)) => 0 1`] = `
+"SyntaxError [1:6-1:8]: Unexpected token: '=>'
+> 1 | ((x)) => 0
+    |       ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ((x)) => a 1`] = `
+"SyntaxError [1:6-1:8]: Unexpected token: '=>'
+> 1 | ((x)) => a
+    |       ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ((x, y)) => 0 1`] = `
+"SyntaxError [1:9-1:11]: Unexpected token: '=>'
+> 1 | ((x, y)) => 0
+    |          ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ((x, y)) => 0 2`] = `
+"SyntaxError [1:9-1:11]: Unexpected token: '=>'
+> 1 | ((x, y)) => 0
+    |          ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ((x, y)) => 0 3`] = `
+"SyntaxError [1:9-1:11]: Unexpected token: '=>'
+> 1 | ((x, y)) => 0
+    |          ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ((x, y), z) =>  a 1`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | ((x, y), z) =>  a
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ((x, y), z) => 0 1`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | ((x, y), z) => 0
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ((x, y), z) => 0 2`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | ((x, y), z) => 0
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ((x, y, z)) => 0 1`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | ((x, y, z)) => 0
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ((x, y, z)) => 0 2`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | ((x, y, z)) => 0
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ((x, y, z)) => 0 3`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | ((x, y, z)) => 0
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ((x, y, z)) => 0 4`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | ((x, y, z)) => 0
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ((x, z) => y) = {} 1`] = `
+"SyntaxError [1:14-1:15]: Invalid left-hand side in assignment
+> 1 | ((x, z) => y) = {}
+    |               ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > () <= 0 1`] = `
+"SyntaxError [1:3-1:5]: Expected '=>'
+> 1 | () <= 0
+    |    ^^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > () => { let [] } 1`] = `
+"SyntaxError [1:15-1:16]: Missing initializer in destructuring declaration
+> 1 | () => { let [] }
+    |                ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > () => { let [x] } 1`] = `
+"SyntaxError [1:16-1:17]: Missing initializer in destructuring declaration
+> 1 | () => { let [x] }
+    |                 ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > () => {"value": 42} 1`] = `
+"SyntaxError [1:14-1:15]: Unexpected token: ':'
+> 1 | () => {"value": 42}
+    |               ^ Unexpected token: ':'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > () => {'value': 42} 1`] = `
+"SyntaxError [1:14-1:15]: Unexpected token: ':'
+> 1 | () => {'value': 42}
+    |               ^ Unexpected token: ':'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > () => {} 1 1`] = `
+"SyntaxError [1:9-1:10]: Unexpected token: 'number'
+> 1 | () => {} 1
+    |          ^ Unexpected token: 'number'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > () => {} 1 2`] = `
+"SyntaxError [1:9-1:10]: Unexpected token: 'number'
+> 1 | () => {} 1
+    |          ^ Unexpected token: 'number'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > () => {} a 1`] = `
+"SyntaxError [1:9-1:10]: Unexpected token: 'identifier'
+> 1 | () => {} a
+    |          ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > () => {} a() 1`] = `
+"SyntaxError [1:9-1:10]: Unexpected token: 'identifier'
+> 1 | () => {} a()
+    |          ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > () => 1`] = `
+"SyntaxError [1:3-1:5]: Unexpected token: 'end of source'
+> 1 | () =>
+    |    ^^ Unexpected token: 'end of source'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > () ? 0 1`] = `
+"SyntaxError [1:3-1:4]: Expected '=>'
+> 1 | () ? 0
+    |    ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ()=>{}
+++x 1`] = `
+"SyntaxError [2:0-2:2]: An arrow function can not have a postfix update operator
+  1 | ()=>{}
+> 2 | ++x
+    | ^^ An arrow function can not have a postfix update operator"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ()=>{}
+--x 1`] = `
+"SyntaxError [2:0-2:2]: An arrow function can not have a postfix update operator
+  1 | ()=>{}
+> 2 | --x
+    | ^^ An arrow function can not have a postfix update operator"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ()=>{}++ 1`] = `
+"SyntaxError [1:6-1:8]: An arrow function can not have a postfix update operator
+> 1 | ()=>{}++
+    |       ^^ An arrow function can not have a postfix update operator"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ()=>{}+a 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: '+'
+> 1 | ()=>{}+a
+    |       ^ Unexpected token: '+'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ()=>{}-- 1`] = `
+"SyntaxError [1:6-1:8]: An arrow function can not have a postfix update operator
+> 1 | ()=>{}--
+    |       ^^ An arrow function can not have a postfix update operator"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ()=c=>{}=>{} 1`] = `
+"SyntaxError [1:2-1:3]: Expected '=>'
+> 1 | ()=c=>{}=>{}
+    |   ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ()=c=>{}=>{}; 1`] = `
+"SyntaxError [1:2-1:3]: Expected '=>'
+> 1 | ()=c=>{}=>{};
+    |   ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ()?c:d=>{}=>{} 1`] = `
+"SyntaxError [1:2-1:3]: Expected '=>'
+> 1 | ()?c:d=>{}=>{}
+    |   ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ()?c:d=>{}=>{}; 1`] = `
+"SyntaxError [1:2-1:3]: Expected '=>'
+> 1 | ()?c:d=>{}=>{};
+    |   ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ()[1]=>{} 1`] = `
+"SyntaxError [1:2-1:3]: Expected '=>'
+> 1 | ()[1]=>{}
+    |   ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ()\`template-head\${c}template-tail\`=>{} 1`] = `
+"SyntaxError [1:2-1:18]: Expected '=>'
+> 1 | ()\`template-head\${c}template-tail\`=>{}
+    |   ^^^^^^^^^^^^^^^^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ()-c=>{} 1`] = `
+"SyntaxError [1:2-1:3]: Expected '=>'
+> 1 | ()-c=>{}
+    |   ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ()c++=>{} 1`] = `
+"SyntaxError [1:2-1:3]: Expected '=>'
+> 1 | ()c++=>{}
+    |   ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (...a = b) => b 1`] = `
+"SyntaxError [1:9-1:10]: Invalid rest argument
+> 1 | (...a = b) => b
+    |          ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (...a = b) => b 2`] = `
+"SyntaxError [1:9-1:10]: Invalid rest argument
+> 1 | (...a = b) => b
+    |          ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (...a = b) => b 3`] = `
+"SyntaxError [1:9-1:10]: Invalid rest argument
+> 1 | (...a = b) => b
+    |          ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (...a => 42) 1`] = `
+"SyntaxError [1:11-1:12]: Invalid rest argument
+> 1 | (...a => 42)
+    |            ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (...a)?c:d=>{}=>{}; 1`] = `
+"SyntaxError [1:6-1:7]: Expected '=>'
+> 1 | (...a)?c:d=>{}=>{};
+    |       ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (...a)\`c\`=>{} 1`] = `
+"SyntaxError [1:6-1:9]: Expected '=>'
+> 1 | (...a)\`c\`=>{}
+    |       ^^^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (...a)\`template-head\${c}\`=>{} 1`] = `
+"SyntaxError [1:6-1:22]: Expected '=>'
+> 1 | (...a)\`template-head\${c}\`=>{}
+    |       ^^^^^^^^^^^^^^^^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (...a)-c=>{}; 1`] = `
+"SyntaxError [1:6-1:7]: Expected '=>'
+> 1 | (...a)-c=>{};
+    |       ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (...a, ...b) => {} 1`] = `
+"SyntaxError [1:5-1:6]: Invalid rest argument
+> 1 | (...a, ...b) => {}
+    |      ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (...a, ...b) => {} 2`] = `
+"SyntaxError [1:5-1:6]: Invalid rest argument
+> 1 | (...a, ...b) => {}
+    |      ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (...rest - a) => b 1`] = `
+"SyntaxError [1:12-1:13]: Invalid rest argument
+> 1 | (...rest - a) => b
+    |             ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (...rest - a) => b 2`] = `
+"SyntaxError [1:12-1:13]: Invalid rest argument
+> 1 | (...rest - a) => b
+    |             ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (...x,) => x 1`] = `
+"SyntaxError [1:5-1:6]: Invalid rest argument
+> 1 | (...x,) => x
+    |      ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (..a, ...b) => c 1`] = `
+"SyntaxError [1:1-1:2]: Unexpected token: '.'
+> 1 | (..a, ...b) => c
+    |  ^ Unexpected token: '.'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([(a)]) => {}; 1`] = `
+"SyntaxError [1:8-1:10]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([(a)]) => {};
+    |         ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([...(x), y] = z) => 0 1`] = `
+"SyntaxError [1:15-1:16]: Invalid left-hand side in assignment
+> 1 | ([...(x), y] = z) => 0
+    |                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([...x.y] = z) => z 1`] = `
+"SyntaxError [1:15-1:17]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([...x.y] = z) => z
+    |                ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([...x.y]) => z 1`] = `
+"SyntaxError [1:11-1:13]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([...x.y]) => z
+    |            ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([[[[[[[[[[[[[[[[[[[[{a:b[0]}]]]]]]]]]]]]]]]]]]]])=>0; 1`] = `
+"SyntaxError [1:50-1:52]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([[[[[[[[[[[[[[[[[[[[{a:b[0]}]]]]]]]]]]]]]]]]]]]])=>0;
+    |                                                   ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([{"foo": y.z} = a]) => b 1`] = `
+"SyntaxError [1:21-1:23]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([{"foo": y.z} = a]) => b
+    |                      ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([{"foo": y.z}] = a) => b 1`] = `
+"SyntaxError [1:21-1:23]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([{"foo": y.z}] = a) => b
+    |                      ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([{"foo": y.z}]) => b 1`] = `
+"SyntaxError [1:17-1:19]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([{"foo": y.z}]) => b
+    |                  ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([{1: y.z} = a]) => b 1`] = `
+"SyntaxError [1:17-1:19]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([{1: y.z} = a]) => b
+    |                  ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([{x: y.z} = a]) => b 1`] = `
+"SyntaxError [1:17-1:19]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([{x: y.z} = a]) => b
+    |                  ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([{x: y.z} = a]) => b 2`] = `
+"SyntaxError [1:17-1:19]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([{x: y.z} = a]) => b
+    |                  ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([{x: y.z}] = a) => b 1`] = `
+"SyntaxError [1:17-1:19]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([{x: y.z}] = a) => b
+    |                  ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([{x: y.z}] = a) => b 2`] = `
+"SyntaxError [1:17-1:19]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([{x: y.z}] = a) => b
+    |                  ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([{x: y.z}] = a) => b 3`] = `
+"SyntaxError [1:17-1:19]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([{x: y.z}] = a) => b
+    |                  ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([{x: y.z}] = a) => b 4`] = `
+"SyntaxError [1:17-1:19]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([{x: y.z}] = a) => b
+    |                  ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([{x: y.z}]) => b 1`] = `
+"SyntaxError [1:13-1:15]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([{x: y.z}]) => b
+    |              ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([{x: y.z}]) => b 2`] = `
+"SyntaxError [1:13-1:15]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([{x: y.z}]) => b
+    |              ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([{x: y.z}]) => b 3`] = `
+"SyntaxError [1:13-1:15]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([{x: y.z}]) => b
+    |              ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([0])=>0; 1`] = `
+"SyntaxError [1:5-1:7]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([0])=>0;
+    |      ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([a, b] = [] => 42) 1`] = `
+"SyntaxError [1:13-1:15]: Expected ')'
+> 1 | ([a, b] = [] => 42)
+    |              ^^ Expected ')'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([a, b] => 42) 1`] = `
+"SyntaxError [1:8-1:10]: Expected ')'
+> 1 | ([a, b] => 42)
+    |         ^^ Expected ')'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([a,...b,])=>0; 1`] = `
+"SyntaxError [1:11-1:13]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([a,...b,])=>0;
+    |            ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ([x.y]=z) => z 1`] = `
+"SyntaxError [1:10-1:12]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ([x.y]=z) => z
+    |           ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({"foo": y.z} = a) => b 1`] = `
+"SyntaxError [1:19-1:21]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({"foo": y.z} = a) => b
+    |                    ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({...[a, b]}) => x 1`] = `
+"SyntaxError [1:14-1:16]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({...[a, b]}) => x
+    |               ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({...{a, b}}) => x 1`] = `
+"SyntaxError [1:14-1:16]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({...{a, b}}) => x
+    |               ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({}=>0) 1`] = `
+"SyntaxError [1:3-1:5]: Expected ')'
+> 1 | ({}=>0)
+    |    ^^ Expected ')'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({}=>0) 2`] = `
+"SyntaxError [1:3-1:5]: Expected ')'
+> 1 | ({}=>0)
+    |    ^^ Expected ')'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({0})=>0; 1`] = `
+"SyntaxError [1:3-1:4]: Object literal keys that are strings or numbers must be a method or have a colon
+> 1 | ({0})=>0;
+    |    ^ Object literal keys that are strings or numbers must be a method or have a colon"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({333: y.z} = a) => b 1`] = `
+"SyntaxError [1:17-1:19]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({333: y.z} = a) => b
+    |                  ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({a, b} = {} => 42) 1`] = `
+"SyntaxError [1:13-1:15]: Expected ')'
+> 1 | ({a, b} = {} => 42)
+    |              ^^ Expected ')'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({a, b} => 42) 1`] = `
+"SyntaxError [1:8-1:10]: Expected ')'
+> 1 | ({a, b} => 42)
+    |         ^^ Expected ')'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({a:b[0]}) => x 1`] = `
+"SyntaxError [1:11-1:13]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({a:b[0]}) => x
+    |            ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({a:b[0]})=>0 1`] = `
+"SyntaxError [1:10-1:12]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({a:b[0]})=>0
+    |           ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({a:b[0]})=>0 2`] = `
+"SyntaxError [1:10-1:12]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({a:b[0]})=>0
+    |           ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({get a(){}}) => 0; 1`] = `
+"SyntaxError [1:14-1:16]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({get a(){}}) => 0;
+    |               ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({x: {x: y}.length})  => {} 1`] = `
+"SyntaxError [1:22-1:24]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({x: {x: y}.length})  => {}
+    |                       ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({x: async ()=>x})  => {} 1`] = `
+"SyntaxError [1:20-1:22]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({x: async ()=>x})  => {}
+    |                     ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({x: async ()=>x})  => {} 2`] = `
+"SyntaxError [1:20-1:22]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({x: async ()=>x})  => {}
+    |                     ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({x: function(){}})  => {} 1`] = `
+"SyntaxError [1:21-1:23]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({x: function(){}})  => {}
+    |                      ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({x: function(){}})  => {} 2`] = `
+"SyntaxError [1:21-1:23]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({x: function(){}})  => {}
+    |                      ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({x: this})  => {} 1`] = `
+"SyntaxError [1:13-1:15]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({x: this})  => {}
+    |              ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({x: this})  => {} 2`] = `
+"SyntaxError [1:13-1:15]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({x: this})  => {}
+    |              ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({x: void x})  => {} 1`] = `
+"SyntaxError [1:15-1:17]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({x: void x})  => {}
+    |                ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({x: x + y})  => {} 1`] = `
+"SyntaxError [1:14-1:16]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({x: x + y})  => {}
+    |               ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ({x: y.z} = a) => b 1`] = `
+"SyntaxError [1:15-1:17]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | ({x: y.z} = a) => b
+    |                ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (-a) => {} 1`] = `
+"SyntaxError [1:5-1:7]: Unexpected token: '=>'
+> 1 | (-a) => {}
+    |      ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (-a) => {} 2`] = `
+"SyntaxError [1:5-1:7]: Unexpected token: '=>'
+> 1 | (-a) => {}
+    |      ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (-a) => {} 3`] = `
+"SyntaxError [1:5-1:7]: Unexpected token: '=>'
+> 1 | (-a) => {}
+    |      ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (-a, b) => {} 1`] = `
+"SyntaxError [1:8-1:10]: Unexpected token: '=>'
+> 1 | (-a, b) => {}
+    |         ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (-a, b) => {} 2`] = `
+"SyntaxError [1:8-1:10]: Unexpected token: '=>'
+> 1 | (-a, b) => {}
+    |         ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (10) => 0; 1`] = `
+"SyntaxError [1:5-1:7]: Unexpected token: '=>'
+> 1 | (10) => 0;
+    |      ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (32) => {} 1`] = `
+"SyntaxError [1:5-1:7]: Unexpected token: '=>'
+> 1 | (32) => {}
+    |      ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (32) => {} 2`] = `
+"SyntaxError [1:5-1:7]: Unexpected token: '=>'
+> 1 | (32) => {}
+    |      ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a
+=> a)(1) 1`] = `
+"SyntaxError [2:0-2:2]: No line break is allowed after '=>'
+  1 | (a
+> 2 | => a)(1)
+    | ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a + b) => {} 1`] = `
+"SyntaxError [1:8-1:10]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a + b) => {}
+    |         ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a + b, c) => {} 1`] = `
+"SyntaxError [1:11-1:13]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a + b, c) => {}
+    |            ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a => a) + 1`] = `
+"SyntaxError [1:9-1:10]: Unexpected token: 'end of source'
+> 1 | (a => a) +
+    |          ^ Unexpected token: 'end of source'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a()=0)=>0 1`] = `
+"SyntaxError [1:4-1:5]: Invalid left-hand side in assignment
+> 1 | (a()=0)=>0
+    |     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a)
+=> 0 1`] = `
+"SyntaxError [2:0-2:2]: No line break is allowed after '=>'
+  1 | (a)
+> 2 | => 0
+    | ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a)[1]=>{} 1`] = `
+"SyntaxError [1:6-1:8]: Unexpected token: '=>'
+> 1 | (a)[1]=>{}
+    |       ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a)[c]=>{}; 1`] = `
+"SyntaxError [1:6-1:8]: Unexpected token: '=>'
+> 1 | (a)[c]=>{};
+    |       ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a)\`\${c}template-tail\`=>{} 1`] = `
+"SyntaxError [1:22-1:24]: Unexpected token: '=>'
+> 1 | (a)\`\${c}template-tail\`=>{}
+    |                       ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a)\`template-head\${c}template-tail\`=>{}; 1`] = `
+"SyntaxError [1:35-1:37]: Unexpected token: '=>'
+> 1 | (a)\`template-head\${c}template-tail\`=>{};
+    |                                    ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a++) => {} 1`] = `
+"SyntaxError [1:6-1:8]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a++) => {}
+    |       ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a++) => {} 2`] = `
+"SyntaxError [1:6-1:8]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a++) => {}
+    |       ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a++, b) => {} 1`] = `
+"SyntaxError [1:9-1:11]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a++, b) => {}
+    |          ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a++, b) => {} 2`] = `
+"SyntaxError [1:9-1:11]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a++, b) => {}
+    |          ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a, "b") => {} 1`] = `
+"SyntaxError [1:9-1:11]: Unexpected token: '=>'
+> 1 | (a, "b") => {}
+    |          ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a, "b") => {} 2`] = `
+"SyntaxError [1:9-1:11]: Unexpected token: '=>'
+> 1 | (a, "b") => {}
+    |          ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a, (b)) => 42; 1`] = `
+"SyntaxError [1:9-1:11]: Unexpected token: '=>'
+> 1 | (a, (b)) => 42;
+    |          ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a, ...b - 10) => b 1`] = `
+"SyntaxError [1:13-1:14]: Invalid rest argument
+> 1 | (a, ...b - 10) => b
+    |              ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a, ...b - 10) => b 2`] = `
+"SyntaxError [1:13-1:14]: Invalid rest argument
+> 1 | (a, ...b - 10) => b
+    |              ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a, ...b,) => {} 1`] = `
+"SyntaxError [1:8-1:9]: Invalid rest argument
+> 1 | (a, ...b,) => {}
+    |         ^ Invalid rest argument"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a, -b) => {} 1`] = `
+"SyntaxError [1:8-1:10]: Unexpected token: '=>'
+> 1 | (a, -b) => {}
+    |         ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a, -b) => {} 2`] = `
+"SyntaxError [1:8-1:10]: Unexpected token: '=>'
+> 1 | (a, -b) => {}
+    |         ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a, 32) => {} 1`] = `
+"SyntaxError [1:8-1:10]: Unexpected token: '=>'
+> 1 | (a, 32) => {}
+    |         ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a, b - c) => {} 1`] = `
+"SyntaxError [1:11-1:13]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a, b - c) => {}
+    |            ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a, b++) => {} 1`] = `
+"SyntaxError [1:9-1:11]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a, b++) => {}
+    |          ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a, b++) => {} 2`] = `
+"SyntaxError [1:9-1:11]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a, b++) => {}
+    |          ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a, b++) => {} 3`] = `
+"SyntaxError [1:9-1:11]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a, b++) => {}
+    |          ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a, foo ? bar : baz) => {} 1`] = `
+"SyntaxError [1:21-1:23]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a, foo ? bar : baz) => {}
+    |                      ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a, foo ? bar : baz) => {} 2`] = `
+"SyntaxError [1:21-1:23]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a, foo ? bar : baz) => {}
+    |                      ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a, foo ? bar : baz) => {} 3`] = `
+"SyntaxError [1:21-1:23]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a, foo ? bar : baz) => {}
+    |                      ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a, if) => {} 1`] = `
+"SyntaxError [1:4-1:6]: Unexpected token: 'if'
+> 1 | (a, if) => {}
+    |     ^^ Unexpected token: 'if'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a, p\\u0061ckage) => { "use strict"; } 1`] = `
+"SyntaxError [1:31-1:32]: Unexpected strict mode reserved word
+> 1 | (a, p\\u0061ckage) => { "use strict"; }
+    |                                ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a, p\\u0061ckage) => { } 1`] = `
+"SyntaxError [1:4-1:10]: Unexpected token: 'escaped future reserved keyword'
+> 1 | (a, p\\u0061ckage) => { }
+    |     ^^^^^^ Unexpected token: 'escaped future reserved keyword'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a,...a)
+ 1`] = `
+"SyntaxError [1:8-2:0]: Expected '=>'
+> 1 | (a,...a)
+    |         ^
+> 2 |
+    | ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a,...a)/*
+*/ => 0 1`] = `
+"SyntaxError [2:3-2:5]: No line break is allowed after '=>'
+  1 | (a,...a)/*
+> 2 | */ => 0
+    |    ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a,...a)/* */ => 0 1`] = `
+"SyntaxError [2:3-2:5]: No line break is allowed after '=>'
+  1 | (a,...a)/*
+> 2 | */ => 0
+    |    ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a,...a)/*‪*/ 1`] = `
+"SyntaxError [1:13-1:13]: Expected '=>'
+> 1 | (a,...a)/*‪*/
+    |              ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a,...b)+c=>{} 1`] = `
+"SyntaxError [1:8-1:9]: Expected '=>'
+> 1 | (a,...b)+c=>{}
+    |         ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a,...b)+c=>{} 2`] = `
+"SyntaxError [1:8-1:9]: Expected '=>'
+> 1 | (a,...b)+c=>{}
+    |         ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a,...b)[c]=>{} 1`] = `
+"SyntaxError [1:8-1:9]: Expected '=>'
+> 1 | (a,...b)[c]=>{}
+    |         ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a,...b)\`\${c}template-tail\`=>{}; 1`] = `
+"SyntaxError [1:8-1:11]: Expected '=>'
+> 1 | (a,...b)\`\${c}template-tail\`=>{};
+    |         ^^^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a,...b)\`template-head\${c}\`=>{} 1`] = `
+"SyntaxError [1:8-1:24]: Expected '=>'
+> 1 | (a,...b)\`template-head\${c}\`=>{}
+    |         ^^^^^^^^^^^^^^^^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a,b)(c)=>{} 1`] = `
+"SyntaxError [1:8-1:10]: Unexpected token: '=>'
+> 1 | (a,b)(c)=>{}
+    |         ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a,b)+c=>{} 1`] = `
+"SyntaxError [1:7-1:9]: \`=>\` is an invalid assignment target
+> 1 | (a,b)+c=>{}
+    |        ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a.b, c) => {} 1`] = `
+"SyntaxError [1:9-1:11]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a.b, c) => {}
+    |          ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a.b, c) => {} 2`] = `
+"SyntaxError [1:9-1:11]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a.b, c) => {}
+    |          ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a.b, c) => {} 3`] = `
+"SyntaxError [1:9-1:11]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a.b, c) => {}
+    |          ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a/*
+*/=> a)(1) 1`] = `
+"SyntaxError [2:2-2:4]: No line break is allowed after '=>'
+  1 | (a/*
+> 2 | */=> a)(1)
+    |   ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a=/i/) = /i/ 1`] = `
+"SyntaxError [1:8-1:9]: Invalid left-hand side in assignment
+> 1 | (a=/i/) = /i/
+    |         ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a=1 => 42) 1`] = `
+"SyntaxError [1:5-1:7]: Expected ')'
+> 1 | (a=1 => 42)
+    |      ^^ Expected ')'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a['b'], c) => {} 1`] = `
+"SyntaxError [1:12-1:14]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a['b'], c) => {}
+    |             ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a['b'], c) => {} 2`] = `
+"SyntaxError [1:12-1:14]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a['b'], c) => {}
+    |             ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a['b'], c) => {} 3`] = `
+"SyntaxError [1:12-1:14]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a['b'], c) => {}
+    |             ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (a['b'], c) => {} 4`] = `
+"SyntaxError [1:12-1:14]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (a['b'], c) => {}
+    |             ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (async (...a, ...b) => {}) 1`] = `
+"SyntaxError [1:20-1:22]: Invalid left-hand side in async arrow
+> 1 | (async (...a, ...b) => {})
+    |                     ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (async (...a, b) => {}) 1`] = `
+"SyntaxError [1:17-1:19]: Invalid left-hand side in async arrow
+> 1 | (async (...a, b) => {})
+    |                  ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (async (...a,) => {} 1`] = `
+"SyntaxError [1:15-1:17]: Invalid left-hand side in async arrow
+> 1 | (async (...a,) => {}
+    |                ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (async (x, z) => y) = {} 1`] = `
+"SyntaxError [1:20-1:21]: Invalid left-hand side in assignment
+> 1 | (async (x, z) => y) = {}
+    |                     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (async x => y) = {} 1`] = `
+"SyntaxError [1:15-1:16]: Invalid left-hand side in assignment
+> 1 | (async x => y) = {}
+    |                ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (b = (a,)) => {} 1`] = `
+"SyntaxError [1:9-1:10]: Expected '=>'
+> 1 | (b = (a,)) => {}
+    |          ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (c, a.b) => {} 1`] = `
+"SyntaxError [1:9-1:11]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (c, a.b) => {}
+    |          ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (c, a['b']) => {} 1`] = `
+"SyntaxError [1:12-1:14]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (c, a['b']) => {}
+    |             ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (c, a['b']) => {} 2`] = `
+"SyntaxError [1:12-1:14]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (c, a['b']) => {}
+    |             ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (e, arguments) => { 'use strict'; return e + arguments; } 1`] = `
+"SyntaxError [1:20-1:33]: Illegal 'use strict' directive in function with non-simple parameter list
+> 1 | (e, arguments) => { 'use strict'; return e + arguments; }
+    |                     ^^^^^^^^^^^^^ Illegal 'use strict' directive in function with non-simple parameter list"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (foo ? bar : baz) => {} 1`] = `
+"SyntaxError [1:18-1:20]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (foo ? bar : baz) => {}
+    |                   ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (foo ? bar : baz) => {} 2`] = `
+"SyntaxError [1:18-1:20]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (foo ? bar : baz) => {}
+    |                   ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (foo ? bar : baz, a) => {} 1`] = `
+"SyntaxError [1:21-1:23]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (foo ? bar : baz, a) => {}
+    |                      ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (foo ? bar : baz, a) => {} 2`] = `
+"SyntaxError [1:21-1:23]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (foo ? bar : baz, a) => {}
+    |                      ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (function *g([x = class extends (a ? null : yield) { }] = [null]) { }); 1`] = `
+"SyntaxError [1:49-1:50]: Yield expression not allowed in formal parameter
+> 1 | (function *g([x = class extends (a ? null : yield) { }] = [null]) { });
+    |                                                  ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (function *g(x = class { [y = (yield, 1)]() { } }) { }); 1`] = `
+"SyntaxError [1:36-1:37]: Yield expression not allowed in formal parameter
+> 1 | (function *g(x = class { [y = (yield, 1)]() { } }) { });
+    |                                     ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (function *g(x = class extends (yield) { }) { }); 1`] = `
+"SyntaxError [1:37-1:38]: Yield expression not allowed in formal parameter
+> 1 | (function *g(x = class extends (yield) { }) { });
+    |                                      ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (function *g(z = ( [x=(yield)]) => {}) { }); 1`] = `
+"SyntaxError [1:28-1:29]: Yield expression not allowed in formal parameter
+> 1 | (function *g(z = ( [x=(yield)]) => {}) { });
+    |                             ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (function *g(z = ( x=yield) => {}) { }); 1`] = `
+"SyntaxError [1:26-1:27]: Yield expression not allowed in formal parameter
+> 1 | (function *g(z = ( x=yield) => {}) { });
+    |                           ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (if) => {} 1`] = `
+"SyntaxError [1:1-1:3]: Unexpected token: 'if'
+> 1 | (if) => {}
+    |  ^^ Unexpected token: 'if'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (localVar |= defaultValue) => {} 1`] = `
+"SyntaxError [1:27-1:29]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | (localVar |= defaultValue) => {}
+    |                            ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (p\\141ckage) => { "use strict"; } 1`] = `
+"SyntaxError [1:1-1:2]: Illegal Unicode escape sequence
+> 1 | (p\\141ckage) => { "use strict"; }
+    |  ^ Illegal Unicode escape sequence"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (p\\u0061ckage) => { "use strict"; } 1`] = `
+"SyntaxError [1:28-1:29]: Unexpected strict mode reserved word
+> 1 | (p\\u0061ckage) => { "use strict"; }
+    |                             ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (p\\u0061ckage) => { } 1`] = `
+"SyntaxError [1:1-1:7]: Unexpected token: 'escaped future reserved keyword'
+> 1 | (p\\u0061ckage) => { }
+    |  ^^^^^^ Unexpected token: 'escaped future reserved keyword'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (p\\u0061ckage, a) => { "use strict"; } 1`] = `
+"SyntaxError [1:31-1:32]: Unexpected strict mode reserved word
+> 1 | (p\\u0061ckage, a) => { "use strict"; }
+    |                                ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (p\\u0061ckage, a) => { } 1`] = `
+"SyntaxError [1:1-1:7]: Unexpected token: 'escaped future reserved keyword'
+> 1 | (p\\u0061ckage, a) => { }
+    |  ^^^^^^ Unexpected token: 'escaped future reserved keyword'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (p\\x61ckage) => { "use strict"; } 1`] = `
+"SyntaxError [1:1-1:2]: Illegal Unicode escape sequence
+> 1 | (p\\x61ckage) => { "use strict"; }
+    |  ^ Illegal Unicode escape sequence"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (p\\x61ckage) => { } 1`] = `
+"SyntaxError [1:1-1:2]: Illegal Unicode escape sequence
+> 1 | (p\\x61ckage) => { }
+    |  ^ Illegal Unicode escape sequence"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (x => y) = {} 1`] = `
+"SyntaxError [1:9-1:10]: Invalid left-hand side in assignment
+> 1 | (x => y) = {}
+    |          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (x => y) = {} 2`] = `
+"SyntaxError [1:9-1:10]: Invalid left-hand side in assignment
+> 1 | (x => y) = {}
+    |          ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (x) 
+ => d; 1`] = `
+"SyntaxError [2:1-2:3]: No line break is allowed after '=>'
+  1 | (x) 
+> 2 |  => d;
+    |  ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (x, (y)) => 0 1`] = `
+"SyntaxError [1:9-1:11]: Unexpected token: '=>'
+> 1 | (x, (y)) => 0
+    |          ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (x, (y)) => 0 2`] = `
+"SyntaxError [1:9-1:11]: Unexpected token: '=>'
+> 1 | (x, (y)) => 0
+    |          ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (x, (y, z)) => 0 1`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | (x, (y, z)) => 0
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (x, (y, z)) => a 1`] = `
+"SyntaxError [1:12-1:14]: Unexpected token: '=>'
+> 1 | (x, (y, z)) => a
+    |             ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (x, /x/g) => x 1`] = `
+"SyntaxError [1:10-1:12]: Unexpected token: '=>'
+> 1 | (x, /x/g) => x
+    |           ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (x, /x/g) => x 2`] = `
+"SyntaxError [1:10-1:12]: Unexpected token: '=>'
+> 1 | (x, /x/g) => x
+    |           ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > (x, y)[7] => {} 1`] = `
+"SyntaxError [1:10-1:12]: Unexpected token: '=>'
+> 1 | (x, y)[7] => {}
+    |           ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ) => {} 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: ')'
+> 1 | ) => {}
+    | ^ Unexpected token: ')'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ) => 0 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: ')'
+> 1 | ) => 0
+    | ^ Unexpected token: ')'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > ) 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: ')'
+> 1 | )
+    | ^ Unexpected token: ')'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > , => {} 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: ','
+> 1 | , => {}
+    | ^ Unexpected token: ','"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > => {} 1`] = `
+"SyntaxError [1:0-1:2]: Unexpected token: '=>'
+> 1 | => {}
+    | ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > => {} 2`] = `
+"SyntaxError [1:0-1:2]: Unexpected token: '=>'
+> 1 | => {}
+    | ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > => 0 1`] = `
+"SyntaxError [1:0-1:2]: Unexpected token: '=>'
+> 1 | => 0
+    | ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > => 0 2`] = `
+"SyntaxError [1:0-1:2]: Unexpected token: '=>'
+> 1 | => 0
+    | ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > => 1`] = `
+"SyntaxError [1:0-1:2]: Unexpected token: '=>'
+> 1 | =>
+    | ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > [] => {} 1`] = `
+"SyntaxError [1:3-1:5]: Unexpected token: '=>'
+> 1 | [] => {}
+    |    ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > [] => {} 2`] = `
+"SyntaxError [1:3-1:5]: Unexpected token: '=>'
+> 1 | [] => {}
+    |    ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > []=>0 1`] = `
+"SyntaxError [1:2-1:4]: Unexpected token: '=>'
+> 1 | []=>0
+    |   ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > \\u0061sync () => {} 1`] = `
+"SyntaxError [1:8-1:10]: Unexpected token: '=>'
+> 1 | \\u0061sync () => {}
+    |         ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > {} => {} 1`] = `
+"SyntaxError [1:3-1:5]: Unexpected token: '=>'
+> 1 | {} => {}
+    |    ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > {} => {} 2`] = `
+"SyntaxError [1:3-1:5]: Unexpected token: '=>'
+> 1 | {} => {}
+    |    ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > -a => {} 1`] = `
+"SyntaxError [1:3-1:5]: \`=>\` is an invalid assignment target
+> 1 | -a => {}
+    |    ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > -a => {} 2`] = `
+"SyntaxError [1:3-1:5]: \`=>\` is an invalid assignment target
+> 1 | -a => {}
+    |    ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > 0 || () => 0 1`] = `
+"SyntaxError [1:8-1:10]: \`=>\` is an invalid assignment target
+> 1 | 0 || () => 0
+    |         ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > 0 || (x) => 0 1`] = `
+"SyntaxError [1:9-1:11]: \`=>\` is an invalid assignment target
+> 1 | 0 || (x) => 0
+    |          ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > 0 || (x,y) => 0 1`] = `
+"SyntaxError [1:11-1:13]: \`=>\` is an invalid assignment target
+> 1 | 0 || (x,y) => 0
+    |            ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > 0 || x => 0 1`] = `
+"SyntaxError [1:7-1:9]: \`=>\` is an invalid assignment target
+> 1 | 0 || x => 0
+    |        ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > 1 + () 1`] = `
+"SyntaxError [1:5-1:6]: \`=>\` is an invalid assignment target
+> 1 | 1 + ()
+    |      ^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > 1 + () 2`] = `
+"SyntaxError [1:5-1:6]: \`=>\` is an invalid assignment target
+> 1 | 1 + ()
+    |      ^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > 32 => {} 1`] = `
+"SyntaxError [1:3-1:5]: Unexpected token: '=>'
+> 1 | 32 => {}
+    |    ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > 32 => {} 2`] = `
+"SyntaxError [1:3-1:5]: Unexpected token: '=>'
+> 1 | 32 => {}
+    |    ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > a
+= b
+=> c 1`] = `
+"SyntaxError [3:0-3:2]: No line break is allowed after '=>'
+  1 | a
+  2 | = b
+> 3 | => c
+    | ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > a + b => {} 1`] = `
+"SyntaxError [1:6-1:8]: \`=>\` is an invalid assignment target
+> 1 | a + b => {}
+    |       ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > a = b
+=>
+c 1`] = `
+"SyntaxError [2:0-2:2]: No line break is allowed after '=>'
+  1 | a = b
+> 2 | =>
+    | ^^ No line break is allowed after '=>'
+  3 | c"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > a = b
+=> c 1`] = `
+"SyntaxError [2:0-2:2]: No line break is allowed after '=>'
+  1 | a = b
+> 2 | => c
+    | ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > a => (b => (a + b) 1`] = `
+"SyntaxError [1:17-1:18]: Expected ')'
+> 1 | a => (b => (a + b)
+    |                  ^ Expected ')'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > a++ => {} 1`] = `
+"SyntaxError [1:4-1:6]: Unexpected token: '=>'
+> 1 | a++ => {}
+    |     ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > a++ => {} 2`] = `
+"SyntaxError [1:4-1:6]: Unexpected token: '=>'
+> 1 | a++ => {}
+    |     ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > a++ => {} 3`] = `
+"SyntaxError [1:4-1:6]: Unexpected token: '=>'
+> 1 | a++ => {}
+    |     ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > a?c:d=>{}=>{}; 1`] = `
+"SyntaxError [1:9-1:11]: Unexpected token: '=>'
+> 1 | a?c:d=>{}=>{};
+    |          ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > a\`\${c}template-tail\`=>{} 1`] = `
+"SyntaxError [1:20-1:22]: Unexpected token: '=>'
+> 1 | a\`\${c}template-tail\`=>{}
+    |                     ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > a\`template-head\${c}template-tail\`=>{}; 1`] = `
+"SyntaxError [1:33-1:35]: Unexpected token: '=>'
+> 1 | a\`template-head\${c}template-tail\`=>{};
+    |                                  ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > arguments => { "use strict"; 0 } 1`] = `
+"SyntaxError [1:29-1:30]: Unexpected eval or arguments in strict mode
+> 1 | arguments => { "use strict"; 0 }
+    |                              ^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > arguments => { 'use strict'; return arguments + 2; } 1`] = `
+"SyntaxError [1:29-1:35]: Unexpected eval or arguments in strict mode
+> 1 | arguments => { 'use strict'; return arguments + 2; }
+    |                              ^^^^^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > async (x = 1) => {"use strict"} 1`] = `
+"SyntaxError [1:18-1:31]: Illegal 'use strict' directive in function with non-simple parameter list
+> 1 | async (x = 1) => {"use strict"}
+    |                   ^^^^^^^^^^^^^ Illegal 'use strict' directive in function with non-simple parameter list"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > async("foo".bar) => x 1`] = `
+"SyntaxError [1:17-1:19]: Unexpected token: '=>'
+> 1 | async("foo".bar) => x
+    |                  ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > async(foo = super()) => {} 1`] = `
+"SyntaxError [1:17-1:18]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | async(foo = super()) => {}
+    |                  ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > async(foo) => { super() }; 1`] = `
+"SyntaxError [1:21-1:22]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | async(foo) => { super() };
+    |                      ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > async(foo) => { super.prop }; 1`] = `
+"SyntaxError [1:21-1:22]: Member access on super must be in a method
+> 1 | async(foo) => { super.prop };
+    |                      ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > bar ? (=> 0) : baz; 1`] = `
+"SyntaxError [1:7-1:9]: Unexpected token: '=>'
+> 1 | bar ? (=> 0) : baz;
+    |        ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > enum => 1; 1`] = `
+"SyntaxError [1:0-1:4]: Unexpected token: 'enum'
+> 1 | enum => 1;
+    | ^^^^ Unexpected token: 'enum'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > eval => { "use strict"; 0 } 1`] = `
+"SyntaxError [1:24-1:25]: Unexpected eval or arguments in strict mode
+> 1 | eval => { "use strict"; 0 }
+    |                         ^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > eval => { 'use strict'; return eval + 1; } 1`] = `
+"SyntaxError [1:24-1:30]: Unexpected eval or arguments in strict mode
+> 1 | eval => { 'use strict'; return eval + 1; }
+    |                         ^^^^^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > f = ([...[ x ] = []] = []) => {}; 1`] = `
+"SyntaxError [1:23-1:24]: Invalid left-hand side in assignment
+> 1 | f = ([...[ x ] = []] = []) => {};
+    |                        ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > f = ([...[x], y] = [1, 2, 3]) => {}; 1`] = `
+"SyntaxError [1:19-1:20]: Invalid left-hand side in assignment
+> 1 | f = ([...[x], y] = [1, 2, 3]) => {};
+    |                    ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > f = ([...{ x } = []]) => {}; 1`] = `
+"SyntaxError [1:22-1:24]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | f = ([...{ x } = []]) => {};
+    |                       ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > f = ([...{ x }, y]) => {}; 1`] = `
+"SyntaxError [1:20-1:22]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | f = ([...{ x }, y]) => {};
+    |                     ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > f = ([...{ x }, y]) => {}; 2`] = `
+"SyntaxError [1:20-1:22]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | f = ([...{ x }, y]) => {};
+    |                     ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > foo bar => zoo 1`] = `
+"SyntaxError [1:4-1:7]: Unexpected token: 'identifier'
+> 1 | foo bar => zoo
+    |     ^^^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > function *a() { yield => foo } 1`] = `
+"SyntaxError [1:22-1:24]: Unexpected token: '=>'
+> 1 | function *a() { yield => foo }
+    |                       ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > function foo(package) { } 1`] = `
+"SyntaxError [1:13-1:20]: Unexpected strict mode reserved word
+> 1 | function foo(package) { }
+    |              ^^^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > function x(){([(a)]) => {} } 1`] = `
+"SyntaxError [1:21-1:23]: The left-hand side of the arrow can only be destructed through assignment
+> 1 | function x(){([(a)]) => {} }
+    |                      ^^ The left-hand side of the arrow can only be destructed through assignment"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > if => {} 1`] = `
+"SyntaxError [1:3-1:5]: Expected '('
+> 1 | if => {}
+    |    ^^ Expected '('"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > if => {} 2`] = `
+"SyntaxError [1:3-1:5]: Expected '('
+> 1 | if => {}
+    |    ^^ Expected '('"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > interface => {} 1`] = `
+"SyntaxError [1:0-1:9]: Unexpected token: 'interface'
+> 1 | interface => {}
+    | ^^^^^^^^^ Unexpected token: 'interface'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > left = (aSize.width/2) - () 1`] = `
+"SyntaxError [1:26-1:27]: \`=>\` is an invalid assignment target
+> 1 | left = (aSize.width/2) - ()
+    |                           ^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > let => {} 1`] = `
+"SyntaxError [1:4-1:6]: \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode
+> 1 | let => {}
+    |     ^^ \`let\` declaration not allowed here and \`let\` cannot be a regular var name in strict mode"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > let x = {y=z} => d 1`] = `
+"SyntaxError [1:14-1:16]: Invalid shorthand property initializer
+> 1 | let x = {y=z} => d
+    |               ^^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > let x = {y=z} 1`] = `
+"SyntaxError [1:12-1:13]: Invalid shorthand property initializer
+> 1 | let x = {y=z}
+    |             ^ Invalid shorthand property initializer"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > p\\141ckage => { "use strict"; } 1`] = `
+"SyntaxError [1:0-1:1]: Illegal Unicode escape sequence
+> 1 | p\\141ckage => { "use strict"; }
+    | ^ Illegal Unicode escape sequence"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > p\\141ckage => { } 1`] = `
+"SyntaxError [1:0-1:1]: Illegal Unicode escape sequence
+> 1 | p\\141ckage => { }
+    | ^ Illegal Unicode escape sequence"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > p\\u0061ckage => { "use strict"; } 1`] = `
+"SyntaxError [1:26-1:27]: Unexpected strict mode reserved word
+> 1 | p\\u0061ckage => { "use strict"; }
+    |                           ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > p\\u0061ckage => { } 1`] = `
+"SyntaxError [1:0-1:6]: Unexpected token: 'escaped future reserved keyword'
+> 1 | p\\u0061ckage => { }
+    | ^^^^^^ Unexpected token: 'escaped future reserved keyword'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > package => { "use strict"; } 1`] = `
+"SyntaxError [1:27-1:28]: Unexpected strict mode reserved word
+> 1 | package => { "use strict"; }
+    |                            ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > var a = () 
+ => d; 1`] = `
+"SyntaxError [2:1-2:3]: No line break is allowed after '=>'
+  1 | var a = () 
+> 2 |  => d;
+    |  ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > var a = (x) 
+ => { return d }; 1`] = `
+"SyntaxError [2:1-2:3]: No line break is allowed after '=>'
+  1 | var a = (x) 
+> 2 |  => { return d };
+    |  ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > var a = {}; a
+.x => d; 1`] = `
+"SyntaxError [2:3-2:5]: Unexpected token: '=>'
+  1 | var a = {}; a
+> 2 | .x => d;
+    |    ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > var a = {}; a.x 
+ => d; 1`] = `
+"SyntaxError [2:1-2:3]: Unexpected token: '=>'
+  1 | var a = {}; a.x 
+> 2 |  => d;
+    |  ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > var af = (yield) => 1; 1`] = `
+"SyntaxError [1:10-1:15]: 'yield' may not be used as an identifier in this context
+> 1 | var af = (yield) => 1;
+    |           ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > var af = ...x => x; 1`] = `
+"SyntaxError [1:9-1:12]: Unexpected token: '...'
+> 1 | var af = ...x => x;
+    |          ^^^ Unexpected token: '...'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > var af = arguments => 1; 1`] = `
+"SyntaxError [1:19-1:21]: Unexpected eval or arguments in strict mode
+> 1 | var af = arguments => 1;
+    |                    ^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > var af = enum => 1; 1`] = `
+"SyntaxError [1:9-1:13]: Unexpected token: 'enum'
+> 1 | var af = enum => 1;
+    |          ^^^^ Unexpected token: 'enum'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > var af = eval => 1; 1`] = `
+"SyntaxError [1:14-1:16]: Unexpected eval or arguments in strict mode
+> 1 | var af = eval => 1;
+    |               ^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > var af = package => 1; 1`] = `
+"SyntaxError [1:9-1:16]: Unexpected token: 'package'
+> 1 | var af = package => 1;
+    |          ^^^^^^^ Unexpected token: 'package'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > var af = x
+    => {}; 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | var af = x
+> 2 |     => {};
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > var af = yield => 1; 1`] = `
+"SyntaxError [1:9-1:14]: 'yield' may not be used as an identifier in this context
+> 1 | var af = yield => 1;
+    |          ^^^^^ 'yield' may not be used as an identifier in this context"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > var f = (a = 0) => { "use strict"; }; 1`] = `
+"SyntaxError [1:21-1:34]: Illegal 'use strict' directive in function with non-simple parameter list
+> 1 | var f = (a = 0) => { "use strict"; };
+    |                      ^^^^^^^^^^^^^ Illegal 'use strict' directive in function with non-simple parameter list"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x 
+ => d; 1`] = `
+"SyntaxError [2:1-2:3]: No line break is allowed after '=>'
+  1 | x 
+> 2 |  => d;
+    |  ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = ()+c=>{} 1`] = `
+"SyntaxError [1:6-1:7]: Expected '=>'
+> 1 | x = ()+c=>{}
+    |       ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = ()[1]=>{} 1`] = `
+"SyntaxError [1:6-1:7]: Expected '=>'
+> 1 | x = ()[1]=>{}
+    |       ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = ()[c]=>{}; 1`] = `
+"SyntaxError [1:6-1:7]: Expected '=>'
+> 1 | x = ()[c]=>{};
+    |       ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = ()c++=>{}; 1`] = `
+"SyntaxError [1:6-1:7]: Expected '=>'
+> 1 | x = ()c++=>{};
+    |       ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = (...a)+c=>{} 1`] = `
+"SyntaxError [1:10-1:11]: Expected '=>'
+> 1 | x = (...a)+c=>{}
+    |           ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = (...a)?c:d=>{}=>{} 1`] = `
+"SyntaxError [1:10-1:11]: Expected '=>'
+> 1 | x = (...a)?c:d=>{}=>{}
+    |           ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = (...a)[1]=>{}; 1`] = `
+"SyntaxError [1:10-1:11]: Expected '=>'
+> 1 | x = (...a)[1]=>{};
+    |           ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = (...a)-c=>{}; 1`] = `
+"SyntaxError [1:10-1:11]: Expected '=>'
+> 1 | x = (...a)-c=>{};
+    |           ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = (a)?c:d=>{}=>{} 1`] = `
+"SyntaxError [1:15-1:17]: Unexpected token: '=>'
+> 1 | x = (a)?c:d=>{}=>{}
+    |                ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = (a)\`\${c}template-tail\`=>{}; 1`] = `
+"SyntaxError [1:26-1:28]: Unexpected token: '=>'
+> 1 | x = (a)\`\${c}template-tail\`=>{};
+    |                           ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = (a)\`c\`=>{} 1`] = `
+"SyntaxError [1:10-1:12]: Unexpected token: '=>'
+> 1 | x = (a)\`c\`=>{}
+    |           ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = (a)-c=>{}; 1`] = `
+"SyntaxError [1:9-1:11]: \`=>\` is an invalid assignment target
+> 1 | x = (a)-c=>{};
+    |          ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = (a,...b)[c]=>{}; 1`] = `
+"SyntaxError [1:12-1:13]: Expected '=>'
+> 1 | x = (a,...b)[c]=>{};
+    |             ^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = (a,...b)\`\${c}template-tail\`=>{} 1`] = `
+"SyntaxError [1:12-1:15]: Expected '=>'
+> 1 | x = (a,...b)\`\${c}template-tail\`=>{}
+    |             ^^^ Expected '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = (a,b)", "=>{} 1`] = `
+"SyntaxError [1:9-1:13]: Unexpected token: 'string'
+> 1 | x = (a,b)", "=>{}
+    |          ^^^^ Unexpected token: 'string'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = (a,b)+c=>{}; 1`] = `
+"SyntaxError [1:11-1:13]: \`=>\` is an invalid assignment target
+> 1 | x = (a,b)+c=>{};
+    |            ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = (a,b)-c=>{}; 1`] = `
+"SyntaxError [1:11-1:13]: \`=>\` is an invalid assignment target
+> 1 | x = (a,b)-c=>{};
+    |            ^^ \`=>\` is an invalid assignment target"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = (y = "foo\\003bar") => { "use strict"; } 1`] = `
+"SyntaxError [1:28-1:41]: Illegal 'use strict' directive in function with non-simple parameter list
+> 1 | x = (y = "foo\\003bar") => { "use strict"; }
+    |                             ^^^^^^^^^^^^^ Illegal 'use strict' directive in function with non-simple parameter list"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = (y = "foo\\003bar") => { } 1`] = `
+"SyntaxError [1:9-1:14]: Octal escape sequences are not allowed in strict mode
+> 1 | x = (y = "foo\\003bar") => { }
+    |          ^^^^^ Octal escape sequences are not allowed in strict mode"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = a\`c\`=>{} 1`] = `
+"SyntaxError [1:8-1:10]: Unexpected token: '=>'
+> 1 | x = a\`c\`=>{}
+    |         ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = a\`template-head\${c}template-tail\`=>{} 1`] = `
+"SyntaxError [1:37-1:39]: Unexpected token: '=>'
+> 1 | x = a\`template-head\${c}template-tail\`=>{}
+    |                                      ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > x = ac++=>{}; 1`] = `
+"SyntaxError [1:8-1:10]: Unexpected token: '=>'
+> 1 | x = ac++=>{};
+    |         ^^ Unexpected token: '=>'"
+`;
+
+exports[`Expressions - Arrow > Expressions - Array (fail) > yield x => zoo 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: 'identifier'
+> 1 | yield x => zoo
+    |       ^ Unexpected token: 'identifier'"
+`;
+
 exports[`Expressions - Arrow > Expressions - Arrow (pass) > (( [x]=f(yield) )=>{}); 1`] = `
 {
   "body": [

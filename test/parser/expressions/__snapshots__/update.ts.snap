@@ -1,5 +1,21 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Expressions - Update > Expressions - Update (fail) > foo
+++ 1`] = `
+"SyntaxError [2:0-2:2]: Unexpected token: 'end of source'
+  1 | foo
+> 2 | ++
+    | ^^ Unexpected token: 'end of source'"
+`;
+
+exports[`Expressions - Update > Expressions - Update (fail) > if (foo
+++); 1`] = `
+"SyntaxError [2:0-2:2]: Expected ')'
+  1 | if (foo
+> 2 | ++);
+    | ^^ Expected ')'"
+`;
+
 exports[`Expressions - Update > Expressions - Update (pass) > "foo"
 ++bar 1`] = `
 {

@@ -1,5 +1,1277 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Expressions - Super > Expressions - Super (fail) > !{ a() { !function* (a = super.b()){} } }; 1`] = `
+"SyntaxError [1:30-1:31]: Member access on super must be in a method
+> 1 | !{ a() { !function* (a = super.b()){} } };
+    |                               ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > !{ a() { !function* (a = super.b()){} } }; 2`] = `
+"SyntaxError [1:30-1:31]: Member access on super must be in a method
+> 1 | !{ a() { !function* (a = super.b()){} } };
+    |                               ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > ({ a() { (super).b(); } }); 1`] = `
+"SyntaxError [1:15-1:16]: Unexpected token: 'super'
+> 1 | ({ a() { (super).b(); } });
+    |                ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > ({ f: function() { super(); } }) 1`] = `
+"SyntaxError [1:24-1:25]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | ({ f: function() { super(); } })
+    |                         ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > ({ f: function*() { super(); } }) 1`] = `
+"SyntaxError [1:25-1:26]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | ({ f: function*() { super(); } })
+    |                          ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > ({ f: function*() {() => new super; } }) 1`] = `
+"SyntaxError [1:34-1:35]: Unexpected token: 'super'
+> 1 | ({ f: function*() {() => new super; } })
+    |                                   ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > ({ get x() { super(); } }) 1`] = `
+"SyntaxError [1:18-1:19]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | ({ get x() { super(); } })
+    |                   ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > ({ set x(_) { super(); } }) 1`] = `
+"SyntaxError [1:19-1:20]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | ({ set x(_) { super(); } })
+    |                    ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > (async function*() { super(); }) 1`] = `
+"SyntaxError [1:26-1:27]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | (async function*() { super(); })
+    |                           ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > (async function*() { super(); }); 1`] = `
+"SyntaxError [1:26-1:27]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | (async function*() { super(); });
+    |                           ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > (function() { super(); }) 1`] = `
+"SyntaxError [1:19-1:20]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | (function() { super(); })
+    |                    ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > (function*() { super(); }) 1`] = `
+"SyntaxError [1:20-1:21]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | (function*() { super(); })
+    |                     ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > async function* x() { super(); } 1`] = `
+"SyntaxError [1:27-1:28]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | async function* x() { super(); }
+    |                            ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > async function* x() { super(); } 2`] = `
+"SyntaxError [1:27-1:28]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | async function* x() { super(); }
+    |                            ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > async function* x() { var x = { y: function () { super(); } } } 1`] = `
+"SyntaxError [1:54-1:55]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | async function* x() { var x = { y: function () { super(); } } }
+    |                                                       ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > async(foo) => { super() }; 1`] = `
+"SyntaxError [1:21-1:22]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | async(foo) => { super() };
+    |                      ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > async(foo) => { super.prop }; 1`] = `
+"SyntaxError [1:21-1:22]: Member access on super must be in a method
+> 1 | async(foo) => { super.prop };
+    |                      ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class A extends B { *g2(a = 1 + (yield 2)) { } } 1`] = `
+"SyntaxError [1:39-1:40]: Yield expression not allowed in formal parameter
+> 1 | class A extends B { *g2(a = 1 + (yield 2)) { } }
+    |                                        ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class A extends B { constructor() { (super)() } } 1`] = `
+"SyntaxError [1:42-1:43]: Unexpected token: 'super'
+> 1 | class A extends B { constructor() { (super)() } }
+    |                                           ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class C { constructor() { super(); } } 1`] = `
+"SyntaxError [1:31-1:32]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class C { constructor() { super(); } }
+    |                                ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class C { method() { () => super(); } } 1`] = `
+"SyntaxError [1:32-1:33]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class C { method() { () => super(); } }
+    |                                 ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class X { x(){class X { constructor(){super();} }} } 1`] = `
+"SyntaxError [1:43-1:44]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class X { x(){class X { constructor(){super();} }} }
+    |                                            ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class super {} }} 1`] = `
+"SyntaxError [1:23-1:28]: Unexpected strict mode reserved word
+> 1 | class f { bar(){ class super {} }}
+    |                        ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class super() {}  }} 1`] = `
+"SyntaxError [1:23-1:28]: Unexpected strict mode reserved word
+> 1 | class f { bar(){ class super() {}  }}
+    |                        ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class super.foo { } }} 1`] = `
+"SyntaxError [1:23-1:28]: Unexpected strict mode reserved word
+> 1 | class f { bar(){ class super.foo { } }}
+    |                        ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x { [super y](){} }  }} 1`] = `
+"SyntaxError [1:34-1:35]: Unexpected token: 'super'
+> 1 | class f { bar(){ class x { [super y](){} }  }}
+    |                                   ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x { [super()](){} }  }} 1`] = `
+"SyntaxError [1:33-1:34]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f { bar(){ class x { [super()](){} }  }}
+    |                                  ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x { [super.foo y](){} }  }} 1`] = `
+"SyntaxError [1:38-1:39]: Expected ']'
+> 1 | class f { bar(){ class x { [super.foo y](){} }  }}
+    |                                       ^ Expected ']'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x { [super](){} }  }} 1`] = `
+"SyntaxError [1:33-1:34]: Unexpected token: 'super'
+> 1 | class f { bar(){ class x { [super](){} }  }}
+    |                                  ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x { foo(super()){} }  }} 1`] = `
+"SyntaxError [1:31-1:36]: Invalid keyword
+> 1 | class f { bar(){ class x { foo(super()){} }  }}
+    |                                ^^^^^ Invalid keyword"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x { foo(super){} }  }} 1`] = `
+"SyntaxError [1:31-1:36]: Invalid keyword
+> 1 | class f { bar(){ class x { foo(super){} }  }}
+    |                                ^^^^^ Invalid keyword"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x { foo(super.foo){} }  }} 1`] = `
+"SyntaxError [1:31-1:36]: Invalid keyword
+> 1 | class f { bar(){ class x { foo(super.foo){} }  }}
+    |                                ^^^^^ Invalid keyword"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x { foo(x=new (super())()){} } }} 1`] = `
+"SyntaxError [1:43-1:44]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f { bar(){ class x { foo(x=new (super())()){} } }}
+    |                                            ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x { foo(x=new (super)()){} }  }} 1`] = `
+"SyntaxError [1:43-1:44]: Unexpected token: 'super'
+> 1 | class f { bar(){ class x { foo(x=new (super)()){} }  }}
+    |                                            ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x { foo(x=super y){} }  }} 1`] = `
+"SyntaxError [1:39-1:40]: Unexpected token: 'super'
+> 1 | class f { bar(){ class x { foo(x=super y){} }  }}
+    |                                        ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x { foo(x=super() y){} }  }} 1`] = `
+"SyntaxError [1:38-1:39]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f { bar(){ class x { foo(x=super() y){} }  }}
+    |                                       ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x { foo(x=super()){} }  }} 1`] = `
+"SyntaxError [1:38-1:39]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f { bar(){ class x { foo(x=super()){} }  }}
+    |                                       ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x { foo(x=super){} }  }} 1`] = `
+"SyntaxError [1:38-1:39]: Unexpected token: 'super'
+> 1 | class f { bar(){ class x { foo(x=super){} }  }}
+    |                                       ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x { foo(x=super.foo y){} }  }} 1`] = `
+"SyntaxError [1:43-1:44]: Expected ')'
+> 1 | class f { bar(){ class x { foo(x=super.foo y){} }  }}
+    |                                            ^ Expected ')'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x { super.foo(){} }  }} 1`] = `
+"SyntaxError [1:32-1:33]: Unexpected token: '.'
+> 1 | class f { bar(){ class x { super.foo(){} }  }}
+    |                                 ^ Unexpected token: '.'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x extends feh(super y) { }  }} 1`] = `
+"SyntaxError [1:43-1:44]: Unexpected token: 'super'
+> 1 | class f { bar(){ class x extends feh(super y) { }  }}
+    |                                            ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x extends feh(super() y) {} }} 1`] = `
+"SyntaxError [1:42-1:43]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f { bar(){ class x extends feh(super() y) {} }}
+    |                                           ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x extends feh(super()) {} }} 1`] = `
+"SyntaxError [1:42-1:43]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f { bar(){ class x extends feh(super()) {} }}
+    |                                           ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x extends feh(super) { }  }} 1`] = `
+"SyntaxError [1:42-1:43]: Unexpected token: 'super'
+> 1 | class f { bar(){ class x extends feh(super) { }  }}
+    |                                           ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x extends feh(super.foo y) {} }} 1`] = `
+"SyntaxError [1:47-1:48]: Expected ')'
+> 1 | class f { bar(){ class x extends feh(super.foo y) {} }}
+    |                                                ^ Expected ')'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x extends super { }  }} 1`] = `
+"SyntaxError [1:39-1:40]: Unexpected token: 'super'
+> 1 | class f { bar(){ class x extends super { }  }}
+    |                                        ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x extends super y { }  }} 1`] = `
+"SyntaxError [1:39-1:40]: Unexpected token: 'super'
+> 1 | class f { bar(){ class x extends super y { }  }}
+    |                                        ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x extends super() {} }} 1`] = `
+"SyntaxError [1:38-1:39]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f { bar(){ class x extends super() {} }}
+    |                                       ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x extends super() y {} }} 1`] = `
+"SyntaxError [1:38-1:39]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f { bar(){ class x extends super() y {} }}
+    |                                       ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { bar(){ class x extends super.foo y {} }} 1`] = `
+"SyntaxError [1:43-1:44]: Expected '{'
+> 1 | class f { bar(){ class x extends super.foo y {} }}
+    |                                            ^ Expected '{'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){  class super { }  }} 1`] = `
+"SyntaxError [1:32-1:37]: Unexpected strict mode reserved word
+> 1 | class f { constructor(){  class super { }  }}
+    |                                 ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){  class x { [super y](){} }  }} 1`] = `
+"SyntaxError [1:43-1:44]: Unexpected token: 'super'
+> 1 | class f { constructor(){  class x { [super y](){} }  }}
+    |                                            ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){  class x { [super](){} }  }} 1`] = `
+"SyntaxError [1:42-1:43]: Unexpected token: 'super'
+> 1 | class f { constructor(){  class x { [super](){} }  }}
+    |                                           ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){  class x { foo(super){} }  }} 1`] = `
+"SyntaxError [1:40-1:45]: Invalid keyword
+> 1 | class f { constructor(){  class x { foo(super){} }  }}
+    |                                         ^^^^^ Invalid keyword"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){  class x { foo(x=new (super)()){} }  }} 1`] = `
+"SyntaxError [1:52-1:53]: Unexpected token: 'super'
+> 1 | class f { constructor(){  class x { foo(x=new (super)()){} }  }}
+    |                                                     ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){  class x { foo(x=super y){} }  }} 1`] = `
+"SyntaxError [1:48-1:49]: Unexpected token: 'super'
+> 1 | class f { constructor(){  class x { foo(x=super y){} }  }}
+    |                                                 ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){  class x { foo(x=super){} }  }} 1`] = `
+"SyntaxError [1:47-1:48]: Unexpected token: 'super'
+> 1 | class f { constructor(){  class x { foo(x=super){} }  }}
+    |                                                ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){  class x extends feh(super y) { }  }} 1`] = `
+"SyntaxError [1:52-1:53]: Unexpected token: 'super'
+> 1 | class f { constructor(){  class x extends feh(super y) { }  }}
+    |                                                     ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){  class x extends feh(super) { }  }} 1`] = `
+"SyntaxError [1:51-1:52]: Unexpected token: 'super'
+> 1 | class f { constructor(){  class x extends feh(super) { }  }}
+    |                                                    ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){  class x extends super { }  }} 1`] = `
+"SyntaxError [1:48-1:49]: Unexpected token: 'super'
+> 1 | class f { constructor(){  class x extends super { }  }}
+    |                                                 ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){  class x extends super y { }  }} 1`] = `
+"SyntaxError [1:48-1:49]: Unexpected token: 'super'
+> 1 | class f { constructor(){  class x extends super y { }  }}
+    |                                                 ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){ class super() { } }} 1`] = `
+"SyntaxError [1:31-1:36]: Unexpected strict mode reserved word
+> 1 | class f { constructor(){ class super() { } }}
+    |                                ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){ class super.foo { }  }} 1`] = `
+"SyntaxError [1:31-1:36]: Unexpected strict mode reserved word
+> 1 | class f { constructor(){ class super.foo { }  }}
+    |                                ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){ class x { [super() y](){} } }} 1`] = `
+"SyntaxError [1:41-1:42]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f { constructor(){ class x { [super() y](){} } }}
+    |                                          ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){ class x { [super()](){} } }} 1`] = `
+"SyntaxError [1:41-1:42]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f { constructor(){ class x { [super()](){} } }}
+    |                                          ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){ class x { [super.foo y](){} } }} 1`] = `
+"SyntaxError [1:46-1:47]: Expected ']'
+> 1 | class f { constructor(){ class x { [super.foo y](){} } }}
+    |                                               ^ Expected ']'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){ class x { foo(super()){} } }} 1`] = `
+"SyntaxError [1:39-1:44]: Invalid keyword
+> 1 | class f { constructor(){ class x { foo(super()){} } }}
+    |                                        ^^^^^ Invalid keyword"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){ class x { foo(super.foo){} }  }} 1`] = `
+"SyntaxError [1:39-1:44]: Invalid keyword
+> 1 | class f { constructor(){ class x { foo(super.foo){} }  }}
+    |                                        ^^^^^ Invalid keyword"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){ class x { foo(x=new (super())()){} } }} 1`] = `
+"SyntaxError [1:51-1:52]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f { constructor(){ class x { foo(x=new (super())()){} } }}
+    |                                                    ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){ class x { foo(x=super() y){} } }} 1`] = `
+"SyntaxError [1:46-1:47]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f { constructor(){ class x { foo(x=super() y){} } }}
+    |                                               ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){ class x { foo(x=super()){} } }} 1`] = `
+"SyntaxError [1:46-1:47]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f { constructor(){ class x { foo(x=super()){} } }}
+    |                                               ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){ class x { foo(x=super.foo y){} } }} 1`] = `
+"SyntaxError [1:51-1:52]: Expected ')'
+> 1 | class f { constructor(){ class x { foo(x=super.foo y){} } }}
+    |                                                    ^ Expected ')'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){ class x { super()(){} } }} 1`] = `
+"SyntaxError [1:42-1:43]: Expected '{'
+> 1 | class f { constructor(){ class x { super()(){} } }}
+    |                                           ^ Expected '{'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){ class x { super.foo(){} } }} 1`] = `
+"SyntaxError [1:40-1:41]: Unexpected token: '.'
+> 1 | class f { constructor(){ class x { super.foo(){} } }}
+    |                                         ^ Unexpected token: '.'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){ class x extends feh(super.foo y) { }  }} 1`] = `
+"SyntaxError [1:55-1:56]: Expected ')'
+> 1 | class f { constructor(){ class x extends feh(super.foo y) { }  }}
+    |                                                        ^ Expected ')'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){ class x extends super() {} }} 1`] = `
+"SyntaxError [1:46-1:47]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f { constructor(){ class x extends super() {} }}
+    |                                               ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){ class x extends super() y {} }} 1`] = `
+"SyntaxError [1:46-1:47]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f { constructor(){ class x extends super() y {} }}
+    |                                               ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f { constructor(){ class x extends super.foo y { }  }} 1`] = `
+"SyntaxError [1:51-1:52]: Expected '{'
+> 1 | class f { constructor(){ class x extends super.foo y { }  }}
+    |                                                    ^ Expected '{'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class super { }  }} 1`] = `
+"SyntaxError [1:43-1:48]: Unexpected strict mode reserved word
+> 1 | class f extends bar { constructor(){ class super { }  }}
+    |                                            ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class super() {} }} 1`] = `
+"SyntaxError [1:43-1:48]: Unexpected strict mode reserved word
+> 1 | class f extends bar { constructor(){ class super() {} }}
+    |                                            ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class super.foo { }  }} 1`] = `
+"SyntaxError [1:43-1:48]: Unexpected strict mode reserved word
+> 1 | class f extends bar { constructor(){ class super.foo { }  }}
+    |                                            ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class x { [super y](){} }  }} 1`] = `
+"SyntaxError [1:54-1:55]: Unexpected token: 'super'
+> 1 | class f extends bar { constructor(){ class x { [super y](){} }  }}
+    |                                                       ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class x { [super.foo y](){} }  }} 1`] = `
+"SyntaxError [1:58-1:59]: Expected ']'
+> 1 | class f extends bar { constructor(){ class x { [super.foo y](){} }  }}
+    |                                                           ^ Expected ']'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class x { [super](){} }  }} 1`] = `
+"SyntaxError [1:53-1:54]: Unexpected token: 'super'
+> 1 | class f extends bar { constructor(){ class x { [super](){} }  }}
+    |                                                      ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class x { foo(super()){} } }} 1`] = `
+"SyntaxError [1:51-1:56]: Invalid keyword
+> 1 | class f extends bar { constructor(){ class x { foo(super()){} } }}
+    |                                                    ^^^^^ Invalid keyword"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class x { foo(super){} }  }} 1`] = `
+"SyntaxError [1:51-1:56]: Invalid keyword
+> 1 | class f extends bar { constructor(){ class x { foo(super){} }  }}
+    |                                                    ^^^^^ Invalid keyword"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class x { foo(super.foo){} }  }} 1`] = `
+"SyntaxError [1:51-1:56]: Invalid keyword
+> 1 | class f extends bar { constructor(){ class x { foo(super.foo){} }  }}
+    |                                                    ^^^^^ Invalid keyword"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class x { foo(x=new (super)()){} }  }} 1`] = `
+"SyntaxError [1:63-1:64]: Unexpected token: 'super'
+> 1 | class f extends bar { constructor(){ class x { foo(x=new (super)()){} }  }}
+    |                                                                ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class x { foo(x=super y){} }  }} 1`] = `
+"SyntaxError [1:59-1:60]: Unexpected token: 'super'
+> 1 | class f extends bar { constructor(){ class x { foo(x=super y){} }  }}
+    |                                                            ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class x { foo(x=super()){} } }} 1`] = `
+"SyntaxError [1:58-1:59]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f extends bar { constructor(){ class x { foo(x=super()){} } }}
+    |                                                           ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class x { foo(x=super){} }  }} 1`] = `
+"SyntaxError [1:58-1:59]: Unexpected token: 'super'
+> 1 | class f extends bar { constructor(){ class x { foo(x=super){} }  }}
+    |                                                           ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class x { foo(x=super.foo y){} }  }} 1`] = `
+"SyntaxError [1:63-1:64]: Expected ')'
+> 1 | class f extends bar { constructor(){ class x { foo(x=super.foo y){} }  }}
+    |                                                                ^ Expected ')'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class x { super()(){} }  }} 1`] = `
+"SyntaxError [1:54-1:55]: Expected '{'
+> 1 | class f extends bar { constructor(){ class x { super()(){} }  }}
+    |                                                       ^ Expected '{'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class x { super.foo(){} }  }} 1`] = `
+"SyntaxError [1:52-1:53]: Unexpected token: '.'
+> 1 | class f extends bar { constructor(){ class x { super.foo(){} }  }}
+    |                                                     ^ Unexpected token: '.'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class x extends feh(super y) { }  }} 1`] = `
+"SyntaxError [1:63-1:64]: Unexpected token: 'super'
+> 1 | class f extends bar { constructor(){ class x extends feh(super y) { }  }}
+    |                                                                ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class x extends feh(super) { }  }} 1`] = `
+"SyntaxError [1:62-1:63]: Unexpected token: 'super'
+> 1 | class f extends bar { constructor(){ class x extends feh(super) { }  }}
+    |                                                               ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class x extends feh(super.foo y) { }  }} 1`] = `
+"SyntaxError [1:67-1:68]: Expected ')'
+> 1 | class f extends bar { constructor(){ class x extends feh(super.foo y) { }  }}
+    |                                                                    ^ Expected ')'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class x extends super { }  }} 1`] = `
+"SyntaxError [1:59-1:60]: Unexpected token: 'super'
+> 1 | class f extends bar { constructor(){ class x extends super { }  }}
+    |                                                            ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class x extends super y { }  }} 1`] = `
+"SyntaxError [1:59-1:60]: Unexpected token: 'super'
+> 1 | class f extends bar { constructor(){ class x extends super y { }  }}
+    |                                                            ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class x extends super() y {} }} 1`] = `
+"SyntaxError [1:61-1:62]: Expected '{'
+> 1 | class f extends bar { constructor(){ class x extends super() y {} }}
+    |                                                              ^ Expected '{'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { constructor(){ class x extends super.foo y { }  }} 1`] = `
+"SyntaxError [1:63-1:64]: Expected '{'
+> 1 | class f extends bar { constructor(){ class x extends super.foo y { }  }}
+    |                                                                ^ Expected '{'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class super {} }} 1`] = `
+"SyntaxError [1:35-1:40]: Unexpected strict mode reserved word
+> 1 | class f extends bar { xxx(){ class super {} }}
+    |                                    ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class super() {} }} 1`] = `
+"SyntaxError [1:35-1:40]: Unexpected strict mode reserved word
+> 1 | class f extends bar { xxx(){ class super() {} }}
+    |                                    ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class super.foo { }  }} 1`] = `
+"SyntaxError [1:35-1:40]: Unexpected strict mode reserved word
+> 1 | class f extends bar { xxx(){ class super.foo { }  }}
+    |                                    ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x { [super y](){} }  }} 1`] = `
+"SyntaxError [1:46-1:47]: Unexpected token: 'super'
+> 1 | class f extends bar { xxx(){ class x { [super y](){} }  }}
+    |                                               ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x { [super() y](){} } }} 1`] = `
+"SyntaxError [1:45-1:46]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f extends bar { xxx(){ class x { [super() y](){} } }}
+    |                                              ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x { [super()](){} } }} 1`] = `
+"SyntaxError [1:45-1:46]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f extends bar { xxx(){ class x { [super()](){} } }}
+    |                                              ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x { [super.foo y](){} }  }} 1`] = `
+"SyntaxError [1:50-1:51]: Expected ']'
+> 1 | class f extends bar { xxx(){ class x { [super.foo y](){} }  }}
+    |                                                   ^ Expected ']'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x { [super](){} }  }} 1`] = `
+"SyntaxError [1:45-1:46]: Unexpected token: 'super'
+> 1 | class f extends bar { xxx(){ class x { [super](){} }  }}
+    |                                              ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x { foo(super()){} }  }} 1`] = `
+"SyntaxError [1:43-1:48]: Invalid keyword
+> 1 | class f extends bar { xxx(){ class x { foo(super()){} }  }}
+    |                                            ^^^^^ Invalid keyword"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x { foo(super){} }  }} 1`] = `
+"SyntaxError [1:43-1:48]: Invalid keyword
+> 1 | class f extends bar { xxx(){ class x { foo(super){} }  }}
+    |                                            ^^^^^ Invalid keyword"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x { foo(x=new (super())()){} } }} 1`] = `
+"SyntaxError [1:55-1:56]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f extends bar { xxx(){ class x { foo(x=new (super())()){} } }}
+    |                                                        ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x { foo(x=new (super)()){} }  }} 1`] = `
+"SyntaxError [1:55-1:56]: Unexpected token: 'super'
+> 1 | class f extends bar { xxx(){ class x { foo(x=new (super)()){} }  }}
+    |                                                        ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x { foo(x=super y){} }  }} 1`] = `
+"SyntaxError [1:51-1:52]: Unexpected token: 'super'
+> 1 | class f extends bar { xxx(){ class x { foo(x=super y){} }  }}
+    |                                                    ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x { foo(x=super() y){} } }} 1`] = `
+"SyntaxError [1:50-1:51]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f extends bar { xxx(){ class x { foo(x=super() y){} } }}
+    |                                                   ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x { foo(x=super){} }  }} 1`] = `
+"SyntaxError [1:50-1:51]: Unexpected token: 'super'
+> 1 | class f extends bar { xxx(){ class x { foo(x=super){} }  }}
+    |                                                   ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x { foo(x=super.foo y){} }  }} 1`] = `
+"SyntaxError [1:55-1:56]: Expected ')'
+> 1 | class f extends bar { xxx(){ class x { foo(x=super.foo y){} }  }}
+    |                                                        ^ Expected ')'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x { super()(){} } }} 1`] = `
+"SyntaxError [1:46-1:47]: Expected '{'
+> 1 | class f extends bar { xxx(){ class x { super()(){} } }}
+    |                                               ^ Expected '{'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x { super.foo(){} }  }} 1`] = `
+"SyntaxError [1:44-1:45]: Unexpected token: '.'
+> 1 | class f extends bar { xxx(){ class x { super.foo(){} }  }}
+    |                                             ^ Unexpected token: '.'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x extends feh(super y) { }  }} 1`] = `
+"SyntaxError [1:55-1:56]: Unexpected token: 'super'
+> 1 | class f extends bar { xxx(){ class x extends feh(super y) { }  }}
+    |                                                        ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x extends feh(super() y) { } }} 1`] = `
+"SyntaxError [1:54-1:55]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f extends bar { xxx(){ class x extends feh(super() y) { } }}
+    |                                                       ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x extends feh(super()) {} }} 1`] = `
+"SyntaxError [1:54-1:55]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f extends bar { xxx(){ class x extends feh(super()) {} }}
+    |                                                       ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x extends feh(super) { }  }} 1`] = `
+"SyntaxError [1:54-1:55]: Unexpected token: 'super'
+> 1 | class f extends bar { xxx(){ class x extends feh(super) { }  }}
+    |                                                       ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x extends feh(super.foo y) { }  }} 1`] = `
+"SyntaxError [1:59-1:60]: Expected ')'
+> 1 | class f extends bar { xxx(){ class x extends feh(super.foo y) { }  }}
+    |                                                            ^ Expected ')'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x extends super { }  }} 1`] = `
+"SyntaxError [1:51-1:52]: Unexpected token: 'super'
+> 1 | class f extends bar { xxx(){ class x extends super { }  }}
+    |                                                    ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x extends super y { }  }} 1`] = `
+"SyntaxError [1:51-1:52]: Unexpected token: 'super'
+> 1 | class f extends bar { xxx(){ class x extends super y { }  }}
+    |                                                    ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x extends super() { }  }} 1`] = `
+"SyntaxError [1:50-1:51]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f extends bar { xxx(){ class x extends super() { }  }}
+    |                                                   ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x extends super() y { }  }} 1`] = `
+"SyntaxError [1:50-1:51]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class f extends bar { xxx(){ class x extends super() y { }  }}
+    |                                                   ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class f extends bar { xxx(){ class x extends super.foo y { }  }} 1`] = `
+"SyntaxError [1:55-1:56]: Expected '{'
+> 1 | class f extends bar { xxx(){ class x extends super.foo y { }  }}
+    |                                                        ^ Expected '{'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class super { } 1`] = `
+"SyntaxError [1:6-1:11]: Unexpected strict mode reserved word
+> 1 | class super { }
+    |       ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class super.foo { } 1`] = `
+"SyntaxError [1:6-1:11]: Unexpected strict mode reserved word
+> 1 | class super.foo { }
+    |       ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { [super y](){} } 1`] = `
+"SyntaxError [1:17-1:18]: Unexpected token: 'super'
+> 1 | class x { [super y](){} }
+    |                  ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { [super() y](){} } 1`] = `
+"SyntaxError [1:16-1:17]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class x { [super() y](){} }
+    |                 ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { [super()](){} } 1`] = `
+"SyntaxError [1:16-1:17]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class x { [super()](){} }
+    |                 ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { [super.foo y](){} } 1`] = `
+"SyntaxError [1:16-1:17]: Member access on super must be in a method
+> 1 | class x { [super.foo y](){} }
+    |                 ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { [super.foo](){} } 1`] = `
+"SyntaxError [1:16-1:17]: Member access on super must be in a method
+> 1 | class x { [super.foo](){} }
+    |                 ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { [super](){} } 1`] = `
+"SyntaxError [1:16-1:17]: Unexpected token: 'super'
+> 1 | class x { [super](){} }
+    |                 ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { constructor(){ function f(){ super.foo; } }} 1`] = `
+"SyntaxError [1:44-1:45]: Member access on super must be in a method
+> 1 | class x { constructor(){ function f(){ super.foo; } }}
+    |                                             ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { constructor(){ return () => () => super(); }} 1`] = `
+"SyntaxError [1:49-1:50]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class x { constructor(){ return () => () => super(); }}
+    |                                                  ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { foo(){ function f(){ super.foo; } }} 1`] = `
+"SyntaxError [1:36-1:37]: Member access on super must be in a method
+> 1 | class x { foo(){ function f(){ super.foo; } }}
+    |                                     ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { foo(){ super(); } } 1`] = `
+"SyntaxError [1:22-1:23]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class x { foo(){ super(); } }
+    |                       ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { foo(super()){} } 1`] = `
+"SyntaxError [1:14-1:19]: Invalid keyword
+> 1 | class x { foo(super()){} }
+    |               ^^^^^ Invalid keyword"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { foo(super){} } 1`] = `
+"SyntaxError [1:14-1:19]: Invalid keyword
+> 1 | class x { foo(super){} }
+    |               ^^^^^ Invalid keyword"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { foo(super.foo){} } 1`] = `
+"SyntaxError [1:14-1:19]: Invalid keyword
+> 1 | class x { foo(super.foo){} }
+    |               ^^^^^ Invalid keyword"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { foo(x=new (super())()){} } 1`] = `
+"SyntaxError [1:26-1:27]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class x { foo(x=new (super())()){} }
+    |                           ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { foo(x=new (super)()){} } 1`] = `
+"SyntaxError [1:26-1:27]: Unexpected token: 'super'
+> 1 | class x { foo(x=new (super)()){} }
+    |                           ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { foo(x=new (super)()){} } 2`] = `
+"SyntaxError [1:26-1:27]: Unexpected token: 'super'
+> 1 | class x { foo(x=new (super)()){} }
+    |                           ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { foo(x=super y){} } 1`] = `
+"SyntaxError [1:22-1:23]: Unexpected token: 'super'
+> 1 | class x { foo(x=super y){} }
+    |                       ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { foo(x=super() y){} } 1`] = `
+"SyntaxError [1:21-1:22]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class x { foo(x=super() y){} }
+    |                      ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { foo(x=super()){} } 1`] = `
+"SyntaxError [1:21-1:22]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class x { foo(x=super()){} }
+    |                      ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { foo(x=super){} } 1`] = `
+"SyntaxError [1:21-1:22]: Unexpected token: 'super'
+> 1 | class x { foo(x=super){} }
+    |                      ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { super()(){} } 1`] = `
+"SyntaxError [1:17-1:18]: Expected '{'
+> 1 | class x { super()(){} }
+    |                  ^ Expected '{'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x { super.foo(){} } 1`] = `
+"SyntaxError [1:15-1:16]: Unexpected token: '.'
+> 1 | class x { super.foo(){} }
+    |                ^ Unexpected token: '.'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x extends feh(super() y) { } 1`] = `
+"SyntaxError [1:25-1:26]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class x extends feh(super() y) { }
+    |                          ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x extends feh(super()) { } 1`] = `
+"SyntaxError [1:25-1:26]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class x extends feh(super()) { }
+    |                          ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x extends feh(super.foo y) { } 1`] = `
+"SyntaxError [1:25-1:26]: Member access on super must be in a method
+> 1 | class x extends feh(super.foo y) { }
+    |                          ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x extends feh(super.foo) { } 1`] = `
+"SyntaxError [1:25-1:26]: Member access on super must be in a method
+> 1 | class x extends feh(super.foo) { }
+    |                          ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x extends foo(super y) { } 1`] = `
+"SyntaxError [1:26-1:27]: Unexpected token: 'super'
+> 1 | class x extends foo(super y) { }
+    |                           ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x extends foo(super) { } 1`] = `
+"SyntaxError [1:25-1:26]: Unexpected token: 'super'
+> 1 | class x extends foo(super) { }
+    |                          ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x extends super { } 1`] = `
+"SyntaxError [1:22-1:23]: Unexpected token: 'super'
+> 1 | class x extends super { }
+    |                       ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x extends super y { } 1`] = `
+"SyntaxError [1:22-1:23]: Unexpected token: 'super'
+> 1 | class x extends super y { }
+    |                       ^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x extends super() { } 1`] = `
+"SyntaxError [1:21-1:22]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class x extends super() { }
+    |                      ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x extends super() y { } 1`] = `
+"SyntaxError [1:21-1:22]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class x extends super() y { }
+    |                      ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x extends super.foo { } 1`] = `
+"SyntaxError [1:21-1:22]: Member access on super must be in a method
+> 1 | class x extends super.foo { }
+    |                      ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x extends super.foo y { } 1`] = `
+"SyntaxError [1:21-1:22]: Member access on super must be in a method
+> 1 | class x extends super.foo y { }
+    |                      ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x extends y { dsda(){ return (a=super()) => a; }} 1`] = `
+"SyntaxError [1:43-1:44]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class x extends y { dsda(){ return (a=super()) => a; }}
+    |                                            ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x extends y { fo(){ return () => super(); }} 1`] = `
+"SyntaxError [1:44-1:45]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class x extends y { fo(){ return () => super(); }}
+    |                                             ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x extends y { foo(){ return () => () => super(); }} 1`] = `
+"SyntaxError [1:51-1:52]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class x extends y { foo(){ return () => () => super(); }}
+    |                                                    ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > class x extends y { foo(){ super(); } } 1`] = `
+"SyntaxError [1:32-1:33]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class x extends y { foo(){ super(); } }
+    |                                 ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > const x = 5 + super(); 1`] = `
+"SyntaxError [1:19-1:20]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | const x = 5 + super();
+    |                    ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > function f(){ super(); } 1`] = `
+"SyntaxError [1:19-1:20]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | function f(){ super(); }
+    |                    ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > function f(){ super.foo; } 1`] = `
+"SyntaxError [1:19-1:20]: Member access on super must be in a method
+> 1 | function f(){ super.foo; }
+    |                    ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > function f(x = super()){ } 1`] = `
+"SyntaxError [1:20-1:21]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | function f(x = super()){ }
+    |                     ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > function f(x=super.foo){ } 1`] = `
+"SyntaxError [1:18-1:19]: Member access on super must be in a method
+> 1 | function f(x=super.foo){ }
+    |                   ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > function wrap() { function foo(a = super(), b = super.foo()) {}} 1`] = `
+"SyntaxError [1:40-1:41]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | function wrap() { function foo(a = super(), b = super.foo()) {}}
+    |                                         ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > function x(){function x(){super();}} 1`] = `
+"SyntaxError [1:31-1:32]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | function x(){function x(){super();}}
+    |                                ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > function* a(b){ super.c } 1`] = `
+"SyntaxError [1:21-1:22]: Member access on super must be in a method
+> 1 | function* a(b){ super.c }
+    |                      ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > function* a(b){ super.c } 2`] = `
+"SyntaxError [1:21-1:22]: Member access on super must be in a method
+> 1 | function* a(b){ super.c }
+    |                      ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > function* foo(a = 1 + (yield 2)) { super.foo() } 1`] = `
+"SyntaxError [1:29-1:30]: Yield expression not allowed in formal parameter
+> 1 | function* foo(a = 1 + (yield 2)) { super.foo() }
+    |                              ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > g={f: function f(){ super() }] 1`] = `
+"SyntaxError [1:25-1:26]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | g={f: function f(){ super() }]
+    |                          ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > g=function f(x = super()){ } 1`] = `
+"SyntaxError [1:22-1:23]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | g=function f(x = super()){ }
+    |                       ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > let f = () => super(); 1`] = `
+"SyntaxError [1:19-1:20]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | let f = () => super();
+    |                    ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > let f = () => super.foo; 1`] = `
+"SyntaxError [1:19-1:20]: Member access on super must be in a method
+> 1 | let f = () => super.foo;
+    |                    ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > let f = (a=super()) => a; 1`] = `
+"SyntaxError [1:16-1:17]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | let f = (a=super()) => a;
+    |                 ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > let f = (a=super.foo) => a; 1`] = `
+"SyntaxError [1:16-1:17]: Member access on super must be in a method
+> 1 | let f = (a=super.foo) => a;
+    |                 ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > let x = { foo(){ super(); } } 1`] = `
+"SyntaxError [1:22-1:23]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | let x = { foo(){ super(); } }
+    |                       ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > let x = { foo(){ super(); } } 2`] = `
+"SyntaxError [1:22-1:23]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | let x = { foo(){ super(); } }
+    |                       ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > ref = async function*() { super(); } 1`] = `
+"SyntaxError [1:31-1:32]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | ref = async function*() { super(); }
+    |                                ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > super 1`] = `
+"SyntaxError [1:0-1:5]: Unexpected token: 'super'
+> 1 | super
+    | ^^^^^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > super 2`] = `
+"SyntaxError [1:0-1:5]: Unexpected token: 'super'
+> 1 | super
+    | ^^^^^ Unexpected token: 'super'"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > super() 1`] = `
+"SyntaxError [1:5-1:6]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | super()
+    |      ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > super() 2`] = `
+"SyntaxError [1:5-1:6]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | super()
+    |      ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > super.foo; 1`] = `
+"SyntaxError [1:5-1:6]: Member access on super must be in a method
+> 1 | super.foo;
+    |      ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > super.property; 1`] = `
+"SyntaxError [1:5-1:6]: Member access on super must be in a method
+> 1 | super.property;
+    |      ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > super[] 1`] = `
+"SyntaxError [1:5-1:6]: Member access on super must be in a method
+> 1 | super[]
+    |      ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > super[] 2`] = `
+"SyntaxError [1:5-1:6]: Member access on super must be in a method
+> 1 | super[]
+    |      ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > var C = class { async *method() { super(); } } 1`] = `
+"SyntaxError [1:39-1:40]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | var C = class { async *method() { super(); } }
+    |                                        ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > var C = class { async *method() { var x = { y: function () { super(); } } } } 1`] = `
+"SyntaxError [1:66-1:67]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | var C = class { async *method() { var x = { y: function () { super(); } } } }
+    |                                                                   ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > var C = class { async *method() { var x = { y: function () { super(); } } } } 2`] = `
+"SyntaxError [1:66-1:67]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | var C = class { async *method() { var x = { y: function () { super(); } } } }
+    |                                                                   ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > var C = class { static async *method() { var x = { y: function () { super(); } } } } 1`] = `
+"SyntaxError [1:73-1:74]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | var C = class { static async *method() { var x = { y: function () { super(); } } } }
+    |                                                                          ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > var C = class { static async *method() { var x = function () { super(); } } } 1`] = `
+"SyntaxError [1:68-1:69]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | var C = class { static async *method() { var x = function () { super(); } } }
+    |                                                                     ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > var C = class { static async *method() { var x = function () { super(); } } } 2`] = `
+"SyntaxError [1:68-1:69]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | var C = class { static async *method() { var x = function () { super(); } } }
+    |                                                                     ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > var f = function*() { super(); } 1`] = `
+"SyntaxError [1:27-1:28]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | var f = function*() { super(); }
+    |                            ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > var foo = function*(a = 1 + (yield 2)) { super.foo()  1`] = `
+"SyntaxError [1:35-1:36]: Yield expression not allowed in formal parameter
+> 1 | var foo = function*(a = 1 + (yield 2)) { super.foo() 
+    |                                    ^ Yield expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > var gen = { async *method() { super(); } } 1`] = `
+"SyntaxError [1:35-1:36]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | var gen = { async *method() { super(); } }
+    |                                    ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > var gen = { async *method() { var x = { y: function () { super(); } } } } 1`] = `
+"SyntaxError [1:62-1:63]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | var gen = { async *method() { var x = { y: function () { super(); } } } }
+    |                                                               ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > x = function(){ super.foo; } 1`] = `
+"SyntaxError [1:21-1:22]: Member access on super must be in a method
+> 1 | x = function(){ super.foo; }
+    |                      ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > x={ dsda(){ return (a=super()) => a; }} 1`] = `
+"SyntaxError [1:27-1:28]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | x={ dsda(){ return (a=super()) => a; }}
+    |                            ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > x={ fo(){ return () => super(); }} 1`] = `
+"SyntaxError [1:28-1:29]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | x={ fo(){ return () => super(); }}
+    |                             ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > x={ foo(){ return () => () => super(); }} 1`] = `
+"SyntaxError [1:35-1:36]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | x={ foo(){ return () => () => super(); }}
+    |                                    ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > x={ foo: function(){ super.foo; }} 1`] = `
+"SyntaxError [1:26-1:27]: Member access on super must be in a method
+> 1 | x={ foo: function(){ super.foo; }}
+    |                           ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Super > Expressions - Super (fail) > x={constructor(){ super(); }} 1`] = `
+"SyntaxError [1:23-1:24]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | x={constructor(){ super(); }}
+    |                        ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
 exports[`Expressions - Super > Expressions - Super (pass) > class C { constructor() {new super.x; } } 1`] = `
 {
   "body": [

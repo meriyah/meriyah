@@ -1,5 +1,65 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Statements  Switch > Statements  Switch (fail) > switch (a) { case b: let [x] } 1`] = `
+"SyntaxError [1:29-1:30]: Missing initializer in destructuring declaration
+> 1 | switch (a) { case b: let [x] }
+    |                              ^ Missing initializer in destructuring declaration"
+`;
+
+exports[`Statements  Switch > Statements  Switch (fail) > switch(0) { case 0: !function(){ break; }; } 1`] = `
+"SyntaxError [1:38-1:39]: Illegal break statement
+> 1 | switch(0) { case 0: !function(){ break; }; }
+    |                                       ^ Illegal break statement"
+`;
+
+exports[`Statements  Switch > Statements  Switch (fail) > switch(0) { case 0: function f(){ break; } } 1`] = `
+"SyntaxError [1:39-1:40]: Illegal break statement
+> 1 | switch(0) { case 0: function f(){ break; } }
+    |                                        ^ Illegal break statement"
+`;
+
+exports[`Statements  Switch > Statements  Switch (fail) > switch(0) { default: !function(){ break; }; } 1`] = `
+"SyntaxError [1:39-1:40]: Illegal break statement
+> 1 | switch(0) { default: !function(){ break; }; }
+    |                                        ^ Illegal break statement"
+`;
+
+exports[`Statements  Switch > Statements  Switch (fail) > switch(0) { default: function f(){ break; } } 1`] = `
+"SyntaxError [1:40-1:41]: Illegal break statement
+> 1 | switch(0) { default: function f(){ break; } }
+    |                                         ^ Illegal break statement"
+`;
+
+exports[`Statements  Switch > Statements  Switch (fail) > switch(x) { case y: break; case z: break; default: default: } 1`] = `
+"SyntaxError [1:58-1:59]: More than one default clause in switch statement
+> 1 | switch(x) { case y: break; case z: break; default: default: }
+    |                                                           ^ More than one default clause in switch statement"
+`;
+
+exports[`Statements  Switch > Statements  Switch (fail) > switch(x) { default: break; case y: break; case z: break; default: break; } 1`] = `
+"SyntaxError [1:65-1:66]: More than one default clause in switch statement
+> 1 | switch(x) { default: break; case y: break; case z: break; default: break; }
+    |                                                                  ^ More than one default clause in switch statement"
+`;
+
+exports[`Statements  Switch > Statements  Switch (fail) > switch(x) { default: break; default: break; } 1`] = `
+"SyntaxError [1:35-1:36]: More than one default clause in switch statement
+> 1 | switch(x) { default: break; default: break; }
+    |                                    ^ More than one default clause in switch statement"
+`;
+
+exports[`Statements  Switch > Statements  Switch (fail) > switch(x) { default: default: } 1`] = `
+"SyntaxError [1:28-1:29]: More than one default clause in switch statement
+> 1 | switch(x) { default: default: }
+    |                             ^ More than one default clause in switch statement"
+`;
+
+exports[`Statements  Switch > Statements  Switch (fail) > switch(x) { default: default: case y: break; case z: break; } 1`] = `
+"SyntaxError [1:28-1:29]: More than one default clause in switch statement
+> 1 | switch(x) { default: default: case y: break; case z: break; }
+    |                             ^ More than one default clause in switch statement"
+`;
+
 exports[`Statements  Switch > Statements  Switch (pass) > for (let i = 0; i < 1; ++i) {
         switch (a) {
           case 2:

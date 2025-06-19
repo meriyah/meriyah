@@ -1,5 +1,391 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Expressions - Async function > Expressions - Async function (fail) > "use strict"; (async function foo() { } () => 1) 1`] = `
+"SyntaxError [1:43-1:45]: Expected ')'
+> 1 | "use strict"; (async function foo() { } () => 1)
+    |                                            ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > "use strict"; (async function foo() { } => 1) 1`] = `
+"SyntaxError [1:40-1:42]: Expected ')'
+> 1 | "use strict"; (async function foo() { } => 1)
+    |                                         ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > "use strict"; (async function foo() { } bar => 1) 1`] = `
+"SyntaxError [1:40-1:43]: Expected ')'
+> 1 | "use strict"; (async function foo() { } bar => 1)
+    |                                         ^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > "use strict"; (async function() { } () => 1) 1`] = `
+"SyntaxError [1:39-1:41]: Expected ')'
+> 1 | "use strict"; (async function() { } () => 1)
+    |                                        ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > "use strict"; (async function() { } => 1) 1`] = `
+"SyntaxError [1:36-1:38]: Expected ')'
+> 1 | "use strict"; (async function() { } => 1)
+    |                                     ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > "use strict"; (async.foo bar => 1) 1`] = `
+"SyntaxError [1:25-1:28]: Expected ')'
+> 1 | "use strict"; (async.foo bar => 1)
+    |                          ^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > "use strict"; async function asyncFunctionDeclaration(await) {} 1`] = `
+"SyntaxError [1:54-1:59]: cannot use "await" as identifier inside an async function
+> 1 | "use strict"; async function asyncFunctionDeclaration(await) {}
+    |                                                       ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > 'use strict'; (async function eval() {}) 1`] = `
+"SyntaxError [1:30-1:34]: Unexpected eval or arguments in strict mode
+> 1 | 'use strict'; (async function eval() {})
+    |                               ^^^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > ({async async = 0} = {}) 1`] = `
+"SyntaxError [1:14-1:15]: Expected '('
+> 1 | ({async async = 0} = {})
+    |               ^ Expected '('"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > ({async async: 0}) 1`] = `
+"SyntaxError [1:13-1:14]: Expected '('
+> 1 | ({async async: 0})
+    |              ^ Expected '('"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > ({async async}) 1`] = `
+"SyntaxError [1:13-1:14]: Expected '('
+> 1 | ({async async})
+    |              ^ Expected '('"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async 
+ function(){}) 1`] = `
+"SyntaxError [2:1-2:9]: Expected ')'
+  1 | (async 
+> 2 |  function(){})
+    |  ^^^^^^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function (x = 1) {"use strict"}) 1`] = `
+"SyntaxError [1:25-1:38]: Illegal 'use strict' directive in function with non-simple parameter list
+> 1 | (async function (x = 1) {"use strict"})
+    |                          ^^^^^^^^^^^^^ Illegal 'use strict' directive in function with non-simple parameter list"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function *() { var await; }) 1`] = `
+"SyntaxError [1:26-1:31]: cannot use "await" as identifier inside an async function
+> 1 | (async function *() { var await; })
+    |                           ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function a() { super(); }) 1`] = `
+"SyntaxError [1:27-1:28]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | (async function a() { super(); })
+    |                            ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function a() { super.prop(); }) 1`] = `
+"SyntaxError [1:27-1:28]: Member access on super must be in a method
+> 1 | (async function a() { super.prop(); })
+    |                            ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function a(k = await 3) {}) 1`] = `
+"SyntaxError [1:22-1:27]: Await expression not allowed in formal parameter
+> 1 | (async function a(k = await 3) {})
+    |                       ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function a(k = super()) {}) 1`] = `
+"SyntaxError [1:27-1:28]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | (async function a(k = super()) {})
+    |                            ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function a(k = super.prop) {}) 1`] = `
+"SyntaxError [1:27-1:28]: Member access on super must be in a method
+> 1 | (async function a(k = super.prop) {})
+    |                            ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function arguments () { "use strict"; }) 1`] = `
+"SyntaxError [1:45-1:46]: Unexpected eval or arguments in strict mode
+> 1 | (async function arguments () { "use strict"; })
+    |                                              ^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function await() { }) 1`] = `
+"SyntaxError [1:16-1:21]: Can not use \`await\` as identifier in module or async func
+> 1 | (async function await() { })
+    |                 ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function f (...a,) {  }) 1`] = `
+"SyntaxError [1:23-1:24]: The binding declaration is not destructible
+> 1 | (async function f (...a,) {  })
+    |                        ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function foo() { return {await} }) 1`] = `
+"SyntaxError [1:37-1:38]: Can not use \`await\` as identifier in module or async func
+> 1 | (async function foo() { return {await} })
+    |                                      ^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function foo(await) { }) 1`] = `
+"SyntaxError [1:20-1:25]: cannot use "await" as identifier inside an async function
+> 1 | (async function foo(await) { })
+    |                     ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function foo4() { } => 1) 1`] = `
+"SyntaxError [1:27-1:29]: Expected ')'
+> 1 | (async function foo4() { } => 1)
+    |                            ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function() { } () => 1) 1`] = `
+"SyntaxError [1:25-1:27]: Expected ')'
+> 1 | (async function() { } () => 1)
+    |                          ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function() { } () => 1) 2`] = `
+"SyntaxError [1:25-1:27]: Expected ')'
+> 1 | (async function() { } () => 1)
+    |                          ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function() { } => 1) 1`] = `
+"SyntaxError [1:22-1:24]: Expected ')'
+> 1 | (async function() { } => 1)
+    |                       ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function() { } foo5 => 1) 1`] = `
+"SyntaxError [1:22-1:26]: Expected ')'
+> 1 | (async function() { } foo5 => 1)
+    |                       ^^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function(...x = []) {}) 1`] = `
+"SyntaxError [1:25-1:26]: The binding declaration is not destructible
+> 1 | (async function(...x = []) {})
+    |                          ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function(...x = []) {}) 2`] = `
+"SyntaxError [1:25-1:26]: The binding declaration is not destructible
+> 1 | (async function(...x = []) {})
+    |                          ^ The binding declaration is not destructible"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function(k = await 3) {}) 1`] = `
+"SyntaxError [1:20-1:25]: Await expression not allowed in formal parameter
+> 1 | (async function(k = await 3) {})
+    |                     ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function(k = super()) {}) 1`] = `
+"SyntaxError [1:25-1:26]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | (async function(k = super()) {})
+    |                          ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async function(k = super.prop) {}) 1`] = `
+"SyntaxError [1:25-1:26]: Member access on super must be in a method
+> 1 | (async function(k = super.prop) {})
+    |                          ^ Member access on super must be in a method"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async.foo6 => 1) 1`] = `
+"SyntaxError [1:12-1:14]: Expected ')'
+> 1 | (async.foo6 => 1)
+    |             ^^ Expected ')'"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > (async.foo7 foo8 => 1) 1`] = `
+"SyntaxError [1:12-1:16]: Expected ')'
+> 1 | (async.foo7 foo8 => 1)
+    |             ^^^^ Expected ')'"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > a = (async (p\\u0061ckage) => { "use strict" }) 1`] = `
+"SyntaxError [1:38-1:39]: Unexpected strict mode reserved word
+> 1 | a = (async (p\\u0061ckage) => { "use strict" })
+    |                                       ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > a = (async (package) => { "use strict" }) 1`] = `
+"SyntaxError [1:39-1:40]: Unexpected strict mode reserved word
+> 1 | a = (async (package) => { "use strict" })
+    |                                        ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > a = async (p\\u0061ckage) => { "use strict" } 1`] = `
+"SyntaxError [1:37-1:38]: Unexpected strict mode reserved word
+> 1 | a = async (p\\u0061ckage) => { "use strict" }
+    |                                      ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > a = async (package) => { "use strict" } 1`] = `
+"SyntaxError [1:38-1:39]: Unexpected strict mode reserved word
+> 1 | a = async (package) => { "use strict" }
+    |                                       ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > a = async p\\u0061ckage => { "use strict" } 1`] = `
+"SyntaxError [1:35-1:36]: Unexpected strict mode reserved word
+> 1 | a = async p\\u0061ckage => { "use strict" }
+    |                                    ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > a = async package => { "use strict" } 1`] = `
+"SyntaxError [1:36-1:37]: Unexpected strict mode reserved word
+> 1 | a = async package => { "use strict" }
+    |                                     ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > async function *f(){ new await; } 1`] = `
+"SyntaxError [1:25-1:30]: cannot use "await" as identifier inside an async function
+> 1 | async function *f(){ new await; }
+    |                          ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > async function *f(await){} 1`] = `
+"SyntaxError [1:18-1:23]: cannot use "await" as identifier inside an async function
+> 1 | async function *f(await){}
+    |                   ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > async function a() { super(); } 1`] = `
+"SyntaxError [1:26-1:27]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | async function a() { super(); }
+    |                           ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > async function a(){     (foo = [{m: 5 + t(await bar)}]) => {}     } 1`] = `
+"SyntaxError [1:56-1:58]: Await expression not allowed in formal parameter
+> 1 | async function a(){     (foo = [{m: 5 + t(await bar)}]) => {}     }
+    |                                                         ^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > async function a(k = await 3) {} 1`] = `
+"SyntaxError [1:21-1:26]: Await expression not allowed in formal parameter
+> 1 | async function a(k = await 3) {}
+    |                      ^^^^^ Await expression not allowed in formal parameter"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > async function f() { function g() { await 3; } } 1`] = `
+"SyntaxError [1:36-1:41]: Await is only valid in async functions
+> 1 | async function f() { function g() { await 3; } }
+    |                                     ^^^^^ Await is only valid in async functions"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > async function f(){ (new await foo) } 1`] = `
+"SyntaxError [1:25-1:30]: Unexpected token
+> 1 | async function f(){ (new await foo) }
+    |                          ^^^^^ Unexpected token"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > async function f(){ [new await foo] } 1`] = `
+"SyntaxError [1:25-1:30]: Unexpected token
+> 1 | async function f(){ [new await foo] }
+    |                          ^^^^^ Unexpected token"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > async function f(){ new await x; } 1`] = `
+"SyntaxError [1:24-1:29]: Unexpected token
+> 1 | async function f(){ new await x; }
+    |                         ^^^^^ Unexpected token"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > async function f(await){} 1`] = `
+"SyntaxError [1:17-1:22]: cannot use "await" as identifier inside an async function
+> 1 | async function f(await){}
+    |                  ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > async function foo() { return {await} } 1`] = `
+"SyntaxError [1:36-1:37]: Can not use \`await\` as identifier in module or async func
+> 1 | async function foo() { return {await} }
+    |                                     ^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > async function foo(await) { } 1`] = `
+"SyntaxError [1:19-1:24]: cannot use "await" as identifier inside an async function
+> 1 | async function foo(await) { }
+    |                    ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > async function wrap() {
+async function await() { }
+} 1`] = `
+"SyntaxError [2:15-2:20]: Can not use \`await\` as identifier in module or async func
+  1 | async function wrap() {
+> 2 | async function await() { }
+    |                ^^^^^ Can not use \`await\` as identifier in module or async func
+  3 | }"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > async function wrap() { async function await() { } }; 1`] = `
+"SyntaxError [1:39-1:44]: Can not use \`await\` as identifier in module or async func
+> 1 | async function wrap() { async function await() { } };
+    |                                        ^^^^^ Can not use \`await\` as identifier in module or async func"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > async function(){} 1`] = `
+"SyntaxError [1:14-1:15]: Function declaration must have a name in this context
+> 1 | async function(){}
+    |               ^ Function declaration must have a name in this context"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > async while (1) {} 1`] = `
+"SyntaxError [1:6-1:11]: Unexpected token: 'while'
+> 1 | async while (1) {}
+    |       ^^^^^ Unexpected token: 'while'"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > async(...a, b) => b 1`] = `
+"SyntaxError [1:15-1:17]: Invalid left-hand side in async arrow
+> 1 | async(...a, b) => b
+    |                ^^ Invalid left-hand side in async arrow"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > class C { async constructor() {} } 1`] = `
+"SyntaxError [1:27-1:28]: Class constructor may not be a accessor
+> 1 | class C { async constructor() {} }
+    |                            ^ Class constructor may not be a accessor"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > export async function() {} 1`] = `
+"SyntaxError [1:21-1:22]: Function declaration must have a name in this context
+> 1 | export async function() {}
+    |                      ^ Function declaration must have a name in this context"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > function f() { await 5; } 1`] = `
+"SyntaxError [1:15-1:20]: Await is only valid in async functions
+> 1 | function f() { await 5; }
+    |                ^^^^^ Await is only valid in async functions"
+`;
+
+exports[`Expressions - Async function > Expressions - Async function (fail) > if (async 
+ () => x) x 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | if (async 
+> 2 |  () => x) x
+    |     ^^ No line break is allowed after '=>'"
+`;
+
 exports[`Expressions - Async function > Expressions - Async function (pass) > "use strict"; ({ async yield() {} }); 1`] = `
 {
   "body": [

@@ -1,5 +1,23 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Expressions - Conditional > Expressions - Conditional (fail) > a ? await x : c 1`] = `
+"SyntaxError [1:10-1:11]: Expected ':'
+> 1 | a ? await x : c
+    |           ^ Expected ':'"
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (fail) > a ? b : await c 1`] = `
+"SyntaxError [1:14-1:15]: Unexpected token: 'identifier'
+> 1 | a ? b : await c
+    |               ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Expressions - Conditional > Expressions - Conditional (fail) > a ? b : yield c 1`] = `
+"SyntaxError [1:14-1:15]: Unexpected token: 'identifier'
+> 1 | a ? b : yield c
+    |               ^ Unexpected token: 'identifier'"
+`;
+
 exports[`Expressions - Conditional > Expressions - Conditional (pass) > "1" ? "" : "1" 1`] = `
 {
   "body": [

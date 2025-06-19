@@ -1,5 +1,567 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Declarations - const > Declarations - const (fail) > const
+foo 1`] = `
+"SyntaxError [2:0-2:3]: Missing initializer in const declaration
+  1 | const
+> 2 | foo
+    | ^^^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const
+foo() 1`] = `
+"SyntaxError [2:3-2:4]: Missing initializer in const declaration
+  1 | const
+> 2 | foo()
+    |    ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [(x)] = [] 1`] = `
+"SyntaxError [1:12-1:13]: The binding declaration is not destructible
+> 1 | const [(x)] = []
+    |             ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [++a] = []; 1`] = `
+"SyntaxError [1:12-1:13]: The binding declaration is not destructible
+> 1 | const [++a] = [];
+    |             ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [... ...foo] = obj; 1`] = `
+"SyntaxError [1:11-1:14]: Unexpected token: '...'
+> 1 | const [... ...foo] = obj;
+    |            ^^^ Unexpected token: '...'"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [... ...foo] = obj; 2`] = `
+"SyntaxError [1:11-1:14]: Unexpected token: '...'
+> 1 | const [... ...foo] = obj;
+    |            ^^^ Unexpected token: '...'"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [...,] = obj; 1`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: ','
+> 1 | const [...,] = obj;
+    |           ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [...[a, b],,] = obj; 1`] = `
+"SyntaxError [1:20-1:21]: The binding declaration is not destructible
+> 1 | const [...[a, b],,] = obj;
+    |                     ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [...[foo + bar]] = obj; 1`] = `
+"SyntaxError [1:23-1:24]: The binding declaration is not destructible
+> 1 | const [...[foo + bar]] = obj;
+    |                        ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [...[foo, bar],,] = obj; 1`] = `
+"SyntaxError [1:24-1:25]: The binding declaration is not destructible
+> 1 | const [...[foo, bar],,] = obj;
+    |                         ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [...[foo, bar],] = obj; 1`] = `
+"SyntaxError [1:23-1:24]: The binding declaration is not destructible
+> 1 | const [...[foo, bar],] = obj;
+    |                        ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [...[x], y] = [1, 2, 3]; 1`] = `
+"SyntaxError [1:18-1:19]: The binding declaration is not destructible
+> 1 | const [...[x], y] = [1, 2, 3];
+    |                   ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [...] = obj; 1`] = `
+"SyntaxError [1:10-1:11]: The rest operator is missing an argument
+> 1 | const [...] = obj;
+    |           ^ The rest operator is missing an argument"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [...] = obj; 2`] = `
+"SyntaxError [1:10-1:11]: The rest operator is missing an argument
+> 1 | const [...] = obj;
+    |           ^ The rest operator is missing an argument"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [...{ x }, y] = [1, 2, 3]; 1`] = `
+"SyntaxError [1:20-1:21]: The binding declaration is not destructible
+> 1 | const [...{ x }, y] = [1, 2, 3];
+    |                     ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [...a, b] = []; 1`] = `
+"SyntaxError [1:16-1:17]: The binding declaration is not destructible
+> 1 | const [...a, b] = [];
+    |                 ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [...bar = foo] = obj; 1`] = `
+"SyntaxError [1:21-1:22]: The binding declaration is not destructible
+> 1 | const [...bar = foo] = obj;
+    |                      ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [...foo, bar] = obj; 1`] = `
+"SyntaxError [1:20-1:21]: The binding declaration is not destructible
+> 1 | const [...foo, bar] = obj;
+    |                     ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [...foo,,] = obj; 1`] = `
+"SyntaxError [1:17-1:18]: The binding declaration is not destructible
+> 1 | const [...foo,,] = obj;
+    |                  ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [...foo,] = obj; 1`] = `
+"SyntaxError [1:16-1:17]: The binding declaration is not destructible
+> 1 | const [...foo,] = obj;
+    |                 ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [...foo,] = obj; 2`] = `
+"SyntaxError [1:16-1:17]: The binding declaration is not destructible
+> 1 | const [...foo,] = obj;
+    |                 ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [...x = []] = []; 1`] = `
+"SyntaxError [1:18-1:19]: The binding declaration is not destructible
+> 1 | const [...x = []] = [];
+    |                   ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [...x, y] = [1, 2, 3]; 1`] = `
+"SyntaxError [1:16-1:17]: The binding declaration is not destructible
+> 1 | const [...x, y] = [1, 2, 3];
+    |                 ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [..x] = obj; 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: '.'
+> 1 | const [..x] = obj;
+    |        ^ Unexpected token: '.'"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [..x] = obj; 2`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: '.'
+> 1 | const [..x] = obj;
+    |        ^ Unexpected token: '.'"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [.x] = obj; 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: '.'
+> 1 | const [.x] = obj;
+    |        ^ Unexpected token: '.'"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [.x] = obj; 2`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: '.'
+> 1 | const [.x] = obj;
+    |        ^ Unexpected token: '.'"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [[(a)], ((((((([b])))))))] = [[],[]]; 1`] = `
+"SyntaxError [1:33-1:34]: The binding declaration is not destructible
+> 1 | const [[(a)], ((((((([b])))))))] = [[],[]];
+    |                                  ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [1, a] = []; 1`] = `
+"SyntaxError [1:13-1:14]: The binding declaration is not destructible
+> 1 | const [1, a] = [];
+    |              ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [a)] = []; 1`] = `
+"SyntaxError [1:8-1:9]: Expected ']'
+> 1 | const [a)] = [];
+    |         ^ Expected ']'"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [a, let, b] = [1, 2, 3]; 1`] = `
+"SyntaxError [1:13-1:14]: 'A lexical declaration can't define a 'let' binding
+> 1 | const [a, let, b] = [1, 2, 3];
+    |              ^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [a--] = []; 1`] = `
+"SyntaxError [1:12-1:13]: The binding declaration is not destructible
+> 1 | const [a--] = [];
+    |             ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [foo = x]; 1`] = `
+"SyntaxError [1:15-1:16]: Missing initializer in const declaration
+> 1 | const [foo = x];
+    |                ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [foo:bar] = obj; 1`] = `
+"SyntaxError [1:10-1:11]: Expected ']'
+> 1 | const [foo:bar] = obj;
+    |           ^ Expected ']'"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [foo] = arr, bar; 1`] = `
+"SyntaxError [1:22-1:23]: Missing initializer in const declaration
+> 1 | const [foo] = arr, bar;
+    |                       ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [foo], bar; 1`] = `
+"SyntaxError [1:11-1:12]: Missing initializer in const declaration
+> 1 | const [foo], bar;
+    |            ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const [foo]; 1`] = `
+"SyntaxError [1:11-1:12]: Missing initializer in const declaration
+> 1 | const [foo];
+    |            ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const { foo: enum } = bar(); 1`] = `
+"SyntaxError [1:13-1:17]: Unexpected token: 'enum'
+> 1 | const { foo: enum } = bar();
+    |              ^^^^ Unexpected token: 'enum'"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {,,} = obj; 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: ','
+> 1 | const {,,} = obj;
+    |        ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {,,x} = obj; 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: ','
+> 1 | const {,,x} = obj;
+    |        ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {,} = obj; 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: ','
+> 1 | const {,} = obj;
+    |        ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {,x} = obj; 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: ','
+> 1 | const {,x} = obj;
+    |        ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {...[a]} = x 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | const {...[a]} = x
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {...[a]} = x 2`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | const {...[a]} = x
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {...{a}} = x 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | const {...{a}} = x
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {...{a}} = x 2`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | const {...{a}} = x
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {...a+b} = x 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | const {...a+b} = x
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {...a=b} = x 1`] = `
+"SyntaxError [1:15-1:16]: The binding declaration is not destructible
+> 1 | const {...a=b} = x
+    |                ^ The binding declaration is not destructible"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {[x] = y} = z; 1`] = `
+"SyntaxError [1:11-1:12]: A computed property name must be followed by a colon or paren
+> 1 | const {[x] = y} = z;
+    |            ^ A computed property name must be followed by a colon or paren"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {[x] = y} = z; 2`] = `
+"SyntaxError [1:11-1:12]: A computed property name must be followed by a colon or paren
+> 1 | const {[x] = y} = z;
+    |            ^ A computed property name must be followed by a colon or paren"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {[x]: y = z}; 1`] = `
+"SyntaxError [1:18-1:19]: Missing initializer in const declaration
+> 1 | const {[x]: y = z};
+    |                   ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {[x]: y}; 1`] = `
+"SyntaxError [1:14-1:15]: Missing initializer in const declaration
+> 1 | const {[x]: y};
+    |               ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {[x]} = z; 1`] = `
+"SyntaxError [1:10-1:11]: A computed property name must be followed by a colon or paren
+> 1 | const {[x]} = z;
+    |           ^ A computed property name must be followed by a colon or paren"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {}; 1`] = `
+"SyntaxError [1:8-1:9]: Missing initializer in const declaration
+> 1 | const {};
+    |         ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {a:=c} = z; 1`] = `
+"SyntaxError [1:9-1:10]: Unexpected token: '='
+> 1 | const {a:=c} = z;
+    |          ^ Unexpected token: '='"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {foo,,} = x; 1`] = `
+"SyntaxError [1:11-1:12]: Unexpected token: ','
+> 1 | const {foo,,} = x;
+    |            ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {let} = 1; 1`] = `
+"SyntaxError [1:10-1:11]: 'A lexical declaration can't define a 'let' binding
+> 1 | const {let} = 1;
+    |           ^ 'A lexical declaration can't define a 'let' binding"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {x,, y} = obj; 1`] = `
+"SyntaxError [1:9-1:10]: Unexpected token: ','
+> 1 | const {x,, y} = obj;
+    |          ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {x,,} = obj; 1`] = `
+"SyntaxError [1:9-1:10]: Unexpected token: ','
+> 1 | const {x,,} = obj;
+    |          ^ Unexpected token: ','"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {x:y=z} = obj, {a:b=c}; 1`] = `
+"SyntaxError [1:28-1:29]: Missing initializer in const declaration
+> 1 | const {x:y=z} = obj, {a:b=c};
+    |                             ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {x:y=z}; 1`] = `
+"SyntaxError [1:13-1:14]: Missing initializer in const declaration
+> 1 | const {x:y=z};
+    |              ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {x=y}; 1`] = `
+"SyntaxError [1:11-1:12]: Missing initializer in const declaration
+> 1 | const {x=y};
+    |            ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {x} = a, obj; 1`] = `
+"SyntaxError [1:18-1:19]: Missing initializer in const declaration
+> 1 | const {x} = a, obj;
+    |                   ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {x}, {y} = z; 1`] = `
+"SyntaxError [1:9-1:10]: Missing initializer in const declaration
+> 1 | const {x}, {y} = z;
+    |          ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {x}, y; 1`] = `
+"SyntaxError [1:9-1:10]: Missing initializer in const declaration
+> 1 | const {x}, y;
+    |          ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const {x}; 1`] = `
+"SyntaxError [1:9-1:10]: Missing initializer in const declaration
+> 1 | const {x};
+    |          ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const 1`] = `
+"SyntaxError [1:0-1:5]: Unexpected token: 'end of source'
+> 1 | const
+    | ^^^^^ Unexpected token: 'end of source'"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const a = 2, 1`] = `
+"SyntaxError [1:11-1:12]: Unexpected token: 'end of source'
+> 1 | const a = 2,
+    |            ^ Unexpected token: 'end of source'"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const a, [...x] = y 1`] = `
+"SyntaxError [1:7-1:8]: Missing initializer in const declaration
+> 1 | const a, [...x] = y
+    |        ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const const 1`] = `
+"SyntaxError [1:6-1:11]: Invalid keyword
+> 1 | const const
+    |       ^^^^^ Invalid keyword"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const foo =x, bar; 1`] = `
+"SyntaxError [1:17-1:18]: Missing initializer in const declaration
+> 1 | const foo =x, bar;
+    |                  ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const foo 1`] = `
+"SyntaxError [1:6-1:9]: Missing initializer in const declaration
+> 1 | const foo
+    |       ^^^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const foo, [bar] = arr2; 1`] = `
+"SyntaxError [1:9-1:10]: Missing initializer in const declaration
+> 1 | const foo, [bar] = arr2;
+    |          ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const foo, [bar]; 1`] = `
+"SyntaxError [1:9-1:10]: Missing initializer in const declaration
+> 1 | const foo, [bar];
+    |          ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const foo, bar = x; 1`] = `
+"SyntaxError [1:9-1:10]: Missing initializer in const declaration
+> 1 | const foo, bar = x;
+    |          ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const foo, bar 1`] = `
+"SyntaxError [1:9-1:10]: Missing initializer in const declaration
+> 1 | const foo, bar
+    |          ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const foo, bar; 1`] = `
+"SyntaxError [1:9-1:10]: Missing initializer in const declaration
+> 1 | const foo, bar;
+    |          ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const foo, bar; 2`] = `
+"SyntaxError [1:9-1:10]: Missing initializer in const declaration
+> 1 | const foo, bar;
+    |          ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const foo; 1`] = `
+"SyntaxError [1:9-1:10]: Missing initializer in const declaration
+> 1 | const foo;
+    |          ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const foo; 2`] = `
+"SyntaxError [1:9-1:10]: Missing initializer in const declaration
+> 1 | const foo;
+    |          ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const let = 1; 1`] = `
+"SyntaxError [1:6-1:9]: Unexpected strict mode reserved word
+> 1 | const let = 1;
+    |       ^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const x = y, {z}; 1`] = `
+"SyntaxError [1:16-1:17]: Missing initializer in const declaration
+> 1 | const x = y, {z};
+    |                 ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const x, {y} = obj; 1`] = `
+"SyntaxError [1:7-1:8]: Missing initializer in const declaration
+> 1 | const x, {y} = obj;
+    |        ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const x, {y}; 1`] = `
+"SyntaxError [1:7-1:8]: Missing initializer in const declaration
+> 1 | const x, {y};
+    |        ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > const x, y = 1; 1`] = `
+"SyntaxError [1:7-1:8]: Missing initializer in const declaration
+> 1 | const x, y = 1;
+    |        ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > do const x = 1; while (false) 1`] = `
+"SyntaxError [1:3-1:8]: Unexpected token: 'const'
+> 1 | do const x = 1; while (false)
+    |    ^^^^^ Unexpected token: 'const'"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > do const x = 1; while (false) 2`] = `
+"SyntaxError [1:3-1:8]: Unexpected token: 'const'
+> 1 | do const x = 1; while (false)
+    |    ^^^^^ Unexpected token: 'const'"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > for (const {};;); 1`] = `
+"SyntaxError [1:13-1:14]: Missing initializer in const declaration
+> 1 | for (const {};;);
+    |              ^ Missing initializer in const declaration"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > function foo({ bar: enum }) {} 1`] = `
+"SyntaxError [1:20-1:24]: Unexpected token: 'enum'
+> 1 | function foo({ bar: enum }) {}
+    |                     ^^^^ Unexpected token: 'enum'"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > label: const x; 1`] = `
+"SyntaxError [1:7-1:12]: Unexpected token: 'const'
+> 1 | label: const x;
+    |        ^^^^^ Unexpected token: 'const'"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > let let = 1; 1`] = `
+"SyntaxError [1:4-1:7]: Unexpected strict mode reserved word
+> 1 | let let = 1;
+    |     ^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > while (false) const x = 1; 1`] = `
+"SyntaxError [1:14-1:19]: Unexpected token: 'const'
+> 1 | while (false) const x = 1;
+    |               ^^^^^ Unexpected token: 'const'"
+`;
+
+exports[`Declarations - const > Declarations - const (fail) > while (false) const x; 1`] = `
+"SyntaxError [1:14-1:19]: Unexpected token: 'const'
+> 1 | while (false) const x;
+    |               ^^^^^ Unexpected token: 'const'"
+`;
+
 exports[`Declarations - const > Declarations - const (pass) > "use strict"; const { [eval]: []} = a; 1`] = `
 {
   "body": [

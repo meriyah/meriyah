@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Statements - For await of > Statements - For await of (fail) > async function fn() { for await (var [...[ x ] = []] of (async function*() { yield* [[]]; })()) {}} 1`] = `
+"SyntaxError [1:53-1:55]: The binding declaration is not destructible
+> 1 | async function fn() { for await (var [...[ x ] = []] of (async function*() { yield* [[]]; })()) {}}
+    |                                                      ^^ The binding declaration is not destructible"
+`;

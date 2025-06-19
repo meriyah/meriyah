@@ -5407,3 +5407,381 @@ exports[`Next - Private methods > Next - Private methods (pass) > var C = class 
   "type": "Program",
 }
 `;
+
+exports[`Next - Private methods > Private methods (fail) > (class C extends Base { async #*a() { } }) 1`] = `
+"SyntaxError [1:30-1:31]: '#' not followed by identifier
+> 1 | (class C extends Base { async #*a() { } })
+    |                               ^ '#' not followed by identifier"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > a = { #ab() {} } 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: 'PrivateField'
+> 1 | a = { #ab() {} }
+    |       ^ Unexpected token: 'PrivateField'"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A {  #x; g = this.f; x = delete (g().#m); } 1`] = `
+"SyntaxError [1:46-1:47]: Private fields can not be deleted
+> 1 | class A {  #x; g = this.f; x = delete (g().#m); }
+    |                                               ^ Private fields can not be deleted"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A {  #x; g = this.f; x = delete (g().#m); } 2`] = `
+"SyntaxError [1:46-1:47]: Private fields can not be deleted
+> 1 | class A {  #x; g = this.f; x = delete (g().#m); }
+    |                                               ^ Private fields can not be deleted"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A {  #x; x = delete (g().#m); async *#m() {} } 1`] = `
+"SyntaxError [1:34-1:35]: Private fields can not be deleted
+> 1 | class A {  #x; x = delete (g().#m); async *#m() {} }
+    |                                   ^ Private fields can not be deleted"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A {  #x; x = delete (this.#m); } 1`] = `
+"SyntaxError [1:35-1:36]: Private fields can not be deleted
+> 1 | class A {  #x; x = delete (this.#m); }
+    |                                    ^ Private fields can not be deleted"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A {  #x; x() { delete ((this.#m ));  } async #m() {} } 1`] = `
+"SyntaxError [1:40-1:41]: Private fields can not be deleted
+> 1 | class A {  #x; x() { delete ((this.#m ));  } async #m() {} }
+    |                                         ^ Private fields can not be deleted"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A {  #x; x() { var g = this.f; delete g().#x; } } 1`] = `
+"SyntaxError [1:50-1:51]: Private fields can not be deleted
+> 1 | class A {  #x; x() { var g = this.f; delete g().#x; } }
+    |                                                   ^ Private fields can not be deleted"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { # a } 1`] = `
+"SyntaxError [1:10-1:11]: '#' not followed by identifier
+> 1 | class A { # a }
+    |           ^ '#' not followed by identifier"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { # m() {} } 1`] = `
+"SyntaxError [1:10-1:11]: '#' not followed by identifier
+> 1 | class A { # m() {} }
+    |           ^ '#' not followed by identifier"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { # x } 1`] = `
+"SyntaxError [1:10-1:11]: '#' not followed by identifier
+> 1 | class A { # x }
+    |           ^ '#' not followed by identifier"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { # x; } 1`] = `
+"SyntaxError [1:10-1:11]: '#' not followed by identifier
+> 1 | class A { # x; }
+    |           ^ '#' not followed by identifier"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { #\\u0000; } 1`] = `
+"SyntaxError [1:11-1:11]: Illegal Unicode escape sequence
+> 1 | class A { #\\u0000; }
+    |            ^ Illegal Unicode escape sequence"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { #a #b } 1`] = `
+"SyntaxError [1:13-1:14]: Unexpected token: 'PrivateField'
+> 1 | class A { #a #b }
+    |              ^ Unexpected token: 'PrivateField'"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { #a b } 1`] = `
+"SyntaxError [1:13-1:14]: Unexpected token: 'identifier'
+> 1 | class A { #a b }
+    |              ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { #a b() {} } 1`] = `
+"SyntaxError [1:13-1:14]: Unexpected token: 'identifier'
+> 1 | class A { #a b() {} }
+    |              ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { #a; a() { this.# a } } 1`] = `
+"SyntaxError [1:25-1:26]: '#' not followed by identifier
+> 1 | class A { #a; a() { this.# a } }
+    |                          ^ '#' not followed by identifier"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { #constructor = 4 } 1`] = `
+"SyntaxError [1:11-1:22]: Classes may not have a private element named constructor
+> 1 | class A { #constructor = 4 }
+    |            ^^^^^^^^^^^ Classes may not have a private element named constructor"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { #x } function fn() { return this.#y } 1`] = `
+"SyntaxError [1:44-1:45]: Private identifier #y is not defined
+> 1 | class A { #x } function fn() { return this.#y }
+    |                                             ^ Private identifier #y is not defined"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { #x; #x } 1`] = `
+"SyntaxError [1:15-1:16]: Duplicate private identifier #x
+> 1 | class A { #x; #x }
+    |                ^ Duplicate private identifier #x"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { #x; fn() { return this.#y } } 1`] = `
+"SyntaxError [1:34-1:35]: Private identifier #y is not defined
+> 1 | class A { #x; fn() { return this.#y } }
+    |                                   ^ Private identifier #y is not defined"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { #x; m() { this.# x; }} 1`] = `
+"SyntaxError [1:25-1:26]: '#' not followed by identifier
+> 1 | class A { #x; m() { this.# x; }}
+    |                          ^ '#' not followed by identifier"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { * # m() {} } 1`] = `
+"SyntaxError [1:12-1:13]: '#' not followed by identifier
+> 1 | class A { * # m() {} }
+    |             ^ '#' not followed by identifier"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { * method() { super(); } } 1`] = `
+"SyntaxError [1:28-1:29]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class A { * method() { super(); } }
+    |                             ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { [{#ab() {}}]() {} } 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: 'PrivateField'
+> 1 | class A { [{#ab() {}}]() {} }
+    |             ^ Unexpected token: 'PrivateField'"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { a #b } 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: 'PrivateField'
+> 1 | class A { a #b }
+    |             ^ Unexpected token: 'PrivateField'"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { a = () => super() } 1`] = `
+"SyntaxError [1:25-1:26]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class A { a = () => super() }
+    |                          ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { constructor = 4 } 1`] = `
+"SyntaxError [1:22-1:23]: Classes may not have a field called constructor
+> 1 | class A { constructor = 4 }
+    |                       ^ Classes may not have a field called constructor"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { get #x() {} get #x() {} } 1`] = `
+"SyntaxError [1:27-1:28]: Duplicate private identifier #x
+> 1 | class A { get #x() {} get #x() {} }
+    |                            ^ Duplicate private identifier #x"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { method() { this.\\u0023field; } } 1`] = `
+"SyntaxError [1:26-1:26]: Illegal Unicode escape sequence
+> 1 | class A { method() { this.\\u0023field; } }
+    |                           ^ Illegal Unicode escape sequence"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { set #x(v) {} set #x(v) {} } 1`] = `
+"SyntaxError [1:28-1:29]: Duplicate private identifier #x
+> 1 | class A { set #x(v) {} set #x(v) {} }
+    |                             ^ Duplicate private identifier #x"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { static async #method() { super(); } } 1`] = `
+"SyntaxError [1:40-1:41]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class A { static async #method() { super(); } }
+    |                                         ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { static async * prototype() {} } 1`] = `
+"SyntaxError [1:34-1:35]: Classes may not have a static property named 'prototype'
+> 1 | class A { static async * prototype() {} }
+    |                                   ^ Classes may not have a static property named 'prototype'"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { static get # m() {} } 1`] = `
+"SyntaxError [1:21-1:22]: '#' not followed by identifier
+> 1 | class A { static get # m() {} }
+    |                      ^ '#' not followed by identifier"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { static get #x() {} static get #x() {} } 1`] = `
+"SyntaxError [1:41-1:42]: Duplicate private identifier #x
+> 1 | class A { static get #x() {} static get #x() {} }
+    |                                          ^ Duplicate private identifier #x"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A { static set #x(v) {} static set #x(v) {} } 1`] = `
+"SyntaxError [1:42-1:43]: Duplicate private identifier #x
+> 1 | class A { static set #x(v) {} static set #x(v) {} }
+    |                                           ^ Duplicate private identifier #x"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A extends B { #x() {} method() { super.#x() }  } 1`] = `
+"SyntaxError [1:45-1:46]: Private fields can't be accessed on super
+> 1 | class A extends B { #x() {} method() { super.#x() }  }
+    |                                              ^ Private fields can't be accessed on super"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class A{ # a() {}} 1`] = `
+"SyntaxError [1:9-1:10]: '#' not followed by identifier
+> 1 | class A{ # a() {}}
+    |          ^ '#' not followed by identifier"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class C {  async \\u0023m() {} } 1`] = `
+"SyntaxError [1:17-1:17]: Illegal Unicode escape sequence
+> 1 | class C {  async \\u0023m() {} }
+    |                  ^ Illegal Unicode escape sequence"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class C { #method() { \\u0023field; } } 1`] = `
+"SyntaxError [1:22-1:22]: Illegal Unicode escape sequence
+> 1 | class C { #method() { \\u0023field; } }
+    |                       ^ Illegal Unicode escape sequence"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class C { #method() { a() { foo().\\u0023field; } } } 1`] = `
+"SyntaxError [1:26-1:27]: Unexpected token: '{'
+> 1 | class C { #method() { a() { foo().\\u0023field; } } }
+    |                           ^ Unexpected token: '{'"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class C { #x = () => arguments; } 1`] = `
+"SyntaxError [1:30-1:31]: A class field initializer or static block may not contain arguments
+> 1 | class C { #x = () => arguments; }
+    |                               ^ A class field initializer or static block may not contain arguments"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class C { async \\u0023m() {} } } 1`] = `
+"SyntaxError [1:16-1:16]: Illegal Unicode escape sequence
+> 1 | class C { async \\u0023m() {} } }
+    |                 ^ Illegal Unicode escape sequence"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class C { async \\u0023m() {} } } 2`] = `
+"SyntaxError [1:16-1:16]: Illegal Unicode escape sequence
+> 1 | class C { async \\u0023m() {} } }
+    |                 ^ Illegal Unicode escape sequence"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class C { static #x = super(); } 1`] = `
+"SyntaxError [1:27-1:28]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class C { static #x = super(); }
+    |                            ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class C { static async *#gen() {  void \\u0061wait; } } 1`] = `
+"SyntaxError [1:39-1:43]: Unexpected token: 'escaped keyword'
+> 1 | class C { static async *#gen() {  void \\u0061wait; } }
+    |                                        ^^^^ Unexpected token: 'escaped keyword'"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class C { static async *#gen() { var await; } } 1`] = `
+"SyntaxError [1:37-1:42]: cannot use "await" as identifier inside an async function
+> 1 | class C { static async *#gen() { var await; } }
+    |                                      ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class C { static async *#gen() { var yield; } } 1`] = `
+"SyntaxError [1:37-1:42]: Unexpected strict mode reserved word
+> 1 | class C { static async *#gen() { var yield; } }
+    |                                      ^^^^^ Unexpected strict mode reserved word"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class C { static async *#gen() { void await; } } 1`] = `
+"SyntaxError [1:38-1:43]: cannot use "await" as identifier inside an async function
+> 1 | class C { static async *#gen() { void await; } }
+    |                                       ^^^^^ cannot use "await" as identifier inside an async function"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class C { static async *#gen() { void yield; } } 1`] = `
+"SyntaxError [1:43-1:44]: Invalid left-hand side in assignment
+> 1 | class C { static async *#gen() { void yield; } }
+    |                                            ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class C { static async *#gen() { yield: ; } } 1`] = `
+"SyntaxError [1:38-1:39]: Unexpected strict mode reserved word
+> 1 | class C { static async *#gen() { yield: ; } }
+    |                                       ^ Unexpected strict mode reserved word"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class C{ #method() { #"p" = x } } 1`] = `
+"SyntaxError [1:21-1:22]: '#' not followed by identifier
+> 1 | class C{ #method() { #"p" = x } }
+    |                      ^ '#' not followed by identifier"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class C{ #method() { #[m] = 1} } 1`] = `
+"SyntaxError [1:21-1:22]: '#' not followed by identifier
+> 1 | class C{ #method() { #[m] = 1} }
+    |                      ^ '#' not followed by identifier"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class C{ #method() { super(); } } 1`] = `
+"SyntaxError [1:26-1:27]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class C{ #method() { super(); } }
+    |                           ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class C{ #method() { super(); } } 2`] = `
+"SyntaxError [1:26-1:27]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class C{ #method() { super(); } }
+    |                           ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class C{ #method() { super(); } } 3`] = `
+"SyntaxError [1:26-1:27]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class C{ #method() { super(); } }
+    |                           ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class C{ #method() { super(); } } 4`] = `
+"SyntaxError [1:26-1:27]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class C{ #method() { super(); } }
+    |                           ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class C{ #method() { super(); } } 5`] = `
+"SyntaxError [1:26-1:27]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class C{ #method() { super(); } }
+    |                           ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > class Spaces { #  wrongSpaces() { return fail(); } } 1`] = `
+"SyntaxError [1:15-1:16]: '#' not followed by identifier
+> 1 | class Spaces { #  wrongSpaces() { return fail(); } }
+    |                ^ '#' not followed by identifier"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > var C = class { x = 42  *gen() {} } 1`] = `
+"SyntaxError [1:31-1:32]: Unexpected token: '{'
+> 1 | var C = class { x = 42  *gen() {} }
+    |                                ^ Unexpected token: '{'"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > var o = { #m() {} }; 1`] = `
+"SyntaxError [1:10-1:11]: Unexpected token: 'PrivateField'
+> 1 | var o = { #m() {} };
+    |           ^ Unexpected token: 'PrivateField'"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > var o = { *#m() {} }; 1`] = `
+"SyntaxError [1:11-1:12]: Invalid object literal key character after generator star
+> 1 | var o = { *#m() {} };
+    |            ^ Invalid object literal key character after generator star"
+`;
+
+exports[`Next - Private methods > Private methods (fail) > var o = { async #m() {} }; 1`] = `
+"SyntaxError [1:16-1:17]: Unexpected character after object literal property name
+> 1 | var o = { async #m() {} };
+    |                 ^ Unexpected character after object literal property name"
+`;

@@ -1,5 +1,99 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Statements - Do while > Statements - Do while (fail) > do
+    a
+    b
+  while(c); 1`] = `
+"SyntaxError [3:4-3:5]: Expected 'while'
+  1 | do
+  2 |     a
+> 3 |     b
+    |     ^ Expected 'while'
+  4 |   while(c);"
+`;
+
+exports[`Statements - Do while > Statements - Do while (fail) > do ()=>x while(c) 1`] = `
+"SyntaxError [1:9-1:14]: Unexpected token: 'while'
+> 1 | do ()=>x while(c)
+    |          ^^^^^ Unexpected token: 'while'"
+`;
+
+exports[`Statements - Do while > Statements - Do while (fail) > do async 
+ () => x; while(y) 1`] = `
+"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+  1 | do async 
+> 2 |  () => x; while(y)
+    |     ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Statements - Do while > Statements - Do while (fail) > do async 
+ f(){}; while (y) 1`] = `
+"SyntaxError [2:1-2:2]: Expected 'while'
+  1 | do async 
+> 2 |  f(){}; while (y)
+    |  ^ Expected 'while'"
+`;
+
+exports[`Statements - Do while > Statements - Do while (fail) > do async () 
+ => x; while(y) 1`] = `
+"SyntaxError [2:1-2:3]: No line break is allowed after '=>'
+  1 | do async () 
+> 2 |  => x; while(y)
+    |  ^^ No line break is allowed after '=>'"
+`;
+
+exports[`Statements - Do while > Statements - Do while (fail) > do debugger while(x) x 1`] = `
+"SyntaxError [1:12-1:17]: Unexpected token: 'while'
+> 1 | do debugger while(x) x
+    |             ^^^^^ Unexpected token: 'while'"
+`;
+
+exports[`Statements - Do while > Statements - Do while (fail) > do foo while (bar); 1`] = `
+"SyntaxError [1:7-1:12]: Unexpected token: 'while'
+> 1 | do foo while (bar);
+    |        ^^^^^ Unexpected token: 'while'"
+`;
+
+exports[`Statements - Do while > Statements - Do while (fail) > do foo while (bar); 2`] = `
+"SyntaxError [1:7-1:12]: Unexpected token: 'while'
+> 1 | do foo while (bar);
+    |        ^^^^^ Unexpected token: 'while'"
+`;
+
+exports[`Statements - Do while > Statements - Do while (fail) > do let {} = y 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: '{'
+> 1 | do let {} = y
+    |        ^ Unexpected token: '{'"
+`;
+
+exports[`Statements - Do while > Statements - Do while (fail) > do let x = 1; while (false) 1`] = `
+"SyntaxError [1:7-1:8]: Unexpected token: 'identifier'
+> 1 | do let x = 1; while (false)
+    |        ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Statements - Do while > Statements - Do while (fail) > do throw function (v, h) {
+      "use strict"
+    } while (("")) 1`] = `
+"SyntaxError [3:6-3:11]: Unexpected token: 'while'
+  1 | do throw function (v, h) {
+  2 |       "use strict"
+> 3 |     } while ((""))
+    |       ^^^^^ Unexpected token: 'while'"
+`;
+
+exports[`Statements - Do while > Statements - Do while (fail) > do x, y while (z) 1`] = `
+"SyntaxError [1:8-1:13]: Unexpected token: 'while'
+> 1 | do x, y while (z)
+    |         ^^^^^ Unexpected token: 'while'"
+`;
+
+exports[`Statements - Do while > Statements - Do while (fail) > do x: function s(){}while(y) 1`] = `
+"SyntaxError [1:6-1:14]: Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement
+> 1 | do x: function s(){}while(y)
+    |       ^^^^^^^^ Without web compatibility enabled functions can not be declared at top level, inside a block, or as the body of an if statement"
+`;
+
 exports[`Statements - Do while > Statements - Do while (pass) > 
 do if(8)function s(){}
 while(y)

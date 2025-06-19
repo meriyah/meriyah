@@ -1,5 +1,47 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Expressions - Assign > Expressions - Assign (fail) > "x" = 42; 1`] = `
+"SyntaxError [1:4-1:5]: Invalid left-hand side in assignment
+> 1 | "x" = 42;
+    |     ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Assign > Expressions - Assign (fail) > (([a])=0); 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | (([a])=0);
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Assign > Expressions - Assign (fail) > (({a})=0); 1`] = `
+"SyntaxError [1:6-1:7]: Invalid left-hand side in assignment
+> 1 | (({a})=0);
+    |       ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Assign > Expressions - Assign (fail) > ([(a = b)] = [] 1`] = `
+"SyntaxError [1:13-1:14]: Invalid left-hand side in assignment
+> 1 | ([(a = b)] = []
+    |              ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Assign > Expressions - Assign (fail) > [(a = 0)] = 1 1`] = `
+"SyntaxError [1:12-1:13]: Invalid left-hand side in assignment
+> 1 | [(a = 0)] = 1
+    |             ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Assign > Expressions - Assign (fail) > 42 = 42; 1`] = `
+"SyntaxError [1:3-1:4]: Invalid left-hand side in assignment
+> 1 | 42 = 42;
+    |    ^ Invalid left-hand side in assignment"
+`;
+
+exports[`Expressions - Assign > Expressions - Assign (fail) > a = b + c = d 1`] = `
+"SyntaxError [1:10-1:11]: Invalid left-hand side in assignment
+> 1 | a = b + c = d
+    |           ^ Invalid left-hand side in assignment"
+`;
+
 exports[`Expressions - Assign > Expressions - Assign (pass) > ((a)) = b; 1`] = `
 {
   "body": [

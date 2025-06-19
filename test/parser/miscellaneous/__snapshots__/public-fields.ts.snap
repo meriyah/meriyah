@@ -2048,3 +2048,105 @@ exports[`Next - Public fields > Next - Public fields (pass) > var C = class { st
   "type": "Program",
 }
 `;
+
+exports[`Next - Public fields > Public fields (fail) > class A { "x" = arguments; } 1`] = `
+"SyntaxError [1:16-1:25]: Unexpected eval or arguments in strict mode
+> 1 | class A { "x" = arguments; }
+    |                 ^^^^^^^^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Next - Public fields > Public fields (fail) > class A { "x" = super(); } 1`] = `
+"SyntaxError [1:21-1:22]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class A { "x" = super(); }
+    |                      ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Next - Public fields > Public fields (fail) > class A { a = 1, 2 } 1`] = `
+"SyntaxError [1:15-1:16]: Unexpected token: ','
+> 1 | class A { a = 1, 2 }
+    |                ^ Unexpected token: ','"
+`;
+
+exports[`Next - Public fields > Public fields (fail) > class A { a = 1, b = 2 } 1`] = `
+"SyntaxError [1:15-1:16]: Unexpected token: ','
+> 1 | class A { a = 1, b = 2 }
+    |                ^ Unexpected token: ','"
+`;
+
+exports[`Next - Public fields > Public fields (fail) > class A { a b } 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: 'identifier'
+> 1 | class A { a b }
+    |             ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Next - Public fields > Public fields (fail) > class A { a b } 2`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: 'identifier'
+> 1 | class A { a b }
+    |             ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Next - Public fields > Public fields (fail) > class A { a b() {} } 1`] = `
+"SyntaxError [1:12-1:13]: Unexpected token: 'identifier'
+> 1 | class A { a b() {} }
+    |             ^ Unexpected token: 'identifier'"
+`;
+
+exports[`Next - Public fields > Public fields (fail) > class A { a, b } 1`] = `
+"SyntaxError [1:11-1:12]: Unexpected token: ','
+> 1 | class A { a, b }
+    |            ^ Unexpected token: ','"
+`;
+
+exports[`Next - Public fields > Public fields (fail) > class A { a, b } 2`] = `
+"SyntaxError [1:11-1:12]: Unexpected token: ','
+> 1 | class A { a, b }
+    |            ^ Unexpected token: ','"
+`;
+
+exports[`Next - Public fields > Public fields (fail) > class A { static "x" = arguments; } 1`] = `
+"SyntaxError [1:23-1:32]: Unexpected eval or arguments in strict mode
+> 1 | class A { static "x" = arguments; }
+    |                        ^^^^^^^^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Next - Public fields > Public fields (fail) > class A { static "x" = arguments; } 2`] = `
+"SyntaxError [1:23-1:32]: Unexpected eval or arguments in strict mode
+> 1 | class A { static "x" = arguments; }
+    |                        ^^^^^^^^^ Unexpected eval or arguments in strict mode"
+`;
+
+exports[`Next - Public fields > Public fields (fail) > class A { static "x" = super(); } 1`] = `
+"SyntaxError [1:28-1:29]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class A { static "x" = super(); }
+    |                             ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Next - Public fields > Public fields (fail) > class A { x = typeof super(); } 1`] = `
+"SyntaxError [1:26-1:27]: Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass
+> 1 | class A { x = typeof super(); }
+    |                           ^ Calls to super must be in the "constructor" method of a class expression or class declaration that has a superclass"
+`;
+
+exports[`Next - Public fields > Public fields (fail) > class C { #m = function() { return "bar"; }; Child = class extends C { access = () => super.#m; method = () => super.#m(); } } 1`] = `
+"SyntaxError [1:92-1:93]: Private fields can't be accessed on super
+> 1 | class C { #m = function() { return "bar"; }; Child = class extends C { access = () => super.#m; method = () => super.#m(); } }
+    |                                                                                             ^ Private fields can't be accessed on super"
+`;
+
+exports[`Next - Public fields > Public fields (fail) > class C { #m = function() { return "bar"; }; Child = class extends C { access() { return super.#m; } method() { return super.#m(); } } } 1`] = `
+"SyntaxError [1:95-1:96]: Private fields can't be accessed on super
+> 1 | class C { #m = function() { return "bar"; }; Child = class extends C { access() { return super.#m; } method() { return super.#m(); } } }
+    |                                                                                                ^ Private fields can't be accessed on super"
+`;
+
+exports[`Next - Public fields > Public fields (fail) > var C = class { x = () => arguments); } 1`] = `
+"SyntaxError [1:35-1:36]: A class field initializer or static block may not contain arguments
+> 1 | var C = class { x = () => arguments); }
+    |                                    ^ A class field initializer or static block may not contain arguments"
+`;
+
+exports[`Next - Public fields > Public fields (fail) > var C = class { x = () => eval); } 1`] = `
+"SyntaxError [1:30-1:31]: Unexpected token: ')'
+> 1 | var C = class { x = () => eval); }
+    |                               ^ Unexpected token: ')'"
+`;

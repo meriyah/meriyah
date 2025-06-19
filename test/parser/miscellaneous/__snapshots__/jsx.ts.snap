@@ -1,5 +1,503 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) >  < .a > ; 1`] = `
+"SyntaxError [1:3-1:4]: Unexpected token
+> 1 |  < .a > ;
+    |    ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) >  > ; 1`] = `
+"SyntaxError [1:1-1:2]: Unexpected token: '>'
+> 1 |  > ;
+    |  ^ Unexpected token: '>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > < > 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | < >
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > < > 2`] = `
+"SyntaxError [1:3-1:3]: Unexpected token
+> 1 | < >
+    |    ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > < 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | <
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > < 2`] = `
+"SyntaxError [1:0-1:1]: Unexpected token
+> 1 | <
+    | ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <.a></.a> 1`] = `
+"SyntaxError [1:1-1:2]: Unexpected token
+> 1 | <.a></.a>
+    |  ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <.abc /> 1`] = `
+"SyntaxError [1:1-1:2]: Unexpected token
+> 1 | <.abc />
+    |  ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > </> 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | </>
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > </> 2`] = `
+"SyntaxError [1:1-1:2]: Unexpected token: '/'
+> 1 | </>
+    |  ^ Unexpected token: '/'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > </> 3`] = `
+"SyntaxError [1:1-1:2]: Unexpected token: '/'
+> 1 | </>
+    |  ^ Unexpected token: '/'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <:a />; 1`] = `
+"SyntaxError [1:1-1:2]: Unexpected token
+> 1 | <:a />;
+    |  ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <:path /> 1`] = `
+"SyntaxError [1:1-1:2]: Unexpected token
+> 1 | <:path />
+    |  ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <> 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | <>
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <> 2`] = `
+"SyntaxError [1:2-1:2]: Unexpected token
+> 1 | <>
+    |   ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <><//> 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | <><//>
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <><//> 2`] = `
+"SyntaxError [1:6-1:6]: Unexpected token
+> 1 | <><//>
+    |       ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <{...b} {...a }>{...b}</{...b}> 1`] = `
+"SyntaxError [1:1-1:2]: Unexpected token
+> 1 | <{...b} {...a }>{...b}</{...b}>
+    |  ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <1/> 1`] = `
+"SyntaxError [1:1-1:2]: Unexpected token
+> 1 | <1/>
+    |  ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <Foo></Bar> 1`] = `
+"SyntaxError [1:10-1:11]: Expected corresponding JSX closing tag for Bar
+> 1 | <Foo></Bar>
+    |           ^ Expected corresponding JSX closing tag for Bar"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a b=: /> 1`] = `
+"SyntaxError [1:5-1:6]: JSX value should be either an expression or a quoted JSX text
+> 1 | <a b=: />
+    |      ^ JSX value should be either an expression or a quoted JSX text"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a b={}>; 1`] = `
+"SyntaxError [1:6-1:7]: JSX attributes must only be assigned a non-empty 'expression'
+> 1 | <a b={}>;
+    |       ^ JSX attributes must only be assigned a non-empty 'expression'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a b=}>; 1`] = `
+"SyntaxError [1:5-1:6]: JSX value should be either an expression or a quoted JSX text
+> 1 | <a b=}>;
+    |      ^ JSX value should be either an expression or a quoted JSX text"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a b></b>; 1`] = `
+"SyntaxError [1:9-1:10]: Expected corresponding JSX closing tag for b
+> 1 | <a b></b>;
+    |          ^ Expected corresponding JSX closing tag for b"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a foo="bar; 1`] = `
+"SyntaxError [1:7-1:12]: Unterminated string literal
+> 1 | <a foo="bar;
+    |        ^^^^^ Unterminated string literal"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a.></a.> 1`] = `
+"SyntaxError [1:3-1:4]: Unexpected token: '>'
+> 1 | <a.></a.>
+    |    ^ Unexpected token: '>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a.b.c></a>; 1`] = `
+"SyntaxError [1:11-1:12]: Expected corresponding JSX closing tag for a
+> 1 | <a.b.c></a>;
+    |            ^ Expected corresponding JSX closing tag for a"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a.b:c></a.b:c>; 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: ':'
+> 1 | <a.b:c></a.b:c>;
+    |     ^ Unexpected token: ':'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a/! 1`] = `
+"SyntaxError [1:3-1:4]: Expected '>'
+> 1 | <a/!
+    |    ^ Expected '>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a: />; 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: '/'
+> 1 | <a: />;
+    |     ^ Unexpected token: '/'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a:b></b>; 1`] = `
+"SyntaxError [1:9-1:10]: Expected corresponding JSX closing tag for b
+> 1 | <a:b></b>;
+    |          ^ Expected corresponding JSX closing tag for b"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a>;</>; 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: '>'
+> 1 | <a>;</>;
+    |       ^ Unexpected token: '>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a></b> 1`] = `
+"SyntaxError [1:6-1:7]: Expected corresponding JSX closing tag for b
+> 1 | <a></b>
+    |       ^ Expected corresponding JSX closing tag for b"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a><</a> 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token
+> 1 | <a><</a>
+    |     ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a>></a> 1`] = `
+"SyntaxError [1:2-1:4]: Unexpected token: '>>'
+> 1 | <a>></a>
+    |   ^^ Unexpected token: '>>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a>></a>; 1`] = `
+"SyntaxError [1:2-1:4]: Unexpected token: '>>'
+> 1 | <a>></a>;
+    |   ^^ Unexpected token: '>>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a["foo"]></a["foo"]>; 1`] = `
+"SyntaxError [1:2-1:3]: Unexpected token: '['
+> 1 | <a["foo"]></a["foo"]>;
+    |   ^ Unexpected token: '['"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <a[foo]></a[foo]>; 1`] = `
+"SyntaxError [1:2-1:3]: Unexpected token: '['
+> 1 | <a[foo]></a[foo]>;
+    |   ^ Unexpected token: '['"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <chinese:alladinfoo.bar></foo.baz> 1`] = `
+"SyntaxError [1:19-1:20]: Unexpected token: '.'
+> 1 | <chinese:alladinfoo.bar></foo.baz>
+    |                    ^ Unexpected token: '.'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <dd><e></e></dddd>; 1`] = `
+"SyntaxError [1:18-1:19]: Expected corresponding JSX closing tag for dddd
+> 1 | <dd><e></e></dddd>;
+    |                   ^ Expected corresponding JSX closing tag for dddd"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div =""></div> 1`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: '='
+> 1 | <div =""></div>
+    |      ^ Unexpected token: '='"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div =/> 1`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: '='
+> 1 | <div =/>
+    |      ^ Unexpected token: '='"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div {...props}>stuff</div {...props}> 1`] = `
+"SyntaxError [1:27-1:28]: Expected '>'
+> 1 | <div {...props}>stuff</div {...props}>
+    |                            ^ Expected '>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div {...props}>stuff</div {...props}>; 1`] = `
+"SyntaxError [1:27-1:28]: Expected '>'
+> 1 | <div {...props}>stuff</div {...props}>;
+    |                            ^ Expected '>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div {props} /> 1`] = `
+"SyntaxError [1:6-1:11]: Expected '...'
+> 1 | <div {props} />
+    |       ^^^^^ Expected '...'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div {props} />; 1`] = `
+"SyntaxError [1:6-1:11]: Expected '...'
+> 1 | <div {props} />;
+    |       ^^^^^ Expected '...'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div className"app"> 1`] = `
+"SyntaxError [1:14-1:19]: Unexpected token: 'string'
+> 1 | <div className"app">
+    |               ^^^^^ Unexpected token: 'string'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div id={}></div> 1`] = `
+"SyntaxError [1:9-1:10]: JSX attributes must only be assigned a non-empty 'expression'
+> 1 | <div id={}></div>
+    |          ^ JSX attributes must only be assigned a non-empty 'expression'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div=""></div> 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: '='
+> 1 | <div=""></div>
+    |     ^ Unexpected token: '='"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div=+-%&([)]}.../> 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: '='
+> 1 | <div=+-%&([)]}.../>
+    |     ^ Unexpected token: '='"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div=/> 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: '='
+> 1 | <div=/>
+    |     ^ Unexpected token: '='"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div=/> 2`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: '='
+> 1 | <div=/>
+    |     ^ Unexpected token: '='"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div=-/> 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: '='
+> 1 | <div=-/>
+    |     ^ Unexpected token: '='"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div=1></div> 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: '='
+> 1 | <div=1></div>
+    |     ^ Unexpected token: '='"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div=div></div> 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: '='
+> 1 | <div=div></div>
+    |     ^ Unexpected token: '='"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <div>one</div><div>two</div> 1`] = `
+"SyntaxError [1:23-1:28]: Unterminated regular expression
+> 1 | <div>one</div><div>two</div>
+    |                        ^^^^^ Unterminated regular expression"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <f><g/></ff>; 1`] = `
+"SyntaxError [1:12-1:13]: Expected corresponding JSX closing tag for ff
+> 1 | <f><g/></ff>;
+    |             ^ Expected corresponding JSX closing tag for ff"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <foo 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '<'
+> 1 | <foo
+    | ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <foo.bar></foo.baz> 1`] = `
+"SyntaxError [1:18-1:19]: Expected corresponding JSX closing tag for foo.baz
+> 1 | <foo.bar></foo.baz>
+    |                   ^ Expected corresponding JSX closing tag for foo.baz"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <foo.bar></foo.baz> 2`] = `
+"SyntaxError [1:18-1:19]: Expected corresponding JSX closing tag for foo.baz
+> 1 | <foo.bar></foo.baz>
+    |                   ^ Expected corresponding JSX closing tag for foo.baz"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <foo:bar.baz></foo.baz:bar> 1`] = `
+"SyntaxError [1:8-1:9]: Unexpected token: '.'
+> 1 | <foo:bar.baz></foo.baz:bar>
+    |         ^ Unexpected token: '.'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <foo:bar></foo.baz> 1`] = `
+"SyntaxError [1:18-1:19]: Expected corresponding JSX closing tag for foo.baz
+> 1 | <foo:bar></foo.baz>
+    |                   ^ Expected corresponding JSX closing tag for foo.baz"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <img src={}> 1`] = `
+"SyntaxError [1:10-1:11]: JSX attributes must only be assigned a non-empty 'expression'
+> 1 | <img src={}>
+    |           ^ JSX attributes must only be assigned a non-empty 'expression'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <p> 1`] = `
+"SyntaxError [1:3-1:3]: Unexpected token
+> 1 | <p>
+    |    ^ Unexpected token"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <p></> 1`] = `
+"SyntaxError [1:5-1:6]: Unexpected token: '>'
+> 1 | <p></>
+    |      ^ Unexpected token: '>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <p></q> 1`] = `
+"SyntaxError [1:6-1:7]: Expected corresponding JSX closing tag for q
+> 1 | <p></q>
+    |       ^ Expected corresponding JSX closing tag for q"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <p><q></p> 1`] = `
+"SyntaxError [1:10-1:10]: Expected corresponding JSX closing tag for p
+> 1 | <p><q></p>
+    |           ^ Expected corresponding JSX closing tag for p"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <p>{/}</p> 1`] = `
+"SyntaxError [1:4-1:8]: Unexpected regular expression flag
+> 1 | <p>{/}</p>
+    |     ^^^^ Unexpected regular expression flag"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <path></svg:path> 1`] = `
+"SyntaxError [1:16-1:17]: Expected corresponding JSX closing tag for [object Object]:[object Object]
+> 1 | <path></svg:path>
+    |                 ^ Expected corresponding JSX closing tag for [object Object]:[object Object]"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <tag \${"className"}="tag"></tag> 1`] = `
+"SyntaxError [1:7-1:18]: Expected '...'
+> 1 | <tag \${"className"}="tag"></tag>
+    |        ^^^^^^^^^^^ Expected '...'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <tag className=></tag> 1`] = `
+"SyntaxError [1:14-1:16]: Unexpected token: '=>'
+> 1 | <tag className=></tag>
+    |               ^^ Unexpected token: '=>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > <xyz. /> 1`] = `
+"SyntaxError [1:6-1:7]: Unexpected token: '/'
+> 1 | <xyz. />
+    |       ^ Unexpected token: '/'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > > 1`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '>'
+> 1 | >
+    | ^ Unexpected token: '>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > > 2`] = `
+"SyntaxError [1:0-1:1]: Unexpected token: '>'
+> 1 | >
+    | ^ Unexpected token: '>'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > [foo] > ; 1`] = `
+"SyntaxError [1:8-1:9]: Unexpected token: ';'
+> 1 | [foo] > ;
+    |         ^ Unexpected token: ';'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > [foo] > ; 2`] = `
+"SyntaxError [1:8-1:9]: Unexpected token: ';'
+> 1 | [foo] > ;
+    |         ^ Unexpected token: ';'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > [foo] > ; 3`] = `
+"SyntaxError [1:8-1:9]: Unexpected token: ';'
+> 1 | [foo] > ;
+    |         ^ Unexpected token: ';'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > [foo] > ; 4`] = `
+"SyntaxError [1:8-1:9]: Unexpected token: ';'
+> 1 | [foo] > ;
+    |         ^ Unexpected token: ';'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > [foo] > ; 5`] = `
+"SyntaxError [1:8-1:9]: Unexpected token: ';'
+> 1 | [foo] > ;
+    |         ^ Unexpected token: ';'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > a > ; 1`] = `
+"SyntaxError [1:4-1:5]: Unexpected token: ';'
+> 1 | a > ;
+    |     ^ Unexpected token: ';'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > var x = <div>one</div> /* intervening comment */ <div>two</div>; 1`] = `
+"SyntaxError [1:58-1:64]: Unterminated regular expression
+> 1 | var x = <div>one</div> /* intervening comment */ <div>two</div>;
+    |                                                           ^^^^^^ Unterminated regular expression"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > var x = <div>one</div>, <div>two</div>; 1`] = `
+"SyntaxError [1:24-1:25]: Unexpected token: '<'
+> 1 | var x = <div>one</div>, <div>two</div>;
+    |                         ^ Unexpected token: '<'"
+`;
+
+exports[`Miscellaneous - JSX > Miscellaneous - JSX (fail) > var x = <div>one</div><div>two</div>; 1`] = `
+"SyntaxError [1:31-1:37]: Unterminated regular expression
+> 1 | var x = <div>one</div><div>two</div>;
+    |                                ^^^^^^ Unterminated regular expression"
+`;
+
 exports[`Miscellaneous - JSX > Miscellaneous - JSX (pass) > "use strict"; <async /> 1`] = `
 {
   "body": [
