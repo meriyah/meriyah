@@ -147,9 +147,9 @@ declare function onInsertedSemicolon(position: number): void;
 ## Example usage
 
 ```js
-import { parseScript } from './meriyah';
+import { parse } from './meriyah';
 
-parseScript('({x: [y] = 0} = 1)');
+parse('({x: [y] = 0} = 1)');
 ```
 
 This will return when serialized in json:
