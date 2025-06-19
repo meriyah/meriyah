@@ -1,11 +1,12 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import module from 'module';
-import { regexFeatures } from './shared.mjs';
+import url from 'url';
+import { regexFeatures } from '../scripts/shared.mjs';
 import run from 'test262-parser-runner';
+import downloadTest262 from './download-test262.mjs';
 
 function loadList(filename) {
-  const file = new URL(`../test/test262-parser-tests/${filename}`, import.meta.url);
+  const file = new URL(`./${filename}`, import.meta.url);
   return fs.existsSync(file)
     ? fs
         .readFileSync(file, 'utf8')
@@ -36,16 +37,19 @@ function shouldSkip(test) {
 }
 
 async function runTest(meriyah) {
-  const require = module.createRequire(import.meta.url);
+  await downloadTest262();
+
   await run(
-    (content, { sourceType }) =>
-      (sourceType === 'module' ? meriyah.parseModule : meriyah.parseScript)(content, {
+    (content, { sourceType }) => {
+      meriyah.parse(content, {
         webcompat: true,
         lexical: true,
         next: true,
-      }),
+        module: sourceType === 'module',
+      });
+    },
     {
-      testsDirectory: path.dirname(require.resolve('test262/package.json')),
+      testsDirectory: url.fileURLToPath(new URL('./test262/', import.meta.url)),
       skip: shouldSkip,
       whitelist: path.sep === '/' ? whitelist : whitelist.map((file) => file.replaceAll('/', path.sep)),
     },
