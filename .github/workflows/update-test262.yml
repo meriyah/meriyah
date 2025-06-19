@@ -21,6 +21,10 @@ jobs:
           node-version: 24
       - name: Update test262 commit hash
         run: git ls-remote --exit-code https://github.com/tc39/test262.git HEAD | cut -f1 > test262/test262-commit-hash
+      - uses: actions/cache@v4
+        with:
+          path: test262/test262
+          key: ${{ hashFiles('test262/test262-commit-hash') }}
       - run: yarn
       - run: npm run generate-test262-whitelist
       - uses: peter-evans/create-pull-request@v7
