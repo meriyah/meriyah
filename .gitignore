@@ -14,3 +14,4 @@ yarn-error.log*
 .fuzz-output
 .DS_Store
 /test.ts
+/test262/test262

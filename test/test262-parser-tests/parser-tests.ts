@@ -1,4 +1,4 @@
-import runTest from '../../scripts/run-test262.mjs';
+import runTest from '../../test262/run-test262.mjs';
 import * as meriyah from '../../src/meriyah';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';

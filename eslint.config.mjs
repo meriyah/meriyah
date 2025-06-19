@@ -65,7 +65,7 @@ export default [
     languageOptions: { globals: { ...globals.node } },
   },
   {
-    files: ['scripts/**/*.mjs'],
+    files: ['scripts/**/*.mjs', 'test262/**/*.mjs'],
     rules: {
       'n/no-unsupported-features/es-syntax': 'error',
       'n/no-extraneous-import': 0,
@@ -87,6 +87,6 @@ export default [
     },
   },
   {
-    ignores: ['dist', 'src/unicode.ts'],
+    ignores: ['dist', 'src/unicode.ts', 'test262/test262'],
   },
 ];
