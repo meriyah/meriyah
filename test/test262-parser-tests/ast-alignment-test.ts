@@ -29,7 +29,7 @@ describe(
         } catch (error) {
           if (!TEST262_FILE)
             console.log(
-              `Test faild, use this commmand to debug\nTEST262_FILE=${testCase.file} npx vitest test/test262-parser-tests/ast-alignment-test.ts`,
+              `Test faild, use this commmand to debug\n$ TEST262_FILE=${testCase.file} npx vitest test/test262-parser-tests/ast-alignment-test.ts`,
             );
           console.error(testCase);
           throw error;
@@ -98,6 +98,9 @@ function fixAcornAst(ast: acorn.Program, text: string): acorn.Program {
         return node;
       case 'ClassExpression':
       case 'ClassDeclaration':
+      case 'AccessorProperty':
+      case 'PropertyDefinition':
+      case 'MethodDefinition':
         if (!('decorators' in node)) {
           node.decorators = [];
         }
