@@ -9,7 +9,7 @@ exports[`Identifier > a\\u0065 1`] = `
         "end": 7,
         "loc": {
           "end": {
-            "column": 1,
+            "column": 7,
             "line": 1,
           },
           "start": {
@@ -27,7 +27,7 @@ exports[`Identifier > a\\u0065 1`] = `
       },
       "loc": {
         "end": {
-          "column": 1,
+          "column": 7,
           "line": 1,
         },
         "start": {
@@ -46,7 +46,7 @@ exports[`Identifier > a\\u0065 1`] = `
   "end": 7,
   "loc": {
     "end": {
-      "column": 1,
+      "column": 7,
       "line": 1,
     },
     "start": {
