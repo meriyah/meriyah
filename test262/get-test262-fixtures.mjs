@@ -6,17 +6,28 @@ import { TEST262_DIRECTORY, shouldSkip, whitelist } from './shared.mjs';
 const whitelistSet = new Set(whitelist);
 
 // Based on https://github.com/adrianheine/test262-parser-runner
-async function* getTest262Fixtures() {
+async function* getTest262Fixtures(paths) {
   await downloadTest262();
 
-  const stream = new Test262Stream(TEST262_DIRECTORY, { omitRuntime: true });
+  const stream = new Test262Stream(TEST262_DIRECTORY, {
+    paths: paths ? paths.map((file) => `test/${file}`) : undefined,
+    omitRuntime: true,
+  });
 
   stream.once('error', (error) => {
     console.error(error);
     throw error;
   });
 
+  const seen = new Set();
+
   for await (const test of stream) {
+    if (seen.has(test.file)) {
+      continue;
+    }
+
+    seen.add(test.file);
+
     if (shouldSkip(test)) {
       continue;
     }
@@ -47,7 +58,5 @@ async function* getTest262Fixtures() {
     };
   }
 }
-
-getTest262Fixtures();
 
 export default getTest262Fixtures;

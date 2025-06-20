@@ -5,10 +5,12 @@ import type * as ESTree from '../../src/estree';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 
+const { TEST262_FILE } = process.env;
+
 describe(
   'AST alignment with Acorn',
   async () => {
-    for await (const testCase of getTest262Fixtures()) {
+    for await (const testCase of getTest262Fixtures(TEST262_FILE ? [TEST262_FILE] : undefined)) {
       it(`test/test262/test262/test/${testCase.file}`, () => {
         let acornAst: acorn.Program;
         try {
@@ -25,6 +27,10 @@ describe(
         try {
           t.deepEqual(meriyahAst, acornAst);
         } catch (error) {
+          if (!TEST262_FILE)
+            console.log(
+              `Test faild, use this commmand to debug\nTEST262_FILE=${testCase.file} npx vitest test/test262-parser-tests/ast-alignment-test.ts`,
+            );
           console.error(testCase);
           throw error;
         }
