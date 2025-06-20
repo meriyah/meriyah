@@ -9,7 +9,7 @@ describe(
   'AST alignment with Acorn',
   async () => {
     for await (const testCase of getTest262Fixtures()) {
-      it(testCase.file, () => {
+      it(`test/test262/test262/test/${testCase.file}`, () => {
         let acornAst: acorn.Program;
         try {
           acornAst = parseAcorn(testCase.contents, testCase.sourceType);
@@ -22,7 +22,12 @@ describe(
         }
 
         const meriyahAst = parseMeriyah(testCase.contents, testCase.sourceType);
-        t.deepEqual(meriyahAst, acornAst);
+        try {
+          t.deepEqual(meriyahAst, acornAst);
+        } catch (error) {
+          console.error(testCase);
+          throw error;
+        }
       });
     }
   },
