@@ -1,0 +1,120 @@
+import * as acorn from 'acorn';
+import getTest262Fixtures from '../../test262/get-test262-fixtures.mjs';
+import * as meriyah from '../../src/meriyah';
+import type * as ESTree from '../../src/estree';
+import * as t from 'node:assert/strict';
+import { describe, it } from 'vitest';
+
+describe(
+  'AST alignment with Acorn',
+  async () => {
+    for await (const testCase of getTest262Fixtures()) {
+      it(testCase.file, () => {
+        let acornAst: acorn.Program;
+        try {
+          acornAst = parseAcorn(testCase.contents, testCase.sourceType);
+        } catch (error) {
+          if (error instanceof SyntaxError && 'loc' in error) {
+            return;
+          }
+
+          throw error;
+        }
+
+        const meriyahAst = parseMeriyah(testCase.contents, testCase.sourceType);
+        t.deepEqual(meriyahAst, acornAst);
+      });
+    }
+  },
+  Infinity,
+);
+
+type MeriyahAst = ESTree.Program & { comments: ESTree.Comment[] };
+function parseMeriyah(text: string, sourceType: 'module' | 'script' | undefined) {
+  const comments: ESTree.Comment[] = [];
+  const ast = meriyah.parse(text, {
+    webcompat: true,
+    lexical: true,
+    next: true,
+    module: sourceType === 'module',
+    ranges: true,
+    loc: true,
+    raw: true,
+    onComment: comments,
+  }) as MeriyahAst;
+
+  ast.comments = comments;
+  return ast;
+}
+
+type AcornAst = acorn.Program & { comments: acorn.Comment[] };
+function parseAcorn(text: string, sourceType: acorn.Options['sourceType'] = 'script') {
+  const comments: acorn.Comment[] = [];
+  const ast = acorn.parse(text, {
+    ecmaVersion: 'latest',
+    sourceType,
+    locations: true,
+    ranges: true,
+    onComment: comments,
+  }) as AcornAst;
+
+  ast.comments = comments;
+
+  return fixAcornAst(ast, text);
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function fixAcornAst(ast: acorn.Program, text: string): acorn.Program {
+  return visitNode(ast, (node: Record<string, any>) => {
+    // Convert to plain object
+    node = structuredClone(node);
+
+    switch (node.type) {
+      case 'Block':
+        return Object.assign(node, { type: 'MultiLine' });
+      case 'Line':
+        return Object.assign(node, { type: 'SingleLine' });
+      case 'FunctionExpression':
+      case 'FunctionDeclaration':
+        if (node.expression === false) {
+          delete node.expression;
+        }
+        return node;
+      case 'ArrowFunctionExpression':
+        if (node.id === null) {
+          delete node.id;
+        }
+        return node;
+      case 'ClassExpression':
+      case 'ClassDeclaration':
+        if (!('decorators' in node)) {
+          node.decorators = [];
+        }
+        return node;
+    }
+
+    return node;
+  });
+
+  return ast;
+}
+
+function visitNode(node: any, fn: any) {
+  if (Array.isArray(node)) {
+    for (let i = 0; i < node.length; i++) {
+      node[i] = visitNode(node[i], fn);
+    }
+    return node;
+  }
+
+  if (typeof node?.type !== 'string') {
+    return node;
+  }
+
+  const keys = Object.keys(node);
+  for (let i = 0; i < keys.length; i++) {
+    node[keys[i]] = visitNode(node[keys[i]], fn);
+  }
+
+  return fn(node) ?? node;
+}
