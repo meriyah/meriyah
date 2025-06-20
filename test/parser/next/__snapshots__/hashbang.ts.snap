@@ -52,23 +52,23 @@ exports[`Next - Hashbang grammar > Next - Hashbang grammar (fail) > #\\041
 
 exports[`Next - Hashbang grammar > Next - Hashbang grammar (fail) > #\\u{21}
  1`] = `
-"SyntaxError [1:1-1:5]: Illegal Unicode escape sequence
+"SyntaxError [1:1-1:7]: Illegal Unicode escape sequence
 > 1 | #\\u{21}
-    |  ^^^^ Illegal Unicode escape sequence
+    |  ^^^^^^ Illegal Unicode escape sequence
   2 |"
 `;
 
 exports[`Next - Hashbang grammar > Next - Hashbang grammar (fail) > #\\u{21} 1`] = `
-"SyntaxError [1:1-1:5]: Illegal Unicode escape sequence
+"SyntaxError [1:1-1:7]: Illegal Unicode escape sequence
 > 1 | #\\u{21}
-    |  ^^^^ Illegal Unicode escape sequence"
+    |  ^^^^^^ Illegal Unicode escape sequence"
 `;
 
 exports[`Next - Hashbang grammar > Next - Hashbang grammar (fail) > #\\u0021
  1`] = `
-"SyntaxError [1:1-1:1]: Illegal Unicode escape sequence
+"SyntaxError [1:1-1:7]: Illegal Unicode escape sequence
 > 1 | #\\u0021
-    |  ^ Illegal Unicode escape sequence
+    |  ^^^^^^ Illegal Unicode escape sequence
   2 |"
 `;
 
@@ -107,15 +107,15 @@ exports[`Next - Hashbang grammar > Next - Hashbang grammar (fail) > ;#! 1`] = `
 `;
 
 exports[`Next - Hashbang grammar > Next - Hashbang grammar (fail) > \\u0023! 1`] = `
-"SyntaxError [1:0-1:0]: Illegal Unicode escape sequence
+"SyntaxError [1:0-1:6]: Illegal Unicode escape sequence
 > 1 | \\u0023!
-    | ^ Illegal Unicode escape sequence"
+    | ^^^^^^ Illegal Unicode escape sequence"
 `;
 
 exports[`Next - Hashbang grammar > Next - Hashbang grammar (fail) > \\u0023\\u0021 1`] = `
-"SyntaxError [1:0-1:0]: Illegal Unicode escape sequence
+"SyntaxError [1:0-1:6]: Illegal Unicode escape sequence
 > 1 | \\u0023\\u0021
-    | ^ Illegal Unicode escape sequence"
+    | ^^^^^^ Illegal Unicode escape sequence"
 `;
 
 exports[`Next - Hashbang grammar > Next - Hashbang grammar (fail) > \\x23! 1`] = `
@@ -132,9 +132,9 @@ exports[`Next - Hashbang grammar > Next - Hashbang grammar (fail) > { #! } 1`] =
 
 exports[`Next - Hashbang grammar > Next - Hashbang grammar (fail) > function fn(a = #\\u0021
 ) {} 1`] = `
-"SyntaxError [1:17-1:17]: Illegal Unicode escape sequence
+"SyntaxError [1:17-1:23]: Illegal Unicode escape sequence
 > 1 | function fn(a = #\\u0021
-    |                  ^ Illegal Unicode escape sequence
+    |                  ^^^^^^ Illegal Unicode escape sequence
   2 | ) {}"
 `;
 

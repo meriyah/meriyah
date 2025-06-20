@@ -219,9 +219,9 @@ exports[`Expressions - Async function > Expressions - Async function (fail) > (a
 `;
 
 exports[`Expressions - Async function > Expressions - Async function (fail) > a = (async (p\\u0061ckage) => { "use strict" }) 1`] = `
-"SyntaxError [1:38-1:39]: Unexpected strict mode reserved word
+"SyntaxError [1:44-1:45]: Unexpected strict mode reserved word
 > 1 | a = (async (p\\u0061ckage) => { "use strict" })
-    |                                       ^ Unexpected strict mode reserved word"
+    |                                             ^ Unexpected strict mode reserved word"
 `;
 
 exports[`Expressions - Async function > Expressions - Async function (fail) > a = (async (package) => { "use strict" }) 1`] = `
@@ -231,9 +231,9 @@ exports[`Expressions - Async function > Expressions - Async function (fail) > a 
 `;
 
 exports[`Expressions - Async function > Expressions - Async function (fail) > a = async (p\\u0061ckage) => { "use strict" } 1`] = `
-"SyntaxError [1:37-1:38]: Unexpected strict mode reserved word
+"SyntaxError [1:43-1:44]: Unexpected strict mode reserved word
 > 1 | a = async (p\\u0061ckage) => { "use strict" }
-    |                                      ^ Unexpected strict mode reserved word"
+    |                                            ^ Unexpected strict mode reserved word"
 `;
 
 exports[`Expressions - Async function > Expressions - Async function (fail) > a = async (package) => { "use strict" } 1`] = `
@@ -243,9 +243,9 @@ exports[`Expressions - Async function > Expressions - Async function (fail) > a 
 `;
 
 exports[`Expressions - Async function > Expressions - Async function (fail) > a = async p\\u0061ckage => { "use strict" } 1`] = `
-"SyntaxError [1:35-1:36]: Unexpected strict mode reserved word
+"SyntaxError [1:41-1:42]: Unexpected strict mode reserved word
 > 1 | a = async p\\u0061ckage => { "use strict" }
-    |                                    ^ Unexpected strict mode reserved word"
+    |                                          ^ Unexpected strict mode reserved word"
 `;
 
 exports[`Expressions - Async function > Expressions - Async function (fail) > a = async package => { "use strict" } 1`] = `

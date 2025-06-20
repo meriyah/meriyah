@@ -433,9 +433,9 @@ exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > [async
 `;
 
 exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > \\u0061sync () => {} 1`] = `
-"SyntaxError [1:8-1:10]: Unexpected token: '=>'
+"SyntaxError [1:14-1:16]: Unexpected token: '=>'
 > 1 | \\u0061sync () => {}
-    |         ^^ Unexpected token: '=>'"
+    |               ^^ Unexpected token: '=>'"
 `;
 
 exports[`Expressions - Async arrow > Expressions - Async arrow (fail) > a + async () => {} 1`] = `

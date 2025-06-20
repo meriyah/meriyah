@@ -181,9 +181,9 @@ exports[`Expressions - Functions > Expressions - Functions (fail) > function f(1
 `;
 
 exports[`Expressions - Functions > Expressions - Functions (fail) > function p\\u0061ckage() { "use strict"; } 1`] = `
-"SyntaxError [1:34-1:35]: Function name may not contain any reserved words or be eval or arguments in strict mode
+"SyntaxError [1:40-1:41]: Function name may not contain any reserved words or be eval or arguments in strict mode
 > 1 | function p\\u0061ckage() { "use strict"; }
-    |                                   ^ Function name may not contain any reserved words or be eval or arguments in strict mode"
+    |                                         ^ Function name may not contain any reserved words or be eval or arguments in strict mode"
 `;
 
 exports[`Expressions - Functions > Expressions - Functions (fail) > function package() { "use strict"; } 1`] = `

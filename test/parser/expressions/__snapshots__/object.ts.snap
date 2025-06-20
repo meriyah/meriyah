@@ -1261,9 +1261,9 @@ exports[`Expressions - Object > Expressions - Object (fail) > ({foo: x() = x}) =
 `;
 
 exports[`Expressions - Object > Expressions - Object (fail) > ({g\\u0065t m() {} }); 1`] = `
-"SyntaxError [1:5-1:6]: Unexpected token: 'escaped keyword'
+"SyntaxError [1:11-1:12]: Unexpected token: 'escaped keyword'
 > 1 | ({g\\u0065t m() {} });
-    |      ^ Unexpected token: 'escaped keyword'"
+    |            ^ Unexpected token: 'escaped keyword'"
 `;
 
 exports[`Expressions - Object > Expressions - Object (fail) > ({get "x"(){}) 1`] = `

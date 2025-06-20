@@ -5481,9 +5481,9 @@ exports[`Next - Private methods > Private methods (fail) > class A { # x; } 1`] 
 `;
 
 exports[`Next - Private methods > Private methods (fail) > class A { #\\u0000; } 1`] = `
-"SyntaxError [1:11-1:11]: Illegal Unicode escape sequence
+"SyntaxError [1:11-1:17]: Illegal Unicode escape sequence
 > 1 | class A { #\\u0000; }
-    |            ^ Illegal Unicode escape sequence"
+    |            ^^^^^^ Illegal Unicode escape sequence"
 `;
 
 exports[`Next - Private methods > Private methods (fail) > class A { #a #b } 1`] = `
@@ -5583,9 +5583,9 @@ exports[`Next - Private methods > Private methods (fail) > class A { get #x() {}
 `;
 
 exports[`Next - Private methods > Private methods (fail) > class A { method() { this.\\u0023field; } } 1`] = `
-"SyntaxError [1:26-1:26]: Illegal Unicode escape sequence
+"SyntaxError [1:26-1:32]: Illegal Unicode escape sequence
 > 1 | class A { method() { this.\\u0023field; } }
-    |                           ^ Illegal Unicode escape sequence"
+    |                           ^^^^^^ Illegal Unicode escape sequence"
 `;
 
 exports[`Next - Private methods > Private methods (fail) > class A { set #x(v) {} set #x(v) {} } 1`] = `
@@ -5637,15 +5637,15 @@ exports[`Next - Private methods > Private methods (fail) > class A{ # a() {}} 1`
 `;
 
 exports[`Next - Private methods > Private methods (fail) > class C {  async \\u0023m() {} } 1`] = `
-"SyntaxError [1:17-1:17]: Illegal Unicode escape sequence
+"SyntaxError [1:17-1:23]: Illegal Unicode escape sequence
 > 1 | class C {  async \\u0023m() {} }
-    |                  ^ Illegal Unicode escape sequence"
+    |                  ^^^^^^ Illegal Unicode escape sequence"
 `;
 
 exports[`Next - Private methods > Private methods (fail) > class C { #method() { \\u0023field; } } 1`] = `
-"SyntaxError [1:22-1:22]: Illegal Unicode escape sequence
+"SyntaxError [1:22-1:28]: Illegal Unicode escape sequence
 > 1 | class C { #method() { \\u0023field; } }
-    |                       ^ Illegal Unicode escape sequence"
+    |                       ^^^^^^ Illegal Unicode escape sequence"
 `;
 
 exports[`Next - Private methods > Private methods (fail) > class C { #method() { a() { foo().\\u0023field; } } } 1`] = `
@@ -5661,15 +5661,15 @@ exports[`Next - Private methods > Private methods (fail) > class C { #x = () => 
 `;
 
 exports[`Next - Private methods > Private methods (fail) > class C { async \\u0023m() {} } } 1`] = `
-"SyntaxError [1:16-1:16]: Illegal Unicode escape sequence
+"SyntaxError [1:16-1:22]: Illegal Unicode escape sequence
 > 1 | class C { async \\u0023m() {} } }
-    |                 ^ Illegal Unicode escape sequence"
+    |                 ^^^^^^ Illegal Unicode escape sequence"
 `;
 
 exports[`Next - Private methods > Private methods (fail) > class C { async \\u0023m() {} } } 2`] = `
-"SyntaxError [1:16-1:16]: Illegal Unicode escape sequence
+"SyntaxError [1:16-1:22]: Illegal Unicode escape sequence
 > 1 | class C { async \\u0023m() {} } }
-    |                 ^ Illegal Unicode escape sequence"
+    |                 ^^^^^^ Illegal Unicode escape sequence"
 `;
 
 exports[`Next - Private methods > Private methods (fail) > class C { static #x = super(); } 1`] = `
@@ -5679,9 +5679,9 @@ exports[`Next - Private methods > Private methods (fail) > class C { static #x =
 `;
 
 exports[`Next - Private methods > Private methods (fail) > class C { static async *#gen() {  void \\u0061wait; } } 1`] = `
-"SyntaxError [1:39-1:43]: Unexpected token: 'escaped keyword'
+"SyntaxError [1:39-1:49]: Unexpected token: 'escaped keyword'
 > 1 | class C { static async *#gen() {  void \\u0061wait; } }
-    |                                        ^^^^ Unexpected token: 'escaped keyword'"
+    |                                        ^^^^^^^^^^ Unexpected token: 'escaped keyword'"
 `;
 
 exports[`Next - Private methods > Private methods (fail) > class C { static async *#gen() { var await; } } 1`] = `
