@@ -12,7 +12,7 @@ describe(
   async () => {
     for await (const testCase of getTest262Fixtures(TEST262_FILE ? [TEST262_FILE] : undefined)) {
       it(`test/test262/test262/test/${testCase.file}`, () => {
-        let acornAst: acorn.Program;
+        let acornAst: MeriyahAst;
         try {
           acornAst = parseAcorn(testCase.contents, testCase.sourceType);
         } catch (error) {
@@ -74,7 +74,26 @@ function parseAcorn(text: string, sourceType: acorn.Options['sourceType'] = 'scr
   return fixAcornAst(ast, text);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const getSingleLineCommentType = (comment: acorn.Comment, text: string): ESTree.CommentType => {
+  const firstThreeCharacters = text.slice(comment.start, comment.start + 3);
+
+  if (firstThreeCharacters === '-->') {
+    return 'HTMLClose';
+  }
+
+  if (firstThreeCharacters === '<--') {
+    return 'HTMLOpen';
+  }
+
+  const firstTwoCharacters = firstThreeCharacters.slice(0, -1);
+
+  if (firstTwoCharacters === '#!') {
+    return 'HashbangComment';
+  }
+
+  return 'SingleLine';
+};
+
 function fixAcornAst(ast: acorn.Program, text: string): MeriyahAst {
   return visitNode(ast, (node: Record<string, any>) => {
     // Convert to plain object
@@ -86,8 +105,10 @@ function fixAcornAst(ast: acorn.Program, text: string): MeriyahAst {
     switch (node.type) {
       case 'Block':
         return Object.assign(node, { type: 'MultiLine' });
-      case 'Line':
-        return Object.assign(node, { type: 'SingleLine' });
+      case 'Line': {
+        const type = getSingleLineCommentType(node as acorn.Comment, text);
+        return Object.assign(node, { type });
+      }
       case 'FunctionExpression':
       case 'FunctionDeclaration':
         if (node.expression === false) {
