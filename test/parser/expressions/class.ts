@@ -1406,5 +1406,6 @@ describe('Expressions - Class', () => {
         }
         constructor() {}
       }`,
+    { code: 'class C {\nstatic accessor = 42;}', options: { next: true, loc: true, ranges: true } },
   ]);
 });

@@ -10026,6 +10026,156 @@ exports[`Expressions - Class > Expressions - Class (pass) > class A extends B { 
 }
 `;
 
+exports[`Expressions - Class > Expressions - Class (pass) > class C {
+static accessor = 42;} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "decorators": [],
+            "end": 31,
+            "key": {
+              "end": 25,
+              "loc": {
+                "end": {
+                  "column": 15,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 2,
+                },
+              },
+              "name": "accessor",
+              "range": [
+                17,
+                25,
+              ],
+              "start": 17,
+              "type": "Identifier",
+            },
+            "loc": {
+              "end": {
+                "column": 21,
+                "line": 2,
+              },
+              "start": {
+                "column": 7,
+                "line": 2,
+              },
+            },
+            "range": [
+              17,
+              31,
+            ],
+            "start": 17,
+            "static": true,
+            "type": "PropertyDefinition",
+            "value": {
+              "end": 30,
+              "loc": {
+                "end": {
+                  "column": 20,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 18,
+                  "line": 2,
+                },
+              },
+              "range": [
+                28,
+                30,
+              ],
+              "start": 28,
+              "type": "Literal",
+              "value": 42,
+            },
+          },
+        ],
+        "end": 32,
+        "loc": {
+          "end": {
+            "column": 22,
+            "line": 2,
+          },
+          "start": {
+            "column": 8,
+            "line": 1,
+          },
+        },
+        "range": [
+          8,
+          32,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "decorators": [],
+      "end": 32,
+      "id": {
+        "end": 7,
+        "loc": {
+          "end": {
+            "column": 7,
+            "line": 1,
+          },
+          "start": {
+            "column": 6,
+            "line": 1,
+          },
+        },
+        "name": "C",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "loc": {
+        "end": {
+          "column": 22,
+          "line": 2,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        32,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 32,
+  "loc": {
+    "end": {
+      "column": 22,
+      "line": 2,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    32,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`Expressions - Class > Expressions - Class (pass) > class C { async *gen() {
             yield {
                 ...yield,
