@@ -11,10 +11,14 @@ const ignore = new Set([
   // https://github.com/meriyah/meriyah/issues/460
   'language/expressions/template-literal/tv-line-continuation.js',
   'language/expressions/template-literal/tv-line-terminator-sequence.js',
+  'built-ins/String/raw/special-characters.js',
 
   // https://github.com/meriyah/meriyah/issues/472
   'language/literals/string/line-separator.js',
   'language/literals/string/paragraph-separator.js',
+
+  // https://github.com/meriyah/meriyah/issues/475
+  'staging/sm/Function/function-name-computed-01.js',
 ]);
 
 describe(
