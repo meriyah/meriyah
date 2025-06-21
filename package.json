@@ -85,6 +85,7 @@
     "@types/node": "^22.14.0",
     "@unicode/unicode-16.0.0": "^1.6.5",
     "@vitest/coverage-v8": "^3.1.1",
+    "acorn": "^8.15.0",
     "coveralls": "^3.1.1",
     "cross-env": "^7.0.3",
     "cspell": "^8.18.1",
