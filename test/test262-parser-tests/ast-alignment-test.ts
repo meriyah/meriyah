@@ -111,11 +111,13 @@ function fixAcornAst(ast: acorn.Program, text: string): MeriyahAst {
       }
       case 'FunctionExpression':
       case 'FunctionDeclaration':
+        // Depreacted property https://github.com/acornjs/acorn/pull/1361
         if (node.expression === false) {
           delete node.expression;
         }
         return node;
       case 'ArrowFunctionExpression':
+        // Not in ESTree
         if (node.id === null) {
           delete node.id;
         }
