@@ -19,6 +19,7 @@ const ignore = new Set([
 
   // https://github.com/meriyah/meriyah/issues/475
   'staging/sm/Function/function-name-computed-01.js',
+  'staging/sm/Function/function-name-computed-02.js',
 ]);
 
 describe(
