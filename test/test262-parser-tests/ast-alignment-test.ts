@@ -11,7 +11,7 @@ describe(
   'AST alignment with Acorn',
   async () => {
     for await (const testCase of getTest262Fixtures(TEST262_FILE ? [TEST262_FILE] : undefined)) {
-      it(`test/test262/test262/test/${testCase.file}`, () => {
+      it(`test262/test262/test/${testCase.file}`, () => {
         let acornAst: MeriyahAst;
         try {
           acornAst = parseAcorn(testCase.contents, testCase.sourceType);
