@@ -8070,8 +8070,6 @@ function parseClassElementList(
 ): ESTree.MethodDefinition | ESTree.PropertyDefinition | ESTree.AccessorProperty | ESTree.StaticBlock {
   let kind: PropertyKind = isStatic ? PropertyKind.Static : PropertyKind.None;
   let key: ESTree.Expression | ESTree.PrivateIdentifier | null = null;
-
-  const { tokenStart } = parser;
   const token = parser.getToken();
 
   // Escaped reserved keyword can be used as ClassElementName which is NOT a Identifier,
@@ -8105,7 +8103,7 @@ function parseClassElementList(
       case Token.AsyncKeyword:
         if (parser.getToken() !== Token.LeftParen && (parser.flags & Flags.NewLine) === 0) {
           if ((parser.getToken() & Token.IsClassField) === Token.IsClassField) {
-            return parsePropertyDefinition(parser, context, privateScope, key, kind, decorators, tokenStart);
+            return parsePropertyDefinition(parser, context, privateScope, key, kind, decorators, start);
           }
 
           kind |= PropertyKind.Async | (optionalBit(parser, context, Token.Multiply) ? PropertyKind.Generator : 0);
@@ -8115,7 +8113,7 @@ function parseClassElementList(
       case Token.GetKeyword:
         if (parser.getToken() !== Token.LeftParen) {
           if ((parser.getToken() & Token.IsClassField) === Token.IsClassField) {
-            return parsePropertyDefinition(parser, context, privateScope, key, kind, decorators, tokenStart);
+            return parsePropertyDefinition(parser, context, privateScope, key, kind, decorators, start);
           }
           kind |= PropertyKind.Getter;
         }
@@ -8124,7 +8122,7 @@ function parseClassElementList(
       case Token.SetKeyword:
         if (parser.getToken() !== Token.LeftParen) {
           if ((parser.getToken() & Token.IsClassField) === Token.IsClassField) {
-            return parsePropertyDefinition(parser, context, privateScope, key, kind, decorators, tokenStart);
+            return parsePropertyDefinition(parser, context, privateScope, key, kind, decorators, start);
           }
           kind |= PropertyKind.Setter;
         }
@@ -8132,7 +8130,7 @@ function parseClassElementList(
       case Token.AccessorKeyword:
         if (parser.getToken() !== Token.LeftParen && (parser.flags & Flags.NewLine) === 0) {
           if ((parser.getToken() & Token.IsClassField) === Token.IsClassField) {
-            return parsePropertyDefinition(parser, context, privateScope, key, kind, decorators, tokenStart);
+            return parsePropertyDefinition(parser, context, privateScope, key, kind, decorators, start);
           }
           // class auto-accessor is part of stage 3 decorator spec
           if (context & Context.OptionsNext) kind |= PropertyKind.Accessor;
