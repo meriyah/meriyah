@@ -1,5 +1,5 @@
 import * as t from 'node:assert/strict';
-import { describe, it } from 'vitest';
+import { it } from 'vitest';
 import * as acorn from 'acorn';
 import getTest262Fixtures from '../../test262/get-test262-fixtures.mjs';
 import * as meriyah from '../../src/meriyah';
@@ -22,7 +22,7 @@ const ignore = new Set([
   'staging/sm/Function/function-name-computed-02.js',
 ]);
 
-describe(
+it(
   'AST alignment with Acorn',
   async () => {
     for await (const testCase of getTest262Fixtures(TEST262_FILE ? [TEST262_FILE] : undefined)) {
@@ -30,30 +30,28 @@ describe(
         continue;
       }
 
-      it(`test262/test262/test/${testCase.file}`, () => {
-        let acornAst: MeriyahAst;
-        try {
-          acornAst = parseAcorn(testCase.contents, testCase.sourceType);
-        } catch (error) {
-          if (error instanceof SyntaxError && 'loc' in error) {
-            return;
-          }
-
-          throw error;
+      let acornAst: MeriyahAst;
+      try {
+        acornAst = parseAcorn(testCase.contents, testCase.sourceType);
+      } catch (error) {
+        if (error instanceof SyntaxError && 'loc' in error) {
+          return;
         }
 
-        const meriyahAst = parseMeriyah(testCase.contents, testCase.sourceType);
-        try {
-          t.deepEqual(meriyahAst, acornAst);
-        } catch (error) {
-          if (!TEST262_FILE)
-            console.log(
-              `Test faild, use this commmand to debug\n$ TEST262_FILE=${testCase.file} npx vitest test/test262-parser-tests/ast-alignment-test.ts`,
-            );
-          console.error(testCase);
-          throw error;
-        }
-      });
+        throw error;
+      }
+
+      const meriyahAst = parseMeriyah(testCase.contents, testCase.sourceType);
+      try {
+        t.deepEqual(meriyahAst, acornAst);
+      } catch (error) {
+        if (!TEST262_FILE)
+          console.log(
+            `Test faild, use this commmand to debug\n$ TEST262_FILE=${testCase.file} npx vitest test/test262-parser-tests/ast-alignment-test.ts`,
+          );
+        console.error(testCase);
+        throw error;
+      }
     }
   },
   Infinity,
