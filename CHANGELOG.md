@@ -1,3 +1,13 @@
+## [6.1.2](https://github.com/meriyah/meriyah/compare/v6.1.1...v6.1.2) (2025-06-21)
+
+
+### Bug Fixes
+
+* **parser:** fix column of escaped identifier ([#469](https://github.com/meriyah/meriyah/issues/469)) ([98d3983](https://github.com/meriyah/meriyah/commit/98d398314f03c3c850368bee1ce697b88f070c79))
+* **parser:** fix location of `import.meta` ([#461](https://github.com/meriyah/meriyah/issues/461)) ([6a05b0e](https://github.com/meriyah/meriyah/commit/6a05b0e0183f357ced7b26207a2a2f22ca287e80))
+
+
+
 ## [6.1.1](https://github.com/meriyah/meriyah/compare/v6.1.0...v6.1.1) (2025-06-17)
 
 
