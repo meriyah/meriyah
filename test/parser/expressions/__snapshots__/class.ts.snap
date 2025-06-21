@@ -10129,15 +10129,15 @@ static static = 42;} 1`] = `
                 "line": 3,
               },
               "start": {
-                "column": 7,
+                "column": 0,
                 "line": 3,
               },
             },
             "range": [
-              39,
+              32,
               48,
             ],
-            "start": 39,
+            "start": 32,
             "static": true,
             "type": "PropertyDefinition",
             "value": {
@@ -10191,15 +10191,15 @@ static static = 42;} 1`] = `
                 "line": 4,
               },
               "start": {
-                "column": 7,
+                "column": 0,
                 "line": 4,
               },
             },
             "range": [
-              56,
+              49,
               65,
             ],
-            "start": 56,
+            "start": 49,
             "static": true,
             "type": "PropertyDefinition",
             "value": {
@@ -10253,15 +10253,15 @@ static static = 42;} 1`] = `
                 "line": 5,
               },
               "start": {
-                "column": 7,
+                "column": 0,
                 "line": 5,
               },
             },
             "range": [
-              73,
+              66,
               84,
             ],
-            "start": 73,
+            "start": 66,
             "static": true,
             "type": "PropertyDefinition",
             "value": {
