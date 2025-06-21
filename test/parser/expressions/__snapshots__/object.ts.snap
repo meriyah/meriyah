@@ -4712,6 +4712,159 @@ exports[`Expressions - Object > Expressions - Object (pass) > ({"x": y+z}) 1`] =
 }
 `;
 
+exports[`Expressions - Object > Expressions - Object (pass) > ({*1n
+(){}}) 1`] = `
+{
+  "body": [
+    {
+      "end": 12,
+      "expression": {
+        "end": 11,
+        "loc": {
+          "end": {
+            "column": 5,
+            "line": 2,
+          },
+          "start": {
+            "column": 1,
+            "line": 1,
+          },
+        },
+        "properties": [
+          {
+            "computed": false,
+            "end": 10,
+            "key": {
+              "bigint": "1",
+              "end": 5,
+              "loc": {
+                "end": {
+                  "column": 5,
+                  "line": 1,
+                },
+                "start": {
+                  "column": 3,
+                  "line": 1,
+                },
+              },
+              "range": [
+                3,
+                5,
+              ],
+              "start": 3,
+              "type": "Literal",
+              "value": 1n,
+            },
+            "kind": "init",
+            "loc": {
+              "end": {
+                "column": 4,
+                "line": 2,
+              },
+              "start": {
+                "column": 2,
+                "line": 1,
+              },
+            },
+            "method": true,
+            "range": [
+              2,
+              10,
+            ],
+            "shorthand": false,
+            "start": 2,
+            "type": "Property",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "end": 10,
+                "loc": {
+                  "end": {
+                    "column": 4,
+                    "line": 2,
+                  },
+                  "start": {
+                    "column": 2,
+                    "line": 2,
+                  },
+                },
+                "range": [
+                  8,
+                  10,
+                ],
+                "start": 8,
+                "type": "BlockStatement",
+              },
+              "end": 10,
+              "generator": true,
+              "id": null,
+              "loc": {
+                "end": {
+                  "column": 4,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 0,
+                  "line": 2,
+                },
+              },
+              "params": [],
+              "range": [
+                6,
+                10,
+              ],
+              "start": 6,
+              "type": "FunctionExpression",
+            },
+          },
+        ],
+        "range": [
+          1,
+          11,
+        ],
+        "start": 1,
+        "type": "ObjectExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 6,
+          "line": 2,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        12,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 12,
+  "loc": {
+    "end": {
+      "column": 6,
+      "line": 2,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    12,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`Expressions - Object > Expressions - Object (pass) > ({*async(){}}) 1`] = `
 {
   "body": [
