@@ -10026,6 +10026,408 @@ exports[`Expressions - Class > Expressions - Class (pass) > class A extends B { 
 }
 `;
 
+exports[`Expressions - Class > Expressions - Class (pass) > class C {
+static accessor = 42;
+static set = 42;
+static get = 42;
+static async = 42;
+static static = 42;} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "decorators": [],
+            "end": 31,
+            "key": {
+              "end": 25,
+              "loc": {
+                "end": {
+                  "column": 15,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 2,
+                },
+              },
+              "name": "accessor",
+              "range": [
+                17,
+                25,
+              ],
+              "start": 17,
+              "type": "Identifier",
+            },
+            "loc": {
+              "end": {
+                "column": 21,
+                "line": 2,
+              },
+              "start": {
+                "column": 0,
+                "line": 2,
+              },
+            },
+            "range": [
+              10,
+              31,
+            ],
+            "start": 10,
+            "static": true,
+            "type": "PropertyDefinition",
+            "value": {
+              "end": 30,
+              "loc": {
+                "end": {
+                  "column": 20,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 18,
+                  "line": 2,
+                },
+              },
+              "range": [
+                28,
+                30,
+              ],
+              "start": 28,
+              "type": "Literal",
+              "value": 42,
+            },
+          },
+          {
+            "computed": false,
+            "decorators": [],
+            "end": 48,
+            "key": {
+              "end": 42,
+              "loc": {
+                "end": {
+                  "column": 10,
+                  "line": 3,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 3,
+                },
+              },
+              "name": "set",
+              "range": [
+                39,
+                42,
+              ],
+              "start": 39,
+              "type": "Identifier",
+            },
+            "loc": {
+              "end": {
+                "column": 16,
+                "line": 3,
+              },
+              "start": {
+                "column": 0,
+                "line": 3,
+              },
+            },
+            "range": [
+              32,
+              48,
+            ],
+            "start": 32,
+            "static": true,
+            "type": "PropertyDefinition",
+            "value": {
+              "end": 47,
+              "loc": {
+                "end": {
+                  "column": 15,
+                  "line": 3,
+                },
+                "start": {
+                  "column": 13,
+                  "line": 3,
+                },
+              },
+              "range": [
+                45,
+                47,
+              ],
+              "start": 45,
+              "type": "Literal",
+              "value": 42,
+            },
+          },
+          {
+            "computed": false,
+            "decorators": [],
+            "end": 65,
+            "key": {
+              "end": 59,
+              "loc": {
+                "end": {
+                  "column": 10,
+                  "line": 4,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 4,
+                },
+              },
+              "name": "get",
+              "range": [
+                56,
+                59,
+              ],
+              "start": 56,
+              "type": "Identifier",
+            },
+            "loc": {
+              "end": {
+                "column": 16,
+                "line": 4,
+              },
+              "start": {
+                "column": 0,
+                "line": 4,
+              },
+            },
+            "range": [
+              49,
+              65,
+            ],
+            "start": 49,
+            "static": true,
+            "type": "PropertyDefinition",
+            "value": {
+              "end": 64,
+              "loc": {
+                "end": {
+                  "column": 15,
+                  "line": 4,
+                },
+                "start": {
+                  "column": 13,
+                  "line": 4,
+                },
+              },
+              "range": [
+                62,
+                64,
+              ],
+              "start": 62,
+              "type": "Literal",
+              "value": 42,
+            },
+          },
+          {
+            "computed": false,
+            "decorators": [],
+            "end": 84,
+            "key": {
+              "end": 78,
+              "loc": {
+                "end": {
+                  "column": 12,
+                  "line": 5,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 5,
+                },
+              },
+              "name": "async",
+              "range": [
+                73,
+                78,
+              ],
+              "start": 73,
+              "type": "Identifier",
+            },
+            "loc": {
+              "end": {
+                "column": 18,
+                "line": 5,
+              },
+              "start": {
+                "column": 0,
+                "line": 5,
+              },
+            },
+            "range": [
+              66,
+              84,
+            ],
+            "start": 66,
+            "static": true,
+            "type": "PropertyDefinition",
+            "value": {
+              "end": 83,
+              "loc": {
+                "end": {
+                  "column": 17,
+                  "line": 5,
+                },
+                "start": {
+                  "column": 15,
+                  "line": 5,
+                },
+              },
+              "range": [
+                81,
+                83,
+              ],
+              "start": 81,
+              "type": "Literal",
+              "value": 42,
+            },
+          },
+          {
+            "computed": false,
+            "decorators": [],
+            "end": 104,
+            "key": {
+              "end": 98,
+              "loc": {
+                "end": {
+                  "column": 13,
+                  "line": 6,
+                },
+                "start": {
+                  "column": 7,
+                  "line": 6,
+                },
+              },
+              "name": "static",
+              "range": [
+                92,
+                98,
+              ],
+              "start": 92,
+              "type": "Identifier",
+            },
+            "loc": {
+              "end": {
+                "column": 19,
+                "line": 6,
+              },
+              "start": {
+                "column": 0,
+                "line": 6,
+              },
+            },
+            "range": [
+              85,
+              104,
+            ],
+            "start": 85,
+            "static": true,
+            "type": "PropertyDefinition",
+            "value": {
+              "end": 103,
+              "loc": {
+                "end": {
+                  "column": 18,
+                  "line": 6,
+                },
+                "start": {
+                  "column": 16,
+                  "line": 6,
+                },
+              },
+              "range": [
+                101,
+                103,
+              ],
+              "start": 101,
+              "type": "Literal",
+              "value": 42,
+            },
+          },
+        ],
+        "end": 105,
+        "loc": {
+          "end": {
+            "column": 20,
+            "line": 6,
+          },
+          "start": {
+            "column": 8,
+            "line": 1,
+          },
+        },
+        "range": [
+          8,
+          105,
+        ],
+        "start": 8,
+        "type": "ClassBody",
+      },
+      "decorators": [],
+      "end": 105,
+      "id": {
+        "end": 7,
+        "loc": {
+          "end": {
+            "column": 7,
+            "line": 1,
+          },
+          "start": {
+            "column": 6,
+            "line": 1,
+          },
+        },
+        "name": "C",
+        "range": [
+          6,
+          7,
+        ],
+        "start": 6,
+        "type": "Identifier",
+      },
+      "loc": {
+        "end": {
+          "column": 20,
+          "line": 6,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        105,
+      ],
+      "start": 0,
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "end": 105,
+  "loc": {
+    "end": {
+      "column": 20,
+      "line": 6,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    105,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`Expressions - Class > Expressions - Class (pass) > class C { async *gen() {
             yield {
                 ...yield,
