@@ -75,10 +75,13 @@ function parseAcorn(text: string, sourceType: acorn.Options['sourceType'] = 'scr
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function fixAcornAst(ast: acorn.Program, text: string): acorn.Program {
+function fixAcornAst(ast: acorn.Program, text: string): MeriyahAst {
   return visitNode(ast, (node: Record<string, any>) => {
     // Convert to plain object
-    node = structuredClone(node);
+    node = {
+      ...node,
+      loc: { start: { ...node.loc!.start }, end: { ...node.loc!.end } },
+    };
 
     switch (node.type) {
       case 'Block':
