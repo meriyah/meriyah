@@ -55,6 +55,7 @@ async function* getTest262Fixtures(paths) {
     yield {
       ...test,
       file,
+      sourceType: test.attrs.flags.module ? 'module' : 'script',
     };
   }
 }

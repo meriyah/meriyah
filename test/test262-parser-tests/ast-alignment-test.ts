@@ -7,10 +7,24 @@ import type * as ESTree from '../../src/estree';
 
 const { TEST262_FILE } = process.env;
 
+const ignore = new Set([
+  // https://github.com/meriyah/meriyah/issues/460
+  'language/expressions/template-literal/tv-line-continuation.js',
+  'language/expressions/template-literal/tv-line-terminator-sequence.js',
+
+  // https://github.com/meriyah/meriyah/issues/472
+  'language/literals/string/line-separator.js',
+  'language/literals/string/paragraph-separator.js',
+]);
+
 describe(
   'AST alignment with Acorn',
   async () => {
     for await (const testCase of getTest262Fixtures(TEST262_FILE ? [TEST262_FILE] : undefined)) {
+      if (ignore.has(testCase.file)) {
+        continue;
+      }
+
       it(`test262/test262/test/${testCase.file}`, () => {
         let acornAst: MeriyahAst;
         try {
@@ -41,7 +55,7 @@ describe(
 );
 
 type MeriyahAst = ESTree.Program & { comments: ESTree.Comment[] };
-function parseMeriyah(text: string, sourceType: 'module' | 'script' | undefined) {
+function parseMeriyah(text: string, sourceType: 'module' | 'script') {
   const comments: ESTree.Comment[] = [];
   const ast = meriyah.parse(text, {
     webcompat: true,
@@ -63,7 +77,7 @@ function parseMeriyah(text: string, sourceType: 'module' | 'script' | undefined)
 }
 
 type AcornAst = acorn.Program & { comments: acorn.Comment[] };
-function parseAcorn(text: string, sourceType: acorn.Options['sourceType'] = 'script') {
+function parseAcorn(text: string, sourceType: acorn.Options['sourceType']) {
   const comments: acorn.Comment[] = [];
   const ast = acorn.parse(text, {
     ecmaVersion: 'latest',
