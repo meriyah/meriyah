@@ -5763,15 +5763,15 @@ b=2;;); 1`] = `
             "line": 3,
           },
           "start": {
-            "column": 3,
+            "column": 0,
             "line": 2,
           },
         },
         "range": [
-          8,
+          5,
           13,
         ],
-        "start": 8,
+        "start": 5,
         "type": "SequenceExpression",
       },
       "loc": {
