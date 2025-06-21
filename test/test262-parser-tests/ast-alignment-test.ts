@@ -1,7 +1,7 @@
 import * as t from 'node:assert/strict';
-import { it } from 'vitest';
+import { it, describe } from 'vitest';
 import * as acorn from 'acorn';
-import getTest262Fixtures from '../../test262/get-test262-fixtures.mjs';
+import getTest262Fixtures, { type TestCase } from '../../test262/get-test262-fixtures.mjs';
 import * as meriyah from '../../src/meriyah';
 import type * as ESTree from '../../src/estree';
 
@@ -22,40 +22,56 @@ const ignore = new Set([
   'staging/sm/Function/function-name-computed-02.js',
 ]);
 
-it(
+describe(
   'AST alignment with Acorn',
   async () => {
+    // For some unknown reason, can't run tests directly inside the `for..await..of` loop
+    const tests = [];
     for await (const testCase of getTest262Fixtures(TEST262_FILE ? [TEST262_FILE] : undefined)) {
-      if (ignore.has(testCase.file)) {
-        continue;
-      }
+      tests.push(testCase);
+    }
 
-      let acornAst: MeriyahAst;
-      try {
-        acornAst = parseAcorn(testCase.contents, testCase.sourceType);
-      } catch (error) {
-        if (error instanceof SyntaxError && 'loc' in error) {
-          return;
-        }
+    if (TEST262_FILE) {
+      t.equal(tests.length, 1);
+    }
 
-        throw error;
-      }
-
-      const meriyahAst = parseMeriyah(testCase.contents, testCase.sourceType);
-      try {
-        t.deepEqual(meriyahAst, acornAst);
-      } catch (error) {
-        if (!TEST262_FILE)
-          console.log(
-            `Test faild, use this commmand to debug\n$ TEST262_FILE=${testCase.file} npx vitest test/test262-parser-tests/ast-alignment-test.ts`,
-          );
-        console.error(testCase);
-        throw error;
-      }
+    for (const testCase of tests) {
+      it(testCase.file, () => {
+        runTest(testCase);
+      });
     }
   },
   Infinity,
 );
+
+function runTest(testCase: TestCase) {
+  if (ignore.has(testCase.file)) {
+    return;
+  }
+
+  let acornAst: MeriyahAst;
+  try {
+    acornAst = parseAcorn(testCase.contents, testCase.sourceType);
+  } catch (error) {
+    if (error instanceof SyntaxError && 'loc' in error) {
+      return;
+    }
+    throw error;
+  }
+
+  const meriyahAst = parseMeriyah(testCase.contents, testCase.sourceType);
+
+  try {
+    t.deepEqual(meriyahAst, acornAst);
+  } catch (error) {
+    if (!TEST262_FILE)
+      console.log(
+        `Test faild, use this commmand to debug\n$ TEST262_FILE=${testCase.file} npx vitest test/test262-parser-tests/ast-alignment-test.ts`,
+      );
+    console.error(testCase);
+    throw error;
+  }
+}
 
 type MeriyahAst = ESTree.Program & { comments: ESTree.Comment[] };
 function parseMeriyah(text: string, sourceType: 'module' | 'script') {
@@ -69,6 +85,7 @@ function parseMeriyah(text: string, sourceType: 'module' | 'script') {
     loc: true,
     raw: true,
     onComment: comments,
+    preserveParens: true,
   }) as MeriyahAst;
 
   for (const comment of comments) {
@@ -88,6 +105,7 @@ function parseAcorn(text: string, sourceType: acorn.Options['sourceType']) {
     locations: true,
     ranges: true,
     onComment: comments,
+    preserveParens: true,
   }) as AcornAst;
 
   ast.comments = comments;
