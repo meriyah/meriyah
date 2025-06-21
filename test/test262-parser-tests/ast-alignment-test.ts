@@ -1,9 +1,9 @@
+import * as t from 'node:assert/strict';
+import { describe, it } from 'vitest';
 import * as acorn from 'acorn';
 import getTest262Fixtures from '../../test262/get-test262-fixtures.mjs';
 import * as meriyah from '../../src/meriyah';
 import type * as ESTree from '../../src/estree';
-import * as t from 'node:assert/strict';
-import { describe, it } from 'vitest';
 
 const { TEST262_FILE } = process.env;
 
@@ -54,6 +54,10 @@ function parseMeriyah(text: string, sourceType: 'module' | 'script' | undefined)
     onComment: comments,
   }) as MeriyahAst;
 
+  for (const comment of comments) {
+    removeHtmlCloseCommentLocation(comment);
+  }
+
   ast.comments = comments;
   return ast;
 }
@@ -94,6 +98,18 @@ const getSingleLineCommentType = (comment: acorn.Comment, text: string): ESTree.
   return 'SingleLine';
 };
 
+// Acorn and Meriayh can't agree with each other
+// https://github.com/meriyah/meriyah/issues/154
+function removeHtmlCloseCommentLocation(comment: ESTree.Comment) {
+  if (comment.type === 'HTMLClose') {
+    delete comment.start;
+    delete comment.range;
+    delete comment.loc;
+  }
+
+  return comment;
+}
+
 function fixAcornAst(ast: acorn.Program, text: string): MeriyahAst {
   return visitNode(ast, (node: Record<string, any>) => {
     // Convert to plain object
@@ -107,7 +123,8 @@ function fixAcornAst(ast: acorn.Program, text: string): MeriyahAst {
         return Object.assign(node, { type: 'MultiLine' });
       case 'Line': {
         const type = getSingleLineCommentType(node as acorn.Comment, text);
-        return Object.assign(node, { type });
+
+        return removeHtmlCloseCommentLocation(Object.assign(node, { type }) as ESTree.Comment);
       }
       case 'FunctionExpression':
       case 'FunctionDeclaration':
@@ -135,8 +152,6 @@ function fixAcornAst(ast: acorn.Program, text: string): MeriyahAst {
 
     return node;
   });
-
-  return ast;
 }
 
 function visitNode(node: any, fn: any) {
