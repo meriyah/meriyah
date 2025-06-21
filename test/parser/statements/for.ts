@@ -906,5 +906,6 @@ describe('Statements - For', () => {
     [ 'for (a in b);', Context.None, {}],*/
 
     'for (a in b);',
+    { code: 'for(\na=1,\nb=2;;);', options: { loc: true, ranges: true } },
   ]);
 });

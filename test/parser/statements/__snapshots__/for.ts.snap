@@ -5607,6 +5607,214 @@ exports[`Statements - For > Statements - For (pass) > for (yield;;); 1`] = `
     |      ^^^^^ 'yield' may not be used as an identifier in this context"
 `;
 
+exports[`Statements - For > Statements - For (pass) > for(
+a=1,
+b=2;;); 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "end": 17,
+        "loc": {
+          "end": {
+            "column": 7,
+            "line": 3,
+          },
+          "start": {
+            "column": 6,
+            "line": 3,
+          },
+        },
+        "range": [
+          16,
+          17,
+        ],
+        "start": 16,
+        "type": "EmptyStatement",
+      },
+      "end": 17,
+      "init": {
+        "end": 13,
+        "expressions": [
+          {
+            "end": 8,
+            "left": {
+              "end": 6,
+              "loc": {
+                "end": {
+                  "column": 1,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 0,
+                  "line": 2,
+                },
+              },
+              "name": "a",
+              "range": [
+                5,
+                6,
+              ],
+              "start": 5,
+              "type": "Identifier",
+            },
+            "loc": {
+              "end": {
+                "column": 3,
+                "line": 2,
+              },
+              "start": {
+                "column": 0,
+                "line": 2,
+              },
+            },
+            "operator": "=",
+            "range": [
+              5,
+              8,
+            ],
+            "right": {
+              "end": 8,
+              "loc": {
+                "end": {
+                  "column": 3,
+                  "line": 2,
+                },
+                "start": {
+                  "column": 2,
+                  "line": 2,
+                },
+              },
+              "range": [
+                7,
+                8,
+              ],
+              "start": 7,
+              "type": "Literal",
+              "value": 1,
+            },
+            "start": 5,
+            "type": "AssignmentExpression",
+          },
+          {
+            "end": 13,
+            "left": {
+              "end": 11,
+              "loc": {
+                "end": {
+                  "column": 1,
+                  "line": 3,
+                },
+                "start": {
+                  "column": 0,
+                  "line": 3,
+                },
+              },
+              "name": "b",
+              "range": [
+                10,
+                11,
+              ],
+              "start": 10,
+              "type": "Identifier",
+            },
+            "loc": {
+              "end": {
+                "column": 3,
+                "line": 3,
+              },
+              "start": {
+                "column": 0,
+                "line": 3,
+              },
+            },
+            "operator": "=",
+            "range": [
+              10,
+              13,
+            ],
+            "right": {
+              "end": 13,
+              "loc": {
+                "end": {
+                  "column": 3,
+                  "line": 3,
+                },
+                "start": {
+                  "column": 2,
+                  "line": 3,
+                },
+              },
+              "range": [
+                12,
+                13,
+              ],
+              "start": 12,
+              "type": "Literal",
+              "value": 2,
+            },
+            "start": 10,
+            "type": "AssignmentExpression",
+          },
+        ],
+        "loc": {
+          "end": {
+            "column": 3,
+            "line": 3,
+          },
+          "start": {
+            "column": 0,
+            "line": 2,
+          },
+        },
+        "range": [
+          5,
+          13,
+        ],
+        "start": 5,
+        "type": "SequenceExpression",
+      },
+      "loc": {
+        "end": {
+          "column": 7,
+          "line": 3,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        17,
+      ],
+      "start": 0,
+      "test": null,
+      "type": "ForStatement",
+      "update": null,
+    },
+  ],
+  "end": 17,
+  "loc": {
+    "end": {
+      "column": 7,
+      "line": 3,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    17,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
 exports[`Statements - For > Statements - For (pass) > for(()=>{a in b};;); 1`] = `
 {
   "body": [

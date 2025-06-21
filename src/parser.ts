@@ -2161,7 +2161,7 @@ export function parseForStatement(
   }
 
   if (parser.getToken() === Token.Comma)
-    init = parseSequenceExpression(parser, context, privateScope, 0, parser.tokenStart, init);
+    init = parseSequenceExpression(parser, context, privateScope, 0, tokenStart, init);
 
   consume(parser, context | Context.AllowRegExp, Token.Semicolon);
 
