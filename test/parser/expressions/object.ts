@@ -1873,5 +1873,6 @@ describe('Expressions - Object', () => {
     { code: 'x = {a, ...y, b}', options: { ranges: true } },
     '({"x": {y: z}}) => x',
     { code: '({1n:1})', options: { ranges: true } },
+    { code: '({*1n\n(){}})', options: { ranges: true, loc: true } },
   ]);
 });
