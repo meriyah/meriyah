@@ -1,0 +1,129 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`StringLiteral > ("\\u2028"); 1`] = `
+{
+  "body": [
+    {
+      "end": 11,
+      "expression": {
+        "end": 9,
+        "loc": {
+          "end": {
+            "column": 9,
+            "line": 1,
+          },
+          "start": {
+            "column": 1,
+            "line": 1,
+          },
+        },
+        "range": [
+          1,
+          9,
+        ],
+        "start": 1,
+        "type": "Literal",
+        "value": " ",
+      },
+      "loc": {
+        "end": {
+          "column": 11,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        11,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 11,
+  "loc": {
+    "end": {
+      "column": 11,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    11,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`StringLiteral > ("\\u2029"); 1`] = `
+{
+  "body": [
+    {
+      "end": 11,
+      "expression": {
+        "end": 9,
+        "loc": {
+          "end": {
+            "column": 9,
+            "line": 1,
+          },
+          "start": {
+            "column": 1,
+            "line": 1,
+          },
+        },
+        "range": [
+          1,
+          9,
+        ],
+        "start": 1,
+        "type": "Literal",
+        "value": " ",
+      },
+      "loc": {
+        "end": {
+          "column": 11,
+          "line": 1,
+        },
+        "start": {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "range": [
+        0,
+        11,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 11,
+  "loc": {
+    "end": {
+      "column": 11,
+      "line": 1,
+    },
+    "start": {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "range": [
+    0,
+    11,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
