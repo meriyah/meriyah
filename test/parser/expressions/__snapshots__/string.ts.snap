@@ -1,15 +1,15 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`StringLiteral > ("\\u2028"); 1`] = `
+exports[`StringLiteral > (" "); 1`] = `
 {
   "body": [
     {
-      "end": 11,
+      "end": 6,
       "expression": {
-        "end": 9,
+        "end": 4,
         "loc": {
           "end": {
-            "column": 9,
+            "column": 4,
             "line": 1,
           },
           "start": {
@@ -19,7 +19,7 @@ exports[`StringLiteral > ("\\u2028"); 1`] = `
         },
         "range": [
           1,
-          9,
+          4,
         ],
         "start": 1,
         "type": "Literal",
@@ -27,7 +27,7 @@ exports[`StringLiteral > ("\\u2028"); 1`] = `
       },
       "loc": {
         "end": {
-          "column": 11,
+          "column": 6,
           "line": 1,
         },
         "start": {
@@ -37,16 +37,16 @@ exports[`StringLiteral > ("\\u2028"); 1`] = `
       },
       "range": [
         0,
-        11,
+        6,
       ],
       "start": 0,
       "type": "ExpressionStatement",
     },
   ],
-  "end": 11,
+  "end": 6,
   "loc": {
     "end": {
-      "column": 11,
+      "column": 6,
       "line": 1,
     },
     "start": {
@@ -56,7 +56,7 @@ exports[`StringLiteral > ("\\u2028"); 1`] = `
   },
   "range": [
     0,
-    11,
+    6,
   ],
   "sourceType": "script",
   "start": 0,
@@ -64,16 +64,16 @@ exports[`StringLiteral > ("\\u2028"); 1`] = `
 }
 `;
 
-exports[`StringLiteral > ("\\u2029"); 1`] = `
+exports[`StringLiteral > (" "); 1`] = `
 {
   "body": [
     {
-      "end": 11,
+      "end": 6,
       "expression": {
-        "end": 9,
+        "end": 4,
         "loc": {
           "end": {
-            "column": 9,
+            "column": 4,
             "line": 1,
           },
           "start": {
@@ -83,7 +83,7 @@ exports[`StringLiteral > ("\\u2029"); 1`] = `
         },
         "range": [
           1,
-          9,
+          4,
         ],
         "start": 1,
         "type": "Literal",
@@ -91,7 +91,7 @@ exports[`StringLiteral > ("\\u2029"); 1`] = `
       },
       "loc": {
         "end": {
-          "column": 11,
+          "column": 6,
           "line": 1,
         },
         "start": {
@@ -101,16 +101,16 @@ exports[`StringLiteral > ("\\u2029"); 1`] = `
       },
       "range": [
         0,
-        11,
+        6,
       ],
       "start": 0,
       "type": "ExpressionStatement",
     },
   ],
-  "end": 11,
+  "end": 6,
   "loc": {
     "end": {
-      "column": 11,
+      "column": 6,
       "line": 1,
     },
     "start": {
@@ -120,7 +120,7 @@ exports[`StringLiteral > ("\\u2029"); 1`] = `
   },
   "range": [
     0,
-    11,
+    6,
   ],
   "sourceType": "script",
   "start": 0,
