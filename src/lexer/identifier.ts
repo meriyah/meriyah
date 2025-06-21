@@ -175,6 +175,7 @@ export function scanIdentifierUnicodeEscape(parser: Parser): number {
     report(parser, Errors.InvalidUnicodeEscapeSequence);
   }
   parser.currentChar = parser.source.charCodeAt((parser.index += 2));
+  parser.column += 2;
   return scanUnicodeEscape(parser);
 }
 
@@ -224,6 +225,6 @@ export function scanUnicodeEscape(parser: Parser): number {
   codePoint = (toHex(char) << 12) | (toHex(char2) << 8) | (toHex(char3) << 4) | toHex(char4);
 
   parser.currentChar = parser.source.charCodeAt((parser.index += 4));
-
+  parser.column += 4;
   return codePoint;
 }

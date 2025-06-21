@@ -21,9 +21,9 @@ exports[`Miscellaneous - Directives > Miscellaneous - Directives (fail) > "use s
 `;
 
 exports[`Miscellaneous - Directives > Miscellaneous - Directives (fail) > \\u0061sync function f(){} 1`] = `
-"SyntaxError [1:5-1:13]: Unexpected token: 'function'
+"SyntaxError [1:11-1:19]: Unexpected token: 'function'
 > 1 | \\u0061sync function f(){}
-    |      ^^^^^^^^ Unexpected token: 'function'"
+    |            ^^^^^^^^ Unexpected token: 'function'"
 `;
 
 exports[`Miscellaneous - Directives > Miscellaneous - Directives (fail) > function a() { "use strict" 

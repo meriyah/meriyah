@@ -37,27 +37,27 @@ exports[`Statements - Labeled > Statements - Labeled (fail) > a: async function*
 `;
 
 exports[`Statements - Labeled > Statements - Labeled (fail) > async () => { \\u{61}wait: x } 1`] = `
-"SyntaxError [1:14-1:22]: Unexpected token: 'escaped keyword'
+"SyntaxError [1:14-1:24]: Unexpected token: 'escaped keyword'
 > 1 | async () => { \\u{61}wait: x }
-    |               ^^^^^^^^ Unexpected token: 'escaped keyword'"
+    |               ^^^^^^^^^^ Unexpected token: 'escaped keyword'"
 `;
 
 exports[`Statements - Labeled > Statements - Labeled (fail) > async () => { \\u{61}wait: x } 2`] = `
-"SyntaxError [1:14-1:22]: Unexpected token: 'escaped keyword'
+"SyntaxError [1:14-1:24]: Unexpected token: 'escaped keyword'
 > 1 | async () => { \\u{61}wait: x }
-    |               ^^^^^^^^ Unexpected token: 'escaped keyword'"
+    |               ^^^^^^^^^^ Unexpected token: 'escaped keyword'"
 `;
 
 exports[`Statements - Labeled > Statements - Labeled (fail) > async () => { aw\\u{61}it: x } 1`] = `
-"SyntaxError [1:14-1:22]: Unexpected token: 'escaped keyword'
+"SyntaxError [1:14-1:24]: Unexpected token: 'escaped keyword'
 > 1 | async () => { aw\\u{61}it: x }
-    |               ^^^^^^^^ Unexpected token: 'escaped keyword'"
+    |               ^^^^^^^^^^ Unexpected token: 'escaped keyword'"
 `;
 
 exports[`Statements - Labeled > Statements - Labeled (fail) > async () => { aw\\u{61}it: x } 2`] = `
-"SyntaxError [1:14-1:22]: Unexpected token: 'escaped keyword'
+"SyntaxError [1:14-1:24]: Unexpected token: 'escaped keyword'
 > 1 | async () => { aw\\u{61}it: x }
-    |               ^^^^^^^^ Unexpected token: 'escaped keyword'"
+    |               ^^^^^^^^^^ Unexpected token: 'escaped keyword'"
 `;
 
 exports[`Statements - Labeled > Statements - Labeled (fail) > await: 1; 1`] = `
