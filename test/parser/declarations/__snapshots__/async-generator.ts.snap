@@ -105,9 +105,9 @@ exports[`Declarations - Async Generator > Declarations - const (fail) > obj = { 
 `;
 
 exports[`Declarations - Async Generator > Declarations - const (fail) > void \\u0061sync function* f(){}; 1`] = `
-"SyntaxError [1:10-1:18]: Unexpected token: 'function'
+"SyntaxError [1:16-1:24]: Unexpected token: 'function'
 > 1 | void \\u0061sync function* f(){};
-    |           ^^^^^^^^ Unexpected token: 'function'"
+    |                 ^^^^^^^^ Unexpected token: 'function'"
 `;
 
 exports[`Declarations - Async Generator > Declarations - const (pass) > (async function*() {}) 1`] = `

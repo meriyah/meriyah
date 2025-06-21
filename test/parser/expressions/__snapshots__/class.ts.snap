@@ -13721,15 +13721,15 @@ exports[`Expressions - Class > Expressions - Class > class foo { static async x 
 `;
 
 exports[`Expressions - Class > Expressions - Class > class impl\\u0065ments {} 1`] = `
-"SyntaxError [1:6-1:15]: Class declaration must have a name in this context
+"SyntaxError [1:6-1:21]: Class declaration must have a name in this context
 > 1 | class impl\\u0065ments {}
-    |       ^^^^^^^^^ Class declaration must have a name in this context"
+    |       ^^^^^^^^^^^^^^^ Class declaration must have a name in this context"
 `;
 
 exports[`Expressions - Class > Expressions - Class > class l\\u0065t { } 1`] = `
-"SyntaxError [1:6-1:8]: Class declaration must have a name in this context
+"SyntaxError [1:6-1:14]: Class declaration must have a name in this context
 > 1 | class l\\u0065t { }
-    |       ^^ Class declaration must have a name in this context"
+    |       ^^^^^^^^ Class declaration must have a name in this context"
 `;
 
 exports[`Expressions - Class > Expressions - Class > class let { } 1`] = `
@@ -13923,9 +13923,9 @@ exports[`Expressions - Class > Expressions - Class > class x { static / foo(){} 
 `;
 
 exports[`Expressions - Class > Expressions - Class > class x { static async *prot\\u006ftype(){} } 1`] = `
-"SyntaxError [1:32-1:33]: Classes may not have a static property named 'prototype'
+"SyntaxError [1:38-1:39]: Classes may not have a static property named 'prototype'
 > 1 | class x { static async *prot\\u006ftype(){} }
-    |                                 ^ Classes may not have a static property named 'prototype'"
+    |                                       ^ Classes may not have a static property named 'prototype'"
 `;
 
 exports[`Expressions - Class > Expressions - Class > class x { static async *prototype(){} } 1`] = `

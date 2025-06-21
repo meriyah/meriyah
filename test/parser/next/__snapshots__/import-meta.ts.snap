@@ -175,15 +175,15 @@ exports[`Next - Import Meta > Expressions - Import Meta (fail) > import.(meta([0
 `;
 
 exports[`Next - Import Meta > Expressions - Import Meta (fail) > import.\\u006deta; 1`] = `
-"SyntaxError [1:7-1:10]: 'import.meta' must not contain escaped characters
+"SyntaxError [1:7-1:16]: 'import.meta' must not contain escaped characters
 > 1 | import.\\u006deta;
-    |        ^^^ 'import.meta' must not contain escaped characters"
+    |        ^^^^^^^^^ 'import.meta' must not contain escaped characters"
 `;
 
 exports[`Next - Import Meta > Expressions - Import Meta (fail) > import.m\\u0065ta; 1`] = `
-"SyntaxError [1:7-1:10]: 'import.meta' must not contain escaped characters
+"SyntaxError [1:7-1:16]: 'import.meta' must not contain escaped characters
 > 1 | import.m\\u0065ta;
-    |        ^^^ 'import.meta' must not contain escaped characters"
+    |        ^^^^^^^^^ 'import.meta' must not contain escaped characters"
 `;
 
 exports[`Next - Import Meta > Expressions - Import Meta (fail) > import.meta = 0; 1`] = `
