@@ -93,14 +93,16 @@ function parseAcorn(text: string, sourceType: acorn.Options['sourceType']) {
 }
 
 const getSingleLineCommentType = (comment: acorn.Comment, text: string): ESTree.CommentType => {
-  const firstThreeCharacters = text.slice(comment.start, comment.start + 3);
+  const firstFourCharacters = text.slice(comment.start, comment.start + 4);
+
+  if (firstFourCharacters === '<!--') {
+    return 'HTMLOpen';
+  }
+
+  const firstThreeCharacters = firstFourCharacters.slice(0, -1);
 
   if (firstThreeCharacters === '-->') {
     return 'HTMLClose';
-  }
-
-  if (firstThreeCharacters === '<--') {
-    return 'HTMLOpen';
   }
 
   const firstTwoCharacters = firstThreeCharacters.slice(0, -1);
