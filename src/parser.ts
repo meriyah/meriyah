@@ -8132,7 +8132,7 @@ function parseClassElementList(
       case Token.AccessorKeyword:
         if (parser.getToken() !== Token.LeftParen && (parser.flags & Flags.NewLine) === 0) {
           if ((parser.getToken() & Token.IsClassField) === Token.IsClassField) {
-            return parsePropertyDefinition(parser, context, privateScope, key, kind, decorators, tokenStart);
+            return parsePropertyDefinition(parser, context, privateScope, key, kind, decorators, start);
           }
           // class auto-accessor is part of stage 3 decorator spec
           if (context & Context.OptionsNext) kind |= PropertyKind.Accessor;

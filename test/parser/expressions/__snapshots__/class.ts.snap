@@ -10063,15 +10063,15 @@ static accessor = 42;} 1`] = `
                 "line": 2,
               },
               "start": {
-                "column": 7,
+                "column": 0,
                 "line": 2,
               },
             },
             "range": [
-              17,
+              10,
               31,
             ],
-            "start": 17,
+            "start": 10,
             "static": true,
             "type": "PropertyDefinition",
             "value": {
