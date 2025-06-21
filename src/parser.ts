@@ -5746,7 +5746,6 @@ export function parseObjectLiteralOrPattern(
    */
 
   const { tokenStart: start } = parser;
-
   nextToken(parser, context);
 
   const properties: (ESTree.Property | ESTree.SpreadElement | ESTree.RestElement)[] = [];
@@ -6349,7 +6348,7 @@ export function parseObjectLiteralOrPattern(
           destructible |= DestructuringKind.CannotDestruct;
           key = parseLiteral(parser, context);
           state |= PropertyKind.Method;
-          value = parseMethodDefinition(parser, context, privateScope, state, inGroup, tokenStart);
+          value = parseMethodDefinition(parser, context, privateScope, state, inGroup, parser.tokenStart);
         } else if (parser.getToken() === Token.LeftBracket) {
           destructible |= DestructuringKind.CannotDestruct;
           state |= PropertyKind.Computed | PropertyKind.Method;
