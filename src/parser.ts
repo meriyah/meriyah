@@ -5746,6 +5746,7 @@ export function parseObjectLiteralOrPattern(
    */
 
   const { tokenStart: start } = parser;
+
   nextToken(parser, context);
 
   const properties: (ESTree.Property | ESTree.SpreadElement | ESTree.RestElement)[] = [];
