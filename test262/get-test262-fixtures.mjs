@@ -14,7 +14,10 @@ async function* getTest262Fixtures(paths) {
     omitRuntime: true,
   });
 
-  stream.once('error', (error) => {
+  stream.on('error', (error) => {
+    if (error.code === 'ABORT_ERR') {
+      return;
+    }
     console.error(error);
     throw error;
   });
