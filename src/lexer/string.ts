@@ -49,7 +49,7 @@ export function scanString(parser: Parser, context: Context, quote: number): Tok
 
     if (parser.index >= parser.end) report(parser, Errors.UnterminatedString);
 
-    if (Chars.LineSeparator || char === Chars.ParagraphSeparator) {
+    if (char === Chars.LineSeparator || char === Chars.ParagraphSeparator) {
       parser.line++;
       parser.column = 0;
     }
