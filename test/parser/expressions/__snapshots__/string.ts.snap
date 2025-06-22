@@ -21,7 +21,6 @@ exports[`StringLiteral > ("\\ "); 1`] = `
           1,
           5,
         ],
-        "raw": ""\\ "",
         "start": 1,
         "type": "Literal",
         "value": "",
@@ -86,7 +85,6 @@ exports[`StringLiteral > ("\\ "); 1`] = `
           1,
           5,
         ],
-        "raw": ""\\ "",
         "start": 1,
         "type": "Literal",
         "value": "",
@@ -151,7 +149,6 @@ exports[`StringLiteral > (" "); 1`] = `
           1,
           4,
         ],
-        "raw": "" "",
         "start": 1,
         "type": "Literal",
         "value": " ",
@@ -216,7 +213,6 @@ exports[`StringLiteral > (" "); 1`] = `
           1,
           4,
         ],
-        "raw": "" "",
         "start": 1,
         "type": "Literal",
         "value": " ",
