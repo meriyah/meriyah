@@ -1,5 +1,5 @@
 import * as t from 'node:assert/strict';
-import { it, describe } from 'vitest';
+import { it } from 'vitest';
 import * as acorn from 'acorn';
 import getTest262Fixtures, { type TestCase } from '../../test262/get-test262-fixtures.mjs';
 import * as meriyah from '../../src/meriyah';
@@ -13,16 +13,12 @@ const ignore = new Set([
   'language/expressions/template-literal/tv-line-terminator-sequence.js',
   'built-ins/String/raw/special-characters.js',
 
-  // https://github.com/meriyah/meriyah/issues/472
-  'language/literals/string/line-separator.js',
-  'language/literals/string/paragraph-separator.js',
-
   // https://github.com/meriyah/meriyah/issues/475
   'staging/sm/Function/function-name-computed-01.js',
   'staging/sm/Function/function-name-computed-02.js',
 ]);
 
-describe(
+it(
   'AST alignment with Acorn',
   async () => {
     // For some unknown reason, can't run tests directly inside the `for..await..of` loop
@@ -36,9 +32,7 @@ describe(
     }
 
     for (const testCase of tests) {
-      it(testCase.file, () => {
-        runTest(testCase);
-      });
+      runTest(testCase);
     }
   },
   Infinity,
