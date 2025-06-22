@@ -137,7 +137,7 @@ exports[`StringLiteral > (" "); 1`] = `
         "end": 4,
         "loc": {
           "end": {
-            "column": 2,
+            "column": 1,
             "line": 2,
           },
           "start": {
@@ -155,7 +155,7 @@ exports[`StringLiteral > (" "); 1`] = `
       },
       "loc": {
         "end": {
-          "column": 4,
+          "column": 3,
           "line": 2,
         },
         "start": {
@@ -174,7 +174,7 @@ exports[`StringLiteral > (" "); 1`] = `
   "end": 6,
   "loc": {
     "end": {
-      "column": 4,
+      "column": 3,
       "line": 2,
     },
     "start": {
@@ -201,7 +201,7 @@ exports[`StringLiteral > (" "); 1`] = `
         "end": 4,
         "loc": {
           "end": {
-            "column": 2,
+            "column": 1,
             "line": 2,
           },
           "start": {
@@ -219,7 +219,7 @@ exports[`StringLiteral > (" "); 1`] = `
       },
       "loc": {
         "end": {
-          "column": 4,
+          "column": 3,
           "line": 2,
         },
         "start": {
@@ -238,7 +238,7 @@ exports[`StringLiteral > (" "); 1`] = `
   "end": 6,
   "loc": {
     "end": {
-      "column": 4,
+      "column": 3,
       "line": 2,
     },
     "start": {

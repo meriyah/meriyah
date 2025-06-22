@@ -46,8 +46,8 @@ export function scanString(parser: Parser, context: Context, quote: number): Tok
       }
       marker = parser.index + 1;
     } else if (char === Chars.LineSeparator || char === Chars.ParagraphSeparator) {
+      parser.column = -1;
       parser.line++;
-      parser.column = 0;
     }
 
     if (parser.index >= parser.end) report(parser, Errors.UnterminatedString);

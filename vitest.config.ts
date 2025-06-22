@@ -12,10 +12,11 @@ export default defineConfig({
       // Skip production test on local by default
       ...(SHOULD_RUN_PRODUCTION_TEST ? [] : ['test/production/production-tests.ts']),
       // Skip test 262 on local by default
-      ...(SHOULD_RUN_TEST262 ? [] : ['test/test262-parser-tests/parser-tests.ts']),
+      ...(SHOULD_RUN_TEST262
+        ? []
+        : ['test/test262-parser-tests/parser-tests.ts', 'test/test262-parser-tests/ast-alignment-test']),
     ],
     watch: false,
-    pool: 'threads',
     coverage: {
       enabled: IS_CI,
       provider: 'v8',

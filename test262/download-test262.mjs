@@ -14,7 +14,7 @@ const runCommand = (command, options) => {
   });
 };
 
-async function downloadTest262() {
+async function downloadTest262Internal() {
   if (!fs.existsSync(REPOSITORY_DIRECTORY)) {
     runCommand('git clone --depth=1 https://github.com/tc39/test262.git', {
       cwd: new URL('./', import.meta.url),
@@ -30,6 +30,12 @@ async function downloadTest262() {
 
   runCommand(`git fetch --depth=1 origin ${COMMIT_HASH}`);
   runCommand(`git reset --hard ${COMMIT_HASH}`);
+}
+
+let promise;
+function downloadTest262() {
+  promise ??= downloadTest262Internal();
+  return promise;
 }
 
 export default downloadTest262;
