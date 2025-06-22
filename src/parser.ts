@@ -622,7 +622,7 @@ export function parseBlock<T extends ESTree.BlockStatement | ESTree.StaticBlock 
   scope: ScopeState | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
-  start: Location,
+  start: Location = parser.tokenStart,
   type: T['type'] = 'BlockStatement',
 ): T {
   // Block ::
@@ -1439,7 +1439,7 @@ export function parseTryStatement(
 
   const firstScope = scope ? addChildScope(scope, ScopeKind.TryStatement) : void 0;
 
-  const block = parseBlock(parser, context, firstScope, privateScope, { $: labels }, parser.tokenStart);
+  const block = parseBlock(parser, context, firstScope, privateScope, { $: labels });
   const { tokenStart } = parser;
   const handler = consumeOpt(parser, context | Context.AllowRegExp, Token.CatchKeyword)
     ? parseCatchBlock(parser, context, scope, privateScope, labels, tokenStart)
@@ -1450,7 +1450,7 @@ export function parseTryStatement(
   if (parser.getToken() === Token.FinallyKeyword) {
     nextToken(parser, context | Context.AllowRegExp);
     const finalizerScope = firstScope ? addChildScope(scope, ScopeKind.CatchStatement) : void 0;
-    const block = parseBlock(parser, context, finalizerScope, privateScope, { $: labels }, parser.tokenStart);
+    const block = parseBlock(parser, context, finalizerScope, privateScope, { $: labels });
     finalizer = block;
   }
 
@@ -1519,7 +1519,7 @@ export function parseCatchBlock(
 
   if (scope) additionalScope = addChildScope(scope, ScopeKind.CatchBlock);
 
-  const body = parseBlock(parser, context, additionalScope, privateScope, { $: labels }, parser.tokenStart);
+  const body = parseBlock(parser, context, additionalScope, privateScope, { $: labels });
 
   return parser.finishNode(
     {
@@ -3803,7 +3803,7 @@ export function parseMemberOrUpdateExpression(
             quasi:
               parser.getToken() === Token.TemplateContinuation
                 ? parseTemplate(parser, context | Context.TaggedTemplate, privateScope)
-                : parseTemplateLiteral(parser, context, parser.tokenStart),
+                : parseTemplateLiteral(parser, context),
           },
           start,
         );
@@ -4117,7 +4117,7 @@ export function parsePrimaryExpression(
     case Token.SuperKeyword:
       return parseSuperExpression(parser, context);
     case Token.TemplateSpan:
-      return parseTemplateLiteral(parser, context, start);
+      return parseTemplateLiteral(parser, context);
     case Token.TemplateContinuation:
       return parseTemplate(parser, context, privateScope);
     case Token.NewKeyword:
@@ -4407,7 +4407,7 @@ export function parseBigIntLiteral(parser: Parser, context: Context): ESTree.Big
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseTemplateLiteral(parser: Parser, context: Context, start: Location): ESTree.TemplateLiteral {
+export function parseTemplateLiteral(parser: Parser, context: Context): ESTree.TemplateLiteral {
   /**
    * Template Literals
    *
@@ -4483,7 +4483,7 @@ export function parseTemplateLiteral(parser: Parser, context: Context, start: Lo
       expressions: [],
       quasis,
     },
-    start,
+    tokenStart,
   );
 }
 
@@ -7266,7 +7266,7 @@ export function parseMemberExpressionNoCall(
             quasi:
               parser.getToken() === Token.TemplateContinuation
                 ? parseTemplate(parser, context | Context.TaggedTemplate, privateScope)
-                : parseTemplateLiteral(parser, context | Context.TaggedTemplate, parser.tokenStart),
+                : parseTemplateLiteral(parser, context | Context.TaggedTemplate),
           },
           start,
         ),
@@ -7873,7 +7873,7 @@ export function parseDecorators(
 
   if (context & Context.OptionsNext) {
     while (parser.getToken() === Token.Decorator) {
-      list.push(parseDecoratorList(parser, context, privateScope, parser.tokenStart));
+      list.push(parseDecoratorList(parser, context, privateScope));
     }
   }
 
@@ -7885,14 +7885,14 @@ export function parseDecorators(
  *
  * @param parser Parser object
  * @param context Context masks
- * @param start
  */
 export function parseDecoratorList(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
-  start: Location,
 ): ESTree.Decorator {
+  const start = parser.tokenStart;
+
   nextToken(parser, context | Context.AllowRegExp);
 
   let expression = parsePrimaryExpression(parser, context, privateScope, BindingKind.Empty, 0, 1, 0, 1, start);
