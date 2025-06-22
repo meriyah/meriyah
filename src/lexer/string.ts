@@ -45,14 +45,12 @@ export function scanString(parser: Parser, context: Context, quote: number): Tok
         ret += String.fromCodePoint(char);
       }
       marker = parser.index + 1;
-    }
-
-    if (parser.index >= parser.end) report(parser, Errors.UnterminatedString);
-
-    if (char === Chars.LineSeparator || char === Chars.ParagraphSeparator) {
+    } else if (char === Chars.LineSeparator || char === Chars.ParagraphSeparator) {
       parser.line++;
       parser.column = 0;
     }
+
+    if (parser.index >= parser.end) report(parser, Errors.UnterminatedString);
 
     char = advanceChar(parser);
   }
