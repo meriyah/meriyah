@@ -9,8 +9,8 @@ exports[`StringLiteral > ("\\ "); 1`] = `
         "end": 5,
         "loc": {
           "end": {
-            "column": 2,
-            "line": 3,
+            "column": 1,
+            "line": 2,
           },
           "start": {
             "column": 1,
@@ -21,14 +21,15 @@ exports[`StringLiteral > ("\\ "); 1`] = `
           1,
           5,
         ],
+        "raw": ""\\ "",
         "start": 1,
         "type": "Literal",
         "value": "",
       },
       "loc": {
         "end": {
-          "column": 4,
-          "line": 3,
+          "column": 3,
+          "line": 2,
         },
         "start": {
           "column": 0,
@@ -46,8 +47,8 @@ exports[`StringLiteral > ("\\ "); 1`] = `
   "end": 7,
   "loc": {
     "end": {
-      "column": 4,
-      "line": 3,
+      "column": 3,
+      "line": 2,
     },
     "start": {
       "column": 0,
@@ -73,8 +74,8 @@ exports[`StringLiteral > ("\\ "); 1`] = `
         "end": 5,
         "loc": {
           "end": {
-            "column": 2,
-            "line": 3,
+            "column": 1,
+            "line": 2,
           },
           "start": {
             "column": 1,
@@ -85,14 +86,15 @@ exports[`StringLiteral > ("\\ "); 1`] = `
           1,
           5,
         ],
+        "raw": ""\\ "",
         "start": 1,
         "type": "Literal",
         "value": "",
       },
       "loc": {
         "end": {
-          "column": 4,
-          "line": 3,
+          "column": 3,
+          "line": 2,
         },
         "start": {
           "column": 0,
@@ -110,8 +112,8 @@ exports[`StringLiteral > ("\\ "); 1`] = `
   "end": 7,
   "loc": {
     "end": {
-      "column": 4,
-      "line": 3,
+      "column": 3,
+      "line": 2,
     },
     "start": {
       "column": 0,
@@ -149,6 +151,7 @@ exports[`StringLiteral > (" "); 1`] = `
           1,
           4,
         ],
+        "raw": "" "",
         "start": 1,
         "type": "Literal",
         "value": " ",
@@ -213,6 +216,7 @@ exports[`StringLiteral > (" "); 1`] = `
           1,
           4,
         ],
+        "raw": "" "",
         "start": 1,
         "type": "Literal",
         "value": " ",
