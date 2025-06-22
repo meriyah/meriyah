@@ -1,0 +1,69 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Declarations - Class > Declarations - Class (fail) > class A {
+a = () => {}["1"] = 2
+} 1`] = `
+"SyntaxError [2:12-2:13]: Block body arrows can not be immediately invoked without a group
+  1 | class A {
+> 2 | a = () => {}["1"] = 2
+    |             ^ Block body arrows can not be immediately invoked without a group
+  3 | }"
+`;
+
+exports[`Declarations - Class > Declarations - Class (pass) > class A {
+a = () => {}
+["1"] = 2
+} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "body": [
+          {
+            "computed": false,
+            "key": {
+              "name": "a",
+              "type": "Identifier",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "async": false,
+              "body": {
+                "body": [],
+                "type": "BlockStatement",
+              },
+              "expression": false,
+              "generator": false,
+              "params": [],
+              "type": "ArrowFunctionExpression",
+            },
+          },
+          {
+            "computed": true,
+            "key": {
+              "type": "Literal",
+              "value": "1",
+            },
+            "static": false,
+            "type": "PropertyDefinition",
+            "value": {
+              "type": "Literal",
+              "value": 2,
+            },
+          },
+        ],
+        "type": "ClassBody",
+      },
+      "id": {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "superClass": null,
+      "type": "ClassDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;

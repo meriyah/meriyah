@@ -8348,8 +8348,9 @@ export function parsePropertyDefinition(
     );
 
     if (
-      (parser.getToken() & Token.IsClassField) !== Token.IsClassField ||
-      (parser.getToken() & Token.IsAssignOp) === Token.IsAssignOp
+      (parser.flags & Flags.NewLine) === 0 &&
+      ((parser.getToken() & Token.IsClassField) !== Token.IsClassField ||
+        (parser.getToken() & Token.IsAssignOp) === Token.IsAssignOp)
     ) {
       value = parseMemberOrUpdateExpression(
         parser,

@@ -2,6 +2,7 @@ import { Context } from '../../../src/common';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { pass, fail } from '../../test-utils';
 
 describe('Declarations - Class', () => {
   // Strict mode errors
@@ -608,4 +609,7 @@ describe('Declarations - Class', () => {
       });
     });
   }
+
+  pass('Declarations - Class (pass)', ['class A {\na = () => {}\n["1"] = 2\n}']);
+  fail('Declarations - Class (fail)', [['class A {\na = () => {}["1"] = 2\n}', Context.None]]);
 });

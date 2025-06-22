@@ -87,6 +87,6 @@ export default [
     },
   },
   {
-    ignores: ['dist', 'src/unicode.ts', 'test262/test262'],
+    ignores: ['dist', 'src/unicode.ts', 'test.ts', 'test262/test262'],
   },
 ];
