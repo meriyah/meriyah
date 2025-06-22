@@ -7,7 +7,7 @@ import type * as ESTree from '../../src/estree';
 
 const { TEST262_FILE } = process.env;
 
-const ignore = new Set([
+const notAlignedTests = new Set([
   // https://github.com/meriyah/meriyah/issues/460
   'language/expressions/template-literal/tv-line-continuation.js',
   'language/expressions/template-literal/tv-line-terminator-sequence.js',
@@ -39,10 +39,6 @@ it(
 );
 
 function runTest(testCase: TestCase) {
-  if (ignore.has(testCase.file)) {
-    return;
-  }
-
   let acornAst: MeriyahAst;
   try {
     acornAst = parseAcorn(testCase.contents, testCase.sourceType);
@@ -57,6 +53,10 @@ function runTest(testCase: TestCase) {
 
   try {
     t.deepEqual(meriyahAst, acornAst);
+
+    if (notAlignedTests.has(testCase.file)) {
+      console.log(`'${testCase.file}' now have the same AST shape as Acorn, please remove from the 'notAlignedTests'.`);
+    }
   } catch (error) {
     if (!TEST262_FILE)
       console.log(
