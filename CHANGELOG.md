@@ -1,3 +1,16 @@
+## [6.1.3](https://github.com/meriyah/meriyah/compare/v6.1.2...v6.1.3) (2025-06-24)
+
+
+### Bug Fixes
+
+* **parser:** fix line/column where string literal contains `U+2028` or `U+2029` followed by `\` ([#478](https://github.com/meriyah/meriyah/issues/478)) ([1f054a1](https://github.com/meriyah/meriyah/commit/1f054a1cbc18ca593edc73d1787880134e36aa11))
+* **parser:** fix line/column where string literal contains U+2028 or U+2029 ([#477](https://github.com/meriyah/meriyah/issues/477)) ([6117d2f](https://github.com/meriyah/meriyah/commit/6117d2f424bf2f627ff2cf5fe6f65519f4dac072))
+* **parser:** fix location of `SequenceExpression` as `ForStatement.init` ([#476](https://github.com/meriyah/meriyah/issues/476)) ([b79282b](https://github.com/meriyah/meriyah/commit/b79282b5e833440ef3433b612b856e4b1fec1bd5))
+* **parser:** fix location of object method which is a generator ([#474](https://github.com/meriyah/meriyah/issues/474)) ([c11f9dd](https://github.com/meriyah/meriyah/commit/c11f9dd880571f97daea27d2f580e8d9e952d023))
+* **parser:** fix range of static class property named `accessor`, `get`, `set`, and `async` ([#471](https://github.com/meriyah/meriyah/issues/471)) ([27f224c](https://github.com/meriyah/meriyah/commit/27f224c54748e82f4139a2d29f0278b32bc5b9e1))
+
+
+
 ## [6.1.2](https://github.com/meriyah/meriyah/compare/v6.1.1...v6.1.2) (2025-06-21)
 
 
