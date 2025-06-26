@@ -40,6 +40,7 @@ export interface Comment extends _Node {
 }
 
 export type Node =
+  | AccessorProperty
   | ArrayExpression
   | ArrayPattern
   | ArrowFunctionExpression
