@@ -76,7 +76,6 @@ export type Node =
   | FunctionExpression
   | Identifier
   | IfStatement
-  | Import
   | ImportDeclaration
   | ImportDefaultSpecifier
   | ImportAttribute
@@ -195,7 +194,6 @@ export type PrimaryExpression =
   | ClassExpression
   | FunctionExpression
   | Identifier
-  | Import
   | JSXElement
   | JSXFragment
   | JSXOpeningElement
@@ -216,7 +214,6 @@ export type PrimaryExpressionExtended =
   | ClassExpression
   | FunctionExpression
   | Identifier
-  | Import
   | JSXElement
   | JSXFragment
   | JSXOpeningElement
@@ -496,10 +493,6 @@ export interface IfStatement extends _Node {
   test: Expression;
   consequent: Statement;
   alternate: Statement | null;
-}
-
-export interface Import extends _Node {
-  type: 'Import';
 }
 
 export interface ImportDeclaration extends _Node {
