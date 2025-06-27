@@ -1,17 +1,11 @@
 import { describe } from 'vitest';
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 
 describe('Statements - Throw', () => {
-  const inValids: [string, Context][] = [
-    [
-      `throw
+  fail('Statements - Throw', [
+    `throw
     x;`,
-      Context.None,
-    ],
-  ];
-
-  fail('Statements - Throw', inValids);
+  ]);
 
   pass('Statements - Throw (pass)', [
     'throw ((((((d = null)))) ? (((--r))) : ((/|[--]*||[^\u2B7a+-?]+|(?!)/giy))));',

@@ -1,25 +1,24 @@
 import { describe } from 'vitest';
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 
 describe('Statements - While', () => {
   fail('Statements - While (fail)', [
-    ['while 1 break;', Context.None],
-    ['while "hood" break;', Context.None],
-    ['while (false) function f() {}', Context.None],
-    ['while (false) let x = 1;', Context.None],
-    ['while 1 break;', Context.None],
-    [`while '' break;`, Context.None],
-    [`while '' break;`, Context.OptionsWebCompat],
-    ['while(0) !function(){ break; };', Context.None],
-    ['while(0) { function f(){ break; } }', Context.None],
-    ['while (false) label1: label2: function f() {}', Context.None],
-    ['while (false) async function f() {}', Context.None],
-    ['while (false) const x = null;', Context.None],
-    ['while (false) function* g() {}', Context.None],
-    ['while true break;', Context.None],
-    ['while({1}){ break ; };', Context.None],
-    ['while({1}){ break ; };', Context.OptionsWebCompat],
+    'while 1 break;',
+    'while "hood" break;',
+    'while (false) function f() {}',
+    'while (false) let x = 1;',
+    'while 1 break;',
+    `while '' break;`,
+    { code: `while '' break;`, options: { webcompat: true } },
+    'while(0) !function(){ break; };',
+    'while(0) { function f(){ break; } }',
+    'while (false) label1: label2: function f() {}',
+    'while (false) async function f() {}',
+    'while (false) const x = null;',
+    'while (false) function* g() {}',
+    'while true break;',
+    'while({1}){ break ; };',
+    { code: 'while({1}){ break ; };', options: { webcompat: true } },
   ]);
 
   pass('Statements - While (pass)', [
