@@ -51,12 +51,11 @@ describe('Next - Import Attributes', () => {
     `export {default as viaStaticImport2} from './json-idempotency_FIXTURE.json' with { type: 'json' };`,
     `export {default as viaStaticImport2} from './json-idempotency_FIXTURE.json' with { "type": 'json' };`,
     `export * as foo from './foo.json' with { "type": 'json' };`,
-    // TODO: to follow up with spec
-    // Current JSON modules spec didn't prevent following line.
     `export * from './foo.json' with { "type": 'json' };`,
     `export { random } from './random.ts' with { type: 'macro' };`,
     `export { random } from './random.ts' with { "type": 'macro' };`,
     `import 'bar' with { type: 'json' };`,
+    `import {} from 'bar' with { type: 'json' };`,
     'import a, { foo } from "./foo.json" with { type: "json" };',
     'import { default as a, foo } from "./foo.json" with { type: "json" };',
     `export { foo } from './foo.json' with { type: 'json' };`,
