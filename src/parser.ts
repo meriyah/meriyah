@@ -2299,7 +2299,7 @@ function parseImportDeclaration(
     source = parseModuleSpecifier(parser, context);
   }
 
-  const attributes = parseImportAttributes(parser, context, specifiers);
+  const attributes = parseImportAttributes(parser, context);
 
   const node: ESTree.ImportDeclaration = {
     type: 'ImportDeclaration',
@@ -2808,7 +2808,7 @@ function parseExportDeclaration(
 
         source = parseLiteral(parser, context);
 
-        attributes = parseImportAttributes(parser, context, specifiers);
+        attributes = parseImportAttributes(parser, context);
 
         if (scope) {
           tmpExportedNames.forEach((n) => declareUnboundVariable(parser, n));
@@ -4259,11 +4259,7 @@ export function parseImportExpression(
  * @returns
  */
 
-export function parseImportAttributes(
-  parser: Parser,
-  context: Context,
-  specifiers: (ESTree.ImportClause | ESTree.ExportSpecifier)[] | null = null,
-): ESTree.ImportAttribute[] {
+export function parseImportAttributes(parser: Parser, context: Context): ESTree.ImportAttribute[] {
   if (!consumeOpt(parser, context, Token.WithKeyword)) return [];
   consume(parser, context, Token.LeftBrace);
 
@@ -4277,24 +4273,6 @@ export function parseImportAttributes(
     consume(parser, context, Token.Colon);
     const value = parseStringLiteral(parser, context);
     const keyContent = key.type === 'Literal' ? key.value : key.name;
-    const isJSONImportAttribute = keyContent === 'type' && value.value === 'json';
-
-    if (isJSONImportAttribute) {
-      const validJSONImportAttributeBindings =
-        // ExportAllDeclaration has no specifiers
-        specifiers === null ||
-        (specifiers.length === 1 &&
-          (specifiers[0].type === 'ImportDefaultSpecifier' ||
-            specifiers[0].type === 'ImportNamespaceSpecifier' ||
-            (specifiers[0].type === 'ImportSpecifier' &&
-              specifiers[0].imported.type === 'Identifier' &&
-              specifiers[0].imported.name === 'default') ||
-            (specifiers[0].type === 'ExportSpecifier' &&
-              specifiers[0].local.type === 'Identifier' &&
-              specifiers[0].local.name === 'default')));
-
-      if (!validJSONImportAttributeBindings) report(parser, Errors.InvalidJSONImportBinding);
-    }
 
     if (keysContent.has(keyContent)) {
       report(parser, Errors.DuplicateBinding, `${keyContent}`);
