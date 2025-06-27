@@ -468,7 +468,7 @@ describe('Declarations - Async Function', () => {
     'async function* f() { a = async function*(a = await) {}; }',
     'function f(a = async function(a = await) {}) {}',
     `async function x(a=class b{
-  a = class b{
+      [a = class b{
           [await 0](){}
       }](){}
     }) {
