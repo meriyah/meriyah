@@ -1,45 +1,9 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > export { foo } from './foo.json' with { type: 'json' }; 1`] = `
-"SyntaxError [1:53-1:54]: Invalid binding in JSON import
-> 1 | export { foo } from './foo.json' with { type: 'json' };
-    |                                                      ^ Invalid binding in JSON import"
-`;
-
 exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > export foo, { foo2 } from './foo.json' with { "type": 'json' }; 1`] = `
 "SyntaxError [1:7-1:10]: Unexpected token: 'identifier'
 > 1 | export foo, { foo2 } from './foo.json' with { "type": 'json' };
     |        ^^^ Unexpected token: 'identifier'"
-`;
-
-exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import 'bar' with { type: 'json' }; 1`] = `
-"SyntaxError [1:33-1:34]: Invalid binding in JSON import
-> 1 | import 'bar' with { type: 'json' };
-    |                                  ^ Invalid binding in JSON import"
-`;
-
-exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import { default as a, foo } from "./foo.json" with { type: "json" }; 1`] = `
-"SyntaxError [1:67-1:68]: Invalid binding in JSON import
-> 1 | import { default as a, foo } from "./foo.json" with { type: "json" };
-    |                                                                    ^ Invalid binding in JSON import"
-`;
-
-exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import {name} from './json-named-bindings_FIXTURE.json' with { "type": 'json' }; 1`] = `
-"SyntaxError [1:78-1:79]: Invalid binding in JSON import
-> 1 | import {name} from './json-named-bindings_FIXTURE.json' with { "type": 'json' };
-    |                                                                               ^ Invalid binding in JSON import"
-`;
-
-exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import {name} from './json-named-bindings_FIXTURE.json' with { type: 'json' }; 1`] = `
-"SyntaxError [1:76-1:77]: Invalid binding in JSON import
-> 1 | import {name} from './json-named-bindings_FIXTURE.json' with { type: 'json' };
-    |                                                                             ^ Invalid binding in JSON import"
-`;
-
-exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import a, { foo } from "./foo.json" with { type: "json" }; 1`] = `
-"SyntaxError [1:56-1:57]: Invalid binding in JSON import
-> 1 | import a, { foo } from "./foo.json" with { type: "json" };
-    |                                                         ^ Invalid binding in JSON import"
 `;
 
 exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import foo from "bar" with { 1: "foo" }; 1`] = `

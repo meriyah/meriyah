@@ -56,6 +56,12 @@ describe('Next - Import Attributes', () => {
     `export * from './foo.json' with { "type": 'json' };`,
     `export { random } from './random.ts' with { type: 'macro' };`,
     `export { random } from './random.ts' with { "type": 'macro' };`,
+    `import 'bar' with { type: 'json' };`,
+    'import a, { foo } from "./foo.json" with { type: "json" };',
+    'import { default as a, foo } from "./foo.json" with { type: "json" };',
+    `export { foo } from './foo.json' with { type: 'json' };`,
+    `import {name} from './json-named-bindings_FIXTURE.json' with { type: 'json' };`,
+    `import {name} from './json-named-bindings_FIXTURE.json' with { "type": 'json' };`,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -82,11 +88,6 @@ describe('Next - Import Attributes', () => {
     ['import foo from "bar" with { type: "json", ', Context.Strict | Context.Module],
     ['import foo from "bar" with { type: "json", "data-type": ', Context.Strict | Context.Module],
     ['import foo from "bar" with { type: "json", "data-type": "json" ', Context.Strict | Context.Module],
-    [`import {name} from './json-named-bindings_FIXTURE.json' with { type: 'json' };`, Context.Strict | Context.Module],
-    [
-      `import {name} from './json-named-bindings_FIXTURE.json' with { "type": 'json' };`,
-      Context.Strict | Context.Module,
-    ],
     [
       `import x from './import-attribute-1_FIXTURE.js' with {
       type: 'json',
@@ -94,16 +95,12 @@ describe('Next - Import Attributes', () => {
     };`,
       Context.Strict | Context.Module,
     ],
-    ['import { default as a, foo } from "./foo.json" with { type: "json" };', Context.Strict | Context.Module],
-    ['import a, { foo } from "./foo.json" with { type: "json" };', Context.Strict | Context.Module],
-    [`import 'bar' with { type: 'json' };`, Context.Module],
     ['import foo from "bar" with { 1: "foo" };', Context.Module],
     ['import foo from "bar" with { type: 1 };', Context.Module],
     ['import foo from "bar" with { type: [1] };', Context.Module],
     ['import foo from "bar" with { type: null };', Context.Module],
     ['import foo from "bar" with { type: undefined };', Context.Module],
     ['import foo from "bar" with { type: "json", foo: {} };', Context.Module],
-    [`export { foo } from './foo.json' with { type: 'json' };`, Context.Module],
     [`export foo, { foo2 } from './foo.json' with { "type": 'json' };`, Context.Module],
   ]);
 
