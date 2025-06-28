@@ -75,32 +75,32 @@ describe('Next - Import Attributes', () => {
   }
 
   fail('Expressions - Import Attributes (fail)', [
-    ['import("module", { type: "json" }, "extra")', Context.None],
-    ['import("module", { type: "json" }, "extra")', Context.None],
-    ['import("module", { type: "json", "extra": })', Context.Strict | Context.Module],
-    ['import("module", ...extra)', Context.Strict | Context.Module],
-    ['import("module", { type: "json", "extra": "value" ', Context.Strict | Context.Module],
-    ['import("module", { type: "json", "extra": "value" }, "another")', Context.Strict | Context.Module],
-    ['import("module", { type: "json" }, "extra")', Context.Strict | Context.Module],
-    ['import foo from "bar" with { type: "json", "data-type": "json"', Context.Strict | Context.Module],
-    ['import foo from "bar" with { type: ', Context.Strict | Context.Module],
-    ['import foo from "bar" with { type: "json", ', Context.Strict | Context.Module],
-    ['import foo from "bar" with { type: "json", "data-type": ', Context.Strict | Context.Module],
-    ['import foo from "bar" with { type: "json", "data-type": "json" ', Context.Strict | Context.Module],
-    [
-      `import x from './import-attribute-1_FIXTURE.js' with {
+    'import("module", { type: "json" }, "extra")',
+    'import("module", { type: "json" }, "extra")',
+    { code: 'import("module", { type: "json", "extra": })', options: { module: true } },
+    { code: 'import("module", ...extra)', options: { module: true } },
+    { code: 'import("module", { type: "json", "extra": "value" ', options: { module: true } },
+    { code: 'import("module", { type: "json", "extra": "value" }, "another")', options: { module: true } },
+    { code: 'import("module", { type: "json" }, "extra")', options: { module: true } },
+    { code: 'import foo from "bar" with { type: "json", "data-type": "json"', options: { module: true } },
+    { code: 'import foo from "bar" with { type: ', options: { module: true } },
+    { code: 'import foo from "bar" with { type: "json", ', options: { module: true } },
+    { code: 'import foo from "bar" with { type: "json", "data-type": ', options: { module: true } },
+    { code: 'import foo from "bar" with { type: "json", "data-type": "json" ', options: { module: true } },
+    {
+      code: `import x from './import-attribute-1_FIXTURE.js' with {
       type: 'json',
       'typ\u0065': ''
     };`,
-      Context.Strict | Context.Module,
-    ],
-    ['import foo from "bar" with { 1: "foo" };', Context.Module],
-    ['import foo from "bar" with { type: 1 };', Context.Module],
-    ['import foo from "bar" with { type: [1] };', Context.Module],
-    ['import foo from "bar" with { type: null };', Context.Module],
-    ['import foo from "bar" with { type: undefined };', Context.Module],
-    ['import foo from "bar" with { type: "json", foo: {} };', Context.Module],
-    [`export foo, { foo2 } from './foo.json' with { "type": 'json' };`, Context.Module],
+      options: { module: true },
+    },
+    { code: 'import foo from "bar" with { 1: "foo" };', context: Context.Module },
+    { code: 'import foo from "bar" with { type: 1 };', context: Context.Module },
+    { code: 'import foo from "bar" with { type: [1] };', context: Context.Module },
+    { code: 'import foo from "bar" with { type: null };', context: Context.Module },
+    { code: 'import foo from "bar" with { type: undefined };', context: Context.Module },
+    { code: 'import foo from "bar" with { type: "json", foo: {} };', context: Context.Module },
+    { code: `export foo, { foo2 } from './foo.json' with { "type": 'json' };`, context: Context.Module },
   ]);
 
   pass('Import Attributes (pass)', [
