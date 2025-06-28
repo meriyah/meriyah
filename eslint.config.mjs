@@ -144,6 +144,7 @@ export default [
                     const flagToOptions = {
                       Strict: 'impliedStrict',
                       OptionsWebCompat: 'webcompat',
+                      OptionsNext: 'next',
                     };
 
                     for (const [flagName, optionName] of Object.entries(flagToOptions)) {
