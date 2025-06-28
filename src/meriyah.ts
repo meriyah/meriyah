@@ -1,5 +1,5 @@
 import { Context } from './common';
-import { parseSource, Options } from './parser';
+import { parseSource, type Options } from './parser';
 import { type Program } from './estree';
 // Current version
 import { version as pkgVersion } from '../package.json';
@@ -28,5 +28,5 @@ export function parse(source: string, options?: Options): Program {
   return parseSource(source, options, Context.None);
 }
 
-export { Options, version };
+export { type Options, version };
 export type * as ESTree from './estree';

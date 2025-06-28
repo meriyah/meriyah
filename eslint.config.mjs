@@ -38,6 +38,7 @@ export default [
       ],
       'no-undef': 'error',
       'no-restricted-imports': ['error', 'assert', 'node:assert'],
+      'unicorn/prefer-export-from': ['error', { ignoreUsedVariables: true }],
 
       // TODO: enable it when all problems addressed
       '@typescript-eslint/explicit-function-return-type': 0,
@@ -66,6 +67,9 @@ export default [
   },
   {
     files: ['scripts/**/*.mjs', 'test262/**/*.mjs'],
+    settings: {
+      node: { version: 24 },
+    },
     rules: {
       'n/no-unsupported-features/es-syntax': 'error',
       'n/no-extraneous-import': 0,
@@ -73,6 +77,7 @@ export default [
       'n/no-extraneous-require': 0,
       'n/no-unpublished-require': 0,
       'n/hashbang': 0,
+      'n/prefer-node-protocol': 'error',
       'import-x/no-unresolved': 0,
     },
   },
@@ -87,6 +92,6 @@ export default [
     },
   },
   {
-    ignores: ['dist', 'src/unicode.ts', 'test262/test262'],
+    ignores: ['dist', 'src/unicode.ts', 'test262/test262', 'coverage'],
   },
 ];

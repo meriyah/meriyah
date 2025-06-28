@@ -7,7 +7,6 @@ import terser from '@rollup/plugin-terser';
 import json from '@rollup/plugin-json';
 import * as ts from 'typescript';
 
-// eslint-disable-next-line n/no-unsupported-features/node-builtins
 const { dirname } = import.meta;
 const ENTRY = path.join(dirname, '../src/meriyah.ts');
 const TSCONFIG = path.join(dirname, '../tsconfig.bundle.json');

@@ -168,7 +168,7 @@ export function scanPrivateIdentifier(parser: Parser): Token {
  *
  * @param parser  Parser object
  */
-export function scanIdentifierUnicodeEscape(parser: Parser): number {
+function scanIdentifierUnicodeEscape(parser: Parser): number {
   // Check for Unicode escape of the form '\uXXXX'
   // and return code point value if valid Unicode escape is found.
   if (parser.source.charCodeAt(parser.index + 1) !== Chars.LowerU) {
@@ -184,7 +184,7 @@ export function scanIdentifierUnicodeEscape(parser: Parser): number {
  *
  * @param parser  Parser object
  */
-export function scanUnicodeEscape(parser: Parser): number {
+function scanUnicodeEscape(parser: Parser): number {
   // Accept both \uXXXX and \u{XXXXXX}
   let codePoint = 0;
   const char = parser.currentChar;

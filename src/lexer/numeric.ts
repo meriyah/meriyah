@@ -225,7 +225,7 @@ export function scanNumber(parser: Parser, context: Context, kind: NumberKind): 
  * @param parser  Parser object
  * @param char Code point
  */
-export function scanDecimalDigitsOrSeparator(parser: Parser, char: number): string {
+function scanDecimalDigitsOrSeparator(parser: Parser, char: number): string {
   let allowSeparator: 0 | 1 = 0;
   let start = parser.index;
   let ret = '';

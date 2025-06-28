@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as path from 'node:path';
 import Test262Stream from 'test262-stream';
 import downloadTest262 from './download-test262.mjs';
 import { TEST262_DIRECTORY, shouldSkip, whitelist } from './shared.mjs';
