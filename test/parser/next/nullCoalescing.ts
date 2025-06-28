@@ -97,29 +97,29 @@ describe('Next - Nullish Coalescing', () => {
   }
 
   fail('Expressions - Nullish Coalescing (fail)', [
-    ['c && d ?? e', Context.OptionsNext],
-    ['a??x = true?.(123)', Context.OptionsNext],
-    ['a??x = (true?.(123))', Context.OptionsNext],
-    ['({a:let??foo} = 0);', Context.OptionsNext],
-    ['obj.??(defObj)', Context.OptionsNext],
-    ['[a ?? b, c] = f(() => {  }); ', Context.OptionsNext],
-    ['[a, x ?? z] = f(() => { [a, b.c] = [d.e, (f.g) = h]; }); ', Context.OptionsNext],
-    ['a.??(nil).b.c.d.??(null)', Context.OptionsNext],
-    ['c && d ?? e', Context.OptionsWebCompat],
-    ['0 && 1 ?? 2', Context.OptionsNext | Context.Module | Context.Strict],
-    ['0 && 1 ?? 2', Context.OptionsNext | Context.OptionsWebCompat],
-    ['0 ?? 1 || 2', Context.OptionsNext | Context.Module | Context.Strict],
-    ['0 ?? 1 && 2', Context.OptionsNext | Context.Module | Context.Strict],
-    ['a ?? b || c', Context.OptionsNext | Context.Module | Context.Strict],
-    ['a || b ?? c', Context.OptionsNext | Context.Module | Context.Strict],
-    ['0 ?? 1 && 2', Context.OptionsNext | Context.Module | Context.Strict],
+    { code: 'c && d ?? e', options: { next: true } },
+    { code: 'a??x = true?.(123)', options: { next: true } },
+    { code: 'a??x = (true?.(123))', options: { next: true } },
+    { code: '({a:let??foo} = 0);', options: { next: true } },
+    { code: 'obj.??(defObj)', options: { next: true } },
+    { code: '[a ?? b, c] = f(() => {  }); ', options: { next: true } },
+    { code: '[a, x ?? z] = f(() => { [a, b.c] = [d.e, (f.g) = h]; }); ', options: { next: true } },
+    { code: 'a.??(nil).b.c.d.??(null)', options: { next: true } },
+    { code: 'c && d ?? e', options: { webcompat: true } },
+    { code: '0 && 1 ?? 2', options: { module: true, next: true } },
+    { code: '0 && 1 ?? 2', options: { webcompat: true, next: true } },
+    { code: '0 ?? 1 || 2', options: { module: true, next: true } },
+    { code: '0 ?? 1 && 2', options: { module: true, next: true } },
+    { code: 'a ?? b || c', options: { module: true, next: true } },
+    { code: 'a || b ?? c', options: { module: true, next: true } },
+    { code: '0 ?? 1 && 2', options: { module: true, next: true } },
 
-    [
-      '3 ?? 2 ** 1 % 0 / 9 * 8 - 7 + 6 >>> 5 >> 4 << 3 >= 2 <= 1 > 0 < 9 !== 8 === 7 != 6 == 5 & 4 ^ 3 | 2 && 1 || 0',
-      Context.OptionsNext,
-    ],
-    ['e ?? f ?? g || h;', Context.OptionsNext | Context.Module | Context.Strict],
-    ['c && d ?? e', Context.OptionsNext | Context.Module | Context.Strict],
+    {
+      code: '3 ?? 2 ** 1 % 0 / 9 * 8 - 7 + 6 >>> 5 >> 4 << 3 >= 2 <= 1 > 0 < 9 !== 8 === 7 != 6 == 5 & 4 ^ 3 | 2 && 1 || 0',
+      options: { next: true },
+    },
+    { code: 'e ?? f ?? g || h;', options: { module: true, next: true } },
+    { code: 'c && d ?? e', options: { module: true, next: true } },
   ]);
 
   pass('Next - Null Coalescing (pass)', [

@@ -6,11 +6,11 @@ import { parseSource } from '../../../src/parser';
 
 describe('Next - Class static initialization block', () => {
   fail('Next - Class static initialization block (fail)', [
-    ['class A { static { super() } }', Context.None],
-    ['class A {}; class B extends A { static { super() } }', Context.None],
-    ['class A { static async {} }', Context.None],
-    ['class A { async static {} }', Context.None],
-    ['async function t() { class A { static { await 0 } } }', Context.None],
+    'class A { static { super() } }',
+    'class A {}; class B extends A { static { super() } }',
+    'class A { static async {} }',
+    'class A { async static {} }',
+    'async function t() { class A { static { await 0 } } }',
   ]);
 
   for (const arg of [

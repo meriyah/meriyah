@@ -1,33 +1,26 @@
 import { describe } from 'vitest';
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 
 describe('Statements - Do while', () => {
   fail('Statements - Do while (fail)', [
-    ['do foo while (bar);', Context.None],
-    ['do async \n f(){}; while (y)', Context.None],
-    ['do async \n () => x; while(y)', Context.None],
-    ['do async () \n => x; while(y)', Context.None],
-    ['do let x = 1; while (false)', Context.None],
-    ['do x, y while (z)', Context.None],
-    ['do foo while (bar);', Context.None],
-    ['do ()=>x while(c)', Context.None],
-    [
-      `do
+    'do foo while (bar);',
+    'do async \n f(){}; while (y)',
+    'do async \n () => x; while(y)',
+    'do async () \n => x; while(y)',
+    'do let x = 1; while (false)',
+    'do x, y while (z)',
+    'do foo while (bar);',
+    'do ()=>x while(c)',
+    `do
     a
     b
   while(c);`,
-      Context.None,
-    ],
-    ['do let {} = y', Context.None],
-    ['do debugger while(x) x', Context.None],
-    ['do x: function s(){}while(y)', Context.None],
-    [
-      `do throw function (v, h) {
+    'do let {} = y',
+    'do debugger while(x) x',
+    'do x: function s(){}while(y)',
+    `do throw function (v, h) {
       "use strict"
     } while ((""))`,
-      Context.None,
-    ],
   ]);
 
   pass('Statements - Do while (pass)', [

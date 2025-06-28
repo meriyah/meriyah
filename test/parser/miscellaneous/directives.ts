@@ -194,12 +194,12 @@ describe('Miscellaneous - Directives', () => {
   }
 
   fail('Miscellaneous - Directives (fail)', [
-    ['"use strict"; var static;', Context.None],
-    [String.raw`\u0061sync function f(){}`, Context.None],
-    [String.raw`"use strict" "Hello\312World"`, Context.None],
-    ['"use strict" \n "Hello\\312World"', Context.None],
-    [String.raw`function a() { "use strict" "Hello\312World" }`, Context.None],
-    ['function a() { "use strict" \n "Hello\\312World" }', Context.None],
+    '"use strict"; var static;',
+    String.raw`\u0061sync function f(){}`,
+    String.raw`"use strict" "Hello\312World"`,
+    '"use strict" \n "Hello\\312World"',
+    String.raw`function a() { "use strict" "Hello\312World" }`,
+    'function a() { "use strict" \n "Hello\\312World" }',
   ]);
 
   pass('Miscellaneous - Directives (pass)', [

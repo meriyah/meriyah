@@ -6,15 +6,19 @@ import { parseSource } from '../../../src/parser';
 
 describe('Lexical - AnnexB', () => {
   fail('Lexical - AnnexB (fail)', [
-    ['function f() {} ; function f() {}', Context.Module | Context.OptionsLexical],
-    ['function f(){ var f = 123; if (true) function f(){} }', Context.Module | Context.OptionsLexical],
-    ['{ var f = 123; if (true) function f(){} }', Context.Module | Context.OptionsLexical],
-    ['function f() {} ; function f() {}', Context.Module | Context.OptionsLexical],
-    ['{ if (x) function f() {} ; function f() {} }', Context.None | Context.OptionsLexical],
-    ['let x; var x;', Context.None | Context.OptionsLexical],
-    ['var x; let x;', Context.None | Context.OptionsLexical],
-    ['var x; let x;', Context.None | Context.OptionsLexical | Context.OptionsNext],
-    ['var x; let x;', Context.None | Context.OptionsLexical | Context.OptionsNext],
+    { code: 'function f() {} ; function f() {}', options: { lexical: true }, context: Context.Module },
+    {
+      code: 'function f(){ var f = 123; if (true) function f(){} }',
+      options: { lexical: true },
+      context: Context.Module,
+    },
+    { code: '{ var f = 123; if (true) function f(){} }', options: { lexical: true }, context: Context.Module },
+    { code: 'function f() {} ; function f() {}', options: { lexical: true }, context: Context.Module },
+    { code: '{ if (x) function f() {} ; function f() {} }', options: { lexical: true } },
+    { code: 'let x; var x;', options: { lexical: true } },
+    { code: 'var x; let x;', options: { lexical: true } },
+    { code: 'var x; let x;', options: { next: true, lexical: true } },
+    { code: 'var x; let x;', options: { next: true, lexical: true } },
   ]);
 
   for (const arg of [

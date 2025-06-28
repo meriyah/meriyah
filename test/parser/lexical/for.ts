@@ -6,35 +6,35 @@ import { parseSource } from '../../../src/parser';
 
 describe('Lexical - For statement', () => {
   fail('Lexical - For statement (fail)', [
-    ['for (const x = y;;) { var x; }', Context.OptionsLexical],
-    ['for (let x;;) { var x; }', Context.OptionsLexical],
-    ['for (const x = y;;) { var x; }', Context.OptionsLexical],
-    ['for (let x in y) { var x; ', Context.OptionsLexical],
-    ['for (const x in y) { var x; }', Context.Module | Context.OptionsLexical],
-    ['for (let x of y) { var x; }', Context.OptionsLexical],
-    ['for (const x of y) { var x; }', Context.OptionsLexical],
-    ['for (let a, b, x, d;;) { var foo; var bar; { var doo, x, ee; } }', Context.OptionsLexical],
-    ['for (var a;;) { var b; let b; }', Context.OptionsLexical],
-    ['for (const [x, x] in {}) {}', Context.OptionsLexical],
-    ['for (let x of []) { var x;  }', Context.OptionsLexical],
-    ['function f(){let i; class i{}}', Context.OptionsLexical],
-    ['let x; for (;;) { var x; }', Context.OptionsLexical],
-    ['for (let x;;) { var x; }', Context.OptionsLexical],
-    ['for (const x in {}) { var x; }', Context.OptionsLexical],
-    [
-      `{
+    { code: 'for (const x = y;;) { var x; }', options: { lexical: true } },
+    { code: 'for (let x;;) { var x; }', options: { lexical: true } },
+    { code: 'for (const x = y;;) { var x; }', options: { lexical: true } },
+    { code: 'for (let x in y) { var x; ', options: { lexical: true } },
+    { code: 'for (const x in y) { var x; }', options: { lexical: true }, context: Context.Module },
+    { code: 'for (let x of y) { var x; }', options: { lexical: true } },
+    { code: 'for (const x of y) { var x; }', options: { lexical: true } },
+    { code: 'for (let a, b, x, d;;) { var foo; var bar; { var doo, x, ee; } }', options: { lexical: true } },
+    { code: 'for (var a;;) { var b; let b; }', options: { lexical: true } },
+    { code: 'for (const [x, x] in {}) {}', options: { lexical: true } },
+    { code: 'for (let x of []) { var x;  }', options: { lexical: true } },
+    { code: 'function f(){let i; class i{}}', options: { lexical: true } },
+    { code: 'let x; for (;;) { var x; }', options: { lexical: true } },
+    { code: 'for (let x;;) { var x; }', options: { lexical: true } },
+    { code: 'for (const x in {}) { var x; }', options: { lexical: true } },
+    {
+      code: `{
       for (var x;;);
       const x = 1
     }`,
-      Context.OptionsWebCompat | Context.OptionsLexical,
-    ],
-    [
-      `function f(){
+      options: { webcompat: true, lexical: true },
+    },
+    {
+      code: `function f(){
       for (var x;;);
       const x = 1
     }`,
-      Context.OptionsWebCompat | Context.OptionsLexical,
-    ],
+      options: { webcompat: true, lexical: true },
+    },
   ]);
 
   for (const arg of [

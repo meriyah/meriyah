@@ -1,40 +1,36 @@
 import { describe } from 'vitest';
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 
 describe('Statements - None', () => {
   fail('Statements - If (fail)', [
     // Esprima issue: https://github.com/jquery/esprima/issues/1866
-    ['if (true) class C {} else class D {}', Context.None],
-    ['if true;', Context.None],
-    ['if(!(1))', Context.None],
-    ['if(!(true))', Context.None],
-    ['if(!("A"))', Context.None],
-    ['if (x); else foo: bar: function f(){}', Context.None],
-    ['if (false) ; else function* g() {  }', Context.None],
-    ['if (true) let x; else let y;', Context.None],
-    ['if (false) ; else class C {}', Context.None],
-    ['"use strict"; if (true) function f() {  } else function _f() {}', Context.None],
-    ['"use strict"; if (true) function f() {  } else function _f() {}', Context.OptionsWebCompat],
-    ['if (true) const x = null;', Context.None],
-    ['if();', Context.None],
-    ['if (1) let x = 10;', Context.None],
-    [
-      `if({1})
+    'if (true) class C {} else class D {}',
+    'if true;',
+    'if(!(1))',
+    'if(!(true))',
+    'if(!("A"))',
+    'if (x); else foo: bar: function f(){}',
+    'if (false) ; else function* g() {  }',
+    'if (true) let x; else let y;',
+    'if (false) ; else class C {}',
+    '"use strict"; if (true) function f() {  } else function _f() {}',
+    { code: '"use strict"; if (true) function f() {  } else function _f() {}', options: { webcompat: true } },
+    'if (true) const x = null;',
+    'if();',
+    'if (1) let x = 10;',
+    `if({1})
     {
       ;
     }else
     {
       ;
     }`,
-      Context.None,
-    ],
-    ['if (a) function(){}', Context.None],
-    ['if (a) class A {}', Context.None],
-    ['if (true) function* g() {  } else function* _g() {}', Context.None],
-    ['if (true) function* g() {  } else ;', Context.None],
-    ['if (true) function* g() {  }', Context.None],
-    ['if (false) ; else function* g() {  }', Context.None],
+    'if (a) function(){}',
+    'if (a) class A {}',
+    'if (true) function* g() {  } else function* _g() {}',
+    'if (true) function* g() {  } else ;',
+    'if (true) function* g() {  }',
+    'if (false) ; else function* g() {  }',
   ]);
 
   pass('Statements - If (pass)', [

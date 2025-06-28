@@ -1,13 +1,8 @@
 import { describe } from 'vitest';
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 
 describe('Expressions - Block', () => {
-  fail('Expressions - Array (fail)', [
-    ['{ let {x} }', Context.None],
-    ['{ let {} }', Context.None],
-    ['{ let [] }', Context.None],
-  ]);
+  fail('Expressions - Array (fail)', ['{ let {x} }', '{ let {} }', '{ let [] }']);
   pass('Expressions - Block (pass)', [
     '{}',
     { code: '{ let x }', options: { ranges: true } },

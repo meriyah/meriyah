@@ -5,8 +5,13 @@ import { Context } from '../src/common';
 import { ParseError } from '../src/errors';
 
 const IS_CI = Boolean(process.env.CI);
+// https://github.com/vitest-dev/vitest/issues/8151
+const toTestTile = (code: string) => code.replaceAll('\r', '␍␊');
 
-export const serializeParserError = (code: string, error: unknown) => {
+type NormalizedTestCase = { code: string; options?: Options; context?: Context; only?: true };
+type TestCase = string | NormalizedTestCase;
+
+const serializeParserError = (code: string, error: unknown) => {
   if (!(error instanceof ParseError)) {
     throw error;
   }
@@ -29,50 +34,49 @@ export const serializeParserError = (code: string, error: unknown) => {
   return `${error.name} ${message}\n${codeFrame}`;
 };
 
-const toTestTile = (code: string) => code.replaceAll('\r', '␍␊');
-
-export const pass = (
-  name: string,
-  valid: (string | { code: string; options?: Options; context?: Context; only?: true })[],
-): void => {
-  describe(name, () => {
-    for (let testCase of valid) {
-      if (typeof testCase === 'string') {
-        testCase = { code: testCase };
-      }
-
-      const { code, options, context, only } = testCase;
-
-      if (IS_CI && only) {
-        throw new Error(`Please remove 'only'.`);
-      }
-
-      // https://github.com/vitest-dev/vitest/issues/8151
-      (only ? it.only : it)(toTestTile(code), () => {
-        const parseResult = parseSource(code, options, context ?? Context.None);
-        expect(parseResult).toMatchSnapshot();
-      });
+function runTests(testCases: TestCase[], callback: (testCase: NormalizedTestCase) => void) {
+  for (let testCase of testCases) {
+    if (typeof testCase === 'string') {
+      testCase = { code: testCase };
     }
+
+    const { code, only } = testCase;
+
+    if (IS_CI && only) {
+      throw new Error(`Please remove 'only'.`);
+    }
+
+    // https://github.com/vitest-dev/vitest/issues/8151
+    (only ? it.only : it)(toTestTile(code), () => {
+      callback(testCase);
+    });
+  }
+}
+
+export const pass = (name: string, testCases: TestCase[]) => {
+  describe(name, () => {
+    runTests(testCases, ({ code, options, context }) => {
+      const parseResult = parseSource(code, options, context ?? Context.None);
+      expect(parseResult).toMatchSnapshot();
+    });
   });
 };
 
-export const fail = (name: string, invalid: [string, Context][]): void => {
+export const fail = (name: string, testCases: TestCase[]) => {
   describe(name, () => {
-    for (const [source, ctx] of invalid) {
-      it(toTestTile(source), () => {
-        let error;
-        try {
-          parseSource(source, undefined, ctx);
-        } catch (parseError) {
-          error = parseError;
-        }
+    runTests(testCases, ({ code, options, context }) => {
+      let error;
+      try {
+        parseSource(code, options, context ?? Context.None);
+      } catch (parseError) {
+        error = parseError;
+      }
 
-        if (!error) {
-          throw new Error('Expect a ParserError thrown');
-        }
+      if (!error) {
+        throw new Error('Expect a ParserError thrown');
+      }
 
-        expect(serializeParserError(source, error)).toMatchSnapshot();
-      });
-    }
+      expect(serializeParserError(code, error)).toMatchSnapshot();
+    });
   });
 };

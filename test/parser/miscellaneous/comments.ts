@@ -6,42 +6,33 @@ import { pass, fail } from '../../test-utils';
 
 describe('Miscellaneous - Comments', () => {
   fail('Miscellaneous - Comments (fail)', [
-    ['a /* */ b;', Context.None],
-    [';-->', Context.None],
-    [
-      `// var /*
+    'a /* */ b;',
+    ';-->',
+    `// var /*
     x*/`,
-      Context.None,
-    ],
-    [`<!-`, Context.None],
-    [`</`, Context.None],
-    [`</`, Context.OptionsJSX],
-    [`</*`, Context.OptionsJSX],
+    `<!-`,
+    `</`,
+    { code: `</`, options: { jsx: true } },
+    { code: `</*`, options: { jsx: true } },
     //[`<// single`, Context.OptionsJSX],
-    [`</*`, Context.None],
-    [`</*`, Context.OptionsJSX],
-    [`<!-`, Context.OptionsJSX],
-    [`</`, Context.None],
-    [`<*`, Context.None],
-    [`<!-`, Context.None],
-    [`<!`, Context.None],
-    [
-      `/* x */
+    `</*`,
+    { code: `</*`, options: { jsx: true } },
+    { code: `<!-`, options: { jsx: true } },
+    `</`,
+    `<*`,
+    `<!-`,
+    `<!`,
+    `/* x */
     = 1;
     */`,
-      Context.None,
-    ],
-    [
-      `/*
+    `/*
     */ the comment should not include these characters, regardless of AnnexB extensions -->`,
-      Context.None,
-    ],
-    [`/*FOO/`, Context.None],
-    [`<!-- HTML comment`, Context.Strict | Context.Module],
-    ['x/* precomment */ --> is eol-comment\nvar y = 37;\n', Context.None],
-    ['var x = a; --> is eol-comment\nvar y = b;\n', Context.None],
-    [`</`, Context.None],
-    [`</`, Context.None],
+    `/*FOO/`,
+    { code: `<!-- HTML comment`, options: { module: true } },
+    'x/* precomment */ --> is eol-comment\nvar y = 37;\n',
+    'var x = a; --> is eol-comment\nvar y = b;\n',
+    `</`,
+    `</`,
   ]);
 
   for (const arg of [
