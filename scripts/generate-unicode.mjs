@@ -167,5 +167,4 @@ ${specifiers
 await generate({
   isIDContinue: ['Binary_Property/ID_Continue'],
   isIDStart: ['Binary_Property/ID_Start'],
-  mustEscape: ['General_Category/Other', 'General_Category/Separator'],
 });
