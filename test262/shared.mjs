@@ -1,5 +1,5 @@
-import * as fs from 'fs';
-import url from 'url';
+import * as fs from 'node:fs';
+import url from 'node:url';
 import { regexFeatures } from '../scripts/shared.mjs';
 
 const TEST262_DIRECTORY = url.fileURLToPath(new URL('./test262/', import.meta.url));

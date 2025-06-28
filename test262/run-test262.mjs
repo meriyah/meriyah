@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as path from 'node:path';
 import run from 'test262-parser-runner';
 import downloadTest262 from './download-test262.mjs';
 import { TEST262_DIRECTORY, shouldSkip, whitelist } from './shared.mjs';
