@@ -6,29 +6,29 @@ import { parseSource } from '../../../src/parser';
 
 describe('Next - Public fields', () => {
   fail('Public fields (fail)', [
-    ['class A { "x" = arguments; }', Context.OptionsWebCompat | Context.OptionsNext],
-    ['class A { "x" = super(); }', Context.OptionsWebCompat | Context.OptionsNext],
-    ['class A { x = typeof super(); }', Context.OptionsWebCompat | Context.OptionsNext],
-    ['class A { static "x" = super(); }', Context.OptionsWebCompat | Context.OptionsNext],
-    ['class A { static "x" = arguments; }', Context.OptionsWebCompat | Context.OptionsNext],
-    ['var C = class { x = () => arguments); }', Context.OptionsWebCompat | Context.OptionsNext],
-    ['var C = class { x = () => eval); }', Context.OptionsWebCompat | Context.OptionsNext],
-    ['class A { static "x" = arguments; }', Context.OptionsWebCompat | Context.OptionsNext],
-    [
-      'class C { #m = function() { return "bar"; }; Child = class extends C { access() { return super.#m; } method() { return super.#m(); } } }',
-      Context.OptionsWebCompat | Context.OptionsNext,
-    ],
-    [
-      'class C { #m = function() { return "bar"; }; Child = class extends C { access = () => super.#m; method = () => super.#m(); } }',
-      Context.OptionsWebCompat | Context.OptionsNext,
-    ],
-    ['class A { a, b }', Context.None],
-    ['class A { a, b }', Context.OptionsNext],
-    ['class A { a b }', Context.None],
-    ['class A { a b }', Context.OptionsNext],
-    ['class A { a b() {} }', Context.OptionsNext],
-    ['class A { a = 1, 2 }', Context.OptionsNext],
-    ['class A { a = 1, b = 2 }', Context.OptionsNext],
+    { code: 'class A { "x" = arguments; }', options: { webcompat: true, next: true } },
+    { code: 'class A { "x" = super(); }', options: { webcompat: true, next: true } },
+    { code: 'class A { x = typeof super(); }', options: { webcompat: true, next: true } },
+    { code: 'class A { static "x" = super(); }', options: { webcompat: true, next: true } },
+    { code: 'class A { static "x" = arguments; }', options: { webcompat: true, next: true } },
+    { code: 'var C = class { x = () => arguments); }', options: { webcompat: true, next: true } },
+    { code: 'var C = class { x = () => eval); }', options: { webcompat: true, next: true } },
+    { code: 'class A { static "x" = arguments; }', options: { webcompat: true, next: true } },
+    {
+      code: 'class C { #m = function() { return "bar"; }; Child = class extends C { access() { return super.#m; } method() { return super.#m(); } } }',
+      options: { webcompat: true, next: true },
+    },
+    {
+      code: 'class C { #m = function() { return "bar"; }; Child = class extends C { access = () => super.#m; method = () => super.#m(); } }',
+      options: { webcompat: true, next: true },
+    },
+    'class A { a, b }',
+    { code: 'class A { a, b }', options: { next: true } },
+    'class A { a b }',
+    { code: 'class A { a b }', options: { next: true } },
+    { code: 'class A { a b() {} }', options: { next: true } },
+    { code: 'class A { a = 1, 2 }', options: { next: true } },
+    { code: 'class A { a = 1, b = 2 }', options: { next: true } },
   ]);
 
   for (const arg of [
