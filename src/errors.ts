@@ -183,7 +183,7 @@ export const enum Errors {
   InvalidAwaitInStaticBlock,
 }
 
-export const errorMessages: {
+const errorMessages: {
   [key: string]: string;
 } = {
   [Errors.Unexpected]: 'Unexpected token',

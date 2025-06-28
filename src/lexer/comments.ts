@@ -14,13 +14,7 @@ export const enum CommentType {
   HashBang,
 }
 
-export const CommentTypes: ESTree.CommentType[] = [
-  'SingleLine',
-  'MultiLine',
-  'HTMLOpen',
-  'HTMLClose',
-  'HashbangComment',
-];
+const CommentTypes: ESTree.CommentType[] = ['SingleLine', 'MultiLine', 'HTMLOpen', 'HTMLClose', 'HashbangComment'];
 
 /**
  * Skips hashbang (stage 3)

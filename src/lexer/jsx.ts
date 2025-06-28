@@ -31,7 +31,7 @@ export function scanJSXAttributeValue(parser: Parser, context: Context): Token {
  *
  * @param parser The parser object
  */
-export function scanJSXString(parser: Parser, context: Context): Token {
+function scanJSXString(parser: Parser, context: Context): Token {
   const quote = parser.currentChar;
   let char = advanceChar(parser);
   const start = parser.index;

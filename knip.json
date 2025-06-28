@@ -1,0 +1,10 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "ignore": ["dist", "test262/test262/", "{scripts,test262}/**/*.d.mts", "test262/run-test262-cli.mjs"],
+  "project": ["src/**/*.ts", "{scripts,test262}/**"],
+  "ignoreDependencies": ["@unicode/unicode-*", "eslint-import-resolver-typescript"],
+  "ignoreBinaries": ["pkg-pr-new"],
+  "rules": {
+    "enumMembers": "off"
+  }
+}

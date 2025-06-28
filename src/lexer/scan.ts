@@ -34,7 +34,7 @@ import { scanIdentifier, scanUnicodeIdentifier, scanIdentifierSlowCase, scanPriv
  * Template:         96: '`'
  */
 
-export const TokenLookup = [
+const TokenLookup = [
   /*   0 - Null                */ Token.Illegal,
   /*   1 - Start of Heading    */ Token.Illegal,
   /*   2 - Start of Text       */ Token.Illegal,

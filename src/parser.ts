@@ -177,11 +177,7 @@ export function parseSource(source: string, options: Options | void, context: Co
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseStatementList(
-  parser: Parser,
-  context: Context,
-  scope: ScopeState | undefined,
-): ESTree.Statement[] {
+function parseStatementList(parser: Parser, context: Context, scope: ScopeState | undefined): ESTree.Statement[] {
   // StatementList ::
   //   (StatementListItem)* <end_token>
 
@@ -222,7 +218,7 @@ export function parseStatementList(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseModuleItemList(
+function parseModuleItemList(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -301,7 +297,7 @@ export function parseModuleItem(parser: Parser, context: Context, scope: ScopeSt
  * @param scope Scope object
  */
 
-export function parseStatementListItem(
+function parseStatementListItem(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -382,7 +378,7 @@ export function parseStatementListItem(
  * @param allowFuncDecl Allow / disallow func statement
  */
 
-export function parseStatement(
+function parseStatement(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -494,7 +490,7 @@ export function parseStatement(
  * @param allowFuncDecl Allow / disallow func statement
  */
 
-export function parseExpressionOrLabelledStatement(
+function parseExpressionOrLabelledStatement(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -616,7 +612,7 @@ export function parseExpressionOrLabelledStatement(
  * @param labels Labels object
  * @param type BlockStatement or StaticBlock
  */
-export function parseBlock<T extends ESTree.BlockStatement | ESTree.StaticBlock = ESTree.BlockStatement>(
+function parseBlock<T extends ESTree.BlockStatement | ESTree.StaticBlock = ESTree.BlockStatement>(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -656,7 +652,7 @@ export function parseBlock<T extends ESTree.BlockStatement | ESTree.StaticBlock 
  * @param parser Parser object
  * @param context Context masks
  */
-export function parseReturnStatement(
+function parseReturnStatement(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -695,7 +691,7 @@ export function parseReturnStatement(
  * @param expression AST node
  * @param start
  */
-export function parseExpressionStatement(
+function parseExpressionStatement(
   parser: Parser,
   context: Context,
   expression: ESTree.Expression,
@@ -721,7 +717,7 @@ export function parseExpressionStatement(
  * @param allowFuncDecl Allow / disallow func statement
  * @param start
  */
-export function parseLabelledStatement(
+function parseLabelledStatement(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -783,7 +779,7 @@ export function parseLabelledStatement(
  * @param allowFuncDecl Allow / disallow func statement
  */
 
-export function parseAsyncArrowOrAsyncFunctionDeclaration(
+function parseAsyncArrowOrAsyncFunctionDeclaration(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -1009,7 +1005,7 @@ export function parseDirective(
  * @param context Context masks
  */
 
-export function parseEmptyStatement(parser: Parser, context: Context): ESTree.EmptyStatement {
+function parseEmptyStatement(parser: Parser, context: Context): ESTree.EmptyStatement {
   const start = parser.tokenStart;
   nextToken(parser, context | Context.AllowRegExp);
   return parser.finishNode(
@@ -1029,7 +1025,7 @@ export function parseEmptyStatement(parser: Parser, context: Context): ESTree.Em
  * @param context Context masks
 
  */
-export function parseThrowStatement(
+function parseThrowStatement(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -1060,7 +1056,7 @@ export function parseThrowStatement(
  * @param context Context masks
  * @param scope Scope instance
  */
-export function parseIfStatement(
+function parseIfStatement(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -1100,7 +1096,7 @@ export function parseIfStatement(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseConsequentOrAlternative(
+function parseConsequentOrAlternative(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -1135,7 +1131,7 @@ export function parseConsequentOrAlternative(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseSwitchStatement(
+function parseSwitchStatement(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -1213,7 +1209,7 @@ export function parseSwitchStatement(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseWhileStatement(
+function parseWhileStatement(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -1248,7 +1244,7 @@ export function parseWhileStatement(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseIterationStatementBody(
+function parseIterationStatementBody(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -1274,11 +1270,7 @@ export function parseIterationStatementBody(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseContinueStatement(
-  parser: Parser,
-  context: Context,
-  labels: ESTree.Labels,
-): ESTree.ContinueStatement {
+function parseContinueStatement(parser: Parser, context: Context, labels: ESTree.Labels): ESTree.ContinueStatement {
   // ContinueStatement ::
   //   'continue' Identifier? ';'
 
@@ -1312,7 +1304,7 @@ export function parseContinueStatement(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseBreakStatement(parser: Parser, context: Context, labels: ESTree.Labels): ESTree.BreakStatement {
+function parseBreakStatement(parser: Parser, context: Context, labels: ESTree.Labels): ESTree.BreakStatement {
   // BreakStatement ::
   //   'break' Identifier? ';'
 
@@ -1348,7 +1340,7 @@ export function parseBreakStatement(parser: Parser, context: Context, labels: ES
  * @param context Context masks
  * @param scope Scope instance
  */
-export function parseWithStatement(
+function parseWithStatement(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -1386,7 +1378,7 @@ export function parseWithStatement(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseDebuggerStatement(parser: Parser, context: Context): ESTree.DebuggerStatement {
+function parseDebuggerStatement(parser: Parser, context: Context): ESTree.DebuggerStatement {
   // DebuggerStatement ::
   //   'debugger' ';'
   const start = parser.tokenStart;
@@ -1410,7 +1402,7 @@ export function parseDebuggerStatement(parser: Parser, context: Context): ESTree
  * @param context Context masks
  * @param scope Scope instance
  */
-export function parseTryStatement(
+function parseTryStatement(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -1479,7 +1471,7 @@ export function parseTryStatement(
  * @param scope Scope instance
  * @param start Start pos of node
  */
-export function parseCatchBlock(
+function parseCatchBlock(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -1540,7 +1532,7 @@ export function parseCatchBlock(
  * @param context Context masks
  * @param scope Scope instance
  */
-export function parseStaticBlock(
+function parseStaticBlock(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -1578,7 +1570,7 @@ export function parseStaticBlock(
  * @param context Context masks
  * @param scope Scope instance
  */
-export function parseDoWhileStatement(
+function parseDoWhileStatement(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -1622,7 +1614,7 @@ export function parseDoWhileStatement(
  * @param scope Scope object
  * @param origin Binding origin
  */
-export function parseLetIdentOrVarDeclarationStatement(
+function parseLetIdentOrVarDeclarationStatement(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -1805,7 +1797,7 @@ function parseLexicalDeclaration(
  * @param scope Scope object
  * @param origin Binding origin
  */
-export function parseVariableStatement(
+function parseVariableStatement(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -1842,7 +1834,7 @@ export function parseVariableStatement(
  * @param type Binding kind
  * @param origin Binding origin
  */
-export function parseVariableDeclarationList(
+function parseVariableDeclarationList(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -1943,7 +1935,7 @@ function parseVariableDeclaration(
  * @param context Context masks
 
  */
-export function parseForStatement(
+function parseForStatement(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -2197,11 +2189,7 @@ export function parseForStatement(
  * @param scope Scope object
  */
 
-export function parseRestrictedIdentifier(
-  parser: Parser,
-  context: Context,
-  scope: ScopeState | undefined,
-): ESTree.Identifier {
+function parseRestrictedIdentifier(parser: Parser, context: Context, scope: ScopeState | undefined): ESTree.Identifier {
   if (!isValidIdentifier(context, parser.getToken())) report(parser, Errors.UnexpectedStrictReserved);
   if ((parser.getToken() & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
     report(parser, Errors.StrictEvalArguments);
@@ -2453,11 +2441,7 @@ function parseImportSpecifierOrNamedImports(
  * @param context Context masks
  * @param meta  ESTree AST node
  */
-export function parseImportMetaDeclaration(
-  parser: Parser,
-  context: Context,
-  start: Location,
-): ESTree.ExpressionStatement {
+function parseImportMetaDeclaration(parser: Parser, context: Context, start: Location): ESTree.ExpressionStatement {
   let expr: ESTree.Expression = parseImportMetaExpression(
     parser,
     context,
@@ -2901,7 +2885,7 @@ function parseExportDeclaration(
  * @param inGroup,
  * @param start,
  */
-export function parseExpression(
+function parseExpression(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -2927,7 +2911,7 @@ export function parseExpression(
  * @param context Context masks
  * @param expr ESTree AST node
  */
-export function parseSequenceExpression(
+function parseSequenceExpression(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -2959,7 +2943,7 @@ export function parseSequenceExpression(
  * @param context Context masks
  * @param canAssign
  */
-export function parseExpressions(
+function parseExpressions(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -2983,7 +2967,7 @@ export function parseExpressions(
  * @param start
  * @param left ESTree AST node
  */
-export function parseAssignmentExpression(
+function parseAssignmentExpression(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -3067,7 +3051,7 @@ export function parseAssignmentExpression(
  * @param start
  * @param left
  */
-export function parseAssignmentExpressionOrPattern(
+function parseAssignmentExpressionOrPattern(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -3110,7 +3094,7 @@ export function parseAssignmentExpressionOrPattern(
  * @param context Context masks
  * @param test ESTree AST node
  */
-export function parseConditionalExpression(
+function parseConditionalExpression(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -3155,7 +3139,7 @@ export function parseConditionalExpression(
  * @param minPrecedence The precedence of the last binary expression parsed
  * @param left ESTree AST node
  */
-export function parseBinaryExpression(
+function parseBinaryExpression(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -3216,7 +3200,7 @@ export function parseBinaryExpression(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseUnaryExpression(
+function parseUnaryExpression(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -3269,7 +3253,7 @@ export function parseUnaryExpression(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseAsyncExpression(
+function parseAsyncExpression(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -3333,7 +3317,7 @@ export function parseAsyncExpression(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseYieldExpressionOrIdentifier(
+function parseYieldExpressionOrIdentifier(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -3389,7 +3373,7 @@ export function parseYieldExpressionOrIdentifier(
  * @param context Context masks
  * @param inNew
  */
-export function parseAwaitExpressionOrIdentifier(
+function parseAwaitExpressionOrIdentifier(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -3485,7 +3469,7 @@ export function parseAwaitExpressionOrIdentifier(
  * @param funcNameToken
  * @param scopeError
  */
-export function parseFunctionBody(
+function parseFunctionBody(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -3575,7 +3559,7 @@ export function parseFunctionBody(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseSuperExpression(parser: Parser, context: Context): ESTree.Super {
+function parseSuperExpression(parser: Parser, context: Context): ESTree.Super {
   const { tokenStart } = parser;
   nextToken(parser, context);
 
@@ -3610,7 +3594,7 @@ export function parseSuperExpression(parser: Parser, context: Context): ESTree.S
  * @param context Context masks
  * @param canAssign
  */
-export function parseLeftHandSideExpression(
+function parseLeftHandSideExpression(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -3673,7 +3657,7 @@ function parseUpdateExpression(parser: Parser, context: Context, expr: ESTree.Ex
  * @param inGroup
  * @param start
  */
-export function parseMemberOrUpdateExpression(
+function parseMemberOrUpdateExpression(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -3836,7 +3820,7 @@ export function parseMemberOrUpdateExpression(
  * @param context Context masks
  * @param expr  ESTree AST node
  */
-export function parseOptionalChain(
+function parseOptionalChain(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -3908,7 +3892,7 @@ export function parseOptionalChain(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parsePropertyOrPrivatePropertyName(
+function parsePropertyOrPrivatePropertyName(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -3935,7 +3919,7 @@ export function parsePropertyOrPrivatePropertyName(
  * @param inNew
  * @param start
  */
-export function parseUpdateExpressionPrefixed(
+function parseUpdateExpressionPrefixed(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -3984,7 +3968,7 @@ export function parseUpdateExpressionPrefixed(
  * @param inGroup
  * @param start
  */
-export function parsePrimaryExpression(
+function parsePrimaryExpression(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -4178,7 +4162,7 @@ function parseImportCallOrMetaExpression(
  * @param context Context masks
  * @param meta ESTree AST node
  */
-export function parseImportMetaExpression(
+function parseImportMetaExpression(
   parser: Parser,
   context: Context,
   meta: ESTree.Identifier,
@@ -4214,7 +4198,7 @@ export function parseImportMetaExpression(
  * @param inGroup
  * @param start
  */
-export function parseImportExpression(
+function parseImportExpression(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -4259,7 +4243,7 @@ export function parseImportExpression(
  * @returns
  */
 
-export function parseImportAttributes(parser: Parser, context: Context): ESTree.ImportAttribute[] {
+function parseImportAttributes(parser: Parser, context: Context): ESTree.ImportAttribute[] {
   if (!consumeOpt(parser, context, Token.WithKeyword)) return [];
   consume(parser, context, Token.LeftBrace);
 
@@ -4361,7 +4345,7 @@ function parseModuleExportName(parser: Parser, context: Context): ESTree.Identif
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseBigIntLiteral(parser: Parser, context: Context): ESTree.BigIntLiteral {
+function parseBigIntLiteral(parser: Parser, context: Context): ESTree.BigIntLiteral {
   const { tokenRaw, tokenValue, tokenStart } = parser;
   nextToken(parser, context);
   parser.assignable = AssignmentKind.CannotAssign;
@@ -4385,7 +4369,7 @@ export function parseBigIntLiteral(parser: Parser, context: Context): ESTree.Big
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseTemplateLiteral(parser: Parser, context: Context): ESTree.TemplateLiteral {
+function parseTemplateLiteral(parser: Parser, context: Context): ESTree.TemplateLiteral {
   /**
    * Template Literals
    *
@@ -4471,7 +4455,7 @@ export function parseTemplateLiteral(parser: Parser, context: Context): ESTree.T
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseTemplate(
+function parseTemplate(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -4520,7 +4504,7 @@ export function parseTemplate(
  * @param parser  Parser object
  * @param tail
  */
-export function parseTemplateElement(
+function parseTemplateElement(
   parser: Parser,
   context: Context,
   cooked: string | null,
@@ -4594,7 +4578,7 @@ function parseSpreadElement(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseArguments(
+function parseArguments(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -4636,7 +4620,7 @@ export function parseArguments(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseIdentifier(parser: Parser, context: Context): ESTree.Identifier {
+function parseIdentifier(parser: Parser, context: Context): ESTree.Identifier {
   const { tokenValue, tokenStart } = parser;
 
   const allowRegex = tokenValue === 'await' && (parser.getToken() & Token.IsEscaped) === 0;
@@ -4657,7 +4641,7 @@ export function parseIdentifier(parser: Parser, context: Context): ESTree.Identi
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseLiteral(parser: Parser, context: Context): ESTree.Literal {
+function parseLiteral(parser: Parser, context: Context): ESTree.Literal {
   const { tokenValue, tokenRaw, tokenStart } = parser;
   if (parser.getToken() === Token.BigIntLiteral) {
     return parseBigIntLiteral(parser, context);
@@ -4686,7 +4670,7 @@ export function parseLiteral(parser: Parser, context: Context): ESTree.Literal {
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseNullOrTrueOrFalseLiteral(parser: Parser, context: Context): ESTree.Literal {
+function parseNullOrTrueOrFalseLiteral(parser: Parser, context: Context): ESTree.Literal {
   const start = parser.tokenStart;
   const raw = KeywordDescTable[parser.getToken() & Token.Type];
   const value = parser.getToken() === Token.NullKeyword ? null : raw === 'true';
@@ -4714,7 +4698,7 @@ export function parseNullOrTrueOrFalseLiteral(parser: Parser, context: Context):
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseThisExpression(parser: Parser, context: Context): ESTree.ThisExpression {
+function parseThisExpression(parser: Parser, context: Context): ESTree.ThisExpression {
   const { tokenStart } = parser;
   nextToken(parser, context);
   parser.assignable = AssignmentKind.CannotAssign;
@@ -4737,7 +4721,7 @@ export function parseThisExpression(parser: Parser, context: Context): ESTree.Th
  * @param isAsync
  * @param start
  */
-export function parseFunctionDeclaration(
+function parseFunctionDeclaration(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -4871,7 +4855,7 @@ export function parseFunctionDeclaration(
  * @param context Context masks
  * @param isAsync
  */
-export function parseFunctionExpression(
+function parseFunctionExpression(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -5026,7 +5010,7 @@ function parseArrayLiteral(
  * @param BindingKind
  */
 
-export function parseArrayExpressionOrPattern(
+function parseArrayExpressionOrPattern(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -5523,7 +5507,7 @@ function parseSpreadOrRestElement(
  * @param inGroup
  * @param start Start index
  */
-export function parseMethodDefinition(
+function parseMethodDefinition(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -5669,7 +5653,7 @@ function parseObjectLiteral(
  * @param kind Binding kind
  * @param origin Binding origin
  */
-export function parseObjectLiteralOrPattern(
+function parseObjectLiteralOrPattern(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -6404,7 +6388,7 @@ export function parseObjectLiteralOrPattern(
  * @param type Binding kind
  * @param inGroup
  */
-export function parseMethodFormals(
+function parseMethodFormals(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -6530,7 +6514,7 @@ export function parseMethodFormals(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseComputedPropertyName(
+function parseComputedPropertyName(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -6559,7 +6543,7 @@ export function parseComputedPropertyName(
  * @param assignable
  * @param start Start index
  */
-export function parseParenthesizedExpression(
+function parseParenthesizedExpression(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -6823,7 +6807,7 @@ export function parseParenthesizedExpression(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseIdentifierOrArrow(
+function parseIdentifierOrArrow(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -6918,7 +6902,7 @@ function parseParenthesizedArrow(
  * @param isAsync
  * @param start Start index
  */
-export function parseArrowFunctionExpression(
+function parseArrowFunctionExpression(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -7028,7 +7012,7 @@ export function parseArrowFunctionExpression(
  * @param parser  Parser object
  * @param context Context masks
  */
-export function parseFormalParametersOrFormalList(
+function parseFormalParametersOrFormalList(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -7164,7 +7148,7 @@ export function parseFormalParametersOrFormalList(
  * @param inGroup
  * @param start
  */
-export function parseMemberExpressionNoCall(
+function parseMemberExpressionNoCall(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -7263,7 +7247,7 @@ export function parseMemberExpressionNoCall(
  * @param context Context masks
  * @returns {(ESTree.Expression | ESTree.MetaProperty)}
  */
-export function parseNewExpression(
+function parseNewExpression(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -7337,7 +7321,7 @@ export function parseNewExpression(
  * @param context Context masks
  * @param meta ESTree AST node
  */
-export function parseMetaProperty(
+function parseMetaProperty(
   parser: Parser,
   context: Context,
   meta: ESTree.Identifier,
@@ -7415,7 +7399,7 @@ function parseAsyncArrowAfterIdent(
  * @param flags Mutual parser flags
  * @param start Start pos of node
  */
-export function parseAsyncArrowOrCallExpression(
+function parseAsyncArrowOrCallExpression(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -7636,7 +7620,7 @@ export function parseAsyncArrowOrCallExpression(
  * @param parser Parser object
  * @param context Context masks
  */
-export function parseRegExpLiteral(parser: Parser, context: Context): ESTree.RegExpLiteral {
+function parseRegExpLiteral(parser: Parser, context: Context): ESTree.RegExpLiteral {
   const { tokenRaw, tokenRegExp, tokenValue, tokenStart } = parser;
   nextToken(parser, context);
   parser.assignable = AssignmentKind.CannotAssign;
@@ -7660,7 +7644,7 @@ export function parseRegExpLiteral(parser: Parser, context: Context): ESTree.Reg
  * @param context Context masks
  * @param ExportDefault
  */
-export function parseClassDeclaration(
+function parseClassDeclaration(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -7770,7 +7754,7 @@ export function parseClassDeclaration(
  * @param parser Parser object
  * @param context Context masks
  */
-export function parseClassExpression(
+function parseClassExpression(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -7842,7 +7826,7 @@ export function parseClassExpression(
  * @param parser Parser object
  * @param context Context masks
  */
-export function parseDecorators(
+function parseDecorators(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -7864,7 +7848,7 @@ export function parseDecorators(
  * @param parser Parser object
  * @param context Context masks
  */
-export function parseDecoratorList(
+function parseDecoratorList(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -7896,7 +7880,7 @@ export function parseDecoratorList(
  * @param decorators
  */
 
-export function parseClassBody(
+function parseClassBody(
   parser: Parser,
   context: Context,
   inheritedContext: Context,
@@ -8274,7 +8258,7 @@ function parsePrivateIdentifier(
  * @param decorators
  */
 
-export function parsePropertyDefinition(
+function parsePropertyDefinition(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -8365,7 +8349,7 @@ export function parsePropertyDefinition(
  * @param context Context masks
  * @param type Binding kind
  */
-export function parseBindingPattern(
+function parseBindingPattern(
   parser: Parser,
   context: Context,
   scope: ScopeState | undefined,
@@ -8527,7 +8511,7 @@ function parseJSXRootElementOrFragment(
  * @param parser Parser object
  * @param context  Context masks
  */
-export function parseJSXOpeningFragment(parser: Parser, context: Context, start: Location): ESTree.JSXOpeningFragment {
+function parseJSXOpeningFragment(parser: Parser, context: Context, start: Location): ESTree.JSXOpeningFragment {
   nextJSXToken(parser, context);
   return parser.finishNode(
     {
@@ -8578,7 +8562,7 @@ function parseJSXClosingElement(
  * @param parser Parser object
  * @param context  Context masks
  */
-export function parseJSXClosingFragment(
+function parseJSXClosingFragment(
   parser: Parser,
   context: Context,
   inJSXChild: 0 | 1,
@@ -8610,7 +8594,7 @@ export function parseJSXClosingFragment(
  * @param parser Parser object
  * @param context  Context masks
  */
-export function parseJSXChildrenAndClosingElement(
+function parseJSXChildrenAndClosingElement(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -8632,7 +8616,7 @@ export function parseJSXChildrenAndClosingElement(
  * @param parser Parser object
  * @param context  Context masks
  */
-export function parseJSXChildrenAndClosingFragment(
+function parseJSXChildrenAndClosingFragment(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -8704,7 +8688,7 @@ function parseJSXChildOrClosingFragment(
  * @param parser Parser object
  * @param context  Context masks
  */
-export function parseJSXText(parser: Parser, context: Context): ESTree.JSXText {
+function parseJSXText(parser: Parser, context: Context): ESTree.JSXText {
   const start = parser.tokenStart;
 
   nextToken(parser, context);
@@ -8801,7 +8785,7 @@ function parseJSXElementName(
  * @param parser Parser object
  * @param context  Context masks
  */
-export function parseJSXMemberExpression(
+function parseJSXMemberExpression(
   parser: Parser,
   context: Context,
   object: ESTree.JSXIdentifier | ESTree.JSXMemberExpression,
@@ -8824,7 +8808,7 @@ export function parseJSXMemberExpression(
  * @param parser Parser object
  * @param context  Context masks
  */
-export function parseJSXAttributes(
+function parseJSXAttributes(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -8846,7 +8830,7 @@ export function parseJSXAttributes(
  * @param parser Parser object
  * @param context  Context masks
  */
-export function parseJSXSpreadAttribute(
+function parseJSXSpreadAttribute(
   parser: Parser,
   context: Context,
   privateScope: PrivateScopeState | undefined,
@@ -9042,7 +9026,7 @@ function parseJSXEmptyExpression(parser: Parser, start: Location): ESTree.JSXEmp
  * @param parser Parser object
  * @param context  Context masks
  */
-export function parseJSXIdentifier(parser: Parser, context: Context): ESTree.JSXIdentifier {
+function parseJSXIdentifier(parser: Parser, context: Context): ESTree.JSXIdentifier {
   const start = parser.tokenStart;
 
   if (!(parser.getToken() & Token.IsIdentifier)) {

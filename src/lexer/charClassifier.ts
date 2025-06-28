@@ -155,7 +155,7 @@ export const CharTypes = [
   CharFlags.None /* 0x7F */
 ];
 
-export const isIdStart = [
+const isIdStart = [
   0,
   0,
   0,

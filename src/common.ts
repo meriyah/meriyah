@@ -159,19 +159,16 @@ export const enum HoistedFunctionFlags {
  * Scope kinds
  */
 export const enum ScopeKind {
-  None = 0,
   ForStatement = 1 << 0,
   Block = 1 << 1,
   CatchStatement = 1 << 2,
   SwitchStatement = 1 << 3,
-  ArgList = 1 << 4,
-  TryStatement = 1 << 5,
-  CatchBlock = 1 << 6,
-  FunctionBody = 1 << 7,
-  FunctionRoot = 1 << 8,
-  FunctionParams = 1 << 9,
-  ArrowParams = 1 << 10,
-  CatchIdentifier = 1 << 11,
+  TryStatement = 1 << 4,
+  CatchBlock = 1 << 5,
+  FunctionBody = 1 << 6,
+  FunctionRoot = 1 << 7,
+  FunctionParams = 1 << 8,
+  ArrowParams = 1 << 9,
 }
 
 /**
@@ -528,7 +525,7 @@ export function createArrowHeadParsingScope(parser: Parser, context: Context, va
  * @param parser Parser state
  * @param type Errors type
  */
-export function recordScopeError(parser: Parser, type: Errors, ...params: string[]): ScopeError {
+function recordScopeError(parser: Parser, type: Errors, ...params: string[]): ScopeError {
   return {
     type,
     params,
