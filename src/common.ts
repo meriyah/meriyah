@@ -163,12 +163,12 @@ export const enum ScopeKind {
   Block = 1 << 1,
   CatchStatement = 1 << 2,
   SwitchStatement = 1 << 3,
-  TryStatement = 1 << 5,
-  CatchBlock = 1 << 6,
-  FunctionBody = 1 << 7,
-  FunctionRoot = 1 << 8,
-  FunctionParams = 1 << 9,
-  ArrowParams = 1 << 10,
+  TryStatement = 1 << 4,
+  CatchBlock = 1 << 5,
+  FunctionBody = 1 << 6,
+  FunctionRoot = 1 << 7,
+  FunctionParams = 1 << 8,
+  ArrowParams = 1 << 9,
 }
 
 /**
