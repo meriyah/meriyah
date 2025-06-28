@@ -1,26 +1,24 @@
 import { describe } from 'vitest';
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 
 describe('Statements - Break', () => {
   fail('Declarations - Break', [
-    ['break;', Context.None],
+    'break;',
     //    ['break foo;', Context.None],
-    ['switch (x){ case z:    break y   }', Context.None],
-    ['switch (x){ case z:    if (x) break y   }', Context.None],
-    ['function f(){ switch (x){ case z:       break y   }}', Context.None],
-    ['function f(){ switch (x){ case z:       if (x) break y   }}', Context.None],
-    ['for (;;)    if (x) break y   }', Context.None],
-    ['function f(){ while (true)       break y   }', Context.None],
-    ['do     break y   ; while(true);', Context.None],
-    ['do     if (x) break y   ; while(true);', Context.None],
-    ['function f(){ do        if (x) break y   ; while(true);}', Context.None],
-    ['x: foo; break x;', Context.None],
-    ['loop1: function a() {}  while (true) { continue loop1; }', Context.None],
-    ['{  break foo; var y=2; }', Context.None],
-    ['loop1: while (true) { loop2: function a() { break loop2; } }', Context.None],
-    [
-      `(function(){
+    'switch (x){ case z:    break y   }',
+    'switch (x){ case z:    if (x) break y   }',
+    'function f(){ switch (x){ case z:       break y   }}',
+    'function f(){ switch (x){ case z:       if (x) break y   }}',
+    'for (;;)    if (x) break y   }',
+    'function f(){ while (true)       break y   }',
+    'do     break y   ; while(true);',
+    'do     if (x) break y   ; while(true);',
+    'function f(){ do        if (x) break y   ; while(true);}',
+    'x: foo; break x;',
+    'loop1: function a() {}  while (true) { continue loop1; }',
+    '{  break foo; var y=2; }',
+    'loop1: while (true) { loop2: function a() { break loop2; } }',
+    `(function(){
       OuterLabel : var x=0, y=0;
       LABEL_DO_LOOP : do {
           LABEL_IN : x++;
@@ -35,18 +33,12 @@ describe('Statements - Break', () => {
       } while(0);
       function OUT_FUNC(){}
   })();`,
-      Context.None,
-    ],
-    [
-      `LABEL1 : do {
+    `LABEL1 : do {
       x++;
       (function(){break LABEL1;})();
       y++;
   } while(0);`,
-      Context.None,
-    ],
-    [
-      `(function(){
+    `(function(){
     OuterLabel : var x=0, y=0;
     LABEL_DO_LOOP : do {
         LABEL_IN : x++;
@@ -61,10 +53,7 @@ describe('Statements - Break', () => {
     } while(0);
     function OUT_FUNC(){}
   })();`,
-      Context.None,
-    ],
-    [
-      `(function(){
+    `(function(){
     OuterLabel : var x=0, y=0;
     LABEL_DO_LOOP : do {
         LABEL_IN : x++;
@@ -79,10 +68,7 @@ describe('Statements - Break', () => {
     } while(0);
     function OUT_FUNC(){}
   })();`,
-      Context.None,
-    ],
-    [
-      `(function(){
+    `(function(){
     OuterLabel : var x=0, y=0;
     LABEL_DO_LOOP : do {
         LABEL_IN : x++;
@@ -97,10 +83,7 @@ describe('Statements - Break', () => {
     } while(0);
     function OUT_FUNC(){}
   })();`,
-      Context.None,
-    ],
-    [
-      `var x=0,y=0;
+    `var x=0,y=0;
   try{
     LABEL1 : do {
       x++;
@@ -115,25 +98,23 @@ describe('Statements - Break', () => {
       y++;
     } while(0);
   }`,
-      Context.None,
-    ],
-    ['loop1: while (true) { loop2: function a() { break loop1; } }', Context.None],
-    ['loop; while (true) { break loop1; }', Context.None],
-    ['function f(){ for (;;)       break y   }', Context.None],
-    ['break', Context.None],
-    ['{ break }', Context.None],
-    ['if (x) break', Context.None],
-    ['function f(){    break    }', Context.None],
-    ['function f(){    if (x) break   }', Context.None],
-    ['function f(){    break y   }', Context.None],
-    ['break; break;', Context.None],
-    ['break\nbreak;', Context.None],
-    ['{ break }', Context.None],
-    ['if (x) break', Context.None],
-    ['function f(){    break    }', Context.None],
+    'loop1: while (true) { loop2: function a() { break loop1; } }',
+    'loop; while (true) { break loop1; }',
+    'function f(){ for (;;)       break y   }',
+    'break',
+    '{ break }',
+    'if (x) break',
+    'function f(){    break    }',
+    'function f(){    if (x) break   }',
+    'function f(){    break y   }',
+    'break; break;',
+    'break\nbreak;',
+    '{ break }',
+    'if (x) break',
+    'function f(){    break    }',
     //    ['function f(){    break y   }', Context.None],
-    ['() => {    break    }', Context.None],
-    ['() => {    if (x) break   }', Context.None],
+    '() => {    break    }',
+    '() => {    if (x) break   }',
     //  ['() => {    if (x) break y   }', Context.None],
   ]);
 

@@ -1,66 +1,61 @@
 import { describe } from 'vitest';
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 
 describe('Statements - Continue', () => {
   fail('Declarations - Continue', [
-    ['continue;', Context.None],
-    ['{ continue }', Context.None],
-    ['if (x) continue;', Context.None],
-    ['continue y', Context.None],
-    ['if (x) continue y', Context.None],
-    ['function f(){    continue    }', Context.None],
-    ['function f(){   { continue }   }', Context.None],
-    ['function f(){    if (x) continue   }', Context.None],
-    ['function f(){    continue y   }', Context.None],
-    ['function f(){    if (x) continue y   }', Context.None],
-    ['() =>     continue', Context.None],
-    ['() => {    continue    }', Context.None],
-    ['() => {   { continue }   }', Context.None],
-    ['() => {    continue y   }', Context.None],
-    ['() => {    if (x) continue y   }', Context.None],
-    ['continue', Context.None],
-    ['while (true) continue x;', Context.None],
-    ['function f(){ do        if (x) continue y   ; while(true);}', Context.None],
-    ['do     continue y   ; while(true);', Context.None],
-    ['do     if (x) continue y   ; while(true);', Context.None],
-    ['function f(){ while (true)       if (x) continue y   }', Context.None],
-    ['function f(){ for (;;)       if (x) continue y   }', Context.None],
-    ['for (;;)    continue y ', Context.None],
-    ['function f(){    if (x) continue   }', Context.None],
-    ['function f(){    continue y   }', Context.None],
-    ['function f(){    if (x) continue y   }', Context.None],
-    ['switch (x) { case x: continue foo; }', Context.None],
-    ['switch (x) { default: continue foo; }', Context.None],
-    ['switch (x) { case x: if (foo) {continue foo;} }', Context.None],
-    ['function f(){ for (;;)       if (x) continue y   }}', Context.None],
-    ['while (true)    if (x) continue y   }', Context.None],
-    ['function f(){ while (true)       if (x) continue y   }}', Context.None],
-    ['do     if (x) continue y   ; while(true);', Context.None],
-    ['function f(){ do        if (x) continue y   ; while(true);}', Context.None],
-    ['continue foo', Context.None],
-    ['continue; continue;', Context.None],
-    ['continue\ncontinue;', Context.None],
-    ['continue foo;continue;', Context.None],
-    ['continue foo\ncontinue;', Context.None],
-    ['do {  test262: {  continue test262; } } while (a)', Context.None],
-    ['ce: while(true) { continue fapper; }', Context.None],
-    ['oop1: while (true) { loop2: function a() { continue loop2; } }', Context.None],
-    ['loop1: while (true) { loop2: function a() { continue loop1; } }', Context.None],
-    ['loop1: while (true) { loop1: function a() { continue loop1; } }', Context.None],
-    ['oop1: while (true) { loop2: function a() { continue loop2; } }', Context.None],
-    ['oop1: while (true) { loop2: function a() { continue loop2; } }', Context.None],
-    ['oop1: while (true) { loop2: function a() { continue loop2; } }', Context.None],
-    [
-      `LABEL1 : do {
+    'continue;',
+    '{ continue }',
+    'if (x) continue;',
+    'continue y',
+    'if (x) continue y',
+    'function f(){    continue    }',
+    'function f(){   { continue }   }',
+    'function f(){    if (x) continue   }',
+    'function f(){    continue y   }',
+    'function f(){    if (x) continue y   }',
+    '() =>     continue',
+    '() => {    continue    }',
+    '() => {   { continue }   }',
+    '() => {    continue y   }',
+    '() => {    if (x) continue y   }',
+    'continue',
+    'while (true) continue x;',
+    'function f(){ do        if (x) continue y   ; while(true);}',
+    'do     continue y   ; while(true);',
+    'do     if (x) continue y   ; while(true);',
+    'function f(){ while (true)       if (x) continue y   }',
+    'function f(){ for (;;)       if (x) continue y   }',
+    'for (;;)    continue y ',
+    'function f(){    if (x) continue   }',
+    'function f(){    continue y   }',
+    'function f(){    if (x) continue y   }',
+    'switch (x) { case x: continue foo; }',
+    'switch (x) { default: continue foo; }',
+    'switch (x) { case x: if (foo) {continue foo;} }',
+    'function f(){ for (;;)       if (x) continue y   }}',
+    'while (true)    if (x) continue y   }',
+    'function f(){ while (true)       if (x) continue y   }}',
+    'do     if (x) continue y   ; while(true);',
+    'function f(){ do        if (x) continue y   ; while(true);}',
+    'continue foo',
+    'continue; continue;',
+    'continue\ncontinue;',
+    'continue foo;continue;',
+    'continue foo\ncontinue;',
+    'do {  test262: {  continue test262; } } while (a)',
+    'ce: while(true) { continue fapper; }',
+    'oop1: while (true) { loop2: function a() { continue loop2; } }',
+    'loop1: while (true) { loop2: function a() { continue loop1; } }',
+    'loop1: while (true) { loop1: function a() { continue loop1; } }',
+    'oop1: while (true) { loop2: function a() { continue loop2; } }',
+    'oop1: while (true) { loop2: function a() { continue loop2; } }',
+    'oop1: while (true) { loop2: function a() { continue loop2; } }',
+    `LABEL1 : do {
       x++;
       (function(){continue LABEL1;})();
       y++;
       } while(0);`,
-      Context.None,
-    ],
-    [
-      `try{
+    `try{
       LABEL1 : do {
         x++;
         throw "gonna leave it";
@@ -74,10 +69,7 @@ describe('Statements - Continue', () => {
         y++;
       } while(0);
       };`,
-      Context.None,
-    ],
-    [
-      `try{
+    `try{
       LABEL1 : do {
         x++;
         throw "gonna leave it";
@@ -91,13 +83,11 @@ describe('Statements - Continue', () => {
         y++;
       } while(0);
       };`,
-      Context.None,
-    ],
-    ['switch (x){ case z:    continue   }', Context.None],
-    ['switch (x){ case z:    { continue }  }', Context.None],
-    ['switch (x){ case z:    if (x) continue   }', Context.None],
-    ['switch (x){ case z:    continue y   }', Context.None],
-    ['switch (x){ case z:    if (x) continue y   }', Context.None],
+    'switch (x){ case z:    continue   }',
+    'switch (x){ case z:    { continue }  }',
+    'switch (x){ case z:    if (x) continue   }',
+    'switch (x){ case z:    continue y   }',
+    'switch (x){ case z:    if (x) continue y   }',
   ]);
 
   pass('Statements - Continue', [

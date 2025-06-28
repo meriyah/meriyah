@@ -418,10 +418,10 @@ describe('Statements - For await of', () => {
   }
 
   fail('Statements - For await of (fail)', [
-    [
-      'async function fn() { for await (var [...[ x ] = []] of (async function*() { yield* [[]]; })()) {}}',
-      Context.Strict,
-    ],
+    {
+      code: 'async function fn() { for await (var [...[ x ] = []] of (async function*() { yield* [[]]; })()) {}}',
+      options: { impliedStrict: true },
+    },
   ]);
 
   for (const arg of [
