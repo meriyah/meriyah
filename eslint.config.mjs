@@ -150,6 +150,7 @@ export default [
                       OptionsWebCompat: 'webcompat',
                       OptionsNext: 'next',
                       OptionsLexical: 'lexical',
+                      OptionsJSX: 'jsx',
                     };
 
                     for (const [flagName, optionName] of Object.entries(flagToOptions)) {
