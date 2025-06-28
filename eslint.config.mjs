@@ -136,9 +136,13 @@ export default [
                       options.module = true;
                     }
 
-                    if (flags.has('Module')) {
-                      flags.delete('Module');
-                      contexts.push('Module');
+                    const noOptionFlags = ['Module', 'InAwaitContext'];
+
+                    for (const flagName of noOptionFlags) {
+                      if (flags.has(flagName)) {
+                        flags.delete(flagName);
+                        contexts.push(flagName);
+                      }
                     }
 
                     const flagToOptions = {
