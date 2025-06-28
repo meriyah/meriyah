@@ -1,4 +1,3 @@
-import { Context } from './common';
 import { parseSource, Options } from './parser';
 import { type Program } from './estree';
 // Current version
@@ -10,22 +9,22 @@ const version: string = pkgVersion;
 /**
  * Parse a script, optionally with various options.
  */
-export function parseScript(source: string, options?: Options): Program {
-  return parseSource(source, options, Context.None);
+export function parseScript(source: string, options?: Omit<Options, 'module'>): Program {
+  return parseSource(source, { ...options, module: false });
 }
 
 /**
  * Parse a module, optionally with various options.
  */
-export function parseModule(source: string, options?: Options): Program {
-  return parseSource(source, options, Context.Strict | Context.Module);
+export function parseModule(source: string, options?: Omit<Options, 'module'>): Program {
+  return parseSource(source, { ...options, module: true });
 }
 
 /**
  * Parse a module or a script, optionally with various options.
  */
 export function parse(source: string, options?: Options): Program {
-  return parseSource(source, options, Context.None);
+  return parseSource(source, options);
 }
 
 export { Options, version };

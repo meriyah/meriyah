@@ -93,7 +93,7 @@ export interface Options {
 /**
  * Consumes a sequence of tokens and produces an syntax tree
  */
-export function parseSource(source: string, options: Options | void, context: Context): ESTree.Program {
+export function parseSource(source: string, options: Options | void, context: Context = Context.None): ESTree.Program {
   if (options != null) {
     if (options.module) context |= Context.Module | Context.Strict;
     if (options.next) context |= Context.OptionsNext;
