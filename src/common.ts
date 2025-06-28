@@ -1,5 +1,5 @@
 import { Token, KeywordDescTable } from './token';
-import { Errors, ParseError, report } from './errors';
+import { Errors, ParseError } from './errors';
 import type * as ESTree from './estree';
 import { nextToken } from './lexer/scan';
 import { type Parser } from './parser/parser';
@@ -243,7 +243,7 @@ export interface ScopeError {
 
 export function matchOrInsertSemicolon(parser: Parser, context: Context): void {
   if ((parser.flags & Flags.NewLine) === 0 && (parser.getToken() & Token.IsAutoSemicolon) !== Token.IsAutoSemicolon) {
-    report(parser, Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
+    parser.report(Errors.UnexpectedToken, KeywordDescTable[parser.getToken() & Token.Type]);
   }
 
   if (!consumeOpt(parser, context, Token.Semicolon)) {
@@ -298,7 +298,7 @@ export function consumeOpt(parser: Parser, context: Context, t: Token): boolean 
  * @param t The type of token to consume
  */
 export function consume(parser: Parser, context: Context, t: Token): void {
-  if (parser.getToken() !== t) report(parser, Errors.ExpectedToken, KeywordDescTable[t & Token.Type]);
+  if (parser.getToken() !== t) parser.report(Errors.ExpectedToken, KeywordDescTable[t & Token.Type]);
   nextToken(parser, context);
 }
 
@@ -309,14 +309,14 @@ export function consume(parser: Parser, context: Context, t: Token): void {
  * @param parser Parser state
  * @param {*} node
  */
-export function reinterpretToPattern(state: Parser, node: any): void {
+export function reinterpretToPattern(parser: Parser, node: any): void {
   switch (node.type) {
     case 'ArrayExpression': {
       node.type = 'ArrayPattern';
       const { elements } = node;
       for (let i = 0, n = elements.length; i < n; ++i) {
         const element = elements[i];
-        if (element) reinterpretToPattern(state, element);
+        if (element) reinterpretToPattern(parser, element);
       }
       return;
     }
@@ -324,22 +324,22 @@ export function reinterpretToPattern(state: Parser, node: any): void {
       node.type = 'ObjectPattern';
       const { properties } = node;
       for (let i = 0, n = properties.length; i < n; ++i) {
-        reinterpretToPattern(state, properties[i]);
+        reinterpretToPattern(parser, properties[i]);
       }
       return;
     }
     case 'AssignmentExpression':
       node.type = 'AssignmentPattern';
-      if (node.operator !== '=') report(state, Errors.InvalidDestructuringTarget);
+      if (node.operator !== '=') parser.report(Errors.InvalidDestructuringTarget);
       delete node.operator;
-      reinterpretToPattern(state, node.left);
+      reinterpretToPattern(parser, node.left);
       return;
     case 'Property':
-      reinterpretToPattern(state, node.value);
+      reinterpretToPattern(parser, node.value);
       return;
     case 'SpreadElement':
       node.type = 'RestElement';
-      reinterpretToPattern(state, node.argument);
+      reinterpretToPattern(parser, node.argument);
     // No default
   }
 }
@@ -362,63 +362,63 @@ export function validateBindingIdentifier(
 ): void {
   if (context & Context.Strict) {
     if ((t & Token.FutureReserved) === Token.FutureReserved) {
-      report(parser, Errors.UnexpectedStrictReserved);
+      parser.report(Errors.UnexpectedStrictReserved);
     }
 
     if (!skipEvalArgCheck && (t & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
-      report(parser, Errors.StrictEvalArguments);
+      parser.report(Errors.StrictEvalArguments);
     }
   }
 
   if ((t & Token.Reserved) === Token.Reserved || t === Token.EscapedReserved) {
-    report(parser, Errors.KeywordNotId);
+    parser.report(Errors.KeywordNotId);
   }
 
   // The BoundNames of LexicalDeclaration and ForDeclaration must not
   // contain 'let'. (CatchParameter is the only lexical binding form
   // without this restriction.)
   if (kind & (BindingKind.Let | BindingKind.Const) && (t & Token.Type) === (Token.LetKeyword & Token.Type)) {
-    report(parser, Errors.InvalidLetConstBinding);
+    parser.report(Errors.InvalidLetConstBinding);
   }
 
   if (context & (Context.InAwaitContext | Context.Module) && t === Token.AwaitKeyword) {
-    report(parser, Errors.AwaitIdentInModuleOrAsyncFunc);
+    parser.report(Errors.AwaitIdentInModuleOrAsyncFunc);
   }
 
   if (context & (Context.InYieldContext | Context.Strict) && t === Token.YieldKeyword) {
-    report(parser, Errors.DisallowedInContext, 'yield');
+    parser.report(Errors.DisallowedInContext, 'yield');
   }
 }
 
 export function validateFunctionName(parser: Parser, context: Context, t: Token): void {
   if (context & Context.Strict) {
     if ((t & Token.FutureReserved) === Token.FutureReserved) {
-      report(parser, Errors.UnexpectedStrictReserved);
+      parser.report(Errors.UnexpectedStrictReserved);
     }
 
     if ((t & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
-      report(parser, Errors.StrictEvalArguments);
+      parser.report(Errors.StrictEvalArguments);
     }
 
     if (t === Token.EscapedFutureReserved) {
-      report(parser, Errors.InvalidEscapedKeyword);
+      parser.report(Errors.InvalidEscapedKeyword);
     }
 
     if (t === Token.EscapedReserved) {
-      report(parser, Errors.InvalidEscapedKeyword);
+      parser.report(Errors.InvalidEscapedKeyword);
     }
   }
 
   if ((t & Token.Reserved) === Token.Reserved) {
-    report(parser, Errors.KeywordNotId);
+    parser.report(Errors.KeywordNotId);
   }
 
   if (context & (Context.InAwaitContext | Context.Module) && t === Token.AwaitKeyword) {
-    report(parser, Errors.AwaitIdentInModuleOrAsyncFunc);
+    parser.report(Errors.AwaitIdentInModuleOrAsyncFunc);
   }
 
   if (context & (Context.InYieldContext | Context.Strict) && t === Token.YieldKeyword) {
-    report(parser, Errors.DisallowedInContext, 'yield');
+    parser.report(Errors.DisallowedInContext, 'yield');
   }
 }
 
@@ -432,11 +432,11 @@ export function validateFunctionName(parser: Parser, context: Context, t: Token)
 
 export function isStrictReservedWord(parser: Parser, context: Context, t: Token): boolean {
   if (t === Token.AwaitKeyword) {
-    if (context & (Context.InAwaitContext | Context.Module)) report(parser, Errors.AwaitIdentInModuleOrAsyncFunc);
+    if (context & (Context.InAwaitContext | Context.Module)) parser.report(Errors.AwaitIdentInModuleOrAsyncFunc);
     parser.destructible |= DestructuringKind.Await;
   }
 
-  if (t === Token.YieldKeyword && context & Context.InYieldContext) report(parser, Errors.DisallowedInContext, 'yield');
+  if (t === Token.YieldKeyword && context & Context.InYieldContext) parser.report(Errors.DisallowedInContext, 'yield');
 
   return (
     (t & Token.Reserved) === Token.Reserved ||
@@ -466,7 +466,7 @@ export function isPropertyWithPrivateFieldKey(expr: any): boolean {
 export function isValidLabel(parser: Parser, labels: any, name: string, isIterationStatement: 0 | 1): 0 | 1 {
   while (labels) {
     if (labels['$' + name]) {
-      if (isIterationStatement) report(parser, Errors.InvalidNestedStatement);
+      if (isIterationStatement) parser.report(Errors.InvalidNestedStatement);
       return 1;
     }
     if (isIterationStatement && labels.loop) isIterationStatement = 0;
@@ -487,7 +487,7 @@ export function isValidLabel(parser: Parser, labels: any, name: string, isIterat
 export function validateAndDeclareLabel(parser: Parser, labels: any, name: string): void {
   let set = labels;
   while (set) {
-    if (set['$' + name]) report(parser, Errors.LabelRedeclaration, name);
+    if (set['$' + name]) parser.report(Errors.LabelRedeclaration, name);
     set = set['$'];
   }
 
@@ -635,7 +635,7 @@ export function addBlockName(
     ) {
       // No op
     } else {
-      report(parser, Errors.DuplicateBinding, name);
+      parser.report(Errors.DuplicateBinding, name);
     }
   }
 
@@ -644,7 +644,7 @@ export function addBlockName(
     (scope as any).parent['#' + name] &&
     ((scope as any).parent['#' + name] & BindingKind.Empty) === 0
   ) {
-    report(parser, Errors.DuplicateBinding, name);
+    parser.report(Errors.DuplicateBinding, name);
   }
 
   if (scope.type & ScopeKind.ArrowParams && value && (value & BindingKind.Empty) === 0) {
@@ -655,7 +655,7 @@ export function addBlockName(
 
   if (scope.type & ScopeKind.CatchBlock) {
     if ((scope as any).parent['#' + name] & BindingKind.CatchIdentifierOrPattern)
-      report(parser, Errors.ShadowedCatchClause, name);
+      parser.report(Errors.ShadowedCatchClause, name);
   }
 
   (scope as any)['#' + name] = kind;
@@ -685,7 +685,7 @@ export function addVarName(parser: Parser, context: Context, scope: ScopeState, 
       ) {
         // No op
       } else {
-        report(parser, Errors.DuplicateBinding, name);
+        parser.report(Errors.DuplicateBinding, name);
       }
     }
     if (currentScope === scope) {
@@ -697,7 +697,7 @@ export function addVarName(parser: Parser, context: Context, scope: ScopeState, 
       value & BindingKind.CatchPattern ||
       (value & BindingKind.CatchIdentifier && (context & Context.OptionsWebCompat) === 0)
     ) {
-      report(parser, Errors.DuplicateBinding, name);
+      parser.report(Errors.DuplicateBinding, name);
     }
 
     currentScope['#' + name] = kind;
@@ -730,7 +730,7 @@ export function addPrivateIdentifier(parser: Parser, scope: PrivateScopeState, n
   ) {
     // Mix of static and non-static,
     // or duplicated setter, or duplicated getter
-    report(parser, Errors.DuplicatePrivateIdentifier, name);
+    parser.report(Errors.DuplicatePrivateIdentifier, name);
   }
 
   // Merge possible Getter and Setter
@@ -797,7 +797,7 @@ export function validatePrivateIdentifierRefs(scope: PrivateScopeState): void {
 export function declareUnboundVariable(parser: Parser, name: string): void {
   if (parser.exportedNames !== void 0 && name !== '') {
     if (parser.exportedNames['#' + name]) {
-      report(parser, Errors.DuplicateExportBinding, name);
+      parser.report(Errors.DuplicateExportBinding, name);
     }
     parser.exportedNames['#' + name] = 1;
   }
@@ -830,11 +830,11 @@ export function isValidIdentifier(context: Context, t: Token): boolean {
 
 export function classifyIdentifier(parser: Parser, context: Context, t: Token): any {
   if ((t & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
-    if (context & Context.Strict) report(parser, Errors.StrictEvalArguments);
+    if (context & Context.Strict) parser.report(Errors.StrictEvalArguments);
     parser.flags |= Flags.StrictEvalArguments;
   }
 
-  if (!isValidIdentifier(context, t)) report(parser, Errors.Unexpected);
+  if (!isValidIdentifier(context, t)) parser.report(Errors.Unexpected);
 }
 
 export type Location = {

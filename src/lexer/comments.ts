@@ -3,7 +3,7 @@ import { CharTypes, CharFlags } from './charClassifier';
 import { Chars } from '../chars';
 import { Context } from '../common';
 import { type Parser } from '../parser/parser';
-import { report, Errors } from '../errors';
+import { Errors } from '../errors';
 import type * as ESTree from '../estree';
 
 export const enum CommentType {
@@ -56,7 +56,7 @@ export function skipSingleHTMLComment(
   line: number,
   column: number,
 ): LexerState {
-  if (context & Context.Module) report(parser, Errors.Unexpected);
+  if (context & Context.Module) parser.report(Errors.Unexpected);
   return skipSingleLineComment(parser, source, state, type, start, line, column);
 }
 
@@ -188,5 +188,5 @@ export function skipMultiLineComment(parser: Parser, source: string, state: Lexe
     }
   }
 
-  report(parser, Errors.UnterminatedComment);
+  parser.report(Errors.UnterminatedComment);
 }

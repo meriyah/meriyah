@@ -2,7 +2,7 @@ import { CharFlags, CharTypes } from './charClassifier';
 import { Token } from '../token';
 import { Context } from '../common';
 import { type Parser } from '../parser/parser';
-import { report, Errors } from '../errors';
+import { Errors } from '../errors';
 import { advanceChar, LexerState, scanSingleToken, scanNewLine, consumeLineFeed } from './';
 import { decodeHTMLStrict } from './decodeHTML';
 import { Chars } from '../chars';
@@ -36,12 +36,12 @@ export function scanJSXString(parser: Parser, context: Context): Token {
   let char = advanceChar(parser);
   const start = parser.index;
   while (char !== quote) {
-    if (parser.index >= parser.end) report(parser, Errors.UnterminatedString);
+    if (parser.index >= parser.end) parser.report(Errors.UnterminatedString);
     char = advanceChar(parser);
   }
 
   // check for unterminated string
-  if (char !== quote) report(parser, Errors.UnterminatedString);
+  if (char !== quote) parser.report(Errors.UnterminatedString);
   parser.tokenValue = parser.source.slice(start, parser.index);
   advanceChar(parser); // skip the quote
   if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
@@ -94,7 +94,7 @@ export function nextJSXToken(parser: Parser, context: Context) {
   }
 
   // No text, next char is "}" or ">"
-  if (parser.tokenIndex === parser.index) report(parser, Errors.Unexpected);
+  if (parser.tokenIndex === parser.index) parser.report(Errors.Unexpected);
 
   const raw = parser.source.slice(parser.tokenIndex, parser.index);
   if (context & Context.OptionsRaw) parser.tokenRaw = raw;
