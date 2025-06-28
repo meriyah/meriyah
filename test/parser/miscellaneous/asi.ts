@@ -61,77 +61,50 @@ describe('Miscellaneous - ASI', () => {
   }
 
   fail('Expressions - ASI (fail)', [
-    [`var x=0, y=0;\nvar z=\nx\n++\n++\ny`, Context.None],
-    [`for(\nfalse\n) {\nbreak;\n}`, Context.None],
-    [`for(false;false;;false) { break; }`, Context.None],
-    [`\n while(false)`, Context.None],
-    [`do {}; \n while(false)`, Context.None],
-    [`for header is (false \n false \n)`, Context.None],
-    ['{} * 1', Context.None],
-    ['if (false) x = 1 else x = -1', Context.None],
-    [
-      `try {
+    `var x=0, y=0;\nvar z=\nx\n++\n++\ny`,
+    `for(\nfalse\n) {\nbreak;\n}`,
+    `for(false;false;;false) { break; }`,
+    `\n while(false)`,
+    `do {}; \n while(false)`,
+    `for header is (false \n false \n)`,
+    '{} * 1',
+    'if (false) x = 1 else x = -1',
+    `try {
       throw
       1;
     } catch(e) {
     }`,
-      Context.None,
-    ],
-    [
-      `var x = 0;
+    `var x = 0;
     x
     ++;`,
-      Context.None,
-    ],
-    [
-      `var x = 1;
+    `var x = 1;
     x
     --;`,
-      Context.None,
-    ],
-    [
-      `for(;
+    `for(;
       ) {
         break;
       }`,
-      Context.None,
-    ],
-    [
-      `for(
+    `for(
       false
   ;) {
     break;
   }`,
-      Context.None,
-    ],
-    [
-      `for(
+    `for(
       ;
   ) {
     break;
   }`,
-      Context.None,
-    ],
-    [
-      `for(
+    `for(
       ) {
         break;
       }`,
-      Context.None,
-    ],
-    [
-      `for(false
+    `for(false
       false
   ) {
     break;
   }`,
-      Context.None,
-    ],
-    [
-      `do
+    `do
     while (false)`,
-      Context.None,
-    ],
   ]);
 
   pass('Miscellaneous - ASI', [

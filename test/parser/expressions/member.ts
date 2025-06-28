@@ -4,12 +4,7 @@ import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
 describe('Expressions - Member', () => {
-  fail('Expressions - Member (fail)', [
-    ['abc.123', Context.None],
-    ['a.[b].c().d.toString()', Context.None],
-    ['abc.£', Context.None],
-    ['abc???.£', Context.None],
-  ]);
+  fail('Expressions - Member (fail)', ['abc.123', 'a.[b].c().d.toString()', 'abc.£', 'abc???.£']);
 
   for (const arg of [
     'let f = () => { import("foo"); };',

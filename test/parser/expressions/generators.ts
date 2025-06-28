@@ -5,10 +5,7 @@ import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
 
 describe('Expressions - Generators', () => {
-  fail('Expressions - Generators (pass)', [
-    ['foo\n++', Context.None],
-    ['if (foo\n++);', Context.None],
-  ]);
+  fail('Expressions - Generators (pass)', ['foo\n++', 'if (foo\n++);']);
 
   for (const arg of [
     'var yield;',

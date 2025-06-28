@@ -6,13 +6,13 @@ import { parseSource } from '../../../src/parser';
 
 describe('Expressions - Assign', () => {
   fail('Expressions - Assign (fail)', [
-    ['a = b + c = d', Context.None],
-    ['(({a})=0);', Context.None],
-    ['(([a])=0);', Context.None],
-    ['([(a = b)] = []', Context.None],
-    ['42 = 42;', Context.None],
-    ['"x" = 42;', Context.None],
-    ['[(a = 0)] = 1', Context.None],
+    'a = b + c = d',
+    '(({a})=0);',
+    '(([a])=0);',
+    '([(a = b)] = []',
+    '42 = 42;',
+    '"x" = 42;',
+    '[(a = 0)] = 1',
   ]);
 
   for (const arg of [
