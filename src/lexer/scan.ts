@@ -2,7 +2,7 @@ import { Chars } from '../chars';
 import { Token } from '../token';
 import { Context, Flags } from '../common';
 import { type Parser } from '../parser/parser';
-import { report, Errors } from '../errors';
+import { Errors } from '../errors';
 import { isIDStart } from '../unicode';
 import {
   advanceChar,
@@ -396,7 +396,7 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
           if (ch === Chars.Hyphen) {
             advanceChar(parser);
             if ((state & LexerState.NewLine || isStartOfLine) && parser.currentChar === Chars.GreaterThan) {
-              if ((context & Context.OptionsWebCompat) === 0) report(parser, Errors.HtmlCommentInWebCompat);
+              if ((context & Context.OptionsWebCompat) === 0) parser.report(Errors.HtmlCommentInWebCompat);
               advanceChar(parser);
               state = skipSingleHTMLComment(
                 parser,
@@ -618,7 +618,7 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
       }
 
       // Invalid ASCII code point/unit
-      report(parser, Errors.IllegalCharacter, String.fromCodePoint(char));
+      parser.report(Errors.IllegalCharacter, String.fromCodePoint(char));
     }
   }
 

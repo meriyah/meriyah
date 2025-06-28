@@ -2,7 +2,7 @@ import { Context, Flags } from '../common';
 import { type Parser } from '../parser/parser';
 import { Token } from '../token';
 import { Chars } from '../chars';
-import { report, Errors } from '../errors';
+import { Errors } from '../errors';
 import { toHex, advanceChar } from './common';
 import { CharTypes, CharFlags } from './charClassifier';
 // Intentionally negative
@@ -50,12 +50,12 @@ export function scanString(parser: Parser, context: Context, quote: number): Tok
       parser.line++;
     }
 
-    if (parser.index >= parser.end) report(parser, Errors.UnterminatedString);
+    if (parser.index >= parser.end) parser.report(Errors.UnterminatedString);
 
     char = advanceChar(parser);
   }
 
-  report(parser, Errors.UnterminatedString);
+  parser.report(Errors.UnterminatedString);
 }
 
 // TODO! Use table lookup
@@ -227,22 +227,22 @@ export function parseEscape(parser: Parser, context: Context, first: number, isT
   }
 }
 
-export function handleStringError(state: Parser, code: Escape, isTemplate: 0 | 1): void {
+export function handleStringError(parser: Parser, code: Escape, isTemplate: 0 | 1): void {
   switch (code) {
     case Escape.Empty:
       return;
 
     case Escape.StrictOctal:
-      report(state, isTemplate ? Errors.TemplateOctalLiteral : Errors.StrictOctalEscape);
+      parser.report(isTemplate ? Errors.TemplateOctalLiteral : Errors.StrictOctalEscape);
 
     case Escape.EightOrNine:
-      report(state, isTemplate ? Errors.TemplateEightAndNine : Errors.InvalidEightAndNine);
+      parser.report(isTemplate ? Errors.TemplateEightAndNine : Errors.InvalidEightAndNine);
 
     case Escape.InvalidHex:
-      report(state, Errors.InvalidHexEscapeSequence);
+      parser.report(Errors.InvalidHexEscapeSequence);
 
     case Escape.OutOfRange:
-      report(state, Errors.UnicodeOverflow);
+      parser.report(Errors.UnicodeOverflow);
 
     // No default
   }

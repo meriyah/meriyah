@@ -4,7 +4,7 @@ import { Token } from '../token';
 import { Chars } from '../chars';
 import { advanceChar } from './common';
 import { parseEscape, Escape, handleStringError } from './string';
-import { report, Errors } from '../errors';
+import { Errors } from '../errors';
 
 /**
  * Scan a template section. It can start either from the quote or closing brace.
@@ -55,7 +55,7 @@ export function scanTemplate(parser: Parser, context: Context): Token {
       }
       ret += String.fromCodePoint(char);
     }
-    if (parser.index >= parser.end) report(parser, Errors.UnterminatedTemplate);
+    if (parser.index >= parser.end) parser.report(Errors.UnterminatedTemplate);
     char = advanceChar(parser);
   }
 
@@ -95,7 +95,7 @@ function scanBadTemplate(parser: Parser, ch: number): number {
       default:
       // do nothing
     }
-    if (parser.index >= parser.end) report(parser, Errors.UnterminatedTemplate);
+    if (parser.index >= parser.end) parser.report(Errors.UnterminatedTemplate);
     ch = advanceChar(parser);
   }
 
@@ -103,7 +103,7 @@ function scanBadTemplate(parser: Parser, ch: number): number {
 }
 
 export function scanTemplateTail(parser: Parser, context: Context): Token {
-  if (parser.index >= parser.end) report(parser, Errors.Unexpected);
+  if (parser.index >= parser.end) parser.report(Errors.Unexpected);
   parser.index--;
   parser.column--;
   return scanTemplate(parser, context);

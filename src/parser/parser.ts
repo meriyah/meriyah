@@ -10,6 +10,7 @@ import {
   type AssignmentKind,
   type DestructuringKind,
 } from '../common';
+import { ParseError, type Errors } from '../errors';
 
 export type ParserOptions = {
   shouldAddLoc?: boolean;
@@ -233,6 +234,18 @@ export class Parser {
     }
 
     return node;
+  }
+
+  /**
+   * Throws an error
+   *
+   * @export
+   * @param {Errors} type
+   * @param {...string[]} params
+   * @returns {never}
+   */
+  report(type: Errors, ...params: string[]): never {
+    throw new ParseError(this.tokenStart, this.currentLocation, type, ...params);
   }
 }
 
