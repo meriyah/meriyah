@@ -28,18 +28,10 @@ import {
   validateAndDeclareLabel,
   HoistedClassFlags,
   HoistedFunctionFlags,
-  createScope,
-  addChildScope,
-  ScopeKind,
-  type ScopeState,
-  addVarName,
-  addBlockName,
   addBindingToExports,
   declareUnboundVariable,
   isEqualTagName,
   isValidStrictMode,
-  createArrowHeadParsingScope,
-  addVarOrBlock,
   isValidIdentifier,
   classifyIdentifier,
   type PrivateScopeState,
@@ -51,6 +43,7 @@ import {
 } from './common';
 import { Chars } from './chars';
 import { Parser, type ParserOptions, pushComment, pushToken } from './parser/parser';
+import { Scope, ScopeKind, createArrowHeadParsingScope, addVarName, addBlockName, addVarOrBlock } from './parser/scope';
 
 /**
  * The parser options.
@@ -138,7 +131,7 @@ export function parseSource(source: string, options: Options | void, context: Co
   // See: https://github.com/tc39/proposal-hashbang
   skipHashBang(parser);
 
-  const scope: ScopeState | undefined = context & Context.OptionsLexical ? createScope() : void 0;
+  const scope: Scope | undefined = context & Context.OptionsLexical ? new Scope() : void 0;
 
   let body: (ESTree.Statement | ReturnType<typeof parseDirective | typeof parseModuleItem>)[] = [];
 
@@ -177,7 +170,7 @@ export function parseSource(source: string, options: Options | void, context: Co
  * @param parser  Parser object
  * @param context Context masks
  */
-function parseStatementList(parser: Parser, context: Context, scope: ScopeState | undefined): ESTree.Statement[] {
+function parseStatementList(parser: Parser, context: Context, scope: Scope | undefined): ESTree.Statement[] {
   // StatementList ::
   //   (StatementListItem)* <end_token>
 
@@ -221,7 +214,7 @@ function parseStatementList(parser: Parser, context: Context, scope: ScopeState 
 function parseModuleItemList(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
 ): ReturnType<typeof parseDirective | typeof parseModuleItem>[] {
   // ecma262/#prod-Module
   // Module :
@@ -257,7 +250,7 @@ function parseModuleItemList(
  * @param scope Scope object
  */
 
-export function parseModuleItem(parser: Parser, context: Context, scope: ScopeState | undefined): any {
+export function parseModuleItem(parser: Parser, context: Context, scope: Scope | undefined): any {
   if (parser.getToken() === Token.Decorator) {
     Object.assign(parser.leadingDecorators, {
       start: parser.tokenStart,
@@ -300,7 +293,7 @@ export function parseModuleItem(parser: Parser, context: Context, scope: ScopeSt
 function parseStatementListItem(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   origin: Origin,
   labels: ESTree.Labels,
@@ -381,7 +374,7 @@ function parseStatementListItem(
 function parseStatement(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   origin: Origin,
   labels: ESTree.Labels,
@@ -432,7 +425,7 @@ function parseStatement(
       return parseBlock(
         parser,
         context,
-        scope ? addChildScope(scope, ScopeKind.Block) : scope,
+        scope?.createChildScope(),
         privateScope,
         labels,
         parser.tokenStart,
@@ -492,7 +485,7 @@ function parseStatement(
 function parseExpressionOrLabelledStatement(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   origin: Origin,
   labels: ESTree.Labels,
@@ -614,7 +607,7 @@ function parseExpressionOrLabelledStatement(
 function parseBlock<T extends ESTree.BlockStatement | ESTree.StaticBlock = ESTree.BlockStatement>(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
   start: Location = parser.tokenStart,
@@ -719,7 +712,7 @@ function parseExpressionStatement(
 function parseLabelledStatement(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   origin: Origin,
   labels: ESTree.Labels,
@@ -748,7 +741,7 @@ function parseLabelledStatement(
       ? parseFunctionDeclaration(
           parser,
           context,
-          addChildScope(scope, ScopeKind.Block),
+          scope?.createChildScope(),
           privateScope,
           origin,
           0,
@@ -781,7 +774,7 @@ function parseLabelledStatement(
 function parseAsyncArrowOrAsyncFunctionDeclaration(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   origin: Origin,
   labels: ESTree.Labels,
@@ -1058,7 +1051,7 @@ function parseThrowStatement(
 function parseIfStatement(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
 ): ESTree.IfStatement {
@@ -1098,7 +1091,7 @@ function parseIfStatement(
 function parseConsequentOrAlternative(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
 ): ESTree.Statement | ESTree.FunctionDeclaration {
@@ -1112,7 +1105,7 @@ function parseConsequentOrAlternative(
     : parseFunctionDeclaration(
         parser,
         context,
-        addChildScope(scope, ScopeKind.Block),
+        scope?.createChildScope(),
         privateScope,
         Origin.None,
         0,
@@ -1133,7 +1126,7 @@ function parseConsequentOrAlternative(
 function parseSwitchStatement(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
 ): ESTree.SwitchStatement {
@@ -1152,7 +1145,7 @@ function parseSwitchStatement(
   consume(parser, context, Token.LeftBrace);
   const cases: ESTree.SwitchCase[] = [];
   let seenDefault: 0 | 1 = 0;
-  if (scope) scope = addChildScope(scope, ScopeKind.SwitchStatement);
+  scope = scope?.createChildScope(ScopeKind.SwitchStatement);
   while (parser.getToken() !== Token.RightBrace) {
     const { tokenStart } = parser;
     let test: ESTree.Expression | null = null;
@@ -1211,7 +1204,7 @@ function parseSwitchStatement(
 function parseWhileStatement(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
 ): ESTree.WhileStatement {
@@ -1246,7 +1239,7 @@ function parseWhileStatement(
 function parseIterationStatementBody(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
 ): ESTree.Statement {
@@ -1342,7 +1335,7 @@ function parseBreakStatement(parser: Parser, context: Context, labels: ESTree.La
 function parseWithStatement(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
 ): ESTree.WithStatement {
@@ -1404,7 +1397,7 @@ function parseDebuggerStatement(parser: Parser, context: Context): ESTree.Debugg
 function parseTryStatement(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
 ): ESTree.TryStatement {
@@ -1428,7 +1421,7 @@ function parseTryStatement(
 
   nextToken(parser, context | Context.AllowRegExp);
 
-  const firstScope = scope ? addChildScope(scope, ScopeKind.TryStatement) : void 0;
+  const firstScope = scope?.createChildScope(ScopeKind.TryStatement);
 
   const block = parseBlock(parser, context, firstScope, privateScope, { $: labels });
   const { tokenStart } = parser;
@@ -1440,7 +1433,7 @@ function parseTryStatement(
 
   if (parser.getToken() === Token.FinallyKeyword) {
     nextToken(parser, context | Context.AllowRegExp);
-    const finalizerScope = firstScope ? addChildScope(scope, ScopeKind.CatchStatement) : void 0;
+    const finalizerScope = scope?.createChildScope(ScopeKind.CatchStatement);
     const block = parseBlock(parser, context, finalizerScope, privateScope, { $: labels });
     finalizer = block;
   }
@@ -1473,20 +1466,20 @@ function parseTryStatement(
 function parseCatchBlock(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
   start: Location,
 ): ESTree.CatchClause {
   let param: ESTree.BindingPattern | ESTree.Identifier | null = null;
-  let additionalScope: ScopeState | undefined = scope;
+  let additionalScope: Scope | undefined = scope;
 
   if (consumeOpt(parser, context, Token.LeftParen)) {
     /*
      * Create a lexical scope around the whole catch clause,
      * including the head.
      */
-    if (scope) scope = addChildScope(scope, ScopeKind.CatchStatement);
+    scope = scope?.createChildScope(ScopeKind.CatchStatement);
 
     param = parseBindingPattern(
       parser,
@@ -1508,7 +1501,7 @@ function parseCatchBlock(
     consume(parser, context | Context.AllowRegExp, Token.RightParen);
   }
 
-  if (scope) additionalScope = addChildScope(scope, ScopeKind.CatchBlock);
+  additionalScope = scope?.createChildScope(ScopeKind.CatchBlock);
 
   const body = parseBlock(parser, context, additionalScope, privateScope, { $: labels });
 
@@ -1534,7 +1527,7 @@ function parseCatchBlock(
 function parseStaticBlock(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   start: Location,
 ): ESTree.StaticBlock {
@@ -1547,7 +1540,7 @@ function parseStaticBlock(
   // ClassStaticBlockStatementList :
   //   StatementList[~Yield, +Await, ~Return]opt
 
-  if (scope) scope = addChildScope(scope, ScopeKind.Block);
+  scope = scope?.createChildScope();
 
   const ctorContext =
     Context.SuperCall | Context.InReturnContext | Context.InYieldContext | Context.InSwitch | Context.InIteration;
@@ -1572,7 +1565,7 @@ function parseStaticBlock(
 function parseDoWhileStatement(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
 ): ESTree.DoWhileStatement {
@@ -1616,7 +1609,7 @@ function parseDoWhileStatement(
 function parseLetIdentOrVarDeclarationStatement(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   origin: Origin,
 ): ESTree.VariableDeclaration | ESTree.LabeledStatement | ESTree.ExpressionStatement {
@@ -1690,7 +1683,7 @@ function parseLetIdentOrVarDeclarationStatement(
    *
    */
   if (parser.getToken() === Token.Arrow) {
-    let scope: ScopeState | undefined = void 0;
+    let scope: Scope | undefined = void 0;
 
     if (context & Context.OptionsLexical) scope = createArrowHeadParsingScope(parser, context, tokenValue);
 
@@ -1758,7 +1751,7 @@ function parseLetIdentOrVarDeclarationStatement(
 function parseLexicalDeclaration(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   kind: BindingKind,
   origin: Origin,
@@ -1799,7 +1792,7 @@ function parseLexicalDeclaration(
 function parseVariableStatement(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   origin: Origin,
 ): ESTree.VariableDeclaration {
@@ -1836,7 +1829,7 @@ function parseVariableStatement(
 function parseVariableDeclarationList(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   kind: BindingKind,
   origin: Origin,
@@ -1867,7 +1860,7 @@ function parseVariableDeclarationList(
 function parseVariableDeclaration(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   kind: BindingKind,
   origin: Origin,
@@ -1937,7 +1930,7 @@ function parseVariableDeclaration(
 function parseForStatement(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   labels: ESTree.Labels,
 ): ESTree.ForStatement | ESTree.ForInStatement | ESTree.ForOfStatement {
@@ -1951,7 +1944,7 @@ function parseForStatement(
 
   consume(parser, context | Context.AllowRegExp, Token.LeftParen);
 
-  if (scope) scope = addChildScope(scope, ScopeKind.ForStatement);
+  scope = scope?.createChildScope(ScopeKind.ForStatement);
 
   let test: ESTree.Expression | null = null;
   let update: ESTree.Expression | null = null;
@@ -2187,7 +2180,7 @@ function parseForStatement(
  * @param context Context masks
  * @param scope Scope object
  */
-function parseRestrictedIdentifier(parser: Parser, context: Context, scope: ScopeState | undefined): ESTree.Identifier {
+function parseRestrictedIdentifier(parser: Parser, context: Context, scope: Scope | undefined): ESTree.Identifier {
   if (!isValidIdentifier(context, parser.getToken())) parser.report(Errors.UnexpectedStrictReserved);
   if ((parser.getToken() & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
     parser.report(Errors.StrictEvalArguments);
@@ -2207,7 +2200,7 @@ function parseRestrictedIdentifier(parser: Parser, context: Context, scope: Scop
 function parseImportDeclaration(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
 ): ESTree.ImportDeclaration | ESTree.ExpressionStatement {
   // ImportDeclaration :
   //   'import' ImportClause 'from' ModuleSpecifier ';'
@@ -2311,7 +2304,7 @@ function parseImportDeclaration(
 function parseImportNamespaceSpecifier(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
 ): ESTree.ImportNamespaceSpecifier {
   // NameSpaceImport:
   //  * as ImportedBinding
@@ -2360,7 +2353,7 @@ function parseModuleSpecifier(parser: Parser, context: Context): ESTree.Literal 
 function parseImportSpecifierOrNamedImports(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   specifiers: (ESTree.ImportSpecifier | ESTree.ImportDefaultSpecifier | ESTree.ImportNamespaceSpecifier)[],
 ): (ESTree.ImportSpecifier | ESTree.ImportDefaultSpecifier | ESTree.ImportNamespaceSpecifier)[] {
   // NamedImports :
@@ -2552,7 +2545,7 @@ function parseImportCallDeclaration(
 function parseExportDeclaration(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
 ): ESTree.ExportAllDeclaration | ESTree.ExportNamedDeclaration | ESTree.ExportDefaultDeclaration {
   // ExportDeclaration:
   //    'export' '*' 'from' ModuleSpecifier ';'
@@ -3470,7 +3463,7 @@ function parseAwaitExpressionOrIdentifier(
 function parseFunctionBody(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   origin: Origin,
   funcNameToken: Token | undefined,
@@ -4722,7 +4715,7 @@ function parseThisExpression(parser: Parser, context: Context): ESTree.ThisExpre
 function parseFunctionDeclaration(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   origin: Origin,
   allowGen: 0 | 1,
@@ -4754,7 +4747,7 @@ function parseFunctionDeclaration(
   let funcNameToken: Token | undefined;
 
   // Create a new function scope
-  let functionScope = scope ? createScope() : void 0;
+  let functionScope = scope ? new Scope() : void 0;
 
   if (parser.getToken() === Token.LeftParen) {
     if ((flags & HoistedClassFlags.Hoisted) === 0) parser.report(Errors.DeclNoName, 'Function');
@@ -4770,12 +4763,12 @@ function parseFunctionDeclaration(
 
     if (scope) {
       if (kind & BindingKind.Variable) {
-        addVarName(parser, context, scope as ScopeState, parser.tokenValue, kind);
+        addVarName(parser, context, scope as Scope, parser.tokenValue, kind);
       } else {
         addBlockName(parser, context, scope, parser.tokenValue, kind, origin);
       }
 
-      functionScope = addChildScope(functionScope, ScopeKind.FunctionRoot);
+      functionScope = functionScope?.createChildScope(ScopeKind.FunctionRoot);
 
       if (flags) {
         if (flags & HoistedClassFlags.Export) {
@@ -4810,7 +4803,7 @@ function parseFunctionDeclaration(
       (isGenerator ? 0 : Context.AllowEscapedKeyword);
   }
 
-  if (scope) functionScope = addChildScope(functionScope, ScopeKind.FunctionParams);
+  functionScope = functionScope?.createChildScope(ScopeKind.FunctionParams);
 
   const params = parseFormalParametersOrFormalList(
     parser,
@@ -4826,7 +4819,7 @@ function parseFunctionDeclaration(
   const body = parseFunctionBody(
     parser,
     ((context | modifierFlags) ^ modifierFlags) | Context.InMethodOrFunction | Context.InReturnContext,
-    scope ? addChildScope(functionScope, ScopeKind.FunctionBody) : functionScope,
+    functionScope?.createChildScope(ScopeKind.FunctionBody),
     privateScope,
     Origin.Declaration,
     funcNameToken,
@@ -4876,7 +4869,7 @@ function parseFunctionExpression(
   let funcNameToken: Token | undefined;
 
   // Create a new function scope
-  let scope = context & Context.OptionsLexical ? createScope() : void 0;
+  let scope = context & Context.OptionsLexical ? new Scope() : void 0;
 
   const modifierFlags =
     Context.SuperProperty |
@@ -4894,7 +4887,7 @@ function parseFunctionExpression(
       parser.getToken(),
     );
 
-    if (scope) scope = addChildScope(scope, ScopeKind.FunctionRoot);
+    scope = scope?.createChildScope(ScopeKind.FunctionRoot);
 
     funcNameToken = parser.getToken();
     id = parseIdentifier(parser, context);
@@ -4906,7 +4899,7 @@ function parseFunctionExpression(
     generatorAndAsyncFlags |
     (isGenerator ? 0 : Context.AllowEscapedKeyword);
 
-  if (scope) scope = addChildScope(scope, ScopeKind.FunctionParams);
+  scope = scope?.createChildScope(ScopeKind.FunctionParams);
 
   const params = parseFormalParametersOrFormalList(
     parser,
@@ -4922,7 +4915,7 @@ function parseFunctionExpression(
     (context & ~(Context.DisallowIn | Context.InSwitch | Context.InGlobal | Context.InIteration | Context.InClass)) |
       Context.InMethodOrFunction |
       Context.InReturnContext,
-    scope ? addChildScope(scope, ScopeKind.FunctionBody) : scope,
+    scope?.createChildScope(ScopeKind.FunctionBody),
     privateScope,
     0,
     funcNameToken,
@@ -5011,7 +5004,7 @@ function parseArrayLiteral(
 function parseArrayExpressionOrPattern(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   skipInitializer: 0 | 1,
   inGroup: 0 | 1,
@@ -5320,7 +5313,7 @@ function parseArrayOrObjectAssignmentPattern(
 function parseSpreadOrRestElement(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   closingToken: Token,
   kind: BindingKind,
@@ -5528,7 +5521,7 @@ function parseMethodDefinition(
     Context.InMethodOrFunction |
     Context.AllowNewTarget;
 
-  let scope = context & Context.OptionsLexical ? addChildScope(createScope(), ScopeKind.FunctionParams) : void 0;
+  let scope = context & Context.OptionsLexical ? new Scope(ScopeKind.FunctionParams) : void 0;
 
   const params = parseMethodFormals(
     parser,
@@ -5540,7 +5533,7 @@ function parseMethodDefinition(
     inGroup,
   );
 
-  if (scope) scope = addChildScope(scope, ScopeKind.FunctionBody);
+  scope = scope?.createChildScope(ScopeKind.FunctionBody);
 
   const body = parseFunctionBody(
     parser,
@@ -5654,7 +5647,7 @@ function parseObjectLiteral(
 function parseObjectLiteralOrPattern(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   skipInitializer: 0 | 1,
   inGroup: 0 | 1,
@@ -6389,7 +6382,7 @@ function parseObjectLiteralOrPattern(
 function parseMethodFormals(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   kind: PropertyKind,
   type: BindingKind,
@@ -6556,7 +6549,7 @@ function parseParenthesizedExpression(
 
   nextToken(parser, context | Context.AllowRegExp | Context.AllowEscapedKeyword);
 
-  const scope = context & Context.OptionsLexical ? addChildScope(createScope(), ScopeKind.ArrowParams) : void 0;
+  const scope = context & Context.OptionsLexical ? new Scope().createChildScope(ScopeKind.ArrowParams) : void 0;
 
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
@@ -6825,7 +6818,7 @@ function parseIdentifierOrArrow(
   const expr = parseIdentifier(parser, context);
   parser.assignable = AssignmentKind.Assignable;
   if (parser.getToken() === Token.Arrow) {
-    let scope: ScopeState | undefined = void 0;
+    let scope: Scope | undefined = void 0;
 
     if (context & Context.OptionsLexical) scope = createArrowHeadParsingScope(parser, context, tokenValue);
 
@@ -6877,7 +6870,7 @@ function parseArrowFromIdentifier(
 function parseParenthesizedArrow(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   params: any,
   canAssign: 0 | 1,
@@ -6903,7 +6896,7 @@ function parseParenthesizedArrow(
 function parseArrowFunctionExpression(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   params: any,
   isAsync: 0 | 1,
@@ -6952,7 +6945,7 @@ function parseArrowFunctionExpression(
     // Single-expression body
     body = parseExpression(parser, context, privateScope, 1, 0, parser.tokenStart);
   } else {
-    if (scope) scope = addChildScope(scope, ScopeKind.FunctionBody);
+    scope = scope?.createChildScope(ScopeKind.FunctionBody);
 
     const modifierFlags = Context.InSwitch | Context.DisallowIn | Context.InGlobal;
 
@@ -7013,7 +7006,7 @@ function parseArrowFunctionExpression(
 function parseFormalParametersOrFormalList(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   inGroup: 0 | 1,
   kind: BindingKind,
@@ -7410,7 +7403,7 @@ function parseAsyncArrowOrCallExpression(
 ): ESTree.CallExpression | ESTree.ArrowFunctionExpression {
   nextToken(parser, context | Context.AllowRegExp);
 
-  const scope = context & Context.OptionsLexical ? addChildScope(createScope(), ScopeKind.ArrowParams) : void 0;
+  const scope = context & Context.OptionsLexical ? new Scope().createChildScope(ScopeKind.ArrowParams) : void 0;
 
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
@@ -7645,7 +7638,7 @@ function parseRegExpLiteral(parser: Parser, context: Context): ESTree.RegExpLite
 function parseClassDeclaration(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   flags: HoistedClassFlags,
 ): ESTree.ClassDeclaration {
@@ -7882,7 +7875,7 @@ function parseClassBody(
   parser: Parser,
   context: Context,
   inheritedContext: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   parentScope: PrivateScopeState | undefined,
   kind: BindingKind,
   origin: Origin,
@@ -8019,7 +8012,7 @@ function parseClassBody(
 function parseClassElementList(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   inheritedContext: Context,
   type: BindingKind,
@@ -8350,7 +8343,7 @@ function parsePropertyDefinition(
 function parseBindingPattern(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   privateScope: PrivateScopeState | undefined,
   type: BindingKind,
   origin: Origin,
@@ -8391,7 +8384,7 @@ function parseBindingPattern(
 function parseAndClassifyIdentifier(
   parser: Parser,
   context: Context,
-  scope: ScopeState | undefined,
+  scope: Scope | undefined,
   kind: BindingKind,
   origin: Origin,
 ): ESTree.Identifier {
