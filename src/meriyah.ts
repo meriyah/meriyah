@@ -11,7 +11,7 @@ const version: string = pkgVersion;
  * Parse a script, optionally with various options.
  */
 export function parseScript(source: string, options?: Options): Program {
-  return parseSource(source, options, Context.None);
+  return parseSource(source, options);
 }
 
 /**
@@ -25,7 +25,7 @@ export function parseModule(source: string, options?: Options): Program {
  * Parse a module or a script, optionally with various options.
  */
 export function parse(source: string, options?: Options): Program {
-  return parseSource(source, options, Context.None);
+  return parseSource(source, options);
 }
 
 export { type Options, version };
