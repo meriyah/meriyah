@@ -158,7 +158,7 @@ export function parseSource(source: string, options: Options | void, context: Co
     body = parseStatementList(parser, context | Context.InGlobal, scope);
   }
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.Program>(
     {
       type: 'Program',
       sourceType,
@@ -669,7 +669,7 @@ function parseReturnStatement(
 
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.ReturnStatement>(
     {
       type: 'ReturnStatement',
       argument,
@@ -695,7 +695,7 @@ function parseExpressionStatement(
   start: Location,
 ): ESTree.ExpressionStatement {
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
-  return parser.finishNode(
+  return parser.finishNode<ESTree.ExpressionStatement>(
     {
       type: 'ExpressionStatement',
       expression,
@@ -756,7 +756,7 @@ function parseLabelledStatement(
         )
       : parseStatement(parser, context, scope, privateScope, origin, labels, allowFuncDecl);
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.LabeledStatement>(
     {
       type: 'LabeledStatement',
       label: expr as ESTree.Identifier,
@@ -1005,7 +1005,7 @@ export function parseDirective(
 function parseEmptyStatement(parser: Parser, context: Context): ESTree.EmptyStatement {
   const start = parser.tokenStart;
   nextToken(parser, context | Context.AllowRegExp);
-  return parser.finishNode(
+  return parser.finishNode<ESTree.EmptyStatement>(
     {
       type: 'EmptyStatement',
     },
@@ -1035,7 +1035,7 @@ function parseThrowStatement(
   if (parser.flags & Flags.NewLine) parser.report(Errors.NewlineAfterThrow);
   const argument: ESTree.Expression = parseExpressions(parser, context, privateScope, 0, 1, parser.tokenStart);
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
-  return parser.finishNode(
+  return parser.finishNode<ESTree.ThrowStatement>(
     {
       type: 'ThrowStatement',
       argument,
@@ -1076,7 +1076,7 @@ function parseIfStatement(
     alternate = parseConsequentOrAlternative(parser, context, scope, privateScope, labels);
   }
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.IfStatement>(
     {
       type: 'IfStatement',
       test,
@@ -1176,7 +1176,7 @@ function parseSwitchStatement(
     }
 
     cases.push(
-      parser.finishNode(
+      parser.finishNode<ESTree.SwitchCase>(
         {
           type: 'SwitchCase',
           test,
@@ -1188,7 +1188,7 @@ function parseSwitchStatement(
   }
 
   consume(parser, context | Context.AllowRegExp, Token.RightBrace);
-  return parser.finishNode(
+  return parser.finishNode<ESTree.SwitchStatement>(
     {
       type: 'SwitchStatement',
       discriminant,
@@ -1223,7 +1223,7 @@ function parseWhileStatement(
   const test = parseExpressions(parser, context, privateScope, 0, 1, parser.tokenStart);
   consume(parser, context | Context.AllowRegExp, Token.RightParen);
   const body = parseIterationStatementBody(parser, context, scope, privateScope, labels);
-  return parser.finishNode(
+  return parser.finishNode<ESTree.WhileStatement>(
     {
       type: 'WhileStatement',
       test,
@@ -1284,7 +1284,7 @@ function parseContinueStatement(parser: Parser, context: Context, labels: ESTree
       parser.report(Errors.UnknownLabel, tokenValue);
   }
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
-  return parser.finishNode(
+  return parser.finishNode<ESTree.ContinueStatement>(
     {
       type: 'ContinueStatement',
       label,
@@ -1319,7 +1319,7 @@ function parseBreakStatement(parser: Parser, context: Context, labels: ESTree.La
   }
 
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
-  return parser.finishNode(
+  return parser.finishNode<ESTree.BreakStatement>(
     {
       type: 'BreakStatement',
       label,
@@ -1357,7 +1357,7 @@ function parseWithStatement(
   const object = parseExpressions(parser, context, privateScope, 0, 1, parser.tokenStart);
   consume(parser, context | Context.AllowRegExp, Token.RightParen);
   const body = parseStatement(parser, context, scope, privateScope, Origin.BlockStatement, labels, 0);
-  return parser.finishNode(
+  return parser.finishNode<ESTree.WithStatement>(
     {
       type: 'WithStatement',
       object,
@@ -1382,7 +1382,7 @@ function parseDebuggerStatement(parser: Parser, context: Context): ESTree.Debugg
 
   nextToken(parser, context | Context.AllowRegExp);
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
-  return parser.finishNode(
+  return parser.finishNode<ESTree.DebuggerStatement>(
     {
       type: 'DebuggerStatement',
     },
@@ -1447,7 +1447,7 @@ function parseTryStatement(
     parser.report(Errors.NoCatchOrFinally);
   }
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.TryStatement>(
     {
       type: 'TryStatement',
       block,
@@ -1510,7 +1510,7 @@ function parseCatchBlock(
 
   const body = parseBlock(parser, context, additionalScope, privateScope, { $: labels });
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.CatchClause>(
     {
       type: 'CatchClause',
       param,
@@ -1590,7 +1590,7 @@ function parseDoWhileStatement(
   // This cannot be implemented in matchOrInsertSemicolon() because it doesn't know
   // this RightParen is the end of a do-while statement.
   consumeOpt(parser, context | Context.AllowRegExp, Token.Semicolon);
-  return parser.finishNode(
+  return parser.finishNode<ESTree.DoWhileStatement>(
     {
       type: 'DoWhileStatement',
       body,
@@ -1638,7 +1638,7 @@ function parseLetIdentOrVarDeclarationStatement(
 
     matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
-    return parser.finishNode(
+    return parser.finishNode<ESTree.VariableDeclaration>(
       {
         type: 'VariableDeclaration',
         kind: 'let',
@@ -1774,7 +1774,7 @@ function parseLexicalDeclaration(
 
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.VariableDeclaration>(
     {
       type: 'VariableDeclaration',
       kind: kind & BindingKind.Let ? 'let' : 'const',
@@ -1811,7 +1811,7 @@ function parseVariableStatement(
   const declarations = parseVariableDeclarationList(parser, context, scope, privateScope, BindingKind.Variable, origin);
 
   matchOrInsertSemicolon(parser, context | Context.AllowRegExp);
-  return parser.finishNode(
+  return parser.finishNode<ESTree.VariableDeclaration>(
     {
       type: 'VariableDeclaration',
       kind: 'var',
@@ -1912,7 +1912,7 @@ function parseVariableDeclaration(
     parser.report(Errors.DeclarationMissingInitializer, kind & BindingKind.Const ? 'const' : 'destructuring');
   }
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.VariableDeclarator>(
     {
       type: 'VariableDeclarator',
       id,
@@ -1971,7 +1971,7 @@ function parseForStatement(
         if (parser.getToken() === Token.InKeyword) {
           if (context & Context.Strict) parser.report(Errors.DisallowedLetInStrict);
         } else {
-          init = parser.finishNode(
+          init = parser.finishNode<ESTree.VariableDeclaration>(
             {
               type: 'VariableDeclaration',
               kind: 'let',
@@ -2101,7 +2101,7 @@ function parseForStatement(
 
       const body = parseIterationStatementBody(parser, context, scope, privateScope, labels);
 
-      return parser.finishNode(
+      return parser.finishNode<ESTree.ForOfStatement>(
         {
           type: 'ForOfStatement',
           left: init,
@@ -2128,7 +2128,7 @@ function parseForStatement(
     consume(parser, context | Context.AllowRegExp, Token.RightParen);
     const body = parseIterationStatementBody(parser, context, scope, privateScope, labels);
 
-    return parser.finishNode(
+    return parser.finishNode<ESTree.ForInStatement>(
       {
         type: 'ForInStatement',
         body,
@@ -2166,7 +2166,7 @@ function parseForStatement(
 
   const body = parseIterationStatementBody(parser, context, scope, privateScope, labels);
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.ForStatement>(
     {
       type: 'ForStatement',
       init,
@@ -2238,7 +2238,7 @@ function parseImportDeclaration(
     if (parser.getToken() & Token.IsIdentifier) {
       const local = parseRestrictedIdentifier(parser, context, scope);
       specifiers = [
-        parser.finishNode(
+        parser.finishNode<ESTree.ImportDefaultSpecifier>(
           {
             type: 'ImportDefaultSpecifier',
             local,
@@ -2329,7 +2329,7 @@ function parseImportNamespaceSpecifier(
     );
   }
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.ImportNamespaceSpecifier>(
     {
       type: 'ImportNamespaceSpecifier',
       local: parseRestrictedIdentifier(parser, context, scope),
@@ -2412,7 +2412,7 @@ function parseImportSpecifierOrNamedImports(
     if (scope) addBlockName(parser, context, scope, tokenValue, BindingKind.Let, Origin.None);
 
     specifiers.push(
-      parser.finishNode(
+      parser.finishNode<ESTree.ImportSpecifier>(
         {
           type: 'ImportSpecifier',
           local,
@@ -2441,7 +2441,7 @@ function parseImportMetaDeclaration(parser: Parser, context: Context, start: Loc
   let expr: ESTree.Expression = parseImportMetaExpression(
     parser,
     context,
-    parser.finishNode(
+    parser.finishNode<ESTree.Identifier>(
       {
         type: 'Identifier',
         name: 'import',
@@ -2670,7 +2670,7 @@ function parseExportDeclaration(
     // See: https://www.ecma-international.org/ecma-262/9.0/index.html#sec-exports-static-semantics-exportednames
     if (scope) declareUnboundVariable(parser, 'default');
 
-    return parser.finishNode(
+    return parser.finishNode<ESTree.ExportDefaultDeclaration>(
       {
         type: 'ExportDefaultDeclaration',
         declaration,
@@ -2766,7 +2766,7 @@ function parseExportDeclaration(
         }
 
         specifiers.push(
-          parser.finishNode(
+          parser.finishNode<ESTree.ExportSpecifier>(
             {
               type: 'ExportSpecifier',
               local,
@@ -2923,7 +2923,7 @@ function parseSequenceExpression(
     expressions.push(parseExpression(parser, context, privateScope, 1, inGroup, parser.tokenStart));
   }
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.SequenceExpression>(
     {
       type: 'SequenceExpression',
       expressions,
@@ -3115,7 +3115,7 @@ function parseConditionalExpression(
   // section 11.12, page 58.
   const alternate = parseExpression(parser, context, privateScope, 1, 0, parser.tokenStart);
   parser.assignable = AssignmentKind.CannotAssign;
-  return parser.finishNode(
+  return parser.finishNode<ESTree.ConditionalExpression>(
     {
       type: 'ConditionalExpression',
       test,
@@ -3232,7 +3232,7 @@ function parseUnaryExpression(
 
   parser.assignable = AssignmentKind.CannotAssign;
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.UnaryExpression>(
     {
       type: 'UnaryExpression',
       operator: KeywordDescTable[unaryOperator & Token.Type] as ESTree.UnaryOperator,
@@ -3347,7 +3347,7 @@ function parseYieldExpressionOrIdentifier(
 
     parser.assignable = AssignmentKind.CannotAssign;
 
-    return parser.finishNode(
+    return parser.finishNode<ESTree.YieldExpression>(
       {
         type: 'YieldExpression',
         argument,
@@ -3436,7 +3436,7 @@ function parseAwaitExpressionOrIdentifier(
 
     parser.assignable = AssignmentKind.CannotAssign;
 
-    return parser.finishNode(
+    return parser.finishNode<ESTree.AwaitExpression>(
       {
         type: 'AwaitExpression',
         argument,
@@ -3540,7 +3540,7 @@ function parseFunctionBody(
 
   if (parser.getToken() === Token.Assign) parser.report(Errors.CantAssignTo);
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.BlockStatement>(
     {
       type: 'BlockStatement',
       body,
@@ -3580,7 +3580,7 @@ function parseSuperExpression(parser: Parser, context: Context): ESTree.Super {
       parser.report(Errors.UnexpectedToken, 'super');
   }
 
-  return parser.finishNode({ type: 'Super' }, tokenStart);
+  return parser.finishNode<ESTree.Super>({ type: 'Super' }, tokenStart);
 }
 
 /**
@@ -3634,7 +3634,7 @@ function parseUpdateExpression(parser: Parser, context: Context, expr: ESTree.Ex
 
   parser.assignable = AssignmentKind.CannotAssign;
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.UpdateExpression>(
     {
       type: 'UpdateExpression',
       argument: expr,
@@ -3680,7 +3680,7 @@ function parseMemberOrUpdateExpression(
 
         const property = parsePropertyOrPrivatePropertyName(parser, context | Context.TaggedTemplate, privateScope);
 
-        expr = parser.finishNode(
+        expr = parser.finishNode<ESTree.MemberExpression>(
           {
             type: 'MemberExpression',
             object: expr,
@@ -3710,7 +3710,7 @@ function parseMemberOrUpdateExpression(
 
         parser.assignable = AssignmentKind.Assignable;
 
-        expr = parser.finishNode(
+        expr = parser.finishNode<ESTree.MemberExpression>(
           {
             type: 'MemberExpression',
             object: expr,
@@ -3744,7 +3744,7 @@ function parseMemberOrUpdateExpression(
 
         parser.assignable = AssignmentKind.CannotAssign;
 
-        expr = parser.finishNode(
+        expr = parser.finishNode<ESTree.CallExpression>(
           {
             type: 'CallExpression',
             callee: expr,
@@ -3776,7 +3776,7 @@ function parseMemberOrUpdateExpression(
         /* Tagged Template */
         parser.assignable = AssignmentKind.CannotAssign;
 
-        expr = parser.finishNode(
+        expr = parser.finishNode<ESTree.TaggedTemplateExpression>(
           {
             type: 'TaggedTemplateExpression',
             tag: expr,
@@ -3797,7 +3797,7 @@ function parseMemberOrUpdateExpression(
   if (inChain === 0 && (parser.flags & Flags.HasOptionalChaining) === Flags.HasOptionalChaining) {
     parser.flags = (parser.flags | Flags.HasOptionalChaining) ^ Flags.HasOptionalChaining;
 
-    expr = parser.finishNode(
+    expr = parser.finishNode<ESTree.ChainExpression>(
       {
         type: 'ChainExpression',
         expression: expr as ESTree.CallExpression | ESTree.MemberExpression,
@@ -3837,7 +3837,7 @@ function parseOptionalChain(
     const property = parseExpressions(parser, context, privateScope, 0, 1, tokenStart);
     consume(parser, context, Token.RightBracket);
     parser.assignable = AssignmentKind.CannotAssign;
-    node = parser.finishNode(
+    node = parser.finishNode<ESTree.MemberExpression>(
       {
         type: 'MemberExpression',
         object: expr,
@@ -3852,7 +3852,7 @@ function parseOptionalChain(
 
     parser.assignable = AssignmentKind.CannotAssign;
 
-    node = parser.finishNode(
+    node = parser.finishNode<ESTree.CallExpression>(
       {
         type: 'CallExpression',
         callee: expr,
@@ -3864,7 +3864,7 @@ function parseOptionalChain(
   } else {
     const property = parsePropertyOrPrivatePropertyName(parser, context, privateScope);
     parser.assignable = AssignmentKind.CannotAssign;
-    node = parser.finishNode(
+    node = parser.finishNode<ESTree.MemberExpression>(
       {
         type: 'MemberExpression',
         object: expr,
@@ -3941,7 +3941,7 @@ function parseUpdateExpressionPrefixed(
 
   parser.assignable = AssignmentKind.CannotAssign;
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.UpdateExpression>(
     {
       type: 'UpdateExpression',
       argument: arg,
@@ -4176,7 +4176,7 @@ function parseImportMetaExpression(
 
   parser.assignable = AssignmentKind.CannotAssign;
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.MetaProperty>(
     {
       type: 'MetaProperty',
       meta,
@@ -4260,7 +4260,7 @@ function parseImportAttributes(parser: Parser, context: Context): ESTree.ImportA
 
     keysContent.add(keyContent);
     attributes.push(
-      parser.finishNode(
+      parser.finishNode<ESTree.ImportAttribute>(
         {
           type: 'ImportAttribute',
           key,
@@ -4435,7 +4435,7 @@ function parseTemplateLiteral(parser: Parser, context: Context): ESTree.Template
   consume(parser, context, Token.TemplateSpan);
   const quasis = [parseTemplateElement(parser, tokenValue, tokenRaw, tokenStart, true)];
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.TemplateLiteral>(
     {
       type: 'TemplateLiteral',
       expressions: [],
@@ -4484,7 +4484,7 @@ function parseTemplate(
     quasis.push(parseTemplateElement(parser, tokenValue, tokenRaw, tokenStart, /* tail */ true));
   }
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.TemplateLiteral>(
     {
       type: 'TemplateLiteral',
       expressions,
@@ -4507,7 +4507,7 @@ function parseTemplateElement(
   start: Location,
   tail: boolean,
 ): ESTree.TemplateElement {
-  const node = parser.finishNode(
+  const node = parser.finishNode<ESTree.TemplateElement>(
     {
       type: 'TemplateElement',
       value: {
@@ -4558,7 +4558,7 @@ function parseSpreadElement(
   consume(parser, context | Context.AllowRegExp, Token.Ellipsis);
   const argument = parseExpression(parser, context, privateScope, 1, 0, parser.tokenStart);
   parser.assignable = AssignmentKind.Assignable;
-  return parser.finishNode(
+  return parser.finishNode<ESTree.SpreadElement>(
     {
       type: 'SpreadElement',
       argument,
@@ -4621,7 +4621,7 @@ function parseIdentifier(parser: Parser, context: Context): ESTree.Identifier {
   const allowRegex = tokenValue === 'await' && (parser.getToken() & Token.IsEscaped) === 0;
   nextToken(parser, context | (allowRegex ? Context.AllowRegExp : 0));
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.Identifier>(
     {
       type: 'Identifier',
       name: tokenValue,
@@ -4697,7 +4697,7 @@ function parseThisExpression(parser: Parser, context: Context): ESTree.ThisExpre
   const { tokenStart } = parser;
   nextToken(parser, context);
   parser.assignable = AssignmentKind.CannotAssign;
-  return parser.finishNode(
+  return parser.finishNode<ESTree.ThisExpression>(
     {
       type: 'ThisExpression',
     },
@@ -4830,7 +4830,7 @@ function parseFunctionDeclaration(
     functionScope?.scopeError,
   );
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.FunctionDeclaration>(
     {
       type: 'FunctionDeclaration',
       id,
@@ -4927,7 +4927,7 @@ function parseFunctionExpression(
   );
 
   parser.assignable = AssignmentKind.CannotAssign;
-  return parser.finishNode(
+  return parser.finishNode<ESTree.FunctionExpression>(
     {
       type: 'FunctionExpression',
       id,
@@ -5551,7 +5551,7 @@ function parseMethodDefinition(
     scope?.parent?.scopeError,
   );
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.FunctionExpression>(
     {
       type: 'FunctionExpression',
       params,
@@ -5771,7 +5771,7 @@ function parseObjectLiteralOrPattern(
                   ? DestructuringKind.Await
                   : 0;
 
-            value = parser.finishNode(
+            value = parser.finishNode<ESTree.AssignmentPattern>(
               {
                 type: 'AssignmentPattern',
                 left: context & Context.OptionsUniqueKeyInPattern ? Object.assign({}, key) : key,
@@ -6324,7 +6324,7 @@ function parseObjectLiteralOrPattern(
       parser.destructible = destructible;
 
       properties.push(
-        parser.finishNode(
+        parser.finishNode<ESTree.Property>(
           {
             type: 'Property',
             key: key as ESTree.Expression,
@@ -6470,7 +6470,7 @@ function parseMethodFormals(
 
       const right = parseExpression(parser, context, privateScope, 1, 0, parser.tokenStart);
 
-      left = parser.finishNode(
+      left = parser.finishNode<ESTree.AssignmentPattern>(
         {
           type: 'AssignmentPattern',
           left: left as ESTree.BindingPattern | ESTree.Identifier,
@@ -6688,7 +6688,7 @@ function parseParenthesizedExpression(
 
         parser.assignable = AssignmentKind.CannotAssign;
 
-        expr = parser.finishNode(
+        expr = parser.finishNode<ESTree.SequenceExpression>(
           {
             type: 'SequenceExpression',
             expressions,
@@ -6702,7 +6702,7 @@ function parseParenthesizedExpression(
       parser.destructible = destructible;
 
       return parser.options.preserveParens
-        ? parser.finishNode(
+        ? parser.finishNode<ESTree.ParenthesizedExpression>(
             {
               type: 'ParenthesizedExpression',
               expression: expr,
@@ -6732,7 +6732,7 @@ function parseParenthesizedExpression(
   if (isSequence) {
     parser.assignable = AssignmentKind.CannotAssign;
 
-    expr = parser.finishNode(
+    expr = parser.finishNode<ESTree.SequenceExpression>(
       {
         type: 'SequenceExpression',
         expressions,
@@ -6786,7 +6786,7 @@ function parseParenthesizedExpression(
   parser.destructible = ((parser.destructible | DestructuringKind.Yield) ^ DestructuringKind.Yield) | destructible;
 
   return parser.options.preserveParens
-    ? parser.finishNode(
+    ? parser.finishNode<ESTree.ParenthesizedExpression>(
         {
           type: 'ParenthesizedExpression',
           expression: expr,
@@ -6988,7 +6988,7 @@ function parseArrowFunctionExpression(
 
   parser.assignable = AssignmentKind.CannotAssign;
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.ArrowFunctionExpression>(
     {
       type: 'ArrowFunctionExpression',
       params,
@@ -7105,7 +7105,7 @@ function parseFormalParametersOrFormalList(
 
       const right = parseExpression(parser, context, privateScope, 1, inGroup, parser.tokenStart);
 
-      left = parser.finishNode(
+      left = parser.finishNode<ESTree.AssignmentPattern>(
         {
           type: 'AssignmentPattern',
           left,
@@ -7166,7 +7166,7 @@ function parseMemberExpressionNoCall(
         parser,
         context,
         privateScope,
-        parser.finishNode(
+        parser.finishNode<ESTree.MemberExpression>(
           {
             type: 'MemberExpression',
             object: expr,
@@ -7195,7 +7195,7 @@ function parseMemberExpressionNoCall(
         parser,
         context,
         privateScope,
-        parser.finishNode(
+        parser.finishNode<ESTree.MemberExpression>(
           {
             type: 'MemberExpression',
             object: expr,
@@ -7216,7 +7216,7 @@ function parseMemberExpressionNoCall(
         parser,
         context,
         privateScope,
-        parser.finishNode(
+        parser.finishNode<ESTree.TaggedTemplateExpression>(
           {
             type: 'TaggedTemplateExpression',
             tag: expr,
@@ -7297,7 +7297,7 @@ function parseNewExpression(
 
   parser.assignable = AssignmentKind.CannotAssign;
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.NewExpression>(
     {
       type: 'NewExpression',
       callee,
@@ -7323,7 +7323,7 @@ function parseMetaProperty(
   start: Location,
 ): ESTree.MetaProperty {
   const property = parseIdentifier(parser, context);
-  return parser.finishNode(
+  return parser.finishNode<ESTree.MetaProperty>(
     {
       type: 'MetaProperty',
       meta,
@@ -7417,7 +7417,7 @@ function parseAsyncArrowOrCallExpression(
       return parseParenthesizedArrow(parser, context, scope, privateScope, [], canAssign, 1, start);
     }
 
-    return parser.finishNode(
+    return parser.finishNode<ESTree.CallExpression>(
       {
         type: 'CallExpression',
         callee,
@@ -7532,7 +7532,7 @@ function parseAsyncArrowOrCallExpression(
 
       parser.assignable = AssignmentKind.CannotAssign;
 
-      return parser.finishNode(
+      return parser.finishNode<ESTree.CallExpression>(
         {
           type: 'CallExpression',
           callee,
@@ -7589,7 +7589,7 @@ function parseAsyncArrowOrCallExpression(
 
   parser.assignable = AssignmentKind.CannotAssign;
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.CallExpression>(
     {
       type: 'CallExpression',
       callee,
@@ -7731,7 +7731,7 @@ function parseClassDeclaration(
     0,
   );
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.ClassDeclaration>(
     {
       type: 'ClassDeclaration',
       id,
@@ -7803,7 +7803,7 @@ function parseClassExpression(
 
   parser.assignable = AssignmentKind.CannotAssign;
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.ClassExpression>(
     {
       type: 'ClassExpression',
       id,
@@ -7856,7 +7856,7 @@ function parseDecoratorList(
 
   expression = parseMemberOrUpdateExpression(parser, context, privateScope, expression, 0, 0, parser.tokenStart);
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.Decorator>(
     {
       type: 'Decorator',
       expression,
@@ -7994,7 +7994,7 @@ function parseClassBody(
 
   parser.flags = (parser.flags & ~Flags.HasConstructor) | hasConstr;
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.ClassBody>(
     {
       type: 'ClassBody',
       body,
@@ -8180,7 +8180,7 @@ function parseClassElementList(
     parser.tokenStart,
   );
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.MethodDefinition>(
     {
       type: 'MethodDefinition',
       kind:
@@ -8234,7 +8234,7 @@ function parsePrivateIdentifier(
 
   nextToken(parser, context);
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.PrivateIdentifier>(
     {
       type: 'PrivateIdentifier',
       name: tokenValue,
@@ -8424,7 +8424,7 @@ function parseAndClassifyIdentifier(
 
   if (scope) addVarOrBlock(parser, context, scope, tokenValue, kind, origin);
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.Identifier>(
     {
       type: 'Identifier',
       name: tokenValue,
@@ -8456,7 +8456,7 @@ function parseJSXRootElementOrFragment(
     const openingFragment = parseJSXOpeningFragment(parser, context, start);
     const [children, closingFragment] = parseJSXChildrenAndClosingFragment(parser, context, privateScope, inJSXChild);
 
-    return parser.finishNode(
+    return parser.finishNode<ESTree.JSXFragment>(
       {
         type: 'JSXFragment',
         openingFragment,
@@ -8489,7 +8489,7 @@ function parseJSXRootElementOrFragment(
     if (isEqualTagName(openingElement.name) !== close) parser.report(Errors.ExpectedJSXClosingTag, close);
   }
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.JSXElement>(
     {
       type: 'JSXElement',
       children,
@@ -8508,7 +8508,7 @@ function parseJSXRootElementOrFragment(
  */
 function parseJSXOpeningFragment(parser: Parser, context: Context, start: Location): ESTree.JSXOpeningFragment {
   nextJSXToken(parser, context);
-  return parser.finishNode(
+  return parser.finishNode<ESTree.JSXOpeningFragment>(
     {
       type: 'JSXOpeningFragment',
     },
@@ -8542,7 +8542,7 @@ function parseJSXClosingElement(
     nextToken(parser, context);
   }
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.JSXClosingElement>(
     {
       type: 'JSXClosingElement',
       name,
@@ -8575,7 +8575,7 @@ function parseJSXClosingFragment(
     nextToken(parser, context);
   }
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.JSXClosingFragment>(
     {
       type: 'JSXClosingFragment',
     },
@@ -8736,7 +8736,7 @@ function parseJSXOpeningElementOrSelfCloseElement(
     nextToken(parser, context);
   }
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.JSXOpeningElement>(
     {
       type: 'JSXOpeningElement',
       name: tagName,
@@ -8787,7 +8787,7 @@ function parseJSXMemberExpression(
   start: Location,
 ): ESTree.JSXMemberExpression {
   const property = parseJSXIdentifier(parser, context);
-  return parser.finishNode(
+  return parser.finishNode<ESTree.JSXMemberExpression>(
     {
       type: 'JSXMemberExpression',
       object,
@@ -8836,7 +8836,7 @@ function parseJSXSpreadAttribute(
   consume(parser, context, Token.Ellipsis);
   const expression = parseExpression(parser, context, privateScope, 1, 0, parser.tokenStart);
   consume(parser, context, Token.RightBrace);
-  return parser.finishNode(
+  return parser.finishNode<ESTree.JSXSpreadAttribute>(
     {
       type: 'JSXSpreadAttribute',
       argument: expression,
@@ -8885,7 +8885,7 @@ function parseJsxAttribute(
     }
   }
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.JSXAttribute>(
     {
       type: 'JSXAttribute',
       value,
@@ -8911,7 +8911,7 @@ function parseJSXNamespacedName(
 ): ESTree.JSXNamespacedName {
   consume(parser, context, Token.Colon);
   const name = parseJSXIdentifier(parser, context);
-  return parser.finishNode(
+  return parser.finishNode<ESTree.JSXNamespacedName>(
     {
       type: 'JSXNamespacedName',
       namespace,
@@ -8965,7 +8965,7 @@ function parseJSXExpressionContainer(
     nextToken(parser, context);
   }
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.JSXExpressionContainer>(
     {
       type: 'JSXExpressionContainer',
       expression,
@@ -8989,7 +8989,7 @@ function parseJSXSpreadChild(
   consume(parser, context, Token.Ellipsis);
   const expression = parseExpression(parser, context, privateScope, 1, 0, parser.tokenStart);
   consume(parser, context, Token.RightBrace);
-  return parser.finishNode(
+  return parser.finishNode<ESTree.JSXSpreadChild>(
     {
       type: 'JSXSpreadChild',
       expression,
@@ -9004,7 +9004,7 @@ function parseJSXSpreadChild(
  * @param parser Parser object
  */
 function parseJSXEmptyExpression(parser: Parser, start: Location): ESTree.JSXEmptyExpression {
-  return parser.finishNode(
+  return parser.finishNode<ESTree.JSXEmptyExpression>(
     {
       type: 'JSXEmptyExpression',
     },
@@ -9030,7 +9030,7 @@ function parseJSXIdentifier(parser: Parser, context: Context): ESTree.JSXIdentif
   const { tokenValue } = parser;
   nextToken(parser, context);
 
-  return parser.finishNode(
+  return parser.finishNode<ESTree.JSXIdentifier>(
     {
       type: 'JSXIdentifier',
       name: tokenValue,
