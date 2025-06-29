@@ -97,22 +97,20 @@ export function parseSource(source: string, options: Options | void, context: Co
   if (options != null) {
     if (options.module) context |= Context.Module | Context.Strict;
     if (options.next) context |= Context.OptionsNext;
-    if (options.loc) context |= Context.OptionsLoc;
-    if (options.ranges) context |= Context.OptionsRanges;
     if (options.uniqueKeyInPattern) context |= Context.OptionsUniqueKeyInPattern;
     if (options.lexical) context |= Context.OptionsLexical;
     if (options.webcompat) context |= Context.OptionsWebCompat;
     // Turn on return context in global
     if (options.globalReturn) context |= Context.InReturnContext;
     if (options.raw) context |= Context.OptionsRaw;
-    if (options.preserveParens) context |= Context.OptionsPreserveParens;
     if (options.impliedStrict) context |= Context.Strict;
-    if (options.jsx) context |= Context.OptionsJSX;
   }
 
   const parserOptions: ParserOptions = {
-    shouldAddLoc: Boolean(context & Context.OptionsLoc),
-    shouldAddRanges: Boolean(context & Context.OptionsRanges),
+    loc: options?.loc,
+    ranges: options?.ranges,
+    preserveParens: options?.preserveParens,
+    jsx: options?.jsx,
   };
   if (options != null) {
     if (options.source) parserOptions.sourceFile = options.source;
@@ -4111,7 +4109,7 @@ function parsePrimaryExpression(
     case Token.ImportKeyword:
       return parseImportCallOrMetaExpression(parser, context, privateScope, inNew, inGroup, start);
     case Token.LessThan:
-      if (context & Context.OptionsJSX)
+      if (parser.options.jsx)
         return parseJSXRootElementOrFragment(parser, context, privateScope, /*inJSXChild*/ 0, parser.tokenStart);
     default:
       if (isValidIdentifier(context, parser.getToken())) return parseIdentifierOrArrow(parser, context, privateScope);
@@ -4435,7 +4433,7 @@ function parseTemplateLiteral(parser: Parser, context: Context): ESTree.Template
   parser.assignable = AssignmentKind.CannotAssign;
   const { tokenValue, tokenRaw, tokenStart } = parser;
   consume(parser, context, Token.TemplateSpan);
-  const quasis = [parseTemplateElement(parser, context, tokenValue, tokenRaw, tokenStart, true)];
+  const quasis = [parseTemplateElement(parser, tokenValue, tokenRaw, tokenStart, true)];
 
   return parser.finishNode(
     {
@@ -4463,7 +4461,7 @@ function parseTemplate(
   const { tokenValue, tokenRaw, tokenStart } = parser;
   consume(parser, (context & ~Context.TaggedTemplate) | Context.AllowRegExp, Token.TemplateContinuation);
 
-  const quasis = [parseTemplateElement(parser, context, tokenValue, tokenRaw, tokenStart, /* tail */ false)];
+  const quasis = [parseTemplateElement(parser, tokenValue, tokenRaw, tokenStart, /* tail */ false)];
 
   const expressions = [
     parseExpressions(parser, context & ~Context.TaggedTemplate, privateScope, 0, 1, parser.tokenStart),
@@ -4474,7 +4472,7 @@ function parseTemplate(
   while (parser.setToken(scanTemplateTail(parser, context), true) !== Token.TemplateSpan) {
     const { tokenValue, tokenRaw, tokenStart } = parser;
     consume(parser, (context & ~Context.TaggedTemplate) | Context.AllowRegExp, Token.TemplateContinuation);
-    quasis.push(parseTemplateElement(parser, context, tokenValue, tokenRaw, tokenStart, /* tail */ false));
+    quasis.push(parseTemplateElement(parser, tokenValue, tokenRaw, tokenStart, /* tail */ false));
 
     expressions.push(parseExpressions(parser, context, privateScope, 0, 1, parser.tokenStart));
     if (parser.getToken() !== Token.RightBrace) parser.report(Errors.InvalidTemplateContinuation);
@@ -4483,7 +4481,7 @@ function parseTemplate(
   {
     const { tokenValue, tokenRaw, tokenStart } = parser;
     consume(parser, context, Token.TemplateSpan);
-    quasis.push(parseTemplateElement(parser, context, tokenValue, tokenRaw, tokenStart, /* tail */ true));
+    quasis.push(parseTemplateElement(parser, tokenValue, tokenRaw, tokenStart, /* tail */ true));
   }
 
   return parser.finishNode(
@@ -4504,7 +4502,6 @@ function parseTemplate(
  */
 function parseTemplateElement(
   parser: Parser,
-  context: Context,
   cooked: string | null,
   raw: string,
   start: Location,
@@ -4525,7 +4522,7 @@ function parseTemplateElement(
   const tailSize = tail ? 1 : 2;
 
   // Patch range
-  if (context & Context.OptionsRanges) {
+  if (parser.options.ranges) {
     // skip the front "`" or "}"
     (node.start as number) += 1;
     (node.range as [number, number])[0] += 1;
@@ -4535,7 +4532,7 @@ function parseTemplateElement(
   }
 
   // Patch loc
-  if (context & Context.OptionsLoc) {
+  if (parser.options.loc) {
     // skip the front "`" or "}"
     (node.loc as ESTree.SourceLocation).start.column += 1;
     // skip the tail "`" or "${"
@@ -6704,7 +6701,7 @@ function parseParenthesizedExpression(
 
       parser.destructible = destructible;
 
-      return context & Context.OptionsPreserveParens
+      return parser.options.preserveParens
         ? parser.finishNode(
             {
               type: 'ParenthesizedExpression',
@@ -6788,7 +6785,7 @@ function parseParenthesizedExpression(
 
   parser.destructible = ((parser.destructible | DestructuringKind.Yield) ^ DestructuringKind.Yield) | destructible;
 
-  return context & Context.OptionsPreserveParens
+  return parser.options.preserveParens
     ? parser.finishNode(
         {
           type: 'ParenthesizedExpression',

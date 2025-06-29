@@ -109,13 +109,13 @@ describe('Expressions - Group', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.OptionsPreserveParens);
+        parseSource(`${arg}`, { preserveParens: true }, Context.Strict);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.OptionsLexical);
+        parseSource(`${arg}`, { preserveParens: true }, Context.Strict);
       });
     });
   }

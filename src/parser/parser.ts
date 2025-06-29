@@ -13,8 +13,10 @@ import {
 import { ParseError, type Errors } from '../errors';
 
 export type ParserOptions = {
-  shouldAddLoc?: boolean;
-  shouldAddRanges?: boolean;
+  loc?: boolean;
+  ranges?: boolean;
+  preserveParens?: boolean;
+  jsx?: boolean;
   /**
    * Used together with source maps. File containing the code being parsed
    */
@@ -212,14 +214,14 @@ export class Parser {
   }
 
   finishNode<T extends ESTree.Node>(node: T, start: Location, end: Location | void): T {
-    if (this.options.shouldAddRanges) {
+    if (this.options.ranges) {
       node.start = start.index;
       const endIndex = end ? end.index : this.startIndex;
       node.end = endIndex;
       node.range = [start.index, endIndex];
     }
 
-    if (this.options.shouldAddLoc) {
+    if (this.options.loc) {
       node.loc = {
         start: {
           line: start.line,
@@ -256,12 +258,12 @@ export function pushComment(comments: ESTree.Comment[], options: ParserOptions):
       value,
     };
 
-    if (options.shouldAddRanges) {
+    if (options.ranges) {
       comment.start = start;
       comment.end = end;
       comment.range = [start, end];
     }
-    if (options.shouldAddLoc) {
+    if (options.loc) {
       comment.loc = loc;
     }
     comments.push(comment);
@@ -274,12 +276,13 @@ export function pushToken(tokens: any[], options: ParserOptions): OnToken {
       token: type,
     };
 
-    if (options.shouldAddRanges) {
+    if (options.ranges) {
       token.start = start;
       token.end = end;
       token.range = [start, end];
     }
-    if (options.shouldAddLoc) {
+
+    if (options.loc) {
       token.loc = loc;
     }
     tokens.push(token);
