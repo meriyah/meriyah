@@ -68,19 +68,19 @@ describe('Lexical - Class', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"lexical":true} );
+        parseSource(`${arg}`, { lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"next":true,"lexical":true} );
+        parseSource(`${arg}`, { next: true, lexical: true });
       });
     });
   }
@@ -102,13 +102,13 @@ describe('Lexical - Class', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true,"lexical":true} );
+        parseSource(`${arg}`, { webcompat: true, lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"next":true,"webcompat":true,"lexical":true} );
+        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
       });
     });
   }

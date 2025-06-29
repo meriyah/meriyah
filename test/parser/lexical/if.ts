@@ -50,12 +50,12 @@ describe('Lexical - If', () => {
   for (const arg of ['if (x) var foo = 1; var foo = 1;']) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true,"lexical":true} );
+        parseSource(`${arg}`, { webcompat: true, lexical: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"next":true,"webcompat":true,"lexical":true} );
+        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
       });
     });
   }

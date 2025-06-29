@@ -206,7 +206,7 @@ describe('Lexical - Block', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"lexical":true} );
+        parseSource(`${arg}`, { lexical: true });
       });
     });
   }
@@ -262,19 +262,19 @@ describe('Lexical - Block', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true,"lexical":true} );
+        parseSource(`${arg}`, { webcompat: true, lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true} );
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"next":true,"webcompat":true,"lexical":true} );
+        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
       });
     });
   }

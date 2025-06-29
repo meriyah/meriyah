@@ -124,19 +124,19 @@ describe('Expressions - Yield', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true} );
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"next":true} );
+        parseSource(`${arg}`, { next: true });
       });
     });
   }
@@ -180,49 +180,49 @@ describe('Expressions - Yield', () => {
   ]) {
     it(`function *g() { ${arg}}`, () => {
       t.throws(() => {
-        parseSource(`function *g() { ${arg}}`  );
+        parseSource(`function *g() { ${arg}}`);
       });
     });
 
     it(`"use strict"; ${arg}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; ${arg}`  );
+        parseSource(`"use strict"; ${arg}`);
       });
     });
 
     it(`"use strict"; ${arg}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; ${arg}`, {"webcompat":true} );
+        parseSource(`"use strict"; ${arg}`, { webcompat: true });
       });
     });
 
     it(`"use strict"; function foo() { ${arg}}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; function foo() { ${arg}}`  );
+        parseSource(`"use strict"; function foo() { ${arg}}`);
       });
     });
 
     it(`function foo() { "use strict"; ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`function foo() { "use strict"; ${arg} }`  );
+        parseSource(`function foo() { "use strict"; ${arg} }`);
       });
     });
 
     it(`"use strict"; (function foo() {${arg}})`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; (function foo() {${arg}})`  );
+        parseSource(`"use strict"; (function foo() {${arg}})`);
       });
     });
 
     it(`"use strict"; (function * gen() { function foo() { ${arg}} }`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; (function * gen() { function foo() { ${arg}} }`  );
+        parseSource(`"use strict"; (function * gen() { function foo() { ${arg}} }`);
       });
     });
 
     it(`"use strict"; (function * gen() { (function foo() { ${arg}}) })`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; (function * gen() { (function foo() { ${arg}}) })`  );
+        parseSource(`"use strict"; (function * gen() { (function foo() { ${arg}}) })`);
       });
     });
   }
@@ -281,32 +281,28 @@ describe('Expressions - Yield', () => {
     // Script context.
     it(`"use strict"; ${test}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; ${test}`  );
+        parseSource(`"use strict"; ${test}`);
       });
     });
 
     // Function context.
     it(`"use strict"; function f() { ${test} }`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; function f() { ${test} }`  );
+        parseSource(`"use strict"; function f() { ${test} }`);
       });
     });
 
     // Function context.
     it(`"use strict"; function f() { ${test} }`, () => {
       t.throws(() => {
-        parseSource(
-          `"use strict"; function f() { ${test} }`,
-          {"next":true,"webcompat":true}
-          ,
-        );
+        parseSource(`"use strict"; function f() { ${test} }`, { next: true, webcompat: true });
       });
     });
 
     // Generator
     it(`"use strict"; function* g() { ${test} }`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; function* g() { ${test} }`  );
+        parseSource(`"use strict"; function* g() { ${test} }`);
       });
     });
   }
@@ -314,7 +310,7 @@ describe('Expressions - Yield', () => {
   for (const test of yieldInParameters) {
     it(`function* g() { ${test} }`, () => {
       t.throws(() => {
-        parseSource(`function* g() { ${test} }`  );
+        parseSource(`function* g() { ${test} }`);
       });
     });
   }
@@ -373,17 +369,17 @@ describe('Expressions - Yield', () => {
   ]) {
     it(`function *foo() {${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function *foo() {${arg}}`  );
+        parseSource(`function *foo() {${arg}}`);
       });
     });
     it(`(function *foo() {${arg}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function *foo() {${arg}})`  );
+        parseSource(`(function *foo() {${arg}})`);
       });
     });
     it(`(function *() {${arg}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function *() {${arg}})`  );
+        parseSource(`(function *() {${arg}})`);
       });
     });
   }
@@ -411,31 +407,31 @@ describe('Expressions - Yield', () => {
   ]) {
     it(`function foo() {${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() {${arg}}`  );
+        parseSource(`function foo() {${arg}}`);
       });
     });
 
     it(`(function foo() {${arg}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function foo() {${arg}})`  );
+        parseSource(`(function foo() {${arg}})`);
       });
     });
 
     it(`(() => {${arg}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(() => {${arg}})`  );
+        parseSource(`(() => {${arg}})`);
       });
     });
 
     it(`(() => {${arg}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(() => {${arg}})`, {"lexical":true} );
+        parseSource(`(() => {${arg}})`, { lexical: true });
       });
     });
 
     it(`(async () => {${arg}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(async () => {${arg}})`  );
+        parseSource(`(async () => {${arg}})`);
       });
     });
   }
@@ -584,25 +580,25 @@ yield d;
   ]) {
     it(`function foo() { ${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function not_gen() { ${arg}}`  );
+        parseSource(`function not_gen() { ${arg}}`);
       });
     });
 
     it(`function * gen() { function not_gen() { ${arg} }}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function * gen() { function not_gen() { ${arg} }}`  );
+        parseSource(`function * gen() { function not_gen() { ${arg} }}`);
       });
     });
 
     it(`(function foo() { ${arg}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function foo() { ${arg}})`  );
+        parseSource(`(function foo() { ${arg}})`);
       });
     });
 
     it(`(function * gen() { function not_gen() { ${arg} }})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function * gen() { function not_gen() { ${arg} }})`  );
+        parseSource(`(function * gen() { function not_gen() { ${arg} }})`);
       });
     });
   }

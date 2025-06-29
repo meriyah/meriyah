@@ -41,8 +41,7 @@ describe('Statements - Try', () => {
           for (${binding} of []);
         }
       `,
-          {"impliedStrict":true}
-          ,
+          { impliedStrict: true },
         );
       });
     });
@@ -56,8 +55,7 @@ describe('Statements - Try', () => {
             for (${binding} of []);
           }
         `,
-          {"webcompat":true}
-          ,
+          { webcompat: true },
         );
       });
     });
@@ -83,8 +81,7 @@ describe('Statements - Try', () => {
         }
       }
     `,
-          {"webcompat":true}
-          ,
+          { webcompat: true },
         );
       });
     });
@@ -103,8 +100,7 @@ describe('Statements - Try', () => {
         (()=>{for (${binding} of []);})();
       }
     `,
-          {"webcompat":true}
-          ,
+          { webcompat: true },
         );
       });
     });
@@ -121,8 +117,7 @@ describe('Statements - Try', () => {
       })();
     }
   `,
-          {"webcompat":true}
-          ,
+          { webcompat: true },
         );
       });
     });
@@ -154,8 +149,7 @@ describe('Statements - Try', () => {
         for (${binding} of []);
       }
     `,
-          {"webcompat":true}
-          ,
+          { webcompat: true },
         );
       });
     });

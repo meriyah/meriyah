@@ -408,30 +408,30 @@ describe('Expressions - Array', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"lexical":true} );
+        parseSource(`${arg}`, { lexical: true });
       });
     });
 
     it(`() => {${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`() => {${arg}}`  );
+        parseSource(`() => {${arg}}`);
       });
     });
 
     it(`function foo() { ${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg}}`, {"webcompat":true} );
+        parseSource(`function foo() { ${arg}}`, { webcompat: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true} );
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }

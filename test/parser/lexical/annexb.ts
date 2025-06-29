@@ -121,13 +121,13 @@ describe('Lexical - AnnexB', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true,"lexical":true} );
+        parseSource(`${arg}`, { webcompat: true, lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"next":true,"webcompat":true,"lexical":true} );
+        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
       });
     });
   }

@@ -12,7 +12,7 @@ describe('Declarations - Class', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
   }
@@ -32,13 +32,13 @@ describe('Declarations - Class', () => {
   ]) {
     it(`class ${arg} {};`, () => {
       t.throws(() => {
-        parseSource(`class ${arg} {};`  );
+        parseSource(`class ${arg} {};`);
       });
     });
 
     it(`"use strict"; class ${arg} {};`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; class ${arg} {};`  );
+        parseSource(`"use strict"; class ${arg} {};`);
       });
     });
   }
@@ -56,37 +56,37 @@ describe('Declarations - Class', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} `  );
+        parseSource(`${arg} `);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} `  );
+        parseSource(`${arg} `);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} `, {"lexical":true} );
+        parseSource(`${arg} `, { lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} `, {"webcompat":true} );
+        parseSource(`${arg} `, { webcompat: true });
       });
     });
 
     it(`if (true) { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`if (true) { ${arg} }`, {"lexical":true} );
+        parseSource(`if (true) { ${arg} }`, { lexical: true });
       });
     });
 
     it(`{${arg}}`, () => {
       t.throws(() => {
-        parseSource(`{${arg}}`  );
+        parseSource(`{${arg}}`);
       });
     });
   }
@@ -156,12 +156,12 @@ describe('Declarations - Class', () => {
   ]) {
     it(`class ${arg}`, () => {
       t.throws(() => {
-        parseSource(`class ${arg} `  );
+        parseSource(`class ${arg} `);
       });
     });
     it(`class { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`class { ${arg} }`  );
+        parseSource(`class { ${arg} }`);
       });
     });
   }
@@ -185,19 +185,19 @@ describe('Declarations - Class', () => {
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg}}`  );
+        parseSource(`class C { ${arg}}`);
       });
     });
 
     it(`(class C { ${arg} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { ${arg} })`  );
+        parseSource(`(class C { ${arg} })`);
       });
     });
 
     it(`(class C { ${arg} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { ${arg} })`, {"lexical":true} );
+        parseSource(`(class C { ${arg} })`, { lexical: true });
       });
     });
   }
@@ -234,79 +234,79 @@ describe('Declarations - Class', () => {
   ]) {
     it(`class C { ${arg}() {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg}() {}}`  );
+        parseSource(`class C { ${arg}() {}}`);
       });
     });
 
     it(`class C { *${arg}(v) {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { *${arg}(v) {}}`  );
+        parseSource(`class C { *${arg}(v) {}}`);
       });
     });
 
     it(`class C { static *${arg}(v) {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { static *${arg}(v) {}}`  );
+        parseSource(`class C { static *${arg}(v) {}}`);
       });
     });
 
     it(`(class {${arg}() {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class {${arg}() {}});`  );
+        parseSource(`(class {${arg}() {}});`);
       });
     });
 
     it(`(class {${arg}() {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class {${arg}() {}});`, {"lexical":true} );
+        parseSource(`(class {${arg}() {}});`, { lexical: true });
       });
     });
 
     it(`(class { static ${arg}() {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class { static ${arg}() {}});`  );
+        parseSource(`(class { static ${arg}() {}});`);
       });
     });
 
     it(`class C { set ${arg}(v) {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg}(v) {}}`  );
+        parseSource(`class C { ${arg}(v) {}}`);
       });
     });
 
     it(`class C { async *${arg}(v) {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { async *${arg}(v) {}}`  );
+        parseSource(`class C { async *${arg}(v) {}}`);
       });
     });
 
     it(`class C { async *${arg}(v) {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { async *${arg}(v) {}}`, {"webcompat":true} );
+        parseSource(`class C { async *${arg}(v) {}}`, { webcompat: true });
       });
     });
 
     it(`(class C { async *${arg}(v) {}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { async *${arg}(v) {}})`  );
+        parseSource(`(class C { async *${arg}(v) {}})`);
       });
     });
 
     it(`(class C { async *${arg}(v) {}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { async *${arg}(v) {}})`, {"lexical":true} );
+        parseSource(`(class C { async *${arg}(v) {}})`, { lexical: true });
       });
     });
 
     it(`class C { static ${arg}(v) {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { static ${arg}(v) {}}`  );
+        parseSource(`class C { static ${arg}(v) {}}`);
       });
     });
 
     it(`class C { static get ${arg}() {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { static get ${arg}() {}}`  );
+        parseSource(`class C { static get ${arg}() {}}`);
       });
     });
   }
@@ -320,25 +320,25 @@ describe('Declarations - Class', () => {
   ]) {
     it(`{ ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; if (true) { ${arg} }`  );
+        parseSource(`'use strict'; if (true) { ${arg} }`);
       });
     });
 
     it(`'use strict'; { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; { ${arg} }`  );
+        parseSource(`'use strict'; { ${arg} }`);
       });
     });
 
     it(`'use strict'; if (true) { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; if (true) { ${arg} }`  );
+        parseSource(`'use strict'; if (true) { ${arg} }`);
       });
     });
 
     it(`'use strict'; if (true) { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; if (true) { ${arg} }`, {"lexical":true} );
+        parseSource(`'use strict'; if (true) { ${arg} }`, { lexical: true });
       });
     });
   }
@@ -362,19 +362,19 @@ describe('Declarations - Class', () => {
   ]) {
     it(`{ ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`{ ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"lexical":true} );
+        parseSource(`${arg}`, { lexical: true });
       });
     });
 
     it(`{ ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true} );
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }
@@ -592,19 +592,19 @@ describe('Declarations - Class', () => {
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg} }`  );
+        parseSource(`class C { ${arg} }`);
       });
     });
 
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg} }`, {"lexical":true} );
+        parseSource(`class C { ${arg} }`, { lexical: true });
       });
     });
 
     it(`class A extends B { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class A extends B { ${arg} }`  );
+        parseSource(`class A extends B { ${arg} }`);
       });
     });
   }

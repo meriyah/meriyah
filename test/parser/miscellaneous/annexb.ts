@@ -31,13 +31,13 @@ describe('Miscellaneous - Web compatibility (AnnexB)', () => {
     ]) {
       it(`${arg}`, () => {
         t.doesNotThrow(() => {
-          parseSource(`${arg}`, {"webcompat":true} );
+          parseSource(`${arg}`, { webcompat: true });
         });
       });
 
       it(`${arg}`, () => {
         t.throws(() => {
-          parseSource(`${arg}`, {"module":true,"webcompat":true} );
+          parseSource(`${arg}`, { module: true, webcompat: true });
         });
       });
     }
@@ -50,17 +50,17 @@ describe('Miscellaneous - Web compatibility (AnnexB)', () => {
     ]) {
       it(`${arg}`, () => {
         t.throws(() => {
-          parseSource(`${arg}`  );
+          parseSource(`${arg}`);
         });
       });
       it(`${arg}`, () => {
         t.throws(() => {
-          parseSource(`${arg}`, {"webcompat":true} );
+          parseSource(`${arg}`, { webcompat: true });
         });
       });
       it(`${arg}`, () => {
         t.throws(() => {
-          parseSource(`${arg}`, {"module":true,"webcompat":true} );
+          parseSource(`${arg}`, { module: true, webcompat: true });
         });
       });
     }
@@ -84,7 +84,7 @@ describe('Miscellaneous - Web compatibility (AnnexB)', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"webcompat":true,"lexical":true} );
+        parseSource(`${arg}`, { webcompat: true, lexical: true });
       });
     });
   }
@@ -328,7 +328,7 @@ case 1:
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true} );
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }

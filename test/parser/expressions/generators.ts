@@ -46,13 +46,13 @@ describe('Expressions - Generators', () => {
   ]) {
     it(`function * icefapper() {${arg}}`, () => {
       t.throws(() => {
-        parseSource(`function * icefapper() {${arg}}`  );
+        parseSource(`function * icefapper() {${arg}}`);
       });
     });
 
     it(`"use strict"; function * icefapper() {${arg}}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; function * icefapper() {${arg}}`  );
+        parseSource(`"use strict"; function * icefapper() {${arg}}`);
       });
     });
   }
@@ -79,7 +79,7 @@ describe('Expressions - Generators', () => {
   for (const arg of invalidSyntax) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
   }
@@ -134,19 +134,19 @@ describe('Expressions - Generators', () => {
   for (const arg of validYieldInGenerator) {
     it(`function * icefapper() {${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function * icefapper() {${arg}}`  );
+        parseSource(`function * icefapper() {${arg}}`);
       });
     });
 
     it(`(function * icefapper() {${arg}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function * icefapper() {${arg}})`  );
+        parseSource(`(function * icefapper() {${arg}})`);
       });
     });
 
     it(`(function *() {${arg}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function *() {${arg}})`  );
+        parseSource(`(function *() {${arg}})`);
       });
     });
   }
@@ -238,7 +238,7 @@ describe('Expressions - Generators', () => {
   for (const arg of validSyntax) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
   }

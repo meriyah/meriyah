@@ -77,19 +77,19 @@ describe('Miscellaneous - Directives', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`/* comment in front */ ${arg}`, () => {
       t.throws(() => {
-        parseSource(`/* comment in front */ ${arg}`  );
+        parseSource(`/* comment in front */ ${arg}`);
       });
     });
 
     it(`function foo() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`function foo() { ${arg} }`, {"module":true} );
+        parseSource(`function foo() { ${arg} }`, { module: true });
       });
     });
   }
@@ -170,26 +170,26 @@ describe('Miscellaneous - Directives', () => {
   ]) {
     it(`/* comment in front */ ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`/* comment in front */ ${arg}`, {"raw":true} );
+        parseSource(`/* comment in front */ ${arg}`, { raw: true });
       });
     });
 
     it(`/* comment in front */ ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`/* comment in front */ ${arg}`, {"webcompat":true,"raw":true} );
+        parseSource(`/* comment in front */ ${arg}`, { webcompat: true, raw: true });
       });
     });
   }
 
   for (const arg of ['.foo', '[foo]', '()', '`x`', ' + x', '/f', '/f/g']) {
     t.throws(() => {
-      parseSource(`function f(){ "use strict" \n /* suffix = */   ${arg} ; eval = 1; }`, {"impliedStrict":true} );
+      parseSource(`function f(){ "use strict" \n /* suffix = */   ${arg} ; eval = 1; }`, { impliedStrict: true });
     });
   }
 
   for (const arg of ['foo', '++x', '--x', 'function f(){}', '{x}', ';', '25', 'true']) {
     t.throws(() => {
-      parseSource(`function f(){ "use strict" \n  ${arg} ; eval = 1; }`  );
+      parseSource(`function f(){ "use strict" \n  ${arg} ; eval = 1; }`);
     });
   }
 

@@ -12,12 +12,12 @@ describe('Miscellaneous - Regular expressions', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"next":true,"lexical":true} );
+        parseSource(`${arg}`, { next: true, lexical: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"next":true,"webcompat":true,"lexical":true} );
+        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
       });
     });
   }

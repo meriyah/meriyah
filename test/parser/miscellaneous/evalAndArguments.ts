@@ -39,31 +39,31 @@ describe('Miscellaneous - Eval and arguments', () => {
   ]) {
     it(`'use strict'; (${arg} = {})`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; (${arg} = {})`, {"webcompat":true} );
+        parseSource(`'use strict'; (${arg} = {})`, { webcompat: true });
       });
     });
 
     it(`'use strict'; for (${arg} of {}) {}`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; for (${arg} of {}) {}`, {"webcompat":true} );
+        parseSource(`'use strict'; for (${arg} of {}) {}`, { webcompat: true });
       });
     });
 
     it(`'use strict'; for (${arg} in {}) {}`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; for (${arg} in {}) {}`, {"webcompat":true} );
+        parseSource(`'use strict'; for (${arg} in {}) {}`, { webcompat: true });
       });
     });
 
     it(`'use strict'; for (${arg} in {}) {}`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; for (${arg} in {}) {}`, {"next":true} );
+        parseSource(`'use strict'; for (${arg} in {}) {}`, { next: true });
       });
     });
 
     it(`for (${arg} in {}) {}`, () => {
       t.throws(() => {
-        parseSource(`for (${arg} in {}) {}`, {"module":true} );
+        parseSource(`for (${arg} in {}) {}`, { module: true });
       });
     });
   }
@@ -139,7 +139,7 @@ describe('Miscellaneous - Eval and arguments', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"impliedStrict":true} );
+        parseSource(`${arg}`, { impliedStrict: true });
       });
     });
   }
@@ -163,25 +163,25 @@ describe('Miscellaneous - Eval and arguments', () => {
   ]) {
     it(`"use strict"; ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`  );
+        parseSource(`"use strict"; ${arg}`);
       });
     });
 
     it(`function foo() { "use strict"; ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { "use strict";  ${arg} }`  );
+        parseSource(`function foo() { "use strict";  ${arg} }`);
       });
     });
 
     it(`() => { "use strict"; ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`() => { "use strict";  ${arg} }`  );
+        parseSource(`() => { "use strict";  ${arg} }`);
       });
     });
 
     it(`() => { "use strict"; ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`() => { "use strict";  ${arg} }`, {"webcompat":true} );
+        parseSource(`() => { "use strict";  ${arg} }`, { webcompat: true });
       });
     });
   }
@@ -275,24 +275,24 @@ describe('Miscellaneous - Eval and arguments', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true} );
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
 
     it(`function foo() { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg} }`, {"webcompat":true} );
+        parseSource(`function foo() { ${arg} }`, { webcompat: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`function foo() { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg} }`  );
+        parseSource(`function foo() { ${arg} }`);
       });
     });
   }

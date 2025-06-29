@@ -16,13 +16,13 @@ describe('Module - Export', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"module":true} );
+        parseSource(`${arg}`, { module: true });
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"module":true,"webcompat":true} );
+        parseSource(`${arg}`, { module: true, webcompat: true });
       });
     });
   }
@@ -35,17 +35,13 @@ describe('Module - Export', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"module":true} );
+        parseSource(`${arg}`, { module: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(
-          `${arg}`,
-          {"module":true,"webcompat":true,"lexical":true}
-          ,
-        );
+        parseSource(`${arg}`, { module: true, webcompat: true, lexical: true });
       });
     });
   }
@@ -141,7 +137,7 @@ describe('Module - Export', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"module":true} );
+        parseSource(`${arg}`, { module: true });
       });
     });
   }
@@ -696,18 +692,18 @@ describe('Module - Export', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"module":true} );
+        parseSource(`${arg}`, { module: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"module":true} );
+        parseSource(`${arg}`, { module: true });
       });
     });
 
     it(`${arg}`, () => {
-      parseSource(`${arg}`, {"module":true,"webcompat":true} );
+      parseSource(`${arg}`, { module: true, webcompat: true });
     });
   }
   for (const arg of [
@@ -732,7 +728,7 @@ describe('Module - Export', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"module":true,"lexical":true} );
+        parseSource(`${arg}`, { module: true, lexical: true });
       });
     });
   }

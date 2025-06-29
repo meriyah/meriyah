@@ -63,12 +63,12 @@ describe('Next - Decorators', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"next":true} );
+        parseSource(`${arg}`, { next: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"next":true,"webcompat":true} );
+        parseSource(`${arg}`, { next: true, webcompat: true });
       });
     });
   }

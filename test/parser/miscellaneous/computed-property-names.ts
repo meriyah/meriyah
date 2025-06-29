@@ -8,7 +8,7 @@ describe('Miscellaneous - Computed property names', () => {
     for (const arg of ['({[1,2]:3})', '({ *a })', '({ *a: 0 })', '({ *[0]: 0 })']) {
       it(`${arg}`, () => {
         t.throws(() => {
-          parseSource(`${arg}`  );
+          parseSource(`${arg}`);
         });
       });
     }
@@ -34,7 +34,7 @@ describe('Miscellaneous - Computed property names', () => {
     ]) {
       it(`${arg}`, () => {
         t.doesNotThrow(() => {
-          parseSource(`${arg}`  );
+          parseSource(`${arg}`);
         });
       });
     }

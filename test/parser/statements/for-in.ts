@@ -37,13 +37,13 @@ describe('Statements - For in', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"webcompat":true} );
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"webcompat":true,"lexical":true} );
+        parseSource(`${arg}`, { webcompat: true, lexical: true });
       });
     });
   }
@@ -59,25 +59,25 @@ describe('Statements - For in', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true} );
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"webcompat":true,"impliedStrict":true} );
+        parseSource(`${arg}`, { webcompat: true, impliedStrict: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"impliedStrict":true} );
+        parseSource(`${arg}`, { impliedStrict: true });
       });
     });
   }
@@ -207,7 +207,7 @@ describe('Statements - For in', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
   }
@@ -435,37 +435,37 @@ describe('Statements - For in', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"lexical":true} );
+        parseSource(`${arg}`, { lexical: true });
       });
     });
 
     it(`async(); ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async(); ${arg}`  );
+        parseSource(`async(); ${arg}`);
       });
     });
 
     it(`function foo() { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg} }`  );
+        parseSource(`function foo() { ${arg} }`);
       });
     });
   }

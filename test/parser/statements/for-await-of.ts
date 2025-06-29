@@ -48,12 +48,12 @@ describe('Statements - For await of', () => {
     expressions.forEach((exp) => {
       it(wrapper.start + exp + wrapper.finish, () => {
         t.doesNotThrow(() => {
-          parseSource(wrapper.start + exp + wrapper.finish  );
+          parseSource(wrapper.start + exp + wrapper.finish);
         });
       });
       it(wrapper.start + exp + wrapper.finish, () => {
         t.doesNotThrow(() => {
-          parseSource(wrapper.start + exp + wrapper.finish, {"lexical":true} );
+          parseSource(wrapper.start + exp + wrapper.finish, { lexical: true });
         });
       });
     });
@@ -69,19 +69,19 @@ describe('Statements - For await of', () => {
   ]) {
     it(`async function f() {${arg} }`, () => {
       t.throws(() => {
-        parseSource(`async function f() { ${arg} }`  );
+        parseSource(`async function f() { ${arg} }`);
       });
     });
 
     it(`async function f() {${arg} }`, () => {
       t.throws(() => {
-        parseSource(`async function f() { ${arg} }`, {"webcompat":true} );
+        parseSource(`async function f() { ${arg} }`, { webcompat: true });
       });
     });
 
     it(`async function f() { 'use strict'; ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`async function f() { 'use strict'; ${arg} }`  );
+        parseSource(`async function f() { 'use strict'; ${arg} }`);
       });
     });
   }
@@ -221,44 +221,40 @@ describe('Statements - For await of', () => {
   ]) {
     it(`async function f() { for await ${arg}; }`, () => {
       t.throws(() => {
-        parseSource(`async function f() { for await ${arg}; }`  );
+        parseSource(`async function f() { for await ${arg}; }`);
       });
     });
     it(`async function f() { for await ${arg}; }`, () => {
       t.throws(() => {
-        parseSource(`async function f() { for await ${arg}; }`, {"lexical":true} );
+        parseSource(`async function f() { for await ${arg}; }`, { lexical: true });
       });
     });
     it(`async function f() { for await ${arg}; }`, () => {
       t.throws(() => {
-        parseSource(
-          `async function f() { for await ${arg}; }`,
-          {"webcompat":true,"lexical":true}
-          ,
-        );
+        parseSource(`async function f() { for await ${arg}; }`, { webcompat: true, lexical: true });
       });
     });
     it(`async function f() { 'use strict'; for await ${arg}; }`, () => {
       t.throws(() => {
-        parseSource(`async function f() { 'use strict'; for await ${arg}; }`  );
+        parseSource(`async function f() { 'use strict'; for await ${arg}; }`);
       });
     });
 
     it(`async function f() { for await  ${arg}  {} }`, () => {
       t.throws(() => {
-        parseSource(`async function f() { for await  ${arg} {} }`  );
+        parseSource(`async function f() { for await  ${arg} {} }`);
       });
     });
 
     it(`async function * f() { 'use strict'; for await ${arg}; }`, () => {
       t.throws(() => {
-        parseSource(`async function * f() { 'use strict'; for await ${arg}; }`  );
+        parseSource(`async function * f() { 'use strict'; for await ${arg}; }`);
       });
     });
 
     it(`async function * f() { for await ${arg}; }`, () => {
       t.throws(() => {
-        parseSource(`async function * f() { for await ${arg}; }`  );
+        parseSource(`async function * f() { for await ${arg}; }`);
       });
     });
   }
@@ -334,85 +330,85 @@ describe('Statements - For await of', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function f() { let y; for await  ${arg}; }`  );
+        parseSource(`async function f() { let y; for await  ${arg}; }`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function * f() { 'use strict'; for await\n ${arg}; }`  );
+        parseSource(`async function * f() { 'use strict'; for await\n ${arg}; }`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function f() { 'use strict'; for await ${arg}  { } }`  );
+        parseSource(`async function f() { 'use strict'; for await ${arg}  { } }`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function f() { 'use strict'; for await ${arg}  { } }`, {"webcompat":true} );
+        parseSource(`async function f() { 'use strict'; for await ${arg}  { } }`, { webcompat: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function * f() { 'use strict'; for await  ${arg}  { } }`  );
+        parseSource(`async function * f() { 'use strict'; for await  ${arg}  { } }`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function f() { for\nawait  ${arg}  { } }`  );
+        parseSource(`async function f() { for\nawait  ${arg}  { } }`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function f() { 'use strict'; for\nawait  ${arg}  { } }`  );
+        parseSource(`async function f() { 'use strict'; for\nawait  ${arg}  { } }`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function * f() { for await ${arg}; }`  );
+        parseSource(`async function * f() { for await ${arg}; }`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function * f() { for await ${arg}; }`, {"webcompat":true} );
+        parseSource(`async function * f() { for await ${arg}; }`, { webcompat: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function f() { let y; for await  ${arg}; }`  );
+        parseSource(`async function f() { let y; for await  ${arg}; }`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function f() { 'use strict'; let y; for\nawait ${arg}{ } }`  );
+        parseSource(`async function f() { 'use strict'; let y; for\nawait ${arg}{ } }`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function f() { 'use strict'; let y; for\nawait ${arg}; }`  );
+        parseSource(`async function f() { 'use strict'; let y; for\nawait ${arg}; }`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function f() { 'use strict'; let y; for await ${arg}; }`  );
+        parseSource(`async function f() { 'use strict'; let y; for await ${arg}; }`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function * f() { 'use strict'; let y; for await\n ${arg}; }`  );
+        parseSource(`async function * f() { 'use strict'; let y; for await\n ${arg}; }`);
       });
     });
   }
@@ -515,18 +511,18 @@ describe('Statements - For await of', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function fn() { ${arg} }`  );
+        parseSource(`async function fn() { ${arg} }`);
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function *fn() { ${arg} }`  );
+        parseSource(`async function *fn() { ${arg} }`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async () => { ${arg} }`  );
+        parseSource(`async () => { ${arg} }`);
       });
     });
   }
@@ -537,7 +533,7 @@ describe('Statements - For await of', () => {
     });
 
     t.throws(() => {
-      parseSource('for await (const a of b) {}'  );
+      parseSource('for await (const a of b) {}');
     });
 
     t.throws(() => {

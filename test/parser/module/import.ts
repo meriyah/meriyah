@@ -196,7 +196,7 @@ describe('Module - Import', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"module":true} );
+        parseSource(`${arg}`, { module: true });
       });
     });
   }
@@ -211,7 +211,7 @@ describe('Module - Import', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"module":true} );
+        parseSource(`${arg}`, { module: true });
       }, /Expected 'from'$/);
     });
   }
@@ -443,11 +443,11 @@ describe('Module - Import', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"module":true} );
+        parseSource(`${arg}`, { module: true });
       });
 
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"module":true,"lexical":true} );
+        parseSource(`${arg}`, { module: true, lexical: true });
       });
     });
   }

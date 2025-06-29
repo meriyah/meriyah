@@ -24,31 +24,31 @@ describe('Expressions - Class', () => {
   ]) {
     it(`(class {${arg}})`, () => {
       t.throws(() => {
-        parseSource(`(class {${arg}})`  );
+        parseSource(`(class {${arg}})`);
       });
     });
 
     it(`(class {${arg}})`, () => {
       t.throws(() => {
-        parseSource(`(class {${arg}})`, {"webcompat":true} );
+        parseSource(`(class {${arg}})`, { webcompat: true });
       });
     });
 
     it(`class {${arg}}`, () => {
       t.throws(() => {
-        parseSource(`(class {${arg}})`  );
+        parseSource(`(class {${arg}})`);
       });
     });
 
     it(`(class extends Base {${arg}})`, () => {
       t.throws(() => {
-        parseSource(`(class extends Base {${arg}})`  );
+        parseSource(`(class extends Base {${arg}})`);
       });
     });
 
     it(`(class {${arg}})`, () => {
       t.throws(() => {
-        parseSource(`bar, (class {${arg}})`  );
+        parseSource(`bar, (class {${arg}})`);
       });
     });
   }
@@ -69,25 +69,25 @@ describe('Expressions - Class', () => {
   ]) {
     it(`class C { get name(${arg}) {} }`, () => {
       t.throws(() => {
-        parseSource(`class C { get name(${arg}) {} }`  );
+        parseSource(`class C { get name(${arg}) {} }`);
       });
     });
 
     it(`class C { get name(${arg}) {} }`, () => {
       t.throws(() => {
-        parseSource(`class C { get name(${arg}) {} }`, {"webcompat":true} );
+        parseSource(`class C { get name(${arg}) {} }`, { webcompat: true });
       });
     });
 
     it(`"use strict"; class C { get name(${arg}) {} }`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; class C { get name(${arg}) {} }`  );
+        parseSource(`"use strict"; class C { get name(${arg}) {} }`);
       });
     });
 
     it(`(class C { get name(${arg}) {} })`, () => {
       t.throws(() => {
-        parseSource(`(class C { get name(${arg}) {} })`  );
+        parseSource(`(class C { get name(${arg}) {} })`);
       });
     });
   }
@@ -107,19 +107,19 @@ describe('Expressions - Class', () => {
   ]) {
     it(`class C {${arg}}`, () => {
       t.throws(() => {
-        parseSource(`class C {${arg}}`  );
+        parseSource(`class C {${arg}}`);
       });
     });
 
     it(`(class C {${arg}})`, () => {
       t.throws(() => {
-        parseSource(`(class C {${arg}})`  );
+        parseSource(`(class C {${arg}})`);
       });
     });
 
     it(`(class C {${arg}})`, () => {
       t.throws(() => {
-        parseSource(`(class C {${arg}})`, {"webcompat":true} );
+        parseSource(`(class C {${arg}})`, { webcompat: true });
       });
     });
   }
@@ -138,19 +138,19 @@ describe('Expressions - Class', () => {
   ]) {
     it(`class C {${arg}}`, () => {
       t.throws(() => {
-        parseSource(`class C {${arg}}`  );
+        parseSource(`class C {${arg}}`);
       });
     });
 
     it(`(class C {${arg}})`, () => {
       t.throws(() => {
-        parseSource(`(class C {${arg}})`  );
+        parseSource(`(class C {${arg}})`);
       });
     });
 
     it(`(class C {${arg}})`, () => {
       t.throws(() => {
-        parseSource(`(class C {${arg}})`, {"webcompat":true} );
+        parseSource(`(class C {${arg}})`, { webcompat: true });
       });
     });
   }
@@ -177,19 +177,19 @@ describe('Expressions - Class', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"webcompat":true} );
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
 
     it(`if (true) { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`if (true) { ${arg} }`  );
+        parseSource(`if (true) { ${arg} }`);
       });
     });
   }
@@ -209,25 +209,25 @@ describe('Expressions - Class', () => {
   ]) {
     it(`bar, ${arg};`, () => {
       t.throws(() => {
-        parseSource(`bar, ${arg};`  );
+        parseSource(`bar, ${arg};`);
       });
     });
 
     it(`var foo = ${arg};`, () => {
       t.throws(() => {
-        parseSource(`var foo = ${arg};`  );
+        parseSource(`var foo = ${arg};`);
       });
     });
 
     it(`(${arg})`, () => {
       t.throws(() => {
-        parseSource(`(${arg})`  );
+        parseSource(`(${arg})`);
       });
     });
 
     it(`(${arg})`, () => {
       t.throws(() => {
-        parseSource(`(${arg})`, {"webcompat":true} );
+        parseSource(`(${arg})`, { webcompat: true });
       });
     });
   }
@@ -239,19 +239,19 @@ describe('Expressions - Class', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`(${arg})`, () => {
       t.throws(() => {
-        parseSource(`(${arg})`  );
+        parseSource(`(${arg})`);
       });
     });
 
     it(`(${arg})`, () => {
       t.throws(() => {
-        parseSource(`(${arg})`, {"webcompat":true} );
+        parseSource(`(${arg})`, { webcompat: true });
       });
     });
   }
@@ -259,19 +259,19 @@ describe('Expressions - Class', () => {
   for (const arg of ['constructor() {}; constructor() {}']) {
     it(`class C {${arg}}`, () => {
       t.throws(() => {
-        parseSource(`class C {${arg}}`  );
+        parseSource(`class C {${arg}}`);
       });
     });
 
     it(`(class C {${arg}})`, () => {
       t.throws(() => {
-        parseSource(`(class C {${arg}})`  );
+        parseSource(`(class C {${arg}})`);
       });
     });
 
     it(`(class C {${arg}})`, () => {
       t.throws(() => {
-        parseSource(`(class C {${arg}})`, {"webcompat":true} );
+        parseSource(`(class C {${arg}})`, { webcompat: true });
       });
     });
   }
@@ -285,19 +285,19 @@ describe('Expressions - Class', () => {
   ]) {
     it(`class C {${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C {${arg}}`  );
+        parseSource(`class C {${arg}}`);
       });
     });
 
     it(`(class C {${arg}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C {${arg}})`  );
+        parseSource(`(class C {${arg}})`);
       });
     });
 
     it(`(class C {${arg}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C {${arg}})`, {"webcompat":true} );
+        parseSource(`(class C {${arg}})`, { webcompat: true });
       });
     });
   }
@@ -324,13 +324,13 @@ describe('Expressions - Class', () => {
   ]) {
     it(`class C {${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C {${arg}}`  );
+        parseSource(`class C {${arg}}`);
       });
     });
 
     it(`(class C {${arg}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C {${arg}})`  );
+        parseSource(`(class C {${arg}})`);
       });
     });
   }
@@ -393,29 +393,29 @@ describe('Expressions - Class', () => {
   ]) {
     it(`(class {${arg}})`, () => {
       t.throws(() => {
-        parseSource(`(class {${arg}})`  );
+        parseSource(`(class {${arg}})`);
       });
     });
     it(`(class {${arg}})`, () => {
       t.throws(() => {
-        parseSource(`(class {${arg}})`, {"webcompat":true} );
+        parseSource(`(class {${arg}})`, { webcompat: true });
       });
     });
     it(`(class {${arg}})`, () => {
       t.throws(() => {
-        parseSource(`(class {${arg}})`  );
+        parseSource(`(class {${arg}})`);
       });
     });
 
     it(`(class {${arg}})`, () => {
       t.throws(() => {
-        parseSource(`bar, class {${arg}}`  );
+        parseSource(`bar, class {${arg}}`);
       });
     });
 
     it(`var foo =  class {${arg}}`, () => {
       t.throws(() => {
-        parseSource(`var foo = class {${arg}}`  );
+        parseSource(`var foo = class {${arg}}`);
       });
     });
   }
@@ -441,13 +441,13 @@ describe('Expressions - Class', () => {
   ]) {
     it(`(${arg})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(${arg})`  );
+        parseSource(`(${arg})`);
       });
     });
 
     it(`bar, ${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar, ${arg};`  );
+        parseSource(`bar, ${arg};`);
       });
     });
   }
@@ -484,43 +484,43 @@ describe('Expressions - Class', () => {
   ]) {
     it(`(class {${arg}() {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class {${arg}() {}});`  );
+        parseSource(`(class {${arg}() {}});`);
       });
     });
 
     it(`(class { get ${arg}() {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class { get ${arg}() {}});`  );
+        parseSource(`(class { get ${arg}() {}});`);
       });
     });
 
     it(`(class { static ${arg}() {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class { static ${arg}() {}});`  );
+        parseSource(`(class { static ${arg}() {}});`);
       });
     });
 
     it(`(class { static get ${arg}() {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class { static get ${arg}() {}});`  );
+        parseSource(`(class { static get ${arg}() {}});`);
       });
     });
 
     it(`(class { static *${arg}() {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class { static *${arg}() {}});`  );
+        parseSource(`(class { static *${arg}() {}});`);
       });
     });
 
     it(`class C {${arg}() {}};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C {${arg}() {}}`  );
+        parseSource(`class C {${arg}() {}}`);
       });
     });
 
     it(`class C { static set ${arg}(v) {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { static set ${arg}(v) {}}`  );
+        parseSource(`class C { static set ${arg}(v) {}}`);
       });
     });
   }
@@ -1013,37 +1013,37 @@ describe('Expressions - Class', () => {
   ]) {
     it(`(class { ${arg}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class { ${arg}})`  );
+        parseSource(`(class { ${arg}})`);
       });
     });
 
     it(`class C { ${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg}}`  );
+        parseSource(`class C { ${arg}}`);
       });
     });
 
     it(`(class { ${arg}}) (class { ${arg}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class { ${arg}}) (class { ${arg}})`  );
+        parseSource(`(class { ${arg}}) (class { ${arg}})`);
       });
     });
 
     it(`function foo() { (class { ${arg}}) }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { (class { ${arg}}) }`  );
+        parseSource(`function foo() { (class { ${arg}}) }`);
       });
     });
 
     it(`(class extends Base  { ${arg}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class extends Base  { ${arg}})`  );
+        parseSource(`(class extends Base  { ${arg}})`);
       });
     });
 
     it(`class extends Base  { ${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C extends Base  { ${arg}}`  );
+        parseSource(`class C extends Base  { ${arg}}`);
       });
     });
   }
@@ -1051,77 +1051,77 @@ describe('Expressions - Class', () => {
   for (const arg of ['async', 'this', 'null', 'true', 'false', 'eval', 'arguments', 'get', 'set']) {
     it(`(class x {${arg} : x})`, () => {
       t.throws(() => {
-        parseSource(`(class x {${arg} : x})`  );
+        parseSource(`(class x {${arg} : x})`);
       });
     });
     it(`(class x {${arg}(){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x {${arg}(){}})`  );
+        parseSource(`(class x {${arg}(){}})`);
       });
     });
     it(`(class x { static ${arg}(){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x { static ${arg}(){}})`  );
+        parseSource(`(class x { static ${arg}(){}})`);
       });
     });
 
     it(`(class x { static * ${arg}(){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x { static * ${arg}(){}})`  );
+        parseSource(`(class x { static * ${arg}(){}})`);
       });
     });
 
     it(`(class x { static async ${arg}(){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x { static async ${arg}(){}})`  );
+        parseSource(`(class x { static async ${arg}(){}})`);
       });
     });
 
     it(`(class x { static async *${arg}(){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x { static async *${arg}(){}})`  );
+        parseSource(`(class x { static async *${arg}(){}})`);
       });
     });
 
     it(`(class x { static get ${arg}(){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x { static get ${arg}(){}})`  );
+        parseSource(`(class x { static get ${arg}(){}})`);
       });
     });
 
     it(`(class x { static set ${arg}(x){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x { static set ${arg}(x){}})`  );
+        parseSource(`(class x { static set ${arg}(x){}})`);
       });
     });
 
     it(`(class x { async ${arg}(){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x { async ${arg}(){}})`  );
+        parseSource(`(class x { async ${arg}(){}})`);
       });
     });
 
     it(`(class x { async *${arg}(){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x { async *${arg}(){}})`  );
+        parseSource(`(class x { async *${arg}(){}})`);
       });
     });
 
     it(`(class x {*${arg}(){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x {*${arg}(){}})`  );
+        parseSource(`(class x {*${arg}(){}})`);
       });
     });
 
     it(`(class x {get ${arg}(){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x {get ${arg}(){}})`  );
+        parseSource(`(class x {get ${arg}(){}})`);
       });
     });
 
     it(`(class x {set ${arg}(x){}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class x {set ${arg}(x){}})`  );
+        parseSource(`(class x {set ${arg}(x){}})`);
       });
     });
   }

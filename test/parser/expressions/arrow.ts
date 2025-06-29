@@ -15,30 +15,30 @@ describe('Expressions - Arrow', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"lexical":true} );
+        parseSource(`${arg}`, { lexical: true });
       });
     });
 
     it(`async ${arg}`, () => {
       t.throws(() => {
-        parseSource(`async ${arg}`  );
+        parseSource(`async ${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"webcompat":true} );
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
 
     it(`"use strict"; ${arg}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; ${arg}`  );
+        parseSource(`"use strict"; ${arg}`);
       });
     });
   }
@@ -62,31 +62,31 @@ describe('Expressions - Arrow', () => {
   ]) {
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`  );
+        parseSource(`${arg};`);
       });
     });
 
     it(`async ${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async ${arg};`  );
+        parseSource(`async ${arg};`);
       });
     });
 
     it(`async ${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async ${arg};`, {"next":true,"webcompat":true} );
+        parseSource(`async ${arg};`, { next: true, webcompat: true });
       });
     });
 
     it(`bar ? (${arg}) : baz;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar ? (${arg}) : baz;`  );
+        parseSource(`bar ? (${arg}) : baz;`);
       });
     });
 
     it(`bar ? baz : (${arg});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar ? baz : (${arg});`  );
+        parseSource(`bar ? baz : (${arg});`);
       });
     });
   }
@@ -114,25 +114,25 @@ describe('Expressions - Arrow', () => {
   ]) {
     it(`(function *g(z = ( ${arg} ) => {}) { });`, () => {
       t.throws(() => {
-        parseSource(`(function *g(z = ( ${arg} ) => {}) { });`  );
+        parseSource(`(function *g(z = ( ${arg} ) => {}) { });`);
       });
     });
 
     it(`(function *g(async ( ${arg} ) => {}) { });`, () => {
       t.throws(() => {
-        parseSource(`(function *g(async ( ${arg} ) => {}) { });`  );
+        parseSource(`(function *g(async ( ${arg} ) => {}) { });`);
       });
     });
 
     it(`"use strict"; (function *g(z = ( ${arg} ) => {}) { });`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; (function *g(z = ( ${arg} ) => {}) { });`  );
+        parseSource(`"use strict"; (function *g(z = ( ${arg} ) => {}) { });`);
       });
     });
 
     it(`(function *g(z = ( ${arg} ) => {}) { });`, () => {
       t.throws(() => {
-        parseSource(`(function *g(z = ( ${arg} ) => {}) { });`, {"module":true} );
+        parseSource(`(function *g(z = ( ${arg} ) => {}) { });`, { module: true });
       });
     });
   }
@@ -226,63 +226,63 @@ describe('Expressions - Arrow', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} `  );
+        parseSource(`${arg} `);
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} `, {"webcompat":true} );
+        parseSource(`${arg} `, { webcompat: true });
       });
     });
     it(`x = ${arg};`, () => {
       t.throws(() => {
-        parseSource(`x = ${arg};`  );
+        parseSource(`x = ${arg};`);
       });
     });
     it(`x = ${arg};`, () => {
       t.throws(() => {
-        parseSource(`x = ${arg};`, {"next":true} );
+        parseSource(`x = ${arg};`, { next: true });
       });
     });
     it(`bar,  ${arg};`, () => {
       t.throws(() => {
-        parseSource(`bar,  ${arg};`  );
+        parseSource(`bar,  ${arg};`);
       });
     });
 
     it(`bar,  ${arg};`, () => {
       t.throws(() => {
-        parseSource(`bar,  ${arg};`, {"webcompat":true} );
+        parseSource(`bar,  ${arg};`, { webcompat: true });
       });
     });
 
     it(`bar,  ${arg};`, () => {
       t.throws(() => {
-        parseSource(`bar,  ${arg};`, {"module":true} );
+        parseSource(`bar,  ${arg};`, { module: true });
       });
     });
 
     it(`bar ? (${arg}) : baz;`, () => {
       t.throws(() => {
-        parseSource(`bar ? (${arg}) : baz;`  );
+        parseSource(`bar ? (${arg}) : baz;`);
       });
     });
 
     it(`bar ? baz : (${arg});`, () => {
       t.throws(() => {
-        parseSource(`bar ? baz : (${arg});`  );
+        parseSource(`bar ? baz : (${arg});`);
       });
     });
 
     it(`${arg}, bar;`, () => {
       t.throws(() => {
-        parseSource(`${arg}, bar;`  );
+        parseSource(`${arg}, bar;`);
       });
     });
 
     it(`bar[${arg}];`, () => {
       t.throws(() => {
-        parseSource(`bar[${arg}];`  );
+        parseSource(`bar[${arg}];`);
       });
     });
   }
@@ -364,55 +364,55 @@ describe('Expressions - Arrow', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true} );
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
 
     it(`v = ${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`v = ${arg};`  );
+        parseSource(`v = ${arg};`);
       });
     });
 
     it(`v = ${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`v = ${arg};`, {"next":true} );
+        parseSource(`v = ${arg};`, { next: true });
       });
     });
 
     it(`bar,  ${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar,  ${arg};`  );
+        parseSource(`bar,  ${arg};`);
       });
     });
 
     it(`bar ? (${arg}) : baz;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar ? (${arg}) : baz;`  );
+        parseSource(`bar ? (${arg}) : baz;`);
       });
     });
 
     it(`bar ? baz : (${arg});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar ? baz : (${arg});`  );
+        parseSource(`bar ? baz : (${arg});`);
       });
     });
 
     it(`${arg}, bar;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}, bar;`  );
+        parseSource(`${arg}, bar;`);
       });
     });
 
     it(`${arg}, bar;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}, bar;`, {"next":true} );
+        parseSource(`${arg}, bar;`, { next: true });
       });
     });
   }
@@ -437,84 +437,84 @@ describe('Expressions - Arrow', () => {
   ]) {
     it(`()${arg} =>{}`, () => {
       t.throws(() => {
-        parseSource(`()${arg} =>{}`  );
+        parseSource(`()${arg} =>{}`);
       });
     });
 
     it(`async ()${arg} =>{}`, () => {
       t.throws(() => {
-        parseSource(`async ()${arg} =>{}`  );
+        parseSource(`async ()${arg} =>{}`);
       });
     });
 
     it(`()${arg} =>{}`, () => {
       t.throws(() => {
-        parseSource(`()${arg} =>{}`, {"webcompat":true} );
+        parseSource(`()${arg} =>{}`, { webcompat: true });
       });
     });
     it(`()${arg} =>{}:`, () => {
       t.throws(() => {
-        parseSource(`()${arg} =>{};`  );
+        parseSource(`()${arg} =>{};`);
       });
     });
 
     it(`var x = ()${arg} =>{}`, () => {
       t.throws(() => {
-        parseSource(`var x = ()${arg} =>{}`  );
+        parseSource(`var x = ()${arg} =>{}`);
       });
     });
 
     it(`var x = ()${arg} =>{}`, () => {
       t.throws(() => {
-        parseSource(`var x = ()${arg} =>{}`, {"next":true} );
+        parseSource(`var x = ()${arg} =>{}`, { next: true });
       });
     });
 
     it(`"use strict"; var x = ()${arg} =>{}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; var x = ()${arg} =>{}`  );
+        parseSource(`"use strict"; var x = ()${arg} =>{}`);
       });
     });
 
     it(`(...a)${arg} =>{}`, () => {
       t.throws(() => {
-        parseSource(`(...a)${arg} =>{}`  );
+        parseSource(`(...a)${arg} =>{}`);
       });
     });
 
     it(`var x = (...a)${arg};`, () => {
       t.throws(() => {
-        parseSource(`var x = (...a)${arg} =>{}`  );
+        parseSource(`var x = (...a)${arg} =>{}`);
       });
     });
 
     it(`(a,b)${arg} =>{}`, () => {
       t.throws(() => {
-        parseSource(`(a,b)${arg} =>{}`  );
+        parseSource(`(a,b)${arg} =>{}`);
       });
     });
 
     it(`var x = (a,b)${arg} =>{}`, () => {
       t.throws(() => {
-        parseSource(`var x = (a,b)${arg} =>{}`  );
+        parseSource(`var x = (a,b)${arg} =>{}`);
       });
     });
 
     it(`async (a,b)${arg} =>{}`, () => {
       t.throws(() => {
-        parseSource(`async (a,b)${arg} =>{}`  );
+        parseSource(`async (a,b)${arg} =>{}`);
       });
     });
 
     it(`(a,...b)${arg};`, () => {
       t.throws(() => {
-        parseSource(`(a,...b)${arg} =>{}`  );
+        parseSource(`(a,...b)${arg} =>{}`);
       });
     });
 
     it(`var x = (a,...b)${arg};`, () => {
       t.throws(() => {
-        parseSource(`var x = (a,...b)${arg} =>{}`  );
+        parseSource(`var x = (a,...b)${arg} =>{}`);
       });
     });
   }
@@ -1120,23 +1120,23 @@ describe('Expressions - Arrow', () => {
   ]) {
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`  );
+        parseSource(`${arg};`);
       });
     });
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`, {"webcompat":true} );
+        parseSource(`${arg};`, { webcompat: true });
       });
     });
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`, {"next":true} );
+        parseSource(`${arg};`, { next: true });
       });
     });
 
     it(`function x(){${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function x(){${arg} }`  );
+        parseSource(`function x(){${arg} }`);
       });
     });
   }
@@ -1148,23 +1148,23 @@ describe('Expressions - Arrow', () => {
   ]) {
     it(`${arg};`, () => {
       t.throws(() => {
-        parseSource(`${arg};`  );
+        parseSource(`${arg};`);
       });
     });
     it(`${arg};`, () => {
       t.throws(() => {
-        parseSource(`${arg};`, {"webcompat":true} );
+        parseSource(`${arg};`, { webcompat: true });
       });
     });
     it(`${arg};`, () => {
       t.throws(() => {
-        parseSource(`${arg};`, {"next":true} );
+        parseSource(`${arg};`, { next: true });
       });
     });
 
     it(`function x(){${arg} }`, () => {
       t.throws(() => {
-        parseSource(`function x(){${arg} }`  );
+        parseSource(`function x(){${arg} }`);
       });
     });
   }

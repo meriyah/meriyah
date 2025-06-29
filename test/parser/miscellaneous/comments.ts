@@ -61,7 +61,7 @@ describe('Miscellaneous - Comments', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"impliedStrict":true} );
+        parseSource(`${arg}`, { impliedStrict: true });
       });
     });
   }
@@ -202,7 +202,7 @@ describe('Miscellaneous - Comments', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true,"impliedStrict":true} );
+        parseSource(`${arg}`, { webcompat: true, impliedStrict: true });
       });
     });
   }

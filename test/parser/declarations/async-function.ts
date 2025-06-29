@@ -17,7 +17,7 @@ describe('Declarations - Async Function', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"webcompat":true} );
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }
@@ -234,13 +234,13 @@ describe('Declarations - Async Function', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true} );
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }
@@ -318,24 +318,24 @@ describe('Declarations - Async Function', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"webcompat":true} );
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`() =>${arg}`, () => {
       t.throws(() => {
-        parseSource(`() =>${arg}`  );
+        parseSource(`() =>${arg}`);
       });
     });
 
     it(`function foo() {${arg}}`, () => {
       t.throws(() => {
-        parseSource(`function foo() {${arg}}`  );
+        parseSource(`function foo() {${arg}}`);
       });
     });
   }
@@ -360,49 +360,49 @@ describe('Declarations - Async Function', () => {
   ]) {
     it(`async function f() {${arg}}`, () => {
       t.throws(() => {
-        parseSource(`async function f() {${arg}}`, {"webcompat":true} );
+        parseSource(`async function f() {${arg}}`, { webcompat: true });
       });
     });
 
     it(`var f = async() => {${arg}}`, () => {
       t.throws(() => {
-        parseSource(`var f = async() => {${arg}}`  );
+        parseSource(`var f = async() => {${arg}}`);
       });
     });
 
     it(`var O = { async method() {${arg}}`, () => {
       t.throws(() => {
-        parseSource(`var O = { async method() {${arg}}`  );
+        parseSource(`var O = { async method() {${arg}}`);
       });
     });
 
     it(`'use strict'; async function f() {${arg}}`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; async function f() {${arg}}`  );
+        parseSource(`'use strict'; async function f() {${arg}}`);
       });
     });
 
     it(`'use strict'; var f = async function() {${arg}}`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; var f = async function() {${arg}}`  );
+        parseSource(`'use strict'; var f = async function() {${arg}}`);
       });
     });
 
     it(`'use strict'; var f = async() => {${arg}}`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; var f = async() => {${arg}}`  );
+        parseSource(`'use strict'; var f = async() => {${arg}}`);
       });
     });
 
     it(`'use strict'; var O = { async method() {${arg}}`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; var O = { async method() {${arg}}`, {"webcompat":true} );
+        parseSource(`'use strict'; var O = { async method() {${arg}}`, { webcompat: true });
       });
     });
 
     it(`'use strict'; var O = { async method() {${arg}}`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; var O = { async method() {${arg}}`  );
+        parseSource(`'use strict'; var O = { async method() {${arg}}`);
       });
     });
   }

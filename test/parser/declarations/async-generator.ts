@@ -88,49 +88,49 @@ describe('Declarations - Async Generator', () => {
   ]) {
     it(`async function * gen() { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function * gen() { ${arg} }`  );
+        parseSource(`async function * gen() { ${arg} }`);
       });
     });
 
     it(`(async function * () { ${arg} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(async function * () { ${arg} })`  );
+        parseSource(`(async function * () { ${arg} })`);
       });
     });
 
     it(`(async function * () { ${arg} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(async function * () { ${arg} })`, {"webcompat":true} );
+        parseSource(`(async function * () { ${arg} })`, { webcompat: true });
       });
     });
 
     it(`(async function * gen() { ${arg} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(async function * gen() { ${arg} })`  );
+        parseSource(`(async function * gen() { ${arg} })`);
       });
     });
 
     it(`({ async * gen () { ${arg} } })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ async * gen () { ${arg} } })`  );
+        parseSource(`({ async * gen () { ${arg} } })`);
       });
     });
 
     it(`(async function * () {${arg} }) `, () => {
       t.doesNotThrow(() => {
-        parseSource(`(async function * () {${arg} }) `  );
+        parseSource(`(async function * () {${arg} }) `);
       });
     });
 
     it(`({ async * gen () {${arg} } }) `, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ async * gen () {${arg} } }) `  );
+        parseSource(`({ async * gen () {${arg} } }) `);
       });
     });
 
     it(`({ async * gen () {${arg} } }) `, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ async * gen () {${arg} } }) `, {"webcompat":true} );
+        parseSource(`({ async * gen () {${arg} } }) `, { webcompat: true });
       });
     });
   }
@@ -206,37 +206,37 @@ describe('Declarations - Async Generator', () => {
   ]) {
     it(`async function * gen() { ${arg} } `, () => {
       t.throws(() => {
-        parseSource(`async function * gen() { ${arg} } `  );
+        parseSource(`async function * gen() { ${arg} } `);
       });
     });
 
     it(`"use strict"; async function * gen() { ${arg} } `, () => {
       t.throws(() => {
-        parseSource(`"use strict"; async function * gen() { ${arg} } `  );
+        parseSource(`"use strict"; async function * gen() { ${arg} } `);
       });
     });
 
     it(`async function * gen() { ${arg} } `, () => {
       t.throws(() => {
-        parseSource(`async function * gen() { ${arg} } `, {"module":true} );
+        parseSource(`async function * gen() { ${arg} } `, { module: true });
       });
     });
 
     it(`async function * gen() { ${arg} } `, () => {
       t.throws(() => {
-        parseSource(`async function * gen() { ${arg} } `, {"module":true} );
+        parseSource(`async function * gen() { ${arg} } `, { module: true });
       });
     });
 
     it(`(async function * () {${arg} }) `, () => {
       t.throws(() => {
-        parseSource(`(async function * () {${arg} }) `  );
+        parseSource(`(async function * () {${arg} }) `);
       });
     });
 
     it(`({ async * gen () {${arg} } }) `, () => {
       t.throws(() => {
-        parseSource(`({ async * gen () {${arg} } }) `  );
+        parseSource(`({ async * gen () {${arg} } }) `);
       });
     });
   }

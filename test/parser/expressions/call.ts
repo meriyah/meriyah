@@ -14,7 +14,7 @@ describe('Expressions - Call', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
   }
@@ -22,13 +22,13 @@ describe('Expressions - Call', () => {
   for (const arg of ['(...[1, 2, 3])', '......[1,2,3]']) {
     it(`function fn() { 'use strict';} fn(${arg});`, () => {
       t.throws(() => {
-        parseSource(`function fn() { 'use strict';} fn(${arg});`  );
+        parseSource(`function fn() { 'use strict';} fn(${arg});`);
       });
     });
 
     it(`function fn() { } fn(${arg});`, () => {
       t.throws(() => {
-        parseSource(`function fn() { } fn(${arg});`  );
+        parseSource(`function fn() { } fn(${arg});`);
       });
     });
   }
@@ -52,25 +52,25 @@ describe('Expressions - Call', () => {
   ]) {
     it(`function fn() { 'use strict';} fn(${arg});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function fn() { 'use strict';} fn(${arg});`  );
+        parseSource(`function fn() { 'use strict';} fn(${arg});`);
       });
     });
 
     it(`function fn() { } fn(${arg});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function fn() { } fn(${arg});`  );
+        parseSource(`function fn() { } fn(${arg});`);
       });
     });
 
     it(`function fn() { } fn(${arg});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function fn() { } fn(${arg});`, {"webcompat":true} );
+        parseSource(`function fn() { } fn(${arg});`, { webcompat: true });
       });
     });
 
     it(`function fn() { } fn(${arg});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function fn() { } fn(${arg});`, {"module":true} );
+        parseSource(`function fn() { } fn(${arg});`, { module: true });
       });
     });
   }
@@ -212,24 +212,24 @@ describe('Expressions - Call', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
     it(`"use strict"; ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`  );
-      });
-    });
-
-    it(`"use strict"; ${arg}`, () => {
-      t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`, {"webcompat":true} );
+        parseSource(`"use strict"; ${arg}`);
       });
     });
 
     it(`"use strict"; ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`, {"module":true} );
+        parseSource(`"use strict"; ${arg}`, { webcompat: true });
+      });
+    });
+
+    it(`"use strict"; ${arg}`, () => {
+      t.doesNotThrow(() => {
+        parseSource(`"use strict"; ${arg}`, { module: true });
       });
     });
   }

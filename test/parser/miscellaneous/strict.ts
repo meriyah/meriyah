@@ -7,12 +7,12 @@ describe('Miscellaneous - Strict mode', () => {
   for (const arg of [`; with (x) y;`, '"use strict"; with (x) y;', 'class X { foo() { with (x) y; } }']) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"webcompat":true,"impliedStrict":true} );
+        parseSource(`${arg}`, { webcompat: true, impliedStrict: true });
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"impliedStrict":true} );
+        parseSource(`${arg}`, { impliedStrict: true });
       });
     });
   }
@@ -75,12 +75,12 @@ describe('Miscellaneous - Strict mode', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"webcompat":true} );
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
   }
@@ -118,12 +118,12 @@ describe('Miscellaneous - Strict mode', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true} );
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
   }

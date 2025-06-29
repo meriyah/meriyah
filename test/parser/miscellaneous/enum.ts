@@ -52,7 +52,7 @@ describe('Miscellaneous - Enum', () => {
   ]) {
     it(`"use strict"; ${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"impliedStrict":true} );
+        parseSource(`${arg}`, { impliedStrict: true });
       });
     });
   }
@@ -60,13 +60,13 @@ describe('Miscellaneous - Enum', () => {
   for (const arg of ['x = { enum: false }', 'class X { enum(){} }', 'class X { static enum(){} }']) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"module":true} );
+        parseSource(`${arg}`, { module: true });
       });
     });
   }

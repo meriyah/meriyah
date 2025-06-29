@@ -63,7 +63,7 @@ describe('Next - Public fields', () => {
   ]) {
     it(`class C { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`class C { ${arg} }`, {"next":true} );
+        parseSource(`class C { ${arg} }`, { next: true });
       });
     });
   }
@@ -164,7 +164,7 @@ describe('Next - Public fields', () => {
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg} }`, {"next":true} );
+        parseSource(`class C { ${arg} }`, { next: true });
       });
     });
   }

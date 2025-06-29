@@ -45,22 +45,22 @@ describe('Statements - Labeled', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} : x`  );
+        parseSource(`${arg} : x`);
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} : x`, {"lexical":true} );
+        parseSource(`${arg} : x`, { lexical: true });
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} : x`, {"webcompat":true} );
+        parseSource(`${arg} : x`, { webcompat: true });
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} : x`, {"impliedStrict":true} );
+        parseSource(`${arg} : x`, { impliedStrict: true });
       });
     });
   }

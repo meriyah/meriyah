@@ -23,15 +23,15 @@ describe('Expressions - Functions', () => {
   ]) {
     it(`(function (${arg}) {})`, () => {
       t.throws(() => {
-        parseSource(`(function (${arg}) {})`  );
+        parseSource(`(function (${arg}) {})`);
       });
 
       t.throws(() => {
-        parseSource(`const foo = (function (${arg}) {})`  );
+        parseSource(`const foo = (function (${arg}) {})`);
       });
 
       t.throws(() => {
-        parseSource(`(function (${arg}) {})`, {"module":true} );
+        parseSource(`(function (${arg}) {})`, { module: true });
       });
     });
   }
@@ -47,25 +47,25 @@ describe('Expressions - Functions', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`function foo() { ${arg}}`, () => {
       t.throws(() => {
-        parseSource(`function foo() { ${arg}}`  );
+        parseSource(`function foo() { ${arg}}`);
       });
     });
 
     it(`(function foo() { ${arg}})`, () => {
       t.throws(() => {
-        parseSource(`(function foo() { ${arg}})`  );
+        parseSource(`(function foo() { ${arg}})`);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"module":true} );
+        parseSource(`${arg}`, { module: true });
       });
     });
   }
@@ -103,7 +103,7 @@ describe('Expressions - Functions', () => {
   ]) {
     it(`(function(${arg}) {})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function(${arg}) {})`  );
+        parseSource(`(function(${arg}) {})`);
       });
     });
   }
@@ -249,13 +249,13 @@ describe('Expressions - Functions', () => {
   for (const arg of validSyntax) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"module":true} );
+        parseSource(`${arg}`, { module: true });
       });
     });
   }
@@ -266,7 +266,7 @@ describe('Expressions - Functions', () => {
   ]) {
     it(arg, () => {
       t.doesNotThrow(() => {
-        parseSource(arg  );
+        parseSource(arg);
       });
     });
   }

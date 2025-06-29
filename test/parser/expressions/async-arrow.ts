@@ -79,49 +79,49 @@ describe('Expressions - Async arrow', () => {
   ]) {
     it(`async ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async ${arg}`  );
+        parseSource(`async ${arg}`);
       });
     });
 
     it(`async ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async ${arg}`, {"lexical":true} );
+        parseSource(`async ${arg}`, { lexical: true });
       });
     });
 
     it(`async ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async ${arg}`, {"webcompat":true} );
+        parseSource(`async ${arg}`, { webcompat: true });
       });
     });
 
     it(`bar, async ${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar, async ${arg};`  );
+        parseSource(`bar, async ${arg};`);
       });
     });
 
     it(`bar ? async (${arg}) : baz;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar ? async (${arg}) : baz;`  );
+        parseSource(`bar ? async (${arg}) : baz;`);
       });
     });
 
     it(`bar ? baz : async  (${arg});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar ? baz : async  (${arg});`  );
+        parseSource(`bar ? baz : async  (${arg});`);
       });
     });
 
     it(`async ${arg}, bar;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async ${arg}, bar;`  );
+        parseSource(`async ${arg}, bar;`);
       });
     });
 
     it(`async ${arg}, bar;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async ${arg}, bar;`, {"next":true} );
+        parseSource(`async ${arg}, bar;`, { next: true });
       });
     });
   }
@@ -837,37 +837,37 @@ describe('Expressions - Async arrow', () => {
   ]) {
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`  );
+        parseSource(`${arg};`);
       });
     });
 
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`, {"lexical":true} );
+        parseSource(`${arg};`, { lexical: true });
       });
     });
 
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`, {"webcompat":true,"lexical":true} );
+        parseSource(`${arg};`, { webcompat: true, lexical: true });
       });
     });
 
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`, {"webcompat":true} );
+        parseSource(`${arg};`, { webcompat: true });
       });
     });
 
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`, {"next":true} );
+        parseSource(`${arg};`, { next: true });
       });
     });
 
     it(`function foo() { ${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg}}`, {"webcompat":true} );
+        parseSource(`function foo() { ${arg}}`, { webcompat: true });
       });
     });
   }

@@ -8,67 +8,67 @@ describe('Expressions - Super', () => {
   for (const arg of ['new super;', 'new super();', '() => new super;', '() => new super();']) {
     it(`class C { method() { ${arg} } }`, () => {
       t.throws(() => {
-        parseSource(`class C { method() { ${arg} } }`  );
+        parseSource(`class C { method() { ${arg} } }`);
       });
     });
 
     it(`class C { *method() { ${arg} } }`, () => {
       t.throws(() => {
-        parseSource(`class C { *method() { ${arg} } }`  );
+        parseSource(`class C { *method() { ${arg} } }`);
       });
     });
 
     it(`class C { get x() { ${arg} } }`, () => {
       t.throws(() => {
-        parseSource(`class C { get x() { ${arg} } }`  );
+        parseSource(`class C { get x() { ${arg} } }`);
       });
     });
 
     it(`class C { get x() { ${arg} } }`, () => {
       t.throws(() => {
-        parseSource(`class C { get x() { ${arg} } }`, {"lexical":true} );
+        parseSource(`class C { get x() { ${arg} } }`, { lexical: true });
       });
     });
 
     it(`class C { set x(_) { ${arg} } }`, () => {
       t.throws(() => {
-        parseSource(`class C { set x(_) { ${arg} } }`  );
+        parseSource(`class C { set x(_) { ${arg} } }`);
       });
     });
 
     it(`({ method() { ${arg} } })`, () => {
       t.throws(() => {
-        parseSource(`({ method() { ${arg} } })`  );
+        parseSource(`({ method() { ${arg} } })`);
       });
     });
 
     it(`(function() { ${arg} } )`, () => {
       t.throws(() => {
-        parseSource(`(function() { ${arg} } )`  );
+        parseSource(`(function() { ${arg} } )`);
       });
     });
 
     it(`var f = function() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`var f = function() { ${arg} }`  );
+        parseSource(`var f = function() { ${arg} }`);
       });
     });
 
     it(`({ f: function*() {${arg} } })`, () => {
       t.throws(() => {
-        parseSource(`({ f: function*() { ${arg} } })`  );
+        parseSource(`({ f: function*() { ${arg} } })`);
       });
     });
 
     it(`(function*() { ${arg} })`, () => {
       t.throws(() => {
-        parseSource(`(function*() { ${arg} })`  );
+        parseSource(`(function*() { ${arg} })`);
       });
     });
 
     it(`var f = function*() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`var f = function*() { ${arg} }`  );
+        parseSource(`var f = function*() { ${arg} }`);
       });
     });
   }
@@ -77,49 +77,49 @@ describe('Expressions - Super', () => {
   for (const arg of ['new super.x;', 'new super.x();', '() => new super.x;', '() => new super.x();']) {
     it(`class C { constructor() {${arg}}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { constructor() {${arg}}}`  );
+        parseSource(`class C { constructor() {${arg}}}`);
       });
     });
 
     it(`class C { *method() {${arg}}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { *method() {${arg}}}`  );
+        parseSource(`class C { *method() {${arg}}}`);
       });
     });
 
     it(`({ method() {${arg}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ method() {${arg}}})`  );
+        parseSource(`({ method() {${arg}}})`);
       });
     });
 
     it(`({ *method() {${arg}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ *method() {${arg}}})`  );
+        parseSource(`({ *method() {${arg}}})`);
       });
     });
 
     it(`({ get x() {${arg}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ get x() {${arg}}})`  );
+        parseSource(`({ get x() {${arg}}})`);
       });
     });
 
     it(`({ set x(_) {${arg}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ set x(_) {${arg}}})`  );
+        parseSource(`({ set x(_) {${arg}}})`);
       });
     });
 
     it(`class C { set x(_) {${arg}}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { set x(_) {${arg}}}`  );
+        parseSource(`class C { set x(_) {${arg}}}`);
       });
     });
 
     it(`class C { get x() {${arg}}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { get x() {${arg}}}`  );
+        parseSource(`class C { get x() {${arg}}}`);
       });
     });
   }
@@ -143,55 +143,55 @@ describe('Expressions - Super', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`parseSource = ${arg}`, () => {
       t.throws(() => {
-        parseSource(`parseSource = ${arg}`  );
+        parseSource(`parseSource = ${arg}`);
       });
     });
 
     it(`foo(${arg})`, () => {
       t.throws(() => {
-        parseSource(`foo(${arg})`  );
+        parseSource(`foo(${arg})`);
       });
     });
 
     it(`if (${arg}) {}`, () => {
       t.throws(() => {
-        parseSource(`if (${arg}) {}`  );
+        parseSource(`if (${arg}) {}`);
       });
     });
 
     it(`if (false) {} else {${arg}}`, () => {
       t.throws(() => {
-        parseSource(`if (false) {} else {${arg}}`  );
+        parseSource(`if (false) {} else {${arg}}`);
       });
     });
 
     it(`class C { m() { function f() {${arg}} } }`, () => {
       t.throws(() => {
-        parseSource(`class C { m() { function f() {${arg}} } }`  );
+        parseSource(`class C { m() { function f() {${arg}} } }`);
       });
     });
 
     it(`({ m() { function f() {${arg}} } })`, () => {
       t.throws(() => {
-        parseSource(`({ m() { function f() {${arg}} } })`  );
+        parseSource(`({ m() { function f() {${arg}} } })`);
       });
     });
 
     it(`while (true) {${arg}}`, () => {
       t.throws(() => {
-        parseSource(`while (true) {${arg}}`  );
+        parseSource(`while (true) {${arg}}`);
       });
     });
 
     it(`class C extends (${arg}) {}`, () => {
       t.throws(() => {
-        parseSource(`class C extends (${arg}) {}`  );
+        parseSource(`class C extends (${arg}) {}`);
       });
     });
   }
@@ -216,7 +216,7 @@ describe('Expressions - Super', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
   }
@@ -268,13 +268,13 @@ describe('Expressions - Super', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true} );
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }
@@ -293,25 +293,25 @@ describe('Expressions - Super', () => {
   ]) {
     it(`class C { m() { ${arg}; } }`, () => {
       t.throws(() => {
-        parseSource(`class C { m() { ${arg}; } }`  );
+        parseSource(`class C { m() { ${arg}; } }`);
       });
     });
 
     it(`class C { m() { k = ${arg}; } }`, () => {
       t.throws(() => {
-        parseSource(`class C { m() { k = ${arg}; } }`  );
+        parseSource(`class C { m() { k = ${arg}; } }`);
       });
     });
 
     it(`class C { m() { foo(${arg}); } }`, () => {
       t.throws(() => {
-        parseSource(`class C { m() { foo(${arg}); } }`  );
+        parseSource(`class C { m() { foo(${arg}); } }`);
       });
     });
 
     it(`class C { m() { () => ${arg}; } }`, () => {
       t.throws(() => {
-        parseSource(`class C { m() { () => ${arg}; } }`  );
+        parseSource(`class C { m() { () => ${arg}; } }`);
       });
     });
   }
@@ -319,49 +319,49 @@ describe('Expressions - Super', () => {
   for (const arg of ['new super.x;', 'new super.x();', '() => new super.x;', '() => new super.x();']) {
     it(`class C { constructor() { ${arg} } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { constructor() { ${arg} } }`  );
+        parseSource(`class C { constructor() { ${arg} } }`);
       });
     });
 
     it(`class C { *method() { ${arg} } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { *method() { ${arg} } }`  );
+        parseSource(`class C { *method() { ${arg} } }`);
       });
     });
 
     it(`class C { get x() { ${arg} } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { get x() { ${arg} } }`  );
+        parseSource(`class C { get x() { ${arg} } }`);
       });
     });
 
     it(`class C { set x(_) { ${arg} } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { set x(_) { ${arg} } }`  );
+        parseSource(`class C { set x(_) { ${arg} } }`);
       });
     });
 
     it(`({ method() { ${arg} } })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ method() { ${arg} } })`  );
+        parseSource(`({ method() { ${arg} } })`);
       });
     });
 
     it(`({ *method() { ${arg} } })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({ *method() { ${arg} } })`  );
+        parseSource(`({ *method() { ${arg} } })`);
       });
     });
 
     it(`(class C { get x() { ${arg} } })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { get x() { ${arg} } })`  );
+        parseSource(`(class C { get x() { ${arg} } })`);
       });
     });
 
     it(`(class C { set x(_) { ${arg} } })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { set x(_) { ${arg} } })`  );
+        parseSource(`(class C { set x(_) { ${arg} } })`);
       });
     });
   }
@@ -377,25 +377,25 @@ describe('Expressions - Super', () => {
   ]) {
     it(`class C { m() { ${arg}; } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { m() { ${arg}; } }`  );
+        parseSource(`class C { m() { ${arg}; } }`);
       });
     });
 
     it(`class C { m() { k = ${arg}; } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { m() { k = ${arg}; } }`  );
+        parseSource(`class C { m() { k = ${arg}; } }`);
       });
     });
 
     it(`class C { m() { foo(${arg}); } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { m() { foo(${arg}); } }`  );
+        parseSource(`class C { m() { foo(${arg}); } }`);
       });
     });
 
     it(`class C { m() { () => ${arg}; } }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { m() { () => ${arg}; } }`  );
+        parseSource(`class C { m() { () => ${arg}; } }`);
       });
     });
   }

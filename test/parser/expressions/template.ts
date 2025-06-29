@@ -373,18 +373,18 @@ describe('Expressions - Template', () => {
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true}, Context.TaggedTemplate);
+        parseSource(`${arg}`, { webcompat: true }, Context.TaggedTemplate);
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"next":true}, Context.TaggedTemplate);
+        parseSource(`${arg}`, { next: true }, Context.TaggedTemplate);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"next":true,"lexical":true}, Context.TaggedTemplate);
+        parseSource(`${arg}`, { next: true, lexical: true }, Context.TaggedTemplate);
       });
     });
 
@@ -396,13 +396,13 @@ describe('Expressions - Template', () => {
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true}, Context.TaggedTemplate);
+        parseSource(`${arg}`, { webcompat: true }, Context.TaggedTemplate);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"module":true}, Context.TaggedTemplate);
+        parseSource(`${arg}`, { module: true }, Context.TaggedTemplate);
       });
     });
   }

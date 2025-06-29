@@ -102,7 +102,7 @@ describe('Miscellaneous - Escaped keywords', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
   }
@@ -110,7 +110,7 @@ describe('Miscellaneous - Escaped keywords', () => {
   for (const arg of [`obj.bre\\u0061k = 42;`, `for (\\u0061sync of [7]);`]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"module":true} );
+        parseSource(`${arg}`, { module: true });
       });
     });
   }

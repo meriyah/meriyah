@@ -111,16 +111,12 @@ describe('Next - Import Meta', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"module":true,"next":true} );
+        parseSource(`${arg}`, { module: true, next: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(
-          `${arg}`,
-          {"module":true,"next":true,"webcompat":true}
-          ,
-        );
+        parseSource(`${arg}`, { module: true, next: true, webcompat: true });
       });
     });
   }

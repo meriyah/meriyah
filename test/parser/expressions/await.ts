@@ -49,19 +49,19 @@ describe('Expressions - Await', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"lexical":true} );
+        parseSource(`${arg}`, { lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true} );
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }
@@ -122,37 +122,37 @@ describe('Expressions - Await', () => {
   ]) {
     it(`async function f( ${arg}) {}`, () => {
       t.throws(() => {
-        parseSource(`async function f( ${arg}) {}`  );
+        parseSource(`async function f( ${arg}) {}`);
       });
     });
 
     it(`async function f( ${arg}) {}`, () => {
       t.throws(() => {
-        parseSource(`async function f( ${arg}) {}`, {"lexical":true} );
+        parseSource(`async function f( ${arg}) {}`, { lexical: true });
       });
     });
 
     it(`'use strict'; function f() { ${arg}) }`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; function f() { ${arg}) }`  );
+        parseSource(`'use strict'; function f() { ${arg}) }`);
       });
     });
 
     it(`let f = () => {${arg})`, () => {
       t.throws(() => {
-        parseSource(`let f = () => {${arg})`  );
+        parseSource(`let f = () => {${arg})`);
       });
     });
 
     it(`let f = () => {${arg})`, () => {
       t.throws(() => {
-        parseSource(`let f = () => {${arg})`, {"next":true} );
+        parseSource(`let f = () => {${arg})`, { next: true });
       });
     });
 
     it(`'use strict'; async function* f() {${arg})`, () => {
       t.throws(() => {
-        parseSource(`let f = () => {${arg})`  );
+        parseSource(`let f = () => {${arg})`);
       });
     });
   }
@@ -224,25 +224,25 @@ describe('Expressions - Await', () => {
   ]) {
     it(`async function f() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`async function f() { ${arg} }`  );
+        parseSource(`async function f() { ${arg} }`);
       });
     });
 
     it(`"use strict"; async function f() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; async function f() { ${arg} }`  );
+        parseSource(`"use strict"; async function f() { ${arg} }`);
       });
     });
 
     it(`var await; var f = (async function() { ${arg} });`, () => {
       t.throws(() => {
-        parseSource(`var await; var f = (async function() { ${arg} });`  );
+        parseSource(`var await; var f = (async function() { ${arg} });`);
       });
     });
 
     it(`"use strict"; var await; var f = (async function() { ${arg} });`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; var await; var f = (async function() { ${arg} });`  );
+        parseSource(`"use strict"; var await; var f = (async function() { ${arg} });`);
       });
     });
   }
@@ -270,37 +270,37 @@ describe('Expressions - Await', () => {
   ]) {
     it(`async function f() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`async function f() { ${arg} }`  );
+        parseSource(`async function f() { ${arg} }`);
       });
     });
 
     it(`'use strict'; async function f() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`async function f() { ${arg} }`  );
+        parseSource(`async function f() { ${arg} }`);
       });
     });
 
     it(`'use strict'; async function f() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`async function f() { ${arg} }`, {"next":true} );
+        parseSource(`async function f() { ${arg} }`, { next: true });
       });
     });
 
     it(`'use strict'; var f = async function() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; var f = async function() { ${arg} }`  );
+        parseSource(`'use strict'; var f = async function() { ${arg} }`);
       });
     });
 
     it(`'use strict'; var f = async() => { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; var f = async() => { ${arg} }`  );
+        parseSource(`'use strict'; var f = async() => { ${arg} }`);
       });
     });
 
     it(`'use strict'; var O = { async method() {${arg} }`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; var O = { async method() { ${arg} }`  );
+        parseSource(`'use strict'; var O = { async method() { ${arg} }`);
       });
     });
   }
@@ -333,7 +333,7 @@ describe('Expressions - Await', () => {
   ]) {
     it(`let f = () => { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`let f = () => { ${arg} }`  );
+        parseSource(`let f = () => { ${arg} }`);
       });
     });
 
@@ -345,25 +345,25 @@ describe('Expressions - Await', () => {
 
     it(`'use strict'; async function* f() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; async function* f() { ${arg} }`  );
+        parseSource(`'use strict'; async function* f() { ${arg} }`);
       });
     });
 
     it(`function* f() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`function* f() { ${arg} }`  );
+        parseSource(`function* f() { ${arg} }`);
       });
     });
 
     it(`let f = async() => { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`let f = async() => { ${arg} }`  );
+        parseSource(`let f = async() => { ${arg} }`);
       });
     });
 
     it(`async function* f() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`async function* f() { ${arg} }`  );
+        parseSource(`async function* f() { ${arg} }`);
       });
     });
 
@@ -375,7 +375,7 @@ describe('Expressions - Await', () => {
 
     it(`'use strict'; async function f() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; async function f() { ${arg} }`  );
+        parseSource(`'use strict'; async function f() { ${arg} }`);
       });
     });
   }
@@ -632,31 +632,31 @@ describe('Expressions - Await', () => {
   ]) {
     it(`let f = () => { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`let f = () => { ${arg} }`  );
+        parseSource(`let f = () => { ${arg} }`);
       });
     });
 
     it(`'use strict'; async function* f() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; async function* f() { ${arg} }`  );
+        parseSource(`'use strict'; async function* f() { ${arg} }`);
       });
     });
 
     it(`function* f() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`function* f() { ${arg} }`, {"webcompat":true} );
+        parseSource(`function* f() { ${arg} }`, { webcompat: true });
       });
     });
 
     it(`let f = async() => { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`let f = async() => { ${arg} }`, {"webcompat":true} );
+        parseSource(`let f = async() => { ${arg} }`, { webcompat: true });
       });
     });
 
     it(`async function* f() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`async function* f() { ${arg} }`  );
+        parseSource(`async function* f() { ${arg} }`);
       });
     });
 
@@ -668,7 +668,7 @@ describe('Expressions - Await', () => {
 
     it(`'use strict'; async function f() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; async function f() { ${arg} }`, {"webcompat":true} );
+        parseSource(`'use strict'; async function f() { ${arg} }`, { webcompat: true });
       });
     });
   }
@@ -740,31 +740,31 @@ describe('Expressions - Await', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`"use strict"; ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`  );
+        parseSource(`"use strict"; ${arg}`);
       });
     });
 
     it(`"use strict"; ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`, {"webcompat":true} );
+        parseSource(`"use strict"; ${arg}`, { webcompat: true });
       });
     });
 
     it(`"use strict"; var O = { *method() {${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function f() {${arg}}`  );
+        parseSource(`function f() {${arg}}`);
       });
     });
 
     it(`"use strict"; function* g() {${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; function* g() {${arg}}`  );
+        parseSource(`"use strict"; function* g() {${arg}}`);
       });
     });
   }

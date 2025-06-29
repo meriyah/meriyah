@@ -8,11 +8,7 @@ describe('Lexical - Try', () => {
   for (const declaration of ['var e', 'var f, e', 'let {} = 0', 'let {e:f} = 0', '{ function e(){} }']) {
     it(`try { throw 0; } catch(e) { ${declaration} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(
-          `try { throw 0; } catch(e) { ${declaration} }`,
-          {"webcompat":true,"lexical":true}
-          ,
-        );
+        parseSource(`try { throw 0; } catch(e) { ${declaration} }`, { webcompat: true, lexical: true });
       });
     });
   }
@@ -40,31 +36,31 @@ describe('Lexical - Try', () => {
   ]) {
     it(`try { throw 0; } catch(e) { ${declaration} } `, () => {
       t.throws(() => {
-        parseSource(`try { throw 0; } catch(e) { ${declaration} } `, {"lexical":true} );
+        parseSource(`try { throw 0; } catch(e) { ${declaration} } `, { lexical: true });
       });
     });
 
     it(`try { throw 0; } catch({e}) { ${declaration} }`, () => {
       t.throws(() => {
-        parseSource(`try { throw 0; } catch({e}) { ${declaration} }`, {"lexical":true} );
+        parseSource(`try { throw 0; } catch({e}) { ${declaration} }`, { lexical: true });
       });
     });
 
     it(`try { throw 0; } catch(e) { ${declaration} }`, () => {
       t.throws(() => {
-        parseSource(`try { throw 0; } catch(e) { ${declaration} }`, {"lexical":true} );
+        parseSource(`try { throw 0; } catch(e) { ${declaration} }`, { lexical: true });
       });
     });
 
     it(`try { throw 0; } catch(e) { (()=>{${declaration}})(); }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`try { throw 0; } catch(e) { (()=>{${declaration}})(); }`, {"lexical":true} );
+        parseSource(`try { throw 0; } catch(e) { (()=>{${declaration}})(); }`, { lexical: true });
       });
     });
 
     it(`try { throw 0; } catch(e) { (function(){${declaration}})(); }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`try { throw 0; } catch(e) { (function(){${declaration}})(); }`, {"lexical":true} );
+        parseSource(`try { throw 0; } catch(e) { (function(){${declaration}})(); }`, { lexical: true });
       });
     });
   }
@@ -195,19 +191,19 @@ describe('Lexical - Try', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"lexical":true} );
+        parseSource(`${arg}`, { lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"next":true,"lexical":true} );
+        parseSource(`${arg}`, { next: true, lexical: true });
       });
     });
   }
@@ -263,13 +259,13 @@ describe('Lexical - Try', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true,"lexical":true} );
+        parseSource(`${arg}`, { webcompat: true, lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"next":true,"webcompat":true,"lexical":true} );
+        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
       });
     });
   }

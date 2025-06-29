@@ -64,12 +64,12 @@ describe('Next - Import Attributes', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"module":true} );
+        parseSource(`${arg}`, { module: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"module":true,"webcompat":true} );
+        parseSource(`${arg}`, { module: true, webcompat: true });
       });
     });
   }

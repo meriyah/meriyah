@@ -26,17 +26,17 @@ describe('Miscellaneous - Hashbang', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"next":true,"webcompat":true} );
+        parseSource(`${arg}`, { next: true, webcompat: true });
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"next":true} );
+        parseSource(`${arg}`, { next: true });
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, {"module":true,"next":true} );
+        parseSource(`${arg}`, { module: true, next: true });
       });
     });
   }
@@ -50,17 +50,17 @@ describe('Miscellaneous - Hashbang', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"next":true,"webcompat":true} );
+        parseSource(`${arg}`, { next: true, webcompat: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"next":true} );
+        parseSource(`${arg}`, { next: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"module":true,"next":true} );
+        parseSource(`${arg}`, { module: true, next: true });
       });
     });
   }

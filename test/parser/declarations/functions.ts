@@ -8,17 +8,17 @@ describe('Declarations - Function', () => {
   for (const arg of ['package', 'public', 'instanceof']) {
     it(`function foo(${arg}) { 'use strict'; }`, () => {
       t.throws(() => {
-        parseSource(`function foo(${arg}) { "use strict"; }`  );
+        parseSource(`function foo(${arg}) { "use strict"; }`);
       });
     });
     it(`function ${arg}() { 'use strict'; }`, () => {
       t.throws(() => {
-        parseSource(`function ${arg}() { "use strict"; }`  );
+        parseSource(`function ${arg}() { "use strict"; }`);
       });
     });
     it(`(function ${arg}() { 'use strict'; })`, () => {
       t.throws(() => {
-        parseSource(`(function ${arg}() { 'use strict'; })`  );
+        parseSource(`(function ${arg}() { 'use strict'; })`);
       });
     });
   }
@@ -86,25 +86,25 @@ describe('Declarations - Function', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`(function() { 'use strict';${arg}})()`  );
+        parseSource(`(function() { 'use strict';${arg}})()`);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`(function() { 'use strict'; {${arg}}})()`  );
+        parseSource(`(function() { 'use strict'; {${arg}}})()`);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`(function() { ;${arg}})()`  );
+        parseSource(`(function() { ;${arg}})()`);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`(function() { ;${arg}})()`, {"lexical":true} );
+        parseSource(`(function() { ;${arg}})()`, { lexical: true });
       });
     });
   }
@@ -120,7 +120,7 @@ describe('Declarations - Function', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function() {${arg}})()`, {"webcompat":true,"lexical":true} );
+        parseSource(`(function() {${arg}})()`, { webcompat: true, lexical: true });
       });
     });
   }
@@ -568,13 +568,13 @@ describe('Declarations - Function', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`  );
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, {"webcompat":true} );
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }
