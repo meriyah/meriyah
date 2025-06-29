@@ -19,7 +19,7 @@ export const enum ScopeKind {
 }
 
 /** Scope error interface */
-export interface ScopeError {
+interface ScopeError {
   type: Errors;
   params: string[];
   start: Location;
@@ -42,44 +42,6 @@ export class Scope {
   createChildScope(type?: ScopeKind) {
     return new Scope(type, this);
   }
-}
-
-/**
- * Lexical scope interface
- */
-export interface ScopeState {
-  parent: ScopeState | undefined;
-  type: ScopeKind;
-  // Some scopeError doesn't necessarily fail parsing.
-  // For example function a(dup, dup) {} is fine,
-  // But duplicated params is not allowed in strict mode,
-  // So function a(dup, dup) { "use strict" } would fail.
-  // Retain the scopeError on scope for later decision.
-  scopeError?: ScopeError | null;
-}
-
-/**
- * Creates a block scope
- */
-export function createScope(): ScopeState {
-  return {
-    parent: void 0,
-    type: ScopeKind.Block,
-  };
-}
-
-/**
- * Inherit scope
- *
- * @param parent optional parent ScopeState
- * @param type Scope kind
- */
-export function addChildScope(parent: ScopeState | undefined, type: ScopeKind): ScopeState {
-  return {
-    parent,
-    type,
-    scopeError: void 0,
-  };
 }
 
 /**
