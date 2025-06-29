@@ -25,12 +25,12 @@ describe('Miscellaneous - JSX', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.OptionsJSX);
+        parseSource(`${arg}`, { jsx: true }, Context.OptionsNext);
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.OptionsWebCompat | Context.OptionsJSX);
+        parseSource(`${arg}`, { jsx: true }, Context.OptionsNext | Context.OptionsWebCompat);
       });
     });
   }
