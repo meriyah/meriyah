@@ -35,8 +35,8 @@ export class Scope {
   scopeError?: ScopeError | null;
 
   constructor(
-    public type: ScopeKind = ScopeKind.Block,
-    public parent?: Scope,
+    public readonly type: ScopeKind = ScopeKind.Block,
+    public readonly parent?: Scope,
   ) {}
 
   createChildScope(type?: ScopeKind) {
