@@ -139,7 +139,7 @@ export function parseSource(source: string, options: Options | void, context: Co
   // See: https://github.com/tc39/proposal-hashbang
   skipHashBang(parser);
 
-  const scope: Scope | undefined = context & Context.OptionsLexical ? new Scope() : void 0;
+  const scope = context & Context.OptionsLexical ? new Scope() : void 0;
 
   let body: (ESTree.Statement | ReturnType<typeof parseDirective | typeof parseModuleItem>)[] = [];
 
@@ -6826,9 +6826,8 @@ function parseIdentifierOrArrow(
   const expr = parseIdentifier(parser, context);
   parser.assignable = AssignmentKind.Assignable;
   if (parser.getToken() === Token.Arrow) {
-    let scope: Scope | undefined = void 0;
-
-    if (context & Context.OptionsLexical) scope = createArrowHeadParsingScope(parser, context, tokenValue);
+    const scope =
+      context & Context.OptionsLexical ? createArrowHeadParsingScope(parser, context, tokenValue) : undefined;
 
     if (isNonSimpleParameterList) parser.flags |= Flags.NonSimpleParameterList;
     if (hasStrictReserved) parser.flags |= Flags.HasStrictReserved;
