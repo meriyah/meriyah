@@ -121,25 +121,25 @@ describe('Next - Private methods', () => {
   ]) {
     it(`class C { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`class C { ${arg} }`, undefined, Context.None);
+        parseSource(`class C { ${arg} }`  );
       });
     });
 
     it(`class C extends Base { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`class C extends Base { ${arg} }`, undefined, Context.None);
+        parseSource(`class C extends Base { ${arg} }`  );
       });
     });
 
     it(`(class C { ${arg} })`, () => {
       t.throws(() => {
-        parseSource(`(class C { ${arg} })`, undefined, Context.None);
+        parseSource(`(class C { ${arg} })`  );
       });
     });
 
     it(`(class C extends Base { ${arg} })`, () => {
       t.throws(() => {
-        parseSource(`(class C extends Base { ${arg} })`, undefined, Context.None);
+        parseSource(`(class C extends Base { ${arg} })`  );
       });
     });
   }
@@ -218,25 +218,25 @@ describe('Next - Private methods', () => {
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg} }`, undefined, Context.None);
+        parseSource(`class C { ${arg} }`  );
       });
     });
 
     it(`class C extends Base { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C extends Base { ${arg} }`, undefined, Context.None);
+        parseSource(`class C extends Base { ${arg} }`  );
       });
     });
 
     it(`(class C { ${arg} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { ${arg} })`, undefined, Context.None);
+        parseSource(`(class C { ${arg} })`  );
       });
     });
 
     it(`(class C extends Base { ${arg} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C extends Base { ${arg} })`, undefined, Context.None);
+        parseSource(`(class C extends Base { ${arg} })`  );
       });
     });
   }
@@ -280,7 +280,7 @@ describe('Next - Private methods', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
   }

@@ -69,7 +69,7 @@ describe('Lexical - Arrows', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, {"lexical":true} );
       });
     });
   }
@@ -84,7 +84,7 @@ describe('Lexical - Arrows', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        parseSource(`${arg}`, {"webcompat":true,"lexical":true} );
       });
     });
   }

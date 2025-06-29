@@ -26,17 +26,17 @@ describe('Miscellaneous - Hashbang', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsNext);
+        parseSource(`${arg}`, {"next":true,"webcompat":true} );
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext);
+        parseSource(`${arg}`, {"next":true} );
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsNext);
+        parseSource(`${arg}`, {"module":true,"next":true} );
       });
     });
   }
@@ -50,17 +50,17 @@ describe('Miscellaneous - Hashbang', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsNext);
+        parseSource(`${arg}`, {"next":true,"webcompat":true} );
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext);
+        parseSource(`${arg}`, {"next":true} );
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsNext);
+        parseSource(`${arg}`, {"module":true,"next":true} );
       });
     });
   }

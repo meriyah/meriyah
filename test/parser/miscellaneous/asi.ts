@@ -49,13 +49,13 @@ describe('Miscellaneous - ASI', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, {"module":true} );
       });
     });
   }

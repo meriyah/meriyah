@@ -10,8 +10,8 @@ describe('Lexical - Try', () => {
       t.doesNotThrow(() => {
         parseSource(
           `try { throw 0; } catch(e) { ${declaration} }`,
-          undefined,
-          Context.OptionsLexical | Context.OptionsWebCompat,
+          {"webcompat":true,"lexical":true}
+          ,
         );
       });
     });
@@ -40,31 +40,31 @@ describe('Lexical - Try', () => {
   ]) {
     it(`try { throw 0; } catch(e) { ${declaration} } `, () => {
       t.throws(() => {
-        parseSource(`try { throw 0; } catch(e) { ${declaration} } `, undefined, Context.OptionsLexical);
+        parseSource(`try { throw 0; } catch(e) { ${declaration} } `, {"lexical":true} );
       });
     });
 
     it(`try { throw 0; } catch({e}) { ${declaration} }`, () => {
       t.throws(() => {
-        parseSource(`try { throw 0; } catch({e}) { ${declaration} }`, undefined, Context.OptionsLexical);
+        parseSource(`try { throw 0; } catch({e}) { ${declaration} }`, {"lexical":true} );
       });
     });
 
     it(`try { throw 0; } catch(e) { ${declaration} }`, () => {
       t.throws(() => {
-        parseSource(`try { throw 0; } catch(e) { ${declaration} }`, undefined, Context.OptionsLexical);
+        parseSource(`try { throw 0; } catch(e) { ${declaration} }`, {"lexical":true} );
       });
     });
 
     it(`try { throw 0; } catch(e) { (()=>{${declaration}})(); }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`try { throw 0; } catch(e) { (()=>{${declaration}})(); }`, undefined, Context.OptionsLexical);
+        parseSource(`try { throw 0; } catch(e) { (()=>{${declaration}})(); }`, {"lexical":true} );
       });
     });
 
     it(`try { throw 0; } catch(e) { (function(){${declaration}})(); }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`try { throw 0; } catch(e) { (function(){${declaration}})(); }`, undefined, Context.OptionsLexical);
+        parseSource(`try { throw 0; } catch(e) { (function(){${declaration}})(); }`, {"lexical":true} );
       });
     });
   }
@@ -195,19 +195,19 @@ describe('Lexical - Try', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, {"lexical":true} );
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical | Context.OptionsNext);
+        parseSource(`${arg}`, {"next":true,"lexical":true} );
       });
     });
   }
@@ -263,13 +263,13 @@ describe('Lexical - Try', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        parseSource(`${arg}`, {"webcompat":true,"lexical":true} );
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical | Context.OptionsNext);
+        parseSource(`${arg}`, {"next":true,"webcompat":true,"lexical":true} );
       });
     });
   }

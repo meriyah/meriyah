@@ -125,19 +125,19 @@ describe('Expressions - BigInt', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, {"webcompat":true} );
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, {"module":true} );
       });
     });
   }

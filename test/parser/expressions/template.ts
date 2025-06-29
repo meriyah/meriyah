@@ -373,18 +373,18 @@ describe('Expressions - Template', () => {
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.TaggedTemplate | Context.OptionsWebCompat);
+        parseSource(`${arg}`, {"webcompat":true}, Context.TaggedTemplate);
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.TaggedTemplate | Context.OptionsNext);
+        parseSource(`${arg}`, {"next":true}, Context.TaggedTemplate);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.TaggedTemplate | Context.OptionsNext | Context.OptionsLexical);
+        parseSource(`${arg}`, {"next":true,"lexical":true}, Context.TaggedTemplate);
       });
     });
 
@@ -396,13 +396,13 @@ describe('Expressions - Template', () => {
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.TaggedTemplate);
+        parseSource(`${arg}`, {"webcompat":true}, Context.TaggedTemplate);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.TaggedTemplate);
+        parseSource(`${arg}`, {"module":true}, Context.TaggedTemplate);
       });
     });
   }

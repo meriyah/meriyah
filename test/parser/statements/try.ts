@@ -41,8 +41,8 @@ describe('Statements - Try', () => {
           for (${binding} of []);
         }
       `,
-          undefined,
-          Context.Strict,
+          {"impliedStrict":true}
+          ,
         );
       });
     });
@@ -56,8 +56,8 @@ describe('Statements - Try', () => {
             for (${binding} of []);
           }
         `,
-          undefined,
-          Context.OptionsWebCompat,
+          {"webcompat":true}
+          ,
         );
       });
     });
@@ -83,8 +83,8 @@ describe('Statements - Try', () => {
         }
       }
     `,
-          undefined,
-          Context.OptionsWebCompat,
+          {"webcompat":true}
+          ,
         );
       });
     });
@@ -103,8 +103,8 @@ describe('Statements - Try', () => {
         (()=>{for (${binding} of []);})();
       }
     `,
-          undefined,
-          Context.OptionsWebCompat,
+          {"webcompat":true}
+          ,
         );
       });
     });
@@ -121,8 +121,8 @@ describe('Statements - Try', () => {
       })();
     }
   `,
-          undefined,
-          Context.OptionsWebCompat,
+          {"webcompat":true}
+          ,
         );
       });
     });
@@ -154,8 +154,8 @@ describe('Statements - Try', () => {
         for (${binding} of []);
       }
     `,
-          undefined,
-          Context.OptionsWebCompat,
+          {"webcompat":true}
+          ,
         );
       });
     });

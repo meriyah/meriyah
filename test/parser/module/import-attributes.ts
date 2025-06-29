@@ -64,12 +64,12 @@ describe('Next - Import Attributes', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, {"module":true} );
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.Strict | Context.Module);
+        parseSource(`${arg}`, {"module":true,"webcompat":true} );
       });
     });
   }

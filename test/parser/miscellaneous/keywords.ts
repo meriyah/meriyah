@@ -28,19 +28,19 @@ describe('Miscellaneous - Keywords', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
 
     it(`var ${arg}`, () => {
       t.throws(() => {
-        parseSource(`var ${arg}`, undefined, Context.None);
+        parseSource(`var ${arg}`  );
       });
     });
 
     it(`function () { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`function () { ${arg} }`, undefined, Context.None);
+        parseSource(`function () { ${arg} }`  );
       });
     });
   }

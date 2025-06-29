@@ -21,7 +21,7 @@ describe('Miscellaneous - Unicode', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, {"webcompat":true} );
       });
     });
   }
@@ -37,7 +37,7 @@ describe('Miscellaneous - Unicode', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, {"webcompat":true} );
       });
     });
   }

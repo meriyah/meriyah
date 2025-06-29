@@ -61,7 +61,7 @@ describe('Miscellaneous - Comments', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict);
+        parseSource(`${arg}`, {"impliedStrict":true} );
       });
     });
   }
@@ -202,7 +202,7 @@ describe('Miscellaneous - Comments', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.OptionsWebCompat);
+        parseSource(`${arg}`, {"webcompat":true,"impliedStrict":true} );
       });
     });
   }

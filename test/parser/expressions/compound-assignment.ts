@@ -41,12 +41,12 @@ describe('Expressions - Compound assignment', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, {"webcompat":true} );
       });
     });
   }
@@ -76,17 +76,17 @@ describe('Expressions - Compound assignment', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.Module);
+        parseSource(`${arg}`, {"next":true}, Context.Module);
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext);
+        parseSource(`${arg}`, {"next":true} );
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, {"webcompat":true} );
       });
     });
   }

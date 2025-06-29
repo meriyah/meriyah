@@ -66,7 +66,7 @@ describe('Expressions - Assign', () => {
   ]) {
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
   }

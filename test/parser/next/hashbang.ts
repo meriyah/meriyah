@@ -46,7 +46,7 @@ describe('Next - Hashbang grammar', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
 
@@ -54,7 +54,7 @@ describe('Next - Hashbang grammar', () => {
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, {"module":true} );
       });
     });
   }

@@ -32,25 +32,25 @@ describe('Declarations - Let', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, {"webcompat":true} );
       });
     });
 
     it(`(function() {${arg}})()`, () => {
       t.throws(() => {
-        parseSource(`(function() {${arg}})()`, undefined, Context.None);
+        parseSource(`(function() {${arg}})()`  );
       });
     });
 
     it(`(function() {${arg}})()`, () => {
       t.throws(() => {
-        parseSource(`(function() {${arg}})()`, undefined, Context.OptionsLexical);
+        parseSource(`(function() {${arg}})()`, {"lexical":true} );
       });
     });
   }
@@ -94,31 +94,31 @@ describe('Declarations - Let', () => {
   ]) {
     it(`function f() { ${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function f() { ${arg}}`, undefined, Context.None);
+        parseSource(`function f() { ${arg}}`  );
       });
     });
 
     it(`function f() { ${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function f() { ${arg}})`, undefined, Context.None);
+        parseSource(`(function f() { ${arg}})`  );
       });
     });
 
     it(`function * gen() { function foo() { ${arg}}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function * gen() { function foo() { ${arg}}}`, undefined, Context.None);
+        parseSource(`function * gen() { function foo() { ${arg}}}`  );
       });
     });
 
     it(`(function foo() { ${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function foo() { ${arg}})`, undefined, Context.None);
+        parseSource(`(function foo() { ${arg}})`  );
       });
     });
 
     it(`(function foo() { ${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function foo() { ${arg}})`, undefined, Context.OptionsLexical);
+        parseSource(`(function foo() { ${arg}})`, {"lexical":true} );
       });
     });
   }
@@ -358,19 +358,19 @@ describe('Declarations - Let', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, {"lexical":true} );
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, {"webcompat":true} );
       });
     });
   }

@@ -79,25 +79,25 @@ describe('Miscellaneous - Trailing comma', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict);
+        parseSource(`${arg}`, {"impliedStrict":true} );
       });
     });
 
     it(`"use strict"; ${arg}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; ${arg}`, undefined, Context.Strict);
+        parseSource(`"use strict"; ${arg}`, {"impliedStrict":true} );
       });
     });
 
     it(`function foo() { ${arg}}`, () => {
       t.throws(() => {
-        parseSource(`function foo() { ${arg}}`, undefined, Context.Strict);
+        parseSource(`function foo() { ${arg}}`, {"impliedStrict":true} );
       });
     });
 
     it(`function foo() {'use strict'; ${arg}}`, () => {
       t.throws(() => {
-        parseSource(`function foo() {'use strict'; ${arg}}`, undefined, Context.Strict);
+        parseSource(`function foo() {'use strict'; ${arg}}`, {"impliedStrict":true} );
       });
     });
   }
@@ -162,25 +162,25 @@ describe('Miscellaneous - Trailing comma', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict);
+        parseSource(`${arg}`, {"impliedStrict":true} );
       });
     });
 
     it(`"use strict"; ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`, undefined, Context.Strict);
+        parseSource(`"use strict"; ${arg}`, {"impliedStrict":true} );
       });
     });
 
     it(`function foo() { ${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg}}`, undefined, Context.Strict);
+        parseSource(`function foo() { ${arg}}`, {"impliedStrict":true} );
       });
     });
 
     it(`function foo() {'use strict'; ${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() {'use strict'; ${arg}}`, undefined, Context.Strict);
+        parseSource(`function foo() {'use strict'; ${arg}}`, {"impliedStrict":true} );
       });
     });
   }
@@ -201,13 +201,13 @@ describe('Miscellaneous - Trailing comma', () => {
   for (const arg of invalidRest) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, {"module":true} );
       });
     });
   }

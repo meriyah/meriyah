@@ -34,37 +34,37 @@ describe('Expressions - Async Generator', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, {"lexical":true} );
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext);
+        parseSource(`${arg}`, {"next":true} );
       });
     });
 
     it(`"use strict"; ${arg}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; ${arg}`, undefined, Context.None);
+        parseSource(`"use strict"; ${arg}`  );
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, {"module":true} );
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, {"webcompat":true} );
       });
     });
   }
@@ -125,29 +125,29 @@ describe('Expressions - Async Generator', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, {"lexical":true} );
       });
     });
     it(`() => { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`() => { ${arg} }`, undefined, Context.None);
+        parseSource(`() => { ${arg} }`  );
       });
     });
 
     it(`function foo() { ${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg}}`, undefined, Context.None);
+        parseSource(`function foo() { ${arg}}`  );
       });
     });
 
     it(`function foo() { ${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg}}`, undefined, Context.OptionsNext);
+        parseSource(`function foo() { ${arg}}`, {"next":true} );
       });
     });
   }

@@ -31,13 +31,13 @@ describe('Miscellaneous - Cover grammar', () => {
     for (const fn of destructuringForms) {
       it(fn(`${arg}`), () => {
         t.throws(() => {
-          parseSource(fn(`${arg}`), undefined, Context.None);
+          parseSource(fn(`${arg}`)  );
         });
       });
 
       it(fn(`${arg}`), () => {
         t.throws(() => {
-          parseSource(fn(`${arg}`), undefined, Context.OptionsWebCompat);
+          parseSource(fn(`${arg}`), {"webcompat":true} );
         });
       });
     }
@@ -47,7 +47,7 @@ describe('Miscellaneous - Cover grammar', () => {
     for (const fn of destructuringForms) {
       it(fn(`${arg}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`${arg}`), undefined, Context.None);
+          parseSource(fn(`${arg}`)  );
         });
       });
     }
@@ -86,92 +86,92 @@ describe('Miscellaneous - Cover grammar', () => {
     for (const fn of functions) {
       it(fn(`${arg}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`${arg}`), undefined, Context.None);
+          parseSource(fn(`${arg}`)  );
         });
       });
 
       it(fn(`x, ...${arg}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`x, ...${arg}`), undefined, Context.None);
+          parseSource(fn(`x, ...${arg}`)  );
         });
       });
 
       it(fn(`x = 0, ...${arg}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`x = 0, ...${arg}`), undefined, Context.None);
+          parseSource(fn(`x = 0, ...${arg}`)  );
         });
       });
 
       it(fn(`x = 0, ...${arg}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`x = 0, ...${arg}`), undefined, Context.OptionsWebCompat);
+          parseSource(fn(`x = 0, ...${arg}`), {"webcompat":true} );
         });
       });
 
       it(fn(`x = 0, y = 0, ...${arg}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`x = 0, y = 0, ...${arg}`), undefined, Context.None);
+          parseSource(fn(`x = 0, y = 0, ...${arg}`)  );
         });
       });
 
       it(fn(`[], ...${arg}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`[], ...${arg}`), undefined, Context.None);
+          parseSource(fn(`[], ...${arg}`)  );
         });
       });
 
       it(fn(`[x], ...${arg}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`[x], ...${arg}`), undefined, Context.None);
+          parseSource(fn(`[x], ...${arg}`)  );
         });
       });
 
       it(fn(`[x = 0], ...${arg}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`[x = 0], ...${arg}`), undefined, Context.None);
+          parseSource(fn(`[x = 0], ...${arg}`)  );
         });
       });
 
       it(fn(`{}, ...${arg}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`{}, ...${arg}`), undefined, Context.None);
+          parseSource(fn(`{}, ...${arg}`)  );
         });
       });
 
       it(fn(`{p: x}, ...${arg}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`{p: x}, ...${arg}`), undefined, Context.None);
+          parseSource(fn(`{p: x}, ...${arg}`)  );
         });
       });
 
       it(fn(`{x}, ...${arg}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`{x}, ...${arg}`), undefined, Context.None);
+          parseSource(fn(`{x}, ...${arg}`)  );
         });
       });
 
       it(fn(`{x = 0}, ...${arg}`), () => {
         t.doesNotThrow(() => {
-          parseSource(fn(`{x = 0}, ...${arg}`), undefined, Context.None);
+          parseSource(fn(`{x = 0}, ...${arg}`)  );
         });
       });
     }
     for (const fn of functions) {
       it(fn(`...`), () => {
         t.throws(() => {
-          parseSource(fn(`...`), undefined, Context.OptionsWebCompat);
+          parseSource(fn(`...`), {"webcompat":true} );
         });
       });
 
       it(fn(`...[`), () => {
         t.throws(() => {
-          parseSource(fn(`...[`), undefined, Context.OptionsWebCompat);
+          parseSource(fn(`...[`), {"webcompat":true} );
         });
       });
 
       it(fn(`...{`), () => {
         t.throws(() => {
-          parseSource(fn(`...{`), undefined, Context.OptionsWebCompat);
+          parseSource(fn(`...{`), {"webcompat":true} );
         });
       });
       /*
@@ -184,7 +184,7 @@ describe('Miscellaneous - Cover grammar', () => {
 
       it(fn(`...[0]`), () => {
         t.throws(() => {
-          parseSource(fn(`...[0]`), undefined, Context.OptionsWebCompat);
+          parseSource(fn(`...[0]`), {"webcompat":true} );
         });
       });
     }
@@ -517,13 +517,13 @@ describe('Miscellaneous - Cover grammar', () => {
   ]) {
     it(`function fn() { 'use strict';} fn(${arg});`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; let x, y, z; (${arg} = {});`, undefined, Context.None);
+        parseSource(`'use strict'; let x, y, z; (${arg} = {});`  );
       });
     });
 
     it(`'use strict'; let x, y, z; for (x in ${arg} = z = {});`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; let x, y, z; for (x in ${arg} = z = {});`, undefined, Context.None);
+        parseSource(`'use strict'; let x, y, z; for (x in ${arg} = z = {});`  );
       });
     });
 
@@ -531,63 +531,63 @@ describe('Miscellaneous - Cover grammar', () => {
       t.throws(() => {
         parseSource(
           `'use strict'; let x, y, z; for (x in ${arg} = z = {});`,
-          undefined,
-          Context.OptionsWebCompat | Context.OptionsLexical,
+          {"webcompat":true,"lexical":true}
+          ,
         );
       });
     });
 
     it(`'use strict'; let x, y, z; for (x in ${arg} = z = {});`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; let x, y, z; for (x in ${arg} = z = {});`, undefined, Context.OptionsLexical);
+        parseSource(`'use strict'; let x, y, z; for (x in ${arg} = z = {});`, {"lexical":true} );
       });
     });
 
     it(`'use strict'; let x, y, z; for (x in x =  ${arg} = z = {});`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; let x, y, z; for (x in x = ${arg} = z = {});`, undefined, Context.None);
+        parseSource(`'use strict'; let x, y, z; for (x in x = ${arg} = z = {});`  );
       });
     });
 
     it(`'use strict'; let x, y, z; for (x of ${arg} = z = {});`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; let x, y, z; for (x of ${arg} = z = {});`, undefined, Context.None);
+        parseSource(`'use strict'; let x, y, z; for (x of ${arg} = z = {});`  );
       });
     });
 
     it(`'use strict'; let x, y, z; for (x of x =  ${arg} = z = {});`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; let x, y, z; for (x of x = ${arg} = z = {});`, undefined, Context.None);
+        parseSource(`'use strict'; let x, y, z; for (x of x = ${arg} = z = {});`  );
       });
     });
 
     it(`var x, y, z; for (x of x = ${arg} = z = {});`, () => {
       t.throws(() => {
-        parseSource(`var x, y, z; for (x of x = ${arg} = z = {});`, undefined, Context.None);
+        parseSource(`var x, y, z; for (x of x = ${arg} = z = {});`  );
       });
     });
 
     it(`var x, y, z; (x = ${arg} = z = {});`, () => {
       t.throws(() => {
-        parseSource(`var x, y, z; (x = ${arg} = z = {});`, undefined, Context.None);
+        parseSource(`var x, y, z; (x = ${arg} = z = {});`  );
       });
     });
 
     it(`'use strict'; let x, y, z; for (x of ${arg}= z = {});`, () => {
       t.throws(() => {
-        parseSource(`'use strict'; let x, y, z; for (x of ${arg} = z = {});`, undefined, Context.None);
+        parseSource(`'use strict'; let x, y, z; for (x of ${arg} = z = {});`  );
       });
     });
 
     it(`var x, y, z; for (x in ${arg} = z = {});`, () => {
       t.throws(() => {
-        parseSource(`var x, y, z; for (x in ${arg} = z = {});`, undefined, Context.None);
+        parseSource(`var x, y, z; for (x in ${arg} = z = {});`  );
       });
     });
 
     it(`var x, y, z; for (x in x = ${arg}  = z = {});`, () => {
       t.throws(() => {
-        parseSource(`var x, y, z; for (x in x = ${arg}  = z = {});`, undefined, Context.None);
+        parseSource(`var x, y, z; for (x in x = ${arg}  = z = {});`  );
       });
     });
   }
@@ -611,22 +611,22 @@ describe('Miscellaneous - Cover grammar', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext);
+        parseSource(`${arg}`, {"next":true} );
       });
     });
     it(`{ function foo() {}; }; ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`{ function foo() {}; }; ${arg}`, undefined, Context.OptionsNext);
+        parseSource(`{ function foo() {}; }; ${arg}`, {"next":true} );
       });
     });
     it(`{  function* foo() {}; }; ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`{  function* foo() {}; }; ${arg}`, undefined, Context.OptionsNext);
+        parseSource(`{  function* foo() {}; }; ${arg}`, {"next":true} );
       });
     });
     it(`{ async function foo() {};  }; ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`{ async function foo() {};  }; ${arg}`, undefined, Context.OptionsNext);
+        parseSource(`{ async function foo() {};  }; ${arg}`, {"next":true} );
       });
     });
   }
@@ -696,17 +696,17 @@ describe('Miscellaneous - Cover grammar', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical | Context.OptionsNext);
+        parseSource(`${arg}`, {"next":true,"lexical":true} );
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, {"webcompat":true} );
       });
     });
   }
@@ -721,13 +721,13 @@ describe('Miscellaneous - Cover grammar', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        parseSource(`${arg}`, {"webcompat":true,"lexical":true} );
       });
     });
   }
@@ -827,33 +827,33 @@ describe('Miscellaneous - Cover grammar', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext);
+        parseSource(`${arg}`, {"next":true} );
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, {"lexical":true} );
       });
     });
 
     // Generators
     it(`function fn(${arg}) {}`, () => {
       t.throws(() => {
-        parseSource(`function *fn(${arg}) {}`, undefined, Context.None);
+        parseSource(`function *fn(${arg}) {}`  );
       });
     });
 
     // Generator expression - no name
     it(`(function *(${arg}) {})`, () => {
       t.throws(() => {
-        parseSource(`(function *(${arg}) {})`, undefined, Context.None);
+        parseSource(`(function *(${arg}) {})`  );
       });
     });
     // Async function
     it(`async function fn(${arg}) {}`, () => {
       t.throws(() => {
-        parseSource(`async function fn(${arg}) {}`, undefined, Context.None);
+        parseSource(`async function fn(${arg}) {}`  );
       });
     });
   }
@@ -876,47 +876,47 @@ describe('Miscellaneous - Cover grammar', () => {
     // Plain function
     it(`function fn(${arg}) {}`, () => {
       t.throws(() => {
-        parseSource(`function fn(${arg}) {}`, undefined, Context.None);
+        parseSource(`function fn(${arg}) {}`  );
       });
     });
 
     // Generators
     it(`function fn(${arg}) {}`, () => {
       t.throws(() => {
-        parseSource(`function *fn(${arg}) {}`, undefined, Context.None);
+        parseSource(`function *fn(${arg}) {}`  );
       });
     });
 
     // Generator expression - no name
     it(`(function *(${arg}) {})`, () => {
       t.throws(() => {
-        parseSource(`(function *(${arg}) {})`, undefined, Context.None);
+        parseSource(`(function *(${arg}) {})`  );
       });
     });
     // Async function
     it(`async function fn(${arg}) {}`, () => {
       t.throws(() => {
-        parseSource(`async function fn(${arg}) {}`, undefined, Context.None);
+        parseSource(`async function fn(${arg}) {}`  );
       });
     });
 
     // Async Generator
     it(`async function *fn(${arg}) {}`, () => {
       t.throws(() => {
-        parseSource(`async function *fn(${arg}) {}`, undefined, Context.None);
+        parseSource(`async function *fn(${arg}) {}`  );
       });
     });
     // Arrows
     it(`(${arg}) => x;`, () => {
       t.throws(() => {
-        parseSource(`(${arg}) => x;`, undefined, Context.None);
+        parseSource(`(${arg}) => x;`  );
       });
     });
 
     // Async arrows
     it(`(${arg}) => x;`, () => {
       t.throws(() => {
-        parseSource(`(${arg}) => x;`, undefined, Context.None);
+        parseSource(`(${arg}) => x;`  );
       });
     });
   }
@@ -942,47 +942,47 @@ describe('Miscellaneous - Cover grammar', () => {
     // Plain function
     it(`function fn(${arg}) {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function fn(${arg}) {}`, undefined, Context.None);
+        parseSource(`function fn(${arg}) {}`  );
       });
     });
 
     // Generators
     it(`function fn(${arg}) {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function *fn(${arg}) {}`, undefined, Context.None);
+        parseSource(`function *fn(${arg}) {}`  );
       });
     });
 
     // Generator expression - no name
     it(`(function *(${arg}) {})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function *(${arg}) {})`, undefined, Context.None);
+        parseSource(`(function *(${arg}) {})`  );
       });
     });
     // Async function
     it(`async function fn(${arg}) {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function fn(${arg}) {}`, undefined, Context.None);
+        parseSource(`async function fn(${arg}) {}`  );
       });
     });
 
     // Async Generator
     it(`async function *fn(${arg}) {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function *fn(${arg}) {}`, undefined, Context.None);
+        parseSource(`async function *fn(${arg}) {}`  );
       });
     });
     // Arrows
     it(`(${arg}) => x;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(${arg}) => x;`, undefined, Context.None);
+        parseSource(`(${arg}) => x;`  );
       });
     });
 
     // Async arrows
     it(`(${arg}) => x;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(${arg}) => x;`, undefined, Context.None);
+        parseSource(`(${arg}) => x;`  );
       });
     });
   }
@@ -1057,13 +1057,13 @@ describe('Miscellaneous - Cover grammar', () => {
     // Plain function
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical | Context.OptionsNext);
+        parseSource(`${arg}`, {"next":true,"lexical":true} );
       });
     });
   }
@@ -1128,42 +1128,42 @@ describe('Miscellaneous - Cover grammar', () => {
   ]) {
     it(`var ${arg}= {};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var  ${arg} = {}`, undefined, Context.OptionsNext | Context.OptionsLexical);
+        parseSource(`var  ${arg} = {}`, {"next":true,"lexical":true} );
       });
     });
     it(`"use strict"; let ${arg} = {};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; let ${arg} = {}`, undefined, Context.OptionsNext);
+        parseSource(`"use strict"; let ${arg} = {}`, {"next":true} );
       });
     });
     it(`function f(${arg}) {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function f(${arg}) {}`, undefined, Context.OptionsNext);
+        parseSource(`function f(${arg}) {}`, {"next":true} );
       });
     });
     it(`try {} catch(${arg}) {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`try {} catch(${arg}) {}`, undefined, Context.OptionsNext);
+        parseSource(`try {} catch(${arg}) {}`, {"next":true} );
       });
     });
     it(`try {} catch(${arg}) {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`try {} catch(${arg}) {}`, undefined, Context.OptionsNext | Context.OptionsLexical);
+        parseSource(`try {} catch(${arg}) {}`, {"next":true,"lexical":true} );
       });
     });
     it(`function f(arg1, ${arg}) {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function f(arg1, ${arg}) {}`, undefined, Context.OptionsNext);
+        parseSource(`function f(arg1, ${arg}) {}`, {"next":true} );
       });
     });
     it(`var f = (${arg}) => {};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var f = (${arg}) => {};`, undefined, Context.OptionsNext);
+        parseSource(`var f = (${arg}) => {};`, {"next":true} );
       });
     });
     it(`var f = (arg1, ${arg}) => {};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var f = (arg1, ${arg}) => {};`, undefined, Context.OptionsNext | Context.OptionsLexical);
+        parseSource(`var f = (arg1, ${arg}) => {};`, {"next":true,"lexical":true} );
       });
     });
   }
@@ -1492,22 +1492,22 @@ describe('Miscellaneous - Cover grammar', () => {
   ]) {
     it(`(${arg}= {});`, () => {
       t.throws(() => {
-        parseSource(`(${arg}= {});`, undefined, Context.OptionsNext | Context.OptionsLexical);
+        parseSource(`(${arg}= {});`, {"next":true,"lexical":true} );
       });
     });
     it(`var ${arg}= {};`, () => {
       t.throws(() => {
-        parseSource(`var  ${arg} = {}`, undefined, Context.OptionsNext);
+        parseSource(`var  ${arg} = {}`, {"next":true} );
       });
     });
     it(`"use strict"; let ${arg} = {};`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; let ${arg} = {}`, undefined, Context.OptionsNext);
+        parseSource(`"use strict"; let ${arg} = {}`, {"next":true} );
       });
     });
     it(`try {} catch(${arg}) {}`, () => {
       t.throws(() => {
-        parseSource(`try {} catch(${arg}) {}`, undefined, Context.OptionsNext);
+        parseSource(`try {} catch(${arg}) {}`, {"next":true} );
       });
     });
   }
@@ -1656,13 +1656,13 @@ describe('Miscellaneous - Cover grammar', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical | Context.OptionsWebCompat);
+        parseSource(`${arg}`, {"webcompat":true,"lexical":true} );
       });
     });
   }
@@ -1685,19 +1685,19 @@ describe('Miscellaneous - Cover grammar', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        parseSource(`${arg}`, {"webcompat":true,"lexical":true} );
       });
     });
 
     it(`"use strict"; ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`"use strict"; ${arg}`, {"lexical":true} );
       });
     });
   }
@@ -1849,67 +1849,67 @@ describe('Miscellaneous - Cover grammar', () => {
   ]) {
     it(`function fn() { 'use strict';} fn(${arg});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; let x, y, z; (${arg} = {});`, undefined, Context.OptionsLexical);
+        parseSource(`'use strict'; let x, y, z; (${arg} = {});`, {"lexical":true} );
       });
     });
 
     it(`'use strict'; let x, y, z; for (x in ${arg} = z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; let x, y, z; for (x in ${arg} = z = {});`, undefined, Context.None);
+        parseSource(`'use strict'; let x, y, z; for (x in ${arg} = z = {});`  );
       });
     });
 
     it(`'use strict'; let x, y, z; for (x in x =  ${arg} = z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; let x, y, z; for (x in x = ${arg} = z = {});`, undefined, Context.None);
+        parseSource(`'use strict'; let x, y, z; for (x in x = ${arg} = z = {});`  );
       });
     });
 
     it(`'use strict'; let x, y, z; for (x of ${arg} = z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; let x, y, z; for (x of ${arg} = z = {});`, undefined, Context.OptionsLexical);
+        parseSource(`'use strict'; let x, y, z; for (x of ${arg} = z = {});`, {"lexical":true} );
       });
     });
 
     it(`'use strict'; let x, y, z; for (x of x =  ${arg} = z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; let x, y, z; for (x of x = ${arg} = z = {});`, undefined, Context.None);
+        parseSource(`'use strict'; let x, y, z; for (x of x = ${arg} = z = {});`  );
       });
     });
 
     it(`var x, y, z; for (x of x = ${arg} = z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; for (x of x = ${arg} = z = {});`, undefined, Context.None);
+        parseSource(`var x, y, z; for (x of x = ${arg} = z = {});`  );
       });
     });
 
     it(`var x, y, z; (x = ${arg} = z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; (x = ${arg} = z = {});`, undefined, Context.None);
+        parseSource(`var x, y, z; (x = ${arg} = z = {});`  );
       });
     });
 
     it(`'use strict'; let x, y, z; for (x of ${arg}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; let x, y, z; for (x of ${arg} = z = {});`, undefined, Context.None);
+        parseSource(`'use strict'; let x, y, z; for (x of ${arg} = z = {});`  );
       });
     });
 
     it(`var x, y, z; for (x in ${arg} = z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; for (x in ${arg} = z = {});`, undefined, Context.None);
+        parseSource(`var x, y, z; for (x in ${arg} = z = {});`  );
       });
     });
 
     it(`var x, y, z; for (x in x = ${arg}  = z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; for (x in x = ${arg}  = z = {});`, undefined, Context.None);
+        parseSource(`var x, y, z; for (x in x = ${arg}  = z = {});`  );
       });
     });
 
     it(`var x, y, z; for (x of x = ${arg}  = z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; for (x of x = ${arg}  = z = {});`, undefined, Context.OptionsLexical);
+        parseSource(`var x, y, z; for (x of x = ${arg}  = z = {});`, {"lexical":true} );
       });
     });
   }
@@ -2030,23 +2030,23 @@ describe('Miscellaneous - Cover grammar', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext);
+        parseSource(`${arg}`, {"next":true} );
       });
     });
 
     it(`var x, y, z; for (x of ${arg} = {});`, () => {
       t.throws(() => {
-        parseSource(`var x, y, z; for (x of ${arg} = {});`, undefined, Context.OptionsNext | Context.OptionsLexical);
+        parseSource(`var x, y, z; for (x of ${arg} = {});`, {"next":true,"lexical":true} );
       });
     });
     it(`var x, y, z; for (x in ${arg} = {});`, () => {
       t.throws(() => {
-        parseSource(`var x, y, z; for (x in ${arg} = {});`, undefined, Context.OptionsNext);
+        parseSource(`var x, y, z; for (x in ${arg} = {});`, {"next":true} );
       });
     });
     it(`var x, y, z; for (x in ${arg} = {});`, () => {
       t.throws(() => {
-        parseSource(`var x, y, z; for (x in ${arg} = {});`, undefined, Context.OptionsWebCompat);
+        parseSource(`var x, y, z; for (x in ${arg} = {});`, {"webcompat":true} );
       });
     });
   }
@@ -3240,18 +3240,18 @@ describe('Miscellaneous - Cover grammar', () => {
   ]) {
     it(`  ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
     it(`  ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.OptionsLexical);
+        parseSource(`${arg}`, {"next":true,"lexical":true} );
       });
     });
 
     it(`  ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.OptionsWebCompat);
+        parseSource(`${arg}`, {"next":true,"webcompat":true} );
       });
     });
   }

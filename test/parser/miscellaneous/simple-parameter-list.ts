@@ -93,121 +93,121 @@ describe('Miscellaneous - Simple parameter list', () => {
   ]) {
     it(`function f(${arg}) { "use strict"; }`, () => {
       t.throws(() => {
-        parseSource(`function f(${arg}) { "use strict"; }`, undefined, Context.None);
+        parseSource(`function f(${arg}) { "use strict"; }`  );
       });
     });
 
     it(`function f(${arg}) { "use strict"; }`, () => {
       t.throws(() => {
-        parseSource(`function f(${arg}) { "use strict"; }`, undefined, Context.Strict | Context.Module);
+        parseSource(`function f(${arg}) { "use strict"; }`, {"module":true} );
       });
     });
 
     it(`async function *f(${arg}) { "use strict"; }`, () => {
       t.throws(() => {
-        parseSource(`async function *f(${arg}) { "use strict"; }`, undefined, Context.None);
+        parseSource(`async function *f(${arg}) { "use strict"; }`  );
       });
     });
 
     it(`async function *f(${arg}) { "use strict"; }`, () => {
       t.throws(() => {
-        parseSource(`async function *f(${arg}) { "use strict"; }`, undefined, Context.Strict | Context.Module);
+        parseSource(`async function *f(${arg}) { "use strict"; }`, {"module":true} );
       });
     });
 
     it(`void function(${arg}) { "use strict"; };`, () => {
       t.throws(() => {
-        parseSource(`void function(${arg}) { "use strict"; };`, undefined, Context.None);
+        parseSource(`void function(${arg}) { "use strict"; };`  );
       });
     });
 
     it(`function* g(${arg}) { "use strict"; }`, () => {
       t.throws(() => {
-        parseSource(`function* g(${arg}) { "use strict"; }`, undefined, Context.None);
+        parseSource(`function* g(${arg}) { "use strict"; }`  );
       });
     });
 
     it(`async function g(${arg}) { "use strict"; }`, () => {
       t.throws(() => {
-        parseSource(`async function g(${arg}) { "use strict"; }`, undefined, Context.None);
+        parseSource(`async function g(${arg}) { "use strict"; }`  );
       });
     });
 
     it(`(class { constructor(${arg}) { "use strict"; } });`, () => {
       t.throws(() => {
-        parseSource(`(class { constructor(${arg}) { "use strict"; } });`, undefined, Context.None);
+        parseSource(`(class { constructor(${arg}) { "use strict"; } });`  );
       });
     });
 
     it(`(${arg}) => { "use strict"; };`, () => {
       t.throws(() => {
-        parseSource(`(${arg}) => { "use strict"; };`, undefined, Context.None);
+        parseSource(`(${arg}) => { "use strict"; };`  );
       });
     });
 
     it(`(${arg}) => { "use strict"; };`, () => {
       t.throws(() => {
-        parseSource(`(${arg}) => { "use strict"; };`, undefined, Context.OptionsWebCompat);
+        parseSource(`(${arg}) => { "use strict"; };`, {"webcompat":true} );
       });
     });
 
     it(`async (${arg}) => { "use strict"; };`, () => {
       t.throws(() => {
-        parseSource(`async (${arg}) => { "use strict"; };`, undefined, Context.None);
+        parseSource(`async (${arg}) => { "use strict"; };`  );
       });
     });
 
     it(`async (${arg}) => { "use strict"; };`, () => {
       t.throws(() => {
-        parseSource(`async (${arg}) => { "use strict"; };`, undefined, Context.Strict | Context.Module);
+        parseSource(`async (${arg}) => { "use strict"; };`, {"module":true} );
       });
     });
 
     it(`({ get m(${arg}) { "use strict"; } });`, () => {
       t.throws(() => {
-        parseSource(`({ get m(${arg}) { "use strict"; } });`, undefined, Context.None);
+        parseSource(`({ get m(${arg}) { "use strict"; } });`  );
       });
     });
 
     it(`({ async set m(${arg}) { "use strict"; } });`, () => {
       t.throws(() => {
-        parseSource(`({ async set m(${arg}) { "use strict"; } });`, undefined, Context.None);
+        parseSource(`({ async set m(${arg}) { "use strict"; } });`  );
       });
     });
 
     it(`({ async set m(${arg}) { "use strict"; } });`, () => {
       t.throws(() => {
-        parseSource(`({ async set m(${arg}) { "use strict"; } });`, undefined, Context.OptionsWebCompat);
+        parseSource(`({ async set m(${arg}) { "use strict"; } });`, {"webcompat":true} );
       });
     });
 
     it(`({ set m(${arg}) { "use strict"; } });`, () => {
       t.throws(() => {
-        parseSource(`({ set m(${arg}) { "use strict"; } });`, undefined, Context.None);
+        parseSource(`({ set m(${arg}) { "use strict"; } });`  );
       });
     });
 
     it(`class C { async m(${arg}) { "use strict"; } }`, () => {
       t.throws(() => {
-        parseSource(`class C { async m(${arg}) { "use strict"; } }`, undefined, Context.None);
+        parseSource(`class C { async m(${arg}) { "use strict"; } }`  );
       });
     });
 
     it(`class C { async m(${arg}) { "use strict"; } }`, () => {
       t.throws(() => {
-        parseSource(`class C { async m(${arg}) { "use strict"; } }`, undefined, Context.Strict | Context.Module);
+        parseSource(`class C { async m(${arg}) { "use strict"; } }`, {"module":true} );
       });
     });
 
     it(`class C { *m(${arg}) { "use strict"; } }`, () => {
       t.throws(() => {
-        parseSource(`class C { *m(${arg}) { "use strict"; } }`, undefined, Context.None);
+        parseSource(`class C { *m(${arg}) { "use strict"; } }`  );
       });
     });
 
     it(`class C { *m(${arg}) { "use strict"; } }`, () => {
       t.throws(() => {
-        parseSource(`class C { *m(${arg}) { "use strict"; } }`, undefined, Context.OptionsWebCompat);
+        parseSource(`class C { *m(${arg}) { "use strict"; } }`, {"webcompat":true} );
       });
     });
   }

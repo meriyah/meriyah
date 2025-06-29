@@ -111,15 +111,15 @@ describe('Next - Import Meta', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.Strict | Context.Module);
+        parseSource(`${arg}`, {"module":true,"next":true} );
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(
           `${arg}`,
-          undefined,
-          Context.OptionsNext | Context.OptionsWebCompat | Context.Strict | Context.Module,
+          {"module":true,"next":true,"webcompat":true}
+          ,
         );
       });
     });

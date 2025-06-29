@@ -16,13 +16,13 @@ describe('Module - Export', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, {"module":true} );
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsWebCompat);
+        parseSource(`${arg}`, {"module":true,"webcompat":true} );
       });
     });
   }
@@ -35,7 +35,7 @@ describe('Module - Export', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, {"module":true} );
       });
     });
 
@@ -43,8 +43,8 @@ describe('Module - Export', () => {
       t.doesNotThrow(() => {
         parseSource(
           `${arg}`,
-          undefined,
-          Context.Strict | Context.Module | Context.OptionsWebCompat | Context.OptionsLexical,
+          {"module":true,"webcompat":true,"lexical":true}
+          ,
         );
       });
     });
@@ -141,7 +141,7 @@ describe('Module - Export', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, {"module":true} );
       });
     });
   }
@@ -696,18 +696,18 @@ describe('Module - Export', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, {"module":true} );
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, {"module":true} );
       });
     });
 
     it(`${arg}`, () => {
-      parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsWebCompat);
+      parseSource(`${arg}`, {"module":true,"webcompat":true} );
     });
   }
   for (const arg of [
@@ -732,7 +732,7 @@ describe('Module - Export', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsLexical);
+        parseSource(`${arg}`, {"module":true,"lexical":true} );
       });
     });
   }

@@ -408,30 +408,30 @@ describe('Expressions - Array', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, {"lexical":true} );
       });
     });
 
     it(`() => {${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`() => {${arg}}`, undefined, Context.None);
+        parseSource(`() => {${arg}}`  );
       });
     });
 
     it(`function foo() { ${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg}}`, undefined, Context.OptionsWebCompat);
+        parseSource(`function foo() { ${arg}}`, {"webcompat":true} );
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, {"webcompat":true} );
       });
     });
   }

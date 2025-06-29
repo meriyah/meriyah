@@ -19,13 +19,13 @@ describe('Miscellaneous - Literal', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.OptionsWebCompat);
+        parseSource(`${arg}`, {"next":true,"webcompat":true} );
       });
     });
   }
@@ -47,13 +47,13 @@ describe('Miscellaneous - Literal', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.OptionsWebCompat);
+        parseSource(`${arg}`, {"next":true,"webcompat":true} );
       });
     });
   }

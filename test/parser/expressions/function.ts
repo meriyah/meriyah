@@ -23,15 +23,15 @@ describe('Expressions - Functions', () => {
   ]) {
     it(`(function (${arg}) {})`, () => {
       t.throws(() => {
-        parseSource(`(function (${arg}) {})`, undefined, Context.None);
+        parseSource(`(function (${arg}) {})`  );
       });
 
       t.throws(() => {
-        parseSource(`const foo = (function (${arg}) {})`, undefined, Context.None);
+        parseSource(`const foo = (function (${arg}) {})`  );
       });
 
       t.throws(() => {
-        parseSource(`(function (${arg}) {})`, undefined, Context.Strict | Context.Module);
+        parseSource(`(function (${arg}) {})`, {"module":true} );
       });
     });
   }
@@ -47,25 +47,25 @@ describe('Expressions - Functions', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
 
     it(`function foo() { ${arg}}`, () => {
       t.throws(() => {
-        parseSource(`function foo() { ${arg}}`, undefined, Context.None);
+        parseSource(`function foo() { ${arg}}`  );
       });
     });
 
     it(`(function foo() { ${arg}})`, () => {
       t.throws(() => {
-        parseSource(`(function foo() { ${arg}})`, undefined, Context.None);
+        parseSource(`(function foo() { ${arg}})`  );
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, {"module":true} );
       });
     });
   }
@@ -103,7 +103,7 @@ describe('Expressions - Functions', () => {
   ]) {
     it(`(function(${arg}) {})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function(${arg}) {})`, undefined, Context.None);
+        parseSource(`(function(${arg}) {})`  );
       });
     });
   }
@@ -249,13 +249,13 @@ describe('Expressions - Functions', () => {
   for (const arg of validSyntax) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`  );
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, {"module":true} );
       });
     });
   }
@@ -266,7 +266,7 @@ describe('Expressions - Functions', () => {
   ]) {
     it(arg, () => {
       t.doesNotThrow(() => {
-        parseSource(arg, undefined, Context.None);
+        parseSource(arg  );
       });
     });
   }
