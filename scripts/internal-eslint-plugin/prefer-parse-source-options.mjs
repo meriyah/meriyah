@@ -40,6 +40,7 @@ export default {
           throw new Error('Unexpected error');
         }
 
+        const originalSize = flags.size;
         const options = {};
         flags.delete('None');
 
@@ -58,6 +59,10 @@ export default {
           OptionsRaw: 'raw',
           Strict: 'impliedStrict',
         };
+
+        if (flags.size === originalSize && [...flags].every((flag) => !Object.hasOwn(flagToOptions, flag))) {
+          return;
+        }
 
         for (const [flagName, optionName] of Object.entries(flagToOptions)) {
           if (flags.has(flagName)) {
