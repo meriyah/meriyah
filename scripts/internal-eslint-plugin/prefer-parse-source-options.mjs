@@ -41,7 +41,6 @@ export default {
         }
 
         const options = {};
-        const contexts = [];
         flags.delete('None');
 
         if (flags.has('Module') && flags.has('Strict')) {
@@ -50,21 +49,14 @@ export default {
           options.module = true;
         }
 
-        const noOptionFlags = ['Module', 'InAwaitContext'];
-
-        for (const flagName of noOptionFlags) {
-          if (flags.has(flagName)) {
-            flags.delete(flagName);
-            contexts.push(flagName);
-          }
-        }
-
         const flagToOptions = {
-          Strict: 'impliedStrict',
-          OptionsWebCompat: 'webcompat',
           OptionsNext: 'next',
+          OptionsUniqueKeyInPattern: 'uniqueKeyInPattern',
+          OptionsWebCompat: 'webcompat',
           OptionsLexical: 'lexical',
-          OptionsJSX: 'jsx',
+          InReturnContext: 'globalReturn',
+          OptionsRaw: 'raw',
+          Strict: 'impliedStrict',
         };
 
         for (const [flagName, optionName] of Object.entries(flagToOptions)) {
@@ -74,9 +66,7 @@ export default {
           }
         }
 
-        if (flags.size > 0) {
-          throw new Error(`Unmapped bitmap flags: ${[...flags]}`);
-        }
+        const contexts = [...flags];
 
         context.report({
           node: contextNode,
