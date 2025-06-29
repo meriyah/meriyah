@@ -1,7 +1,7 @@
 import { nextToken, skipHashBang } from './lexer';
 import { Token, KeywordDescTable } from './token';
 import type * as ESTree from './estree';
-import { ParseError, reportScopeError, Errors } from './errors';
+import { ParseError, Errors } from './errors';
 import { scanTemplateTail } from './lexer/template';
 import { rescanJSXIdentifier, nextJSXToken, scanJSXAttributeValue } from './lexer/jsx';
 import {
@@ -43,7 +43,15 @@ import {
 } from './common';
 import { Chars } from './chars';
 import { Parser, type ParserOptions, pushComment, pushToken } from './parser/parser';
-import { Scope, ScopeKind, createArrowHeadParsingScope, addVarName, addBlockName, addVarOrBlock } from './parser/scope';
+import {
+  Scope,
+  ScopeKind,
+  createArrowHeadParsingScope,
+  addVarName,
+  addBlockName,
+  addVarOrBlock,
+  reportScopeError,
+} from './parser/scope';
 
 /**
  * The parser options.

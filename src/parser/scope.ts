@@ -1,4 +1,4 @@
-import { Errors } from '../errors';
+import { Errors, ParseError } from '../errors';
 import { type Location, declareUnboundVariable, Context, BindingKind, Origin } from '../common';
 import { type Parser } from './parser';
 
@@ -239,4 +239,8 @@ export function addVarOrBlock(
   if (origin & Origin.Export) {
     declareUnboundVariable(parser, name);
   }
+}
+
+export function reportScopeError(scope: ScopeError): never {
+  throw new ParseError(scope.start, scope.end, scope.type, ...scope.params);
 }
