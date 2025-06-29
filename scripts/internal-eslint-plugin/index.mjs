@@ -1,6 +1,7 @@
 import { default as noMissingParserFinishNodeType } from './no-missing-parser-finish-node-type.mjs';
+import { default as preferParseSourceOptions } from './prefer-parse-source-options.mjs';
 
-const rules = { noMissingParserFinishNodeType };
+const rules = { noMissingParserFinishNodeType, preferParseSourceOptions };
 
 const PLUGIN_NAME = 'internal';
 
