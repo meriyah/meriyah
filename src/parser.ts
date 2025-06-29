@@ -11,9 +11,6 @@ import {
   consumeOpt,
   consume,
   Flags,
-  type OnComment,
-  type OnInsertedSemicolon,
-  type OnToken,
   reinterpretToPattern,
   DestructuringKind,
   AssignmentKind,
@@ -50,50 +47,15 @@ import {
   type Location,
 } from './common';
 import { Chars } from './chars';
-import { Parser, type ParserOptions, pushComment, pushToken } from './parser/parser';
-
-/**
- * The parser options.
- */
-export interface Options {
-  // Allow module code
-  module?: boolean;
-  // Enable stage 3 support (ESNext)
-  next?: boolean;
-  // Enable start and end offsets to each node
-  ranges?: boolean;
-  // Enable web compatibility
-  webcompat?: boolean;
-  // Enable line/column location information to each node
-  loc?: boolean;
-  // Attach raw property to each literal and identifier node
-  raw?: boolean;
-  // Allow return in the global scope
-  globalReturn?: boolean;
-  // Enable implied strict mode
-  impliedStrict?: boolean;
-  // Enable non-standard parenthesized expression node
-  preserveParens?: boolean;
-  // Enable lexical binding and scope tracking
-  lexical?: boolean;
-  // Adds a source attribute in every node’s loc object when the locations option is `true`
-  source?: string;
-  // Enable React JSX parsing
-  jsx?: boolean;
-  // Allows comment extraction. Accepts either a callback function or an array
-  onComment?: ESTree.Comment[] | OnComment;
-  // Allows detection of automatic semicolon insertion. Accepts a callback function that will be passed the character offset where the semicolon was inserted
-  onInsertedSemicolon?: OnInsertedSemicolon;
-  // Allows token extraction. Accepts either a callback function or an array
-  onToken?: Token[] | OnToken;
-  // Creates unique key for in ObjectPattern when key value are same
-  uniqueKeyInPattern?: boolean;
-}
+import { Parser } from './parser/parser';
+import { type Options, normalizeOptions } from './options';
 
 /**
  * Consumes a sequence of tokens and produces an syntax tree
  */
-export function parseSource(source: string, options: Options = {}, context: Context = Context.None): ESTree.Program {
+export function parseSource(source: string, rawOptions: Options = {}, context: Context = Context.None): ESTree.Program {
+  const options = normalizeOptions(rawOptions);
+
   if (options.module) context |= Context.Module | Context.Strict;
   if (options.next) context |= Context.OptionsNext;
   if (options.uniqueKeyInPattern) context |= Context.OptionsUniqueKeyInPattern;
@@ -104,30 +66,8 @@ export function parseSource(source: string, options: Options = {}, context: Cont
   if (options.raw) context |= Context.OptionsRaw;
   if (options.impliedStrict) context |= Context.Strict;
 
-  const parserOptions: ParserOptions = {
-    loc: options.loc,
-    ranges: options.ranges,
-    preserveParens: options.preserveParens,
-    jsx: options.jsx,
-    sourceFile: options.source,
-    onInsertedSemicolon: options.onInsertedSemicolon,
-  };
-
-  // Accepts either a callback function to be invoked or an array to collect comments (as the node is constructed)
-  if (options.onComment != null) {
-    parserOptions.onComment = Array.isArray(options.onComment)
-      ? pushComment(options.onComment, parserOptions)
-      : options.onComment;
-  }
-  // Accepts either a callback function to be invoked or an array to collect tokens
-  if (options.onToken != null) {
-    parserOptions.onToken = Array.isArray(options.onToken)
-      ? pushToken(options.onToken, parserOptions)
-      : options.onToken;
-  }
-
   // Initialize parser state
-  const parser = new Parser(source, parserOptions);
+  const parser = new Parser(source, options);
 
   // See: https://github.com/tc39/proposal-hashbang
   skipHashBang(parser);

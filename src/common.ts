@@ -1,6 +1,5 @@
 import { Token, KeywordDescTable } from './token';
 import { Errors, ParseError } from './errors';
-import type * as ESTree from './estree';
 import { nextToken } from './lexer/scan';
 import { type Parser } from './parser/parser';
 
@@ -168,27 +167,6 @@ export const enum ScopeKind {
   FunctionParams = 1 << 8,
   ArrowParams = 1 << 9,
 }
-
-/**
- * Comment process function.
- */
-export type OnComment = (
-  type: ESTree.CommentType,
-  value: string,
-  start: number,
-  end: number,
-  loc: ESTree.SourceLocation,
-) => any;
-
-/**
- * Function calls when semicolon inserted.
- */
-export type OnInsertedSemicolon = (pos: number) => any;
-
-/**
- * Token process function.
- */
-export type OnToken = (token: string, start: number, end: number, loc: ESTree.SourceLocation) => any;
 
 /**
  * Lexical scope interface
