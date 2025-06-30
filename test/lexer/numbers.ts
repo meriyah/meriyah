@@ -1,3 +1,4 @@
+import { type NormalizedOptions } from './../../src/options';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { Context } from '../../src/common';
@@ -233,9 +234,9 @@ describe('Lexer - Numberic literals', () => {
     });
   }
 
-  function fail(name: string, source: string, context: Context) {
+  function fail(name: string, source: string, context: Context, options: NormalizedOptions = {}) {
     it(name, () => {
-      const parser = new Parser(source);
+      const parser = new Parser(source, options);
       t.throws(() => scanSingleToken(parser, context, 0));
     });
   }
@@ -273,7 +274,7 @@ describe('Lexer - Numberic literals', () => {
   fail('fails on Binary-integer-literal-like sequence without any digits', '0b;', Context.Strict);
   fail('fails on Binary-integer-literal-like sequence containing an invalid digit', '0b2;', Context.Strict);
   fail('fails on Binary-integer-literal-like sequence containing an invalid digit', '0077', Context.Strict);
-  fail('fails on invalid BigInt literal', '1ne-1', Context.OptionsNext);
+  fail('fails on invalid BigInt literal', '1ne-1', Context.None, { next: true });
   fail('fails on 1__', '1__', Context.None);
   fail('fails on 1__2', '1__2', Context.None);
   fail('fails on 1.__', '1.__', Context.None);

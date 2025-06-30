@@ -8,7 +8,7 @@ import { scanSingleToken } from '../../src/lexer/scan';
 describe('lexer - privatename', () => {
   function pass(name: string, opts: any) {
     it(name, () => {
-      const parser = new Parser(opts.source);
+      const parser = new Parser(opts.source, opts.options);
       const token = scanSingleToken(parser, opts.ctx, 0);
       t.deepEqual(
         {
@@ -27,7 +27,8 @@ describe('lexer - privatename', () => {
 
   pass('scan identifier with backslash middle', {
     source: '#hello',
-    ctx: Context.OptionsNext,
+    ctx: Context.None,
+    options: { next: true },
     token: Token.PrivateField,
     value: '',
     newline: false,

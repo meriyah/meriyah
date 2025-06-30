@@ -57,7 +57,6 @@ export function parseSource(source: string, rawOptions: Options = {}, context: C
   const options = normalizeOptions(rawOptions);
 
   if (options.module) context |= Context.Module | Context.Strict;
-  if (options.next) context |= Context.OptionsNext;
   if (options.lexical) context |= Context.OptionsLexical;
   // Turn on return context in global
   if (options.globalReturn) context |= Context.InReturnContext;
@@ -7671,7 +7670,7 @@ function parseClassDeclaration(
       id,
       superClass,
       body,
-      ...(context & Context.OptionsNext ? { decorators } : null),
+      ...(parser.options.next ? { decorators } : null),
     },
     start,
   );
@@ -7743,7 +7742,7 @@ function parseClassExpression(
       id,
       superClass,
       body,
-      ...(context & Context.OptionsNext ? { decorators } : null),
+      ...(parser.options.next ? { decorators } : null),
     },
     start,
   );
@@ -7762,7 +7761,7 @@ function parseDecorators(
 ): ESTree.Decorator[] {
   const list: ESTree.Decorator[] = [];
 
-  if (context & Context.OptionsNext) {
+  if (parser.options.next) {
     while (parser.getToken() === Token.Decorator) {
       list.push(parseDecoratorList(parser, context, privateScope));
     }
@@ -8024,7 +8023,7 @@ function parseClassElementList(
             return parsePropertyDefinition(parser, context, privateScope, key, kind, decorators, start);
           }
           // class auto-accessor is part of stage 3 decorator spec
-          if (context & Context.OptionsNext) kind |= PropertyKind.Accessor;
+          if (parser.options.next) kind |= PropertyKind.Accessor;
         }
         break;
       default: // ignore
@@ -8129,7 +8128,7 @@ function parseClassElementList(
       computed: (kind & PropertyKind.Computed) > 0,
       key,
       value,
-      ...(context & Context.OptionsNext ? { decorators } : null),
+      ...(parser.options.next ? { decorators } : null),
     },
     start,
   );
@@ -8265,7 +8264,7 @@ function parsePropertyDefinition(
       value,
       static: (state & PropertyKind.Static) > 0,
       computed: (state & PropertyKind.Computed) > 0,
-      ...(context & Context.OptionsNext ? { decorators } : null),
+      ...(parser.options.next ? { decorators } : null),
     } as any,
     start,
   );

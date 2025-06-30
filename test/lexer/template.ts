@@ -1,3 +1,4 @@
+import { type NormalizedOptions } from './../../src/options';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { Context } from '../../src/common';
@@ -158,22 +159,22 @@ describe('Lexer - Template', () => {
     }
   });
 
-  function fail(name: string, source: string, context: Context) {
+  function fail(name: string, source: string, context: Context, options: NormalizedOptions = {}) {
     it(name, () => {
-      const parser = new Parser(source);
+      const parser = new Parser(source, options);
       t.throws(() => scanSingleToken(parser, context, 0));
     });
   }
 
   fail(String.raw`fails on "\9999"`, String.raw`"\9999"`, Context.None);
   fail('fails on "foo', '"foo', Context.None);
-  fail(String.raw`fails on "\u007"`, String.raw`"\u007"`, Context.OptionsNext);
-  fail(String.raw`fails on "\u007Xvwxyz"`, String.raw`"\u007Xvwxyz"`, Context.OptionsNext);
+  fail(String.raw`fails on "\u007"`, String.raw`"\u007"`, Context.None, { next: true });
+  fail(String.raw`fails on "\u007Xvwxyz"`, String.raw`"\u007Xvwxyz"`, Context.None, { next: true });
   // fail('fails on "abc\\u{}"', '"abc\\u{}"', Context.OptionsNext);
   // fail('fails on "abc\\u}"', '"abc\\u}"', Context.OptionsNext);
   // fail('fails on "abc\\u{', '"abc\\u{"', Context.OptionsNext);
-  fail(String.raw`fails on "\u{70bc"`, String.raw`"\u{70bc"`, Context.OptionsNext);
-  fail(String.raw`fails on "\u{70"`, String.raw`"\u{70"`, Context.OptionsNext);
+  fail(String.raw`fails on "\u{70bc"`, String.raw`"\u{70bc"`, Context.None, { next: true });
+  fail(String.raw`fails on "\u{70"`, String.raw`"\u{70"`, Context.None, { next: true });
   fail(String.raw`fails on "\u{!"`, String.raw`"\u{!"`, Context.None);
   fail(String.raw`fails on "\u"`, String.raw`"\u"`, Context.None);
   fail(String.raw`fails on "\8"`, String.raw`"\8"`, Context.None);
