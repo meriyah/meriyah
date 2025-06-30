@@ -1,39 +1,9 @@
 import { convertTokenType } from '../lexer';
 import { Token } from '../token';
 import type * as ESTree from '../estree';
-import {
-  type Location,
-  Flags,
-  type OnComment,
-  type OnInsertedSemicolon,
-  type OnToken,
-  type AssignmentKind,
-  type DestructuringKind,
-} from '../common';
+import { type Location, Flags, type AssignmentKind, type DestructuringKind } from '../common';
 import { ParseError, type Errors } from '../errors';
-
-export type ParserOptions = {
-  loc?: boolean;
-  ranges?: boolean;
-  preserveParens?: boolean;
-  jsx?: boolean;
-  /**
-   * Used together with source maps. File containing the code being parsed
-   */
-  sourceFile?: string;
-  /**
-   * Holds either a function or array used on every comment
-   */
-  onComment?: OnComment;
-  /**
-   * Function invoked with the character offset when automatic semicolon insertion occurs
-   */
-  onInsertedSemicolon?: OnInsertedSemicolon;
-  /**
-   * Holds either a function or array used on every token
-   */
-  onToken?: OnToken;
-};
+import { type NormalizedOptions, type OnComment, type OnToken } from '../options';
 
 export class Parser {
   private lastOnToken: [string, number, number, ESTree.SourceLocation] | null = null;
@@ -149,7 +119,7 @@ export class Parser {
      * The source code to be parsed
      */
     public readonly source: string,
-    public readonly options: ParserOptions = {},
+    public readonly options: NormalizedOptions = {},
   ) {
     this.end = source.length;
     this.currentChar = source.charCodeAt(0);
@@ -230,8 +200,8 @@ export class Parser {
         end: end ? { line: end.line, column: end.column } : { line: this.startLine, column: this.startColumn },
       };
 
-      if (this.options.sourceFile) {
-        node.loc.source = this.options.sourceFile;
+      if (this.options.source) {
+        node.loc.source = this.options.source;
       }
     }
 
@@ -251,7 +221,7 @@ export class Parser {
   }
 }
 
-export function pushComment(comments: ESTree.Comment[], options: ParserOptions): OnComment {
+export function pushComment(comments: ESTree.Comment[], options: NormalizedOptions): OnComment {
   return function (type: ESTree.CommentType, value: string, start: number, end: number, loc: ESTree.SourceLocation) {
     const comment: ESTree.Comment = {
       type,
@@ -270,7 +240,7 @@ export function pushComment(comments: ESTree.Comment[], options: ParserOptions):
   };
 }
 
-export function pushToken(tokens: any[], options: ParserOptions): OnToken {
+export function pushToken(tokens: Token[], options: NormalizedOptions): OnToken {
   return function (type: string, start: number, end: number, loc: ESTree.SourceLocation) {
     const token: any = {
       token: type,

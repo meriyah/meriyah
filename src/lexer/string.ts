@@ -28,7 +28,7 @@ export function scanString(parser: Parser, context: Context, quote: number): Tok
     if (char === quote) {
       ret += parser.source.slice(marker, parser.index);
       advanceChar(parser); // skip closing quote
-      if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(start, parser.index);
+      if (parser.options.raw) parser.tokenRaw = parser.source.slice(start, parser.index);
       parser.tokenValue = ret;
       return Token.StringLiteral;
     }
@@ -218,8 +218,7 @@ export function parseEscape(parser: Parser, context: Context, first: number, isT
     // `8`, `9` (invalid escapes)
     case Chars.Eight:
     case Chars.Nine:
-      if (isTemplate || (context & Context.OptionsWebCompat) === 0 || context & Context.Strict)
-        return Escape.EightOrNine;
+      if (isTemplate || !parser.options.webcompat || context & Context.Strict) return Escape.EightOrNine;
       parser.flags |= Flags.EightAndNine;
     // fallthrough
     default:

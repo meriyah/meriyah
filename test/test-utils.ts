@@ -1,8 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import { codeFrameColumns } from '@babel/code-frame';
-import { parseSource, type Options } from '../src/parser';
+import { parseSource } from '../src/parser';
 import { Context } from '../src/common';
 import { ParseError } from '../src/errors';
+import { type Options } from '../src/options';
 
 const IS_CI = Boolean(process.env.CI);
 // https://github.com/vitest-dev/vitest/issues/8151

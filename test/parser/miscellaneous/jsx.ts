@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -25,12 +24,12 @@ describe('Miscellaneous - JSX', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { jsx: true }, Context.OptionsNext);
+        parseSource(`${arg}`, { jsx: true, next: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { jsx: true }, Context.OptionsNext | Context.OptionsWebCompat);
+        parseSource(`${arg}`, { jsx: true, next: true, webcompat: true });
       });
     });
   }

@@ -11,9 +11,6 @@ import {
   consumeOpt,
   consume,
   Flags,
-  type OnComment,
-  type OnInsertedSemicolon,
-  type OnToken,
   reinterpretToPattern,
   DestructuringKind,
   AssignmentKind,
@@ -50,89 +47,27 @@ import {
   type Location,
 } from './common';
 import { Chars } from './chars';
-import { Parser, type ParserOptions, pushComment, pushToken } from './parser/parser';
-
-/**
- * The parser options.
- */
-export interface Options {
-  // Allow module code
-  module?: boolean;
-  // Enable stage 3 support (ESNext)
-  next?: boolean;
-  // Enable start and end offsets to each node
-  ranges?: boolean;
-  // Enable web compatibility
-  webcompat?: boolean;
-  // Enable line/column location information to each node
-  loc?: boolean;
-  // Attach raw property to each literal and identifier node
-  raw?: boolean;
-  // Allow return in the global scope
-  globalReturn?: boolean;
-  // Enable implied strict mode
-  impliedStrict?: boolean;
-  // Enable non-standard parenthesized expression node
-  preserveParens?: boolean;
-  // Enable lexical binding and scope tracking
-  lexical?: boolean;
-  // Adds a source attribute in every node’s loc object when the locations option is `true`
-  source?: string;
-  // Enable React JSX parsing
-  jsx?: boolean;
-  // Allows comment extraction. Accepts either a callback function or an array
-  onComment?: ESTree.Comment[] | OnComment;
-  // Allows detection of automatic semicolon insertion. Accepts a callback function that will be passed the character offset where the semicolon was inserted
-  onInsertedSemicolon?: OnInsertedSemicolon;
-  // Allows token extraction. Accepts either a callback function or an array
-  onToken?: Token[] | OnToken;
-  // Creates unique key for in ObjectPattern when key value are same
-  uniqueKeyInPattern?: boolean;
-}
+import { Parser } from './parser/parser';
+import { type Options, normalizeOptions } from './options';
 
 /**
  * Consumes a sequence of tokens and produces an syntax tree
  */
-export function parseSource(source: string, options: Options = {}, context: Context = Context.None): ESTree.Program {
+export function parseSource(source: string, rawOptions: Options = {}, context: Context = Context.None): ESTree.Program {
+  const options = normalizeOptions(rawOptions);
+
   if (options.module) context |= Context.Module | Context.Strict;
-  if (options.next) context |= Context.OptionsNext;
-  if (options.uniqueKeyInPattern) context |= Context.OptionsUniqueKeyInPattern;
-  if (options.lexical) context |= Context.OptionsLexical;
-  if (options.webcompat) context |= Context.OptionsWebCompat;
   // Turn on return context in global
   if (options.globalReturn) context |= Context.InReturnContext;
-  if (options.raw) context |= Context.OptionsRaw;
   if (options.impliedStrict) context |= Context.Strict;
 
-  const parserOptions: ParserOptions = {
-    loc: options.loc,
-    ranges: options.ranges,
-    preserveParens: options.preserveParens,
-    jsx: options.jsx,
-    sourceFile: options.source,
-    onInsertedSemicolon: options.onInsertedSemicolon,
-  };
-
-  // Accepts either a callback function to be invoked or an array to collect comments (as the node is constructed)
-  if (options.onComment != null) {
-    parserOptions.onComment = Array.isArray(options.onComment)
-      ? pushComment(options.onComment, parserOptions)
-      : options.onComment;
-  }
-  // Accepts either a callback function to be invoked or an array to collect tokens
-  if (options.onToken != null) {
-    parserOptions.onToken = Array.isArray(options.onToken)
-      ? pushToken(options.onToken, parserOptions)
-      : options.onToken;
-  }
-
   // Initialize parser state
-  const parser = new Parser(source, parserOptions);
+  const parser = new Parser(source, options);
 
   // See: https://github.com/tc39/proposal-hashbang
   skipHashBang(parser);
 
-  const scope: ScopeState | undefined = context & Context.OptionsLexical ? createScope() : void 0;
+  const scope: ScopeState | undefined = options.lexical ? createScope() : void 0;
 
   let body: (ESTree.Statement | ReturnType<typeof parseDirective | typeof parseModuleItem>)[] = [];
 
@@ -463,7 +398,7 @@ function parseStatement(
       parser.report(
         context & Context.Strict
           ? Errors.StrictFunction
-          : (context & Context.OptionsWebCompat) === 0
+          : !parser.options.webcompat
             ? Errors.WebCompatFunction
             : Errors.SloppyFunction,
       );
@@ -735,7 +670,7 @@ function parseLabelledStatement(
   const body =
     allowFuncDecl &&
     (context & Context.Strict) === 0 &&
-    context & Context.OptionsWebCompat &&
+    parser.options.webcompat &&
     // In sloppy mode, Annex B.3.2 allows labelled function declarations.
     // Otherwise it's a parse error.
     parser.getToken() === Token.FunctionKeyword
@@ -1100,7 +1035,7 @@ function parseConsequentOrAlternative(
 
   return context & Context.Strict ||
     // Disallow if web compatibility is off
-    (context & Context.OptionsWebCompat) === 0 ||
+    !parser.options.webcompat ||
     parser.getToken() !== Token.FunctionKeyword
     ? parseStatement(parser, context, scope, privateScope, Origin.None, { $: labels }, 0)
     : parseFunctionDeclaration(
@@ -1686,7 +1621,7 @@ function parseLetIdentOrVarDeclarationStatement(
   if (parser.getToken() === Token.Arrow) {
     let scope: ScopeState | undefined = void 0;
 
-    if (context & Context.OptionsLexical) scope = createArrowHeadParsingScope(parser, context, tokenValue);
+    if (parser.options.lexical) scope = createArrowHeadParsingScope(parser, context, tokenValue);
 
     parser.flags = (parser.flags | Flags.NonSimpleParameterList) ^ Flags.NonSimpleParameterList;
 
@@ -4348,7 +4283,7 @@ function parseBigIntLiteral(parser: Parser, context: Context): ESTree.BigIntLite
     bigint: String(tokenValue),
   };
 
-  if (context & Context.OptionsRaw) {
+  if (parser.options.raw) {
     node.raw = tokenRaw;
   }
 
@@ -4641,7 +4576,7 @@ function parseLiteral(parser: Parser, context: Context): ESTree.Literal {
   nextToken(parser, context);
   parser.assignable = AssignmentKind.CannotAssign;
   return parser.finishNode(
-    context & Context.OptionsRaw
+    parser.options.raw
       ? {
           type: 'Literal',
           value: tokenValue,
@@ -4669,7 +4604,7 @@ function parseNullOrTrueOrFalseLiteral(parser: Parser, context: Context): ESTree
   nextToken(parser, context);
   parser.assignable = AssignmentKind.CannotAssign;
   return parser.finishNode(
-    context & Context.OptionsRaw
+    parser.options.raw
       ? {
           type: 'Literal',
           value,
@@ -4869,7 +4804,7 @@ function parseFunctionExpression(
   let funcNameToken: Token | undefined;
 
   // Create a new function scope
-  let scope = context & Context.OptionsLexical ? createScope() : void 0;
+  let scope = parser.options.lexical ? createScope() : void 0;
 
   const modifierFlags =
     Context.SuperProperty |
@@ -5521,7 +5456,7 @@ function parseMethodDefinition(
     Context.InMethodOrFunction |
     Context.AllowNewTarget;
 
-  let scope = context & Context.OptionsLexical ? addChildScope(createScope(), ScopeKind.FunctionParams) : void 0;
+  let scope = parser.options.lexical ? addChildScope(createScope(), ScopeKind.FunctionParams) : void 0;
 
   const params = parseMethodFormals(
     parser,
@@ -5770,7 +5705,7 @@ function parseObjectLiteralOrPattern(
             value = parser.finishNode<ESTree.AssignmentPattern>(
               {
                 type: 'AssignmentPattern',
-                left: context & Context.OptionsUniqueKeyInPattern ? Object.assign({}, key) : key,
+                left: parser.options.uniqueKeyInPattern ? Object.assign({}, key) : key,
                 right,
               },
               tokenStart,
@@ -5779,7 +5714,7 @@ function parseObjectLiteralOrPattern(
             destructible |=
               (token === Token.AwaitKeyword ? DestructuringKind.Await : 0) |
               (token === Token.EscapedReserved ? DestructuringKind.CannotDestruct : 0);
-            value = context & Context.OptionsUniqueKeyInPattern ? Object.assign({}, key) : key;
+            value = parser.options.uniqueKeyInPattern ? Object.assign({}, key) : key;
           }
         } else if (consumeOpt(parser, context | Context.AllowRegExp, Token.Colon)) {
           const { tokenStart } = parser;
@@ -6549,7 +6484,7 @@ function parseParenthesizedExpression(
 
   nextToken(parser, context | Context.AllowRegExp | Context.AllowEscapedKeyword);
 
-  const scope = context & Context.OptionsLexical ? addChildScope(createScope(), ScopeKind.ArrowParams) : void 0;
+  const scope = parser.options.lexical ? addChildScope(createScope(), ScopeKind.ArrowParams) : void 0;
 
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
@@ -6820,7 +6755,7 @@ function parseIdentifierOrArrow(
   if (parser.getToken() === Token.Arrow) {
     let scope: ScopeState | undefined = void 0;
 
-    if (context & Context.OptionsLexical) scope = createArrowHeadParsingScope(parser, context, tokenValue);
+    if (parser.options.lexical) scope = createArrowHeadParsingScope(parser, context, tokenValue);
 
     if (isNonSimpleParameterList) parser.flags |= Flags.NonSimpleParameterList;
     if (hasStrictReserved) parser.flags |= Flags.HasStrictReserved;
@@ -6853,7 +6788,7 @@ function parseArrowFromIdentifier(
   if (!canAssign) parser.report(Errors.InvalidAssignmentTarget);
   if (inNew) parser.report(Errors.InvalidAsyncArrow);
   parser.flags &= ~Flags.NonSimpleParameterList;
-  const scope = context & Context.OptionsLexical ? createArrowHeadParsingScope(parser, context, value) : void 0;
+  const scope = parser.options.lexical ? createArrowHeadParsingScope(parser, context, value) : void 0;
 
   return parseArrowFunctionExpression(parser, context, scope, privateScope, [expr], isAsync, start);
 }
@@ -7403,7 +7338,7 @@ function parseAsyncArrowOrCallExpression(
 ): ESTree.CallExpression | ESTree.ArrowFunctionExpression {
   nextToken(parser, context | Context.AllowRegExp);
 
-  const scope = context & Context.OptionsLexical ? addChildScope(createScope(), ScopeKind.ArrowParams) : void 0;
+  const scope = parser.options.lexical ? addChildScope(createScope(), ScopeKind.ArrowParams) : void 0;
 
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
@@ -7621,7 +7556,7 @@ function parseRegExpLiteral(parser: Parser, context: Context): ESTree.RegExpLite
     regex: tokenRegExp as { pattern: string; flags: string },
   };
 
-  if (context & Context.OptionsRaw) {
+  if (parser.options.raw) {
     node.raw = tokenRaw;
   }
 
@@ -7733,7 +7668,7 @@ function parseClassDeclaration(
       id,
       superClass,
       body,
-      ...(context & Context.OptionsNext ? { decorators } : null),
+      ...(parser.options.next ? { decorators } : null),
     },
     start,
   );
@@ -7805,7 +7740,7 @@ function parseClassExpression(
       id,
       superClass,
       body,
-      ...(context & Context.OptionsNext ? { decorators } : null),
+      ...(parser.options.next ? { decorators } : null),
     },
     start,
   );
@@ -7824,7 +7759,7 @@ function parseDecorators(
 ): ESTree.Decorator[] {
   const list: ESTree.Decorator[] = [];
 
-  if (context & Context.OptionsNext) {
+  if (parser.options.next) {
     while (parser.getToken() === Token.Decorator) {
       list.push(parseDecoratorList(parser, context, privateScope));
     }
@@ -7935,7 +7870,7 @@ function parseClassBody(
 
   const { tokenStart } = parser;
 
-  const privateScope = context & Context.OptionsLexical ? addChildPrivateScope(parentScope) : undefined;
+  const privateScope = parser.options.lexical ? addChildPrivateScope(parentScope) : undefined;
 
   consume(parser, context | Context.AllowRegExp, Token.LeftBrace);
 
@@ -8086,7 +8021,7 @@ function parseClassElementList(
             return parsePropertyDefinition(parser, context, privateScope, key, kind, decorators, start);
           }
           // class auto-accessor is part of stage 3 decorator spec
-          if (context & Context.OptionsNext) kind |= PropertyKind.Accessor;
+          if (parser.options.next) kind |= PropertyKind.Accessor;
         }
         break;
       default: // ignore
@@ -8191,7 +8126,7 @@ function parseClassElementList(
       computed: (kind & PropertyKind.Computed) > 0,
       key,
       value,
-      ...(context & Context.OptionsNext ? { decorators } : null),
+      ...(parser.options.next ? { decorators } : null),
     },
     start,
   );
@@ -8217,7 +8152,7 @@ function parsePrivateIdentifier(
   const { tokenValue } = parser;
   if (tokenValue === 'constructor') parser.report(Errors.InvalidStaticClassFieldConstructor);
 
-  if (context & Context.OptionsLexical) {
+  if (parser.options.lexical) {
     if (!privateScope) parser.report(Errors.InvalidPrivateIdentifier, tokenValue);
 
     if (kind) {
@@ -8327,7 +8262,7 @@ function parsePropertyDefinition(
       value,
       static: (state & PropertyKind.Static) > 0,
       computed: (state & PropertyKind.Computed) > 0,
-      ...(context & Context.OptionsNext ? { decorators } : null),
+      ...(parser.options.next ? { decorators } : null),
     } as any,
     start,
   );
@@ -8449,7 +8384,7 @@ function parseJSXRootElementOrFragment(
 
   // JSX fragments
   if (parser.getToken() === Token.GreaterThan) {
-    const openingFragment = parseJSXOpeningFragment(parser, context, start);
+    const openingFragment = parseJSXOpeningFragment(parser, start);
     const [children, closingFragment] = parseJSXChildrenAndClosingFragment(parser, context, privateScope, inJSXChild);
 
     return parser.finishNode<ESTree.JSXFragment>(
@@ -8500,10 +8435,9 @@ function parseJSXRootElementOrFragment(
  * Parses JSX opening fragment
  *
  * @param parser Parser object
- * @param context  Context masks
  */
-function parseJSXOpeningFragment(parser: Parser, context: Context, start: Location): ESTree.JSXOpeningFragment {
-  nextJSXToken(parser, context);
+function parseJSXOpeningFragment(parser: Parser, start: Location): ESTree.JSXOpeningFragment {
+  nextJSXToken(parser);
   return parser.finishNode<ESTree.JSXOpeningFragment>(
     {
       type: 'JSXOpeningFragment',
@@ -8533,7 +8467,7 @@ function parseJSXClosingElement(
   }
 
   if (inJSXChild) {
-    nextJSXToken(parser, context);
+    nextJSXToken(parser);
   } else {
     nextToken(parser, context);
   }
@@ -8566,7 +8500,7 @@ function parseJSXClosingFragment(
   }
 
   if (inJSXChild) {
-    nextJSXToken(parser, context);
+    nextJSXToken(parser);
   } else {
     nextToken(parser, context);
   }
@@ -8689,7 +8623,7 @@ function parseJSXText(parser: Parser, context: Context): ESTree.JSXText {
     value: parser.tokenValue as string,
   } as ESTree.JSXText;
 
-  if (context & Context.OptionsRaw) {
+  if (parser.options.raw) {
     node.raw = parser.tokenRaw;
   }
 
@@ -8727,7 +8661,7 @@ function parseJSXOpeningElementOrSelfCloseElement(
   }
 
   if (inJSXChild || !selfClosing) {
-    nextJSXToken(parser, context);
+    nextJSXToken(parser);
   } else {
     nextToken(parser, context);
   }
@@ -8956,7 +8890,7 @@ function parseJSXExpressionContainer(
   }
 
   if (inJSXChild) {
-    nextJSXToken(parser, context);
+    nextJSXToken(parser);
   } else {
     nextToken(parser, context);
   }

@@ -1,3 +1,4 @@
+import { type NormalizedOptions } from './../../src/options';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { Context } from '../../src/common';
@@ -149,15 +150,15 @@ describe('Lexer - Identifiers', () => {
 
   for (const [ctx, token, op, value] of tokens) {
     it(`scans '${op}' at the end`, () => {
-      const state = new Parser(op);
-      const found = scanSingleToken(state, ctx, 0);
+      const parser = new Parser(op);
+      const found = scanSingleToken(parser, ctx, 0);
 
       t.deepEqual(
         {
           token: found,
-          hasNext: state.index < state.source.length,
-          value: state.tokenValue,
-          index: state.index,
+          hasNext: parser.index < parser.source.length,
+          value: parser.tokenValue,
+          index: parser.index,
         },
         {
           token: token,
@@ -169,15 +170,15 @@ describe('Lexer - Identifiers', () => {
     });
 
     it(`scans '${op}' with more to go`, () => {
-      const state = new Parser(`${op} `);
-      const found = scanSingleToken(state, ctx, 0);
+      const parser = new Parser(`${op} `);
+      const found = scanSingleToken(parser, ctx, 0);
 
       t.deepEqual(
         {
           token: found,
-          hasNext: state.index < state.source.length,
-          value: state.tokenValue,
-          index: state.index,
+          hasNext: parser.index < parser.source.length,
+          value: parser.tokenValue,
+          index: parser.index,
         },
         {
           token: token,
@@ -189,10 +190,10 @@ describe('Lexer - Identifiers', () => {
     });
   }
 
-  function fail(name: string, source: string, context: Context) {
+  function fail(name: string, source: string, context: Context, options: NormalizedOptions = {}) {
     it(name, () => {
-      const state = new Parser(source);
-      t.throws(() => scanSingleToken(state, context, 0));
+      const parser = new Parser(source, options);
+      t.throws(() => scanSingleToken(parser, context, 0));
     });
   }
 
@@ -224,18 +225,18 @@ describe('Lexer - Identifiers', () => {
   fail(String.raw`fails on abc\u007Xvwxyz`, String.raw`abc\u007Xvwxyz;`, Context.Strict);
   fail(String.raw`fails on abc\u007Xvwxyz`, String.raw`abc\u007Xvwxyz`, Context.Strict);
   fail(String.raw`fails on abc\u00Xvwxyz`, String.raw`abc\u00Xvwxyz`, Context.Strict);
-  fail(String.raw`fails on abc\u0Xvwxyz`, String.raw`abc\u0Xvwxyz`, Context.OptionsNext);
-  fail(String.raw`fails on abc\uXvwxyz`, String.raw`abc\uXvwxyz`, Context.OptionsNext);
-  fail('fails on `abc\\Xvwxyz', '`abc\\Xvwxyz', Context.OptionsNext);
-  fail(String.raw`fails on \u00`, String.raw`\u00`, Context.OptionsNext);
-  fail(String.raw`fails on \u007`, String.raw`\u007`, Context.OptionsNext);
-  fail(String.raw`fails on \u007Xvwxyz`, String.raw`\u007Xvwxyz`, Context.OptionsNext);
-  fail(String.raw`fails on abc\u{}`, String.raw`abc\u{}`, Context.OptionsNext);
-  fail(String.raw`fails on abc\u{}`, String.raw`abc\u{}`, Context.OptionsWebCompat);
-  fail(String.raw`fails on abc\u}`, String.raw`abc\u}`, Context.OptionsNext);
-  fail(String.raw`fails on abc\u{`, String.raw`abc\u{`, Context.OptionsNext);
-  fail(String.raw`fails on \u{70bc`, String.raw`\u{70bc`, Context.OptionsNext);
-  fail(String.raw`fails on \u{70`, String.raw`\u{70`, Context.OptionsNext);
+  fail(String.raw`fails on abc\u0Xvwxyz`, String.raw`abc\u0Xvwxyz`, Context.None, { next: true });
+  fail(String.raw`fails on abc\uXvwxyz`, String.raw`abc\uXvwxyz`, Context.None, { next: true });
+  fail('fails on `abc\\Xvwxyz', '`abc\\Xvwxyz', Context.None, { next: true });
+  fail(String.raw`fails on \u00`, String.raw`\u00`, Context.None, { next: true });
+  fail(String.raw`fails on \u007`, String.raw`\u007`, Context.None, { next: true });
+  fail(String.raw`fails on \u007Xvwxyz`, String.raw`\u007Xvwxyz`, Context.None, { next: true });
+  fail(String.raw`fails on abc\u{}`, String.raw`abc\u{}`, Context.None, { next: true });
+  fail(String.raw`fails on abc\u{}`, String.raw`abc\u{}`, Context.None, { webcompat: true });
+  fail(String.raw`fails on abc\u}`, String.raw`abc\u}`, Context.None, { next: true });
+  fail(String.raw`fails on abc\u{`, String.raw`abc\u{`, Context.None, { next: true });
+  fail(String.raw`fails on \u{70bc`, String.raw`\u{70bc`, Context.None, { next: true });
+  fail(String.raw`fails on \u{70`, String.raw`\u{70`, Context.None, { next: true });
   fail(String.raw`fails on \u104`, String.raw`\u104`, Context.None);
   fail(String.raw`fails on \u{10401`, String.raw`\u{10401`, Context.None);
   fail(String.raw`fails on \u104`, String.raw`\u104`, Context.None);

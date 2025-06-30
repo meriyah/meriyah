@@ -1,6 +1,5 @@
 import { Token, KeywordDescTable } from './token';
 import { Errors, ParseError } from './errors';
-import type * as ESTree from './estree';
 import { nextToken } from './lexer/scan';
 import { type Parser } from './parser/parser';
 
@@ -30,12 +29,6 @@ export const enum Context {
   DisallowIn = 1 << 17,
   AllowEscapedKeyword = 1 << 18,
   InStaticBlock = 1 << 19,
-
-  OptionsUniqueKeyInPattern = 1 << 20,
-  OptionsNext = 1 << 21,
-  OptionsLexical = 1 << 22,
-  OptionsWebCompat = 1 << 23,
-  OptionsRaw = 1 << 24,
 }
 
 /**
@@ -168,27 +161,6 @@ export const enum ScopeKind {
   FunctionParams = 1 << 8,
   ArrowParams = 1 << 9,
 }
-
-/**
- * Comment process function.
- */
-export type OnComment = (
-  type: ESTree.CommentType,
-  value: string,
-  start: number,
-  end: number,
-  loc: ESTree.SourceLocation,
-) => any;
-
-/**
- * Function calls when semicolon inserted.
- */
-export type OnInsertedSemicolon = (pos: number) => any;
-
-/**
- * Token process function.
- */
-export type OnToken = (token: string, start: number, end: number, loc: ESTree.SourceLocation) => any;
 
 /**
  * Lexical scope interface
@@ -622,7 +594,7 @@ export function addBlockName(
     if (kind & BindingKind.ArgumentList) {
       scope.scopeError = recordScopeError(parser, Errors.DuplicateBinding, name);
     } else if (
-      context & Context.OptionsWebCompat &&
+      parser.options.webcompat &&
       (context & Context.Strict) === 0 &&
       origin & Origin.BlockStatement &&
       value === BindingKind.FunctionLexical &&
@@ -673,7 +645,7 @@ export function addVarName(parser: Parser, context: Context, scope: ScopeState, 
 
     if (value & BindingKind.LexicalBinding) {
       if (
-        context & Context.OptionsWebCompat &&
+        parser.options.webcompat &&
         (context & Context.Strict) === 0 &&
         ((kind & BindingKind.FunctionStatement && value & BindingKind.LexicalOrFunction) ||
           (value & BindingKind.FunctionStatement && kind & BindingKind.LexicalOrFunction))
@@ -688,10 +660,7 @@ export function addVarName(parser: Parser, context: Context, scope: ScopeState, 
         currentScope.scopeError = recordScopeError(parser, Errors.DuplicateBinding, name);
       }
     }
-    if (
-      value & BindingKind.CatchPattern ||
-      (value & BindingKind.CatchIdentifier && (context & Context.OptionsWebCompat) === 0)
-    ) {
+    if (value & BindingKind.CatchPattern || (value & BindingKind.CatchIdentifier && !parser.options.webcompat)) {
       parser.report(Errors.DuplicateBinding, name);
     }
 
