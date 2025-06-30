@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
@@ -31,13 +30,13 @@ describe('Miscellaneous - Web compatibility (AnnexB)', () => {
     ]) {
       it(`${arg}`, () => {
         t.doesNotThrow(() => {
-          parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+          parseSource(`${arg}`, { webcompat: true });
         });
       });
 
       it(`${arg}`, () => {
         t.throws(() => {
-          parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.Strict | Context.Module);
+          parseSource(`${arg}`, { module: true, webcompat: true });
         });
       });
     }
@@ -50,17 +49,17 @@ describe('Miscellaneous - Web compatibility (AnnexB)', () => {
     ]) {
       it(`${arg}`, () => {
         t.throws(() => {
-          parseSource(`${arg}`, undefined, Context.None);
+          parseSource(`${arg}`);
         });
       });
       it(`${arg}`, () => {
         t.throws(() => {
-          parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+          parseSource(`${arg}`, { webcompat: true });
         });
       });
       it(`${arg}`, () => {
         t.throws(() => {
-          parseSource(`${arg}`, undefined, Context.Strict | Context.Module | Context.OptionsWebCompat);
+          parseSource(`${arg}`, { module: true, webcompat: true });
         });
       });
     }
@@ -84,7 +83,7 @@ describe('Miscellaneous - Web compatibility (AnnexB)', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        parseSource(`${arg}`, { webcompat: true, lexical: true });
       });
     });
   }
@@ -328,7 +327,7 @@ case 1:
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }

@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -253,22 +252,22 @@ describe('Optional chaining', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, { lexical: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.OptionsLexical);
+        parseSource(`${arg}`, { next: true, lexical: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.OptionsWebCompat);
+        parseSource(`${arg}`, { next: true, webcompat: true });
       });
     });
   }

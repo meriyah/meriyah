@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -222,19 +221,19 @@ describe('Lexical - Switch', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, { lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical | Context.OptionsNext);
+        parseSource(`${arg}`, { next: true, lexical: true });
       });
     });
   }
@@ -260,13 +259,13 @@ describe('Lexical - Switch', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        parseSource(`${arg}`, { webcompat: true, lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical | Context.OptionsNext);
+        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
       });
     });
   }

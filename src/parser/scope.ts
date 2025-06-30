@@ -89,7 +89,7 @@ export function addVarName(parser: Parser, context: Context, scope: Scope, name:
 
     if (value & BindingKind.LexicalBinding) {
       if (
-        context & Context.OptionsWebCompat &&
+        parser.options.webcompat &&
         (context & Context.Strict) === 0 &&
         ((kind & BindingKind.FunctionStatement && value & BindingKind.LexicalOrFunction) ||
           (value & BindingKind.FunctionStatement && kind & BindingKind.LexicalOrFunction))
@@ -104,10 +104,7 @@ export function addVarName(parser: Parser, context: Context, scope: Scope, name:
         currentScope.scopeError = recordScopeError(parser, Errors.DuplicateBinding, name);
       }
     }
-    if (
-      value & BindingKind.CatchPattern ||
-      (value & BindingKind.CatchIdentifier && (context & Context.OptionsWebCompat) === 0)
-    ) {
+    if (value & BindingKind.CatchPattern || (value & BindingKind.CatchIdentifier && !parser.options.webcompat)) {
       parser.report(Errors.DuplicateBinding, name);
     }
 
@@ -141,7 +138,7 @@ export function addBlockName(
     if (kind & BindingKind.ArgumentList) {
       scope.scopeError = recordScopeError(parser, Errors.DuplicateBinding, name);
     } else if (
-      context & Context.OptionsWebCompat &&
+      parser.options.webcompat &&
       (context & Context.Strict) === 0 &&
       origin & Origin.BlockStatement &&
       value === BindingKind.FunctionLexical &&

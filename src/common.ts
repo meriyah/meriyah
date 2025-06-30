@@ -1,6 +1,5 @@
 import { Token, KeywordDescTable } from './token';
 import { Errors, ParseError } from './errors';
-import type * as ESTree from './estree';
 import { nextToken } from './lexer/scan';
 import { type Parser } from './parser/parser';
 
@@ -9,35 +8,27 @@ import { type Parser } from './parser/parser';
  */
 export const enum Context {
   None = 0,
-  OptionsNext = 1 << 0,
-  OptionsRanges = 1 << 1,
-  OptionsLoc = 1 << 2,
-  OptionsJSX = 1 << 3,
-  OptionsLexical = 1 << 4,
-  OptionsPreserveParens = 1 << 5,
-  OptionsWebCompat = 1 << 6,
-  OptionsRaw = 1 << 7,
-  Strict = 1 << 8,
-  Module = 1 << 9, // Current code should be parsed as a module body
-  InSwitch = 1 << 10,
-  InGlobal = 1 << 11,
-  InClass = 1 << 12,
-  AllowRegExp = 1 << 13,
-  TaggedTemplate = 1 << 14,
-  InIteration = 1 << 15,
-  SuperProperty = 1 << 16,
-  SuperCall = 1 << 17,
-  InYieldContext = 1 << 18,
-  InAwaitContext = 1 << 19,
-  InReturnContext = 1 << 20,
-  InArgumentList = 1 << 21,
-  InConstructor = 1 << 22,
-  InMethodOrFunction = 1 << 23,
-  AllowNewTarget = 1 << 24,
-  DisallowIn = 1 << 25,
-  AllowEscapedKeyword = 1 << 26,
-  OptionsUniqueKeyInPattern = 1 << 27,
-  InStaticBlock = 1 << 28,
+
+  Strict = 1 << 0,
+  Module = 1 << 1, // Current code should be parsed as a module body
+  InSwitch = 1 << 2,
+  InGlobal = 1 << 3,
+  InClass = 1 << 4,
+  AllowRegExp = 1 << 5,
+  TaggedTemplate = 1 << 6,
+  InIteration = 1 << 7,
+  SuperProperty = 1 << 8,
+  SuperCall = 1 << 9,
+  InYieldContext = 1 << 10,
+  InAwaitContext = 1 << 11,
+  InReturnContext = 1 << 12,
+  InArgumentList = 1 << 13,
+  InConstructor = 1 << 14,
+  InMethodOrFunction = 1 << 15,
+  AllowNewTarget = 1 << 16,
+  DisallowIn = 1 << 17,
+  AllowEscapedKeyword = 1 << 18,
+  InStaticBlock = 1 << 19,
 }
 
 /**
@@ -154,27 +145,6 @@ export const enum HoistedFunctionFlags {
   Hoisted = 1 << 0,
   Export = 1 << 1,
 }
-
-/**
- * Comment process function.
- */
-export type OnComment = (
-  type: ESTree.CommentType,
-  value: string,
-  start: number,
-  end: number,
-  loc: ESTree.SourceLocation,
-) => any;
-
-/**
- * Function calls when semicolon inserted.
- */
-export type OnInsertedSemicolon = (pos: number) => any;
-
-/**
- * Token process function.
- */
-export type OnToken = (token: string, start: number, end: number, loc: ESTree.SourceLocation) => any;
 
 /**
  * Lexical scope interface for private identifiers

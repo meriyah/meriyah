@@ -65,37 +65,37 @@ describe('Expressions - Async function', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext);
+        parseSource(`${arg}`, { next: true });
       });
     });
 
     it(`"use strict"; ${arg}`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; ${arg}`, undefined, Context.None);
+        parseSource(`"use strict"; ${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, { lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat | Context.OptionsLexical);
+        parseSource(`${arg}`, { webcompat: true, lexical: true });
       });
     });
 
@@ -154,24 +154,24 @@ describe('Expressions - Async function', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
 
     it(`() => { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`() => { ${arg} }`, undefined, Context.None);
+        parseSource(`() => { ${arg} }`);
       });
     });
 
     it(`function foo() { ${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg}}`, undefined, Context.None);
+        parseSource(`function foo() { ${arg}}`);
       });
     });
   }

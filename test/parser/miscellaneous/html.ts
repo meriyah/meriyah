@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
@@ -12,7 +11,7 @@ describe('Miscellaneous - HTML Comments', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, { module: true });
       });
     });
   }
@@ -24,7 +23,7 @@ describe('Miscellaneous - HTML Comments', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
   }
@@ -53,7 +52,7 @@ describe('Miscellaneous - HTML Comments', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }

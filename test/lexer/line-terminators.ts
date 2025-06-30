@@ -24,15 +24,15 @@ describe('Lexer - Line terminators', () => {
 
   for (const [ctx, token, op, value] of tokens) {
     it(`scans '${op}' at the end`, () => {
-      const state = new Parser(op);
-      const found = scanSingleToken(state, ctx, 0);
+      const parser = new Parser(op);
+      const found = scanSingleToken(parser, ctx, 0);
 
       t.deepEqual(
         {
           token: found,
-          hasNext: state.index < state.source.length,
-          value: state.tokenValue,
-          index: state.index,
+          hasNext: parser.index < parser.source.length,
+          value: parser.tokenValue,
+          index: parser.index,
         },
         {
           token: token,
@@ -46,8 +46,8 @@ describe('Lexer - Line terminators', () => {
 
   function fail(name: string, source: string, context: Context) {
     it(name, () => {
-      const state = new Parser(source);
-      t.throws(() => scanSingleToken(state, context, 0));
+      const parser = new Parser(source);
+      t.throws(() => scanSingleToken(parser, context, 0));
     });
   }
 

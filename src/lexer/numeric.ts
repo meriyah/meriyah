@@ -150,7 +150,7 @@ export function scanNumber(parser: Parser, context: Context, kind: NumberKind): 
           // Most numbers are pure decimal integers without fractional component
           // or exponential notation.  Handle that with optimized code.
           parser.tokenValue = value;
-          if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
+          if (parser.options.raw) parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
           return Token.NumericLiteral;
         }
       }
@@ -214,7 +214,7 @@ export function scanNumber(parser: Parser, context: Context, kind: NumberKind): 
         ? parseFloat(parser.source.substring(parser.tokenIndex, parser.index))
         : +value;
 
-  if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
+  if (parser.options.raw) parser.tokenRaw = parser.source.slice(parser.tokenIndex, parser.index);
 
   return Token.NumericLiteral;
 }

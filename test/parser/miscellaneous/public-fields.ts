@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -63,7 +62,7 @@ describe('Next - Public fields', () => {
   ]) {
     it(`class C { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`class C { ${arg} }`, undefined, Context.OptionsNext);
+        parseSource(`class C { ${arg} }`, { next: true });
       });
     });
   }
@@ -164,7 +163,7 @@ describe('Next - Public fields', () => {
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg} }`, undefined, Context.OptionsNext);
+        parseSource(`class C { ${arg} }`, { next: true });
       });
     });
   }

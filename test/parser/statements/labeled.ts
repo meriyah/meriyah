@@ -45,22 +45,22 @@ describe('Statements - Labeled', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} : x`, undefined, Context.None);
+        parseSource(`${arg} : x`);
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} : x`, undefined, Context.OptionsLexical);
+        parseSource(`${arg} : x`, { lexical: true });
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} : x`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg} : x`, { webcompat: true });
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} : x`, undefined, Context.Strict);
+        parseSource(`${arg} : x`, { impliedStrict: true });
       });
     });
   }

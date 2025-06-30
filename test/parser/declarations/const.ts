@@ -47,25 +47,25 @@ describe('Declarations - const', () => {
   ]) {
     it(`const ${arg} = x`, () => {
       t.throws(() => {
-        parseSource(`var ${arg} = x`, undefined, Context.None);
+        parseSource(`var ${arg} = x`);
       });
     });
 
     it(`let ${arg} = x`, () => {
       t.throws(() => {
-        parseSource(`var ${arg} = x`, undefined, Context.None);
+        parseSource(`var ${arg} = x`);
       });
     });
 
     it(`let ${arg} = x`, () => {
       t.throws(() => {
-        parseSource(`var ${arg} = x`, undefined, Context.OptionsWebCompat);
+        parseSource(`var ${arg} = x`, { webcompat: true });
       });
     });
 
     it(`for (const  ${arg}  = x;;);`, () => {
       t.throws(() => {
-        parseSource(`for (const  ${arg}  = x;;);`, undefined, Context.None);
+        parseSource(`for (const  ${arg}  = x;;);`);
       });
     });
   }
@@ -73,22 +73,18 @@ describe('Declarations - const', () => {
   for (const arg of ['break', 'implements', 'package', 'protected', 'interface', 'private', 'public', 'static']) {
     it(`const ${arg} = x`, () => {
       t.throws(() => {
-        parseSource(`const ${arg} = x`, undefined, Context.Strict);
+        parseSource(`const ${arg} = x`, { impliedStrict: true });
       });
     });
     it(`for (const  ${arg}  = x;;);`, () => {
       t.throws(() => {
-        parseSource(`for (const  ${arg}  = x;;);`, undefined, Context.Strict);
+        parseSource(`for (const  ${arg}  = x;;);`, { impliedStrict: true });
       });
     });
 
     it(`for (const  ${arg}  = x;;);`, () => {
       t.throws(() => {
-        parseSource(
-          `for (const  ${arg}  = x;;);`,
-          undefined,
-          Context.Strict | Context.Module | Context.OptionsWebCompat,
-        );
+        parseSource(`for (const  ${arg}  = x;;);`, { module: true, webcompat: true });
       });
     });
   }
@@ -174,25 +170,25 @@ describe('Declarations - const', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, { lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, { module: true });
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }

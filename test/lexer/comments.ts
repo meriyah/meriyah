@@ -1,3 +1,4 @@
+import { type NormalizedOptions } from './../../src/options';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { Context } from '../../src/common';
@@ -6,53 +7,53 @@ import { Parser } from '../../src/parser/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
 
 describe('Lexer - Comments', () => {
-  const tokens: [Context, Token, string, string][] = [
-    [Context.OptionsWebCompat, Token.EOF, '//', ''],
-    [Context.OptionsWebCompat, Token.EOF, '// foo', ''],
-    [Context.OptionsWebCompat, Token.EOF, '// foo\n', ''],
-    [Context.OptionsWebCompat, Token.EOF, '// /', ''],
-    [Context.OptionsWebCompat, Token.EOF, '// */', ''],
-    [Context.OptionsWebCompat, Token.EOF, '// /* */ foo', ''],
-    [Context.OptionsWebCompat, Token.EOF, String.raw`//\n \r \x0a \u000a foo bar`, ''],
-    [Context.OptionsWebCompat, Token.EOF, String.raw`//\unope \u{nope} \xno `, ''],
-    [Context.OptionsWebCompat, Token.EOF, '/**/', ''],
-    [Context.OptionsWebCompat, Token.EOF, '/* comment */', ''],
-    [Context.OptionsWebCompat, Token.EOF, '/*foo*/', ''],
-    [Context.OptionsWebCompat, Token.EOF, '/*foo\nbar\nbaz*/', ''],
-    [Context.OptionsWebCompat, Token.EOF, '/*\n*/', ''],
-    [Context.OptionsWebCompat, Token.EOF, '/* \n */', ''],
-    [Context.OptionsWebCompat, Token.EOF, '/* \n\n\n */', ''],
-    [Context.OptionsWebCompat, Token.EOF, String.raw`/* \n \r \x0a \u000a */`, ''],
-    [Context.OptionsWebCompat, Token.EOF, '/* /* */', ''],
-    [Context.OptionsWebCompat, Token.EOF, '/*\u000C multi line \u000C comment \u000C*/', ''],
-    [Context.OptionsWebCompat, Token.EOF, '/*\u00A0 multi line \u00A0 comment \u00A0 x = 1;*/', ''],
-    [Context.OptionsWebCompat, Token.EOF, '/*\u0020 multi line \u0020 comment \u0020 x = 1;*/', ''],
-    [Context.OptionsWebCompat, Token.EOF, '//\u000B single line \u000B comment \u000B x = 1;', ''],
-    [Context.OptionsWebCompat, Token.EOF, '// single line comment x = 1;', ''],
-    [Context.OptionsWebCompat, Token.EOF, '// single line comment x = 1;', ''],
-    [Context.OptionsWebCompat, Token.EOF, '/*/ try and confuse the lexer\n */\n', ''],
-    [Context.OptionsWebCompat, Token.EOF, '/* comments can have embedded "strings" */', ''],
-    [Context.OptionsWebCompat, Token.EOF, '/* " /* */', ''],
-    [Context.OptionsWebCompat, Token.Identifier, '//foo!@#^&$1234\nbar', ''],
-    [Context.OptionsWebCompat, Token.EOF, '/* abcd!@#@$* { } && null*/', ''],
-    [Context.OptionsWebCompat, Token.EOF, '/*x*x*/', ''],
-    [Context.OptionsWebCompat, Token.EOF, '/**/', ''],
-    [Context.OptionsWebCompat, Token.EOF, '//\r', ''],
-    [Context.OptionsWebCompat, Token.EOF, '//\n', ''],
-    [Context.OptionsWebCompat, Token.EOF, '<!--', ''],
-    [Context.OptionsWebCompat, Token.EOF, '\n--' + '>', ''],
+  const tokens: [NormalizedOptions, Token, string, string][] = [
+    [{ webcompat: true }, Token.EOF, '//', ''],
+    [{ webcompat: true }, Token.EOF, '// foo', ''],
+    [{ webcompat: true }, Token.EOF, '// foo\n', ''],
+    [{ webcompat: true }, Token.EOF, '// /', ''],
+    [{ webcompat: true }, Token.EOF, '// */', ''],
+    [{ webcompat: true }, Token.EOF, '// /* */ foo', ''],
+    [{ webcompat: true }, Token.EOF, String.raw`//\n \r \x0a \u000a foo bar`, ''],
+    [{ webcompat: true }, Token.EOF, String.raw`//\unope \u{nope} \xno `, ''],
+    [{ webcompat: true }, Token.EOF, '/**/', ''],
+    [{ webcompat: true }, Token.EOF, '/* comment */', ''],
+    [{ webcompat: true }, Token.EOF, '/*foo*/', ''],
+    [{ webcompat: true }, Token.EOF, '/*foo\nbar\nbaz*/', ''],
+    [{ webcompat: true }, Token.EOF, '/*\n*/', ''],
+    [{ webcompat: true }, Token.EOF, '/* \n */', ''],
+    [{ webcompat: true }, Token.EOF, '/* \n\n\n */', ''],
+    [{ webcompat: true }, Token.EOF, String.raw`/* \n \r \x0a \u000a */`, ''],
+    [{ webcompat: true }, Token.EOF, '/* /* */', ''],
+    [{ webcompat: true }, Token.EOF, '/*\u000C multi line \u000C comment \u000C*/', ''],
+    [{ webcompat: true }, Token.EOF, '/*\u00A0 multi line \u00A0 comment \u00A0 x = 1;*/', ''],
+    [{ webcompat: true }, Token.EOF, '/*\u0020 multi line \u0020 comment \u0020 x = 1;*/', ''],
+    [{ webcompat: true }, Token.EOF, '//\u000B single line \u000B comment \u000B x = 1;', ''],
+    [{ webcompat: true }, Token.EOF, '// single line comment x = 1;', ''],
+    [{ webcompat: true }, Token.EOF, '// single line comment x = 1;', ''],
+    [{ webcompat: true }, Token.EOF, '/*/ try and confuse the lexer\n */\n', ''],
+    [{ webcompat: true }, Token.EOF, '/* comments can have embedded "strings" */', ''],
+    [{ webcompat: true }, Token.EOF, '/* " /* */', ''],
+    [{ webcompat: true }, Token.Identifier, '//foo!@#^&$1234\nbar', ''],
+    [{ webcompat: true }, Token.EOF, '/* abcd!@#@$* { } && null*/', ''],
+    [{ webcompat: true }, Token.EOF, '/*x*x*/', ''],
+    [{ webcompat: true }, Token.EOF, '/**/', ''],
+    [{ webcompat: true }, Token.EOF, '//\r', ''],
+    [{ webcompat: true }, Token.EOF, '//\n', ''],
+    [{ webcompat: true }, Token.EOF, '<!--', ''],
+    [{ webcompat: true }, Token.EOF, '\n--' + '>', ''],
   ];
 
-  for (const [ctx, token, op] of tokens) {
+  for (const [options, token, op] of tokens) {
     it(`scans '${op}' at the end`, () => {
-      const state = new Parser(op);
-      const found = scanSingleToken(state, ctx, 0);
+      const parser = new Parser(op, options);
+      const found = scanSingleToken(parser, Context.None, 0);
 
       t.deepEqual(
         {
           token: found,
-          hasNext: state.index < state.source.length,
-          index: state.index,
+          hasNext: parser.index < parser.source.length,
+          index: parser.index,
         },
         {
           token: token,
@@ -65,8 +66,8 @@ describe('Lexer - Comments', () => {
 
   function fail(name: string, source: string, context: Context) {
     it(name, () => {
-      const state = new Parser(source);
-      t.throws(() => scanSingleToken(state, context, 0));
+      const parser = new Parser(source);
+      t.throws(() => scanSingleToken(parser, context, 0));
     });
   }
 

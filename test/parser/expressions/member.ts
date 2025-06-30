@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -25,12 +24,12 @@ describe('Expressions - Member', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, void 0, Context.OptionsNext | Context.Module | Context.Strict);
+        parseSource(`${arg}`, { next: true, module: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, void 0, Context.OptionsNext);
+        parseSource(`${arg}`, { next: true });
       });
     });
   }

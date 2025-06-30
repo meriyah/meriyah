@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
@@ -8,7 +7,7 @@ describe('Miscellaneous - Computed property names', () => {
     for (const arg of ['({[1,2]:3})', '({ *a })', '({ *a: 0 })', '({ *[0]: 0 })']) {
       it(`${arg}`, () => {
         t.throws(() => {
-          parseSource(`${arg}`, undefined, Context.None);
+          parseSource(`${arg}`);
         });
       });
     }
@@ -34,7 +33,7 @@ describe('Miscellaneous - Computed property names', () => {
     ]) {
       it(`${arg}`, () => {
         t.doesNotThrow(() => {
-          parseSource(`${arg}`, undefined, Context.None);
+          parseSource(`${arg}`);
         });
       });
     }

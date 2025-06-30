@@ -8,15 +8,15 @@ describe('Lexer - Whitespace', () => {
   function pass(name: string, opts: any) {
     it(name, () => {
       const { source, ...otherOpts } = opts;
-      const state = new Parser(source);
-      scanSingleToken(state, Context.OptionsWebCompat, 0);
+      const parser = new Parser(source, { webcompat: true });
+      scanSingleToken(parser, Context.None, 0);
       t.deepEqual(
         {
-          value: state.tokenValue,
-          index: state.index,
-          column: state.column,
-          line: state.line,
-          newLine: (state.flags & Flags.NewLine) !== 0,
+          value: parser.tokenValue,
+          index: parser.index,
+          column: parser.column,
+          line: parser.line,
+          newLine: (parser.flags & Flags.NewLine) !== 0,
         },
         otherOpts,
       );
