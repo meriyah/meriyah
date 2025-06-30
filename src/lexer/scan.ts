@@ -396,7 +396,7 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
           if (ch === Chars.Hyphen) {
             advanceChar(parser);
             if ((state & LexerState.NewLine || isStartOfLine) && parser.currentChar === Chars.GreaterThan) {
-              if ((context & Context.OptionsWebCompat) === 0) parser.report(Errors.HtmlCommentInWebCompat);
+              if (!parser.options.webcompat) parser.report(Errors.HtmlCommentInWebCompat);
               advanceChar(parser);
               state = skipSingleHTMLComment(
                 parser,

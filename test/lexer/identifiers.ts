@@ -1,3 +1,4 @@
+import { type NormalizedOptions } from './../../src/options';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { Context } from '../../src/common';
@@ -189,9 +190,9 @@ describe('Lexer - Identifiers', () => {
     });
   }
 
-  function fail(name: string, source: string, context: Context) {
+  function fail(name: string, source: string, context: Context, options: NormalizedOptions = {}) {
     it(name, () => {
-      const parser = new Parser(source);
+      const parser = new Parser(source, options);
       t.throws(() => scanSingleToken(parser, context, 0));
     });
   }
@@ -231,7 +232,7 @@ describe('Lexer - Identifiers', () => {
   fail(String.raw`fails on \u007`, String.raw`\u007`, Context.OptionsNext);
   fail(String.raw`fails on \u007Xvwxyz`, String.raw`\u007Xvwxyz`, Context.OptionsNext);
   fail(String.raw`fails on abc\u{}`, String.raw`abc\u{}`, Context.OptionsNext);
-  fail(String.raw`fails on abc\u{}`, String.raw`abc\u{}`, Context.OptionsWebCompat);
+  fail(String.raw`fails on abc\u{}`, String.raw`abc\u{}`, Context.None, { webcompat: true });
   fail(String.raw`fails on abc\u}`, String.raw`abc\u}`, Context.OptionsNext);
   fail(String.raw`fails on abc\u{`, String.raw`abc\u{`, Context.OptionsNext);
   fail(String.raw`fails on \u{70bc`, String.raw`\u{70bc`, Context.OptionsNext);

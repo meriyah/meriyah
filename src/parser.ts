@@ -60,7 +60,6 @@ export function parseSource(source: string, rawOptions: Options = {}, context: C
   if (options.next) context |= Context.OptionsNext;
   if (options.uniqueKeyInPattern) context |= Context.OptionsUniqueKeyInPattern;
   if (options.lexical) context |= Context.OptionsLexical;
-  if (options.webcompat) context |= Context.OptionsWebCompat;
   // Turn on return context in global
   if (options.globalReturn) context |= Context.InReturnContext;
   if (options.raw) context |= Context.OptionsRaw;
@@ -403,7 +402,7 @@ function parseStatement(
       parser.report(
         context & Context.Strict
           ? Errors.StrictFunction
-          : (context & Context.OptionsWebCompat) === 0
+          : !parser.options.webcompat
             ? Errors.WebCompatFunction
             : Errors.SloppyFunction,
       );
@@ -675,7 +674,7 @@ function parseLabelledStatement(
   const body =
     allowFuncDecl &&
     (context & Context.Strict) === 0 &&
-    context & Context.OptionsWebCompat &&
+    parser.options.webcompat &&
     // In sloppy mode, Annex B.3.2 allows labelled function declarations.
     // Otherwise it's a parse error.
     parser.getToken() === Token.FunctionKeyword
@@ -1040,7 +1039,7 @@ function parseConsequentOrAlternative(
 
   return context & Context.Strict ||
     // Disallow if web compatibility is off
-    (context & Context.OptionsWebCompat) === 0 ||
+    !parser.options.webcompat ||
     parser.getToken() !== Token.FunctionKeyword
     ? parseStatement(parser, context, scope, privateScope, Origin.None, { $: labels }, 0)
     : parseFunctionDeclaration(

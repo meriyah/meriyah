@@ -1,3 +1,4 @@
+import { type NormalizedOptions } from './../../src/options';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { Context } from '../../src/common';
@@ -6,7 +7,7 @@ import { Parser } from '../../src/parser/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
 
 describe('Lexer - String', () => {
-  const tokens: [Context, Token, string, string][] = [
+  const tokens: ([Context, Token, string, string] | [Context, Token, string, string, NormalizedOptions])[] = [
     [Context.None, Token.StringLiteral, '"foo"', 'foo'],
     [Context.None, Token.StringLiteral, '"foo "', 'foo '],
     [Context.None, Token.StringLiteral, '"foo "', 'foo '],
@@ -140,9 +141,9 @@ describe('Lexer - String', () => {
     [Context.None, Token.StringLiteral, String.raw`"\221"`, ''],
 
     // \8 \9 are acceptable in web compatibility mode
-    [Context.OptionsWebCompat, Token.StringLiteral, String.raw`"\8"`, '8'],
-    [Context.OptionsWebCompat, Token.StringLiteral, String.raw`"\9"`, '9'],
-    [Context.OptionsWebCompat, Token.StringLiteral, String.raw`"a\9999"`, 'a9999'],
+    [Context.None, Token.StringLiteral, String.raw`"\8"`, '8', { webcompat: true }],
+    [Context.None, Token.StringLiteral, String.raw`"\9"`, '9', { webcompat: true }],
+    [Context.None, Token.StringLiteral, String.raw`"a\9999"`, 'a9999', { webcompat: true }],
 
     // Line continuation
     [Context.None, Token.StringLiteral, '"a\\\nb"', 'ab'],
@@ -156,9 +157,9 @@ describe('Lexer - String', () => {
     [Context.None, Token.StringLiteral, '"\\\r\n"', ''],
   ];
 
-  for (const [ctx, token, op, value] of tokens) {
+  for (const [ctx, token, op, value, options] of tokens) {
     it(`scans '${op}' at the end`, () => {
-      const parser = new Parser(op);
+      const parser = new Parser(op, options);
       const found = scanSingleToken(parser, ctx, 0);
 
       t.deepEqual(
@@ -178,7 +179,7 @@ describe('Lexer - String', () => {
     });
 
     it(`scans '${op}' with more to go`, () => {
-      const parser = new Parser(`${op} `);
+      const parser = new Parser(`${op} `, options);
       const found = scanSingleToken(parser, ctx, 0);
 
       t.deepEqual(
