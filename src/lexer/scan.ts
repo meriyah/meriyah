@@ -455,7 +455,7 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
               continue;
             }
             if (context & Context.AllowRegExp) {
-              return scanRegularExpression(parser, context);
+              return scanRegularExpression(parser);
             }
             if (ch === Chars.EqualSign) {
               advanceChar(parser);
