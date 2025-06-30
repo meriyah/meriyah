@@ -1,6 +1,5 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { Context } from '../../../src/common';
 import { fail } from '../../test-utils';
 import { parseSource } from '../../../src/parser';
 
@@ -46,7 +45,7 @@ describe('Next - Hashbang grammar', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
@@ -54,7 +53,7 @@ describe('Next - Hashbang grammar', () => {
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.Strict | Context.Module);
+        parseSource(`${arg}`, { module: true });
       });
     });
   }

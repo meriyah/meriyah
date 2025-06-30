@@ -93,41 +93,37 @@ export interface Options {
 /**
  * Consumes a sequence of tokens and produces an syntax tree
  */
-export function parseSource(source: string, options: Options | void, context: Context): ESTree.Program {
-  if (options != null) {
-    if (options.module) context |= Context.Module | Context.Strict;
-    if (options.next) context |= Context.OptionsNext;
-    if (options.uniqueKeyInPattern) context |= Context.OptionsUniqueKeyInPattern;
-    if (options.lexical) context |= Context.OptionsLexical;
-    if (options.webcompat) context |= Context.OptionsWebCompat;
-    // Turn on return context in global
-    if (options.globalReturn) context |= Context.InReturnContext;
-    if (options.raw) context |= Context.OptionsRaw;
-    if (options.impliedStrict) context |= Context.Strict;
-  }
+export function parseSource(source: string, options: Options = {}, context: Context = Context.None): ESTree.Program {
+  if (options.module) context |= Context.Module | Context.Strict;
+  if (options.next) context |= Context.OptionsNext;
+  if (options.uniqueKeyInPattern) context |= Context.OptionsUniqueKeyInPattern;
+  if (options.lexical) context |= Context.OptionsLexical;
+  if (options.webcompat) context |= Context.OptionsWebCompat;
+  // Turn on return context in global
+  if (options.globalReturn) context |= Context.InReturnContext;
+  if (options.raw) context |= Context.OptionsRaw;
+  if (options.impliedStrict) context |= Context.Strict;
 
   const parserOptions: ParserOptions = {
-    loc: options?.loc,
-    ranges: options?.ranges,
-    preserveParens: options?.preserveParens,
-    jsx: options?.jsx,
+    loc: options.loc,
+    ranges: options.ranges,
+    preserveParens: options.preserveParens,
+    jsx: options.jsx,
+    sourceFile: options.source,
+    onInsertedSemicolon: options.onInsertedSemicolon,
   };
-  if (options != null) {
-    if (options.source) parserOptions.sourceFile = options.source;
 
-    // Accepts either a callback function to be invoked or an array to collect comments (as the node is constructed)
-    if (options.onComment != null) {
-      parserOptions.onComment = Array.isArray(options.onComment)
-        ? pushComment(options.onComment, parserOptions)
-        : options.onComment;
-    }
-    if (options.onInsertedSemicolon != null) parserOptions.onInsertedSemicolon = options.onInsertedSemicolon;
-    // Accepts either a callback function to be invoked or an array to collect tokens
-    if (options.onToken != null) {
-      parserOptions.onToken = Array.isArray(options.onToken)
-        ? pushToken(options.onToken, parserOptions)
-        : options.onToken;
-    }
+  // Accepts either a callback function to be invoked or an array to collect comments (as the node is constructed)
+  if (options.onComment != null) {
+    parserOptions.onComment = Array.isArray(options.onComment)
+      ? pushComment(options.onComment, parserOptions)
+      : options.onComment;
+  }
+  // Accepts either a callback function to be invoked or an array to collect tokens
+  if (options.onToken != null) {
+    parserOptions.onToken = Array.isArray(options.onToken)
+      ? pushToken(options.onToken, parserOptions)
+      : options.onToken;
   }
 
   // Initialize parser state

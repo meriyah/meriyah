@@ -137,81 +137,73 @@ describe('Declarations - Var', () => {
   ]) {
     it(`let x, y, z; (${arg} = z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`let x, y, z; (${arg} = z = {});`, undefined, Context.None);
+        parseSource(`let x, y, z; (${arg} = z = {});`);
       });
     });
 
     it(`var x, y, z; (${arg}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; (${arg}= z = {});`, undefined, Context.Strict | Context.Module);
+        parseSource(`var x, y, z; (${arg}= z = {});`, { module: true });
       });
     });
 
     it(`var x, y, z; (x = ${arg}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; (x = ${arg}= z = {});`, undefined, Context.Strict | Context.Module);
+        parseSource(`var x, y, z; (x = ${arg}= z = {});`, { module: true });
       });
     });
 
     it(`var x, y, z; for (x in ${arg}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; for (x in ${arg}= z = {});`, undefined, Context.Strict | Context.Module);
+        parseSource(`var x, y, z; for (x in ${arg}= z = {});`, { module: true });
       });
     });
 
     it(`var x, y, z; for (x of ${arg}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; for (x of ${arg}= z = {});`, undefined, Context.Strict | Context.Module);
+        parseSource(`var x, y, z; for (x of ${arg}= z = {});`, { module: true });
       });
     });
 
     it(`var x, y, z; for (x of x =${arg}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; for (x of x =${arg}= z = {});`, undefined, Context.Strict | Context.Module);
+        parseSource(`var x, y, z; for (x of x =${arg}= z = {});`, { module: true });
       });
     });
 
     it(`var x, y, z; for (x of x =${arg}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; for (x of x =${arg}= z = {});`, undefined, Context.OptionsWebCompat);
+        parseSource(`var x, y, z; for (x of x =${arg}= z = {});`, { webcompat: true });
       });
     });
 
     it(`var x, y, z; (${arg}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; (${arg}= z = {});`, undefined, Context.Strict | Context.Module);
+        parseSource(`var x, y, z; (${arg}= z = {});`, { module: true });
       });
     });
 
     it(`var x, y, z; (${arg}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; (${arg}= z = {});`, undefined, Context.Strict | Context.Module);
+        parseSource(`var x, y, z; (${arg}= z = {});`, { module: true });
       });
     });
 
     it(`var x, y, z; (${arg} = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; (${arg} = {});`, undefined, Context.Strict | Context.Module);
+        parseSource(`var x, y, z; (${arg} = {});`, { module: true });
       });
     });
 
     it(`'use strict'; var x, y, z; m(['a']) ? ${arg} = {} : rhs`, () => {
       t.doesNotThrow(() => {
-        parseSource(
-          `'use strict'; var x, y, z; m(['a']) ? ${arg} = {} : rhs`,
-          undefined,
-          Context.Strict | Context.Module,
-        );
+        parseSource(`'use strict'; var x, y, z; m(['a']) ? ${arg} = {} : rhs`, { module: true });
       });
     });
 
     it(`'use strict'; var x, y, z; m(['b']) ? lhs :${arg} = {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(
-          `'use strict'; var x, y, z; m(['b']) ? lhs : ${arg} = {}`,
-          undefined,
-          Context.Strict | Context.Module,
-        );
+        parseSource(`'use strict'; var x, y, z; m(['b']) ? lhs : ${arg} = {}`, { module: true });
       });
     });
   }
@@ -281,12 +273,12 @@ describe('Declarations - Var', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
     it(`"use strict"; ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`, undefined, Context.None);
+        parseSource(`"use strict"; ${arg}`);
       });
     });
   }
@@ -363,12 +355,12 @@ describe('Declarations - Var', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, { lexical: true });
       });
     });
   }
@@ -416,35 +408,35 @@ describe('Declarations - Var', () => {
   ]) {
     it(`for (var ${arg} = x;;);`, () => {
       t.throws(() => {
-        parseSource(`for (var ${arg} = x;;);`, undefined, Context.None);
+        parseSource(`for (var ${arg} = x;;);`);
       });
     });
 
     it(`function f({${arg}}) {}`, () => {
       t.throws(() => {
-        parseSource(`function f({${arg}}) {}`, undefined, Context.None);
+        parseSource(`function f({${arg}}) {}`);
       });
     });
 
     it(`function fh({x: ${arg}}) {}`, () => {
       t.throws(() => {
-        parseSource(`function fh({x: ${arg}}) {}`, undefined, Context.None);
+        parseSource(`function fh({x: ${arg}}) {}`);
       });
     });
 
     it(`function f([${arg}]) {}`, () => {
       t.throws(() => {
-        parseSource(`function f([${arg}]) {}`, undefined, Context.None);
+        parseSource(`function f([${arg}]) {}`);
       });
     });
     it(`function f([${arg}]) {}`, () => {
       t.throws(() => {
-        parseSource(`function f([${arg}]) {}`, undefined, Context.OptionsLexical);
+        parseSource(`function f([${arg}]) {}`, { lexical: true });
       });
     });
     it(`try {} catch (${arg}) {}`, () => {
       t.throws(() => {
-        parseSource(`try {} catch (${arg}) {}`, undefined, Context.None);
+        parseSource(`try {} catch (${arg}) {}`);
       });
     });
 
@@ -632,41 +624,41 @@ describe('Declarations - Var', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, { lexical: true });
       });
     });
     it(`"use strict"; ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`, undefined, Context.None);
+        parseSource(`"use strict"; ${arg}`);
       });
     });
 
     it(`(function() { ${arg} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function() { ${arg} })`, undefined, Context.None);
+        parseSource(`(function() { ${arg} })`);
       });
     });
 
     it(`(function() { ${arg} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(function() /** Comment before body */ { ${arg} }) // Single`, undefined, Context.None);
+        parseSource(`(function() /** Comment before body */ { ${arg} }) // Single`);
       });
     });
 
     it(`async function *foo() { (function() { ${arg} })}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async function *foo() { (function() { ${arg} })} // k`, undefined, Context.None);
+        parseSource(`async function *foo() { (function() { ${arg} })} // k`);
       });
     });
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }

@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -121,25 +120,25 @@ describe('Next - Private methods', () => {
   ]) {
     it(`class C { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`class C { ${arg} }`, undefined, Context.None);
+        parseSource(`class C { ${arg} }`);
       });
     });
 
     it(`class C extends Base { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`class C extends Base { ${arg} }`, undefined, Context.None);
+        parseSource(`class C extends Base { ${arg} }`);
       });
     });
 
     it(`(class C { ${arg} })`, () => {
       t.throws(() => {
-        parseSource(`(class C { ${arg} })`, undefined, Context.None);
+        parseSource(`(class C { ${arg} })`);
       });
     });
 
     it(`(class C extends Base { ${arg} })`, () => {
       t.throws(() => {
-        parseSource(`(class C extends Base { ${arg} })`, undefined, Context.None);
+        parseSource(`(class C extends Base { ${arg} })`);
       });
     });
   }
@@ -218,25 +217,25 @@ describe('Next - Private methods', () => {
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg} }`, undefined, Context.None);
+        parseSource(`class C { ${arg} }`);
       });
     });
 
     it(`class C extends Base { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C extends Base { ${arg} }`, undefined, Context.None);
+        parseSource(`class C extends Base { ${arg} }`);
       });
     });
 
     it(`(class C { ${arg} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { ${arg} })`, undefined, Context.None);
+        parseSource(`(class C { ${arg} })`);
       });
     });
 
     it(`(class C extends Base { ${arg} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C extends Base { ${arg} })`, undefined, Context.None);
+        parseSource(`(class C extends Base { ${arg} })`);
       });
     });
   }
@@ -280,7 +279,7 @@ describe('Next - Private methods', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
   }

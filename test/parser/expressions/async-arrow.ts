@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -79,49 +78,49 @@ describe('Expressions - Async arrow', () => {
   ]) {
     it(`async ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async ${arg}`, undefined, Context.None);
+        parseSource(`async ${arg}`);
       });
     });
 
     it(`async ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async ${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`async ${arg}`, { lexical: true });
       });
     });
 
     it(`async ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async ${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`async ${arg}`, { webcompat: true });
       });
     });
 
     it(`bar, async ${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar, async ${arg};`, undefined, Context.None);
+        parseSource(`bar, async ${arg};`);
       });
     });
 
     it(`bar ? async (${arg}) : baz;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar ? async (${arg}) : baz;`, undefined, Context.None);
+        parseSource(`bar ? async (${arg}) : baz;`);
       });
     });
 
     it(`bar ? baz : async  (${arg});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`bar ? baz : async  (${arg});`, undefined, Context.None);
+        parseSource(`bar ? baz : async  (${arg});`);
       });
     });
 
     it(`async ${arg}, bar;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async ${arg}, bar;`, undefined, Context.None);
+        parseSource(`async ${arg}, bar;`);
       });
     });
 
     it(`async ${arg}, bar;`, () => {
       t.doesNotThrow(() => {
-        parseSource(`async ${arg}, bar;`, undefined, Context.OptionsNext);
+        parseSource(`async ${arg}, bar;`, { next: true });
       });
     });
   }
@@ -837,37 +836,37 @@ describe('Expressions - Async arrow', () => {
   ]) {
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`, undefined, Context.None);
+        parseSource(`${arg};`);
       });
     });
 
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`, undefined, Context.OptionsLexical);
+        parseSource(`${arg};`, { lexical: true });
       });
     });
 
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`, undefined, Context.OptionsLexical | Context.OptionsWebCompat);
+        parseSource(`${arg};`, { webcompat: true, lexical: true });
       });
     });
 
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg};`, { webcompat: true });
       });
     });
 
     it(`${arg};`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg};`, undefined, Context.OptionsNext);
+        parseSource(`${arg};`, { next: true });
       });
     });
 
     it(`function foo() { ${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function foo() { ${arg}}`, undefined, Context.OptionsWebCompat);
+        parseSource(`function foo() { ${arg}}`, { webcompat: true });
       });
     });
   }

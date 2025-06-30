@@ -1,6 +1,5 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import { parseSource } from '../../../src/parser';
 
@@ -111,16 +110,12 @@ describe('Next - Import Meta', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.Strict | Context.Module);
+        parseSource(`${arg}`, { module: true, next: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(
-          `${arg}`,
-          undefined,
-          Context.OptionsNext | Context.OptionsWebCompat | Context.Strict | Context.Module,
-        );
+        parseSource(`${arg}`, { module: true, next: true, webcompat: true });
       });
     });
   }

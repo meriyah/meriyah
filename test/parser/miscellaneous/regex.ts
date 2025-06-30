@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -12,12 +11,12 @@ describe('Miscellaneous - Regular expressions', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.OptionsLexical);
+        parseSource(`${arg}`, { next: true, lexical: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.OptionsWebCompat | Context.OptionsLexical);
+        parseSource(`${arg}`, { next: true, webcompat: true, lexical: true });
       });
     });
   }

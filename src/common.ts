@@ -29,9 +29,9 @@ export const enum Context {
   AllowNewTarget = 1 << 16,
   DisallowIn = 1 << 17,
   AllowEscapedKeyword = 1 << 18,
-  OptionsUniqueKeyInPattern = 1 << 19,
-  InStaticBlock = 1 << 20,
+  InStaticBlock = 1 << 19,
 
+  OptionsUniqueKeyInPattern = 1 << 20,
   OptionsNext = 1 << 21,
   OptionsLexical = 1 << 22,
   OptionsWebCompat = 1 << 23,

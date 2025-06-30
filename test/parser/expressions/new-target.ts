@@ -27,7 +27,7 @@ describe('Expressions - New target', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
   }
@@ -49,7 +49,7 @@ describe('Expressions - New target', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsNext | Context.Module);
+        parseSource(`${arg}`, { next: true }, Context.Module);
       });
     });
   }
@@ -83,61 +83,61 @@ describe('Expressions - New target', () => {
   ]) {
     it(`function f() {${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function f() {${arg}}`, undefined, Context.OptionsNext | Context.Module);
+        parseSource(`function f() {${arg}}`, { next: true }, Context.Module);
       });
     });
 
     it(`'use strict'; function f() {${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; function f() {${arg}}`, undefined, Context.OptionsNext | Context.Module);
+        parseSource(`'use strict'; function f() {${arg}}`, { next: true }, Context.Module);
       });
     });
 
     it(`var f = function() {${arg}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var f = function() {${arg}}`, undefined, Context.OptionsNext | Context.Module);
+        parseSource(`var f = function() {${arg}}`, { next: true }, Context.Module);
       });
     });
 
     it(`({m: function() {${arg}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({m: function() {${arg}}})`, undefined, Context.OptionsNext | Context.Module);
+        parseSource(`({m: function() {${arg}}})`, { next: true }, Context.Module);
       });
     });
 
     it(`({set x(_) {${arg}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({set x(_) {${arg}}})`, undefined, Context.OptionsNext);
+        parseSource(`({set x(_) {${arg}}})`, { next: true });
       });
     });
 
     it(`'use strict'; ({get x() {${arg}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; ({get x() {${arg}}})`, undefined, Context.None);
+        parseSource(`'use strict'; ({get x() {${arg}}})`);
       });
     });
 
     it(`({m: function() {${arg}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`({m: function() {${arg}}})`, undefined, Context.OptionsNext | Context.Module);
+        parseSource(`({m: function() {${arg}}})`, { next: true }, Context.Module);
       });
     });
 
     it(`'use strict'; ({m: function() {${arg}}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; ({m: function() {${arg}}})`, undefined, Context.OptionsNext | Context.Module);
+        parseSource(`'use strict'; ({m: function() {${arg}}})`, { next: true }, Context.Module);
       });
     });
 
     it(`class C {m() {${arg}}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C {m() {${arg}}}`, undefined, Context.None);
+        parseSource(`class C {m() {${arg}}}`);
       });
     });
 
     it(`class C {set x(_) {${arg}}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C {set x(_) {${arg}}}`, undefined, Context.OptionsNext | Context.Module);
+        parseSource(`class C {set x(_) {${arg}}}`, { next: true }, Context.Module);
       });
     });
   }

@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
@@ -12,7 +11,7 @@ describe('Declarations - Class', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
   }
@@ -32,13 +31,13 @@ describe('Declarations - Class', () => {
   ]) {
     it(`class ${arg} {};`, () => {
       t.throws(() => {
-        parseSource(`class ${arg} {};`, undefined, Context.None);
+        parseSource(`class ${arg} {};`);
       });
     });
 
     it(`"use strict"; class ${arg} {};`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; class ${arg} {};`, undefined, Context.None);
+        parseSource(`"use strict"; class ${arg} {};`);
       });
     });
   }
@@ -56,37 +55,37 @@ describe('Declarations - Class', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} `, undefined, Context.None);
+        parseSource(`${arg} `);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} `, undefined, Context.None);
+        parseSource(`${arg} `);
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} `, undefined, Context.OptionsLexical);
+        parseSource(`${arg} `, { lexical: true });
       });
     });
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg} `, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg} `, { webcompat: true });
       });
     });
 
     it(`if (true) { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`if (true) { ${arg} }`, undefined, Context.OptionsLexical);
+        parseSource(`if (true) { ${arg} }`, { lexical: true });
       });
     });
 
     it(`{${arg}}`, () => {
       t.throws(() => {
-        parseSource(`{${arg}}`, undefined, Context.None);
+        parseSource(`{${arg}}`);
       });
     });
   }
@@ -156,12 +155,12 @@ describe('Declarations - Class', () => {
   ]) {
     it(`class ${arg}`, () => {
       t.throws(() => {
-        parseSource(`class ${arg} `, undefined, Context.None);
+        parseSource(`class ${arg} `);
       });
     });
     it(`class { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`class { ${arg} }`, undefined, Context.None);
+        parseSource(`class { ${arg} }`);
       });
     });
   }
@@ -185,19 +184,19 @@ describe('Declarations - Class', () => {
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg}}`, undefined, Context.None);
+        parseSource(`class C { ${arg}}`);
       });
     });
 
     it(`(class C { ${arg} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { ${arg} })`, undefined, Context.None);
+        parseSource(`(class C { ${arg} })`);
       });
     });
 
     it(`(class C { ${arg} })`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { ${arg} })`, undefined, Context.OptionsLexical);
+        parseSource(`(class C { ${arg} })`, { lexical: true });
       });
     });
   }
@@ -234,79 +233,79 @@ describe('Declarations - Class', () => {
   ]) {
     it(`class C { ${arg}() {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg}() {}}`, undefined, Context.None);
+        parseSource(`class C { ${arg}() {}}`);
       });
     });
 
     it(`class C { *${arg}(v) {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { *${arg}(v) {}}`, undefined, Context.None);
+        parseSource(`class C { *${arg}(v) {}}`);
       });
     });
 
     it(`class C { static *${arg}(v) {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { static *${arg}(v) {}}`, undefined, Context.None);
+        parseSource(`class C { static *${arg}(v) {}}`);
       });
     });
 
     it(`(class {${arg}() {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class {${arg}() {}});`, undefined, Context.None);
+        parseSource(`(class {${arg}() {}});`);
       });
     });
 
     it(`(class {${arg}() {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class {${arg}() {}});`, undefined, Context.OptionsLexical);
+        parseSource(`(class {${arg}() {}});`, { lexical: true });
       });
     });
 
     it(`(class { static ${arg}() {}});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class { static ${arg}() {}});`, undefined, Context.None);
+        parseSource(`(class { static ${arg}() {}});`);
       });
     });
 
     it(`class C { set ${arg}(v) {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg}(v) {}}`, undefined, Context.None);
+        parseSource(`class C { ${arg}(v) {}}`);
       });
     });
 
     it(`class C { async *${arg}(v) {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { async *${arg}(v) {}}`, undefined, Context.None);
+        parseSource(`class C { async *${arg}(v) {}}`);
       });
     });
 
     it(`class C { async *${arg}(v) {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { async *${arg}(v) {}}`, undefined, Context.OptionsWebCompat);
+        parseSource(`class C { async *${arg}(v) {}}`, { webcompat: true });
       });
     });
 
     it(`(class C { async *${arg}(v) {}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { async *${arg}(v) {}})`, undefined, Context.None);
+        parseSource(`(class C { async *${arg}(v) {}})`);
       });
     });
 
     it(`(class C { async *${arg}(v) {}})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`(class C { async *${arg}(v) {}})`, undefined, Context.OptionsLexical);
+        parseSource(`(class C { async *${arg}(v) {}})`, { lexical: true });
       });
     });
 
     it(`class C { static ${arg}(v) {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { static ${arg}(v) {}}`, undefined, Context.None);
+        parseSource(`class C { static ${arg}(v) {}}`);
       });
     });
 
     it(`class C { static get ${arg}() {}}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { static get ${arg}() {}}`, undefined, Context.None);
+        parseSource(`class C { static get ${arg}() {}}`);
       });
     });
   }
@@ -320,25 +319,25 @@ describe('Declarations - Class', () => {
   ]) {
     it(`{ ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; if (true) { ${arg} }`, undefined, Context.None);
+        parseSource(`'use strict'; if (true) { ${arg} }`);
       });
     });
 
     it(`'use strict'; { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; { ${arg} }`, undefined, Context.None);
+        parseSource(`'use strict'; { ${arg} }`);
       });
     });
 
     it(`'use strict'; if (true) { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; if (true) { ${arg} }`, undefined, Context.None);
+        parseSource(`'use strict'; if (true) { ${arg} }`);
       });
     });
 
     it(`'use strict'; if (true) { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; if (true) { ${arg} }`, undefined, Context.OptionsLexical);
+        parseSource(`'use strict'; if (true) { ${arg} }`, { lexical: true });
       });
     });
   }
@@ -362,19 +361,19 @@ describe('Declarations - Class', () => {
   ]) {
     it(`{ ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
     it(`{ ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`${arg}`, { lexical: true });
       });
     });
 
     it(`{ ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
   }
@@ -592,19 +591,19 @@ describe('Declarations - Class', () => {
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg} }`, undefined, Context.None);
+        parseSource(`class C { ${arg} }`);
       });
     });
 
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class C { ${arg} }`, undefined, Context.OptionsLexical);
+        parseSource(`class C { ${arg} }`, { lexical: true });
       });
     });
 
     it(`class A extends B { ${arg} }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`class A extends B { ${arg} }`, undefined, Context.None);
+        parseSource(`class A extends B { ${arg} }`);
       });
     });
   }

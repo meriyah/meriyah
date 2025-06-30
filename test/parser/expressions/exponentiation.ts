@@ -42,23 +42,19 @@ describe('Expressions - Exponentiation', () => {
   ]) {
     it(`let O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, () => {
       t.throws(() => {
-        parseSource(
-          `let O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`,
-          undefined,
-          Context.OptionsNext | Context.Module,
-        );
+        parseSource(`let O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, { next: true }, Context.Module);
       });
     });
 
     it(`var O = { p: 1 }, x = 10; ; (${arg})`, () => {
       t.throws(() => {
-        parseSource(`var O = { p: 1 }, x = 10; ; (${arg})`, undefined, Context.OptionsNext | Context.Strict);
+        parseSource(`var O = { p: 1 }, x = 10; ; (${arg})`, { next: true, impliedStrict: true });
       });
     });
 
     it(`var O = { p: 1 }, x = 10; foo(${arg})`, () => {
       t.throws(() => {
-        parseSource(`var O = { p: 1 }, x = 10; foo(${arg})`, undefined, Context.OptionsWebCompat);
+        parseSource(`var O = { p: 1 }, x = 10; foo(${arg})`, { webcompat: true });
       });
     });
   }
@@ -125,23 +121,19 @@ describe('Expressions - Exponentiation', () => {
   ]) {
     it(`var O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, () => {
       t.doesNotThrow(() => {
-        parseSource(
-          `var O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`,
-          undefined,
-          Context.OptionsNext | Context.Module,
-        );
+        parseSource(`var O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, { next: true }, Context.Module);
       });
     });
 
     it(`var O = { p: 1 }, x = 10; ; (${arg})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var O = { p: 1 }, x = 10; ; (${arg})`, undefined, Context.OptionsNext | Context.Strict);
+        parseSource(`var O = { p: 1 }, x = 10; ; (${arg})`, { next: true, impliedStrict: true });
       });
     });
 
     it(`var O = { p: 1 }, x = 10; foo(${arg})`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var O = { p: 1 }, x = 10; foo(${arg})`, undefined, Context.OptionsWebCompat);
+        parseSource(`var O = { p: 1 }, x = 10; foo(${arg})`, { webcompat: true });
       });
     });
   }

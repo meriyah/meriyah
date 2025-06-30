@@ -44,29 +44,29 @@ describe('Expressions - Group', () => {
   ]) {
     it(`should fail on '(${arg}) = foo'`, () => {
       t.throws(() => {
-        parseSource(`(${arg}) = foo`, undefined, Context.None);
+        parseSource(`(${arg}) = foo`);
       });
     });
     it(`use strict"; '(${arg}) = foo'`, () => {
       t.throws(() => {
-        parseSource(`use strict"; (${arg}) = foo`, undefined, Context.None);
+        parseSource(`use strict"; (${arg}) = foo`);
       });
     });
     it(`foo = { get x(){  "use strict"; ( ${arg} = "sentinal 79845134");   }}`, () => {
       t.throws(() => {
-        parseSource(`foo = { get x(){  "use strict"; ( ${arg} = "sentinal 79845134");   }}`, undefined, Context.None);
+        parseSource(`foo = { get x(){  "use strict"; ( ${arg} = "sentinal 79845134");   }}`);
       });
     });
 
     it(`should fail on '(${arg} = foo )'`, () => {
       t.throws(() => {
-        parseSource(`(${arg} = foo)`, undefined, Context.Strict);
+        parseSource(`(${arg} = foo)`, { impliedStrict: true });
       });
     });
 
     it(`should fail on '(${arg} = foo )'`, () => {
       t.throws(() => {
-        parseSource(`(${arg} = foo)`, undefined, Context.OptionsWebCompat | Context.OptionsNext);
+        parseSource(`(${arg} = foo)`, { next: true, webcompat: true });
       });
     });
   }
@@ -136,18 +136,18 @@ describe('Expressions - Group', () => {
   ]) {
     it(`should fail on '(${arg} = foo )'`, () => {
       t.throws(() => {
-        parseSource(`(${arg} = foo)`, undefined, Context.Strict);
+        parseSource(`(${arg} = foo)`, { impliedStrict: true });
       });
     });
     it(`"use strict"; '(${arg} = foo )'`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; (${arg} = foo)`, undefined, Context.OptionsWebCompat);
+        parseSource(`"use strict"; (${arg} = foo)`, { webcompat: true });
       });
     });
 
     it(`x = { get x() { "use strict"; ${arg} = foo } }'`, () => {
       t.throws(() => {
-        parseSource(`x = { get x() { "use strict"; (${arg} = foo} }`, undefined, Context.OptionsWebCompat);
+        parseSource(`x = { get x() { "use strict"; (${arg} = foo} }`, { webcompat: true });
       });
     });
   }
@@ -176,25 +176,25 @@ describe('Expressions - Group', () => {
   ]) {
     it(`should fail on '(${arg})=> y'`, () => {
       t.throws(() => {
-        parseSource(`(${arg})=> y`, undefined, Context.None);
+        parseSource(`(${arg})=> y`);
       });
     });
 
     it(`"use strict"; '(${arg})=> y'`, () => {
       t.throws(() => {
-        parseSource(`"use strict"; (${arg})=> y`, undefined, Context.None);
+        parseSource(`"use strict"; (${arg})=> y`);
       });
     });
 
     it(`should fail on '(${arg})=> y'`, () => {
       t.throws(() => {
-        parseSource(`(${arg})=> y`, undefined, Context.OptionsWebCompat);
+        parseSource(`(${arg})=> y`, { webcompat: true });
       });
     });
 
     it(`should fail on '(${arg})=> y'`, () => {
       t.throws(() => {
-        parseSource(`(${arg})=> y`, undefined, Context.Module | Context.Strict);
+        parseSource(`(${arg})=> y`, { module: true });
       });
     });
   }
@@ -256,37 +256,37 @@ describe('Expressions - Group', () => {
   ]) {
     it(`should fail on '${arg}'`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.None);
+        parseSource(`${arg}`);
       });
     });
 
     it(`should fail on '${arg}'`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.OptionsWebCompat);
+        parseSource(`${arg}`, { webcompat: true });
       });
     });
 
     it(`"use strict"; '${arg}'`, () => {
       t.throws(() => {
-        parseSource(`"use strict";${arg}`, undefined, Context.None);
+        parseSource(`"use strict";${arg}`);
       });
     });
 
     it(`"use strict"; '${arg}'`, () => {
       t.throws(() => {
-        parseSource(`"use strict";${arg}`, undefined, Context.OptionsLexical);
+        parseSource(`"use strict";${arg}`, { lexical: true });
       });
     });
 
     it(`should fail on '${arg}'`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Module | Context.Strict);
+        parseSource(`${arg}`, { module: true });
       });
     });
 
     it(`function foo() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`function foo() { ${arg} }`, undefined, Context.None);
+        parseSource(`function foo() { ${arg} }`);
       });
     });
   }

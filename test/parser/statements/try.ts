@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -41,8 +40,7 @@ describe('Statements - Try', () => {
           for (${binding} of []);
         }
       `,
-          undefined,
-          Context.Strict,
+          { impliedStrict: true },
         );
       });
     });
@@ -56,8 +54,7 @@ describe('Statements - Try', () => {
             for (${binding} of []);
           }
         `,
-          undefined,
-          Context.OptionsWebCompat,
+          { webcompat: true },
         );
       });
     });
@@ -83,8 +80,7 @@ describe('Statements - Try', () => {
         }
       }
     `,
-          undefined,
-          Context.OptionsWebCompat,
+          { webcompat: true },
         );
       });
     });
@@ -103,8 +99,7 @@ describe('Statements - Try', () => {
         (()=>{for (${binding} of []);})();
       }
     `,
-          undefined,
-          Context.OptionsWebCompat,
+          { webcompat: true },
         );
       });
     });
@@ -121,8 +116,7 @@ describe('Statements - Try', () => {
       })();
     }
   `,
-          undefined,
-          Context.OptionsWebCompat,
+          { webcompat: true },
         );
       });
     });
@@ -154,8 +148,7 @@ describe('Statements - Try', () => {
         for (${binding} of []);
       }
     `,
-          undefined,
-          Context.OptionsWebCompat,
+          { webcompat: true },
         );
       });
     });

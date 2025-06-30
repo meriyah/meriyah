@@ -4,7 +4,7 @@ import tseslint from 'typescript-eslint';
 import eslintPluginImportX from 'eslint-plugin-import-x';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
-import eslintPluginInternal from './scripts/internal-eslint-plugin.mjs';
+import eslintPluginInternal from './scripts/internal-eslint-plugin/index.mjs';
 
 export default [
   eslintJs.configs.recommended,
