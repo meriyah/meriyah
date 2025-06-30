@@ -30,7 +30,6 @@ export const enum Context {
   AllowEscapedKeyword = 1 << 18,
   InStaticBlock = 1 << 19,
 
-  OptionsLexical = 1 << 22,
   OptionsRaw = 1 << 24,
 }
 

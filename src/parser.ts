@@ -57,7 +57,6 @@ export function parseSource(source: string, rawOptions: Options = {}, context: C
   const options = normalizeOptions(rawOptions);
 
   if (options.module) context |= Context.Module | Context.Strict;
-  if (options.lexical) context |= Context.OptionsLexical;
   // Turn on return context in global
   if (options.globalReturn) context |= Context.InReturnContext;
   if (options.raw) context |= Context.OptionsRaw;
@@ -69,7 +68,7 @@ export function parseSource(source: string, rawOptions: Options = {}, context: C
   // See: https://github.com/tc39/proposal-hashbang
   skipHashBang(parser);
 
-  const scope: ScopeState | undefined = context & Context.OptionsLexical ? createScope() : void 0;
+  const scope: ScopeState | undefined = options.lexical ? createScope() : void 0;
 
   let body: (ESTree.Statement | ReturnType<typeof parseDirective | typeof parseModuleItem>)[] = [];
 
@@ -1623,7 +1622,7 @@ function parseLetIdentOrVarDeclarationStatement(
   if (parser.getToken() === Token.Arrow) {
     let scope: ScopeState | undefined = void 0;
 
-    if (context & Context.OptionsLexical) scope = createArrowHeadParsingScope(parser, context, tokenValue);
+    if (parser.options.lexical) scope = createArrowHeadParsingScope(parser, context, tokenValue);
 
     parser.flags = (parser.flags | Flags.NonSimpleParameterList) ^ Flags.NonSimpleParameterList;
 
@@ -4806,7 +4805,7 @@ function parseFunctionExpression(
   let funcNameToken: Token | undefined;
 
   // Create a new function scope
-  let scope = context & Context.OptionsLexical ? createScope() : void 0;
+  let scope = parser.options.lexical ? createScope() : void 0;
 
   const modifierFlags =
     Context.SuperProperty |
@@ -5458,7 +5457,7 @@ function parseMethodDefinition(
     Context.InMethodOrFunction |
     Context.AllowNewTarget;
 
-  let scope = context & Context.OptionsLexical ? addChildScope(createScope(), ScopeKind.FunctionParams) : void 0;
+  let scope = parser.options.lexical ? addChildScope(createScope(), ScopeKind.FunctionParams) : void 0;
 
   const params = parseMethodFormals(
     parser,
@@ -6486,7 +6485,7 @@ function parseParenthesizedExpression(
 
   nextToken(parser, context | Context.AllowRegExp | Context.AllowEscapedKeyword);
 
-  const scope = context & Context.OptionsLexical ? addChildScope(createScope(), ScopeKind.ArrowParams) : void 0;
+  const scope = parser.options.lexical ? addChildScope(createScope(), ScopeKind.ArrowParams) : void 0;
 
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
@@ -6757,7 +6756,7 @@ function parseIdentifierOrArrow(
   if (parser.getToken() === Token.Arrow) {
     let scope: ScopeState | undefined = void 0;
 
-    if (context & Context.OptionsLexical) scope = createArrowHeadParsingScope(parser, context, tokenValue);
+    if (parser.options.lexical) scope = createArrowHeadParsingScope(parser, context, tokenValue);
 
     if (isNonSimpleParameterList) parser.flags |= Flags.NonSimpleParameterList;
     if (hasStrictReserved) parser.flags |= Flags.HasStrictReserved;
@@ -6790,7 +6789,7 @@ function parseArrowFromIdentifier(
   if (!canAssign) parser.report(Errors.InvalidAssignmentTarget);
   if (inNew) parser.report(Errors.InvalidAsyncArrow);
   parser.flags &= ~Flags.NonSimpleParameterList;
-  const scope = context & Context.OptionsLexical ? createArrowHeadParsingScope(parser, context, value) : void 0;
+  const scope = parser.options.lexical ? createArrowHeadParsingScope(parser, context, value) : void 0;
 
   return parseArrowFunctionExpression(parser, context, scope, privateScope, [expr], isAsync, start);
 }
@@ -7340,7 +7339,7 @@ function parseAsyncArrowOrCallExpression(
 ): ESTree.CallExpression | ESTree.ArrowFunctionExpression {
   nextToken(parser, context | Context.AllowRegExp);
 
-  const scope = context & Context.OptionsLexical ? addChildScope(createScope(), ScopeKind.ArrowParams) : void 0;
+  const scope = parser.options.lexical ? addChildScope(createScope(), ScopeKind.ArrowParams) : void 0;
 
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
@@ -7872,7 +7871,7 @@ function parseClassBody(
 
   const { tokenStart } = parser;
 
-  const privateScope = context & Context.OptionsLexical ? addChildPrivateScope(parentScope) : undefined;
+  const privateScope = parser.options.lexical ? addChildPrivateScope(parentScope) : undefined;
 
   consume(parser, context | Context.AllowRegExp, Token.LeftBrace);
 
@@ -8154,7 +8153,7 @@ function parsePrivateIdentifier(
   const { tokenValue } = parser;
   if (tokenValue === 'constructor') parser.report(Errors.InvalidStaticClassFieldConstructor);
 
-  if (context & Context.OptionsLexical) {
+  if (parser.options.lexical) {
     if (!privateScope) parser.report(Errors.InvalidPrivateIdentifier, tokenValue);
 
     if (kind) {
