@@ -179,15 +179,15 @@ describe('Lexer - Regular expressions', () => {
 
   for (const [ctx, op, value, flags] of tokens) {
     it(`scans '${op}' at the end`, () => {
-      const state = new Parser(op);
-      const found = scanSingleToken(state, ctx, 0);
+      const parser = new Parser(op);
+      const found = scanSingleToken(parser, ctx, 0);
 
       t.deepEqual(
         {
           token: found,
-          hasNext: state.index < state.source.length,
-          value: (state.tokenRegExp as any).pattern,
-          flags: (state.tokenRegExp as any).flags,
+          hasNext: parser.index < parser.source.length,
+          value: (parser.tokenRegExp as any).pattern,
+          flags: (parser.tokenRegExp as any).flags,
         },
         {
           token: Token.RegularExpression,
@@ -201,8 +201,8 @@ describe('Lexer - Regular expressions', () => {
 
   function fail(name: string, source: string, context: Context) {
     it(name, () => {
-      const state = new Parser(source);
-      t.throws(() => scanSingleToken(state, context, 0));
+      const parser = new Parser(source);
+      t.throws(() => scanSingleToken(parser, context, 0));
     });
   }
   fail('fails on "/\\\n/"', '/\\\n/', Context.AllowRegExp);
