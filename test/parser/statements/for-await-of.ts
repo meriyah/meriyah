@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -529,7 +528,7 @@ describe('Statements - For await of', () => {
 
   it('accepts top level for await in module context', () => {
     t.doesNotThrow(() => {
-      parseSource('for await (const a of b) {}', undefined, Context.Module);
+      parseSource('for await (const a of b) {}', { module: true });
     });
 
     t.throws(() => {
@@ -537,7 +536,7 @@ describe('Statements - For await of', () => {
     });
 
     t.throws(() => {
-      parseSource('function c() { for await (const a of b) {} }', undefined, Context.Module);
+      parseSource('function c() { for await (const a of b) {} }', { module: true });
     });
   });
 });

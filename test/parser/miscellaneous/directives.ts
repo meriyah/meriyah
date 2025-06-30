@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -200,14 +199,11 @@ describe('Miscellaneous - Directives', () => {
     '"use strict" \n "Hello\\312World"',
     String.raw`function a() { "use strict" "Hello\312World" }`,
     'function a() { "use strict" \n "Hello\\312World" }',
+    { code: String.raw`"use strict" + "Hello\312World"`, options: { ranges: true, raw: true, module: true } },
   ]);
 
   pass('Miscellaneous - Directives (pass)', [
-    {
-      code: String.raw`"use strict" + "Hello\312World"`,
-      options: { ranges: true, raw: true },
-      context: Context.Module,
-    },
+    { code: String.raw`"use strict" + "Hello\312World"`, options: { ranges: true, raw: true } },
     { code: '("use strict"); foo = 42;', options: { module: true, ranges: true, raw: true } },
     { code: String.raw`"use strict", "Hello\312World"`, options: { ranges: true, raw: true } },
     { code: '"use asm" \n "use strict"', options: { ranges: true, raw: true } },

@@ -131,8 +131,8 @@ describe('Expressions - Async', () => {
     'async (a, ...true=b) => a;',
     'async (a, ...b=fail) => a;',
     'async (a, ...true) => a;',
-    { code: 'await/x', context: Context.Module },
-    { code: 'await \n / x', context: Context.Module },
+    { code: 'await/x', options: { module: true } },
+    { code: 'await \n / x', options: { module: true } },
   ]);
   pass('Expressions - Async (pass)', [
     'async(), x',

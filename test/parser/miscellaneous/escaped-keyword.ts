@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
@@ -189,7 +188,7 @@ describe('Miscellaneous - Escaped keywords', () => {
     String.raw`class X { st\u0061tic y() {} }`,
     String.raw`(function* () { y\u0069eld 10 })`,
     String.raw`({ \u0061sync x() { await x } })`,
-    { code: String.raw`export \u0061sync function y() { await x }`, context: Context.Module },
+    { code: String.raw`export \u0061sync function y() { await x }`, options: { module: true } },
     String.raw`{for(o i\u006E {}){}}`,
     { code: String.raw`impleme\u{006E}ts`, options: { impliedStrict: true } },
     { code: String.raw`impleme\u{006E}ts`, options: { module: true } },

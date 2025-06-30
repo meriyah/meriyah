@@ -1,6 +1,5 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import { parseSource } from '../../../src/parser';
 
@@ -91,19 +90,19 @@ describe('Next - Decorators', () => {
     { code: 'class Foo { @abc constructor(){} }', options: { next: true } },
     { code: 'class A { @foo && bar method() {}  }', options: { next: true } },
     { code: 'class A { @foo && bar; method() {}  }', options: { next: true } },
-    { code: '@bar export const foo = 1;', options: { next: true }, context: Context.Module },
-    { code: '@bar export {Foo};', options: { next: true }, context: Context.Module },
-    { code: '@bar export * from "./foo";', options: { next: true }, context: Context.Module },
-    { code: '@bar export default function foo() {}', options: { next: true }, context: Context.Module },
-    { code: '@bar export const lo = {a: class Foo {}};', options: { next: true }, context: Context.Module },
+    { code: '@bar export const foo = 1;', options: { next: true, module: true } },
+    { code: '@bar export {Foo};', options: { next: true, module: true } },
+    { code: '@bar export * from "./foo";', options: { next: true, module: true } },
+    { code: '@bar export default function foo() {}', options: { next: true, module: true } },
+    { code: '@bar export const lo = {a: class Foo {}};', options: { next: true, module: true } },
     { code: '@bar const foo = 1;', options: { next: true } },
     { code: '@bar function foo() {}', options: { next: true } },
     { code: '(@bar const foo = 1);', options: { next: true } },
     { code: '(@bar function foo() {})', options: { next: true } },
     { code: '@bar;', options: { next: true } },
     { code: '@bar();', options: { next: true } },
-    { code: '@foo export @bar class A {}', options: { next: true }, context: Context.Module },
-    { code: '@foo export default @bar class A {}', options: { next: true }, context: Context.Module },
+    { code: '@foo export @bar class A {}', options: { next: true, module: true } },
+    { code: '@foo export default @bar class A {}', options: { next: true, module: true } },
   ]);
 
   pass('Next - Decorators (pass)', [

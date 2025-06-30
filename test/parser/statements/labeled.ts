@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -74,7 +73,7 @@ describe('Statements - Labeled', () => {
     'label: const x = null;',
     { code: 'label: function g() {}', options: { impliedStrict: true } },
     'label: let x;',
-    { code: 'await: 1;', context: Context.Module },
+    { code: 'await: 1;', options: { module: true } },
     'bar: function* x() {}',
     { code: 'await: 1;', options: { module: true } },
     { code: 'yield: 1;', options: { impliedStrict: true } },
@@ -97,7 +96,7 @@ describe('Statements - Labeled', () => {
     String.raw`async () => { aw\u{61}it: x }`,
     { code: String.raw`async () => { \u{61}wait: x }`, options: { module: true } },
     String.raw`async () => { aw\u{61}it: x }`,
-    { code: 'function *f(){ await: x; }', context: Context.Module },
+    { code: 'function *f(){ await: x; }', options: { module: true } },
     { code: 'await: x', options: { module: true } },
     { code: 'await: 1;', options: { module: true } },
     'false: x',

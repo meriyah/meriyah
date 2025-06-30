@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -640,7 +639,7 @@ describe('Statements - For', () => {
     'for (x=>{}.x of y);',
     'for (x=>{} of y);',
     'for (const [...[foo, bar],,] = obj);',
-    { code: 'for (const [... ...foo] = obj);', context: Context.Module },
+    { code: 'for (const [... ...foo] = obj);', options: { module: true } },
     'for (const [...] = obj);',
     'for (const [...,] = obj);',
     'for (const [..x] = obj);',

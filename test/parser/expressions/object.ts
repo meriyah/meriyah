@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -1058,7 +1057,7 @@ describe('Expressions - Object', () => {
     '({b => []} = [2])',
     '({a: b + c} = [2])',
     '({[a]: b => []} = [2])',
-    { code: 's = {"foo": await = x} = x', context: Context.Module },
+    { code: 's = {"foo": await = x} = x', options: { module: true } },
     '({a: [foo]-(a) {}})',
     '({set a(...foo) {}})',
     '({*ident: x})',

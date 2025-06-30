@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -101,7 +100,7 @@ describe('Expressions - Async function', () => {
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, undefined, Context.Module);
+        parseSource(`${arg}`, { module: true });
       });
     });
   }
@@ -191,17 +190,17 @@ describe('Expressions - Async function', () => {
     'async function wrap() { async function await() { } };',
     '(async.foo6 => 1)',
     '(async.foo7 foo8 => 1)',
-    { code: '(async function foo4() { } => 1)', context: Context.Module },
-    { code: '(async function() { } foo5 => 1)', context: Context.Module },
-    { code: '(async function() { } () => 1)', context: Context.Module },
-    { code: '(async function() { } => 1)', context: Context.Module },
-    { code: '"use strict"; async function asyncFunctionDeclaration(await) {}', context: Context.Module },
-    { code: '"use strict"; (async function foo() { } bar => 1)', context: Context.Module },
-    { code: '"use strict"; (async function foo() { } () => 1)', context: Context.Module },
-    { code: '"use strict"; (async function foo() { } => 1)', context: Context.Module },
-    { code: '"use strict"; (async function() { } () => 1)', context: Context.Module },
-    { code: '"use strict"; (async function() { } => 1)', context: Context.Module },
-    { code: '"use strict"; (async.foo bar => 1)', context: Context.Module },
+    { code: '(async function foo4() { } => 1)', options: { module: true } },
+    { code: '(async function() { } foo5 => 1)', options: { module: true } },
+    { code: '(async function() { } () => 1)', options: { module: true } },
+    { code: '(async function() { } => 1)', options: { module: true } },
+    { code: '"use strict"; async function asyncFunctionDeclaration(await) {}', options: { module: true } },
+    { code: '"use strict"; (async function foo() { } bar => 1)', options: { module: true } },
+    { code: '"use strict"; (async function foo() { } () => 1)', options: { module: true } },
+    { code: '"use strict"; (async function foo() { } => 1)', options: { module: true } },
+    { code: '"use strict"; (async function() { } () => 1)', options: { module: true } },
+    { code: '"use strict"; (async function() { } => 1)', options: { module: true } },
+    { code: '"use strict"; (async.foo bar => 1)', options: { module: true } },
     '(async function arguments () { "use strict"; })',
     '(async function (x = 1) {"use strict"})',
     'async function wrap() {\nasync function await() { }\n}',
@@ -224,9 +223,9 @@ describe('Expressions - Async function', () => {
     '({async async: 0})',
     '({async async})',
     '({async async = 0} = {})',
-    { code: 'function f() { await 5; }', context: Context.Module },
+    { code: 'function f() { await 5; }', options: { module: true } },
     //['async function f(){ (x = new x(await x)) => {} }', Context.Module],
-    { code: 'async function f() { function g() { await 3; } }', context: Context.Module },
+    { code: 'async function f() { function g() { await 3; } }', options: { module: true } },
     'async function f(){ new await x; }',
     'async function f(){ [new await foo] }',
     'async function f(){ (new await foo) }',

@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -42,7 +41,7 @@ describe('Expressions - Exponentiation', () => {
   ]) {
     it(`let O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, () => {
       t.throws(() => {
-        parseSource(`let O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, { next: true }, Context.Module);
+        parseSource(`let O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, { next: true, module: true });
       });
     });
 
@@ -121,7 +120,7 @@ describe('Expressions - Exponentiation', () => {
   ]) {
     it(`var O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, { next: true }, Context.Module);
+        parseSource(`var O = { p: 1 }, x = 10; ; if (${arg}) { foo(); }`, { next: true, module: true });
       });
     });
 
