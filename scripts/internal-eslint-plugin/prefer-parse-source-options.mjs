@@ -52,7 +52,6 @@ export default {
 
         const flagToOptions = {
           OptionsNext: 'next',
-          OptionsUniqueKeyInPattern: 'uniqueKeyInPattern',
           OptionsLexical: 'lexical',
           InReturnContext: 'globalReturn',
           OptionsRaw: 'raw',

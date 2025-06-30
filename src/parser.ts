@@ -58,7 +58,6 @@ export function parseSource(source: string, rawOptions: Options = {}, context: C
 
   if (options.module) context |= Context.Module | Context.Strict;
   if (options.next) context |= Context.OptionsNext;
-  if (options.uniqueKeyInPattern) context |= Context.OptionsUniqueKeyInPattern;
   if (options.lexical) context |= Context.OptionsLexical;
   // Turn on return context in global
   if (options.globalReturn) context |= Context.InReturnContext;
@@ -5709,7 +5708,7 @@ function parseObjectLiteralOrPattern(
             value = parser.finishNode<ESTree.AssignmentPattern>(
               {
                 type: 'AssignmentPattern',
-                left: context & Context.OptionsUniqueKeyInPattern ? Object.assign({}, key) : key,
+                left: parser.options.uniqueKeyInPattern ? Object.assign({}, key) : key,
                 right,
               },
               tokenStart,
@@ -5718,7 +5717,7 @@ function parseObjectLiteralOrPattern(
             destructible |=
               (token === Token.AwaitKeyword ? DestructuringKind.Await : 0) |
               (token === Token.EscapedReserved ? DestructuringKind.CannotDestruct : 0);
-            value = context & Context.OptionsUniqueKeyInPattern ? Object.assign({}, key) : key;
+            value = parser.options.uniqueKeyInPattern ? Object.assign({}, key) : key;
           }
         } else if (consumeOpt(parser, context | Context.AllowRegExp, Token.Colon)) {
           const { tokenStart } = parser;
