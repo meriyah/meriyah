@@ -28,7 +28,7 @@ export function scanString(parser: Parser, context: Context, quote: number): Tok
     if (char === quote) {
       ret += parser.source.slice(marker, parser.index);
       advanceChar(parser); // skip closing quote
-      if (context & Context.OptionsRaw) parser.tokenRaw = parser.source.slice(start, parser.index);
+      if (parser.options.raw) parser.tokenRaw = parser.source.slice(start, parser.index);
       parser.tokenValue = ret;
       return Token.StringLiteral;
     }

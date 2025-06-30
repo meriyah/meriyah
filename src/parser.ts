@@ -59,7 +59,6 @@ export function parseSource(source: string, rawOptions: Options = {}, context: C
   if (options.module) context |= Context.Module | Context.Strict;
   // Turn on return context in global
   if (options.globalReturn) context |= Context.InReturnContext;
-  if (options.raw) context |= Context.OptionsRaw;
   if (options.impliedStrict) context |= Context.Strict;
 
   // Initialize parser state
@@ -4284,7 +4283,7 @@ function parseBigIntLiteral(parser: Parser, context: Context): ESTree.BigIntLite
     bigint: String(tokenValue),
   };
 
-  if (context & Context.OptionsRaw) {
+  if (parser.options.raw) {
     node.raw = tokenRaw;
   }
 
@@ -4577,7 +4576,7 @@ function parseLiteral(parser: Parser, context: Context): ESTree.Literal {
   nextToken(parser, context);
   parser.assignable = AssignmentKind.CannotAssign;
   return parser.finishNode(
-    context & Context.OptionsRaw
+    parser.options.raw
       ? {
           type: 'Literal',
           value: tokenValue,
@@ -4605,7 +4604,7 @@ function parseNullOrTrueOrFalseLiteral(parser: Parser, context: Context): ESTree
   nextToken(parser, context);
   parser.assignable = AssignmentKind.CannotAssign;
   return parser.finishNode(
-    context & Context.OptionsRaw
+    parser.options.raw
       ? {
           type: 'Literal',
           value,
@@ -7557,7 +7556,7 @@ function parseRegExpLiteral(parser: Parser, context: Context): ESTree.RegExpLite
     regex: tokenRegExp as { pattern: string; flags: string },
   };
 
-  if (context & Context.OptionsRaw) {
+  if (parser.options.raw) {
     node.raw = tokenRaw;
   }
 
@@ -8385,7 +8384,7 @@ function parseJSXRootElementOrFragment(
 
   // JSX fragments
   if (parser.getToken() === Token.GreaterThan) {
-    const openingFragment = parseJSXOpeningFragment(parser, context, start);
+    const openingFragment = parseJSXOpeningFragment(parser, start);
     const [children, closingFragment] = parseJSXChildrenAndClosingFragment(parser, context, privateScope, inJSXChild);
 
     return parser.finishNode<ESTree.JSXFragment>(
@@ -8436,10 +8435,9 @@ function parseJSXRootElementOrFragment(
  * Parses JSX opening fragment
  *
  * @param parser Parser object
- * @param context  Context masks
  */
-function parseJSXOpeningFragment(parser: Parser, context: Context, start: Location): ESTree.JSXOpeningFragment {
-  nextJSXToken(parser, context);
+function parseJSXOpeningFragment(parser: Parser, start: Location): ESTree.JSXOpeningFragment {
+  nextJSXToken(parser);
   return parser.finishNode<ESTree.JSXOpeningFragment>(
     {
       type: 'JSXOpeningFragment',
@@ -8469,7 +8467,7 @@ function parseJSXClosingElement(
   }
 
   if (inJSXChild) {
-    nextJSXToken(parser, context);
+    nextJSXToken(parser);
   } else {
     nextToken(parser, context);
   }
@@ -8502,7 +8500,7 @@ function parseJSXClosingFragment(
   }
 
   if (inJSXChild) {
-    nextJSXToken(parser, context);
+    nextJSXToken(parser);
   } else {
     nextToken(parser, context);
   }
@@ -8625,7 +8623,7 @@ function parseJSXText(parser: Parser, context: Context): ESTree.JSXText {
     value: parser.tokenValue as string,
   } as ESTree.JSXText;
 
-  if (context & Context.OptionsRaw) {
+  if (parser.options.raw) {
     node.raw = parser.tokenRaw;
   }
 
@@ -8663,7 +8661,7 @@ function parseJSXOpeningElementOrSelfCloseElement(
   }
 
   if (inJSXChild || !selfClosing) {
-    nextJSXToken(parser, context);
+    nextJSXToken(parser);
   } else {
     nextToken(parser, context);
   }
@@ -8892,7 +8890,7 @@ function parseJSXExpressionContainer(
   }
 
   if (inJSXChild) {
-    nextJSXToken(parser, context);
+    nextJSXToken(parser);
   } else {
     nextToken(parser, context);
   }

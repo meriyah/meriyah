@@ -7,7 +7,10 @@ import { Parser } from '../../src/parser/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
 
 describe('Lexer - Numberic literals', () => {
-  const tokens: [Context, Token, string, number | bigint][] = [
+  const tokens: (
+    | [Context, Token, string, number | bigint]
+    | [Context, Token, string, number | bigint, NormalizedOptions]
+  )[] = [
     // Numeric literals
     [Context.None, Token.NumericLiteral, '0', 0],
     [Context.None, Token.NumericLiteral, '1', 1],
@@ -17,7 +20,7 @@ describe('Lexer - Numberic literals', () => {
     [Context.None, Token.NumericLiteral, '98', 98],
     [Context.None, Token.NumericLiteral, '7890', 7890],
     [Context.None, Token.NumericLiteral, '123', 123],
-    [Context.OptionsRaw, Token.NumericLiteral, '.5', 0.5],
+    [Context.None, Token.NumericLiteral, '.5', 0.5, { raw: true }],
     [Context.None, Token.NumericLiteral, '.9', 0.9],
     [Context.None, Token.NumericLiteral, '.123', 0.123],
     [Context.None, Token.NumericLiteral, '.1234567890', 0.123456789],
@@ -33,7 +36,7 @@ describe('Lexer - Numberic literals', () => {
     [Context.None, Token.NumericLiteral, '0.0', 0],
     [Context.None, Token.NumericLiteral, '4.0', 4],
     [Context.None, Token.NumericLiteral, '0.0', 0],
-    [Context.OptionsRaw, Token.NumericLiteral, '456.345', 456.345],
+    [Context.None, Token.NumericLiteral, '456.345', 456.345, { raw: true }],
     // eslint-disable-next-line no-loss-of-precision -- FIXME
     [Context.None, Token.NumericLiteral, '1234567890.0987654321', 1234567890.0987654321],
 
@@ -54,7 +57,7 @@ describe('Lexer - Numberic literals', () => {
     [Context.None, Token.NumericLiteral, '.5e3', 500],
     [Context.None, Token.NumericLiteral, '.5e-3', 0.0005],
     [Context.None, Token.NumericLiteral, '0.5e3', 500],
-    [Context.OptionsRaw, Token.NumericLiteral, '55.55e10', 555500000000],
+    [Context.None, Token.NumericLiteral, '55.55e10', 555500000000, { raw: true }],
     [Context.None, Token.NumericLiteral, '0e-100', 0],
     [Context.None, Token.NumericLiteral, '0E-100', 0],
     [Context.None, Token.NumericLiteral, '0e+1', 0],
@@ -62,7 +65,7 @@ describe('Lexer - Numberic literals', () => {
     [Context.None, Token.NumericLiteral, '6e+1', 60],
     [Context.None, Token.NumericLiteral, '9e+1', 90],
     [Context.None, Token.NumericLiteral, '1E-1', 0.1],
-    [Context.OptionsRaw, Token.NumericLiteral, '0e-1', 0],
+    [Context.None, Token.NumericLiteral, '0e-1', 0, { raw: true }],
     [Context.None, Token.NumericLiteral, '7E1', 70],
     [Context.None, Token.NumericLiteral, '0e0', 0],
     [Context.None, Token.NumericLiteral, '0E0', 0],
@@ -71,7 +74,7 @@ describe('Lexer - Numberic literals', () => {
     [Context.None, Token.NumericLiteral, '.1e-100', 1e-101],
     [Context.None, Token.NumericLiteral, '0e+100', 0],
     [Context.None, Token.NumericLiteral, '1E+100', 1e100],
-    [Context.OptionsRaw, Token.NumericLiteral, '.1E+100', 1e99],
+    [Context.None, Token.NumericLiteral, '.1E+100', 1e99, { raw: true }],
 
     // Hex
     [Context.None, Token.NumericLiteral, '0xcafe', 51966],
@@ -123,7 +126,13 @@ describe('Lexer - Numberic literals', () => {
     [Context.None, Token.NumericLiteral, '0B01001', 9],
     [Context.None, Token.NumericLiteral, '0B011111111111111111111111111111', 536870911],
     [Context.None, Token.NumericLiteral, '0B00000111111100000011', 32515],
-    [Context.OptionsRaw, Token.NumericLiteral, '0B0000000000000000000000000000000000000000000000001111111111', 1023],
+    [
+      Context.None,
+      Token.NumericLiteral,
+      '0B0000000000000000000000000000000000000000000000001111111111',
+      1023,
+      { raw: true },
+    ],
 
     // Octal
     [Context.None, Token.NumericLiteral, '0O12345670', 2739128],
@@ -160,7 +169,7 @@ describe('Lexer - Numberic literals', () => {
     [Context.None, Token.BigIntLiteral, '0x9an', BigInt(154)],
     [Context.None, Token.BigIntLiteral, '9007199254740991n', BigInt(9007199254740991)],
     [Context.None, Token.BigIntLiteral, '100000000000000000n', BigInt(100000000000000000)],
-    [Context.OptionsRaw, Token.BigIntLiteral, '123456789000000000000000n', BigInt('123456789000000000000000')],
+    [Context.None, Token.BigIntLiteral, '123456789000000000000000n', BigInt('123456789000000000000000'), { raw: true }],
     [Context.None, Token.BigIntLiteral, '0xfn', BigInt(15)],
     [Context.None, Token.BigIntLiteral, '0n', BigInt(0)],
     [
@@ -171,7 +180,7 @@ describe('Lexer - Numberic literals', () => {
     ],
 
     // Numeric separators
-    [Context.OptionsRaw, Token.NumericLiteral, '0', 0],
+    [Context.None, Token.NumericLiteral, '0', 0, { raw: true }],
     [Context.None, Token.NumericLiteral, '1.1', 1.1],
     [Context.None, Token.NumericLiteral, '1_1', 11],
     [Context.None, Token.NumericLiteral, '1.1_1', 1.11],
@@ -182,7 +191,7 @@ describe('Lexer - Numberic literals', () => {
       1.3333333333333334e26,
     ],
 
-    [Context.OptionsRaw, Token.NumericLiteral, '0O01_1', 9],
+    [Context.None, Token.NumericLiteral, '0O01_1', 9, { raw: true }],
     [Context.None, Token.NumericLiteral, '0O0_7_7', 63],
     [Context.None, Token.NumericLiteral, '0B0_1', 1],
     [Context.None, Token.NumericLiteral, '0B010_01', 9],
@@ -192,9 +201,9 @@ describe('Lexer - Numberic literals', () => {
     [Context.None, Token.NumericLiteral, '0Xa', 10],
   ];
 
-  for (const [ctx, token, op, value] of tokens) {
+  for (const [ctx, token, op, value, options] of tokens) {
     it(`scans '${op}' at the end`, () => {
-      const parser = new Parser(op);
+      const parser = new Parser(op, options);
       const found = scanSingleToken(parser, ctx, 0);
 
       t.deepEqual(

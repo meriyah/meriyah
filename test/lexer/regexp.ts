@@ -1,3 +1,4 @@
+import { type NormalizedOptions } from './../../src/options';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { Context } from '../../src/common';
@@ -7,7 +8,7 @@ import { scanSingleToken } from '../../src/lexer/scan';
 import { regexFeatures } from '../../scripts/shared.mjs';
 
 describe('Lexer - Regular expressions', () => {
-  const tokens: [Context, string, string, string][] = [
+  const tokens: ([Context, string, string, string] | [Context, string, string, string, NormalizedOptions])[] = [
     // None unicode regular expression
     [Context.AllowRegExp, '/a|b/', 'a|b', ''],
     [Context.AllowRegExp, '/a|b/', 'a|b', ''],
@@ -116,7 +117,7 @@ describe('Lexer - Regular expressions', () => {
     [Context.AllowRegExp, '/[^-J]/g', '[^-J]', 'g'],
     [Context.AllowRegExp, String.raw`/[abc\D]/`, String.raw`[abc\D]`, ''],
     [Context.AllowRegExp, String.raw`/[\dabcd]/`, String.raw`[\dabcd]`, ''],
-    [Context.AllowRegExp | Context.OptionsRaw, String.raw`/[\$]/`, String.raw`[\$]`, ''],
+    [Context.AllowRegExp, String.raw`/[\$]/`, String.raw`[\$]`, '', { raw: true }],
     [Context.AllowRegExp, String.raw`/[abc\$]/`, String.raw`[abc\$]`, ''],
     [Context.AllowRegExp, String.raw`/[\?def]/`, String.raw`[\?def]`, ''],
     [Context.AllowRegExp, String.raw`/[\cT]/`, String.raw`[\cT]`, ''],
@@ -177,9 +178,9 @@ describe('Lexer - Regular expressions', () => {
     );
   }
 
-  for (const [ctx, op, value, flags] of tokens) {
+  for (const [ctx, op, value, flags, options] of tokens) {
     it(`scans '${op}' at the end`, () => {
-      const parser = new Parser(op);
+      const parser = new Parser(op, options);
       const found = scanSingleToken(parser, ctx, 0);
 
       t.deepEqual(
