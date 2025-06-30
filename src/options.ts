@@ -5,7 +5,7 @@ import { pushComment, pushToken } from './parser/parser';
 /**
  * Function calls when semicolon inserted.
  */
-export type OnInsertedSemicolon = (pos: number) => any;
+type OnInsertedSemicolon = (pos: number) => any;
 
 /**
  * Token process function.
