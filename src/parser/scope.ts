@@ -68,7 +68,6 @@ export class Scope {
    *
    * @param parser Parser state
    * @param context Context masks
-   * @param scope Scope state
    * @param name Binding name
    * @param type Binding kind
    */
@@ -111,7 +110,6 @@ export class Scope {
    *
    * @param parser Parser state
    * @param context Context masks
-   * @param scope Scope state
    * @param name Binding name
    * @param type Binding kind
    * @param origin Binding Origin
