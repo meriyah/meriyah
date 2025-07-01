@@ -1,6 +1,6 @@
-import { Context } from '../common';
+import { descKeywordTable, Token } from './../token';
+import { Context, getOwnProperty } from '../common';
 import { type Parser } from '../parser/parser';
-import { Token, descKeywordTable } from '../token';
 import { Chars } from '../chars';
 import { advanceChar, consumePossibleSurrogatePair, toHex } from './common';
 import { CharTypes, CharFlags, isIdentifierPart, isIdentifierStart, isIdPart } from './charClassifier';
@@ -19,7 +19,7 @@ export function scanIdentifier(parser: Parser, context: Context, isValidAsKeywor
   parser.tokenValue = parser.source.slice(parser.tokenIndex, parser.index);
 
   return parser.currentChar !== Chars.Backslash && parser.currentChar <= 0x7e
-    ? descKeywordTable[parser.tokenValue] || Token.Identifier
+    ? (getOwnProperty(descKeywordTable, parser.tokenValue) ?? Token.Identifier)
     : scanIdentifierSlowCase(parser, context, 0, isValidAsKeyword);
 }
 
@@ -85,7 +85,7 @@ export function scanIdentifierSlowCase(
 
   const { length } = parser.tokenValue;
   if (isValidAsKeyword && length >= 2 && length <= 11) {
-    const token: Token | undefined = descKeywordTable[parser.tokenValue];
+    const token = getOwnProperty(descKeywordTable, parser.tokenValue);
     if (token === void 0) return Token.Identifier | (hasEscape ? Token.IsEscaped : 0);
     if (!hasEscape) return token;
 
