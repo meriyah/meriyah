@@ -17,6 +17,8 @@ export class PrivateScope {
     [name: string]: Location[];
   } = Object.create(null);
 
+  privateIdentifiers = new Map<string, PropertyKind>();
+
   /**
    * Inherit a private scope
    * private scope is created on class body
@@ -35,18 +37,19 @@ export class PrivateScope {
    * @param type Property kind
    */
   addPrivateIdentifier(name: string, kind: PropertyKind): void {
+    const { privateIdentifiers } = this;
     let focusKind = kind & (PropertyKind.Static | PropertyKind.GetSet);
     // if it's not getter or setter, it should take both place in the check
     if (!(focusKind & PropertyKind.GetSet)) focusKind |= PropertyKind.GetSet;
-    const value = (this as any)['#' + name];
+    const value = privateIdentifiers.get(name);
 
     // It is a Syntax Error if PrivateBoundIdentifiers of ClassElementList
     // contains any duplicate entries, unless the name is used once for
     // a getter and once for a setter and in no other entries, and the getter
     // and setter are either both static or both non-static.
     if (
-      value !== undefined &&
-      ((value & PropertyKind.Static) !== (focusKind & PropertyKind.Static) || value & focusKind & PropertyKind.GetSet)
+      this.hasPrivateIdentifier(name) &&
+      ((value! & PropertyKind.Static) !== (focusKind & PropertyKind.Static) || value! & focusKind & PropertyKind.GetSet)
     ) {
       // Mix of static and non-static,
       // or duplicated setter, or duplicated getter
@@ -54,7 +57,7 @@ export class PrivateScope {
     }
 
     // Merge possible Getter and Setter
-    (this as any)['#' + name] = value ? value | focusKind : focusKind;
+    privateIdentifiers.set(name, this.hasPrivateIdentifier(name) ? value! | focusKind : focusKind);
   }
 
   /**
@@ -72,12 +75,9 @@ export class PrivateScope {
    * Checks if a private identifier name is defined in current scope
    *
    * @param name private identifier name
-   * @returns 0 for false, and 1 for true
    */
-  isPrivateIdentifierDefined(name: string): 0 | 1 {
-    if ((this as any)['#' + name]) return 1;
-    if (this.parent) return this.parent.isPrivateIdentifierDefined(name);
-    return 0;
+  isPrivateIdentifierDefined(name: string): boolean {
+    return this.hasPrivateIdentifier(name) || Boolean(this.parent?.isPrivateIdentifierDefined(name));
   }
 
   /**
@@ -95,5 +95,9 @@ export class PrivateScope {
         );
       }
     }
+  }
+
+  hasPrivateIdentifier(name: string) {
+    return this.privateIdentifiers.has(name);
   }
 }

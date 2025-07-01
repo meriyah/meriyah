@@ -4,6 +4,7 @@ import type * as ESTree from '../estree';
 import { type Location, Flags, type AssignmentKind, type DestructuringKind } from '../common';
 import { ParseError, type Errors } from '../errors';
 import { type NormalizedOptions, type OnComment, type OnToken } from '../options';
+import { Scope, type ScopeKind } from './scope';
 import { PrivateScope } from './private-scope';
 
 export class Parser {
@@ -219,6 +220,18 @@ export class Parser {
    */
   report(type: Errors, ...params: string[]): never {
     throw new ParseError(this.tokenStart, this.currentLocation, type, ...params);
+  }
+
+  createScopeIfLexical(type?: ScopeKind, parent?: Scope) {
+    if (this.options.lexical) {
+      return this.createScope(type, parent);
+    }
+
+    return undefined;
+  }
+
+  createScope(type?: ScopeKind, parent?: Scope) {
+    return new Scope(this, type, parent);
   }
 
   createPrivateScopeIfLexical(parent?: PrivateScope) {
