@@ -47,7 +47,6 @@ import {
   createArrowHeadParsingScope,
   addVarName,
   addBlockName,
-  addVarOrBlock,
   reportScopeError,
 } from './parser/scope';
 
@@ -5014,7 +5013,7 @@ function parseArrayExpressionOrPattern(
 
           nextToken(parser, context | Context.AllowRegExp);
 
-          if (scope) addVarOrBlock(parser, context, scope, tokenValue, kind, origin);
+          scope?.addVarOrBlock(parser, context, tokenValue, kind, origin);
 
           const right = parseExpression(parser, context, privateScope, 1, inGroup, parser.tokenStart);
 
@@ -5043,8 +5042,8 @@ function parseArrayExpressionOrPattern(
         } else if (parser.getToken() === Token.Comma || parser.getToken() === Token.RightBracket) {
           if (parser.assignable & AssignmentKind.CannotAssign) {
             destructible |= DestructuringKind.CannotDestruct;
-          } else if (scope) {
-            addVarOrBlock(parser, context, scope, tokenValue, kind, origin);
+          } else {
+            scope?.addVarOrBlock(parser, context, tokenValue, kind, origin);
           }
           destructible |=
             parser.destructible & DestructuringKind.Yield
@@ -5297,7 +5296,7 @@ function parseSpreadOrRestElement(
     if (parser.assignable & AssignmentKind.CannotAssign) {
       destructible |= DestructuringKind.CannotDestruct;
     } else if (token === closingToken || token === Token.Comma) {
-      if (scope) addVarOrBlock(parser, context, scope, tokenValue, kind, origin);
+      scope?.addVarOrBlock(parser, context, tokenValue, kind, origin);
     } else {
       destructible |= DestructuringKind.Assignable;
     }
@@ -5689,7 +5688,7 @@ function parseObjectLiteralOrPattern(
             validateBindingIdentifier(parser, context, kind, token, 0);
           }
 
-          if (scope) addVarOrBlock(parser, context, scope, tokenValue, kind, origin);
+          scope?.addVarOrBlock(parser, context, tokenValue, kind, origin);
 
           if (consumeOpt(parser, context | Context.AllowRegExp, Token.Assign)) {
             destructible |= DestructuringKind.HasToDestruct;
@@ -5737,8 +5736,8 @@ function parseObjectLiteralOrPattern(
                 destructible |= parser.destructible & DestructuringKind.Await ? DestructuringKind.Await : 0;
                 if (parser.assignable & AssignmentKind.CannotAssign) {
                   destructible |= DestructuringKind.CannotDestruct;
-                } else if (scope && (tokenAfterColon & Token.IsIdentifier) === Token.IsIdentifier) {
-                  addVarOrBlock(parser, context, scope, valueAfterColon, kind, origin);
+                } else if ((tokenAfterColon & Token.IsIdentifier) === Token.IsIdentifier) {
+                  scope?.addVarOrBlock(parser, context, valueAfterColon, kind, origin);
                 }
               } else {
                 destructible |=
@@ -5751,8 +5750,8 @@ function parseObjectLiteralOrPattern(
                 destructible |= DestructuringKind.CannotDestruct;
               } else if (token !== Token.Assign) {
                 destructible |= DestructuringKind.Assignable;
-              } else if (scope) {
-                addVarOrBlock(parser, context, scope, valueAfterColon, kind, origin);
+              } else {
+                scope?.addVarOrBlock(parser, context, valueAfterColon, kind, origin);
               }
               value = parseAssignmentExpression(parser, context, privateScope, inGroup, isPattern, tokenStart, value);
             } else {
@@ -5951,8 +5950,8 @@ function parseObjectLiteralOrPattern(
               if (token === Token.Assign || token === Token.RightBrace || token === Token.Comma) {
                 if (parser.assignable & AssignmentKind.CannotAssign) {
                   destructible |= DestructuringKind.CannotDestruct;
-                } else if (scope) {
-                  addVarOrBlock(parser, context, scope, valueAfterColon, kind, origin);
+                } else {
+                  scope?.addVarOrBlock(parser, context, valueAfterColon, kind, origin);
                 }
               } else {
                 destructible |=
@@ -6099,8 +6098,8 @@ function parseObjectLiteralOrPattern(
               if (token === Token.Assign || token === Token.RightBrace || token === Token.Comma) {
                 if (parser.assignable & AssignmentKind.CannotAssign) {
                   destructible |= DestructuringKind.CannotDestruct;
-                } else if (scope && (tokenAfterColon & Token.IsIdentifier) === Token.IsIdentifier) {
-                  addVarOrBlock(parser, context, scope, tokenValue, kind, origin);
+                } else if ((tokenAfterColon & Token.IsIdentifier) === Token.IsIdentifier) {
+                  scope?.addVarOrBlock(parser, context, tokenValue, kind, origin);
                 }
               } else {
                 destructible |=
@@ -8352,7 +8351,7 @@ function parseAndClassifyIdentifier(
   const { tokenValue, tokenStart: start } = parser;
   nextToken(parser, context);
 
-  if (scope) addVarOrBlock(parser, context, scope, tokenValue, kind, origin);
+  scope?.addVarOrBlock(parser, context, tokenValue, kind, origin);
 
   return parser.finishNode<ESTree.Identifier>(
     {

@@ -42,6 +42,26 @@ export class Scope {
   createChildScope(type?: ScopeKind) {
     return new Scope(type, this);
   }
+
+  /**
+   * Adds either a var binding or a block scoped binding.
+   *
+   * @param parser Parser state
+   * @param context Context masks
+   * @param name Binding name
+   * @param type Binding kind
+   * @param origin Binding Origin
+   */
+  addVarOrBlock(parser: Parser, context: Context, name: string, kind: BindingKind, origin: Origin) {
+    if (kind & BindingKind.Variable) {
+      addVarName(parser, context, this, name, kind);
+    } else {
+      addBlockName(parser, context, this, name, kind, origin);
+    }
+    if (origin & Origin.Export) {
+      declareUnboundVariable(parser, name);
+    }
+  }
 }
 
 /**
@@ -170,34 +190,6 @@ export function addBlockName(
   }
 
   (scope as any)['#' + name] = kind;
-}
-
-/**
- * Adds either a var binding or a block scoped binding.
- *
- * @param parser Parser state
- * @param context Context masks
- * @param scope Scope state
- * @param name Binding name
- * @param type Binding kind
- * @param origin Binding Origin
- */
-export function addVarOrBlock(
-  parser: Parser,
-  context: Context,
-  scope: Scope,
-  name: string,
-  kind: BindingKind,
-  origin: Origin,
-) {
-  if (kind & BindingKind.Variable) {
-    addVarName(parser, context, scope, name, kind);
-  } else {
-    addBlockName(parser, context, scope, name, kind, origin);
-  }
-  if (origin & Origin.Export) {
-    declareUnboundVariable(parser, name);
-  }
 }
 
 export function reportScopeError(scope: ScopeError): never {
