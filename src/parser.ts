@@ -41,14 +41,7 @@ import {
 import { Chars } from './chars';
 import { Parser } from './parser/parser';
 import { type Options, normalizeOptions } from './options';
-import {
-  Scope,
-  ScopeKind,
-  createArrowHeadParsingScope,
-  addVarName,
-  addBlockName,
-  reportScopeError,
-} from './parser/scope';
+import { Scope, ScopeKind, createArrowHeadParsingScope, reportScopeError } from './parser/scope';
 
 /**
  * Consumes a sequence of tokens and produces an syntax tree
@@ -2120,7 +2113,7 @@ function parseRestrictedIdentifier(parser: Parser, context: Context, scope: Scop
   if (!isValidIdentifier(context, parser.getToken())) parser.report(Errors.UnexpectedStrictReserved);
   if ((parser.getToken() & Token.IsEvalOrArguments) === Token.IsEvalOrArguments)
     parser.report(Errors.StrictEvalArguments);
-  if (scope) addBlockName(parser, context, scope, parser.tokenValue, BindingKind.Let, Origin.None);
+  scope?.addBlockName(parser, context, parser.tokenValue, BindingKind.Let, Origin.None);
   return parseIdentifier(parser, context);
 }
 
@@ -2340,7 +2333,7 @@ function parseImportSpecifierOrNamedImports(
       parser.report(Errors.ExpectedToken, KeywordDescTable[Token.AsKeyword & Token.Type]);
     }
 
-    if (scope) addBlockName(parser, context, scope, tokenValue, BindingKind.Let, Origin.None);
+    scope?.addBlockName(parser, context, scope, tokenValue, BindingKind.Let, Origin.None);
 
     specifiers.push(
       parser.finishNode<ESTree.ImportSpecifier>(
@@ -4698,9 +4691,9 @@ function parseFunctionDeclaration(
 
     if (scope) {
       if (kind & BindingKind.Variable) {
-        addVarName(parser, context, scope as Scope, parser.tokenValue, kind);
+        scope.addVarName(parser, context, parser.tokenValue, kind);
       } else {
-        addBlockName(parser, context, scope, parser.tokenValue, kind, origin);
+        scope.addBlockName(parser, context, parser.tokenValue, kind, origin);
       }
 
       functionScope = functionScope?.createChildScope(ScopeKind.FunctionRoot);
@@ -6513,7 +6506,7 @@ function parseParenthesizedExpression(
     const token = parser.getToken();
 
     if (token & Token.IsIdentifier) {
-      if (scope) addBlockName(parser, context, scope, parser.tokenValue, BindingKind.ArgumentList, Origin.None);
+      scope?.addBlockName(parser, context, parser.tokenValue, BindingKind.ArgumentList, Origin.None);
 
       if ((token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
         isNonSimpleParameterList = 1;
@@ -7375,7 +7368,7 @@ function parseAsyncArrowOrCallExpression(
     const token = parser.getToken();
 
     if (token & Token.IsIdentifier) {
-      if (scope) addBlockName(parser, context, scope, parser.tokenValue, kind, Origin.None);
+      scope?.addBlockName(parser, context, parser.tokenValue, kind, Origin.None);
 
       if ((token & Token.IsEvalOrArguments) === Token.IsEvalOrArguments) {
         parser.flags |= Flags.StrictEvalArguments;
@@ -7616,7 +7609,7 @@ function parseClassDeclaration(
     if (scope) {
       // A named class creates a new lexical scope with a const binding of the
       // class name for the "inner name".
-      addBlockName(parser, context, scope, tokenValue, BindingKind.Class, Origin.None);
+      scope.addBlockName(parser, context, tokenValue, BindingKind.Class, Origin.None);
 
       if (flags) {
         if (flags & HoistedClassFlags.Export) {
