@@ -32,7 +32,7 @@ export class Scope {
   // But duplicated params is not allowed in strict mode,
   // So function a(dup, dup) { "use strict" } would fail.
   // Retain the scopeError on scope for later decision.
-  scopeError?: ScopeError | null;
+  scopeError?: ScopeError;
 
   constructor(
     public readonly type: ScopeKind = ScopeKind.Block,
@@ -93,7 +93,7 @@ export class Scope {
       }
       if (currentScope === this) {
         if (value & BindingKind.ArgumentList && kind & BindingKind.ArgumentList) {
-          currentScope.scopeError = recordScopeError(parser, Errors.DuplicateBinding, name);
+          currentScope.recordScopeError(parser, Errors.DuplicateBinding, name);
         }
       }
       if (value & BindingKind.CatchPattern || (value & BindingKind.CatchIdentifier && !parser.options.webcompat)) {
@@ -121,7 +121,7 @@ export class Scope {
 
     if (value && (value & BindingKind.Empty) === 0) {
       if (kind & BindingKind.ArgumentList) {
-        this.scopeError = recordScopeError(parser, Errors.DuplicateBinding, name);
+        this.recordScopeError(parser, Errors.DuplicateBinding, name);
       } else if (
         parser.options.webcompat &&
         (context & Context.Strict) === 0 &&
@@ -145,7 +145,7 @@ export class Scope {
 
     if (this.type & ScopeKind.ArrowParams && value && (value & BindingKind.Empty) === 0) {
       if (kind & BindingKind.ArgumentList) {
-        this.scopeError = recordScopeError(parser, Errors.DuplicateBinding, name);
+        this.recordScopeError(parser, Errors.DuplicateBinding, name);
       }
     }
 
@@ -155,6 +155,30 @@ export class Scope {
     }
 
     (this as any)['#' + name] = kind;
+  }
+
+  /**
+   * Record duplicate binding errors that may occur in a arrow head or function parameters
+   *
+   * @param parser Parser state
+   * @param type Errors type
+   */
+  recordScopeError(parser: Parser, type: Errors, ...params: string[]) {
+    this.scopeError = {
+      type,
+      params,
+      start: parser.tokenStart,
+      end: parser.currentLocation,
+    };
+  }
+
+  reportScopeError() {
+    const { scopeError } = this;
+    if (!scopeError) {
+      return;
+    }
+
+    throw new ParseError(scopeError.start, scopeError.end, scopeError.type, ...scopeError.params);
   }
 }
 
@@ -169,23 +193,4 @@ export function createArrowHeadParsingScope(parser: Parser, context: Context, va
   const scope = new Scope().createChildScope(ScopeKind.ArrowParams);
   scope.addBlockName(parser, context, value, BindingKind.ArgumentList, Origin.None);
   return scope;
-}
-
-/**
- * Record duplicate binding errors that may occur in a arrow head or function parameters
- *
- * @param parser Parser state
- * @param type Errors type
- */
-function recordScopeError(parser: Parser, type: Errors, ...params: string[]): ScopeError {
-  return {
-    type,
-    params,
-    start: parser.tokenStart,
-    end: parser.currentLocation,
-  };
-}
-
-export function reportScopeError(scope: ScopeError): never {
-  throw new ParseError(scope.start, scope.end, scope.type, ...scope.params);
 }

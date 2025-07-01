@@ -41,7 +41,7 @@ import {
 import { Chars } from './chars';
 import { Parser } from './parser/parser';
 import { type Options, normalizeOptions } from './options';
-import { Scope, ScopeKind, createArrowHeadParsingScope, reportScopeError } from './parser/scope';
+import { Scope, ScopeKind, createArrowHeadParsingScope } from './parser/scope';
 
 /**
  * Consumes a sequence of tokens and produces an syntax tree
@@ -2333,7 +2333,7 @@ function parseImportSpecifierOrNamedImports(
       parser.report(Errors.ExpectedToken, KeywordDescTable[Token.AsKeyword & Token.Type]);
     }
 
-    scope?.addBlockName(parser, context, scope, tokenValue, BindingKind.Let, Origin.None);
+    scope?.addBlockName(parser, context, tokenValue, BindingKind.Let, Origin.None);
 
     specifiers.push(
       parser.finishNode<ESTree.ImportSpecifier>(
@@ -3387,7 +3387,7 @@ function parseAwaitExpressionOrIdentifier(
  * @param scope Scope object | null
  * @param origin Binding origin
  * @param funcNameToken
- * @param scopeError
+ * @param functionScope
  */
 function parseFunctionBody(
   parser: Parser,
@@ -3396,7 +3396,7 @@ function parseFunctionBody(
   privateScope: PrivateScopeState | undefined,
   origin: Origin,
   funcNameToken: Token | undefined,
-  scopeError: any,
+  functionScope: Scope | undefined,
 ): ESTree.BlockStatement {
   const { tokenStart } = parser;
 
@@ -3426,7 +3426,7 @@ function parseFunctionBody(
           throw new ParseError(tokenStart, parser.currentLocation, Errors.StrictEightAndNine);
         }
 
-        if (scopeError) reportScopeError(scopeError);
+        functionScope?.reportScopeError();
       }
       body.push(parseDirective(parser, context, expr, token, tokenStart));
     }
@@ -4751,7 +4751,7 @@ function parseFunctionDeclaration(
     privateScope,
     Origin.Declaration,
     funcNameToken,
-    functionScope?.scopeError,
+    functionScope,
   );
 
   return parser.finishNode<ESTree.FunctionDeclaration>(
@@ -4847,7 +4847,7 @@ function parseFunctionExpression(
     privateScope,
     0,
     funcNameToken,
-    scope?.scopeError,
+    scope,
   );
 
   parser.assignable = AssignmentKind.CannotAssign;
@@ -5472,7 +5472,7 @@ function parseMethodDefinition(
     privateScope,
     Origin.None,
     void 0,
-    scope?.parent?.scopeError,
+    scope?.parent,
   );
 
   return parser.finishNode<ESTree.FunctionExpression>(
@@ -6419,7 +6419,7 @@ function parseMethodFormals(
     parser.report(Errors.AccessorWrongArgs, 'Setter', 'one', '');
   }
 
-  if (scope && scope.scopeError) reportScopeError(scope.scopeError);
+  scope?.reportScopeError();
   if (isNonSimpleParameterList) parser.flags |= Flags.NonSimpleParameterList;
 
   consume(parser, context, Token.RightParen);
@@ -6861,7 +6861,7 @@ function parseArrowFunctionExpression(
 
   let body: ESTree.BlockStatement | ESTree.Expression;
 
-  if (scope && scope.scopeError) reportScopeError(scope.scopeError);
+  scope?.reportScopeError();
 
   if (expression) {
     parser.flags =
@@ -7047,8 +7047,8 @@ function parseFormalParametersOrFormalList(
   }
   if (isNonSimpleParameterList) parser.flags |= Flags.NonSimpleParameterList;
 
-  if (scope && (isNonSimpleParameterList || context & Context.Strict) && scope.scopeError) {
-    reportScopeError(scope.scopeError);
+  if (isNonSimpleParameterList || context & Context.Strict) {
+    scope?.reportScopeError();
   }
 
   consume(parser, context, Token.RightParen);
