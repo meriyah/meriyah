@@ -25,7 +25,6 @@ import {
   validateAndDeclareLabel,
   HoistedClassFlags,
   HoistedFunctionFlags,
-  addBindingToExports,
   declareUnboundVariable,
   isEqualTagName,
   isValidStrictMode,
@@ -70,8 +69,8 @@ export function parseSource(source: string, rawOptions: Options = {}, context: C
     body = parseModuleItemList(parser, context | Context.InGlobal, scope);
 
     if (scope) {
-      for (const key in parser.exportedBindings) {
-        if (key[0] === '#' && !(scope as any)[key]) parser.report(Errors.UndeclaredExportedBinding, key.slice(1));
+      for (const name of parser.exportedBindings) {
+        if (!scope.hasVariable(name)) parser.report(Errors.UndeclaredExportedBinding, name);
       }
     }
   } else {
@@ -2720,7 +2719,7 @@ function parseExportDeclaration(
 
         if (scope) {
           tmpExportedNames.forEach((n) => declareUnboundVariable(parser, n));
-          tmpExportedBindings.forEach((b) => addBindingToExports(parser, b));
+          tmpExportedBindings.forEach((b) => parser.addBindingToExports(b));
         }
       }
 

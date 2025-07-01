@@ -94,7 +94,7 @@ export class Parser {
    * https://tc39.es/ecma262/#sec-exports-static-semantics-exportedbindings
    */
 
-  exportedBindings: Record<string, number> = {};
+  exportedBindings = new Set<string>();
 
   /**
    * Assignable state
@@ -206,6 +206,19 @@ export class Parser {
     }
 
     return node;
+  }
+
+  /**
+   * Appends a name to the `ExportedBindings` of the `ExportsList`,
+   *
+   * @see [Link](https://tc39.es/ecma262/$sec-exports-static-semantics-exportedbindings)
+   *
+   * @param name Exported binding name
+   */
+  addBindingToExports(name: string): void {
+    if (name !== '') {
+      this.exportedBindings.add(name);
+    }
   }
 
   /**

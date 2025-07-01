@@ -440,20 +440,6 @@ export function declareUnboundVariable(parser: Parser, name: string): void {
   }
 }
 
-/**
- * Appends a name to the `ExportedBindings` of the `ExportsList`,
- *
- * @see [Link](https://tc39.es/ecma262/$sec-exports-static-semantics-exportedbindings)
- *
- * @param parser Parser object
- * @param name Exported binding name
- */
-export function addBindingToExports(parser: Parser, name: string): void {
-  if (parser.exportedBindings !== void 0 && name !== '') {
-    parser.exportedBindings['#' + name] = 1;
-  }
-}
-
 export function isValidIdentifier(context: Context, t: Token): boolean {
   if (context & (Context.Strict | Context.InYieldContext)) {
     // Module code is also "strict mode code"
