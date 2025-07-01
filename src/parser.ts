@@ -45,12 +45,7 @@ import {
   addVarOrBlock,
   reportScopeError,
 } from './parser/scope';
-import {
-  PrivateScope,
-  addPrivateIdentifier,
-  addPrivateIdentifierRef,
-  validatePrivateIdentifierRefs,
-} from './parser/private-scope';
+import { PrivateScope } from './parser/private-scope';
 
 /**
  * Consumes a sequence of tokens and produces an syntax tree
@@ -7917,7 +7912,7 @@ function parseClassBody(
   }
   consume(parser, origin & Origin.Declaration ? context | Context.AllowRegExp : context, Token.RightBrace);
 
-  if (privateScope) validatePrivateIdentifierRefs(privateScope);
+  privateScope?.validatePrivateIdentifierRefs();
 
   parser.flags = (parser.flags & ~Flags.HasConstructor) | hasConstr;
 
@@ -8153,9 +8148,9 @@ function parsePrivateIdentifier(
 
     if (kind) {
       // Define a private property
-      addPrivateIdentifier(parser, privateScope, tokenValue, kind);
+      privateScope.addPrivateIdentifier(parser, tokenValue, kind);
     } else {
-      addPrivateIdentifierRef(parser, privateScope, tokenValue);
+      privateScope.addPrivateIdentifierRef(parser, tokenValue);
     }
   }
 
