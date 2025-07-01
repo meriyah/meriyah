@@ -60,7 +60,7 @@ export function parseSource(source: string, rawOptions: Options = {}, context: C
   // See: https://github.com/tc39/proposal-hashbang
   skipHashBang(parser);
 
-  const scope = options.lexical ? parser.createScope() : void 0;
+  const scope = parser.createScopeIfLexical();
 
   let body: (ESTree.Statement | ReturnType<typeof parseDirective | typeof parseModuleItem>)[] = [];
 
@@ -4797,7 +4797,7 @@ function parseFunctionExpression(
   let funcNameToken: Token | undefined;
 
   // Create a new function scope
-  let scope = parser.options.lexical ? parser.createScope() : void 0;
+  let scope = parser.createScopeIfLexical();
 
   const modifierFlags =
     Context.SuperProperty |
@@ -5449,7 +5449,7 @@ function parseMethodDefinition(
     Context.InMethodOrFunction |
     Context.AllowNewTarget;
 
-  let scope = parser.options.lexical ? parser.createScope(ScopeKind.FunctionParams) : void 0;
+  let scope = parser.createScopeIfLexical(ScopeKind.FunctionParams);
 
   const params = parseMethodFormals(
     parser,
@@ -6477,7 +6477,7 @@ function parseParenthesizedExpression(
 
   nextToken(parser, context | Context.AllowRegExp | Context.AllowEscapedKeyword);
 
-  const scope = parser.options.lexical ? parser.createScope().createChildScope(ScopeKind.ArrowParams) : void 0;
+  const scope = parser.createScopeIfLexical()?.createChildScope(ScopeKind.ArrowParams);
 
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
@@ -7329,7 +7329,7 @@ function parseAsyncArrowOrCallExpression(
 ): ESTree.CallExpression | ESTree.ArrowFunctionExpression {
   nextToken(parser, context | Context.AllowRegExp);
 
-  const scope = parser.options.lexical ? parser.createScope().createChildScope(ScopeKind.ArrowParams) : void 0;
+  const scope = parser.createScopeIfLexical()?.createChildScope(ScopeKind.ArrowParams);
 
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
