@@ -37,43 +37,43 @@ export class Scope {
   variableBindings = new Map<string, BindingKind>();
 
   constructor(
+    public readonly parser: Parser,
     public readonly type: ScopeKind = ScopeKind.Block,
     public readonly parent?: Scope,
   ) {}
 
   createChildScope(type?: ScopeKind) {
-    return new Scope(type, this);
+    return new Scope(this.parser, type, this);
   }
 
   /**
    * Adds either a var binding or a block scoped binding.
    *
-   * @param parser Parser state
    * @param context Context masks
    * @param name Binding name
    * @param type Binding kind
    * @param origin Binding Origin
    */
-  addVarOrBlock(parser: Parser, context: Context, name: string, kind: BindingKind, origin: Origin) {
+  addVarOrBlock(context: Context, name: string, kind: BindingKind, origin: Origin) {
     if (kind & BindingKind.Variable) {
-      this.addVarName(parser, context, name, kind);
+      this.addVarName(context, name, kind);
     } else {
-      this.addBlockName(parser, context, name, kind, origin);
+      this.addBlockName(context, name, kind, origin);
     }
     if (origin & Origin.Export) {
-      declareUnboundVariable(parser, name);
+      declareUnboundVariable(this.parser, name);
     }
   }
 
   /**
    * Adds a variable binding
    *
-   * @param parser Parser state
    * @param context Context masks
    * @param name Binding name
    * @param type Binding kind
    */
-  addVarName(parser: Parser, context: Context, name: string, kind: BindingKind): void {
+  addVarName(context: Context, name: string, kind: BindingKind): void {
+    const { parser } = this;
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     let currentScope: Scope | undefined = this;
 
@@ -95,7 +95,7 @@ export class Scope {
       }
       if (currentScope === this) {
         if (value && value & BindingKind.ArgumentList && kind & BindingKind.ArgumentList) {
-          currentScope.recordScopeError(parser, Errors.DuplicateBinding, name);
+          currentScope.recordScopeError(Errors.DuplicateBinding, name);
         }
       }
       if (
@@ -118,18 +118,18 @@ export class Scope {
   /**
    * Adds block scoped binding
    *
-   * @param parser Parser state
    * @param context Context masks
    * @param name Binding name
    * @param type Binding kind
    * @param origin Binding Origin
    */
-  addBlockName(parser: Parser, context: Context, name: string, kind: BindingKind, origin: Origin) {
+  addBlockName(context: Context, name: string, kind: BindingKind, origin: Origin) {
+    const { parser } = this;
     const value = this.variableBindings.get(name);
 
     if (value && (value & BindingKind.Empty) === 0) {
       if (kind & BindingKind.ArgumentList) {
-        this.recordScopeError(parser, Errors.DuplicateBinding, name);
+        this.recordScopeError(Errors.DuplicateBinding, name);
       } else if (
         parser.options.webcompat &&
         (context & Context.Strict) === 0 &&
@@ -153,7 +153,7 @@ export class Scope {
 
     if (this.type & ScopeKind.ArrowParams && value && (value & BindingKind.Empty) === 0) {
       if (kind & BindingKind.ArgumentList) {
-        this.recordScopeError(parser, Errors.DuplicateBinding, name);
+        this.recordScopeError(Errors.DuplicateBinding, name);
       }
     }
 
@@ -171,12 +171,12 @@ export class Scope {
    * @param parser Parser state
    * @param type Errors type
    */
-  recordScopeError(parser: Parser, type: Errors, ...params: string[]) {
+  recordScopeError(type: Errors, ...params: string[]) {
     this.scopeError = {
       type,
       params,
-      start: parser.tokenStart,
-      end: parser.currentLocation,
+      start: this.parser.tokenStart,
+      end: this.parser.currentLocation,
     };
   }
 
@@ -198,7 +198,7 @@ export class Scope {
  * @param value Binding name to be declared
  */
 export function createArrowHeadParsingScope(parser: Parser, context: Context, value: string): Scope {
-  const scope = new Scope().createChildScope(ScopeKind.ArrowParams);
-  scope.addBlockName(parser, context, value, BindingKind.ArgumentList, Origin.None);
+  const scope = parser.createScope().createChildScope(ScopeKind.ArrowParams);
+  scope.addBlockName(context, value, BindingKind.ArgumentList, Origin.None);
   return scope;
 }
