@@ -37,7 +37,7 @@ import { Chars } from './chars';
 import { Parser } from './parser/parser';
 import { type Options, normalizeOptions } from './options';
 import { type Scope, ScopeKind, createArrowHeadParsingScope } from './parser/scope';
-import { PrivateScope } from './parser/private-scope';
+import { type PrivateScope } from './parser/private-scope';
 
 /**
  * Consumes a sequence of tokens and produces an syntax tree
@@ -7853,7 +7853,7 @@ function parseClassBody(
 
   const { tokenStart } = parser;
 
-  const privateScope = parser.options.lexical ? new PrivateScope(parentScope) : undefined;
+  const privateScope = parser.createPrivateScopeIfLexical(parentScope);
 
   consume(parser, context | Context.AllowRegExp, Token.LeftBrace);
 
@@ -8140,9 +8140,9 @@ function parsePrivateIdentifier(
 
     if (kind) {
       // Define a private property
-      privateScope.addPrivateIdentifier(parser, tokenValue, kind);
+      privateScope.addPrivateIdentifier(tokenValue, kind);
     } else {
-      privateScope.addPrivateIdentifierRef(parser, tokenValue);
+      privateScope.addPrivateIdentifierRef(tokenValue);
     }
   }
 

@@ -1,5 +1,5 @@
 import { Errors, ParseError } from '../errors';
-import { PropertyKind } from '../common';
+import { PropertyKind, type Location } from '../common';
 import { type Parser } from './parser';
 
 // Note PrivateScope doesn't retain a scopeError
@@ -14,7 +14,7 @@ import { type Parser } from './parser';
  */
 export class PrivateScope {
   refs: {
-    [name: string]: { index: number; line: number; column: number }[];
+    [name: string]: Location[];
   } = Object.create(null);
 
   privateIdentifiers = new Map<string, PropertyKind>();
@@ -25,16 +25,18 @@ export class PrivateScope {
    *
    * @return newly created PrivateScope
    */
-  constructor(public readonly parent?: PrivateScope) {}
+  constructor(
+    public readonly parser: Parser,
+    public readonly parent?: PrivateScope,
+  ) {}
 
   /**
    * Adds a private identifier binding
    *
-   * @param parser Parser state
    * @param name Binding name
    * @param type Property kind
    */
-  addPrivateIdentifier(parser: Parser, name: string, kind: PropertyKind): void {
+  addPrivateIdentifier(name: string, kind: PropertyKind): void {
     const { privateIdentifiers } = this;
     let focusKind = kind & (PropertyKind.Static | PropertyKind.GetSet);
     // if it's not getter or setter, it should take both place in the check
@@ -51,7 +53,7 @@ export class PrivateScope {
     ) {
       // Mix of static and non-static,
       // or duplicated setter, or duplicated getter
-      parser.report(Errors.DuplicatePrivateIdentifier, name);
+      this.parser.report(Errors.DuplicatePrivateIdentifier, name);
     }
 
     // Merge possible Getter and Setter
@@ -61,17 +63,12 @@ export class PrivateScope {
   /**
    * Adds a private identifier reference
    *
-   * @param parser Parser state
    * @param scope PrivateScope
    * @param name Binding name
    */
-  addPrivateIdentifierRef(parser: Parser, name: string): void {
+  addPrivateIdentifierRef(name: string): void {
     this.refs[name] ??= [];
-    this.refs[name].push({
-      index: parser.tokenIndex,
-      line: parser.tokenLine,
-      column: parser.tokenColumn,
-    });
+    this.refs[name].push(this.parser.tokenStart);
   }
 
   /**

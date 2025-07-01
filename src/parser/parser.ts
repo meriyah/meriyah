@@ -5,6 +5,7 @@ import { type Location, Flags, type AssignmentKind, type DestructuringKind } fro
 import { ParseError, type Errors } from '../errors';
 import { type NormalizedOptions, type OnComment, type OnToken } from '../options';
 import { Scope, type ScopeKind } from './scope';
+import { PrivateScope } from './private-scope';
 
 export class Parser {
   private lastOnToken: [string, number, number, ESTree.SourceLocation] | null = null;
@@ -231,6 +232,14 @@ export class Parser {
 
   createScope(type?: ScopeKind, parent?: Scope) {
     return new Scope(this, type, parent);
+  }
+
+  createPrivateScopeIfLexical(parent?: PrivateScope) {
+    if (this.options.lexical) {
+      return new PrivateScope(this, parent);
+    }
+
+    return undefined;
   }
 }
 
