@@ -2,7 +2,7 @@ import { convertTokenType } from '../lexer';
 import { Token } from '../token';
 import type * as ESTree from '../estree';
 import { type Location, Flags, type AssignmentKind, type DestructuringKind } from '../common';
-import { ParseError, type Errors } from '../errors';
+import { ParseError, Errors } from '../errors';
 import { type NormalizedOptions, type OnComment, type OnToken } from '../options';
 import { Scope, type ScopeKind } from './scope';
 import { PrivateScope } from './private-scope';
@@ -90,7 +90,7 @@ export class Parser {
   /**
    *  https://tc39.es/ecma262/#sec-module-semantics-static-semantics-exportednames
    */
-  exportedNames: Record<string, number> = {};
+  exportedNames = new Set<string>();
 
   /**
    * https://tc39.es/ecma262/#sec-exports-static-semantics-exportedbindings
@@ -208,6 +208,24 @@ export class Parser {
     }
 
     return node;
+  }
+
+  /**
+   * Appends a name to the `ExportedNames` of the `ExportsList`, and checks
+   * for duplicates
+   *
+   * @see [Link](https://tc39.github.io/ecma262/$sec-exports-static-semantics-exportednames)
+   *
+   * @param name Exported name
+   */
+  declareUnboundVariable(name: string): void {
+    const { exportedNames } = this;
+
+    if (exportedNames.has(name)) {
+      this.report(Errors.DuplicateExportBinding, name);
+    }
+
+    exportedNames.add(name);
   }
 
   /**

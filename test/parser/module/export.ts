@@ -417,6 +417,8 @@ describe('Module - Export', () => {
     { code: 'export async function a() {}\nexport function a() {}', options: { module: true, lexical: true } },
     { code: 'export async function a() {}\nexport const a = 1;', options: { module: true, lexical: true } },
     { code: 'export let a = 1;\nexport async function a() {}', options: { module: true, lexical: true } },
+    { code: 'const a = 1; export {a as "a", a as "a"}', options: { module: true, lexical: true } },
+    { code: 'const a = 1; export {a as "", a as ""}', options: { module: true, lexical: true } },
   ]);
 
   for (const arg of [
