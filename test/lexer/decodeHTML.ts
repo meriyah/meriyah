@@ -12,7 +12,7 @@ describe('decodeHTMLStrict', () => {
   it('decode non-named character', () => {
     t.strictEqual(decodeHTMLStrict('&constructor;'), '&constructor;');
     t.strictEqual(decodeHTMLStrict('&__proto__;'), '&__proto__;');
-    t.strictEqual(decodeHTMLStrict('&toString;'), '&__proto__;');
+    t.strictEqual(decodeHTMLStrict('&toString;'), '&toString;');
   });
 
   it('decode decimal numeric character', () => {
