@@ -14,6 +14,12 @@ exports[`Miscellaneous - Directives > Miscellaneous - Directives (fail) > "use s
     |              ^^^^^^^^^^^^^^^^ Unexpected token: 'string'"
 `;
 
+exports[`Miscellaneous - Directives > Miscellaneous - Directives (fail) > "use strict" + "Hello\\312World" 1`] = `
+"SyntaxError [1:15-1:22]: Octal escape sequences are not allowed in strict mode
+> 1 | "use strict" + "Hello\\312World"
+    |                ^^^^^^^ Octal escape sequences are not allowed in strict mode"
+`;
+
 exports[`Miscellaneous - Directives > Miscellaneous - Directives (fail) > "use strict"; var static; 1`] = `
 "SyntaxError [1:18-1:24]: Unexpected strict mode reserved word
 > 1 | "use strict"; var static;
@@ -201,7 +207,7 @@ exports[`Miscellaneous - Directives > Miscellaneous - Directives (pass) > "use s
     0,
     31,
   ],
-  "sourceType": "module",
+  "sourceType": "script",
   "start": 0,
   "type": "Program",
 }

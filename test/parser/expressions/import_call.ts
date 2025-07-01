@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -150,12 +149,12 @@ describe('ImportCall', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, void 0, Context.Module | Context.Strict);
+        parseSource(`${arg}`, { module: true });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, void 0, Context.None);
+        parseSource(`${arg}`);
       });
     });
   }

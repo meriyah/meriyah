@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
@@ -105,7 +104,7 @@ describe('Expressions - Rest', () => {
     });
     it(`x = ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`x = ${arg};`, { next: true }, Context.Module);
+        parseSource(`x = ${arg};`, { next: true, module: true });
       });
     });
 

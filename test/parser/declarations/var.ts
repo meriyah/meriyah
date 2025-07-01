@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -442,7 +441,7 @@ describe('Declarations - Var', () => {
 
     it(`export var ${arg} = 10;`, () => {
       t.throws(() => {
-        parseSource(`export var ${arg} = 10;`, undefined, Context.Module);
+        parseSource(`export var ${arg} = 10;`, { module: true });
       });
     });
   }

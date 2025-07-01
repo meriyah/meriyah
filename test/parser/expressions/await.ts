@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -339,7 +338,7 @@ describe('Expressions - Await', () => {
 
     it(`let f = () => { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`let f = () => { ${arg} }`, undefined, Context.Module);
+        parseSource(`let f = () => { ${arg} }`, { module: true });
       });
     });
 
@@ -369,7 +368,7 @@ describe('Expressions - Await', () => {
 
     it(`async function* f() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`async function* f() { ${arg} }`, undefined, Context.Module);
+        parseSource(`async function* f() { ${arg} }`, { module: true });
       });
     });
 
@@ -441,22 +440,22 @@ describe('Expressions - Await', () => {
     'let f = () => (y=await foo) => y;',
     'async function f(){ await foo\n/foo/ }',
     'async () => { var await; }',
-    { code: 'class x {f(await){}}', context: Context.Module },
-    { code: 'let o = {*f(await){}}', context: Context.Module },
-    { code: 'let o = {f(await){}}', context: Context.Module },
-    { code: 'class x {f(await){}}', context: Context.Module },
-    { code: 'function f(await){}', context: Context.Module },
+    { code: 'class x {f(await){}}', options: { module: true } },
+    { code: 'let o = {*f(await){}}', options: { module: true } },
+    { code: 'let o = {f(await){}}', options: { module: true } },
+    { code: 'class x {f(await){}}', options: { module: true } },
+    { code: 'function f(await){}', options: { module: true } },
     'let o = {async *f(await){}}',
     'let o = {async f(await){}}',
     'let x = async function *f(await){}',
-    { code: 'let x = function *f(await){}', context: Context.Module },
+    { code: 'let x = function *f(await){}', options: { module: true } },
     'let x = async function f(await){}',
-    { code: 'let x = function f(await){}', context: Context.Module },
+    { code: 'let x = function f(await){}', options: { module: true } },
     'async function *f(await){}',
-    { code: 'function *f(await){}', context: Context.Module },
+    { code: 'function *f(await){}', options: { module: true } },
     'async function f(){  async (await) => x  }',
     'function *f(){  async (await) => x  }',
-    { code: 'function *f(){  foo(await)  }', context: Context.Module },
+    { code: 'function *f(){  foo(await)  }', options: { module: true } },
     'async function f(foo = await bar){}',
     'function *f(foo = await bar){}',
     'async function *f(foo = await bar){}',
@@ -662,7 +661,7 @@ describe('Expressions - Await', () => {
 
     it(`async function* f() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`async function* f() { ${arg} }`, undefined, Context.Module);
+        parseSource(`async function* f() { ${arg} }`, { module: true });
       });
     });
 

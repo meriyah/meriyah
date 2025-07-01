@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -43,7 +42,7 @@ describe('Lexical - Function', () => {
     { code: 'function f(){ function x(){} let x; }', options: { lexical: true } },
     { code: 'function f(){ const x = y; function x(){} }', options: { lexical: true } },
     { code: 'function f(){ function x(){} const x = y; }', options: { lexical: true } },
-    { code: 'function f(){} function f(){}', options: { lexical: true }, context: Context.Module },
+    { code: 'function f(){} function f(){}', options: { lexical: true, module: true } },
     { code: 'function a() { const x = 1; var x = 2; }', options: { lexical: true } },
     { code: 'function* f(a) { let a; }', options: { lexical: true } },
     { code: 'function* f([a]){ let a; }', options: { lexical: true } },

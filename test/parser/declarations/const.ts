@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -276,7 +275,7 @@ describe('Declarations - const', () => {
     'const {...a+b} = x',
     'const [(x)] = []',
     'const a, [...x] = y',
-    { code: 'const foo;', context: Context.Module },
+    { code: 'const foo;', options: { module: true } },
     'const foo, bar = x;',
     'const [a)] = [];',
     'const [[(a)], ((((((([b])))))))] = [[],[]];',
@@ -285,7 +284,7 @@ describe('Declarations - const', () => {
     'const [1, a] = [];',
     'const [...a, b] = [];',
     'const foo =x, bar;',
-    { code: 'const foo, bar;', context: Context.Module },
+    { code: 'const foo, bar;', options: { module: true } },
     'const [a, let, b] = [1, 2, 3];',
     'const {let} = 1;',
   ]);

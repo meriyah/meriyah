@@ -1,6 +1,5 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import { parseSource } from '../../../src/parser';
 
@@ -94,13 +93,13 @@ describe('Next - Import Attributes', () => {
     };`,
       options: { module: true },
     },
-    { code: 'import foo from "bar" with { 1: "foo" };', context: Context.Module },
-    { code: 'import foo from "bar" with { type: 1 };', context: Context.Module },
-    { code: 'import foo from "bar" with { type: [1] };', context: Context.Module },
-    { code: 'import foo from "bar" with { type: null };', context: Context.Module },
-    { code: 'import foo from "bar" with { type: undefined };', context: Context.Module },
-    { code: 'import foo from "bar" with { type: "json", foo: {} };', context: Context.Module },
-    { code: `export foo, { foo2 } from './foo.json' with { "type": 'json' };`, context: Context.Module },
+    { code: 'import foo from "bar" with { 1: "foo" };', options: { module: true } },
+    { code: 'import foo from "bar" with { type: 1 };', options: { module: true } },
+    { code: 'import foo from "bar" with { type: [1] };', options: { module: true } },
+    { code: 'import foo from "bar" with { type: null };', options: { module: true } },
+    { code: 'import foo from "bar" with { type: undefined };', options: { module: true } },
+    { code: 'import foo from "bar" with { type: "json", foo: {} };', options: { module: true } },
+    { code: `export foo, { foo2 } from './foo.json' with { "type": 'json' };`, options: { module: true } },
   ]);
 
   pass('Import Attributes (pass)', [

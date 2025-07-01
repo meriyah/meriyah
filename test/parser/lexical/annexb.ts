@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -6,14 +5,12 @@ import { parseSource } from '../../../src/parser';
 
 describe('Lexical - AnnexB', () => {
   fail('Lexical - AnnexB (fail)', [
-    { code: 'function f() {} ; function f() {}', options: { lexical: true }, context: Context.Module },
-    {
-      code: 'function f(){ var f = 123; if (true) function f(){} }',
-      options: { lexical: true },
-      context: Context.Module,
-    },
-    { code: '{ var f = 123; if (true) function f(){} }', options: { lexical: true }, context: Context.Module },
-    { code: 'function f() {} ; function f() {}', options: { lexical: true }, context: Context.Module },
+    { code: 'function f() {} ; function f() {}', options: { lexical: true, module: true } },
+    { code: 'function f(){ var f = 123; if (true) function f(){} }', options: { lexical: true } },
+    { code: 'function f(){ var f = 123; if (true) function f2(){} }', options: { lexical: true, module: true } },
+    { code: '{ var f = 123; if (true) function f(){} }', options: { lexical: true } },
+    { code: '{ var f = 123; if (true) function f2(){} }', options: { lexical: true, module: true } },
+    { code: 'function f() {} ; function f() {}', options: { lexical: true, module: true } },
     { code: '{ if (x) function f() {} ; function f() {} }', options: { lexical: true } },
     { code: 'let x; var x;', options: { lexical: true } },
     { code: 'var x; let x;', options: { lexical: true } },

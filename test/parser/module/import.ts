@@ -1,6 +1,5 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { Context } from '../../../src/common';
 import { pass, fail } from '../../test-utils';
 import { parseSource } from '../../../src/parser';
 
@@ -220,7 +219,7 @@ describe('Module - Import', () => {
     '{import {x} from "y";}',
     { code: '{import {x} from "y";}', options: { module: true } },
     'function f(){import {x} from "y";}',
-    { code: 'function f(){import {x} from "y";}', context: Context.Module },
+    { code: 'function f(){import {x} from "y";}', options: { module: true } },
     'let x = () => {import {x} from "y";}',
     'let x = () => import {x} from "y"',
     'if (x) import {x} from "y";',

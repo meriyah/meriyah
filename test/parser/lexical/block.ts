@@ -1,4 +1,3 @@
-import { Context } from '../../../src/common';
 import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
@@ -10,7 +9,7 @@ describe('Lexical - Block', () => {
     { code: '{ async function f(){} function f(){} }', options: { lexical: true } },
     { code: '{ async function f(){} async function f(){} }', options: { lexical: true } },
     { code: '{ function f(){} async function f(){} }', options: { lexical: true } },
-    { code: 'var x = a; function x(){};', options: { lexical: true }, context: Context.Module },
+    { code: 'var x = a; function x(){};', options: { lexical: true, module: true } },
     { code: 'let x; { var x; }', options: { lexical: true } },
     { code: '{ var x; } let x;', options: { lexical: true } },
     { code: 'let x; var x;', options: { lexical: true } },
