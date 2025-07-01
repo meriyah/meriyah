@@ -1,5 +1,5 @@
 import { Token, KeywordDescTable } from './token';
-import { Errors, ParseError } from './errors';
+import { Errors } from './errors';
 import { nextToken } from './lexer/scan';
 import { type Parser } from './parser/parser';
 
@@ -144,22 +144,6 @@ export const enum HoistedFunctionFlags {
   None,
   Hoisted = 1 << 0,
   Export = 1 << 1,
-}
-
-/**
- * Lexical scope interface for private identifiers
- */
-export interface PrivateScopeState {
-  parent: PrivateScopeState | undefined;
-  refs: {
-    [name: string]: { index: number; line: number; column: number }[];
-  };
-  // Note PrivateScopeState doesn't retain a scopeError
-  // like ScopeState, because it doesn't need to.
-  // Private identifier is new in ecma, the spec for it
-  // is much more strict than other older parts of JavaScript
-  // For example class A { dup; dup; } is allowed,
-  // But class A { #dup; #dup; } is not allowed.
 }
 
 /**
@@ -435,99 +419,6 @@ export function isEqualTagName(elementName: any): any {
     /* istanbul ignore next */
     default:
     // ignore
-  }
-}
-
-/**
- * Inherit a private scope
- * private scope is created on class body
- *
- * @param parent optional parent PrivateScopeState
- * @return newly created PrivateScopeState
- */
-export function addChildPrivateScope(parent: PrivateScopeState | undefined): PrivateScopeState {
-  return {
-    parent,
-    refs: Object.create(null),
-  };
-}
-
-/**
- * Adds a private identifier binding
- *
- * @param parser Parser state
- * @param scope PrivateScopeState
- * @param name Binding name
- * @param type Property kind
- */
-export function addPrivateIdentifier(parser: Parser, scope: PrivateScopeState, name: string, kind: PropertyKind): void {
-  let focusKind = kind & (PropertyKind.Static | PropertyKind.GetSet);
-  // if it's not getter or setter, it should take both place in the check
-  if (!(focusKind & PropertyKind.GetSet)) focusKind |= PropertyKind.GetSet;
-  const value = (scope as any)['#' + name];
-
-  // It is a Syntax Error if PrivateBoundIdentifiers of ClassElementList
-  // contains any duplicate entries, unless the name is used once for
-  // a getter and once for a setter and in no other entries, and the getter
-  // and setter are either both static or both non-static.
-  if (
-    value !== undefined &&
-    ((value & PropertyKind.Static) !== (focusKind & PropertyKind.Static) || value & focusKind & PropertyKind.GetSet)
-  ) {
-    // Mix of static and non-static,
-    // or duplicated setter, or duplicated getter
-    parser.report(Errors.DuplicatePrivateIdentifier, name);
-  }
-
-  // Merge possible Getter and Setter
-  (scope as any)['#' + name] = value ? value | focusKind : focusKind;
-}
-
-/**
- * Adds a private identifier reference
- *
- * @param parser Parser state
- * @param scope PrivateScopeState
- * @param name Binding name
- */
-export function addPrivateIdentifierRef(parser: Parser, scope: PrivateScopeState, name: string): void {
-  scope.refs[name] ??= [];
-  scope.refs[name].push({
-    index: parser.tokenIndex,
-    line: parser.tokenLine,
-    column: parser.tokenColumn,
-  });
-}
-
-/**
- * Checks if a private identifier name is defined in current scope
- *
- * @param name private identifier name
- * @param scope current PrivateScopeState
- * @returns 0 for false, and 1 for true
- */
-function isPrivateIdentifierDefined(name: string, scope: PrivateScopeState): 0 | 1 {
-  if ((scope as any)['#' + name]) return 1;
-  if (scope.parent) return isPrivateIdentifierDefined(name, scope.parent);
-  return 0;
-}
-
-/**
- * Validates all private identifier references in current scope
- *
- * @param scope current PrivateScopeState
- */
-export function validatePrivateIdentifierRefs(scope: PrivateScopeState): void {
-  for (const name in scope.refs) {
-    if (!isPrivateIdentifierDefined(name, scope)) {
-      const { index, line, column } = scope.refs[name][0];
-      throw new ParseError(
-        { index, line, column },
-        { index: index + name.length, line, column: column + name.length },
-        Errors.InvalidPrivateIdentifier,
-        name,
-      );
-    }
   }
 }
 
