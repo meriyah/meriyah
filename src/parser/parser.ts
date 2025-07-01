@@ -222,24 +222,20 @@ export class Parser {
     throw new ParseError(this.tokenStart, this.currentLocation, type, ...params);
   }
 
-  createScopeIfLexical(type?: ScopeKind, parent?: Scope) {
+  createScopeIfLexical(type?: ScopeKind, parent?: Scope): Scope | void {
     if (this.options.lexical) {
       return this.createScope(type, parent);
     }
-
-    return undefined;
   }
 
-  createScope(type?: ScopeKind, parent?: Scope) {
+  createScope(type?: ScopeKind, parent?: Scope): Scope {
     return new Scope(this, type, parent);
   }
 
-  createPrivateScopeIfLexical(parent?: PrivateScope) {
+  createPrivateScopeIfLexical(parent?: PrivateScope): PrivateScope | void {
     if (this.options.lexical) {
       return new PrivateScope(this, parent);
     }
-
-    return undefined;
   }
 }
 
