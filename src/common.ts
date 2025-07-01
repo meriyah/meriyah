@@ -423,24 +423,6 @@ export function isEqualTagName(elementName: any): any {
 }
 
 /**
- * Appends a name to the `ExportedNames` of the `ExportsList`, and checks
- * for duplicates
- *
- * @see [Link](https://tc39.github.io/ecma262/$sec-exports-static-semantics-exportednames)
- *
- * @param parser Parser object
- * @param name Exported name
- */
-export function declareUnboundVariable(parser: Parser, name: string): void {
-  if (parser.exportedNames !== void 0 && name !== '') {
-    if (parser.exportedNames['#' + name]) {
-      parser.report(Errors.DuplicateExportBinding, name);
-    }
-    parser.exportedNames['#' + name] = 1;
-  }
-}
-
-/**
  * Appends a name to the `ExportedBindings` of the `ExportsList`,
  *
  * @see [Link](https://tc39.es/ecma262/$sec-exports-static-semantics-exportedbindings)

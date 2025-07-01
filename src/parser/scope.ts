@@ -1,5 +1,5 @@
 import { Errors, ParseError } from '../errors';
-import { type Location, declareUnboundVariable, Context, BindingKind, Origin } from '../common';
+import { type Location, Context, BindingKind, Origin } from '../common';
 import { type Parser } from './parser';
 
 /**
@@ -59,7 +59,7 @@ export class Scope {
       this.addBlockName(context, name, kind, origin);
     }
     if (origin & Origin.Export) {
-      declareUnboundVariable(this.parser, name);
+      this.parser.declareUnboundVariable(name);
     }
   }
 
