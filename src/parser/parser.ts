@@ -4,6 +4,7 @@ import type * as ESTree from '../estree';
 import { type Location, Flags, type AssignmentKind, type DestructuringKind } from '../common';
 import { ParseError, type Errors } from '../errors';
 import { type NormalizedOptions, type OnComment, type OnToken } from '../options';
+import { PrivateScope } from './private-scope';
 
 export class Parser {
   private lastOnToken: [string, number, number, ESTree.SourceLocation] | null = null;
@@ -218,6 +219,14 @@ export class Parser {
    */
   report(type: Errors, ...params: string[]): never {
     throw new ParseError(this.tokenStart, this.currentLocation, type, ...params);
+  }
+
+  createPrivateScopeIfLexical(parent?: PrivateScope) {
+    if (this.options.lexical) {
+      return new PrivateScope(this, parent);
+    }
+
+    return undefined;
   }
 }
 
