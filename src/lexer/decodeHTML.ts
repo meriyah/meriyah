@@ -1,3 +1,5 @@
+import { getOwnProperty } from './../common';
+
 // https://html.spec.whatwg.org/entities.json
 /* spellchecker: disable */
 const entities: { [Identifier: string]: string } = {
@@ -2169,7 +2171,7 @@ export function decodeHTMLStrict(text: string): string {
         secondChar === 'X' || secondChar === 'x' ? parseInt(key.slice(3), 16) : parseInt(key.slice(2), 10);
       return decodeCodePoint(codePoint);
     }
-    return entities[key.slice(1, -1)] || key;
+    return getOwnProperty(entities, key.slice(1, -1)) ?? key;
   });
 }
 
@@ -2178,9 +2180,5 @@ function decodeCodePoint(codePoint: number): string {
     return '\uFFFD';
   }
 
-  if (codePoint in decodeMap) {
-    codePoint = decodeMap[codePoint];
-  }
-
-  return String.fromCodePoint(codePoint);
+  return String.fromCodePoint(getOwnProperty(decodeMap, codePoint) ?? codePoint);
 }

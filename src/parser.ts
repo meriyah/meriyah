@@ -25,7 +25,6 @@ import {
   validateAndDeclareLabel,
   HoistedClassFlags,
   HoistedFunctionFlags,
-  declareUnboundVariable,
   isEqualTagName,
   isValidStrictMode,
   isValidIdentifier,
@@ -2587,7 +2586,7 @@ function parseExportDeclaration(
     }
 
     // See: https://www.ecma-international.org/ecma-262/9.0/index.html#sec-exports-static-semantics-exportednames
-    if (scope) declareUnboundVariable(parser, 'default');
+    if (scope) parser.declareUnboundVariable('default');
 
     return parser.finishNode<ESTree.ExportDefaultDeclaration>(
       {
@@ -2610,7 +2609,7 @@ function parseExportDeclaration(
       const isNamedDeclaration = consumeOpt(parser, context, Token.AsKeyword);
 
       if (isNamedDeclaration) {
-        if (scope) declareUnboundVariable(parser, parser.tokenValue);
+        if (scope) parser.declareUnboundVariable(parser.tokenValue);
         exported = parseModuleExportName(parser, context);
       }
 
@@ -2710,7 +2709,7 @@ function parseExportDeclaration(
         attributes = parseImportAttributes(parser, context);
 
         if (scope) {
-          tmpExportedNames.forEach((n) => declareUnboundVariable(parser, n));
+          tmpExportedNames.forEach((n) => parser.declareUnboundVariable(n));
         }
       } else {
         if (hasLiteralLocal) {
@@ -2718,7 +2717,7 @@ function parseExportDeclaration(
         }
 
         if (scope) {
-          tmpExportedNames.forEach((n) => declareUnboundVariable(parser, n));
+          tmpExportedNames.forEach((n) => parser.declareUnboundVariable(n));
           tmpExportedBindings.forEach((b) => parser.addBindingToExports(b));
         }
       }
@@ -4695,7 +4694,7 @@ function parseFunctionDeclaration(
 
       if (flags) {
         if (flags & HoistedClassFlags.Export) {
-          declareUnboundVariable(parser, parser.tokenValue);
+          parser.declareUnboundVariable(parser.tokenValue);
         }
       }
     }
@@ -7608,7 +7607,7 @@ function parseClassDeclaration(
 
       if (flags) {
         if (flags & HoistedClassFlags.Export) {
-          declareUnboundVariable(parser, tokenValue);
+          parser.declareUnboundVariable(tokenValue);
         }
       }
     }

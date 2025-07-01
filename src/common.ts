@@ -422,24 +422,6 @@ export function isEqualTagName(elementName: any): any {
   }
 }
 
-/**
- * Appends a name to the `ExportedNames` of the `ExportsList`, and checks
- * for duplicates
- *
- * @see [Link](https://tc39.github.io/ecma262/$sec-exports-static-semantics-exportednames)
- *
- * @param parser Parser object
- * @param name Exported name
- */
-export function declareUnboundVariable(parser: Parser, name: string): void {
-  if (parser.exportedNames !== void 0 && name !== '') {
-    if (parser.exportedNames['#' + name]) {
-      parser.report(Errors.DuplicateExportBinding, name);
-    }
-    parser.exportedNames['#' + name] = 1;
-  }
-}
-
 export function isValidIdentifier(context: Context, t: Token): boolean {
   if (context & (Context.Strict | Context.InYieldContext)) {
     // Module code is also "strict mode code"
@@ -465,3 +447,7 @@ export type Location = {
   line: number;
   column: number;
 };
+
+export function getOwnProperty<T>(object: Record<string | number, T>, key: string | number): T | undefined {
+  return Object.hasOwn(object, key) ? object[key] : undefined;
+}
