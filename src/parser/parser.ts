@@ -216,9 +216,7 @@ export class Parser {
    * @param name Exported binding name
    */
   addBindingToExports(name: string): void {
-    if (name !== '') {
-      this.exportedBindings.add(name);
-    }
+    this.exportedBindings.add(name);
   }
 
   /**
