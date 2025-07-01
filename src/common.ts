@@ -8,7 +8,6 @@ import { type Parser } from './parser/parser';
  */
 export const enum Context {
   None = 0,
-
   Strict = 1 << 0,
   Module = 1 << 1, // Current code should be parsed as a module body
   InSwitch = 1 << 2,
