@@ -220,12 +220,12 @@ export class Parser {
    */
   declareUnboundVariable(name: string): void {
     const { exportedNames } = this;
-    if (name !== '') {
-      if (exportedNames.has(name)) {
-        this.report(Errors.DuplicateExportBinding, name);
-      }
-      exportedNames.add(name);
+
+    if (exportedNames.has(name)) {
+      this.report(Errors.DuplicateExportBinding, name);
     }
+
+    exportedNames.add(name);
   }
 
   /**

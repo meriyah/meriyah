@@ -72,6 +72,12 @@ exports[`Module - Export > Module - Export (fail) > const a = 0; export let a; 1
     |                          ^ Duplicate binding 'a'"
 `;
 
+exports[`Module - Export > Module - Export (fail) > const a = 1; export {a as "", a as ""} 1`] = `
+"SyntaxError [1:37-1:38]: Cannot export a duplicate name ''
+> 1 | const a = 1; export {a as "", a as ""}
+    |                                      ^ Cannot export a duplicate name ''"
+`;
+
 exports[`Module - Export > Module - Export (fail) > const a = 1; export {a as "a", a as "a"} 1`] = `
 "SyntaxError [1:39-1:40]: Cannot export a duplicate name 'a'
 > 1 | const a = 1; export {a as "a", a as "a"}
