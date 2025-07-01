@@ -1,5 +1,5 @@
 import { type _Node, type SourceLocation } from './estree';
-import { type ScopeError, type Location } from './common';
+import { type Location } from './common';
 
 export const enum Errors {
   Unexpected,
@@ -394,8 +394,4 @@ export class ParseError extends SyntaxError implements _Node {
     };
     this.description = description;
   }
-}
-
-export function reportScopeError(scope: ScopeError): never {
-  throw new ParseError(scope.start, scope.end, scope.type, ...scope.params);
 }
