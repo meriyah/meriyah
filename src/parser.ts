@@ -31,17 +31,13 @@ import {
   isValidStrictMode,
   isValidIdentifier,
   classifyIdentifier,
-  type PrivateScopeState,
-  addPrivateIdentifier,
-  addPrivateIdentifierRef,
-  addChildPrivateScope,
-  validatePrivateIdentifierRefs,
   type Location,
 } from './common';
 import { Chars } from './chars';
 import { Parser } from './parser/parser';
 import { type Options, normalizeOptions } from './options';
 import { Scope, ScopeKind, createArrowHeadParsingScope } from './parser/scope';
+import { PrivateScope } from './parser/private-scope';
 
 /**
  * Consumes a sequence of tokens and produces an syntax tree
@@ -223,7 +219,7 @@ function parseStatementListItem(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   origin: Origin,
   labels: ESTree.Labels,
 ): ESTree.Statement | ESTree.Decorator[] {
@@ -304,7 +300,7 @@ function parseStatement(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   origin: Origin,
   labels: ESTree.Labels,
   allowFuncDecl: 0 | 1,
@@ -415,7 +411,7 @@ function parseExpressionOrLabelledStatement(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   origin: Origin,
   labels: ESTree.Labels,
   allowFuncDecl: 0 | 1,
@@ -537,7 +533,7 @@ function parseBlock<T extends ESTree.BlockStatement | ESTree.StaticBlock = ESTre
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   labels: ESTree.Labels,
   start: Location = parser.tokenStart,
   type: T['type'] = 'BlockStatement',
@@ -576,7 +572,7 @@ function parseBlock<T extends ESTree.BlockStatement | ESTree.StaticBlock = ESTre
 function parseReturnStatement(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
 ): ESTree.ReturnStatement {
   // ReturnStatement ::
   //   'return' [no line terminator] Expression? ';'
@@ -642,7 +638,7 @@ function parseLabelledStatement(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   origin: Origin,
   labels: ESTree.Labels,
   value: string,
@@ -704,7 +700,7 @@ function parseAsyncArrowOrAsyncFunctionDeclaration(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   origin: Origin,
   labels: ESTree.Labels,
   allowFuncDecl: 0 | 1,
@@ -949,7 +945,7 @@ function parseEmptyStatement(parser: Parser, context: Context): ESTree.EmptyStat
 function parseThrowStatement(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
 ): ESTree.ThrowStatement {
   const start = parser.tokenStart;
 
@@ -981,7 +977,7 @@ function parseIfStatement(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   labels: ESTree.Labels,
 ): ESTree.IfStatement {
   const start = parser.tokenStart;
@@ -1021,7 +1017,7 @@ function parseConsequentOrAlternative(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   labels: ESTree.Labels,
 ): ESTree.Statement | ESTree.FunctionDeclaration {
   const { tokenStart } = parser;
@@ -1056,7 +1052,7 @@ function parseSwitchStatement(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   labels: ESTree.Labels,
 ): ESTree.SwitchStatement {
   // SwitchStatement ::
@@ -1134,7 +1130,7 @@ function parseWhileStatement(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   labels: ESTree.Labels,
 ): ESTree.WhileStatement {
   // WhileStatement ::
@@ -1169,7 +1165,7 @@ function parseIterationStatementBody(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   labels: ESTree.Labels,
 ): ESTree.Statement {
   return parseStatement(
@@ -1265,7 +1261,7 @@ function parseWithStatement(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   labels: ESTree.Labels,
 ): ESTree.WithStatement {
   // WithStatement ::
@@ -1327,7 +1323,7 @@ function parseTryStatement(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   labels: ESTree.Labels,
 ): ESTree.TryStatement {
   // TryStatement ::
@@ -1396,7 +1392,7 @@ function parseCatchBlock(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   labels: ESTree.Labels,
   start: Location,
 ): ESTree.CatchClause {
@@ -1457,7 +1453,7 @@ function parseStaticBlock(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   start: Location,
 ): ESTree.StaticBlock {
   // ClassStaticBlock :
@@ -1495,7 +1491,7 @@ function parseDoWhileStatement(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   labels: ESTree.Labels,
 ): ESTree.DoWhileStatement {
   // DoStatement ::
@@ -1539,7 +1535,7 @@ function parseLetIdentOrVarDeclarationStatement(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   origin: Origin,
 ): ESTree.VariableDeclaration | ESTree.LabeledStatement | ESTree.ExpressionStatement {
   const { tokenValue, tokenStart } = parser;
@@ -1681,7 +1677,7 @@ function parseLexicalDeclaration(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   kind: BindingKind,
   origin: Origin,
 ): ESTree.VariableDeclaration {
@@ -1722,7 +1718,7 @@ function parseVariableStatement(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   origin: Origin,
 ): ESTree.VariableDeclaration {
   // VariableDeclarations ::
@@ -1759,7 +1755,7 @@ function parseVariableDeclarationList(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   kind: BindingKind,
   origin: Origin,
 ): ESTree.VariableDeclarator[] {
@@ -1790,7 +1786,7 @@ function parseVariableDeclaration(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   kind: BindingKind,
   origin: Origin,
 ): ESTree.VariableDeclarator {
@@ -1860,7 +1856,7 @@ function parseForStatement(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   labels: ESTree.Labels,
 ): ESTree.ForStatement | ESTree.ForInStatement | ESTree.ForOfStatement {
   const start = parser.tokenStart;
@@ -2426,7 +2422,7 @@ function parseImportMetaDeclaration(parser: Parser, context: Context, start: Loc
 function parseImportCallDeclaration(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   start: Location,
 ): ESTree.ExpressionStatement {
   let expr: ESTree.Expression = parseImportExpression(parser, context, privateScope, /* inGroup */ 0, start);
@@ -2808,7 +2804,7 @@ function parseExportDeclaration(
 function parseExpression(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   canAssign: 0 | 1,
   inGroup: 0 | 1,
   start: Location,
@@ -2834,7 +2830,7 @@ function parseExpression(
 function parseSequenceExpression(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inGroup: 0 | 1,
   start: Location,
   expr: ESTree.AssignmentExpression | ESTree.Expression,
@@ -2866,7 +2862,7 @@ function parseSequenceExpression(
 function parseExpressions(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inGroup: 0 | 1,
   canAssign: 0 | 1,
   start: Location,
@@ -2890,7 +2886,7 @@ function parseExpressions(
 function parseAssignmentExpression(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inGroup: 0 | 1,
   isPattern: 0 | 1,
   start: Location,
@@ -2974,7 +2970,7 @@ function parseAssignmentExpression(
 function parseAssignmentExpressionOrPattern(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inGroup: 0 | 1,
   isPattern: 0 | 1,
   start: Location,
@@ -3017,7 +3013,7 @@ function parseAssignmentExpressionOrPattern(
 function parseConditionalExpression(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   test: ESTree.Expression,
   start: Location,
 ): ESTree.ConditionalExpression {
@@ -3062,7 +3058,7 @@ function parseConditionalExpression(
 function parseBinaryExpression(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inGroup: 0 | 1,
   start: Location,
   minPrecedence: number,
@@ -3123,7 +3119,7 @@ function parseBinaryExpression(
 function parseUnaryExpression(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   isLHS: 0 | 1,
   inGroup: 0 | 1,
 ): ESTree.UnaryExpression {
@@ -3176,7 +3172,7 @@ function parseUnaryExpression(
 function parseAsyncExpression(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inGroup: 0 | 1,
   isLHS: 0 | 1,
   canAssign: 0 | 1,
@@ -3240,7 +3236,7 @@ function parseAsyncExpression(
 function parseYieldExpressionOrIdentifier(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inGroup: 0 | 1,
   canAssign: 0 | 1,
   start: Location,
@@ -3296,7 +3292,7 @@ function parseYieldExpressionOrIdentifier(
 function parseAwaitExpressionOrIdentifier(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inNew: 0 | 1,
   inGroup: 0 | 1,
   start: Location,
@@ -3393,7 +3389,7 @@ function parseFunctionBody(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   origin: Origin,
   funcNameToken: Token | undefined,
   functionScope: Scope | undefined,
@@ -3517,7 +3513,7 @@ function parseSuperExpression(parser: Parser, context: Context): ESTree.Super {
 function parseLeftHandSideExpression(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   canAssign: 0 | 1,
   inGroup: 0 | 1,
   isLHS: 0 | 1,
@@ -3580,7 +3576,7 @@ function parseUpdateExpression(parser: Parser, context: Context, expr: ESTree.Ex
 function parseMemberOrUpdateExpression(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   expr: ESTree.Expression,
   inGroup: 0 | 1,
   inChain: 0 | 1,
@@ -3743,7 +3739,7 @@ function parseMemberOrUpdateExpression(
 function parseOptionalChain(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   expr: ESTree.Expression,
   start: Location,
 ): ESTree.MemberExpression | ESTree.CallExpression {
@@ -3815,7 +3811,7 @@ function parseOptionalChain(
 function parsePropertyOrPrivatePropertyName(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
 ): any {
   if (
     (parser.getToken() & Token.IsIdentifier) === 0 &&
@@ -3842,7 +3838,7 @@ function parsePropertyOrPrivatePropertyName(
 function parseUpdateExpressionPrefixed(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inNew: 0 | 1,
   isLHS: 0 | 1,
   start: Location,
@@ -3891,7 +3887,7 @@ function parseUpdateExpressionPrefixed(
 function parsePrimaryExpression(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   kind: BindingKind,
   inNew: 0 | 1,
   canAssign: 0 | 1,
@@ -4052,7 +4048,7 @@ function parsePrimaryExpression(
 function parseImportCallOrMetaExpression(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inNew: 0 | 1,
   inGroup: 0 | 1,
   start: Location,
@@ -4121,7 +4117,7 @@ function parseImportMetaExpression(
 function parseImportExpression(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inGroup: 0 | 1,
   start: Location,
 ): ESTree.ImportExpression {
@@ -4378,7 +4374,7 @@ function parseTemplateLiteral(parser: Parser, context: Context): ESTree.Template
 function parseTemplate(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
 ): ESTree.TemplateLiteral {
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
 
@@ -4475,7 +4471,7 @@ function parseTemplateElement(
 function parseSpreadElement(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
 ): ESTree.SpreadElement {
   const start = parser.tokenStart;
   context = (context | Context.DisallowIn) ^ Context.DisallowIn;
@@ -4500,7 +4496,7 @@ function parseSpreadElement(
 function parseArguments(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inGroup: 0 | 1,
 ): (ESTree.SpreadElement | ESTree.Expression)[] {
   // Arguments ::
@@ -4644,7 +4640,7 @@ function parseFunctionDeclaration(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   origin: Origin,
   allowGen: 0 | 1,
   flags: HoistedFunctionFlags,
@@ -4777,7 +4773,7 @@ function parseFunctionDeclaration(
 function parseFunctionExpression(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   isAsync: 0 | 1,
   inGroup: 0 | 1,
   start: Location,
@@ -4874,7 +4870,7 @@ function parseFunctionExpression(
 function parseArrayLiteral(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   skipInitializer: 0 | 1,
   inGroup: 0 | 1,
 ): ESTree.ArrayExpression {
@@ -4933,7 +4929,7 @@ function parseArrayExpressionOrPattern(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   skipInitializer: 0 | 1,
   inGroup: 0 | 1,
   isPattern: 0 | 1,
@@ -5178,7 +5174,7 @@ function parseArrayExpressionOrPattern(
 function parseArrayOrObjectAssignmentPattern(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   destructible: AssignmentKind | DestructuringKind,
   inGroup: 0 | 1,
   isPattern: 0 | 1,
@@ -5242,7 +5238,7 @@ function parseSpreadOrRestElement(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   closingToken: Token,
   kind: BindingKind,
   origin: Origin,
@@ -5429,7 +5425,7 @@ function parseSpreadOrRestElement(
 function parseMethodDefinition(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   kind: PropertyKind,
   inGroup: 0 | 1,
   start: Location,
@@ -5500,7 +5496,7 @@ function parseMethodDefinition(
 function parseObjectLiteral(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   skipInitializer: 0 | 1,
   inGroup: 0 | 1,
 ): ESTree.ObjectExpression {
@@ -5576,7 +5572,7 @@ function parseObjectLiteralOrPattern(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   skipInitializer: 0 | 1,
   inGroup: 0 | 1,
   isPattern: 0 | 1,
@@ -6311,7 +6307,7 @@ function parseMethodFormals(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   kind: PropertyKind,
   type: BindingKind,
   inGroup: 0 | 1,
@@ -6436,7 +6432,7 @@ function parseMethodFormals(
 function parseComputedPropertyName(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inGroup: 0 | 1,
 ): ESTree.Expression {
   // ComputedPropertyName :
@@ -6465,7 +6461,7 @@ function parseComputedPropertyName(
 function parseParenthesizedExpression(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   canAssign: 0 | 1,
   kind: BindingKind,
   origin: Origin,
@@ -6729,7 +6725,7 @@ function parseParenthesizedExpression(
 function parseIdentifierOrArrow(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
 ): ESTree.Identifier | ESTree.ArrowFunctionExpression {
   const { tokenStart: start } = parser;
   const { tokenValue } = parser;
@@ -6768,7 +6764,7 @@ function parseIdentifierOrArrow(
 function parseArrowFromIdentifier(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   value: any,
   expr: ESTree.Expression,
   inNew: 0 | 1,
@@ -6797,7 +6793,7 @@ function parseParenthesizedArrow(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   params: any,
   canAssign: 0 | 1,
   isAsync: 0 | 1,
@@ -6823,7 +6819,7 @@ function parseArrowFunctionExpression(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   params: any,
   isAsync: 0 | 1,
   start: Location,
@@ -6933,7 +6929,7 @@ function parseFormalParametersOrFormalList(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inGroup: 0 | 1,
   kind: BindingKind,
 ): ESTree.Parameter[] {
@@ -7068,7 +7064,7 @@ function parseFormalParametersOrFormalList(
 function parseMemberExpressionNoCall(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   expr: ESTree.Expression,
   inGroup: 0 | 1,
   start: Location,
@@ -7167,7 +7163,7 @@ function parseMemberExpressionNoCall(
 function parseNewExpression(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inGroup: 0 | 1,
 ): ESTree.NewExpression | ESTree.Expression | ESTree.MetaProperty {
   // NewExpression ::
@@ -7275,7 +7271,7 @@ function parseMetaProperty(
 function parseAsyncArrowAfterIdent(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   canAssign: 0 | 1,
   start: Location,
 ) {
@@ -7319,7 +7315,7 @@ function parseAsyncArrowAfterIdent(
 function parseAsyncArrowOrCallExpression(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   callee: ESTree.Identifier | void,
   canAssign: 0 | 1,
   kind: BindingKind,
@@ -7565,7 +7561,7 @@ function parseClassDeclaration(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   flags: HoistedClassFlags,
 ): ESTree.ClassDeclaration {
   // ClassDeclaration ::
@@ -7674,7 +7670,7 @@ function parseClassDeclaration(
 function parseClassExpression(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inGroup: 0 | 1,
   start: Location,
 ): ESTree.ClassExpression {
@@ -7743,11 +7739,7 @@ function parseClassExpression(
  * @param parser Parser object
  * @param context Context masks
  */
-function parseDecorators(
-  parser: Parser,
-  context: Context,
-  privateScope: PrivateScopeState | undefined,
-): ESTree.Decorator[] {
+function parseDecorators(parser: Parser, context: Context, privateScope: PrivateScope | undefined): ESTree.Decorator[] {
   const list: ESTree.Decorator[] = [];
 
   if (parser.options.next) {
@@ -7768,7 +7760,7 @@ function parseDecorators(
 function parseDecoratorList(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
 ): ESTree.Decorator {
   const start = parser.tokenStart;
 
@@ -7802,7 +7794,7 @@ function parseClassBody(
   context: Context,
   inheritedContext: Context,
   scope: Scope | undefined,
-  parentScope: PrivateScopeState | undefined,
+  parentScope: PrivateScope | undefined,
   kind: BindingKind,
   origin: Origin,
   inGroup: 0 | 1,
@@ -7861,7 +7853,7 @@ function parseClassBody(
 
   const { tokenStart } = parser;
 
-  const privateScope = parser.options.lexical ? addChildPrivateScope(parentScope) : undefined;
+  const privateScope = parser.options.lexical ? new PrivateScope(parentScope) : undefined;
 
   consume(parser, context | Context.AllowRegExp, Token.LeftBrace);
 
@@ -7912,7 +7904,7 @@ function parseClassBody(
   }
   consume(parser, origin & Origin.Declaration ? context | Context.AllowRegExp : context, Token.RightBrace);
 
-  if (privateScope) validatePrivateIdentifierRefs(privateScope);
+  privateScope?.validatePrivateIdentifierRefs();
 
   parser.flags = (parser.flags & ~Flags.HasConstructor) | hasConstr;
 
@@ -7939,7 +7931,7 @@ function parseClassElementList(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inheritedContext: Context,
   type: BindingKind,
   decorators: ESTree.Decorator[],
@@ -8132,7 +8124,7 @@ function parseClassElementList(
 function parsePrivateIdentifier(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   kind: PropertyKind,
 ): ESTree.PrivateIdentifier {
   const { tokenStart } = parser;
@@ -8148,9 +8140,9 @@ function parsePrivateIdentifier(
 
     if (kind) {
       // Define a private property
-      addPrivateIdentifier(parser, privateScope, tokenValue, kind);
+      privateScope.addPrivateIdentifier(parser, tokenValue, kind);
     } else {
-      addPrivateIdentifierRef(parser, privateScope, tokenValue);
+      privateScope.addPrivateIdentifierRef(parser, tokenValue);
     }
   }
 
@@ -8178,7 +8170,7 @@ function parsePrivateIdentifier(
 function parsePropertyDefinition(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   key: ESTree.PrivateIdentifier | ESTree.Expression | null,
   state: PropertyKind,
   decorators: ESTree.Decorator[],
@@ -8270,7 +8262,7 @@ function parseBindingPattern(
   parser: Parser,
   context: Context,
   scope: Scope | undefined,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   type: BindingKind,
   origin: Origin,
 ): ESTree.BindingPattern {
@@ -8366,7 +8358,7 @@ function parseAndClassifyIdentifier(
 function parseJSXRootElementOrFragment(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inJSXChild: 0 | 1,
   start: Location,
 ): ESTree.JSXElement | ESTree.JSXFragment {
@@ -8513,7 +8505,7 @@ function parseJSXClosingFragment(
 function parseJSXChildrenAndClosingElement(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inJSXChild: 0 | 1,
 ): [ESTree.JSXChild[], ESTree.JSXClosingElement] {
   const children: ESTree.JSXChild[] = [];
@@ -8535,7 +8527,7 @@ function parseJSXChildrenAndClosingElement(
 function parseJSXChildrenAndClosingFragment(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inJSXChild: 0 | 1,
 ): [ESTree.JSXChild[], ESTree.JSXClosingFragment] {
   const children: ESTree.JSXChild[] = [];
@@ -8557,7 +8549,7 @@ function parseJSXChildrenAndClosingFragment(
 function parseJSXChildOrClosingElement(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inJSXChild: 0 | 1,
 ) {
   if (parser.getToken() === Token.JSXText) return parseJSXText(parser, context);
@@ -8582,7 +8574,7 @@ function parseJSXChildOrClosingElement(
 function parseJSXChildOrClosingFragment(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inJSXChild: 0 | 1,
 ) {
   if (parser.getToken() === Token.JSXText) return parseJSXText(parser, context);
@@ -8631,7 +8623,7 @@ function parseJSXText(parser: Parser, context: Context): ESTree.JSXText {
 function parseJSXOpeningElementOrSelfCloseElement(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inJSXChild: 0 | 1,
   start: Location,
 ): ESTree.JSXOpeningElement {
@@ -8727,7 +8719,7 @@ function parseJSXMemberExpression(
 function parseJSXAttributes(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
 ): (ESTree.JSXAttribute | ESTree.JSXSpreadAttribute)[] {
   const attributes: (ESTree.JSXAttribute | ESTree.JSXSpreadAttribute)[] = [];
   while (
@@ -8749,7 +8741,7 @@ function parseJSXAttributes(
 function parseJSXSpreadAttribute(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
 ): ESTree.JSXSpreadAttribute {
   const start = parser.tokenStart;
 
@@ -8775,7 +8767,7 @@ function parseJSXSpreadAttribute(
 function parseJsxAttribute(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
 ): ESTree.JSXAttribute | ESTree.JSXSpreadAttribute {
   const { tokenStart } = parser;
 
@@ -8852,7 +8844,7 @@ function parseJSXNamespacedName(
 function parseJSXExpressionContainer(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   inJSXChild: 0 | 1,
   isAttr: 0 | 1,
 ): ESTree.JSXExpressionContainer | ESTree.JSXSpreadChild {
@@ -8904,7 +8896,7 @@ function parseJSXExpressionContainer(
 function parseJSXSpreadChild(
   parser: Parser,
   context: Context,
-  privateScope: PrivateScopeState | undefined,
+  privateScope: PrivateScope | undefined,
   start: Location,
 ): ESTree.JSXSpreadChild {
   consume(parser, context, Token.Ellipsis);
