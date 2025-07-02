@@ -968,24 +968,30 @@ describe('Miscellaneous - Failure', () => {
     '//\r\n]',
     '//\n\r]',
     '//\r \n]',
-    `function foo() {
-      'use strict';
-      function f() {
-        var o = {};
-        with (o) {};
+    outdent`
+      function foo() {
+        'use strict';
+        function f() {
+          var o = {};
+          with (o) {};
+        }
       }
-    }`,
-    `function foo() {
+    `,
+    outdent`
+      function foo() {
+        function f() {
+          'use strict';
+          var o = {};
+          with (o) {};
+        }
+      }
+    `,
+    outdent`
       function f() {
         'use strict';
         var o = {};
         with (o) {};
-      }
-    }`,
-    `function f() {
-      'use strict';
-      var o = {};
-      with (o) {};`,
+    `,
     'try{};catch{};finally{}',
     'try{};finally{}',
     'if{};else{}',
@@ -1297,8 +1303,10 @@ describe('Miscellaneous - Failure', () => {
     ' var super',
     ' const x = 0,',
     '(0, {a = 0}) => 0',
-    `var x = /[a-z
-    ]/\\ux`,
+    outdent`
+      var x = /[a-z
+      ]/\\ux
+    `,
     '"use strict";function foo(){"use strict";}function bar(){var v = 015}',
     ' class A {a(){},b(){}}',
     ' new f(..g);',
@@ -1347,9 +1355,11 @@ describe('Miscellaneous - Failure', () => {
     '(a, ...b);',
     '[ a -= 12 ] = 12;',
     'class A {static static static(){}}',
-    `(function*() {
-      function*(x = yield 3) {}
-  })`,
+    outdent`
+      (function*() {
+          function*(x = yield 3) {}
+      })
+    `,
     '0O18',
     '"use strict"; `${test}\\02`;',
     '0x3in[]',
@@ -1361,8 +1371,10 @@ describe('Miscellaneous - Failure', () => {
     '((a)) => 42',
     '({a.b} = 0)',
     'function *g(yield){}',
-    `throw
-10;`,
+    outdent`
+      throw
+      10;
+    `,
     '({ set prop(x, y) {} })',
     '(((...a)))',
     'for(const let = 0;;);',
@@ -1379,8 +1391,10 @@ describe('Miscellaneous - Failure', () => {
     'class A;',
     'for (const x = 1 of y);',
     'class;',
-    `var x = /[a-z
-    ]/\\ux`,
+    outdent`
+      var x = /[a-z
+      ]/\\ux
+    `,
     'a b',
     'try { } catch() {}',
     '/*\r\n*/]',

@@ -1,3 +1,4 @@
+import { outdent } from 'outdent';
 import { describe } from 'vitest';
 import { fail, pass } from '../../test-utils';
 
@@ -29,10 +30,12 @@ describe('Statements - Return', () => {
     '() => {return}',
     'function f(){   return;return    };',
     'function f(){   return\nreturn   }',
-    `//
+    outdent`
+      //
       function a() {
           return;
-      };`,
+      };
+    `,
     { code: 'function a(x) { return x+y; }', options: { loc: true, ranges: true } },
   ]);
 });

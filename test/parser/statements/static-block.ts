@@ -1,4 +1,5 @@
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
 import { fail, pass } from '../../test-utils';
@@ -13,31 +14,41 @@ describe('Next - Class static initialization block', () => {
   ]);
 
   for (const arg of [
-    `class C {
-      static {
-        async function t() { return await 0; }
+    outdent`
+      class C {
+        static {
+          async function t() { return await 0; }
+        }
       }
-    }`,
-    `class C {
-      static {
-        (async function t() { return await 0; })
+    `,
+    outdent`
+      class C {
+        static {
+          (async function t() { return await 0; })
+        }
       }
-    }`,
-    `class C {
-      static {
-        (async function() { return await 0; })
+    `,
+    outdent`
+      class C {
+        static {
+          (async function() { return await 0; })
+        }
       }
-    }`,
-    `class C {
-      static {
-        (async t => { return await 0; })
+    `,
+    outdent`
+      class C {
+        static {
+          (async t => { return await 0; })
+        }
       }
-    }`,
-    `class C {
-      static {
-        (async (t) => { return await 0; })
+    `,
+    outdent`
+      class C {
+        static {
+          (async (t) => { return await 0; })
+        }
       }
-    }`,
+    `,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

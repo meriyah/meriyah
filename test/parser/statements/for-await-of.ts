@@ -1,4 +1,5 @@
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
 import { fail } from '../../test-utils';
@@ -429,8 +430,10 @@ describe('Statements - For await of', () => {
     'for await ([{ x }] of [[ , ]]) {}',
     'for await ([{ x = yield }] of [[{}]]) {}',
     'for await ([{ x }] of [[{ x: 2 }]]) {}',
-    `for await ([] of ["foo"
-    ]) {}`,
+    outdent`
+      for await ([] of ["foo"
+      ]) {}
+    `,
     'for await ({ xCls = class x {}, cls = class {}, xCls2 = class { static name() {} } } of [{}]) {}',
     'for await ([...{ 0: x, length }] of [[]]) {}',
     'for await ({} of [false]) {}',
@@ -457,9 +460,11 @@ describe('Statements - For await of', () => {
     'for await (let [[...x] = function() {}()] of [[[2, 1, 3]]]) {}',
     'for await (let [x = 23] of [[]]) {}',
     'for await (let [...[]] of [function*() {}()]) {}',
-    `for await (let [x] of (async function*() {
-      yield* [{}];
-    })()) {}`,
+    outdent`
+      for await (let [x] of (async function*() {
+        yield* [{}];
+      })()) {}
+    `,
     'for await (let [x = 23] of (async function*() { yield* [[undefined]]; })()) {}',
     'for await (let [{ x, y, z } = { x: 44, y: 55, z: 66 }] of (async function*() { yield* [[{ x: 11, y: 22, z: 33 }]]; })()) {}',
     'for await (let { w: { x, y, z } = { x: 4, y: 5, z: 6 } } of [{ w: { x: undefined, z: 7 } }]) {}',

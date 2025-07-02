@@ -483,12 +483,14 @@ describe('Declarations - Async Function', () => {
     { code: '{ function* f() {} async function f() {} }', options: { lexical: true, webcompat: true } },
     'async function* f() { a = async function*(a = await) {}; }',
     'function f(a = async function(a = await) {}) {}',
-    `async function x(a=class b{
-      [a = class b{
-          [await 0](){}
-      }](){}
-    }) {
-    }`,
+    outdent`
+      async function x(a=class b{
+        [a = class b{
+            [await 0](){}
+        }](){}
+      }) {
+      }
+    `,
     '({async get foo() { }})',
     '({async set foo(value) { }})',
     '({async foo() { var await }})',

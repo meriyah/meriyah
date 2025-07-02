@@ -43,11 +43,13 @@ describe('Next - Nullish Coalescing', () => {
     'isNaN(1 % null ?? 3)',
     '1 ** null ?? 3',
     '1 ?? 3',
-    `foo ||bar;
-    (x => x)|| bar;
-    (function a(x){return x;})|| 2;
-    0||(function(){return alpha;});
-    a ?? (b || c);`,
+    outdent`
+      foo ||bar;
+      (x => x)|| bar;
+      (function a(x){return x;})|| 2;
+      0||(function(){return alpha;});
+      a ?? (b || c);
+    `,
     'var result = obj??key;',
     'arr??[idx]',
     'async??[idx]',

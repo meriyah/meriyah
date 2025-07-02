@@ -64,8 +64,10 @@ describe('Module - Export', () => {
     String.raw`export function p\u0061ckage() {}`,
     String.raw`export function br\u0065ak() {}`,
     'export var {[x] = y} = z;',
-    `export default var x = null;
-    export default var x = null;`,
+    outdent`
+      export default var x = null;
+      export default var x = null;
+    `,
     'export { , };',
     'export default let x = 7;',
     'export default const x = 7;',
@@ -132,8 +134,10 @@ describe('Module - Export', () => {
     'if (false) {} else export default null;',
     'for(var i=0; i<1; i++) export default null;',
     'while(false) export default null;',
-    `do export default null
-                                while (false);`,
+    outdent`
+      do export default null
+      while (false);
+    `,
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -537,8 +541,10 @@ describe('Module - Export', () => {
     'export default class {}',
     'export default class extends C {}',
     'export default 42',
-    `export var x;
-    x = 'Pass';`,
+    outdent`
+      export var x;
+      x = 'Pass';
+    `,
     'var x; export default x = 7',
     "export { Q } from 'somemodule.js';",
     "export * from 'somemodule.js';",
@@ -674,7 +680,8 @@ describe('Module - Export', () => {
     'export var a = x, b = y;',
     'export let [x, z] = y;',
     "var _ = { method: function() { return 'method_result'; }, method2: function() { return 'method2_result'; } }; export default _",
-    `export{};
+    outdent`
+      export{};
       export {};
       export {}
       export { };
@@ -685,15 +692,18 @@ describe('Module - Export', () => {
       {//-
       //-
       };
-      export/**/{/**/};`,
-    `import {} from 'a';
+      export/**/{/**/};
+    `,
+    outdent`
+      import {} from 'a';
       import 'b';
       import * as ns1 from 'c';
       import dflt1 from 'd';
       export {} from 'e';
       import dflt2, {} from 'f';
       export * from 'g';
-      import dflt3, * as ns2 from 'h';`,
+      import dflt3, * as ns2 from 'h';
+    `,
     'var a; export { a as b };',
     'export default 1',
     'export default () => {}',

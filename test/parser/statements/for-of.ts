@@ -1,4 +1,5 @@
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
 import { fail, pass } from '../../test-utils';
@@ -410,10 +411,12 @@ describe('Statements - For of', () => {
     'for ([(x), y] of [x = y]) {}',
     'for ([z, (y), z] of [x = y]) {}',
     'for ([z, (y), z.y] of [x = y]) {}',
-    `for (x.y of [23]) {}
-    for (x.y of [23]) {}
-    for (x.y of [23]) {}
-    for (x.y of [23]) {}`,
+    outdent`
+      for (x.y of [23]) {}
+      for (x.y of [23]) {}
+      for (x.y of [23]) {}
+      for (x.y of [23]) {}
+    `,
     'for ((a in b).x of {});',
     'for (x--;;);',
     'for (const [...[...x]] of [[1, 2, 3]]) {}',
@@ -501,10 +504,12 @@ describe('Statements - For of', () => {
     'for (const {f = x in /([--])|[--]|=+|[-\x1c$-\x9a+-\xad-]/y} of []) {}',
     'for ([a.b].foo of c) d',
 
-    `for (const puxdlkurdxjjhtxg of [, new (({a: () => {
+    outdent`
+      for (const puxdlkurdxjjhtxg of [, new (({a: () => {
       }, d}))(..."ªZW", (((this))), ((this)), ...(() => () => 2646) || function* () {
         "¡";
-      })]) {}`,
+      })]) {}
+    `,
     'for ({a: b.c} of d) e',
     'for ({a: b.c}.foo of d) e',
     'for (foo=10;;);',
@@ -602,15 +607,19 @@ describe('Statements - For of', () => {
     'function* g() { for(x of yield) {} }',
     'for (let {j} of x) { [foo] = [j] }',
     'for ({x, y} of [{x: 1, y: 2}]) {}',
-    `for ( var i = 0, list = items; i < list.length; i += 1 ) {
-      var item = list[i];
-        if ( item.foo ) { continue; }
-    }`,
-    `for ( let member of [ 'a', 'b', 'c' ] ) {
-      setTimeout( function () {
-      doSomething( member );
-      });
-     }`,
+    outdent`
+      for ( var i = 0, list = items; i < list.length; i += 1 ) {
+        var item = list[i];
+          if ( item.foo ) { continue; }
+      }
+    `,
+    outdent`
+      for ( let member of [ 'a', 'b', 'c' ] ) {
+        setTimeout( function () {
+        doSomething( member );
+        });
+      }
+    `,
     'for ([] of [{ next: function() {return { done: true }; },return: function() {return {}; }}]) {}',
     'function* g() { for(var x of yield) {} }',
     'for(let [a] of b);',

@@ -1,4 +1,5 @@
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
 import { fail, pass } from '../../test-utils';
@@ -732,19 +733,21 @@ describe('Statements - For in', () => {
     'for ( [let][1] in obj ) ;',
     'for ((x) in { attr: null }) {}',
     '2; for (var b in { x: 0 }) { 3; }',
-    `for (var p in obj) {
-      if (obj.hasOwnProperty(p)) {
-          if (p === "prop1") {
-              countProp1++;
-          }
-          if (p === "prop2") {
-              countProp2++;
-          }
-          if (p === "prop3") {
-              countProp3++;
+    outdent`
+      for (var p in obj) {
+          if (obj.hasOwnProperty(p)) {
+              if (p === "prop1") {
+                  countProp1++;
+              }
+              if (p === "prop2") {
+                  countProp2++;
+              }
+              if (p === "prop3") {
+                  countProp3++;
+              }
           }
       }
-  }`,
+    `,
     'for(x in list) process(x);',
     'for (var x in list) process(x);',
     'for ([...x] in {ab: a}) {}',

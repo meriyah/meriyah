@@ -1,4 +1,5 @@
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
 
@@ -6,8 +7,10 @@ describe('Miscellaneous - HTML Comments', () => {
   for (const arg of [
     '<!-- test --->',
     ';-->',
-    `---*/
--->`,
+    outdent`
+      ---*/
+      -->
+    `,
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -17,8 +20,10 @@ describe('Miscellaneous - HTML Comments', () => {
   }
 
   for (const arg of [
-    `/*
-    */ the comment should not include these characters, regardless of AnnexB extensions -->`,
+    outdent`
+      /*
+      */ the comment should not include these characters, regardless of AnnexB extensions -->
+    `,
     ';-->',
   ]) {
     it(`${arg}`, () => {
@@ -41,8 +46,10 @@ describe('Miscellaneous - HTML Comments', () => {
     '-->',
     '-->[0];',
     'Function("-->", "");',
-    `/*
-    */-->`,
+    outdent`
+      /*
+      */-->
+    `,
     '0/*\n*/--> a comment',
     //'/* block comment */--> comment',
     //' \t /* block comment */  --> comment',

@@ -11,46 +11,64 @@ describe('Next - Decorators', () => {
     'class A { @a.b.c.d(e, f)     m(){}}',
     'class Bar{ @outer( @classDec class { @inner innerMethod() {} } ) outerMethod() {} }',
     '@(foo().bar) class Foo { @(member[expression]) method() {} @(foo + bar) method2() {} }',
-    `@foo('bar')
-      class Foo {}`,
+    outdent`
+      @foo('bar')
+      class Foo {}
+    `,
     '(class A { @foo get getter(){} })',
     'class A { @foo get getter(){} }',
     'class A { @foo set setter(bar){} }',
     'class A { @foo async bar(){} }', // allowed?
     '@foo class Foo {}',
-    `@outer({
+    outdent`
+      @outer({
         store: @inner class Foo {}
       })
       class Bar {
-      }`,
-    `@({
+      }
+    `,
+    outdent`
+      @({
         store: @inner class Foo {}
       })
       class Bar {
-      }`,
-    `@foo(@bar class Bar{})
-      class Foo {}`,
+      }
+    `,
+    outdent`
+      @foo(@bar class Bar{})
+      class Foo {}
+    `,
     'class Foo { @foo @bar bar() {} }',
     'class Foo { @foo bar() {} }',
     'var foo = class Bar { @foo Zoo() {} }',
-    `@foo('bar')
-    class Foo {}`,
+    outdent`
+      @foo('bar')
+      class Foo {}
+    `,
     '@abc class Foo {}',
-    `class A {
+    outdent`
+      class A {
         @dec *m(){}
-      }`,
-    `(class A {
+      }
+    `,
+    outdent`
+      (class A {
         @dec *m(){}
-     })`,
-    `class A {
-      @a.b.c.d(e, f)
-      m(){}
-    }`,
+      })
+    `,
+    outdent`
+      class A {
+        @a.b.c.d(e, f)
+        m(){}
+      }
+    `,
     'class A { @foo async a(){} }',
-    `class Foo {
-      @dec
-      static bar() {}
-    }`,
+    outdent`
+      class Foo {
+        @dec
+        static bar() {}
+      }
+    `,
     'class A { accessor = 1}',
     'class A { accessor x}',
     'class A { accessor x = 1}',
@@ -412,14 +430,14 @@ describe('Next - Decorators', () => {
     { code: 'export @dec class E {};', options: { next: true, module: true, ranges: true, loc: true } },
     { code: 'export default @dec class {};', options: { next: true, module: true, ranges: true, loc: true } },
     {
-      code: `
-class C {
-  @dec method() {}
-  @dec static method() {}
-  @dec field;
-  @dec static field;
-}
-`,
+      code: outdent`
+        class C {
+          @dec method() {}
+          @dec static method() {}
+          @dec field;
+          @dec static field;
+        }
+      `,
       options: { next: true, ranges: true, loc: true },
     },
   ]);

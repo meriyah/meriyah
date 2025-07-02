@@ -12,16 +12,20 @@ describe('Statements - Do while', () => {
     'do x, y while (z)',
     'do foo while (bar);',
     'do ()=>x while(c)',
-    `do
-    a
-    b
-  while(c);`,
+    outdent`
+      do
+        a
+        b
+      while(c);
+    `,
     'do let {} = y',
     'do debugger while(x) x',
     'do x: function s(){}while(y)',
-    `do throw function (v, h) {
-      "use strict"
-    } while ((""))`,
+    outdent`
+      do throw function (v, h) {
+        "use strict"
+      } while ((""))
+    `,
   ]);
 
   pass('Statements - Do while (pass)', [

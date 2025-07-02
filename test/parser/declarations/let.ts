@@ -134,9 +134,11 @@ describe('Declarations - Let', () => {
     'let a1; [[a1, b1] = [1, 2]] = [];',
     'let a1; [a1, b1, c1, d1, ...rest1] = "testing";',
     'let arrow = () => {};',
-    `let x = class x {};
-    let y = class {};
-    let z = class { static name() {} };`,
+    outdent`
+      let x = class x {};
+      let y = class {};
+      let z = class { static name() {} };
+    `,
     'let [{ a }, { b }, { c = "" }] = [a, b, c];',
     'let [{ x }] = [x];',
     'let [[x]] = [null];',
@@ -186,10 +188,12 @@ describe('Declarations - Let', () => {
     'let { x, y, } = obj;',
     'let { w: { x, y, z } = { x: 4, y: 5, z: 6 } } = { w: null };',
     'let {a, b, ...rest} = {x: 1, y: 2, a: 5, b: 3};',
-    `let a = "a";
-    let b = "b";
-    let { x, y, } = obj;
-    for (let x = "x", i = 0; i < 1; i++) { let y = "y"; }`,
+    outdent`
+      let a = "a";
+      let b = "b";
+      let { x, y, } = obj;
+      for (let x = "x", i = 0; i < 1; i++) { let y = "y"; }
+    `,
     '[1 <= 0]',
     'let [1 <= 0] = "foo"',
     'let a; [a] = [];',
@@ -320,10 +324,12 @@ describe('Declarations - Let', () => {
     'let { w = a(), x = b(), y = c(), z = d() } = { w: null, x: 0, y: false, z: "" };',
     'let { fn = function () {}, xFn = function x() {} } = {};',
     'switch (true) { case true: let x = 1; }',
-    `let a = [];
-    for (let i = 0; i < 5; a.push(function () { return i; }), ++i) { }
-    for (let k = 0; k < 5; ++k) {
-    }`,
+    outdent`
+      let a = [];
+      for (let i = 0; i < 5; a.push(function () { return i; }), ++i) { }
+      for (let k = 0; k < 5; ++k) {
+      }
+    `,
     'let { x, } = { x: 23 };',
     'let { w: [x, y, z] = [4, 5, 6] } = {};',
     'let { w: [x, y, z] = [4, 5, 6] } = { w: [7, undefined, ] };',

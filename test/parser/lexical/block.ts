@@ -223,46 +223,58 @@ describe('Lexical - Block', () => {
     '{ var f = 123; if (true) function f(){} }',
     '{ async function f(){} } async function f(){}',
     '{ async function *f(){} } async function *f(){}',
-    `{ function f(){} } function f(){}
-    { function f(){} } function f(){}`,
-    `{ let foo = 1; { let foo = 2; } }
-    { let foo = 1; { let foo = 2; } }`,
+    outdent`
+      { function f(){} } function f(){}
+      { function f(){} } function f(){}
+    `,
+    outdent`
+      { let foo = 1; { let foo = 2; } }
+      { let foo = 1; { let foo = 2; } }
+    `,
     '{ function f(){} } function f(){}',
     '{ function *f(){} } function *f(){}',
     '{ async function f(){} } async function f(){}',
     '{ async function f(){} } async function f(){}',
     '{ async function f(){} } async function f(){}',
     '{ let foo = 1; { let foo = 2; } }',
-    `function f() {}  var f;
-    function f() {}  var f;`,
+    outdent`
+      function f() {}  var f;
+      function f() {}  var f;
+    `,
     '{ function f() { a = f; f = 123; b = f; return x; } }',
     '{ let f = 123; { function f() {  } } }',
     '{ let f = 123; if (false) ; else function f() {  } }',
     'try { throw null; } catch (f) { if (false) ; else function f() { return 123; } }',
     'try { throw {}; } catch ({ f }) { switch (1) { default: function f() {  }} }',
-    `try { throw {}; } catch ({ f }) { switch (1) { default: function f() {  }} }
-    try { throw {}; } catch ({ f }) { switch (1) { default: function f() {  }} }`,
+    outdent`
+      try { throw {}; } catch ({ f }) { switch (1) { default: function f() {  }} }
+      try { throw {}; } catch ({ f }) { switch (1) { default: function f() {  }} }
+    `,
     'let f = 123; switch (1) { default: function f() {  }  }',
     '{ let x; } var x',
     '{ var f; var f; }',
-    `{ var f; var f; }
-    { var f; var f; }`,
+    outdent`
+      { var f; var f; }
+      { var f; var f; }
+    `,
     'function f() {}  var f;',
     '{ function a(){} function a(){} }',
     '{ var a; { let a; } }',
-    `{
-      let result;
-      let x = 1;
-      switch (x) {
-        case 1:
-          let x = 2;
-          result = x;
-          break;
-        default:
-          result = 0;
-          break;
+    outdent`
+      {
+        let result;
+        let x = 1;
+        switch (x) {
+          case 1:
+            let x = 2;
+            result = x;
+            break;
+          default:
+            result = 0;
+            break;
+        }
       }
-    }`,
+    `,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

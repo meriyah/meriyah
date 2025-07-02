@@ -1,4 +1,5 @@
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
 import { fail, pass } from '../../test-utils';
@@ -47,13 +48,13 @@ describe('Statements - Try', () => {
     it(`${binding}`, () => {
       t.doesNotThrow(() => {
         parseSource(
-          `
-          try {
-            throw 0;
-          } catch (x) {
-            for (${binding} of []);
-          }
-        `,
+          outdent`
+            try {
+              throw 0;
+            } catch (x) {
+              for (${binding} of []);
+            }
+          `,
           { webcompat: true },
         );
       });
@@ -208,14 +209,16 @@ describe('Statements - Try', () => {
     'try {} catch (e) { for (let e of y) {} }',
     'try {} catch (e) { for (const e of y) {} }',
     'var foo; try {} catch (_) { const foo = 1; }',
-    `try {
-      var x = 2;
-      probeTry = function() { return x; };
-      throw [];
-    } catch ([_ = (eval('var x = 3;'), probeParam = function() { return x; })]) {
-      var x = 4;
-      probeBlock = function() { return x; };
-    }`,
+    outdent`
+      try {
+        var x = 2;
+        probeTry = function() { return x; };
+        throw [];
+      } catch ([_ = (eval('var x = 3;'), probeParam = function() { return x; })]) {
+        var x = 4;
+        probeBlock = function() { return x; };
+      }
+    `,
     'try {} catch(e) {}',
   ]);
 });
