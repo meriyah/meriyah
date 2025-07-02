@@ -641,19 +641,19 @@ async (a = await b) => {}
 `;
 
 exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function x(a=class b{
-      [a = class b{
-          [await 0](){}
-      }](){}
-    }) {
-    } 1`] = `
-"SyntaxError [3:11-3:16]: Await expression not allowed in formal parameter
+  [a = class b{
+      [await 0](){}
+  }](){}
+}) {
+} 1`] = `
+"SyntaxError [3:7-3:12]: Await expression not allowed in formal parameter
   1 | async function x(a=class b{
-  2 |       [a = class b{
-> 3 |           [await 0](){}
-    |            ^^^^^ Await expression not allowed in formal parameter
-  4 |       }](){}
-  5 |     }) {
-  6 |     }"
+  2 |   [a = class b{
+> 3 |       [await 0](){}
+    |        ^^^^^ Await expression not allowed in formal parameter
+  4 |   }](){}
+  5 | }) {
+  6 | }"
 `;
 
 exports[`Declarations - Async Function > Declarations - Async Function (fail) > async function* a() { (await) => {} } 1`] = `

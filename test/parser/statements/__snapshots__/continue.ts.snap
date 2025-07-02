@@ -37,17 +37,17 @@ exports[`Statements - Continue > Declarations - Continue > { continue } 1`] = `
 `;
 
 exports[`Statements - Continue > Declarations - Continue > LABEL1 : do {
-      x++;
-      (function(){continue LABEL1;})();
-      y++;
-      } while(0); 1`] = `
-"SyntaxError [3:18-3:26]: Illegal continue statement
+x++;
+(function(){continue LABEL1;})();
+y++;
+} while(0); 1`] = `
+"SyntaxError [3:12-3:20]: Illegal continue statement
   1 | LABEL1 : do {
-  2 |       x++;
-> 3 |       (function(){continue LABEL1;})();
-    |                   ^^^^^^^^ Illegal continue statement
-  4 |       y++;
-  5 |       } while(0);"
+  2 | x++;
+> 3 | (function(){continue LABEL1;})();
+    |             ^^^^^^^^ Illegal continue statement
+  4 | y++;
+  5 | } while(0);"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > ce: while(true) { continue fapper; } 1`] = `
@@ -319,51 +319,51 @@ exports[`Statements - Continue > Declarations - Continue > switch (x){ case z:  
 `;
 
 exports[`Statements - Continue > Declarations - Continue > try{
-      LABEL1 : do {
-        x++;
-        throw "gonna leave it";
-        y++;
-      } while(0);
-      $ERROR('#1: throw "gonna leave it" lead to throwing exception');
-      } catch(e){
-      continue LABEL2;
-      LABEL2 : do {
-        x++;
-        y++;
-      } while(0);
-      }; 1`] = `
-"SyntaxError [9:6-9:14]: Illegal continue statement
-   7 |       $ERROR('#1: throw "gonna leave it" lead to throwing exception');
-   8 |       } catch(e){
->  9 |       continue LABEL2;
-     |       ^^^^^^^^ Illegal continue statement
-  10 |       LABEL2 : do {
-  11 |         x++;
-  12 |         y++;"
+LABEL1 : do {
+  x++;
+  throw "gonna leave it";
+  y++;
+} while(0);
+$ERROR('#1: throw "gonna leave it" lead to throwing exception');
+} catch(e){
+continue LABEL2;
+LABEL2 : do {
+  x++;
+  y++;
+} while(0);
+}; 1`] = `
+"SyntaxError [9:0-9:8]: Illegal continue statement
+   7 | $ERROR('#1: throw "gonna leave it" lead to throwing exception');
+   8 | } catch(e){
+>  9 | continue LABEL2;
+     | ^^^^^^^^ Illegal continue statement
+  10 | LABEL2 : do {
+  11 |   x++;
+  12 |   y++;"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > try{
-      LABEL1 : do {
-        x++;
-        throw "gonna leave it";
-        y++;
-      } while(0);
-      $ERROR('#1: throw "gonna leave it" lead to throwing exception');
-      } catch(e){
-      continue;
-      LABEL2 : do {
-        x++;
-        y++;
-      } while(0);
-      }; 1`] = `
-"SyntaxError [9:6-9:14]: Illegal continue statement
-   7 |       $ERROR('#1: throw "gonna leave it" lead to throwing exception');
-   8 |       } catch(e){
->  9 |       continue;
-     |       ^^^^^^^^ Illegal continue statement
-  10 |       LABEL2 : do {
-  11 |         x++;
-  12 |         y++;"
+LABEL1 : do {
+  x++;
+  throw "gonna leave it";
+  y++;
+} while(0);
+$ERROR('#1: throw "gonna leave it" lead to throwing exception');
+} catch(e){
+continue;
+LABEL2 : do {
+  x++;
+  y++;
+} while(0);
+}; 1`] = `
+"SyntaxError [9:0-9:8]: Illegal continue statement
+   7 | $ERROR('#1: throw "gonna leave it" lead to throwing exception');
+   8 | } catch(e){
+>  9 | continue;
+     | ^^^^^^^^ Illegal continue statement
+  10 | LABEL2 : do {
+  11 |   x++;
+  12 |   y++;"
 `;
 
 exports[`Statements - Continue > Declarations - Continue > while (true)    if (x) continue y   } 1`] = `

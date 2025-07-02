@@ -4850,18 +4850,18 @@ exports[`Statements - For in > Statements - For in (pass) > for (var a=1;;); 1`]
 `;
 
 exports[`Statements - For in > Statements - For in (pass) > for (var p in obj) {
-      if (obj.hasOwnProperty(p)) {
-          if (p === "prop1") {
-              countProp1++;
-          }
-          if (p === "prop2") {
-              countProp2++;
-          }
-          if (p === "prop3") {
-              countProp3++;
-          }
-      }
-  } 1`] = `
+    if (obj.hasOwnProperty(p)) {
+        if (p === "prop1") {
+            countProp1++;
+        }
+        if (p === "prop2") {
+            countProp2++;
+        }
+        if (p === "prop3") {
+            countProp3++;
+        }
+    }
+} 1`] = `
 {
   "body": [
     {

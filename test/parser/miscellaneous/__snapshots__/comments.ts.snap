@@ -1,21 +1,21 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > /*
-    */ the comment should not include these characters, regardless of AnnexB extensions --> 1`] = `
-"SyntaxError [2:11-2:18]: Unexpected token: 'identifier'
+*/ the comment should not include these characters, regardless of AnnexB extensions --> 1`] = `
+"SyntaxError [2:7-2:14]: Unexpected token: 'identifier'
   1 | /*
-> 2 |     */ the comment should not include these characters, regardless of AnnexB extensions -->
-    |            ^^^^^^^ Unexpected token: 'identifier'"
+> 2 | */ the comment should not include these characters, regardless of AnnexB extensions -->
+    |        ^^^^^^^ Unexpected token: 'identifier'"
 `;
 
 exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > /* x */
-    = 1;
-    */ 1`] = `
-"SyntaxError [2:4-2:5]: Unexpected token: '='
+= 1;
+*/ 1`] = `
+"SyntaxError [2:0-2:1]: Unexpected token: '='
   1 | /* x */
-> 2 |     = 1;
-    |     ^ Unexpected token: '='
-  3 |     */"
+> 2 | = 1;
+    | ^ Unexpected token: '='
+  3 | */"
 `;
 
 exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > /*FOO/ 1`] = `
@@ -25,11 +25,11 @@ exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > /*FOO/ 1`]
 `;
 
 exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > // var /*
-    x*/ 1`] = `
-"SyntaxError [2:6-2:7]: Unexpected token: '/'
+x*/ 1`] = `
+"SyntaxError [2:2-2:3]: Unexpected token: '/'
   1 | // var /*
-> 2 |     x*/
-    |       ^ Unexpected token: '/'"
+> 2 | x*/
+    |   ^ Unexpected token: '/'"
 `;
 
 exports[`Miscellaneous - Comments > Miscellaneous - Comments (fail) > ;--> 1`] = `
@@ -311,10 +311,10 @@ exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > /* before 
 `;
 
 exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > /* multiline
-      comment
-      should
-      be
-      ignored */ 42 1`] = `
+comment
+should
+be
+ignored */ 42 1`] = `
 {
   "body": [
     {
@@ -429,7 +429,7 @@ lines
 `;
 
 exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > // line comment
-      42 1`] = `
+42 1`] = `
 {
   "body": [
     {

@@ -655,10 +655,10 @@ exports[`Statements - For of > Statements - For of (fail) > for(x of [], []) {} 
 `;
 
 exports[`Statements - For of > Statements - For of (pass) > for ( let member of [ 'a', 'b', 'c' ] ) {
-      setTimeout( function () {
-      doSomething( member );
-      });
-     } 1`] = `
+  setTimeout( function () {
+  doSomething( member );
+  });
+} 1`] = `
 {
   "body": [
     {
@@ -800,9 +800,9 @@ exports[`Statements - For of > Statements - For of (pass) > for ( let[x] of [[34
 `;
 
 exports[`Statements - For of > Statements - For of (pass) > for ( var i = 0, list = items; i < list.length; i += 1 ) {
-      var item = list[i];
-        if ( item.foo ) { continue; }
-    } 1`] = `
+  var item = list[i];
+    if ( item.foo ) { continue; }
+} 1`] = `
 {
   "body": [
     {
@@ -2537,9 +2537,9 @@ exports[`Statements - For of > Statements - For of (pass) > for (const a of b); 
 `;
 
 exports[`Statements - For of > Statements - For of (pass) > for (const puxdlkurdxjjhtxg of [, new (({a: () => {
-      }, d}))(..."ªZW", (((this))), ((this)), ...(() => () => 2646) || function* () {
-        "¡";
-      })]) {} 1`] = `
+}, d}))(..."ªZW", (((this))), ((this)), ...(() => () => 2646) || function* () {
+  "¡";
+})]) {} 1`] = `
 {
   "body": [
     {
