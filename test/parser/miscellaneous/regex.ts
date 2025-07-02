@@ -2,6 +2,7 @@ import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Miscellaneous - Regular expressions', () => {
   for (const arg of [
@@ -35,8 +36,10 @@ describe('Miscellaneous - Regular expressions', () => {
     // Nodejs v18 now accepts unicode in capture group name
     // ['/(?<\\ud87e\\udddfrest>foo)/', Context.OptionsNext | Context.OptionsWebCompat],
     {
-      code: `function* f(){ yield
-      /foo }`,
+      code: outdent`
+        function* f(){ yield
+        /foo }
+      `,
       options: { module: true, next: true },
     },
     { code: 'function l(){((/)/))(/]/)};', options: { module: true, next: true } },

@@ -505,19 +505,19 @@ exports[`Module - Export > Module - Export (fail) > export async 1`] = `
 `;
 
 exports[`Module - Export > Module - Export (fail) > export async function *f() {}
-    export default function *f() {} 1`] = `
-"SyntaxError [2:29-2:30]: Duplicate binding 'f'
+export default function *f() {} 1`] = `
+"SyntaxError [2:25-2:26]: Duplicate binding 'f'
   1 | export async function *f() {}
-> 2 |     export default function *f() {}
-    |                              ^ Duplicate binding 'f'"
+> 2 | export default function *f() {}
+    |                          ^ Duplicate binding 'f'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export async function *f() {}
-    export function *f() {} 1`] = `
-"SyntaxError [2:21-2:22]: Duplicate binding 'f'
+export function *f() {} 1`] = `
+"SyntaxError [2:17-2:18]: Duplicate binding 'f'
   1 | export async function *f() {}
-> 2 |     export function *f() {}
-    |                      ^ Duplicate binding 'f'"
+> 2 | export function *f() {}
+    |                  ^ Duplicate binding 'f'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export async function a() {}
@@ -617,11 +617,11 @@ exports[`Module - Export > Module - Export (fail) > export class f {}; export fu
 `;
 
 exports[`Module - Export > Module - Export (fail) > export class f() {}
-    export function *f() {} 1`] = `
+export function *f() {} 1`] = `
 "SyntaxError [1:14-1:15]: Expected '{'
 > 1 | export class f() {}
     |               ^ Expected '{'
-  2 |     export function *f() {}"
+  2 | export function *f() {}"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export class f{}; async function f(){}; 1`] = `
@@ -739,11 +739,11 @@ exports[`Module - Export > Module - Export (fail) > export default 1, 2, 3; 1`] 
 `;
 
 exports[`Module - Export > Module - Export (fail) > export default async function *f() {}
-    export function *f() {} 1`] = `
-"SyntaxError [2:21-2:22]: Duplicate binding 'f'
+export function *f() {} 1`] = `
+"SyntaxError [2:17-2:18]: Duplicate binding 'f'
   1 | export default async function *f() {}
-> 2 |     export function *f() {}
-    |                      ^ Duplicate binding 'f'"
+> 2 | export function *f() {}
+    |                  ^ Duplicate binding 'f'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export default async x 
@@ -895,19 +895,19 @@ exports[`Module - Export > Module - Export (fail) > export function a() {} expor
 `;
 
 exports[`Module - Export > Module - Export (fail) > export function f() {}
-    export class f() {} 1`] = `
-"SyntaxError [2:17-2:18]: Duplicate binding 'f'
+export class f() {} 1`] = `
+"SyntaxError [2:13-2:14]: Duplicate binding 'f'
   1 | export function f() {}
-> 2 |     export class f() {}
-    |                  ^ Duplicate binding 'f'"
+> 2 | export class f() {}
+    |              ^ Duplicate binding 'f'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export function f() {}
-    export function *f() {} 1`] = `
-"SyntaxError [2:21-2:22]: Duplicate binding 'f'
+export function *f() {} 1`] = `
+"SyntaxError [2:17-2:18]: Duplicate binding 'f'
   1 | export function f() {}
-> 2 |     export function *f() {}
-    |                      ^ Duplicate binding 'f'"
+> 2 | export function *f() {}
+    |                  ^ Duplicate binding 'f'"
 `;
 
 exports[`Module - Export > Module - Export (fail) > export function f(){}; async function f(){}; 1`] = `
@@ -1501,7 +1501,7 @@ exports[`Module - Export > Module - Export (fail) > x = { foo(){ export {x}; }} 
 `;
 
 exports[`Module - Export > Module - Export (pass) > [function* (...{}) {  switch (yield) {}  }]
-        a = (u) => {} 1`] = `
+a = (u) => {} 1`] = `
 {
   "body": [
     {
@@ -1590,73 +1590,73 @@ exports[`Module - Export > Module - Export (pass) > [function* (...{}) {  switch
       "type": "ExpressionStatement",
     },
     {
-      "end": 65,
+      "end": 57,
       "expression": {
-        "end": 65,
+        "end": 57,
         "left": {
-          "end": 53,
+          "end": 45,
           "name": "a",
           "range": [
-            52,
-            53,
+            44,
+            45,
           ],
-          "start": 52,
+          "start": 44,
           "type": "Identifier",
         },
         "operator": "=",
         "range": [
-          52,
-          65,
+          44,
+          57,
         ],
         "right": {
           "async": false,
           "body": {
             "body": [],
-            "end": 65,
+            "end": 57,
             "range": [
-              63,
-              65,
+              55,
+              57,
             ],
-            "start": 63,
+            "start": 55,
             "type": "BlockStatement",
           },
-          "end": 65,
+          "end": 57,
           "expression": false,
           "generator": false,
           "params": [
             {
-              "end": 58,
+              "end": 50,
               "name": "u",
               "range": [
-                57,
-                58,
+                49,
+                50,
               ],
-              "start": 57,
+              "start": 49,
               "type": "Identifier",
             },
           ],
           "range": [
-            56,
-            65,
+            48,
+            57,
           ],
-          "start": 56,
+          "start": 48,
           "type": "ArrowFunctionExpression",
         },
-        "start": 52,
+        "start": 44,
         "type": "AssignmentExpression",
       },
       "range": [
-        52,
-        65,
+        44,
+        57,
       ],
-      "start": 52,
+      "start": 44,
       "type": "ExpressionStatement",
     },
   ],
-  "end": 65,
+  "end": 57,
   "range": [
     0,
-    65,
+    57,
   ],
   "sourceType": "module",
   "start": 0,

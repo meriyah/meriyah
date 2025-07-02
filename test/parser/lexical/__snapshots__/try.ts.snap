@@ -463,11 +463,11 @@ exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (foo) { var foo; } 
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (foo) {}  let foo;
-    try {} catch (foo) {}  let foo; 1`] = `
-"SyntaxError [2:34-2:35]: Duplicate binding 'foo'
+try {} catch (foo) {}  let foo; 1`] = `
+"SyntaxError [2:30-2:31]: Duplicate binding 'foo'
   1 | try {} catch (foo) {}  let foo;
-> 2 |     try {} catch (foo) {}  let foo;
-    |                                   ^ Duplicate binding 'foo'"
+> 2 | try {} catch (foo) {}  let foo;
+    |                               ^ Duplicate binding 'foo'"
 `;
 
 exports[`Lexical - Try > Lexical - Try (fail) > try {} catch (foo) {if (1) function foo() {}} 1`] = `

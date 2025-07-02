@@ -2,6 +2,7 @@ import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { pass, fail } from '../../test-utils';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Next - Nullish Coalescing', () => {
   for (const arg of [
@@ -129,9 +130,11 @@ describe('Next - Nullish Coalescing', () => {
     { code: `1 / null ?? 3`, options: { next: true } },
     { code: `a ?? (b && c);`, options: { next: true } },
     {
-      code: `a
-        ?? b
-        ?? c;`,
+      code: outdent`
+        a
+          ?? b
+          ?? c;
+      `,
       options: { next: true },
     },
     { code: `foo ?? 1;`, options: { next: true } },

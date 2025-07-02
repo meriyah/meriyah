@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Expressions - Async arrow', () => {
   for (const arg of [
@@ -875,11 +876,13 @@ describe('Expressions - Async arrow', () => {
     { code: `async (() => 1)(), 1`, options: { ranges: true } },
     { code: `async x => delete ("x"[(await x)])`, options: { ranges: true, loc: true } },
     {
-      code: `(async () => {})
-      (async () => {})
-      (async () => {})
-      (async () => {})
-      (async () => {})`,
+      code: outdent`
+        (async () => {})
+        (async () => {})
+        (async () => {})
+        (async () => {})
+        (async () => {})
+      `,
       options: { ranges: true },
     },
     '(async x =>x)',

@@ -2,6 +2,7 @@ import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
 import { pass, fail } from '../../test-utils';
+import { outdent } from 'outdent';
 
 describe('Miscellaneous - Comments', () => {
   fail('Miscellaneous - Comments (fail)', [
@@ -208,18 +209,20 @@ describe('Miscellaneous - Comments', () => {
 
   pass('Miscellaneous - Comments (pass)', [
     {
-      code: `// Single line comment
-      // Single line comment
-      // Single line comment
-      // Single line comment
-      /**/
-      /* MLC on one line */
-      /*
-      MLC
-      on
-      multiple
-      lines
-      */`,
+      code: outdent`
+        // Single line comment
+        // Single line comment
+        // Single line comment
+        // Single line comment
+        /**/
+        /* MLC on one line */
+        /*
+        MLC
+        on
+        multiple
+        lines
+        */
+      `,
       options: { next: true, loc: true },
     },
     { code: '/**/ --> comment', options: { ranges: true, webcompat: true } },
@@ -252,11 +255,13 @@ describe('Miscellaneous - Comments', () => {
     { code: 'function a() {}', options: { ranges: true } },
     { code: '/**/ function a() {}', options: { ranges: true } },
     {
-      code: `while (true) {
-        /**
-         * comments in empty block
-         */
-      }`,
+      code: outdent`
+        while (true) {
+          /**
+           * comments in empty block
+           */
+        }
+      `,
       options: { ranges: true },
     },
   ]);

@@ -1,15 +1,18 @@
 import { describe } from 'vitest';
 import { pass } from '../../test-utils';
+import { outdent } from 'outdent';
 
 describe('Miscellaneous - ranges', () => {
   pass('Miscellaneous - ranges (pass)', [
     {
-      code: `let fun = () => {
-        // one
-        // two
-        // three
-        return (1);
-    }`,
+      code: outdent`
+        let fun = () => {
+            // one
+            // two
+            // three
+            return (1);
+        }
+      `,
       options: { ranges: true },
     },
     { code: 'let', options: { ranges: true } },
@@ -22,11 +25,13 @@ describe('Miscellaneous - ranges', () => {
     { code: '[{a=0}, ...b] = 0', options: { ranges: true } },
     { code: 'var [{a = 0}] = 0;', options: { ranges: true } },
     {
-      code: `var x = {
-      baz(a = 10) {},
-      foo(a, b = 10) {},
-      toast(a, b = 10, c) {}
-    };`,
+      code: outdent`
+        var x = {
+          baz(a = 10) {},
+          foo(a, b = 10) {},
+          toast(a, b = 10, c) {}
+        };
+      `,
       options: { ranges: true },
     },
     { code: '([,,])=>0', options: { ranges: true } },
@@ -49,15 +54,17 @@ describe('Miscellaneous - ranges', () => {
       options: { ranges: true },
     },
     {
-      code: `let {
-      x:{
-          y:{
-              z:{
-                  k:k2 = 31
-                } = { k:21 }
-            } = { z:{ k:20 } }
-        } = { y: { z:{} } }
-    } = { x:{ y:{ z:{} } } };`,
+      code: outdent`
+        let {
+          x:{
+              y:{
+                  z:{
+                      k:k2 = 31
+                    } = { k:21 }
+                } = { z:{ k:20 } }
+            } = { y: { z:{} } }
+        } = { x:{ y:{ z:{} } } };
+      `,
       options: { ranges: true },
     },
     { code: 'var x = (new Foo).x;', options: { ranges: true } },
@@ -91,26 +98,30 @@ describe('Miscellaneous - ranges', () => {
     { code: '(((x)))++;', options: { ranges: true } },
 
     {
-      code: `__str="";
-     outer : for(index=0; index<4; index+=1) {
-         nested : for(index_n=0; index_n<=index; index_n++) {
-       if (index*index_n >= 4)break ;
-       __str+=""+index+index_n;
-         }
-     }`,
+      code: outdent`
+        __str="";
+        outer : for(index=0; index<4; index+=1) {
+            nested : for(index_n=0; index_n<=index; index_n++) {
+          if (index*index_n >= 4)break ;
+          __str+=""+index+index_n;
+            }
+        }
+      `,
       options: { ranges: true },
     },
     {
-      code: `var probeBefore = function() { return x; };
-     var probeTest, probeIncr, probeBody;
-     var run = true;
-     for (
-         var _ = eval('var x = 1;');
-         run && (probeTest = function() { return x; });
-         probeIncr = function() { return x; }
-       )
-       probeBody = function() { return x; }, run = false;
-     var x = 2;`,
+      code: outdent`
+        var probeBefore = function() { return x; };
+        var probeTest, probeIncr, probeBody;
+        var run = true;
+        for (
+            var _ = eval('var x = 1;');
+            run && (probeTest = function() { return x; });
+            probeIncr = function() { return x; }
+          )
+          probeBody = function() { return x; }, run = false;
+        var x = 2;
+      `,
       options: { ranges: true },
     },
     { code: 'for ([x.y];;);', options: { ranges: true } },
@@ -267,54 +278,56 @@ describe('Miscellaneous - ranges', () => {
       options: { ranges: true, raw: true },
     },
     {
-      code: `function bind_bindFunction0(fun, thisArg, boundArgs) {
-      return function bound() {
-          // Ensure we allocate a call-object slot for |boundArgs|, so the
-          // debugger can access this value.
-          if (false) void boundArgs;
+      code: outdent`
+        function bind_bindFunction0(fun, thisArg, boundArgs) {
+          return function bound() {
+              // Ensure we allocate a call-object slot for |boundArgs|, so the
+              // debugger can access this value.
+              if (false) void boundArgs;
 
-          var newTarget;
-          if (_IsConstructing()) {
-              newTarget = new.target;
-              if (newTarget === bound)
-                  newTarget = fun;
-              switch (arguments.length) {
-                case 0:
-                  return constructContentFunction(fun, newTarget);
-                case 1:
-                  return constructContentFunction(fun, newTarget, SPREAD(arguments, 1));
-                case 2:
-                  return constructContentFunction(fun, newTarget, SPREAD(arguments, 2));
-                case 3:
-                  return constructContentFunction(fun, newTarget, SPREAD(arguments, 3));
-                case 4:
-                  return constructContentFunction(fun, newTarget, SPREAD(arguments, 4));
-                case 5:
-                  return constructContentFunction(fun, newTarget, SPREAD(arguments, 5));
-                default:
-                  var args = FUN_APPLY(bind_mapArguments, null, arguments);
-                  return bind_constructFunctionN(fun, newTarget, args);
+              var newTarget;
+              if (_IsConstructing()) {
+                  newTarget = new.target;
+                  if (newTarget === bound)
+                      newTarget = fun;
+                  switch (arguments.length) {
+                    case 0:
+                      return constructContentFunction(fun, newTarget);
+                    case 1:
+                      return constructContentFunction(fun, newTarget, SPREAD(arguments, 1));
+                    case 2:
+                      return constructContentFunction(fun, newTarget, SPREAD(arguments, 2));
+                    case 3:
+                      return constructContentFunction(fun, newTarget, SPREAD(arguments, 3));
+                    case 4:
+                      return constructContentFunction(fun, newTarget, SPREAD(arguments, 4));
+                    case 5:
+                      return constructContentFunction(fun, newTarget, SPREAD(arguments, 5));
+                    default:
+                      var args = FUN_APPLY(bind_mapArguments, null, arguments);
+                      return bind_constructFunctionN(fun, newTarget, args);
+                  }
+              } else {
+                  switch (arguments.length) {
+                    case 0:
+                      return callContentFunction(fun, thisArg);
+                    case 1:
+                      return callContentFunction(fun, thisArg, SPREAD(arguments, 1));
+                    case 2:
+                      return callContentFunction(fun, thisArg, SPREAD(arguments, 2));
+                    case 3:
+                      return callContentFunction(fun, thisArg, SPREAD(arguments, 3));
+                    case 4:
+                      return callContentFunction(fun, thisArg, SPREAD(arguments, 4));
+                    case 5:
+                      return callContentFunction(fun, thisArg, SPREAD(arguments, 5));
+                    default:
+                      return FUN_APPLY(fun, thisArg, arguments);
+                  }
               }
-          } else {
-              switch (arguments.length) {
-                case 0:
-                  return callContentFunction(fun, thisArg);
-                case 1:
-                  return callContentFunction(fun, thisArg, SPREAD(arguments, 1));
-                case 2:
-                  return callContentFunction(fun, thisArg, SPREAD(arguments, 2));
-                case 3:
-                  return callContentFunction(fun, thisArg, SPREAD(arguments, 3));
-                case 4:
-                  return callContentFunction(fun, thisArg, SPREAD(arguments, 4));
-                case 5:
-                  return callContentFunction(fun, thisArg, SPREAD(arguments, 5));
-                default:
-                  return FUN_APPLY(fun, thisArg, arguments);
-              }
-          }
-      };
-    }`,
+          };
+        }
+      `,
       options: { ranges: true, raw: true },
     },
     { code: 'a--', options: { ranges: true } },

@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Expressions - Yield', () => {
   for (const arg of [
@@ -836,14 +837,16 @@ yield d;
     { code: 'function* foo(a, b, c, d) { yield a; yield b; yield c; yield d; }', options: { ranges: true } },
 
     {
-      code: `function* g25() {
+      code: outdent`
+        function* g25() {
           try {
             throw (yield (1 + (yield 2) + 3))
           } catch (e) {
             if (typeof e == 'object') throw e;
             return e + (yield (4 + (yield 5) + 6));
           }
-        }`,
+        }
+      `,
       options: { ranges: true },
     },
 
@@ -856,10 +859,12 @@ yield d;
     { code: 'function* g() { yield 1; try { yield 2; } catch (e) { yield e; } yield 3; }', options: { ranges: true } },
 
     {
-      code: `let foo = function*() {
-                yield* (function*() { yield 42; }());
-                assertUnreachable();
-              }`,
+      code: outdent`
+        let foo = function*() {
+          yield* (function*() { yield 42; }());
+          assertUnreachable();
+        }
+      `,
       options: { ranges: true },
     },
 
@@ -1118,22 +1123,24 @@ yield d;
     // ['function* gf() {for(var a = yield in {});}', Context.None, {}],
     'function* gf() { var o = { *yield() { } } }',
     {
-      code: `function* testGenerator(arg1) {
-        var i = 100;
-        var j = 1000;
-        var k = 10000;
-        yield { arg1: arg1++, i: ++i, j: j++, k: k++, p: ++p };
-        yield { arg1: arg1++, i: ++i, j: j++, k: k++, p: ++p };
-        yield { arg1: arg1++, i: ++i, j: j++, k: k++, p: ++p };
-        yield { arg1: arg1++, i: ++i, j: j++, k: k++, p: ++p };
-    }
+      code: outdent`
+        function* testGenerator(arg1) {
+            var i = 100;
+            var j = 1000;
+            var k = 10000;
+            yield { arg1: arg1++, i: ++i, j: j++, k: k++, p: ++p };
+            yield { arg1: arg1++, i: ++i, j: j++, k: k++, p: ++p };
+            yield { arg1: arg1++, i: ++i, j: j++, k: k++, p: ++p };
+            yield { arg1: arg1++, i: ++i, j: j++, k: k++, p: ++p };
+        }
 
-    var gen = testGenerator(10);
+        var gen = testGenerator(10);
 
-    function yieldOne() {
-        var v1 = gen.next();
-        var val = JSON.stringify(v1.value, undefined, '');
-    }`,
+        function yieldOne() {
+            var v1 = gen.next();
+            var val = JSON.stringify(v1.value, undefined, '');
+        }
+      `,
       options: { ranges: true, raw: true },
     },
   ]);

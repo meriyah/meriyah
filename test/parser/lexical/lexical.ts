@@ -2,6 +2,7 @@ import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Lexical - Lexical', () => {
   const letbinds = [
@@ -92,13 +93,17 @@ describe('Lexical - Lexical', () => {
   fail('Lexical - Lexical (fail)', [
     { code: 'let x; var x;', options: { lexical: true } },
     {
-      code: `var x; let x;
-    var x; let x;`,
+      code: outdent`
+        var x; let x;
+        var x; let x;
+      `,
       options: { lexical: true },
     },
     {
-      code: `let x; { var x }
-    let x; { var x }`,
+      code: outdent`
+        let x; { var x }
+        let x; { var x }
+      `,
       options: { lexical: true },
     },
     { code: 'var x; let x;', options: { lexical: true } },
@@ -113,8 +118,10 @@ describe('Lexical - Lexical', () => {
     { code: 'let a, a', options: { lexical: true } },
     { code: 'let a; let a;', options: { lexical: true } },
     {
-      code: `let a; let a;
-    let a; let a;`,
+      code: outdent`
+        let a; let a;
+        let a; let a;
+      `,
       options: { lexical: true },
     },
     { code: 'const a = 1, a = 2', options: { lexical: true } },

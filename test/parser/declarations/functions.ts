@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Declarations - Function', () => {
   for (const arg of ['package', 'public', 'instanceof']) {
@@ -584,27 +585,31 @@ describe('Declarations - Function', () => {
     '"use strict"; function* g() { yield; }; f = ([...[,]] = g()) => {};',
     `function foo(package) {}`,
     {
-      code: `function compareArray(a, b) {
-        if (b.length !== a.length) {
-            return;
+      code: outdent`
+        function compareArray(a, b) {
+            if (b.length !== a.length) {
+                return;
+            }
+            for (var i = 0; i < a.length; i++) {
+                b[0];
+            }
         }
-        for (var i = 0; i < a.length; i++) {
-            b[0];
-        }
-    }`,
+      `,
       options: { ranges: true, raw: true },
     },
     {
-      code: `function shouldThrow(func, errorMessage) {
-          var errorThrown = false;
-          var error = null;
-          try {
-              func();
-          } catch (e) {
-              errorThrown = true;
-              error = e;
-          }
-      }`,
+      code: outdent`
+        function shouldThrow(func, errorMessage) {
+            var errorThrown = false;
+            var error = null;
+            try {
+                func();
+            } catch (e) {
+                errorThrown = true;
+                error = e;
+            }
+        }
+      `,
       options: { ranges: true, raw: true },
     },
     { code: 'function f([foo,,bar] = x){}', options: { loc: true } },

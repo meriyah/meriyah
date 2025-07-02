@@ -2,6 +2,7 @@ import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { pass, fail } from '../../test-utils';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Next - Import Attributes', () => {
   for (const arg of [
@@ -87,10 +88,12 @@ describe('Next - Import Attributes', () => {
     { code: 'import foo from "bar" with { type: "json", "data-type": ', options: { module: true } },
     { code: 'import foo from "bar" with { type: "json", "data-type": "json" ', options: { module: true } },
     {
-      code: `import x from './import-attribute-1_FIXTURE.js' with {
-      type: 'json',
-      'typ\u0065': ''
-    };`,
+      code: outdent`
+        import x from './import-attribute-1_FIXTURE.js' with {
+          type: 'json',
+          'typ\u0065': ''
+        };
+      `,
       options: { module: true },
     },
     { code: 'import foo from "bar" with { 1: "foo" };', options: { module: true } },

@@ -2,6 +2,7 @@ import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Lexical - If', () => {
   fail('Lexical - If (fail)', [
@@ -12,23 +13,31 @@ describe('Lexical - If', () => {
     { code: 'if (x) var foo = 1; let foo = 1;', options: { webcompat: true, lexical: true } },
     { code: 'do async function f(){} while (x);', options: { lexical: true } },
     {
-      code: `if (x) x;
-    else async function f(){}`,
+      code: outdent`
+        if (x) x;
+        else async function f(){}
+      `,
       options: { lexical: true },
     },
     {
-      code: `if (x) x;
-    else async function *f(){}`,
+      code: outdent`
+        if (x) x;
+        else async function *f(){}
+      `,
       options: { lexical: true },
     },
     {
-      code: `if (x) x;
-    else function *f(){}`,
+      code: outdent`
+        if (x) x;
+        else function *f(){}
+      `,
       options: { lexical: true },
     },
     {
-      code: `if (x) x;
-    else function(){}`,
+      code: outdent`
+        if (x) x;
+        else function(){}
+      `,
       options: { lexical: true },
     },
     { code: 'if (x) async function f(){}', options: { lexical: true } },

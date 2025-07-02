@@ -1,5 +1,6 @@
 import { describe } from 'vitest';
 import { pass, fail } from '../../test-utils';
+import { outdent } from 'outdent';
 
 describe('Statements  Switch', () => {
   fail('Statements  Switch (fail)', [
@@ -17,20 +18,24 @@ describe('Statements  Switch', () => {
 
   pass('Statements  Switch (pass)', [
     {
-      code: `switch (X) {
-        case k:
-          foo: bar: function f(){}
-      }`,
+      code: outdent`
+        switch (X) {
+          case k:
+            foo: bar: function f(){}
+        }
+      `,
       options: { webcompat: true },
     },
     {
-      code: `for (let i = 0; i < 1; ++i) {
-        switch (a) {
-          case 2:
-              foo:a = 3;
-              break;
+      code: outdent`
+        for (let i = 0; i < 1; ++i) {
+            switch (a) {
+              case 2:
+                  foo:a = 3;
+                  break;
+            }
         }
-    }`,
+      `,
       options: { ranges: true },
     },
     { code: 'switch(foo) {}', options: { ranges: true } },

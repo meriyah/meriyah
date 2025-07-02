@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Expressions - Call', () => {
   for (const arg of [
@@ -259,13 +260,15 @@ describe('Expressions - Call', () => {
 
   pass('Expressions - Call (pass)', [
     {
-      code: ` obj
-                          .foo
-                              ["bar"]
-                                  .baz()
-                                      .foo
-                                          ["bar"]()
-                                              .baz()()`,
+      code: outdent`
+        obj
+          .foo
+              ["bar"]
+                  .baz()
+                      .foo
+                          ["bar"]()
+                              .baz()()
+      `,
       options: { ranges: true },
     },
     'async(x,) => x',

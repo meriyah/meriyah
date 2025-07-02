@@ -1,5 +1,6 @@
 import { describe } from 'vitest';
 import { pass, fail } from '../../test-utils';
+import { outdent } from 'outdent';
 
 describe('Statements - Do while', () => {
   fail('Statements - Do while (fail)', [
@@ -26,50 +27,62 @@ describe('Statements - Do while', () => {
   pass('Statements - Do while (pass)', [
     `do;while(0) 0;`,
     {
-      code: `do x
-    while ({ [y]: {} ? null : false  })`,
+      code: outdent`
+        do x
+        while ({ [y]: {} ? null : false  })
+      `,
       options: { ranges: true },
     },
     'do async \n while (y)',
     'do async \n () \n while (y)',
     'do while (x) continue \n while (x);',
     {
-      code: `do if(x=>{});else n
-      while(y)`,
+      code: outdent`
+        do if(x=>{});else n
+        while(y)
+      `,
       options: { ranges: true },
     },
     {
-      code: `do
-      if(x=>{});
-    while(y)`,
+      code: outdent`
+        do
+          if(x=>{});
+        while(y)
+      `,
       options: { ranges: true },
     },
     {
-      code: `do
-      for((function(){});;)x
-    while(x);`,
+      code: outdent`
+        do
+          for((function(){});;)x
+        while(x);
+      `,
       options: { ranges: true },
     },
     {
-      code: `do
-        (function(){})
-      while(y)`,
+      code: outdent`
+        do
+          (function(){})
+        while(y)
+      `,
       options: { ranges: true },
     },
     { code: 'do h(function(){});while(x)', options: { webcompat: true } },
     { code: 'do if(8)function s(){}while(y)', options: { webcompat: true } },
     {
-      code: `
-do if(8)function s(){}
-while(y)
-`,
+      code: outdent`
+        do if(8)function s(){}
+        while(y)
+      `,
       options: { webcompat: true },
     },
 
     {
-      code: `do
-      ()=>x
-    while(c)`,
+      code: outdent`
+        do
+          ()=>x
+        while(c)
+      `,
       options: { webcompat: true, ranges: true },
     },
     { code: 'do foo; while (bar);', options: { webcompat: true, ranges: true } },

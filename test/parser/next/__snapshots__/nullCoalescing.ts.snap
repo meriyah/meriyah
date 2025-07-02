@@ -316,8 +316,8 @@ exports[`Next - Nullish Coalescing > Next - Null Coalescing (pass) > 1 << null ?
 `;
 
 exports[`Next - Nullish Coalescing > Next - Null Coalescing (pass) > a
-        ?? b
-        ?? c; 1`] = `
+  ?? b
+  ?? c; 1`] = `
 {
   "body": [
     {

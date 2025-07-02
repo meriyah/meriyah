@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Declarations - Var', () => {
   for (const arg of [
@@ -872,8 +873,10 @@ describe('Declarations - Var', () => {
     'for (var {x : y} of obj);',
     { code: "var o = { get [/./.exec('')](){} }", options: { ranges: true, raw: true } },
     {
-      code: `var [ a, , b ] = list;
-      [ b, a ] = [ a, b ]`,
+      code: outdent`
+        var [ a, , b ] = list;
+        [ b, a ] = [ a, b ]
+      `,
       options: { ranges: true },
     },
     `var [ a, , b ] = list

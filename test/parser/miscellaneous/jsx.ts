@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Miscellaneous - JSX', () => {
   for (const arg of [
@@ -123,16 +124,18 @@ describe('Miscellaneous - JSX', () => {
   pass('Miscellaneous - JSX (pass)', [
     { code: `<!--ccc-->`, options: { jsx: true } },
     {
-      code: `class Columns extends React.Component {
-        render() {
-          return (
-            <>
-              <td>Hello</td>
-              <td>World</td>
-            </>
-          );
+      code: outdent`
+        class Columns extends React.Component {
+          render() {
+            return (
+              <>
+                <td>Hello</td>
+                <td>World</td>
+              </>
+            );
+          }
         }
-      }`,
+      `,
       options: { jsx: true, ranges: true, loc: true },
     },
     { code: `<div>{111}</div>`, options: { jsx: true, ranges: true } },
@@ -162,34 +165,40 @@ describe('Miscellaneous - JSX', () => {
     { code: `<X data-prop={x ? <Y prop={2} /> : <Z>\n</Z>}></X>`, options: { jsx: true } },
     { code: `/** @jsx CUSTOM_DOM */<a></a>`, options: { jsx: true } },
     {
-      code: `import React from 'react'
-     const Component = () => (
-       <div>Hello, World</div>
-     )`,
+      code: outdent`
+        import React from 'react'
+        const Component = () => (
+          <div>Hello, World</div>
+        )
+      `,
       options: { jsx: true, module: true },
     },
     {
-      code: `<Basic>
-       <BasicChild>
-         <BasicChild>
-           <BasicChild>
-             Title 2
-           </BasicChild>
-         </BasicChild>
-       </BasicChild>
-     </Basic>`,
+      code: outdent`
+        <Basic>
+          <BasicChild>
+            <BasicChild>
+              <BasicChild>
+                Title 2
+              </BasicChild>
+            </BasicChild>
+          </BasicChild>
+        </Basic>
+      `,
       options: { jsx: true, module: true },
     },
     {
-      code: `<div>
-     one
-     <div>
-       two
-       <span>
-         three
-       </span>
-     </div>
-   </div>`,
+      code: outdent`
+        <div>
+          one
+          <div>
+            two
+            <span>
+              three
+            </span>
+          </div>
+        </div>
+      `,
       options: { jsx: true },
     },
     { code: `<>Fragment</>`, options: { jsx: true } },
@@ -203,43 +212,51 @@ describe('Miscellaneous - JSX', () => {
     { code: `<><span>1</span><><span>2.1</span><span>2.2</span></><span>3</span></>;`, options: { jsx: true } },
     { code: `<><span> hi </span> <div>bye</div> </>`, options: { jsx: true } },
     {
-      code: `<>
-     <>
-       <>
-        Ghost!
-       </>
-     </>
-   </>`,
+      code: outdent`
+        <>
+          <>
+            <>
+             Ghost!
+            </>
+          </>
+        </>
+      `,
       options: { jsx: true },
     },
     {
-      code: `<>
-     <>
-       <>
-         super deep
-       </>
-     </>
-   </>`,
+      code: outdent`
+        <>
+          <>
+            <>
+              super deep
+            </>
+          </>
+        </>
+      `,
       options: { jsx: true },
     },
     {
-      code: `<dl>
-     {props.items.map(item => (
-       <React.Fragment key={item.id}>
-         <dt>{item.term}</dt>
-         <dd>{item.description}</dd>
-       </React.Fragment>
-     ))}
-   </dl>`,
+      code: outdent`
+        <dl>
+          {props.items.map(item => (
+            <React.Fragment key={item.id}>
+              <dt>{item.term}</dt>
+              <dd>{item.description}</dd>
+            </React.Fragment>
+          ))}
+        </dl>
+      `,
       options: { jsx: true },
     },
 
     {
-      code: `<em>
-     One
-     Two
-     Three
-     </em>`,
+      code: outdent`
+        <em>
+        One
+        Two
+        Three
+        </em>
+      `,
       options: { jsx: true },
     },
     {
@@ -262,25 +279,27 @@ describe('Miscellaneous - JSX', () => {
 
     { code: 'var component = <Component {...props} />;', options: { jsx: true } },
     {
-      code: `class SayHello extends React.Component {
-      constructor(props) {
-        super(props);
-        this.state = {message: 'Hello!'};
-        // This line is important!
-        this.handleClick = this.handleClick.bind(this);
-      }
-      handleClick() {
-        alert(this.state.message);
-      }
-      render() {
-        // Because "this.handleClick" is bound, we can use it as an event handler.
-        return (
-          <button onClick={this.handleClick}>
-            Say hello
-          </button>
-        );
-      }
-    }`,
+      code: outdent`
+        class SayHello extends React.Component {
+          constructor(props) {
+            super(props);
+            this.state = {message: 'Hello!'};
+            // This line is important!
+            this.handleClick = this.handleClick.bind(this);
+          }
+          handleClick() {
+            alert(this.state.message);
+          }
+          render() {
+            // Because "this.handleClick" is bound, we can use it as an event handler.
+            return (
+              <button onClick={this.handleClick}>
+                Say hello
+              </button>
+            );
+          }
+        }
+      `,
       options: { jsx: true },
     },
     { code: '<a>{\r\n}</a>', options: { jsx: true } },
@@ -334,27 +353,33 @@ describe('Miscellaneous - JSX', () => {
     { code: '<Component {...{...props, y: 1 }} />', options: { jsx: true } },
     { code: '<Component {...props} y={1} />', options: { jsx: true } },
     {
-      code: `var div = (
-      <div className='foo'>
-        <img src='foo.gif'/>
-        <img src='bar.gif'/>
-      </div>
-    );`,
+      code: outdent`
+        var div = (
+          <div className='foo'>
+            <img src='foo.gif'/>
+            <img src='bar.gif'/>
+          </div>
+        );
+      `,
       options: { jsx: true },
     },
     {
-      code: `<h1>
-     Hello {name}
-     !
-   </h1>`,
+      code: outdent`
+        <h1>
+          Hello {name}
+          !
+        </h1>
+      `,
       options: { jsx: true },
     },
     {
-      code: `var div = (
-      <div>
-        { images.map( src => <img src={src}/> ) }
-      </div>
-    );`,
+      code: outdent`
+        var div = (
+          <div>
+            { images.map( src => <img src={src}/> ) }
+          </div>
+        );
+      `,
       options: { jsx: true },
     },
     { code: '<div {...c}> {...children}{a}{...b}</div>', options: { jsx: true } },
@@ -367,10 +392,12 @@ describe('Miscellaneous - JSX', () => {
     { code: '<a b={x ? <c /> : <d />} />', options: { jsx: true } },
     { code: '<Test {...{a: "foo"}} {...{b: 123}} />;', options: { jsx: true } },
     {
-      code: `ReactDOM.render(
-        <CommentBox url="/api/comments" pollInterval={2000} />,
-        document.getElementById('content')
-      );`,
+      code: outdent`
+        ReactDOM.render(
+          <CommentBox url="/api/comments" pollInterval={2000} />,
+          document.getElementById('content')
+        );
+      `,
       options: { jsx: true },
     },
     { code: '<div>{0}</div>;', options: { jsx: true } },
@@ -433,11 +460,13 @@ describe('Miscellaneous - JSX', () => {
     { code: '<img width={320}/>', options: { jsx: true, ranges: true } },
     { code: '<日本語></日本語>', options: { jsx: true } },
     {
-      code: `<em>
-     One
-     Two
-     Three
-     </em>`,
+      code: outdent`
+        <em>
+        One
+        Two
+        Three
+        </em>
+      `,
       options: { jsx: true },
     },
 
@@ -447,10 +476,12 @@ describe('Miscellaneous - JSX', () => {
     { code: `<div style={{color: 'red', fontWeight: 'bold'}} />`, options: { jsx: true } },
     { code: '<h1>Hello {data.target}</h1>', options: { jsx: true } },
     {
-      code: `<div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
-     <h1>Move the mouse around!</h1>
-     <p>The current mouse position is ({this.state.x}, {this.state.y})</p>
-   </div>`,
+      code: outdent`
+        <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
+          <h1>Move the mouse around!</h1>
+          <p>The current mouse position is ({this.state.x}, {this.state.y})</p>
+        </div>
+      `,
       options: { jsx: true },
     },
     { code: 'var element = <Hello name={name}/>', options: { jsx: true } },

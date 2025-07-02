@@ -2,6 +2,7 @@ import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Lexical - Try', () => {
   for (const declaration of ['var e', 'var f, e', 'let {} = 0', 'let {e:f} = 0', '{ function e(){} }']) {
@@ -154,8 +155,10 @@ describe('Lexical - Try', () => {
     { code: 'try {} catch (x) { { let x } ', options: { webcompat: true, lexical: true } },
     { code: 'try {} catch (x) { let x }', options: { webcompat: true, lexical: true } },
     {
-      code: `try {} catch (foo) {}  let foo;
-    try {} catch (foo) {}  let foo;`,
+      code: outdent`
+        try {} catch (foo) {}  let foo;
+        try {} catch (foo) {}  let foo;
+      `,
       options: { lexical: true },
     },
   ]);

@@ -400,22 +400,22 @@ exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > // 1`] = `
 `;
 
 exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > // Single line comment
-      // Single line comment
-      // Single line comment
-      // Single line comment
-      /**/
-      /* MLC on one line */
-      /*
-      MLC
-      on
-      multiple
-      lines
-      */ 1`] = `
+// Single line comment
+// Single line comment
+// Single line comment
+/**/
+/* MLC on one line */
+/*
+MLC
+on
+multiple
+lines
+*/ 1`] = `
 {
   "body": [],
   "loc": {
     "end": {
-      "column": 8,
+      "column": 2,
       "line": 12,
     },
     "start": {
@@ -1005,27 +1005,27 @@ exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > while (i--
 `;
 
 exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > while (true) {
-        /**
-         * comments in empty block
-         */
-      } 1`] = `
+  /**
+   * comments in empty block
+   */
+} 1`] = `
 {
   "body": [
     {
       "body": {
         "body": [],
-        "end": 81,
+        "end": 57,
         "range": [
           13,
-          81,
+          57,
         ],
         "start": 13,
         "type": "BlockStatement",
       },
-      "end": 81,
+      "end": 57,
       "range": [
         0,
-        81,
+        57,
       ],
       "start": 0,
       "test": {
@@ -1041,10 +1041,10 @@ exports[`Miscellaneous - Comments > Miscellaneous - Comments (pass) > while (tru
       "type": "WhileStatement",
     },
   ],
-  "end": 81,
+  "end": 57,
   "range": [
     0,
-    81,
+    57,
   ],
   "sourceType": "script",
   "start": 0,

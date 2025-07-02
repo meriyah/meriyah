@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Next - Public fields', () => {
   fail('Public fields (fail)', [
@@ -183,22 +184,24 @@ describe('Next - Public fields', () => {
     { code: `class A { ['a'] = 0; b; }`, options: { next: true, ranges: true } },
     { code: 'class Some { render=( )=>{ return null; }}', options: { next: true, ranges: true } },
     {
-      code: `{
-        class X {
-          static p = function() { return arguments[0]; }
-        }
-      }
-
-      {
-        class X {
-          static t = () => {
-            function p() { return arguments[0]; };
-            return p;
+      code: outdent`
+        {
+          class X {
+            static p = function() { return arguments[0]; }
           }
         }
 
-        let p = X.t();
-      }`,
+        {
+          class X {
+            static t = () => {
+              function p() { return arguments[0]; };
+              return p;
+            }
+          }
+
+          let p = X.t();
+        }
+      `,
       options: { next: true, ranges: true },
     },
     { code: 'class X { static p = eval("(function() { return arguments[0]; })(1)"); }', options: { next: true } },
