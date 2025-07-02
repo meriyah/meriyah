@@ -442,9 +442,9 @@ export function classifyIdentifier(parser: Parser, context: Context, t: Token): 
 }
 
 export type Location = {
-  index: number;
-  line: number;
-  column: number;
+  readonly index: number;
+  readonly line: number;
+  readonly column: number;
 };
 
 export function getOwnProperty<T>(object: Record<string | number, T>, key: string | number): T | undefined {
