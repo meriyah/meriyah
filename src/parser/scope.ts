@@ -34,6 +34,8 @@ export class Scope {
   // Retain the scopeError on scope for later decision.
   scopeError?: ScopeError;
 
+  variableBindings = new Map<string, BindingKind>();
+
   constructor(
     public readonly parser: Parser,
     public readonly type: ScopeKind = ScopeKind.Block,
@@ -73,12 +75,13 @@ export class Scope {
   addVarName(context: Context, name: string, kind: BindingKind): void {
     const { parser } = this;
     // eslint-disable-next-line @typescript-eslint/no-this-alias
-    let currentScope: any = this;
+    let currentScope: Scope | undefined = this;
 
     while (currentScope && (currentScope.type & ScopeKind.FunctionRoot) === 0) {
-      const value: ScopeKind = currentScope['#' + name];
+      const { variableBindings } = currentScope;
+      const value = variableBindings.get(name);
 
-      if (value & BindingKind.LexicalBinding) {
+      if (value && value & BindingKind.LexicalBinding) {
         if (
           parser.options.webcompat &&
           (context & Context.Strict) === 0 &&
@@ -91,18 +94,25 @@ export class Scope {
         }
       }
       if (currentScope === this) {
-        if (value & BindingKind.ArgumentList && kind & BindingKind.ArgumentList) {
+        if (value && value & BindingKind.ArgumentList && kind & BindingKind.ArgumentList) {
           currentScope.recordScopeError(Errors.DuplicateBinding, name);
         }
       }
-      if (value & BindingKind.CatchPattern || (value & BindingKind.CatchIdentifier && !parser.options.webcompat)) {
+      if (
+        value &&
+        (value & BindingKind.CatchPattern || (value & BindingKind.CatchIdentifier && !parser.options.webcompat))
+      ) {
         parser.report(Errors.DuplicateBinding, name);
       }
 
-      currentScope['#' + name] = kind;
+      currentScope.variableBindings.set(name, kind);
 
       currentScope = currentScope.parent;
     }
+  }
+
+  hasVariable(name: string) {
+    return this.variableBindings.has(name);
   }
 
   /**
@@ -115,7 +125,7 @@ export class Scope {
    */
   addBlockName(context: Context, name: string, kind: BindingKind, origin: Origin) {
     const { parser } = this;
-    const value = (this as any)['#' + name];
+    const value = this.variableBindings.get(name);
 
     if (value && (value & BindingKind.Empty) === 0) {
       if (kind & BindingKind.ArgumentList) {
@@ -135,8 +145,8 @@ export class Scope {
 
     if (
       this.type & ScopeKind.FunctionBody &&
-      (this as any).parent['#' + name] &&
-      ((this as any).parent['#' + name] & BindingKind.Empty) === 0
+      this.parent?.hasVariable(name) &&
+      (this.parent.variableBindings.get(name)! & BindingKind.Empty) === 0
     ) {
       parser.report(Errors.DuplicateBinding, name);
     }
@@ -148,11 +158,11 @@ export class Scope {
     }
 
     if (this.type & ScopeKind.CatchBlock) {
-      if ((this as any).parent['#' + name] & BindingKind.CatchIdentifierOrPattern)
+      if (this.parent!.variableBindings.get(name)! & BindingKind.CatchIdentifierOrPattern)
         parser.report(Errors.ShadowedCatchClause, name);
     }
 
-    (this as any)['#' + name] = kind;
+    this.variableBindings.set(name, kind);
   }
 
   /**

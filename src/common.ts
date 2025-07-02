@@ -8,7 +8,6 @@ import { type Parser } from './parser/parser';
  */
 export const enum Context {
   None = 0,
-
   Strict = 1 << 0,
   Module = 1 << 1, // Current code should be parsed as a module body
   InSwitch = 1 << 2,
@@ -419,20 +418,6 @@ export function isEqualTagName(elementName: any): any {
     /* istanbul ignore next */
     default:
     // ignore
-  }
-}
-
-/**
- * Appends a name to the `ExportedBindings` of the `ExportsList`,
- *
- * @see [Link](https://tc39.es/ecma262/$sec-exports-static-semantics-exportedbindings)
- *
- * @param parser Parser object
- * @param name Exported binding name
- */
-export function addBindingToExports(parser: Parser, name: string): void {
-  if (parser.exportedBindings !== void 0 && name !== '') {
-    parser.exportedBindings['#' + name] = 1;
   }
 }
 
