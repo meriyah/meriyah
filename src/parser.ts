@@ -7763,10 +7763,11 @@ function parseDecoratorList(
   const start = parser.tokenStart;
 
   nextToken(parser, context | Context.AllowRegExp);
+  const expressionStart = parser.tokenStart;
 
   let expression = parsePrimaryExpression(parser, context, privateScope, BindingKind.Empty, 0, 1, 0, 1, start);
 
-  expression = parseMemberOrUpdateExpression(parser, context, privateScope, expression, 0, 0, parser.tokenStart);
+  expression = parseMemberOrUpdateExpression(parser, context, privateScope, expression, 0, 0, expressionStart);
 
   return parser.finishNode<ESTree.Decorator>(
     {
