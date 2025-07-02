@@ -356,5 +356,16 @@ describe('Next - Decorators', () => {
     { code: '@dec export default class {};', options: { next: true, module: true, ranges: true, loc: true } },
     { code: 'export @dec class E {};', options: { next: true, module: true, ranges: true, loc: true } },
     { code: 'export default @dec class {};', options: { next: true, module: true, ranges: true, loc: true } },
+    {
+      code: `
+class C {
+  @dec method() {}
+  @dec static method() {}
+  @dec field;
+  @dec static field;
+}
+`,
+      options: { next: true, ranges: true, loc: true },
+    },
   ]);
 });
