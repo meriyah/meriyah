@@ -185,9 +185,7 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
   const { source } = parser;
 
   // These three are only for HTMLClose comment
-  let startIndex = parser.index;
-  let startLine = parser.line;
-  let startColumn = parser.column;
+  let start = parser.currentLocation;
 
   while (parser.index < parser.end) {
     parser.tokenIndex = parser.index;
@@ -282,9 +280,7 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
                 parser.column += 3;
                 parser.currentChar = source.charCodeAt((parser.index += 3));
                 state = skipSingleHTMLComment(parser, source, state, context, CommentType.HTMLOpen, parser.tokenStart);
-                startIndex = parser.tokenIndex;
-                startLine = parser.tokenLine;
-                startColumn = parser.tokenColumn;
+                start = parser.tokenStart;
                 continue;
               }
               return Token.LessThan;
@@ -389,14 +385,8 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
             if ((state & LexerState.NewLine || isStartOfLine) && parser.currentChar === Chars.GreaterThan) {
               if (!parser.options.webcompat) parser.report(Errors.HtmlCommentInWebCompat);
               advanceChar(parser);
-              state = skipSingleHTMLComment(parser, source, state, context, CommentType.HTMLClose, {
-                index: startIndex,
-                line: startLine,
-                column: startColumn,
-              });
-              startIndex = parser.tokenIndex;
-              startLine = parser.tokenLine;
-              startColumn = parser.tokenColumn;
+              state = skipSingleHTMLComment(parser, source, state, context, CommentType.HTMLClose, start);
+              start = parser.tokenStart;
               continue;
             }
 
@@ -419,17 +409,13 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
             if (ch === Chars.Slash) {
               advanceChar(parser);
               state = skipSingleLineComment(parser, source, state, CommentType.Single, parser.tokenStart);
-              startIndex = parser.tokenIndex;
-              startLine = parser.tokenLine;
-              startColumn = parser.tokenColumn;
+              start = parser.tokenStart;
               continue;
             }
             if (ch === Chars.Asterisk) {
               advanceChar(parser);
               state = skipMultiLineComment(parser, source, state) as LexerState;
-              startIndex = parser.tokenIndex;
-              startLine = parser.tokenLine;
-              startColumn = parser.tokenColumn;
+              start = parser.tokenStart;
               continue;
             }
             if (context & Context.AllowRegExp) {
