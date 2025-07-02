@@ -281,16 +281,7 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
               ) {
                 parser.column += 3;
                 parser.currentChar = source.charCodeAt((parser.index += 3));
-                state = skipSingleHTMLComment(
-                  parser,
-                  source,
-                  state,
-                  context,
-                  CommentType.HTMLOpen,
-                  parser.tokenIndex,
-                  parser.tokenLine,
-                  parser.tokenColumn,
-                );
+                state = skipSingleHTMLComment(parser, source, state, context, CommentType.HTMLOpen, parser.tokenStart);
                 startIndex = parser.tokenIndex;
                 startLine = parser.tokenLine;
                 startColumn = parser.tokenColumn;
@@ -398,16 +389,11 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
             if ((state & LexerState.NewLine || isStartOfLine) && parser.currentChar === Chars.GreaterThan) {
               if (!parser.options.webcompat) parser.report(Errors.HtmlCommentInWebCompat);
               advanceChar(parser);
-              state = skipSingleHTMLComment(
-                parser,
-                source,
-                state,
-                context,
-                CommentType.HTMLClose,
-                startIndex,
-                startLine,
-                startColumn,
-              );
+              state = skipSingleHTMLComment(parser, source, state, context, CommentType.HTMLClose, {
+                index: startIndex,
+                line: startLine,
+                column: startColumn,
+              });
               startIndex = parser.tokenIndex;
               startLine = parser.tokenLine;
               startColumn = parser.tokenColumn;
@@ -432,15 +418,7 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
             const ch = parser.currentChar;
             if (ch === Chars.Slash) {
               advanceChar(parser);
-              state = skipSingleLineComment(
-                parser,
-                source,
-                state,
-                CommentType.Single,
-                parser.tokenIndex,
-                parser.tokenLine,
-                parser.tokenColumn,
-              );
+              state = skipSingleLineComment(parser, source, state, CommentType.Single, parser.tokenStart);
               startIndex = parser.tokenIndex;
               startLine = parser.tokenLine;
               startColumn = parser.tokenColumn;
