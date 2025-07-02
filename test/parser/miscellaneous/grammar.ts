@@ -2993,17 +2993,19 @@ describe('Miscellaneous - Cover grammar', () => {
     'function f(){ ++a; ++a()[b]; }',
     'var obj = { a: { b: ext.b, c: ext["c"], d: { set v(val) { ext.d = val; } }.v } = { b: "b", c: "c", d: "d" } };',
     'var obj = [...[ ext.b, ext["c"], { set v(val) { ext.d = val; } }.v ] = ["b", "c", "d" ]  ];',
-    `({
-      obj: {
-        x: result.a = 10,
-        [computePropertyName("y")]: result.b = false,
-      } = {}
-    } = { obj: {
-      get x() { return loadValue(".temp.obj.x", undefined); },
-      set x(value) { assertUnreachable(); },
-      get y() { return loadValue(".temp.obj.y", undefined); },
-      set y(value) { assertUnreachable(); }
-    }});`,
+    outdent`
+      ({
+        obj: {
+          x: result.a = 10,
+          [computePropertyName("y")]: result.b = false,
+        } = {}
+      } = { obj: {
+        get x() { return loadValue(".temp.obj.x", undefined); },
+        set x(value) { assertUnreachable(); },
+        get y() { return loadValue(".temp.obj.y", undefined); },
+        set y(value) { assertUnreachable(); }
+      }});
+    `,
     '[ a = (initialized = true, initializer) ] = value',
     '[ obj.a = (initialized2 = true, initializer) ] = value',
     '[ x = "x" in {} ] = value',

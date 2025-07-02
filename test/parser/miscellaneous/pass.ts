@@ -8364,53 +8364,62 @@ f(w, ...[x, y,], z);
 				bar() {}
 			}
 		`,
-    `var obj = { ...{a: 1,}, b: 2, ...{c: 3,}, ...d, e, ...{f: 6,},};
-    obj = { a: 1, b: 2, };
-    obj = { a: 1, ...{b: 2} };
-    obj = { a: 1, ...{b: 2,} };
-    obj = { a: 1, ...{b: 2}, };
-    obj = { a: 1, ...{b: 2,}, };
-  `,
-    `do {
-  const square = i * i;
-  setTimeout( function () {
-    log( square );
-  }, i * 100 );
-} while ( i-- );`,
+    outdent`
+      var obj = { ...{a: 1,}, b: 2, ...{c: 3,}, ...d, e, ...{f: 6,},};
+      obj = { a: 1, b: 2, };
+      obj = { a: 1, ...{b: 2} };
+      obj = { a: 1, ...{b: 2,} };
+      obj = { a: 1, ...{b: 2}, };
+      obj = { a: 1, ...{b: 2,}, };
+    `,
+    outdent`
+      do {
+        const square = i * i;
+        setTimeout( function () {
+          log( square );
+        }, i * 100 );
+      } while ( i-- );
+    `,
     '({a,b} = {c,d} = {a:1,b:2,c:3,d:4});',
     'var a,b,c,d; [a,b] = [c,d] = [1,2];',
-    `for (r = 0; r < 1; r++) {
-  let e = 1,
-    o = 2;
-  switch (o) {
-    case 2:
-      let e = 4
-      console.log(e)
-      break;
-  }
-  console.log(e)
-}`,
-    `for (let i = 0; i < 5; ++i) {
-  if (Math.random() > 0) {
-    const square = i * i;
-    setTimeout(function() { console.log(square); }, 1);
-  }
-}`,
+    outdent`
+      for (r = 0; r < 1; r++) {
+        let e = 1,
+          o = 2;
+        switch (o) {
+          case 2:
+            let e = 4
+            console.log(e)
+            break;
+        }
+        console.log(e)
+      }
+    `,
+    outdent`
+      for (let i = 0; i < 5; ++i) {
+        if (Math.random() > 0) {
+          const square = i * i;
+          setTimeout(function() { console.log(square); }, 1);
+        }
+      }
+    `,
     'new Test().add(...numbers).add(...letters);',
     'x.add(...numbers).add(...letters);',
     'let a = () => /* = */ { return "b2" }',
     'let a = () => { /* = */ return "b2" }',
     'let a = () /* = */ => { return "b2" }',
     '[ arrow = () => {} ] = vals;',
-    `function test(state, action) {
-  return {
-    ...state,
-    [action.page]: {
-      ...state[action.page],
-      [action.key]: action.value
-    }
-  };
-}`,
+    outdent`
+      function test(state, action) {
+        return {
+          ...state,
+          [action.page]: {
+            ...state[action.page],
+            [action.key]: action.value
+          }
+        };
+      }
+    `,
     'switch (answer) { case 42: let t = 42; break; }',
     'e => { 42; }',
     'e => ({ property: 42 })',
@@ -8572,43 +8581,54 @@ f(w, ...[x, y,], z);
     'var f4 = function () { for (var j;;) {}  }',
     "var unevalf = function(x) { return '(' + x.toString() + ')'; }",
     'for (var x in [1,2,3]) {}',
-    `function Crash() {
-      for (var key in [0]) {
-        try { } finally { continue; }
+    outdent`
+      function Crash() {
+        for (var key in [0]) {
+          try { } finally { continue; }
+        }
       }
-    }`,
-    `function Y(x) {
-      var slot = "bar";
-      return function (a) {
-        x.apply(this, arguments);
-        return slot === 'bar';
-      };
-    }`,
-    `function Test() {
-      var left  = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-      var right = "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY";
-      for (var i = 0; i < 100000; i++) {
-        var cons = left + right;
-        var substring = cons.substring(20, 80);
-        var index = substring.indexOf('Y');
-        assertEquals(34, index);
+    `,
+    outdent`
+      function Y(x) {
+        var slot = "bar";
+        return function (a) {
+          x.apply(this, arguments);
+          return slot === 'bar';
+        };
       }
-    }`,
-    `for (var i = 1000; i < 1000000; i += 19703) {
-      new Array(i);
-    }`,
-    `function generate(n) {
-      var s = '{';
-      for (var i = 0; i < n; i++) {
-         if (i > 0) s += ', ';
-         s += key(random() % 10 + 7);
-         s += ':';
-         s += value();
+    `,
+    outdent`
+      function Test() {
+        var left  = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+        var right = "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY";
+        for (var i = 0; i < 100000; i++) {
+          var cons = left + right;
+          var substring = cons.substring(20, 80);
+          var index = substring.indexOf('Y');
+          assertEquals(34, index);
+        }
       }
-      s += '}';
-      return s;
-    }`,
-    `function bar() {
+    `,
+    outdent`
+      for (var i = 1000; i < 1000000; i += 19703) {
+        new Array(i);
+      }
+    `,
+    outdent`
+      function generate(n) {
+        var s = '{';
+        for (var i = 0; i < n; i++) {
+           if (i > 0) s += ', ';
+           s += key(random() % 10 + 7);
+           s += ':';
+           s += value();
+        }
+        s += '}';
+        return s;
+      }
+    `,
+    outdent`
+      function bar() {
       var __v_45;
         for (__v_45 = 0; __v_45 < 64; __v_63++) {
         }
@@ -8616,7 +8636,8 @@ f(w, ...[x, y,], z);
         }
         for (__v_45 = 128; __v_45 < 256; __v_45++) {
         }
-      }`,
+      }
+    `,
     "var bar = foo.replace('x', 'y', 'z');",
     'for (var i = 0; i < 10; i++) { ({})[h]; }',
     'delete a.__proto__.__proto__[Symbol.iterator];',
@@ -8770,77 +8791,83 @@ f(w, ...[x, y,], z);
     'if (true) { if (true) { function f() { var var1 = 5; } } }',
     ' x = (tmp = -1500000000, tmp)+(tmp = -2000000000, tmp);',
     ' x = -1500000000 + -2000000000;',
-    ` new class extends Object {
+    outdent`
+      new class extends Object {
         constructor() {
           super();
           delete this;
         }
-      }`,
+      }
+    `,
     'function store(o, i, v) { o[i] = v; }',
     'function f() { ++(this.foo) }',
     'var a = o[o ^= 1];',
     'var o = { f: "x" ? function () {} : function () {} };',
     'var a = new p(1), b = new p(2);',
     "o.__defineGetter__('foo', function () { return null; });",
-    `function break_from_for_in() {
-      L: {
-        try {
-          for (var x in [1,2,3]) {
-            break L;
-          }
-        } finally {}
-      }
-    }
-
-    function break_from_finally() {
-      L: {
-        try {
-        } finally {
-          break L;
+    outdent`
+      function break_from_for_in() {
+        L: {
+          try {
+            for (var x in [1,2,3]) {
+              break L;
+            }
+          } finally {}
         }
       }
-    }
 
-    for (var i = 0; i < 10; i++) {
-      break_from_for_in();
-      gc();
-    }
+      function break_from_finally() {
+        L: {
+          try {
+          } finally {
+            break L;
+          }
+        }
+      }
 
-    for (var j = 0; j < 10; j++) {
-      break_from_finally();
-      gc();
-    }`,
-    `function for_var() {
-      for (var x;;) {
-        if (!x) break;
+      for (var i = 0; i < 10; i++) {
+        break_from_for_in();
+        gc();
       }
-      for (var x; x < 2;) {
-        if (!x) break;
+
+      for (var j = 0; j < 10; j++) {
+        break_from_finally();
+        gc();
       }
-      for (var x = 1;; x++) {
-        if (x == 2) break;
+    `,
+    outdent`
+      function for_var() {
+        for (var x;;) {
+          if (!x) break;
+        }
+        for (var x; x < 2;) {
+          if (!x) break;
+        }
+        for (var x = 1;; x++) {
+          if (x == 2) break;
+        }
       }
-    }
-    function for_let() {
-      for (let x;;) {
-        if (!x) break;
+      function for_let() {
+        for (let x;;) {
+          if (!x) break;
+        }
+        for (let x; x < 2;) {
+          if (!x) break;
+        }
+        for (let x = 1;; x++) {
+          if (x == 2) break;
+        }
       }
-      for (let x; x < 2;) {
-        if (!x) break;
+      for (const x = 1;;) {
+        if (x == 1) break;
       }
-      for (let x = 1;; x++) {
-        if (x == 2) break;
+      for (const x = 1; x < 2;) {
+        if (x == 1) break;
       }
-    }
-    for (const x = 1;;) {
-      if (x == 1) break;
-    }
-    for (const x = 1; x < 2;) {
-      if (x == 1) break;
-    }
-    for (const x = 1;; 0) {
-      if (x == 1) break;
-    }`,
+      for (const x = 1;; 0) {
+        if (x == 1) break;
+      }
+    `,
     'x = function(y = 1) {}',
     'function inner2(my_var) { my_var; }',
     'function inner2(my_var) { }',
@@ -8975,15 +9002,19 @@ f(w, ...[x, y,], z);
 
     'a = { b(c=1) {} }',
 
-    `(function () {
-  while (!a || b()) {
-      c();
-  }
-}());`,
+    outdent`
+      (function () {
+        while (!a || b()) {
+            c();
+        }
+      }());
+    `,
     'a = []',
-    `(function () {
-  a(typeof b === 'c');
-}());`,
+    outdent`
+      (function () {
+        a(typeof b === 'c');
+      }());
+    `,
     '(let[let])',
     '({[1*2]:3})',
     'a = { set b (c) {} }',
@@ -8991,55 +9022,67 @@ f(w, ...[x, y,], z);
     '[a] = 1',
     '({ false: 1 })',
     '({*yield(){}})',
-    `var a = {
-  'arguments': 1,
-  'eval': 2
-};`,
+    outdent`
+      var a = {
+        'arguments': 1,
+        'eval': 2
+      };
+    `,
     'var {a} = 1;',
     'var [a = b] = c',
     'for(a; a < 1;);',
     '(function a() {"use strict";return 1;});',
-    `(function(){ return // Comment
-  a; })`,
+    outdent`
+      (function(){ return // Comment
+      a; })
+    `,
     '/*42*/',
     'function *a(){yield ~1}',
-    `with (a)
-// do not optimize it
-(function () {
-  b('c');
-}());`,
+    outdent`
+      with (a)
+      // do not optimize it
+      (function () {
+        b('c');
+      }());
+    `,
     '(a,b) => 1 + 2',
     'a = { set true(b) { c = b } }',
     'function a(b, c) { return b-- > c; }',
-    `(function () {
-  a();
-  function a() {
-      b.c('d');
-  }
-  function a() {
-      b.c('e');
-  }
-}());`,
+    outdent`
+      (function () {
+        a();
+        function a() {
+            b.c('d');
+        }
+        function a() {
+            b.c('e');
+        }
+      }());
+    `,
     'do a(); while (true)',
     'do continue; while(1);',
-    `'use strict';
-var a = {
-    '10': 1,
-    '0x20': 2
-};`,
-    `class a {
-  constructor() {
-  };
-  b() {};
-};
-class c {
-  constructor(...d) {
-  }
-  b() {}
-};
-class e extends a {};
-var f = class g {};
-var h = class {};`,
+    outdent`
+      'use strict';
+      var a = {
+          '10': 1,
+          '0x20': 2
+      };
+    `,
+    outdent`
+      class a {
+        constructor() {
+        };
+        b() {};
+      };
+      class c {
+        constructor(...d) {
+        }
+        b() {}
+      };
+      class e extends a {};
+      var f = class g {};
+      var h = class {};
+    `,
     '((((((((((((((((((((((((((((((((((((((((a.a)))))))))))))))))))))))))))))))))))))))) = 1',
     'a = a += 1',
     '(function*() { yield 1; })',
@@ -9323,75 +9366,81 @@ var h = class {};`,
     "var x = new new Function('this.x = 42');",
     'var f = (x, y) => x + y;',
     '0790',
-    `var a, b, c, d;
-a = (b(), c(), d()) ? 1 : 2;`,
+    outdent`
+      var a, b, c, d;
+      a = (b(), c(), d()) ? 1 : 2;
+    `,
     '(a) => b',
     'function *a(){({get b(){yield}})}',
     '({ *a() {} })',
     'a["b"] = "c";',
     '[, a,,] = 1',
     'class a { ; }',
-    `function a() {
-}
-function b() {
-    return c;
-}
-function d() {
-    return void 1;
-}
-function e() {
-    return void 2;
-}
-function f() {
-    return;
-}
-function g(h, i) {
-    j.k(h, i);
-    l(h);
-    return;
-}
-function m(h, i) {
-    j.k(h, i);
-    if (h) {
-        n(i);
-        l(h);
-        return h + i;
-    }
-    return c;
-}
-function o(h, i) {
-    j.k(h, i);
-    if (h) {
-        n(i);
-        l(h);
-        return void 3;
-    }
-    return h + i;
-}
-function p(h, i) {
-    n(h);
-    q(i);
-    return void 4;
-}
-function r(h, i) {
-    n(h);
-    q(i);
-    return c;
-}
-function s() {
-    return false;
-}
-function t() {
-    return null;
-}
-function u() {
-    return 5;
-}`,
-    `for (var a in b)
-// do not optimize it
-(function () {
-  c('d');
-}());`,
+    outdent`
+      function a() {
+      }
+      function b() {
+          return c;
+      }
+      function d() {
+          return void 1;
+      }
+      function e() {
+          return void 2;
+      }
+      function f() {
+          return;
+      }
+      function g(h, i) {
+          j.k(h, i);
+          l(h);
+          return;
+      }
+      function m(h, i) {
+          j.k(h, i);
+          if (h) {
+              n(i);
+              l(h);
+              return h + i;
+          }
+          return c;
+      }
+      function o(h, i) {
+          j.k(h, i);
+          if (h) {
+              n(i);
+              l(h);
+              return void 3;
+          }
+          return h + i;
+      }
+      function p(h, i) {
+          n(h);
+          q(i);
+          return void 4;
+      }
+      function r(h, i) {
+          n(h);
+          q(i);
+          return c;
+      }
+      function s() {
+          return false;
+      }
+      function t() {
+          return null;
+      }
+      function u() {
+          return 5;
+      }
+    `,
+    outdent`
+      for (var a in b)
+      // do not optimize it
+      (function () {
+        c('d');
+      }());
+    `,
     '[a, {b}, c] = obj',
     '[a, {b:d}, c] = obj',
     '[a, {[b]:d}, c] = obj',
@@ -9439,44 +9488,60 @@ function u() {
     'class a extends b { constructor() { super.c } }',
     '(a)=>{"use strict";}',
     'function* a() {}',
-    `function a() {
-      delete new.target;
-      typeof new.target;
-      -new.target;
-      !new.target;
-    }`,
-    `function b() {
-      void (new.target);
-      +(new.target);
-      ~(new.target);
-    }`,
-    `function c() {
-      delete void typeof +-~! (new.target);
-    }`,
-    `async function d() {
-      await new.target;
-    }`,
-    `function F()
-    {
-    if (!new.target) return new F
-    }`,
+    outdent`
+      function a() {
+        delete new.target;
+        typeof new.target;
+        -new.target;
+        !new.target;
+      }
+    `,
+    outdent`
+      function b() {
+        void (new.target);
+        +(new.target);
+        ~(new.target);
+      }
+    `,
+    outdent`
+      function c() {
+        delete void typeof +-~! (new.target);
+      }
+    `,
+    outdent`
+      async function d() {
+        await new.target;
+      }
+    `,
+    outdent`
+      function F()
+      {
+      if (!new.target) return new F
+      }
+    `,
     'while (true) { break }',
-    `(function () {
-  var a = 1;  // should not hoist this
-  arguments[2] = 3;
-  (function () {
-      eval('');
-  }());
-}());`,
+    outdent`
+      (function () {
+        var a = 1;  // should not hoist this
+        arguments[2] = 3;
+        (function () {
+            eval('');
+        }());
+      }());
+    `,
     '(class {set a(b) {"use strict";}})',
-    `var a = {};
-a.b = 1;
-a.c = 2;
-d.e(a.c);`,
-    `(function () {
-  (function () {
-  }());
-}());`,
+    outdent`
+      var a = {};
+      a.b = 1;
+      a.c = 2;
+      d.e(a.c);
+    `,
+    outdent`
+      (function () {
+        (function () {
+        }());
+      }());
+    `,
     '(a) => ((b, c) => (a, b, c))',
     '(class {3() {}})',
     'a !== b',
@@ -9487,19 +9552,22 @@ d.e(a.c);`,
     'let [{a}] = 1',
     '+ /test/',
     'let {} = 1',
-    `(class {;;;
-  ;a(){}})`,
+    outdent`
+      (class {;;;
+      ;a(){}})
+    `,
     'true;false',
     '({ get "a"() {} })',
     '[a, a] = 1',
-    `stream.end = function (data) {
-  if(ended) return
-  ended = true
-  if(arguments.length) stream.write(data)
-  _end() // will emit or queue
-  return stream
-}
-`,
+    outdent`
+      stream.end = function (data) {
+        if(ended) return
+        ended = true
+        if(arguments.length) stream.write(data)
+        _end() // will emit or queue
+        return stream
+      }
+    `,
     'a instanceof b',
     'a in b',
     '[a, {b:d}, c] = obj',
@@ -9551,31 +9619,37 @@ d.e(a.c);`,
     'switch (x) { case x: function f() {} }',
     'try { } catch (e) { function f() {} }',
     '({a} = 0)',
-    `var a;
-    (a) = {};
-    (a.b) = {};
-    (a['c']) = {};`,
-    `// One
-    (1);
+    outdent`
+      var a;
+      (a) = {};
+      (a.b) = {};
+      (a['c']) = {};
+    `,
+    outdent`
+      // One
+      (1);
 
-    /* Two */
-    (2);
+      /* Two */
+      (2);
 
-    (
-      // Three
-      3
-    );
+      (
+        // Three
+        3
+      );
 
-    (/* Four */ 4);`,
+      (/* Four */ 4);
+    `,
     '(a)--',
-    `for (;;) {
-  if (a) {
-      if (b) {
-          continue;
+    outdent`
+      for (;;) {
+        if (a) {
+            if (b) {
+                continue;
+            }
+            c()  // This should not removed and translation should not occur.
+        }
       }
-      c()  // This should not removed and translation should not occur.
-  }
-}`,
+    `,
     'a(....0)',
     'delete (1, a, 2)',
     '1 instanceof 2',
@@ -9612,288 +9686,352 @@ a = c.d("g") && 30;
 a = 31 * b    && h;
 a = b + 32    && null;`,
     'function a() {} function a() {}',
-    `(/* comment */{
-  a: null
-})`,
-    `function parseArrayInitializer() {
-  var elements = [], node = new Node(), restSpread;
-  expect('[');
-  while (!match(']')) {
-      if (match(',')) {
-          lex();
-          elements.push(null);
-          if(match(']')) {
-              elements.push(null);
-          }
-      } else if (match('...')) {
-          restSpread = new Node();
-          lex();
-          restSpread.finishSpreadElement(inheritCoverGrammar(parseAssignmentExpression));
-          if (!match(']')) {
-              isAssignmentTarget = isBindingElement = false;
-              expect(',');
-          }
-          elements.push(restSpread);
-      } else {
-          elements.push(inheritCoverGrammar(parseAssignmentExpression));
-          if (!match(']')) {
-              expect(',');
-              if(match(']')) {
-                  elements.push(null);
-              }
-          }
+    outdent`
+      (/* comment */{
+        a: null
+      })
+    `,
+    outdent`
+      function parseArrayInitializer() {
+        var elements = [], node = new Node(), restSpread;
+        expect('[');
+        while (!match(']')) {
+            if (match(',')) {
+                lex();
+                elements.push(null);
+                if(match(']')) {
+                    elements.push(null);
+                }
+            } else if (match('...')) {
+                restSpread = new Node();
+                lex();
+                restSpread.finishSpreadElement(inheritCoverGrammar(parseAssignmentExpression));
+                if (!match(']')) {
+                    isAssignmentTarget = isBindingElement = false;
+                    expect(',');
+                }
+                elements.push(restSpread);
+            } else {
+                elements.push(inheritCoverGrammar(parseAssignmentExpression));
+                if (!match(']')) {
+                    expect(',');
+                    if(match(']')) {
+                        elements.push(null);
+                    }
+                }
+            }
+        }
+        lex();
+        return node.finishArrayExpression(elements);
       }
-  }
-  lex();
-  return node.finishArrayExpression(elements);
-}`,
-    `var funky =
-  {
-    toString: function()
-    {
-      Array.prototype[1] = "chorp";
-      Object.prototype[3] = "fnord";
-      return "funky";
-    }
-  };
-var trailingHoles = [0, funky, /* 2 */, /* 3 */,];
-assertEq(trailingHoles.join(""), "0funkyfnord");`,
-    `var x = {
-	a: "asdf",
-	b: "qwerty",
-	...(1 > 0 ? { c: "zxcv" } : ""),
-	d: 1234
-};`,
-    `query = {
-  ...query,
-  $or: [
-    {_id: { $in: req.jwt.var}},
-    {owner: req.jwt.var2}
-  ]
-};`,
+    `,
+    outdent`
+      var funky =
+        {
+          toString: function()
+          {
+            Array.prototype[1] = "chorp";
+            Object.prototype[3] = "fnord";
+            return "funky";
+          }
+        };
+      var trailingHoles = [0, funky, /* 2 */, /* 3 */,];
+      assertEq(trailingHoles.join(""), "0funkyfnord");
+    `,
+    outdent`
+      var x = {
+      	a: "asdf",
+      	b: "qwerty",
+      	...(1 > 0 ? { c: "zxcv" } : ""),
+      	d: 1234
+      };
+    `,
+    outdent`
+      query = {
+        ...query,
+        $or: [
+          {_id: { $in: req.jwt.var}},
+          {owner: req.jwt.var2}
+        ]
+      };
+    `,
     'f(a/b,a/b,a.of/b)',
     'yield : 1',
-    `if (statement & FUNC_STATEMENT) {
-  node.id = (statement & FUNC_NULLABLE_ID) && this.type !== tt.name ? null : this.parseIdent()
-  if (node.id && !(statement & FUNC_HANGING_STATEMENT))
-    this.checkLVal(node.id, this.inModule && !this.inFunction ? BIND_LEXICAL : BIND_FUNCTION)
-}`,
-    `/* BEFORE */
-pp.parseFunctionStatement = function(node, isAsync, declarationPosition) {
-  this.next()
-  return this.parseFunction(node, FUNC_STATEMENT | (declarationPosition ? 0 : FUNC_HANGING_STATEMENT), false, isAsync)
-}
-/* AFTER */
-pp.parseFunctionStatement = function(node, isAsync, declarationPosition) {
-  this.next()
-  let statementFlags = {isStatement: true, isHanging: !declarationPosition}
-  return this.parseFunction(node, statementFlags, false, isAsync)
-}`,
+    outdent`
+      if (statement & FUNC_STATEMENT) {
+        node.id = (statement & FUNC_NULLABLE_ID) && this.type !== tt.name ? null : this.parseIdent()
+        if (node.id && !(statement & FUNC_HANGING_STATEMENT))
+          this.checkLVal(node.id, this.inModule && !this.inFunction ? BIND_LEXICAL : BIND_FUNCTION)
+      }
+    `,
+    outdent`
+      /* BEFORE */
+      pp.parseFunctionStatement = function(node, isAsync, declarationPosition) {
+        this.next()
+        return this.parseFunction(node, FUNC_STATEMENT | (declarationPosition ? 0 : FUNC_HANGING_STATEMENT), false, isAsync)
+      }
+      /* AFTER */
+      pp.parseFunctionStatement = function(node, isAsync, declarationPosition) {
+        this.next()
+        let statementFlags = {isStatement: true, isHanging: !declarationPosition}
+        return this.parseFunction(node, statementFlags, false, isAsync)
+      }
+    `,
     'var AsyncGeneratorFunction = Object.getPrototypeOf(async function* () {}).constructor;',
-    `var [ a, , b ] = list
-[ b, a ] = [ a, b ]`,
+    outdent`
+      var [ a, , b ] = list
+      [ b, a ] = [ a, b ]
+    `,
     'for (const {a} of /b/) {}',
     '({ a = 42, [b]: c.d } = e);',
-    `const test = ({ t, ...v }) => {
-  console.log(t, v);
-};`,
-    `function a() {
-  var e, i, n, a, o = this._tween,
-    l = o.vars.roundProps,
-    h = {},
-    _ = o._propLookup.roundProps;
-  if ("object" != (void 0 === l ? "undefined" : t(l)) || l.push) for ("string" == typeof l && (l = l.split(",")), n = l.length; --n > -1;) h[l[n]] = Math.round;
-  else for (a in l) h[a] = s(l[a]);
-  for (a in h) for (e = o._firstPT; e;) i = e._next, e.pg ? e.t._mod(h) : e.n === a && (2 === e.f && e.t ? r(e.t._firstPT, h[a]) : (this._add(e.t, a, e.s, e.c, h[a]), i && (i._prev = e._prev), e._prev ? e._prev._next = i : o._firstPT === e && (o._firstPT = i), e._next = e._prev = null, o._propLookup[a] = _)), e = i;
-  return !1
-}`,
+    outdent`
+      const test = ({ t, ...v }) => {
+        console.log(t, v);
+      };
+    `,
+    outdent`
+      function a() {
+        var e, i, n, a, o = this._tween,
+          l = o.vars.roundProps,
+          h = {},
+          _ = o._propLookup.roundProps;
+        if ("object" != (void 0 === l ? "undefined" : t(l)) || l.push) for ("string" == typeof l && (l = l.split(",")), n = l.length; --n > -1;) h[l[n]] = Math.round;
+        else for (a in l) h[a] = s(l[a]);
+        for (a in h) for (e = o._firstPT; e;) i = e._next, e.pg ? e.t._mod(h) : e.n === a && (2 === e.f && e.t ? r(e.t._firstPT, h[a]) : (this._add(e.t, a, e.s, e.c, h[a]), i && (i._prev = e._prev), e._prev ? e._prev._next = i : o._firstPT === e && (o._firstPT = i), e._next = e._prev = null, o._propLookup[a] = _)), e = i;
+        return !1
+      }
+    `,
     '() => { [a, b] = [1, 2] }',
     '() => [a, b] = [1, 2]',
-    `() => {
-  var _ref = [1, 2];
-  a = _ref[0];
-  b = _ref[1];
-  return _ref;
-};`,
+    outdent`
+      () => {
+        var _ref = [1, 2];
+        a = _ref[0];
+        b = _ref[1];
+        return _ref;
+      };
+    `,
     'const { [(() => 1)()]: a, ...rest } = { 1: "a" };',
-    `const foo = {
-  1: "a",
-  2: "b",
-  3: "c",
-}`,
-    `function isBetween(x, a, b) {
-  if (a > b) [a, b] = [b, a];
-  return x > a && x < b;
-}`,
-    `let a = 1;
-let b = 2;
-[a, b] = [b, a];
-  `,
-    `function test() {
-    let a = 1;
-    let b = 2;
-    [a, b] = [b, a];
-    console.log(a); // 2
-    console.log(b); // 2
-  }
-  `,
-    `function foo(...{ length }) {
-    return length;
-  }`,
-    `function foo() {
-    for (var _len = arguments.length, _ref = new Array(_len), _key = 0; _key < _len; _key++) {
-      _ref[_key] = arguments[_key];
-    }
-    var a = _ref[0];
-  }`,
+    outdent`
+      const foo = {
+        1: "a",
+        2: "b",
+        3: "c",
+      }
+    `,
+    outdent`
+      function isBetween(x, a, b) {
+        if (a > b) [a, b] = [b, a];
+        return x > a && x < b;
+      }
+    `,
+    outdent`
+      let a = 1;
+      let b = 2;
+      [a, b] = [b, a];
+    `,
+    outdent`
+      function test() {
+        let a = 1;
+        let b = 2;
+        [a, b] = [b, a];
+        console.log(a); // 2
+        console.log(b); // 2
+      }
+    `,
+    outdent`
+      function foo(...{ length }) {
+          return length;
+        }
+    `,
+    outdent`
+      function foo() {
+        for (var _len = arguments.length, _ref = new Array(_len), _key = 0; _key < _len; _key++) {
+          _ref[_key] = arguments[_key];
+        }
+        var a = _ref[0];
+      }
+    `,
     '(function(...[x]) {})',
-    `(function () {
-    x;
-  });`,
-    `const foo = {
-    bar: 10,
-  }
-  let bar = 0;
-  if (foo) ({ bar } = foo); // throws an error (see stacktrace below)
-  console.log(bar); // should print 10`,
-    `const foo = {
-    bar: 10,
-  }
-  let bar = 0;
-  if (foo) {
-    ({ bar } = foo);
-  }
-  console.log(bar); // prints 10 `,
+    outdent`
+      (function () {
+        x;
+      });
+    `,
+    outdent`
+      const foo = {
+        bar: 10,
+      }
+      let bar = 0;
+      if (foo) ({ bar } = foo); // throws an error (see stacktrace below)
+      console.log(bar); // should print 10
+    `,
+    outdent`
+      const foo = {
+        bar: 10,
+      }
+      let bar = 0;
+      if (foo) {
+        ({ bar } = foo);
+      }
+      console.log(bar); // prints 10
+    `,
     '({i: {...j}} = k);',
     '({i: [...j]} = k);',
-    `const {
-    [({ ...rest }) => {
-      let { ...b } = {};
-    }]: a,
-    [({ ...d } = {})]: c,
-  } = {}; `,
-    `const {
-    a = ({ ...rest }) => {
-      let { ...b } = {};
-    },
-    c = ({ ...d } = {}),
-  } = {}; `,
-    `var result = "";
-  var obj = {
-    get foo() {
-      result += "foo"
-    },
-    a: {
-      get bar() {
-        result += "bar";
-      }
-    },
-    b: {
-      get baz() {
-        result += "baz";
-      }
-    }
-  };
-  `,
+    outdent`
+      const {
+        [({ ...rest }) => {
+          let { ...b } = {};
+        }]: a,
+        [({ ...d } = {})]: c,
+      } = {};
+    `,
+    outdent`
+      const {
+        a = ({ ...rest }) => {
+          let { ...b } = {};
+        },
+        c = ({ ...d } = {}),
+      } = {};
+    `,
+    outdent`
+      var result = "";
+      var obj = {
+        get foo() {
+          result += "foo"
+        },
+        a: {
+          get bar() {
+            result += "bar";
+          }
+        },
+        b: {
+          get baz() {
+            result += "baz";
+          }
+        }
+      };
+    `,
     'var { a: { ...bar }, b: { ...baz }, ...foo } = obj;',
     'a||(b||(c||(d||(e||f))))',
     'for(let a of [1,2]) 3',
     '({})=>1;',
-    `var a;
-    (a) = {};
-    (a.b) = {};
-    (a['c']) = {};`,
+    outdent`
+      var a;
+      (a) = {};
+      (a.b) = {};
+      (a['c']) = {};
+    `,
     '(foo++).test(), (foo++)[0]',
-    `(++a)();
-    (a++)();
-    new (++a)();
-    new (a++)();
-    new (++a);
-    new (a++);`,
-    `(++a)();
-    (a++)();
-    new (++a)();
-    new (a++)();
-    new (++a)();
-    new (a++)(); `,
+    outdent`
+      (++a)();
+      (a++)();
+      new (++a)();
+      new (a++)();
+      new (++a);
+      new (a++);
+    `,
+    outdent`
+      (++a)();
+      (a++)();
+      new (++a)();
+      new (a++)();
+      new (++a)();
+      new (a++)();
+    `,
     "; 'use strict'; with ({}) {}",
     '({ "a": 1 })',
-    `// mangle to the same name 'a'
-    c: {
-              a("b");
-              break c;
-    }
-    c: {
-              a("b");
-              break c;
-    }`,
+    outdent`
+      // mangle to the same name 'a'
+      c: {
+                a("b");
+                break c;
+      }
+      c: {
+                a("b");
+                break c;
+      }
+    `,
     'if (!a) debugger;',
     'a ** b',
-    `// One
-    (1);
-    /* Two */
-    (2);
-    (
-      // Three
-      3
-    );
-    (/* Four */ 4);`,
+    outdent`
+      // One
+      (1);
+      /* Two */
+      (2);
+      (
+        // Three
+        3
+      );
+      (/* Four */ 4);
+    `,
     'new a(...b, ...c, ...d);',
     'a = { set b (c) {} } ',
-    ` class Empty { }
-    class EmptySemi { ; }
-    class OnlyCtor { constructor() { p('ctor') } }
-    class OnlyMethod { method() { p('method') } }
-    class OnlyStaticMethod { static method() { p('smethod') } }
-    class OnlyGetter { get getter() { p('getter') } }
-    class OnlyStaticGetter { static get getter() { p('sgetter') } }
-    class OnlySetter { set setter(x) { p('setter ' + x) } }
-    class OnlyStaticSetter { static set setter(x) { p('ssetter ' + x) } }`,
-    ` class Empty { }
-    class EmptySemi { ; }
-    class OnlyCtor { constructor() { p('ctor') } }
-    class OnlyMethod { method() { p('method') } }
-    class OnlyStaticMethod { static method() { p('smethod') } }
-    class OnlyGetter { get getter() { p('getter') } }
-    class OnlyStaticGetter { static get getter() { p('sgetter') } }
-    class OnlySetter { set setter(x) { p('setter ' + x) } }
-    class OnlyStaticSetter { static set setter(x) { p('ssetter ' + x) } }
-    class OnlyComputedMethod { ["cmethod"]() { p('cmethod') } }
-    class OnlyStaticComputedMethod { static ["cmethod"]() { p('scmethod') } }
-    class OnlyComputedGetter { get ["cgetter"]() { p('cgetter') } }
-    class OnlyStaticComputedGetter { static get ["cgetter"]() { p('scgetter') } }
-    class OnlyComputedSetter { set ["csetter"](x) { p('csetter ' + x) } }
-    class OnlyStaticComputedSetter { static set ["csetter"](x) { p('scsetter ' + x) } }
+    outdent`
+      class Empty { }
+      class EmptySemi { ; }
+      class OnlyCtor { constructor() { p('ctor') } }
+      class OnlyMethod { method() { p('method') } }
+      class OnlyStaticMethod { static method() { p('smethod') } }
+      class OnlyGetter { get getter() { p('getter') } }
+      class OnlyStaticGetter { static get getter() { p('sgetter') } }
+      class OnlySetter { set setter(x) { p('setter ' + x) } }
+      class OnlyStaticSetter { static set setter(x) { p('ssetter ' + x) } }
     `,
-    ` testFlat([2, 3, [4, 5]], [2, 3, 4, 5]);
-    testFlat([2, 3, [4, [5, 6]]], [2, 3, 4, [5, 6]]);
-    testFlat([2, 3, [4, [5, 6]]], [2, 3, 4, 5, 6], 2);
-    testFlat([], []);
-    testFlat([[], [], 1], [1]);
-    const typedArr = new Int32Array(3);
-    const typedArr2 = new Int32Array(3);`,
-    ` testFlatMap([2, 3, 4, 5], [2, 4, 3, 6, 4, 8, 5, 10], function (a) { return [a, a * 2]});
-    const thisArg = { count : 0 };
-    testFlatMap([2, 3, 4], [2, 3, 3, 4, 4, 5], function (a) { this.count += a; return [ a, a + 1]}, thisArg);
-    testFlatMap([2, 3, 4], [[2], [3], [4]], function (a) { return [[a]]});`,
-    `  testFlatMap([2, 3], [null, null], function () { return [this]}, null);
-    testFlatMap([2, 3], [undefined, undefined], function () { return [this]}, undefined);
-    testFlatMap([2, 3], [undefined, undefined], function () { return [this]});
-    testFlatMap([2, 3], ["", ""], function () { return [this]}, "");
-    testFlatMap([2, 3], ["Test", "Test"], function () { return [this]}, "Test");
-    const boo = {};
-    testFlatMap([2, 3], [boo, boo], function () { return [this]}, boo);`,
-    ` var FloatArr0 = [];
-    var VarArr0 = [];
-    var b = VarArr0;
-    for (var __loopvar1 = 0; b < FloatArr0;) {
-        for (var v319132 = 0; v319132; v319132++) {
-            FloatArr0[1];
-        }
-        while (v319133) {
-            FloatArr0[1];
-        }
-    }`,
+    outdent`
+      class Empty { }
+      class EmptySemi { ; }
+      class OnlyCtor { constructor() { p('ctor') } }
+      class OnlyMethod { method() { p('method') } }
+      class OnlyStaticMethod { static method() { p('smethod') } }
+      class OnlyGetter { get getter() { p('getter') } }
+      class OnlyStaticGetter { static get getter() { p('sgetter') } }
+      class OnlySetter { set setter(x) { p('setter ' + x) } }
+      class OnlyStaticSetter { static set setter(x) { p('ssetter ' + x) } }
+      class OnlyComputedMethod { ["cmethod"]() { p('cmethod') } }
+      class OnlyStaticComputedMethod { static ["cmethod"]() { p('scmethod') } }
+      class OnlyComputedGetter { get ["cgetter"]() { p('cgetter') } }
+      class OnlyStaticComputedGetter { static get ["cgetter"]() { p('scgetter') } }
+      class OnlyComputedSetter { set ["csetter"](x) { p('csetter ' + x) } }
+      class OnlyStaticComputedSetter { static set ["csetter"](x) { p('scsetter ' + x) } }
+    `,
+    outdent`
+      testFlat([2, 3, [4, 5]], [2, 3, 4, 5]);
+      testFlat([2, 3, [4, [5, 6]]], [2, 3, 4, [5, 6]]);
+      testFlat([2, 3, [4, [5, 6]]], [2, 3, 4, 5, 6], 2);
+      testFlat([], []);
+      testFlat([[], [], 1], [1]);
+      const typedArr = new Int32Array(3);
+      const typedArr2 = new Int32Array(3);
+    `,
+    outdent`
+      testFlatMap([2, 3, 4, 5], [2, 4, 3, 6, 4, 8, 5, 10], function (a) { return [a, a * 2]});
+      const thisArg = { count : 0 };
+      testFlatMap([2, 3, 4], [2, 3, 3, 4, 4, 5], function (a) { this.count += a; return [ a, a + 1]}, thisArg);
+      testFlatMap([2, 3, 4], [[2], [3], [4]], function (a) { return [[a]]});
+    `,
+    outdent`
+      testFlatMap([2, 3], [null, null], function () { return [this]}, null);
+      testFlatMap([2, 3], [undefined, undefined], function () { return [this]}, undefined);
+      testFlatMap([2, 3], [undefined, undefined], function () { return [this]});
+      testFlatMap([2, 3], ["", ""], function () { return [this]}, "");
+      testFlatMap([2, 3], ["Test", "Test"], function () { return [this]}, "Test");
+      const boo = {};
+      testFlatMap([2, 3], [boo, boo], function () { return [this]}, boo);
+    `,
+    outdent`
+      var FloatArr0 = [];
+      var VarArr0 = [];
+      var b = VarArr0;
+      for (var __loopvar1 = 0; b < FloatArr0;) {
+          for (var v319132 = 0; v319132; v319132++) {
+              FloatArr0[1];
+          }
+          while (v319133) {
+              FloatArr0[1];
+          }
+      }
+    `,
     '[ 1 ]',
     'for([a,b[a],{c,d=e,[f]:[g,h().a,(1).i,...j[2]]}] in 3);',
     'var h1 = async (x = 0 ? 1 : a => {}) => { return x; };',
@@ -9904,115 +10042,121 @@ let b = 2;
     'var h3 = async (x = 0 ? 1 : a => {}, q) => { return x; };',
     'var { [0 ? 1 : a => {}]: h } = { "a => {}": "boo-urns!" };',
     '1 - 2',
-    `// Yield statements.
-    function* g() { yield 3; yield 4; }
+    outdent`
+      // Yield statements.
+      function* g() { yield 3; yield 4; }
 
-    // Yield expressions.
-    function* g() { (yield 3) + (yield 4); }
+      // Yield expressions.
+      function* g() { (yield 3) + (yield 4); }
 
-    // Yield without a RHS.
-    function* g() { yield; }
-    function* g() { yield }
-    function* g() {
-        yield
-    }
-    function* g() { (yield) }
-    function* g() { [yield] }
-    function* g() { {yield} }
-    function* g() { (yield), (yield) }
-    function* g() { yield; yield }
-    function* g() { (yield) ? yield : yield }
-    function* g() {
-        (yield)
-        ? yield
-        : yield
-    }
+      // Yield without a RHS.
+      function* g() { yield; }
+      function* g() { yield }
+      function* g() {
+          yield
+      }
+      function* g() { (yield) }
+      function* g() { [yield] }
+      function* g() { {yield} }
+      function* g() { (yield), (yield) }
+      function* g() { yield; yield }
+      function* g() { (yield) ? yield : yield }
+      function* g() {
+          (yield)
+          ? yield
+          : yield
+      }
 
-    // If yield has a RHS, it needs to start on the same line.  The * in a
-    // yield* counts as starting the RHS.
-    function* g() {
-        yield *
-        foo
-    }
+      // If yield has a RHS, it needs to start on the same line.  The * in a
+      // yield* counts as starting the RHS.
+      function* g() {
+          yield *
+          foo
+      }
 
-    // You can have a generator in strict mode.
-function* g() { "use strict"; yield 3; yield 4; }
+      // You can have a generator in strict mode.
+      function* g() { "use strict"; yield 3; yield 4; }
 
-// Generators can have return statements also, which internally parse to a kind
-// of yield expression.
-function* g() { yield 1; return; }
-function* g() { yield 1; return 2; }
-function* g() { yield 1; return 2; yield "dead"; }
+      // Generators can have return statements also, which internally parse to a kind
+      // of yield expression.
+      function* g() { yield 1; return; }
+      function* g() { yield 1; return 2; }
+      function* g() { yield 1; return 2; yield "dead"; }
 
-// Generator expression.
-(function* () { yield 3; });
+      // Generator expression.
+      (function* () { yield 3; });
 
-// Named generator expression.
-(function* g() { yield 3; });
+      // Named generator expression.
+      (function* g() { yield 3; });
 
-// Generators do not have to contain yield expressions.
-function* g() { }
+      // Generators do not have to contain yield expressions.
+      function* g() { }
 
-// YieldExpressions can occur in the RHS of a YieldExpression.
-function* g() { yield yield 1; }
-function* g() { yield 3 + (yield 4); }
-function* g() { yield ({ yield: 1 }) }
-function* g() { yield ({ get yield() { return 1; }}) }
-function yield(yield) { yield: yield (yield + yield (0)); }
-function f() { function yield() {} }
-function f() { function* yield() {} }
-function* yield() { (yield 3) + (yield 4); }`,
-    `function f() {
-  var x = 3;
-  if (x > 0) {
-    let {a:x} = {a:7};
-    if (x != 7)
-      throw "fail";
-  }
-  if (x != 3)
-    throw "fail";
-}
+      // YieldExpressions can occur in the RHS of a YieldExpression.
+      function* g() { yield yield 1; }
+      function* g() { yield 3 + (yield 4); }
+      function* g() { yield ({ yield: 1 }) }
+      function* g() { yield ({ get yield() { return 1; }}) }
+      function yield(yield) { yield: yield (yield + yield (0)); }
+      function f() { function yield() {} }
+      function f() { function* yield() {} }
+      function* yield() { (yield 3) + (yield 4); }
+    `,
+    outdent`
+      function f() {
+        var x = 3;
+        if (x > 0) {
+          let {a:x} = {a:7};
+          if (x != 7)
+            throw "fail";
+        }
+        if (x != 3)
+          throw "fail";
+      }
 
-function g() {
-  for (var [a,b] in {x:7}) {
-    if (a !== "x" || typeof b !== "undefined")
-      throw "fail";
-  }
+      function g() {
+        for (var [a,b] in {x:7}) {
+          if (a !== "x" || typeof b !== "undefined")
+            throw "fail";
+        }
 
-  {
-    for (let [a,b] in {y:8}) {
-      if (a !== "y" || typeof b !== "undefined")
+        {
+          for (let [a,b] in {y:8}) {
+            if (a !== "y" || typeof b !== "undefined")
+              throw "fail";
+          }
+        }
+
+        if (a !== "x" || typeof b !== "undefined")
+          throw "fail";
+      }
+
+      f();
+      g();
+
+      if (typeof a != "undefined" || typeof b != "undefined" || typeof x != "undefined")
         throw "fail";
-    }
-  }
 
-  if (a !== "x" || typeof b !== "undefined")
-    throw "fail";
-}
+      function h() {
+        for ([a,b] in {z:9}) {
+          if (a !== "z" || typeof b !== "undefined")
+            throw "fail";
+        }
+      }
 
-f();
-g();
+      h();
 
-if (typeof a != "undefined" || typeof b != "undefined" || typeof x != "undefined")
-  throw "fail";
-
-function h() {
-  for ([a,b] in {z:9}) {
-    if (a !== "z" || typeof b !== "undefined")
-      throw "fail";
-  }
-}
-
-h();
-
-if (a !== "z" || typeof b !== "undefined")
-  throw "fail";`,
-    `function t()
-    {
-      var x = y => z => {} // ASI occurs here
-      /Q/;
-      return 42;
-    }`,
+      if (a !== "z" || typeof b !== "undefined")
+        throw "fail";
+    `,
+    outdent`
+      function t()
+      {
+        var x = y => z => {} // ASI occurs here
+        /Q/;
+        return 42;
+      }
+    `,
     'var a = /undefined/.exec();',
     'a = /undefined/.exec(undefined);',
     '/aaaa/.exec(undefined), null',
@@ -10025,14 +10169,16 @@ if (a !== "z" || typeof b !== "undefined")
     'a: while (true) { continue a }',
     '({ if: 1 })',
     '!a',
-    `{;}
-    a();
-    {};
-    {
-        {};
-    };
-    b();
-    {}`,
+    outdent`
+      {;}
+      a();
+      {};
+      {
+          {};
+      };
+      b();
+      {}
+    `,
     'x = [] = y;',
     '[] = 5;',
     '!(x)',
@@ -10050,51 +10196,57 @@ if (a !== "z" || typeof b !== "undefined")
     'let [x=y, z] = []',
     '0o110/2',
     '0O644/2, 210',
-    `var N = 70*1000;
-    var counter;
-
-    counter = 0;
-    var x = build("&&")();
-    if (x !== true)
-      throw "Unexpected result: x="+x;
-    if (counter != N)
-      throw "Unexpected counter: counter="+counter;
-
-    counter = 0;
-    var x = build("||")();
-    if (x !== true)
-      throw "Unexpected result: x="+x;
-    if (counter != 1)
-      throw "Unexpected counter: counter="+counter;
-
-    function build(operation)
-    {
+    outdent`
+      var N = 70*1000;
       var counter;
-      var a = [];
-      a.push("return f()");
-      for (var i = 1; i != N - 1; ++i)
-        a.push("f()");
-      a.push("f();");
-      return new Function(a.join(operation));
-    }
 
-    function f()
-    {
-      ++counter;
-      return true;
-    }`,
+      counter = 0;
+      var x = build("&&")();
+      if (x !== true)
+        throw "Unexpected result: x="+x;
+      if (counter != N)
+        throw "Unexpected counter: counter="+counter;
+
+      counter = 0;
+      var x = build("||")();
+      if (x !== true)
+        throw "Unexpected result: x="+x;
+      if (counter != 1)
+        throw "Unexpected counter: counter="+counter;
+
+      function build(operation)
+      {
+        var counter;
+        var a = [];
+        a.push("return f()");
+        for (var i = 1; i != N - 1; ++i)
+          a.push("f()");
+        a.push("f();");
+        return new Function(a.join(operation));
+      }
+
+      function f()
+      {
+        ++counter;
+        return true;
+      }
+    `,
     '7 * 64 + 5 * 8 + 5',
     'eval("0" + v + i + j + k), i * 64 + j * 8 + k',
     'var {b:{c:x}}={b:{c:1}}',
-    `var summary = 'Do not assert: (pnkey)->pn_arity == PN_NULLARY && ' +
-    '((pnkey)->pn_type == TOK_NUMBER || (pnkey)->pn_type == TOK_STRING || ' +
-    '(pnkey)->pn_type == TOK_NAME)';
-  var actual = 'No Crash';
-  var expect = 'No Crash';`,
+    outdent`
+      var summary = 'Do not assert: (pnkey)->pn_arity == PN_NULLARY && ' +
+        '((pnkey)->pn_type == TOK_NUMBER || (pnkey)->pn_type == TOK_STRING || ' +
+        '(pnkey)->pn_type == TOK_NAME)';
+      var actual = 'No Crash';
+      var expect = 'No Crash';
+    `,
     'let x = /x/* 5 */y/;',
-    `const id = /*pre*/ {
-      a: 1,
-    }/*post*/;`,
+    outdent`
+      const id = /*pre*/ {
+        a: 1,
+      }/*post*/;
+    `,
     'const id = /*pre*/1/*post*/;',
     'class Kind { get "a"() {} }',
     'class Kind { set "a"(x) {} }',
@@ -10126,8 +10278,10 @@ if (a !== "z" || typeof b !== "undefined")
     'function f() { return { f() {}, *g() {}, r: /a/ }; }',
     'function* g() { return { f() {}, *g() {}, r: /b/ }; }',
     '() => { return { f() {}, *g() {}, r: /c/ }; }',
-    `function* f(){ yield
-      foo/g }`,
+    outdent`
+      function* f(){ yield
+        foo/g }
+    `,
     'Object.getPrototypeOf({ async* method() {} }.method);',
     '({ async* method() {} })',
     '({ async *method() { } }).method.toString();',
@@ -10165,28 +10319,35 @@ if (a !== "z" || typeof b !== "undefined")
     'function arrayRestTDZ(...[a = a]) { }',
     'function objectRestTDZ(...{a = a}) { }',
     'function f1(a, bIs, [b]=[3], ...rest) {}',
-    `let async = function(a){return {bind: "someMethodButIUseString"}};
-    async(function (req, res) { }).bind;`,
-    `let asyn = function(a){return {bind: "someMethodButIUseString"}};
-    asyn(function (req, res) { }).bind;`,
-    `
-class C {
-    *gen(id, module) {
-        yield module.mount(this)
-    }
-}`,
-    `
-class C {
-    *gen(id, module) {
-        yield module
-    }
-}`,
-    `
-class C {
-    *gen(id, modul) {
-        yield modul.mount(this)
-    }
-}`,
+    outdent`
+      let async = function(a){return {bind: "someMethodButIUseString"}};
+      async(function (req, res) { }).bind;
+    `,
+    outdent`
+      let asyn = function(a){return {bind: "someMethodButIUseString"}};
+      asyn(function (req, res) { }).bind;
+    `,
+    outdent`
+      class C {
+          *gen(id, module) {
+              yield module.mount(this)
+          }
+      }
+    `,
+    outdent`
+      class C {
+          *gen(id, module) {
+              yield module
+          }
+      }
+    `,
+    outdent`
+      class C {
+          *gen(id, modul) {
+              yield modul.mount(this)
+          }
+      }
+    `,
     '[, ...rest]',
     'let [...[...x]] = (() => { throw "foo"; } )();',
     '[, ...(o.prop)]',
@@ -10221,148 +10382,152 @@ class C {
     '(async function() {})()',
     'var k = async function() {}',
     'async function a() {}',
-    `function assertSyntaxError(str) {
-      var msg;
-      var evil = eval;
-      try {
-          // Non-direct eval.
-          evil(str);
-      } catch (exc) {
-          if (exc instanceof SyntaxError)
-              return;
-          msg = "Assertion failed: expected SyntaxError, got " + exc;
+    outdent`
+      function assertSyntaxError(str) {
+          var msg;
+          var evil = eval;
+          try {
+              // Non-direct eval.
+              evil(str);
+          } catch (exc) {
+              if (exc instanceof SyntaxError)
+                  return;
+              msg = "Assertion failed: expected SyntaxError, got " + exc;
+          }
+          if (msg === undefined)
+              msg = "Assertion failed: expected SyntaxError, but no exception thrown";
+          throw new Error(msg + " - " + str);
       }
-      if (msg === undefined)
-          msg = "Assertion failed: expected SyntaxError, but no exception thrown";
-      throw new Error(msg + " - " + str);
-  }
 
-  // Yield statements.
-  function* g() { yield 3; yield 4; }
+      // Yield statements.
+      function* g() { yield 3; yield 4; }
 
-  // Yield expressions.
-  function* g() { (yield 3) + (yield 4); }
+      // Yield expressions.
+      function* g() { (yield 3) + (yield 4); }
 
-  // Yield without a RHS.
-  function* g() { yield; }
-  function* g() { yield }
-  function* g() {
-      yield
-  }
-  function* g() { (yield) }
-  function* g() { [yield] }
-  function* g() { {yield} }
-  function* g() { (yield), (yield) }
-  function* g() { yield; yield }
-  function* g() { (yield) ? yield : yield }
-  function* g() {
-      (yield)
-      ? yield
-      : yield
-  }
+      // Yield without a RHS.
+      function* g() { yield; }
+      function* g() { yield }
+      function* g() {
+          yield
+      }
+      function* g() { (yield) }
+      function* g() { [yield] }
+      function* g() { {yield} }
+      function* g() { (yield), (yield) }
+      function* g() { yield; yield }
+      function* g() { (yield) ? yield : yield }
+      function* g() {
+          (yield)
+          ? yield
+          : yield
+      }
 
-  // If yield has a RHS, it needs to start on the same line.  The * in a
-  // yield* counts as starting the RHS.
-  function* g() {
-      yield *
-      foo
-  }
+      // If yield has a RHS, it needs to start on the same line.  The * in a
+      // yield* counts as starting the RHS.
+      function* g() {
+          yield *
+          foo
+      }
 
-  // You can have a generator in strict mode.
-  function* g() { "use strict"; yield 3; yield 4; }
+      // You can have a generator in strict mode.
+      function* g() { "use strict"; yield 3; yield 4; }
 
-  // Generators can have return statements also, which internally parse to a kind
-  // of yield expression.
-  function* g() { yield 1; return; }
-  function* g() { yield 1; return 2; }
-  function* g() { yield 1; return 2; yield "dead"; }
+      // Generators can have return statements also, which internally parse to a kind
+      // of yield expression.
+      function* g() { yield 1; return; }
+      function* g() { yield 1; return 2; }
+      function* g() { yield 1; return 2; yield "dead"; }
 
-  // Generator expression.
-  (function* () { yield 3; });
+      // Generator expression.
+      (function* () { yield 3; });
 
-  // Named generator expression.
-  (function* g() { yield 3; });
+      // Named generator expression.
+      (function* g() { yield 3; });
 
-  // Generators do not have to contain yield expressions.
-  function* g() { }
+      // Generators do not have to contain yield expressions.
+      function* g() { }
 
-  // YieldExpressions can occur in the RHS of a YieldExpression.
-  function* g() { yield yield 1; }
-  function* g() { yield 3 + (yield 4); }
+      // YieldExpressions can occur in the RHS of a YieldExpression.
+      function* g() { yield yield 1; }
+      function* g() { yield 3 + (yield 4); }
 
-  // Generator definitions with a name of "yield" are not specifically ruled out
-  // by the spec, as the yield name is outside the generator itself.  However,
-  // in strict-mode, "yield" is an invalid identifier.
-  function* yield() { (yield 3) + (yield 4); }
-  assertSyntaxError("function* yield() { 'use strict'; (yield 3) + (yield 4); }");
+      // Generator definitions with a name of "yield" are not specifically ruled out
+      // by the spec, as the yield name is outside the generator itself.  However,
+      // in strict-mode, "yield" is an invalid identifier.
+      function* yield() { (yield 3) + (yield 4); }
+      assertSyntaxError("function* yield() { 'use strict'; (yield 3) + (yield 4); }");
 
-  // In classic mode, yield is a normal identifier, outside of generators.
-  function yield(yield) { yield: yield (yield + yield (0)); }
+      // In classic mode, yield is a normal identifier, outside of generators.
+      function yield(yield) { yield: yield (yield + yield (0)); }
 
-  // Yield is always valid as a key in an object literal.
-  ({ yield: 1 });
-  function* g() { yield ({ yield: 1 }) }
-  function* g() { yield ({ get yield() { return 1; }}) }
+      // Yield is always valid as a key in an object literal.
+      ({ yield: 1 });
+      function* g() { yield ({ yield: 1 }) }
+      function* g() { yield ({ get yield() { return 1; }}) }
 
-  // Yield is a valid property name.
-  function* g(obj) { yield obj.yield; }
+      // Yield is a valid property name.
+      function* g(obj) { yield obj.yield; }
 
-  // Checks that yield is a valid label in classic mode, but not valid in a strict
-  // mode or in generators.
-  function f() { yield: 1 }
-  assertSyntaxError("function f() { 'use strict'; yield: 1 }")
-  assertSyntaxError("function* g() { yield: 1 }")
+      // Checks that yield is a valid label in classic mode, but not valid in a strict
+      // mode or in generators.
+      function f() { yield: 1 }
+      assertSyntaxError("function f() { 'use strict'; yield: 1 }")
+      assertSyntaxError("function* g() { yield: 1 }")
 
-  // Yield is only a keyword in the body of the generator, not in nested
-  // functions.
-  function* g() { function f(yield) { yield (yield + yield (0)); } }
+      // Yield is only a keyword in the body of the generator, not in nested
+      // functions.
+      function* g() { function f(yield) { yield (yield + yield (0)); } }
 
-  // Yield in a generator is not an identifier.
-  assertSyntaxError("function* g() { yield = 10; }");
+      // Yield in a generator is not an identifier.
+      assertSyntaxError("function* g() { yield = 10; }");
 
-  // Yield binds very loosely, so this parses as "yield (3 + yield 4)", which is
-  // invalid.
-  assertSyntaxError("function* g() { yield 3 + yield 4; }");
+      // Yield binds very loosely, so this parses as "yield (3 + yield 4)", which is
+      // invalid.
+      assertSyntaxError("function* g() { yield 3 + yield 4; }");
 
-  // Yield is still a future-reserved-word in strict mode
-  assertSyntaxError("function f() { 'use strict'; var yield = 13; }");
+      // Yield is still a future-reserved-word in strict mode
+      assertSyntaxError("function f() { 'use strict'; var yield = 13; }");
 
-  // The name of the NFE isn't let-bound in F/G, so this is valid.
-  function f() { (function yield() {}); }
-  function* g() { (function yield() {}); }
+      // The name of the NFE isn't let-bound in F/G, so this is valid.
+      function f() { (function yield() {}); }
+      function* g() { (function yield() {}); }
 
-  // The name of the NFE is let-bound in the function/generator expression, so this is invalid.
-  assertSyntaxError("function f() { (function* yield() {}); }");
-  assertSyntaxError("function* g() { (function* yield() {}); }");
+      // The name of the NFE is let-bound in the function/generator expression, so this is invalid.
+      assertSyntaxError("function f() { (function* yield() {}); }");
+      assertSyntaxError("function* g() { (function* yield() {}); }");
 
-  // The name of the declaration is let-bound in F, so this is valid.
-  function f() { function yield() {} }
-  function f() { function* yield() {} }
+      // The name of the declaration is let-bound in F, so this is valid.
+      function f() { function yield() {} }
+      function f() { function* yield() {} }
 
-  // The name of the declaration is let-bound in G, so this is invalid.
-  assertSyntaxError("function* g() { function yield() {} }");
-  assertSyntaxError("function* g() { function* yield() {} }");
+      // The name of the declaration is let-bound in G, so this is invalid.
+      assertSyntaxError("function* g() { function yield() {} }");
+      assertSyntaxError("function* g() { function* yield() {} }");
 
-  // In generators, yield is invalid as a formal argument name.
-  assertSyntaxError("function* g(yield) { yield (10); }");
+      // In generators, yield is invalid as a formal argument name.
+      assertSyntaxError("function* g(yield) { yield (10); }");
 
-  if (typeof reportCompare == "function")
-      reportCompare(true, true);`,
+      if (typeof reportCompare == "function")
+          reportCompare(true, true);
+    `,
     'x = {}',
     'x = { }',
-    `let x = 0;
-    for (let i = 0, a = () => i; i < 4; i++) {
-      assertEq(i, x++);
-      assertEq(a(), 0);
-    }
-    assertEq(x, 4);
+    outdent`
+      let x = 0;
+      for (let i = 0, a = () => i; i < 4; i++) {
+        assertEq(i, x++);
+        assertEq(a(), 0);
+      }
+      assertEq(x, 4);
 
-    x = 11;
-    let q = 0;
-    for (let {[++q]: r} = [0, 11, 22], s = () => r; r < 13; r++) {
-      assertEq(r, x++);
-      assertEq(s(), 11);
-    }`,
+      x = 11;
+      let q = 0;
+      for (let {[++q]: r} = [0, 11, 22], s = () => r; r < 13; r++) {
+        assertEq(r, x++);
+        assertEq(s(), 11);
+      }
+    `,
     '() => f2({x: 1})',
     ' assertEqualsAsync(1, () => g6({x: 1}));',
     'async function f61(a = () => { "use strict"; return eval("x") }) { var x; return a(); }',
@@ -10434,24 +10599,26 @@ class C {
     '(async function() { for (let x of []) { x: for (let y of []) { for await (let c of []) { function f() {}; return; } } } })();',
     '(async function() { for await (let x of []) { x: for await (let y of []) { for await (let c of []) { function f() {}; break x; } } } })();',
     'var { y, ...x } = { y: 1, a: 1 };',
-    `var x;
-    for (x of new Set([1]))
-        for (x of new Set([1]))
-            for (x of new Set([1]))
-                for (x of new Set([1]))
-                    for (x of new Set([1]))
-                        for (x of new Set([1]))
-                            for (x of new Set([1]))
-                                for (x of new Set([1]))
-                                    for (x of new Set([1]))
-                                        for (x of new Set([1]))
-                                            for (x of new Set([1]))
-                                                for (x of new Set([1]))
-                                                    for (x of new Set([1]))
-                                                        for (x of new Set([1]))
-                                                            for (x of new Set([1]))
-                                                                for (x of new Set([1]))
-                                                                    gc();`,
+    outdent`
+      var x;
+      for (x of new Set([1]))
+          for (x of new Set([1]))
+              for (x of new Set([1]))
+                  for (x of new Set([1]))
+                      for (x of new Set([1]))
+                          for (x of new Set([1]))
+                              for (x of new Set([1]))
+                                  for (x of new Set([1]))
+                                      for (x of new Set([1]))
+                                          for (x of new Set([1]))
+                                              for (x of new Set([1]))
+                                                  for (x of new Set([1]))
+                                                      for (x of new Set([1]))
+                                                          for (x of new Set([1]))
+                                                              for (x of new Set([1]))
+                                                                  for (x of new Set([1]))
+                                                                      gc();
+    `,
     'var { z, y, ...x } = { z:1, y: 1, a: 1, b: 1 };',
     '({ a, ...b } = { a: 1, b: 2 });',
     '(({x, ...z}) => { assertEquals({y: 1}, z); })({ x: 1, y: 1});',
@@ -10461,98 +10628,102 @@ class C {
     'function f3(i,o){for(var x=i in o)parseInt(o[x]); return x}',
     'function f4(i,o){with(this)for(var x=i in o)parseInt(o[x]); return x}',
     //'(function(){for(var x = arguments in []){} function x(){}})();',
-    `var called = 0;
-function reset() {
-  called = 0;
-}
-var obj = {
-  [Symbol.iterator]() {
-    return {
-      next() {
-        return { value: 10, done: false };
-      },
-      return() {
-        called++;
-        return {};
+    outdent`
+      var called = 0;
+      function reset() {
+        called = 0;
       }
-    };
-  }
-};
-
-var a = (function () {
-    for (var x in [0]) {
-        try {} finally {
-            return 11;
-        }
-    }
-})();
-assertEq(a, 11);
-
-reset();
-var b = (function () {
-    for (var x of obj) {
-        try {} finally {
-            return 12;
-        }
-    }
-})();
-
-var c = (function () {
-    for (var x in [0]) {
-        for (var y of obj) {
-            try {} finally {
-                return 13;
+      var obj = {
+        [Symbol.iterator]() {
+          return {
+            next() {
+              return { value: 10, done: false };
+            },
+            return() {
+              called++;
+              return {};
             }
+          };
         }
-    }
-})();
+      };
 
-var d = (function () {
-    for (var x in [0]) {
-        for (var y of obj) {
-            try {} finally {
-                for (var z in [0]) {
-                    for (var w of obj) {
-                        try {} finally {
-                            return 14;
-                        }
-                    }
-                }
-            }
-        }
-    }
-})();`,
+      var a = (function () {
+          for (var x in [0]) {
+              try {} finally {
+                  return 11;
+              }
+          }
+      })();
+      assertEq(a, 11);
+
+      reset();
+      var b = (function () {
+          for (var x of obj) {
+              try {} finally {
+                  return 12;
+              }
+          }
+      })();
+
+      var c = (function () {
+          for (var x in [0]) {
+              for (var y of obj) {
+                  try {} finally {
+                      return 13;
+                  }
+              }
+          }
+      })();
+
+      var d = (function () {
+          for (var x in [0]) {
+              for (var y of obj) {
+                  try {} finally {
+                      for (var z in [0]) {
+                          for (var w of obj) {
+                              try {} finally {
+                                  return 14;
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      })();
+    `,
     'let a = { async };',
     'let { async } = { async: 12 };',
     'let { async, other } = { async: 15, other: 16 };',
-    `class X {
-      constructor() {
-        this.value = 42;
+    outdent`
+      class X {
+        constructor() {
+          this.value = 42;
+        }
+        async getValue() {
+          return this.value;
+        }
+        setValue(value) {
+          this.value = value;
+        }
+        async increment() {
+          var value = await this.getValue();
+          this.setValue(value + 1);
+          return this.getValue();
+        }
+        async getBaseClassName() {
+          return 'X';
+        }
+        static async getStaticValue() {
+          return 44;
+        }
+        async 10() {
+          return 46;
+        }
+        async ["foo"]() {
+          return 47;
+        }
       }
-      async getValue() {
-        return this.value;
-      }
-      setValue(value) {
-        this.value = value;
-      }
-      async increment() {
-        var value = await this.getValue();
-        this.setValue(value + 1);
-        return this.getValue();
-      }
-      async getBaseClassName() {
-        return 'X';
-      }
-      static async getStaticValue() {
-        return 44;
-      }
-      async 10() {
-        return 46;
-      }
-      async ["foo"]() {
-        return 47;
-      }
-    }`,
+    `,
     'function f({a = 0}, ...r){}',
     'function f(x = 0, {p: a = 0}){}',
     '(function(x = 0, {a = 0}){})',
@@ -10564,34 +10735,36 @@ var d = (function () {
     'let a = { async() {} };',
     'let a = { async() {} };',
     'let a = { async() {} };',
-    `var f1 = (...yield) => yield + 42;
-assertEq(f1(), "42");
-assertEq(f1(1), "142");
+    outdent`
+      var f1 = (...yield) => yield + 42;
+      assertEq(f1(), "42");
+      assertEq(f1(1), "142");
 
-var f2 = (...eval) => eval + 42;
-assertEq(f2(), "42");
-assertEq(f2(1), "142");
+      var f2 = (...eval) => eval + 42;
+      assertEq(f2(), "42");
+      assertEq(f2(1), "142");
 
-var f3 = (...let) => let + 42;
-assertEq(f3(), "42");
-assertEq(f3(1), "142");
+      var f3 = (...let) => let + 42;
+      assertEq(f3(), "42");
+      assertEq(f3(1), "142");
 
-function g1(x, ...yield)
-{
-  return yield + x;
-}
-assertEq(g1(0, 42), "420");
+      function g1(x, ...yield)
+      {
+        return yield + x;
+      }
+      assertEq(g1(0, 42), "420");
 
-function g2(x, ...eval)
-{
-  return eval + x;
-}
-assertEq(g2(0, 42), "420");
+      function g2(x, ...eval)
+      {
+        return eval + x;
+      }
+      assertEq(g2(0, 42), "420");
 
-function g3(x, ...let)
-{
-  return let + x;
-}`,
+      function g3(x, ...let)
+      {
+        return let + x;
+      }
+    `,
     'x = { answer: 42 }',
     'x = { true: 42 }',
     'x = { false: 42 }',
@@ -10704,48 +10877,54 @@ function g3(x, ...let)
     'async function as(){ o = {f(await) {}} }',
     'async function as(){ class A {*f(await) {}} }',
     'async function as(){ class A {f(await) {}} }',
-    `function g8(h = () => arguments) {
-  var arguments = 0;
-  assertEq(arguments, 0);
-  assertEq(arguments === h(), false);
-}
-g8();
+    outdent`
+      function g8(h = () => arguments) {
+        var arguments = 0;
+        assertEq(arguments, 0);
+        assertEq(arguments === h(), false);
+      }
+      g8();
 
-function g9(h = () => arguments) {
-  var arguments;
-  assertEq(void 0 === arguments, false);
-  assertEq(h(), arguments);
-  arguments = 0;
-  assertEq(arguments, 0);
-  assertEq(arguments === h(), false);
-}
-g9();`,
-    `var E;
-(function (E) {
-    E[E["e"] = -3] = "e";
-})(E || (E = {}));`,
+      function g9(h = () => arguments) {
+        var arguments;
+        assertEq(void 0 === arguments, false);
+        assertEq(h(), arguments);
+        arguments = 0;
+        assertEq(arguments, 0);
+        assertEq(arguments === h(), false);
+      }
+      g9();
+    `,
+    outdent`
+      var E;
+      (function (E) {
+          E[E["e"] = -3] = "e";
+      })(E || (E = {}));
+    `,
     '/*1*/(/*2*/ "foo" /*3*/)/*4*/',
-    `//// [parenthesizedExpressionInternalComments.ts]
-/*1*/(/*2*/ "foo" /*3*/)/*4*/
-;
+    outdent`
+      //// [parenthesizedExpressionInternalComments.ts]
+      /*1*/(/*2*/ "foo" /*3*/)/*4*/
+      ;
 
-// open
-/*1*/(
-    // next
-    /*2*/"foo"
-    //close
-    /*3*/)/*4*/
-;
+      // open
+      /*1*/(
+          // next
+          /*2*/"foo"
+          //close
+          /*3*/)/*4*/
+      ;
 
 
-//// [parenthesizedExpressionInternalComments.js]
-/*1*/ ( /*2*/"foo" /*3*/) /*4*/;
-// open
-/*1*/ (
-// next
-/*2*/ "foo"
-//close
-/*3*/ ) /*4*/;`,
+      //// [parenthesizedExpressionInternalComments.js]
+      /*1*/ ( /*2*/"foo" /*3*/) /*4*/;
+      // open
+      /*1*/ (
+      // next
+      /*2*/ "foo"
+      //close
+      /*3*/ ) /*4*/;
+    `,
     'var c = true ? (a) : function () { };',
     'const c = true ? (a) : function() {};',
     'const x1 = async (i) => await someOtherFunction(i);',
@@ -10769,95 +10948,97 @@ g9();`,
     'var [] = [1, "hello"];',
     'var [x1, y1] = [1, "hello"]; ',
     'var a = [] = [1].map(_ => _);',
-    `class X extends A {
-  // async method with only call/get on 'super' does not require a binding
-  async simple() {
-      // call with property access
-      super.x();
-      // call additional property.
-      super.y();
+    outdent`
+      class X extends A {
+        // async method with only call/get on 'super' does not require a binding
+        async simple() {
+            // call with property access
+            super.x();
+            // call additional property.
+            super.y();
 
-      // call with element access
-      super["x"]();
+            // call with element access
+            super["x"]();
 
-      // property access (read)
-      const a = super.x;
+            // property access (read)
+            const a = super.x;
 
-      // element access (read)
-      const b = super["x"];
-  }
+            // element access (read)
+            const b = super["x"];
+        }
 
-  // async method with assignment/destructuring on 'super' requires a binding
-  async advanced() {
-      const f = () => {};
+        // async method with assignment/destructuring on 'super' requires a binding
+        async advanced() {
+            const f = () => {};
 
-      // call with property access
-      super.x();
+            // call with property access
+            super.x();
 
-      // call with element access
-      super["x"]();
+            // call with element access
+            super["x"]();
 
-      // property access (read)
-      const a = super.x;
+            // property access (read)
+            const a = super.x;
 
-      // element access (read)
-      const b = super["x"];
+            // element access (read)
+            const b = super["x"];
 
-      // property access (assign)
-      super.x = f;
+            // property access (assign)
+            super.x = f;
 
-      // element access (assign)
-      super["x"] = f;
+            // element access (assign)
+            super["x"] = f;
 
-      // destructuring assign with property access
-      ({ f: super.x } = { f });
+            // destructuring assign with property access
+            ({ f: super.x } = { f });
 
-      // destructuring assign with element access
-      ({ f: super["x"] } = { f });
-  }
-}
+            // destructuring assign with element access
+            ({ f: super["x"] } = { f });
+        }
+      }
 
-class A {
-  x() {
-  }
-  y() {
-  }
-}
-class B extends A {
-  // async method with only call/get on 'super' does not require a binding
-  async simple() {
-      // call with property access
-      super.x();
-      // call additional property.
-      super.y();
-      // call with element access
-      super["x"]();
-      // property access (read)
-      const a = super.x;
-      // element access (read)
-      const b = super["x"];
-  }
-  // async method with assignment/destructuring on 'super' requires a binding
-  async advanced() {
-      const f = () => { };
-      // call with property access
-      super.x();
-      // call with element access
-      super["x"]();
-      // property access (read)
-      const a = super.x;
-      // element access (read)
-      const b = super["x"];
-      // property access (assign)
-      super.x = f;
-      // element access (assign)
-      super["x"] = f;
-      // destructuring assign with property access
-      ({ f: super.x } = { f });
-      // destructuring assign with element access
-      ({ f: super["x"] } = { f });
-  }
-}`,
+      class A {
+        x() {
+        }
+        y() {
+        }
+      }
+      class B extends A {
+        // async method with only call/get on 'super' does not require a binding
+        async simple() {
+            // call with property access
+            super.x();
+            // call additional property.
+            super.y();
+            // call with element access
+            super["x"]();
+            // property access (read)
+            const a = super.x;
+            // element access (read)
+            const b = super["x"];
+        }
+        // async method with assignment/destructuring on 'super' requires a binding
+        async advanced() {
+            const f = () => { };
+            // call with property access
+            super.x();
+            // call with element access
+            super["x"]();
+            // property access (read)
+            const a = super.x;
+            // element access (read)
+            const b = super["x"];
+            // property access (assign)
+            super.x = f;
+            // element access (assign)
+            super["x"] = f;
+            // destructuring assign with property access
+            ({ f: super.x } = { f });
+            // destructuring assign with element access
+            ({ f: super["x"] } = { f });
+        }
+      }
+    `,
     `
 
 for ({[2e308]: {"_"() {}, get [""]() {
@@ -11003,221 +11184,234 @@ var func4 = function(){
   var reResult1=/[b7]\s((bab{5}b)ab{5}[b7]\B.{2,3}(bab{5}b)ab{5}[b7])\B.{2,3}\S$/giy.exec('ë' + '!%-ó');
   return (- e);
 };`,
-    `  do {
-  if (__loopvar0) {
-  }
-  var __loopvar1 = loopInvariant;
-  for (var _strvar0 in i8) {
-      if (4) {
+    outdent`
+      do {
+        if (__loopvar0) {
+        }
+        var __loopvar1 = loopInvariant;
+        for (var _strvar0 in i8) {
+            if (4) {
+            }
+            obj1.method0();
+            var __loopvar2 = loopInvariant, __loopSecondaryVar2_0 = loopInvariant;
+            for (; _strvar0 < 3077559403207580000; VarArr0) {
+                if (-2) {
+                    break;
+                }
+                var v1 = shouldBailout;
+                var v2 = true;
+                function v3() {
+                    Math(_strvar0 * __loopvar2);
+                    ({ prop1: FloatArr0 });
+                }
+                v3(5);
+                var __loopvar3 = loopInvariant, __loopSecondaryVar3_0 = loopInvariant;
+                var __loopSecondaryVar4_0 = loopInvariant, __loopSecondaryVar4_1 = loopInvariant;
+
+                var __loopvar5 = loopInvariant - 3;
+                for (var _strvar0 in FloatArr0) {
+                    if (typeof _strvar0 === 'string' && _strvar0.indexOf('method') != -1) {
+                        continue;
+                    }
+                    __loopvar5++;
+                    if (__loopvar5 == loopInvariant + 1) {
+                        break;
+                    }
+                    FloatArr0[_strvar0] = _strvar0;
+                }
+                var id28 = test0.caller >>> uic8[120 & 255];
+            }
+        }
+      } while (false);
+    `,
+    outdent`
+      (function () {
+        const actual = [];
+        const expected = [ 'await', 1, 'await', 2 ];
+        const iterations = 2;
+
+        async function pushAwait() {
+          actual.push('await');
+        }
+
+        async function callAsync() {
+          for (let i = 0; i < iterations; i++) {
+            await pushAwait();
+          }
+          return 0;
+        }
+
+        function checkAssertions() {
+          assertArrayEquals(expected, actual,
+            'Async/await and promises should be interleaved.');
+        }
+
+        assertPromiseResult((async() => {
+          callAsync();
+
+          return new Promise(function (resolve) {
+            actual.push(1);
+            resolve();
+          }).then(function () {
+            actual.push(2);
+          }).then(checkAssertions);
+        })());
+      })();
+    `,
+    outdent`
+      (function () {
+        const actual = [];
+        const expected = [ 'await', 1, 'await', 2 ];
+        const iterations = 2;
+
+        async function pushAwait() {
+          actual.push('await');
+        }
+
+        async function* callAsync() {
+          for (let i = 0; i < iterations; i++) {
+            await pushAwait();
+          }
+          return 0;
+        }
+
+        function checkAssertions() {
+          assertArrayEquals(expected, actual,
+            'Async/await and promises should be interleaved when using async generators.');
+        }
+
+        assertPromiseResult((async() => {
+          callAsync().next();
+
+          return new Promise(function (resolve) {
+            actual.push(1);
+            resolve();
+          }).then(function () {
+            actual.push(2);
+          }).then(checkAssertions);
+        })());
+      })();
+    `,
+    outdent`
+      (function () {
+        const actual = [];
+        const expected = [
+          'Promise: 6',
+          'Promise: 5',
+          'Await: 3',
+          'Promise: 4',
+          'Promise: 3',
+          'Await: 2',
+          'Promise: 2',
+          'Promise: 1',
+          'Await: 1',
+          'Promise: 0'
+        ];
+        const iterations = 3;
+
+        async function* naturalNumbers(start) {
+          let current = start;
+          while (current > 0) {
+            yield Promise.resolve(current--);
+          }
+        }
+
+        async function trigger() {
+          for await (const num of naturalNumbers(iterations)) {
+            actual.push('Await: ' + num);
+          }
+        }
+
+        async function checkAssertions() {
+          assertArrayEquals(expected, actual,
+            'Async/await and promises should be interleaved when yielding.');
+        }
+
+        async function countdown(counter) {
+          actual.push('Promise: ' + counter);
+          if (counter > 0) {
+            return Promise.resolve(counter - 1).then(countdown);
+          } else {
+            await checkAssertions();
+          }
+        }
+
+        assertPromiseResult((async() => {
+          trigger();
+
+          return countdown(iterations * 2);
+        })());
+      })();
+    `,
+    outdent`
+      function testFunction() {
+        async function f1() {
+          for (let x = 0; x < 1; ++x) await x;
+          return await Promise.resolve(2);
+        }
+        async function f2() {
+          let r = await f1() + await f1();
+          await f1();
+          await f1().then(x => x * 2);
+          await [1].map(x => Promise.resolve(x))[0];
+          await Promise.resolve().then(x => x * 2);
+          let p = Promise.resolve(42);
+          await p;
+          return r;
+        }
+        return f2();
       }
-      obj1.method0();
-      var __loopvar2 = loopInvariant, __loopSecondaryVar2_0 = loopInvariant;
-      for (; _strvar0 < 3077559403207580000; VarArr0) {
-          if (-2) {
-              break;
-          }
-          var v1 = shouldBailout;
-          var v2 = true;
-          function v3() {
-              Math(_strvar0 * __loopvar2);
-              ({ prop1: FloatArr0 });
-          }
-          v3(5);
-          var __loopvar3 = loopInvariant, __loopSecondaryVar3_0 = loopInvariant;
-          var __loopSecondaryVar4_0 = loopInvariant, __loopSecondaryVar4_1 = loopInvariant;
-
-          var __loopvar5 = loopInvariant - 3;
-          for (var _strvar0 in FloatArr0) {
-              if (typeof _strvar0 === 'string' && _strvar0.indexOf('method') != -1) {
-                  continue;
-              }
-              __loopvar5++;
-              if (__loopvar5 == loopInvariant + 1) {
-                  break;
-              }
-              FloatArr0[_strvar0] = _strvar0;
-          }
-          var id28 = test0.caller >>> uic8[120 & 255];
+      //# sourceURL=test.js
+    `,
+    outdent`
+      class ChildClass5 extends BaseClass {
+        constructor(result) {
+            const arr = async () => this.id;
+            arr().then(()=>{}, e => { result.error = e; });
+        }
       }
-  }
-} while (false);`,
-    `(function () {
-  const actual = [];
-  const expected = [ 'await', 1, 'await', 2 ];
-  const iterations = 2;
 
-  async function pushAwait() {
-    actual.push('await');
-  }
+      class ChildClass6 extends BaseClass {
+        constructor(result) {
+            const arr = async () => {
+                let z = this.id;
+            };
+            arr().then(()=>{}, e => { result.error = e; });
+            super();
+        }
+      }
 
-  async function callAsync() {
-    for (let i = 0; i < iterations; i++) {
-      await pushAwait();
-    }
-    return 0;
-  }
+      class ChildClass7 extends BaseClass {
+        constructor(result) {
+            const arr = async () => this.id;
+            arr().then(()=>{}, e => { result.error = e; });
+            super();
+        }
+      }
 
-  function checkAssertions() {
-    assertArrayEquals(expected, actual,
-      'Async/await and promises should be interleaved.');
-  }
+      class ChildClass8 extends BaseClass {
+        constructor(result) {
+            const arr = async () => { let i  = this.id; super(); };
+            arr().then(()=>{}, e => { result.error = e; });
+        }
+      }
+    `,
+    outdent`
+      function C1() {
+        return async () => await new.target;
+      }
 
-  assertPromiseResult((async() => {
-    callAsync();
+      function C2() {
+        return async () => { return await new.target };
+      }
 
-    return new Promise(function (resolve) {
-      actual.push(1);
-      resolve();
-    }).then(function () {
-      actual.push(2);
-    }).then(checkAssertions);
-  })());
-})();`,
-    `(function () {
-  const actual = [];
-  const expected = [ 'await', 1, 'await', 2 ];
-  const iterations = 2;
-
-  async function pushAwait() {
-    actual.push('await');
-  }
-
-  async function* callAsync() {
-    for (let i = 0; i < iterations; i++) {
-      await pushAwait();
-    }
-    return 0;
-  }
-
-  function checkAssertions() {
-    assertArrayEquals(expected, actual,
-      'Async/await and promises should be interleaved when using async generators.');
-  }
-
-  assertPromiseResult((async() => {
-    callAsync().next();
-
-    return new Promise(function (resolve) {
-      actual.push(1);
-      resolve();
-    }).then(function () {
-      actual.push(2);
-    }).then(checkAssertions);
-  })());
-})();`,
-    `(function () {
-  const actual = [];
-  const expected = [
-    'Promise: 6',
-    'Promise: 5',
-    'Await: 3',
-    'Promise: 4',
-    'Promise: 3',
-    'Await: 2',
-    'Promise: 2',
-    'Promise: 1',
-    'Await: 1',
-    'Promise: 0'
-  ];
-  const iterations = 3;
-
-  async function* naturalNumbers(start) {
-    let current = start;
-    while (current > 0) {
-      yield Promise.resolve(current--);
-    }
-  }
-
-  async function trigger() {
-    for await (const num of naturalNumbers(iterations)) {
-      actual.push('Await: ' + num);
-    }
-  }
-
-  async function checkAssertions() {
-    assertArrayEquals(expected, actual,
-      'Async/await and promises should be interleaved when yielding.');
-  }
-
-  async function countdown(counter) {
-    actual.push('Promise: ' + counter);
-    if (counter > 0) {
-      return Promise.resolve(counter - 1).then(countdown);
-    } else {
-      await checkAssertions();
-    }
-  }
-
-  assertPromiseResult((async() => {
-    trigger();
-
-    return countdown(iterations * 2);
-  })());
-})();`,
-    `
-function testFunction() {
-  async function f1() {
-    for (let x = 0; x < 1; ++x) await x;
-    return await Promise.resolve(2);
-  }
-  async function f2() {
-    let r = await f1() + await f1();
-    await f1();
-    await f1().then(x => x * 2);
-    await [1].map(x => Promise.resolve(x))[0];
-    await Promise.resolve().then(x => x * 2);
-    let p = Promise.resolve(42);
-    await p;
-    return r;
-  }
-  return f2();
-}
-//# sourceURL=test.js`,
-    `class ChildClass5 extends BaseClass {
-  constructor(result) {
-      const arr = async () => this.id;
-      arr().then(()=>{}, e => { result.error = e; });
-  }
-}
-
-class ChildClass6 extends BaseClass {
-  constructor(result) {
-      const arr = async () => {
-          let z = this.id;
-      };
-      arr().then(()=>{}, e => { result.error = e; });
-      super();
-  }
-}
-
-class ChildClass7 extends BaseClass {
-  constructor(result) {
-      const arr = async () => this.id;
-      arr().then(()=>{}, e => { result.error = e; });
-      super();
-  }
-}
-
-class ChildClass8 extends BaseClass {
-  constructor(result) {
-      const arr = async () => { let i  = this.id; super(); };
-      arr().then(()=>{}, e => { result.error = e; });
-  }
-}`,
-    `function C1() {
-  return async () => await new.target;
-}
-
-function C2() {
-  return async () => { return await new.target };
-}
-
-function C2WithAwait() {
-  return async () => {
-      var self = new.target; await new.target;
-      return new.target;
-  }
-}`,
+      function C2WithAwait() {
+        return async () => {
+            var self = new.target; await new.target;
+            return new.target;
+        }
+      }
+    `,
     `
 function resolveWait(x) {
     return new Promise(resolve => {
@@ -11237,32 +11431,35 @@ awaitImm(1).then(v => {
     telemetryLog(v.toString(), true);
     emitTTDLog(ttdLogURI);
 });`,
-    `async function awaitImm(x) {
-    const a = await resolveWait(1);
-    const b = await resolveWait(2);
-    return x + a + b;
-}
+    outdent`
+      async function awaitImm(x) {
+          const a = await resolveWait(1);
+          const b = await resolveWait(2);
+          return x + a + b;
+      }
 
-function resolveWait(x) {
-  return new Promise(resolve => {
-      WScript.SetTimeout(() => {
-          resolve(x);
-      }, 100);
-  });
-}
+      function resolveWait(x) {
+        return new Promise(resolve => {
+            WScript.SetTimeout(() => {
+                resolve(x);
+            }, 100);
+        });
+      }
 
-awaitImm(1).then(v => {
-    telemetryLog(v.toString(), true);
-    emitTTDLog(ttdLogURI);
-});`,
-    `HASH_NAME(abstract, 0xDBC60B24, 0xDBC60B24)
-HASH_NAME(assert, 0x08D130F2, 0x08D130F2)
-HASH_NAME(async, 0x0084CDEE, 0x0084CDEE)
-HASH_NAME(await, 0x0084FF56, 0x0084FF56)
-HASH_NAME(boolean, 0x96F94400, 0x96F94400)
-HASH_NAME(byte, 0x0007E974, 0x0007E974)
-HASH_NAME(char, 0x0007E83E, 0x0007E83E)
-`,
+      awaitImm(1).then(v => {
+          telemetryLog(v.toString(), true);
+          emitTTDLog(ttdLogURI);
+      });
+    `,
+    outdent`
+      HASH_NAME(abstract, 0xDBC60B24, 0xDBC60B24)
+      HASH_NAME(assert, 0x08D130F2, 0x08D130F2)
+      HASH_NAME(async, 0x0084CDEE, 0x0084CDEE)
+      HASH_NAME(await, 0x0084FF56, 0x0084FF56)
+      HASH_NAME(boolean, 0x96F94400, 0x96F94400)
+      HASH_NAME(byte, 0x0007E974, 0x0007E974)
+      HASH_NAME(char, 0x0007E83E, 0x0007E83E)
+    `,
     String.raw`var reResult2=('.*8#^' + '.)1vc5$]').split(/\b\S|(?=[蒤7])|(?!\b.)|(\S)/imyu,3);`,
     `
 function makeArrayLength(x) { if(x < 1 || x > 4294967295 || x != x || isNaN(x) || !isFinite(x)) return 100; else return Math.floor(x) & 0xffff; };;
@@ -11417,60 +11614,62 @@ var randomGenerator = function(inputseed) {
   return (seed & 0xfffffff) / 0x10000000;
   };
 };;`,
-    `var func1 = function(){
-  var uniqobj29 = {prop0: arrObj0[(6)]};
-  var uniqobj30 = Object.create(aliasOfobj0);
-  return (h >>>= (typeof(arrObj0.prop1)  == 'object') );
-};
-var func2 = function(){
-  function func5 () {
-  }
-  var uniqobj31 = new func5();
-  return (Reflect.construct(module1BaseClass));
-};
-var func3 = function(argMath115,argMath116 = (new func2()).prop1 ){
-  class class16 extends module1BaseClass {
-    constructor (argMath117){
-      super();
-      return argMath115;
-      var strvar9 = ('!k'+'*y'+';(' + 'õ$' + (typeof(argMath117)  != 'number') );
-      strvar9 = strvar9.substring((strvar9.length)/2,(strvar9.length)/2);
-      argMath117 /=(typeof(strvar9)  == 'string') ;
-    }
-    static get func7 (){
-      return argMath115;
-    }
-  }
-  class class17 extends module1BaseClass {
-    func8 (){
-      strvar7 = strvar7[6%strvar7.length];
-      if(shouldBailout){
-        return  'somestring'
-      }
-      return -313655691;
-    }
-    func9 (argMath118,argMath119){
-      return g;
-    }
-    static func10 (argMath120,argMath121 = ('caller' instanceof ((typeof String == 'function' ) ? String : Object)),argMath122,argMath123){
-      var strvar9 = strvar0;
-      strvar9 = strvar9.substring((strvar9.length)/1,(strvar9.length)/4);
-      strvar2 = strvar6.concat(parseInt("0", 18));
-(Object.defineProperty(protoObj1, 'prop1', {writable: true, enumerable: false, configurable: true }));
-      protoObj1.prop1 = (argMath122 ^= ('(' + '%!(þ'.indexOf('L' + 'e!*]'.concat(-4.66427488914349E+18))));
-      strvar3 = strvar7.concat(func0(((obj1.prop1 !== argMath121)&&(protoObj1.prop1 < argMath120)), ...[ary]));
-      strvar1 = '¦' + 'L' + 'e!*]'.concat(-4.66427488914349E+18);
-      argMath115 |=((func2.call(litObj1 ) * (strvar4.concat(func1.call(litObj0 )) + ((('caller', ((97735116.1 === -413916238) * (func0.call(protoObj1 , (-78527701 ? 244 : aliasOfobj0.prop0), ary) + func0.call(litObj1 , ui8[(argMath122) & 255], ary))), (-78527701 ? 244 : aliasOfobj0.prop0), (new class16(...(new Set([/^{(?![a7])$/im])))), func0.call(litObj1 , ui8[(argMath122) & 255], ary)) / (f64[(16) & 255] == 0 ? 1 : f64[(16) & 255])) * ('*P!)G#i($©!cLD*'.indexOf('L' + 'e!*]')) + 'caller'))) * (ui8[(132) & 255] + ((argMath122 <= aliasOfobj0.prop1)||(h >= argMath115))) + ('g|,a-' + 'Äá!#,f$.'.concat(ui8[(ui8[(132) & 255]) & 255])).replace(/a/g, '*P!)G#i($©!cLD*'));
-      return -822821403.9;
-    }
-    static func11 (argMath124 = func0.call(obj1 , (argMath115 /= (typeof 614038338)), ary)){
-      return argMath124;
-      strvar6 = strvar1.concat(212963263.1);
-      return obj1.prop0;
-    }
-  }
-  return protoObj1.prop1;
-};`,
+    outdent`
+      var func1 = function(){
+        var uniqobj29 = {prop0: arrObj0[(6)]};
+        var uniqobj30 = Object.create(aliasOfobj0);
+        return (h >>>= (typeof(arrObj0.prop1)  == 'object') );
+      };
+      var func2 = function(){
+        function func5 () {
+        }
+        var uniqobj31 = new func5();
+        return (Reflect.construct(module1BaseClass));
+      };
+      var func3 = function(argMath115,argMath116 = (new func2()).prop1 ){
+        class class16 extends module1BaseClass {
+          constructor (argMath117){
+            super();
+            return argMath115;
+            var strvar9 = ('!k'+'*y'+';(' + 'õ$' + (typeof(argMath117)  != 'number') );
+            strvar9 = strvar9.substring((strvar9.length)/2,(strvar9.length)/2);
+            argMath117 /=(typeof(strvar9)  == 'string') ;
+          }
+          static get func7 (){
+            return argMath115;
+          }
+        }
+        class class17 extends module1BaseClass {
+          func8 (){
+            strvar7 = strvar7[6%strvar7.length];
+            if(shouldBailout){
+              return  'somestring'
+            }
+            return -313655691;
+          }
+          func9 (argMath118,argMath119){
+            return g;
+          }
+          static func10 (argMath120,argMath121 = ('caller' instanceof ((typeof String == 'function' ) ? String : Object)),argMath122,argMath123){
+            var strvar9 = strvar0;
+            strvar9 = strvar9.substring((strvar9.length)/1,(strvar9.length)/4);
+            strvar2 = strvar6.concat(parseInt("0", 18));
+      (Object.defineProperty(protoObj1, 'prop1', {writable: true, enumerable: false, configurable: true }));
+            protoObj1.prop1 = (argMath122 ^= ('(' + '%!(þ'.indexOf('L' + 'e!*]'.concat(-4.66427488914349E+18))));
+            strvar3 = strvar7.concat(func0(((obj1.prop1 !== argMath121)&&(protoObj1.prop1 < argMath120)), ...[ary]));
+            strvar1 = '¦' + 'L' + 'e!*]'.concat(-4.66427488914349E+18);
+            argMath115 |=((func2.call(litObj1 ) * (strvar4.concat(func1.call(litObj0 )) + ((('caller', ((97735116.1 === -413916238) * (func0.call(protoObj1 , (-78527701 ? 244 : aliasOfobj0.prop0), ary) + func0.call(litObj1 , ui8[(argMath122) & 255], ary))), (-78527701 ? 244 : aliasOfobj0.prop0), (new class16(...(new Set([/^{(?![a7])$/im])))), func0.call(litObj1 , ui8[(argMath122) & 255], ary)) / (f64[(16) & 255] == 0 ? 1 : f64[(16) & 255])) * ('*P!)G#i($©!cLD*'.indexOf('L' + 'e!*]')) + 'caller'))) * (ui8[(132) & 255] + ((argMath122 <= aliasOfobj0.prop1)||(h >= argMath115))) + ('g|,a-' + 'Äá!#,f$.'.concat(ui8[(ui8[(132) & 255]) & 255])).replace(/a/g, '*P!)G#i($©!cLD*'));
+            return -822821403.9;
+          }
+          static func11 (argMath124 = func0.call(obj1 , (argMath115 /= (typeof 614038338)), ary)){
+            return argMath124;
+            strvar6 = strvar1.concat(212963263.1);
+            return obj1.prop0;
+          }
+        }
+        return protoObj1.prop1;
+      };
+    `,
     String.raw`var func1 = function(argMath89 = (b <<= func0.call(obj0 , ary.length, -3)),argMath90,argMath91){
   class class12 extends module1BaseClass {
     constructor (){
@@ -11560,20 +11759,22 @@ var func2 = function(argMath100,...argArr101){
   var reResult0='%$'+'º{'+'%Ã' + 'ûÛ'.search(/(?=\\B.)/imy);
   return (typeof(((strvar7).replace(/a/g, ('È').replace('È', 'Ã!'+'qÄ'+'U*' + 'é%'))).replace((strvar7).replace(/a/g, ('È').replace('È', 'Ã!'+'qÄ'+'U*' + 'é%')), strvar6))  == 'boolean') ;
 };`,
-    `function* qegv() {
-  ;(null);
-  debugger
-  let [] = (((yield* ((yield)))));
-  do debugger; while ((null))
-}
-for (new ((dieqffaqtlfrca = ((((true))).yield **= ((eval)))))(((new (((++(/M^\u4afE\ufDeB$/gm).y)))((jetkknpsm))))).void in (rlil = ((false.prototype)))) var [...[]] = (((""))), sdsukajfdph, kgiujhouegnpnm = function pjsoeexyswiv([], ...{}) {
-  for (;;) ;
-  {}
-  for (var q of ((/\\B/gim))) ;
-}, [i, , , ...{}] = (({[((5192))]() {
-  "use strict"
-}, eval, [/\u1312+?/mu]: (2e308), set [(2e308)] ([]) {
-}}));`,
+    outdent`
+      function* qegv() {
+        ;(null);
+        debugger
+        let [] = (((yield* ((yield)))));
+        do debugger; while ((null))
+      }
+      for (new ((dieqffaqtlfrca = ((((true))).yield **= ((eval)))))(((new (((++(/M^\u4afE\ufDeB$/gm).y)))((jetkknpsm))))).void in (rlil = ((false.prototype)))) var [...[]] = (((""))), sdsukajfdph, kgiujhouegnpnm = function pjsoeexyswiv([], ...{}) {
+        for (;;) ;
+        {}
+        for (var q of ((/\\B/gim))) ;
+      }, [i, , , ...{}] = (({[((5192))]() {
+        "use strict"
+      }, eval, [/\u1312+?/mu]: (2e308), set [(2e308)] ([]) {
+      }}));
+    `,
     String.raw`var func3 = function(argMath113,argMath114,argMath115,argMath116 = (argMath115 + argMath113)){
   if((func2.call(arrObj0 , strvar1, ary) && (~ -2147483648))) {
   }
@@ -11589,2858 +11790,2991 @@ var func4 = function(){
   func1.call(litObj0 , (arrObj0.prop1 %= (func2.call(protoObj1 , strvar2, ary) ? (322427898 < 222) : arrObj0[(((-1719618252.9 >= 0 ? -1719618252.9 : 0)) & 0XF)])), litObj0, /\w*$/gmy);
   return ((typeof(strvar1)  == 'string')  ? i32[(((new module1BaseClass()) ? (+ ((new Error('abc')) instanceof ((typeof Error == 'function' ) ? Error : Object))) : (((new Error('abc')) instanceof ((typeof Error == 'function' ) ? Error : Object)) ? ((i16[(195) & 255]) >= (typeof(arrObj0.prop0)  == 'boolean') ) : (-104 + i32[(53) & 255])))) & 255] : ((((new Error('abc')) instanceof ((typeof Error == 'function' ) ? Error : Object)) ? ((i16[(195) & 255]) >= (typeof(arrObj0.prop0)  == 'boolean') ) : (-104 + i32[(53) & 255])) ^ (typeof('|' + 'w.e!')  != 'undefined') ));
 };`,
-    `class DeferredSuperCall extends BaseClass {
-  constructor(x) {
-    return async() => super(x);
-  }
-};`,
-    `class DeferredSuperProperty extends BaseClass {
-  deferredName() { return async() => super.name; }
-};`,
-    `(function() {
-  { function* bar() {} }
-})();`,
-    `(function() {
-  function* x() { yield 1; }
-  { function* x() { yield 2 } }
-})();`,
-    `function listener(event, exec_state, event_data, data) {
-  try {
-    if (event == Debug.DebugEvent.Break) {
-      break_count++;
-      listener_called = true;
-      listener_delegate(exec_state);
-    }
-  } catch (e) {
-    exception = e;
-  }
-}`,
-    `function BeginTest(name) {
-  test_name = name;
-  listener_delegate = null;
-  listener_called = false;
-  exception = null;
-  begin_test_count++;
-}`,
-    `function CheckFastAllScopes(scopes, exec_state)
-{
-  var fast_all_scopes = exec_state.frame().allScopes(true);
-  var length = fast_all_scopes.length;
-  assertTrue(scopes.length >= length);
-  for (var i = 0; i < scopes.length && i < length; i++) {
-    var scope = fast_all_scopes[length - i - 1];
-    assertEquals(scopes[scopes.length - i - 1], scope.scopeType());
-  }
-}`,
-    `function CheckScopeChain(scopes, exec_state) {
-  var all_scopes = exec_state.frame().allScopes();
-  assertEquals(scopes.length, exec_state.frame().scopeCount());
-  assertEquals(scopes.length, all_scopes.length,
-               "FrameMirror.allScopes length");
-  for (var i = 0; i < scopes.length; i++) {
-    var scope = exec_state.frame().scope(i);
-    assertEquals(scopes[i], scope.scopeType());
-    assertScopeMirrorEquals(all_scopes[i], scope);
-  }
-  CheckFastAllScopes(scopes, exec_state);
-}
+    outdent`
+      class DeferredSuperCall extends BaseClass {
+        constructor(x) {
+          return async() => super(x);
+        }
+      };
+    `,
+    outdent`
+      class DeferredSuperProperty extends BaseClass {
+        deferredName() { return async() => super.name; }
+      };
+    `,
+    outdent`
+      (function() {
+        { function* bar() {} }
+      })();
+    `,
+    outdent`
+      (function() {
+        function* x() { yield 1; }
+        { function* x() { yield 2 } }
+      })();
+    `,
+    outdent`
+      function listener(event, exec_state, event_data, data) {
+        try {
+          if (event == Debug.DebugEvent.Break) {
+            break_count++;
+            listener_called = true;
+            listener_delegate(exec_state);
+          }
+        } catch (e) {
+          exception = e;
+        }
+      }
+    `,
+    outdent`
+      function BeginTest(name) {
+        test_name = name;
+        listener_delegate = null;
+        listener_called = false;
+        exception = null;
+        begin_test_count++;
+      }
+    `,
+    outdent`
+      function CheckFastAllScopes(scopes, exec_state)
+      {
+        var fast_all_scopes = exec_state.frame().allScopes(true);
+        var length = fast_all_scopes.length;
+        assertTrue(scopes.length >= length);
+        for (var i = 0; i < scopes.length && i < length; i++) {
+          var scope = fast_all_scopes[length - i - 1];
+          assertEquals(scopes[scopes.length - i - 1], scope.scopeType());
+        }
+      }
+    `,
+    outdent`
+      function CheckScopeChain(scopes, exec_state) {
+        var all_scopes = exec_state.frame().allScopes();
+        assertEquals(scopes.length, exec_state.frame().scopeCount());
+        assertEquals(scopes.length, all_scopes.length,
+                    "FrameMirror.allScopes length");
+        for (var i = 0; i < scopes.length; i++) {
+          var scope = exec_state.frame().scope(i);
+          assertEquals(scopes[i], scope.scopeType());
+          assertScopeMirrorEquals(all_scopes[i], scope);
+        }
+        CheckFastAllScopes(scopes, exec_state);
+      }
 
 
-// Check that the scope chain contains the expected names of scopes.
-function CheckScopeChainNames(names, exec_state) {
-  var all_scopes = exec_state.frame().allScopes();
-  assertEquals(names.length, all_scopes.length, "FrameMirror.allScopes length");
-  for (var i = 0; i < names.length; i++) {
-    var scope = exec_state.frame().scope(i);
-    // assertEquals(names[i], scope.details().name())
-  }
-}
-`,
-    `function local_4(a, b) {
-  var x = 3;
-  var y = 4;
-  debugger;
-}`,
-    `function closure_1(a) {
-  function f() {
-    debugger;
-    return a;
-  };
-  return f;
-}`,
-    `function closure_2(a, b) {
-  var x = a + 2;
-  var y = b + 2;
-  function f() {
-    debugger;
-    return a + x;
-  };
-  return f;
-}`,
-    `function closure_3(a, b) {
-  var x = a + 2;
-  var y = b + 2;
-  function f() {
-    debugger;
-    return a + b + x + y;
-  };
-  return f;
-}`,
-    `function closure_4(a, b) {
-  var x = a + 2;
-  var y = b + 2;
-  function f() {
-    debugger;
-    if (f) {
-      return a + b + x + y;
-    }
-  };
-  return f;
-}`,
-    `let some_global;
-function closure_6(a, b) {
-  function f(a, b) {
-    var x = 3;
-    var y = 4;
-    return function() {
-      var x = 3;
-      var y = 4;
-      debugger;
-      some_global = a;
-      return f;
-    };
-  }
-  return f(a, b);
-}
-`,
-    `function closure_7(a, b) {
-  var x = 3;
-  var y = 4;
-  eval('var i = 5');
-  eval('var j = 6');
-  function f(a, b) {
-    var x = 3;
-    var y = 4;
-    eval('var i = 5');
-    eval('var j = 6');
-    return function() {
-      debugger;
-      some_global = a;
-      return f;
-    };
-  }
-  return f(a, b);
-}`,
-    `(function() {
-  "use strict";
-  class C1 {
-    m() {
-      debugger;
-    }
-  }
-  new C1().m();
-})();`,
-    `function with_2() {
-  with({}) {
-    with({}) {
-      debugger;
-    }
-  }
-}`,
-    `function with_3() {
-  with({a:1,b:2}) {
-    debugger;
-  }
-}`,
-    `function with_4() {
-  with({a:1,b:2}) {
-    with({a:2,b:1}) {
-      debugger;
-    }
-  }
-}`,
-    `var with_object = {c:3,d:4};
-function with_5() {
-  with(with_object) {
-    with(with_object) {
-      debugger;
-    }
-  }
-}`,
-    `function closure_2(a, b) {
-  var x = a + 2;
-  var y = b + 2;
-  function f() {
-    debugger;
-    return a + x;
-  };
-  return f;
-}`,
-    `function closure_3(a, b) {
-  var x = a + 2;
-  var y = b + 2;
-  function f() {
-    debugger;
-    return a + b + x + y;
-  };
-  return f;
-}`,
-    `function closure_4(a, b) {
-  var x = a + 2;
-  var y = b + 2;
-  function f() {
-    debugger;
-    if (f) {
-      return a + b + x + y;
-    }
-  };
-  return f;
-}`,
-    `function closure_6(a, b) {
-  function f(a, b) {
-    var x = 3;
-    var y = 4;
-    return function() {
-      var x = 3;
-      var y = 4;
-      debugger;
-      some_global = a;
-      return f;
-    };
-  }
-  return f(a, b);
-}`,
-    `function closure_10(a) {
-  var x = a + 2;
-  function closure_11(b) {
-    debugger;
-    return a + b + x;
-  }
-  [42].forEach(closure_11);
-}`,
-    `function the_full_monty(a, b) {
-  var x = 3;
-  var y = 4;
-  eval('var i = 5');
-  eval('var j = 6');
-  function f(a, b) {
-    var x = 9;
-    var y = 10;
-    eval('var i = 11');
-    eval('var j = 12');
-    with ({j:13}){
-      return function() {
-        var x = 14;
-        with ({a:15}) {
-          with ({b:16}) {
+      // Check that the scope chain contains the expected names of scopes.
+      function CheckScopeChainNames(names, exec_state) {
+        var all_scopes = exec_state.frame().allScopes();
+        assertEquals(names.length, all_scopes.length, "FrameMirror.allScopes length");
+        for (var i = 0; i < names.length; i++) {
+          var scope = exec_state.frame().scope(i);
+          // assertEquals(names[i], scope.details().name())
+        }
+      }
+    `,
+    outdent`
+      function local_4(a, b) {
+        var x = 3;
+        var y = 4;
+        debugger;
+      }
+    `,
+    outdent`
+      function closure_1(a) {
+        function f() {
+          debugger;
+          return a;
+        };
+        return f;
+      }
+    `,
+    outdent`
+      function closure_2(a, b) {
+        var x = a + 2;
+        var y = b + 2;
+        function f() {
+          debugger;
+          return a + x;
+        };
+        return f;
+      }
+    `,
+    outdent`
+      function closure_3(a, b) {
+        var x = a + 2;
+        var y = b + 2;
+        function f() {
+          debugger;
+          return a + b + x + y;
+        };
+        return f;
+      }
+    `,
+    outdent`
+      function closure_4(a, b) {
+        var x = a + 2;
+        var y = b + 2;
+        function f() {
+          debugger;
+          if (f) {
+            return a + b + x + y;
+          }
+        };
+        return f;
+      }
+    `,
+    outdent`
+      let some_global;
+      function closure_6(a, b) {
+        function f(a, b) {
+          var x = 3;
+          var y = 4;
+          return function() {
+            var x = 3;
+            var y = 4;
             debugger;
             some_global = a;
             return f;
+          };
+        }
+        return f(a, b);
+      }
+    `,
+    outdent`
+      function closure_7(a, b) {
+        var x = 3;
+        var y = 4;
+        eval('var i = 5');
+        eval('var j = 6');
+        function f(a, b) {
+          var x = 3;
+          var y = 4;
+          eval('var i = 5');
+          eval('var j = 6');
+          return function() {
+            debugger;
+            some_global = a;
+            return f;
+          };
+        }
+        return f(a, b);
+      }
+    `,
+    outdent`
+      (function() {
+        "use strict";
+        class C1 {
+          m() {
+            debugger;
+          }
+        }
+        new C1().m();
+      })();
+    `,
+    outdent`
+      function with_2() {
+        with({}) {
+          with({}) {
+            debugger;
+          }
+        }
+      }
+    `,
+    outdent`
+      function with_3() {
+        with({a:1,b:2}) {
+          debugger;
+        }
+      }
+    `,
+    outdent`
+      function with_4() {
+        with({a:1,b:2}) {
+          with({a:2,b:1}) {
+            debugger;
+          }
+        }
+      }
+    `,
+    outdent`
+      var with_object = {c:3,d:4};
+      function with_5() {
+        with(with_object) {
+          with(with_object) {
+            debugger;
+          }
+        }
+      }
+    `,
+    outdent`
+      function closure_2(a, b) {
+        var x = a + 2;
+        var y = b + 2;
+        function f() {
+          debugger;
+          return a + x;
+        };
+        return f;
+      }
+    `,
+    outdent`
+      function closure_3(a, b) {
+        var x = a + 2;
+        var y = b + 2;
+        function f() {
+          debugger;
+          return a + b + x + y;
+        };
+        return f;
+      }
+    `,
+    outdent`
+      function closure_4(a, b) {
+        var x = a + 2;
+        var y = b + 2;
+        function f() {
+          debugger;
+          if (f) {
+            return a + b + x + y;
+          }
+        };
+        return f;
+      }
+    `,
+    outdent`
+      function closure_6(a, b) {
+        function f(a, b) {
+          var x = 3;
+          var y = 4;
+          return function() {
+            var x = 3;
+            var y = 4;
+            debugger;
+            some_global = a;
+            return f;
+          };
+        }
+        return f(a, b);
+      }
+    `,
+    outdent`
+      function closure_10(a) {
+        var x = a + 2;
+        function closure_11(b) {
+          debugger;
+          return a + b + x;
+        }
+        [42].forEach(closure_11);
+      }
+    `,
+    outdent`
+      function the_full_monty(a, b) {
+        var x = 3;
+        var y = 4;
+        eval('var i = 5');
+        eval('var j = 6');
+        function f(a, b) {
+          var x = 9;
+          var y = 10;
+          eval('var i = 11');
+          eval('var j = 12');
+          with ({j:13}){
+            return function() {
+              var x = 14;
+              with ({a:15}) {
+                with ({b:16}) {
+                  debugger;
+                  some_global = a;
+                  return f;
+                }
+              }
+            };
+          }
+        }
+        return f(a, b);
+      }
+    `,
+    outdent`
+      function closure_in_with_2() {
+        with({x:1}) {
+          (function inner(x) {
+            with({x:3}) {
+              debugger;
+            }
+          })(2);
+        }
+      }
+    `,
+    outdent`
+      BeginTest("Closure inside With 3");
+      function createClosure(a) {
+         var b = a + 1;
+         return function closure() {
+           var c = b;
+           (function inner(x) {
+             with({x:c}) {
+               debugger;
+             }
+           })(2);
+         };
+      }
+    `,
+    outdent`
+      (function TestObjectLiteralPatternInitializers() {
+        var { x : x, y : y = 2 } = { x : 1 };
+        assertEquals(1, x);
+        assertEquals(2, y);
+
+        var {z = 3} = {};
+        assertEquals(3, z);
+
+        var sum = 0;
+        for (var {z = 3} = {}; z != 0; z--) {
+          sum += z;
+        }
+        assertEquals(6, sum);
+
+        var log = [];
+        var o = {
+          get x() {
+            log.push("x");
+            return undefined;
+          },
+          get y() {
+            log.push("y");
+            return {
+              get z() { log.push("z"); return undefined; }
+            }
+          }
+        };
+        var { x : x0 = 0, y : { z : z1 = 1}, x : x1 = 0} = o;
+      }());
+    `,
+    outdent`
+      let log = [];
+      let o = {
+        get x() {
+          log.push("x");
+          return undefined;
+        },
+        get y() {
+          log.push("y");
+          return {
+            get z() { log.push("z"); return undefined; }
           }
         }
       };
-    }
-  }
-  return f(a, b);
-}`,
-    `function closure_in_with_2() {
-  with({x:1}) {
-    (function inner(x) {
-      with({x:3}) {
-        debugger;
-      }
-    })(2);
-  }
-}`,
-    `BeginTest("Closure inside With 3");
-function createClosure(a) {
-   var b = a + 1;
-   return function closure() {
-     var c = b;
-     (function inner(x) {
-       with({x:c}) {
-         debugger;
-       }
-     })(2);
-   };
-}
-`,
-    `(function TestObjectLiteralPatternInitializers() {
-  var { x : x, y : y = 2 } = { x : 1 };
-  assertEquals(1, x);
-  assertEquals(2, y);
-
-  var {z = 3} = {};
-  assertEquals(3, z);
-
-  var sum = 0;
-  for (var {z = 3} = {}; z != 0; z--) {
-    sum += z;
-  }
-  assertEquals(6, sum);
-
-  var log = [];
-  var o = {
-    get x() {
-      log.push("x");
-      return undefined;
-    },
-    get y() {
-      log.push("y");
-      return {
-        get z() { log.push("z"); return undefined; }
-      }
-    }
-  };
-  var { x : x0 = 0, y : { z : z1 = 1}, x : x1 = 0} = o;
-}());`,
-    ` let log = [];
-let o = {
-  get x() {
-    log.push("x");
-    return undefined;
-  },
-  get y() {
-    log.push("y");
-    return {
-      get z() { log.push("z"); return undefined; }
-    }
-  }
-};`,
-    `(function TestObjectLiteralPatternLexical() {
-  'use strict';
-  let { x : x, y : y } = { x : 1, y : 2 };
-  assertEquals(1, x);
-  assertEquals(2, y);
-
-  let {z} = { z : 3 };
-  assertEquals(3, z);
-
-  let log = [];
-  let o = {
-    get x() {
-      log.push("x");
-      return 0;
-    },
-    get y() {
-      log.push("y");
-      return {
-        get z() { log.push("z"); return 1; }
-      }
-    }
-  };
-  let { x : x0, y : { z : z1 }, x : x1 } = o;
-  assertSame(0, x0);
-  assertSame(1, z1);
-  assertSame(0, x1);
-  assertArrayEquals(["x", "y", "z", "x"], log);
-
-  let sum = 0;
-  for (let {x, z} = { x : 0, z : 3 }; z != 0; z--) {
-    assertEquals(0, x);
-    sum += z;
-  }
-  assertEquals(6, sum);
-}());`,
-    `(function TestAssignmentExprInInitializers() {
-  {
-    let x, y;
-    {
-      let { x = y = 1 } = {};
-      assertSame(x, 1);
-      assertSame(y, 1);
-    }
-    assertSame(undefined, x);
-    assertSame(1, y);
-  }
-
-  {
-    let x, y;
-    {
-      let { x: x = y = 1 } = {};
-      assertSame(1, x);
-      assertSame(1, y);
-    }
-    assertSame(undefined, x);
-    assertSame(1, y);
-  }
-
-  {
-    let x, y;
-    {
-      let [ x = y = 1 ] = [];
-      assertSame(1, x);
-      assertSame(1, y);
-    }
-    assertSame(undefined, x);
-    assertSame(1, y);
-  }
-
-  {
-    let x, y;
-    (function({ x = y = 1 }) {}({}));
-    assertSame(undefined, x);
-    assertSame(1, y);
-  }
-
-  {
-    let x, y;
-    (function({ x: x = y = 1 }) {}({}));
-    assertSame(undefined, x);
-    assertSame(1, y);
-  }
-
-  {
-    let x, y;
-    (function([ x = y = 1 ]) {}([]));
-    assertSame(undefined, x);
-    assertSame(1, y);
-  }
-}());`,
-    `(function TestMultipleAccesses() {
-  assertThrows(
-    "'use strict';"+
-    "const {x,x} = {x:1};",
-    SyntaxError);
-
-  assertThrows(
-    "'use strict';"+
-    "let {x,x} = {x:1};",
-     SyntaxError);
-
-  (function() {
-    var {x,x = 2} = {x : 1};
-    assertSame(1, x);
-  }());
-
-  assertThrows(function () {
-    'use strict';
-    let {x = (function() { x = 2; }())} = {};
-  }, ReferenceError);
-
-  (function() {
-    'use strict';
-    let {x = (function() { x = 2; }())} = {x:1};
-    assertSame(1, x);
-  }());
-}());
-
-
-(function TestComputedNames() {
-  var x = 1;
-  var {[x]:y} = {1:2};
-  assertSame(2, y);
-
-  (function(){
-    'use strict';
-    let {[x]:y} = {1:2};
-    assertSame(2, y);
-  }());
-
-  var callCount = 0;
-  function foo(v) { callCount++; return v; }
-
-  (function() {
-    callCount = 0;
-    var {[foo("abc")]:x} = {abc:42};
-    assertSame(42, x);
-    assertEquals(1, callCount);
-  }());
-
-  (function() {
-    'use strict';
-    callCount = 0;
-    let {[foo("abc")]:x} = {abc:42};
-    assertSame(42, x);
-    assertEquals(1, callCount);
-  }());
-
-  (function() {
-    callCount = 0;
-    var {[foo("abc")]:x} = {};
-    assertSame(undefined, x);
-    assertEquals(1, callCount);
-  }());
-
-  (function() {
-    'use strict';
-    callCount = 0;
-    let {[foo("abc")]:x} = {};
-    assertSame(undefined, x);
-    assertEquals(1, callCount);
-  }());
-
-  for (val of [null, undefined]) {
-    callCount = 0;
-    assertThrows(function() {
-      var {[foo()]:x} = val;
-    }, TypeError);
-    assertEquals(0, callCount);
-
-    callCount = 0;
-    assertThrows(function() {
-      'use strict';
-      let {[foo()]:x} = val;
-    }, TypeError);
-    assertEquals(0, callCount);
-  }
-
-  var log = [];
-  var o = {
-    get x() { log.push("get x"); return 1; },
-    get y() { log.push("get y"); return 2; }
-  }
-  function f(v) { log.push("f " + v); return v; }
-
-  (function() {
-    log = [];
-    var { [f('x')]:x, [f('y')]:y } = o;
-    assertSame(1, x);
-    assertSame(2, y);
-    assertArrayEquals(["f x", "get x", "f y", "get y"], log);
-  }());
-
-  (function() {
-    'use strict';
-    log = [];
-    let { [f('x')]:x, [f('y')]:y } = o;
-    assertSame(1, x);
-    assertSame(2, y);
-    assertArrayEquals(["f x", "get x", "f y", "get y"], log);
-  }());
-
-  (function() {
-    'use strict';
-    log = [];
-    const { [f('x')]:x, [f('y')]:y } = o;
-    assertSame(1, x);
-    assertSame(2, y);
-    assertArrayEquals(["f x", "get x", "f y", "get y"], log);
-  }());
-}());
-
-
-(function TestExceptions() {
-  for (var val of [null, undefined]) {
-    assertThrows(function() { var {} = val; }, TypeError);
-    assertThrows(function() { var {x} = val; }, TypeError);
-    assertThrows(function() { var { x : {} } = { x : val }; }, TypeError);
-    assertThrows(function() { 'use strict'; let {} = val; }, TypeError);
-    assertThrows(function() { 'use strict'; let {x} = val; }, TypeError);
-    assertThrows(function() { 'use strict'; let { x : {} } = { x : val }; },
-                 TypeError);
-  }
-}());
-
-
-(function TestArrayLiteral() {
-  var [a, b, c] = [1, 2, 3];
-  assertSame(1, a);
-  assertSame(2, b);
-  assertSame(3, c);
-}());
-
-(function TestIterators() {
-  var log = [];
-  function* f() {
-    log.push("1");
-    yield 1;
-    log.push("2");
-    yield 2;
-    log.push("3");
-    yield 3;
-    log.push("done");
-  };
-
-  (function() {
-    log = [];
-    var [a, b, c] = f();
-    assertSame(1, a);
-    assertSame(2, b);
-    assertSame(3, c);
-    assertArrayEquals(["1", "2", "3"], log);
-  }());
-
-  (function() {
-    log = [];
-    var [a, b, c, d] = f();
-    assertSame(1, a);
-    assertSame(2, b);
-    assertSame(3, c);
-    assertSame(undefined, d);
-    assertArrayEquals(["1", "2", "3", "done"], log);
-  }());
-
-  (function() {
-    log = [];
-    var [a, , c] = f();
-    assertSame(1, a);
-    assertSame(3, c);
-    assertArrayEquals(["1", "2", "3"], log);
-  }());
-
-  (function() {
-    log = [];
-    var [a, , c, d] = f();
-    assertSame(1, a);
-    assertSame(3, c);
-    assertSame(undefined, d);
-    assertArrayEquals(["1", "2", "3", "done"], log);
-  }());
-
-  (function() {
-    log = [];
-    // last comma is not an elision.
-    var [a, b,] = f();
-    assertSame(1, a);
-    assertSame(2, b);
-    assertArrayEquals(["1", "2"], log);
-  }());
-
-  (function() {
-    log = [];
-    // last comma is not an elision, but the comma before the last is.
-    var [a, b, ,] = f();
-    assertSame(1, a);
-    assertSame(2, b);
-    assertArrayEquals(["1", "2", "3"], log);
-  }());
-
-  (function() {
-    log = [];
-    var [a, ...rest] = f();
-    assertSame(1, a);
-    assertArrayEquals([2,3], rest);
-    assertArrayEquals(["1", "2", "3", "done"], log);
-  }());
-
-  (function() {
-    log = [];
-    var [a, b, c, ...rest] = f();
-    assertSame(1, a);
-    assertSame(2, b);
-    assertSame(3, c);
-    assertArrayEquals([], rest);
-    assertArrayEquals(["1", "2", "3", "done"], log);
-  }());
-
-  (function() {
-    log = [];
-    var [a, b, c, d, ...rest] = f();
-    assertSame(1, a);
-    assertSame(2, b);
-    assertSame(3, c);
-    assertSame(undefined, d);
-    assertArrayEquals([], rest);
-    assertArrayEquals(["1", "2", "3", "done"], log);
-  }());
-}());
-
-
-(function TestIteratorsLexical() {
-  'use strict';
-  var log = [];
-  function* f() {
-    log.push("1");
-    yield 1;
-    log.push("2");
-    yield 2;
-    log.push("3");
-    yield 3;
-    log.push("done");
-  };
-
-  (function() {
-    log = [];
-    let [a, b, c] = f();
-    assertSame(1, a);
-    assertSame(2, b);
-    assertSame(3, c);
-    assertArrayEquals(["1", "2", "3"], log);
-  }());
-
-  (function() {
-    log = [];
-    let [a, b, c, d] = f();
-    assertSame(1, a);
-    assertSame(2, b);
-    assertSame(3, c);
-    assertSame(undefined, d);
-    assertArrayEquals(["1", "2", "3", "done"], log);
-  }());
-
-  (function() {
-    log = [];
-    let [a, , c] = f();
-    assertSame(1, a);
-    assertSame(3, c);
-    assertArrayEquals(["1", "2", "3"], log);
-  }());
-
-  (function() {
-    log = [];
-    let [a, , c, d] = f();
-    assertSame(1, a);
-    assertSame(3, c);
-    assertSame(undefined, d);
-    assertArrayEquals(["1", "2", "3", "done"], log);
-  }());
-
-  (function() {
-    log = [];
-    // last comma is not an elision.
-    let [a, b,] = f();
-    assertSame(1, a);
-    assertSame(2, b);
-    assertArrayEquals(["1", "2"], log);
-  }());
-
-  (function() {
-    log = [];
-    // last comma is not an elision, but the comma before the last is.
-    let [a, b, ,] = f();
-    assertSame(1, a);
-    assertSame(2, b);
-    assertArrayEquals(["1", "2", "3"], log);
-  }());
-
-  (function() {
-    log = [];
-    let [a, ...rest] = f();
-    assertSame(1, a);
-    assertArrayEquals([2,3], rest);
-    assertArrayEquals(["1", "2", "3", "done"], log);
-  }());
-
-  (function() {
-    log = [];
-    let [a, b, c, ...rest] = f();
-    assertSame(1, a);
-    assertSame(2, b);
-    assertSame(3, c);
-    assertArrayEquals([], rest);
-    assertArrayEquals(["1", "2", "3", "done"], log);
-  }());
-
-  (function() {
-    log = [];
-    let [a, b, c, d, ...rest] = f();
-    assertSame(1, a);
-    assertSame(2, b);
-    assertSame(3, c);
-    assertSame(undefined, d);
-    assertArrayEquals([], rest);
-    assertArrayEquals(["1", "2", "3", "done"], log);
-  }());
-}());
-
-(function TestIteratorsRecursive() {
-  var log = [];
-  function* f() {
-    log.push("1");
-    yield {x : 1, y : 2};
-    log.push("2");
-    yield [42, 27, 30];
-    log.push("3");
-    yield "abc";
-    log.push("done");
-  };
-
-  (function() {
-    var [{x, y}, [a, b]] = f();
-    assertSame(1, x);
-    assertSame(2, y);
-    assertSame(42, a);
-    assertSame(27, b);
-    assertArrayEquals(["1", "2"], log);
-  }());
-
-  (function() {
-    'use strict';
-    log = [];
-    let [{x, y}, [a, b]] = f();
-    assertSame(1, x);
-    assertSame(2, y);
-    assertSame(42, a);
-    assertSame(27, b);
-    assertArrayEquals(["1", "2"], log);
-  }());
-}());
-
-
-(function TestForEachLexical() {
-  'use strict';
-  let a = [{x:1, y:-1}, {x:2,y:-2}, {x:3,y:-3}];
-  let sumX = 0;
-  let sumY = 0;
-  let fs = [];
-  for (let {x,y} of a) {
-    sumX += x;
-    sumY += y;
-    fs.push({fx : function() { return x; }, fy : function() { return y }});
-  }
-  assertSame(6, sumX);
-  assertSame(-6, sumY);
-  assertSame(3, fs.length);
-  for (let i = 0; i < fs.length; i++) {
-    let {fx,fy} = fs[i];
-    assertSame(i+1, fx());
-    assertSame(-(i+1), fy());
-  }
-
-  var o = { __proto__:null, 'a1':1, 'b2':2 };
-  let sx = '';
-  let sy = '';
-  for (let [x,y] in o) {
-    sx += x;
-    sy += y;
-  }
-  assertEquals('ab', sx);
-  assertEquals('12', sy);
-}());
-
-
-(function TestForEachVars() {
-  var a = [{x:1, y:-1}, {x:2,y:-2}, {x:3,y:-3}];
-  var sumX = 0;
-  var sumY = 0;
-  var fs = [];
-  for (var {x,y} of a) {
-    sumX += x;
-    sumY += y;
-    fs.push({fx : function() { return x; }, fy : function() { return y }});
-  }
-  assertSame(6, sumX);
-  assertSame(-6, sumY);
-  assertSame(3, fs.length);
-  for (var i = 0; i < fs.length; i++) {
-    var {fx,fy} = fs[i];
-    assertSame(3, fx());
-    assertSame(-3, fy());
-  }
-
-  var o = { __proto__:null, 'a1':1, 'b2':2 };
-  var sx = '';
-  var sy = '';
-  for (var [x,y] in o) {
-    sx += x;
-    sy += y;
-  }
-  assertEquals('ab', sx);
-  assertEquals('12', sy);
-}());
-
-
-(function TestParameters() {
-  function f({a, b}) { return a - b; }
-  assertEquals(1, f({a : 6, b : 5}));
-
-  function f1(c, {a, b}) { return c + a - b; }
-  assertEquals(8, f1(7, {a : 6, b : 5}));
-
-  function f2({c, d}, {a, b}) { return c - d + a - b; }
-  assertEquals(7, f2({c : 7, d : 1}, {a : 6, b : 5}));
-
-  function f3([{a, b}]) { return a - b; }
-  assertEquals(1, f3([{a : 6, b : 5}]));
-
-  var g = ({a, b}) => { return a - b; };
-  assertEquals(1, g({a : 6, b : 5}));
-
-  var g1 = (c, {a, b}) => { return c + a - b; };
-  assertEquals(8, g1(7, {a : 6, b : 5}));
-
-  var g2 = ({c, d}, {a, b}) => { return c - d + a - b; };
-  assertEquals(7, g2({c : 7, d : 1}, {a : 6, b : 5}));
-
-  var g3 = ([{a, b}]) => { return a - b; };
-  assertEquals(1, g3([{a : 6, b : 5}]));
-}());
-
-
-(function TestExpressionsInParameters() {
-  function f0(x = eval(0)) { return x }
-  assertEquals(0, f0());
-  function f1({a = eval(1)}) { return a }
-  assertEquals(1, f1({}));
-  function f2([x = eval(2)]) { return x }
-  assertEquals(2, f2([]));
-  function f3({[eval(7)]: x}) { return x }
-  assertEquals(3, f3({7: 3}));
-})();
-
-
-(function TestParameterScoping() {
-  var x = 1;
-
-  function f1({a = x}) { var x = 2; return a; }
-  assertEquals(1, f1({}));
-  function f2({a = x}) { function x() {}; return a; }
-  assertEquals(1, f2({}));
-  (function() {
-    'use strict';
-    function f3({a = x}) { let x = 2; return a; }
-    assertEquals(1, f3({}));
-    function f4({a = x}) { const x = 2; return a; }
-    assertEquals(1, f4({}));
-    function f5({a = x}) { function x() {}; return a; }
-    assertEquals(1, f5({}));
-  })();
-  function f6({a = eval("x")}) { var x; return a; }
-  assertEquals(1, f6({}));
-  (function() {
-    'use strict';
-    function f61({a = eval("x")}) { var x; return a; }
-    assertEquals(1, f61({}));
-  })();
-  function f62({a = eval("'use strict'; x")}) { var x; return a; }
-  assertEquals(1, f62({}));
-  function f7({a = function() { return x }}) { var x; return a(); }
-  assertEquals(1, f7({}));
-  function f8({a = () => x}) { var x; return a(); }
-  assertEquals(1, f8({}));
-  function f9({a = () => eval("x")}) { var x; return a(); }
-  assertEquals(1, f9({}));
-  (function TestInitializedWithEvalArrowStrict() {
-    'use strict';
-    function f91({a = () => eval("x")}) { var x; return a(); }
-    assertEquals(1, f91({}));
-  })();
-  function f92({a = () => { 'use strict'; return eval("x") }}) { var x; return a(); }
-  assertEquals(1, f92({}));
-  function f93({a = () => eval("'use strict'; x")}) { var x; return a(); }
-  assertEquals(1, f93({}));
-
-  var g1 = ({a = x}) => { var x = 2; return a; };
-  assertEquals(1, g1({}));
-  var g2 = ({a = x}) => { function x() {}; return a; };
-  assertEquals(1, g2({}));
-  (function() {
-    'use strict';
-    var g3 = ({a = x}) => { let x = 2; return a; };
-    assertEquals(1, g3({}));
-    var g4 = ({a = x}) => { const x = 2; return a; };
-    assertEquals(1, g4({}));
-    var g5 = ({a = x}) => { function x() {}; return a; };
-    assertEquals(1, g5({}));
-  })();
-  var g6 = ({a = eval("x")}) => { var x; return a; };
-  assertEquals(1, g6({}));
-  (function() {
-    'use strict';
-    var g61 = ({a = eval("x")}) => { var x; return a; };
-    assertEquals(1, g61({}));
-  })();
-  var g62 = ({a = eval("'use strict'; x")}) => { var x; return a; };
-  assertEquals(1, g62({}));
-  var g7 = ({a = function() { return x }}) => { var x; return a(); };
-  assertEquals(1, g7({}));
-  var g8 = ({a = () => x}) => { var x; return a(); };
-  assertEquals(1, g8({}));
-  var g9 = ({a = () => eval("x")}) => { var x; return a(); };
-  assertEquals(1, g9({}));
-  (function() {
-    'use strict';
-    var g91 = ({a = () => eval("x")}) => { var x; return a(); };
-    assertEquals(1, g91({}));
-    var g92 = ({a = () => { return eval("x") }}) => { var x; return a(); };
-    assertEquals(1, g92({}));
-  })();
-  var g93 = ({a = () => eval("'use strict'; x")}) => { var x; return a(); };
-  assertEquals(1, g93({}));
-
-  var f11 = function f({x = f}) { var f; return x; }
-  assertSame(f11, f11({}));
-  var f12 = function f({x = f}) { function f() {}; return x; }
-  assertSame(f12, f12({}));
-  (function() {
-    'use strict';
-    var f13 = function f({x = f}) { let f; return x; }
-    assertSame(f13, f13({}));
-    var f14 = function f({x = f}) { const f = 0; return x; }
-    assertSame(f14, f14({}));
-    var f15 = function f({x = f}) { function f() {}; return x; }
-    assertSame(f15, f15({}));
-  })();
-  var f16 = function f({f = 7, x = f}) { return x; }
-  assertSame(7, f16({}));
-
-  var y = 'a';
-  function f20({[y]: x}) { var y = 'b'; return x; }
-  assertEquals(1, f20({a: 1, b: 2}));
-  function f21({[eval('y')]: x}) { var y = 'b'; return x; }
-  assertEquals(1, f21({a: 1, b: 2}));
-  var g20 = ({[y]: x}) => { var y = 'b'; return x; };
-  assertEquals(1, g20({a: 1, b: 2}));
-  var g21 = ({[eval('y')]: x}) => { var y = 'b'; return x; };
-  assertEquals(1, g21({a: 1, b: 2}));
-})();
-
-
-(function TestParameterDestructuringTDZ() {
-  function f1({a = x}, x) { return a }
-  assertThrows(() => f1({}, 4), ReferenceError);
-  assertEquals(4, f1({a: 4}, 5));
-  function f2({a = eval("x")}, x) { return a }
-  assertThrows(() => f2({}, 4), ReferenceError);
-  assertEquals(4, f2({a: 4}, 5));
-  (function() {
-    'use strict';
-    function f3({a = eval("x")}, x) { return a }
-    assertThrows(() => f3({}, 4), ReferenceError);
-    assertEquals(4, f3({a: 4}, 5));
-  })();
-  function f4({a = eval("'use strict'; x")}, x) { return a }
-  assertThrows(() => f4({}, 4), ReferenceError);
-  assertEquals(4, f4({a: 4}, 5));
-
-  function f5({a = () => x}, x) { return a() }
-  assertEquals(4, f5({a: () => 4}, 5));
-  function f6({a = () => eval("x")}, x) { return a() }
-  assertEquals(4, f6({a: () => 4}, 5));
-  (function() {
-    'use strict';
-    function f7({a = () => eval("x")}, x) { return a() }
-    assertEquals(4, f7({a: () => 4}, 5));
-  })();
-  function f8({a = () => eval("'use strict'; x")}, x) { return a() }
-  assertEquals(4, f8({a: () => 4}, 5));
-
-  function f11({a = b}, {b}) { return a }
-  assertThrows(() => f11({}, {b: 4}), ReferenceError);
-  assertEquals(4, f11({a: 4}, {b: 5}));
-  function f12({a = eval("b")}, {b}) { return a }
-  assertThrows(() => f12({}, {b: 4}), ReferenceError);
-  assertEquals(4, f12({a: 4}, {b: 5}));
-  (function() {
-    'use strict';
-    function f13({a = eval("b")}, {b}) { return a }
-    assertThrows(() => f13({}, {b: 4}), ReferenceError);
-    assertEquals(4, f13({a: 4}, {b: 5}));
-  })();
-  function f14({a = eval("'use strict'; b")}, {b}) { return a }
-  assertThrows(() => f14({}, {b: 4}), ReferenceError);
-  assertEquals(4, f14({a: 4}, {b: 5}));
-
-  function f15({a = () => b}, {b}) { return a() }
-  assertEquals(4, f15({a: () => 4}, {b: 5}));
-  function f16({a = () => eval("b")}, {b}) { return a() }
-  assertEquals(4, f16({a: () => 4}, {b: 5}));
-  (function() {
-    'use strict';
-    function f17({a = () => eval("b")}, {b}) { return a() }
-    assertEquals(4, f17({a: () => 4}, {b: 5}));
-  })();
-  function f18({a = () => eval("'use strict'; b")}, {b}) { return a() }
-  assertEquals(4, f18({a: () => 4}, {b: 5}));
-
-  // TODO(caitp): TDZ for rest parameters is not working yet.
-  // function f30({x = a}, ...a) { return x[0] }
-  // assertThrows(() => f30({}), ReferenceError);
-  // assertEquals(4, f30({a: [4]}, 5));
-  // function f31({x = eval("a")}, ...a) { return x[0] }
-  // assertThrows(() => f31({}), ReferenceError);
-  // assertEquals(4, f31({a: [4]}, 5));
-  // function f32({x = eval("a")}, ...a) { 'use strict'; return x[0] }
-  // assertThrows(() => f32({}), ReferenceError);
-  // assertEquals(4, f32({a: [4]}, 5));
-  // function f33({x = eval("'use strict'; a")}, ...a) { return x[0] }
-  // assertThrows(() => f33({}), ReferenceError);
-  // assertEquals(4, f33({a: [4]}, 5));
-
-  function f34({x = function() { return a }}, ...a) { return x()[0] }
-  assertEquals(4, f34({}, 4));
-  function f35({x = () => a}, ...a) { return x()[0] }
-  assertEquals(4, f35({}, 4));
-  function f36({x = () => eval("a")}, ...a) { return x()[0] }
-  assertEquals(4, f36({}, 4));
-  (function() {
-    'use strict';
-    function f37({x = () => eval("a")}, ...a) { return x()[0] }
-    assertEquals(4, f37({}, 4));
-  })();
-  function f38({x = () => { 'use strict'; return eval("a") }}, ...a) { return x()[0] }
-  assertEquals(4, f38({}, 4));
-  function f39({x = () => eval("'use strict'; a")}, ...a) { return x()[0] }
-  assertEquals(4, f39({}, 4));
-
-  // var g30 = ({x = a}, ...a) => {};
-  // assertThrows(() => g30({}), ReferenceError);
-  // var g31 = ({x = eval("a")}, ...a) => {};
-  // assertThrows(() => g31({}), ReferenceError);
-  // var g32 = ({x = eval("a")}, ...a) => { 'use strict'; };
-  // assertThrows(() => g32({}), ReferenceError);
-  // var g33 = ({x = eval("'use strict'; a")}, ...a) => {};
-  // assertThrows(() => g33({}), ReferenceError);
-  var g34 = ({x = function() { return a }}, ...a) => { return x()[0] };
-  assertEquals(4, g34({}, 4));
-  var g35 = ({x = () => a}, ...a) => { return x()[0] };
-  assertEquals(4, g35({}, 4));
-})();
-
-
-(function TestDuplicatesInParameters() {
-  assertThrows("'use strict';function f(x,x){}", SyntaxError);
-  assertThrows("'use strict';function f({x,x}){}", SyntaxError);
-  assertThrows("'use strict';function f(x, {x}){}", SyntaxError);
-  assertThrows("'use strict';var f = (x,x) => {};", SyntaxError);
-  assertThrows("'use strict';var f = ({x,x}) => {};", SyntaxError);
-  assertThrows("'use strict';var f = (x, {x}) => {};", SyntaxError);
-
-  function ok1(x) { var x; return x; };
-  assertEquals(1, ok1(1));
-  function ok2(x) { 'use strict'; { let x = 2; return x; } };
-  assertEquals(2, ok2(1));
-}());
-
-
-(function TestShadowingOfParameters() {
-  function f1({x}) { var x = 2; return x }
-  assertEquals(2, f1({x: 1}));
-  function f2({x}) { { var x = 2; } return x; }
-  assertEquals(2, f2({x: 1}));
-  function f3({x}) { var y = x; var x = 2; return y; }
-  assertEquals(1, f3({x: 1}));
-  function f4({x}) { { var y = x; var x = 2; } return y; }
-  assertEquals(1, f4({x: 1}));
-  function f5({x}, g = () => x) { var x = 2; return g(); }
-  assertEquals(1, f5({x: 1}));
-  function f6({x}, g = () => x) { { var x = 2; } return g(); }
-  assertEquals(1, f6({x: 1}));
-  function f7({x}) { var g = () => x; var x = 2; return g(); }
-  assertEquals(2, f7({x: 1}));
-  function f8({x}) { { var g = () => x; var x = 2; } return g(); }
-  assertEquals(2, f8({x: 1}));
-  function f9({x}, g = () => eval("x")) { var x = 2; return g(); }
-  assertEquals(1, f9({x: 1}));
-
-  function f10({x}, y) { var y; return y }
-  assertEquals(2, f10({x: 6}, 2));
-  function f11({x}, y) { var z = y; var y = 2; return z; }
-  assertEquals(1, f11({x: 6}, 1));
-  function f12(y, g = () => y) { var y = 2; return g(); }
-  assertEquals(1, f12(1));
-  function f13({x}, y, [z], v) { var x, y, z; return x*y*z*v }
-  assertEquals(210, f13({x: 2}, 3, [5], 7));
-
-  function f20({x}) { function x() { return 2 }; return x(); }
-  assertEquals(2, f20({x: 1}));
-  // Annex B 3.3 function hoisting is blocked by the conflicting x declaration
-  function f21({x}) { { function x() { return 2 } } return x; }
-  assertEquals(1, f21({x: 1}));
-
-  var g1 = ({x}) => { var x = 2; return x };
-  assertEquals(2, g1({x: 1}));
-  var g2 = ({x}) => { { var x = 2; } return x; };
-  assertEquals(2, g2({x: 1}));
-  var g3 = ({x}) => { var y = x; var x = 2; return y; };
-  assertEquals(1, g3({x: 1}));
-  var g4 = ({x}) => { { var y = x; var x = 2; } return y; };
-  assertEquals(1, g4({x: 1}));
-  var g5 = ({x}, g = () => x) => { var x = 2; return g(); };
-  assertEquals(1, g5({x: 1}));
-  var g6 = ({x}, g = () => x) => { { var x = 2; } return g(); };
-  assertEquals(1, g6({x: 1}));
-  var g7 = ({x}) => { var g = () => x; var x = 2; return g(); };
-  assertEquals(2, g7({x: 1}));
-  var g8 = ({x}) => { { var g = () => x; var x = 2; } return g(); };
-  assertEquals(2, g8({x: 1}));
-  var g9 = ({x}, g = () => eval("x")) => { var x = 2; return g(); };
-  assertEquals(1, g9({x: 1}));
-
-  var g10 = ({x}, y) => { var y; return y };
-  assertEquals(2, g10({x: 6}, 2));
-  var g11 = ({x}, y) => { var z = y; var y = 2; return z; };
-  assertEquals(1, g11({x: 6}, 1));
-  var g12 = (y, g = () => y) => { var y = 2; return g(); };
-  assertEquals(1, g12(1));
-  var g13 = ({x}, y, [z], v) => { var x, y, z; return x*y*z*v };
-  assertEquals(210, g13({x: 2}, 3, [5], 7));
-
-  var g20 = ({x}) => { function x() { return 2 }; return x(); }
-  assertEquals(2, g20({x: 1}));
-  var g21 = ({x}) => { { function x() { return 2 } } return x(); }
-  assertThrows(() => g21({x: 1}), TypeError);
-
-  // These errors are not recognized in lazy parsing; see mjsunit/bugs/bug-2728.js
-  assertThrows("'use strict'; (function f(x) { let x = 0; })()", SyntaxError);
-  assertThrows("'use strict'; (function f({x}) { let x = 0; })()", SyntaxError);
-  assertThrows("'use strict'; (function f(x) { const x = 0; })()", SyntaxError);
-  assertThrows("'use strict'; (function f({x}) { const x = 0; })()", SyntaxError);
-
-  assertThrows("'use strict'; let g = (x) => { let x = 0; }", SyntaxError);
-  assertThrows("'use strict'; let g = ({x}) => { let x = 0; }", SyntaxError);
-  assertThrows("'use strict'; let g = (x) => { const x = 0; }", SyntaxError);
-  assertThrows("'use strict'; let g = ({x}) => { const x = 0; }", SyntaxError);
-}());
-
-
-(function TestArgumentsForNonSimpleParameters() {
-  function f1({}, x) { arguments[1] = 0; return x }
-  assertEquals(6, f1({}, 6));
-  function f2({}, x) { x = 2; return arguments[1] }
-  assertEquals(7, f2({}, 7));
-  function f3(x, {}) { arguments[0] = 0; return x }
-  assertEquals(6, f3(6, {}));
-  function f4(x, {}) { x = 2; return arguments[0] }
-  assertEquals(7, f4(7, {}));
-  function f5(x, ...a) { arguments[0] = 0; return x }
-  assertEquals(6, f5(6, {}));
-  function f6(x, ...a) { x = 2; return arguments[0] }
-  assertEquals(6, f6(6, {}));
-  function f7({a: x}) { x = 2; return arguments[0].a }
-  assertEquals(5, f7({a: 5}));
-  function f8(x, ...a) { a = []; return arguments[1] }
-  assertEquals(6, f8(5, 6));
-}());
-
-
-(function TestForInOfTDZ() {
-  assertThrows("'use strict'; let x = {}; for (let [x, y] of [x]);", ReferenceError);
-  assertThrows("'use strict'; let x = {}; for (let [y, x] of [x]);", ReferenceError);
-  assertThrows("'use strict'; let x = {}; for (let [x, y] in {x});", ReferenceError);
-  assertThrows("'use strict'; let x = {}; for (let [y, x] in {x});", ReferenceError);
-}());
-
-
-(function TestFunctionLength() {
-   assertEquals(1, (function({}) {}).length);
-   assertEquals(1, (function([]) {}).length);
-   assertEquals(1, (function({x}) {}).length);
-   assertEquals(1, (function({}, ...a) {}).length);
-   assertEquals(1, (function({x}, {y} = {}) {}).length);
-   assertEquals(1, (function({x}, {y} = {}, ...a) {}).length);
-   assertEquals(2, (function(x, {y}, {z} = {}) {}).length);
-   assertEquals(2, (function({x}, {}, {z} = {}, ...a) {}).length);
-   assertEquals(1, (function(x, {y} = {}, {z}) {}).length);
-   assertEquals(1, (function({x}, {y} = {}, {z}, ...a) {}).length);
-   assertEquals(1, (function(x, {y} = {}, {z}, {v} = {}) {}).length);
-   assertEquals(1, (function({x}, {y} = {}, {z}, {v} = {}, ...a) {}).length);
-})();
-
-
-(function TestDirectiveThrows() {
-  "use strict";
-
-  assertThrows(function(){ eval("function({}){'use strict';}") }, SyntaxError);
-  assertThrows(function(){ eval("({}) => {'use strict';}") }, SyntaxError);
-  assertThrows(
-    function(){ eval("(class{foo({}) {'use strict';}});") }, SyntaxError);
-
-  assertThrows(
-    function(){ eval("function(a, {}){'use strict';}") }, SyntaxError);
-  assertThrows(function(){ eval("(a, {}) => {'use strict';}") }, SyntaxError);
-  assertThrows(
-    function(){ eval("(class{foo(a, {}) {'use strict';}});") }, SyntaxError);
-})();
-
-
-(function TestLegacyConstDestructuringInForLoop() {
-  var result;
-  for (const {foo} of [{foo: 1}]) { result = foo; }
-  assertEquals(1, result);
-})();
-
-
-(function TestCatch() {
-  "use strict";
-
-  // For testing proper scoping.
-  var foo = "hello", bar = "world", baz = 42;
-
-  try {
-    throw {foo: 1, bar: 2};
-  } catch ({foo, bar, baz = 3}) {
-    assertEquals(1, foo);
-    assertEquals(2, bar);
-    assertEquals(3, baz);
-  }
-
-  try {
-    throw [1, 2, 3];
-  } catch ([foo, ...bar]) {
-    assertEquals(1, foo);
-    assertEquals([2, 3], bar);
-  }
-
-  assertEquals("hello", foo);
-  assertEquals("world", bar);
-  assertEquals(42, baz);
-
-  assertEquals(undefined, eval('try {throw {foo: 1, bar: 2}} catch({foo}) {}'));
-  assertEquals(undefined, eval('try {throw [1, 2, 3]} catch([x]) {}'));
-})();`,
-    `(function overridingLocalFunction() {
-  var x = [];
-  assertEquals('function', typeof f);
-  function f() {
-    x.push(1);
-  }
-  f();
-  {
-    f();
-    function f() {
-      x.push(2);
-    }
-    f();
-  }
-  f();
-  {
-    f();
-    function f() {
-      x.push(3);
-    }
-    f();
-  }
-  f();
-  assertArrayEquals([1, 2, 2, 2, 3, 3, 3], x);
-})();
-
-(function newFunctionBinding() {
-  var x = [];
-  assertEquals('undefined', typeof f);
-  {
-    f();
-    function f() {
-      x.push(2);
-    }
-    f();
-  }
-  f();
-  {
-    f();
-    function f() {
-      x.push(3);
-    }
-    f();
-  }
-  f();
-  assertArrayEquals([2, 2, 2, 3, 3, 3], x);
-})();
-
-(function shadowingLetDoesntBind() {
-  let f = 1;
-  assertEquals(1, f);
-  {
-    let y = 3;
-    function f() {
-      y = 2;
-    }
-    f();
-    assertEquals(2, y);
-  }
-  assertEquals(1, f);
-})();
-
-(function shadowingLetDoesntBindGenerator() {
-  let f = function *f() {
-    while(true) {
-      yield 1;
-    }
-  };
-  assertEquals(1, f().next().value);
-  {
-    function *f() {
-      while(true) {
-        yield 2;
-      }
-    }
-    assertEquals(2, f().next().value);
-  }
-  assertEquals(1, f().next().value);
-})();
-
-(function shadowingClassDoesntBind() {
-  class f { }
-  assertEquals('class f { }', f.toString());
-  {
-    let y = 3;
-    function f() {
-      y = 2;
-    }
-    f();
-    assertEquals(2, y);
-  }
-  assertEquals('class f { }', f.toString());
-})();
-
-(function shadowingConstDoesntBind() {
-  const f = 1;
-  assertEquals(1, f);
-  {
-    let y = 3;
-    function f() {
-      y = 2;
-    }
-    f();
-    assertEquals(2, y);
-  }
-  assertEquals(1, f);
-})();
-
-(function shadowingVarBinds() {
-  var f = 1;
-  assertEquals(1, f);
-  {
-    let y = 3;
-    function f() {
-      y = 2;
-    }
-    f();
-    assertEquals(2, y);
-  }
-  assertEquals('function', typeof f);
-})();
-
-(function complexParams(a = 0) {
-  {
-    let y = 3;
-    function f(b = 0) {
-      y = 2;
-    }
-    f();
-    assertEquals(2, y);
-  }
-  assertEquals('function', typeof f);
-})();
-
-(function complexVarParams(a = 0) {
-  var f;
-  {
-    let y = 3;
-    function f(b = 0) {
-      y = 2;
-    }
-    f();
-    assertEquals(2, y);
-  }
-  assertEquals('function', typeof f);
-})();
-
-(function conditional() {
-  if (true) {
-    function f() { return 1; }
-  } else {
-    function f() { return 2; }
-  }
-  assertEquals(1, f());
-
-  if (false) {
-    function g() { return 1; }
-  } else {
-    function g() { return 2; }
-  }
-  assertEquals(2, g());
-})();
-
-(function skipExecution() {
-  {
-    function f() { return 1; }
-  }
-  assertEquals(1, f());
-  {
-    function f() { return 2; }
-  }
-  assertEquals(2, f());
-  L: {
-    assertEquals(3, f());
-    break L;
-    function f() { return 3; }
-  }
-  assertEquals(2, f());
-})();
-
-(function executionOrder() {
-  function getOuter() {
-    return f;
-  }
-  assertEquals('undefined', typeof getOuter());
-
-  {
-    assertEquals('function', typeof f);
-    assertEquals('undefined', typeof getOuter());
-    function f () {}
-    assertEquals('function', typeof f);
-    assertEquals('function', typeof getOuter());
-  }
-
-  assertEquals('function', typeof getOuter());
-})();
-
-(function reassignBindings() {
-  function getOuter() {
-    return f;
-  }
-  assertEquals('undefined', typeof getOuter());
-
-  {
-    assertEquals('function', typeof f);
-    assertEquals('undefined', typeof getOuter());
-    f = 1;
-    assertEquals('number', typeof f);
-    assertEquals('undefined', typeof getOuter());
-    function f () {}
-    assertEquals('number', typeof f);
-    assertEquals('number', typeof getOuter());
-    f = '';
-    assertEquals('string', typeof f);
-    assertEquals('number', typeof getOuter());
-  }
-
-  assertEquals('number', typeof getOuter());
-})();
-
-// Test that shadowing arguments is fine
-(function shadowArguments(x) {
-  assertArrayEquals([1], arguments);
-  {
-    assertEquals('function', typeof arguments);
-    function arguments() {}
-    assertEquals('function', typeof arguments);
-  }
-  assertEquals('function', typeof arguments);
-})(1);
-
-
-// Don't shadow simple parameter
-(function shadowingParameterDoesntBind(x) {
-  assertEquals(1, x);
-  {
-    function x() {}
-  }
-  assertEquals(1, x);
-})(1);
-
-// Don't shadow complex parameter
-(function shadowingDefaultParameterDoesntBind(x = 0) {
-  assertEquals(1, x);
-  {
-    function x() {}
-  }
-  assertEquals(1, x);
-})(1);
-
-// Don't shadow nested complex parameter
-(function shadowingNestedParameterDoesntBind([[x]]) {
-  assertEquals(1, x);
-  {
-    function x() {}
-  }
-  assertEquals(1, x);
-})([[1]]);
-
-// Don't shadow rest parameter
-(function shadowingRestParameterDoesntBind(...x) {
-  assertArrayEquals([1], x);
-  {
-    function x() {}
-  }
-  assertArrayEquals([1], x);
-})(1);
-
-// Don't shadow complex rest parameter
-(function shadowingComplexRestParameterDoesntBind(...[x]) {
-  assertArrayEquals(1, x);
-  {
-    function x() {}
-  }
-  assertArrayEquals(1, x);
-})(1);
-
-// Previous tests with a var declaration thrown in.
-// Don't shadow simple parameter
-(function shadowingVarParameterDoesntBind(x) {
-  var x;
-  assertEquals(1, x);
-  {
-    function x() {}
-  }
-  assertEquals(1, x);
-})(1);
-
-// Don't shadow complex parameter
-(function shadowingVarDefaultParameterDoesntBind(x = 0) {
-  var x;
-  assertEquals(1, x);
-  {
-    function x() {}
-  }
-  assertEquals(1, x);
-})(1);
-
-// Don't shadow nested complex parameter
-(function shadowingVarNestedParameterDoesntBind([[x]]) {
-  var x;
-  assertEquals(1, x);
-  {
-    function x() {}
-  }
-  assertEquals(1, x);
-})([[1]]);
-
-// Don't shadow rest parameter
-(function shadowingVarRestParameterDoesntBind(...x) {
-  var x;
-  assertArrayEquals([1], x);
-  {
-    function x() {}
-  }
-  assertArrayEquals([1], x);
-})(1);
-
-// Don't shadow complex rest parameter
-(function shadowingVarComplexRestParameterDoesntBind(...[x]) {
-  var x;
-  assertArrayEquals(1, x);
-  {
-    function x() {}
-  }
-  assertArrayEquals(1, x);
-})(1);
-
-
-// Hoisting is not affected by other simple parameters
-(function irrelevantParameterBinds(y, z) {
-  assertEquals(undefined, x);
-  {
-    function x() {}
-  }
-  assertEquals('function', typeof x);
-})(1);
-
-// Hoisting is not affected by other complex parameters
-(function irrelevantComplexParameterBinds([y] = [], z) {
-  assertEquals(undefined, x);
-  {
-    function x() {}
-  }
-  assertEquals('function', typeof x);
-})();
-
-// Hoisting is not affected by rest parameters
-(function irrelevantRestParameterBinds(y, ...z) {
-  assertEquals(undefined, x);
-  {
-    function x() {}
-  }
-  assertEquals('function', typeof x);
-})();
-
-// Hoisting is not affected by complex rest parameters
-(function irrelevantRestParameterBinds(y, ...[z]) {
-  assertEquals(undefined, x);
-  {
-    function x() {}
-  }
-  assertEquals('function', typeof x);
-})();
-
-
-// Test that shadowing function name is fine
-{
-  let called = false;
-  (function shadowFunctionName() {
-    if (called) assertUnreachable();
-    called = true;
-    {
-      function shadowFunctionName() {
-        return 0;
-      }
-      assertEquals(0, shadowFunctionName());
-    }
-    assertEquals(0, shadowFunctionName());
-  })();
-}
-
-{
-  let called = false;
-  (function shadowFunctionNameWithComplexParameter(...r) {
-    if (called) assertUnreachable();
-    called = true;
-    {
-      function shadowFunctionNameWithComplexParameter() {
-        return 0;
-      }
-      assertEquals(0, shadowFunctionNameWithComplexParameter());
-    }
-    assertEquals(0, shadowFunctionNameWithComplexParameter());
-  })();
-}
-
-(function shadowOuterVariable() {
-  {
-    let f = 0;
-    (function () {
-      assertEquals(undefined, f);
+    `,
+    outdent`
+      (function TestObjectLiteralPatternLexical() {
+        'use strict';
+        let { x : x, y : y } = { x : 1, y : 2 };
+        assertEquals(1, x);
+        assertEquals(2, y);
+
+        let {z} = { z : 3 };
+        assertEquals(3, z);
+
+        let log = [];
+        let o = {
+          get x() {
+            log.push("x");
+            return 0;
+          },
+          get y() {
+            log.push("y");
+            return {
+              get z() { log.push("z"); return 1; }
+            }
+          }
+        };
+        let { x : x0, y : { z : z1 }, x : x1 } = o;
+        assertSame(0, x0);
+        assertSame(1, z1);
+        assertSame(0, x1);
+        assertArrayEquals(["x", "y", "z", "x"], log);
+
+        let sum = 0;
+        for (let {x, z} = { x : 0, z : 3 }; z != 0; z--) {
+          assertEquals(0, x);
+          sum += z;
+        }
+        assertEquals(6, sum);
+      }());
+    `,
+    outdent`
+      (function TestAssignmentExprInInitializers() {
+        {
+          let x, y;
+          {
+            let { x = y = 1 } = {};
+            assertSame(x, 1);
+            assertSame(y, 1);
+          }
+          assertSame(undefined, x);
+          assertSame(1, y);
+        }
+
+        {
+          let x, y;
+          {
+            let { x: x = y = 1 } = {};
+            assertSame(1, x);
+            assertSame(1, y);
+          }
+          assertSame(undefined, x);
+          assertSame(1, y);
+        }
+
+        {
+          let x, y;
+          {
+            let [ x = y = 1 ] = [];
+            assertSame(1, x);
+            assertSame(1, y);
+          }
+          assertSame(undefined, x);
+          assertSame(1, y);
+        }
+
+        {
+          let x, y;
+          (function({ x = y = 1 }) {}({}));
+          assertSame(undefined, x);
+          assertSame(1, y);
+        }
+
+        {
+          let x, y;
+          (function({ x: x = y = 1 }) {}({}));
+          assertSame(undefined, x);
+          assertSame(1, y);
+        }
+
+        {
+          let x, y;
+          (function([ x = y = 1 ]) {}([]));
+          assertSame(undefined, x);
+          assertSame(1, y);
+        }
+      }());
+    `,
+    outdent`
+      (function TestMultipleAccesses() {
+        assertThrows(
+          "'use strict';"+
+          "const {x,x} = {x:1};",
+          SyntaxError);
+
+        assertThrows(
+          "'use strict';"+
+          "let {x,x} = {x:1};",
+           SyntaxError);
+
+        (function() {
+          var {x,x = 2} = {x : 1};
+          assertSame(1, x);
+        }());
+
+        assertThrows(function () {
+          'use strict';
+          let {x = (function() { x = 2; }())} = {};
+        }, ReferenceError);
+
+        (function() {
+          'use strict';
+          let {x = (function() { x = 2; }())} = {x:1};
+          assertSame(1, x);
+        }());
+      }());
+
+
+      (function TestComputedNames() {
+        var x = 1;
+        var {[x]:y} = {1:2};
+        assertSame(2, y);
+
+        (function(){
+          'use strict';
+          let {[x]:y} = {1:2};
+          assertSame(2, y);
+        }());
+
+        var callCount = 0;
+        function foo(v) { callCount++; return v; }
+
+        (function() {
+          callCount = 0;
+          var {[foo("abc")]:x} = {abc:42};
+          assertSame(42, x);
+          assertEquals(1, callCount);
+        }());
+
+        (function() {
+          'use strict';
+          callCount = 0;
+          let {[foo("abc")]:x} = {abc:42};
+          assertSame(42, x);
+          assertEquals(1, callCount);
+        }());
+
+        (function() {
+          callCount = 0;
+          var {[foo("abc")]:x} = {};
+          assertSame(undefined, x);
+          assertEquals(1, callCount);
+        }());
+
+        (function() {
+          'use strict';
+          callCount = 0;
+          let {[foo("abc")]:x} = {};
+          assertSame(undefined, x);
+          assertEquals(1, callCount);
+        }());
+
+        for (val of [null, undefined]) {
+          callCount = 0;
+          assertThrows(function() {
+            var {[foo()]:x} = val;
+          }, TypeError);
+          assertEquals(0, callCount);
+
+          callCount = 0;
+          assertThrows(function() {
+            'use strict';
+            let {[foo()]:x} = val;
+          }, TypeError);
+          assertEquals(0, callCount);
+        }
+
+        var log = [];
+        var o = {
+          get x() { log.push("get x"); return 1; },
+          get y() { log.push("get y"); return 2; }
+        }
+        function f(v) { log.push("f " + v); return v; }
+
+        (function() {
+          log = [];
+          var { [f('x')]:x, [f('y')]:y } = o;
+          assertSame(1, x);
+          assertSame(2, y);
+          assertArrayEquals(["f x", "get x", "f y", "get y"], log);
+        }());
+
+        (function() {
+          'use strict';
+          log = [];
+          let { [f('x')]:x, [f('y')]:y } = o;
+          assertSame(1, x);
+          assertSame(2, y);
+          assertArrayEquals(["f x", "get x", "f y", "get y"], log);
+        }());
+
+        (function() {
+          'use strict';
+          log = [];
+          const { [f('x')]:x, [f('y')]:y } = o;
+          assertSame(1, x);
+          assertSame(2, y);
+          assertArrayEquals(["f x", "get x", "f y", "get y"], log);
+        }());
+      }());
+
+
+      (function TestExceptions() {
+        for (var val of [null, undefined]) {
+          assertThrows(function() { var {} = val; }, TypeError);
+          assertThrows(function() { var {x} = val; }, TypeError);
+          assertThrows(function() { var { x : {} } = { x : val }; }, TypeError);
+          assertThrows(function() { 'use strict'; let {} = val; }, TypeError);
+          assertThrows(function() { 'use strict'; let {x} = val; }, TypeError);
+          assertThrows(function() { 'use strict'; let { x : {} } = { x : val }; },
+                       TypeError);
+        }
+      }());
+
+
+      (function TestArrayLiteral() {
+        var [a, b, c] = [1, 2, 3];
+        assertSame(1, a);
+        assertSame(2, b);
+        assertSame(3, c);
+      }());
+
+      (function TestIterators() {
+        var log = [];
+        function* f() {
+          log.push("1");
+          yield 1;
+          log.push("2");
+          yield 2;
+          log.push("3");
+          yield 3;
+          log.push("done");
+        };
+
+        (function() {
+          log = [];
+          var [a, b, c] = f();
+          assertSame(1, a);
+          assertSame(2, b);
+          assertSame(3, c);
+          assertArrayEquals(["1", "2", "3"], log);
+        }());
+
+        (function() {
+          log = [];
+          var [a, b, c, d] = f();
+          assertSame(1, a);
+          assertSame(2, b);
+          assertSame(3, c);
+          assertSame(undefined, d);
+          assertArrayEquals(["1", "2", "3", "done"], log);
+        }());
+
+        (function() {
+          log = [];
+          var [a, , c] = f();
+          assertSame(1, a);
+          assertSame(3, c);
+          assertArrayEquals(["1", "2", "3"], log);
+        }());
+
+        (function() {
+          log = [];
+          var [a, , c, d] = f();
+          assertSame(1, a);
+          assertSame(3, c);
+          assertSame(undefined, d);
+          assertArrayEquals(["1", "2", "3", "done"], log);
+        }());
+
+        (function() {
+          log = [];
+          // last comma is not an elision.
+          var [a, b,] = f();
+          assertSame(1, a);
+          assertSame(2, b);
+          assertArrayEquals(["1", "2"], log);
+        }());
+
+        (function() {
+          log = [];
+          // last comma is not an elision, but the comma before the last is.
+          var [a, b, ,] = f();
+          assertSame(1, a);
+          assertSame(2, b);
+          assertArrayEquals(["1", "2", "3"], log);
+        }());
+
+        (function() {
+          log = [];
+          var [a, ...rest] = f();
+          assertSame(1, a);
+          assertArrayEquals([2,3], rest);
+          assertArrayEquals(["1", "2", "3", "done"], log);
+        }());
+
+        (function() {
+          log = [];
+          var [a, b, c, ...rest] = f();
+          assertSame(1, a);
+          assertSame(2, b);
+          assertSame(3, c);
+          assertArrayEquals([], rest);
+          assertArrayEquals(["1", "2", "3", "done"], log);
+        }());
+
+        (function() {
+          log = [];
+          var [a, b, c, d, ...rest] = f();
+          assertSame(1, a);
+          assertSame(2, b);
+          assertSame(3, c);
+          assertSame(undefined, d);
+          assertArrayEquals([], rest);
+          assertArrayEquals(["1", "2", "3", "done"], log);
+        }());
+      }());
+
+
+      (function TestIteratorsLexical() {
+        'use strict';
+        var log = [];
+        function* f() {
+          log.push("1");
+          yield 1;
+          log.push("2");
+          yield 2;
+          log.push("3");
+          yield 3;
+          log.push("done");
+        };
+
+        (function() {
+          log = [];
+          let [a, b, c] = f();
+          assertSame(1, a);
+          assertSame(2, b);
+          assertSame(3, c);
+          assertArrayEquals(["1", "2", "3"], log);
+        }());
+
+        (function() {
+          log = [];
+          let [a, b, c, d] = f();
+          assertSame(1, a);
+          assertSame(2, b);
+          assertSame(3, c);
+          assertSame(undefined, d);
+          assertArrayEquals(["1", "2", "3", "done"], log);
+        }());
+
+        (function() {
+          log = [];
+          let [a, , c] = f();
+          assertSame(1, a);
+          assertSame(3, c);
+          assertArrayEquals(["1", "2", "3"], log);
+        }());
+
+        (function() {
+          log = [];
+          let [a, , c, d] = f();
+          assertSame(1, a);
+          assertSame(3, c);
+          assertSame(undefined, d);
+          assertArrayEquals(["1", "2", "3", "done"], log);
+        }());
+
+        (function() {
+          log = [];
+          // last comma is not an elision.
+          let [a, b,] = f();
+          assertSame(1, a);
+          assertSame(2, b);
+          assertArrayEquals(["1", "2"], log);
+        }());
+
+        (function() {
+          log = [];
+          // last comma is not an elision, but the comma before the last is.
+          let [a, b, ,] = f();
+          assertSame(1, a);
+          assertSame(2, b);
+          assertArrayEquals(["1", "2", "3"], log);
+        }());
+
+        (function() {
+          log = [];
+          let [a, ...rest] = f();
+          assertSame(1, a);
+          assertArrayEquals([2,3], rest);
+          assertArrayEquals(["1", "2", "3", "done"], log);
+        }());
+
+        (function() {
+          log = [];
+          let [a, b, c, ...rest] = f();
+          assertSame(1, a);
+          assertSame(2, b);
+          assertSame(3, c);
+          assertArrayEquals([], rest);
+          assertArrayEquals(["1", "2", "3", "done"], log);
+        }());
+
+        (function() {
+          log = [];
+          let [a, b, c, d, ...rest] = f();
+          assertSame(1, a);
+          assertSame(2, b);
+          assertSame(3, c);
+          assertSame(undefined, d);
+          assertArrayEquals([], rest);
+          assertArrayEquals(["1", "2", "3", "done"], log);
+        }());
+      }());
+
+      (function TestIteratorsRecursive() {
+        var log = [];
+        function* f() {
+          log.push("1");
+          yield {x : 1, y : 2};
+          log.push("2");
+          yield [42, 27, 30];
+          log.push("3");
+          yield "abc";
+          log.push("done");
+        };
+
+        (function() {
+          var [{x, y}, [a, b]] = f();
+          assertSame(1, x);
+          assertSame(2, y);
+          assertSame(42, a);
+          assertSame(27, b);
+          assertArrayEquals(["1", "2"], log);
+        }());
+
+        (function() {
+          'use strict';
+          log = [];
+          let [{x, y}, [a, b]] = f();
+          assertSame(1, x);
+          assertSame(2, y);
+          assertSame(42, a);
+          assertSame(27, b);
+          assertArrayEquals(["1", "2"], log);
+        }());
+      }());
+
+
+      (function TestForEachLexical() {
+        'use strict';
+        let a = [{x:1, y:-1}, {x:2,y:-2}, {x:3,y:-3}];
+        let sumX = 0;
+        let sumY = 0;
+        let fs = [];
+        for (let {x,y} of a) {
+          sumX += x;
+          sumY += y;
+          fs.push({fx : function() { return x; }, fy : function() { return y }});
+        }
+        assertSame(6, sumX);
+        assertSame(-6, sumY);
+        assertSame(3, fs.length);
+        for (let i = 0; i < fs.length; i++) {
+          let {fx,fy} = fs[i];
+          assertSame(i+1, fx());
+          assertSame(-(i+1), fy());
+        }
+
+        var o = { __proto__:null, 'a1':1, 'b2':2 };
+        let sx = '';
+        let sy = '';
+        for (let [x,y] in o) {
+          sx += x;
+          sy += y;
+        }
+        assertEquals('ab', sx);
+        assertEquals('12', sy);
+      }());
+
+
+      (function TestForEachVars() {
+        var a = [{x:1, y:-1}, {x:2,y:-2}, {x:3,y:-3}];
+        var sumX = 0;
+        var sumY = 0;
+        var fs = [];
+        for (var {x,y} of a) {
+          sumX += x;
+          sumY += y;
+          fs.push({fx : function() { return x; }, fy : function() { return y }});
+        }
+        assertSame(6, sumX);
+        assertSame(-6, sumY);
+        assertSame(3, fs.length);
+        for (var i = 0; i < fs.length; i++) {
+          var {fx,fy} = fs[i];
+          assertSame(3, fx());
+          assertSame(-3, fy());
+        }
+
+        var o = { __proto__:null, 'a1':1, 'b2':2 };
+        var sx = '';
+        var sy = '';
+        for (var [x,y] in o) {
+          sx += x;
+          sy += y;
+        }
+        assertEquals('ab', sx);
+        assertEquals('12', sy);
+      }());
+
+
+      (function TestParameters() {
+        function f({a, b}) { return a - b; }
+        assertEquals(1, f({a : 6, b : 5}));
+
+        function f1(c, {a, b}) { return c + a - b; }
+        assertEquals(8, f1(7, {a : 6, b : 5}));
+
+        function f2({c, d}, {a, b}) { return c - d + a - b; }
+        assertEquals(7, f2({c : 7, d : 1}, {a : 6, b : 5}));
+
+        function f3([{a, b}]) { return a - b; }
+        assertEquals(1, f3([{a : 6, b : 5}]));
+
+        var g = ({a, b}) => { return a - b; };
+        assertEquals(1, g({a : 6, b : 5}));
+
+        var g1 = (c, {a, b}) => { return c + a - b; };
+        assertEquals(8, g1(7, {a : 6, b : 5}));
+
+        var g2 = ({c, d}, {a, b}) => { return c - d + a - b; };
+        assertEquals(7, g2({c : 7, d : 1}, {a : 6, b : 5}));
+
+        var g3 = ([{a, b}]) => { return a - b; };
+        assertEquals(1, g3([{a : 6, b : 5}]));
+      }());
+
+
+      (function TestExpressionsInParameters() {
+        function f0(x = eval(0)) { return x }
+        assertEquals(0, f0());
+        function f1({a = eval(1)}) { return a }
+        assertEquals(1, f1({}));
+        function f2([x = eval(2)]) { return x }
+        assertEquals(2, f2([]));
+        function f3({[eval(7)]: x}) { return x }
+        assertEquals(3, f3({7: 3}));
+      })();
+
+
+      (function TestParameterScoping() {
+        var x = 1;
+
+        function f1({a = x}) { var x = 2; return a; }
+        assertEquals(1, f1({}));
+        function f2({a = x}) { function x() {}; return a; }
+        assertEquals(1, f2({}));
+        (function() {
+          'use strict';
+          function f3({a = x}) { let x = 2; return a; }
+          assertEquals(1, f3({}));
+          function f4({a = x}) { const x = 2; return a; }
+          assertEquals(1, f4({}));
+          function f5({a = x}) { function x() {}; return a; }
+          assertEquals(1, f5({}));
+        })();
+        function f6({a = eval("x")}) { var x; return a; }
+        assertEquals(1, f6({}));
+        (function() {
+          'use strict';
+          function f61({a = eval("x")}) { var x; return a; }
+          assertEquals(1, f61({}));
+        })();
+        function f62({a = eval("'use strict'; x")}) { var x; return a; }
+        assertEquals(1, f62({}));
+        function f7({a = function() { return x }}) { var x; return a(); }
+        assertEquals(1, f7({}));
+        function f8({a = () => x}) { var x; return a(); }
+        assertEquals(1, f8({}));
+        function f9({a = () => eval("x")}) { var x; return a(); }
+        assertEquals(1, f9({}));
+        (function TestInitializedWithEvalArrowStrict() {
+          'use strict';
+          function f91({a = () => eval("x")}) { var x; return a(); }
+          assertEquals(1, f91({}));
+        })();
+        function f92({a = () => { 'use strict'; return eval("x") }}) { var x; return a(); }
+        assertEquals(1, f92({}));
+        function f93({a = () => eval("'use strict'; x")}) { var x; return a(); }
+        assertEquals(1, f93({}));
+
+        var g1 = ({a = x}) => { var x = 2; return a; };
+        assertEquals(1, g1({}));
+        var g2 = ({a = x}) => { function x() {}; return a; };
+        assertEquals(1, g2({}));
+        (function() {
+          'use strict';
+          var g3 = ({a = x}) => { let x = 2; return a; };
+          assertEquals(1, g3({}));
+          var g4 = ({a = x}) => { const x = 2; return a; };
+          assertEquals(1, g4({}));
+          var g5 = ({a = x}) => { function x() {}; return a; };
+          assertEquals(1, g5({}));
+        })();
+        var g6 = ({a = eval("x")}) => { var x; return a; };
+        assertEquals(1, g6({}));
+        (function() {
+          'use strict';
+          var g61 = ({a = eval("x")}) => { var x; return a; };
+          assertEquals(1, g61({}));
+        })();
+        var g62 = ({a = eval("'use strict'; x")}) => { var x; return a; };
+        assertEquals(1, g62({}));
+        var g7 = ({a = function() { return x }}) => { var x; return a(); };
+        assertEquals(1, g7({}));
+        var g8 = ({a = () => x}) => { var x; return a(); };
+        assertEquals(1, g8({}));
+        var g9 = ({a = () => eval("x")}) => { var x; return a(); };
+        assertEquals(1, g9({}));
+        (function() {
+          'use strict';
+          var g91 = ({a = () => eval("x")}) => { var x; return a(); };
+          assertEquals(1, g91({}));
+          var g92 = ({a = () => { return eval("x") }}) => { var x; return a(); };
+          assertEquals(1, g92({}));
+        })();
+        var g93 = ({a = () => eval("'use strict'; x")}) => { var x; return a(); };
+        assertEquals(1, g93({}));
+
+        var f11 = function f({x = f}) { var f; return x; }
+        assertSame(f11, f11({}));
+        var f12 = function f({x = f}) { function f() {}; return x; }
+        assertSame(f12, f12({}));
+        (function() {
+          'use strict';
+          var f13 = function f({x = f}) { let f; return x; }
+          assertSame(f13, f13({}));
+          var f14 = function f({x = f}) { const f = 0; return x; }
+          assertSame(f14, f14({}));
+          var f15 = function f({x = f}) { function f() {}; return x; }
+          assertSame(f15, f15({}));
+        })();
+        var f16 = function f({f = 7, x = f}) { return x; }
+        assertSame(7, f16({}));
+
+        var y = 'a';
+        function f20({[y]: x}) { var y = 'b'; return x; }
+        assertEquals(1, f20({a: 1, b: 2}));
+        function f21({[eval('y')]: x}) { var y = 'b'; return x; }
+        assertEquals(1, f21({a: 1, b: 2}));
+        var g20 = ({[y]: x}) => { var y = 'b'; return x; };
+        assertEquals(1, g20({a: 1, b: 2}));
+        var g21 = ({[eval('y')]: x}) => { var y = 'b'; return x; };
+        assertEquals(1, g21({a: 1, b: 2}));
+      })();
+
+
+      (function TestParameterDestructuringTDZ() {
+        function f1({a = x}, x) { return a }
+        assertThrows(() => f1({}, 4), ReferenceError);
+        assertEquals(4, f1({a: 4}, 5));
+        function f2({a = eval("x")}, x) { return a }
+        assertThrows(() => f2({}, 4), ReferenceError);
+        assertEquals(4, f2({a: 4}, 5));
+        (function() {
+          'use strict';
+          function f3({a = eval("x")}, x) { return a }
+          assertThrows(() => f3({}, 4), ReferenceError);
+          assertEquals(4, f3({a: 4}, 5));
+        })();
+        function f4({a = eval("'use strict'; x")}, x) { return a }
+        assertThrows(() => f4({}, 4), ReferenceError);
+        assertEquals(4, f4({a: 4}, 5));
+
+        function f5({a = () => x}, x) { return a() }
+        assertEquals(4, f5({a: () => 4}, 5));
+        function f6({a = () => eval("x")}, x) { return a() }
+        assertEquals(4, f6({a: () => 4}, 5));
+        (function() {
+          'use strict';
+          function f7({a = () => eval("x")}, x) { return a() }
+          assertEquals(4, f7({a: () => 4}, 5));
+        })();
+        function f8({a = () => eval("'use strict'; x")}, x) { return a() }
+        assertEquals(4, f8({a: () => 4}, 5));
+
+        function f11({a = b}, {b}) { return a }
+        assertThrows(() => f11({}, {b: 4}), ReferenceError);
+        assertEquals(4, f11({a: 4}, {b: 5}));
+        function f12({a = eval("b")}, {b}) { return a }
+        assertThrows(() => f12({}, {b: 4}), ReferenceError);
+        assertEquals(4, f12({a: 4}, {b: 5}));
+        (function() {
+          'use strict';
+          function f13({a = eval("b")}, {b}) { return a }
+          assertThrows(() => f13({}, {b: 4}), ReferenceError);
+          assertEquals(4, f13({a: 4}, {b: 5}));
+        })();
+        function f14({a = eval("'use strict'; b")}, {b}) { return a }
+        assertThrows(() => f14({}, {b: 4}), ReferenceError);
+        assertEquals(4, f14({a: 4}, {b: 5}));
+
+        function f15({a = () => b}, {b}) { return a() }
+        assertEquals(4, f15({a: () => 4}, {b: 5}));
+        function f16({a = () => eval("b")}, {b}) { return a() }
+        assertEquals(4, f16({a: () => 4}, {b: 5}));
+        (function() {
+          'use strict';
+          function f17({a = () => eval("b")}, {b}) { return a() }
+          assertEquals(4, f17({a: () => 4}, {b: 5}));
+        })();
+        function f18({a = () => eval("'use strict'; b")}, {b}) { return a() }
+        assertEquals(4, f18({a: () => 4}, {b: 5}));
+
+        // TODO(caitp): TDZ for rest parameters is not working yet.
+        // function f30({x = a}, ...a) { return x[0] }
+        // assertThrows(() => f30({}), ReferenceError);
+        // assertEquals(4, f30({a: [4]}, 5));
+        // function f31({x = eval("a")}, ...a) { return x[0] }
+        // assertThrows(() => f31({}), ReferenceError);
+        // assertEquals(4, f31({a: [4]}, 5));
+        // function f32({x = eval("a")}, ...a) { 'use strict'; return x[0] }
+        // assertThrows(() => f32({}), ReferenceError);
+        // assertEquals(4, f32({a: [4]}, 5));
+        // function f33({x = eval("'use strict'; a")}, ...a) { return x[0] }
+        // assertThrows(() => f33({}), ReferenceError);
+        // assertEquals(4, f33({a: [4]}, 5));
+
+        function f34({x = function() { return a }}, ...a) { return x()[0] }
+        assertEquals(4, f34({}, 4));
+        function f35({x = () => a}, ...a) { return x()[0] }
+        assertEquals(4, f35({}, 4));
+        function f36({x = () => eval("a")}, ...a) { return x()[0] }
+        assertEquals(4, f36({}, 4));
+        (function() {
+          'use strict';
+          function f37({x = () => eval("a")}, ...a) { return x()[0] }
+          assertEquals(4, f37({}, 4));
+        })();
+        function f38({x = () => { 'use strict'; return eval("a") }}, ...a) { return x()[0] }
+        assertEquals(4, f38({}, 4));
+        function f39({x = () => eval("'use strict'; a")}, ...a) { return x()[0] }
+        assertEquals(4, f39({}, 4));
+
+        // var g30 = ({x = a}, ...a) => {};
+        // assertThrows(() => g30({}), ReferenceError);
+        // var g31 = ({x = eval("a")}, ...a) => {};
+        // assertThrows(() => g31({}), ReferenceError);
+        // var g32 = ({x = eval("a")}, ...a) => { 'use strict'; };
+        // assertThrows(() => g32({}), ReferenceError);
+        // var g33 = ({x = eval("'use strict'; a")}, ...a) => {};
+        // assertThrows(() => g33({}), ReferenceError);
+        var g34 = ({x = function() { return a }}, ...a) => { return x()[0] };
+        assertEquals(4, g34({}, 4));
+        var g35 = ({x = () => a}, ...a) => { return x()[0] };
+        assertEquals(4, g35({}, 4));
+      })();
+
+
+      (function TestDuplicatesInParameters() {
+        assertThrows("'use strict';function f(x,x){}", SyntaxError);
+        assertThrows("'use strict';function f({x,x}){}", SyntaxError);
+        assertThrows("'use strict';function f(x, {x}){}", SyntaxError);
+        assertThrows("'use strict';var f = (x,x) => {};", SyntaxError);
+        assertThrows("'use strict';var f = ({x,x}) => {};", SyntaxError);
+        assertThrows("'use strict';var f = (x, {x}) => {};", SyntaxError);
+
+        function ok1(x) { var x; return x; };
+        assertEquals(1, ok1(1));
+        function ok2(x) { 'use strict'; { let x = 2; return x; } };
+        assertEquals(2, ok2(1));
+      }());
+
+
+      (function TestShadowingOfParameters() {
+        function f1({x}) { var x = 2; return x }
+        assertEquals(2, f1({x: 1}));
+        function f2({x}) { { var x = 2; } return x; }
+        assertEquals(2, f2({x: 1}));
+        function f3({x}) { var y = x; var x = 2; return y; }
+        assertEquals(1, f3({x: 1}));
+        function f4({x}) { { var y = x; var x = 2; } return y; }
+        assertEquals(1, f4({x: 1}));
+        function f5({x}, g = () => x) { var x = 2; return g(); }
+        assertEquals(1, f5({x: 1}));
+        function f6({x}, g = () => x) { { var x = 2; } return g(); }
+        assertEquals(1, f6({x: 1}));
+        function f7({x}) { var g = () => x; var x = 2; return g(); }
+        assertEquals(2, f7({x: 1}));
+        function f8({x}) { { var g = () => x; var x = 2; } return g(); }
+        assertEquals(2, f8({x: 1}));
+        function f9({x}, g = () => eval("x")) { var x = 2; return g(); }
+        assertEquals(1, f9({x: 1}));
+
+        function f10({x}, y) { var y; return y }
+        assertEquals(2, f10({x: 6}, 2));
+        function f11({x}, y) { var z = y; var y = 2; return z; }
+        assertEquals(1, f11({x: 6}, 1));
+        function f12(y, g = () => y) { var y = 2; return g(); }
+        assertEquals(1, f12(1));
+        function f13({x}, y, [z], v) { var x, y, z; return x*y*z*v }
+        assertEquals(210, f13({x: 2}, 3, [5], 7));
+
+        function f20({x}) { function x() { return 2 }; return x(); }
+        assertEquals(2, f20({x: 1}));
+        // Annex B 3.3 function hoisting is blocked by the conflicting x declaration
+        function f21({x}) { { function x() { return 2 } } return x; }
+        assertEquals(1, f21({x: 1}));
+
+        var g1 = ({x}) => { var x = 2; return x };
+        assertEquals(2, g1({x: 1}));
+        var g2 = ({x}) => { { var x = 2; } return x; };
+        assertEquals(2, g2({x: 1}));
+        var g3 = ({x}) => { var y = x; var x = 2; return y; };
+        assertEquals(1, g3({x: 1}));
+        var g4 = ({x}) => { { var y = x; var x = 2; } return y; };
+        assertEquals(1, g4({x: 1}));
+        var g5 = ({x}, g = () => x) => { var x = 2; return g(); };
+        assertEquals(1, g5({x: 1}));
+        var g6 = ({x}, g = () => x) => { { var x = 2; } return g(); };
+        assertEquals(1, g6({x: 1}));
+        var g7 = ({x}) => { var g = () => x; var x = 2; return g(); };
+        assertEquals(2, g7({x: 1}));
+        var g8 = ({x}) => { { var g = () => x; var x = 2; } return g(); };
+        assertEquals(2, g8({x: 1}));
+        var g9 = ({x}, g = () => eval("x")) => { var x = 2; return g(); };
+        assertEquals(1, g9({x: 1}));
+
+        var g10 = ({x}, y) => { var y; return y };
+        assertEquals(2, g10({x: 6}, 2));
+        var g11 = ({x}, y) => { var z = y; var y = 2; return z; };
+        assertEquals(1, g11({x: 6}, 1));
+        var g12 = (y, g = () => y) => { var y = 2; return g(); };
+        assertEquals(1, g12(1));
+        var g13 = ({x}, y, [z], v) => { var x, y, z; return x*y*z*v };
+        assertEquals(210, g13({x: 2}, 3, [5], 7));
+
+        var g20 = ({x}) => { function x() { return 2 }; return x(); }
+        assertEquals(2, g20({x: 1}));
+        var g21 = ({x}) => { { function x() { return 2 } } return x(); }
+        assertThrows(() => g21({x: 1}), TypeError);
+
+        // These errors are not recognized in lazy parsing; see mjsunit/bugs/bug-2728.js
+        assertThrows("'use strict'; (function f(x) { let x = 0; })()", SyntaxError);
+        assertThrows("'use strict'; (function f({x}) { let x = 0; })()", SyntaxError);
+        assertThrows("'use strict'; (function f(x) { const x = 0; })()", SyntaxError);
+        assertThrows("'use strict'; (function f({x}) { const x = 0; })()", SyntaxError);
+
+        assertThrows("'use strict'; let g = (x) => { let x = 0; }", SyntaxError);
+        assertThrows("'use strict'; let g = ({x}) => { let x = 0; }", SyntaxError);
+        assertThrows("'use strict'; let g = (x) => { const x = 0; }", SyntaxError);
+        assertThrows("'use strict'; let g = ({x}) => { const x = 0; }", SyntaxError);
+      }());
+
+
+      (function TestArgumentsForNonSimpleParameters() {
+        function f1({}, x) { arguments[1] = 0; return x }
+        assertEquals(6, f1({}, 6));
+        function f2({}, x) { x = 2; return arguments[1] }
+        assertEquals(7, f2({}, 7));
+        function f3(x, {}) { arguments[0] = 0; return x }
+        assertEquals(6, f3(6, {}));
+        function f4(x, {}) { x = 2; return arguments[0] }
+        assertEquals(7, f4(7, {}));
+        function f5(x, ...a) { arguments[0] = 0; return x }
+        assertEquals(6, f5(6, {}));
+        function f6(x, ...a) { x = 2; return arguments[0] }
+        assertEquals(6, f6(6, {}));
+        function f7({a: x}) { x = 2; return arguments[0].a }
+        assertEquals(5, f7({a: 5}));
+        function f8(x, ...a) { a = []; return arguments[1] }
+        assertEquals(6, f8(5, 6));
+      }());
+
+
+      (function TestForInOfTDZ() {
+        assertThrows("'use strict'; let x = {}; for (let [x, y] of [x]);", ReferenceError);
+        assertThrows("'use strict'; let x = {}; for (let [y, x] of [x]);", ReferenceError);
+        assertThrows("'use strict'; let x = {}; for (let [x, y] in {x});", ReferenceError);
+        assertThrows("'use strict'; let x = {}; for (let [y, x] in {x});", ReferenceError);
+      }());
+
+
+      (function TestFunctionLength() {
+         assertEquals(1, (function({}) {}).length);
+         assertEquals(1, (function([]) {}).length);
+         assertEquals(1, (function({x}) {}).length);
+         assertEquals(1, (function({}, ...a) {}).length);
+         assertEquals(1, (function({x}, {y} = {}) {}).length);
+         assertEquals(1, (function({x}, {y} = {}, ...a) {}).length);
+         assertEquals(2, (function(x, {y}, {z} = {}) {}).length);
+         assertEquals(2, (function({x}, {}, {z} = {}, ...a) {}).length);
+         assertEquals(1, (function(x, {y} = {}, {z}) {}).length);
+         assertEquals(1, (function({x}, {y} = {}, {z}, ...a) {}).length);
+         assertEquals(1, (function(x, {y} = {}, {z}, {v} = {}) {}).length);
+         assertEquals(1, (function({x}, {y} = {}, {z}, {v} = {}, ...a) {}).length);
+      })();
+
+
+      (function TestDirectiveThrows() {
+        "use strict";
+
+        assertThrows(function(){ eval("function({}){'use strict';}") }, SyntaxError);
+        assertThrows(function(){ eval("({}) => {'use strict';}") }, SyntaxError);
+        assertThrows(
+          function(){ eval("(class{foo({}) {'use strict';}});") }, SyntaxError);
+
+        assertThrows(
+          function(){ eval("function(a, {}){'use strict';}") }, SyntaxError);
+        assertThrows(function(){ eval("(a, {}) => {'use strict';}") }, SyntaxError);
+        assertThrows(
+          function(){ eval("(class{foo(a, {}) {'use strict';}});") }, SyntaxError);
+      })();
+
+
+      (function TestLegacyConstDestructuringInForLoop() {
+        var result;
+        for (const {foo} of [{foo: 1}]) { result = foo; }
+        assertEquals(1, result);
+      })();
+
+
+      (function TestCatch() {
+        "use strict";
+
+        // For testing proper scoping.
+        var foo = "hello", bar = "world", baz = 42;
+
+        try {
+          throw {foo: 1, bar: 2};
+        } catch ({foo, bar, baz = 3}) {
+          assertEquals(1, foo);
+          assertEquals(2, bar);
+          assertEquals(3, baz);
+        }
+
+        try {
+          throw [1, 2, 3];
+        } catch ([foo, ...bar]) {
+          assertEquals(1, foo);
+          assertEquals([2, 3], bar);
+        }
+
+        assertEquals("hello", foo);
+        assertEquals("world", bar);
+        assertEquals(42, baz);
+
+        assertEquals(undefined, eval('try {throw {foo: 1, bar: 2}} catch({foo}) {}'));
+        assertEquals(undefined, eval('try {throw [1, 2, 3]} catch([x]) {}'));
+      })();
+    `,
+    outdent`
+      (function overridingLocalFunction() {
+        var x = [];
+        assertEquals('function', typeof f);
+        function f() {
+          x.push(1);
+        }
+        f();
+        {
+          f();
+          function f() {
+            x.push(2);
+          }
+          f();
+        }
+        f();
+        {
+          f();
+          function f() {
+            x.push(3);
+          }
+          f();
+        }
+        f();
+        assertArrayEquals([1, 2, 2, 2, 3, 3, 3], x);
+      })();
+
+      (function newFunctionBinding() {
+        var x = [];
+        assertEquals('undefined', typeof f);
+        {
+          f();
+          function f() {
+            x.push(2);
+          }
+          f();
+        }
+        f();
+        {
+          f();
+          function f() {
+            x.push(3);
+          }
+          f();
+        }
+        f();
+        assertArrayEquals([2, 2, 2, 3, 3, 3], x);
+      })();
+
+      (function shadowingLetDoesntBind() {
+        let f = 1;
+        assertEquals(1, f);
+        {
+          let y = 3;
+          function f() {
+            y = 2;
+          }
+          f();
+          assertEquals(2, y);
+        }
+        assertEquals(1, f);
+      })();
+
+      (function shadowingLetDoesntBindGenerator() {
+        let f = function *f() {
+          while(true) {
+            yield 1;
+          }
+        };
+        assertEquals(1, f().next().value);
+        {
+          function *f() {
+            while(true) {
+              yield 2;
+            }
+          }
+          assertEquals(2, f().next().value);
+        }
+        assertEquals(1, f().next().value);
+      })();
+
+      (function shadowingClassDoesntBind() {
+        class f { }
+        assertEquals('class f { }', f.toString());
+        {
+          let y = 3;
+          function f() {
+            y = 2;
+          }
+          f();
+          assertEquals(2, y);
+        }
+        assertEquals('class f { }', f.toString());
+      })();
+
+      (function shadowingConstDoesntBind() {
+        const f = 1;
+        assertEquals(1, f);
+        {
+          let y = 3;
+          function f() {
+            y = 2;
+          }
+          f();
+          assertEquals(2, y);
+        }
+        assertEquals(1, f);
+      })();
+
+      (function shadowingVarBinds() {
+        var f = 1;
+        assertEquals(1, f);
+        {
+          let y = 3;
+          function f() {
+            y = 2;
+          }
+          f();
+          assertEquals(2, y);
+        }
+        assertEquals('function', typeof f);
+      })();
+
+      (function complexParams(a = 0) {
+        {
+          let y = 3;
+          function f(b = 0) {
+            y = 2;
+          }
+          f();
+          assertEquals(2, y);
+        }
+        assertEquals('function', typeof f);
+      })();
+
+      (function complexVarParams(a = 0) {
+        var f;
+        {
+          let y = 3;
+          function f(b = 0) {
+            y = 2;
+          }
+          f();
+          assertEquals(2, y);
+        }
+        assertEquals('function', typeof f);
+      })();
+
+      (function conditional() {
+        if (true) {
+          function f() { return 1; }
+        } else {
+          function f() { return 2; }
+        }
+        assertEquals(1, f());
+
+        if (false) {
+          function g() { return 1; }
+        } else {
+          function g() { return 2; }
+        }
+        assertEquals(2, g());
+      })();
+
+      (function skipExecution() {
+        {
+          function f() { return 1; }
+        }
+        assertEquals(1, f());
+        {
+          function f() { return 2; }
+        }
+        assertEquals(2, f());
+        L: {
+          assertEquals(3, f());
+          break L;
+          function f() { return 3; }
+        }
+        assertEquals(2, f());
+      })();
+
+      (function executionOrder() {
+        function getOuter() {
+          return f;
+        }
+        assertEquals('undefined', typeof getOuter());
+
+        {
+          assertEquals('function', typeof f);
+          assertEquals('undefined', typeof getOuter());
+          function f () {}
+          assertEquals('function', typeof f);
+          assertEquals('function', typeof getOuter());
+        }
+
+        assertEquals('function', typeof getOuter());
+      })();
+
+      (function reassignBindings() {
+        function getOuter() {
+          return f;
+        }
+        assertEquals('undefined', typeof getOuter());
+
+        {
+          assertEquals('function', typeof f);
+          assertEquals('undefined', typeof getOuter());
+          f = 1;
+          assertEquals('number', typeof f);
+          assertEquals('undefined', typeof getOuter());
+          function f () {}
+          assertEquals('number', typeof f);
+          assertEquals('number', typeof getOuter());
+          f = '';
+          assertEquals('string', typeof f);
+          assertEquals('number', typeof getOuter());
+        }
+
+        assertEquals('number', typeof getOuter());
+      })();
+
+      // Test that shadowing arguments is fine
+      (function shadowArguments(x) {
+        assertArrayEquals([1], arguments);
+        {
+          assertEquals('function', typeof arguments);
+          function arguments() {}
+          assertEquals('function', typeof arguments);
+        }
+        assertEquals('function', typeof arguments);
+      })(1);
+
+
+      // Don't shadow simple parameter
+      (function shadowingParameterDoesntBind(x) {
+        assertEquals(1, x);
+        {
+          function x() {}
+        }
+        assertEquals(1, x);
+      })(1);
+
+      // Don't shadow complex parameter
+      (function shadowingDefaultParameterDoesntBind(x = 0) {
+        assertEquals(1, x);
+        {
+          function x() {}
+        }
+        assertEquals(1, x);
+      })(1);
+
+      // Don't shadow nested complex parameter
+      (function shadowingNestedParameterDoesntBind([[x]]) {
+        assertEquals(1, x);
+        {
+          function x() {}
+        }
+        assertEquals(1, x);
+      })([[1]]);
+
+      // Don't shadow rest parameter
+      (function shadowingRestParameterDoesntBind(...x) {
+        assertArrayEquals([1], x);
+        {
+          function x() {}
+        }
+        assertArrayEquals([1], x);
+      })(1);
+
+      // Don't shadow complex rest parameter
+      (function shadowingComplexRestParameterDoesntBind(...[x]) {
+        assertArrayEquals(1, x);
+        {
+          function x() {}
+        }
+        assertArrayEquals(1, x);
+      })(1);
+
+      // Previous tests with a var declaration thrown in.
+      // Don't shadow simple parameter
+      (function shadowingVarParameterDoesntBind(x) {
+        var x;
+        assertEquals(1, x);
+        {
+          function x() {}
+        }
+        assertEquals(1, x);
+      })(1);
+
+      // Don't shadow complex parameter
+      (function shadowingVarDefaultParameterDoesntBind(x = 0) {
+        var x;
+        assertEquals(1, x);
+        {
+          function x() {}
+        }
+        assertEquals(1, x);
+      })(1);
+
+      // Don't shadow nested complex parameter
+      (function shadowingVarNestedParameterDoesntBind([[x]]) {
+        var x;
+        assertEquals(1, x);
+        {
+          function x() {}
+        }
+        assertEquals(1, x);
+      })([[1]]);
+
+      // Don't shadow rest parameter
+      (function shadowingVarRestParameterDoesntBind(...x) {
+        var x;
+        assertArrayEquals([1], x);
+        {
+          function x() {}
+        }
+        assertArrayEquals([1], x);
+      })(1);
+
+      // Don't shadow complex rest parameter
+      (function shadowingVarComplexRestParameterDoesntBind(...[x]) {
+        var x;
+        assertArrayEquals(1, x);
+        {
+          function x() {}
+        }
+        assertArrayEquals(1, x);
+      })(1);
+
+
+      // Hoisting is not affected by other simple parameters
+      (function irrelevantParameterBinds(y, z) {
+        assertEquals(undefined, x);
+        {
+          function x() {}
+        }
+        assertEquals('function', typeof x);
+      })(1);
+
+      // Hoisting is not affected by other complex parameters
+      (function irrelevantComplexParameterBinds([y] = [], z) {
+        assertEquals(undefined, x);
+        {
+          function x() {}
+        }
+        assertEquals('function', typeof x);
+      })();
+
+      // Hoisting is not affected by rest parameters
+      (function irrelevantRestParameterBinds(y, ...z) {
+        assertEquals(undefined, x);
+        {
+          function x() {}
+        }
+        assertEquals('function', typeof x);
+      })();
+
+      // Hoisting is not affected by complex rest parameters
+      (function irrelevantRestParameterBinds(y, ...[z]) {
+        assertEquals(undefined, x);
+        {
+          function x() {}
+        }
+        assertEquals('function', typeof x);
+      })();
+
+
+      // Test that shadowing function name is fine
       {
-        assertEquals(1, f());
-        function f() { return 1; }
-        assertEquals(1, f());
-      }
-      assertEquals(1, f());
-    })();
-    assertEquals(0, f);
-  }
-})();
-
-(function notInDefaultScope() {
-  var y = 1;
-  (function innerNotInDefaultScope(x = y) {
-    assertEquals('undefined', typeof y);
-    {
-      function y() {}
-    }
-    assertEquals('function', typeof y);
-    assertEquals(1, x);
-  })();
-})();
-
-(function noHoistingThroughNestedLexical() {
-  {
-    let f = 2;
-    {
-      let y = 3;
-      function f() {
-        y = 2;
-      }
-      f();
-      assertEquals(2, y);
-    }
-    assertEquals(2, f);
-  }
-  assertThrows(()=>f, ReferenceError);
-})();
-
-// Only the first function is hoisted; the second is blocked by the first.
-// Contrast overridingLocalFunction, in which the outer function declaration
-// is not lexical and so the inner declaration is hoisted.
-(function noHoistingThroughNestedFunctions() {
-  assertEquals(undefined, f); // Also checks that the var-binding exists
-
-  {
-    assertEquals(4, f());
-
-    function f() {
-      return 4;
-    }
-
-    {
-      assertEquals(5, f());
-      function f() {
-        return 5;
-      }
-      assertEquals(5, f());
-    }
-
-    assertEquals(4, f());
-  }
-
-  assertEquals(4, f());
-})();
-
-// B.3.5 interacts with B.3.3 to allow this.
-(function hoistingThroughSimpleCatch() {
-  assertEquals(undefined, f);
-
-  try {
-    throw 0;
-  } catch (f) {
-    {
-      assertEquals(4, f());
-
-      function f() {
-        return 4;
+        let called = false;
+        (function shadowFunctionName() {
+          if (called) assertUnreachable();
+          called = true;
+          {
+            function shadowFunctionName() {
+              return 0;
+            }
+            assertEquals(0, shadowFunctionName());
+          }
+          assertEquals(0, shadowFunctionName());
+        })();
       }
 
-      assertEquals(4, f());
-    }
-
-    assertEquals(0, f);
-  }
-
-  assertEquals(4, f());
-})();
-
-(function noHoistingThroughComplexCatch() {
-  try {
-    throw 0;
-  } catch ({f}) {
-    {
-      assertEquals(4, f());
-
-      function f() {
-        return 4;
+      {
+        let called = false;
+        (function shadowFunctionNameWithComplexParameter(...r) {
+          if (called) assertUnreachable();
+          called = true;
+          {
+            function shadowFunctionNameWithComplexParameter() {
+              return 0;
+            }
+            assertEquals(0, shadowFunctionNameWithComplexParameter());
+          }
+          assertEquals(0, shadowFunctionNameWithComplexParameter());
+        })();
       }
 
-      assertEquals(4, f());
-    }
-  }
+      (function shadowOuterVariable() {
+        {
+          let f = 0;
+          (function () {
+            assertEquals(undefined, f);
+            {
+              assertEquals(1, f());
+              function f() { return 1; }
+              assertEquals(1, f());
+            }
+            assertEquals(1, f());
+          })();
+          assertEquals(0, f);
+        }
+      })();
 
-  assertThrows(()=>f, ReferenceError);
-})();
+      (function notInDefaultScope() {
+        var y = 1;
+        (function innerNotInDefaultScope(x = y) {
+          assertEquals('undefined', typeof y);
+          {
+            function y() {}
+          }
+          assertEquals('function', typeof y);
+          assertEquals(1, x);
+        })();
+      })();
 
-(function hoistingThroughWith() {
-  with ({f: 0}) {
-    assertEquals(0, f);
+      (function noHoistingThroughNestedLexical() {
+        {
+          let f = 2;
+          {
+            let y = 3;
+            function f() {
+              y = 2;
+            }
+            f();
+            assertEquals(2, y);
+          }
+          assertEquals(2, f);
+        }
+        assertThrows(()=>f, ReferenceError);
+      })();
 
-    {
-      assertEquals(4, f());
+      // Only the first function is hoisted; the second is blocked by the first.
+      // Contrast overridingLocalFunction, in which the outer function declaration
+      // is not lexical and so the inner declaration is hoisted.
+      (function noHoistingThroughNestedFunctions() {
+        assertEquals(undefined, f); // Also checks that the var-binding exists
 
-      function f() {
-        return 4;
-      }
+        {
+          assertEquals(4, f());
 
-      assertEquals(4, f());
-    }
+          function f() {
+            return 4;
+          }
 
-    assertEquals(0, f);
-  }
+          {
+            assertEquals(5, f());
+            function f() {
+              return 5;
+            }
+            assertEquals(5, f());
+          }
 
-  assertEquals(4, f());
-})();`,
+          assertEquals(4, f());
+        }
+
+        assertEquals(4, f());
+      })();
+
+      // B.3.5 interacts with B.3.3 to allow this.
+      (function hoistingThroughSimpleCatch() {
+        assertEquals(undefined, f);
+
+        try {
+          throw 0;
+        } catch (f) {
+          {
+            assertEquals(4, f());
+
+            function f() {
+              return 4;
+            }
+
+            assertEquals(4, f());
+          }
+
+          assertEquals(0, f);
+        }
+
+        assertEquals(4, f());
+      })();
+
+      (function noHoistingThroughComplexCatch() {
+        try {
+          throw 0;
+        } catch ({f}) {
+          {
+            assertEquals(4, f());
+
+            function f() {
+              return 4;
+            }
+
+            assertEquals(4, f());
+          }
+        }
+
+        assertThrows(()=>f, ReferenceError);
+      })();
+
+      (function hoistingThroughWith() {
+        with ({f: 0}) {
+          assertEquals(0, f);
+
+          {
+            assertEquals(4, f());
+
+            function f() {
+              return 4;
+            }
+
+            assertEquals(4, f());
+          }
+
+          assertEquals(0, f);
+        }
+
+        assertEquals(4, f());
+      })();
+    `,
     'var x, y, z; for (x in let [o.x=1]=[] = z = {});',
     'var x, y, z; (x = let [o.x=1]=[] = z = {});',
     'var x, y, z; for (x in x = let [o.x=1]=[]  = z = {});',
     'var x, y, z; (x = let [o.x=1]=[] = z = {});',
-    `async function testUnserializableValues() {
-  const unserializableExpressions = ['NaN', 'Infinity', '-Infinity', '-0'];
-  for (const expression of unserializableExpressions)
-    await evalAndLog(expression, callFrameId);
-}`,
-    `async function testReleaseObject() {
-  await Protocol.Runtime.evaluate({ expression: 'var a = {x:3};', callFrameId });
-  await Protocol.Runtime.evaluate({ expression: 'var b = {x:4};', callFrameId });
-  const ids = [];
-  let result = await Protocol.Runtime.evaluate({ expression: 'a', callFrameId });
-  const id1 = result.result.result.objectId;
-  ids.push(id1);
-  result = await Protocol.Runtime.evaluate({ expression: 'b', callFrameId });
-  const id2 = result.result.result.objectId;
-  ids.push(id2);
+    outdent`
+      async function testUnserializableValues() {
+        const unserializableExpressions = ['NaN', 'Infinity', '-Infinity', '-0'];
+        for (const expression of unserializableExpressions)
+          await evalAndLog(expression, callFrameId);
+      }
+    `,
+    outdent`
+      async function testReleaseObject() {
+        await Protocol.Runtime.evaluate({ expression: 'var a = {x:3};', callFrameId });
+        await Protocol.Runtime.evaluate({ expression: 'var b = {x:4};', callFrameId });
+        const ids = [];
+        let result = await Protocol.Runtime.evaluate({ expression: 'a', callFrameId });
+        const id1 = result.result.result.objectId;
+        ids.push(id1);
+        result = await Protocol.Runtime.evaluate({ expression: 'b', callFrameId });
+        const id2 = result.result.result.objectId;
+        ids.push(id2);
 
-  // Call Function on both objects and log:
-  await objectGroupHelper(ids);
-  Protocol.Runtime.releaseObject({ objectId: id1 });
-  await objectGroupHelper(ids);
-  Protocol.Runtime.releaseObject({ objectId: id2 });
-  await objectGroupHelper(ids);
-}`,
-    ` async function evalAndLog(expression, callFrameId, returnByValue) {
-  const result = await Protocol.Debugger.evaluateOnCallFrame({ expression, callFrameId, returnByValue });
-  InspectorTest.logMessage(result);
-}
+        // Call Function on both objects and log:
+        await objectGroupHelper(ids);
+        Protocol.Runtime.releaseObject({ objectId: id1 });
+        await objectGroupHelper(ids);
+        Protocol.Runtime.releaseObject({ objectId: id2 });
+        await objectGroupHelper(ids);
+      }
+    `,
+    outdent`
+      async function evalAndLog(expression, callFrameId, returnByValue) {
+        const result = await Protocol.Debugger.evaluateOnCallFrame({ expression, callFrameId, returnByValue });
+        InspectorTest.logMessage(result);
+      }
 
-// Helper function that calls a function on all objects with ids in objectIds, then returns
-async function objectGroupHelper(objectIds) {
-  return new Promise(async resolve => {
-    for (let objectId of objectIds) {
-      const result = await Protocol.Runtime.callFunctionOn({ objectId, functionDeclaration: 'function(){ return this;}' });
-      InspectorTest.logMessage(result);
-    }
-    resolve();
-  });
-}`,
-    `InspectorTest.runAsyncTestSuite([
-  async function testFunctionCallAsArgument() {
-    await testExpression('foo2(foo1())');
-  },
+      // Helper function that calls a function on all objects with ids in objectIds, then returns
+      async function objectGroupHelper(objectIds) {
+        return new Promise(async resolve => {
+          for (let objectId of objectIds) {
+            const result = await Protocol.Runtime.callFunctionOn({ objectId, functionDeclaration: 'function(){ return this;}' });
+            InspectorTest.logMessage(result);
+          }
+          resolve();
+        });
+      }
+    `,
+    outdent`
+      InspectorTest.runAsyncTestSuite([
+        async function testFunctionCallAsArgument() {
+          await testExpression('foo2(foo1())');
+        },
 
-  async function testFunctionCallAsArgument() {
-    await testExpression('foo2(foo1());');
-  },
+        async function testFunctionCallAsArgument() {
+          await testExpression('foo2(foo1());');
+        },
 
-  async function testFunctionCallAsArguments() {
-    await testExpression('foo3(foo1(), foo2());');
-  },
+        async function testFunctionCallAsArguments() {
+          await testExpression('foo3(foo1(), foo2());');
+        },
 
-  async function testFunctionCallInBinaryExpression() {
-    await testExpression('foo3(foo1() + foo2());');
-  },
-]);`,
+        async function testFunctionCallInBinaryExpression() {
+          await testExpression('foo3(foo1() + foo2());');
+        },
+      ]);
+    `,
     'indentation = count === 7 ? "       " : " ".repeat(count)',
-    `function init() {
-  function isREPL() {
-    if (argv.length !== 1) {
-      return false
-    }
+    outdent`
+      function init() {
+        function isREPL() {
+          if (argv.length !== 1) {
+            return false
+          }
 
-    if (isPreloaded()) {
-      return true
-    }
+          if (isPreloaded()) {
+            return true
+          }
 
-    return rootModule.id === "<repl>" &&
-      rootModule.filename === null &&
-      rootModule.loaded === false &&
-      rootModule.parent == null &&
-      hasLoaderModule(rootModule.children)
-  }
+          return rootModule.id === "<repl>" &&
+            rootModule.filename === null &&
+            rootModule.loaded === false &&
+            rootModule.parent == null &&
+            hasLoaderModule(rootModule.children)
+        }
 
-  return isREPL
-}`,
-    `function init() {
-  const ArrayProto = Array.prototype
-  const SafeProto = SafeArray.prototype
+        return isREPL
+      }
+    `,
+    outdent`
+      function init() {
+        const ArrayProto = Array.prototype
+        const SafeProto = SafeArray.prototype
 
-  return {
-    concat: unapply(SafeProto.concat),
-    from: SafeArray.from,
-    indexOf: unapply(ArrayProto.indexOf),
-    join: unapply(ArrayProto.join),
-    of: SafeArray.of,
-    push: unapply(ArrayProto.push),
-    unshift: unapply(ArrayProto.unshift)
-  }
-}
-`,
-    `function init() {
-  return {
-    bind: unapply(Function.prototype.bind)
-  }
-}`,
-    `class OwnProxy {
-  constructor(target, handler) {
-    const maskedHandler = { __proto__: handler }
-    const proxy = new Proxy(target, maskedHandler)
+        return {
+          concat: unapply(SafeProto.concat),
+          from: SafeArray.from,
+          indexOf: unapply(ArrayProto.indexOf),
+          join: unapply(ArrayProto.join),
+          of: SafeArray.of,
+          push: unapply(ArrayProto.push),
+          unshift: unapply(ArrayProto.unshift)
+        }
+      }
+    `,
+    outdent`
+      function init() {
+        return {
+          bind: unapply(Function.prototype.bind)
+        }
+      }
+    `,
+    outdent`
+      class OwnProxy {
+        constructor(target, handler) {
+          const maskedHandler = { __proto__: handler }
+          const proxy = new Proxy(target, maskedHandler)
 
-    setPrototypeOf(handler, null)
+          setPrototypeOf(handler, null)
 
-    for (const name in handler) {
-      toExternalFunction(handler[name])
-    }
+          for (const name in handler) {
+            toExternalFunction(handler[name])
+          }
 
-    Reflect.defineProperty(maskedHandler, shared.customInspectKey, customInspectDescriptor)
-    Reflect.defineProperty(maskedHandler, shared.symbol.proxy, markerDescriptor)
+          Reflect.defineProperty(maskedHandler, shared.customInspectKey, customInspectDescriptor)
+          Reflect.defineProperty(maskedHandler, shared.symbol.proxy, markerDescriptor)
 
-    OwnProxy.instances.set(proxy, [target, maskedHandler])
+          OwnProxy.instances.set(proxy, [target, maskedHandler])
 
-    const emptyHandler = {}
-    const decoyProxy = new Proxy(proxy, emptyHandler)
+          const emptyHandler = {}
+          const decoyProxy = new Proxy(proxy, emptyHandler)
 
-    OwnProxy.instances.set(decoyProxy, [proxy, emptyHandler])
+          OwnProxy.instances.set(decoyProxy, [proxy, emptyHandler])
 
-    return decoyProxy
-  }
-}`,
-    ` const map = new Map([
-  ["fs", [
-    // Used for faster directory, file, and existence checks.
-    "internalModuleStat",
-    "realpath"
-  ]],
-  ["inspector", [
-    "consoleCall"
-  ]],
-  ["natives",
-    void 0
-  ],
-  ["util", [
-    // Used as the stack trace decoration indicator in Node 7+.
-    "decorated_private_symbol",
-    // Used to get the unwrapped object and proxy handler.
-    "getProxyDetails",
-    // Used for more secure environment variable retrieval in Node 10+.
-    "safeGetenv",
-    // Used to decorate stack traces until
-    // https://github.com/nodejs/node/pull/23926 is merged.
-    "setHiddenValue"
-  ]]
-])`,
-    `function create(prototype, properties) {
-  prototype = prototype === null ? null : Object(prototype)
-  const result = Object.create(prototype)
-  return properties == null ? result : Object.assign(result, properties)
-}`,
-    `function defaultTo(value, defaultValue) {
-  return (value == null || value !== value) ? defaultValue : value
-}`,
-    `function defer(func, ...args) {
-  if (typeof func != 'function') {
-    throw new TypeError('Expected a function')
-  }
-  return setTimeout(func, 1, ...args)
-}`,
-    `function dropWhile(array, predicate) {
-  return (array != null && array.length)
-    ? baseWhile(array, predicate, true)
-    : []
-}`,
-    `function groupBy(collection, iteratee) {
-  return reduce(collection, (result, value, key) => {
-    key = iteratee(value)
-    if (hasOwnProperty.call(result, key)) {
-      result[key].push(value)
-    } else {
-      baseAssignValue(result, key, [value])
-    }
-    return result
-  }, {})
-}`,
-    `function over(iteratees) {
-  return function(...args) {
-    return map(iteratees, (iteratee) => iteratee.apply(this, args))
-  }
-}`,
+          return decoyProxy
+        }
+      }
+    `,
+    outdent`
+      const map = new Map([
+        ["fs", [
+          // Used for faster directory, file, and existence checks.
+          "internalModuleStat",
+          "realpath"
+        ]],
+        ["inspector", [
+          "consoleCall"
+        ]],
+        ["natives",
+          void 0
+        ],
+        ["util", [
+          // Used as the stack trace decoration indicator in Node 7+.
+          "decorated_private_symbol",
+          // Used to get the unwrapped object and proxy handler.
+          "getProxyDetails",
+          // Used for more secure environment variable retrieval in Node 10+.
+          "safeGetenv",
+          // Used to decorate stack traces until
+          // https://github.com/nodejs/node/pull/23926 is merged.
+          "setHiddenValue"
+        ]]
+      ])
+    `,
+    outdent`
+      function create(prototype, properties) {
+        prototype = prototype === null ? null : Object(prototype)
+        const result = Object.create(prototype)
+        return properties == null ? result : Object.assign(result, properties)
+      }
+    `,
+    outdent`
+      function defaultTo(value, defaultValue) {
+        return (value == null || value !== value) ? defaultValue : value
+      }
+    `,
+    outdent`
+      function defer(func, ...args) {
+        if (typeof func != 'function') {
+          throw new TypeError('Expected a function')
+        }
+        return setTimeout(func, 1, ...args)
+      }
+    `,
+    outdent`
+      function dropWhile(array, predicate) {
+        return (array != null && array.length)
+          ? baseWhile(array, predicate, true)
+          : []
+      }
+    `,
+    outdent`
+      function groupBy(collection, iteratee) {
+        return reduce(collection, (result, value, key) => {
+          key = iteratee(value)
+          if (hasOwnProperty.call(result, key)) {
+            result[key].push(value)
+          } else {
+            baseAssignValue(result, key, [value])
+          }
+          return result
+        }, {})
+      }
+    `,
+    outdent`
+      function over(iteratees) {
+        return function(...args) {
+          return map(iteratees, (iteratee) => iteratee.apply(this, args))
+        }
+      }
+    `,
     "map(['a[2]', 'c[0]'], propertyOf(object))",
     'map([a[2], c[0]], propertyOf(object))',
     "size({ 'a': 1, 'b': 2 })",
-    `function size(collection) {
-  if (collection == null) {
-    return 0
-  }
-  if (isArrayLike(collection)) {
-    return isString(collection) ? stringSize(collection) : collection.length
-  }
-  const tag = getTag(collection)
-  if (tag == mapTag || tag == setTag) {
-    return collection.size
-  }
-  return Object.keys(collection).length
-}`,
-    `function split(string, separator, limit) {
-  limit = limit === undefined ? MAX_ARRAY_LENGTH : limit >>> 0
-  if (!limit) {
-    return []
-  }
-  if (string && (
-        typeof separator == 'string' ||
-        (separator != null && !isRegExp(separator))
-      )) {
-    if (!separator && hasUnicode(string)) {
-      return castSlice(stringToArray(string), 0, limit)
-    }
-  }
-  return string.split(separator, limit)
-}`,
+    outdent`
+      function size(collection) {
+        if (collection == null) {
+          return 0
+        }
+        if (isArrayLike(collection)) {
+          return isString(collection) ? stringSize(collection) : collection.length
+        }
+        const tag = getTag(collection)
+        if (tag == mapTag || tag == setTag) {
+          return collection.size
+        }
+        return Object.keys(collection).length
+      }
+    `,
+    outdent`
+      function split(string, separator, limit) {
+        limit = limit === undefined ? MAX_ARRAY_LENGTH : limit >>> 0
+        if (!limit) {
+          return []
+        }
+        if (string && (
+              typeof separator == 'string' ||
+              (separator != null && !isRegExp(separator))
+            )) {
+          if (!separator && hasUnicode(string)) {
+            return castSlice(stringToArray(string), 0, limit)
+          }
+        }
+        return string.split(separator, limit)
+      }
+    `,
     'const zipped = zip([1, 2], [10, 20], [100, 200])',
     'a => [[1, 10, 100], [2, 20, 200]]',
     "a => ({ 'a': 1, 'b': 2 })",
     'async a => [[1, 10, 100], [2, 20, 200]]',
     "async a => ({ 'a': 1, 'b': 2 })",
     'async a => [[1, 10, 100], [2, 20, 200]]',
-    `async a => ({ 'a': 1, 'b': 2 })
- a => ({ 'a': 1, 'b': 2 })
- async a => [[1, 10, 100], [2, 20, 200]]
- async a => [[1, 10, 100], [2, 20, 200]]`,
-    `async a => ({ 'a': 1, 'b': 2 })
- a => ({ 'a': 1, 'b': 2 })
- async a => ({ 'a': 1, 'b': 2 })
- a => ({ 'a': 1, 'b': 2 })
- async a => [[1, 10, 100], [2, 20, 200]]
- async a => [[1, 10, 100], [2, 20, 200]]
- async a => [[1, 10, 100], [2, 20, 200]]
- async a => [[1, 10, 100], [2, 20, 200]]
- async a => ({ 'a': 1, 'b': 2 })
- a => ({ 'a': 1, 'b': 2 })
- async a => [[1, 10, 100], [2, 20, 200]]
- async a => [[1, 10, 100], [2, 20, 200]]`,
-    `async a => ({ 'a': 1, 'b': 2 })
- a => ({ 'a': 1, 'b': 2 })
- async a => [[1, 10, 100], [2, 20, 200]]
- async a => ({ 'a': 1, 'b': 2 })
- a => ({ 'a': 1, 'b': 2 })
- async a => ({ 'a': 1, 'b': 2 })
- a => ({ 'a': 1, 'b': 2 })
- async a => [[1, 10, 100], [2, 20, 200]]
- async a => [[1, 10, 100], [2, 20, 200]]
- async a => [[1, 10, 100], [2, 20, 200]]
- async a => [[1, 10, 100], [2, 20, 200]]
- async a => [[1, 10, 100], [2, 20, 200]]`,
+    outdent`
+      async a => ({ 'a': 1, 'b': 2 })
+        a => ({ 'a': 1, 'b': 2 })
+        async a => [[1, 10, 100], [2, 20, 200]]
+        async a => [[1, 10, 100], [2, 20, 200]]
+    `,
+    outdent`
+      async a => ({ 'a': 1, 'b': 2 })
+      a => ({ 'a': 1, 'b': 2 })
+      async a => ({ 'a': 1, 'b': 2 })
+      a => ({ 'a': 1, 'b': 2 })
+      async a => [[1, 10, 100], [2, 20, 200]]
+      async a => [[1, 10, 100], [2, 20, 200]]
+      async a => [[1, 10, 100], [2, 20, 200]]
+      async a => [[1, 10, 100], [2, 20, 200]]
+      async a => ({ 'a': 1, 'b': 2 })
+      a => ({ 'a': 1, 'b': 2 })
+      async a => [[1, 10, 100], [2, 20, 200]]
+      async a => [[1, 10, 100], [2, 20, 200]]
+    `,
+    outdent`
+      async a => ({ 'a': 1, 'b': 2 })
+      a => ({ 'a': 1, 'b': 2 })
+      async a => [[1, 10, 100], [2, 20, 200]]
+      async a => ({ 'a': 1, 'b': 2 })
+      a => ({ 'a': 1, 'b': 2 })
+      async a => ({ 'a': 1, 'b': 2 })
+      a => ({ 'a': 1, 'b': 2 })
+      async a => [[1, 10, 100], [2, 20, 200]]
+      async a => [[1, 10, 100], [2, 20, 200]]
+      async a => [[1, 10, 100], [2, 20, 200]]
+      async a => [[1, 10, 100], [2, 20, 200]]
+      async a => [[1, 10, 100], [2, 20, 200]]
+    `,
     'baseZipObject(props || [], values || [], assignValue)',
     'a => [3]',
     'async a => [3]',
-    `function uniq(array) {
-  return (array != null && array.length)
-    ? baseUniq(array)
-    : []
-}`,
-    `function a() { n(); };
-function b() { c(); };
-function c() { n(); };
-function d() { x = 1; try { e(); } catch(x) { x = 2; } };
-function e() { n(); };
-function f() { x = 1; try { g(); } catch(x) { x = 2; } };
-function g() { h(); };
-function h() { x = 1; throw 1; };`,
-    `(async function test() {
-  Protocol.Debugger.enable();
-  Protocol.Debugger.setBreakpointByUrl({
-    lineNumber: 1,
-    url: 'main'
-  });
-
-  contextGroup.addModule(utilsModule, 'utils');
-  contextGroup.addModule(mainModule, 'main');
-  const { params: { callFrames } } = await Protocol.Debugger.oncePaused();
-  const result = await Protocol.Debugger.evaluateOnCallFrame({
-    callFrameId: callFrames[0].callFrameId,
-    expression: identity(0)
-  });
-})()`,
-    `async function grumpy() {
-  let {
-  params: { callFrames: callFrames0 }
-} = await Protocol.Debugger.oncePaused(); // inside foo()
-}`,
-    `new BenchmarkSuite('Babel', [1000], [
-  new Benchmark('Babel', false, false, 0, Babel),
-]);`,
-    `function _possibleConstructorReturn(self, call) {
-  if (!self) {
-    throw new ReferenceError('dd');
-  }
-  return call && (typeof call === 'object' || typeof call === 'function') ?
-      call :
-      self;
-}`,
-    `function call3() {
-  var alias = g;
-  debugger;
-  var r = 10 + alias.call(null, 3);
-  var aLocalVar = 'test';
-  var anotherLocalVar  = g(aLocalVar) + 's';
-  var yetAnotherLocal = 10;
-}`,
-    `function call4() {
-  var alias = g;
-  debugger;
-  alias.call(null, 3);
-  var aLocalVar = 'test';
-  var anotherLocalVar  = g(aLocalVar) + 's';
-  var yetAnotherLocal = 10;
-}
-
-// Test step into function apply from a function without local variables.
-function apply1() {
-  debugger;
-  g.apply(null, [3]);
-}`,
-    `var testFunctions =
-[call1, call2, call3, call4, apply1, apply2, apply3, apply4, bind1,
-applyAndBind1];
-
-for (var i = 0; i < testFunctions.length; i++) {
-state = 0;
-testFunctions[i]();
-assertNull(exception);
-assertEquals(3, state);
-}`,
-    ` var obj, newObj;
-
-if (Constructor === Intl.NumberFormat) {
-  obj = new Constructor();
-  newObj = Intl.NumberFormat.call(obj);
-  if (obj !== newObj) {
-    $ERROR("Should have modified existing object.");
-  }
-  var key = Object.getOwnPropertySymbols(newObj)[0];
-  if (!(newObj[key] instanceof Intl.NumberFormat)) {
-    $ERROR("Should have installed a NumberFormat instance.");
-  }
-}`,
-    `// Header declaration constants
-var kWasmH0 = 0;
-var kWasmH1 = 0x61;
-var kWasmH2 = 0x73;
-var kWasmH3 = 0x6d;
-
-var kWasmV0 = 0x1;
-var kWasmV1 = 0;
-var kWasmV2 = 0;
-var kWasmV3 = 0;
-
-var kHeaderSize = 8;
-var kPageSize = 65536;
-var kSpecMaxPages = 65535;
-var kMaxVarInt32Size = 5;
-var kMaxVarInt64Size = 10;
-
-let kDeclNoLocals = 0;
-
-// Section declaration constants
-let kUnknownSectionCode = 0;
-let kTypeSectionCode = 1;        // Function signature declarations
-let kImportSectionCode = 2;      // Import declarations
-let kFunctionSectionCode = 3;    // Function declarations
-let kTableSectionCode = 4;       // Indirect function table and other tables
-let kMemorySectionCode = 5;      // Memory attributes
-let kGlobalSectionCode = 6;      // Global declarations
-let kExportSectionCode = 7;      // Exports
-let kStartSectionCode = 8;       // Start function declaration
-let kElementSectionCode = 9;     // Elements section
-let kCodeSectionCode = 10;       // Function code
-let kDataSectionCode = 11;       // Data segments
-let kDataCountSectionCode = 12;  // Data segment count (between Element & Code)
-let kExceptionSectionCode = 13;  // Exception section (between Global & Export)
-
-// Name section types
-let kModuleNameCode = 0;
-let kFunctionNamesCode = 1;
-let kLocalNamesCode = 2;
-
-let kWasmFunctionTypeForm = 0x60;
-let kWasmAnyFunctionTypeForm = 0x70;
-
-let kHasMaximumFlag = 1;
-let kSharedHasMaximumFlag = 3;
-
-// Segment flags
-let kActiveNoIndex = 0;
-let kPassive = 1;
-let kActiveWithIndex = 2;
-
-// Function declaration flags
-let kDeclFunctionName   = 0x01;
-let kDeclFunctionImport = 0x02;
-let kDeclFunctionLocals = 0x04;
-let kDeclFunctionExport = 0x08;
-
-// Local types
-let kWasmStmt = 0x40;
-let kWasmI32 = 0x7f;
-let kWasmI64 = 0x7e;
-let kWasmF32 = 0x7d;
-let kWasmF64 = 0x7c;
-let kWasmS128 = 0x7b;
-let kWasmAnyRef = 0x6f;
-let kWasmAnyFunc = 0x70;
-let kWasmExceptRef = 0x68;
-
-let kExternalFunction = 0;
-let kExternalTable = 1;
-let kExternalMemory = 2;
-let kExternalGlobal = 3;
-let kExternalException = 4;
-
-let kTableZero = 0;
-let kMemoryZero = 0;
-let kSegmentZero = 0;
-
-let kExceptionAttribute = 0;
-
-// Useful signatures
-let kSig_i_i = makeSig([kWasmI32], [kWasmI32]);
-let kSig_l_l = makeSig([kWasmI64], [kWasmI64]);
-let kSig_i_l = makeSig([kWasmI64], [kWasmI32]);
-let kSig_i_ii = makeSig([kWasmI32, kWasmI32], [kWasmI32]);
-let kSig_i_iii = makeSig([kWasmI32, kWasmI32, kWasmI32], [kWasmI32]);
-let kSig_v_iiii = makeSig([kWasmI32, kWasmI32, kWasmI32, kWasmI32], []);
-let kSig_f_ff = makeSig([kWasmF32, kWasmF32], [kWasmF32]);
-let kSig_d_dd = makeSig([kWasmF64, kWasmF64], [kWasmF64]);
-let kSig_l_ll = makeSig([kWasmI64, kWasmI64], [kWasmI64]);
-let kSig_i_dd = makeSig([kWasmF64, kWasmF64], [kWasmI32]);
-let kSig_v_v = makeSig([], []);
-let kSig_i_v = makeSig([], [kWasmI32]);
-let kSig_l_v = makeSig([], [kWasmI64]);
-let kSig_f_v = makeSig([], [kWasmF32]);
-let kSig_d_v = makeSig([], [kWasmF64]);
-let kSig_v_i = makeSig([kWasmI32], []);
-let kSig_v_ii = makeSig([kWasmI32, kWasmI32], []);
-let kSig_v_iii = makeSig([kWasmI32, kWasmI32, kWasmI32], []);
-let kSig_v_l = makeSig([kWasmI64], []);
-let kSig_v_d = makeSig([kWasmF64], []);
-let kSig_v_dd = makeSig([kWasmF64, kWasmF64], []);
-let kSig_v_ddi = makeSig([kWasmF64, kWasmF64, kWasmI32], []);
-let kSig_ii_v = makeSig([], [kWasmI32, kWasmI32]);
-let kSig_iii_v = makeSig([], [kWasmI32, kWasmI32, kWasmI32]);
-let kSig_ii_i = makeSig([kWasmI32], [kWasmI32, kWasmI32]);
-let kSig_iii_i = makeSig([kWasmI32], [kWasmI32, kWasmI32, kWasmI32]);
-let kSig_ii_ii = makeSig([kWasmI32, kWasmI32], [kWasmI32, kWasmI32]);
-let kSig_iii_ii = makeSig([kWasmI32, kWasmI32], [kWasmI32, kWasmI32, kWasmI32]);
-
-let kSig_v_f = makeSig([kWasmF32], []);
-let kSig_f_f = makeSig([kWasmF32], [kWasmF32]);
-let kSig_f_d = makeSig([kWasmF64], [kWasmF32]);
-let kSig_d_d = makeSig([kWasmF64], [kWasmF64]);
-let kSig_r_r = makeSig([kWasmAnyRef], [kWasmAnyRef]);
-let kSig_a_a = makeSig([kWasmAnyFunc], [kWasmAnyFunc]);
-let kSig_i_r = makeSig([kWasmAnyRef], [kWasmI32]);
-let kSig_v_r = makeSig([kWasmAnyRef], []);
-let kSig_v_a = makeSig([kWasmAnyFunc], []);
-let kSig_v_rr = makeSig([kWasmAnyRef, kWasmAnyRef], []);
-let kSig_r_v = makeSig([], [kWasmAnyRef]);
-let kSig_a_v = makeSig([], [kWasmAnyFunc]);
-
-function makeSig(params, results) {
-  return {params: params, results: results};
-}
-
-function makeSig_v_x(x) {
-  return makeSig([x], []);
-}
-
-function makeSig_v_xx(x) {
-  return makeSig([x, x], []);
-}
-
-function makeSig_r_v(r) {
-  return makeSig([], [r]);
-}
-
-function makeSig_r_x(r, x) {
-  return makeSig([x], [r]);
-}
-
-function makeSig_r_xx(r, x) {
-  return makeSig([x, x], [r]);
-}
-
-// Opcodes
-let kExprUnreachable = 0x00;
-let kExprNop = 0x01;
-let kExprBlock = 0x02;
-let kExprLoop = 0x03;
-let kExprIf = 0x04;
-let kExprElse = 0x05;
-let kExprTry = 0x06;
-let kExprCatch = 0x07;
-let kExprThrow = 0x08;
-let kExprRethrow = 0x09;
-let kExprBrOnExn = 0x0a;
-let kExprEnd = 0x0b;
-let kExprBr = 0x0c;
-let kExprBrIf = 0x0d;
-let kExprBrTable = 0x0e;
-let kExprReturn = 0x0f;
-let kExprCallFunction = 0x10;
-let kExprCallIndirect = 0x11;
-let kExprReturnCall = 0x12;
-let kExprReturnCallIndirect = 0x13;
-let kExprDrop = 0x1a;
-let kExprSelect = 0x1b;
-let kExprGetLocal = 0x20;
-let kExprSetLocal = 0x21;
-let kExprTeeLocal = 0x22;
-let kExprGetGlobal = 0x23;
-let kExprSetGlobal = 0x24;
-let kExprGetTable = 0x25;
-let kExprSetTable = 0x26;
-let kExprI32LoadMem = 0x28;
-let kExprI64LoadMem = 0x29;
-let kExprF32LoadMem = 0x2a;
-let kExprF64LoadMem = 0x2b;
-let kExprI32LoadMem8S = 0x2c;
-let kExprI32LoadMem8U = 0x2d;
-let kExprI32LoadMem16S = 0x2e;
-let kExprI32LoadMem16U = 0x2f;
-let kExprI64LoadMem8S = 0x30;
-let kExprI64LoadMem8U = 0x31;
-let kExprI64LoadMem16S = 0x32;
-let kExprI64LoadMem16U = 0x33;
-let kExprI64LoadMem32S = 0x34;
-let kExprI64LoadMem32U = 0x35;
-let kExprI32StoreMem = 0x36;
-let kExprI64StoreMem = 0x37;
-let kExprF32StoreMem = 0x38;
-let kExprF64StoreMem = 0x39;
-let kExprI32StoreMem8 = 0x3a;
-let kExprI32StoreMem16 = 0x3b;
-let kExprI64StoreMem8 = 0x3c;
-let kExprI64StoreMem16 = 0x3d;
-let kExprI64StoreMem32 = 0x3e;
-let kExprMemorySize = 0x3f;
-let kExprMemoryGrow = 0x40;
-let kExprI32Const = 0x41;
-let kExprI64Const = 0x42;
-let kExprF32Const = 0x43;
-let kExprF64Const = 0x44;
-let kExprI32Eqz = 0x45;
-let kExprI32Eq = 0x46;
-let kExprI32Ne = 0x47;
-let kExprI32LtS = 0x48;
-let kExprI32LtU = 0x49;
-let kExprI32GtS = 0x4a;
-let kExprI32GtU = 0x4b;
-let kExprI32LeS = 0x4c;
-let kExprI32LeU = 0x4d;
-let kExprI32GeS = 0x4e;
-let kExprI32GeU = 0x4f;
-let kExprI64Eqz = 0x50;
-let kExprI64Eq = 0x51;
-let kExprI64Ne = 0x52;
-let kExprI64LtS = 0x53;
-let kExprI64LtU = 0x54;
-let kExprI64GtS = 0x55;
-let kExprI64GtU = 0x56;
-let kExprI64LeS = 0x57;
-let kExprI64LeU = 0x58;
-let kExprI64GeS = 0x59;
-let kExprI64GeU = 0x5a;
-let kExprF32Eq = 0x5b;
-let kExprF32Ne = 0x5c;
-let kExprF32Lt = 0x5d;
-let kExprF32Gt = 0x5e;
-let kExprF32Le = 0x5f;
-let kExprF32Ge = 0x60;
-let kExprF64Eq = 0x61;
-let kExprF64Ne = 0x62;
-let kExprF64Lt = 0x63;
-let kExprF64Gt = 0x64;
-let kExprF64Le = 0x65;
-let kExprF64Ge = 0x66;
-let kExprI32Clz = 0x67;
-let kExprI32Ctz = 0x68;
-let kExprI32Popcnt = 0x69;
-let kExprI32Add = 0x6a;
-let kExprI32Sub = 0x6b;
-let kExprI32Mul = 0x6c;
-let kExprI32DivS = 0x6d;
-let kExprI32DivU = 0x6e;
-let kExprI32RemS = 0x6f;
-let kExprI32RemU = 0x70;
-let kExprI32And = 0x71;
-let kExprI32Ior = 0x72;
-let kExprI32Xor = 0x73;
-let kExprI32Shl = 0x74;
-let kExprI32ShrS = 0x75;
-let kExprI32ShrU = 0x76;
-let kExprI32Rol = 0x77;
-let kExprI32Ror = 0x78;
-let kExprI64Clz = 0x79;
-let kExprI64Ctz = 0x7a;
-let kExprI64Popcnt = 0x7b;
-let kExprI64Add = 0x7c;
-let kExprI64Sub = 0x7d;
-let kExprI64Mul = 0x7e;
-let kExprI64DivS = 0x7f;
-let kExprI64DivU = 0x80;
-let kExprI64RemS = 0x81;
-let kExprI64RemU = 0x82;
-let kExprI64And = 0x83;
-let kExprI64Ior = 0x84;
-let kExprI64Xor = 0x85;
-let kExprI64Shl = 0x86;
-let kExprI64ShrS = 0x87;
-let kExprI64ShrU = 0x88;
-let kExprI64Rol = 0x89;
-let kExprI64Ror = 0x8a;
-let kExprF32Abs = 0x8b;
-let kExprF32Neg = 0x8c;
-let kExprF32Ceil = 0x8d;
-let kExprF32Floor = 0x8e;
-let kExprF32Trunc = 0x8f;
-let kExprF32NearestInt = 0x90;
-let kExprF32Sqrt = 0x91;
-let kExprF32Add = 0x92;
-let kExprF32Sub = 0x93;
-let kExprF32Mul = 0x94;
-let kExprF32Div = 0x95;
-let kExprF32Min = 0x96;
-let kExprF32Max = 0x97;
-let kExprF32CopySign = 0x98;
-let kExprF64Abs = 0x99;
-let kExprF64Neg = 0x9a;
-let kExprF64Ceil = 0x9b;
-let kExprF64Floor = 0x9c;
-let kExprF64Trunc = 0x9d;
-let kExprF64NearestInt = 0x9e;
-let kExprF64Sqrt = 0x9f;
-let kExprF64Add = 0xa0;
-let kExprF64Sub = 0xa1;
-let kExprF64Mul = 0xa2;
-let kExprF64Div = 0xa3;
-let kExprF64Min = 0xa4;
-let kExprF64Max = 0xa5;
-let kExprF64CopySign = 0xa6;
-let kExprI32ConvertI64 = 0xa7;
-let kExprI32SConvertF32 = 0xa8;
-let kExprI32UConvertF32 = 0xa9;
-let kExprI32SConvertF64 = 0xaa;
-let kExprI32UConvertF64 = 0xab;
-let kExprI64SConvertI32 = 0xac;
-let kExprI64UConvertI32 = 0xad;
-let kExprI64SConvertF32 = 0xae;
-let kExprI64UConvertF32 = 0xaf;
-let kExprI64SConvertF64 = 0xb0;
-let kExprI64UConvertF64 = 0xb1;
-let kExprF32SConvertI32 = 0xb2;
-let kExprF32UConvertI32 = 0xb3;
-let kExprF32SConvertI64 = 0xb4;
-let kExprF32UConvertI64 = 0xb5;
-let kExprF32ConvertF64 = 0xb6;
-let kExprF64SConvertI32 = 0xb7;
-let kExprF64UConvertI32 = 0xb8;
-let kExprF64SConvertI64 = 0xb9;
-let kExprF64UConvertI64 = 0xba;
-let kExprF64ConvertF32 = 0xbb;
-let kExprI32ReinterpretF32 = 0xbc;
-let kExprI64ReinterpretF64 = 0xbd;
-let kExprF32ReinterpretI32 = 0xbe;
-let kExprF64ReinterpretI64 = 0xbf;
-let kExprI32SExtendI8 = 0xc0;
-let kExprI32SExtendI16 = 0xc1;
-let kExprI64SExtendI8 = 0xc2;
-let kExprI64SExtendI16 = 0xc3;
-let kExprI64SExtendI32 = 0xc4;
-let kExprRefNull = 0xd0;
-let kExprRefIsNull = 0xd1;
-let kExprRefFunc = 0xd2;
-
-// Prefix opcodes
-let kNumericPrefix = 0xfc;
-let kSimdPrefix = 0xfd;
-let kAtomicPrefix = 0xfe;
-
-// Numeric opcodes.
-let kExprMemoryInit = 0x08;
-let kExprDataDrop = 0x09;
-let kExprMemoryCopy = 0x0a;
-let kExprMemoryFill = 0x0b;
-let kExprTableInit = 0x0c;
-let kExprElemDrop = 0x0d;
-let kExprTableCopy = 0x0e;
-
-// Atomic opcodes.
-let kExprAtomicNotify = 0x00;
-let kExprI32AtomicWait = 0x01;
-let kExprI64AtomicWait = 0x02;
-let kExprI32AtomicLoad = 0x10;
-let kExprI32AtomicLoad8U = 0x12;
-let kExprI32AtomicLoad16U = 0x13;
-let kExprI32AtomicStore = 0x17;
-let kExprI32AtomicStore8U = 0x19;
-let kExprI32AtomicStore16U = 0x1a;
-let kExprI32AtomicAdd = 0x1e;
-let kExprI32AtomicAdd8U = 0x20;
-let kExprI32AtomicAdd16U = 0x21;
-let kExprI32AtomicSub = 0x25;
-let kExprI32AtomicSub8U = 0x27;
-let kExprI32AtomicSub16U = 0x28;
-let kExprI32AtomicAnd = 0x2c;
-let kExprI32AtomicAnd8U = 0x2e;
-let kExprI32AtomicAnd16U = 0x2f;
-let kExprI32AtomicOr = 0x33;
-let kExprI32AtomicOr8U = 0x35;
-let kExprI32AtomicOr16U = 0x36;
-let kExprI32AtomicXor = 0x3a;
-let kExprI32AtomicXor8U = 0x3c;
-let kExprI32AtomicXor16U = 0x3d;
-let kExprI32AtomicExchange = 0x41;
-let kExprI32AtomicExchange8U = 0x43;
-let kExprI32AtomicExchange16U = 0x44;
-let kExprI32AtomicCompareExchange = 0x48;
-let kExprI32AtomicCompareExchange8U = 0x4a;
-let kExprI32AtomicCompareExchange16U = 0x4b;
-
-let kExprI64AtomicLoad = 0x11;
-let kExprI64AtomicLoad8U = 0x14;
-let kExprI64AtomicLoad16U = 0x15;
-let kExprI64AtomicLoad32U = 0x16;
-let kExprI64AtomicStore = 0x18;
-let kExprI64AtomicStore8U = 0x1b;
-let kExprI64AtomicStore16U = 0x1c;
-let kExprI64AtomicStore32U = 0x1d;
-let kExprI64AtomicAdd = 0x1f;
-let kExprI64AtomicAdd8U = 0x22;
-let kExprI64AtomicAdd16U = 0x23;
-let kExprI64AtomicAdd32U = 0x24;
-let kExprI64AtomicSub = 0x26;
-let kExprI64AtomicSub8U = 0x29;
-let kExprI64AtomicSub16U = 0x2a;
-let kExprI64AtomicSub32U = 0x2b;
-let kExprI64AtomicAnd = 0x2d;
-let kExprI64AtomicAnd8U = 0x30;
-let kExprI64AtomicAnd16U = 0x31;
-let kExprI64AtomicAnd32U = 0x32;
-let kExprI64AtomicOr = 0x34;
-let kExprI64AtomicOr8U = 0x37;
-let kExprI64AtomicOr16U = 0x38;
-let kExprI64AtomicOr32U = 0x39;
-let kExprI64AtomicXor = 0x3b;
-let kExprI64AtomicXor8U = 0x3e;
-let kExprI64AtomicXor16U = 0x3f;
-let kExprI64AtomicXor32U = 0x40;
-let kExprI64AtomicExchange = 0x42;
-let kExprI64AtomicExchange8U = 0x45;
-let kExprI64AtomicExchange16U = 0x46;
-let kExprI64AtomicExchange32U = 0x47;
-let kExprI64AtomicCompareExchange = 0x49
-let kExprI64AtomicCompareExchange8U = 0x4c;
-let kExprI64AtomicCompareExchange16U = 0x4d;
-let kExprI64AtomicCompareExchange32U = 0x4e;
-
-// Simd opcodes.
-let kExprF32x4Min = 0x9e;
-
-let kTrapUnreachable          = 0;
-let kTrapMemOutOfBounds       = 1;
-let kTrapDivByZero            = 2;
-let kTrapDivUnrepresentable   = 3;
-let kTrapRemByZero            = 4;
-let kTrapFloatUnrepresentable = 5;
-let kTrapFuncInvalid          = 6;
-let kTrapFuncSigMismatch      = 7;
-let kTrapTypeError            = 8;
-let kTrapUnalignedAccess      = 9;
-let kTrapDataSegmentDropped   = 10;
-let kTrapElemSegmentDropped   = 11;
-let kTrapTableOutOfBounds     = 12;
-
-let kTrapMsgs = [
-  "unreachable",
-  "memory access out of bounds",
-  "divide by zero",
-  "divide result unrepresentable",
-  "remainder by zero",
-  "float unrepresentable in integer range",
-  "invalid index into function table",
-  "function signature mismatch",
-  "wasm function signature contains illegal type",
-  "operation does not support unaligned accesses",
-  "data segment has been dropped",
-  "element segment has been dropped",
-  "table access out of bounds"
-];
-`,
-    `class Binary {
-  constructor() {
-    this.length = 0;
-    this.buffer = new Uint8Array(8192);
-  }
-
-  ensure_space(needed) {
-    if (this.buffer.length - this.length >= needed) return;
-    let new_capacity = this.buffer.length * 2;
-    while (new_capacity - this.length < needed) new_capacity *= 2;
-    let new_buffer = new Uint8Array(new_capacity);
-    new_buffer.set(this.buffer);
-    this.buffer = new_buffer;
-  }
-
-  trunc_buffer() {
-    return new Uint8Array(this.buffer.buffer, 0, this.length);
-  }
-
-  reset() {
-    this.length = 0;
-  }
-
-  emit_u8(val) {
-    this.ensure_space(1);
-    this.buffer[this.length++] = val;
-  }
-
-  emit_u16(val) {
-    this.ensure_space(2);
-    this.buffer[this.length++] = val;
-    this.buffer[this.length++] = val >> 8;
-  }
-
-  emit_u32(val) {
-    this.ensure_space(4);
-    this.buffer[this.length++] = val;
-    this.buffer[this.length++] = val >> 8;
-    this.buffer[this.length++] = val >> 16;
-    this.buffer[this.length++] = val >> 24;
-  }
-
-  emit_leb(val, max_len) {
-    this.ensure_space(max_len);
-    for (let i = 0; i < max_len; ++i) {
-      let v = val & 0xff;
-      val = val >>> 7;
-      if (val == 0) {
-        this.buffer[this.length++] = v;
-        return;
+    outdent`
+      function uniq(array) {
+        return (array != null && array.length)
+          ? baseUniq(array)
+          : []
       }
-      this.buffer[this.length++] = v | 0x80;
-    }
-    throw new Error("Leb value exceeds maximum length of " + max_len);
-  }
+    `,
+    outdent`
+      function a() { n(); };
+      function b() { c(); };
+      function c() { n(); };
+      function d() { x = 1; try { e(); } catch(x) { x = 2; } };
+      function e() { n(); };
+      function f() { x = 1; try { g(); } catch(x) { x = 2; } };
+      function g() { h(); };
+      function h() { x = 1; throw 1; };
+    `,
+    outdent`
+      (async function test() {
+        Protocol.Debugger.enable();
+        Protocol.Debugger.setBreakpointByUrl({
+          lineNumber: 1,
+          url: 'main'
+        });
 
-  emit_u32v(val) {
-    this.emit_leb(val, kMaxVarInt32Size);
-  }
-
-  emit_u64v(val) {
-    this.emit_leb(val, kMaxVarInt64Size);
-  }
-
-  emit_bytes(data) {
-    this.ensure_space(data.length);
-    this.buffer.set(data, this.length);
-    this.length += data.length;
-  }
-
-  emit_string(string) {
-    // When testing illegal names, we pass a byte array directly.
-    if (string instanceof Array) {
-      this.emit_u32v(string.length);
-      this.emit_bytes(string);
-      return;
-    }
-
-    // This is the hacky way to convert a JavaScript string to a UTF8 encoded
-    // string only containing single-byte characters.
-    let string_utf8 = unescape(encodeURIComponent(string));
-    this.emit_u32v(string_utf8.length);
-    for (let i = 0; i < string_utf8.length; i++) {
-      this.emit_u8(string_utf8.charCodeAt(i));
-    }
-  }
-
-  emit_header() {
-    this.emit_bytes([
-      kWasmH0, kWasmH1, kWasmH2, kWasmH3, kWasmV0, kWasmV1, kWasmV2, kWasmV3
-    ]);
-  }
-
-  emit_section(section_code, content_generator) {
-    // Emit section name.
-    this.emit_u8(section_code);
-    // Emit the section to a temporary buffer: its full length isn't know yet.
-    const section = new Binary;
-    content_generator(section);
-    // Emit section length.
-    this.emit_u32v(section.length);
-    // Copy the temporary buffer.
-    // Avoid spread because {section} can be huge.
-    this.emit_bytes(section.trunc_buffer());
-  }
-}`,
-    `class WasmFunctionBuilder {
-  constructor(module, name, type_index) {
-    this.module = module;
-    this.name = name;
-    this.type_index = type_index;
-    this.body = [];
-    this.locals = [];
-    this.local_names = [];
-  }
-
-  numLocalNames() {
-    let num_local_names = 0;
-    for (let loc_name of this.local_names) {
-      if (loc_name !== undefined) ++num_local_names;
-    }
-    return num_local_names;
-  }
-
-  exportAs(name) {
-    this.module.addExport(name, this.index);
-    return this;
-  }
-
-  exportFunc() {
-    this.exportAs(this.name);
-    return this;
-  }
-
-  addBody(body) {
-    for (let b of body) {
-      if (typeof b !== 'number' || (b & (~0xFF)) !== 0 )
-        throw new Error('invalid body (entries must be 8 bit numbers): ' + body);
-    }
-    this.body = body.slice();
-    // Automatically add the end for the function block to the body.
-    this.body.push(kExprEnd);
-    return this;
-  }
-
-  addBodyWithEnd(body) {
-    this.body = body;
-    return this;
-  }
-
-  getNumLocals() {
-    let total_locals = 0;
-    for (let l of this.locals) {
-      for (let type of ["i32", "i64", "f32", "f64", "s128"]) {
-        total_locals += l[type + "_count"] || 0;
+        contextGroup.addModule(utilsModule, 'utils');
+        contextGroup.addModule(mainModule, 'main');
+        const { params: { callFrames } } = await Protocol.Debugger.oncePaused();
+        const result = await Protocol.Debugger.evaluateOnCallFrame({
+          callFrameId: callFrames[0].callFrameId,
+          expression: identity(0)
+        });
+      })()
+    `,
+    outdent`
+      async function grumpy() {
+        let {
+        params: { callFrames: callFrames0 }
+      } = await Protocol.Debugger.oncePaused(); // inside foo()
       }
-    }
-    return total_locals;
-  }
-
-  addLocals(locals, names) {
-    const old_num_locals = this.getNumLocals();
-    this.locals.push(locals);
-    if (names) {
-      const missing_names = old_num_locals - this.local_names.length;
-      this.local_names.push(...new Array(missing_names), ...names);
-    }
-    return this;
-  }
-
-  end() {
-    return this.module;
-  }
-}`,
-    `class WasmFunctionBuilder {
-  constructor(module, name, type_index) {
-    this.module = module;
-    this.name = name;
-    this.type_index = type_index;
-    this.body = [];
-    this.locals = [];
-    this.local_names = [];
-  }
-
-  numLocalNames() {
-    let num_local_names = 0;
-    for (let loc_name of this.local_names) {
-      if (loc_name !== undefined) ++num_local_names;
-    }
-    return num_local_names;
-  }
-
-  exportAs(name) {
-    this.module.addExport(name, this.index);
-    return this;
-  }
-
-  exportFunc() {
-    this.exportAs(this.name);
-    return this;
-  }
-
-  addBody(body) {
-    for (let b of body) {
-      if (typeof b !== 'number' || (b & (~0xFF)) !== 0 )
-        throw new Error('invalid body (entries must be 8 bit numbers): ' + body);
-    }
-    this.body = body.slice();
-    // Automatically add the end for the function block to the body.
-    this.body.push(kExprEnd);
-    return this;
-  }
-
-  addBodyWithEnd(body) {
-    this.body = body;
-    return this;
-  }
-
-  getNumLocals() {
-    let total_locals = 0;
-    for (let l of this.locals) {
-      for (let type of ["i32", "i64", "f32", "f64", "s128"]) {
-        total_locals += l[type + "_count"] || 0;
+    `,
+    outdent`
+      new BenchmarkSuite('Babel', [1000], [
+        new Benchmark('Babel', false, false, 0, Babel),
+      ]);
+    `,
+    outdent`
+      function _possibleConstructorReturn(self, call) {
+        if (!self) {
+          throw new ReferenceError('dd');
+        }
+        return call && (typeof call === 'object' || typeof call === 'function') ?
+            call :
+            self;
       }
-    }
-    return total_locals;
-  }
+    `,
+    outdent`
+      function call3() {
+        var alias = g;
+        debugger;
+        var r = 10 + alias.call(null, 3);
+        var aLocalVar = 'test';
+        var anotherLocalVar  = g(aLocalVar) + 's';
+        var yetAnotherLocal = 10;
+      }
+    `,
+    outdent`
+      function call4() {
+        var alias = g;
+        debugger;
+        alias.call(null, 3);
+        var aLocalVar = 'test';
+        var anotherLocalVar  = g(aLocalVar) + 's';
+        var yetAnotherLocal = 10;
+      }
 
-  addLocals(locals, names) {
-    const old_num_locals = this.getNumLocals();
-    this.locals.push(locals);
-    if (names) {
-      const missing_names = old_num_locals - this.local_names.length;
-      this.local_names.push(...new Array(missing_names), ...names);
-    }
-    return this;
-  }
+      // Test step into function apply from a function without local variables.
+      function apply1() {
+        debugger;
+        g.apply(null, [3]);
+      }
+    `,
+    outdent`
+      var testFunctions =
+      [call1, call2, call3, call4, apply1, apply2, apply3, apply4, bind1,
+      applyAndBind1];
 
-  end() {
-    return this.module;
-  }
-}`,
-    `function wasmI32Const(val) {
-  let bytes = [kExprI32Const];
-  for (let i = 0; i < 4; ++i) {
-    bytes.push(0x80 | ((val >> (7 * i)) & 0x7f));
-  }
-  bytes.push((val >> (7 * 4)) & 0x7f);
-  return bytes;
-}`,
+      for (var i = 0; i < testFunctions.length; i++) {
+      state = 0;
+      testFunctions[i]();
+      assertNull(exception);
+      assertEquals(3, state);
+      }
+    `,
+    outdent`
+      var obj, newObj;
+
+      if (Constructor === Intl.NumberFormat) {
+        obj = new Constructor();
+        newObj = Intl.NumberFormat.call(obj);
+        if (obj !== newObj) {
+          $ERROR("Should have modified existing object.");
+        }
+        var key = Object.getOwnPropertySymbols(newObj)[0];
+        if (!(newObj[key] instanceof Intl.NumberFormat)) {
+          $ERROR("Should have installed a NumberFormat instance.");
+        }
+      }
+    `,
+    outdent`
+      // Header declaration constants
+      var kWasmH0 = 0;
+      var kWasmH1 = 0x61;
+      var kWasmH2 = 0x73;
+      var kWasmH3 = 0x6d;
+
+      var kWasmV0 = 0x1;
+      var kWasmV1 = 0;
+      var kWasmV2 = 0;
+      var kWasmV3 = 0;
+
+      var kHeaderSize = 8;
+      var kPageSize = 65536;
+      var kSpecMaxPages = 65535;
+      var kMaxVarInt32Size = 5;
+      var kMaxVarInt64Size = 10;
+
+      let kDeclNoLocals = 0;
+
+      // Section declaration constants
+      let kUnknownSectionCode = 0;
+      let kTypeSectionCode = 1;        // Function signature declarations
+      let kImportSectionCode = 2;      // Import declarations
+      let kFunctionSectionCode = 3;    // Function declarations
+      let kTableSectionCode = 4;       // Indirect function table and other tables
+      let kMemorySectionCode = 5;      // Memory attributes
+      let kGlobalSectionCode = 6;      // Global declarations
+      let kExportSectionCode = 7;      // Exports
+      let kStartSectionCode = 8;       // Start function declaration
+      let kElementSectionCode = 9;     // Elements section
+      let kCodeSectionCode = 10;       // Function code
+      let kDataSectionCode = 11;       // Data segments
+      let kDataCountSectionCode = 12;  // Data segment count (between Element & Code)
+      let kExceptionSectionCode = 13;  // Exception section (between Global & Export)
+
+      // Name section types
+      let kModuleNameCode = 0;
+      let kFunctionNamesCode = 1;
+      let kLocalNamesCode = 2;
+
+      let kWasmFunctionTypeForm = 0x60;
+      let kWasmAnyFunctionTypeForm = 0x70;
+
+      let kHasMaximumFlag = 1;
+      let kSharedHasMaximumFlag = 3;
+
+      // Segment flags
+      let kActiveNoIndex = 0;
+      let kPassive = 1;
+      let kActiveWithIndex = 2;
+
+      // Function declaration flags
+      let kDeclFunctionName   = 0x01;
+      let kDeclFunctionImport = 0x02;
+      let kDeclFunctionLocals = 0x04;
+      let kDeclFunctionExport = 0x08;
+
+      // Local types
+      let kWasmStmt = 0x40;
+      let kWasmI32 = 0x7f;
+      let kWasmI64 = 0x7e;
+      let kWasmF32 = 0x7d;
+      let kWasmF64 = 0x7c;
+      let kWasmS128 = 0x7b;
+      let kWasmAnyRef = 0x6f;
+      let kWasmAnyFunc = 0x70;
+      let kWasmExceptRef = 0x68;
+
+      let kExternalFunction = 0;
+      let kExternalTable = 1;
+      let kExternalMemory = 2;
+      let kExternalGlobal = 3;
+      let kExternalException = 4;
+
+      let kTableZero = 0;
+      let kMemoryZero = 0;
+      let kSegmentZero = 0;
+
+      let kExceptionAttribute = 0;
+
+      // Useful signatures
+      let kSig_i_i = makeSig([kWasmI32], [kWasmI32]);
+      let kSig_l_l = makeSig([kWasmI64], [kWasmI64]);
+      let kSig_i_l = makeSig([kWasmI64], [kWasmI32]);
+      let kSig_i_ii = makeSig([kWasmI32, kWasmI32], [kWasmI32]);
+      let kSig_i_iii = makeSig([kWasmI32, kWasmI32, kWasmI32], [kWasmI32]);
+      let kSig_v_iiii = makeSig([kWasmI32, kWasmI32, kWasmI32, kWasmI32], []);
+      let kSig_f_ff = makeSig([kWasmF32, kWasmF32], [kWasmF32]);
+      let kSig_d_dd = makeSig([kWasmF64, kWasmF64], [kWasmF64]);
+      let kSig_l_ll = makeSig([kWasmI64, kWasmI64], [kWasmI64]);
+      let kSig_i_dd = makeSig([kWasmF64, kWasmF64], [kWasmI32]);
+      let kSig_v_v = makeSig([], []);
+      let kSig_i_v = makeSig([], [kWasmI32]);
+      let kSig_l_v = makeSig([], [kWasmI64]);
+      let kSig_f_v = makeSig([], [kWasmF32]);
+      let kSig_d_v = makeSig([], [kWasmF64]);
+      let kSig_v_i = makeSig([kWasmI32], []);
+      let kSig_v_ii = makeSig([kWasmI32, kWasmI32], []);
+      let kSig_v_iii = makeSig([kWasmI32, kWasmI32, kWasmI32], []);
+      let kSig_v_l = makeSig([kWasmI64], []);
+      let kSig_v_d = makeSig([kWasmF64], []);
+      let kSig_v_dd = makeSig([kWasmF64, kWasmF64], []);
+      let kSig_v_ddi = makeSig([kWasmF64, kWasmF64, kWasmI32], []);
+      let kSig_ii_v = makeSig([], [kWasmI32, kWasmI32]);
+      let kSig_iii_v = makeSig([], [kWasmI32, kWasmI32, kWasmI32]);
+      let kSig_ii_i = makeSig([kWasmI32], [kWasmI32, kWasmI32]);
+      let kSig_iii_i = makeSig([kWasmI32], [kWasmI32, kWasmI32, kWasmI32]);
+      let kSig_ii_ii = makeSig([kWasmI32, kWasmI32], [kWasmI32, kWasmI32]);
+      let kSig_iii_ii = makeSig([kWasmI32, kWasmI32], [kWasmI32, kWasmI32, kWasmI32]);
+
+      let kSig_v_f = makeSig([kWasmF32], []);
+      let kSig_f_f = makeSig([kWasmF32], [kWasmF32]);
+      let kSig_f_d = makeSig([kWasmF64], [kWasmF32]);
+      let kSig_d_d = makeSig([kWasmF64], [kWasmF64]);
+      let kSig_r_r = makeSig([kWasmAnyRef], [kWasmAnyRef]);
+      let kSig_a_a = makeSig([kWasmAnyFunc], [kWasmAnyFunc]);
+      let kSig_i_r = makeSig([kWasmAnyRef], [kWasmI32]);
+      let kSig_v_r = makeSig([kWasmAnyRef], []);
+      let kSig_v_a = makeSig([kWasmAnyFunc], []);
+      let kSig_v_rr = makeSig([kWasmAnyRef, kWasmAnyRef], []);
+      let kSig_r_v = makeSig([], [kWasmAnyRef]);
+      let kSig_a_v = makeSig([], [kWasmAnyFunc]);
+
+      function makeSig(params, results) {
+        return {params: params, results: results};
+      }
+
+      function makeSig_v_x(x) {
+        return makeSig([x], []);
+      }
+
+      function makeSig_v_xx(x) {
+        return makeSig([x, x], []);
+      }
+
+      function makeSig_r_v(r) {
+        return makeSig([], [r]);
+      }
+
+      function makeSig_r_x(r, x) {
+        return makeSig([x], [r]);
+      }
+
+      function makeSig_r_xx(r, x) {
+        return makeSig([x, x], [r]);
+      }
+
+      // Opcodes
+      let kExprUnreachable = 0x00;
+      let kExprNop = 0x01;
+      let kExprBlock = 0x02;
+      let kExprLoop = 0x03;
+      let kExprIf = 0x04;
+      let kExprElse = 0x05;
+      let kExprTry = 0x06;
+      let kExprCatch = 0x07;
+      let kExprThrow = 0x08;
+      let kExprRethrow = 0x09;
+      let kExprBrOnExn = 0x0a;
+      let kExprEnd = 0x0b;
+      let kExprBr = 0x0c;
+      let kExprBrIf = 0x0d;
+      let kExprBrTable = 0x0e;
+      let kExprReturn = 0x0f;
+      let kExprCallFunction = 0x10;
+      let kExprCallIndirect = 0x11;
+      let kExprReturnCall = 0x12;
+      let kExprReturnCallIndirect = 0x13;
+      let kExprDrop = 0x1a;
+      let kExprSelect = 0x1b;
+      let kExprGetLocal = 0x20;
+      let kExprSetLocal = 0x21;
+      let kExprTeeLocal = 0x22;
+      let kExprGetGlobal = 0x23;
+      let kExprSetGlobal = 0x24;
+      let kExprGetTable = 0x25;
+      let kExprSetTable = 0x26;
+      let kExprI32LoadMem = 0x28;
+      let kExprI64LoadMem = 0x29;
+      let kExprF32LoadMem = 0x2a;
+      let kExprF64LoadMem = 0x2b;
+      let kExprI32LoadMem8S = 0x2c;
+      let kExprI32LoadMem8U = 0x2d;
+      let kExprI32LoadMem16S = 0x2e;
+      let kExprI32LoadMem16U = 0x2f;
+      let kExprI64LoadMem8S = 0x30;
+      let kExprI64LoadMem8U = 0x31;
+      let kExprI64LoadMem16S = 0x32;
+      let kExprI64LoadMem16U = 0x33;
+      let kExprI64LoadMem32S = 0x34;
+      let kExprI64LoadMem32U = 0x35;
+      let kExprI32StoreMem = 0x36;
+      let kExprI64StoreMem = 0x37;
+      let kExprF32StoreMem = 0x38;
+      let kExprF64StoreMem = 0x39;
+      let kExprI32StoreMem8 = 0x3a;
+      let kExprI32StoreMem16 = 0x3b;
+      let kExprI64StoreMem8 = 0x3c;
+      let kExprI64StoreMem16 = 0x3d;
+      let kExprI64StoreMem32 = 0x3e;
+      let kExprMemorySize = 0x3f;
+      let kExprMemoryGrow = 0x40;
+      let kExprI32Const = 0x41;
+      let kExprI64Const = 0x42;
+      let kExprF32Const = 0x43;
+      let kExprF64Const = 0x44;
+      let kExprI32Eqz = 0x45;
+      let kExprI32Eq = 0x46;
+      let kExprI32Ne = 0x47;
+      let kExprI32LtS = 0x48;
+      let kExprI32LtU = 0x49;
+      let kExprI32GtS = 0x4a;
+      let kExprI32GtU = 0x4b;
+      let kExprI32LeS = 0x4c;
+      let kExprI32LeU = 0x4d;
+      let kExprI32GeS = 0x4e;
+      let kExprI32GeU = 0x4f;
+      let kExprI64Eqz = 0x50;
+      let kExprI64Eq = 0x51;
+      let kExprI64Ne = 0x52;
+      let kExprI64LtS = 0x53;
+      let kExprI64LtU = 0x54;
+      let kExprI64GtS = 0x55;
+      let kExprI64GtU = 0x56;
+      let kExprI64LeS = 0x57;
+      let kExprI64LeU = 0x58;
+      let kExprI64GeS = 0x59;
+      let kExprI64GeU = 0x5a;
+      let kExprF32Eq = 0x5b;
+      let kExprF32Ne = 0x5c;
+      let kExprF32Lt = 0x5d;
+      let kExprF32Gt = 0x5e;
+      let kExprF32Le = 0x5f;
+      let kExprF32Ge = 0x60;
+      let kExprF64Eq = 0x61;
+      let kExprF64Ne = 0x62;
+      let kExprF64Lt = 0x63;
+      let kExprF64Gt = 0x64;
+      let kExprF64Le = 0x65;
+      let kExprF64Ge = 0x66;
+      let kExprI32Clz = 0x67;
+      let kExprI32Ctz = 0x68;
+      let kExprI32Popcnt = 0x69;
+      let kExprI32Add = 0x6a;
+      let kExprI32Sub = 0x6b;
+      let kExprI32Mul = 0x6c;
+      let kExprI32DivS = 0x6d;
+      let kExprI32DivU = 0x6e;
+      let kExprI32RemS = 0x6f;
+      let kExprI32RemU = 0x70;
+      let kExprI32And = 0x71;
+      let kExprI32Ior = 0x72;
+      let kExprI32Xor = 0x73;
+      let kExprI32Shl = 0x74;
+      let kExprI32ShrS = 0x75;
+      let kExprI32ShrU = 0x76;
+      let kExprI32Rol = 0x77;
+      let kExprI32Ror = 0x78;
+      let kExprI64Clz = 0x79;
+      let kExprI64Ctz = 0x7a;
+      let kExprI64Popcnt = 0x7b;
+      let kExprI64Add = 0x7c;
+      let kExprI64Sub = 0x7d;
+      let kExprI64Mul = 0x7e;
+      let kExprI64DivS = 0x7f;
+      let kExprI64DivU = 0x80;
+      let kExprI64RemS = 0x81;
+      let kExprI64RemU = 0x82;
+      let kExprI64And = 0x83;
+      let kExprI64Ior = 0x84;
+      let kExprI64Xor = 0x85;
+      let kExprI64Shl = 0x86;
+      let kExprI64ShrS = 0x87;
+      let kExprI64ShrU = 0x88;
+      let kExprI64Rol = 0x89;
+      let kExprI64Ror = 0x8a;
+      let kExprF32Abs = 0x8b;
+      let kExprF32Neg = 0x8c;
+      let kExprF32Ceil = 0x8d;
+      let kExprF32Floor = 0x8e;
+      let kExprF32Trunc = 0x8f;
+      let kExprF32NearestInt = 0x90;
+      let kExprF32Sqrt = 0x91;
+      let kExprF32Add = 0x92;
+      let kExprF32Sub = 0x93;
+      let kExprF32Mul = 0x94;
+      let kExprF32Div = 0x95;
+      let kExprF32Min = 0x96;
+      let kExprF32Max = 0x97;
+      let kExprF32CopySign = 0x98;
+      let kExprF64Abs = 0x99;
+      let kExprF64Neg = 0x9a;
+      let kExprF64Ceil = 0x9b;
+      let kExprF64Floor = 0x9c;
+      let kExprF64Trunc = 0x9d;
+      let kExprF64NearestInt = 0x9e;
+      let kExprF64Sqrt = 0x9f;
+      let kExprF64Add = 0xa0;
+      let kExprF64Sub = 0xa1;
+      let kExprF64Mul = 0xa2;
+      let kExprF64Div = 0xa3;
+      let kExprF64Min = 0xa4;
+      let kExprF64Max = 0xa5;
+      let kExprF64CopySign = 0xa6;
+      let kExprI32ConvertI64 = 0xa7;
+      let kExprI32SConvertF32 = 0xa8;
+      let kExprI32UConvertF32 = 0xa9;
+      let kExprI32SConvertF64 = 0xaa;
+      let kExprI32UConvertF64 = 0xab;
+      let kExprI64SConvertI32 = 0xac;
+      let kExprI64UConvertI32 = 0xad;
+      let kExprI64SConvertF32 = 0xae;
+      let kExprI64UConvertF32 = 0xaf;
+      let kExprI64SConvertF64 = 0xb0;
+      let kExprI64UConvertF64 = 0xb1;
+      let kExprF32SConvertI32 = 0xb2;
+      let kExprF32UConvertI32 = 0xb3;
+      let kExprF32SConvertI64 = 0xb4;
+      let kExprF32UConvertI64 = 0xb5;
+      let kExprF32ConvertF64 = 0xb6;
+      let kExprF64SConvertI32 = 0xb7;
+      let kExprF64UConvertI32 = 0xb8;
+      let kExprF64SConvertI64 = 0xb9;
+      let kExprF64UConvertI64 = 0xba;
+      let kExprF64ConvertF32 = 0xbb;
+      let kExprI32ReinterpretF32 = 0xbc;
+      let kExprI64ReinterpretF64 = 0xbd;
+      let kExprF32ReinterpretI32 = 0xbe;
+      let kExprF64ReinterpretI64 = 0xbf;
+      let kExprI32SExtendI8 = 0xc0;
+      let kExprI32SExtendI16 = 0xc1;
+      let kExprI64SExtendI8 = 0xc2;
+      let kExprI64SExtendI16 = 0xc3;
+      let kExprI64SExtendI32 = 0xc4;
+      let kExprRefNull = 0xd0;
+      let kExprRefIsNull = 0xd1;
+      let kExprRefFunc = 0xd2;
+
+      // Prefix opcodes
+      let kNumericPrefix = 0xfc;
+      let kSimdPrefix = 0xfd;
+      let kAtomicPrefix = 0xfe;
+
+      // Numeric opcodes.
+      let kExprMemoryInit = 0x08;
+      let kExprDataDrop = 0x09;
+      let kExprMemoryCopy = 0x0a;
+      let kExprMemoryFill = 0x0b;
+      let kExprTableInit = 0x0c;
+      let kExprElemDrop = 0x0d;
+      let kExprTableCopy = 0x0e;
+
+      // Atomic opcodes.
+      let kExprAtomicNotify = 0x00;
+      let kExprI32AtomicWait = 0x01;
+      let kExprI64AtomicWait = 0x02;
+      let kExprI32AtomicLoad = 0x10;
+      let kExprI32AtomicLoad8U = 0x12;
+      let kExprI32AtomicLoad16U = 0x13;
+      let kExprI32AtomicStore = 0x17;
+      let kExprI32AtomicStore8U = 0x19;
+      let kExprI32AtomicStore16U = 0x1a;
+      let kExprI32AtomicAdd = 0x1e;
+      let kExprI32AtomicAdd8U = 0x20;
+      let kExprI32AtomicAdd16U = 0x21;
+      let kExprI32AtomicSub = 0x25;
+      let kExprI32AtomicSub8U = 0x27;
+      let kExprI32AtomicSub16U = 0x28;
+      let kExprI32AtomicAnd = 0x2c;
+      let kExprI32AtomicAnd8U = 0x2e;
+      let kExprI32AtomicAnd16U = 0x2f;
+      let kExprI32AtomicOr = 0x33;
+      let kExprI32AtomicOr8U = 0x35;
+      let kExprI32AtomicOr16U = 0x36;
+      let kExprI32AtomicXor = 0x3a;
+      let kExprI32AtomicXor8U = 0x3c;
+      let kExprI32AtomicXor16U = 0x3d;
+      let kExprI32AtomicExchange = 0x41;
+      let kExprI32AtomicExchange8U = 0x43;
+      let kExprI32AtomicExchange16U = 0x44;
+      let kExprI32AtomicCompareExchange = 0x48;
+      let kExprI32AtomicCompareExchange8U = 0x4a;
+      let kExprI32AtomicCompareExchange16U = 0x4b;
+
+      let kExprI64AtomicLoad = 0x11;
+      let kExprI64AtomicLoad8U = 0x14;
+      let kExprI64AtomicLoad16U = 0x15;
+      let kExprI64AtomicLoad32U = 0x16;
+      let kExprI64AtomicStore = 0x18;
+      let kExprI64AtomicStore8U = 0x1b;
+      let kExprI64AtomicStore16U = 0x1c;
+      let kExprI64AtomicStore32U = 0x1d;
+      let kExprI64AtomicAdd = 0x1f;
+      let kExprI64AtomicAdd8U = 0x22;
+      let kExprI64AtomicAdd16U = 0x23;
+      let kExprI64AtomicAdd32U = 0x24;
+      let kExprI64AtomicSub = 0x26;
+      let kExprI64AtomicSub8U = 0x29;
+      let kExprI64AtomicSub16U = 0x2a;
+      let kExprI64AtomicSub32U = 0x2b;
+      let kExprI64AtomicAnd = 0x2d;
+      let kExprI64AtomicAnd8U = 0x30;
+      let kExprI64AtomicAnd16U = 0x31;
+      let kExprI64AtomicAnd32U = 0x32;
+      let kExprI64AtomicOr = 0x34;
+      let kExprI64AtomicOr8U = 0x37;
+      let kExprI64AtomicOr16U = 0x38;
+      let kExprI64AtomicOr32U = 0x39;
+      let kExprI64AtomicXor = 0x3b;
+      let kExprI64AtomicXor8U = 0x3e;
+      let kExprI64AtomicXor16U = 0x3f;
+      let kExprI64AtomicXor32U = 0x40;
+      let kExprI64AtomicExchange = 0x42;
+      let kExprI64AtomicExchange8U = 0x45;
+      let kExprI64AtomicExchange16U = 0x46;
+      let kExprI64AtomicExchange32U = 0x47;
+      let kExprI64AtomicCompareExchange = 0x49
+      let kExprI64AtomicCompareExchange8U = 0x4c;
+      let kExprI64AtomicCompareExchange16U = 0x4d;
+      let kExprI64AtomicCompareExchange32U = 0x4e;
+
+      // Simd opcodes.
+      let kExprF32x4Min = 0x9e;
+
+      let kTrapUnreachable          = 0;
+      let kTrapMemOutOfBounds       = 1;
+      let kTrapDivByZero            = 2;
+      let kTrapDivUnrepresentable   = 3;
+      let kTrapRemByZero            = 4;
+      let kTrapFloatUnrepresentable = 5;
+      let kTrapFuncInvalid          = 6;
+      let kTrapFuncSigMismatch      = 7;
+      let kTrapTypeError            = 8;
+      let kTrapUnalignedAccess      = 9;
+      let kTrapDataSegmentDropped   = 10;
+      let kTrapElemSegmentDropped   = 11;
+      let kTrapTableOutOfBounds     = 12;
+
+      let kTrapMsgs = [
+        "unreachable",
+        "memory access out of bounds",
+        "divide by zero",
+        "divide result unrepresentable",
+        "remainder by zero",
+        "float unrepresentable in integer range",
+        "invalid index into function table",
+        "function signature mismatch",
+        "wasm function signature contains illegal type",
+        "operation does not support unaligned accesses",
+        "data segment has been dropped",
+        "element segment has been dropped",
+        "table access out of bounds"
+      ];
+    `,
+    outdent`
+      class Binary {
+        constructor() {
+          this.length = 0;
+          this.buffer = new Uint8Array(8192);
+        }
+
+        ensure_space(needed) {
+          if (this.buffer.length - this.length >= needed) return;
+          let new_capacity = this.buffer.length * 2;
+          while (new_capacity - this.length < needed) new_capacity *= 2;
+          let new_buffer = new Uint8Array(new_capacity);
+          new_buffer.set(this.buffer);
+          this.buffer = new_buffer;
+        }
+
+        trunc_buffer() {
+          return new Uint8Array(this.buffer.buffer, 0, this.length);
+        }
+
+        reset() {
+          this.length = 0;
+        }
+
+        emit_u8(val) {
+          this.ensure_space(1);
+          this.buffer[this.length++] = val;
+        }
+
+        emit_u16(val) {
+          this.ensure_space(2);
+          this.buffer[this.length++] = val;
+          this.buffer[this.length++] = val >> 8;
+        }
+
+        emit_u32(val) {
+          this.ensure_space(4);
+          this.buffer[this.length++] = val;
+          this.buffer[this.length++] = val >> 8;
+          this.buffer[this.length++] = val >> 16;
+          this.buffer[this.length++] = val >> 24;
+        }
+
+        emit_leb(val, max_len) {
+          this.ensure_space(max_len);
+          for (let i = 0; i < max_len; ++i) {
+            let v = val & 0xff;
+            val = val >>> 7;
+            if (val == 0) {
+              this.buffer[this.length++] = v;
+              return;
+            }
+            this.buffer[this.length++] = v | 0x80;
+          }
+          throw new Error("Leb value exceeds maximum length of " + max_len);
+        }
+
+        emit_u32v(val) {
+          this.emit_leb(val, kMaxVarInt32Size);
+        }
+
+        emit_u64v(val) {
+          this.emit_leb(val, kMaxVarInt64Size);
+        }
+
+        emit_bytes(data) {
+          this.ensure_space(data.length);
+          this.buffer.set(data, this.length);
+          this.length += data.length;
+        }
+
+        emit_string(string) {
+          // When testing illegal names, we pass a byte array directly.
+          if (string instanceof Array) {
+            this.emit_u32v(string.length);
+            this.emit_bytes(string);
+            return;
+          }
+
+          // This is the hacky way to convert a JavaScript string to a UTF8 encoded
+          // string only containing single-byte characters.
+          let string_utf8 = unescape(encodeURIComponent(string));
+          this.emit_u32v(string_utf8.length);
+          for (let i = 0; i < string_utf8.length; i++) {
+            this.emit_u8(string_utf8.charCodeAt(i));
+          }
+        }
+
+        emit_header() {
+          this.emit_bytes([
+            kWasmH0, kWasmH1, kWasmH2, kWasmH3, kWasmV0, kWasmV1, kWasmV2, kWasmV3
+          ]);
+        }
+
+        emit_section(section_code, content_generator) {
+          // Emit section name.
+          this.emit_u8(section_code);
+          // Emit the section to a temporary buffer: its full length isn't know yet.
+          const section = new Binary;
+          content_generator(section);
+          // Emit section length.
+          this.emit_u32v(section.length);
+          // Copy the temporary buffer.
+          // Avoid spread because {section} can be huge.
+          this.emit_bytes(section.trunc_buffer());
+        }
+      }
+    `,
+    outdent`
+      class WasmFunctionBuilder {
+        constructor(module, name, type_index) {
+          this.module = module;
+          this.name = name;
+          this.type_index = type_index;
+          this.body = [];
+          this.locals = [];
+          this.local_names = [];
+        }
+
+        numLocalNames() {
+          let num_local_names = 0;
+          for (let loc_name of this.local_names) {
+            if (loc_name !== undefined) ++num_local_names;
+          }
+          return num_local_names;
+        }
+
+        exportAs(name) {
+          this.module.addExport(name, this.index);
+          return this;
+        }
+
+        exportFunc() {
+          this.exportAs(this.name);
+          return this;
+        }
+
+        addBody(body) {
+          for (let b of body) {
+            if (typeof b !== 'number' || (b & (~0xFF)) !== 0 )
+              throw new Error('invalid body (entries must be 8 bit numbers): ' + body);
+          }
+          this.body = body.slice();
+          // Automatically add the end for the function block to the body.
+          this.body.push(kExprEnd);
+          return this;
+        }
+
+        addBodyWithEnd(body) {
+          this.body = body;
+          return this;
+        }
+
+        getNumLocals() {
+          let total_locals = 0;
+          for (let l of this.locals) {
+            for (let type of ["i32", "i64", "f32", "f64", "s128"]) {
+              total_locals += l[type + "_count"] || 0;
+            }
+          }
+          return total_locals;
+        }
+
+        addLocals(locals, names) {
+          const old_num_locals = this.getNumLocals();
+          this.locals.push(locals);
+          if (names) {
+            const missing_names = old_num_locals - this.local_names.length;
+            this.local_names.push(...new Array(missing_names), ...names);
+          }
+          return this;
+        }
+
+        end() {
+          return this.module;
+        }
+      }
+    `,
+    outdent`
+      class WasmFunctionBuilder {
+        constructor(module, name, type_index) {
+          this.module = module;
+          this.name = name;
+          this.type_index = type_index;
+          this.body = [];
+          this.locals = [];
+          this.local_names = [];
+        }
+
+        numLocalNames() {
+          let num_local_names = 0;
+          for (let loc_name of this.local_names) {
+            if (loc_name !== undefined) ++num_local_names;
+          }
+          return num_local_names;
+        }
+
+        exportAs(name) {
+          this.module.addExport(name, this.index);
+          return this;
+        }
+
+        exportFunc() {
+          this.exportAs(this.name);
+          return this;
+        }
+
+        addBody(body) {
+          for (let b of body) {
+            if (typeof b !== 'number' || (b & (~0xFF)) !== 0 )
+              throw new Error('invalid body (entries must be 8 bit numbers): ' + body);
+          }
+          this.body = body.slice();
+          // Automatically add the end for the function block to the body.
+          this.body.push(kExprEnd);
+          return this;
+        }
+
+        addBodyWithEnd(body) {
+          this.body = body;
+          return this;
+        }
+
+        getNumLocals() {
+          let total_locals = 0;
+          for (let l of this.locals) {
+            for (let type of ["i32", "i64", "f32", "f64", "s128"]) {
+              total_locals += l[type + "_count"] || 0;
+            }
+          }
+          return total_locals;
+        }
+
+        addLocals(locals, names) {
+          const old_num_locals = this.getNumLocals();
+          this.locals.push(locals);
+          if (names) {
+            const missing_names = old_num_locals - this.local_names.length;
+            this.local_names.push(...new Array(missing_names), ...names);
+          }
+          return this;
+        }
+
+        end() {
+          return this.module;
+        }
+      }
+    `,
+    outdent`
+      function wasmI32Const(val) {
+        let bytes = [kExprI32Const];
+        for (let i = 0; i < 4; ++i) {
+          bytes.push(0x80 | ((val >> (7 * i)) & 0x7f));
+        }
+        bytes.push((val >> (7 * 4)) & 0x7f);
+        return bytes;
+      }
+    `,
     `var binaryOperators = [
   [ "*", "/", "%" ], [ "+", "-" ],
   [ "<<", ">>", ">>>" ],
@@ -14449,158 +14783,186 @@ let kTrapMsgs = [
   [ "&" ], [ "^" ], [ "|" ],
   [ "&&" ], [ "||" ]
 ];`,
-    `for (i = 0; i < binaryOperators.length; ++i) {
-  var ops = binaryOperators[i];
-  for (j = 0; j < ops.length; ++j) {
-      var op = ops[j];
-      testLeftAssociativeSame(op, op);
-      if (j != 0)
-          testLeftAssociativeSame(ops[0], op);
-      if (i < binaryOperators.length - 1) {
-          var nextOps = binaryOperators[i + 1];
-          if (j == 0)
-              for (k = 0; k < nextOps.length; ++k)
-                  testHigherFirst(op, nextOps[k]);
-          else
-              testHigherFirst(op, nextOps[0]);
+    outdent`
+      for (i = 0; i < binaryOperators.length; ++i) {
+        var ops = binaryOperators[i];
+        for (j = 0; j < ops.length; ++j) {
+            var op = ops[j];
+            testLeftAssociativeSame(op, op);
+            if (j != 0)
+                testLeftAssociativeSame(ops[0], op);
+            if (i < binaryOperators.length - 1) {
+                var nextOps = binaryOperators[i + 1];
+                if (j == 0)
+                    for (k = 0; k < nextOps.length; ++k)
+                        testHigherFirst(op, nextOps[k]);
+                else
+                    testHigherFirst(op, nextOps[0]);
+            }
+        }
       }
-  }
-}`,
+    `,
     'assertThrows(() => { with ({}) { eval("x = 1"); } }, TypeError);',
     'a = (b = c)',
     'var x = (function(a,b){ return a + b; }); x(1,2)',
-    ` for (let e of assign_in_stmt) {
-  if (skip(++test)) continue;
-  var orig = e;
-  e = e.replace(/=/g, assign);
-  e = e.replace(/E/g, expr);
-  e = e.replace(/S/g, stmt);
-  var str = main.toString().replace("FUNC_BODY",  e + "; return 0;");
-  var asm_source = MODULE_TEMPLATE.toString().replace("FUNC_DECL", str);
-  doTest(asm_source, "(" + test + ") " + e);
-}`,
+    outdent`
+      for (let e of assign_in_stmt) {
+        if (skip(++test)) continue;
+        var orig = e;
+        e = e.replace(/=/g, assign);
+        e = e.replace(/E/g, expr);
+        e = e.replace(/S/g, stmt);
+        var str = main.toString().replace("FUNC_BODY",  e + "; return 0;");
+        var asm_source = MODULE_TEMPLATE.toString().replace("FUNC_DECL", str);
+        doTest(asm_source, "(" + test + ") " + e);
+      }
+    `,
     '16 / 2 ** 2',
     'const a = true || 99   ',
-    `var lambdaParenNoArg = async() => x < y;
-    var lambdaArgs = async(a, b, c) => a + b + c;`,
-    `class MyClass {
-      async asyncMethod(a) { return a; }
-      async async(a) { return a; }
-      async "a"() { return 12; }
-      async 0() { return 12; }
-      async 3.14() { return 12; }
-      async else() { return 12; }
-      static async staticAsyncMethod(a) { return a; }
-  }`,
-    `class MyFourthClass {
-      async [x](a) { return a; }
-  }`,
-    `async function asyncMethod(val, factor) {
-      val = val * factor;
-      if (val > 0)
-           val = await asyncMethod(val, -1);
-      return val;
-  }`,
-    `function rejectedPromiseMethod() {
-      return new Promise(function (resolve, reject) {
-          reject(Error('My Error'));
-      });
-  }
+    outdent`
+      var lambdaParenNoArg = async() => x < y;
+      var lambdaArgs = async(a, b, c) => a + b + c;
+    `,
+    outdent`
+      class MyClass {
+          async asyncMethod(a) { return a; }
+          async async(a) { return a; }
+          async "a"() { return 12; }
+          async 0() { return 12; }
+          async 3.14() { return 12; }
+          async else() { return 12; }
+          static async staticAsyncMethod(a) { return a; }
+      }
+    `,
+    outdent`
+      class MyFourthClass {
+          async [x](a) { return a; }
+      }
+    `,
+    outdent`
+      async function asyncMethod(val, factor) {
+          val = val * factor;
+          if (val > 0)
+               val = await asyncMethod(val, -1);
+          return val;
+      }
+    `,
+    outdent`
+      function rejectedPromiseMethod() {
+          return new Promise(function (resolve, reject) {
+              reject(Error('My Error'));
+          });
+      }
 
-  async function rejectAwaitMethod() {
-      return await rejectedPromiseMethod();
-  }
+      async function rejectAwaitMethod() {
+          return await rejectedPromiseMethod();
+      }
 
-  async function asyncThrowingMethod() {
-      throw 32;
-  }
+      async function asyncThrowingMethod() {
+          throw 32;
+      }
 
-  async function throwAwaitMethod() {
-      return await asyncThrowingMethod();
-  }`,
-    ` async function asyncMethod(x, y, z) {
-      var lambdaExp = async(a, b, c) => a * b * c;
-      var lambdaResult = await lambdaExp(x, y, z);
-      return lambdaResult;
-  }`,
-    ` async function asyncMethodResolved() {
-      let p = new Promise(function (resolve, reject) {
-          resolve("resolved");
-      });
+      async function throwAwaitMethod() {
+          return await asyncThrowingMethod();
+      }
+    `,
+    outdent`
+      async function asyncMethod(x, y, z) {
+          var lambdaExp = async(a, b, c) => a * b * c;
+          var lambdaResult = await lambdaExp(x, y, z);
+          return lambdaResult;
+      }
+    `,
+    outdent`
+      async function asyncMethodResolved() {
+          let p = new Promise(function (resolve, reject) {
+              resolve("resolved");
+          });
 
-      return p.then(function (result) {
-          return result;
-      });
-  }
+          return p.then(function (result) {
+              return result;
+          });
+      }
 
-  async function asyncMethodResolvedWithAwait() {
-      let p = new Promise(function (resolve, reject) {
-          resolve("resolved");
-      });
+      async function asyncMethodResolvedWithAwait() {
+          let p = new Promise(function (resolve, reject) {
+              resolve("resolved");
+          });
 
-      return await p;
-  }
+          return await p;
+      }
 
-  async function asyncMethodRejected() {
-      let p = new Promise(function (resolve, reject) {
-          reject("rejected");
-      });
+      async function asyncMethodRejected() {
+          let p = new Promise(function (resolve, reject) {
+              reject("rejected");
+          });
 
-      return p.then(function (result) {
-          return result;
-      });
-  }`,
+          return p.then(function (result) {
+              return result;
+          });
+      }
+    `,
     "async function af1(x) { var y = x; var x = 'b'; return y + x; }",
-    `class B {
-      af() {
-          return "base";
-      }
-  }
-
-  class C extends B {
-      async af() {
-          return super.af() + " derived";
-      }
-  }`,
-    `async function af1(a, b = () => a, c = b) {
-      function b() {
-          return a;
-      }
-      var a = 2;
-      return [b, c];
-  }`,
-    `async function af1() {
-      return 1;
-  }
-
-  async function af2() {
-      return 2;
-  }
-
-  async function af3() {
-      return await af1() + await af2();
-  }`,
-    `var obj = {
-      async af() {
-          this.b = await this.a + 10;
-          return this;
-      },
-      a : 1,
-      b : 0
-  };
-
-  async function af(x) {
-      var x = 0;
-      with (obj) {
-          x = await af();
+    outdent`
+      class B {
+          af() {
+              return "base";
+          }
       }
 
-      return x;
-  }`,
-    `async function f() {
-      await 1;
-      await Promise.resolve(1);
-  }`,
+      class C extends B {
+          async af() {
+              return super.af() + " derived";
+          }
+      }
+    `,
+    outdent`
+      async function af1(a, b = () => a, c = b) {
+          function b() {
+              return a;
+          }
+          var a = 2;
+          return [b, c];
+      }
+    `,
+    outdent`
+      async function af1() {
+          return 1;
+      }
+
+      async function af2() {
+          return 2;
+      }
+
+      async function af3() {
+          return await af1() + await af2();
+      }
+    `,
+    outdent`
+      var obj = {
+          async af() {
+              this.b = await this.a + 10;
+              return this;
+          },
+          a : 1,
+          b : 0
+      };
+
+      async function af(x) {
+          var x = 0;
+          with (obj) {
+              x = await af();
+          }
+
+          return x;
+      }
+    `,
+    outdent`
+      async function f() {
+          await 1;
+          await Promise.resolve(1);
+      }
+    `,
     'arguments in af',
     '0, af.arguments',
     'delete af.arguments',
@@ -14609,92 +14971,98 @@ let kTrapMsgs = [
     'undefined, Object.getOwnPropertyDescriptor(afstrict, "arguments")',
     "af = new AsyncFunction('a', 'b', 'c', 'await a; await b; await c;');",
     'a.Arguments[0] != "summary"',
-    `function x() {
-      var sym = Symbol();
-      let out = 'nothing';
+    outdent`
+      function x() {
+        var sym = Symbol();
+        let out = 'nothing';
+        var obj = {
+            get a() { return 'get a'; },
+            set a(v) { out = 'set a'; },
+            b() { return 'b'; },
+            ['c']() { return 'c'; },
+            [sym]() { return 'sym'; },
+            async d() { return 'd'; },
+            *e() { yield 'e'; },
+            get ['f']() { return 'get f'; },
+            set ['f'](v) { out = 'set f'; },
+            async ['g']() { return 'g'; },
+            *['h']() { yield 'h'; },
+            async async() { return 'async async'; },
+        }
+        var obj2 = {
+            async() { return 'async'; }
+        }
+        var obj3 = {
+            get async() { return 'get async'; },
+            set async(v) { out = 'set async'; }
+        }
+        var obj4 = {
+            *async() { yield 'generator async'; }
+        }
+
+        x.y('get a', obj.a, "Simple named getter");
+        obj.a = 123;
+        x.y('set a', out, "Simple named setter");
+        x.y('b', obj.b(), "Simple method");
+
+        x.y('c', obj.c(), "Method with computed property name");
+        x.y('sym', obj[sym](), "Method with computed property name (key is not string)");
+
+        assert.isTrue(obj.d() instanceof Promise, "Async method");
+
+        x.y('e', obj.e().next().value, "Generator method");
+
+        x.y('get f', obj.f, "Getter method with computed name");
+        obj.f = 123;
+        x.y('set f', out, "Setter method with computed name");
+
+        assert.isTrue(obj.g() instanceof Promise, "Async method with computed name");
+
+        x.y('h', obj.h().next().value, "Generator method with computed name");
+
+        assert.isTrue(obj.async() instanceof Promise, "Async method named async");
+        x.y('async', obj2.async(), "Method named async");
+        x.y('get async', obj3.async, "Getter named async");
+        obj3.async = 123;
+        x.y('set async', out, "Setter named async");
+        x.y('generator async', obj4.async().next().value, "Generator method named async");
+      }
+    `,
+    outdent`
       var obj = {
-          get a() { return 'get a'; },
-          set a(v) { out = 'set a'; },
-          b() { return 'b'; },
-          ['c']() { return 'c'; },
-          [sym]() { return 'sym'; },
-          async d() { return 'd'; },
-          *e() { yield 'e'; },
-          get ['f']() { return 'get f'; },
-          set ['f'](v) { out = 'set f'; },
-          async ['g']() { return 'g'; },
-          *['h']() { yield 'h'; },
-          async async() { return 'async async'; },
+          "s1"() { return "s1"; },
+          async "s2"() { return "s2"; },
+          * "s3"() { return "s3"; },
+          get "s4"() { return "s4"; },
+          set "s4"(v) { out = "s4"; },
+
+          0.1() { return 0.1; },
+          async 0.2() { return 0.2; },
+          * 0.3() { return 0.3; },
+          get 0.4() { return 0.4; },
+          set 0.4(v) { out = 0.4; },
+
+          123() { return 123; },
+          async 456() { return 456; },
+          * 789() { yield 789; },
+          get 123456() { return 123456; },
+          set 123456(v) { out = 123456; },
+
+          while() { return "while"; },
+          async else() { return "else"; },
+          * if() { return "if"; },
+          get catch() { return "catch"; },
+          set catch(v) { out = "catch"; },
       }
-      var obj2 = {
-          async() { return 'async'; }
+    `,
+    outdent`
+      var obj = {
+          m() {
+              function foo() { return 'foo'; }
+              return foo();
+          }
       }
-      var obj3 = {
-          get async() { return 'get async'; },
-          set async(v) { out = 'set async'; }
-      }
-      var obj4 = {
-          *async() { yield 'generator async'; }
-      }
-
-      x.y('get a', obj.a, "Simple named getter");
-      obj.a = 123;
-      x.y('set a', out, "Simple named setter");
-      x.y('b', obj.b(), "Simple method");
-
-      x.y('c', obj.c(), "Method with computed property name");
-      x.y('sym', obj[sym](), "Method with computed property name (key is not string)");
-
-      assert.isTrue(obj.d() instanceof Promise, "Async method");
-
-      x.y('e', obj.e().next().value, "Generator method");
-
-      x.y('get f', obj.f, "Getter method with computed name");
-      obj.f = 123;
-      x.y('set f', out, "Setter method with computed name");
-
-      assert.isTrue(obj.g() instanceof Promise, "Async method with computed name");
-
-      x.y('h', obj.h().next().value, "Generator method with computed name");
-
-      assert.isTrue(obj.async() instanceof Promise, "Async method named async");
-      x.y('async', obj2.async(), "Method named async");
-      x.y('get async', obj3.async, "Getter named async");
-      obj3.async = 123;
-      x.y('set async', out, "Setter named async");
-      x.y('generator async', obj4.async().next().value, "Generator method named async");
-    }`,
-    `var obj = {
-      "s1"() { return "s1"; },
-      async "s2"() { return "s2"; },
-      * "s3"() { return "s3"; },
-      get "s4"() { return "s4"; },
-      set "s4"(v) { out = "s4"; },
-
-      0.1() { return 0.1; },
-      async 0.2() { return 0.2; },
-      * 0.3() { return 0.3; },
-      get 0.4() { return 0.4; },
-      set 0.4(v) { out = 0.4; },
-
-      123() { return 123; },
-      async 456() { return 456; },
-      * 789() { yield 789; },
-      get 123456() { return 123456; },
-      set 123456(v) { out = 123456; },
-
-      while() { return "while"; },
-      async else() { return "else"; },
-      * if() { return "if"; },
-      get catch() { return "catch"; },
-      set catch(v) { out = "catch"; },
-  }`,
-    `var obj = {
-      m() {
-          function foo() { return 'foo'; }
-          return foo();
-      }
-  }`,
+    `,
     'function foo() { /* 𢭃 */ }',
     'function 𢭃() { /* 𢭃 */ }',
     'function 𢭃(ā,食) { /* 𢭃 */ }',
@@ -14711,288 +15079,310 @@ let kTrapMsgs = [
     "'' + function 𢭃(ā,食) { /* 𢭃 */ }",
     "(/*ß*/)/*ß*/ => { console.log('b'); }",
     "x = { async/*ß*/ ['f']/*ß*/()/*ß*/ { console.log('f'); } }",
-    `class ClassTest {
+    outdent`
+      class ClassTest {
 
-      constructor/*ß*/()/*ß*/ {}
+        constructor/*ß*/()/*ß*/ {}
 
-      static /*ß*/a/*ß*/()/*ß*/ {}
+        static /*ß*/a/*ß*/()/*ß*/ {}
 
-      static /*ß*/async/*ß*/ b()/*ß*/ {}
+        static /*ß*/async/*ß*/ b()/*ß*/ {}
 
-      static /*ß*/*/*ß*/ c/*ß*/()/*ß*/ {}
+        static /*ß*/*/*ß*/ c/*ß*/()/*ß*/ {}
 
-      static /*ß*/['d']/*ß*/()/*ß*/ {}
+        static /*ß*/['d']/*ß*/()/*ß*/ {}
 
-      static /*ß*/async /*ß*/['e']/*ß*/()/*ß*/ {}
+        static /*ß*/async /*ß*/['e']/*ß*/()/*ß*/ {}
 
-      static /*ß*/* /*ß*/['f']/*ß*/()/*ß*/ {}
+        static /*ß*/* /*ß*/['f']/*ß*/()/*ß*/ {}
 
 
 
-      g/*ß*/()/*ß*/ {}
+        g/*ß*/()/*ß*/ {}
 
-      async/*ß*/ h/*ß*/()/*ß*/ {}
+        async/*ß*/ h/*ß*/()/*ß*/ {}
 
-      */*ß*/ i/*ß*/()/*ß*/ {}
+        */*ß*/ i/*ß*/()/*ß*/ {}
 
-      ['j']/*ß*/()/*ß*/ {}
+        ['j']/*ß*/()/*ß*/ {}
 
-      async/*ß*/ ['k']/*ß*/()/*ß*/ {}
+        async/*ß*/ ['k']/*ß*/()/*ß*/ {}
 
-      * /*ß*/['l']/*ß*/()/*ß*/ {}
+        * /*ß*/['l']/*ß*/()/*ß*/ {}
 
-    }`,
-    `const anonGen = function* (a, b) {}
-    function* genFunc () {}
-    async function asyncFunc (a) {}
-    const anonAsync = async function () { }`,
-    `var objectMemberTest  = {
-      a/*ß*/() /*ß*/{ console.log('a'); },
-      b: /*ß*/()/*ß*/ => { console.log('b'); },
-      async/*ß*/ c/*ß*/()/*ß*/ { console.log('c'); },
-      */*ß*/ d/*ß*/()/*ß*/ { console.log('d'); },
-      ['e']/*ß*/()/*ß*/ { console.log('e'); },
-      async/*ß*/ ['f']/*ß*/()/*ß*/ { console.log('f'); },
-      */*ß*/ ['g']/*ß*/()/*ß*/ { console.log('g'); },
-      get/*ß*/()/*ß*/ { console.log('get'); },
-      set/*ß*/()/*ß*/ { console.log('set'); },
-      [/]/.exec(']')]/*ß*/()/*ß*/ { console.log('regex'); },
-      [(function () { return 'h'})()]/*ß*/()/*ß*/ { console.log('function'); },
-    }`,
-    `class ClassTest {
-      constructor/*ß*/()/*ß*/ {}
-      static /*ß*/a/*ß*/()/*ß*/ {}
-      static /*ß*/async/*ß*/ b()/*ß*/ {}
-      static /*ß*/*/*ß*/ c/*ß*/()/*ß*/ {}
-      static /*ß*/['d']/*ß*/()/*ß*/ {}
-      static /*ß*/async /*ß*/['e']/*ß*/()/*ß*/ {}
-      static /*ß*/* /*ß*/['f']/*ß*/()/*ß*/ {}
-
-      g/*ß*/()/*ß*/ {}
-      async/*ß*/ h/*ß*/()/*ß*/ {}
-      */*ß*/ i/*ß*/()/*ß*/ {}
-      ['j']/*ß*/()/*ß*/ {}
-      async/*ß*/ ['k']/*ß*/()/*ß*/ {}
-      * /*ß*/['l']/*ß*/()/*ß*/ {}
-    }`,
-    `async function awaitTests() {
-      return {
-        [await 'a']/*ß*/()/*ß*/ { console.log("await a"); }
       }
-    }
-    awaitTests().then(o => {
-      for (var i of Object.keys(o)) {
-        test(o[i]);
+    `,
+    outdent`
+      const anonGen = function* (a, b) {}
+      function* genFunc () {}
+      async function asyncFunc (a) {}
+      const anonAsync = async function () { }
+    `,
+    outdent`
+      var objectMemberTest  = {
+        a/*ß*/() /*ß*/{ console.log('a'); },
+        b: /*ß*/()/*ß*/ => { console.log('b'); },
+        async/*ß*/ c/*ß*/()/*ß*/ { console.log('c'); },
+        */*ß*/ d/*ß*/()/*ß*/ { console.log('d'); },
+        ['e']/*ß*/()/*ß*/ { console.log('e'); },
+        async/*ß*/ ['f']/*ß*/()/*ß*/ { console.log('f'); },
+        */*ß*/ ['g']/*ß*/()/*ß*/ { console.log('g'); },
+        get/*ß*/()/*ß*/ { console.log('get'); },
+        set/*ß*/()/*ß*/ { console.log('set'); },
+        [/]/.exec(']')]/*ß*/()/*ß*/ { console.log('regex'); },
+        [(function () { return 'h'})()]/*ß*/()/*ß*/ { console.log('function'); },
       }
-    });
+    `,
+    outdent`
+      class ClassTest {
+        constructor/*ß*/()/*ß*/ {}
+        static /*ß*/a/*ß*/()/*ß*/ {}
+        static /*ß*/async/*ß*/ b()/*ß*/ {}
+        static /*ß*/*/*ß*/ c/*ß*/()/*ß*/ {}
+        static /*ß*/['d']/*ß*/()/*ß*/ {}
+        static /*ß*/async /*ß*/['e']/*ß*/()/*ß*/ {}
+        static /*ß*/* /*ß*/['f']/*ß*/()/*ß*/ {}
 
-    function * yieldTests() {
-      return {
-        [yield 'a']/*ß*/()/*ß*/ { console.log("yield a"); }
+        g/*ß*/()/*ß*/ {}
+        async/*ß*/ h/*ß*/()/*ß*/ {}
+        */*ß*/ i/*ß*/()/*ß*/ {}
+        ['j']/*ß*/()/*ß*/ {}
+        async/*ß*/ ['k']/*ß*/()/*ß*/ {}
+        * /*ß*/['l']/*ß*/()/*ß*/ {}
       }
-    }
+    `,
+    outdent`
+      async function awaitTests() {
+        return {
+          [await 'a']/*ß*/()/*ß*/ { console.log("await a"); }
+        }
+      }
+      awaitTests().then(o => {
+        for (var i of Object.keys(o)) {
+          test(o[i]);
+        }
+      });
 
-    var it = yieldTests();
-    var last;
-    do {
-      last = it.next();
-    } while (!last.done);
-    for (var i of Object.keys(last.value)) {
-      test(last.value[i]);
-    }`,
-    `async function f1() {
-      await null;
-      throw new Error('error in f1');
-  }
-  f1();
-
-  async function f2() {
-
-      async function f2a() {
-          throw "err";
+      function * yieldTests() {
+        return {
+          [yield 'a']/*ß*/()/*ß*/ { console.log("yield a"); }
+        }
       }
 
-      async function f2b() {
-          try {
+      var it = yieldTests();
+      var last;
+      do {
+        last = it.next();
+      } while (!last.done);
+      for (var i of Object.keys(last.value)) {
+        test(last.value[i]);
+      }
+    `,
+    outdent`
+      async function f1() {
+          await null;
+          throw new Error('error in f1');
+      }
+      f1();
+
+      async function f2() {
+
+          async function f2a() {
+              throw "err";
+          }
+
+          async function f2b() {
+              try {
+                  var p = f2a();
+              } catch (e) {
+                  console.log("caught " + e);
+              }
+          }
+
+          async function f2c() {
               var p = f2a();
-          } catch (e) {
-              console.log("caught " + e);
           }
-      }
 
-      async function f2c() {
-          var p = f2a();
+          f2b();
+          f2c();
       }
-
-      f2b();
-      f2c();
-  }`,
-    `class module1BaseClass { };;
-    var obj0 = {};
-    var protoObj0 = {};
-    var obj1 = {};
-    var arrObj0 = {};
-    var litObj0 = {prop1: 3.14159265358979};
-    var litObj1 = {prop0: 0, prop1: 1};
-    var arrObj0 = {};
-    var func0 = function(){
-      return (new module1BaseClass());
-    };
-    var func1 = function(){
-      function func10 (arg0, arg1) {
-        this.prop0 = arg0;
-        this.prop2 = arg1;
-      }
-      var uniqobj32 = new func10(((new module1BaseClass()) ? (protoObj0.prop1 <<= (typeof(obj1.prop0)  == 'boolean') ) : ((++ h) ? ({} instanceof ((typeof EvalError == 'function' && !(EvalError[Symbol.toStringTag] == 'AsyncFunction')) ? EvalError : Object)) : (-1596867654.9 >>> -358240255))),ary[((shouldBailout ? (ary[7] = 'x') : undefined ), 7)]);
-      return (typeof(g)  != null) ;
-    };
-    var func2 = function(argMath179,argMath180 = (new module1BaseClass()),argMath181){
-      return ((shouldBailout ? (argMath180 = { valueOf: function() { WScript.Echo('argMath180 valueOf'); return 3; } }, f64[(17) & 255]) : f64[(17) & 255]) * 2);
-    };`,
-    `var func3 = function(argMath182,argMath183,argMath184 = ((b === argMath182)&&(d <= argMath183))){
-      var uniqobj34 = [''];
-      var uniqobj35 = uniqobj34[__counter%uniqobj34.length];
-      uniqobj35.toString();
-      var reResult2=('.*8#^' + '.)1vc5$]').split(/\\b\\S|(?=[蒤7])|(?!\\b.)|(\\S)/imyu,3);
-    (Object.defineProperty(arrObj0, 'prop4', {writable: true, enumerable: false, configurable: true }));
-      arrObj0.prop4 = (obj1.prop0 = ('method1' in arrObj0));
-      return func1.call(obj1 );
-    };
-    var func4 = function(argMath185,argMath186 = (shouldBailout ? (g = { valueOf: function() { WScript.Echo('g valueOf'); return 3; } }, (i32[(87) & 255] !== (typeof 'caller'))) : (i32[(87) & 255] !== (typeof 'caller'))),argMath187,argMath188){
-      LABEL0:
-      switch((argMath185 === obj1.prop0)) {
-        case ('(h'+'#Y'+':$' + 'g\`'):
-        case ('g' + 'n$!ä'):
-        case ('!(!fp' + ',w4V;$Ø.'):
-          strvar1 = strvar6[3%strvar6.length];
-          WScript.Echo('0 = ' + (0));
-          break LABEL0;
-        default:
-    (Object.defineProperty(protoObj0, 'prop1', {writable: true, enumerable: false, configurable: true }));
-          protoObj0.prop1 = protoObj0.prop0;
-          break LABEL0;
-        case strvar4:
-          var uniqobj36 = {prop0: (typeof(argMath186)  == 'number') , prop1: ((argMath187 != d) - (typeof(argMath187)  == 'number') ), prop2: (typeof (new module1BaseClass()))};
-          GiantPrintArray.push('1 = ' + (1));
-          break LABEL0;
-        case ('.*8#^' + '.)1vc5$]'):
-        case ('g' + 'n$!ä'):
-          if(shouldBailout){
-            return  'somestring'
-          }
-          GiantPrintArray.push('3 = ' + (3));
-          break LABEL0;
-        case (new module1BaseClass()):
-          argMath185 = ((argMath186 |= ({} instanceof ((typeof Function == 'function' && !(Function[Symbol.toStringTag] == 'AsyncFunction')) ? Function : Object))) * ((argMath186 &= (argMath186 >= obj1.prop1)) + (((typeof(argMath186)  == 'undefined')  * (arguments[((('caller' >= 0 ? 'caller' : 0)) & 0XF)] + ((obj1.prop1 < argMath187) << argMath187))) || ((argMath188 == argMath185)&&(arrObj0.prop1 >= obj0.prop1)))));
-          GiantPrintArray.push('4 = ' + (4));
-          break LABEL0;
-      }
-      return 21;
-    };`,
-    `var func1 = function(){
-      class class21 extends module2BaseClass {
-        constructor (argMath189){
-          super();
-          var strvar9 = strvar5;
-          strvar9 = strvar9.substring((strvar9.length)/4,(strvar9.length)/4);
-          argMath189 = arguments[((shouldBailout ? (arguments[0] = 'x') : undefined ), 0)];
-          strvar3 = strvar6 + (7993307.1 * (argMath189 + argMath189));
-          strvar9 = 'd'.concat((argMath189 + -462154506.9));
-        }
-        func6 (argMath190){
-          if(shouldBailout){
-            return  'somestring'
-          }
-          var strvar9 = (strvar4 + (arguments[(0)] * (func0.call(aliasOfobj1 ) - arrObj0[((shouldBailout ? (arrObj0[15] = 'x') : undefined ), 15)]))).concat(a);
-          var strvar10 = ('J' + 'Ðo!D');
-          var uniqobj38 = aliasOfobj1;
-          var y = (uniqobj38.length *= ((new module2BaseClass()) * ((true instanceof ((typeof Object == 'function' && !(Object[Symbol.toStringTag] == 'AsyncFunction')) ? Object : Object)) + (uniqobj38.length = ((shouldBailout ? func0 = func0 : 1), func0())))));
-          strvar0 = strvar10[0%strvar10.length];
-          return -218;
-        }
-        func7 (argMath191 = ui8[(33) & 255],argMath192 = argMath191,argMath193){
-          strvar6 = strvar3[2%strvar3.length];
-          litObj0 = protoObj0;
-          return -77461066;
-          arrObj0.prop1 -=arguments[(10)];
-          return import("module0_6970131f-9176-4448-a51d-bed04d11807c.js");
-        }
-        func8 (){
-          protoObj0 = arrObj0;
-          f = 'caller';
-          strvar2 = strvar7[4%strvar7.length];
-          var uniqobj39 = {["33"]: arrObj0[(((((shouldBailout ? (arrObj0[(((Math.abs('caller')) >= 0 ? ( Math.abs('caller')) : 0) & 0xF)] = 'x') : undefined ), Math.abs('caller')) >= 0 ? Math.abs('caller') : 0)) & 0XF)], prop0: (obj1.prop0 %=       (shouldBailout ? func0() : func0())), ["prop2"]: arrObj0[(((arguments[((shouldBailout ? (arguments[1] = 'x') : undefined ), 1)] >= 0 ? arguments[((shouldBailout ? (arguments[1] = 'x') : undefined ), 1)] : 0)) & 0XF)], ["prop3"]: (((~ (obj1.length >>= ((obj0.prop0 /= -443692889) & (new module2BaseClass())))) ? (arguments[(((((shouldBailout ? (arguments[(((ui32[(139) & 255]) >= 0 ? ( ui32[(139) & 255]) : 0) & 0xF)] = 'x') : undefined ), ui32[(139) & 255]) >= 0 ? ui32[(139) & 255] : 0)) & 0XF)] ? (new module2BaseClass()) : 'caller') : (obj1.prop1 = ((arguments[((shouldBailout ? (arguments[14] = 'x') : undefined ), 14)] ? func0.call(protoObj1 ) : (arrObj0.prop1, 2147483650, arrObj0.prop1, e)) > ((typeof(aliasOfobj1.prop1)  == 'string')  * (g - (! obj0.prop1)))))) >= arrObj0[(((65536 >= 0 ? 65536 : 0)) & 0XF)]), prop4: func0.call(litObj0 ), prop5: arrObj0[((shouldBailout ? (arrObj0[18] = 'x') : undefined ), 18)]};
-          var uniqobj40 = arrObj0;
-    (Object.defineProperty(obj1, 'prop4', {writable: true, enumerable: false, configurable: true }));
-          obj1.prop4 = 'caller';
-          return -1182621235;
-        }
-        func9 (){
-          strvar2 = strvar0.concat((('gº'+'!:'+'_É' + 'm!').indexOf(strvar0))).concat((-124355308.9 !== protoObj1.prop1)).concat(protoObj0.prop1);
-          var fPolyProp = function (o) {
-            if (o!==undefined) {
-              WScript.Echo(o.prop0 + ' ' + o.prop1 + ' ' + o.prop2);
-            }
-          };
-          fPolyProp(litObj0);
-          fPolyProp(litObj1);
-          strvar2 = strvar3[2%strvar3.length];
-          a =-27;
-          a =(++ h);
-          return h;
-          return h;
-        }
-        static set func10 (argMath194){
-          protoObj1.prop1 =arguments[(0)];
-          return 533469720;
-        }
-        static func11 (argMath195,argMath196,argMath197 = {prop7: 'caller', prop6: ((new Object()) instanceof ((typeof Error == 'function' && !(Error[Symbol.toStringTag] == 'AsyncFunction')) ? Error : Object)), prop5: f32[((((shouldBailout ? func0 = func0 : 1), func0()) ? ((argMath195 = ui8.length) >= ((f < h)||(obj0.prop0 !== obj0.prop0))) : (~ func0.call(arrObj0 )))) & 255], prop4: (argMath196 >= obj1.prop0), ["prop2"]: -1615453233.9, prop1: ((arguments[(((((shouldBailout ? (arguments[(((func0.call(protoObj1 )) >= 0 ? ( func0.call(protoObj1 )) : 0) & 0xF)] = 'x') : undefined ), func0.call(protoObj1 )) >= 0 ? func0.call(protoObj1 ) : 0)) & 0XF)] * ('caller' - ((-0 instanceof ((typeof func0 == 'function' && !(func0[Symbol.toStringTag] == 'AsyncFunction')) ? func0 : Object)) | Object.create({prop0: arguments[((((new func0()).prop1  >= 0 ? (new func0()).prop1  : 0)) & 0XF)], prop1: (typeof(strvar6)  != 'object') , prop2: (f64[(8.54427599454003E+18) & 255] ? (++ obj1.prop0) : (argMath196 * protoObj1.prop1)), prop3: ('caller' * (-127 ? -2121319693 : 134) - (new module2BaseClass())), prop4: (shouldBailout ? (a = { valueOf: function() { WScript.Echo('a valueOf'); return 3; } },     (shouldBailout ? func0() : func0())) :     (shouldBailout ? func0() : func0())), prop5: (typeof(strvar2)  == 'string') })))) <= -690557704), prop0: func0.call(aliasOfobj1 ), 49: arguments[(((((shouldBailout ? (arguments[((((protoObj0.prop0 >= f)) >= 0 ? ( (protoObj0.prop0 >= f)) : 0) & 0xF)] = 'x') : undefined ), (protoObj0.prop0 >= f)) >= 0 ? (protoObj0.prop0 >= f) : 0)) & 0XF)]}){
-          obj0.length= makeArrayLength(((function () {;}) instanceof ((typeof Function == 'function' && !(Function[Symbol.toStringTag] == 'AsyncFunction')) ? Function : Object)));
-          WScript.Echo(strvar6 !=-216);
-          return e;
-        }
-        static func12 (){
-          strvar7 = strvar1[1%strvar1.length];
-    (Object.defineProperty(litObj1, 'prop1', {writable: true, enumerable: false, configurable: true }));
-          litObj1.prop1 = (-2 >> (typeof(aliasOfobj1.prop1)  != 'string') );
-          litObj1.prop1 <<=((obj1.prop1 != arrObj0.prop1)||(litObj1.prop1 == f));
-    (Object.defineProperty(arrObj0, 'length', {writable: true, enumerable: false, configurable: true }));
-          arrObj0.length = makeArrayLength((typeof(litObj1.prop1)  == 'string') );
-          var strvar9 = '2®(4X¸G.Ó!£ö!(%';
-          strvar9 = strvar9.substring((strvar9.length)/4,(strvar9.length)/1);
-          strvar2 = strvar0[2%strvar0.length];
-          return arrObj0.prop0;
-        }
-        static func13 (){
-          WScript.Echo(strvar7 >(aliasOfobj1.prop1 < aliasOfobj1.prop1));
-          WScript.Echo(strvar5 >=(-67745208 * aliasOfobj1.prop1));
-          aliasOfobj1.prop0 ^=g;
-          strvar1 = strvar1 + arrObj0[(1)];
-          return f;
-        }
-      }
-      return (arrObj0.prop0 ^= (new module2BaseClass()));
-    };`,
-    `var randomGenerator = function(inputseed) {
-      var seed = inputseed;
-      return function() {
-      // Robert Jenkins' 32 bit integer hash function.
-      seed = ((seed + 0x7ed55d16) + (seed << 12))  & 0xffffffff;
-      seed = ((seed ^ 0xc761c23c) ^ (seed >>> 19)) & 0xffffffff;
-      seed = ((seed + 0x165667b1) + (seed << 5))   & 0xffffffff;
-      seed = ((seed + 0xd3a2646c) ^ (seed << 9))   & 0xffffffff;
-      seed = ((seed + 0xfd7046c5) + (seed << 3))   & 0xffffffff;
-      seed = ((seed ^ 0xb55a4f09) ^ (seed >>> 16)) & 0xffffffff;
-      return (seed & 0xfffffff) / 0x10000000;
+    `,
+    outdent`
+      class module1BaseClass { };;
+      var obj0 = {};
+      var protoObj0 = {};
+      var obj1 = {};
+      var arrObj0 = {};
+      var litObj0 = {prop1: 3.14159265358979};
+      var litObj1 = {prop0: 0, prop1: 1};
+      var arrObj0 = {};
+      var func0 = function(){
+        return (new module1BaseClass());
       };
-  };;`,
-    `function getRoundValue(n) {
-      if(n % 1 == 0) // int number
-        return n % 2147483647;
-      else // float number
-        return n.toFixed(8);
-     return n;
-    };`,
+      var func1 = function(){
+        function func10 (arg0, arg1) {
+          this.prop0 = arg0;
+          this.prop2 = arg1;
+        }
+        var uniqobj32 = new func10(((new module1BaseClass()) ? (protoObj0.prop1 <<= (typeof(obj1.prop0)  == 'boolean') ) : ((++ h) ? ({} instanceof ((typeof EvalError == 'function' && !(EvalError[Symbol.toStringTag] == 'AsyncFunction')) ? EvalError : Object)) : (-1596867654.9 >>> -358240255))),ary[((shouldBailout ? (ary[7] = 'x') : undefined ), 7)]);
+        return (typeof(g)  != null) ;
+      };
+      var func2 = function(argMath179,argMath180 = (new module1BaseClass()),argMath181){
+        return ((shouldBailout ? (argMath180 = { valueOf: function() { WScript.Echo('argMath180 valueOf'); return 3; } }, f64[(17) & 255]) : f64[(17) & 255]) * 2);
+      };
+    `,
+    outdent`
+      var func3 = function(argMath182,argMath183,argMath184 = ((b === argMath182)&&(d <= argMath183))){
+        var uniqobj34 = [''];
+        var uniqobj35 = uniqobj34[__counter%uniqobj34.length];
+        uniqobj35.toString();
+        var reResult2=('.*8#^' + '.)1vc5$]').split(/\\b\\S|(?=[蒤7])|(?!\\b.)|(\\S)/imyu,3);
+      (Object.defineProperty(arrObj0, 'prop4', {writable: true, enumerable: false, configurable: true }));
+        arrObj0.prop4 = (obj1.prop0 = ('method1' in arrObj0));
+        return func1.call(obj1 );
+      };
+      var func4 = function(argMath185,argMath186 = (shouldBailout ? (g = { valueOf: function() { WScript.Echo('g valueOf'); return 3; } }, (i32[(87) & 255] !== (typeof 'caller'))) : (i32[(87) & 255] !== (typeof 'caller'))),argMath187,argMath188){
+        LABEL0:
+        switch((argMath185 === obj1.prop0)) {
+          case ('(h'+'#Y'+':$' + 'g\`'):
+          case ('g' + 'n$!ä'):
+          case ('!(!fp' + ',w4V;$Ø.'):
+            strvar1 = strvar6[3%strvar6.length];
+            WScript.Echo('0 = ' + (0));
+            break LABEL0;
+          default:
+      (Object.defineProperty(protoObj0, 'prop1', {writable: true, enumerable: false, configurable: true }));
+            protoObj0.prop1 = protoObj0.prop0;
+            break LABEL0;
+          case strvar4:
+            var uniqobj36 = {prop0: (typeof(argMath186)  == 'number') , prop1: ((argMath187 != d) - (typeof(argMath187)  == 'number') ), prop2: (typeof (new module1BaseClass()))};
+            GiantPrintArray.push('1 = ' + (1));
+            break LABEL0;
+          case ('.*8#^' + '.)1vc5$]'):
+          case ('g' + 'n$!ä'):
+            if(shouldBailout){
+              return  'somestring'
+            }
+            GiantPrintArray.push('3 = ' + (3));
+            break LABEL0;
+          case (new module1BaseClass()):
+            argMath185 = ((argMath186 |= ({} instanceof ((typeof Function == 'function' && !(Function[Symbol.toStringTag] == 'AsyncFunction')) ? Function : Object))) * ((argMath186 &= (argMath186 >= obj1.prop1)) + (((typeof(argMath186)  == 'undefined')  * (arguments[((('caller' >= 0 ? 'caller' : 0)) & 0XF)] + ((obj1.prop1 < argMath187) << argMath187))) || ((argMath188 == argMath185)&&(arrObj0.prop1 >= obj0.prop1)))));
+            GiantPrintArray.push('4 = ' + (4));
+            break LABEL0;
+        }
+        return 21;
+      };
+    `,
+    outdent`
+      var func1 = function(){
+        class class21 extends module2BaseClass {
+          constructor (argMath189){
+            super();
+            var strvar9 = strvar5;
+            strvar9 = strvar9.substring((strvar9.length)/4,(strvar9.length)/4);
+            argMath189 = arguments[((shouldBailout ? (arguments[0] = 'x') : undefined ), 0)];
+            strvar3 = strvar6 + (7993307.1 * (argMath189 + argMath189));
+            strvar9 = 'd'.concat((argMath189 + -462154506.9));
+          }
+          func6 (argMath190){
+            if(shouldBailout){
+              return  'somestring'
+            }
+            var strvar9 = (strvar4 + (arguments[(0)] * (func0.call(aliasOfobj1 ) - arrObj0[((shouldBailout ? (arrObj0[15] = 'x') : undefined ), 15)]))).concat(a);
+            var strvar10 = ('J' + 'Ðo!D');
+            var uniqobj38 = aliasOfobj1;
+            var y = (uniqobj38.length *= ((new module2BaseClass()) * ((true instanceof ((typeof Object == 'function' && !(Object[Symbol.toStringTag] == 'AsyncFunction')) ? Object : Object)) + (uniqobj38.length = ((shouldBailout ? func0 = func0 : 1), func0())))));
+            strvar0 = strvar10[0%strvar10.length];
+            return -218;
+          }
+          func7 (argMath191 = ui8[(33) & 255],argMath192 = argMath191,argMath193){
+            strvar6 = strvar3[2%strvar3.length];
+            litObj0 = protoObj0;
+            return -77461066;
+            arrObj0.prop1 -=arguments[(10)];
+            return import("module0_6970131f-9176-4448-a51d-bed04d11807c.js");
+          }
+          func8 (){
+            protoObj0 = arrObj0;
+            f = 'caller';
+            strvar2 = strvar7[4%strvar7.length];
+            var uniqobj39 = {["33"]: arrObj0[(((((shouldBailout ? (arrObj0[(((Math.abs('caller')) >= 0 ? ( Math.abs('caller')) : 0) & 0xF)] = 'x') : undefined ), Math.abs('caller')) >= 0 ? Math.abs('caller') : 0)) & 0XF)], prop0: (obj1.prop0 %=       (shouldBailout ? func0() : func0())), ["prop2"]: arrObj0[(((arguments[((shouldBailout ? (arguments[1] = 'x') : undefined ), 1)] >= 0 ? arguments[((shouldBailout ? (arguments[1] = 'x') : undefined ), 1)] : 0)) & 0XF)], ["prop3"]: (((~ (obj1.length >>= ((obj0.prop0 /= -443692889) & (new module2BaseClass())))) ? (arguments[(((((shouldBailout ? (arguments[(((ui32[(139) & 255]) >= 0 ? ( ui32[(139) & 255]) : 0) & 0xF)] = 'x') : undefined ), ui32[(139) & 255]) >= 0 ? ui32[(139) & 255] : 0)) & 0XF)] ? (new module2BaseClass()) : 'caller') : (obj1.prop1 = ((arguments[((shouldBailout ? (arguments[14] = 'x') : undefined ), 14)] ? func0.call(protoObj1 ) : (arrObj0.prop1, 2147483650, arrObj0.prop1, e)) > ((typeof(aliasOfobj1.prop1)  == 'string')  * (g - (! obj0.prop1)))))) >= arrObj0[(((65536 >= 0 ? 65536 : 0)) & 0XF)]), prop4: func0.call(litObj0 ), prop5: arrObj0[((shouldBailout ? (arrObj0[18] = 'x') : undefined ), 18)]};
+            var uniqobj40 = arrObj0;
+      (Object.defineProperty(obj1, 'prop4', {writable: true, enumerable: false, configurable: true }));
+            obj1.prop4 = 'caller';
+            return -1182621235;
+          }
+          func9 (){
+            strvar2 = strvar0.concat((('gº'+'!:'+'_É' + 'm!').indexOf(strvar0))).concat((-124355308.9 !== protoObj1.prop1)).concat(protoObj0.prop1);
+            var fPolyProp = function (o) {
+              if (o!==undefined) {
+                WScript.Echo(o.prop0 + ' ' + o.prop1 + ' ' + o.prop2);
+              }
+            };
+            fPolyProp(litObj0);
+            fPolyProp(litObj1);
+            strvar2 = strvar3[2%strvar3.length];
+            a =-27;
+            a =(++ h);
+            return h;
+            return h;
+          }
+          static set func10 (argMath194){
+            protoObj1.prop1 =arguments[(0)];
+            return 533469720;
+          }
+          static func11 (argMath195,argMath196,argMath197 = {prop7: 'caller', prop6: ((new Object()) instanceof ((typeof Error == 'function' && !(Error[Symbol.toStringTag] == 'AsyncFunction')) ? Error : Object)), prop5: f32[((((shouldBailout ? func0 = func0 : 1), func0()) ? ((argMath195 = ui8.length) >= ((f < h)||(obj0.prop0 !== obj0.prop0))) : (~ func0.call(arrObj0 )))) & 255], prop4: (argMath196 >= obj1.prop0), ["prop2"]: -1615453233.9, prop1: ((arguments[(((((shouldBailout ? (arguments[(((func0.call(protoObj1 )) >= 0 ? ( func0.call(protoObj1 )) : 0) & 0xF)] = 'x') : undefined ), func0.call(protoObj1 )) >= 0 ? func0.call(protoObj1 ) : 0)) & 0XF)] * ('caller' - ((-0 instanceof ((typeof func0 == 'function' && !(func0[Symbol.toStringTag] == 'AsyncFunction')) ? func0 : Object)) | Object.create({prop0: arguments[((((new func0()).prop1  >= 0 ? (new func0()).prop1  : 0)) & 0XF)], prop1: (typeof(strvar6)  != 'object') , prop2: (f64[(8.54427599454003E+18) & 255] ? (++ obj1.prop0) : (argMath196 * protoObj1.prop1)), prop3: ('caller' * (-127 ? -2121319693 : 134) - (new module2BaseClass())), prop4: (shouldBailout ? (a = { valueOf: function() { WScript.Echo('a valueOf'); return 3; } },     (shouldBailout ? func0() : func0())) :     (shouldBailout ? func0() : func0())), prop5: (typeof(strvar2)  == 'string') })))) <= -690557704), prop0: func0.call(aliasOfobj1 ), 49: arguments[(((((shouldBailout ? (arguments[((((protoObj0.prop0 >= f)) >= 0 ? ( (protoObj0.prop0 >= f)) : 0) & 0xF)] = 'x') : undefined ), (protoObj0.prop0 >= f)) >= 0 ? (protoObj0.prop0 >= f) : 0)) & 0XF)]}){
+            obj0.length= makeArrayLength(((function () {;}) instanceof ((typeof Function == 'function' && !(Function[Symbol.toStringTag] == 'AsyncFunction')) ? Function : Object)));
+            WScript.Echo(strvar6 !=-216);
+            return e;
+          }
+          static func12 (){
+            strvar7 = strvar1[1%strvar1.length];
+      (Object.defineProperty(litObj1, 'prop1', {writable: true, enumerable: false, configurable: true }));
+            litObj1.prop1 = (-2 >> (typeof(aliasOfobj1.prop1)  != 'string') );
+            litObj1.prop1 <<=((obj1.prop1 != arrObj0.prop1)||(litObj1.prop1 == f));
+      (Object.defineProperty(arrObj0, 'length', {writable: true, enumerable: false, configurable: true }));
+            arrObj0.length = makeArrayLength((typeof(litObj1.prop1)  == 'string') );
+            var strvar9 = '2®(4X¸G.Ó!£ö!(%';
+            strvar9 = strvar9.substring((strvar9.length)/4,(strvar9.length)/1);
+            strvar2 = strvar0[2%strvar0.length];
+            return arrObj0.prop0;
+          }
+          static func13 (){
+            WScript.Echo(strvar7 >(aliasOfobj1.prop1 < aliasOfobj1.prop1));
+            WScript.Echo(strvar5 >=(-67745208 * aliasOfobj1.prop1));
+            aliasOfobj1.prop0 ^=g;
+            strvar1 = strvar1 + arrObj0[(1)];
+            return f;
+          }
+        }
+        return (arrObj0.prop0 ^= (new module2BaseClass()));
+      };
+    `,
+    outdent`
+      var randomGenerator = function(inputseed) {
+          var seed = inputseed;
+          return function() {
+          // Robert Jenkins' 32 bit integer hash function.
+          seed = ((seed + 0x7ed55d16) + (seed << 12))  & 0xffffffff;
+          seed = ((seed ^ 0xc761c23c) ^ (seed >>> 19)) & 0xffffffff;
+          seed = ((seed + 0x165667b1) + (seed << 5))   & 0xffffffff;
+          seed = ((seed + 0xd3a2646c) ^ (seed << 9))   & 0xffffffff;
+          seed = ((seed + 0xfd7046c5) + (seed << 3))   & 0xffffffff;
+          seed = ((seed ^ 0xb55a4f09) ^ (seed >>> 16)) & 0xffffffff;
+          return (seed & 0xfffffff) / 0x10000000;
+          };
+      };;
+    `,
+    outdent`
+      function getRoundValue(n) {
+        if(n % 1 == 0) // int number
+          return n % 2147483647;
+        else // float number
+          return n.toFixed(8);
+       return n;
+      };
+    `,
     String.raw`function formatOutput(n) {{
       return n.replace(/[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?/g, function(match) {{return getRoundValue(parseFloat(match));}} );
      }};
@@ -15008,42 +15398,46 @@ let kTrapMsgs = [
     'arrObj0[((((new leaf()).prop0  >= 0 ? (new leaf()).prop0  : 0)) & 0XF)];',
     'argMath21 = (\'caller\' ? (d / (argMath19 == 0 ? 1 : argMath19)) : (obj0.length *= parseInt("-0x30B21BF3C578A400")));',
     'arrObj0.length = makeArrayLength(func0.call(protoObj1 , (d / (argMath19 == 0 ? 1 : argMath19))));',
-    ` var h = -1073741824;
-    var strvar0 = ('W' + 'Ù!$X');
-    var strvar1 = ('%#'+'ql'+'K,' + '$(');
-    var strvar2 = ('!' + 'E5j)');
-    var strvar3 = ('¸' + '#Abh');
-    var strvar4 = ('ÀI@h<' + '!!ìB-I!=');
-    var strvar5 = ('9k'+'))'+'$.' + 'q#');
-    var strvar6 = '%!!³Eq.*nñ!k!EC';
-    var strvar7 = ('W' + 'Ù!$X');`,
-    `ary[ary.length-1] = -87;
-    ary.length = makeArrayLength(-8.43866054829988E+18);
-    var protoObj0 = Object.create(obj0);
-    var protoObj1 = Object.create(obj1);
-    this.prop0 = -623292620.9;
-    this.prop1 = -1254406185;
-    obj0.prop0 = 151;
-    obj0.prop1 = 489135893;
-    obj0.length = makeArrayLength(-1113295906);
-    protoObj0.prop0 = 148;
-    protoObj0.prop1 = -605601574;
-    protoObj0.length = makeArrayLength(-7.83529505692748E+18);
-    obj1.prop0 = -2147483647;
-    obj1.prop1 = -244;
-    obj1.length = makeArrayLength(-33);
-    protoObj1.prop0 = 4294967297;
-    protoObj1.prop1 = 741981196;
-    protoObj1.length = makeArrayLength(-1149117680);
-    arrObj0.prop0 = -7.59667554925958E+18;
-    arrObj0.prop1 = -1800363685;
-    arrObj0.length = makeArrayLength(1532946252.1);
-    obj1.prop4 = 2121304168;
-    IntArr0[0] = -1925033017;
-    IntArr0[3] = 1;
-    IntArr0[1] = -187077332;
-    IntArr0[2] = 235;
-    VarArr0[4] = 65537;`,
+    outdent`
+      var h = -1073741824;
+      var strvar0 = ('W' + 'Ù!$X');
+      var strvar1 = ('%#'+'ql'+'K,' + '$(');
+      var strvar2 = ('!' + 'E5j)');
+      var strvar3 = ('¸' + '#Abh');
+      var strvar4 = ('ÀI@h<' + '!!ìB-I!=');
+      var strvar5 = ('9k'+'))'+'$.' + 'q#');
+      var strvar6 = '%!!³Eq.*nñ!k!EC';
+      var strvar7 = ('W' + 'Ù!$X');
+    `,
+    outdent`
+      ary[ary.length-1] = -87;
+      ary.length = makeArrayLength(-8.43866054829988E+18);
+      var protoObj0 = Object.create(obj0);
+      var protoObj1 = Object.create(obj1);
+      this.prop0 = -623292620.9;
+      this.prop1 = -1254406185;
+      obj0.prop0 = 151;
+      obj0.prop1 = 489135893;
+      obj0.length = makeArrayLength(-1113295906);
+      protoObj0.prop0 = 148;
+      protoObj0.prop1 = -605601574;
+      protoObj0.length = makeArrayLength(-7.83529505692748E+18);
+      obj1.prop0 = -2147483647;
+      obj1.prop1 = -244;
+      obj1.length = makeArrayLength(-33);
+      protoObj1.prop0 = 4294967297;
+      protoObj1.prop1 = 741981196;
+      protoObj1.length = makeArrayLength(-1149117680);
+      arrObj0.prop0 = -7.59667554925958E+18;
+      arrObj0.prop1 = -1800363685;
+      arrObj0.length = makeArrayLength(1532946252.1);
+      obj1.prop4 = 2121304168;
+      IntArr0[0] = -1925033017;
+      IntArr0[3] = 1;
+      IntArr0[1] = -187077332;
+      IntArr0[2] = 235;
+      VarArr0[4] = 65537;
+    `,
     String.raw`     class class4 {
       constructor (argMath61 = obj0.prop1,argMath62,argMath63,...argArr64){
       }
@@ -15097,16 +15491,18 @@ let kTrapMsgs = [
     'IntArr1[(((reResult1.length >= 0 ? reResult1.length : 0)) & 0XF)] = obj0.prop0;',
     "var strvar9 = '3$|QÝ,!7);Á.,;*';",
     ' strvar9 = strvar9.substring((strvar9.length)/1,(strvar9.length)/2);',
-    `function x(argMath100 = (~ ary5[(((((shouldBailout ? (ary5[(((f64[((shouldBailout ? (argMath91 = { valueOf: function() { WScript.Echo('argMath91 valueOf'); return 3; } }, (i16[(236) & 255] ^ f)) : (i16[(236) & 255] ^ f))) & 255]) >= 0 ? ( f64[((shouldBailout ? (argMath91 = { valueOf: function() { WScript.Echo('argMath91 valueOf'); return 3; } }, (i16[(236) & 255] ^ f)) : (i16[(236) & 255] ^ f))) & 255]) : 0) & 0xF)] = 'x') : undefined ), f64[((shouldBailout ? (argMath91 = { valueOf: function() { WScript.Echo('argMath91 valueOf'); return 3; } }, (i16[(236) & 255] ^ f)) : (i16[(236) & 255] ^ f))) & 255]) >= 0 ? f64[((shouldBailout ? (argMath91 = { valueOf: function() { WScript.Echo('argMath91 valueOf'); return 3; } }, (i16[(236) & 255] ^ f)) : (i16[(236) & 255] ^ f))) & 255] : 0)) & 0XF)]),argMath101,argMath102 = (new class2()),argMath103){
-      strvar7 = strvar7.concat((1053672603.1 ? c : a));
-      message = fileName[2%fileName.length];
-      strvar5 = strvar5[6%strvar5.length];
-      var strvar11 = strvar1;
-      strvar5 = strvar11[2%strvar11.length];
-(Object.defineProperty(litObj1, 'prop1', {writable: true, enumerable: false, configurable: true }));
-      litObj1.prop1 = (protoObj1.prop0 = 48);
-      return 200421084;
-    }`,
+    outdent`
+      function x(argMath100 = (~ ary5[(((((shouldBailout ? (ary5[(((f64[((shouldBailout ? (argMath91 = { valueOf: function() { WScript.Echo('argMath91 valueOf'); return 3; } }, (i16[(236) & 255] ^ f)) : (i16[(236) & 255] ^ f))) & 255]) >= 0 ? ( f64[((shouldBailout ? (argMath91 = { valueOf: function() { WScript.Echo('argMath91 valueOf'); return 3; } }, (i16[(236) & 255] ^ f)) : (i16[(236) & 255] ^ f))) & 255]) : 0) & 0xF)] = 'x') : undefined ), f64[((shouldBailout ? (argMath91 = { valueOf: function() { WScript.Echo('argMath91 valueOf'); return 3; } }, (i16[(236) & 255] ^ f)) : (i16[(236) & 255] ^ f))) & 255]) >= 0 ? f64[((shouldBailout ? (argMath91 = { valueOf: function() { WScript.Echo('argMath91 valueOf'); return 3; } }, (i16[(236) & 255] ^ f)) : (i16[(236) & 255] ^ f))) & 255] : 0)) & 0XF)]),argMath101,argMath102 = (new class2()),argMath103){
+            strvar7 = strvar7.concat((1053672603.1 ? c : a));
+            message = fileName[2%fileName.length];
+            strvar5 = strvar5[6%strvar5.length];
+            var strvar11 = strvar1;
+            strvar5 = strvar11[2%strvar11.length];
+      (Object.defineProperty(litObj1, 'prop1', {writable: true, enumerable: false, configurable: true }));
+            litObj1.prop1 = (protoObj1.prop0 = 48);
+            return 200421084;
+          }
+    `,
     "strvar6 = strvar4.concat(VarArr0[(((((shouldBailout ? (VarArr0[(((721241264) >= 0 ? ( 721241264) : 0) & 0xF)] = 'x') : undefined ), 721241264) >= 0 ? 721241264 : 0)) & 0XF)]).concat(arguments[(((((b !== argMath90)||(b === h)) >= 0 ? ((b !== argMath90)||(b === h)) : 0)) & 0XF)]);",
     String.raw` class class14 {
       set func99 (argMath130 = (new class12())){
@@ -15160,95 +15556,112 @@ let kTrapMsgs = [
       }
     }`,
     "strvar4 = (('ÀI@h<' + '!!ìB-I!=').concat((typeof(protoObj1.prop1)  == 'object') )).replace(/a/g, strvar9) + ((typeof(arrObj0.prop1)  != 'undefined')  * ((6.99504535452666E+18 ? obj1.prop4 : protoObj1.prop0) - IntArr1[(((arrObj0.prop0 >= 0 ? arrObj0.prop0 : 0)) & 0XF)]));",
-    ` try {
-      var uniqobj29 = {prop0: ('3$|QÝ,!7);Á.,;*').replace(strvar1, strvar7), prop1: ((new class2()) * ('%!!³Eq.*nñ!k!EC'.indexOf(strvar7)) + ((typeof (argMath91 |= ((c >= obj1.prop4)||(argMath92 === argMath90)))) ? ary5.length : IntArr1[((shouldBailout ? (IntArr1[11] = 'x') : undefined ), 11)])), ["prop2"]: Object.create({prop0: VarArr0[((shouldBailout ? (VarArr0[6] = 'x') : undefined ), 6)]}, {})};
-      arrObj0 = protoObj1;
-    } catch({message, fileName, lineNumber}) {
-    } finally {
-      var strvar9 = strvar1;
-      strvar9 = strvar9.substring((strvar9.length)/4,(strvar9.length)/3);
-    }`,
-    `function bar() {
-      function foo() {
-          function baz() {
-              function onemorefoo() {
-                  return x;
-              }
-              return onemorefoo();
-          }
-          return baz();
+    outdent`
+      try {
+        var uniqobj29 = {prop0: ('3$|QÝ,!7);Á.,;*').replace(strvar1, strvar7), prop1: ((new class2()) * ('%!!³Eq.*nñ!k!EC'.indexOf(strvar7)) + ((typeof (argMath91 |= ((c >= obj1.prop4)||(argMath92 === argMath90)))) ? ary5.length : IntArr1[((shouldBailout ? (IntArr1[11] = 'x') : undefined ), 11)])), ["prop2"]: Object.create({prop0: VarArr0[((shouldBailout ? (VarArr0[6] = 'x') : undefined ), 6)]}, {})};
+        arrObj0 = protoObj1;
+      } catch({message, fileName, lineNumber}) {
+      } finally {
+        var strvar9 = strvar1;
+        strvar9 = strvar9.substring((strvar9.length)/4,(strvar9.length)/3);
       }
-      return foo();
-  }`,
-    `function foo() {
-      var n = (function() {
-          var x = 'x';
-          var l = () => {
-              var x = 'y';
-              return function() {
-                  return x;
+    `,
+    outdent`
+      function bar() {
+          function foo() {
+              function baz() {
+                  function onemorefoo() {
+                      return x;
+                  }
+                  return onemorefoo();
               }
+              return baz();
           }
-          return l;
-      })()
-      return n()();
-  }`,
-    ` var o = {
-      method(s) { return x; },
-      get method2() { return x; },
-      ['method3'](arg) { return x; },
-      get ['method4']() { return x; },
-      async method5(s) { return x; },
-      *method6(s) { yield x; },
-      *['method7'](s) { yield x; },
-      async ['method8'](s) { return x; },
-      f8: function() { return x; },
-      f9: () => { return x; }
-  }`,
-    `async function af1(a) {
-      return await foo();
-  }`,
-    `
-    function overrideImports(overrides) {
-      return {
-        test: Object.assign({}, imports.test, overrides),
-        table: overrides.table ? {"":overrides.table} : imports.table
-      };
-    }`,
-    `const invalidBuffers = [
-      ,
-      "",
-      "123",
-      4568,
-      {},
-      {length: 15},
-      function() {},
-      new ArrayBuffer(),
-      createView("\\x00\\x61\\x73\\x6d\\x01\\x00\\x00\\x00\\x01\\x85\\x80\\x80"),
-      new Proxy(buf, {get(target, name) {return target[name];}}),
-    ];`,
-    `async function testValidate() {
-      console.log("ghost.validate tests");
-      await testInvalidCases([
-        // Invalid buffer source
-        ...(invalidBuffers.map(b => () => {
-          if (!x.validate(b)) {
-            throw new Error("Buffer source is the right type, but doesn't validate");
-          }
-        })),
-      ]);
-      // Make sure empty buffer doesn't validate and doesn't throw
-      const emptyBuffer = new ArrayBuffer();
-    }`,
-    `async function testModuleConstructor() {
-      await testInvalidCases([
-        () => x.y(),
-        () => x.y(buf),
-        ...(invalidBuffers.map(b => () => new x.y(b))),
-      ]);
-      const module = new x.y(buf);
-      test(module);
-    }`,
+          return foo();
+      }
+    `,
+    outdent`
+      function foo() {
+          var n = (function() {
+              var x = 'x';
+              var l = () => {
+                  var x = 'y';
+                  return function() {
+                      return x;
+                  }
+              }
+              return l;
+          })()
+          return n()();
+      }
+    `,
+    outdent`
+      var o = {
+          method(s) { return x; },
+          get method2() { return x; },
+          ['method3'](arg) { return x; },
+          get ['method4']() { return x; },
+          async method5(s) { return x; },
+          *method6(s) { yield x; },
+          *['method7'](s) { yield x; },
+          async ['method8'](s) { return x; },
+          f8: function() { return x; },
+          f9: () => { return x; }
+      }
+    `,
+    outdent`
+      async function af1(a) {
+          return await foo();
+      }
+    `,
+    outdent`
+      function overrideImports(overrides) {
+        return {
+          test: Object.assign({}, imports.test, overrides),
+          table: overrides.table ? {"":overrides.table} : imports.table
+        };
+      }
+    `,
+    outdent`
+      const invalidBuffers = [
+        ,
+        "",
+        "123",
+        4568,
+        {},
+        {length: 15},
+        function() {},
+        new ArrayBuffer(),
+        createView("\\x00\\x61\\x73\\x6d\\x01\\x00\\x00\\x00\\x01\\x85\\x80\\x80"),
+        new Proxy(buf, {get(target, name) {return target[name];}}),
+      ];
+    `,
+    outdent`
+      async function testValidate() {
+        console.log("ghost.validate tests");
+        await testInvalidCases([
+          // Invalid buffer source
+          ...(invalidBuffers.map(b => () => {
+            if (!x.validate(b)) {
+              throw new Error("Buffer source is the right type, but doesn't validate");
+            }
+          })),
+        ]);
+        // Make sure empty buffer doesn't validate and doesn't throw
+        const emptyBuffer = new ArrayBuffer();
+      }
+    `,
+    outdent`
+      async function testModuleConstructor() {
+        await testInvalidCases([
+          () => x.y(),
+          () => x.y(buf),
+          ...(invalidBuffers.map(b => () => new x.y(b))),
+        ]);
+        const module = new x.y(buf);
+        test(module);
+      }
+    `,
     '.24e9',
     '0B00',
     '0x0',
@@ -15276,31 +15689,37 @@ let kTrapMsgs = [
     '3.42E9',
     'Async                          = 0x10000',
     'a = 1 << 12',
-    `HASH_NAME(assert, 0x08D130F2, 0x08D130F2)
-    HASH_NAME(async, 0x0084CDEE, 0x0084CDEE)
-    HASH_NAME(await, 0x0084FF56, 0x0084FF56)
-    HASH_NAME(boolean, 0x96F94400, 0x96F94400)`,
-    `var gen = async function *g() {
-      callCount += 1;
-      yield {
-           ...yield yield,
-           ...(function(arg) {
-              var yield = arg;
-              return {...yield};
-           }(yield)),
-           ...yield,
+    outdent`
+      HASH_NAME(assert, 0x08D130F2, 0x08D130F2)
+      HASH_NAME(async, 0x0084CDEE, 0x0084CDEE)
+      HASH_NAME(await, 0x0084FF56, 0x0084FF56)
+      HASH_NAME(boolean, 0x96F94400, 0x96F94400)
+    `,
+    outdent`
+      var gen = async function *g() {
+        callCount += 1;
+        yield {
+            ...yield yield,
+            ...(function(arg) {
+                var yield = arg;
+                return {...yield};
+            }(yield)),
+            ...yield,
+          }
+      };
+    `,
+    outdent`
+      for (vqqhhkflvdijrns in ((x) ? (class extends ((((void (((function* k() {
+      }) << ((((++k)))))))))) {
+        [arguments](dl, w, i, p, l) {
+          "use strict";
         }
-    };`,
-    `for (vqqhhkflvdijrns in ((x) ? (class extends ((((void (((function* k() {
-    }) << ((((++k)))))))))) {
-      [arguments](dl, w, i, p, l) {
-        "use strict";
-      }
-    }) : ((this)))) for (; ((this)); ((class jtpexjm extends class {}(((false) / true), ...(9.584997788965455e152), n ++) {
-      static get [(2e308)]() {
-      }
+      }) : ((this)))) for (; ((this)); ((class jtpexjm extends class {}(((false) / true), ...(9.584997788965455e152), n ++) {
+        static get [(2e308)]() {
+        }
 
-    })[((true))])) continue;`,
+      })[((true))])) continue;
+    `,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
