@@ -663,9 +663,9 @@ exports[`Expressions - Async > Expressions - Async (pass) > async foo => bar; 1`
 `;
 
 exports[`Expressions - Async > Expressions - Async (pass) > async function test(){
-        const someVar = null;
-        async foo => {}
-      } 1`] = `
+  const someVar = null;
+  async foo => {}
+} 1`] = `
 {
   "body": [
     {
@@ -726,9 +726,9 @@ exports[`Expressions - Async > Expressions - Async (pass) > async function test(
 `;
 
 exports[`Expressions - Async > Expressions - Async (pass) > async function test(){
-        const someVar = null;
-        const done = async foo => {}
-      } 1`] = `
+  const someVar = null;
+  const done = async foo => {}
+} 1`] = `
 {
   "body": [
     {
@@ -1441,11 +1441,11 @@ exports[`Expressions - Async > Expressions - Async (pass) > class x {async foo()
 `;
 
 exports[`Expressions - Async > Expressions - Async (pass) > const a = {
-        foo: () => {
-        },
-        bar: async event => {
-        }
-      } 1`] = `
+  foo: () => {
+  },
+  bar: async event => {
+  }
+} 1`] = `
 {
   "body": [
     {
@@ -1522,21 +1522,20 @@ exports[`Expressions - Async > Expressions - Async (pass) > const a = {
 `;
 
 exports[`Expressions - Async > Expressions - Async (pass) > const a = {
-        foo: () => {
-        },
-        bar: async event => {
-        },
-        baz: async event => {
-        }
-      }
+  foo: () => {
+  },
+  bar: async event => {
+  },
+  baz: async event => {
+  }
+}
 
-      const a = {
-        foo: () => {
-        },
-        bar: async event => {
-        }
-      }
-       1`] = `
+const a = {
+  foo: () => {
+  },
+  bar: async event => {
+  }
+} 1`] = `
 {
   "body": [
     {
@@ -1707,7 +1706,7 @@ exports[`Expressions - Async > Expressions - Async (pass) > const a = {
 `;
 
 exports[`Expressions - Async > Expressions - Async (pass) > const someVar = null;
-          const done = async foo => {} 1`] = `
+const done = async foo => {} 1`] = `
 {
   "body": [
     {

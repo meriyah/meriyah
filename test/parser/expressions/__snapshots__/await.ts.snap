@@ -403,27 +403,27 @@ exports[`Expressions - Await > Expressions - Await (fail) > async function af(a,
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async function f() {
-      let [await b] = [];
-      return b;
-    } 1`] = `
-"SyntaxError [2:20-2:21]: The binding declaration is not destructible
+  let [await b] = [];
+  return b;
+} 1`] = `
+"SyntaxError [2:16-2:17]: The binding declaration is not destructible
   1 | async function f() {
-> 2 |       let [await b] = [];
-    |                     ^ The binding declaration is not destructible
-  3 |       return b;
-  4 |     }"
+> 2 |   let [await b] = [];
+    |                 ^ The binding declaration is not destructible
+  3 |   return b;
+  4 | }"
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async function f() {
-      let { a: await b } = { a: 1 };
-      return b;
-    } 1`] = `
-"SyntaxError [2:25-2:26]: The binding declaration is not destructible
+  let { a: await b } = { a: 1 };
+  return b;
+} 1`] = `
+"SyntaxError [2:21-2:22]: The binding declaration is not destructible
   1 | async function f() {
-> 2 |       let { a: await b } = { a: 1 };
-    |                          ^ The binding declaration is not destructible
-  3 |       return b;
-  4 |     }"
+> 2 |   let { a: await b } = { a: 1 };
+    |                      ^ The binding declaration is not destructible
+  3 |   return b;
+  4 | }"
 `;
 
 exports[`Expressions - Await > Expressions - Await (fail) > async function f() { function g() { await 3; } } 1`] = `

@@ -4811,13 +4811,13 @@ exports[`Expressions - Group > Expressions - Group (pass) > ([x].length) = y 1`]
 `;
 
 exports[`Expressions - Group > Expressions - Group (pass) > ({
-      a,
-      a:a,
-      a:a=a,
-      [a]:{a},
-      a:some_call()[a],
-      a:this.a
-  } = 0); 1`] = `
+    a,
+    a:a,
+    a:a=a,
+    [a]:{a},
+    a:some_call()[a],
+    a:this.a
+} = 0); 1`] = `
 {
   "body": [
     {

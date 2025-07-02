@@ -1773,11 +1773,11 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > var af = package => 
 `;
 
 exports[`Expressions - Arrow > Expressions - Array (fail) > var af = x
-    => {}; 1`] = `
-"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+=> {}; 1`] = `
+"SyntaxError [2:0-2:2]: No line break is allowed after '=>'
   1 | var af = x
-> 2 |     => {};
-    |     ^^ No line break is allowed after '=>'"
+> 2 | => {};
+    | ^^ No line break is allowed after '=>'"
 `;
 
 exports[`Expressions - Arrow > Expressions - Array (fail) > var af = yield => 1; 1`] = `

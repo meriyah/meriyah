@@ -1719,7 +1719,7 @@ foo 1`] = `
 `;
 
 exports[`Declarations - Var > Declarations - Var (pass) > var [ a, , b ] = list
-  [ b, a ] = [ a, b ] 1`] = `
+[ b, a ] = [ a, b ] 1`] = `
 {
   "body": [
     {
@@ -3785,20 +3785,20 @@ exports[`Declarations - Var > Declarations - Var (pass) > var await = { await } 
 `;
 
 exports[`Declarations - Var > Declarations - Var (pass) > var f0 = function (a, b = a, c = b) {
-        return [a, b, c];
-      };
+  return [a, b, c];
+};
 
-      expect(f0(1)).toEqual([1, 1, 1]);
+expect(f0(1)).toEqual([1, 1, 1]);
 
-      var f1 = function ({a}, b = a, c = b) {
-        return [a, b, c];
-      };
+var f1 = function ({a}, b = a, c = b) {
+  return [a, b, c];
+};
 
-      expect(f1({a: 1})).toEqual([1, 1, 1]);
+expect(f1({a: 1})).toEqual([1, 1, 1]);
 
-      var f2 = function ({a}, b = a, c = a) {
-        return [a, b, c];
-      }; 1`] = `
+var f2 = function ({a}, b = a, c = a) {
+  return [a, b, c];
+}; 1`] = `
 {
   "body": [
     {

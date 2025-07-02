@@ -1684,11 +1684,135 @@ exports[`Declarations - const > Declarations - const (pass) > const [foo] = x, [
 `;
 
 exports[`Declarations - const > Declarations - const (pass) > const {
-          a = ({ ...rest }) => {
-            let { ...b } = {};
+  [({ ...rest }) => {
+    let { ...b } = {};
+  }]: a,
+  [({ ...d } = {})]: c,
+} = {}; 1`] = `
+{
+  "body": [
+    {
+      "declarations": [
+        {
+          "id": {
+            "properties": [
+              {
+                "computed": true,
+                "key": {
+                  "async": false,
+                  "body": {
+                    "body": [
+                      {
+                        "declarations": [
+                          {
+                            "id": {
+                              "properties": [
+                                {
+                                  "argument": {
+                                    "name": "b",
+                                    "type": "Identifier",
+                                  },
+                                  "type": "RestElement",
+                                },
+                              ],
+                              "type": "ObjectPattern",
+                            },
+                            "init": {
+                              "properties": [],
+                              "type": "ObjectExpression",
+                            },
+                            "type": "VariableDeclarator",
+                          },
+                        ],
+                        "kind": "let",
+                        "type": "VariableDeclaration",
+                      },
+                    ],
+                    "type": "BlockStatement",
+                  },
+                  "expression": false,
+                  "generator": false,
+                  "params": [
+                    {
+                      "properties": [
+                        {
+                          "argument": {
+                            "name": "rest",
+                            "type": "Identifier",
+                          },
+                          "type": "RestElement",
+                        },
+                      ],
+                      "type": "ObjectPattern",
+                    },
+                  ],
+                  "type": "ArrowFunctionExpression",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "name": "a",
+                  "type": "Identifier",
+                },
+              },
+              {
+                "computed": true,
+                "key": {
+                  "left": {
+                    "properties": [
+                      {
+                        "argument": {
+                          "name": "d",
+                          "type": "Identifier",
+                        },
+                        "type": "RestElement",
+                      },
+                    ],
+                    "type": "ObjectPattern",
+                  },
+                  "operator": "=",
+                  "right": {
+                    "properties": [],
+                    "type": "ObjectExpression",
+                  },
+                  "type": "AssignmentExpression",
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "type": "Property",
+                "value": {
+                  "name": "c",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "type": "ObjectPattern",
           },
-          c = ({ ...d } = {}),
-        } = {}; 1`] = `
+          "init": {
+            "properties": [],
+            "type": "ObjectExpression",
+          },
+          "type": "VariableDeclarator",
+        },
+      ],
+      "kind": "const",
+      "type": "VariableDeclaration",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Declarations - const > Declarations - const (pass) > const {
+  a = ({ ...rest }) => {
+    let { ...b } = {};
+  },
+  c = ({ ...d } = {}),
+} = {}; 1`] = `
 {
   "body": [
     {
@@ -1800,130 +1924,6 @@ exports[`Declarations - const > Declarations - const (pass) > const {
                     "type": "AssignmentExpression",
                   },
                   "type": "AssignmentPattern",
-                },
-              },
-            ],
-            "type": "ObjectPattern",
-          },
-          "init": {
-            "properties": [],
-            "type": "ObjectExpression",
-          },
-          "type": "VariableDeclarator",
-        },
-      ],
-      "kind": "const",
-      "type": "VariableDeclaration",
-    },
-  ],
-  "sourceType": "script",
-  "type": "Program",
-}
-`;
-
-exports[`Declarations - const > Declarations - const (pass) > const {
-        [({ ...rest }) => {
-          let { ...b } = {};
-        }]: a,
-        [({ ...d } = {})]: c,
-      } = {}; 1`] = `
-{
-  "body": [
-    {
-      "declarations": [
-        {
-          "id": {
-            "properties": [
-              {
-                "computed": true,
-                "key": {
-                  "async": false,
-                  "body": {
-                    "body": [
-                      {
-                        "declarations": [
-                          {
-                            "id": {
-                              "properties": [
-                                {
-                                  "argument": {
-                                    "name": "b",
-                                    "type": "Identifier",
-                                  },
-                                  "type": "RestElement",
-                                },
-                              ],
-                              "type": "ObjectPattern",
-                            },
-                            "init": {
-                              "properties": [],
-                              "type": "ObjectExpression",
-                            },
-                            "type": "VariableDeclarator",
-                          },
-                        ],
-                        "kind": "let",
-                        "type": "VariableDeclaration",
-                      },
-                    ],
-                    "type": "BlockStatement",
-                  },
-                  "expression": false,
-                  "generator": false,
-                  "params": [
-                    {
-                      "properties": [
-                        {
-                          "argument": {
-                            "name": "rest",
-                            "type": "Identifier",
-                          },
-                          "type": "RestElement",
-                        },
-                      ],
-                      "type": "ObjectPattern",
-                    },
-                  ],
-                  "type": "ArrowFunctionExpression",
-                },
-                "kind": "init",
-                "method": false,
-                "shorthand": false,
-                "type": "Property",
-                "value": {
-                  "name": "a",
-                  "type": "Identifier",
-                },
-              },
-              {
-                "computed": true,
-                "key": {
-                  "left": {
-                    "properties": [
-                      {
-                        "argument": {
-                          "name": "d",
-                          "type": "Identifier",
-                        },
-                        "type": "RestElement",
-                      },
-                    ],
-                    "type": "ObjectPattern",
-                  },
-                  "operator": "=",
-                  "right": {
-                    "properties": [],
-                    "type": "ObjectExpression",
-                  },
-                  "type": "AssignmentExpression",
-                },
-                "kind": "init",
-                "method": false,
-                "shorthand": false,
-                "type": "Property",
-                "value": {
-                  "name": "c",
-                  "type": "Identifier",
                 },
               },
             ],
@@ -2899,13 +2899,13 @@ exports[`Declarations - const > Declarations - const (pass) > for (const {x : y,
 `;
 
 exports[`Declarations - const > Declarations - const (pass) > let {
-                a: [b, ...arrayRest],
-                c = function(...functionRest){},
-                ...objectRest
-              } = {
-                a: [1, 2, 3, 4],
-                d: "oyez"
-              }; 1`] = `
+  a: [b, ...arrayRest],
+  c = function(...functionRest){},
+  ...objectRest
+} = {
+  a: [1, 2, 3, 4],
+  d: "oyez"
+}; 1`] = `
 {
   "body": [
     {

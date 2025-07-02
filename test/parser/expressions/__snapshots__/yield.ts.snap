@@ -6230,10 +6230,10 @@ exports[`Expressions - Yield > Expressions - Yield (pass) > function *f({x: x}) 
 `;
 
 exports[`Expressions - Yield > Expressions - Yield (pass) > function *f1() {
-      function g() {
-        return yield / 1;
-      }
-    } 1`] = `
+  function g() {
+    return yield / 1;
+  }
+} 1`] = `
 {
   "body": [
     {
@@ -10703,9 +10703,9 @@ exports[`Expressions - Yield > Expressions - Yield (pass) > function* f(){ yield
 `;
 
 exports[`Expressions - Yield > Expressions - Yield (pass) > function* fn() {
-      () => yield;
-      () => { yield };
-    }  1`] = `
+  () => yield;
+  () => { yield };
+} 1`] = `
 {
   "body": [
     {
@@ -11269,14 +11269,14 @@ exports[`Expressions - Yield > Expressions - Yield (pass) > function* g(){(class
 `;
 
 exports[`Expressions - Yield > Expressions - Yield (pass) > function* g(a, b, c, d) {
-      arguments[0] = 32;
-      arguments[1] = 54;
-      arguments[2] = 333;
-      yield a;
-      yield b;
-      yield c;
-      yield d;
-    } 1`] = `
+  arguments[0] = 32;
+  arguments[1] = 54;
+  arguments[2] = 333;
+  yield a;
+  yield b;
+  yield c;
+  yield d;
+} 1`] = `
 {
   "body": [
     {
@@ -13170,18 +13170,18 @@ exports[`Expressions - Yield > Expressions - Yield (pass) > function* gf() { yie
 `;
 
 exports[`Expressions - Yield > Expressions - Yield (pass) > function* gf1 () {
-        yield 10;
-        yield 20;
-        yield 30;
+    yield 10;
+    yield 20;
+    yield 30;
 
-        function a() { }
-        function b() { }
-        function c() { }
+    function a() { }
+    function b() { }
+    function c() { }
 
-        yield a();
+    yield a();
 
-        yield b() + (yield c());
-    } 1`] = `
+    yield b() + (yield c());
+} 1`] = `
 {
   "body": [
     {

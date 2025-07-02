@@ -133,15 +133,15 @@ exports[`Expressions - Object > Expressions - Object (fail) > ([x]) = 0 1`] = `
 `;
 
 exports[`Expressions - Object > Expressions - Object (fail) > ({
-      async
-      foo() {}
-  }) 1`] = `
-"SyntaxError [3:6-3:9]: Async methods are a restricted production and cannot have a newline following it
+    async
+    foo() {}
+}) 1`] = `
+"SyntaxError [3:4-3:7]: Async methods are a restricted production and cannot have a newline following it
   1 | ({
-  2 |       async
-> 3 |       foo() {}
-    |       ^^^ Async methods are a restricted production and cannot have a newline following it
-  4 |   })"
+  2 |     async
+> 3 |     foo() {}
+    |     ^^^ Async methods are a restricted production and cannot have a newline following it
+  4 | })"
 `;
 
 exports[`Expressions - Object > Expressions - Object (fail) > ({  async 0 : 0 }) 1`] = `
