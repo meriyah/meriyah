@@ -7863,26 +7863,21 @@ function parseClassBody(
 
   const body: (ESTree.MethodDefinition | ESTree.PropertyDefinition | ESTree.AccessorProperty | ESTree.StaticBlock)[] =
     [];
-  let decorators: ESTree.Decorator[];
-  const decoratorStart = parser.tokenStart;
 
   while (parser.getToken() !== Token.RightBrace) {
-    let length = 0;
-
     // See: https://github.com/tc39/proposal-decorators
 
-    decorators = parseDecorators(parser, context, privateScope);
+    const decoratorStart = parser.tokenStart;
+    const decorators = parseDecorators(parser, context, privateScope);
 
-    length = decorators.length;
-
-    if (length > 0 && parser.tokenValue === 'constructor') {
+    if (decorators.length > 0 && parser.tokenValue === 'constructor') {
       parser.report(Errors.GeneratorConstructor);
     }
 
     if (parser.getToken() === Token.RightBrace) parser.report(Errors.TrailingDecorators);
 
     if (consumeOpt(parser, context, Token.Semicolon)) {
-      if (length > 0) parser.report(Errors.InvalidDecoratorSemicolon);
+      if (decorators.length > 0) parser.report(Errors.InvalidDecoratorSemicolon);
       continue;
     }
     body.push(
@@ -7896,7 +7891,7 @@ function parseClassBody(
         decorators,
         0,
         inGroup,
-        length > 0 ? decoratorStart : parser.tokenStart,
+        decorators.length > 0 ? decoratorStart : parser.tokenStart,
       ),
     );
   }
