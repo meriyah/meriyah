@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Expressions - New', () => {
   for (const arg of [
@@ -91,12 +92,14 @@ describe('Expressions - New', () => {
     'function *f(){ new yield x(); }',
     'new x++',
     'new x.y++',
-    `function f() {
-      new.target++;
-      new.target = b;
-      for (new.target in b);
-      for (new.target of b);
-    }`,
+    outdent`
+      function f() {
+        new.target++;
+        new.target = b;
+        for (new.target in b);
+        for (new.target of b);
+      }
+    `,
     'new async x => x',
     'new async => x',
     'let x = typeof async (x) => x',

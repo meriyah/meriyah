@@ -609,73 +609,87 @@ describe('Expressions - Async arrow', () => {
     'f(a, async b => await b)',
     'async (x, y) => { x * y }',
     'async (x, y) => y',
-    `async function test(){
-      const someVar = null;
-      const done = async foo => {}
-    }`,
-    `const a = {
-      foo: () => {
-      },
-      bar: async event => {
+    outdent`
+      async function test(){
+        const someVar = null;
+        const done = async foo => {}
       }
-    }
-    async function test(a = {
-      foo: () => {
-      },
-      bar: async event => {
+    `,
+    outdent`
+      const a = {
+        foo: () => {
+        },
+        bar: async event => {
+        }
       }
-    }) {
-      const someVar = null;
-      const done1 = async foo => {
-        const a = {
-          foo: () => {
-          },
-          bar: async event => {
+      async function test(a = {
+        foo: () => {
+        },
+        bar: async event => {
+        }
+      }) {
+        const someVar = null;
+        const done1 = async foo => {
+          const a = {
+            foo: () => {
+            },
+            bar: async event => {
+            }
           }
         }
-      }
-      async function test(){
-        const someVar = null;
-        const done2 = async foo => {}
-        const finished = async foo => {}
-      }
-    }`,
-    `async function test() {
-      const someVar = null;
-      const done1 = async foo => {}
-      async function test(){
-        const someVar = null;
-        const done2 = async foo => {}
-        const finished = async foo => {}
-      }
-    }`,
-    `async function test(){
-      const someVar = null;
-      x = 123 / 1 - 3;
-      const done1 = async foo => {
-        x = 123 / 1 - 3;
-        nchanged = null;
-        async (foo) => {}
-      }
-      async function test(){
-        const someVar = null;
-        const done = async foo => {
-          nchanged = null;
+        async function test(){
+          const someVar = null;
+          const done2 = async foo => {}
           const finished = async foo => {}
         }
-        const finished = async foo => {}
       }
-    }`,
-    `const done1 = async foo => {}
-    const someVar = null;
-     const done2 = async foo => {}`,
-    `someVar = null;
-     someVar = 123;
-     someVar = 'nchanged';
-      async foo => {}`,
+    `,
+    outdent`
+      async function test() {
+        const someVar = null;
+        const done1 = async foo => {}
+        async function test(){
+          const someVar = null;
+          const done2 = async foo => {}
+          const finished = async foo => {}
+        }
+      }
+    `,
+    outdent`
+      async function test(){
+        const someVar = null;
+        x = 123 / 1 - 3;
+        const done1 = async foo => {
+          x = 123 / 1 - 3;
+          nchanged = null;
+          async (foo) => {}
+        }
+        async function test(){
+          const someVar = null;
+          const done = async foo => {
+            nchanged = null;
+            const finished = async foo => {}
+          }
+          const finished = async foo => {}
+        }
+      }
+    `,
+    outdent`
+      const done1 = async foo => {}
+      const someVar = null;
+      const done2 = async foo => {}
+    `,
+    outdent`
+      someVar = null;
+      someVar = 123;
+      someVar = 'nchanged';
+      async foo => {}
+    `,
     `const done3 = async foo => { const done = async foo => { const done5 = async foo => {}} }`,
-    `x in nchanged;
-        const done4 = async foo => {}`,
+    outdent`
+      x in nchanged;
+      const done4 = async foo => {}
+    `,
     'async (y) => y',
     'async (x, ...y) => x',
     'async (x,y,) => x',
@@ -829,10 +843,14 @@ describe('Expressions - Async arrow', () => {
     '(async(a, b, ...c) => await 1)',
     '() => (async(foo, { a = NaN }) => foo + a)("1", { a: "0" })',
     '() => (async(foo, { a = "0" }) => foo + a)("2", { a: undefined })',
-    `async x => {}
-     async (x) =>  {}`,
-    `async (x) =>  {}
-     async x => {}`,
+    outdent`
+      async x => {}
+      async (x) =>  {}
+    `,
+    outdent`
+      async (x) =>  {}
+      async x => {}
+    `,
     'var f = cond ? x=>{x.foo } : x=>x + x + x + x + x + x + (x =>x)',
   ]) {
     it(`${arg};`, () => {

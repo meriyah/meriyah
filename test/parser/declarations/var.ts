@@ -286,14 +286,16 @@ describe('Declarations - Var', () => {
     'var [[...x] = function() { initCount += 1; }()] = [[2, 1, 3]];',
     'var [[x]] = [null];',
     'var [cls = class {}, xCls = class X {}, xCls2 = class { static name() {} }] = [];',
-    `var first = 0;
-    var second = 0;
-    function* g() {
-      first += 1;
-      yield;
-      second += 1;
-    };
-    var [,] = g();`,
+    outdent`
+      var first = 0;
+      var second = 0;
+      function* g() {
+        first += 1;
+        yield;
+        second += 1;
+      };
+      var [,] = g();
+    `,
     'var { x, } = { x: 23 };',
     'var { w: [x, y, z] = [4, 5, 6] } = {};',
     'var { w: [x, y, z] = [4, 5, 6] } = { w: [7, undefined, ] };',
@@ -607,19 +609,21 @@ describe('Declarations - Var', () => {
     'var x = -1;',
     'var {[a]: [b]} = c',
     'var {[a]: b} = c',
-    `try{
-      try {
-        var intry__intry__var;
-      } catch (e) {
-        var intry__incatch__var;
-      }
-  }catch(e){
-      try {
-        var incatch__intry__var;
-      } catch (e) {
-          var incatch__incatch__var;
-      }
-  };`,
+    outdent`
+      try{
+          try {
+            var intry__intry__var;
+          } catch (e) {
+            var intry__incatch__var;
+          }
+      }catch(e){
+          try {
+            var incatch__intry__var;
+          } catch (e) {
+              var incatch__incatch__var;
+          }
+      };
+    `,
     'var {a: [b]} = c',
   ]) {
     it(`${arg}`, () => {
@@ -826,7 +830,8 @@ describe('Declarations - Var', () => {
     { code: 'var {a: x, b: x} = {a: 4, b: 5};', options: { ranges: true } },
     'var x = {a: 4, b: (x = 5)};',
     'var foo = {}; foo.if;',
-    `var f0 = function (a, b = a, c = b) {
+    outdent`
+      var f0 = function (a, b = a, c = b) {
         return [a, b, c];
       };
 
@@ -840,7 +845,8 @@ describe('Declarations - Var', () => {
 
       var f2 = function ({a}, b = a, c = a) {
         return [a, b, c];
-      };`,
+      };
+    `,
     { code: 'var foo = {}; foo.super;', options: { ranges: true } },
     'var foo = {}; foo.interface;',
     'var foo = {}; foo.arguments;',
@@ -879,8 +885,10 @@ describe('Declarations - Var', () => {
       `,
       options: { ranges: true },
     },
-    `var [ a, , b ] = list
-  [ b, a ] = [ a, b ]`,
+    outdent`
+      var [ a, , b ] = list
+      [ b, a ] = [ a, b ]
+    `,
     'var x, {y} = obj;',
     'var {x = y} = obj;',
     { code: 'var {x = y, z} = obj;', options: { ranges: true } },

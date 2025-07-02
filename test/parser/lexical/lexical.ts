@@ -242,19 +242,27 @@ describe('Lexical - Lexical', () => {
 
   for (const arg of [
     'var x; for (;;) { let x; }',
-    `var x; for (;;) { let x; }
-    var x; for (;;) { let x; }`,
-    `for (;;) { let x; } var x;
-    for (;;) { let x; } var x;`,
-    `for (var x;;) { let x; }
-    for (var x;;) { let x; }`,
+    outdent`
+      var x; for (;;) { let x; }
+      var x; for (;;) { let x; }
+    `,
+    outdent`
+      for (;;) { let x; } var x;
+      for (;;) { let x; } var x;
+    `,
+    outdent`
+      for (var x;;) { let x; }
+      for (var x;;) { let x; }
+    `,
     'for (;;) { let x; } var x;',
     'for (var x;;) { let x; }',
     '{ let x } var x;',
     'var foo, foo;',
     'let x = 1; x = 2;',
-    `{ var {foo} = {foo: a}; };
-    { var {foo} = {foo: a}; };`,
+    outdent`
+      { var {foo} = {foo: a}; };
+      { var {foo} = {foo: a}; };
+    `,
     `{ var {foo=a} = {}; };`,
     `{ var foo = a; };`,
     `{ var {foo} = {foo: a}; };`,
@@ -301,19 +309,21 @@ describe('Lexical - Lexical', () => {
     'let a; [a, a] = [];',
     'var a; [a, a] = [];',
     'let x = 1; x = 2;',
-    `try{
-      try {
-        var intry__intry__var;
-      } catch (e) {
-        var intry__incatch__var;
-      }
-  }catch(e){
-      try {
-        var incatch__intry__var;
-      } catch (e) {
-          var incatch__incatch__var;
-      }
-  };`,
+    outdent`
+      try{
+          try {
+            var intry__intry__var;
+          } catch (e) {
+            var intry__incatch__var;
+          }
+      }catch(e){
+          try {
+            var incatch__intry__var;
+          } catch (e) {
+              var incatch__incatch__var;
+          }
+      };
+    `,
     'let { x : x0 = 0, y : { z : z1 = 1 }, x : x1 = 5} = o;',
     'var __v_10 = one + 1; { let __v_10 = one + 3; function __f_6() { one; __v_10; } __f_6(); }',
     'let foo = 1; function lazy() { foo = 2; } lazy(); my_global = foo;',

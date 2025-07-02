@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Expressions - Await', () => {
   for (const arg of [
@@ -381,14 +382,18 @@ describe('Expressions - Await', () => {
 
   fail('Expressions - Await (fail)', [
     'await f();',
-    `async function f() {
-      let [await b] = [];
-      return b;
-    }`,
-    `async function f() {
-      let { a: await b } = { a: 1 };
-      return b;
-    }`,
+    outdent`
+      async function f() {
+        let [await b] = [];
+        return b;
+      }
+    `,
+    outdent`
+      async function f() {
+        let { a: await b } = { a: 1 };
+        return b;
+      }
+    `,
     { code: 'var await = 5;', options: { module: true } },
     { code: 'await;', options: { module: true } },
     { code: 'function f() { await 5; }', options: { module: true } },
@@ -732,10 +737,12 @@ describe('Expressions - Await', () => {
     'function f() { var await; }',
     'function call(foo=await){}',
     'function call(await){}',
-    `async function f() {
+    outdent`
+      async function f() {
         let { [await "a"]: a } = { a: 1 };
         return a;
-      }`,
+      }
+    `,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

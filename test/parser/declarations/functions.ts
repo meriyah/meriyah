@@ -448,10 +448,12 @@ describe('Declarations - Function', () => {
     'function arguments(eval) { eval = arguments; function foo() { "use strict"; } }',
     'function arguments(eval) { eval = arguments; function foo() { "use strict"; } "use strict"; }',
     'function arguments(eval) { function foo() { "use strict"; } eval = arguments;  }',
-    `function a() {
-      return 'hello \
-          world';
-    }`,
+    outdent`
+      function a() {
+        return 'hello \
+            world';
+      }
+    `,
     'function f([x]) {}',
     'function f([[,] = g()]) {}',
     'function f([[...x] = function() {}()]) {}',
@@ -465,23 +467,27 @@ describe('Declarations - Function', () => {
     'function f({ w: { x, y, z } = { x: 4, y: 5, z: 6 } } = { w: { x: undefined, z: 7 } }) {}',
     'function f({ x, }) {}',
     'function f({ w: { x, y, z } = { x: 4, y: 5, z: 6 } }) {}',
-    `function
-    x
-    (
-    )
-    {
-    }
-    ;`,
-    `function                                                    y                                   (                                          )                                              {};
-    y();
+    outdent`
+      function
+      x
+      (
+      )
+      {
+      }
+      ;
     `,
-    `function
-    z
-    (
-    )
-    {
-    }
-    ;
+    outdent`
+      function                                                    y                                   (                                          )                                              {};
+      y();
+    `,
+    outdent`
+      function
+      z
+      (
+      )
+      {
+      }
+      ;
     `,
     `function __func__3(){1};`,
     `function __func__4(){1+c};`,
@@ -495,33 +501,35 @@ describe('Declarations - Function', () => {
     `function test(t, t) { }`,
     `function arguments() { }`,
     `function a() { function a() {} function a() {} }`,
-    `function j(...a) {}
-    function k() {}
-    var l = function () {};
-    var m = function (a = 1, b, c) {};
-    function* o() {
-      yield 42;
-    }
-    function* p() {
-      yield 42;
-      yield 7;
-      return "answer";
-    }
-    let q = function* () {};
-    let r = a => a;
-    let s = (a, b) => a + b;
-    let t = (a, b = 0) => a + b;
-    let u = (a, b) => {};
-    let v = () => {};
-    let w = () => ({});
-    let x = () => {
-      let a = 42;
-      return a;
-    };
-    let y = () => ({
-      a: 1,
-      b: 2
-    });`,
+    outdent`
+      function j(...a) {}
+      function k() {}
+      var l = function () {};
+      var m = function (a = 1, b, c) {};
+      function* o() {
+        yield 42;
+      }
+      function* p() {
+        yield 42;
+        yield 7;
+        return "answer";
+      }
+      let q = function* () {};
+      let r = a => a;
+      let s = (a, b) => a + b;
+      let t = (a, b = 0) => a + b;
+      let u = (a, b) => {};
+      let v = () => {};
+      let w = () => ({});
+      let x = () => {
+        let a = 42;
+        return a;
+      };
+      let y = () => ({
+        a: 1,
+        b: 2
+      });
+    `,
     'function ref(a,) {}',
     'function eval() { }',
     'function interface() { }',

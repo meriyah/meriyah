@@ -688,8 +688,10 @@ describe('Expressions - Arrow', () => {
     'var af = ...x => x;',
     { code: 'var af = yield => 1;', options: { impliedStrict: true } },
     { code: 'var af = (yield) => 1;', options: { impliedStrict: true } },
-    `var af = x
-    => {};`,
+    outdent`
+      var af = x
+      => {};
+    `,
     'var f = (a = 0) => { "use strict"; };',
     ')',
     ') => 0',
@@ -848,8 +850,10 @@ describe('Expressions - Arrow', () => {
     `function foo() { }; foo((x, y) => "abc"); foo(b => "abc", 123);`,
     `(a, b) => { return a * b; }`,
     `a = () => {return (3, 4);};`,
-    `"use strict";
-((one, two) => {});`,
+    outdent`
+      "use strict";
+      ((one, two) => {});
+    `,
     `([])=>0;`,
     `(function (x) { return x => x; })(20)(10)`,
     `(function () { return x => x; })()(10)`,

@@ -1076,10 +1076,12 @@ describe('Expressions - Object', () => {
     '({...a,} = {});',
     '({...a,} = {});',
     '({...obj1,...obj2} = foo)',
-    `({
-      async
-      foo() {}
-  })`,
+    outdent`
+      ({
+          async
+          foo() {}
+      })
+    `,
     '({...{a,b}} = foo)',
     '({...[a,b]} = foo)',
     '({...[a, b]} = x)',

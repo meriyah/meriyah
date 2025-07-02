@@ -170,20 +170,26 @@ describe('Lexical - Try', () => {
     'try {} catch (foo) {} var foo;',
     'try {} catch (foo) {} let foo;',
     'try {} catch (foo) { { let foo; } }',
-    `try {} catch (foo) { { let foo; } }
-    try {} catch (foo) { { let foo; } }`,
+    outdent`
+      try {} catch (foo) { { let foo; } }
+      try {} catch (foo) { { let foo; } }
+    `,
     'try {} catch (foo) { function x() { var foo; } }',
     'try {} catch (foo) { function x(foo) {} }',
     'try {} catch(x) { x = 0; }',
     'try {} catch(x) { with ({}) { x = 1; } }',
-    `try {} catch(x) { with ({}) { x = 1; } }
-    try {} catch(x) { with ({}) { x = 1; } }`,
+    outdent`
+      try {} catch(x) { with ({}) { x = 1; } }
+      try {} catch(x) { with ({}) { x = 1; } }
+    `,
     'try {} catch (foo) {} var foo;',
     'try { } catch (a) { { const a = b; } }',
     'var foo; try {} catch (_) { const foo = 1; }',
     'try {} catch (foo) { { let foo; } }',
-    `try {} catch (foo) { { let foo; } }
-    try {} catch (foo) { { let foo; } }`,
+    outdent`
+      try {} catch (foo) { { let foo; } }
+      try {} catch (foo) { { let foo; } }
+    `,
     'var foo; try {} catch (_) { let foo; }',
     'try {} catch (e) { { let e = x; } }',
     'try {} catch (foo) {} let foo;',
@@ -216,10 +222,14 @@ describe('Lexical - Try', () => {
     'try {} catch (e) { for (var e in y) {} }',
     'try {} catch (x) { { var x } }',
     'try {} catch (e) { for (let e;;) {} }',
-    `try {} catch (e) { for (let e;;) {} }
-    try {} catch (e) { for (let e;;) {} }`,
-    `try {} catch (e) { for (const e = y;;) {} }
-    try {} catch (e) { for (const e = y;;) {} }`,
+    outdent`
+      try {} catch (e) { for (let e;;) {} }
+      try {} catch (e) { for (let e;;) {} }
+    `,
+    outdent`
+      try {} catch (e) { for (const e = y;;) {} }
+      try {} catch (e) { for (const e = y;;) {} }
+    `,
     'try {} catch (e) { for (const e = y;;) {} }',
     'try {} catch (e) { for (let e in y) {} }',
     'try {} catch (e) { for (const e in y) {} }',
@@ -229,8 +239,10 @@ describe('Lexical - Try', () => {
     'try { f; } catch (exception) { err1 = exception; } switch (1) { case 1: function f() {  } } try { f; } catch (exception) { err2 = exception; }',
     'try { throw {}; } catch ({ f }) {  if (false) ; else function f() {  }  }',
     'try { throw {}; } catch ({ f }) { if (true) function f() {  } else function _f() {} }',
-    `try { throw {}; } catch ({ f }) { if (true) function f() {  } else function _f() {} }
-    try { throw {}; } catch ({ f }) { if (true) function f() {  } else function _f() {} }`,
+    outdent`
+      try { throw {}; } catch ({ f }) { if (true) function f() {  } else function _f() {} }
+      try { throw {}; } catch ({ f }) { if (true) function f() {  } else function _f() {} }
+    `,
     'try {} catch (foo) {} var foo;',
     'try {} catch (foo) {} let foo;',
     'try {} catch (foo) { { let foo; } }',
@@ -240,8 +252,10 @@ describe('Lexical - Try', () => {
     'try {} catch (e) { for (var e of y) {} }',
     'try {try { let e; } catch { let e; } finally { let e; }} catch (e) { }',
     'try {} catch (e) { var e = x; }',
-    `try {} catch (e) { var e = x; }
-    try {} catch (e) { var e = x; }`,
+    outdent`
+      try {} catch (e) { var e = x; }
+      try {} catch (e) { var e = x; }
+    `,
     'try {} catch(e) { var e; }',
     'try { } finally { function f(){} function f(){} }',
     'try { throw 0; } catch(e) { { function e(){} } }',

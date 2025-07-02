@@ -304,18 +304,22 @@ describe('Declarations - const', () => {
     'for (const [,] of x);',
     'for (const {a, [x]: y} in obj);',
     { code: 'for (const {x : y, z, a : b = c} in obj);', options: { ranges: true } },
-    `const {
+    outdent`
+      const {
         [({ ...rest }) => {
           let { ...b } = {};
         }]: a,
         [({ ...d } = {})]: c,
-      } = {};`,
-    `const {
-          a = ({ ...rest }) => {
-            let { ...b } = {};
-          },
-          c = ({ ...d } = {}),
-        } = {};`,
+      } = {};
+    `,
+    outdent`
+      const {
+        a = ({ ...rest }) => {
+          let { ...b } = {};
+        },
+        c = ({ ...d } = {}),
+      } = {};
+    `,
     'const { a: { ...bar }, b: { ...baz }, ...foo } = obj;',
     {
       code: outdent`
@@ -341,14 +345,16 @@ describe('Declarations - const', () => {
       `,
       options: { ranges: true },
     },
-    `let {
-                a: [b, ...arrayRest],
-                c = function(...functionRest){},
-                ...objectRest
-              } = {
-                a: [1, 2, 3, 4],
-                d: "oyez"
-              };`,
+    outdent`
+      let {
+        a: [b, ...arrayRest],
+        c = function(...functionRest){},
+        ...objectRest
+      } = {
+        a: [1, 2, 3, 4],
+        d: "oyez"
+      };
+    `,
     {
       code: outdent`
         // ForXStatement

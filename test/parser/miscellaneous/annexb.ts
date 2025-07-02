@@ -1,6 +1,7 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Miscellaneous - Web compatibility (AnnexB)', () => {
   describe('HTML Comments', () => {
@@ -108,75 +109,95 @@ describe('Miscellaneous - Web compatibility (AnnexB)', () => {
     'for (let f; ; ) {}',
     'for (let f; ; ) {}',
     'for (let f in { key: 0 }) {}',
-    `(function(f) {
-                      init = f;
-                      switch (1) {
-                        case 1:
-                          function f() {  }
-                      }
-                      after = f;
-                    }(123));`,
-    ` try {
-                      throw {};
-                    } catch ({ f }) {
-                    switch (1) {
-                      default:
-                        function f() {  }
-                    }
-                    }
-                  `,
-    `{
-                      function f() {
-                        return 'first declaration';
-                      }
-                    }`,
-    `{
-                      function f() { return 'declaration'; }
-                    }`,
+    outdent`
+      (function(f) {
+        init = f;
+        switch (1) {
+          case 1:
+            function f() {  }
+        }
+        after = f;
+      }(123));
+    `,
+    outdent`
+      try {
+        throw {};
+      } catch ({ f }) {
+      switch (1) {
+        default:
+          function f() {  }
+      }
+      }
+    `,
+    outdent`
+      {
+        function f() {
+          return 'first declaration';
+        }
+      }
+    `,
+    outdent`
+      {
+        function f() { return 'declaration'; }
+      }
+    `,
     'if (true) function f() {} else function _f() {}',
     'if (false) function _f() {} else function f() { }',
-    `for (let f; ; ) {
-                      if (false) ; else function f() {  }
-                        break;
-                      }`,
-    `try {
-throw {};
-} catch ({ f }) {
-switch (1) {
-case 1:
-  function f() {  }
-}
-}`,
+    outdent`
+      for (let f; ; ) {
+      if (false) ; else function f() {  }
+        break;
+      }
+    `,
+    outdent`
+      try {
+      throw {};
+      } catch ({ f }) {
+      switch (1) {
+      case 1:
+        function f() {  }
+      }
+      }
+    `,
     'if (true) function f() {  } else function _f() {}',
     'if (true) function f() {  } else function _f() {}',
-    `switch (1) {
-                      default:
-                        function f() {  }
-                    }`,
-    `try {
-                      throw {};
-                    } catch ({ f }) {
-                    switch (1) {
-                      case 1:
-                        function f() {  }
-                    }
-                    }`,
-    `{
-                      let f = 123;
-                      switch (1) {
-                        case 1:
-                          function f() {  }
-                      }
-                      }`,
-    `
-                      for (let f in { key: 0 }) {
-                      switch (1) {
-                        case 1:
-                          function f() {  }
-                      }
-                      }`,
-    `var x = 0;
-                        x = -1 <!--x;`,
+    outdent`
+      switch (1) {
+        default:
+          function f() {  }
+      }
+    `,
+    outdent`
+      try {
+        throw {};
+      } catch ({ f }) {
+      switch (1) {
+        case 1:
+          function f() {  }
+      }
+      }
+    `,
+    outdent`
+      {
+      let f = 123;
+      switch (1) {
+        case 1:
+          function f() {  }
+      }
+      }
+    `,
+    outdent`
+      for (let f in { key: 0 }) {
+      switch (1) {
+        case 1:
+          function f() {  }
+      }
+      }
+    `,
+    outdent`
+      var x = 0;
+      x = -1 <!--x;
+    `,
     'if (true) function f() {} else function _f() {}',
     'if (false) function _f() {} else function f() { }',
     'if (x) function f() {}',
@@ -220,63 +241,82 @@ case 1:
     'label: label2: function f() { }',
     'if (true) function f() { initialBV = f; f = 123; currentBV = f; return "decl"; } else function _f() {}',
     `(function() { { function f() { initialBV = f; f = 123; currentBV = f; return 'decl'; } } }());`,
-    `(function() {      {        function f() { return 'inner declaration'; }
-    }
-    function f() {
-      return 'outer declaration';
-    }
-  }());
-  `,
-    ` init = f;
-  f = 123;
-  changed = f;
-  {
-    function f() {  }
-  }`,
-    `let f = 123;
-  init = f;
-  {
-    function f() {  }
-  }`,
-    `  try {
-    f;
-  } catch (exception) {
-    err1 = exception;
-  }
-  {
-    function f() {  }
-  }
-  try {
-    f;
-  } catch (exception) {
-    err2 = exception;
-  }`,
-    ` for (let f of [0]) {
-    if (true) function f() {  } else function _f() {}
-    }`,
-    ` for (let f in { key: 0 }) {
-    if (true) function f() {  } else function _f() {}
-    }`,
-    `  {
-    function f() {
-      return 'first declaration';
-    }
-  }
-  if (false) function _f() {} else function f() { return 'second declaration'; }`,
-    ` for (let f in { key: 0 }) {
-    if (false) function _f() {} else function f() {  }
-    }`,
-    ` init = f;
-  if (false) function _f() {} else function f() {  }
-`,
-    `init = f;
-  f = 123;
-  changed = f;
-  if (true) function f() {  } else ;
-`,
-    ` for (let f of [0]) {
-    if (true) function f() {  } else ;
-    }`,
+    outdent`
+      (function() {      {        function f() { return 'inner declaration'; }
+        }
+        function f() {
+          return 'outer declaration';
+        }
+      }());
+    `,
+    outdent`
+      init = f;
+      f = 123;
+      changed = f;
+      {
+        function f() {  }
+      }
+    `,
+    outdent`
+      let f = 123;
+      init = f;
+      {
+        function f() {  }
+      }
+    `,
+    outdent`
+      try {
+        f;
+      } catch (exception) {
+        err1 = exception;
+      }
+      {
+        function f() {  }
+      }
+      try {
+        f;
+      } catch (exception) {
+        err2 = exception;
+      }
+    `,
+    outdent`
+      for (let f of [0]) {
+      if (true) function f() {  } else function _f() {}
+      }
+    `,
+    outdent`
+      for (let f in { key: 0 }) {
+      if (true) function f() {  } else function _f() {}
+      }
+    `,
+    outdent`
+      {
+        function f() {
+          return 'first declaration';
+        }
+      }
+      if (false) function _f() {} else function f() { return 'second declaration'; }
+    `,
+    outdent`
+      for (let f in { key: 0 }) {
+      if (false) function _f() {} else function f() {  }
+      }
+    `,
+    outdent`
+      init = f;
+      if (false) function _f() {} else function f() {  }
+    `,
+    outdent`
+      init = f;
+      f = 123;
+      changed = f;
+      if (true) function f() {  } else ;
+    `,
+    outdent`
+      for (let f of [0]) {
+      if (true) function f() {  } else ;
+      }
+    `,
 
     'try {  throw {}; } catch ({ f }) { if (true) function f() {  } else ; }',
 
@@ -308,22 +348,36 @@ case 1:
     'if (true) function f() {  } else function _f() {}',
     'switch (0) { default: let f; if (false) ; else function f() {  } }',
     'switch (0) { default: let f; if (false) ; else function f() {  } }',
-    `/*
-  */-->
-  counter += 1;`,
-    `/*
-  */-->the comment extends to these characters`,
-    `0/*
-  */-->`,
-    `0/* optional FirstCommentLine
-  */-->the comment extends to these characters`,
-    `0/*
-  optional
-  MultiLineCommentChars */-->the comment extends to these characters`,
-    `0/*
-  */ /* optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters`,
-    `0/*
-  */ /**/ /* second optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters`,
+    outdent`
+      /*
+      */-->
+      counter += 1;
+    `,
+    outdent`
+      /*
+      */-->the comment extends to these characters
+    `,
+    outdent`
+      0/*
+      */-->
+    `,
+    outdent`
+      0/* optional FirstCommentLine
+      */-->the comment extends to these characters
+    `,
+    outdent`
+      0/*
+      optional
+      MultiLineCommentChars */-->the comment extends to these characters
+    `,
+    outdent`
+      0/*
+      */ /* optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters
+    `,
+    outdent`
+      0/*
+      */ /**/ /* second optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters
+    `,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

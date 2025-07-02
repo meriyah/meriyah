@@ -630,14 +630,16 @@ describe('Expressions - Group', () => {
     '({ x: x } = a);',
     '({ x } = a);',
     '({ x = 123 } = a);',
-    `({
-      a,
-      a:a,
-      a:a=a,
-      [a]:{a},
-      a:some_call()[a],
-      a:this.a
-  } = 0);`,
+    outdent`
+      ({
+          a,
+          a:a,
+          a:a=a,
+          [a]:{a},
+          a:some_call()[a],
+          a:this.a
+      } = 0);
+    `,
     'new c(x)(y)',
     '"use strict"; ({ x: a, x: b } = q);',
     '({ x: y.z } = a)',

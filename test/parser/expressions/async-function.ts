@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Expressions - Async function', () => {
   for (const arg of [
@@ -16,8 +17,10 @@ describe('Expressions - Async function', () => {
     '(async\nfunction foo() { })',
     'async ()\n=> a',
     `async while (1) {}`,
-    `(async
-               function f() {})`,
+    outdent`
+      (async
+        function f() {})
+    `,
     '0, async function*(...x = []) {};',
     '(async function f(...a,) {})',
     '(async function foo1() { } foo2 => 1)',
@@ -59,8 +62,10 @@ describe('Expressions - Async function', () => {
     'async(...a = b) => b',
     'async(...a,) => b',
     'async(...a, b) => b',
-    `(async
-                function f() {})`,
+    outdent`
+      (async
+        function f() {})
+    `,
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -142,8 +147,10 @@ describe('Expressions - Async function', () => {
     '(function* g() { (async function yield() {}); })',
     '"use strict"; ({ async yield() {} });',
     '(function f() { ({ async [yield]() {} }); })',
-    `a = async
-  function f(){}`,
+    outdent`
+      a = async
+      function f(){}
+    `,
     'a = async package => 1',
     'a = async package => { }',
     String.raw`a = async p\u0061ckage => { }`,

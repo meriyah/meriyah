@@ -2,6 +2,7 @@ import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Expressions - Generators', () => {
   fail('Expressions - Generators (pass)', ['foo\n++', 'if (foo\n++);']);
@@ -63,9 +64,11 @@ describe('Expressions - Generators', () => {
     `f = function*([...x, y] = [1, 2, 3]) {}`,
     `f = function*([...{ x }, y] = [1, 2, 3]) {}`,
     `f = function*([...{ x } = []]) {}`,
-    `var gen = function *g() {
-      var yield;
-    };`,
+    outdent`
+      var gen = function *g() {
+        var yield;
+      };
+    `,
     `var g = function*() { yield 3 + yield 4; };`,
     `'use strict'; (function *g() { ( x, y=yield ) => {} });`,
     '(function *g() { ( x, y=yield ) => {} });',
@@ -151,13 +154,17 @@ describe('Expressions - Generators', () => {
   }
 
   const validSyntax = [
-    `var gen = function *() {
-      yield [...yield yield];
-    };`,
+    outdent`
+      var gen = function *() {
+        yield [...yield yield];
+      };
+    `,
     `(function* () { yield\nv })`,
-    `var gen = function *() {
-      yield [...yield];
-    };`,
+    outdent`
+      var gen = function *() {
+        yield [...yield];
+      };
+    `,
     '(function* () { yield *v });',
     '(function* () { fn(yield); });',
     '(function* () { yield; });',
@@ -165,18 +172,24 @@ describe('Expressions - Generators', () => {
     '(function* () { yield });',
     '(function* () { yield v });',
     '(function* () { yield; });',
-    `var g1 = function*() { yield; };
-    var g2 = function*() { yield 1; };`,
-    `var g = function*() {
-          ({  yield: 1 });
-        };`,
-    `var gen = function *() {
-          yield {
-              ...yield,
-              y: 1,
-              ...yield yield,
-            };
-        };`,
+    outdent`
+      var g1 = function*() { yield; };
+      var g2 = function*() { yield 1; };
+    `,
+    outdent`
+      var g = function*() {
+        ({  yield: 1 });
+      };
+    `,
+    outdent`
+      var gen = function *() {
+        yield {
+            ...yield,
+            y: 1,
+            ...yield yield,
+          };
+      };
+    `,
     '(function* () { yield *v });',
     `var gfe = function* () { switch (1) { case yield: break; } }`,
     `var gfe = function* () { switch (1) { case yield* 'foo': break; } }`,
@@ -203,35 +216,47 @@ describe('Expressions - Generators', () => {
     `f = function*({ w: [x, y, z] = [4, 5, 6] }) {}`,
     `f = function*({ x: y }) {}`,
     `var f = function *(a) { yield a+1; return; };`,
-    `var gen = function *g() {
-          yield [...yield];
-        };`,
-    `var gen = function *g() {
-          yield {
-              ...yield,
-              y: 1,
-              ...yield yield,
-            };
-        };`,
-    `var gen = function *g() {
-          yield [...yield];
-        };`,
+    outdent`
+      var gen = function *g() {
+        yield [...yield];
+      };
+    `,
+    outdent`
+      var gen = function *g() {
+        yield {
+            ...yield,
+            y: 1,
+            ...yield yield,
+          };
+      };
+    `,
+    outdent`
+      var gen = function *g() {
+        yield [...yield];
+      };
+    `,
     `ref = function*(a,) {};`,
-    `var g1 = function*() { yield; };
-    var g2 = function*() { yield 1; };`,
+    outdent`
+      var g1 = function*() { yield; };
+      var g2 = function*() { yield 1; };
+    `,
     `var g = function*() { yield yield 1; };`,
-    `var gen = function *() {
-          yield {
-              ...yield,
-              y: 1,
-              ...yield yield,
-            };
-        };`,
-    `var g = function*() {
-          yield *
-          g2();
-        };
-        var g2 = function*() {};`,
+    outdent`
+      var gen = function *() {
+        yield {
+            ...yield,
+            y: 1,
+            ...yield yield,
+          };
+      };
+    `,
+    outdent`
+      var g = function*() {
+        yield *
+        g2();
+      };
+      var g2 = function*() {};
+    `,
   ];
 
   for (const arg of validSyntax) {

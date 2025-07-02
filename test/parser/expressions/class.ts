@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Expressions - Class', () => {
   for (const arg of [
@@ -307,19 +308,23 @@ describe('Expressions - Class', () => {
     'static get constructor() {}',
     'static set constructor(_) {}',
     'static *constructor() {}',
-    `method() {
-       new class { constructor() {} }
-     }
-     constructor() {}`,
-    `method() {
-       new class {
-         method() {
-           new class { constructor() {} }
-         }
-         constructor() {}
-       }
-     }
-     constructor() {}`,
+    outdent`
+      method() {
+        new class { constructor() {} }
+      }
+      constructor() {}
+    `,
+    outdent`
+      method() {
+        new class {
+          method() {
+            new class { constructor() {} }
+          }
+          constructor() {}
+        }
+      }
+      constructor() {}
+    `,
   ]) {
     it(`class C {${arg}}`, () => {
       t.doesNotThrow(() => {
@@ -727,10 +732,12 @@ describe('Expressions - Class', () => {
     '(class A {constructor(){}; constructor(){};})',
     '(class A {get "constructor"(){}})',
     'None class{}\n/foo/',
-    `class C extends (function B() {
-     with ({});
-     return B;
-   }()) {}`,
+    outdent`
+      class C extends (function B() {
+        with ({});
+        return B;
+      }()) {}
+    `,
     'async function f(){   (fail = class extends (await x) {}) => {}   }',
     'C = class let {};',
     'class A {* get [x](){}}',
@@ -924,13 +931,15 @@ describe('Expressions - Class', () => {
     'static async *method(a,) {}',
     'static async *gen() { yield * []; }',
     'static async *gen() { yield [...yield yield]; }',
-    `static async *gen() {
-      yield {
-          ...yield,
-          y: 1,
-          ...yield yield,
-        };
-  }`,
+    outdent`
+      static async *gen() {
+          yield {
+              ...yield,
+              y: 1,
+              ...yield yield,
+            };
+      }
+    `,
     'static async *gen() { yield* isiah(); }',
     'async method(a = b +=1, c = d += 1, e = f += 1, g = h += 1, i = j += 1,k = l +=1) {}',
     'async method(a, b = 39,) {}',
@@ -1125,7 +1134,8 @@ describe('Expressions - Class', () => {
     });
   }
   pass('Expressions - Class (pass)', [
-    `class A {
+    outdent`
+      class A {
         constructor() {
           count++;
         }
@@ -1147,8 +1157,10 @@ describe('Expressions - Class', () => {
         [1.1+1]() { return 2.1; }
         ["foo"+1]() { return "foo1"; }
         [sym1](){return "bart";}
-      }`,
-    `class SimpleParent {
+      }
+    `,
+    outdent`
+      class SimpleParent {
           constructor() {
               this.foo = 'SimpleParent';
           }
@@ -1172,7 +1184,8 @@ describe('Expressions - Class', () => {
               super();
               return arg;
           }
-      };`,
+      };
+    `,
     { code: 'class await { }', options: { ranges: true } },
     { code: 'class x extends await { }', options: { ranges: true } },
     'class a extends [] { static set [a] ({w=a}) { for (;;) a } }',
@@ -1182,23 +1195,29 @@ describe('Expressions - Class', () => {
     'class x{[x](a=await){}}',
     'class x{[x](await){}}',
     '(class x {}.foo)',
-    `var C = class { static async *gen() {
-        callCount += 1;
-        yield [...yield];
-    }}`,
-    `var gen = {
-          async *method() {
-            callCount += 1;
-            yield [...yield];
-          }
-        }.method;`,
-    `class C { async *gen() {
-            yield {
-                ...yield,
-                y: 1,
-                ...yield yield,
-              };
-        }}`,
+    outdent`
+      var C = class { static async *gen() {
+          callCount += 1;
+          yield [...yield];
+      }}
+    `,
+    outdent`
+      var gen = {
+        async *method() {
+          callCount += 1;
+          yield [...yield];
+        }
+      }.method;
+    `,
+    outdent`
+      class C { async *gen() {
+          yield {
+              ...yield,
+              y: 1,
+              ...yield yield,
+            };
+      }}
+    `,
     '(class x {}.foo())',
     '(class x {}())',
     'f = ([xCls = class X {}]) => {}',
@@ -1391,14 +1410,16 @@ describe('Expressions - Class', () => {
     { code: `class A { static }`, options: { next: true, module: true } },
     { code: `class A { static; }`, options: { next: true, module: true } },
     { code: `class A { static = 1 }`, options: { next: true, module: true } },
-    `new class {
+    outdent`
+      new class {
         start() {
           new class {
             constructor() {}
           }
         }
         constructor() {}
-      }`,
+      }
+    `,
     {
       code: 'class C {\nstatic accessor = 42;\nstatic set = 42;\nstatic get = 42;\nstatic async = 42;\nstatic static = 42;}',
       options: { next: true, loc: true, ranges: true },

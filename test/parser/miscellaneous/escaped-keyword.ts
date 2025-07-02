@@ -2,6 +2,7 @@ import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
 import { fail } from '../../test-utils';
+import { outdent } from 'outdent';
 
 describe('Miscellaneous - Escaped keywords', () => {
   for (const arg of [
@@ -78,18 +79,24 @@ describe('Miscellaneous - Escaped keywords', () => {
     String.raw`\u0061sync`,
     'l\\u0065t\na',
     String.raw`l\u0065t`,
-    `function a() {
-      \\u0061sync
-      p => {}
-    }`,
-    `(function a() {
-      \\u0061sync
-      p => {}
-    })`,
-    `async function a() {
-      \\u0061sync
-      p => {}
-    }`,
+    outdent`
+      function a() {
+        \\u0061sync
+        p => {}
+      }
+    `,
+    outdent`
+      (function a() {
+        \\u0061sync
+        p => {}
+      })
+    `,
+    outdent`
+      async function a() {
+        \\u0061sync
+        p => {}
+      }
+    `,
     `obj.bre\\u0061k = 42;`,
     `for (\\u0061sync of [7]);`,
     String.raw`0, { def\u{61}ult: x } = { default: 42 };`,

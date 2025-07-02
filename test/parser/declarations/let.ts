@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Declarations - Let', () => {
   // Invalid 'let' as identifier cases
@@ -465,22 +466,28 @@ describe('Declarations - Let', () => {
     { code: 'let {...let} = {a: 1, b: 2};', options: { module: true } },
     'let const',
     'const let',
-    `let
-    [let;`,
+    outdent`
+      let
+      [let;
+    `,
     'for (;false;) let x = 1;',
     'do let x; while (false)',
     'if (true) {} else let x;',
     'if (true) let x;',
     'label: let x;',
     'while (false) let x;',
-    `let  // start of a LexicalDeclaration, *not* an ASI opportunity
-    [let = "irrelevant initializer";`,
+    outdent`
+      let  // start of a LexicalDeclaration, *not* an ASI opportunity
+      [let = "irrelevant initializer";
+    `,
     // Acorn issue: https://github.com/acornjs/acorn/issues/586
     'let let',
     'label: let x;',
-    `do let
+    outdent`
+      do let
       [x] = 0
-      while (false);`,
+      while (false);
+    `,
     'let {a: o.a} = obj;',
     'let default',
     'let test = 2, let = 1;',
@@ -559,8 +566,10 @@ describe('Declarations - Let', () => {
     '"use strict"; let, let, let, let',
     '"use strict"; let(100)',
     '"use strict"; let: 34',
-    `while (false) let
-    [a]`,
+    outdent`
+      while (false) let
+      [a]
+    `,
   ]);
 
   pass('Declarations - Let (pass)', [
@@ -570,18 +579,24 @@ describe('Declarations - Let', () => {
     'let [foo=a] = arr;',
     'for (let;;);',
 
-    `if (false) {
-      L: let // ASI
-      x = 1;
-  }`,
-    `if (false) {
-        L: let // ASI
-        x = 1;
-    }`,
-    `if (false) {
+    outdent`
+      if (false) {
           L: let // ASI
           x = 1;
-      }`,
+      }
+    `,
+    outdent`
+      if (false) {
+          L: let // ASI
+          x = 1;
+      }
+    `,
+    outdent`
+      if (false) {
+          L: let // ASI
+          x = 1;
+      }
+    `,
     'for (;let;);',
     '_ => { let: foo; }',
     'let: let;',
@@ -636,8 +651,10 @@ describe('Declarations - Let', () => {
     'let {x,} = obj;',
     { code: 'let {x, y} = obj;', options: { ranges: true } },
 
-    `a = let;
-      []`,
+    outdent`
+      a = let;
+      []
+    `,
     { code: 'let {x} = a, {y} = obj;', options: { ranges: true } },
   ]);
 });

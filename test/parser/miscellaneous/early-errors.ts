@@ -1,6 +1,7 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Miscellaneous - Early errors', () => {
   for (const arg of [
@@ -278,8 +279,10 @@ describe('Miscellaneous - Early errors', () => {
     "function a() {'use strict'; function eval() { } }",
     'for(const a;;);',
     '/[a-z]/z',
-    `var af = x
-            => x;`,
+    outdent`
+      var af = x
+      => x;
+    `,
     `"use strict"; var af = package => 1;`,
     'var af = ...x => x;',
     '"use strict"; var af = (arguments) => 1;',

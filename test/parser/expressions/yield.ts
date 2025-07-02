@@ -21,8 +21,10 @@ describe('Expressions - Yield', () => {
     'function *foo() {  do try {} catch (q) {} while ((yield* 810048018773152)); async  (x = y) => {} }',
     'function* foo() { class x extends (yield* (e = "x") => {}) {} }',
     'function* foo() {  return ( yield* ( ( j ) => {}) ) }',
-    `({get a(){}});
-    yield;`,
+    outdent`
+      ({get a(){}});
+      yield;
+    `,
     'function* foo() {  return ( yield* ( async ( j ) => {}) ) }',
     `function* foo() { switch ( y (yield) - ((a) => {})) { } }`,
     `function* foo() { switch ( y (yield) - (async (a) => {})) { } }`,
@@ -53,74 +55,83 @@ describe('Expressions - Yield', () => {
     '(function*() { yield* {} })().next()',
     '(function*() { yield* undefined })().next()',
     'function* foo() { yield; }',
-    `{
-      let x = 42;
-      function* foo() {
-        yield x;
-        for (let x in {a: 1, b: 2}) {
-          let i = 2;
+    outdent`
+      {
+        let x = 42;
+        function* foo() {
           yield x;
-          yield i;
-          do {
+          for (let x in {a: 1, b: 2}) {
+            let i = 2;
+            yield x;
             yield i;
-          } while (i-- > 0);
+            do {
+              yield i;
+            } while (i-- > 0);
+          }
+          yield x;
+          return 5;
         }
-        yield x;
-        return 5;
+        g = foo();
       }
-      g = foo();
-    }`,
-    `{
-      let a = 3;
-      function* foo() {
-        let b = 4;
-        yield 1;
-        { let c = 5; yield 2; yield a; yield b; yield c; }
+    `,
+    outdent`
+      {
+        let a = 3;
+        function* foo() {
+          let b = 4;
+          yield 1;
+          { let c = 5; yield 2; yield a; yield b; yield c; }
+        }
+        g = foo();
       }
-      g = foo();
-    }`,
-    `function YieldStar() {
-      let tree = new Node(1,
-          new Node(2,
-              new Node(3,
-                  new Node(4,
-                      new Node(16,
-                          new Node(5,
-                              new Node(23,
-                                  new Node(0),
-                                  new Node(17)),
-                              new Node(44, new Node(20)))),
-                      new Node(7,
-                          undefined,
-                          new Node(23,
-                              new Node(0),
-                              new Node(41, undefined, new Node(11))))),
-                  new Node(8)),
-              new Node(5)),
-          new Node(6, undefined, new Node(7)));
-      let labels = [...(infix(tree))];
-      // 0,23,17,5,20,44,16,4,7,0,23,41,11,3,8,2,5,1,6,7
-      if (labels[0] != 0) throw "wrong";
-    }`,
-    `function get() {}
+    `,
+    outdent`
+      function YieldStar() {
+        let tree = new Node(1,
+            new Node(2,
+                new Node(3,
+                    new Node(4,
+                        new Node(16,
+                            new Node(5,
+                                new Node(23,
+                                    new Node(0),
+                                    new Node(17)),
+                                new Node(44, new Node(20)))),
+                        new Node(7,
+                            undefined,
+                            new Node(23,
+                                new Node(0),
+                                new Node(41, undefined, new Node(11))))),
+                    new Node(8)),
+                new Node(5)),
+            new Node(6, undefined, new Node(7)));
+        let labels = [...(infix(tree))];
+        // 0,23,17,5,20,44,16,4,7,0,23,41,11,3,8,2,5,1,6,7
+        if (labels[0] != 0) throw "wrong";
+      }
+    `,
+    outdent`
+      function get() {}
       function* getData() {
         return yield get();
       }
     `,
-    `const f = async function * (source, block, opts) {
-      for await (const entry of source) {
-        yield async function () {
-          const cid = await persist(entry.content.serialize(), block, opts)
+    outdent`
+      const f = async function * (source, block, opts) {
+        for await (const entry of source) {
+          yield async function () {
+            const cid = await persist(entry.content.serialize(), block, opts)
 
-          return {
-            cid,
-            path: entry.path,
-            unixfs: UnixFS.unmarshal(entry.content.Data),
-            node: entry.content
+            return {
+              cid,
+              path: entry.path,
+              unixfs: UnixFS.unmarshal(entry.content.Data),
+              node: entry.content
+            }
           }
         }
       }
-    }`,
+    `,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -477,18 +488,22 @@ describe('Expressions - Yield', () => {
     '({ get yield() { 1 } })',
     'yield(100)',
     'yield[100]',
-    `function* f() {
-let result;
-while (1) {
-  result = yield result;
-}
-}`,
-    `function* g() {
-yield arguments[0];
-yield arguments[1];
-yield arguments[2];
-yield arguments[3];
-}`,
+    outdent`
+      function* f() {
+      let result;
+      while (1) {
+        result = yield result;
+      }
+      }
+    `,
+    outdent`
+      function* g() {
+      yield arguments[0];
+      yield arguments[1];
+      yield arguments[2];
+      yield arguments[3];
+      }
+    `,
 
     '(function * gen() { (function not_gen() { try { } catch (yield) { } }) })',
     'function *a(){yield 0}',
@@ -543,27 +558,31 @@ yield arguments[3];
     'function* g() {  yield* [1, 2, 3]; }',
     'function* g() { exprValue = yield * {}; }',
     'function* g() { yield* "abc"; }',
-    `function* g() {
-try {
-yield * {};
-} catch (err) {
-caught = err;
-}
-}`,
+    outdent`
+      function* g() {
+      try {
+      yield * {};
+      } catch (err) {
+      caught = err;
+      }
+      }
+    `,
     `function* g1() { (yield 1) }`,
     `function* g2() { [yield 1] }`,
     `function* g3() { {yield 1} }`,
     `function* g4() { yield 1, yield 2; }`,
     `function* g5() { (yield 1) ? yield 2 : yield 3; }`,
-    `function* g(a, b, c, d) {
-arguments[0] = 32;
-arguments[1] = 54;
-arguments[2] = 333;
-yield a;
-yield b;
-yield c;
-yield d;
-}`,
+    outdent`
+      function* g(a, b, c, d) {
+      arguments[0] = 32;
+      arguments[1] = 54;
+      arguments[2] = 333;
+      yield a;
+      yield b;
+      yield c;
+      yield d;
+      }
+    `,
     'function* gf() { var fe = function yield() { } }',
     'function* gf() { var o = { yield: 10 } }',
     'function* gf() { var o = { *yield() { } } }',
@@ -902,19 +921,21 @@ yield d;
     'function *f() { (yield 1) ? yield 2 : yield 3; }',
     '({  * yield() {}  })',
     'function *g() { [...yield]; }',
-    `function* gf1 () {
-        yield 10;
-        yield 20;
-        yield 30;
+    outdent`
+      function* gf1 () {
+          yield 10;
+          yield 20;
+          yield 30;
 
-        function a() { }
-        function b() { }
-        function c() { }
+          function a() { }
+          function b() { }
+          function c() { }
 
-        yield a();
+          yield a();
 
-        yield b() + (yield c());
-    }`,
+          yield b() + (yield c());
+      }
+    `,
     'function f(){  return function(x=yield) {};  }',
     'function f(){  x = {foo(a=yield){}}  }',
     'function f(){  return function(x=yield) {};  }',
@@ -1050,15 +1071,19 @@ yield d;
     'function f() { var yield = 10; var o = { yield }; }',
     'function f() { class C { yield() { } } }',
     '+function yield() {}',
-    `function *f1() {
-      function g() {
-        return yield / 1;
+    outdent`
+      function *f1() {
+        function g() {
+          return yield / 1;
+        }
       }
-    }`,
-    `function* fn() {
-      () => yield;
-      () => { yield };
-    } `,
+    `,
+    outdent`
+      function* fn() {
+        () => yield;
+        () => { yield };
+      }
+    `,
     'function* f(){ () => yield; }',
     'function *foo() { function b() {} }',
     'function fn(x = yield* yield) {}',
@@ -1074,15 +1099,17 @@ yield d;
     'function* g2() { [yield 1] }',
     'function* a() { yield; function b({} = c) {} (d) => { }  }',
     'function* g4() { yield 1, yield 2; }',
-    `function* g(a, b, c, d) {
-      arguments[0] = 32;
-      arguments[1] = 54;
-      arguments[2] = 333;
-      yield a;
-      yield b;
-      yield c;
-      yield d;
-    }`,
+    outdent`
+      function* g(a, b, c, d) {
+        arguments[0] = 32;
+        arguments[1] = 54;
+        arguments[2] = 333;
+        yield a;
+        yield b;
+        yield c;
+        yield d;
+      }
+    `,
     'function f() { function* yield() { } }',
     'function f() { var o = { *yield() { } } }',
     'function f() { var yield = 10; var o = { yield }; }',

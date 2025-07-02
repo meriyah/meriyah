@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Expressions - Functions', () => {
   for (const arg of [
@@ -308,28 +309,32 @@ describe('Expressions - Functions', () => {
   pass('Expressions - Functions (pass)', [
     `function f(async = await){}`,
     `function f([async = await]){}`,
-    `(function () {
+    outdent`
+      (function () {
         let q;
         let w;
         let e;
         if (true) [q, w, e] = [1, 2, 3].map(()=>123);
-      })();`,
+      })();
+    `,
 
-    `function somethingAdvanced({topLeft: {x: x1, y: y1} = {}, bottomRight: {x: x2, y: y2} = {}}, p2, p3){
+    outdent`
+      function somethingAdvanced({topLeft: {x: x1, y: y1} = {}, bottomRight: {x: x2, y: y2} = {}}, p2, p3){
 
-        }
+      }
 
-        function unpackObject({title: title, author: author}) {
-          return title + " " + author;
-        }
+      function unpackObject({title: title, author: author}) {
+        return title + " " + author;
+      }
 
-        console.log(unpackObject({title: "title", author: "author"}));
+      console.log(unpackObject({title: "title", author: "author"}));
 
-        var unpackArray = function ([a, b, c], [x, y, z]) {
-          return a+b+c;
-        };
+      var unpackArray = function ([a, b, c], [x, y, z]) {
+        return a+b+c;
+      };
 
-        console.log(unpackArray(["hello", ", ", "world"], [1, 2, 3]));`,
+      console.log(unpackArray(["hello", ", ", "world"], [1, 2, 3]));
+    `,
     'foo(function(){})',
     'foo(function f(){})',
     'foo(function*(){})',
@@ -421,10 +426,12 @@ describe('Expressions - Functions', () => {
     '(function foo([x1 = 1], {y1:y1 = 2}) {})',
     '(function foo({x:x} = {x:1}) {})',
 
-    `function test() {
-        let ID = "1|123456";
-        return (([id, obj]) => ({[id = id.split('|')[1]]: {id: id}}))([ID, {}]);
-    }`,
+    outdent`
+      function test() {
+          let ID = "1|123456";
+          return (([id, obj]) => ({[id = id.split('|')[1]]: {id: id}}))([ID, {}]);
+      }
+    `,
     '(function foo([x] = [1]) {})',
     '(function foo({x:x = 1} = {x:2}) {})',
     '(function foo([x = 1] = [2]) {})',
@@ -443,11 +450,13 @@ describe('Expressions - Functions', () => {
     '( {x1:x1}, [y1]) => x;',
     '( {x}) => x;',
 
-    `if (a && b) {
-      c.d(this.e, (ctx) => a.b(this, void 0, void 0, function* () {
-        return a
-      }));
-    }`,
+    outdent`
+      if (a && b) {
+        c.d(this.e, (ctx) => a.b(this, void 0, void 0, function* () {
+          return a
+        }));
+      }
+    `,
     '(function (eval) { function foo() { "use strict"; }})',
     '(function (eval) { (function () { "use strict"; })})',
     '(function package() { (function gave_away_the_package() { "use strict"; }) })',

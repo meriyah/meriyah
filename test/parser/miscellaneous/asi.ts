@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Miscellaneous - ASI', () => {
   for (const arg of [
@@ -9,42 +10,59 @@ describe('Miscellaneous - ASI', () => {
     '{} * 1',
     '({};) * 1',
     'if (false) x = 1 else x = -1',
-    `var x = 0;
-    if (false) {x = 1};
-    else x = -1`,
-    `var a=1,b=2,c=3,d;
-    if(a>b)
-    else c=d`,
+    outdent`
+      var x = 0;
+      if (false) {x = 1};
+      else x = -1
+    `,
+    outdent`
+      var a=1,b=2,c=3,d;
+      if(a>b)
+      else c=d
+    `,
     `{} * 1`,
-    `for(
+    outdent`
+      for(
       ;) {
         break;
-      }`,
-    `for(
-        false
-    ) {
-      break;
-    }`,
-    `for(
-        false
-        false
-        false
-    ) {
-      break;
-    }`,
-    `do
-      while (false)`,
-    `do {};
-      while (false)`,
-    `
+      }
+    `,
+    outdent`
+      for(
+          false
+      ) {
+        break;
+      }
+    `,
+    outdent`
+      for(
+          false
+          false
+          false
+      ) {
+        break;
+      }
+    `,
+    outdent`
+      do
+      while (false)
+    `,
+    outdent`
+      do {};
+      while (false)
+    `,
+    outdent`
       var x=0, y=0;
       var z=
       x
       ++
       ++
-      y`,
-    `var x = 0;
-      if (false) x = 1 else x = -1`,
+      y
+    `,
+    outdent`
+      var x = 0;
+      if (false) x = 1 else x = -1
+    `,
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -68,42 +86,60 @@ describe('Miscellaneous - ASI', () => {
     `for header is (false \n false \n)`,
     '{} * 1',
     'if (false) x = 1 else x = -1',
-    `try {
-      throw
-      1;
-    } catch(e) {
-    }`,
-    `var x = 0;
-    x
-    ++;`,
-    `var x = 1;
-    x
-    --;`,
-    `for(;
+    outdent`
+      try {
+        throw
+        1;
+      } catch(e) {
+      }
+    `,
+    outdent`
+      var x = 0;
+      x
+      ++;
+    `,
+    outdent`
+      var x = 1;
+      x
+      --;
+    `,
+    outdent`
+      for(;
       ) {
         break;
-      }`,
-    `for(
-      false
-  ;) {
-    break;
-  }`,
-    `for(
-      ;
-  ) {
-    break;
-  }`,
-    `for(
+      }
+    `,
+    outdent`
+      for(
+          false
+      ;) {
+        break;
+      }
+    `,
+    outdent`
+      for(
+          ;
       ) {
         break;
-      }`,
-    `for(false
-      false
-  ) {
-    break;
-  }`,
-    `do
-    while (false)`,
+      }
+    `,
+    outdent`
+      for(
+      ) {
+        break;
+      }
+    `,
+    outdent`
+      for(false
+          false
+      ) {
+        break;
+      }
+    `,
+    outdent`
+      do
+      while (false)
+    `,
   ]);
 
   pass('Miscellaneous - ASI', [
