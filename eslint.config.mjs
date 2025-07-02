@@ -41,6 +41,7 @@ export default [
       'no-undef': 'error',
       'no-restricted-imports': ['error', 'assert', 'node:assert'],
       'unicorn/prefer-export-from': ['error', { ignoreUsedVariables: true }],
+      'unicorn/template-indent': 'error',
 
       // TODO: enable it when all problems addressed
       '@typescript-eslint/explicit-function-return-type': 0,
