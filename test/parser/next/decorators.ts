@@ -1,8 +1,8 @@
 import * as t from 'node:assert/strict';
-import { describe, it } from 'vitest';
-import { pass, fail } from '../../test-utils';
-import { parseSource } from '../../../src/parser';
 import { outdent } from 'outdent';
+import { describe, it } from 'vitest';
+import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Next - Decorators', () => {
   for (const arg of [
@@ -10,13 +10,13 @@ describe('Next - Decorators', () => {
     'class A { @dec *m(){} }',
     'class A { @a.b.c.d(e, f)     m(){}}',
     'class Bar{ @outer( @classDec class { @inner innerMethod() {} } ) outerMethod() {} }',
-    `@(foo().bar) class Foo { @(member[expression]) method() {} @(foo + bar) method2() {} }`,
+    '@(foo().bar) class Foo { @(member[expression]) method() {} @(foo + bar) method2() {} }',
     `@foo('bar')
       class Foo {}`,
-    `(class A { @foo get getter(){} })`,
-    `class A { @foo get getter(){} }`,
-    `class A { @foo set setter(bar){} }`,
-    `class A { @foo async bar(){} }`, // allowed?
+    '(class A { @foo get getter(){} })',
+    'class A { @foo get getter(){} }',
+    'class A { @foo set setter(bar){} }',
+    'class A { @foo async bar(){} }', // allowed?
     '@foo class Foo {}',
     `@outer({
         store: @inner class Foo {}
@@ -35,7 +35,7 @@ describe('Next - Decorators', () => {
     'var foo = class Bar { @foo Zoo() {} }',
     `@foo('bar')
     class Foo {}`,
-    `@abc class Foo {}`,
+    '@abc class Foo {}',
     `class A {
         @dec *m(){}
       }`,
@@ -46,20 +46,20 @@ describe('Next - Decorators', () => {
       @a.b.c.d(e, f)
       m(){}
     }`,
-    `class A { @foo async a(){} }`,
+    'class A { @foo async a(){} }',
     `class Foo {
       @dec
       static bar() {}
     }`,
-    `class A { accessor = 1}`,
-    `class A { accessor x}`,
-    `class A { accessor x = 1}`,
-    `class A { @a.b accessor = 1}`,
-    `class A { @dec accessor x}`,
-    `class A { @dec accessor x = 1}`,
-    `(class { @a.b accessor = 1})`,
-    `(class { @dec accessor x})`,
-    `(class { @dec accessor x = 1})`,
+    'class A { accessor = 1}',
+    'class A { accessor x}',
+    'class A { accessor x = 1}',
+    'class A { @a.b accessor = 1}',
+    'class A { @dec accessor x}',
+    'class A { @dec accessor x = 1}',
+    '(class { @a.b accessor = 1})',
+    '(class { @dec accessor x})',
+    '(class { @dec accessor x = 1})',
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -77,9 +77,9 @@ describe('Next - Decorators', () => {
     { code: 'class A { accessor a() {}}', options: { module: true, next: true } },
     { code: 'class A { @dec accessor a() {}}', options: { module: true, next: true } },
     { code: 'class A { accessor @dec a}', options: { module: true, next: true } },
-    { code: `class A {  constructor(@foo x) {} }`, options: { module: true, next: true } },
-    { code: `@decorate`, options: { next: true } },
-    { code: `class A { @abc constructor(){} }`, options: { module: true, next: true } },
+    { code: 'class A {  constructor(@foo x) {} }', options: { module: true, next: true } },
+    { code: '@decorate', options: { next: true } },
+    { code: 'class A { @abc constructor(){} }', options: { module: true, next: true } },
     { code: 'export default @decorator class Foo {}', options: { module: true } },
     { code: 'class Foo {@abc constructor(){}', options: { next: true } },
     { code: 'class A { @dec }', options: { next: true } },
@@ -107,9 +107,9 @@ describe('Next - Decorators', () => {
   ]);
 
   pass('Next - Decorators (pass)', [
-    { code: `class A { @dec name = 0; }`, options: { next: true, ranges: true, loc: true } },
-    { code: `class A {  @deco #prop; #foo = 2; test() {  this.#foo; }}`, options: { next: true } },
-    { code: `(class A { @foo get getter(){} })`, options: { module: true, next: true } },
+    { code: 'class A { @dec name = 0; }', options: { next: true, ranges: true, loc: true } },
+    { code: 'class A {  @deco #prop; #foo = 2; test() {  this.#foo; }}', options: { next: true } },
+    { code: '(class A { @foo get getter(){} })', options: { module: true, next: true } },
     {
       code: outdent`
         export default @id class Sample {
@@ -166,7 +166,7 @@ describe('Next - Decorators', () => {
       `,
       options: { next: true },
     },
-    { code: `export default (@decorator class Foo {})`, options: { module: true, next: true } },
+    { code: 'export default (@decorator class Foo {})', options: { module: true, next: true } },
     {
       code: outdent`
         class Foo {
@@ -186,7 +186,7 @@ describe('Next - Decorators', () => {
       `,
       options: { next: true },
     },
-    { code: `@deco1 @deco2() @deco3(foo, bar) @deco4({foo, bar}) class Foo {}`, options: { next: true } },
+    { code: '@deco1 @deco2() @deco3(foo, bar) @deco4({foo, bar}) class Foo {}', options: { next: true } },
     {
       code: outdent`
         @foo('bar')
@@ -392,9 +392,9 @@ describe('Next - Decorators', () => {
       `,
       options: { next: true },
     },
-    { code: `class Foo { @foo @bar bar() {} }`, options: { next: true } },
-    { code: `var Foo = @foo class Foo {}`, options: { next: true } },
-    { code: `class Foo { @foo set bar(f) {} }`, options: { next: true } },
+    { code: 'class Foo { @foo @bar bar() {} }', options: { next: true } },
+    { code: 'var Foo = @foo class Foo {}', options: { next: true } },
+    { code: 'class Foo { @foo set bar(f) {} }', options: { next: true } },
     { code: '@a(@b class C {}) @d(@e() class F {}) class G {}', options: { next: true } },
     { code: '@a(@b class C {}) @d(@e() class F {}) class G {}', options: { next: true, module: true } },
     { code: '@a class G {}', options: { next: true, ranges: true, loc: true } },
@@ -405,8 +405,8 @@ describe('Next - Decorators', () => {
     { code: '@\n x.y class D {}', options: { next: true, ranges: true, loc: true } },
     { code: '@\n (dec()) class C {}', options: { next: true, ranges: true, loc: true, preserveParens: true } },
     { code: '@\n (x.y) class D {}', options: { next: true, ranges: true, loc: true, preserveParens: true } },
-    { code: `class A { @dec\nx }`, options: { next: true, ranges: true, loc: true } },
-    { code: `class A { @dec\nx(){} }`, options: { next: true, ranges: true, loc: true } },
+    { code: 'class A { @dec\nx }', options: { next: true, ranges: true, loc: true } },
+    { code: 'class A { @dec\nx(){} }', options: { next: true, ranges: true, loc: true } },
     { code: '@dec export class E {};', options: { next: true, module: true, ranges: true, loc: true } },
     { code: '@dec export default class {};', options: { next: true, module: true, ranges: true, loc: true } },
     { code: 'export @dec class E {};', options: { next: true, module: true, ranges: true, loc: true } },

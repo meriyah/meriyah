@@ -1,9 +1,9 @@
-import { Context } from './common';
-import { parseSource } from './parser';
-import { type Program } from './estree';
 // Current version
 import { version as pkgVersion } from '../package.json';
+import { Context } from './common';
+import { type Program } from './estree';
 import { type Options } from './options';
+import { parseSource } from './parser';
 
 // This bypass troublesome package.json in generated d.ts file.
 const version: string = pkgVersion;

@@ -1,10 +1,10 @@
-import { descKeywordTable, Token } from './../token';
-import { Context, getOwnProperty } from '../common';
-import { type Parser } from '../parser/parser';
 import { Chars } from '../chars';
+import { Context, getOwnProperty } from '../common';
+import { Errors, ParseError } from '../errors';
+import { type Parser } from '../parser/parser';
+import { descKeywordTable, Token } from './../token';
+import { CharFlags, CharTypes, isIdentifierPart, isIdentifierStart, isIdPart } from './charClassifier';
 import { advanceChar, consumePossibleSurrogatePair, toHex } from './common';
-import { CharTypes, CharFlags, isIdentifierPart, isIdentifierStart, isIdPart } from './charClassifier';
-import { ParseError, Errors } from '../errors';
 
 /**
  * Scans identifier

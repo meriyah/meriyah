@@ -1,15 +1,15 @@
-import { pass } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { pass } from '../../test-utils';
 
 describe('Expressions - BigInt', () => {
   for (const arg of [
     '-1n',
-    `const minus_one = BigInt(-1);`,
+    'const minus_one = BigInt(-1);',
     'x(30n, "foo", "bar");',
-    `18757382984821n`,
+    '18757382984821n',
     '0b1111n',
     'a.b(c(0b1), 1n);',
     '340282366920938463463374607431768211456n',

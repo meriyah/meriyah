@@ -4,8 +4,8 @@ import { parseSource } from '../../../src/parser';
 
 describe('Miscellaneous - HTML Comments', () => {
   for (const arg of [
-    `<!-- test --->`,
-    `;-->`,
+    '<!-- test --->',
+    ';-->',
     `---*/
 -->`,
   ]) {
@@ -30,7 +30,7 @@ describe('Miscellaneous - HTML Comments', () => {
 
   for (const arg of [
     // Babylon issue: https://github.com/babel/babel/issues/7802
-    `<!-- test --->`,
+    '<!-- test --->',
     '<!-- HTML comment (not ECMA)',
     '--> HTML comment',
     'x = -1 <!--x;',
@@ -40,7 +40,7 @@ describe('Miscellaneous - HTML Comments', () => {
     //'/* optional SingleLineDelimitedCommentSequence */-->the comment extends to these characters',
     '-->',
     '-->[0];',
-    `Function("-->", "");`,
+    'Function("-->", "");',
     `/*
     */-->`,
     '0/*\n*/--> a comment',

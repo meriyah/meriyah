@@ -1,6 +1,6 @@
-import { describe } from 'vitest';
-import { pass, fail } from '../../test-utils';
 import { outdent } from 'outdent';
+import { describe } from 'vitest';
+import { fail, pass } from '../../test-utils';
 
 describe('Statements - Do while', () => {
   fail('Statements - Do while (fail)', [
@@ -25,7 +25,7 @@ describe('Statements - Do while', () => {
   ]);
 
   pass('Statements - Do while (pass)', [
-    `do;while(0) 0;`,
+    'do;while(0) 0;',
     {
       code: outdent`
         do x

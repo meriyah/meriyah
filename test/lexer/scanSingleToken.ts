@@ -1,9 +1,9 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { Context } from '../../src/common';
-import { Token } from '../../src/token';
-import { Parser } from '../../src/parser/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
+import { Parser } from '../../src/parser/parser';
+import { Token } from '../../src/token';
 
 describe('src/lexer/scan', () => {
   describe('#scanSingleToken()', () => {

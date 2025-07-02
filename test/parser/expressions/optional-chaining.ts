@@ -1,8 +1,8 @@
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { fail, pass } from '../../test-utils';
 
 describe('Optional chaining', () => {
   for (const arg of [
@@ -25,19 +25,19 @@ describe('Optional chaining', () => {
     'a.func?.()',
     'obj?.[expr]',
     'obj?.[expr]?.[other]',
-    `obj?.[true]`,
+    'obj?.[true]',
     'obj?.[true]?.[true]',
     'obj.a?.[expr]',
-    `obj.a?.[true]`,
-    `foo.bar?.baz`,
-    `foo?.bar?.baz`,
-    `foo?.bar`,
+    'obj.a?.[true]',
+    'foo.bar?.baz',
+    'foo?.bar?.baz',
+    'foo?.bar',
     'a.b?.c()',
     '(a?.b).c;',
     '(a?.b).c();',
     '(a?.b)?.c.d?.e;',
-    `a?.b.c.d.e?.f`,
-    `a.b.c?.d.e.f`,
+    'a?.b.c.d.e?.f',
+    'a.b.c?.d.e.f',
     outdent`
       if (a?.b?.c) {
         console.log(a?.b?.c);
@@ -240,15 +240,15 @@ describe('Optional chaining', () => {
     'obj?.c(10)',
     'obj?.d();',
     '(a?.b).c',
-    `a?.b(...args);`,
+    'a?.b(...args);',
     '(obj?.a)?.b',
     '(fn()?.a)?.b',
-    `a?.b(...args).c;`,
+    'a?.b(...args).c;',
     'const value = true ?.30 : false;',
     'undf?.b',
     '[x.y = 1] = [42]',
     '({ x: 1 }).x?.y.z;',
-    `a?.b(...args).c(...args);`,
+    'a?.b(...args).c(...args);',
     'let a = b?.c;',
     'o.x?[y]+z:t',
     '({ x: y?.z })',
@@ -405,7 +405,7 @@ describe('Optional chaining', () => {
   ]);
 
   pass('Optional chaining (pass)', [
-    { code: `a?.b`, options: { webcompat: true, ranges: true } },
+    { code: 'a?.b', options: { webcompat: true, ranges: true } },
     { code: 'obj.aaa.bbb', options: { webcompat: true, ranges: true } },
     { code: 'obj.aaa?.bbb', options: { webcompat: true, ranges: true } },
     { code: 'obj?.aaa.bbb', options: { webcompat: true, ranges: true } },
@@ -416,8 +416,8 @@ describe('Optional chaining', () => {
     { code: '(obj?.aaa)?.bbb', options: { webcompat: true, ranges: true } },
     { code: 'a?.[x]', options: { webcompat: true, ranges: true } },
     { code: 'a?.import("string")?.import.meta??(a)', options: { webcompat: true, ranges: true } },
-    { code: `a?.()`, options: { webcompat: true, ranges: true } },
-    { code: `a?.b[3].c?.(x).d`, options: { webcompat: true, ranges: true } },
-    { code: `({})?.a["b"]`, options: { webcompat: true, ranges: true } },
+    { code: 'a?.()', options: { webcompat: true, ranges: true } },
+    { code: 'a?.b[3].c?.(x).d', options: { webcompat: true, ranges: true } },
+    { code: '({})?.a["b"]', options: { webcompat: true, ranges: true } },
   ]);
 });

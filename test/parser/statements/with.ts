@@ -1,5 +1,5 @@
 import { describe } from 'vitest';
-import { pass, fail } from '../../test-utils';
+import { fail, pass } from '../../test-utils';
 
 describe('Statements - With', () => {
   fail('Statements - With (fail)', [
@@ -8,12 +8,12 @@ describe('Statements - With', () => {
     'with ({}) function f() {}',
     'with ({}) let x;',
     { code: 'with ({}) { }', options: { impliedStrict: true } },
-    { code: `with (x) foo;`, options: { impliedStrict: true } },
-    `with ({}) let [a] = [42];`,
-    `with ({}) let [a]`,
-    `with ({}) let 1`,
-    `with ({}) let []`,
-    `while(true) let[a] = 0`,
+    { code: 'with (x) foo;', options: { impliedStrict: true } },
+    'with ({}) let [a] = [42];',
+    'with ({}) let [a]',
+    'with ({}) let 1',
+    'with ({}) let []',
+    'while(true) let[a] = 0',
   ]);
 
   pass('Statements - With (pass)', [

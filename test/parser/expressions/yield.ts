@@ -1,8 +1,8 @@
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { fail, pass } from '../../test-utils';
 
 describe('Expressions - Yield', () => {
   for (const arg of [
@@ -26,8 +26,8 @@ describe('Expressions - Yield', () => {
       yield;
     `,
     'function* foo() {  return ( yield* ( async ( j ) => {}) ) }',
-    `function* foo() { switch ( y (yield) - ((a) => {})) { } }`,
-    `function* foo() { switch ( y (yield) - (async (a) => {})) { } }`,
+    'function* foo() { switch ( y (yield) - ((a) => {})) { } }',
+    'function* foo() { switch ( y (yield) - (async (a) => {})) { } }',
     'function* foo() { a(yield* function t(k) {}, ...(c) => {}) }',
     'function* foo() { yield 2; yield 3; yield 4 }',
     'function* foo() { yield 2; if (true) { yield 3 }; yield 4 }',
@@ -239,53 +239,53 @@ describe('Expressions - Yield', () => {
   }
 
   const yieldInParameters = [
-    `(a = yield) => {}`,
-    `(a = yield /a/g) => {}`, // Should parse as division, not yield expression with regexp.
-    `yield => {};`,
-    `(yield) => {};`,
-    `(yield = 0) => {};`,
-    `([yield]) => {};`,
-    `([yield = 0]) => {};`,
-    `([...yield]) => {};`,
-    `({a: yield}) => {};`,
-    `({yield}) => {};`,
-    `({yield = 0}) => {};`,
-    `async (yield) => {};`,
-    `async (yield = 0) => {};`,
-    `async ([yield]) => {};`,
-    `async ([yield = 0]) => {};`,
-    `async ([...yield]) => {};`,
-    `async ({a: yield}) => {};`,
-    `async ({yield}) => {};`,
-    `async ({yield = 0}) => {};`,
+    '(a = yield) => {}',
+    '(a = yield /a/g) => {}', // Should parse as division, not yield expression with regexp.
+    'yield => {};',
+    '(yield) => {};',
+    '(yield = 0) => {};',
+    '([yield]) => {};',
+    '([yield = 0]) => {};',
+    '([...yield]) => {};',
+    '({a: yield}) => {};',
+    '({yield}) => {};',
+    '({yield = 0}) => {};',
+    'async (yield) => {};',
+    'async (yield = 0) => {};',
+    'async ([yield]) => {};',
+    'async ([yield = 0]) => {};',
+    'async ([...yield]) => {};',
+    'async ({a: yield}) => {};',
+    'async ({yield}) => {};',
+    'async ({yield = 0}) => {};',
   ];
 
   const yieldInBody = [
-    `() => { var x = yield; }`,
-    `() => { var x = yield /a/g; }`,
-    `() => { var yield; };`,
-    `() => { var yield = 0; };`,
-    `() => { var [yield] = []; };`,
-    `() => { var [yield = 0] = []; };`,
-    `() => { var [...yield] = []; };`,
-    `() => { var {a: yield} = {}; };`,
-    `() => { var {yield} = {}; };`,
-    `() => { var {yield = 0} = {}; };`,
-    `() => { let yield; };`,
-    `() => { let yield = 0; };`,
-    `() => { let [yield] = []; };`,
-    `() => { let [yield = 0] = []; };`,
-    `() => { let [...yield] = []; };`,
-    `() => { let {a: yield} = {}; };`,
-    `() => { let {yield} = {}; };`,
-    `() => { let {yield = 0} = {}; };`,
-    `() => { const yield = 0; };`,
-    `() => { const [yield] = []; };`,
-    `() => { const [yield = 0] = []; };`,
-    `() => { const [...yield] = []; };`,
-    `() => { const {a: yield} = {}; };`,
-    `() => { const {yield} = {}; };`,
-    `() => { const {yield = 0} = {}; };`,
+    '() => { var x = yield; }',
+    '() => { var x = yield /a/g; }',
+    '() => { var yield; };',
+    '() => { var yield = 0; };',
+    '() => { var [yield] = []; };',
+    '() => { var [yield = 0] = []; };',
+    '() => { var [...yield] = []; };',
+    '() => { var {a: yield} = {}; };',
+    '() => { var {yield} = {}; };',
+    '() => { var {yield = 0} = {}; };',
+    '() => { let yield; };',
+    '() => { let yield = 0; };',
+    '() => { let [yield] = []; };',
+    '() => { let [yield = 0] = []; };',
+    '() => { let [...yield] = []; };',
+    '() => { let {a: yield} = {}; };',
+    '() => { let {yield} = {}; };',
+    '() => { let {yield = 0} = {}; };',
+    '() => { const yield = 0; };',
+    '() => { const [yield] = []; };',
+    '() => { const [yield = 0] = []; };',
+    '() => { const [...yield] = []; };',
+    '() => { const {a: yield} = {}; };',
+    '() => { const {yield} = {}; };',
+    '() => { const {yield = 0} = {}; };',
   ];
 
   for (const test of [...yieldInParameters, ...yieldInBody]) {
@@ -567,11 +567,11 @@ describe('Expressions - Yield', () => {
       }
       }
     `,
-    `function* g1() { (yield 1) }`,
-    `function* g2() { [yield 1] }`,
-    `function* g3() { {yield 1} }`,
-    `function* g4() { yield 1, yield 2; }`,
-    `function* g5() { (yield 1) ? yield 2 : yield 3; }`,
+    'function* g1() { (yield 1) }',
+    'function* g2() { [yield 1] }',
+    'function* g3() { {yield 1} }',
+    'function* g4() { yield 1, yield 2; }',
+    'function* g5() { (yield 1) ? yield 2 : yield 3; }',
     outdent`
       function* g(a, b, c, d) {
       arguments[0] = 32;

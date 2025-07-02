@@ -1,9 +1,9 @@
 import * as t from 'node:assert/strict';
-import { it } from 'vitest';
 import * as acorn from 'acorn';
-import getTest262Fixtures, { type TestCase } from '../../test262/get-test262-fixtures.mjs';
-import * as meriyah from '../../src/meriyah';
+import { it } from 'vitest';
 import type * as ESTree from '../../src/estree';
+import * as meriyah from '../../src/meriyah';
+import getTest262Fixtures, { type TestCase } from '../../test262/get-test262-fixtures.mjs';
 
 const { TEST262_FILE } = process.env;
 

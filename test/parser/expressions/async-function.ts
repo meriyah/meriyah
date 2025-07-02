@@ -1,8 +1,8 @@
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { fail, pass } from '../../test-utils';
 
 describe('Expressions - Async function', () => {
   for (const arg of [
@@ -16,7 +16,7 @@ describe('Expressions - Async function', () => {
     '(async function foo(await) { })',
     '(async\nfunction foo() { })',
     'async ()\n=> a',
-    `async while (1) {}`,
+    'async while (1) {}',
     outdent`
       (async
         function f() {})
@@ -37,7 +37,7 @@ describe('Expressions - Async function', () => {
     '(async function(...a,) {})',
     '(async function *() { var await; })',
     '"use strict"; (async function *() { var await; })',
-    `async function wrap() { async function await() { } };`,
+    'async function wrap() { async function await() { } };',
     '(async.foo6 => 1)',
     '(async.foo7 foo8 => 1)',
     '(async.foo9 () => 1)',
@@ -129,8 +129,8 @@ describe('Expressions - Async function', () => {
     'var O = { async method(foo, bar) {} }',
     'async function await() {}',
     'class X { static async await(){} }',
-    `(async function ref(a, b = 39,) {});`,
-    `x = async function(a) { await a }`,
+    '(async function ref(a, b = 39,) {});',
+    'x = async function(a) { await a }',
     'f(async function(x) { await x })',
     'f(b, async function(b) { await b }, c)',
     'async function foo(a = async () => await b) {}',

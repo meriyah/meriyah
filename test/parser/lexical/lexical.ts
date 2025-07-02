@@ -1,8 +1,8 @@
-import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { fail } from '../../test-utils';
 
 describe('Lexical - Lexical', () => {
   const letbinds = [
@@ -263,9 +263,9 @@ describe('Lexical - Lexical', () => {
       { var {foo} = {foo: a}; };
       { var {foo} = {foo: a}; };
     `,
-    `{ var {foo=a} = {}; };`,
-    `{ var foo = a; };`,
-    `{ var {foo} = {foo: a}; };`,
+    '{ var {foo=a} = {}; };',
+    '{ var foo = a; };',
+    '{ var {foo} = {foo: a}; };',
     `try{
       try {
         var intry__intry__var;
@@ -300,9 +300,9 @@ describe('Lexical - Lexical', () => {
     'for (;;) { let x; } var x;',
     'for (var x;;) { let x; }',
     '{ let x } var x;',
-    `{ var {foo=a} = {}; };`,
-    `{ var foo = a; };`,
-    `{ var {foo} = {foo: a}; };`,
+    '{ var {foo=a} = {}; };',
+    '{ var foo = a; };',
+    '{ var {foo} = {foo: a}; };',
     'let a; ({a:a, a:a} = {});',
     'var [a, a] = [];',
     'var foo, foo;',

@@ -1,8 +1,8 @@
 import * as t from 'node:assert/strict';
-import { describe, it } from 'vitest';
-import { pass, fail } from '../../test-utils';
-import { parseSource } from '../../../src/parser';
 import { outdent } from 'outdent';
+import { describe, it } from 'vitest';
+import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Module - Export', () => {
   // Async await module errors
@@ -516,7 +516,7 @@ describe('Module - Export', () => {
     'export var foo;',
     'export function goo() {};',
     'export let hoo;',
-    `export default class { constructor() {	foo() } a() {	bar()	}	}`,
+    'export default class { constructor() {	foo() } a() {	bar()	}	}',
     'export const joo = 42;',
     'export default (function koo() {});',
     'export { };',

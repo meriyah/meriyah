@@ -1,7 +1,7 @@
-import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail } from '../../test-utils';
 
 describe('Statements - For await of', () => {
   const wrappers = [
@@ -482,7 +482,7 @@ describe('Statements - For await of', () => {
     'for await ("foo".x of y) {}',
     'for await (var x of y) {}',
     'for await (var x of y) {}',
-    `for ([].x in y);`,
+    'for ([].x in y);',
     'for await (let x of y) {}',
     'for await (const x of y) {}',
     'for await ((x) of y) {}',

@@ -1,9 +1,9 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
-import { describe, it } from 'vitest';
-import { parseSource } from '../../../src/parser';
 import { outdent } from 'outdent';
+import { describe, it } from 'vitest';
+import { Context } from '../../../src/common';
+import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Expressions - Group', () => {
   for (const arg of [
@@ -312,8 +312,8 @@ describe('Expressions - Group', () => {
     '([x, y]) = z;',
     '{x, y} = z;',
     '({x, y}) = z;',
-    `(x={"y": await z}) => t`,
-    `(x={200: await z}) => t`,
+    '(x={"y": await z}) => t',
+    '(x={200: await z}) => t',
     '({[x](){}} = z);',
     '(a \n/b/);',
     '([a \n/b/]);',
@@ -396,7 +396,7 @@ describe('Expressions - Group', () => {
     '...x => x',
     'y, ...x => x',
     '({x:{1:y()=x},x:{7:3}})>x',
-    `({[foo]() {}} = y)`,
+    '({[foo]() {}} = y)',
     '0, {a = 0}) => 0',
     '({a = 0}, {a = 0}, 0) => 0',
     '(0, {a = 0}) = 0',
@@ -540,9 +540,9 @@ describe('Expressions - Group', () => {
     '(,) => {}',
     '(...x);',
     'return => {}',
-    `({"foo": [x].foo()}=y);`,
-    `({15: 15.foo()}=x)`,
-    `({15: 15.foo}=x)`,
+    '({"foo": [x].foo()}=y);',
+    '({15: 15.foo()}=x)',
+    '({15: 15.foo}=x)',
     '(()) => 0',
     '((x)) => 0',
     '((x, y)) => 0',

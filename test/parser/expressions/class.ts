@@ -1,8 +1,8 @@
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { fail, pass } from '../../test-utils';
 
 describe('Expressions - Class', () => {
   for (const arg of [
@@ -1406,10 +1406,10 @@ describe('Expressions - Class', () => {
     '(class A {static 2(){}})',
     'class A extends B { *get() {} }',
     'class a { async *get(){} }',
-    `class A { [1n](){} }`,
-    { code: `class A { static }`, options: { next: true, module: true } },
-    { code: `class A { static; }`, options: { next: true, module: true } },
-    { code: `class A { static = 1 }`, options: { next: true, module: true } },
+    'class A { [1n](){} }',
+    { code: 'class A { static }', options: { next: true, module: true } },
+    { code: 'class A { static; }', options: { next: true, module: true } },
+    { code: 'class A { static = 1 }', options: { next: true, module: true } },
     outdent`
       new class {
         start() {

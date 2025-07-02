@@ -1,6 +1,6 @@
+import { outdent } from 'outdent';
 import { describe } from 'vitest';
 import { pass } from '../../test-utils';
-import { outdent } from 'outdent';
 
 describe('Miscellaneous - ranges', () => {
   pass('Miscellaneous - ranges (pass)', [

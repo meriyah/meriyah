@@ -1,5 +1,5 @@
+import { type Location, PropertyKind } from '../common';
 import { Errors, ParseError } from '../errors';
-import { PropertyKind, type Location } from '../common';
 import { type Parser } from './parser';
 
 // Note PrivateScope doesn't retain a scopeError

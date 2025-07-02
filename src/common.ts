@@ -1,7 +1,7 @@
-import { Token, KeywordDescTable } from './token';
 import { Errors } from './errors';
 import { nextToken } from './lexer/scan';
 import { type Parser } from './parser/parser';
+import { KeywordDescTable, Token } from './token';
 
 /**
  * The core context, passed around everywhere as a simple immutable bit set

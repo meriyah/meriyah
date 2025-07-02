@@ -1,7 +1,7 @@
 import * as path from 'node:path';
 import Test262Stream from 'test262-stream';
 import downloadTest262 from './download-test262.mjs';
-import { TEST262_DIRECTORY, shouldSkip, whitelist } from './shared.mjs';
+import { shouldSkip, TEST262_DIRECTORY, whitelist } from './shared.mjs';
 
 const whitelistSet = new Set(whitelist);
 

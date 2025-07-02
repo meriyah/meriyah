@@ -1,8 +1,8 @@
-import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { fail } from '../../test-utils';
 
 describe('Lexical - If', () => {
   fail('Lexical - If (fail)', [

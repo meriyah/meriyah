@@ -1,11 +1,11 @@
-import { convertTokenType } from '../lexer';
-import { Token } from '../token';
+import { type AssignmentKind, type DestructuringKind, Flags, type Location } from '../common';
+import { Errors, ParseError } from '../errors';
 import type * as ESTree from '../estree';
-import { type Location, Flags, type AssignmentKind, type DestructuringKind } from '../common';
-import { ParseError, Errors } from '../errors';
+import { convertTokenType } from '../lexer';
 import { type NormalizedOptions, type OnComment, type OnToken } from '../options';
-import { Scope, type ScopeKind } from './scope';
+import { Token } from '../token';
 import { PrivateScope } from './private-scope';
+import { Scope, type ScopeKind } from './scope';
 
 export class Parser {
   private lastOnToken: [string, number, number, ESTree.SourceLocation] | null = null;

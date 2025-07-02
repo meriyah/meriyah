@@ -1,7 +1,7 @@
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Next - Private methods', () => {
   fail('Private methods (fail)', [
@@ -284,17 +284,17 @@ describe('Next - Private methods', () => {
     });
   }
   pass('Next - Private methods (pass)', [
-    `class A { #key; }`,
-    `class A { static async #_(value) { return await value;} }`,
-    { code: `class A { #a; #b; }`, options: { ranges: true } },
-    { code: `class A { #yield = b[c]; }`, options: { ranges: true } },
-    { code: `class A { #yield = foo + bar; }`, options: { ranges: true } },
-    { code: `class A { #yield; }`, options: { ranges: true } },
-    `class C { static async *#gen() { yield { ...yield,  y: 1, ...yield yield, }; } static get gen() { return this.#gen; } }`,
-    `class C { static *#gen() { yield [...yield yield]; } static get gen() { return this.#gen; } }`,
-    `class C { get #℘() {} set #℘(x) {} a() { return this.#℘; } b(value) { this.#℘ = x; } };`,
-    `class C { #m() { return 42; } get ref() { return this.#m; } }`,
-    `class A { #foo = bar; }`,
+    'class A { #key; }',
+    'class A { static async #_(value) { return await value;} }',
+    { code: 'class A { #a; #b; }', options: { ranges: true } },
+    { code: 'class A { #yield = b[c]; }', options: { ranges: true } },
+    { code: 'class A { #yield = foo + bar; }', options: { ranges: true } },
+    { code: 'class A { #yield; }', options: { ranges: true } },
+    'class C { static async *#gen() { yield { ...yield,  y: 1, ...yield yield, }; } static get gen() { return this.#gen; } }',
+    'class C { static *#gen() { yield [...yield yield]; } static get gen() { return this.#gen; } }',
+    'class C { get #℘() {} set #℘(x) {} a() { return this.#℘; } b(value) { this.#℘ = x; } };',
+    'class C { #m() { return 42; } get ref() { return this.#m; } }',
+    'class A { #foo = bar; }',
     `class Cl {
         #privateField = "top secret string";
 
@@ -376,28 +376,28 @@ describe('Next - Private methods', () => {
               this.#privateFieldValue = newValue;
             }
           } `,
-    `class A { #key() {} }`,
-    `class A { #yield\n = 0; }`,
-    `class A { #foo() { #bar } }`,
-    `class A { static #key; }`,
-    `class A { static #foo(bar) {} }`,
-    `class A { m() {} #a; }`,
-    `class A {  #a; m() {} }`,
-    `class A {  #a; m() {} #b; }`,
-    `class A { m() { return 42; } #a;  #__;  #NJ_;  #℘_ ; }`,
+    'class A { #key() {} }',
+    'class A { #yield\n = 0; }',
+    'class A { #foo() { #bar } }',
+    'class A { static #key; }',
+    'class A { static #foo(bar) {} }',
+    'class A { m() {} #a; }',
+    'class A {  #a; m() {} }',
+    'class A {  #a; m() {} #b; }',
+    'class A { m() { return 42; } #a;  #__;  #NJ_;  #℘_ ; }',
     `class A { #foo = () => 'bar';  method() {
         return this.#foo();
       } }`,
-    `class B { #x = 0; #y = 1; }`,
+    'class B { #x = 0; #y = 1; }',
     `class A {
           static #x;
           static #y = 1;
         }`,
-    `class A {  #m = async function() { return 'foo'; };  method() { return this.#m(); } }`,
-    `class A { method() { return this.#m(); } #m = function () { return 'foo'; };  }`,
-    `class A {  #m() { return 42; } get bGetter() { return this.#b; } #b = this.#m(); get ref() { return this.#m; } constructor() {} }`,
-    `class A { #$_; #℘_; }`,
-    `class A { $(value) { this.#$_ = value; return this.#$; } }`,
+    "class A {  #m = async function() { return 'foo'; };  method() { return this.#m(); } }",
+    "class A { method() { return this.#m(); } #m = function () { return 'foo'; };  }",
+    'class A {  #m() { return 42; } get bGetter() { return this.#b; } #b = this.#m(); get ref() { return this.#m; } constructor() {} }',
+    'class A { #$_; #℘_; }',
+    'class A { $(value) { this.#$_ = value; return this.#$; } }',
     `var C = class {
         static *m() { return 42; } #$_; #__;  #℘_;   set #$(value) { this.#$_ = value;
         }
@@ -405,7 +405,7 @@ describe('Next - Private methods', () => {
           this.#__ = value;
         }
       }`,
-    `class A { get #foo/*{ declareWith }*/() {} }`,
+    'class A { get #foo/*{ declareWith }*/() {} }',
     `var C = class {
         static async *m() { return 42; } #$_; #__;
 
@@ -447,8 +447,8 @@ describe('Next - Private methods', () => {
           return this.#y(43);
         }
       } `,
-    `class A { static set #foo/*{ declareWith }*/(param) {} }`,
-    `class A { #\\u{61}\nstatic #\\u0062() {} }`,
+    'class A { static set #foo/*{ declareWith }*/(param) {} }',
+    'class A { #\\u{61}\nstatic #\\u0062() {} }',
     { code: 'class a {#𐌭人}', options: { ranges: true } },
     { code: 'class a {#人}', options: { ranges: true } },
     { code: 'class a {#𐌭}', options: { ranges: true } },

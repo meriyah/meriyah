@@ -1,10 +1,10 @@
+import { Chars } from '../chars';
 import { Context, Flags } from '../common';
+import { Errors, ParseError } from '../errors';
 import { type Parser } from '../parser/parser';
 import { Token } from '../token';
-import { advanceChar, toHex, NumberKind } from './common';
-import { CharTypes, CharFlags, isIdentifierStart } from './charClassifier';
-import { Chars } from '../chars';
-import { Errors, ParseError } from '../errors';
+import { CharFlags, CharTypes, isIdentifierStart } from './charClassifier';
+import { advanceChar, NumberKind, toHex } from './common';
 
 /**
  * Scans numeric literal

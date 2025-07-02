@@ -19,4 +19,4 @@ const lines = stdout
 
 await fs.writeFile(WHITELIST_FILE, lines.join('\n') + '\n');
 
-console.log(`✅ test262 whitelist updated.`);
+console.log('✅ test262 whitelist updated.');

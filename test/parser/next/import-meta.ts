@@ -1,7 +1,7 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { pass, fail } from '../../test-utils';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Next - Import Meta', () => {
   for (const arg of [
@@ -170,19 +170,19 @@ describe('Next - Import Meta', () => {
   ]);
 
   pass('Next - Import Meta (pass)', [
-    { code: `({m() { import.meta.url}})`, options: { module: true, next: true } },
-    { code: `if (1) { import.meta }`, options: { module: true, next: true } },
-    { code: `var f = function() {import.meta.couldBeMutable = true}`, options: { module: true, next: true } },
-    { code: `import.meta[0]`, options: { module: true, next: true } },
-    { code: `do { import.meta } while (0)`, options: { module: true, next: true } },
-    { code: `import.meta()`, options: { module: true, next: true } },
-    { code: `t = [...import.meta]`, options: { module: true, next: true } },
-    { code: `"use strict"; ({m() { while (0) { import.meta } }})`, options: { module: true, next: true } },
-    { code: `delete import.meta`, options: { module: true, next: true } },
-    { code: `import.meta.resolve('something')`, options: { module: true, next: true } },
-    { code: `const size = import.meta.scriptElement.dataset.size || 300;`, options: { module: true, next: true } },
-    { code: `x = import.meta`, options: { module: true, next: true } },
-    { code: `() => { import.meta }`, options: { module: true, next: true } },
+    { code: '({m() { import.meta.url}})', options: { module: true, next: true } },
+    { code: 'if (1) { import.meta }', options: { module: true, next: true } },
+    { code: 'var f = function() {import.meta.couldBeMutable = true}', options: { module: true, next: true } },
+    { code: 'import.meta[0]', options: { module: true, next: true } },
+    { code: 'do { import.meta } while (0)', options: { module: true, next: true } },
+    { code: 'import.meta()', options: { module: true, next: true } },
+    { code: 't = [...import.meta]', options: { module: true, next: true } },
+    { code: '"use strict"; ({m() { while (0) { import.meta } }})', options: { module: true, next: true } },
+    { code: 'delete import.meta', options: { module: true, next: true } },
+    { code: "import.meta.resolve('something')", options: { module: true, next: true } },
+    { code: 'const size = import.meta.scriptElement.dataset.size || 300;', options: { module: true, next: true } },
+    { code: 'x = import.meta', options: { module: true, next: true } },
+    { code: '() => { import.meta }', options: { module: true, next: true } },
     { code: 'x = \nimport.meta', options: { module: true, ranges: true, loc: true } },
     { code: 'x = \nimport.meta.url', options: { module: true, ranges: true, loc: true } },
     { code: 'import.meta', options: { module: true, ranges: true, loc: true } },

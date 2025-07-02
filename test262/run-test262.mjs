@@ -1,7 +1,7 @@
 import * as path from 'node:path';
 import run from 'test262-parser-runner';
 import downloadTest262 from './download-test262.mjs';
-import { TEST262_DIRECTORY, shouldSkip, whitelist } from './shared.mjs';
+import { shouldSkip, TEST262_DIRECTORY, whitelist } from './shared.mjs';
 
 async function runTest(meriyah) {
   await downloadTest262();

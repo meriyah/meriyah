@@ -1,9 +1,9 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
-import { describe, it } from 'vitest';
-import { parseSource } from '../../../src/parser';
 import { outdent } from 'outdent';
+import { describe, it } from 'vitest';
+import { Context } from '../../../src/common';
+import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Expressions - Async', () => {
   // Async as identifier

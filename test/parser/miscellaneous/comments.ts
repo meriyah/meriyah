@@ -1,8 +1,8 @@
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { pass, fail } from '../../test-utils';
-import { outdent } from 'outdent';
+import { fail, pass } from '../../test-utils';
 
 describe('Miscellaneous - Comments', () => {
   fail('Miscellaneous - Comments (fail)', [
@@ -10,36 +10,36 @@ describe('Miscellaneous - Comments', () => {
     ';-->',
     `// var /*
     x*/`,
-    `<!-`,
-    `</`,
-    { code: `</`, options: { jsx: true } },
-    { code: `</*`, options: { jsx: true } },
+    '<!-',
+    '</',
+    { code: '</', options: { jsx: true } },
+    { code: '</*', options: { jsx: true } },
     //[`<// single`, Context.OptionsJSX],
-    `</*`,
-    { code: `</*`, options: { jsx: true } },
-    { code: `<!-`, options: { jsx: true } },
-    `</`,
-    `<*`,
-    `<!-`,
-    `<!`,
+    '</*',
+    { code: '</*', options: { jsx: true } },
+    { code: '<!-', options: { jsx: true } },
+    '</',
+    '<*',
+    '<!-',
+    '<!',
     `/* x */
     = 1;
     */`,
     `/*
     */ the comment should not include these characters, regardless of AnnexB extensions -->`,
-    `/*FOO/`,
-    { code: `<!-- HTML comment`, options: { module: true } },
+    '/*FOO/',
+    { code: '<!-- HTML comment', options: { module: true } },
     'x/* precomment */ --> is eol-comment\nvar y = 37;\n',
     'var x = a; --> is eol-comment\nvar y = b;\n',
-    `</`,
-    `</`,
+    '</',
+    '</',
   ]);
 
   for (const arg of [
     'x/* precomment */ --> is eol-comment\nvar y = 37;\n',
     'var x = a; --> is eol-comment\nvar y = b;\n',
     'x --> is eol-comment\nvar y = b;\n',
-    `/*CHECK#1/`,
+    '/*CHECK#1/',
     '#\n/*\n\n*/',
     `
     /* var*/
@@ -51,8 +51,8 @@ describe('Miscellaneous - Comments', () => {
     */`,
     `// var /*
     x*/`,
-    `;-->`,
-    `</`,
+    ';-->',
+    '</',
     `/* x */
             = 1;
             */`,
@@ -68,7 +68,7 @@ describe('Miscellaneous - Comments', () => {
 
   for (const arg of [
     // Babylon issue: https://github.com/babel/babel/issues/7802
-    `<!-- test --->`,
+    '<!-- test --->',
     `a /*
     */ b;`,
     '<!-- console.log("foo") -->',
@@ -142,19 +142,19 @@ describe('Miscellaneous - Comments', () => {
     '// /* foo */',
     '\t\t\t\t\t\t\t\t',
     '\t // foo bar${lt}  ',
-    `\t // foo bar\n // baz \n //`,
-    `\t /* foo * /* bar \u2028 */  `,
-    `\t // foo bar\r // baz \r //`,
-    `\t /* foo * /* bar \u2029 */  `,
-    `\t /* foo bar\r *//* baz*/ \r /**/`,
-    `\t <!-- foo bar\t <!-- baz \r <!--`,
-    `\t <!-- foo bar\u2029  `,
+    '\t // foo bar\n // baz \n //',
+    '\t /* foo * /* bar \u2028 */  ',
+    '\t // foo bar\r // baz \r //',
+    '\t /* foo * /* bar \u2029 */  ',
+    '\t /* foo bar\r *//* baz*/ \r /**/',
+    '\t <!-- foo bar\t <!-- baz \r <!--',
+    '\t <!-- foo bar\u2029  ',
     '// foo',
     '/**/ // ',
     '// a /* bcd */ ',
-    `  \t <!-- foo bar\n\r  `,
-    `function x(){ /*Jupiter*/ return; /*Saturn*/}`,
-    `var a; // a`,
+    '  \t <!-- foo bar\n\r  ',
+    'function x(){ /*Jupiter*/ return; /*Saturn*/}',
+    'var a; // a',
     '/**/42',
     '/**/42',
     '//42',
@@ -162,7 +162,7 @@ describe('Miscellaneous - Comments', () => {
     'function x(){ /*foo*/ return; /*bar*/}',
     '0 /*The*/ /*Answer*/',
     'if (x) { // Some comment\ndoThat(); }',
-    `var a; // a`,
+    'var a; // a',
     '{ x\n++y }',
     '{ x\n--y }',
     '{ throw error\nerror; }',

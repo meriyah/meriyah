@@ -1,8 +1,8 @@
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
 import { fail } from '../../test-utils';
-import { outdent } from 'outdent';
 
 describe('Miscellaneous - Escaped keywords', () => {
   for (const arg of [
@@ -97,8 +97,8 @@ describe('Miscellaneous - Escaped keywords', () => {
         p => {}
       }
     `,
-    `obj.bre\\u0061k = 42;`,
-    `for (\\u0061sync of [7]);`,
+    String.raw`obj.bre\u0061k = 42;`,
+    String.raw`for (\u0061sync of [7]);`,
     String.raw`0, { def\u{61}ult: x } = { default: 42 };`,
     String.raw`var y = { bre\u0061k: x } = { break: 42 };`,
     String.raw`var y = { c\u0061se: x } = { case: 42 };`,
@@ -113,7 +113,7 @@ describe('Miscellaneous - Escaped keywords', () => {
     });
   }
 
-  for (const arg of [`obj.bre\\u0061k = 42;`, `for (\\u0061sync of [7]);`]) {
+  for (const arg of [String.raw`obj.bre\u0061k = 42;`, String.raw`for (\u0061sync of [7]);`]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
         parseSource(`${arg}`, { module: true });
@@ -199,7 +199,7 @@ describe('Miscellaneous - Escaped keywords', () => {
     String.raw`{for(o i\u006E {}){}}`,
     { code: String.raw`impleme\u{006E}ts`, options: { impliedStrict: true } },
     { code: String.raw`impleme\u{006E}ts`, options: { module: true } },
-    `'use strict'; impleme\\u{006E}ts`,
+    String.raw`'use strict'; impleme\u{006E}ts`,
     String.raw`[th\u{69}s] = []`,
     String.raw`th\u{69}s`,
     String.raw`[f\u0061lse] = []`,

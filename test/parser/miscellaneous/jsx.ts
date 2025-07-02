@@ -1,8 +1,8 @@
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { fail, pass } from '../../test-utils';
 
 describe('Miscellaneous - JSX', () => {
   for (const arg of [
@@ -54,7 +54,7 @@ describe('Miscellaneous - JSX', () => {
     { code: '<p></>', options: { jsx: true } },
     { code: '<p><q></p>', options: { jsx: true } },
     { code: '<1/>', options: { jsx: true } },
-    { code: `<div id={}></div>`, options: { jsx: true } },
+    { code: '<div id={}></div>', options: { jsx: true } },
     { code: '<div>one</div><div>two</div>', options: { jsx: true } },
     { code: '</>', options: { jsx: true } },
     { code: '<a/!', options: { jsx: true } },
@@ -122,7 +122,7 @@ describe('Miscellaneous - JSX', () => {
   ]);
 
   pass('Miscellaneous - JSX (pass)', [
-    { code: `<!--ccc-->`, options: { jsx: true } },
+    { code: '<!--ccc-->', options: { jsx: true } },
     {
       code: outdent`
         class Columns extends React.Component {
@@ -138,32 +138,32 @@ describe('Miscellaneous - JSX', () => {
       `,
       options: { jsx: true, ranges: true, loc: true },
     },
-    { code: `<div>{111}</div>`, options: { jsx: true, ranges: true } },
-    { code: `<div></div>`, options: { jsx: true, ranges: true } },
-    { code: `<div {...[<div/>]} />`, options: { jsx: true, ranges: true } },
-    { code: `<div >{111}</div>`, options: { jsx: true } },
-    { code: `<div >xxx{111}xxx{222}</div>`, options: { jsx: true, ranges: true } },
+    { code: '<div>{111}</div>', options: { jsx: true, ranges: true } },
+    { code: '<div></div>', options: { jsx: true, ranges: true } },
+    { code: '<div {...[<div/>]} />', options: { jsx: true, ranges: true } },
+    { code: '<div >{111}</div>', options: { jsx: true } },
+    { code: '<div >xxx{111}xxx{222}</div>', options: { jsx: true, ranges: true } },
     {
-      code: `<div >xxx{function(){return <div id={aaa}>111</div>}}xxx{222}</div>`,
+      code: '<div >xxx{function(){return <div id={aaa}>111</div>}}xxx{222}</div>',
       options: { jsx: true, ranges: true },
     },
-    { code: `<ul><li>111</li><li>222</li><li>333</li><li>444</li></ul>`, options: { jsx: true, ranges: true } },
+    { code: '<ul><li>111</li><li>222</li><li>333</li><li>444</li></ul>', options: { jsx: true, ranges: true } },
     {
-      code: `<div id="复杂结构">xxx{function(){return <div id={aaa}>111</div>}}xxx{222}</div>`,
+      code: '<div id="复杂结构">xxx{function(){return <div id={aaa}>111</div>}}xxx{222}</div>',
       options: { jsx: true },
     },
-    { code: `<ul>  <li>  </li> <li>x</li> </ul>`, options: { jsx: true } },
+    { code: '<ul>  <li>  </li> <li>x</li> </ul>', options: { jsx: true } },
     {
-      code: `<option><b>dddd</b><script>333</script><xmp>eee</xmp><template>eeeee</template></option>`,
+      code: '<option><b>dddd</b><script>333</script><xmp>eee</xmp><template>eeeee</template></option>',
       options: { jsx: true },
     },
-    { code: `<div id={aa} class="className" > t </div>`, options: { jsx: true, ranges: true, loc: true, raw: true } },
-    { code: `<div id={function(){ return <div/> }} class="className"><p>xxx</p></div>`, options: { jsx: true } },
-    { code: `<div id={aa} title={ bb } {...{a:1}} class="className" ></div>`, options: { jsx: true } },
-    { code: `<X prop="2"><Y /><Z /></X>`, options: { jsx: true } },
-    { code: `<X>{a} {b}</X>`, options: { jsx: true } },
-    { code: `<X data-prop={x ? <Y prop={2} /> : <Z>\n</Z>}></X>`, options: { jsx: true } },
-    { code: `/** @jsx CUSTOM_DOM */<a></a>`, options: { jsx: true } },
+    { code: '<div id={aa} class="className" > t </div>', options: { jsx: true, ranges: true, loc: true, raw: true } },
+    { code: '<div id={function(){ return <div/> }} class="className"><p>xxx</p></div>', options: { jsx: true } },
+    { code: '<div id={aa} title={ bb } {...{a:1}} class="className" ></div>', options: { jsx: true } },
+    { code: '<X prop="2"><Y /><Z /></X>', options: { jsx: true } },
+    { code: '<X>{a} {b}</X>', options: { jsx: true } },
+    { code: '<X data-prop={x ? <Y prop={2} /> : <Z>\n</Z>}></X>', options: { jsx: true } },
+    { code: '/** @jsx CUSTOM_DOM */<a></a>', options: { jsx: true } },
     {
       code: outdent`
         import React from 'react'
@@ -201,16 +201,16 @@ describe('Miscellaneous - JSX', () => {
       `,
       options: { jsx: true },
     },
-    { code: `<>Fragment</>`, options: { jsx: true } },
-    { code: `<p>hello,world</p>`, options: { jsx: true } },
-    { code: `<></>`, options: { jsx: true, ranges: true } },
-    { code: `<    ></   >`, options: { jsx: true, ranges: true } },
-    { code: `< /*starting wrap*/ ></ /*ending wrap*/>;`, options: { jsx: true } },
-    { code: `<>hi</>;`, options: { jsx: true } },
-    { code: `<><div>JSXElement</div>JSXText{'JSXExpressionContainer'}</>`, options: { jsx: true } },
-    { code: `<><span>hi</span><div>bye</div></>;`, options: { jsx: true } },
-    { code: `<><span>1</span><><span>2.1</span><span>2.2</span></><span>3</span></>;`, options: { jsx: true } },
-    { code: `<><span> hi </span> <div>bye</div> </>`, options: { jsx: true } },
+    { code: '<>Fragment</>', options: { jsx: true } },
+    { code: '<p>hello,world</p>', options: { jsx: true } },
+    { code: '<></>', options: { jsx: true, ranges: true } },
+    { code: '<    ></   >', options: { jsx: true, ranges: true } },
+    { code: '< /*starting wrap*/ ></ /*ending wrap*/>;', options: { jsx: true } },
+    { code: '<>hi</>;', options: { jsx: true } },
+    { code: "<><div>JSXElement</div>JSXText{'JSXExpressionContainer'}</>", options: { jsx: true } },
+    { code: '<><span>hi</span><div>bye</div></>;', options: { jsx: true } },
+    { code: '<><span>1</span><><span>2.1</span><span>2.2</span></><span>3</span></>;', options: { jsx: true } },
+    { code: '<><span> hi </span> <div>bye</div> </>', options: { jsx: true } },
     {
       code: outdent`
         <>
@@ -454,7 +454,7 @@ describe('Miscellaneous - JSX', () => {
     { code: 'let w1 = <Poisoned {...{x: 5, y: "2"}} X="hi" />', options: { jsx: true } },
     { code: '<div>\n</div>', options: { jsx: true } },
     { code: '<div attr="&#0123;&hellip;&#x7D;"></div>', options: { jsx: true } },
-    { code: `<div attr='"'></div>`, options: { jsx: true } },
+    { code: "<div attr='\"'></div>", options: { jsx: true } },
     { code: '<foo bar=<baz.zoo></baz.zoo> />', options: { jsx: true } },
     { code: '<a href={link}></a>', options: { jsx: true } },
     { code: '<img width={320}/>', options: { jsx: true, ranges: true } },
@@ -473,7 +473,7 @@ describe('Miscellaneous - JSX', () => {
     { code: '<SolarSystem.Earth.America.USA.California.mountain-view />', options: { jsx: true, ranges: true } },
     { code: '<div> foo:bar</div>', options: { jsx: true, ranges: true, raw: true } },
     { code: '<div><li>Item 1</li><li>Item 1</li></div>', options: { jsx: true } },
-    { code: `<div style={{color: 'red', fontWeight: 'bold'}} />`, options: { jsx: true } },
+    { code: "<div style={{color: 'red', fontWeight: 'bold'}} />", options: { jsx: true } },
     { code: '<h1>Hello {data.target}</h1>', options: { jsx: true } },
     {
       code: outdent`

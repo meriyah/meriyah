@@ -1,6 +1,6 @@
 import type * as ESTree from './estree';
-import { type Token } from './token';
 import { pushComment, pushToken } from './parser/parser';
+import { type Token } from './token';
 
 /**
  * Function calls when semicolon inserted.

@@ -1,7 +1,7 @@
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
 
 describe('Miscellaneous - Web compatibility (AnnexB)', () => {
   describe('HTML Comments', () => {
@@ -67,12 +67,12 @@ describe('Miscellaneous - Web compatibility (AnnexB)', () => {
   });
 
   for (const arg of [
-    `"use strict"; if (0) function f(){}`,
-    `"use strict";  if (0) function f(){} else;`,
-    `"use strict"; if (0); else function f(){}`,
-    `"use strict"; label foo: function f(){}`,
-    `while(true) function a(){}`,
-    `with(true) function a(){}`,
+    '"use strict"; if (0) function f(){}',
+    '"use strict";  if (0) function f(){} else;',
+    '"use strict"; if (0); else function f(){}',
+    '"use strict"; label foo: function f(){}',
+    'while(true) function a(){}',
+    'with(true) function a(){}',
     'for (let a = 0 in {});',
     '"use strict"; for (var a = 0 in {});',
     'for (var {a} = 0 in {});',
@@ -80,7 +80,7 @@ describe('Miscellaneous - Web compatibility (AnnexB)', () => {
     'for (const a = 0 in {});',
     // "'use strict'; { function f() {} function f() {} }",
     // Esprima issue:  https://github.com/jquery/esprima/issues/1719
-    `if (false) L: async function l() {}`,
+    'if (false) L: async function l() {}',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -90,16 +90,16 @@ describe('Miscellaneous - Web compatibility (AnnexB)', () => {
   }
 
   for (const arg of [
-    `/\\}?/u;`,
-    `/\\{*/u;`,
-    `/.{.}/;`,
-    `/[\\w-\\s]/;`,
-    `/[\\s-\\w]/;`,
-    `/(?!.){0,}?/;`,
-    `/{/;`,
-    `004`,
-    `076`,
-    `02`,
+    String.raw`/\}?/u;`,
+    String.raw`/\{*/u;`,
+    '/.{.}/;',
+    String.raw`/[\w-\s]/;`,
+    String.raw`/[\s-\w]/;`,
+    '/(?!.){0,}?/;',
+    '/{/;',
+    '004',
+    '076',
+    '02',
     'if (x) function f() { return 23; } else function f() { return 42; }',
     'if (x) function f() {}',
     'x = -1 <!--x;',
@@ -240,7 +240,7 @@ describe('Miscellaneous - Web compatibility (AnnexB)', () => {
     'label: if (true) {} else function f() { }',
     'label: label2: function f() { }',
     'if (true) function f() { initialBV = f; f = 123; currentBV = f; return "decl"; } else function _f() {}',
-    `(function() { { function f() { initialBV = f; f = 123; currentBV = f; return 'decl'; } } }());`,
+    "(function() { { function f() { initialBV = f; f = 123; currentBV = f; return 'decl'; } } }());",
     outdent`
       (function() {      {        function f() { return 'inner declaration'; }
         }

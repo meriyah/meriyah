@@ -1,7 +1,7 @@
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Statements - For in', () => {
   for (const arg of [
@@ -14,8 +14,8 @@ describe('Statements - For in', () => {
     'for (+a().b in c);',
     'for (void a.b in c);',
     'for (/foo/ in {});',
-    `for ("foo".x = z in y);`,
-    `for ("foo" in y);`,
+    'for ("foo".x = z in y);',
+    'for ("foo" in y);',
     'for ([...[a]] = 0 in   {});',
     'for ([] = 0 in {});',
     'for ([...[a]] = 0 in {});',
@@ -25,7 +25,7 @@ describe('Statements - For in', () => {
     'for ({x} = 0 of {});',
     'for([0] in 0);',
     'for({a: 0} in 0);',
-    `for ({}.x);`,
+    'for ({}.x);',
     'for(const let in 0);',
     'for(let let of 0);',
     'for((0) of 0);',
@@ -198,10 +198,10 @@ describe('Statements - For in', () => {
     'for(let a = 0 in b);',
     'for(const a = 0 in b);',
     '"use strict"; for(var a = 0 in b);',
-    `for ("foo".x = y in y) {}`,
-    `for ({}.x = y in y) {}`,
+    'for ("foo".x = y in y) {}',
+    'for ({}.x = y in y) {}',
     'for ("foo".x in y',
-    `for ([].x = y in y) {}`,
+    'for ([].x = y in y) {}',
     'for (a() in b) break',
   ]) {
     it(`${arg}`, () => {
@@ -213,7 +213,7 @@ describe('Statements - For in', () => {
 
   for (const arg of [
     'for (var a = b, c, d, b = a ; x in b ; ) { break }',
-    `for ([].x in y) {}`,
+    'for ([].x in y) {}',
     'for (var {j} in x) { foo = j }',
     'for (var {j} in x) { [foo] = [j] }',
     'for (var {j} in x) { [[foo]=[42]] = [] }',
@@ -221,9 +221,9 @@ describe('Statements - For in', () => {
     'for (var {j} in x) { var [foo] = [j] }',
     'for (var {j} in x) { var [[foo]=[42]] = [] }',
     'for (var {j} in x) { var foo; foo = j }',
-    `for ("foo".x in y) {}`,
-    `for ("foo".x in y) {}`,
-    `for ({}.x in y) {}`,
+    'for ("foo".x in y) {}',
+    'for ("foo".x in y) {}',
+    'for ({}.x in y) {}',
     'for (a[b in c] in d);',
     'for (var {j} in x) { var foo; [foo] = [j] }',
     'for (var {j} in x) { var foo; [[foo]=[42]] = [] }',
@@ -490,14 +490,14 @@ describe('Statements - For in', () => {
     'for (const a = 0 in {});',
     'for (let a = 0 in {});',
     'for ({ m() {} } in {}) {}',
-    `for (a=>b in c);`,
-    `for ("foo" in y);`,
-    `for ("foo".x = z in y);`,
-    `for (()=>x in y);`,
-    `for (()=>(x) in y);`,
+    'for (a=>b in c);',
+    'for ("foo" in y);',
+    'for ("foo".x = z in y);',
+    'for (()=>x in y);',
+    'for (()=>(x) in y);',
     'for(([0]) in 0);',
     'for(({a: 0}) in 0);',
-    `for ((()=>x) in y);`,
+    'for ((()=>x) in y);',
     'for (const [x,y,z] = 22 in foo);',
     'for (true ? 0 : 0 in {}; false; ) ;',
     'for (x = 22 in foo);',
@@ -505,10 +505,10 @@ describe('Statements - For in', () => {
     'for ([x,y,z] = 22 in foo);',
     'for (const x = 22 in foo);',
     'for (const {a:x,b:y,c:z} = 22 in foo);',
-    `for (0 = 0 in {});`,
-    `for (i++ = 0 in {});`,
-    `for (new F() = 0 in {});`,
-    `for ("foo".x += z in y);`,
+    'for (0 = 0 in {});',
+    'for (i++ = 0 in {});',
+    'for (new F() = 0 in {});',
+    'for ("foo".x += z in y);',
     'for (function () {} in a)',
     'for ([]);',
     'for (var [a] = 0 in {});',

@@ -1,8 +1,8 @@
-import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { fail } from '../../test-utils';
 
 describe('Lexical - Try', () => {
   for (const declaration of ['var e', 'var f, e', 'let {} = 0', 'let {e:f} = 0', '{ function e(){} }']) {

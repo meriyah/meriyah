@@ -1,8 +1,8 @@
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { fail, pass } from '../../test-utils';
 
 describe('Declarations - Let', () => {
   // Invalid 'let' as identifier cases
@@ -86,7 +86,7 @@ describe('Declarations - Let', () => {
     'for (var [let] in {}) {}',
     'var let',
     'let;',
-    `let.let = foo`,
+    'let.let = foo',
     'var [let] = []',
     'let f = /* before */async /* a */ ( /* b */ a /* c */ , /* d */ b /* e */ ) /* f */ => /* g */ { /* h */ ; /* i */ }/* after */;',
     'let g = /* before */async /* a */ ( /* b */ ) /* c */ => /* d */ 0/* after */;',
@@ -176,7 +176,7 @@ describe('Declarations - Let', () => {
     'let x=y + 5;',
     'let [[a]=[1]] = [[2]];',
     'let/foo/g',
-    `{ let x = 5; let y = 6; }`,
+    '{ let x = 5; let y = 6; }',
     'let {a,b=0,c:d,e:f=0,[g]:[h]}=0',
     'let [...a] = 0;',
     'let [a,,]=0',
@@ -337,8 +337,8 @@ describe('Declarations - Let', () => {
     'let xCls = class x {};',
     'let cls = class {};',
     'let\n{x} = x;',
-    `let x = {y=z} = d`,
-    `let x = ({y=z}) => d`,
+    'let x = {y=z} = d',
+    'let x = ({y=z}) => d',
     'let {x}\n= x;',
     'let xCls2 = class { static name() {} };',
     'let { s: t = a(), u: v = b(), w: x = c(), y: z = d() } = { s: null, u: 0, w: false, y: "" };',

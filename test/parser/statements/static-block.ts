@@ -1,7 +1,7 @@
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Next - Class static initialization block', () => {
   fail('Next - Class static initialization block (fail)', [
@@ -47,8 +47,8 @@ describe('Next - Class static initialization block', () => {
   }
 
   pass('Next - Class static initialization block (pass)', [
-    { code: `class A { static {} }`, options: { loc: true, ranges: true } },
-    `class A { static { this.a } }`,
-    `class A {}; class B extends A { static { super.a } }`,
+    { code: 'class A { static {} }', options: { loc: true, ranges: true } },
+    'class A { static { this.a } }',
+    'class A {}; class B extends A { static { super.a } }',
   ]);
 });

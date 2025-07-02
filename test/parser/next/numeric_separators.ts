@@ -15,7 +15,7 @@ describe('Next - Numeric separators', () => {
     '0x1_',
     '0_x1',
     { code: '0_x_1', options: { next: true } },
-    { code: `0b_0101`, options: { next: true } },
+    { code: '0b_0101', options: { next: true } },
     { code: '0b11_', options: { next: true } },
     { code: '0o7__77', options: { next: true } },
     { code: '0o_777', options: { next: true } },

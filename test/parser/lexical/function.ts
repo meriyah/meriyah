@@ -1,8 +1,8 @@
-import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { fail } from '../../test-utils';
 
 describe('Lexical - Function', () => {
   fail('Lexical - Function (fail)', [
@@ -295,9 +295,9 @@ describe('Lexical - Function', () => {
         x();
       })();
     `,
-    `(function () { { let x = 'let x'; } { let y = 'let y'; } })();`,
+    "(function () { { let x = 'let x'; } { let y = 'let y'; } })();",
     'function foo({x:x}, {y:y}, {z:z}) {}',
-    `(function () { { var x = 'var x'; } { var y = 'var y'; } })();`,
+    "(function () { { var x = 'var x'; } { var y = 'var y'; } })();",
     'function foo([x]) { var x = 10;}',
     'async function af(x) { function x() { } }',
     'async function af(x) { var x; }',
@@ -308,31 +308,31 @@ describe('Lexical - Function', () => {
     'async function *f(){} { async function *f(){} }',
     'async function f(){} { async function f(){} }',
     'function f(x) { var x }',
-    `(function foo(y, z) {{ function x() {} } })(1);`,
+    '(function foo(y, z) {{ function x() {} } })(1);',
     // Complex parameter shouldn't be shadowed
-    `(function foo(x = 0) { var x; { function x() {} } })(1);`,
+    '(function foo(x = 0) { var x; { function x() {} } })(1);',
     // Nested complex parameter shouldn't be shadowed
-    `(function foo([[x]]) {var x; {function x() {} } })([[1]]);`,
+    '(function foo([[x]]) {var x; {function x() {} } })([[1]]);',
     // Complex parameter shouldn't be shadowed
-    `(function foo(x = 0) { var x; { function x() {}} })(1);`,
+    '(function foo(x = 0) { var x; { function x() {}} })(1);',
     // Nested complex parameter shouldn't be shadowed
-    `(function foo([[x]]) { var x;{ function x() {} }  })([[1]]);`,
+    '(function foo([[x]]) { var x;{ function x() {} }  })([[1]]);',
     // Rest parameter shouldn't be shadowed
-    `(function foo(...x) { var x; {  function x() {}  } })(1);`,
+    '(function foo(...x) { var x; {  function x() {}  } })(1);',
     // Don't shadow complex rest parameter
-    `(function foo(...[x]) { var x; { function x() {} } })(1);`,
+    '(function foo(...[x]) { var x; { function x() {} } })(1);',
     // Hoisting is not affected by other simple parameters
-    `(function foo(y, z) {{function x() {}} })(1);`,
+    '(function foo(y, z) {{function x() {}} })(1);',
     // Hoisting is not affected by other complex parameters
-    ` (function foo([y] = [], z) {{function x() {} } })();`,
+    ' (function foo([y] = [], z) {{function x() {} } })();',
     // Should allow shadowing function names
-    `{(function foo() { { function foo() { return 0; } } })();}`,
+    '{(function foo() { { function foo() { return 0; } } })();}',
     // rest parameter shouldn't be shadowed
     '(function shadowingRestParameterDoesntBind(...x) { {  function x() {} } })(1);',
-    `{(function foo(...r) { { function foo() { return 0; } } })(); }`,
-    `(function foo() { { let f = 0; (function () { { function f() { return 1; } } })(); } })();`,
-    `(function foo() { var y = 1; (function bar(x = y) { { function y() {} } })();  })();`,
-    `(function foo() { { function f() { return 4; } { function f() { return 5; } } }})()`,
+    '{(function foo(...r) { { function foo() { return 0; } } })(); }',
+    '(function foo() { { let f = 0; (function () { { function f() { return 1; } } })(); } })();',
+    '(function foo() { var y = 1; (function bar(x = y) { { function y() {} } })();  })();',
+    '(function foo() { { function f() { return 4; } { function f() { return 5; } } }})()',
     '(function foo(a = 0) { { let y = 3; function f(b = 0) { y = 2; } f(); } })();',
     '(function conditional() {  if (true) { function f() { return 1; } } else {  function f() { return 2; }} if (false) { function g() { return 1; }}  L: {break L;function f() { return 3; } }})();',
     '(function foo() {function outer() { return f; } { f = 1; function f () {} f = ""; } })();',
@@ -374,29 +374,29 @@ describe('Lexical - Function', () => {
     'function f([b, a], {b}) {}',
     // rest parameter shouldn't be shadowed
     '(function shadowingRestParameterDoesntBind(...x) { {  function x() {} } })(1);',
-    `(function foo(y, z) {{ function x() {} } })(1);`,
+    '(function foo(y, z) {{ function x() {} } })(1);',
     // Complex parameter shouldn't be shadowed
-    `(function foo(x = 0) { var x; { function x() {} } })(1);`,
+    '(function foo(x = 0) { var x; { function x() {} } })(1);',
     // Nested complex parameter shouldn't be shadowed
-    `(function foo([[x]]) {var x; {function x() {} } })([[1]]);`,
+    '(function foo([[x]]) {var x; {function x() {} } })([[1]]);',
     // Complex parameter shouldn't be shadowed
-    `(function foo(x = 0) { var x; { function x() {}} })(1);`,
+    '(function foo(x = 0) { var x; { function x() {}} })(1);',
     // Nested complex parameter shouldn't be shadowed
-    `(function foo([[x]]) { var x;{ function x() {} }  })([[1]]);`,
+    '(function foo([[x]]) { var x;{ function x() {} }  })([[1]]);',
     // Rest parameter shouldn't be shadowed
-    `(function foo(...x) { var x; {  function x() {}  } })(1);`,
+    '(function foo(...x) { var x; {  function x() {}  } })(1);',
     // Don't shadow complex rest parameter
-    `(function foo(...[x]) { var x; { function x() {} } })(1);`,
+    '(function foo(...[x]) { var x; { function x() {} } })(1);',
     // Hoisting is not affected by other simple parameters
-    `(function foo(y, z) {{function x() {}} })(1);`,
+    '(function foo(y, z) {{function x() {}} })(1);',
     // Hoisting is not affected by other complex parameters
-    ` (function foo([y] = [], z) {{function x() {} } })();`,
+    ' (function foo([y] = [], z) {{function x() {} } })();',
     // Should allow shadowing function names
-    `{(function foo() { { function foo() { return 0; } } })();}`,
-    `{(function foo(...r) { { function foo() { return 0; } } })(); }`,
-    `(function foo() { { let f = 0; (function () { { function f() { return 1; } } })(); } })();`,
-    `(function foo() { var y = 1; (function bar(x = y) { { function y() {} } })();  })();`,
-    `(function foo() { { function f() { return 4; } { function f() { return 5; } } }})()`,
+    '{(function foo() { { function foo() { return 0; } } })();}',
+    '{(function foo(...r) { { function foo() { return 0; } } })(); }',
+    '(function foo() { { let f = 0; (function () { { function f() { return 1; } } })(); } })();',
+    '(function foo() { var y = 1; (function bar(x = y) { { function y() {} } })();  })();',
+    '(function foo() { { function f() { return 4; } { function f() { return 5; } } }})()',
     '(function foo(a = 0) { { let y = 3; function f(b = 0) { y = 2; } f(); } })();',
     '(function conditional() {  if (true) { function f() { return 1; } } else {  function f() { return 2; }} if (false) { function g() { return 1; }}  L: {break L;function f() { return 3; } }})();',
     '(function foo() {function outer() { return f; } { f = 1; function f () {} f = ""; } })();',

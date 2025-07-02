@@ -1,8 +1,8 @@
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { fail, pass } from '../../test-utils';
 
 describe('Miscellaneous - ASI', () => {
   for (const arg of [
@@ -20,7 +20,7 @@ describe('Miscellaneous - ASI', () => {
       if(a>b)
       else c=d
     `,
-    `{} * 1`,
+    '{} * 1',
     outdent`
       for(
       ;) {
@@ -78,12 +78,12 @@ describe('Miscellaneous - ASI', () => {
   }
 
   fail('Expressions - ASI (fail)', [
-    `var x=0, y=0;\nvar z=\nx\n++\n++\ny`,
-    `for(\nfalse\n) {\nbreak;\n}`,
-    `for(false;false;;false) { break; }`,
-    `\n while(false)`,
-    `do {}; \n while(false)`,
-    `for header is (false \n false \n)`,
+    'var x=0, y=0;\nvar z=\nx\n++\n++\ny',
+    'for(\nfalse\n) {\nbreak;\n}',
+    'for(false;false;;false) { break; }',
+    '\n while(false)',
+    'do {}; \n while(false)',
+    'for header is (false \n false \n)',
     '{} * 1',
     'if (false) x = 1 else x = -1',
     outdent`
@@ -144,9 +144,9 @@ describe('Miscellaneous - ASI', () => {
 
   pass('Miscellaneous - ASI', [
     // Acorn issue: https://github.com/acornjs/acorn/issues/775
-    { code: `;;1;;1;;1`, options: { ranges: true } },
+    { code: ';;1;;1;;1', options: { ranges: true } },
     { code: '"foo"\nx', options: { raw: true, ranges: true } },
-    { code: `function f(){\n'foo';\n}`, options: { raw: true } },
+    { code: "function f(){\n'foo';\n}", options: { raw: true } },
     { code: 'function f(){\n"foo"\n}', options: { raw: true } },
     { code: '"ignore me"\n++x', options: { raw: true } },
     { code: '("use strict"); foo = 42;', options: { raw: true } },

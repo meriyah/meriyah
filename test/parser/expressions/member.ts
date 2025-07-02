@@ -1,7 +1,7 @@
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 describe('Expressions - Member', () => {
   fail('Expressions - Member (fail)', ['abc.123', 'a.[b].c().d.toString()', 'abc.£', 'abc???.£']);
 

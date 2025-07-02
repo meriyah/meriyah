@@ -1,10 +1,10 @@
+import { Chars } from '../chars';
 import { Context } from '../common';
+import { Errors } from '../errors';
 import { type Parser } from '../parser/parser';
 import { Token } from '../token';
-import { Chars } from '../chars';
 import { advanceChar } from './common';
-import { parseEscape, Escape, handleStringError } from './string';
-import { Errors } from '../errors';
+import { Escape, handleStringError, parseEscape } from './string';
 
 /**
  * Scan a template section. It can start either from the quote or closing brace.

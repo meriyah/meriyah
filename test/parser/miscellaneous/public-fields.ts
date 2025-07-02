@@ -1,8 +1,8 @@
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { fail, pass } from '../../test-utils';
 
 describe('Next - Public fields', () => {
   fail('Public fields (fail)', [
@@ -127,15 +127,15 @@ describe('Next - Public fields', () => {
     'await;',
     'await = 0;',
     'await;\n a;',
-    `\nx;\ny;\n\n`,
-    `static ['constructor'];`,
-    `constructor(props) {;([super.client] = props);}`,
-    `foo(props) { ;({ client: super.client } = props) }`,
-    `constructor(props) {;([super.client] = props);}`,
-    `constructor(props) {;({ x, ...super.client } = props)}`,
+    '\nx;\ny;\n\n',
+    "static ['constructor'];",
+    'constructor(props) {;([super.client] = props);}',
+    'foo(props) { ;({ client: super.client } = props) }',
+    'constructor(props) {;([super.client] = props);}',
+    'constructor(props) {;({ x, ...super.client } = props)}',
     `#client
     constructor(props) {;([this.#client] = props);}`,
-    `constructor(props) {;({ x, ...super.x } = props)}`, //
+    'constructor(props) {;({ x, ...super.x } = props)}', //
     `#x
     constructor(props) {;([this.#x] = props);}`,
     `#x
@@ -170,18 +170,18 @@ describe('Next - Public fields', () => {
   }
 
   pass('Next - Public fields (pass)', [
-    { code: `var C = class { static async #prototype() {} };`, options: { next: true, ranges: true } },
-    { code: `class Foo { x = 1; }`, options: { next: true, ranges: true } },
-    { code: `class A { set; }`, options: { next: true, ranges: true } },
-    { code: `class A { set = get; }`, options: { next: true } },
-    { code: `const createClass = (k) => class { [k()] = 2 };`, options: { next: true, ranges: true } },
-    { code: `class A { a = 0; }`, options: { next: true } },
+    { code: 'var C = class { static async #prototype() {} };', options: { next: true, ranges: true } },
+    { code: 'class Foo { x = 1; }', options: { next: true, ranges: true } },
+    { code: 'class A { set; }', options: { next: true, ranges: true } },
+    { code: 'class A { set = get; }', options: { next: true } },
+    { code: 'const createClass = (k) => class { [k()] = 2 };', options: { next: true, ranges: true } },
+    { code: 'class A { a = 0; }', options: { next: true } },
     {
-      code: `class A { ;;;;;;[x] = 42; [10] = "meep"; ["not initialized"];;;;;;; }`,
+      code: 'class A { ;;;;;;[x] = 42; [10] = "meep"; ["not initialized"];;;;;;; }',
       options: { next: true, ranges: true },
     },
-    { code: `{ class X { static p = function() { return arguments[0]; } } }`, options: { next: true, ranges: true } },
-    { code: `class A { ['a'] = 0; b; }`, options: { next: true, ranges: true } },
+    { code: '{ class X { static p = function() { return arguments[0]; } } }', options: { next: true, ranges: true } },
+    { code: "class A { ['a'] = 0; b; }", options: { next: true, ranges: true } },
     { code: 'class Some { render=( )=>{ return null; }}', options: { next: true, ranges: true } },
     {
       code: outdent`
@@ -207,12 +207,12 @@ describe('Next - Public fields', () => {
     { code: 'class X { static p = eval("(function() { return arguments[0]; })(1)"); }', options: { next: true } },
     { code: 'class Some { render=(a,b)=>{ return null; } }', options: { next: true } },
     {
-      code: `class A {  ;;;; ;;;;;;'a'; "b"; 'c' = 39;  "d" = 42;;;;;;;  ;;;; }`,
+      code: 'class A {  ;;;; ;;;;;;\'a\'; "b"; \'c\' = 39;  "d" = 42;;;;;;;  ;;;; }',
       options: { next: true, ranges: true },
     },
-    { code: `class A { foo; }`, options: { next: true, ranges: true } },
-    { code: `class A { a = b = c }`, options: { next: true, ranges: true } },
-    { code: `class A { a = b += c }`, options: { next: true, ranges: true } },
+    { code: 'class A { foo; }', options: { next: true, ranges: true } },
+    { code: 'class A { a = b = c }', options: { next: true, ranges: true } },
+    { code: 'class A { a = b += c }', options: { next: true, ranges: true } },
     { code: 'class C { static x }', options: { ranges: true, loc: true } },
   ]);
 });

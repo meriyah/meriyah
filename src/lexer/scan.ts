@@ -1,24 +1,24 @@
 import { Chars } from '../chars';
-import { Token } from '../token';
 import { Context, Flags } from '../common';
-import { type Parser } from '../parser/parser';
 import { Errors } from '../errors';
+import { type Parser } from '../parser/parser';
+import { Token } from '../token';
 import { isIDStart } from '../unicode';
+import { CommentType, skipMultiLineComment, skipSingleHTMLComment, skipSingleLineComment } from './comments';
 import {
   advanceChar,
-  LexerState,
-  isExoticECMAScriptWhitespace,
-  NumberKind,
   consumeLineFeed,
-  scanNewLine,
   consumePossibleSurrogatePair,
+  isExoticECMAScriptWhitespace,
+  LexerState,
+  NumberKind,
+  scanNewLine,
 } from './common';
-import { skipSingleLineComment, skipMultiLineComment, skipSingleHTMLComment, CommentType } from './comments';
-import { scanRegularExpression } from './regexp';
-import { scanTemplate } from './template';
+import { scanIdentifier, scanIdentifierSlowCase, scanPrivateIdentifier, scanUnicodeIdentifier } from './identifier';
 import { scanNumber } from './numeric';
+import { scanRegularExpression } from './regexp';
 import { scanString } from './string';
-import { scanIdentifier, scanUnicodeIdentifier, scanIdentifierSlowCase, scanPrivateIdentifier } from './identifier';
+import { scanTemplate } from './template';
 
 /*
  * OneChar:          40,  41,  44,  58,  59,  63,  91,  93,  123, 125, 126:
