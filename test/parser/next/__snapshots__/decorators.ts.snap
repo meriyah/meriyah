@@ -391,14 +391,14 @@ class C {
               },
               "start": {
                 "column": 2,
-                "line": 3,
+                "line": 4,
               },
             },
             "range": [
-              13,
+              32,
               55,
             ],
-            "start": 13,
+            "start": 32,
             "static": true,
             "type": "MethodDefinition",
             "value": {
@@ -516,14 +516,14 @@ class C {
               },
               "start": {
                 "column": 2,
-                "line": 3,
+                "line": 5,
               },
             },
             "range": [
-              13,
+              58,
               69,
             ],
-            "start": 13,
+            "start": 58,
             "static": false,
             "type": "PropertyDefinition",
             "value": null,
@@ -599,14 +599,14 @@ class C {
               },
               "start": {
                 "column": 2,
-                "line": 3,
+                "line": 6,
               },
             },
             "range": [
-              13,
+              72,
               90,
             ],
-            "start": 13,
+            "start": 72,
             "static": true,
             "type": "PropertyDefinition",
             "value": null,
