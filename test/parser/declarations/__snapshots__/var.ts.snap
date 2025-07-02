@@ -1719,7 +1719,7 @@ foo 1`] = `
 `;
 
 exports[`Declarations - Var > Declarations - Var (pass) > var [ a, , b ] = list
-  [ b, a ] = [ a, b ] 1`] = `
+[ b, a ] = [ a, b ] 1`] = `
 {
   "body": [
     {
@@ -1869,7 +1869,7 @@ exports[`Declarations - Var > Declarations - Var (pass) > var [ a, , b ] = list 
 `;
 
 exports[`Declarations - Var > Declarations - Var (pass) > var [ a, , b ] = list;
-      [ b, a ] = [ a, b ] 1`] = `
+[ b, a ] = [ a, b ] 1`] = `
 {
   "body": [
     {
@@ -1936,91 +1936,91 @@ exports[`Declarations - Var > Declarations - Var (pass) > var [ a, , b ] = list;
       "type": "VariableDeclaration",
     },
     {
-      "end": 48,
+      "end": 42,
       "expression": {
-        "end": 48,
+        "end": 42,
         "left": {
           "elements": [
             {
-              "end": 32,
+              "end": 26,
               "name": "b",
               "range": [
-                31,
-                32,
+                25,
+                26,
               ],
-              "start": 31,
+              "start": 25,
               "type": "Identifier",
             },
             {
-              "end": 35,
+              "end": 29,
               "name": "a",
               "range": [
-                34,
-                35,
+                28,
+                29,
               ],
-              "start": 34,
+              "start": 28,
               "type": "Identifier",
             },
           ],
-          "end": 37,
+          "end": 31,
           "range": [
-            29,
-            37,
+            23,
+            31,
           ],
-          "start": 29,
+          "start": 23,
           "type": "ArrayPattern",
         },
         "operator": "=",
         "range": [
-          29,
-          48,
+          23,
+          42,
         ],
         "right": {
           "elements": [
             {
-              "end": 43,
+              "end": 37,
               "name": "a",
               "range": [
-                42,
-                43,
+                36,
+                37,
               ],
-              "start": 42,
+              "start": 36,
               "type": "Identifier",
             },
             {
-              "end": 46,
+              "end": 40,
               "name": "b",
               "range": [
-                45,
-                46,
+                39,
+                40,
               ],
-              "start": 45,
+              "start": 39,
               "type": "Identifier",
             },
           ],
-          "end": 48,
+          "end": 42,
           "range": [
-            40,
-            48,
+            34,
+            42,
           ],
-          "start": 40,
+          "start": 34,
           "type": "ArrayExpression",
         },
-        "start": 29,
+        "start": 23,
         "type": "AssignmentExpression",
       },
       "range": [
-        29,
-        48,
+        23,
+        42,
       ],
-      "start": 29,
+      "start": 23,
       "type": "ExpressionStatement",
     },
   ],
-  "end": 48,
+  "end": 42,
   "range": [
     0,
-    48,
+    42,
   ],
   "sourceType": "script",
   "start": 0,
@@ -3785,20 +3785,20 @@ exports[`Declarations - Var > Declarations - Var (pass) > var await = { await } 
 `;
 
 exports[`Declarations - Var > Declarations - Var (pass) > var f0 = function (a, b = a, c = b) {
-        return [a, b, c];
-      };
+  return [a, b, c];
+};
 
-      expect(f0(1)).toEqual([1, 1, 1]);
+expect(f0(1)).toEqual([1, 1, 1]);
 
-      var f1 = function ({a}, b = a, c = b) {
-        return [a, b, c];
-      };
+var f1 = function ({a}, b = a, c = b) {
+  return [a, b, c];
+};
 
-      expect(f1({a: 1})).toEqual([1, 1, 1]);
+expect(f1({a: 1})).toEqual([1, 1, 1]);
 
-      var f2 = function ({a}, b = a, c = a) {
-        return [a, b, c];
-      }; 1`] = `
+var f2 = function ({a}, b = a, c = a) {
+  return [a, b, c];
+}; 1`] = `
 {
   "body": [
     {

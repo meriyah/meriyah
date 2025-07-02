@@ -73,14 +73,14 @@ exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > imp
 `;
 
 exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import x from './import-attribute-1_FIXTURE.js' with {
-      type: 'json',
-      'type': ''
-    }; 1`] = `
-"SyntaxError [4:4-4:5]: Duplicate binding 'type'
-  2 |       type: 'json',
-  3 |       'type': ''
-> 4 |     };
-    |     ^ Duplicate binding 'type'"
+  type: 'json',
+  'type': ''
+}; 1`] = `
+"SyntaxError [4:0-4:1]: Duplicate binding 'type'
+  2 |   type: 'json',
+  3 |   'type': ''
+> 4 | };
+    | ^ Duplicate binding 'type'"
 `;
 
 exports[`Next - Import Attributes > Expressions - Import Attributes (fail) > import("module", ...extra) 1`] = `

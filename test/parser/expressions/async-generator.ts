@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Expressions - Async Generator', () => {
   for (const arg of [
@@ -101,25 +102,30 @@ describe('Expressions - Async Generator', () => {
     '(async function*({}) { })',
     '(async function*({ x, }) { })',
     '(async function*({ x: y = 33 }) { })',
-    `var gen = async function *g() {
-      yield [...yield];
-    };`,
-    `var gen = async function *() {
-      yield {
-           ...yield yield,
-           ...(function(arg) {
+    outdent`
+      var gen = async function *g() {
+        yield [...yield];
+      };
+    `,
+    outdent`
+      var gen = async function *() {
+        yield {
+            ...yield yield,
+            ...(function(arg) {
               var yield = arg;
               return {...yield};
-           }(yield)),
-           ...yield,
-        }
-    };`,
-    `var gen = async function *g() {
-      return (function(arg) {
-          var yield = arg + 1;
-          return yield;
-        }(yield))
-    };
+            }(yield)),
+            ...yield,
+          }
+      };
+    `,
+    outdent`
+      var gen = async function *g() {
+        return (function(arg) {
+            var yield = arg + 1;
+            return yield;
+          }(yield))
+      };
     `,
   ]) {
     it(`${arg}`, () => {

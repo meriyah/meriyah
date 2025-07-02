@@ -125,18 +125,18 @@ exports[`Expressions - New > Expressions - New (fail) > function *f(){ new yield
 `;
 
 exports[`Expressions - New > Expressions - New (fail) > function f() {
-      new.target++;
-      new.target = b;
-      for (new.target in b);
-      for (new.target of b);
-    } 1`] = `
-"SyntaxError [2:16-2:18]: Invalid increment/decrement operand
+  new.target++;
+  new.target = b;
+  for (new.target in b);
+  for (new.target of b);
+} 1`] = `
+"SyntaxError [2:12-2:14]: Invalid increment/decrement operand
   1 | function f() {
-> 2 |       new.target++;
-    |                 ^^ Invalid increment/decrement operand
-  3 |       new.target = b;
-  4 |       for (new.target in b);
-  5 |       for (new.target of b);"
+> 2 |   new.target++;
+    |             ^^ Invalid increment/decrement operand
+  3 |   new.target = b;
+  4 |   for (new.target in b);
+  5 |   for (new.target of b);"
 `;
 
 exports[`Expressions - New > Expressions - New (fail) > function f(){ ++new.target } 1`] = `

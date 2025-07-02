@@ -2,6 +2,7 @@ import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Lexical - Function', () => {
   fail('Lexical - Function (fail)', [
@@ -202,61 +203,67 @@ describe('Lexical - Function', () => {
     'function foo({x:x}, {y:y}, {z:z}) {}',
     'function f(a){ var a }',
     'function foo([x]) { var x = 10;}',
-    `(function F1(x) {
-      function F2(y) {
-        var z = x + y;
-        {
-          var w =  5;
-          var v = "Capybara";
-          var F3 = function(a, b) {
-            function F4(p) {
-              debugger;
-              return p + a + b + z + w + v.length;
-            }
-            return F4;
-          }
-          return F3(4, 5);
-        }
-      }
-      return F2(17);
-    })(5)();`,
-    `(function() {
-      var v1 = 3;
-      var v2 = 4;
-      let l0 = 0;
-      {
-        var v3 = 5;
-        let l1 = 6;
-        let l2 = 7;
-        {
-          var v4 = 8;
-          let l3 = 9;
+    outdent`
+      (function F1(x) {
+        function F2(y) {
+          var z = x + y;
           {
-            var v5 = "Cat";
-            let l4 = 11;
-            var v6 = l4;
-            return function() {
-              debugger;
-              return l0 + v1 + v3 + l2 + l3 + v6;
-            };
+            var w =  5;
+            var v = "Capybara";
+            var F3 = function(a, b) {
+              function F4(p) {
+                debugger;
+                return p + a + b + z + w + v.length;
+              }
+              return F4;
+            }
+            return F3(4, 5);
           }
         }
-      }
-    })()();`,
+        return F2(17);
+      })(5)();
+    `,
+    outdent`
+      (function() {
+        var v1 = 3;
+        var v2 = 4;
+        let l0 = 0;
+        {
+          var v3 = 5;
+          let l1 = 6;
+          let l2 = 7;
+          {
+            var v4 = 8;
+            let l3 = 9;
+            {
+              var v5 = "Cat";
+              let l4 = 11;
+              var v6 = l4;
+              return function() {
+                debugger;
+                return l0 + v1 + v3 + l2 + l3 + v6;
+              };
+            }
+          }
+        }
+      })()();
+    `,
     'function g() { var x = 1; { let x = 2; function g() { x; } g(); } }',
     'function f(one) { class x { } { class x { } function g() { one; x; } g() } } f()',
-    `function f(x) {
-      var z;
-      switch (x) {
-        case 1:
-          let y = 1;
-        case 2:
-          y = 2;
-        case 3:
-          z = y;
+    outdent`
+      function f(x) {
+        var z;
+        switch (x) {
+          case 1:
+            let y = 1;
+          case 2:
+            y = 2;
+          case 3:
+            z = y;
+        }
+        return z;
       }
-      return z;
-    }`,
+    `,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -270,18 +277,24 @@ describe('Lexical - Function', () => {
     'function f(a){ var a }',
     'function f(x) { { var x } }',
     // Lexical shadowing allowed, no hoisting
-    `(function() {
-    function* x() { yield 1; }
-    { function* x() { yield 2 } }
-  })();`,
-    `function a() {}
-function a() {}`,
-    `(function() {
-    var y;
-    async function x() { y = 1; }
-    { async function x() { y = 2; } }
-    x();
-  })();`,
+    outdent`
+      (function() {
+        function* x() { yield 1; }
+        { function* x() { yield 2 } }
+      })();
+    `,
+    outdent`
+      function a() {}
+      function a() {}
+    `,
+    outdent`
+      (function() {
+        var y;
+        async function x() { y = 1; }
+        { async function x() { y = 2; } }
+        x();
+      })();
+    `,
     `(function () { { let x = 'let x'; } { let y = 'let y'; } })();`,
     'function foo({x:x}, {y:y}, {z:z}) {}',
     `(function () { { var x = 'var x'; } { var y = 'var y'; } })();`,
@@ -390,66 +403,74 @@ function a() {}`,
     '(function foo(x) { {  function x() {} } })(1);',
     '(function foo([[x]]) { { function x() {}}})([[1]]);',
     'function f(x) { var x }',
-    `(function() {
-      var x = 1;
-      (() => x);
-      var y = "y";
-      var z = "z";
+    outdent`
       (function() {
-        var x = 2;
+        var x = 1;
+        (() => x);
+        var y = "y";
+        var z = "z";
         (function() {
-          y;
-          debugger;
+          var x = 2;
+          (function() {
+            y;
+            debugger;
+          })();
         })();
+        return y;
       })();
-      return y;
-    })();`,
-    `(function() {
-      var x = 1;
-      (() => x);
-      var y = "y";
-      var z = "z";
+    `,
+    outdent`
       (function() {
-        var x = 2;
-        (() => {
-          y;
-          a;
-          this;
-          debugger;
+        var x = 1;
+        (() => x);
+        var y = "y";
+        var z = "z";
+        (function() {
+          var x = 2;
+          (() => {
+            y;
+            a;
+            this;
+            debugger;
+          })();
         })();
+        return y;
       })();
-      return y;
-    })();`,
-    `function f9() {
-      let a1= "level1";
-      try {
-          throw "level2";
+    `,
+    outdent`
+      function f9() {
+        let a1= "level1";
+        try {
+            throw "level2";
 
-      } catch(e) {
-          let a1= "level2";
-              try {
-              throw "level3";
-          } catch(e1) {
-              a1 += "level3";
-          }
-      }
-    };`,
-    `function f5()
-    {
-        var a1 = 10;
-        let a2 = "a2";
-        const a4 = "a4_const";
-        let a5 = "a5_let";
-        {
-            let a1 = "level1";
-            let a2 = 222;
-            const a3 = "a3_const";
-            let a4 = "a4_level1";
-            a3;
+        } catch(e) {
+            let a1= "level2";
+                try {
+                throw "level3";
+            } catch(e1) {
+                a1 += "level3";
+            }
         }
+      };
+    `,
+    outdent`
+      function f5()
+      {
+          var a1 = 10;
+          let a2 = "a2";
+          const a4 = "a4_const";
+          let a5 = "a5_let";
+          {
+              let a1 = "level1";
+              let a2 = 222;
+              const a3 = "a3_const";
+              let a4 = "a4_level1";
+              a3;
+          }
 
-        return 10;
-    }`,
+          return 10;
+      }
+    `,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

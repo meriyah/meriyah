@@ -2,6 +2,7 @@ import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Lexical - AnnexB', () => {
   fail('Lexical - AnnexB (fail)', [
@@ -58,63 +59,82 @@ describe('Lexical - AnnexB', () => {
     'try { throw {}; } catch ({ f }) { if (true) function f() {  } else function _f() {} }',
     'for (let f in { key: 0 }) { if (false) function _f() {} else function f() {  } }',
     `(function() { { function f() { initialBV = f; f = 123; currentBV = f; return 'decl'; } } }());`,
-    `(function() {      {        function f() { return 'inner declaration'; }
-      }
-      function f() {
-        return 'outer declaration';
-      }
-    }());
+    outdent`
+      (function() {      {        function f() { return 'inner declaration'; }
+        }
+        function f() {
+          return 'outer declaration';
+        }
+      }());
     `,
-    ` init = f;
-    f = 123;
-    changed = f;
-    {
-      function f() {  }
-    }`,
-    `let f = 123;
-    init = f;
-    {
-      function f() {  }
-    }`,
-    `  try {
-      f;
-    } catch (exception) {
-      err1 = exception;
-    }
-    {
-      function f() {  }
-    }
-    try {
-      f;
-    } catch (exception) {
-      err2 = exception;
-    }`,
-    ` for (let f of [0]) {
-      if (true) function f() {  } else function _f() {}
-      }`,
-    ` for (let f in { key: 0 }) {
-      if (true) function f() {  } else function _f() {}
-      }`,
-    `  {
-      function f() {
-        return 'first declaration';
+    outdent`
+      init = f;
+      f = 123;
+      changed = f;
+      {
+        function f() {  }
       }
-    }
-    if (false) function _f() {} else function f() { return 'second declaration'; }`,
-    ` for (let f in { key: 0 }) {
+    `,
+    outdent`
+      let f = 123;
+      init = f;
+      {
+        function f() {  }
+      }
+    `,
+    outdent`
+      try {
+        f;
+      } catch (exception) {
+        err1 = exception;
+      }
+      {
+        function f() {  }
+      }
+      try {
+        f;
+      } catch (exception) {
+        err2 = exception;
+      }
+    `,
+    outdent`
+      for (let f of [0]) {
+      if (true) function f() {  } else function _f() {}
+      }
+    `,
+    outdent`
+      for (let f in { key: 0 }) {
+      if (true) function f() {  } else function _f() {}
+      }
+    `,
+    outdent`
+      {
+        function f() {
+          return 'first declaration';
+        }
+      }
+      if (false) function _f() {} else function f() { return 'second declaration'; }
+    `,
+    outdent`
+      for (let f in { key: 0 }) {
       if (false) function _f() {} else function f() {  }
-      }`,
-    ` init = f;
-    if (false) function _f() {} else function f() {  }
-  `,
-    `init = f;
-    f = 123;
-    changed = f;
-    if (true) function f() {  } else ;
-  `,
-    ` for (let f of [0]) {
+      }
+    `,
+    outdent`
+      init = f;
+      if (false) function _f() {} else function f() {  }
+    `,
+    outdent`
+      init = f;
+      f = 123;
+      changed = f;
       if (true) function f() {  } else ;
-      }`,
+    `,
+    outdent`
+      for (let f of [0]) {
+      if (true) function f() {  } else ;
+      }
+    `,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

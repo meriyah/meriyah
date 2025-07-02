@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Miscellaneous - Directives', () => {
   for (const arg of [
@@ -65,14 +66,18 @@ describe('Miscellaneous - Directives', () => {
     String.raw`function hello() { "use strict"; "\00"; }`,
     String.raw`function hello() { "use strict"; "\0123"; }`,
     String.raw`function hello("\000008") { "use strict"; }`,
-    ` function fun() {
-                "use strict";
-                       var public = 1;
-            }`,
-    ` function fun() {
-              "use strict"
-                     var public = 1;
-          }`,
+    outdent`
+      function fun() {
+          "use strict";
+                var public = 1;
+      }
+    `,
+    outdent`
+      function fun() {
+          "use strict"
+                var public = 1;
+      }
+    `,
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -151,12 +156,14 @@ describe('Miscellaneous - Directives', () => {
     'function a() { "use strict" } "use strict"; foo;',
     String.raw`function foo() { "use \u0020strict"; with (a) b = c; }`,
     String.raw`"use \u0020strict"; with (a) b = c;`,
-    `function foo()
-    {
-       "bogus directive";
-       "use strict";
-       return (this === undefined);
-    }`,
+    outdent`
+      function foo()
+      {
+         "bogus directive";
+         "use strict";
+         return (this === undefined);
+      }
+    `,
     String.raw`"use strict", "Hello\312World"`,
     String.raw`"use strict" + "Hello\312World"`,
     String.raw`"use strict", "Hello\312World"`,

@@ -2,6 +2,7 @@ import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Lexical - Block', () => {
   fail('Lexical - Block (fail)', [
@@ -168,17 +169,21 @@ describe('Lexical - Block', () => {
     { code: '{ const a = 1; function a(){} }', options: { webcompat: true, lexical: true } },
     { code: '{ class async {}; { var async; } }', options: { webcompat: true, lexical: true } },
     {
-      code: `{
-      for (var x;;);
-      const x = 1
-    }`,
+      code: outdent`
+        {
+          for (var x;;);
+          const x = 1
+        }
+      `,
       options: { webcompat: true, lexical: true },
     },
     {
-      code: `function f(){
-      for (var x;;);
-      const x = 1
-    }`,
+      code: outdent`
+        function f(){
+          for (var x;;);
+          const x = 1
+        }
+      `,
       options: { webcompat: true, lexical: true },
     },
     { code: `# { # }`, options: { webcompat: true, lexical: true } },

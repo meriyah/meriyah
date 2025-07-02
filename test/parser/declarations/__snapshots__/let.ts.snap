@@ -121,15 +121,15 @@ exports[`Declarations - Let > Declarations - Let (fail) > const let 1`] = `
 `;
 
 exports[`Declarations - Let > Declarations - Let (fail) > do let
-      [x] = 0
-      while (false); 1`] = `
-"SyntaxError [2:6-2:7]: \`let 
+[x] = 0
+while (false); 1`] = `
+"SyntaxError [2:0-2:1]: \`let 
  [\` is a restricted production at the start of a statement
   1 | do let
-> 2 |       [x] = 0
-    |       ^ \`let 
+> 2 | [x] = 0
+    | ^ \`let 
  [\` is a restricted production at the start of a statement
-  3 |       while (false);"
+  3 | while (false);"
 `;
 
 exports[`Declarations - Let > Declarations - Let (fail) > do let [] while (a); 1`] = `
@@ -477,11 +477,11 @@ exports[`Declarations - Let > Declarations - Let (fail) > label: let x; 2`] = `
 `;
 
 exports[`Declarations - Let > Declarations - Let (fail) > let
-    [let; 1`] = `
-"SyntaxError [2:8-2:9]: 'A lexical declaration can't define a 'let' binding
+[let; 1`] = `
+"SyntaxError [2:4-2:5]: 'A lexical declaration can't define a 'let' binding
   1 | let
-> 2 |     [let;
-    |         ^ 'A lexical declaration can't define a 'let' binding"
+> 2 | [let;
+    |     ^ 'A lexical declaration can't define a 'let' binding"
 `;
 
 exports[`Declarations - Let > Declarations - Let (fail) > let
@@ -509,11 +509,11 @@ yield 0 1`] = `
 `;
 
 exports[`Declarations - Let > Declarations - Let (fail) > let  // start of a LexicalDeclaration, *not* an ASI opportunity
-    [let = "irrelevant initializer"; 1`] = `
-"SyntaxError [2:9-2:10]: 'A lexical declaration can't define a 'let' binding
+[let = "irrelevant initializer"; 1`] = `
+"SyntaxError [2:5-2:6]: 'A lexical declaration can't define a 'let' binding
   1 | let  // start of a LexicalDeclaration, *not* an ASI opportunity
-> 2 |     [let = "irrelevant initializer";
-    |          ^ 'A lexical declaration can't define a 'let' binding"
+> 2 | [let = "irrelevant initializer";
+    |      ^ 'A lexical declaration can't define a 'let' binding"
 `;
 
 exports[`Declarations - Let > Declarations - Let (fail) > let [((((a)))), b] = []; 1`] = `
@@ -1081,12 +1081,12 @@ exports[`Declarations - Let > Declarations - Let (fail) > var [(x)] = []; 1`] = 
 `;
 
 exports[`Declarations - Let > Declarations - Let (fail) > while (false) let
-    [a] 1`] = `
-"SyntaxError [2:4-2:5]: \`let 
+[a] 1`] = `
+"SyntaxError [2:0-2:1]: \`let 
  [\` is a restricted production at the start of a statement
   1 | while (false) let
-> 2 |     [a]
-    |     ^ \`let 
+> 2 | [a]
+    | ^ \`let 
  [\` is a restricted production at the start of a statement"
 `;
 
@@ -1182,7 +1182,7 @@ exports[`Declarations - Let > Declarations - Let (pass) > _ => { let: foo; } 1`]
 `;
 
 exports[`Declarations - Let > Declarations - Let (pass) > a = let;
-      [] 1`] = `
+[] 1`] = `
 {
   "body": [
     {
@@ -2912,9 +2912,9 @@ exports[`Declarations - Let > Declarations - Let (pass) > for (let;;); 1`] = `
 `;
 
 exports[`Declarations - Let > Declarations - Let (pass) > if (false) {
-          L: let // ASI
-          x = 1;
-      } 1`] = `
+    L: let // ASI
+    x = 1;
+} 1`] = `
 {
   "body": [
     {
@@ -2966,9 +2966,9 @@ exports[`Declarations - Let > Declarations - Let (pass) > if (false) {
 `;
 
 exports[`Declarations - Let > Declarations - Let (pass) > if (false) {
-        L: let // ASI
-        x = 1;
-    } 1`] = `
+    L: let // ASI
+    x = 1;
+} 2`] = `
 {
   "body": [
     {
@@ -3020,9 +3020,9 @@ exports[`Declarations - Let > Declarations - Let (pass) > if (false) {
 `;
 
 exports[`Declarations - Let > Declarations - Let (pass) > if (false) {
-      L: let // ASI
-      x = 1;
-  } 1`] = `
+    L: let // ASI
+    x = 1;
+} 3`] = `
 {
   "body": [
     {

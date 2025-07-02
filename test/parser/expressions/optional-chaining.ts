@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Optional chaining', () => {
   for (const arg of [
@@ -37,31 +38,35 @@ describe('Optional chaining', () => {
     '(a?.b)?.c.d?.e;',
     `a?.b.c.d.e?.f`,
     `a.b.c?.d.e.f`,
-    `if (a?.b?.c) {
-      console.log(a?.b?.c);
-    } else if (a?.b.c?.d?.e.f) {
-      console.log(a?.b.c?.d?.e.f);
-    }`,
+    outdent`
+      if (a?.b?.c) {
+        console.log(a?.b?.c);
+      } else if (a?.b.c?.d?.e.f) {
+        console.log(a?.b.c?.d?.e.f);
+      }
+    `,
     'true?.valueOf()',
     '0?.valueOf()',
     'false?.()',
     '0?.()',
     '({})?.()',
     '[]?.()',
-    `class A {
-      a () {}
-    }
-    class B extends A {
-      dot () {
-        return super.a?.name;
+    outdent`
+      class A {
+        a () {}
       }
-      expr () {
-        return super['a'].name;
+      class B extends A {
+        dot () {
+          return super.a?.name;
+        }
+        expr () {
+          return super['a'].name;
+        }
+        undf () {
+          return super.b?.c;
+        }
       }
-      undf () {
-        return super.b?.c;
-      }
-    }`,
+    `,
     '({})?.a["b"]',
     'delete null?.foo',
     '({})?.constructor',
@@ -76,11 +81,13 @@ describe('Optional chaining', () => {
     'true?.(123)',
     'true?.(123??x?.3:5)',
     'true?.(123)',
-    `function isInvoked(obj) {
-      let invoked = false;
-      obj?.a.b.m(invoked = true);
-      return invoked;
-    }`,
+    outdent`
+      function isInvoked(obj) {
+        let invoked = false;
+        obj?.a.b.m(invoked = true);
+        return invoked;
+      }
+    `,
     'a.b?.c?.d',
     'obj ? ["a", "b", "c"].map(x => x+x) : []',
     'const a = b?.c?.[d]?.e;',
@@ -171,9 +178,11 @@ describe('Optional chaining', () => {
     'obj.func?.[arg];',
     'a?.trim()?.indexOf("hello")',
     'foo?.x?.y?.z?()=>{foo}:bar;',
-    `if (a?.b?.c === 'foobar') {}
-     if (a?.b()?.c) {}
-     if (a?.b?.()?.c) {}`,
+    outdent`
+      if (a?.b?.c === 'foobar') {}
+      if (a?.b()?.c) {}
+      if (a?.b?.()?.c) {}
+    `,
     'yield?.(yield())',
     'yield?.(yield())',
     'async?.(package())',

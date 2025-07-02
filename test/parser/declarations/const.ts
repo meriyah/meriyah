@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Declarations - const', () => {
   // Test keywords
@@ -303,69 +304,79 @@ describe('Declarations - const', () => {
     'for (const [,] of x);',
     'for (const {a, [x]: y} in obj);',
     { code: 'for (const {x : y, z, a : b = c} in obj);', options: { ranges: true } },
-    `const {
+    outdent`
+      const {
         [({ ...rest }) => {
           let { ...b } = {};
         }]: a,
         [({ ...d } = {})]: c,
-      } = {};`,
-    `const {
-          a = ({ ...rest }) => {
-            let { ...b } = {};
-          },
-          c = ({ ...d } = {}),
-        } = {};`,
+      } = {};
+    `,
+    outdent`
+      const {
+        a = ({ ...rest }) => {
+          let { ...b } = {};
+        },
+        c = ({ ...d } = {}),
+      } = {};
+    `,
     'const { a: { ...bar }, b: { ...baz }, ...foo } = obj;',
     {
-      code: `var z = {};
-            var { ...x } = z;
-            var { ...a } = { a: 1 };
-            var { ...x } = a.b;
-            var { ...x } = a();
-            var {x1, ...y1} = z;
-            x1++;
-            var { [a]: b, ...c } = z;
-            var {x1, ...y1} = z;
-            let {x2, y2, ...z2} = z;
-            const {w3, x3, y3, ...z4} = z;
+      code: outdent`
+        var z = {};
+        var { ...x } = z;
+        var { ...a } = { a: 1 };
+        var { ...x } = a.b;
+        var { ...x } = a();
+        var {x1, ...y1} = z;
+        x1++;
+        var { [a]: b, ...c } = z;
+        var {x1, ...y1} = z;
+        let {x2, y2, ...z2} = z;
+        const {w3, x3, y3, ...z4} = z;
 
-            let {
-              x: { a: xa, [d]: f, ...asdf },
-              y: { ...d },
-              ...g
-            } = complex;
+        let {
+          x: { a: xa, [d]: f, ...asdf },
+          y: { ...d },
+          ...g
+        } = complex;
 
-            let { x4: { ...y4 } } = z;`,
+        let { x4: { ...y4 } } = z;
+      `,
       options: { ranges: true },
     },
-    `let {
-                a: [b, ...arrayRest],
-                c = function(...functionRest){},
-                ...objectRest
-              } = {
-                a: [1, 2, 3, 4],
-                d: "oyez"
-              };`,
+    outdent`
+      let {
+        a: [b, ...arrayRest],
+        c = function(...functionRest){},
+        ...objectRest
+      } = {
+        a: [1, 2, 3, 4],
+        d: "oyez"
+      };
+    `,
     {
-      code: `// ForXStatement
-                for (var {a, ...b} of []) {}
-                for ({a, ...b} of []) {}
-                async function a() {
-                  for await ({a, ...b} of []) {}
-                }
+      code: outdent`
+        // ForXStatement
+        for (var {a, ...b} of []) {}
+        for ({a, ...b} of []) {}
+        async function a() {
+          for await ({a, ...b} of []) {}
+        }
 
-                // skip
-                for ({a} in {}) {}
-                for ({a} of []) {}
-                async function a() {
-                  for await ({a} of []) {}
-                }
+        // skip
+        for ({a} in {}) {}
+        for ({a} of []) {}
+        async function a() {
+          for await ({a} of []) {}
+        }
 
-                for (a in {}) {}
-                for (a of []) {}
-                async function a() {
-                  for await (a of []) {}
-                }`,
+        for (a in {}) {}
+        for (a of []) {}
+        async function a() {
+          for await (a of []) {}
+        }
+      `,
       options: { ranges: true },
     },
     'const foo = bar;',

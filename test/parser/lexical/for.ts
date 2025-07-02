@@ -2,6 +2,7 @@ import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Lexical - For statement', () => {
   fail('Lexical - For statement (fail)', [
@@ -21,17 +22,21 @@ describe('Lexical - For statement', () => {
     { code: 'for (let x;;) { var x; }', options: { lexical: true } },
     { code: 'for (const x in {}) { var x; }', options: { lexical: true } },
     {
-      code: `{
-      for (var x;;);
-      const x = 1
-    }`,
+      code: outdent`
+        {
+          for (var x;;);
+          const x = 1
+        }
+      `,
       options: { webcompat: true, lexical: true },
     },
     {
-      code: `function f(){
-      for (var x;;);
-      const x = 1
-    }`,
+      code: outdent`
+        function f(){
+          for (var x;;);
+          const x = 1
+        }
+      `,
       options: { webcompat: true, lexical: true },
     },
   ]);

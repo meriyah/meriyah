@@ -2,6 +2,7 @@ import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Lexical - Switch', () => {
   fail('Lexical - Switch (fail)', [
@@ -243,18 +244,24 @@ describe('Lexical - Switch', () => {
     'switch (x) { case a: var foo; break; default: var foo; break; }',
     'switch (0) { case 1: var f = 0; x; default: var {f} = x; } var {f} = f',
     'switch (x) {case a: function f(){}; break; case b: function f(){}; break; }',
-    `switch (0) { case 1: var f = 0; x; default: var {f} = x; } var {f} = f
-    switch (0) { case 1: var f = 0; x; default: var {f} = x; } var {f} = f`,
+    outdent`
+      switch (0) { case 1: var f = 0; x; default: var {f} = x; } var {f} = f
+      switch (0) { case 1: var f = 0; x; default: var {f} = x; } var {f} = f
+    `,
     'switch (0) { case 1: let f = 0; x; default: let x; } var {f} = f',
     'switch (x) { case c: function f(){} function f(){} }',
     'switch (0) { case 1: let f = 0; default: [f] }',
-    `switch (0) { case 1: let f = 0; default: [f] }
-    switch (0) { case 1: let f = 0; default: [f] }`,
+    outdent`
+      switch (0) { case 1: let f = 0; default: [f] }
+      switch (0) { case 1: let f = 0; default: [f] }
+    `,
     'switch (0) { default: let f; if (false) ; else function f() {  } }',
     'switch (0) { case 1: var f; default: var f; }',
     'switch (x) { case c: function f(){} function f(){} }',
-    `switch (0) { case 1: var f; default: var f; }
-    switch (0) { case 1: var f; default: var f; }`,
+    outdent`
+      switch (0) { case 1: var f; default: var f; }
+      switch (0) { case 1: var f; default: var f; }
+    `,
     'for (let f of [0]) { switch (1) { case 1:function f() {  } }}',
   ]) {
     it(`${arg}`, () => {

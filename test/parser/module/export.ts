@@ -2,6 +2,7 @@ import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { pass, fail } from '../../test-utils';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Module - Export', () => {
   // Async await module errors
@@ -357,33 +358,45 @@ describe('Module - Export', () => {
     { code: 'export {foo}', options: { module: true, lexical: true } },
     { code: 'export {Array}', options: { module: true, lexical: true } },
     {
-      code: `export function f() {}
-    export function *f() {}`,
+      code: outdent`
+        export function f() {}
+        export function *f() {}
+      `,
       options: { module: true, lexical: true },
     },
     {
-      code: `export class f() {}
-    export function *f() {}`,
+      code: outdent`
+        export class f() {}
+        export function *f() {}
+      `,
       options: { module: true, lexical: true },
     },
     {
-      code: `export function f() {}
-    export class f() {}`,
+      code: outdent`
+        export function f() {}
+        export class f() {}
+      `,
       options: { module: true, lexical: true },
     },
     {
-      code: `export async function *f() {}
-    export function *f() {}`,
+      code: outdent`
+        export async function *f() {}
+        export function *f() {}
+      `,
       options: { module: true, lexical: true },
     },
     {
-      code: `export default async function *f() {}
-    export function *f() {}`,
+      code: outdent`
+        export default async function *f() {}
+        export function *f() {}
+      `,
       options: { module: true, lexical: true },
     },
     {
-      code: `export async function *f() {}
-    export default function *f() {}`,
+      code: outdent`
+        export async function *f() {}
+        export default function *f() {}
+      `,
       options: { module: true, lexical: true },
     },
     { code: 'var canBeUndeclared; export {mustExist as canBeUndeclared};', options: { module: true, lexical: true } },
@@ -798,8 +811,10 @@ describe('Module - Export', () => {
     { code: 'export {a as b}; var a;', options: { module: true, ranges: true } },
     { code: 'var a; export {a as b};', options: { module: true } },
     {
-      code: `[function* (...{}) {  switch (yield) {}  }]
-        a = (u) => {}`,
+      code: outdent`
+        [function* (...{}) {  switch (yield) {}  }]
+        a = (u) => {}
+      `,
       options: { module: true, ranges: true },
     },
     { code: 'export {foo}; function foo() {};', options: { module: true } },

@@ -3,6 +3,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Expressions - Group', () => {
   for (const arg of [
@@ -629,14 +630,16 @@ describe('Expressions - Group', () => {
     '({ x: x } = a);',
     '({ x } = a);',
     '({ x = 123 } = a);',
-    `({
-      a,
-      a:a,
-      a:a=a,
-      [a]:{a},
-      a:some_call()[a],
-      a:this.a
-  } = 0);`,
+    outdent`
+      ({
+          a,
+          a:a,
+          a:a=a,
+          [a]:{a},
+          a:some_call()[a],
+          a:this.a
+      } = 0);
+    `,
     'new c(x)(y)',
     '"use strict"; ({ x: a, x: b } = q);',
     '({ x: y.z } = a)',
@@ -935,10 +938,12 @@ describe('Expressions - Group', () => {
     '(1, a, b);',
     '(a, 1, b);',
     {
-      code: `var a;
-    (a) = {};
-    (a.b) = {};
-    (a['c']) = {};`,
+      code: outdent`
+        var a;
+        (a) = {};
+        (a.b) = {};
+        (a['c']) = {};
+      `,
       options: { ranges: true },
     },
     { code: '(x)', options: { ranges: true, loc: true } },

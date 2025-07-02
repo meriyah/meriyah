@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import { parseSource } from '../../../src/parser';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
+import { outdent } from 'outdent';
 
 describe('Declarations - Async Function', () => {
   for (const arg of [
@@ -195,39 +196,55 @@ describe('Declarations - Async Function', () => {
     'async function * fn() { import(yield * ["Mr. X", "Mr. Y", "Mr. Z"]); }',
     'async function* f(a = async function*() { await 1; }) {}',
     'function f() { return await; }',
-    `async function *gen() {
-      yield {
-          ...yield,
-          y: 1,
-          ...yield yield,
-        };
-    }`,
-    `async function *gen() {
-      yield [...yield];
-    }`,
-    `async function *gen() {
-      yield [...yield yield];
-    }`,
-    `"use strict"; async function * fn() {
-      for await ([ {} = yield ] of [iterable]) {
+    outdent`
+      async function *gen() {
+        yield {
+            ...yield,
+            y: 1,
+            ...yield yield,
+          };
       }
-    }`,
-    `async function f() {
-      let x = await y;
-            const a = (b) => {};
-    }`,
-    `async function f() {
-      (((x = await y)));
-            const a = (b) => {};
-    }`,
-    `async function f() {
-      let x = await y;
-            async (b) => {};
-    }`,
-    `async function f() {
-      (((x = await y)));
-            async (b) => {};
-    }`,
+    `,
+    outdent`
+      async function *gen() {
+        yield [...yield];
+      }
+    `,
+    outdent`
+      async function *gen() {
+        yield [...yield yield];
+      }
+    `,
+    outdent`
+      "use strict"; async function * fn() {
+        for await ([ {} = yield ] of [iterable]) {
+        }
+      }
+    `,
+    outdent`
+      async function f() {
+        let x = await y;
+              const a = (b) => {};
+      }
+    `,
+    outdent`
+      async function f() {
+        (((x = await y)));
+              const a = (b) => {};
+      }
+    `,
+    outdent`
+      async function f() {
+        let x = await y;
+              async (b) => {};
+      }
+    `,
+    outdent`
+      async function f() {
+        (((x = await y)));
+              async (b) => {};
+      }
+    `,
     'async function foo(package) { }',
     String.raw`async function foo(p\u0061ckage) { }`,
   ]) {

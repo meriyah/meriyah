@@ -2,6 +2,7 @@ import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { pass, fail } from '../../test-utils';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Next - Decorators', () => {
   for (const arg of [
@@ -110,106 +111,135 @@ describe('Next - Decorators', () => {
     { code: `class A {  @deco #prop; #foo = 2; test() {  this.#foo; }}`, options: { next: true } },
     { code: `(class A { @foo get getter(){} })`, options: { module: true, next: true } },
     {
-      code: `export default @id class Sample {
-        method() {
-          class Child {}
+      code: outdent`
+        export default @id class Sample {
+          method() {
+            class Child {}
+          }
         }
-      }`,
+      `,
       options: { module: true, next: true },
     },
     {
-      code: `@bar export default
-          class Foo { }`,
+      code: outdent`
+        @bar export default
+        class Foo { }
+      `,
       options: { next: true, module: true, ranges: true, loc: true },
     },
     {
-      code: `export default
-          @bar class Foo { }`,
+      code: outdent`
+        export default
+        @bar class Foo { }
+      `,
       options: { next: true, module: true, ranges: true, loc: true },
     },
     {
-      code: `export default @bar
-          class Foo { }`,
+      code: outdent`
+        export default @bar
+        class Foo { }
+      `,
       options: { module: true, next: true },
     },
     {
-      code: `@pushElement({
-        kind: "initializer",
-        placement: "own",
-        initializer() {
-          self = this;
+      code: outdent`
+        @pushElement({
+          kind: "initializer",
+          placement: "own",
+          initializer() {
+            self = this;
+          }
+        })
+        class A {}
+        new A();
+      `,
+      options: { module: true, next: true },
+    },
+    {
+      code: outdent`
+        @decorator
+        class Foo {
+          async f1() {}
+          *f2() {}
+          async *f3() {}
         }
-      })
-      class A {}
-      new A();`,
-      options: { module: true, next: true },
-    },
-    {
-      code: `@decorator
-           class Foo {
-            async f1() {}
-            *f2() {}
-            async *f3() {}
-          }`,
+      `,
       options: { next: true },
     },
     { code: `export default (@decorator class Foo {})`, options: { module: true, next: true } },
     {
-      code: `class Foo {
-        @A * b() {}
-      }`,
+      code: outdent`
+        class Foo {
+          @A * b() {}
+        }
+      `,
       options: { next: true },
     },
     {
-      code: `function deco() {}
+      code: outdent`
+        function deco() {}
 
-      class Foo {
-        @deco
-        *generatorMethod() {}
-      }`,
+        class Foo {
+          @deco
+          *generatorMethod() {}
+        }
+      `,
       options: { next: true },
     },
     { code: `@deco1 @deco2() @deco3(foo, bar) @deco4({foo, bar}) class Foo {}`, options: { next: true } },
     {
-      code: `@foo('bar')
-  class Foo {}`,
+      code: outdent`
+        @foo('bar')
+        class Foo {}
+      `,
       options: { next: true },
     },
     {
-      code: `@foo('bar')
-  class Foo {}`,
+      code: outdent`
+        @foo('bar')
+        class Foo {}
+      `,
       options: { next: true, module: true },
     },
     {
-      code: `(@foo('bar')
-  class Foo {})`,
+      code: outdent`
+        (@foo('bar')
+        class Foo {})
+      `,
       options: { next: true, ranges: true, loc: true },
     },
     {
-      code: `(@foo('bar')
-  class Foo {})`,
+      code: outdent`
+        (@foo('bar')
+        class Foo {})
+      `,
       options: { next: true, module: true },
     },
     {
-      code: `class Foo {
-    @dec
-    static bar() {}
-  }`,
-      options: { next: true },
-    },
-    {
-      code: `class A {
-        @(({ key }) => { pn = key; })
-        #x = 1;
-
-        getX() {
-          return this.#x;
+      code: outdent`
+        class Foo {
+          @dec
+          static bar() {}
         }
-      }`,
+      `,
       options: { next: true },
     },
     {
-      code: `@deco
+      code: outdent`
+        class A {
+          @(({ key }) => { pn = key; })
+          #x = 1;
+
+          getX() {
+            return this.#x;
+          }
+        }
+      `,
+      options: { next: true },
+    },
+    {
+      code: outdent`
+        @deco
         class A {
           get #get() {}
 
@@ -224,117 +254,142 @@ describe('Next - Decorators', () => {
             this.#getset;
             this.#getset = 2;
           }
-        }`,
+        }
+      `,
       options: { next: true },
     },
     {
-      code: `@deco
-          class A {
-            static #foo() {}
+      code: outdent`
+        @deco
+        class A {
+          static #foo() {}
 
-            test() {
-              A.#foo();
-            }
-          }`,
+          test() {
+            A.#foo();
+          }
+        }
+      `,
       options: { next: true },
     },
     {
-      code: `class A {
-              @(({ key }) => { pn = key; })
-              #x;
-            }`,
+      code: outdent`
+        class A {
+          @(({ key }) => { pn = key; })
+          #x;
+        }
+      `,
       options: { next: true },
     },
     {
-      code: `function writable(w) {
-                return desc => {
-                  desc.descriptor.writable = w;
-                }
-              }
+      code: outdent`
+        function writable(w) {
+          return desc => {
+            desc.descriptor.writable = w;
+          }
+        }
 
-              class A {
-                @writable(false)
-                #x = 2;
+        class A {
+          @writable(false)
+          #x = 2;
 
-                @writable(true)
-                @writable(false)
-                #y = 2;
+          @writable(true)
+          @writable(false)
+          #y = 2;
 
-                testX() {
-                  this.#x = 1;
-                }
+          testX() {
+            this.#x = 1;
+          }
 
-                testY() {
-                  this.#y = 1;
-                }
-              }`,
+          testY() {
+            this.#y = 1;
+          }
+        }
+      `,
       options: { next: true },
     },
     {
-      code: `class A {
-                  @(_ => el = _)
-                  static foo() {}
-                }`,
+      code: outdent`
+        class A {
+          @(_ => el = _)
+          static foo() {}
+        }
+      `,
       options: { next: true },
     },
     {
-      code: `@foo(class Bar{})
-    class Foo {}`,
+      code: outdent`
+        @foo(class Bar{})
+        class Foo {}
+      `,
       options: { next: true },
     },
     {
-      code: `class A {
+      code: outdent`
+        class A {
           @foo get getter(){}
-        }`,
+        }
+      `,
       options: { next: true },
     },
     {
-      code: `@outer({
-            store: @inner class Foo {}
-          })
-          class Bar {
+      code: outdent`
+        @outer({
+          store: @inner class Foo {}
+        })
+        class Bar {
 
-          }`,
+        }
+      `,
       options: { next: true },
     },
     {
-      code: `class Bar{
-              @outer(
-                @classDec class {
-                  @inner
-                  innerMethod() {}
-                }
-              )
-              outerMethod() {}
-            }`,
+      code: outdent`
+        class Bar{
+          @outer(
+            @classDec class {
+              @inner
+              innerMethod() {}
+            }
+          )
+          outerMethod() {}
+        }
+      `,
       options: { next: true },
     },
     {
-      code: `@({
-                store: @inner class Foo {}
-              })
-              class Bar {
+      code: outdent`
+        @({
+          store: @inner class Foo {}
+        })
+        class Bar {
 
-              }`,
+        }
+      `,
       options: { next: true },
     },
     {
-      code: `class A {
-                    @dec #name = 0
-                  }`,
+      code: outdent`
+        class A {
+          @dec #name = 0
+        }
+      `,
       options: { next: true },
     },
     {
-      code: `class Foo {
-                      @dec
-                      static bar() {}
-                    }`,
+      code: outdent`
+        class Foo {
+          @dec
+          static bar() {}
+        }
+      `,
       options: { next: true },
     },
     {
-      code: `class A {
-                        @dec static #name = 0
-                      }`,
+      code: outdent`
+        class A {
+          @dec static #name = 0
+        }
+      `,
       options: { next: true },
     },
     { code: `class Foo { @foo @bar bar() {} }`, options: { next: true } },

@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Expressions - Object', () => {
   for (const arg of [
@@ -1075,10 +1076,12 @@ describe('Expressions - Object', () => {
     '({...a,} = {});',
     '({...a,} = {});',
     '({...obj1,...obj2} = foo)',
-    `({
-      async
-      foo() {}
-  })`,
+    outdent`
+      ({
+          async
+          foo() {}
+      })
+    `,
     '({...{a,b}} = foo)',
     '({...[a,b]} = foo)',
     '({...[a, b]} = x)',
@@ -1446,16 +1449,18 @@ describe('Expressions - Object', () => {
     '({...obj}) => {}',
     'function *f(){   s = {"foo": yield /x/g}   }',
     {
-      code: `var callCount = 0;
+      code: outdent`
+        var callCount = 0;
 
-  var C = class { static async *gen() {
-      callCount += 1;
-      yield {
-          ...yield,
-          y: 1,
-          ...yield yield,
-        };
-  }}`,
+        var C = class { static async *gen() {
+            callCount += 1;
+            yield {
+                ...yield,
+                y: 1,
+                ...yield yield,
+              };
+        }}
+      `,
       options: { ranges: true },
     },
 
@@ -1464,12 +1469,14 @@ describe('Expressions - Object', () => {
     { code: '({...obj} = foo)', options: { ranges: true } },
     { code: 'let { x4: { ...y4 } } = z;', options: { ranges: true } },
     {
-      code: `({
+      code: outdent`
+        ({
         把你想在页面内共享的变量写在这里喔 : 1,
         这是你刚选择的事件: function (e){
           //当按钮被长按时...
         }
-        });`,
+        });
+      `,
       options: { ranges: true },
     },
     {

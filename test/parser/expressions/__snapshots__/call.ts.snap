@@ -1,215 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Expressions - Call > Expressions - Call (pass) >  obj
-                          .foo
-                              ["bar"]
-                                  .baz()
-                                      .foo
-                                          ["bar"]()
-                                              .baz()() 1`] = `
-{
-  "body": [
-    {
-      "end": 264,
-      "expression": {
-        "arguments": [],
-        "callee": {
-          "arguments": [],
-          "callee": {
-            "computed": false,
-            "end": 260,
-            "object": {
-              "arguments": [],
-              "callee": {
-                "computed": true,
-                "end": 207,
-                "object": {
-                  "computed": false,
-                  "end": 157,
-                  "object": {
-                    "arguments": [],
-                    "callee": {
-                      "computed": false,
-                      "end": 112,
-                      "object": {
-                        "computed": true,
-                        "end": 73,
-                        "object": {
-                          "computed": false,
-                          "end": 35,
-                          "object": {
-                            "end": 4,
-                            "name": "obj",
-                            "range": [
-                              1,
-                              4,
-                            ],
-                            "start": 1,
-                            "type": "Identifier",
-                          },
-                          "optional": false,
-                          "property": {
-                            "end": 35,
-                            "name": "foo",
-                            "range": [
-                              32,
-                              35,
-                            ],
-                            "start": 32,
-                            "type": "Identifier",
-                          },
-                          "range": [
-                            1,
-                            35,
-                          ],
-                          "start": 1,
-                          "type": "MemberExpression",
-                        },
-                        "optional": false,
-                        "property": {
-                          "end": 72,
-                          "range": [
-                            67,
-                            72,
-                          ],
-                          "start": 67,
-                          "type": "Literal",
-                          "value": "bar",
-                        },
-                        "range": [
-                          1,
-                          73,
-                        ],
-                        "start": 1,
-                        "type": "MemberExpression",
-                      },
-                      "optional": false,
-                      "property": {
-                        "end": 112,
-                        "name": "baz",
-                        "range": [
-                          109,
-                          112,
-                        ],
-                        "start": 109,
-                        "type": "Identifier",
-                      },
-                      "range": [
-                        1,
-                        112,
-                      ],
-                      "start": 1,
-                      "type": "MemberExpression",
-                    },
-                    "end": 114,
-                    "optional": false,
-                    "range": [
-                      1,
-                      114,
-                    ],
-                    "start": 1,
-                    "type": "CallExpression",
-                  },
-                  "optional": false,
-                  "property": {
-                    "end": 157,
-                    "name": "foo",
-                    "range": [
-                      154,
-                      157,
-                    ],
-                    "start": 154,
-                    "type": "Identifier",
-                  },
-                  "range": [
-                    1,
-                    157,
-                  ],
-                  "start": 1,
-                  "type": "MemberExpression",
-                },
-                "optional": false,
-                "property": {
-                  "end": 206,
-                  "range": [
-                    201,
-                    206,
-                  ],
-                  "start": 201,
-                  "type": "Literal",
-                  "value": "bar",
-                },
-                "range": [
-                  1,
-                  207,
-                ],
-                "start": 1,
-                "type": "MemberExpression",
-              },
-              "end": 209,
-              "optional": false,
-              "range": [
-                1,
-                209,
-              ],
-              "start": 1,
-              "type": "CallExpression",
-            },
-            "optional": false,
-            "property": {
-              "end": 260,
-              "name": "baz",
-              "range": [
-                257,
-                260,
-              ],
-              "start": 257,
-              "type": "Identifier",
-            },
-            "range": [
-              1,
-              260,
-            ],
-            "start": 1,
-            "type": "MemberExpression",
-          },
-          "end": 262,
-          "optional": false,
-          "range": [
-            1,
-            262,
-          ],
-          "start": 1,
-          "type": "CallExpression",
-        },
-        "end": 264,
-        "optional": false,
-        "range": [
-          1,
-          264,
-        ],
-        "start": 1,
-        "type": "CallExpression",
-      },
-      "range": [
-        1,
-        264,
-      ],
-      "start": 1,
-      "type": "ExpressionStatement",
-    },
-  ],
-  "end": 264,
-  "range": [
-    0,
-    264,
-  ],
-  "sourceType": "script",
-  "start": 0,
-  "type": "Program",
-}
-`;
-
 exports[`Expressions - Call > Expressions - Call (pass) > "foo", async 1`] = `
 {
   "body": [
@@ -3484,6 +3274,216 @@ exports[`Expressions - Call > Expressions - Call (pass) > i(a, b, ...c); 1`] = `
   "range": [
     0,
     14,
+  ],
+  "sourceType": "script",
+  "start": 0,
+  "type": "Program",
+}
+`;
+
+exports[`Expressions - Call > Expressions - Call (pass) > obj
+  .foo
+      ["bar"]
+          .baz()
+              .foo
+                  ["bar"]()
+                      .baz()() 1`] = `
+{
+  "body": [
+    {
+      "end": 119,
+      "expression": {
+        "arguments": [],
+        "callee": {
+          "arguments": [],
+          "callee": {
+            "computed": false,
+            "end": 115,
+            "object": {
+              "arguments": [],
+              "callee": {
+                "computed": true,
+                "end": 86,
+                "object": {
+                  "computed": false,
+                  "end": 60,
+                  "object": {
+                    "arguments": [],
+                    "callee": {
+                      "computed": false,
+                      "end": 39,
+                      "object": {
+                        "computed": true,
+                        "end": 24,
+                        "object": {
+                          "computed": false,
+                          "end": 10,
+                          "object": {
+                            "end": 3,
+                            "name": "obj",
+                            "range": [
+                              0,
+                              3,
+                            ],
+                            "start": 0,
+                            "type": "Identifier",
+                          },
+                          "optional": false,
+                          "property": {
+                            "end": 10,
+                            "name": "foo",
+                            "range": [
+                              7,
+                              10,
+                            ],
+                            "start": 7,
+                            "type": "Identifier",
+                          },
+                          "range": [
+                            0,
+                            10,
+                          ],
+                          "start": 0,
+                          "type": "MemberExpression",
+                        },
+                        "optional": false,
+                        "property": {
+                          "end": 23,
+                          "range": [
+                            18,
+                            23,
+                          ],
+                          "start": 18,
+                          "type": "Literal",
+                          "value": "bar",
+                        },
+                        "range": [
+                          0,
+                          24,
+                        ],
+                        "start": 0,
+                        "type": "MemberExpression",
+                      },
+                      "optional": false,
+                      "property": {
+                        "end": 39,
+                        "name": "baz",
+                        "range": [
+                          36,
+                          39,
+                        ],
+                        "start": 36,
+                        "type": "Identifier",
+                      },
+                      "range": [
+                        0,
+                        39,
+                      ],
+                      "start": 0,
+                      "type": "MemberExpression",
+                    },
+                    "end": 41,
+                    "optional": false,
+                    "range": [
+                      0,
+                      41,
+                    ],
+                    "start": 0,
+                    "type": "CallExpression",
+                  },
+                  "optional": false,
+                  "property": {
+                    "end": 60,
+                    "name": "foo",
+                    "range": [
+                      57,
+                      60,
+                    ],
+                    "start": 57,
+                    "type": "Identifier",
+                  },
+                  "range": [
+                    0,
+                    60,
+                  ],
+                  "start": 0,
+                  "type": "MemberExpression",
+                },
+                "optional": false,
+                "property": {
+                  "end": 85,
+                  "range": [
+                    80,
+                    85,
+                  ],
+                  "start": 80,
+                  "type": "Literal",
+                  "value": "bar",
+                },
+                "range": [
+                  0,
+                  86,
+                ],
+                "start": 0,
+                "type": "MemberExpression",
+              },
+              "end": 88,
+              "optional": false,
+              "range": [
+                0,
+                88,
+              ],
+              "start": 0,
+              "type": "CallExpression",
+            },
+            "optional": false,
+            "property": {
+              "end": 115,
+              "name": "baz",
+              "range": [
+                112,
+                115,
+              ],
+              "start": 112,
+              "type": "Identifier",
+            },
+            "range": [
+              0,
+              115,
+            ],
+            "start": 0,
+            "type": "MemberExpression",
+          },
+          "end": 117,
+          "optional": false,
+          "range": [
+            0,
+            117,
+          ],
+          "start": 0,
+          "type": "CallExpression",
+        },
+        "end": 119,
+        "optional": false,
+        "range": [
+          0,
+          119,
+        ],
+        "start": 0,
+        "type": "CallExpression",
+      },
+      "range": [
+        0,
+        119,
+      ],
+      "start": 0,
+      "type": "ExpressionStatement",
+    },
+  ],
+  "end": 119,
+  "range": [
+    0,
+    119,
   ],
   "sourceType": "script",
   "start": 0,

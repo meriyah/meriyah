@@ -85,11 +85,11 @@ exports[`Miscellaneous - Regular expressions > Miscellaneous - Regular expressio
 `;
 
 exports[`Miscellaneous - Regular expressions > Miscellaneous - Regular expressions (fail) > function* f(){ yield
-      /foo } 1`] = `
-"SyntaxError [2:6-2:12]: Unterminated regular expression
+/foo } 1`] = `
+"SyntaxError [2:0-2:6]: Unterminated regular expression
   1 | function* f(){ yield
-> 2 |       /foo }
-    |       ^^^^^^ Unterminated regular expression"
+> 2 | /foo }
+    | ^^^^^^ Unterminated regular expression"
 `;
 
 exports[`Miscellaneous - Regular expressions > Miscellaneous - Regular expressions (fail) > s = {foo: yield / x} 1`] = `

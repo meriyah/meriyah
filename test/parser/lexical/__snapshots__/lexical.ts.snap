@@ -475,11 +475,11 @@ exports[`Lexical - Lexical > Lexical - Lexical (fail) > let a; export function a
 `;
 
 exports[`Lexical - Lexical > Lexical - Lexical (fail) > let a; let a;
-    let a; let a; 1`] = `
+let a; let a; 1`] = `
 "SyntaxError [1:12-1:13]: Duplicate binding 'a'
 > 1 | let a; let a;
     |             ^ Duplicate binding 'a'
-  2 |     let a; let a;"
+  2 | let a; let a;"
 `;
 
 exports[`Lexical - Lexical > Lexical - Lexical (fail) > let a; let a; 1`] = `
@@ -597,11 +597,11 @@ exports[`Lexical - Lexical > Lexical - Lexical (fail) > let x, {x} = obj 2`] = `
 `;
 
 exports[`Lexical - Lexical > Lexical - Lexical (fail) > let x; { var x }
-    let x; { var x } 1`] = `
+let x; { var x } 1`] = `
 "SyntaxError [1:15-1:16]: Duplicate binding 'x'
 > 1 | let x; { var x }
     |                ^ Duplicate binding 'x'
-  2 |     let x; { var x }"
+  2 | let x; { var x }"
 `;
 
 exports[`Lexical - Lexical > Lexical - Lexical (fail) > let x; { var x } 1`] = `
@@ -749,11 +749,11 @@ exports[`Lexical - Lexical > Lexical - Lexical (fail) > var x = a; let x = b; 3`
 `;
 
 exports[`Lexical - Lexical > Lexical - Lexical (fail) > var x; let x;
-    var x; let x; 1`] = `
+var x; let x; 1`] = `
 "SyntaxError [1:12-1:13]: Duplicate binding 'x'
 > 1 | var x; let x;
     |             ^ Duplicate binding 'x'
-  2 |     var x; let x;"
+  2 | var x; let x;"
 `;
 
 exports[`Lexical - Lexical > Lexical - Lexical (fail) > var x; let x; 1`] = `

@@ -1,6 +1,7 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Miscellaneous - Failure', () => {
   for (const arg of [
@@ -12,12 +13,16 @@ describe('Miscellaneous - Failure', () => {
     '(package) => {"use strict";}',
     'a: let {}',
     'a = let {}',
-    `a = let
-    []`,
+    outdent`
+      a = let
+      []
+    `,
     '(break) => {"use strict";}',
     '(break) => {}',
-    ` for await (a of b) let
-    [] = y`,
+    outdent`
+      for await (a of b) let
+      [] = y
+    `,
     'for (a of b) let [x] = y',
     '({1: ({}) += (1)});',
     '({1: ({}) = (1)});',
@@ -60,16 +65,26 @@ describe('Miscellaneous - Failure', () => {
     'switch (a) { case b: let [x] }',
     'switch (a) { case b: let {} }',
     'switch (a) { case b: let {x} }',
-    `do let [x]
-    while (a);`,
-    `do let [x] = y
-    while (a);`,
-    `do let {}
-    while (a);`,
-    `do let {} = y
-    while (a);`,
-    `do let {x}
-    while (a);`,
+    outdent`
+      do let [x]
+      while (a);
+    `,
+    outdent`
+      do let [x] = y
+      while (a);
+    `,
+    outdent`
+      do let {}
+      while (a);
+    `,
+    outdent`
+      do let {} = y
+      while (a);
+    `,
+    outdent`
+      do let {x}
+      while (a);
+    `,
     'do let [] = y while (a);',
     'do let [x] while (a);',
     'do let {} while (a);',
@@ -120,26 +135,28 @@ describe('Miscellaneous - Failure', () => {
     'for(const let = 0;;);',
     '{ const a; }',
     'function f(){ const a; }',
-    `for (let a of (function*() {
-      for (var b of (function*() {
-              for (var c of (function*() {
-                      for (var d of (function*() {
-                              for (var e of (function*() {
-                                      for (var f of (function*() {
-                                              for (var g of (x = (yield * 2)) => (1)) {
-                                              }
-                                      })()) {
-                                      }
-                              })()) {
-                              }
-                      })()) {
-                      }
-              })()) {
-              }
+    outdent`
+      for (let a of (function*() {
+        for (var b of (function*() {
+                for (var c of (function*() {
+                        for (var d of (function*() {
+                                for (var e of (function*() {
+                                        for (var f of (function*() {
+                                                for (var g of (x = (yield * 2)) => (1)) {
+                                                }
+                                        })()) {
+                                        }
+                                })()) {
+                                }
+                        })()) {
+                        }
+                })()) {
+                }
+        })()) {
+        }
       })()) {
       }
-    })()) {
-    }`,
+    `,
     'for(const a = 0;;) label: function f(){}',
     'for(;;) labelA: labelB: labelC: function f(){}',
     'for(;;) labelA: labelB: labelC: function f(){}',
@@ -189,8 +206,10 @@ describe('Miscellaneous - Failure', () => {
     '"use strict"; (package) => {}',
     '"use strict"; async (package) => {}',
     'async (package) => { "use strict"; }',
-    `do x
-    while ({ [y = [yy]]: { x = (y)} ? null : false  })`,
+    outdent`
+      do x
+      while ({ [y = [yy]]: { x = (y)} ? null : false  })
+    `,
     '"use strict"; for (let in x);',
     `function* f(){ yield↵/foo }`,
     `wrap({get 123: x});`,
@@ -1050,18 +1069,18 @@ describe('Miscellaneous - Failure', () => {
     `({async async, })`,
     `({async async = 0} = {})`,
     'var this = 10;',
-    `
-    "use strict";
-    function f() {
-        var {yield} = {};
-    }
-`,
-    `
-    "use strict";
-    function f() {
-        var {yield = 0} = {};
-    }
-`,
+    outdent`
+      "use strict";
+      function f() {
+          var {yield} = {};
+      }
+    `,
+    outdent`
+      "use strict";
+      function f() {
+          var {yield = 0} = {};
+      }
+    `,
     '[...a()] = []',
     '[...a=b] = []',
     '[a, ...b, c] = []',

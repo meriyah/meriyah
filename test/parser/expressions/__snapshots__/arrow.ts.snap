@@ -1773,11 +1773,11 @@ exports[`Expressions - Arrow > Expressions - Array (fail) > var af = package => 
 `;
 
 exports[`Expressions - Arrow > Expressions - Array (fail) > var af = x
-    => {}; 1`] = `
-"SyntaxError [2:4-2:6]: No line break is allowed after '=>'
+=> {}; 1`] = `
+"SyntaxError [2:0-2:2]: No line break is allowed after '=>'
   1 | var af = x
-> 2 |     => {};
-    |     ^^ No line break is allowed after '=>'"
+> 2 | => {};
+    | ^^ No line break is allowed after '=>'"
 `;
 
 exports[`Expressions - Arrow > Expressions - Array (fail) > var af = yield => 1; 1`] = `
@@ -2184,7 +2184,7 @@ exports[`Expressions - Arrow > Expressions - Arrow (pass) > (() => {}) << x 1`] 
 `;
 
 exports[`Expressions - Arrow > Expressions - Arrow (pass) > (() => {}) || true;
-    (() => {}) ? a : b; 1`] = `
+(() => {}) ? a : b; 1`] = `
 {
   "body": [
     {
@@ -2240,21 +2240,11 @@ exports[`Expressions - Arrow > Expressions - Arrow (pass) > (() => {}) || true;
       "type": "ExpressionStatement",
     },
     {
-      "end": 43,
+      "end": 39,
       "expression": {
         "alternate": {
-          "end": 42,
-          "name": "b",
-          "range": [
-            41,
-            42,
-          ],
-          "start": 41,
-          "type": "Identifier",
-        },
-        "consequent": {
           "end": 38,
-          "name": "a",
+          "name": "b",
           "range": [
             37,
             38,
@@ -2262,49 +2252,59 @@ exports[`Expressions - Arrow > Expressions - Arrow (pass) > (() => {}) || true;
           "start": 37,
           "type": "Identifier",
         },
-        "end": 42,
+        "consequent": {
+          "end": 34,
+          "name": "a",
+          "range": [
+            33,
+            34,
+          ],
+          "start": 33,
+          "type": "Identifier",
+        },
+        "end": 38,
         "range": [
-          24,
-          42,
+          20,
+          38,
         ],
-        "start": 24,
+        "start": 20,
         "test": {
           "async": false,
           "body": {
             "body": [],
-            "end": 33,
+            "end": 29,
             "range": [
-              31,
-              33,
+              27,
+              29,
             ],
-            "start": 31,
+            "start": 27,
             "type": "BlockStatement",
           },
-          "end": 33,
+          "end": 29,
           "expression": false,
           "generator": false,
           "params": [],
           "range": [
-            25,
-            33,
+            21,
+            29,
           ],
-          "start": 25,
+          "start": 21,
           "type": "ArrowFunctionExpression",
         },
         "type": "ConditionalExpression",
       },
       "range": [
-        24,
-        43,
+        20,
+        39,
       ],
-      "start": 24,
+      "start": 20,
       "type": "ExpressionStatement",
     },
   ],
-  "end": 43,
+  "end": 39,
   "range": [
     0,
-    43,
+    39,
   ],
   "sourceType": "script",
   "start": 0,
@@ -4662,13 +4662,13 @@ exports[`Expressions - Arrow > Expressions - Arrow (pass) > (a) => 00; 1`] = `
 `;
 
 exports[`Expressions - Arrow > Expressions - Arrow (pass) > (a) => b;  // 1 args
-    (a, b) => c;  // n args
-    () => b;  // 0 args
-    (a) => (b) => c;  // func returns func returns func
-    (a) => ((b) => c);  // So these parens are dropped
-    () => (b,c) => d;  // func returns func returns func
-    a=>{return b;}
-    a => 'e';  // Dropping the parens 1`] = `
+(a, b) => c;  // n args
+() => b;  // 0 args
+(a) => (b) => c;  // func returns func returns func
+(a) => ((b) => c);  // So these parens are dropped
+() => (b,c) => d;  // func returns func returns func
+a=>{return b;}
+a => 'e';  // Dropping the parens 1`] = `
 {
   "body": [
     {
@@ -4715,401 +4715,401 @@ exports[`Expressions - Arrow > Expressions - Arrow (pass) > (a) => b;  // 1 args
       "type": "ExpressionStatement",
     },
     {
-      "end": 37,
+      "end": 33,
       "expression": {
         "async": false,
         "body": {
-          "end": 36,
+          "end": 32,
           "name": "c",
           "range": [
-            35,
-            36,
+            31,
+            32,
           ],
-          "start": 35,
+          "start": 31,
           "type": "Identifier",
         },
-        "end": 36,
+        "end": 32,
         "expression": true,
         "generator": false,
         "params": [
           {
-            "end": 27,
+            "end": 23,
             "name": "a",
             "range": [
-              26,
-              27,
+              22,
+              23,
             ],
-            "start": 26,
+            "start": 22,
             "type": "Identifier",
           },
           {
-            "end": 30,
+            "end": 26,
             "name": "b",
             "range": [
-              29,
-              30,
+              25,
+              26,
             ],
-            "start": 29,
+            "start": 25,
             "type": "Identifier",
           },
         ],
         "range": [
-          25,
-          36,
+          21,
+          32,
         ],
-        "start": 25,
+        "start": 21,
         "type": "ArrowFunctionExpression",
       },
       "range": [
-        25,
-        37,
+        21,
+        33,
       ],
-      "start": 25,
+      "start": 21,
       "type": "ExpressionStatement",
     },
     {
-      "end": 61,
+      "end": 53,
       "expression": {
         "async": false,
         "body": {
-          "end": 60,
+          "end": 52,
           "name": "b",
           "range": [
-            59,
-            60,
+            51,
+            52,
           ],
-          "start": 59,
+          "start": 51,
           "type": "Identifier",
         },
-        "end": 60,
+        "end": 52,
         "expression": true,
         "generator": false,
         "params": [],
         "range": [
-          53,
-          60,
+          45,
+          52,
         ],
-        "start": 53,
+        "start": 45,
         "type": "ArrowFunctionExpression",
       },
       "range": [
+        45,
         53,
-        61,
       ],
-      "start": 53,
+      "start": 45,
       "type": "ExpressionStatement",
     },
     {
-      "end": 93,
+      "end": 81,
       "expression": {
         "async": false,
         "body": {
           "async": false,
           "body": {
-            "end": 92,
+            "end": 80,
             "name": "c",
             "range": [
-              91,
-              92,
-            ],
-            "start": 91,
-            "type": "Identifier",
-          },
-          "end": 92,
-          "expression": true,
-          "generator": false,
-          "params": [
-            {
-              "end": 86,
-              "name": "b",
-              "range": [
-                85,
-                86,
-              ],
-              "start": 85,
-              "type": "Identifier",
-            },
-          ],
-          "range": [
-            84,
-            92,
-          ],
-          "start": 84,
-          "type": "ArrowFunctionExpression",
-        },
-        "end": 92,
-        "expression": true,
-        "generator": false,
-        "params": [
-          {
-            "end": 79,
-            "name": "a",
-            "range": [
-              78,
               79,
+              80,
             ],
-            "start": 78,
+            "start": 79,
             "type": "Identifier",
           },
-        ],
-        "range": [
-          77,
-          92,
-        ],
-        "start": 77,
-        "type": "ArrowFunctionExpression",
-      },
-      "range": [
-        77,
-        93,
-      ],
-      "start": 77,
-      "type": "ExpressionStatement",
-    },
-    {
-      "end": 151,
-      "expression": {
-        "async": false,
-        "body": {
-          "async": false,
-          "body": {
-            "end": 149,
-            "name": "c",
-            "range": [
-              148,
-              149,
-            ],
-            "start": 148,
-            "type": "Identifier",
-          },
-          "end": 149,
+          "end": 80,
           "expression": true,
           "generator": false,
           "params": [
             {
-              "end": 143,
+              "end": 74,
               "name": "b",
               "range": [
-                142,
-                143,
+                73,
+                74,
               ],
-              "start": 142,
+              "start": 73,
               "type": "Identifier",
             },
           ],
           "range": [
-            141,
-            149,
+            72,
+            80,
           ],
-          "start": 141,
+          "start": 72,
           "type": "ArrowFunctionExpression",
         },
-        "end": 150,
+        "end": 80,
         "expression": true,
         "generator": false,
         "params": [
           {
-            "end": 135,
+            "end": 67,
             "name": "a",
             "range": [
-              134,
-              135,
+              66,
+              67,
             ],
-            "start": 134,
+            "start": 66,
             "type": "Identifier",
           },
         ],
         "range": [
-          133,
-          150,
+          65,
+          80,
         ],
-        "start": 133,
+        "start": 65,
         "type": "ArrowFunctionExpression",
       },
       "range": [
-        133,
-        151,
+        65,
+        81,
       ],
-      "start": 133,
+      "start": 65,
       "type": "ExpressionStatement",
     },
     {
-      "end": 205,
+      "end": 135,
       "expression": {
         "async": false,
         "body": {
           "async": false,
           "body": {
-            "end": 204,
+            "end": 133,
+            "name": "c",
+            "range": [
+              132,
+              133,
+            ],
+            "start": 132,
+            "type": "Identifier",
+          },
+          "end": 133,
+          "expression": true,
+          "generator": false,
+          "params": [
+            {
+              "end": 127,
+              "name": "b",
+              "range": [
+                126,
+                127,
+              ],
+              "start": 126,
+              "type": "Identifier",
+            },
+          ],
+          "range": [
+            125,
+            133,
+          ],
+          "start": 125,
+          "type": "ArrowFunctionExpression",
+        },
+        "end": 134,
+        "expression": true,
+        "generator": false,
+        "params": [
+          {
+            "end": 119,
+            "name": "a",
+            "range": [
+              118,
+              119,
+            ],
+            "start": 118,
+            "type": "Identifier",
+          },
+        ],
+        "range": [
+          117,
+          134,
+        ],
+        "start": 117,
+        "type": "ArrowFunctionExpression",
+      },
+      "range": [
+        117,
+        135,
+      ],
+      "start": 117,
+      "type": "ExpressionStatement",
+    },
+    {
+      "end": 185,
+      "expression": {
+        "async": false,
+        "body": {
+          "async": false,
+          "body": {
+            "end": 184,
             "name": "d",
             "range": [
-              203,
-              204,
+              183,
+              184,
             ],
-            "start": 203,
+            "start": 183,
             "type": "Identifier",
           },
-          "end": 204,
+          "end": 184,
           "expression": true,
           "generator": false,
           "params": [
             {
-              "end": 196,
+              "end": 176,
               "name": "b",
               "range": [
-                195,
-                196,
+                175,
+                176,
               ],
-              "start": 195,
+              "start": 175,
               "type": "Identifier",
             },
             {
-              "end": 198,
+              "end": 178,
               "name": "c",
               "range": [
-                197,
-                198,
+                177,
+                178,
               ],
-              "start": 197,
+              "start": 177,
               "type": "Identifier",
             },
           ],
           "range": [
-            194,
-            204,
+            174,
+            184,
           ],
-          "start": 194,
+          "start": 174,
           "type": "ArrowFunctionExpression",
         },
-        "end": 204,
+        "end": 184,
         "expression": true,
         "generator": false,
         "params": [],
         "range": [
-          188,
-          204,
+          168,
+          184,
         ],
-        "start": 188,
+        "start": 168,
         "type": "ArrowFunctionExpression",
       },
       "range": [
-        188,
-        205,
+        168,
+        185,
       ],
-      "start": 188,
+      "start": 168,
       "type": "ExpressionStatement",
     },
     {
-      "end": 259,
+      "end": 235,
       "expression": {
         "async": false,
         "body": {
           "body": [
             {
               "argument": {
-                "end": 257,
+                "end": 233,
                 "name": "b",
                 "range": [
-                  256,
-                  257,
+                  232,
+                  233,
                 ],
-                "start": 256,
+                "start": 232,
                 "type": "Identifier",
               },
-              "end": 258,
+              "end": 234,
               "range": [
-                249,
-                258,
+                225,
+                234,
               ],
-              "start": 249,
+              "start": 225,
               "type": "ReturnStatement",
             },
           ],
-          "end": 259,
+          "end": 235,
           "range": [
-            248,
-            259,
+            224,
+            235,
           ],
-          "start": 248,
+          "start": 224,
           "type": "BlockStatement",
         },
-        "end": 259,
+        "end": 235,
         "expression": false,
         "generator": false,
         "params": [
           {
-            "end": 246,
+            "end": 222,
             "name": "a",
             "range": [
-              245,
-              246,
+              221,
+              222,
             ],
-            "start": 245,
+            "start": 221,
             "type": "Identifier",
           },
         ],
         "range": [
-          245,
-          259,
+          221,
+          235,
         ],
-        "start": 245,
+        "start": 221,
         "type": "ArrowFunctionExpression",
       },
       "range": [
-        245,
-        259,
+        221,
+        235,
       ],
-      "start": 245,
+      "start": 221,
       "type": "ExpressionStatement",
     },
     {
-      "end": 273,
+      "end": 245,
       "expression": {
         "async": false,
         "body": {
-          "end": 272,
+          "end": 244,
           "range": [
-            269,
-            272,
+            241,
+            244,
           ],
-          "start": 269,
+          "start": 241,
           "type": "Literal",
           "value": "e",
         },
-        "end": 272,
+        "end": 244,
         "expression": true,
         "generator": false,
         "params": [
           {
-            "end": 265,
+            "end": 237,
             "name": "a",
             "range": [
-              264,
-              265,
+              236,
+              237,
             ],
-            "start": 264,
+            "start": 236,
             "type": "Identifier",
           },
         ],
         "range": [
-          264,
-          272,
+          236,
+          244,
         ],
-        "start": 264,
+        "start": 236,
         "type": "ArrowFunctionExpression",
       },
       "range": [
-        264,
-        273,
+        236,
+        245,
       ],
-      "start": 264,
+      "start": 236,
       "type": "ExpressionStatement",
     },
   ],
-  "end": 297,
+  "end": 269,
   "range": [
     0,
-    297,
+    269,
   ],
   "sourceType": "script",
   "start": 0,
@@ -5973,311 +5973,311 @@ exports[`Expressions - Arrow > Expressions - Arrow (pass) > (eval = 10) => 42; 1
 `;
 
 exports[`Expressions - Arrow > Expressions - Arrow (pass) > (expect, subject, typeName) => {
-          typeName = /^reg(?:exp?|ular expression)$/.test(typeName)
-            ? 'regexp'
-            : typeName;
-          expect.argsOutput[0] = output => {
-            output.jsString(typeName);
-          };
-          if (!expect.getType(typeName)) {
-            expect.errorMode = 'nested';
-            expect.fail(output => {
-              output
-                .error('Unknown type:')
-                .sp()
-                .jsString(typeName);
-            });
-          }
-        } 1`] = `
+  typeName = /^reg(?:exp?|ular expression)$/.test(typeName)
+    ? 'regexp'
+    : typeName;
+  expect.argsOutput[0] = output => {
+    output.jsString(typeName);
+  };
+  if (!expect.getType(typeName)) {
+    expect.errorMode = 'nested';
+    expect.fail(output => {
+      output
+        .error('Unknown type:')
+        .sp()
+        .jsString(typeName);
+    });
+  }
+} 1`] = `
 {
   "body": [
     {
-      "end": 522,
+      "end": 394,
       "expression": {
         "async": false,
         "body": {
           "body": [
             {
-              "end": 147,
+              "end": 123,
               "expression": {
-                "end": 146,
+                "end": 122,
                 "left": {
-                  "end": 51,
+                  "end": 43,
                   "name": "typeName",
                   "range": [
+                    35,
                     43,
-                    51,
                   ],
-                  "start": 43,
+                  "start": 35,
                   "type": "Identifier",
                 },
                 "operator": "=",
                 "range": [
-                  43,
-                  146,
+                  35,
+                  122,
                 ],
                 "right": {
                   "alternate": {
-                    "end": 146,
+                    "end": 122,
                     "name": "typeName",
                     "range": [
-                      138,
-                      146,
+                      114,
+                      122,
                     ],
-                    "start": 138,
+                    "start": 114,
                     "type": "Identifier",
                   },
                   "consequent": {
-                    "end": 123,
+                    "end": 107,
                     "range": [
-                      115,
-                      123,
+                      99,
+                      107,
                     ],
-                    "start": 115,
+                    "start": 99,
                     "type": "Literal",
                     "value": "regexp",
                   },
-                  "end": 146,
+                  "end": 122,
                   "range": [
-                    54,
-                    146,
+                    46,
+                    122,
                   ],
-                  "start": 54,
+                  "start": 46,
                   "test": {
                     "arguments": [
                       {
-                        "end": 99,
+                        "end": 91,
                         "name": "typeName",
                         "range": [
+                          83,
                           91,
-                          99,
                         ],
-                        "start": 91,
+                        "start": 83,
                         "type": "Identifier",
                       },
                     ],
                     "callee": {
                       "computed": false,
-                      "end": 90,
+                      "end": 82,
                       "object": {
-                        "end": 85,
+                        "end": 77,
                         "range": [
-                          54,
-                          85,
+                          46,
+                          77,
                         ],
                         "regex": {
                           "flags": "",
                           "pattern": "^reg(?:exp?|ular expression)$",
                         },
-                        "start": 54,
+                        "start": 46,
                         "type": "Literal",
                         "value": /\\^reg\\(\\?:exp\\?\\|ular expression\\)\\$/,
                       },
                       "optional": false,
                       "property": {
-                        "end": 90,
+                        "end": 82,
                         "name": "test",
                         "range": [
-                          86,
-                          90,
+                          78,
+                          82,
                         ],
-                        "start": 86,
+                        "start": 78,
                         "type": "Identifier",
                       },
                       "range": [
-                        54,
-                        90,
+                        46,
+                        82,
                       ],
-                      "start": 54,
+                      "start": 46,
                       "type": "MemberExpression",
                     },
-                    "end": 100,
+                    "end": 92,
                     "optional": false,
                     "range": [
-                      54,
-                      100,
+                      46,
+                      92,
                     ],
-                    "start": 54,
+                    "start": 46,
                     "type": "CallExpression",
                   },
                   "type": "ConditionalExpression",
                 },
-                "start": 43,
+                "start": 35,
                 "type": "AssignmentExpression",
               },
               "range": [
-                43,
-                147,
+                35,
+                123,
               ],
-              "start": 43,
+              "start": 35,
               "type": "ExpressionStatement",
             },
             {
-              "end": 244,
+              "end": 196,
               "expression": {
-                "end": 243,
+                "end": 195,
                 "left": {
                   "computed": true,
-                  "end": 178,
+                  "end": 146,
                   "object": {
                     "computed": false,
-                    "end": 175,
+                    "end": 143,
                     "object": {
-                      "end": 164,
+                      "end": 132,
                       "name": "expect",
                       "range": [
-                        158,
-                        164,
+                        126,
+                        132,
                       ],
-                      "start": 158,
+                      "start": 126,
                       "type": "Identifier",
                     },
                     "optional": false,
                     "property": {
-                      "end": 175,
+                      "end": 143,
                       "name": "argsOutput",
                       "range": [
-                        165,
-                        175,
+                        133,
+                        143,
                       ],
-                      "start": 165,
+                      "start": 133,
                       "type": "Identifier",
                     },
                     "range": [
-                      158,
-                      175,
+                      126,
+                      143,
                     ],
-                    "start": 158,
+                    "start": 126,
                     "type": "MemberExpression",
                   },
                   "optional": false,
                   "property": {
-                    "end": 177,
+                    "end": 145,
                     "range": [
-                      176,
-                      177,
+                      144,
+                      145,
                     ],
-                    "start": 176,
+                    "start": 144,
                     "type": "Literal",
                     "value": 0,
                   },
                   "range": [
-                    158,
-                    178,
+                    126,
+                    146,
                   ],
-                  "start": 158,
+                  "start": 126,
                   "type": "MemberExpression",
                 },
                 "operator": "=",
                 "range": [
-                  158,
-                  243,
+                  126,
+                  195,
                 ],
                 "right": {
                   "async": false,
                   "body": {
                     "body": [
                       {
-                        "end": 231,
+                        "end": 191,
                         "expression": {
                           "arguments": [
                             {
-                              "end": 229,
+                              "end": 189,
                               "name": "typeName",
                               "range": [
-                                221,
-                                229,
+                                181,
+                                189,
                               ],
-                              "start": 221,
+                              "start": 181,
                               "type": "Identifier",
                             },
                           ],
                           "callee": {
                             "computed": false,
-                            "end": 220,
+                            "end": 180,
                             "object": {
-                              "end": 211,
+                              "end": 171,
                               "name": "output",
                               "range": [
-                                205,
-                                211,
+                                165,
+                                171,
                               ],
-                              "start": 205,
+                              "start": 165,
                               "type": "Identifier",
                             },
                             "optional": false,
                             "property": {
-                              "end": 220,
+                              "end": 180,
                               "name": "jsString",
                               "range": [
-                                212,
-                                220,
+                                172,
+                                180,
                               ],
-                              "start": 212,
+                              "start": 172,
                               "type": "Identifier",
                             },
                             "range": [
-                              205,
-                              220,
+                              165,
+                              180,
                             ],
-                            "start": 205,
+                            "start": 165,
                             "type": "MemberExpression",
                           },
-                          "end": 230,
+                          "end": 190,
                           "optional": false,
                           "range": [
-                            205,
-                            230,
+                            165,
+                            190,
                           ],
-                          "start": 205,
+                          "start": 165,
                           "type": "CallExpression",
                         },
                         "range": [
-                          205,
-                          231,
+                          165,
+                          191,
                         ],
-                        "start": 205,
+                        "start": 165,
                         "type": "ExpressionStatement",
                       },
                     ],
-                    "end": 243,
+                    "end": 195,
                     "range": [
-                      191,
-                      243,
+                      159,
+                      195,
                     ],
-                    "start": 191,
+                    "start": 159,
                     "type": "BlockStatement",
                   },
-                  "end": 243,
+                  "end": 195,
                   "expression": false,
                   "generator": false,
                   "params": [
                     {
-                      "end": 187,
+                      "end": 155,
                       "name": "output",
                       "range": [
-                        181,
-                        187,
+                        149,
+                        155,
                       ],
-                      "start": 181,
+                      "start": 149,
                       "type": "Identifier",
                     },
                   ],
                   "range": [
-                    181,
-                    243,
+                    149,
+                    195,
                   ],
-                  "start": 181,
+                  "start": 149,
                   "type": "ArrowFunctionExpression",
                 },
-                "start": 158,
+                "start": 126,
                 "type": "AssignmentExpression",
               },
               "range": [
-                158,
-                244,
+                126,
+                196,
               ],
-              "start": 158,
+              "start": 126,
               "type": "ExpressionStatement",
             },
             {
@@ -6285,67 +6285,67 @@ exports[`Expressions - Arrow > Expressions - Arrow (pass) > (expect, subject, ty
               "consequent": {
                 "body": [
                   {
-                    "end": 328,
+                    "end": 264,
                     "expression": {
-                      "end": 327,
+                      "end": 263,
                       "left": {
                         "computed": false,
-                        "end": 316,
+                        "end": 252,
                         "object": {
-                          "end": 306,
+                          "end": 242,
                           "name": "expect",
                           "range": [
-                            300,
-                            306,
+                            236,
+                            242,
                           ],
-                          "start": 300,
+                          "start": 236,
                           "type": "Identifier",
                         },
                         "optional": false,
                         "property": {
-                          "end": 316,
+                          "end": 252,
                           "name": "errorMode",
                           "range": [
-                            307,
-                            316,
+                            243,
+                            252,
                           ],
-                          "start": 307,
+                          "start": 243,
                           "type": "Identifier",
                         },
                         "range": [
-                          300,
-                          316,
+                          236,
+                          252,
                         ],
-                        "start": 300,
+                        "start": 236,
                         "type": "MemberExpression",
                       },
                       "operator": "=",
                       "range": [
-                        300,
-                        327,
+                        236,
+                        263,
                       ],
                       "right": {
-                        "end": 327,
+                        "end": 263,
                         "range": [
-                          319,
-                          327,
+                          255,
+                          263,
                         ],
-                        "start": 319,
+                        "start": 255,
                         "type": "Literal",
                         "value": "nested",
                       },
-                      "start": 300,
+                      "start": 236,
                       "type": "AssignmentExpression",
                     },
                     "range": [
-                      300,
-                      328,
+                      236,
+                      264,
                     ],
-                    "start": 300,
+                    "start": 236,
                     "type": "ExpressionStatement",
                   },
                   {
-                    "end": 500,
+                    "end": 388,
                     "expression": {
                       "arguments": [
                         {
@@ -6353,312 +6353,312 @@ exports[`Expressions - Arrow > Expressions - Arrow (pass) > (expect, subject, ty
                           "body": {
                             "body": [
                               {
-                                "end": 484,
+                                "end": 380,
                                 "expression": {
                                   "arguments": [
                                     {
-                                      "end": 482,
+                                      "end": 378,
                                       "name": "typeName",
                                       "range": [
-                                        474,
-                                        482,
+                                        370,
+                                        378,
                                       ],
-                                      "start": 474,
+                                      "start": 370,
                                       "type": "Identifier",
                                     },
                                   ],
                                   "callee": {
                                     "computed": false,
-                                    "end": 473,
+                                    "end": 369,
                                     "object": {
                                       "arguments": [],
                                       "callee": {
                                         "computed": false,
-                                        "end": 445,
+                                        "end": 349,
                                         "object": {
                                           "arguments": [
                                             {
-                                              "end": 424,
+                                              "end": 336,
                                               "range": [
-                                                409,
-                                                424,
+                                                321,
+                                                336,
                                               ],
-                                              "start": 409,
+                                              "start": 321,
                                               "type": "Literal",
                                               "value": "Unknown type:",
                                             },
                                           ],
                                           "callee": {
                                             "computed": false,
-                                            "end": 408,
+                                            "end": 320,
                                             "object": {
-                                              "end": 385,
+                                              "end": 305,
                                               "name": "output",
                                               "range": [
-                                                379,
-                                                385,
+                                                299,
+                                                305,
                                               ],
-                                              "start": 379,
+                                              "start": 299,
                                               "type": "Identifier",
                                             },
                                             "optional": false,
                                             "property": {
-                                              "end": 408,
+                                              "end": 320,
                                               "name": "error",
                                               "range": [
-                                                403,
-                                                408,
+                                                315,
+                                                320,
                                               ],
-                                              "start": 403,
+                                              "start": 315,
                                               "type": "Identifier",
                                             },
                                             "range": [
-                                              379,
-                                              408,
+                                              299,
+                                              320,
                                             ],
-                                            "start": 379,
+                                            "start": 299,
                                             "type": "MemberExpression",
                                           },
-                                          "end": 425,
+                                          "end": 337,
                                           "optional": false,
                                           "range": [
-                                            379,
-                                            425,
+                                            299,
+                                            337,
                                           ],
-                                          "start": 379,
+                                          "start": 299,
                                           "type": "CallExpression",
                                         },
                                         "optional": false,
                                         "property": {
-                                          "end": 445,
+                                          "end": 349,
                                           "name": "sp",
                                           "range": [
-                                            443,
-                                            445,
+                                            347,
+                                            349,
                                           ],
-                                          "start": 443,
+                                          "start": 347,
                                           "type": "Identifier",
                                         },
                                         "range": [
-                                          379,
-                                          445,
+                                          299,
+                                          349,
                                         ],
-                                        "start": 379,
+                                        "start": 299,
                                         "type": "MemberExpression",
                                       },
-                                      "end": 447,
+                                      "end": 351,
                                       "optional": false,
                                       "range": [
-                                        379,
-                                        447,
+                                        299,
+                                        351,
                                       ],
-                                      "start": 379,
+                                      "start": 299,
                                       "type": "CallExpression",
                                     },
                                     "optional": false,
                                     "property": {
-                                      "end": 473,
+                                      "end": 369,
                                       "name": "jsString",
                                       "range": [
-                                        465,
-                                        473,
+                                        361,
+                                        369,
                                       ],
-                                      "start": 465,
+                                      "start": 361,
                                       "type": "Identifier",
                                     },
                                     "range": [
-                                      379,
-                                      473,
+                                      299,
+                                      369,
                                     ],
-                                    "start": 379,
+                                    "start": 299,
                                     "type": "MemberExpression",
                                   },
-                                  "end": 483,
+                                  "end": 379,
                                   "optional": false,
                                   "range": [
+                                    299,
                                     379,
-                                    483,
                                   ],
-                                  "start": 379,
+                                  "start": 299,
                                   "type": "CallExpression",
                                 },
                                 "range": [
-                                  379,
-                                  484,
+                                  299,
+                                  380,
                                 ],
-                                "start": 379,
+                                "start": 299,
                                 "type": "ExpressionStatement",
                               },
                             ],
-                            "end": 498,
+                            "end": 386,
                             "range": [
-                              363,
-                              498,
+                              291,
+                              386,
                             ],
-                            "start": 363,
+                            "start": 291,
                             "type": "BlockStatement",
                           },
-                          "end": 498,
+                          "end": 386,
                           "expression": false,
                           "generator": false,
                           "params": [
                             {
-                              "end": 359,
+                              "end": 287,
                               "name": "output",
                               "range": [
-                                353,
-                                359,
+                                281,
+                                287,
                               ],
-                              "start": 353,
+                              "start": 281,
                               "type": "Identifier",
                             },
                           ],
                           "range": [
-                            353,
-                            498,
+                            281,
+                            386,
                           ],
-                          "start": 353,
+                          "start": 281,
                           "type": "ArrowFunctionExpression",
                         },
                       ],
                       "callee": {
                         "computed": false,
-                        "end": 352,
+                        "end": 280,
                         "object": {
-                          "end": 347,
+                          "end": 275,
                           "name": "expect",
                           "range": [
-                            341,
-                            347,
+                            269,
+                            275,
                           ],
-                          "start": 341,
+                          "start": 269,
                           "type": "Identifier",
                         },
                         "optional": false,
                         "property": {
-                          "end": 352,
+                          "end": 280,
                           "name": "fail",
                           "range": [
-                            348,
-                            352,
+                            276,
+                            280,
                           ],
-                          "start": 348,
+                          "start": 276,
                           "type": "Identifier",
                         },
                         "range": [
-                          341,
-                          352,
+                          269,
+                          280,
                         ],
-                        "start": 341,
+                        "start": 269,
                         "type": "MemberExpression",
                       },
-                      "end": 499,
+                      "end": 387,
                       "optional": false,
                       "range": [
-                        341,
-                        499,
+                        269,
+                        387,
                       ],
-                      "start": 341,
+                      "start": 269,
                       "type": "CallExpression",
                     },
                     "range": [
-                      341,
-                      500,
+                      269,
+                      388,
                     ],
-                    "start": 341,
+                    "start": 269,
                     "type": "ExpressionStatement",
                   },
                 ],
-                "end": 512,
+                "end": 392,
                 "range": [
-                  286,
-                  512,
+                  230,
+                  392,
                 ],
-                "start": 286,
+                "start": 230,
                 "type": "BlockStatement",
               },
-              "end": 512,
+              "end": 392,
               "range": [
-                255,
-                512,
+                199,
+                392,
               ],
-              "start": 255,
+              "start": 199,
               "test": {
                 "argument": {
                   "arguments": [
                     {
-                      "end": 283,
+                      "end": 227,
                       "name": "typeName",
                       "range": [
-                        275,
-                        283,
+                        219,
+                        227,
                       ],
-                      "start": 275,
+                      "start": 219,
                       "type": "Identifier",
                     },
                   ],
                   "callee": {
                     "computed": false,
-                    "end": 274,
+                    "end": 218,
                     "object": {
-                      "end": 266,
+                      "end": 210,
                       "name": "expect",
                       "range": [
-                        260,
-                        266,
+                        204,
+                        210,
                       ],
-                      "start": 260,
+                      "start": 204,
                       "type": "Identifier",
                     },
                     "optional": false,
                     "property": {
-                      "end": 274,
+                      "end": 218,
                       "name": "getType",
                       "range": [
-                        267,
-                        274,
+                        211,
+                        218,
                       ],
-                      "start": 267,
+                      "start": 211,
                       "type": "Identifier",
                     },
                     "range": [
-                      260,
-                      274,
+                      204,
+                      218,
                     ],
-                    "start": 260,
+                    "start": 204,
                     "type": "MemberExpression",
                   },
-                  "end": 284,
+                  "end": 228,
                   "optional": false,
                   "range": [
-                    260,
-                    284,
+                    204,
+                    228,
                   ],
-                  "start": 260,
+                  "start": 204,
                   "type": "CallExpression",
                 },
-                "end": 284,
+                "end": 228,
                 "operator": "!",
                 "prefix": true,
                 "range": [
-                  259,
-                  284,
+                  203,
+                  228,
                 ],
-                "start": 259,
+                "start": 203,
                 "type": "UnaryExpression",
               },
               "type": "IfStatement",
             },
           ],
-          "end": 522,
+          "end": 394,
           "range": [
             31,
-            522,
+            394,
           ],
           "start": 31,
           "type": "BlockStatement",
         },
-        "end": 522,
+        "end": 394,
         "expression": false,
         "generator": false,
         "params": [
@@ -6695,23 +6695,23 @@ exports[`Expressions - Arrow > Expressions - Arrow (pass) > (expect, subject, ty
         ],
         "range": [
           0,
-          522,
+          394,
         ],
         "start": 0,
         "type": "ArrowFunctionExpression",
       },
       "range": [
         0,
-        522,
+        394,
       ],
       "start": 0,
       "type": "ExpressionStatement",
     },
   ],
-  "end": 522,
+  "end": 394,
   "range": [
     0,
-    522,
+    394,
   ],
   "sourceType": "script",
   "start": 0,

@@ -2,6 +2,7 @@ import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { outdent } from 'outdent';
 
 describe('Expressions - Arrow', () => {
   for (const arg of [
@@ -687,8 +688,10 @@ describe('Expressions - Arrow', () => {
     'var af = ...x => x;',
     { code: 'var af = yield => 1;', options: { impliedStrict: true } },
     { code: 'var af = (yield) => 1;', options: { impliedStrict: true } },
-    `var af = x
-    => {};`,
+    outdent`
+      var af = x
+      => {};
+    `,
     'var f = (a = 0) => { "use strict"; };',
     ')',
     ') => 0',
@@ -847,8 +850,10 @@ describe('Expressions - Arrow', () => {
     `function foo() { }; foo((x, y) => "abc"); foo(b => "abc", 123);`,
     `(a, b) => { return a * b; }`,
     `a = () => {return (3, 4);};`,
-    `"use strict";
-((one, two) => {});`,
+    outdent`
+      "use strict";
+      ((one, two) => {});
+    `,
     `([])=>0;`,
     `(function (x) { return x => x; })(20)(10)`,
     `(function () { return x => x; })()(10)`,
@@ -1197,7 +1202,8 @@ describe('Expressions - Arrow', () => {
     { code: '([], a) => {}', options: { ranges: true } },
     '(a = b) => {}',
     {
-      code: `(expect, subject, typeName) => {
+      code: outdent`
+        (expect, subject, typeName) => {
           typeName = /^reg(?:exp?|ular expression)$/.test(typeName)
             ? 'regexp'
             : typeName;
@@ -1213,7 +1219,8 @@ describe('Expressions - Arrow', () => {
                 .jsString(typeName);
             });
           }
-        }`,
+        }
+      `,
       options: { ranges: true },
     },
     { code: '(a, b = c) => {}', options: { ranges: true } },
@@ -1291,20 +1298,24 @@ describe('Expressions - Arrow', () => {
     '([x] = []) => {};',
     '([x = 0]) => {};',
     {
-      code: `(a) => b;  // 1 args
-    (a, b) => c;  // n args
-    () => b;  // 0 args
-    (a) => (b) => c;  // func returns func returns func
-    (a) => ((b) => c);  // So these parens are dropped
-    () => (b,c) => d;  // func returns func returns func
-    a=>{return b;}
-    a => 'e';  // Dropping the parens`,
+      code: outdent`
+        (a) => b;  // 1 args
+        (a, b) => c;  // n args
+        () => b;  // 0 args
+        (a) => (b) => c;  // func returns func returns func
+        (a) => ((b) => c);  // So these parens are dropped
+        () => (b,c) => d;  // func returns func returns func
+        a=>{return b;}
+        a => 'e';  // Dropping the parens
+      `,
       options: { ranges: true },
     },
     { code: 'const a = () => {return (3, 4);};', options: { ranges: true } },
     {
-      code: `(() => {}) || true;
-    (() => {}) ? a : b;`,
+      code: outdent`
+        (() => {}) || true;
+        (() => {}) ? a : b;
+      `,
       options: { ranges: true },
     },
     { code: '(() => {}) + 2', options: { ranges: true } },
