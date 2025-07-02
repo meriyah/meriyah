@@ -3254,7 +3254,7 @@ describe('Miscellaneous - Pass', () => {
       this.nan &= 1; this.nan |= 2; this.nan ^= 3;
     `,
     outdent`
-        function a() {
+      function a() {
         var e, i, n, a, o = this._tween,
           l = o.vars.roundProps,
           h = {},

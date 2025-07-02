@@ -277,7 +277,8 @@ describe('Next - Private methods', () => {
       \n
         new D;\n
         new E;\n
-      }\n}
+      }
+      }
     `,
   ]) {
     it(`${arg}`, () => {
