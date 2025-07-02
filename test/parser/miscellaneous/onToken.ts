@@ -1,13 +1,13 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { type SourceLocation } from '../../../src/estree';
-import { parseScript } from '../../../src/meriyah';
+import { parseSource } from '../../../src/parser';
 import { type Token } from '../../../src/token';
 
 describe('Miscellaneous - onToken', () => {
   it('tokenize braces using array', () => {
     const tokens: Token[] = [];
-    parseScript('{}', {
+    parseSource('{}', {
       onToken: tokens,
     });
     t.deepEqual(tokens, [
@@ -22,7 +22,7 @@ describe('Miscellaneous - onToken', () => {
 
   it('tokenize braces using array with ranges', () => {
     const tokens: Token[] = [];
-    parseScript('{}', {
+    parseSource('{}', {
       onToken: tokens,
       ranges: true,
     });
@@ -44,7 +44,7 @@ describe('Miscellaneous - onToken', () => {
 
   it('tokenize braces using array with ranges and loc', () => {
     const tokens: Token[] = [];
-    parseScript('{}', {
+    parseSource('{}', {
       onToken: tokens,
       ranges: true,
       loc: true,
@@ -75,7 +75,7 @@ describe('Miscellaneous - onToken', () => {
 
   it('tokenize boolean using function', () => {
     let onTokenCount = 0;
-    parseScript('// c\nfalse', {
+    parseSource('// c\nfalse', {
       onToken: function (token: string, start: number, end: number, loc: SourceLocation) {
         t.deepEqual(token, 'BooleanLiteral');
         t.deepEqual(start, 5);
@@ -94,7 +94,7 @@ describe('Miscellaneous - onToken', () => {
   it('tokenize template literal', () => {
     const tokens: any[] = [];
     const source = 'var a = `${a}b${c}d`;';
-    parseScript(source, {
+    parseSource(source, {
       onToken(token: string, start: number, end: number) {
         tokens.push({
           token,
@@ -120,7 +120,7 @@ describe('Miscellaneous - onToken', () => {
   it('tokenize jsx', () => {
     const tokens: any[] = [];
     const source = 'var a = <div>\ndemo {w}\n<a-b>hello</a-b><c /></div>;';
-    parseScript(source, {
+    parseSource(source, {
       jsx: true,
       onToken(token: string, start: number, end: number) {
         tokens.push({
@@ -166,7 +166,7 @@ describe('Miscellaneous - onToken', () => {
   it('tokenize jsx fragment', () => {
     const tokens: any[] = [];
     const source = 'var a = <>\ndemo {w}\n<a-b>hello</a-b><c /></>;';
-    parseScript(source, {
+    parseSource(source, {
       jsx: true,
       onToken(token: string, start: number, end: number) {
         tokens.push({
@@ -210,7 +210,7 @@ describe('Miscellaneous - onToken', () => {
   it('tokenize jsx with gaps', () => {
     const tokens: any[] = [];
     const source = '<\na>< /a\n>';
-    parseScript(source, {
+    parseSource(source, {
       jsx: true,
       onToken(token: string, start: number, end: number) {
         tokens.push({
@@ -235,7 +235,7 @@ describe('Miscellaneous - onToken', () => {
   it('tokenize jsx with comments', () => {
     const tokens: any[] = [];
     const source = '<// lorem\na>< /* mm */ / /* xx */ a\n>';
-    parseScript(source, {
+    parseSource(source, {
       jsx: true,
       onToken(token: string, start: number, end: number) {
         tokens.push({
