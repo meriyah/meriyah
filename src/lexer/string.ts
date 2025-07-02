@@ -1,10 +1,10 @@
+import { Chars } from '../chars';
 import { Context, Flags } from '../common';
+import { Errors } from '../errors';
 import { type Parser } from '../parser/parser';
 import { Token } from '../token';
-import { Chars } from '../chars';
-import { Errors } from '../errors';
-import { toHex, advanceChar } from './common';
-import { CharTypes, CharFlags } from './charClassifier';
+import { CharFlags, CharTypes } from './charClassifier';
+import { advanceChar, toHex } from './common';
 // Intentionally negative
 export const enum Escape {
   Empty = -1,

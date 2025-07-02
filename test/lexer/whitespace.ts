@@ -1,8 +1,8 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { Flags, Context } from '../../src/common';
-import { Parser } from '../../src/parser/parser';
+import { Context, Flags } from '../../src/common';
 import { scanSingleToken } from '../../src/lexer/scan';
+import { Parser } from '../../src/parser/parser';
 
 describe('Lexer - Whitespace', () => {
   function pass(name: string, opts: any) {

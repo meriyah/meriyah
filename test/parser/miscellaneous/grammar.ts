@@ -156,21 +156,21 @@ describe('Miscellaneous - Cover grammar', () => {
       });
     }
     for (const fn of functions) {
-      it(fn(`...`), () => {
+      it(fn('...'), () => {
         t.throws(() => {
-          parseSource(fn(`...`), { webcompat: true });
+          parseSource(fn('...'), { webcompat: true });
         });
       });
 
-      it(fn(`...[`), () => {
+      it(fn('...['), () => {
         t.throws(() => {
-          parseSource(fn(`...[`), { webcompat: true });
+          parseSource(fn('...['), { webcompat: true });
         });
       });
 
-      it(fn(`...{`), () => {
+      it(fn('...{'), () => {
         t.throws(() => {
-          parseSource(fn(`...{`), { webcompat: true });
+          parseSource(fn('...{'), { webcompat: true });
         });
       });
       /*
@@ -181,9 +181,9 @@ describe('Miscellaneous - Cover grammar', () => {
       });
       */
 
-      it(fn(`...[0]`), () => {
+      it(fn('...[0]'), () => {
         t.throws(() => {
-          parseSource(fn(`...[0]`), { webcompat: true });
+          parseSource(fn('...[0]'), { webcompat: true });
         });
       });
     }
@@ -293,8 +293,8 @@ describe('Miscellaneous - Cover grammar', () => {
     '{ x: this }',
     '{ x: this = 1 }',
     '{ super }',
-    `var ([x]) = 0`,
-    `try { } catch ([a] = []) { }`,
+    'var ([x]) = 0',
+    'try { } catch ([a] = []) { }',
     '({set a([a.b]){}})',
     '({set a([a.b]){}})',
     'function* a([a.b]) {}',
@@ -356,9 +356,9 @@ describe('Miscellaneous - Cover grammar', () => {
     '[this = 1]',
     'var {a};',
     '[new.target]',
-    `({"x": [y].z(0)})`,
-    `({"x": [y].z(0)} = x)`,
-    `({"x": [y].z(0)}) => x`,
+    '({"x": [y].z(0)})',
+    '({"x": [y].z(0)} = x)',
+    '({"x": [y].z(0)}) => x',
     '[new.target = 1]',
     '[import.meta]',
     'var [a.b] = 0',
@@ -397,7 +397,7 @@ describe('Miscellaneous - Cover grammar', () => {
     'var [[(a)], ((((((([b])))))))] = [[],[]];',
     '[{ get x() {} }] = [{}];',
     '[...x, y] = [];',
-    `({ident: {x}.join("")}) => x`,
+    '({ident: {x}.join("")}) => x',
     '[...[(x, y)]] = [[]];',
     '"use strict"; ({ eval } = {});',
     'a = { x: x = yield } = value;',
@@ -1479,11 +1479,11 @@ describe('Miscellaneous - Cover grammar', () => {
     '({y: g(...[])} = 1)',
     '({y: a.g(...[])} = 1)',
     '({y: eval(...["1"])} = 1)',
-    `[{a = 0}.x] = [];`,
-    `[{a = 0}.x] = [];`,
-    `[...{a = 0}.x] = [];`,
-    `({a: {b = 0}.x} = {});`,
-    `({...{b = 0}.x} = {});`,
+    '[{a = 0}.x] = [];',
+    '[{a = 0}.x] = [];',
+    '[...{a = 0}.x] = [];',
+    '({a: {b = 0}.x} = {});',
+    '({...{b = 0}.x} = {});',
   ]) {
     it(`(${arg}= {});`, () => {
       t.throws(() => {
@@ -2403,7 +2403,7 @@ describe('Miscellaneous - Cover grammar', () => {
       foo(a, b = 10) {},
       toast(a, b = 10, c) {}
     };`,
-    `function f(a = 1) {} `,
+    'function f(a = 1) {} ',
     'x = function(y = 1) {} ',
     'x = { f: function(a=1) {} } ',
     'var foo = function(a, b = 42, c) {}; ',
@@ -2794,7 +2794,7 @@ describe('Miscellaneous - Cover grammar', () => {
     'var _c = [3, 5, [0, 1]], _d = _c[2], b = _d[1];',
     'var [, , [, b, ]] = [3,5,[0, 1]];',
     'var [, , z] = [1, 2, 4];',
-    `let {a, b = a} = {a: '', b: 1};`,
+    "let {a, b = a} = {a: '', b: 1};",
     't[p[i]] = s[p[i]];',
     'var { x } = (foo());',
     'var x = (foo()).x;',

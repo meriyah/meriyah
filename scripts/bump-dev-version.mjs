@@ -35,4 +35,4 @@ async function run() {
 
 await run();
 
-console.log(`Done.`);
+console.log('Done.');

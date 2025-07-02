@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
 import { codeFrameColumns } from '@babel/code-frame';
-import { parseSource } from '../src/parser';
+import { describe, expect, it } from 'vitest';
 import { Context } from '../src/common';
 import { ParseError } from '../src/errors';
 import { type Options } from '../src/options';
+import { parseSource } from '../src/parser';
 
 const IS_CI = Boolean(process.env.CI);
 // https://github.com/vitest-dev/vitest/issues/8151
@@ -44,7 +44,7 @@ function runTests(testCases: TestCase[], callback: (testCase: NormalizedTestCase
     const { code, only } = testCase;
 
     if (IS_CI && only) {
-      throw new Error(`Please remove 'only'.`);
+      throw new Error("Please remove 'only'.");
     }
 
     // https://github.com/vitest-dev/vitest/issues/8151

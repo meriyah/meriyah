@@ -1,8 +1,8 @@
-import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { fail } from '../../test-utils';
 
 describe('Expressions - Generators', () => {
   fail('Expressions - Generators (pass)', ['foo\n++', 'if (foo\n++);']);
@@ -58,19 +58,19 @@ describe('Expressions - Generators', () => {
   }
 
   const invalidSyntax = [
-    `f = function*([...{ x } = []]) {}`,
-    `f = function*([...{ x } = []] = []) {}`,
-    `f = function*([...x = []] = []) {}`,
-    `f = function*([...x, y] = [1, 2, 3]) {}`,
-    `f = function*([...{ x }, y] = [1, 2, 3]) {}`,
-    `f = function*([...{ x } = []]) {}`,
+    'f = function*([...{ x } = []]) {}',
+    'f = function*([...{ x } = []] = []) {}',
+    'f = function*([...x = []] = []) {}',
+    'f = function*([...x, y] = [1, 2, 3]) {}',
+    'f = function*([...{ x }, y] = [1, 2, 3]) {}',
+    'f = function*([...{ x } = []]) {}',
     outdent`
       var gen = function *g() {
         var yield;
       };
     `,
-    `var g = function*() { yield 3 + yield 4; };`,
-    `'use strict'; (function *g() { ( x, y=yield ) => {} });`,
+    'var g = function*() { yield 3 + yield 4; };',
+    "'use strict'; (function *g() { ( x, y=yield ) => {} });",
     '(function *g() { ( x, y=yield ) => {} });',
     '"use strict"; (function *g() { ( x = class { [(yield, 1)]() { }  ) => {} });',
     'var g = function*(yield) {};',
@@ -159,7 +159,7 @@ describe('Expressions - Generators', () => {
         yield [...yield yield];
       };
     `,
-    `(function* () { yield\nv })`,
+    '(function* () { yield\nv })',
     outdent`
       var gen = function *() {
         yield [...yield];
@@ -191,31 +191,31 @@ describe('Expressions - Generators', () => {
       };
     `,
     '(function* () { yield *v });',
-    `var gfe = function* () { switch (1) { case yield: break; } }`,
-    `var gfe = function* () { switch (1) { case yield* 'foo': break; } }`,
-    `var o = { *gf() { yield* 'foo'; } }`,
-    `f = function*([[,] = g()]) {}`,
-    `f = function*([[x, y, z] = [4, 5, 6]]) {}`,
-    `f = function*([[] = function() { return  function*() {}(); }()]) {}`,
-    `f = function*([[] = function() {}()]) {}`,
-    `f = function*([x = 23]) {}`,
-    `f = function*([...[x, y, z]]) {}`,
-    `f = function*([...x]) {}`,
-    `f = function*([[,] = g()] = []) {}`,
-    `f = function*([,]) {}`,
-    `var f = function*([...x]) {};`,
-    `f = function*([...{ 0: v, 1: w, 2: x, 3: y, length: z }]) {}`,
-    `f = function*([[...x] = function() { initCount += 1; }()] = [[2, 1, 3]]) {}`,
-    `f = function*([x = 23] = [,]) {}`,
-    `f = function*([{ x, y, z } = { x: 44, y: 55, z: 66 }] = [{ x: 11, y: 22, z: 33 }]) {}`,
-    `f = function*({ w: [x, y, z] = [4, 5, 6] } = {}) {}`,
-    `f = function*({ x, } = { x: 23 }) {}`,
-    `f = function*({ x: y = 33 } = { }) {}`,
-    `f = function*({a, b, ...rest} = {x: 1, y: 2, a: 5, b: 3}) {}`,
-    `var f = function*({}) {};`,
-    `f = function*({ w: [x, y, z] = [4, 5, 6] }) {}`,
-    `f = function*({ x: y }) {}`,
-    `var f = function *(a) { yield a+1; return; };`,
+    'var gfe = function* () { switch (1) { case yield: break; } }',
+    "var gfe = function* () { switch (1) { case yield* 'foo': break; } }",
+    "var o = { *gf() { yield* 'foo'; } }",
+    'f = function*([[,] = g()]) {}',
+    'f = function*([[x, y, z] = [4, 5, 6]]) {}',
+    'f = function*([[] = function() { return  function*() {}(); }()]) {}',
+    'f = function*([[] = function() {}()]) {}',
+    'f = function*([x = 23]) {}',
+    'f = function*([...[x, y, z]]) {}',
+    'f = function*([...x]) {}',
+    'f = function*([[,] = g()] = []) {}',
+    'f = function*([,]) {}',
+    'var f = function*([...x]) {};',
+    'f = function*([...{ 0: v, 1: w, 2: x, 3: y, length: z }]) {}',
+    'f = function*([[...x] = function() { initCount += 1; }()] = [[2, 1, 3]]) {}',
+    'f = function*([x = 23] = [,]) {}',
+    'f = function*([{ x, y, z } = { x: 44, y: 55, z: 66 }] = [{ x: 11, y: 22, z: 33 }]) {}',
+    'f = function*({ w: [x, y, z] = [4, 5, 6] } = {}) {}',
+    'f = function*({ x, } = { x: 23 }) {}',
+    'f = function*({ x: y = 33 } = { }) {}',
+    'f = function*({a, b, ...rest} = {x: 1, y: 2, a: 5, b: 3}) {}',
+    'var f = function*({}) {};',
+    'f = function*({ w: [x, y, z] = [4, 5, 6] }) {}',
+    'f = function*({ x: y }) {}',
+    'var f = function *(a) { yield a+1; return; };',
     outdent`
       var gen = function *g() {
         yield [...yield];
@@ -235,12 +235,12 @@ describe('Expressions - Generators', () => {
         yield [...yield];
       };
     `,
-    `ref = function*(a,) {};`,
+    'ref = function*(a,) {};',
     outdent`
       var g1 = function*() { yield; };
       var g2 = function*() { yield 1; };
     `,
-    `var g = function*() { yield yield 1; };`,
+    'var g = function*() { yield yield 1; };',
     outdent`
       var gen = function *() {
         yield {

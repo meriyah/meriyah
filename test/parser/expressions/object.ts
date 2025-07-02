@@ -1,8 +1,8 @@
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { fail, pass } from '../../test-utils';
 
 describe('Expressions - Object', () => {
   for (const arg of [
@@ -743,7 +743,7 @@ describe('Expressions - Object', () => {
     '1:a',
     '"1":a',
     '"a":a,b',
-    `a:a,b,c`,
+    'a:a,b,c',
     '1:a,b',
     '"1":a,b',
     'a,"b":b',

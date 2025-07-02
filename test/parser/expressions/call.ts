@@ -1,8 +1,8 @@
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { fail, pass } from '../../test-utils';
 
 describe('Expressions - Call', () => {
   for (const arg of [
@@ -34,11 +34,11 @@ describe('Expressions - Call', () => {
   }
 
   for (const arg of [
-    `a()(a)`,
-    `async()()`,
-    `async(a)()`,
-    `async()(b)`,
-    `async(a)(b)`,
+    'a()(a)',
+    'async()()',
+    'async(a)()',
+    'async()(b)',
+    'async(a)(b)',
     '...([1, 2, 3])',
     "...'123', ...'456'",
     '...new Set([1, 2, 3]), 4',
@@ -145,18 +145,18 @@ describe('Expressions - Call', () => {
     "(function(obj) {}({...{a: 2, b: 3, c: 4, e: undefined, f: null, g: false}, a: 1, b: 7, d: 5, h: -0, i: Symbol('foo'), j: {a: 2, b: 3, c: 4, e: undefined, f: null, g: false}}));",
     '(function(obj) {}({...undefined}));',
     '(function(obj) {}(...target = [2, 3, 4]));',
-    `a(String, 2).v(123).length;`,
-    `a(b,c).abc(1).def`,
-    `a(b,c).abc(1)`,
-    `a(b,c).abc`,
-    `a(b,c)`,
-    `foo(bar, baz)`,
+    'a(String, 2).v(123).length;',
+    'a(b,c).abc(1).def',
+    'a(b,c).abc(1)',
+    'a(b,c).abc',
+    'a(b,c)',
+    'foo(bar, baz)',
     'async (...a, ...b);',
     'async (...a, b);',
-    `(    foo  )()`,
-    `f(...a)`,
-    `f(...a, ...b)`,
-    `f(...a, ...b)`,
+    '(    foo  )()',
+    'f(...a)',
+    'f(...a, ...b)',
+    'f(...a, ...b)',
     'f();',
     'foo(...[1.1, 2.2, 3.3, 4.4, 5.5])',
     'foo(...[1])',

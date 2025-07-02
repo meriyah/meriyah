@@ -1,8 +1,8 @@
-import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { fail } from '../../test-utils';
 
 describe('Lexical - AnnexB', () => {
   fail('Lexical - AnnexB (fail)', [
@@ -58,7 +58,7 @@ describe('Lexical - AnnexB', () => {
     'if (true) function f() { initialBV = f; f = 123; currentBV = f; return x; }',
     'try { throw {}; } catch ({ f }) { if (true) function f() {  } else function _f() {} }',
     'for (let f in { key: 0 }) { if (false) function _f() {} else function f() {  } }',
-    `(function() { { function f() { initialBV = f; f = 123; currentBV = f; return 'decl'; } } }());`,
+    "(function() { { function f() { initialBV = f; f = 123; currentBV = f; return 'decl'; } } }());",
     outdent`
       (function() {      {        function f() { return 'inner declaration'; }
         }

@@ -1,8 +1,8 @@
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { fail, pass } from '../../test-utils';
 
 describe('Declarations - Function', () => {
   for (const arg of ['package', 'public', 'instanceof']) {
@@ -366,16 +366,16 @@ describe('Declarations - Function', () => {
     'function f([foo,bar=b]){}',
     'function f([foo,bar=b] = x){}',
     'function f([foo=a,bar=b]){}',
-    `function bar() {foo = 42}; ext(bar); ext(foo)`,
-    `function bar() { }`,
-    `function a(b, c) { }`,
-    `function makeArrayLength(x) { if(x < 1 || x > 4294967295 || x != x || isNaN(x) || !isFinite(x)) return 1; else return Math.floor(x); };`,
-    `function foo () {"use strict";}`,
-    `function __decl(){return 1;}`,
-    `function __func__2(){b};`,
-    `function x(...{ a }){}`,
-    `function santa() { function package() {} function evdal() { "use strict"; }}`,
-    `function foo(bar, eval) { function bar() { "use strict"; } }`,
+    'function bar() {foo = 42}; ext(bar); ext(foo)',
+    'function bar() { }',
+    'function a(b, c) { }',
+    'function makeArrayLength(x) { if(x < 1 || x > 4294967295 || x != x || isNaN(x) || !isFinite(x)) return 1; else return Math.floor(x); };',
+    'function foo () {"use strict";}',
+    'function __decl(){return 1;}',
+    'function __func__2(){b};',
+    'function x(...{ a }){}',
+    'function santa() { function package() {} function evdal() { "use strict"; }}',
+    'function foo(bar, eval) { function bar() { "use strict"; } }',
     '(function(){})',
     'function test() { "use strict" + 42; }',
     'function test(t, t) { }',
@@ -489,18 +489,18 @@ describe('Declarations - Function', () => {
       }
       ;
     `,
-    `function __func__3(){1};`,
-    `function __func__4(){1+c};`,
-    `function __func__5(){inc(d)};`,
-    `function foo (a, b, c) { }`,
-    `function __gunc(){return true};`,
-    `function f(x = x) {}`,
-    `function f([x] = []) {}`,
-    `function f([{ x }] = [null]) {}`,
-    `function f({ w: [x, y, z] = [4, 5, 6] } = { w: [7, undefined, ] }) {}`,
-    `function test(t, t) { }`,
-    `function arguments() { }`,
-    `function a() { function a() {} function a() {} }`,
+    'function __func__3(){1};',
+    'function __func__4(){1+c};',
+    'function __func__5(){inc(d)};',
+    'function foo (a, b, c) { }',
+    'function __gunc(){return true};',
+    'function f(x = x) {}',
+    'function f([x] = []) {}',
+    'function f([{ x }] = [null]) {}',
+    'function f({ w: [x, y, z] = [4, 5, 6] } = { w: [7, undefined, ] }) {}',
+    'function test(t, t) { }',
+    'function arguments() { }',
+    'function a() { function a() {} function a() {} }',
     outdent`
       function j(...a) {}
       function k() {}
@@ -591,7 +591,7 @@ describe('Declarations - Function', () => {
     { code: 'function w(casecase){y:j:function casecase(){}}', options: { webcompat: true, ranges: true } },
     'function* x() { for (const [j = yield] in (x) => {}) {} }',
     '"use strict"; function* g() { yield; }; f = ([...[,]] = g()) => {};',
-    `function foo(package) {}`,
+    'function foo(package) {}',
     {
       code: outdent`
         function compareArray(a, b) {

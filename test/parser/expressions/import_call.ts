@@ -1,7 +1,7 @@
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('ImportCall', () => {
   fail('Import call (fail)', [
@@ -121,7 +121,7 @@ describe('ImportCall', () => {
     'function fn() { return import("foo"); }',
     'let x = 0; while (!x) { x++;  import(import(import("foo"))); };',
     'import("foo");',
-    `import('./module.js')`,
+    "import('./module.js')",
     'import(import(x))',
     'x = import(x)',
     'foo(import("foo").den());',
@@ -160,8 +160,8 @@ describe('ImportCall', () => {
   }
 
   pass('ImportCall (pass)', [
-    { code: `import("lib.js").then(doThis);`, options: { module: true, ranges: true } },
-    { code: `async function bar(){ await import("./nchanged") }`, options: { next: true } },
+    { code: 'import("lib.js").then(doThis);', options: { module: true, ranges: true } },
+    { code: 'async function bar(){ await import("./nchanged") }', options: { next: true } },
     'function loadImport(file) { import(file).then(() => {}), console.log("Done."); }',
   ]);
 });

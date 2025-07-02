@@ -1,8 +1,8 @@
 import * as t from 'node:assert/strict';
-import { describe, it } from 'vitest';
-import { pass, fail } from '../../test-utils';
-import { parseSource } from '../../../src/parser';
 import { outdent } from 'outdent';
+import { describe, it } from 'vitest';
+import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Next - Nullish Coalescing', () => {
   for (const arg of [
@@ -18,7 +18,7 @@ describe('Next - Nullish Coalescing', () => {
     'yield ?? 3',
     'package ?? 3',
     'private ?? 3',
-    `0 ?? 3`,
+    '0 ?? 3',
     '(a || b)',
     '1 | null ?? 3',
     '1 ^ null ?? 3',
@@ -52,34 +52,34 @@ describe('Next - Nullish Coalescing', () => {
     'arr??[idx]',
     'async??[idx]',
     'func??(arg)',
-    `({} ?? 3) instanceof Object`,
-    `([] ?? 3) instanceof Array`,
-    `async([] ?? 3) instanceof Array`,
-    `foo(async bar =>x, "string", async ?? b)`,
-    `foo(async,"string", async()=>x ?? b)`,
-    `async(async,"string", async()=>x ?? b)`,
-    `async(async,"string", async()=>yield ?? b)`,
-    `yield(async,"string", async()=>x ?? b)`,
-    `(['hi'] ?? 3)[0]`,
-    `(makeMasquerader() ?? 3) == null`,
+    '({} ?? 3) instanceof Object',
+    '([] ?? 3) instanceof Array',
+    'async([] ?? 3) instanceof Array',
+    'foo(async bar =>x, "string", async ?? b)',
+    'foo(async,"string", async()=>x ?? b)',
+    'async(async,"string", async()=>x ?? b)',
+    'async(async,"string", async()=>yield ?? b)',
+    'yield(async,"string", async()=>x ?? b)',
+    "(['hi'] ?? 3)[0]",
+    '(makeMasquerader() ?? 3) == null',
     '1 | null ?? 3',
-    `1 ^ null ?? 3`,
-    `1 & null ?? 3`,
-    `3 != null ?? 3`,
+    '1 ^ null ?? 3',
+    '1 & null ?? 3',
+    '3 != null ?? 3',
     '1 > null ?? 3',
     '1 <= null ?? 3',
     '1 >> null ?? 3',
-    `isNaN(1 % null ?? 3)`,
-    `1 ** null ?? 3`,
-    `(0 || 1) ?? 2`,
-    `(0 && 1) ?? 2`,
-    `0 && (1 ?? 2)`,
-    `(0 ?? 1) || 2`,
-    `(0 ?? 1) || 2`,
-    `(0 ?? 1) && 2`,
-    `0 ?? (1 && 2)`,
+    'isNaN(1 % null ?? 3)',
+    '1 ** null ?? 3',
+    '(0 || 1) ?? 2',
+    '(0 && 1) ?? 2',
+    '0 && (1 ?? 2)',
+    '(0 ?? 1) || 2',
+    '(0 ?? 1) || 2',
+    '(0 ?? 1) && 2',
+    '0 ?? (1 && 2)',
     'null ?? "hello"',
-    `0 || 1 && 2 | 3 ^ 4 & 5 == 6 != 7 === 8 !== 9 < 0 > 1 <= 2 >= 3 << 4 >> 5 >>> 6 + 7 - 8 * 9 / 0 % 1 ** 2`,
+    '0 || 1 && 2 | 3 ^ 4 & 5 == 6 != 7 === 8 !== 9 < 0 > 1 <= 2 >= 3 << 4 >> 5 >>> 6 + 7 - 8 * 9 / 0 % 1 ** 2',
     'a.b ?? c.d ?? e ()',
     'async.await??c.d??async ()',
     'a.b??c.d??e ()',
@@ -123,12 +123,12 @@ describe('Next - Nullish Coalescing', () => {
   ]);
 
   pass('Next - Null Coalescing (pass)', [
-    { code: `({ x: 'hi' } ?? 3).x`, options: { next: true } },
-    { code: `'hi' ?? 3`, options: { next: true } },
-    { code: `undefined ?? 3`, options: { next: true } },
-    { code: `1 << null ?? 3`, options: { next: true } },
-    { code: `1 / null ?? 3`, options: { next: true } },
-    { code: `a ?? (b && c);`, options: { next: true } },
+    { code: "({ x: 'hi' } ?? 3).x", options: { next: true } },
+    { code: "'hi' ?? 3", options: { next: true } },
+    { code: 'undefined ?? 3', options: { next: true } },
+    { code: '1 << null ?? 3', options: { next: true } },
+    { code: '1 / null ?? 3', options: { next: true } },
+    { code: 'a ?? (b && c);', options: { next: true } },
     {
       code: outdent`
         a
@@ -137,10 +137,10 @@ describe('Next - Nullish Coalescing', () => {
       `,
       options: { next: true },
     },
-    { code: `foo ?? 1;`, options: { next: true } },
-    { code: `a ?? b ?? c;`, options: { next: true } },
-    { code: `a ?? (b || c);`, options: { next: true } },
-    { code: `(a || b) ?? c;`, options: { next: true } },
-    { code: `(a && b) ?? c`, options: { next: true } },
+    { code: 'foo ?? 1;', options: { next: true } },
+    { code: 'a ?? b ?? c;', options: { next: true } },
+    { code: 'a ?? (b || c);', options: { next: true } },
+    { code: '(a || b) ?? c;', options: { next: true } },
+    { code: '(a && b) ?? c', options: { next: true } },
   ]);
 });

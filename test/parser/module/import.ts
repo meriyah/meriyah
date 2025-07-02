@@ -1,7 +1,7 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { pass, fail } from '../../test-utils';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Module - Import', () => {
   for (const arg of [
@@ -354,7 +354,7 @@ describe('Module - Import', () => {
   for (const arg of [
     "import 'foo';",
     "import { a } from 'foo';",
-    `import  * as set from "a"`,
+    'import  * as set from "a"',
     "import { a, b as d, c, } from 'baz';",
     "import * as thing from 'baz';",
     "import thing from 'foo';",

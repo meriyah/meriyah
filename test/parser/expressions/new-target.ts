@@ -1,7 +1,7 @@
-import { pass } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { pass } from '../../test-utils';
 
 describe('Expressions - New target', () => {
   for (const arg of [
@@ -21,8 +21,8 @@ describe('Expressions - New target', () => {
     'function f(){ new.target = foo }',
     'function f(){ new.target-- }',
     '(f=new.target) => {}',
-    `new await foo;`,
-    `() => new.target`,
+    'new await foo;',
+    '() => new.target',
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
@@ -32,11 +32,11 @@ describe('Expressions - New target', () => {
   }
 
   for (const arg of [
-    `function foo() { return new['target']; }`,
+    "function foo() { return new['target']; }",
     'function foo(){{if(true){new.target;}}}',
     'function foo(){ var x = function() {new.target;}; x();}',
     'function foo(){ var o = { "foo" : function () { new.target}}; o.foo();}',
-    `function f(x=() => new.target) {}`,
+    'function f(x=() => new.target) {}',
     'function x(){""[new.target]}',
     'function a(){try { throw Error;} catch(e){new.target;}}',
     'function a(){var a = b = c = 1; try {} catch([a,b,c]) { new.target;}}',
@@ -79,9 +79,9 @@ describe('Expressions - New target', () => {
     'function f() { if (1) { new.target } }',
     'function f() { while (0) { new.target } }',
     'function f() { do { new.target } while (0) }',
-    `function a(){{if(true){new.target;}}}`,
-    `function abc(){ var a = b = c = 1; try {} catch([a,b,c]) { new.target;}}`,
-    `function a(){ var o = { "foo" : function () { new.target}}; o.foo();}`,
+    'function a(){{if(true){new.target;}}}',
+    'function abc(){ var a = b = c = 1; try {} catch([a,b,c]) { new.target;}}',
+    'function a(){ var o = { "foo" : function () { new.target}}; o.foo();}',
     '({ set a(b = new.target){} })',
     '(function a(b = new.target){})',
     'function f() { let x = new.target; }',

@@ -1,10 +1,10 @@
-import { advanceChar, LexerState, scanNewLine, consumeLineFeed } from './common';
-import { CharTypes, CharFlags } from './charClassifier';
 import { Chars } from '../chars';
 import { Context, type Location } from '../common';
-import { type Parser } from '../parser/parser';
 import { Errors } from '../errors';
 import type * as ESTree from '../estree';
+import { type Parser } from '../parser/parser';
+import { CharFlags, CharTypes } from './charClassifier';
+import { advanceChar, consumeLineFeed, LexerState, scanNewLine } from './common';
 
 export const enum CommentType {
   Single,

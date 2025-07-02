@@ -1,11 +1,11 @@
-import { CharFlags, CharTypes } from './charClassifier';
-import { Token } from '../token';
-import { type Context } from '../common';
-import { type Parser } from '../parser/parser';
-import { Errors } from '../errors';
-import { advanceChar, LexerState, scanSingleToken, scanNewLine, consumeLineFeed } from './';
-import { decodeHTMLStrict } from './decodeHTML';
 import { Chars } from '../chars';
+import { type Context } from '../common';
+import { Errors } from '../errors';
+import { type Parser } from '../parser/parser';
+import { Token } from '../token';
+import { advanceChar, consumeLineFeed, LexerState, scanNewLine, scanSingleToken } from './';
+import { CharFlags, CharTypes } from './charClassifier';
+import { decodeHTMLStrict } from './decodeHTML';
 
 /**
  * Scans JSX attribute value

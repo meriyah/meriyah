@@ -1,41 +1,41 @@
-import { nextToken, skipHashBang } from './lexer';
-import { Token, KeywordDescTable } from './token';
-import type * as ESTree from './estree';
-import { ParseError, Errors } from './errors';
-import { scanTemplateTail } from './lexer/template';
-import { rescanJSXIdentifier, nextJSXToken, scanJSXAttributeValue } from './lexer/jsx';
+import { Chars } from './chars';
 import {
-  Context,
-  PropertyKind,
-  Origin,
-  consumeOpt,
-  consume,
-  Flags,
-  reinterpretToPattern,
-  DestructuringKind,
   AssignmentKind,
   BindingKind,
-  validateBindingIdentifier,
-  validateFunctionName,
-  isStrictReservedWord,
-  optionalBit,
-  matchOrInsertSemicolon,
-  isPropertyWithPrivateFieldKey,
-  isValidLabel,
-  validateAndDeclareLabel,
+  classifyIdentifier,
+  consume,
+  consumeOpt,
+  Context,
+  DestructuringKind,
+  Flags,
   HoistedClassFlags,
   HoistedFunctionFlags,
   isEqualTagName,
-  isValidStrictMode,
+  isPropertyWithPrivateFieldKey,
+  isStrictReservedWord,
   isValidIdentifier,
-  classifyIdentifier,
+  isValidLabel,
+  isValidStrictMode,
   type Location,
+  matchOrInsertSemicolon,
+  optionalBit,
+  Origin,
+  PropertyKind,
+  reinterpretToPattern,
+  validateAndDeclareLabel,
+  validateBindingIdentifier,
+  validateFunctionName,
 } from './common';
-import { Chars } from './chars';
+import { Errors, ParseError } from './errors';
+import type * as ESTree from './estree';
+import { nextToken, skipHashBang } from './lexer';
+import { nextJSXToken, rescanJSXIdentifier, scanJSXAttributeValue } from './lexer/jsx';
+import { scanTemplateTail } from './lexer/template';
+import { normalizeOptions, type Options } from './options';
 import { Parser } from './parser/parser';
-import { type Options, normalizeOptions } from './options';
-import { type Scope, ScopeKind, createArrowHeadParsingScope } from './parser/scope';
 import { type PrivateScope } from './parser/private-scope';
+import { createArrowHeadParsingScope, type Scope, ScopeKind } from './parser/scope';
+import { KeywordDescTable, Token } from './token';
 
 /**
  * Consumes a sequence of tokens and produces an syntax tree

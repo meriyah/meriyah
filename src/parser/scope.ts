@@ -1,5 +1,5 @@
+import { BindingKind, Context, type Location, Origin } from '../common';
 import { Errors, ParseError } from '../errors';
-import { type Location, Context, BindingKind, Origin } from '../common';
 import { type Parser } from './parser';
 
 /**

@@ -1,5 +1,5 @@
-import { type _Node, type SourceLocation } from './estree';
 import { type Location } from './common';
+import { type _Node, type SourceLocation } from './estree';
 
 export const enum Errors {
   Unexpected,

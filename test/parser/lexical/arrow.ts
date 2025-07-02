@@ -1,7 +1,7 @@
-import { fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail } from '../../test-utils';
 
 describe('Lexical - Arrows', () => {
   fail('Lexical - Arrows (fail)', [

@@ -1,7 +1,7 @@
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Statements - For of', () => {
   for (const arg of [
@@ -431,14 +431,14 @@ describe('Statements - For of', () => {
     'for (let { w: { x, y, z } = { x: 4, y: 5, z: 6 } } of [{ w: null }]) {}',
     'for (let [, , ...x] of [[1, 2]]) {}',
     'for (yield[g]--;;);',
-    `for ( let[x] of [[34]] ) {}`,
-    `for (var { x, } of [{ x: 23 }]) {}`,
-    `for (var [...[,]] of [g()]) {}`,
+    'for ( let[x] of [[34]] ) {}',
+    'for (var { x, } of [{ x: 23 }]) {}',
+    'for (var [...[,]] of [g()]) {}',
     'for (function(){ }[foo] of x);',
     'for (function(){ }[x in y] of x);',
     'for (function(){ if (a in b); }.prop of x);',
     'for (function(){ a in b; }.prop of x);',
-    `for (var { cover = (function () {}), a = (0, function() {})  } of [{}]) {}`,
+    'for (var { cover = (function () {}), a = (0, function() {})  } of [{}]) {}',
     'for(x of ~y);',
     'for(x of~y);',
   ]) {

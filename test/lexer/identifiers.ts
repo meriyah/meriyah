@@ -1,10 +1,10 @@
-import { type NormalizedOptions } from './../../src/options';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { Context } from '../../src/common';
-import { Token } from '../../src/token';
-import { Parser } from '../../src/parser/parser';
 import { scanSingleToken } from '../../src/lexer/scan';
+import { Parser } from '../../src/parser/parser';
+import { Token } from '../../src/token';
+import { type NormalizedOptions } from './../../src/options';
 
 describe('Lexer - Identifiers', () => {
   const tokens: [Context, Token, string, string][] = [

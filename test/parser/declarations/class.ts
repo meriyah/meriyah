@@ -344,7 +344,7 @@ describe('Declarations - Class', () => {
 
   for (const arg of [
     'class foo { constructor() {} }',
-    `class foo { constructor() { class bar { constructor() {} }} }`,
+    'class foo { constructor() { class bar { constructor() {} }} }',
     'class foo extends bar {}',
     'class foo extends bar { method() {} get property() { return this._property; }  set property(value) {  this._property = value; }}',
     'class foo extends class bar {} {}',

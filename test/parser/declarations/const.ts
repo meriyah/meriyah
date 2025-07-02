@@ -1,8 +1,8 @@
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { fail, pass } from '../../test-utils';
 
 describe('Declarations - const', () => {
   // Test keywords
@@ -204,7 +204,7 @@ describe('Declarations - const', () => {
     'for (const {};;);',
     'const {};',
     'const foo;',
-    `do const x = 1; while (false)`,
+    'do const x = 1; while (false)',
     'while (false) const x = 1;',
     'label: const x;',
     'while (false) const x;',

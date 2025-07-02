@@ -1,8 +1,8 @@
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { fail, pass } from '../../test-utils';
 
 describe('Miscellaneous - Directives', () => {
   for (const arg of [
@@ -57,7 +57,7 @@ describe('Miscellaneous - Directives', () => {
     String.raw`"use strict" "\1"`,
     String.raw`"use strict"; "\1";`,
     '"use strict" ++',
-    `function foo() { "use strict"; with (a) b = c; }`,
+    'function foo() { "use strict"; with (a) b = c; }',
     '"use strict"; function foo() { with (a) b = c; }',
     String.raw`"use strict"; function hello() { "\000"; }`,
     String.raw`"use strict"; function hello() { "\00"; }`,
@@ -143,9 +143,9 @@ describe('Miscellaneous - Directives', () => {
     '"use asm" \u2029 "use strict"',
     String.raw`"\n\r\t\v\b\f\\\'\"\0"`,
     String.raw`"Hello\312World"`,
-    `"use strict"; + 1`,
-    `function wrap() { "use strict"\n foo }`,
-    `"\\u0075se strict"`,
+    '"use strict"; + 1',
+    'function wrap() { "use strict"\n foo }',
+    String.raw`"\u0075se strict"`,
     'function wrap() { { "use strict" } foo }',
     String.raw`"Hello\0World"`,
     '("use strict"); foo = 42;',

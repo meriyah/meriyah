@@ -1,8 +1,8 @@
-import { Context } from '../../../src/common';
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
+import { Context } from '../../../src/common';
 import { parseSource } from '../../../src/parser';
+import { fail, pass } from '../../test-utils';
 
 describe('Expressions - Template', () => {
   for (const arg of [
@@ -157,21 +157,21 @@ describe('Expressions - Template', () => {
     "'use strict'; `template-head${a}template-tail`",
     "'use strict'; `${a}${b}${c}`",
     "function foo(){ 'use strict';`a${a}b${b}c${c}`}",
-    `\`\\\${a}\``,
-    `\`$a\``,
-    `\`\${a}\${b}\``,
-    `\`a\${a}\${b}\``,
-    `\`\${a}a\${b}\``,
-    `\`a\${a}a\${b}\``,
+    '`\\${a}`',
+    '`$a`',
+    '`${a}${b}`',
+    '`a${a}${b}`',
+    '`${a}a${b}`',
+    '`a${a}a${b}`',
     'a`\\${a}`',
-    `\`\${a}\${b}a\``,
-    `\`\${a}a\${b}a\``,
-    `\`a\${a}a\${b}a\``,
-    `\`\${\`\${a}\`}\``,
-    `\`\${\`a\${a}\`}\``,
-    `\`\${\`\${a}a\`}\``,
-    `\`\${\`a\${a}a\`}\``,
-    `\`\${\`\${\`\${a}\`}\`}\``,
+    '`${a}${b}a`',
+    '`${a}a${b}a`',
+    '`a${a}a${b}a`',
+    '`${`${a}`}`',
+    '`${`a${a}`}`',
+    '`${`${a}a`}`',
+    '`${`a${a}a`}`',
+    '`${`${`${a}`}`}`',
     'tag`\\xg`',
     'tag`\\xg${0}right`',
     'tag`left${0}\\xg`',

@@ -1,8 +1,8 @@
-import { pass, fail } from '../../test-utils';
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
-import { outdent } from 'outdent';
+import { fail, pass } from '../../test-utils';
 
 describe('Expressions - Async arrow', () => {
   for (const arg of [
@@ -185,9 +185,9 @@ describe('Expressions - Async arrow', () => {
     { code: 'var af = package => 1;', options: { impliedStrict: true } },
     { code: 'var af = arguments => 1;', options: { impliedStrict: true } },
     // ['async eval => 1;', Context.Strict],
-    `async left = (aSize.width/2) - ()`,
-    `async (10) => 0;`,
-    `async "use strict"; (a) => 00;`,
+    'async left = (aSize.width/2) - ()',
+    'async (10) => 0;',
+    'async "use strict"; (a) => 00;',
     'async ("a", b) => {}',
     'async (a, "b") => {}',
     'async ([...[ x ] = []] = []) => {};',
@@ -237,9 +237,9 @@ describe('Expressions - Async arrow', () => {
     '(async (...a,) => {}',
     'a + async () => {}',
     'async() => { (a = await/r/g) => {} };',
-    `async ((x, y)) => 0`,
-    `async(...x,b) => x`,
-    `async(...x,) => x`,
+    'async ((x, y)) => 0',
+    'async(...x,b) => x',
+    'async(...x,) => x',
     'a = (b = await/r/g) => {}) => {}',
     'async(a = (b = await/r/g) => {}) => {}',
     '(a = async(b = await/r/g) => {}) => {}',
@@ -554,7 +554,7 @@ describe('Expressions - Async arrow', () => {
     'asyncFn = async({ foo = 1 } = {}) => foo;',
     'foo = ({ async = true }) => {};',
     'foo = async ({ async: bar }) => { await baz; };',
-    `async ({}) => 0`,
+    'async ({}) => 0',
     'async(a,)',
     'async()()',
     'var x = async (a, b) => await a + b;',
@@ -600,7 +600,7 @@ describe('Expressions - Async arrow', () => {
     'f(a, async(x, y) => await [x, y], b)',
     'const foo = ({ async = true }) => {};',
     'const foo = async ({ async: bar }) => { await baz; };',
-    `async ({}) => 0`,
+    'async ({}) => 0',
     'async()()',
     'async (a,) => b;',
     '[async(x,y) => z]',
@@ -685,7 +685,7 @@ describe('Expressions - Async arrow', () => {
       someVar = 'nchanged';
       async foo => {}
     `,
-    `const done3 = async foo => { const done = async foo => { const done5 = async foo => {}} }`,
+    'const done3 = async foo => { const done = async foo => { const done5 = async foo => {}} }',
     outdent`
       x in nchanged;
       const done4 = async foo => {}
@@ -747,7 +747,7 @@ describe('Expressions - Async arrow', () => {
     '(async a => {})()',
     'a, async () => b, c',
     '({ async a(){} })',
-    `async(a) => x`,
+    'async(a) => x',
     '({ async get(){} })',
     'async function a() { await 0; }',
     '(async function a() { await 0; })',
@@ -890,9 +890,9 @@ describe('Expressions - Async arrow', () => {
     });
   }
   pass('Expressions - Async arrow', [
-    { code: `async (a = async () => { await 1; }) => {}`, options: { ranges: true } },
-    { code: `async (() => 1)(), 1`, options: { ranges: true } },
-    { code: `async x => delete ("x"[(await x)])`, options: { ranges: true, loc: true } },
+    { code: 'async (a = async () => { await 1; }) => {}', options: { ranges: true } },
+    { code: 'async (() => 1)(), 1', options: { ranges: true } },
+    { code: 'async x => delete ("x"[(await x)])', options: { ranges: true, loc: true } },
     {
       code: outdent`
         (async () => {})

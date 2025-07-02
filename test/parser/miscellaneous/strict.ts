@@ -3,7 +3,7 @@ import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
 
 describe('Miscellaneous - Strict mode', () => {
-  for (const arg of [`; with (x) y;`, '"use strict"; with (x) y;', 'class X { foo() { with (x) y; } }']) {
+  for (const arg of ['; with (x) y;', '"use strict"; with (x) y;', 'class X { foo() { with (x) y; } }']) {
     it(`${arg}`, () => {
       t.throws(() => {
         parseSource(`${arg}`, { webcompat: true, impliedStrict: true });

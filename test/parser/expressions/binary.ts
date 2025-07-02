@@ -1,7 +1,7 @@
-import { pass } from '../../test-utils';
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
+import { pass } from '../../test-utils';
 describe('Expressions - Binary', () => {
   for (const arg of [
     '(-1) = a',
@@ -288,6 +288,6 @@ describe('Expressions - Binary', () => {
     { code: 'a || b && c', options: { loc: true } },
     { code: 'a ^ b | c', options: { loc: true } },
     { code: 'a == b != c === d !== e', options: { ranges: true } },
-    { code: `var a = {b: 'u' + 1 }`, options: { ranges: true, loc: true } },
+    { code: "var a = {b: 'u' + 1 }", options: { ranges: true, loc: true } },
   ]);
 });

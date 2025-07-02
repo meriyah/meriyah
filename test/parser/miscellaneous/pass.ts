@@ -10,24 +10,24 @@ describe('Miscellaneous - Pass', () => {
     '([...[][void (this)] += (3287)])',
     '(false in (((5973))) ** (q), false.if --, function () {})',
     '(([(2e308.typeof += eval), ...(false), (.88), , ]))',
-    `[ [].x = y]`,
+    '[ [].x = y]',
     'for (var [] in {b, y, [.4]: h -= 2e308}) for (; ((this() ? 2e308.m ++ : eval[/B^B=/gim])); (() => class {})(null, ...arguments, ...true, ..."9Â]CÕ")) try {} finally {}',
     'a([1 || 1].a = 1)',
     'x ([1 || 1].a = 1)',
     'x({a: 1 || 1}.a = 1)',
     'for(`${x in y}`;;);',
-    `({} + 1);`,
-    `async ({} + 1);`,
-    `async ({} ? [] : 1);`,
+    '({} + 1);',
+    'async ({} + 1);',
+    'async ({} ? [] : 1);',
     '({1: ({}) / (1)});',
     '({1: ({}) ? (1) : [1]});',
     '({1: (x / y - z)});',
     '({1: (x = x) });',
-    `[({a: 1}.c)] = [];`,
-    `[({a: 1}.c)] = [];`,
+    '[({a: 1}.c)] = [];',
+    '[({a: 1}.c)] = [];',
     'do ; while(0); i++',
     'do if (a) x; else y; while(z)',
-    `for (r in ((false))) {}`,
+    'for (r in ((false))) {}',
     `do throw function(){}
     while(y)
     for(;;)x`,
@@ -35,12 +35,12 @@ describe('Miscellaneous - Pass', () => {
      function quit() {}
      function nop() {}
     try { gc; } catch(e) { gc = nop; }`,
-    `a = let\n{}`,
-    `throw(protected(x=>{"use strict"}))`,
-    `for ({da = 2e308} of ([, , , (arguments[((f))]).break = (null)] = (/(?=\\B\\b)/gmuy === njbcpwhomopc.switch))) continue`,
-    `for (var c, f; (/[+-\\\\l-]/u); ((class {}).with)) var i;`,
-    `if ((([(((null))), , (([(2e308).r = (((2e308)) ? this : ("")), aihgi] = ({}))), (2e308), ("")]))) for (jdrdckxlyikhuari in (nroofnmvdiahc ++)) arguments: for (var c, f; (/[+-\\\\l-]/u); ((class {}).with)) var i;`,
-    `({}.length);`,
+    'a = let\n{}',
+    'throw(protected(x=>{"use strict"}))',
+    String.raw`for ({da = 2e308} of ([, , , (arguments[((f))]).break = (null)] = (/(?=\B\b)/gmuy === njbcpwhomopc.switch))) continue`,
+    String.raw`for (var c, f; (/[+-\\l-]/u); ((class {}).with)) var i;`,
+    String.raw`if ((([(((null))), , (([(2e308).r = (((2e308)) ? this : ("")), aihgi] = ({}))), (2e308), ("")]))) for (jdrdckxlyikhuari in (nroofnmvdiahc ++)) arguments: for (var c, f; (/[+-\\l-]/u); ((class {}).with)) var i;`,
+    '({}.length);',
     'try{}catch{}finally{package:;package:for(;;);}',
     'A = class extends A {}',
     '(x)=>{/x/}',
@@ -53,9 +53,9 @@ describe('Miscellaneous - Pass', () => {
     "function f() { new (f + 5)(6, (g)() - 'l'() - true(false)) }",
     'function f() { function f() {} }',
     'function f(a,b) {}',
-    `class x{ constructor(){} x(){} }`,
+    'class x{ constructor(){} x(){} }',
     '[ { x: y = 3 } ]',
-    `class x extends {} {}`,
+    'class x extends {} {}',
     'x= { async prototype(){} }',
     'x= { *prototype(){} }',
     'do x=>{}; while(y)',
@@ -70,7 +70,7 @@ describe('Miscellaneous - Pass', () => {
     'x= { get prototype(){} }',
     'x= { async *prototype(){} }',
     'let f = () => {import("./foo").catch(error => {}).then($DONE, $DONE); };',
-    `"use asm"; function a(yield) {}; "use strict"; function a(yield) {}`,
+    '"use asm"; function a(yield) {}; "use strict"; function a(yield) {}',
     '[...(x), y]',
     'for (let a = b => (b in c); ;);',
     'for (let a = (b in c && d in e); ;);',
@@ -136,19 +136,19 @@ describe('Miscellaneous - Pass', () => {
           async function af3() {return await af1() + await af2(); }
         }
       })`,
-    `(a,) => {}`,
-    `(a,b,) => {}`,
-    `(a = b,) => {}`,
+    '(a,) => {}',
+    '(a,b,) => {}',
+    '(a = b,) => {}',
     '++/b/.c',
     '--/b/.c',
     'var [x] = v;',
     'var {x} = v;',
     'for (let().x in y);',
-    `([x],) => {}`,
-    `({a},) => {}`,
-    `({"x": [y].slice(0)})`,
-    `[...{a: b.b}.d] = c`,
-    `[...{a: b}.c] = []`,
+    '([x],) => {}',
+    '({a},) => {}',
+    '({"x": [y].slice(0)})',
+    '[...{a: b.b}.d] = c',
+    '[...{a: b}.c] = []',
     'function* f() { yield* x; }',
     'function* f() { yield* yield; }',
     'function* f() { yield* yield y; }',
@@ -188,77 +188,77 @@ describe('Miscellaneous - Pass', () => {
     'for ([] instanceof obj;;);',
     'for (12 instanceof obj;;);',
     'for (a instanceof b;;);',
-    `[...a, b]`,
-    `[...(x), y]`,
-    `({a: b = x} = d)`,
-    `({a: b} = d)`,
-    `([...x.y] = z)`,
-    `(z = [...x.y] = z) => z`,
-    `([...x, ...y]);`,
-    `([...x+=y]);`,
-    `([...x=y]);`,
-    `([...x]);`,
-    `for ([] + x;;);`,
-    `for ([], x;;);`,
-    `for ([] + x;;);`,
+    '[...a, b]',
+    '[...(x), y]',
+    '({a: b = x} = d)',
+    '({a: b} = d)',
+    '([...x.y] = z)',
+    '(z = [...x.y] = z) => z',
+    '([...x, ...y]);',
+    '([...x+=y]);',
+    '([...x=y]);',
+    '([...x]);',
+    'for ([] + x;;);',
+    'for ([], x;;);',
+    'for ([] + x;;);',
     '(() => {}).x',
     '(x => {}).x',
-    `[..."foo"]`,
-    `[..."foo".bar]`,
-    `[...50]`,
-    `[...50..bar]`,
-    `[...(x,y)]`,
-    `[..."foo".bar]`,
+    '[..."foo"]',
+    '[..."foo".bar]',
+    '[...50]',
+    '[...50..bar]',
+    '[...(x,y)]',
+    '[..."foo".bar]',
     'a\rb',
     'a\nb',
-    `(x = delete ((yield) = f)) => {}`,
+    '(x = delete ((yield) = f)) => {}',
     'do try {} catch (q) {} while ((yield* 810048018773152));',
-    `[...[{a: b}.c]] = [];`,
-    `[...[{prop: 1}.prop]] = []`,
+    '[...[{a: b}.c]] = [];',
+    '[...[{prop: 1}.prop]] = []',
     '(x=(await)=y)',
     'async function f(){    function g(x=(await)=y){}   }',
     'function f(x=(await)=y){}',
     '(x=(await)=y)=>z',
     'while (function* () {} === x);',
-    `([x] = y,) => {}`,
-    `({a} = b,) => {}`,
-    `foo({c=3} = {})`,
-    `async({c=3} = {})`,
-    `yield({c=3} = {})`,
-    `log({foo: [bar]} = obj);`,
-    `({a:(b) = c} = 1)`,
-    `for ({x} = z;;);`,
-    `({...[].x} = x);`,
-    `result = [...{ x = await }] = y;`,
-    `async r => result = [...{ x = await x }] = y;`,
-    `result = [...{ x = yield }] = y;`,
-    `function* g() {   [...{ x = yield }] = y   }`,
-    `([{x = y}] = z)`,
-    `[{x = y}] = z`,
-    `new await()()`,
+    '([x] = y,) => {}',
+    '({a} = b,) => {}',
+    'foo({c=3} = {})',
+    'async({c=3} = {})',
+    'yield({c=3} = {})',
+    'log({foo: [bar]} = obj);',
+    '({a:(b) = c} = 1)',
+    'for ({x} = z;;);',
+    '({...[].x} = x);',
+    'result = [...{ x = await }] = y;',
+    'async r => result = [...{ x = await x }] = y;',
+    'result = [...{ x = yield }] = y;',
+    'function* g() {   [...{ x = yield }] = y   }',
+    '([{x = y}] = z)',
+    '[{x = y}] = z',
+    'new await()()',
     'var s = 0; for (let key in a) { s += a[key] };',
     '`a${b=c}d`',
-    `(x) = (y) += z`,
-    `(x) = (y) = z`,
-    `(x) += (y) = z`,
-    `(foo.x)`,
-    `(foo[x])`,
-    `(foo) += 3`,
-    `(x = delete ((await) = f)) => {}`,
+    '(x) = (y) += z',
+    '(x) = (y) = z',
+    '(x) += (y) = z',
+    '(foo.x)',
+    '(foo[x])',
+    '(foo) += 3',
+    '(x = delete ((await) = f)) => {}',
     'const [a] = b;',
     'a = { ["foo"]: n / 1 }',
-    `[(a)] = x`,
-    `[(a) = x] = x`,
-    `[a, {[b]:d}, c] = obj`,
-    `[(a)] = x`,
-    `[...{}]`,
-    `({a:(b) = c} = 1)`,
-    `for (a=>b;;);`,
-    `async x => delete (((((foo(await x)))))).bar`,
-    `a.b = x`,
-    `a = x`,
-    `a = b = x`,
-    `x = x + yield`,
+    '[(a)] = x',
+    '[(a) = x] = x',
+    '[a, {[b]:d}, c] = obj',
+    '[(a)] = x',
+    '[...{}]',
+    '({a:(b) = c} = 1)',
+    'for (a=>b;;);',
+    'async x => delete (((((foo(await x)))))).bar',
+    'a.b = x',
+    'a = x',
+    'a = b = x',
+    'x = x + yield',
     'log(eval)',
     'eval',
     'eval.foo',
@@ -303,8 +303,8 @@ describe('Miscellaneous - Pass', () => {
     '({} = (--x), of, a) => (a)',
     'for (; ([x, bw, y = z], [{j, [(((t)))]: g = "N	¯B", c, o} = class u extends `c` {}], bar, ka) => `c{([, ] ** delete 2e308.static ++), arguments}`;) hnjtmujeg: for (ikdgsltnabvjnk of false) var y = /([])*?|K\x78B\b/gu',
     '({"d": [] & (null) });',
-    `( of => {})`,
-    `of => {}`,
+    '( of => {})',
+    'of => {}',
     `for ({"a": ((~2e308)).eq = ((((t)[2e308] = (4.940161093774018e132[(null)] --)))), a, [(function* (b) {
     })]: c} of (2969)) debugger;`,
     `let [weli, [...[]], [, , ...[]], , {a}, ...[]] = (eval), kqwys = ((((((-2e308)))).if)(...((this)), ...((r)), ((of => {
@@ -600,10 +600,10 @@ describe('Miscellaneous - Pass', () => {
     'function f() {} + function g() {}',
     'a()()()',
     //`({async get foo(){}});`,
-    `class x {;}`,
-    `class x {static set key(ident){}}`,
-    `class x {static async key(){}}`,
-    `class x {set key(ident){}}`,
+    'class x {;}',
+    'class x {static set key(ident){}}',
+    'class x {static async key(){}}',
+    'class x {set key(ident){}}',
     's: eval(a.apply(), b.call(c[5] - f[7]))',
     'for (class x { [a in b](){} }.x in c);',
     'for (class x { [a](){} }.x in c);',
@@ -707,7 +707,7 @@ describe('Miscellaneous - Pass', () => {
     async function a() {
       for await ([a, ...b] of []) {}
     }`,
-    `const [a, [{b, ...c}], {d, ...e}, [{ f, ...g}, {h: [i, {j, ...k}] }]] = x;`,
+    'const [a, [{b, ...c}], {d, ...e}, [{ f, ...g}, {h: [i, {j, ...k}] }]] = x;',
     `function outer() {
       var a = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function () {
         return x;
@@ -767,7 +767,7 @@ describe('Miscellaneous - Pass', () => {
 
     'دیوانه , دیوانه = 123;',
     'class دیوانه { /* icefapper */ }',
-    `class 𢭃 { /* 𢭃 */ }`,
+    'class 𢭃 { /* 𢭃 */ }',
     String.raw`var \u0052oo = 0;`,
     String.raw`var \u{0052}oo = 0;`,
     String.raw`var \u{52}oo = 0;`,
@@ -778,7 +778,7 @@ describe('Miscellaneous - Pass', () => {
     String.raw`"foob\{uc481}r"`,
     String.raw`"foo\u{10e6d}"`,
     String.raw`"\u{10ffff}"`,
-    `"T\\u203F = []"`,
+    String.raw`"T\u203F = []"`,
     String.raw`"T\u200C";`,
     String.raw`"\u2163\u2161"`,
     'var isHtml = /.html$/;',
@@ -982,7 +982,7 @@ describe('Miscellaneous - Pass', () => {
     typeof a;
     void a;
     a in b;`,
-    `1 << 2 + 3 >> 4 - 5 >>> 6 * 7 & 8 / 9 | 10  ^ 11 >= 12 + 13 >> 14 & 15 << 16 ^ 15 >>> 17 / 18 + 19 * 20 | 21 >>> 22 << 23 + 24 * 25 >> 26 / 27 & 28 + 29 || 30 && 31 % 32 ^ 33 + 34 | 35 / 36 - 37 % 38 & 39 | 40  `,
+    '1 << 2 + 3 >> 4 - 5 >>> 6 * 7 & 8 / 9 | 10  ^ 11 >= 12 + 13 >> 14 & 15 << 16 ^ 15 >>> 17 / 18 + 19 * 20 | 21 >>> 22 << 23 + 24 * 25 >> 26 / 27 & 28 + 29 || 30 && 31 % 32 ^ 33 + 34 | 35 / 36 - 37 % 38 & 39 | 40  ',
     'o[foo](...bar, a)',
     '[...bar]',
     '[a, ...bar]',
@@ -1018,7 +1018,7 @@ describe('Miscellaneous - Pass', () => {
     'if (true) { var var1; var var1; }',
     'var var1; if (true) { var var1; }',
     'var var1; var var1; var1 = 5;',
-    `(async ({a = 1, b, ...c}) => 1)`,
+    '(async ({a = 1, b, ...c}) => 1)',
     'var var1; var var1;',
     'var var1; var var1; function f() { var1; }',
     'var var1; var var1; function f() { var1 = 5; }',
@@ -2045,7 +2045,7 @@ describe('Miscellaneous - Pass', () => {
         return new Promise(executor);
       }
     };`,
-    `async function asyncFn() { return await "foo"; }`,
+    'async function asyncFn() { return await "foo"; }',
     `function f() { x = 1; try { g(); } catch(x) { x = 2; } };
     function g() { h(); };
     function h() { x = 1; throw 1; };`,
@@ -2562,44 +2562,44 @@ InspectorTest.runAsyncTestSuite([
         loop1:
         while(false) continue loop1;`,
     'x = {foo: function x() {} / divide}',
-    `(function foo(y, z) {{ function x() {} } })(1);`,
+    '(function foo(y, z) {{ function x() {} } })(1);',
     // Complex parameter shouldn't be shadowed
-    `(function foo(x = 0) { var x; { function x() {} } })(1);`,
+    '(function foo(x = 0) { var x; { function x() {} } })(1);',
     // Nested complex parameter shouldn't be shadowed
-    `(function foo([[x]]) {var x; {function x() {} } })([[1]]);`,
+    '(function foo([[x]]) {var x; {function x() {} } })([[1]]);',
     // Complex parameter shouldn't be shadowed
-    `(function foo(x = 0) { var x; { function x() {}} })(1);`,
+    '(function foo(x = 0) { var x; { function x() {}} })(1);',
     // Nested complex parameter shouldn't be shadowed
-    `(function foo([[x]]) { var x;{ function x() {} }  })([[1]]);`,
+    '(function foo([[x]]) { var x;{ function x() {} }  })([[1]]);',
     // Rest parameter shouldn't be shadowed
-    `(function foo(...x) { var x; {  function x() {}  } })(1);`,
+    '(function foo(...x) { var x; {  function x() {}  } })(1);',
     // Don't shadow complex rest parameter
-    `(function foo(...[x]) { var x; { function x() {} } })(1);`,
+    '(function foo(...[x]) { var x; { function x() {} } })(1);',
     // Hoisting is not affected by other simple parameters
-    `(function foo(y, z) {{function x() {}} })(1);`,
+    '(function foo(y, z) {{function x() {}} })(1);',
     // Hoisting is not affected by other complex parameters
-    ` (function foo([y] = [], z) {{function x() {} } })();`,
+    ' (function foo([y] = [], z) {{function x() {} } })();',
     // Should allow shadowing function names
-    `{(function foo() { { function foo() { return 0; } } })();}`,
-    `{(function foo(...r) { { function foo() { return 0; } } })(); }`,
-    `(function foo() { { let f = 0; (function () { { function f() { return 1; } } })(); } })();`,
-    `(function foo() { var y = 1; (function bar(x = y) { { function y() {} } })();  })();`,
-    `(function foo() { { function f() { return 4; } { function f() { return 5; } } }})()`,
+    '{(function foo() { { function foo() { return 0; } } })();}',
+    '{(function foo(...r) { { function foo() { return 0; } } })(); }',
+    '(function foo() { { let f = 0; (function () { { function f() { return 1; } } })(); } })();',
+    '(function foo() { var y = 1; (function bar(x = y) { { function y() {} } })();  })();',
+    '(function foo() { { function f() { return 4; } { function f() { return 5; } } }})()',
     '(function foo(a = 0) { { let y = 3; function f(b = 0) { y = 2; } f(); } })();',
     '(function conditional() {  if (true) { function f() { return 1; } } else {  function f() { return 2; }} if (false) { function g() { return 1; }}  L: {break L;function f() { return 3; } }})();',
     '(function foo() {function outer() { return f; } { f = 1; function f () {} f = ""; } })();',
     '(function foo(x) { {  function x() {} } })(1);',
     '(function foo([[x]]) { { function x() {}}})([[1]]);',
-    `/\\}?/u;`,
-    `/\\{*/u;`,
-    `/.{.}/;`,
-    `/[\\w-\\s]/;`,
-    `/[\\s-\\w]/;`,
-    `/(?!.){0,}?/;`,
-    `/\\{/;`,
-    `004`,
-    `076`,
-    `02`,
+    String.raw`/\}?/u;`,
+    String.raw`/\{*/u;`,
+    '/.{.}/;',
+    String.raw`/[\w-\s]/;`,
+    String.raw`/[\s-\w]/;`,
+    '/(?!.){0,}?/;',
+    String.raw`/\{/;`,
+    '004',
+    '076',
+    '02',
     `/*
     */--> foo`,
     `var foo = [23]
@@ -2658,8 +2658,8 @@ after = err;
     'o = { __proto__: 1 };',
     'o = {  __proto__: proto };',
     'o = { __proto__: null };',
-    `label: function g() {}`,
-    `label1: label2: function f() {}`,
+    'label: function g() {}',
+    'label1: label2: function f() {}',
     '000',
     '073',
     '004',
@@ -2685,14 +2685,14 @@ after = err;
     String.raw`"\218"`,
     String.raw`"\66"`,
     String.raw`"\210"`,
-    `'\\48'`,
-    `'\\07'`,
-    `'\\168'`,
-    `'\\318'`,
-    `'\\500'`,
-    `'\\160'`,
-    `'\\301'`,
-    `'\\377'`,
+    String.raw`'\48'`,
+    String.raw`'\07'`,
+    String.raw`'\168'`,
+    String.raw`'\318'`,
+    String.raw`'\500'`,
+    String.raw`'\160'`,
+    String.raw`'\301'`,
+    String.raw`'\377'`,
     'if (x) function f() { return 23; } else function f() { return 42; }',
     'if (x) function f() {}',
     `var foo = [23]
@@ -2804,9 +2804,9 @@ after = err;
     'var a፰;',
     String.raw`var A\u{42}C;`,
     'let ℮',
-    `a123`,
+    'a123',
     String.raw`\u{00069} = i + \u{00069};`,
-    `this.\\u0069`,
+    String.raw`this.\u0069`,
     String.raw`var $\u{20BB7} = "b";`,
     String.raw`var _\u0524 = "a";`,
     String.raw`var $00xxx\u0069\u0524\u{20BB7} = "c";`,
@@ -2817,9 +2817,9 @@ after = err;
     '({ yield: 1 })',
     '({ get yield() { 1 } })',
     'yield(100)',
-    `await;`,
+    'await;',
     'class await {}',
-    `function await(yield) {}`,
+    'function await(yield) {}',
     'var await = 1',
     '({ await: async })',
     'await => {}',
@@ -3073,7 +3073,7 @@ foo();`,
   if (a.length === 2 && a[0] in arguments && a[1] in arguments)
     return true;
 }`,
-    `var s2 = new Subclass2(3, 4);`,
+    'var s2 = new Subclass2(3, 4);',
 
     `function bind_bindFunction0(fun, thisArg, boundArgs) {
   return function bound() {
@@ -3722,11 +3722,11 @@ for (i=0 ; i < 3; ++i) {
     d: d
   };
 }`,
-    `var {0: x, '1': y, length: z} = [0, 1, 2, 3];`,
-    `var {x: y,} = {x: 5};`,
-    `({x = 6} = {});`,
-    `({x: {y = 7}, z = 8} = {x: {}});`,
-    `function destructNestedScopeArguments(x) { [(function () { return arguments[1]; })(null, x)[0]] = [42];}`,
+    "var {0: x, '1': y, length: z} = [0, 1, 2, 3];",
+    'var {x: y,} = {x: 5};',
+    '({x = 6} = {});',
+    '({x: {y = 7}, z = 8} = {x: {}});',
+    'function destructNestedScopeArguments(x) { [(function () { return arguments[1]; })(null, x)[0]] = [42];}',
     `function* fib() {
   var fn1 = 1;
   var fn2 = 1;
@@ -3830,7 +3830,7 @@ function sendD(g, v) {
       }
       return next;
     }`,
-    `let { aprop, ...other } = this.props`,
+    'let { aprop, ...other } = this.props',
     'const foo = {a: 1, b: 2, c: 3}',
     'const { a, ...bar } = foo;',
     'var x = (a, ...b) => {};',
@@ -3891,7 +3891,7 @@ if (a) {
     `while (true) { break /* Multiline
       Comment */a; }`,
     String.raw`/(()(?:\2)((\4)))/;`,
-    `typeof (1, a)  // Don't transform to 0,typeof ident`,
+    "typeof (1, a)  // Don't transform to 0,typeof ident",
     'var ℘;',
     '(a) => 1',
     String.raw`\u0AF9`,
@@ -4047,7 +4047,7 @@ if (a) {
         var a = (1);
       }
     }`,
-    `a: for (;;) continue a;`,
+    'a: for (;;) continue a;',
 
     `((1), a)();
    ((2), (b.a))();`,
@@ -4071,7 +4071,7 @@ if (a) {
     new a("[[aa]], [{bb}]", "return aa;");`,
     '((1), (a.a))();',
     '[a, ...{0: b}] = (1);',
-    `("a");`,
+    '("a");',
     `function a() {
       var b = (1);
       c();
@@ -4169,7 +4169,7 @@ if (a) {
     'function a([b] = [1]) {}',
     'for(let a in a);',
     '(function({a}){})',
-    `(function () { 'use\\nstrict'; with (a); }())`,
+    String.raw`(function () { 'use\nstrict'; with (a); }())`,
     `if (a) {
       // optimize it
       (function () {
@@ -4187,7 +4187,7 @@ if (a) {
   }());`,
     ' /****/',
     '({set a(b=1){}})',
-    `"use strict"; ({ yield() {} })`,
+    '"use strict"; ({ yield() {} })',
     'var [,a] = 1;',
     'for(let a in [1,2]) 3',
     '({ get if() {} })',
@@ -4210,11 +4210,11 @@ if (a) {
     }`,
     '__proto__: while (true) { continue __proto__; }',
     'function a() { new new.target; }',
-    `(a)=>{'use strict';}`,
+    "(a)=>{'use strict';}",
     '([a,...b])=>1;',
     '1 /* the * answer */',
     'function a() { return "<!--HTML-->comment in<!--string literal-->"; }',
-    `('\\1111')`,
+    String.raw`('\1111')`,
     `(function () {
       var a = 1;  // should not hoist this
       arguments[2] = 3;
@@ -4230,7 +4230,7 @@ if (a) {
         a();
       } while (false);
     }());`,
-    `T‍ = []`,
+    'T‍ = []',
     `function a(b, c) {
       function d() {
           e();
@@ -4252,7 +4252,7 @@ if (a) {
     a.b = 1;
     a.c = 2;
     d.e(a.c);`,
-    `(class {set a(b) {'use strict';}})`,
+    "(class {set a(b) {'use strict';}})",
     '(function(){ return })',
     `function a() {
       for (var b = 1, c = 2; b < 3; ++b) {
@@ -4325,7 +4325,7 @@ if (a) {
     `// ContinueStatement should not be removed.
     a: while (true) while (true) continue a;`,
     'try {} catch ([a]) {}',
-    `void ('a' + 'a')`,
+    "void ('a' + 'a')",
     'a && b ? 1 : 2',
     '1e100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
     'let [{a}] = 1',
@@ -4415,7 +4415,7 @@ if (a) {
     '(function(yield) {})',
     'for (var a of b) c(a);',
     '[{a=b}=1]',
-    `(a = b('100')) <= a `,
+    "(a = b('100')) <= a ",
     `var a = {};
     a.b = 1;
     a.c = 2;
@@ -4450,7 +4450,7 @@ if (a) {
     '500;',
     '500.432',
     '(a,b,c)',
-    `(async \n ());`,
+    '(async \n ());',
     'function a(...[]) { }',
     '(a,b,c);',
     `function foo() {
@@ -4461,11 +4461,11 @@ if (a) {
     "; 'use strict'; with ({}) {}",
     '[1,2,abc]',
     '[1,2,abc];',
-    `async function *isiah(){ await (yield)}`,
-    `async function *isiah(){ await (yield x)}`,
-    `async function *isiah(){ yield await x}`,
-    `async function *isiah(){ yield yield}`,
-    `async function *isiah(){ yield yield x}`,
+    'async function *isiah(){ await (yield)}',
+    'async function *isiah(){ await (yield x)}',
+    'async function *isiah(){ yield await x}',
+    'async function *isiah(){ yield yield}',
+    'async function *isiah(){ yield yield x}',
     'x(a,b,)',
     '(/x/);',
     'o.__proto__ = {}',
@@ -4544,7 +4544,7 @@ if (a) {
       // In function scope.
       inFunction();
     }`,
-    `0x80000000 >>> 0`,
+    '0x80000000 >>> 0',
     `function foo(a) {
       delete a[1];
       delete a[2];
@@ -4726,7 +4726,7 @@ f();`,
   x = x | 2147483648;
   return Number.parseInt(x + 65535, 8);
 }`,
-    `(function() { ((s = 17, y = s) => s)() })();`,
+    '(function() { ((s = 17, y = s) => s)() })();',
     `function function_with_n_strings(n) {
   var source = '(function f(){';
   for (var i = 0; i < n; i++) {
@@ -4883,7 +4883,7 @@ testEscapes("\\/\\/", r);`,
   };
   assertEquals(42, Object.getOwnPropertyDescriptor(o, 'foo').get());
 }`,
-    `() => (([b = !b]) => { })([])`,
+    '() => (([b = !b]) => { })([])',
     `assertTrue(/(?:text)/.test("text"));
 assertEquals(["text"], /(?:text)/.exec("text"));`,
     `for (var i = 0; i < 10000; i++){
@@ -6195,8 +6195,8 @@ foo(5+6);`,
   };
   return o.prop + o._int;
 }`,
-    `var Foo = function Foo(){console.log(1+2);}; new Foo();`,
-    `function _toConsumableArray(arr){if(Array.isArray(arr)){for(var i=0,arr2=Array(arr.length);i<arr.length;i++){arr2[i]=arr[i]}return arr2}else{return Array.from(arr)}}var _require=require("bar"),foo=_require.foo;var _require2=require("world"),hello=_require2.hello;foo.x.apply(foo,_toConsumableArray(foo.y(hello.z)));`,
+    'var Foo = function Foo(){console.log(1+2);}; new Foo();',
+    'function _toConsumableArray(arr){if(Array.isArray(arr)){for(var i=0,arr2=Array(arr.length);i<arr.length;i++){arr2[i]=arr[i]}return arr2}else{return Array.from(arr)}}var _require=require("bar"),foo=_require.foo;var _require2=require("world"),hello=_require2.hello;foo.x.apply(foo,_toConsumableArray(foo.y(hello.z)));',
     `function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var _require = require("bar"),
@@ -6286,7 +6286,7 @@ describe("Number literals", function() {
         }
     });
 });`,
-    `function foo() { 0003; }`,
+    'function foo() { 0003; }',
     String.raw`"\76";`,
     String.raw`"\0"`,
     String.raw`"\008"`,
@@ -7555,7 +7555,7 @@ h({ name: "bar", val: 42 })`,
     '[a,,b] = array;',
     'var let = a;',
     '(let[a] = b);',
-    `(x=1) => x * x;`,
+    '(x=1) => x * x;',
     'for (const {a} of /b/) {}',
     '({ a = 42, [b]: c.d } = e);',
     `const test = ({ t, ...v }) => {
@@ -7581,8 +7581,8 @@ var c1 = C;
 }`,
     `
       ({async, foo})`,
-    `async function A() {}`,
-    `const A = async function () {}`,
+    'async function A() {}',
+    'const A = async function () {}',
     `
       (class { async x() {} })`,
     `
@@ -7864,9 +7864,9 @@ var c1 = C;
     `
 			((x) => {var obj = 2; console.log([{[x]: 1}, obj]);})(3);
 		`,
-    `({ x: async function() {} })`,
-    `var obj = {...a};`,
-    `var obj = {...a, ...b};`,
+    '({ x: async function() {} })',
+    'var obj = {...a};',
+    'var obj = {...a, ...b};',
     `
 			var a0 = { [ x ] : true , ... y };
 			var a1 = { [ w ] : 0 , [ x ] : true , ... y };
@@ -7912,15 +7912,15 @@ var c1 = C;
 			f11( { x, [c] : 9 , y } );
 			f12({ ...b, [c]:3, d:4 });
     `,
-    `const c = { ...a, b: 1, dd: {...d, f: 1, gg: {h, ...g, ii: {...i}}}, e};`,
-    `var obj = { ...a, b: 1, dd: {...d, f: 1}, e};`,
-    `var {a, ...b} = c`,
-    `(({x, ...y}) => {})`,
-    `for( var {a, ...b} = c;; ) {}`,
-    `var obj = {...{a: 1}};`,
-    `var obj = { ...{a: 1}, b: 2, c: 3 };`,
-    `var obj = { ...{a: 1}, b: 2, ...{c: 3}, e};`,
-    `( foo || bar ).baz( ...values );`,
+    'const c = { ...a, b: 1, dd: {...d, f: 1, gg: {h, ...g, ii: {...i}}}, e};',
+    'var obj = { ...a, b: 1, dd: {...d, f: 1}, e};',
+    'var {a, ...b} = c',
+    '(({x, ...y}) => {})',
+    'for( var {a, ...b} = c;; ) {}',
+    'var obj = {...{a: 1}};',
+    'var obj = { ...{a: 1}, b: 2, c: 3 };',
+    'var obj = { ...{a: 1}, b: 2, ...{c: 3}, e};',
+    '( foo || bar ).baz( ...values );',
     `
     function foo() {
       stuff();
@@ -7935,7 +7935,7 @@ var c1 = C;
 					return expr().baz( a, ...values, (up || down).bar( c, ...values, d ) );
 				return other();
       }`,
-    `var arr = [ ...a, b, ...c, d, ];`,
+    'var arr = [ ...a, b, ...c, d, ];',
     `
 			function Test() {
 				this.a = [...arguments];
@@ -8086,7 +8086,7 @@ f(w, ...[x, y,], z);
       "a string"() {},
       "var"() {},
     }`,
-    `var obj = { x, y, z () {} }`,
+    'var obj = { x, y, z () {} }',
     `
 			let x = {
 				foo() { return foo },
@@ -8273,20 +8273,20 @@ f(w, ...[x, y,], z);
     '[a] = b;',
     '[{x: y.z}]',
     '[{x: y.z}] = a',
-    `[x = y]`,
-    `[x = y, z]`,
-    `[await = x]`,
-    `[x = true]`,
+    '[x = y]',
+    '[x = y, z]',
+    '[await = x]',
+    '[x = true]',
     '[{}]',
     '[{}.foo] = x',
     '[{}[foo]] = x',
-    `[x]`,
-    `[x, y]`,
-    `[x = y]`,
-    `[x.y]`,
-    `[x.y = z]`,
-    `[x + y]`,
-    `[this]`,
+    '[x]',
+    '[x, y]',
+    '[x = y]',
+    '[x.y]',
+    '[x.y = z]',
+    '[x + y]',
+    '[this]',
     '([...x]);',
     '([...x, y]);',
     '([...x+y]);',
@@ -8346,12 +8346,12 @@ f(w, ...[x, y,], z);
         for (__v_45 = 128; __v_45 < 256; __v_45++) {
         }
       }`,
-    `var bar = foo.replace('x', 'y', 'z');`,
-    `for (var i = 0; i < 10; i++) { ({})[h]; }`,
-    `delete a.__proto__.__proto__[Symbol.iterator];`,
-    `f(x=>x, [x,y] = [1,2]);`,
-    `[2, 3].reduceRight(non_strict);`,
-    `SKIP_STRICT_OUTER = 1 << 1`,
+    "var bar = foo.replace('x', 'y', 'z');",
+    'for (var i = 0; i < 10; i++) { ({})[h]; }',
+    'delete a.__proto__.__proto__[Symbol.iterator];',
+    'f(x=>x, [x,y] = [1,2]);',
+    '[2, 3].reduceRight(non_strict);',
+    'SKIP_STRICT_OUTER = 1 << 1',
     'if (true) { var arguments; }',
     'var arguments; arguments = 5; function f() { arguments; }',
     'var arguments; function f() { arguments = 5; }',
@@ -8474,7 +8474,7 @@ f(w, ...[x, y,], z);
     'let {[a.b]: c} = v;',
     'var {[a]: c} = v;',
     'async in x',
-    `async instanceof x`,
+    'async instanceof x',
     'const {[a.b]: c} = v;',
     'if (true) { function f1() {} }',
     'if (true) { function f1() {} function foo() { f1; } }',
@@ -8497,20 +8497,20 @@ f(w, ...[x, y,], z);
     '() => { arguments; };',
     'if (true) { arguments; }',
     'if (true) { if (true) { function f() { var var1 = 5; } } }',
-    ` x = (tmp = -1500000000, tmp)+(tmp = -2000000000, tmp);`,
-    ` x = -1500000000 + -2000000000;`,
+    ' x = (tmp = -1500000000, tmp)+(tmp = -2000000000, tmp);',
+    ' x = -1500000000 + -2000000000;',
     ` new class extends Object {
         constructor() {
           super();
           delete this;
         }
       }`,
-    `function store(o, i, v) { o[i] = v; }`,
-    `function f() { ++(this.foo) }`,
-    `var a = o[o ^= 1];`,
-    `var o = { f: "x" ? function () {} : function () {} };`,
-    `var a = new p(1), b = new p(2);`,
-    `o.__defineGetter__('foo', function () { return null; });`,
+    'function store(o, i, v) { o[i] = v; }',
+    'function f() { ++(this.foo) }',
+    'var a = o[o ^= 1];',
+    'var o = { f: "x" ? function () {} : function () {} };',
+    'var a = new p(1), b = new p(2);',
+    "o.__defineGetter__('foo', function () { return null; });",
     `function break_from_for_in() {
       L: {
         try {
@@ -8797,9 +8797,9 @@ var h = class {};`,
     'function* f(){ call(yield x + y); }',
     'function f(){ yield; }',
     '5 + yield',
-    `function* g() { let x = yield 3; }`,
-    `function* g(x) { yield x = 3; }`,
-    `function* g(x) { yield x = yield 3; }`,
+    'function* g() { let x = yield 3; }',
+    'function* g(x) { yield x = 3; }',
+    'function* g(x) { yield x = yield 3; }',
     '++(x);',
     '++\n(x);',
     '++\n(((x)));',
@@ -8851,7 +8851,7 @@ var h = class {};`,
     'var {[a]: [b]} = c',
     'var {[a]: b} = c',
     'var {a: [b]} = c',
-    `let {[foo]: [bar]} = baz`,
+    'let {[foo]: [bar]} = baz',
     'var {a,b=0,c:d,e:f=0,[g]:[h]}=0',
     "var m = 'foo'; var {[m]:[z]} = {foo:[1]}",
     '({a, a:a, a:a=a, [a]:{a}, a:some_call()[a], a:this.a} = 0);',
@@ -8870,8 +8870,8 @@ var h = class {};`,
     'function *g() {x={     ...yield yield,    };}',
     'function *g() {yield {     ...yield yield,    };}',
     'function *g() { yield {...(x,y),}}',
-    `for ({x=y} in a) b;`,
-    `for ({x=y} of a) b;`,
+    'for ({x=y} in a) b;',
+    'for ({x=y} of a) b;',
     '([a, my_var, b]) => { }',
     '([a, my_var, b] = [1, 2, 3]) => my_var;',
     '([a, my_var, b] = [1, 2, 3]) => { }',
@@ -9164,7 +9164,7 @@ function u() {
     'yield',
     '5 + yield',
     'log({foo: [bar]} = obj);',
-    `switch (true) { default: function g() {} }`,
+    'switch (true) { default: function g() {} }',
     'class a extends b { constructor() { super.c } }',
     '(a)=>{"use strict";}',
     'function* a() {}',
@@ -9279,7 +9279,7 @@ d.e(a.c);`,
     'switch (x) { default: function f() {} }',
     'switch (x) { case x: function f() {} }',
     'try { } catch (e) { function f() {} }',
-    `({a} = 0)`,
+    '({a} = 0)',
     `var a;
     (a) = {};
     (a.b) = {};
@@ -9436,15 +9436,15 @@ pp.parseFunctionStatement = function(node, isAsync, declarationPosition) {
   for (a in h) for (e = o._firstPT; e;) i = e._next, e.pg ? e.t._mod(h) : e.n === a && (2 === e.f && e.t ? r(e.t._firstPT, h[a]) : (this._add(e.t, a, e.s, e.c, h[a]), i && (i._prev = e._prev), e._prev ? e._prev._next = i : o._firstPT === e && (o._firstPT = i), e._next = e._prev = null, o._propLookup[a] = _)), e = i;
   return !1
 }`,
-    `() => { [a, b] = [1, 2] }`,
-    `() => [a, b] = [1, 2]`,
+    '() => { [a, b] = [1, 2] }',
+    '() => [a, b] = [1, 2]',
     `() => {
   var _ref = [1, 2];
   a = _ref[0];
   b = _ref[1];
   return _ref;
 };`,
-    `const { [(() => 1)()]: a, ...rest } = { 1: "a" };`,
+    'const { [(() => 1)()]: a, ...rest } = { 1: "a" };',
     `const foo = {
   1: "a",
   2: "b",
@@ -9475,7 +9475,7 @@ let b = 2;
     }
     var a = _ref[0];
   }`,
-    `(function(...[x]) {})`,
+    '(function(...[x]) {})',
     `(function () {
     x;
   });`,
@@ -9493,8 +9493,8 @@ let b = 2;
     ({ bar } = foo);
   }
   console.log(bar); // prints 10 `,
-    `({i: {...j}} = k);`,
-    `({i: [...j]} = k);`,
+    '({i: {...j}} = k);',
+    '({i: [...j]} = k);',
     `const {
     [({ ...rest }) => {
       let { ...b } = {};
@@ -9524,7 +9524,7 @@ let b = 2;
     }
   };
   `,
-    `var { a: { ...bar }, b: { ...baz }, ...foo } = obj;`,
+    'var { a: { ...bar }, b: { ...baz }, ...foo } = obj;',
     'a||(b||(c||(d||(e||f))))',
     'for(let a of [1,2]) 3',
     '({})=>1;',
@@ -9532,7 +9532,7 @@ let b = 2;
     (a) = {};
     (a.b) = {};
     (a['c']) = {};`,
-    `(foo++).test(), (foo++)[0]`,
+    '(foo++).test(), (foo++)[0]',
     `(++a)();
     (a++)();
     new (++a)();
@@ -9545,7 +9545,7 @@ let b = 2;
     new (a++)();
     new (++a)();
     new (a++)(); `,
-    `; 'use strict'; with ({}) {}`,
+    "; 'use strict'; with ({}) {}",
     '({ "a": 1 })',
     `// mangle to the same name 'a'
     c: {
@@ -10992,7 +10992,7 @@ HASH_NAME(boolean, 0x96F94400, 0x96F94400)
 HASH_NAME(byte, 0x0007E974, 0x0007E974)
 HASH_NAME(char, 0x0007E83E, 0x0007E83E)
 `,
-    `var reResult2=('.*8#^' + '.)1vc5$]').split(/\\b\\S|(?=[蒤7])|(?!\\b.)|(\\S)/imyu,3);`,
+    String.raw`var reResult2=('.*8#^' + '.)1vc5$]').split(/\b\S|(?=[蒤7])|(?!\b.)|(\S)/imyu,3);`,
     `
 function makeArrayLength(x) { if(x < 1 || x > 4294967295 || x != x || isNaN(x) || !isFinite(x)) return 100; else return Math.floor(x) & 0xffff; };;
 function leaf() { return 100; };
@@ -13127,10 +13127,10 @@ let o = {
 
   assertEquals(4, f());
 })();`,
-    `var x, y, z; for (x in let [o.x=1]=[] = z = {});`,
-    `var x, y, z; (x = let [o.x=1]=[] = z = {});`,
-    `var x, y, z; for (x in x = let [o.x=1]=[]  = z = {});`,
-    `var x, y, z; (x = let [o.x=1]=[] = z = {});`,
+    'var x, y, z; for (x in let [o.x=1]=[] = z = {});',
+    'var x, y, z; (x = let [o.x=1]=[] = z = {});',
+    'var x, y, z; for (x in x = let [o.x=1]=[]  = z = {});',
+    'var x, y, z; (x = let [o.x=1]=[] = z = {});',
     `async function testUnserializableValues() {
   const unserializableExpressions = ['NaN', 'Infinity', '-Infinity', '-0'];
   for (const expression of unserializableExpressions)
@@ -13186,7 +13186,7 @@ async function objectGroupHelper(objectIds) {
     await testExpression('foo3(foo1() + foo2());');
   },
 ]);`,
-    `indentation = count === 7 ? "       " : " ".repeat(count)`,
+    'indentation = count === 7 ? "       " : " ".repeat(count)',
     `function init() {
   function isREPL() {
     if (argv.length !== 1) {
@@ -13309,9 +13309,9 @@ async function objectGroupHelper(objectIds) {
     return map(iteratees, (iteratee) => iteratee.apply(this, args))
   }
 }`,
-    `map(['a[2]', 'c[0]'], propertyOf(object))`,
-    `map([a[2], c[0]], propertyOf(object))`,
-    `size({ 'a': 1, 'b': 2 })`,
+    "map(['a[2]', 'c[0]'], propertyOf(object))",
+    'map([a[2], c[0]], propertyOf(object))',
+    "size({ 'a': 1, 'b': 2 })",
     `function size(collection) {
   if (collection == null) {
     return 0
@@ -13340,12 +13340,12 @@ async function objectGroupHelper(objectIds) {
   }
   return string.split(separator, limit)
 }`,
-    `const zipped = zip([1, 2], [10, 20], [100, 200])`,
-    `a => [[1, 10, 100], [2, 20, 200]]`,
-    `a => ({ 'a': 1, 'b': 2 })`,
-    `async a => [[1, 10, 100], [2, 20, 200]]`,
-    `async a => ({ 'a': 1, 'b': 2 })`,
-    `async a => [[1, 10, 100], [2, 20, 200]]`,
+    'const zipped = zip([1, 2], [10, 20], [100, 200])',
+    'a => [[1, 10, 100], [2, 20, 200]]',
+    "a => ({ 'a': 1, 'b': 2 })",
+    'async a => [[1, 10, 100], [2, 20, 200]]',
+    "async a => ({ 'a': 1, 'b': 2 })",
+    'async a => [[1, 10, 100], [2, 20, 200]]',
     `async a => ({ 'a': 1, 'b': 2 })
  a => ({ 'a': 1, 'b': 2 })
  async a => [[1, 10, 100], [2, 20, 200]]
@@ -13374,9 +13374,9 @@ async function objectGroupHelper(objectIds) {
  async a => [[1, 10, 100], [2, 20, 200]]
  async a => [[1, 10, 100], [2, 20, 200]]
  async a => [[1, 10, 100], [2, 20, 200]]`,
-    `baseZipObject(props || [], values || [], assignValue)`,
-    `a => [3]`,
-    `async a => [3]`,
+    'baseZipObject(props || [], values || [], assignValue)',
+    'a => [3]',
+    'async a => [3]',
     `function uniq(array) {
   return (array != null && array.length)
     ? baseUniq(array)
@@ -14195,9 +14195,9 @@ let kTrapMsgs = [
       }
   }
 }`,
-    `assertThrows(() => { with ({}) { eval("x = 1"); } }, TypeError);`,
-    `a = (b = c)`,
-    `var x = (function(a,b){ return a + b; }); x(1,2)`,
+    'assertThrows(() => { with ({}) { eval("x = 1"); } }, TypeError);',
+    'a = (b = c)',
+    'var x = (function(a,b){ return a + b; }); x(1,2)',
     ` for (let e of assign_in_stmt) {
   if (skip(++test)) continue;
   var orig = e;
@@ -14208,8 +14208,8 @@ let kTrapMsgs = [
   var asm_source = MODULE_TEMPLATE.toString().replace("FUNC_DECL", str);
   doTest(asm_source, "(" + test + ") " + e);
 }`,
-    `16 / 2 ** 2`,
-    `const a = true || 99   `,
+    '16 / 2 ** 2',
+    'const a = true || 99   ',
     `var lambdaParenNoArg = async() => x < y;
     var lambdaArgs = async(a, b, c) => a + b + c;`,
     `class MyClass {
@@ -14279,7 +14279,7 @@ let kTrapMsgs = [
           return result;
       });
   }`,
-    `async function af1(x) { var y = x; var x = 'b'; return y + x; }`,
+    "async function af1(x) { var y = x; var x = 'b'; return y + x; }",
     `class B {
       af() {
           return "base";
@@ -14330,14 +14330,14 @@ let kTrapMsgs = [
       await 1;
       await Promise.resolve(1);
   }`,
-    `arguments in af`,
-    `0, af.arguments`,
-    `delete af.arguments`,
-    `"caller" in af`,
-    `undefined, af.caller`,
-    `undefined, Object.getOwnPropertyDescriptor(afstrict, "arguments")`,
-    `af = new AsyncFunction('a', 'b', 'c', 'await a; await b; await c;');`,
-    `a.Arguments[0] != "summary"`,
+    'arguments in af',
+    '0, af.arguments',
+    'delete af.arguments',
+    '"caller" in af',
+    'undefined, af.caller',
+    'undefined, Object.getOwnPropertyDescriptor(afstrict, "arguments")',
+    "af = new AsyncFunction('a', 'b', 'c', 'await a; await b; await c;');",
+    'a.Arguments[0] != "summary"',
     `function x() {
       var sym = Symbol();
       let out = 'nothing';
@@ -14424,22 +14424,22 @@ let kTrapMsgs = [
           return foo();
       }
   }`,
-    `function foo() { /* 𢭃 */ }`,
-    `function 𢭃() { /* 𢭃 */ }`,
-    `function 𢭃(ā,食) { /* 𢭃 */ }`,
-    `async function foo() { /* 𢭃 */ }`,
-    `async function 𢭃() { /* 𢭃 */ }`,
-    `function* 𢭃(ā,食) { /* 𢭃 */ }`,
-    `(ā,食) => { /* 𢭃 */ }`,
-    `async (ā,食) => { /* 𢭃 */ }`,
-    `class 食 extends ā { 母(物) { /* 𢭃 */ } static 父(物) { /* 𢭃 */ } async 妹(物) { /* 𢭃 */ } static async 姉(物) { /* 𢭃 */ } *兄(物) { /* 𢭃 */ } static *耳(物) { /* 𢭃 */ } get 明() { /* 𢭃 */ } set 日(物) { /* 𢭃 */ } }`,
-    `class 食 extends ā { 母(物) { /* 𢭃 */ } static 父(物) { /* 𢭃 */ } async 妹(物) { /* 𢭃 */ } static async 姉(物) { /* 𢭃 */ } *兄(物) { /* 𢭃 */ } static *耳(物) { /* 𢭃 */ } get 明() { /* 𢭃 */ } set 日(物) { /* 𢭃 */ } }`,
-    `'' + 食`,
-    `'' + (async (ā,食) => { /* 𢭃 */ })`,
-    `'' + async function 𢭃(ā,食) { /* 𢭃 */ }`,
-    `'' + function 𢭃(ā,食) { /* 𢭃 */ }`,
-    `(/*ß*/)/*ß*/ => { console.log('b'); }`,
-    `x = { async/*ß*/ ['f']/*ß*/()/*ß*/ { console.log('f'); } }`,
+    'function foo() { /* 𢭃 */ }',
+    'function 𢭃() { /* 𢭃 */ }',
+    'function 𢭃(ā,食) { /* 𢭃 */ }',
+    'async function foo() { /* 𢭃 */ }',
+    'async function 𢭃() { /* 𢭃 */ }',
+    'function* 𢭃(ā,食) { /* 𢭃 */ }',
+    '(ā,食) => { /* 𢭃 */ }',
+    'async (ā,食) => { /* 𢭃 */ }',
+    'class 食 extends ā { 母(物) { /* 𢭃 */ } static 父(物) { /* 𢭃 */ } async 妹(物) { /* 𢭃 */ } static async 姉(物) { /* 𢭃 */ } *兄(物) { /* 𢭃 */ } static *耳(物) { /* 𢭃 */ } get 明() { /* 𢭃 */ } set 日(物) { /* 𢭃 */ } }',
+    'class 食 extends ā { 母(物) { /* 𢭃 */ } static 父(物) { /* 𢭃 */ } async 妹(物) { /* 𢭃 */ } static async 姉(物) { /* 𢭃 */ } *兄(物) { /* 𢭃 */ } static *耳(物) { /* 𢭃 */ } get 明() { /* 𢭃 */ } set 日(物) { /* 𢭃 */ } }',
+    "'' + 食",
+    "'' + (async (ā,食) => { /* 𢭃 */ })",
+    "'' + async function 𢭃(ā,食) { /* 𢭃 */ }",
+    "'' + function 𢭃(ā,食) { /* 𢭃 */ }",
+    "(/*ß*/)/*ß*/ => { console.log('b'); }",
+    "x = { async/*ß*/ ['f']/*ß*/()/*ß*/ { console.log('f'); } }",
     `class ClassTest {
 
       constructor/*ß*/()/*ß*/ {}
@@ -14734,9 +14734,9 @@ let kTrapMsgs = [
              arrForSpendSomeTime[i][0]=1;
          }
      }`,
-    `arrObj0[((((new leaf()).prop0  >= 0 ? (new leaf()).prop0  : 0)) & 0XF)];`,
-    `argMath21 = ('caller' ? (d / (argMath19 == 0 ? 1 : argMath19)) : (obj0.length *= parseInt("-0x30B21BF3C578A400")));`,
-    `arrObj0.length = makeArrayLength(func0.call(protoObj1 , (d / (argMath19 == 0 ? 1 : argMath19))));`,
+    'arrObj0[((((new leaf()).prop0  >= 0 ? (new leaf()).prop0  : 0)) & 0XF)];',
+    'argMath21 = (\'caller\' ? (d / (argMath19 == 0 ? 1 : argMath19)) : (obj0.length *= parseInt("-0x30B21BF3C578A400")));',
+    'arrObj0.length = makeArrayLength(func0.call(protoObj1 , (d / (argMath19 == 0 ? 1 : argMath19))));',
     ` var h = -1073741824;
     var strvar0 = ('W' + 'Ù!$X');
     var strvar1 = ('%#'+'ql'+'K,' + '$(');
@@ -14823,9 +14823,9 @@ let kTrapMsgs = [
         return -1971959271.9;
       }
     }`,
-    `IntArr1[(((reResult1.length >= 0 ? reResult1.length : 0)) & 0XF)] = obj0.prop0;`,
-    `var strvar9 = '3$|QÝ,!7);Á.,;*';`,
-    ` strvar9 = strvar9.substring((strvar9.length)/1,(strvar9.length)/2);`,
+    'IntArr1[(((reResult1.length >= 0 ? reResult1.length : 0)) & 0XF)] = obj0.prop0;',
+    "var strvar9 = '3$|QÝ,!7);Á.,;*';",
+    ' strvar9 = strvar9.substring((strvar9.length)/1,(strvar9.length)/2);',
     `function x(argMath100 = (~ ary5[(((((shouldBailout ? (ary5[(((f64[((shouldBailout ? (argMath91 = { valueOf: function() { WScript.Echo('argMath91 valueOf'); return 3; } }, (i16[(236) & 255] ^ f)) : (i16[(236) & 255] ^ f))) & 255]) >= 0 ? ( f64[((shouldBailout ? (argMath91 = { valueOf: function() { WScript.Echo('argMath91 valueOf'); return 3; } }, (i16[(236) & 255] ^ f)) : (i16[(236) & 255] ^ f))) & 255]) : 0) & 0xF)] = 'x') : undefined ), f64[((shouldBailout ? (argMath91 = { valueOf: function() { WScript.Echo('argMath91 valueOf'); return 3; } }, (i16[(236) & 255] ^ f)) : (i16[(236) & 255] ^ f))) & 255]) >= 0 ? f64[((shouldBailout ? (argMath91 = { valueOf: function() { WScript.Echo('argMath91 valueOf'); return 3; } }, (i16[(236) & 255] ^ f)) : (i16[(236) & 255] ^ f))) & 255] : 0)) & 0XF)]),argMath101,argMath102 = (new class2()),argMath103){
       strvar7 = strvar7.concat((1053672603.1 ? c : a));
       message = fileName[2%fileName.length];
@@ -14836,7 +14836,7 @@ let kTrapMsgs = [
       litObj1.prop1 = (protoObj1.prop0 = 48);
       return 200421084;
     }`,
-    `strvar6 = strvar4.concat(VarArr0[(((((shouldBailout ? (VarArr0[(((721241264) >= 0 ? ( 721241264) : 0) & 0xF)] = 'x') : undefined ), 721241264) >= 0 ? 721241264 : 0)) & 0XF)]).concat(arguments[(((((b !== argMath90)||(b === h)) >= 0 ? ((b !== argMath90)||(b === h)) : 0)) & 0XF)]);`,
+    "strvar6 = strvar4.concat(VarArr0[(((((shouldBailout ? (VarArr0[(((721241264) >= 0 ? ( 721241264) : 0) & 0xF)] = 'x') : undefined ), 721241264) >= 0 ? 721241264 : 0)) & 0XF)]).concat(arguments[(((((b !== argMath90)||(b === h)) >= 0 ? ((b !== argMath90)||(b === h)) : 0)) & 0XF)]);",
     String.raw` class class14 {
       set func99 (argMath130 = (new class12())){
         WScript.Echo(strvar5 !=(-- argMath130));
@@ -14888,7 +14888,7 @@ let kTrapMsgs = [
         return 197;
       }
     }`,
-    `strvar4 = (('ÀI@h<' + '!!ìB-I!=').concat((typeof(protoObj1.prop1)  == 'object') )).replace(/a/g, strvar9) + ((typeof(arrObj0.prop1)  != 'undefined')  * ((6.99504535452666E+18 ? obj1.prop4 : protoObj1.prop0) - IntArr1[(((arrObj0.prop0 >= 0 ? arrObj0.prop0 : 0)) & 0XF)]));`,
+    "strvar4 = (('ÀI@h<' + '!!ìB-I!=').concat((typeof(protoObj1.prop1)  == 'object') )).replace(/a/g, strvar9) + ((typeof(arrObj0.prop1)  != 'undefined')  * ((6.99504535452666E+18 ? obj1.prop4 : protoObj1.prop0) - IntArr1[(((arrObj0.prop0 >= 0 ? arrObj0.prop0 : 0)) & 0XF)]));",
     ` try {
       var uniqobj29 = {prop0: ('3$|QÝ,!7);Á.,;*').replace(strvar1, strvar7), prop1: ((new class2()) * ('%!!³Eq.*nñ!k!EC'.indexOf(strvar7)) + ((typeof (argMath91 |= ((c >= obj1.prop4)||(argMath92 === argMath90)))) ? ary5.length : IntArr1[((shouldBailout ? (IntArr1[11] = 'x') : undefined ), 11)])), ["prop2"]: Object.create({prop0: VarArr0[((shouldBailout ? (VarArr0[6] = 'x') : undefined ), 6)]}, {})};
       arrObj0 = protoObj1;
@@ -15003,8 +15003,8 @@ let kTrapMsgs = [
     '0X456;',
     '8;',
     '3.42E9',
-    `Async                          = 0x10000`,
-    `a = 1 << 12`,
+    'Async                          = 0x10000',
+    'a = 1 << 12',
     `HASH_NAME(assert, 0x08D130F2, 0x08D130F2)
     HASH_NAME(async, 0x0084CDEE, 0x0084CDEE)
     HASH_NAME(await, 0x0084FF56, 0x0084FF56)

@@ -1,5 +1,5 @@
 import { describe } from 'vitest';
-import { pass, fail } from '../../test-utils';
+import { fail, pass } from '../../test-utils';
 
 describe('Statements - While', () => {
   fail('Statements - While (fail)', [
@@ -8,8 +8,8 @@ describe('Statements - While', () => {
     'while (false) function f() {}',
     'while (false) let x = 1;',
     'while 1 break;',
-    `while '' break;`,
-    { code: `while '' break;`, options: { webcompat: true } },
+    "while '' break;",
+    { code: "while '' break;", options: { webcompat: true } },
     'while(0) !function(){ break; };',
     'while(0) { function f(){ break; } }',
     'while (false) label1: label2: function f() {}',

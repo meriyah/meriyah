@@ -1,5 +1,5 @@
 import { describe } from 'vitest';
-import { pass, fail } from '../../test-utils';
+import { fail, pass } from '../../test-utils';
 
 describe('Expressions - Conditional', () => {
   fail('Expressions - Conditional (fail)', ['a ? await x : c', 'a ? b : await c', 'a ? b : yield c']);

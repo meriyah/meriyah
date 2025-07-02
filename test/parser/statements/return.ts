@@ -1,5 +1,5 @@
 import { describe } from 'vitest';
-import { pass, fail } from '../../test-utils';
+import { fail, pass } from '../../test-utils';
 
 describe('Statements - Return', () => {
   fail('Statements - Return (fail)', [

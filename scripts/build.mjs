@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-import path from 'node:path';
 import fs from 'node:fs/promises';
+import path from 'node:path';
+import json from '@rollup/plugin-json';
+import terser from '@rollup/plugin-terser';
 import { rollup } from 'rollup';
 import typescript2 from 'rollup-plugin-typescript2';
-import terser from '@rollup/plugin-terser';
-import json from '@rollup/plugin-json';
 import * as ts from 'typescript';
 
 const { dirname } = import.meta;

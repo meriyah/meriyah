@@ -1,9 +1,9 @@
 import { Chars } from '../chars';
+import { Errors } from '../errors';
 import { type Parser } from '../parser/parser';
 import { Token } from '../token';
-import { advanceChar } from './common';
 import { isIdentifierPart } from './charClassifier';
-import { Errors } from '../errors';
+import { advanceChar } from './common';
 
 enum RegexState {
   Empty = 0,

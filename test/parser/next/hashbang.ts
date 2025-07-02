@@ -1,7 +1,7 @@
 import * as t from 'node:assert/strict';
 import { describe, it } from 'vitest';
-import { fail } from '../../test-utils';
 import { parseSource } from '../../../src/parser';
+import { fail } from '../../test-utils';
 
 describe('Next - Hashbang grammar', () => {
   fail('Next - Hashbang grammar (fail)', [
@@ -15,7 +15,7 @@ describe('Next - Hashbang grammar', () => {
     '#\\041\n',
     String.raw`#\u{21}`,
     String.raw`\x23!`,
-    `#!\n#!`,
+    '#!\n#!',
     '/*\n*/#!',
     '"use strict"\n#!',
     String.raw`\u0023\u0021`,
