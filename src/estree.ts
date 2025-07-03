@@ -167,9 +167,6 @@ export type Expression =
   | UpdateExpression
   | YieldExpression;
 export type ForInitializer = Expression | VariableDeclaration;
-// TODO: Misspelled, remove this in v7
-// spellchecker: disable-next-line
-export { ForInitializer as ForInitialiser };
 export type ImportClause = ImportDefaultSpecifier | ImportNamespaceSpecifier | ImportSpecifier;
 export type IterationStatement = DoWhileStatement | ForInStatement | ForOfStatement | ForStatement | WhileStatement;
 export type JSXChild = JSXElement | JSXExpression | JSXFragment | JSXText;
