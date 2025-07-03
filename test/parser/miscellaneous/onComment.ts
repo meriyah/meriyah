@@ -455,11 +455,11 @@ describe('Miscellaneous - onComment', () => {
       {
         type: 'HTMLClose',
         value: ' comment #2',
-        start: 14,
+        start: 15,
         end: 29,
-        range: [14, 29],
+        range: [15, 29],
         loc: {
-          start: { line: 1, column: 14 },
+          start: { line: 2, column: 0 },
           end: { line: 2, column: 14 },
         },
       },
@@ -501,11 +501,11 @@ describe('Miscellaneous - onComment', () => {
       {
         type: 'HTMLClose',
         value: ' comment #2',
-        start: 2,
+        start: 3,
         end: 17,
-        range: [2, 17],
+        range: [3, 17],
         loc: {
-          start: { line: 1, column: 2 },
+          start: { line: 2, column: 0 },
           end: { line: 2, column: 14 },
         },
       },
@@ -535,11 +535,11 @@ describe('Miscellaneous - onComment', () => {
       {
         type: 'HTMLClose',
         value: ' comment #2',
-        start: 7,
+        start: 8,
         end: 22,
-        range: [7, 22],
+        range: [8, 22],
         loc: {
-          start: { line: 3, column: 2 },
+          start: { line: 4, column: 0 },
           end: { line: 4, column: 14 },
         },
       },
