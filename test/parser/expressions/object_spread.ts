@@ -104,7 +104,7 @@ describe('Expressions - Rest', () => {
     });
     it(`x = ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`x = ${arg};`, { next: true, module: true });
+        parseSource(`x = ${arg};`, { next: true, sourceType: 'module' });
       });
     });
 

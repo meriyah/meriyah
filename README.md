@@ -73,52 +73,52 @@ const result = parse('let some = "code";', { ranges: true });
 
 The available options:
 
-```js
+```ts
 {
-  // The flag to allow module code
-  module: false;
+  // Indicate the mode the code should be parsed in 'script' or 'module' mode, default `'script'`
+  sourceType: 'script' | 'module';
 
-  // The flag to enable stage 3 support (ESNext)
-  next: false;
+  // The flag to enable stage 3 support (ESNext), default `false`
+  next: boolean;
 
-  // The flag to enable start, end offsets and range: [start, end] to each node
-  ranges: false;
+  // The flag to enable start, end offsets and range: [start, end] to each node, default `false`
+  ranges: boolean;
 
-  // Enable web compatibility
-  webcompat: false;
+  // Enable web compatibility, default `false`
+  webcompat: boolean;
 
-  // The flag to enable line/column location information to each node
-  loc: false;
+  // The flag to enable line/column location information to each node, default `false`
+  loc: boolean;
 
-  // The flag to attach raw property to each literal and identifier node
-  raw: false;
+  // The flag to attach raw property to each literal and identifier node, default `false`
+  raw: boolean;
 
-  // The flag to allow return in the global scope
-  globalReturn: false;
+  // The flag to allow return in the global scope, default `false`
+  globalReturn: boolean;
 
-  // The flag to enable implied strict mode
-  impliedStrict: false;
+  // The flag to enable implied strict mode, default `false`
+  impliedStrict: boolean;
 
-  // Allows comment extraction. Accepts either a function or array
+  // Allows comment extraction. Accepts either a function or array, default `undefined`
   onComment: [];
 
-  // Allows detection of automatic semicolon insertion. Accepts a callback function that will be passed the character offset where the semicolon was inserted
-  onInsertedSemicolon: (pos) => {};
+  // Allows detection of automatic semicolon insertion. Accepts a callback function that will be passed the character offset where the semicolon was inserted, default `undefined`
+  onInsertedSemicolon: (position: number) => {};
 
-  // Allows token extraction. Accepts either a function or array
+  // Allows token extraction. Accepts either a function or array, default `undefined`
   onToken: [];
 
-  // Enable non-standard parenthesized expression node
-  preserveParens: false;
+  // Enable non-standard parenthesized expression node, default `false`
+  preserveParens: boolean;
 
-  // Enable lexical binding and scope tracking
-  lexical: false;
+  // Enable lexical binding and scope tracking, default `false`
+  lexical: boolean;
 
   // Adds a source attribute in every node’s loc object when the locations option is `true`
-  source: undefined; // Set to source: 'source-file.js'
+  source: string; // Set to source: 'source-file.js'
 
-  // Enable React JSX parsing
-  jsx: false;
+  // Enable React JSX parsing, default `false`
+  jsx: boolean;
 }
 ```
 

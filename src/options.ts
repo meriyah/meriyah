@@ -7,6 +7,8 @@ import { type Token } from './token';
  */
 type OnInsertedSemicolon = (pos: number) => any;
 
+type SourceType = 'script' | 'module';
+
 /**
  * Token process function.
  */
@@ -28,7 +30,10 @@ export type OnComment = (
  */
 export interface Options {
   // Allow module code
+  /** @deprecated Use `sourceType` instead. */
   module?: boolean;
+  // Indicate the mode the code should be parsed in 'script' or 'module' mode
+  sourceType?: SourceType;
   // Enable stage 3 support (ESNext)
   next?: boolean;
   // Enable start and end offsets to each node
@@ -68,6 +73,10 @@ export type NormalizedOptions = Omit<Options, 'onComment' | 'onToken'> & {
 
 export function normalizeOptions(rawOptions: Options): NormalizedOptions {
   const options = { ...rawOptions } as NormalizedOptions;
+
+  if (options.module && !options.sourceType) {
+    options.sourceType = 'module';
+  }
 
   // Accepts either a callback function to be invoked or an array to collect comments (as the node is constructed)
   if (options.onComment) {

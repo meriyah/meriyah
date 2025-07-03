@@ -533,7 +533,7 @@ describe('Statements - For await of', () => {
 
   it('accepts top level for await in module context', () => {
     t.doesNotThrow(() => {
-      parseSource('for await (const a of b) {}', { module: true });
+      parseSource('for await (const a of b) {}', { sourceType: 'module' });
     });
 
     t.throws(() => {
@@ -541,7 +541,7 @@ describe('Statements - For await of', () => {
     });
 
     t.throws(() => {
-      parseSource('function c() { for await (const a of b) {} }', { module: true });
+      parseSource('function c() { for await (const a of b) {} }', { sourceType: 'module' });
     });
   });
 });

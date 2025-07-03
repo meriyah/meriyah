@@ -6,12 +6,15 @@ import { fail } from '../../test-utils';
 
 describe('Lexical - AnnexB', () => {
   fail('Lexical - AnnexB (fail)', [
-    { code: 'function f() {} ; function f() {}', options: { lexical: true, module: true } },
+    { code: 'function f() {} ; function f() {}', options: { lexical: true, sourceType: 'module' } },
     { code: 'function f(){ var f = 123; if (true) function f(){} }', options: { lexical: true } },
-    { code: 'function f(){ var f = 123; if (true) function f2(){} }', options: { lexical: true, module: true } },
+    {
+      code: 'function f(){ var f = 123; if (true) function f2(){} }',
+      options: { lexical: true, sourceType: 'module' },
+    },
     { code: '{ var f = 123; if (true) function f(){} }', options: { lexical: true } },
-    { code: '{ var f = 123; if (true) function f2(){} }', options: { lexical: true, module: true } },
-    { code: 'function f() {} ; function f() {}', options: { lexical: true, module: true } },
+    { code: '{ var f = 123; if (true) function f2(){} }', options: { lexical: true, sourceType: 'module' } },
+    { code: 'function f() {} ; function f() {}', options: { lexical: true, sourceType: 'module' } },
     { code: '{ if (x) function f() {} ; function f() {} }', options: { lexical: true } },
     { code: 'let x; var x;', options: { lexical: true } },
     { code: 'var x; let x;', options: { lexical: true } },

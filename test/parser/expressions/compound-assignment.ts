@@ -75,7 +75,7 @@ describe('Expressions - Compound assignment', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { next: true, module: true });
+        parseSource(`${arg}`, { next: true, sourceType: 'module' });
       });
     });
     it(`${arg}`, () => {

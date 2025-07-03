@@ -136,14 +136,14 @@ describe('Expressions - Async', () => {
     'let f = async\nfunction g(){await x}',
     'async (a, ...b=fail) => a;',
     { code: 'async(yield);', options: { impliedStrict: true } },
-    { code: 'async(await);', options: { module: true } },
+    { code: 'async(await);', options: { sourceType: 'module' } },
     'async (a, ...b+b=c) => a;',
     'async (a, ...b=true) => a;',
     'async (a, ...true=b) => a;',
     'async (a, ...b=fail) => a;',
     'async (a, ...true) => a;',
-    { code: 'await/x', options: { module: true } },
-    { code: 'await \n / x', options: { module: true } },
+    { code: 'await/x', options: { sourceType: 'module' } },
+    { code: 'await \n / x', options: { sourceType: 'module' } },
   ]);
   pass('Expressions - Async (pass)', [
     'async(), x',
@@ -154,7 +154,7 @@ describe('Expressions - Async', () => {
 
     'function *f(){ async(x); }',
     'async g => (x = [await y])',
-    { code: 'true ? async.waterfall() : null;', options: { module: true } },
+    { code: 'true ? async.waterfall() : null;', options: { sourceType: 'module' } },
     'async r => result = [...{ x = await x }] = y;',
     outdent`
       const a = {

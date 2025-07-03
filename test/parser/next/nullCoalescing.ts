@@ -108,20 +108,20 @@ describe('Next - Nullish Coalescing', () => {
     { code: '[a, x ?? z] = f(() => { [a, b.c] = [d.e, (f.g) = h]; }); ', options: { next: true } },
     { code: 'a.??(nil).b.c.d.??(null)', options: { next: true } },
     { code: 'c && d ?? e', options: { webcompat: true } },
-    { code: '0 && 1 ?? 2', options: { module: true, next: true } },
+    { code: '0 && 1 ?? 2', options: { sourceType: 'module', next: true } },
     { code: '0 && 1 ?? 2', options: { webcompat: true, next: true } },
-    { code: '0 ?? 1 || 2', options: { module: true, next: true } },
-    { code: '0 ?? 1 && 2', options: { module: true, next: true } },
-    { code: 'a ?? b || c', options: { module: true, next: true } },
-    { code: 'a || b ?? c', options: { module: true, next: true } },
-    { code: '0 ?? 1 && 2', options: { module: true, next: true } },
+    { code: '0 ?? 1 || 2', options: { sourceType: 'module', next: true } },
+    { code: '0 ?? 1 && 2', options: { sourceType: 'module', next: true } },
+    { code: 'a ?? b || c', options: { sourceType: 'module', next: true } },
+    { code: 'a || b ?? c', options: { sourceType: 'module', next: true } },
+    { code: '0 ?? 1 && 2', options: { sourceType: 'module', next: true } },
 
     {
       code: '3 ?? 2 ** 1 % 0 / 9 * 8 - 7 + 6 >>> 5 >> 4 << 3 >= 2 <= 1 > 0 < 9 !== 8 === 7 != 6 == 5 & 4 ^ 3 | 2 && 1 || 0',
       options: { next: true },
     },
-    { code: 'e ?? f ?? g || h;', options: { module: true, next: true } },
-    { code: 'c && d ?? e', options: { module: true, next: true } },
+    { code: 'e ?? f ?? g || h;', options: { sourceType: 'module', next: true } },
+    { code: 'c && d ?? e', options: { sourceType: 'module', next: true } },
   ]);
 
   pass('Next - Null Coalescing (pass)', [
