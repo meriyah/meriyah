@@ -59,15 +59,21 @@ export interface Options {
   onToken?: Token[] | OnToken;
   // Creates unique key for in ObjectPattern when key value are same
   uniqueKeyInPattern?: boolean;
+  // Throw errors for invalid regexps
+  validateRegularExpressionWithRuntime?: boolean;
 }
 
-export type NormalizedOptions = Omit<Options, 'onComment' | 'onToken'> & {
+export type NormalizedOptions = Omit<Options, 'validateRegularExpressionWithRuntime' | 'onComment' | 'onToken'> & {
+  validateRegularExpressionWithRuntime: boolean;
   onComment?: OnComment;
   onToken?: OnToken;
 };
 
 export function normalizeOptions(rawOptions: Options): NormalizedOptions {
-  const options = { ...rawOptions } as NormalizedOptions;
+  const options = {
+    validateRegularExpressionWithRuntime: true,
+    ...rawOptions,
+  } as NormalizedOptions;
 
   // Accepts either a callback function to be invoked or an array to collect comments (as the node is constructed)
   if (options.onComment) {
