@@ -35,7 +35,7 @@ describe('Miscellaneous - Hashbang', () => {
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { module: true, next: true });
+        parseSource(`${arg}`, { sourceType: 'module', next: true });
       });
     });
   }
@@ -59,7 +59,7 @@ describe('Miscellaneous - Hashbang', () => {
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { module: true, next: true });
+        parseSource(`${arg}`, { sourceType: 'module', next: true });
       });
     });
   }

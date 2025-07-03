@@ -32,7 +32,7 @@ describe('Miscellaneous - Regular expressions', () => {
     { code: '/(?<𝟐rest>foo)/', options: { next: true } },
     { code: '/(?<𝟐>foo)/', options: { next: true } },
     { code: String.raw`/(?<\uD835\uDFD0rest>foo)/`, options: { webcompat: true } },
-    { code: String.raw`/(?<abc\uD835\uDFD0def>foo\k<abc\uD835def>)/`, options: { module: true, next: true } },
+    { code: String.raw`/(?<abc\uD835\uDFD0def>foo\k<abc\uD835def>)/`, options: { sourceType: 'module', next: true } },
     // Nodejs v18 now accepts unicode in capture group name
     // ['/(?<\\ud87e\\udddfrest>foo)/', Context.OptionsNext | Context.OptionsWebCompat],
     {
@@ -40,15 +40,15 @@ describe('Miscellaneous - Regular expressions', () => {
         function* f(){ yield
         /foo }
       `,
-      options: { module: true, next: true },
+      options: { sourceType: 'module', next: true },
     },
-    { code: 'function l(){((/)/))(/]/)};', options: { module: true, next: true } },
-    { code: '0 ?? 1 && 2', options: { module: true, next: true } },
+    { code: 'function l(){((/)/))(/]/)};', options: { sourceType: 'module', next: true } },
+    { code: '0 ?? 1 && 2', options: { sourceType: 'module', next: true } },
     {
       code: '3 ?? 2 ** 1 % 0 / 9 * 8 - 7 + 6 >>> 5 >> 4 << 3 >= 2 <= 1 > 0 < 9 !== 8 === 7 != 6 == 5 & 4 ^ 3 | 2 && 1 || 0',
       options: { next: true },
     },
-    { code: 'e ?? f ?? g || h;', options: { module: true, next: true } },
-    { code: 'c && d ?? e', options: { module: true, next: true } },
+    { code: 'e ?? f ?? g || h;', options: { sourceType: 'module', next: true } },
+    { code: 'c && d ?? e', options: { sourceType: 'module', next: true } },
   ]);
 });

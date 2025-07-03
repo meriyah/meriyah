@@ -24,7 +24,7 @@ describe('Expressions - Member', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { next: true, module: true });
+        parseSource(`${arg}`, { next: true, sourceType: 'module' });
       });
     });
     it(`${arg}`, () => {
@@ -36,7 +36,7 @@ describe('Expressions - Member', () => {
 
   pass('Expressions - Member (pass)', [
     'abc.package',
-    { code: 'abc.package', options: { module: true } },
+    { code: 'abc.package', options: { sourceType: 'module' } },
     { code: 'x[a, b]', options: { ranges: true } },
     { code: '(2[x,x],x)>x', options: { ranges: true } },
     'foo.bar',

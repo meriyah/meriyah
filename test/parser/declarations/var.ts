@@ -143,31 +143,31 @@ describe('Declarations - Var', () => {
 
     it(`var x, y, z; (${arg}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; (${arg}= z = {});`, { module: true });
+        parseSource(`var x, y, z; (${arg}= z = {});`, { sourceType: 'module' });
       });
     });
 
     it(`var x, y, z; (x = ${arg}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; (x = ${arg}= z = {});`, { module: true });
+        parseSource(`var x, y, z; (x = ${arg}= z = {});`, { sourceType: 'module' });
       });
     });
 
     it(`var x, y, z; for (x in ${arg}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; for (x in ${arg}= z = {});`, { module: true });
+        parseSource(`var x, y, z; for (x in ${arg}= z = {});`, { sourceType: 'module' });
       });
     });
 
     it(`var x, y, z; for (x of ${arg}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; for (x of ${arg}= z = {});`, { module: true });
+        parseSource(`var x, y, z; for (x of ${arg}= z = {});`, { sourceType: 'module' });
       });
     });
 
     it(`var x, y, z; for (x of x =${arg}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; for (x of x =${arg}= z = {});`, { module: true });
+        parseSource(`var x, y, z; for (x of x =${arg}= z = {});`, { sourceType: 'module' });
       });
     });
 
@@ -179,31 +179,31 @@ describe('Declarations - Var', () => {
 
     it(`var x, y, z; (${arg}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; (${arg}= z = {});`, { module: true });
+        parseSource(`var x, y, z; (${arg}= z = {});`, { sourceType: 'module' });
       });
     });
 
     it(`var x, y, z; (${arg}= z = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; (${arg}= z = {});`, { module: true });
+        parseSource(`var x, y, z; (${arg}= z = {});`, { sourceType: 'module' });
       });
     });
 
     it(`var x, y, z; (${arg} = {});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`var x, y, z; (${arg} = {});`, { module: true });
+        parseSource(`var x, y, z; (${arg} = {});`, { sourceType: 'module' });
       });
     });
 
     it(`'use strict'; var x, y, z; m(['a']) ? ${arg} = {} : rhs`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; var x, y, z; m(['a']) ? ${arg} = {} : rhs`, { module: true });
+        parseSource(`'use strict'; var x, y, z; m(['a']) ? ${arg} = {} : rhs`, { sourceType: 'module' });
       });
     });
 
     it(`'use strict'; var x, y, z; m(['b']) ? lhs :${arg} = {}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`'use strict'; var x, y, z; m(['b']) ? lhs : ${arg} = {}`, { module: true });
+        parseSource(`'use strict'; var x, y, z; m(['b']) ? lhs : ${arg} = {}`, { sourceType: 'module' });
       });
     });
   }
@@ -444,7 +444,7 @@ describe('Declarations - Var', () => {
 
     it(`export var ${arg} = 10;`, () => {
       t.throws(() => {
-        parseSource(`export var ${arg} = 10;`, { module: true });
+        parseSource(`export var ${arg} = 10;`, { sourceType: 'module' });
       });
     });
   }

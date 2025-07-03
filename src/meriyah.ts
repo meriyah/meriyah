@@ -9,6 +9,8 @@ import { parseSource } from './parser';
 const version: string = pkgVersion;
 
 /**
+ * @deprecated Use `parser()` with `sourceType: 'script'` instead.
+ *
  * Parse a script, optionally with various options.
  */
 export function parseScript(source: string, options?: Options): Program {
@@ -16,6 +18,8 @@ export function parseScript(source: string, options?: Options): Program {
 }
 
 /**
+ * @deprecated Use `parser()` with `sourceType: 'module'` instead.
+ *
  * Parse a module, optionally with various options.
  */
 export function parseModule(source: string, options?: Options): Program {

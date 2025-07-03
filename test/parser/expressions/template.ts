@@ -402,7 +402,7 @@ describe('Expressions - Template', () => {
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { module: true }, Context.TaggedTemplate);
+        parseSource(`${arg}`, { sourceType: 'module' }, Context.TaggedTemplate);
       });
     });
   }

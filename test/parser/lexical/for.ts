@@ -10,7 +10,7 @@ describe('Lexical - For statement', () => {
     { code: 'for (let x;;) { var x; }', options: { lexical: true } },
     { code: 'for (const x = y;;) { var x; }', options: { lexical: true } },
     { code: 'for (let x in y) { var x; ', options: { lexical: true } },
-    { code: 'for (const x in y) { var x; }', options: { lexical: true, module: true } },
+    { code: 'for (const x in y) { var x; }', options: { lexical: true, sourceType: 'module' } },
     { code: 'for (let x of y) { var x; }', options: { lexical: true } },
     { code: 'for (const x of y) { var x; }', options: { lexical: true } },
     { code: 'for (let a, b, x, d;;) { var foo; var bar; { var doo, x, ee; } }', options: { lexical: true } },

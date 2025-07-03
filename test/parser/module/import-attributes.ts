@@ -64,12 +64,12 @@ describe('Next - Import Attributes', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { module: true });
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { module: true, webcompat: true });
+        parseSource(`${arg}`, { sourceType: 'module', webcompat: true });
       });
     });
   }
@@ -77,16 +77,16 @@ describe('Next - Import Attributes', () => {
   fail('Expressions - Import Attributes (fail)', [
     'import("module", { type: "json" }, "extra")',
     'import("module", { type: "json" }, "extra")',
-    { code: 'import("module", { type: "json", "extra": })', options: { module: true } },
-    { code: 'import("module", ...extra)', options: { module: true } },
-    { code: 'import("module", { type: "json", "extra": "value" ', options: { module: true } },
-    { code: 'import("module", { type: "json", "extra": "value" }, "another")', options: { module: true } },
-    { code: 'import("module", { type: "json" }, "extra")', options: { module: true } },
-    { code: 'import foo from "bar" with { type: "json", "data-type": "json"', options: { module: true } },
-    { code: 'import foo from "bar" with { type: ', options: { module: true } },
-    { code: 'import foo from "bar" with { type: "json", ', options: { module: true } },
-    { code: 'import foo from "bar" with { type: "json", "data-type": ', options: { module: true } },
-    { code: 'import foo from "bar" with { type: "json", "data-type": "json" ', options: { module: true } },
+    { code: 'import("module", { type: "json", "extra": })', options: { sourceType: 'module' } },
+    { code: 'import("module", ...extra)', options: { sourceType: 'module' } },
+    { code: 'import("module", { type: "json", "extra": "value" ', options: { sourceType: 'module' } },
+    { code: 'import("module", { type: "json", "extra": "value" }, "another")', options: { sourceType: 'module' } },
+    { code: 'import("module", { type: "json" }, "extra")', options: { sourceType: 'module' } },
+    { code: 'import foo from "bar" with { type: "json", "data-type": "json"', options: { sourceType: 'module' } },
+    { code: 'import foo from "bar" with { type: ', options: { sourceType: 'module' } },
+    { code: 'import foo from "bar" with { type: "json", ', options: { sourceType: 'module' } },
+    { code: 'import foo from "bar" with { type: "json", "data-type": ', options: { sourceType: 'module' } },
+    { code: 'import foo from "bar" with { type: "json", "data-type": "json" ', options: { sourceType: 'module' } },
     {
       code: outdent`
         import x from './import-attribute-1_FIXTURE.js' with {
@@ -94,32 +94,32 @@ describe('Next - Import Attributes', () => {
           'typ\u0065': ''
         };
       `,
-      options: { module: true },
+      options: { sourceType: 'module' },
     },
-    { code: 'import foo from "bar" with { 1: "foo" };', options: { module: true } },
-    { code: 'import foo from "bar" with { type: 1 };', options: { module: true } },
-    { code: 'import foo from "bar" with { type: [1] };', options: { module: true } },
-    { code: 'import foo from "bar" with { type: null };', options: { module: true } },
-    { code: 'import foo from "bar" with { type: undefined };', options: { module: true } },
-    { code: 'import foo from "bar" with { type: "json", foo: {} };', options: { module: true } },
-    { code: "export foo, { foo2 } from './foo.json' with { \"type\": 'json' };", options: { module: true } },
+    { code: 'import foo from "bar" with { 1: "foo" };', options: { sourceType: 'module' } },
+    { code: 'import foo from "bar" with { type: 1 };', options: { sourceType: 'module' } },
+    { code: 'import foo from "bar" with { type: [1] };', options: { sourceType: 'module' } },
+    { code: 'import foo from "bar" with { type: null };', options: { sourceType: 'module' } },
+    { code: 'import foo from "bar" with { type: undefined };', options: { sourceType: 'module' } },
+    { code: 'import foo from "bar" with { type: "json", foo: {} };', options: { sourceType: 'module' } },
+    { code: "export foo, { foo2 } from './foo.json' with { \"type\": 'json' };", options: { sourceType: 'module' } },
   ]);
 
   pass('Import Attributes (pass)', [
-    { code: "import('module', { type: 'json' });", options: { module: true } },
-    { code: "import('module', { 'data-type': 'json' });", options: { module: true } },
-    { code: "async function load() { return import('module', { type: 'json' }); }", options: { module: true } },
-    { code: "for await (let module of [import('module', { type: 'json' })]) {}", options: { module: true } },
-    { code: 'import foo from "bar" with { type: "json" };', options: { module: true } },
-    { code: 'import foo from "bar" with { type: "json", "data-type": "json" };', options: { module: true } },
+    { code: "import('module', { type: 'json' });", options: { sourceType: 'module' } },
+    { code: "import('module', { 'data-type': 'json' });", options: { sourceType: 'module' } },
+    { code: "async function load() { return import('module', { type: 'json' }); }", options: { sourceType: 'module' } },
+    { code: "for await (let module of [import('module', { type: 'json' })]) {}", options: { sourceType: 'module' } },
+    { code: 'import foo from "bar" with { type: "json" };', options: { sourceType: 'module' } },
+    { code: 'import foo from "bar" with { type: "json", "data-type": "json" };', options: { sourceType: 'module' } },
     {
       code: "var promise; for (promise = import('./2nd-param_FIXTURE.js', 'test262' in {} || undefined); false; );",
-      options: { module: true },
+      options: { sourceType: 'module' },
     },
-    { code: "export * from './foo' with { type: 'json' }", options: { module: true } },
-    { code: "export * as foo from './foo' with { type: 'json' };", options: { module: true } },
-    { code: "export {} from './foo' with { type: 'html' };", options: { module: true } },
-    { code: "export { foo } from './foo' with { type: 'html' }", options: { module: true } },
-    { code: "export { foo, } from './foo' with { type: 'html' };", options: { module: true } },
+    { code: "export * from './foo' with { type: 'json' }", options: { sourceType: 'module' } },
+    { code: "export * as foo from './foo' with { type: 'json' };", options: { sourceType: 'module' } },
+    { code: "export {} from './foo' with { type: 'html' };", options: { sourceType: 'module' } },
+    { code: "export { foo } from './foo' with { type: 'html' }", options: { sourceType: 'module' } },
+    { code: "export { foo, } from './foo' with { type: 'html' };", options: { sourceType: 'module' } },
   ]);
 });

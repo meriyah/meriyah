@@ -184,9 +184,6 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
 
   const { source } = parser;
 
-  // These three are only for HTMLClose comment
-  let start = parser.currentLocation;
-
   while (parser.index < parser.end) {
     parser.tokenIndex = parser.index;
     parser.tokenColumn = parser.column;
@@ -280,7 +277,6 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
                 parser.column += 3;
                 parser.currentChar = source.charCodeAt((parser.index += 3));
                 state = skipSingleHTMLComment(parser, source, state, context, CommentType.HTMLOpen, parser.tokenStart);
-                start = parser.tokenStart;
                 continue;
               }
               return Token.LessThan;
@@ -385,8 +381,7 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
             if ((state & LexerState.NewLine || isStartOfLine) && parser.currentChar === Chars.GreaterThan) {
               if (!parser.options.webcompat) parser.report(Errors.HtmlCommentInWebCompat);
               advanceChar(parser);
-              state = skipSingleHTMLComment(parser, source, state, context, CommentType.HTMLClose, start);
-              start = parser.tokenStart;
+              state = skipSingleHTMLComment(parser, source, state, context, CommentType.HTMLClose, parser.tokenStart);
               continue;
             }
 
@@ -409,13 +404,11 @@ export function scanSingleToken(parser: Parser, context: Context, state: LexerSt
             if (ch === Chars.Slash) {
               advanceChar(parser);
               state = skipSingleLineComment(parser, source, state, CommentType.Single, parser.tokenStart);
-              start = parser.tokenStart;
               continue;
             }
             if (ch === Chars.Asterisk) {
               advanceChar(parser);
               state = skipMultiLineComment(parser, source, state) as LexerState;
-              start = parser.tokenStart;
               continue;
             }
             if (context & Context.AllowRegExp) {

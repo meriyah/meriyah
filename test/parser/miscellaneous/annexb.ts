@@ -37,7 +37,7 @@ describe('Miscellaneous - Web compatibility (AnnexB)', () => {
 
       it(`${arg}`, () => {
         t.throws(() => {
-          parseSource(`${arg}`, { module: true, webcompat: true });
+          parseSource(`${arg}`, { sourceType: 'module', webcompat: true });
         });
       });
     }
@@ -60,7 +60,7 @@ describe('Miscellaneous - Web compatibility (AnnexB)', () => {
       });
       it(`${arg}`, () => {
         t.throws(() => {
-          parseSource(`${arg}`, { module: true, webcompat: true });
+          parseSource(`${arg}`, { sourceType: 'module', webcompat: true });
         });
       });
     }

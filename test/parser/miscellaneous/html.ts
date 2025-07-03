@@ -14,7 +14,7 @@ describe('Miscellaneous - HTML Comments', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { module: true });
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
   }

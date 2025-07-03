@@ -1,13 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import type * as ESTree from '../../../src/estree';
+import { type Options } from '../../../src/options';
 import { parseSource } from '../../../src/parser';
 
-const parseOptions = {
+const parseOptions: Options = {
   source: 'foo.js',
-  uniqueKeyInPattern: true,
   loc: true,
   ranges: true,
-  module: true,
+  sourceType: 'module',
 };
 
 const assertClone = (nodeA: ESTree.Node, nodeB: ESTree.Node) => {

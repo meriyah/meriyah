@@ -217,13 +217,13 @@ describe('Declarations - Async Generator', () => {
 
     it(`async function * gen() { ${arg} } `, () => {
       t.throws(() => {
-        parseSource(`async function * gen() { ${arg} } `, { module: true });
+        parseSource(`async function * gen() { ${arg} } `, { sourceType: 'module' });
       });
     });
 
     it(`async function * gen() { ${arg} } `, () => {
       t.throws(() => {
-        parseSource(`async function * gen() { ${arg} } `, { module: true });
+        parseSource(`async function * gen() { ${arg} } `, { sourceType: 'module' });
       });
     });
 

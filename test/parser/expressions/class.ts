@@ -664,7 +664,7 @@ describe('Expressions - Class', () => {
     '(class A {* get foo(){}})',
     '(class A {async set foo(x){}})',
     '(class A {* set foo(x){}})',
-    { code: 'var C = class await {};', options: { module: true } },
+    { code: 'var C = class await {};', options: { sourceType: 'module' } },
     '(class A {async get "foo"(){}})',
     '(class A {* get "foo"(){}})',
     '(class A {async set "foo"(x){}})',
@@ -745,7 +745,7 @@ describe('Expressions - Class', () => {
     'class x extends yield {}',
     'class x { await y(){} }',
     'class x { foo(x=new (await y)()){} }',
-    { code: 'class x { foo(x=new (await y)()){} }', options: { module: true } },
+    { code: 'class x { foo(x=new (await y)()){} }', options: { sourceType: 'module' } },
     'class x { foo(x=await y){} }',
     'class A {...',
     '(class A {* set [foo](x){}})',
@@ -1407,9 +1407,9 @@ describe('Expressions - Class', () => {
     'class A extends B { *get() {} }',
     'class a { async *get(){} }',
     'class A { [1n](){} }',
-    { code: 'class A { static }', options: { next: true, module: true } },
-    { code: 'class A { static; }', options: { next: true, module: true } },
-    { code: 'class A { static = 1 }', options: { next: true, module: true } },
+    { code: 'class A { static }', options: { next: true, sourceType: 'module' } },
+    { code: 'class A { static; }', options: { next: true, sourceType: 'module' } },
+    { code: 'class A { static = 1 }', options: { next: true, sourceType: 'module' } },
     outdent`
       new class {
         start() {

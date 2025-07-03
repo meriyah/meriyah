@@ -173,7 +173,7 @@ describe('Miscellaneous - JSX', () => {
           <div>Hello, World</div>
         )
       `,
-      options: { jsx: true, module: true },
+      options: { jsx: true, sourceType: 'module' },
     },
     {
       code: outdent`
@@ -187,7 +187,7 @@ describe('Miscellaneous - JSX', () => {
           </BasicChild>
         </Basic>
       `,
-      options: { jsx: true, module: true },
+      options: { jsx: true, sourceType: 'module' },
     },
     {
       code: outdent`
