@@ -2,13 +2,15 @@ import { type AssignmentKind, type DestructuringKind, Flags, type Location } fro
 import { Errors, ParseError } from '../errors';
 import type * as ESTree from '../estree';
 import { convertTokenType } from '../lexer';
-import { type NormalizedOptions, type OnComment, type OnToken } from '../options';
+import { type NormalizedOptions, normalizeOptions, type OnComment, type OnToken, type Options } from '../options';
 import { Token } from '../token';
 import { PrivateScope } from './private-scope';
 import { Scope, type ScopeKind } from './scope';
 
 export class Parser {
   private lastOnToken: [string, number, number, ESTree.SourceLocation] | null = null;
+
+  options: NormalizedOptions;
 
   token = Token.EOF;
   /**
@@ -121,10 +123,11 @@ export class Parser {
      * The source code to be parsed
      */
     public readonly source: string,
-    public readonly options: NormalizedOptions = {},
+    rawOptions: Options = {},
   ) {
     this.end = source.length;
     this.currentChar = source.charCodeAt(0);
+    this.options = normalizeOptions(rawOptions);
   }
 
   /**

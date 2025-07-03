@@ -43,7 +43,7 @@ These features need to be enabled with the `next` option.
 ## RegExp support
 
 Meriyah doesn't parse RegExp internal syntax, ESTree spec didn't require internal structure of RegExp. Meriyah
-does use JavaScript runtime to validate the RegExp literal. That means Meriyah's RegExp support is only as good
+does use JavaScript runtime to validate the RegExp literal by default. That means Meriyah's RegExp support is only as good
 as JavaScript runtime's RegExp support.
 
 As of May 2025, some latest RegExp features requires Node.js>=24.
@@ -52,6 +52,8 @@ As of May 2025, some latest RegExp features requires Node.js>=24.
 - [RegExp duplicate named groups](https://github.com/tc39/proposal-duplicate-named-capturing-groups)
 
 In addition, RegExp v flag (unicodeSets) only works on Nodejs v20+ and latest browsers.
+
+Use `validateRegularExpressionWithRuntime: false` if you want consistent behavior in different environments or don't need errors for invalid RegExp.
 
 ## Installation
 
@@ -119,6 +121,9 @@ The available options:
 
   // Enable React JSX parsing
   jsx: false;
+
+  // Validate regular expressions with runtime, default `true`
+  validateRegularExpressionWithRuntime: true;
 }
 ```
 

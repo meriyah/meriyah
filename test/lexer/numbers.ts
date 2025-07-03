@@ -4,13 +4,10 @@ import { Context } from '../../src/common';
 import { scanSingleToken } from '../../src/lexer/scan';
 import { Parser } from '../../src/parser/parser';
 import { Token } from '../../src/token';
-import { type NormalizedOptions } from './../../src/options';
+import { type Options } from './../../src/options';
 
 describe('Lexer - Numberic literals', () => {
-  const tokens: (
-    | [Context, Token, string, number | bigint]
-    | [Context, Token, string, number | bigint, NormalizedOptions]
-  )[] = [
+  const tokens: ([Context, Token, string, number | bigint] | [Context, Token, string, number | bigint, Options])[] = [
     // Numeric literals
     [Context.None, Token.NumericLiteral, '0', 0],
     [Context.None, Token.NumericLiteral, '1', 1],
@@ -243,7 +240,7 @@ describe('Lexer - Numberic literals', () => {
     });
   }
 
-  function fail(name: string, source: string, context: Context, options: NormalizedOptions = {}) {
+  function fail(name: string, source: string, context: Context, options: Options = {}) {
     it(name, () => {
       const parser = new Parser(source, options);
       t.throws(() => scanSingleToken(parser, context, 0));
