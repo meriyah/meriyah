@@ -63,18 +63,18 @@ export interface Options {
   // Allows token extraction. Accepts either a callback function or an array
   onToken?: Token[] | OnToken;
   // Throw errors for invalid regexps
-  validateRegularExpressionWithRuntime?: boolean;
+  validateRegex?: boolean;
 }
 
-export type NormalizedOptions = Omit<Options, 'validateRegularExpressionWithRuntime' | 'onComment' | 'onToken'> & {
-  validateRegularExpressionWithRuntime: boolean;
+export type NormalizedOptions = Omit<Options, 'validateRegex' | 'onComment' | 'onToken'> & {
+  validateRegex: boolean;
   onComment?: OnComment;
   onToken?: OnToken;
 };
 
 export function normalizeOptions(rawOptions: Options): NormalizedOptions {
   const options = {
-    validateRegularExpressionWithRuntime: true,
+    validateRegex: true,
     ...rawOptions,
   } as NormalizedOptions;
 

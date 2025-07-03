@@ -159,7 +159,7 @@ function validate(parser: Parser, pattern: string, flags: string): RegExp | null
   } catch {
     // Use null as tokenValue according to ESTree spec
     // https://github.com/estree/estree/blob/a27003adf4fd7bfad44de9cef372a2eacd527b1c/es5.md#regexpliteral
-    if (!parser.options.validateRegularExpressionWithRuntime) {
+    if (!parser.options.validateRegex) {
       return null;
     }
 

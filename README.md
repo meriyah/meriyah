@@ -51,7 +51,7 @@ As of May 2025, some latest RegExp features requires Node.js>=24.
 - [RegExp modifiers](https://github.com/tc39/proposal-regexp-modifiers)
 - [RegExp duplicate named groups](https://github.com/tc39/proposal-duplicate-named-capturing-groups)
 
-Use `validateRegularExpressionWithRuntime: false` if you want consistent behavior in different environments or don't need errors for invalid RegExp.
+Use `validateRegex: false` if you want consistent behavior in different environments or don't need errors for invalid RegExp.
 
 ## Installation
 
@@ -121,7 +121,7 @@ The available options:
   jsx: boolean;
 
   // Validate regular expressions with runtime, default `true`
-  validateRegularExpressionWithRuntime: boolean;
+  validateRegex: boolean;
 }
 ```
 
