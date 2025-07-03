@@ -1,21 +1,21 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Expressions - Async Generator > Expressions - Async Generator (pass) > "use strict";
-    async function *g() {
-    return {
-         ...(function() {
-            var yield;
-         }()),
-      }
-  }; 1`] = `
-"SyntaxError [5:16-5:21]: Unexpected strict mode reserved word
-  3 |     return {
-  4 |          ...(function() {
-> 5 |             var yield;
-    |                 ^^^^^ Unexpected strict mode reserved word
-  6 |          }()),
-  7 |       }
-  8 |   };"
+  async function *g() {
+  return {
+       ...(function() {
+          var yield;
+       }()),
+    }
+}; 1`] = `
+"SyntaxError [5:14-5:19]: Unexpected strict mode reserved word
+  3 |   return {
+  4 |        ...(function() {
+> 5 |           var yield;
+    |               ^^^^^ Unexpected strict mode reserved word
+  6 |        }()),
+  7 |     }
+  8 | };"
 `;
 
 exports[`Expressions - Async Generator > Expressions - Async Generator (pass) > (async function *() { var await; }) 1`] = `

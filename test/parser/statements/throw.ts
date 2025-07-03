@@ -1,10 +1,13 @@
+import { outdent } from 'outdent';
 import { describe } from 'vitest';
 import { fail, pass } from '../../test-utils';
 
 describe('Statements - Throw', () => {
   fail('Statements - Throw', [
-    `throw
-    x;`,
+    outdent`
+      throw
+      x;
+    `,
   ]);
 
   pass('Statements - Throw (pass)', [

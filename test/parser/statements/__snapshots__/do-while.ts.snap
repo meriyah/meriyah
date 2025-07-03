@@ -1,15 +1,15 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Statements - Do while > Statements - Do while (fail) > do
-    a
-    b
-  while(c); 1`] = `
-"SyntaxError [3:4-3:5]: Expected 'while'
+  a
+  b
+while(c); 1`] = `
+"SyntaxError [3:2-3:3]: Expected 'while'
   1 | do
-  2 |     a
-> 3 |     b
-    |     ^ Expected 'while'
-  4 |   while(c);"
+  2 |   a
+> 3 |   b
+    |   ^ Expected 'while'
+  4 | while(c);"
 `;
 
 exports[`Statements - Do while > Statements - Do while (fail) > do ()=>x while(c) 1`] = `
@@ -73,13 +73,13 @@ exports[`Statements - Do while > Statements - Do while (fail) > do let x = 1; wh
 `;
 
 exports[`Statements - Do while > Statements - Do while (fail) > do throw function (v, h) {
-      "use strict"
-    } while (("")) 1`] = `
-"SyntaxError [3:6-3:11]: Unexpected token: 'while'
+  "use strict"
+} while (("")) 1`] = `
+"SyntaxError [3:2-3:7]: Unexpected token: 'while'
   1 | do throw function (v, h) {
-  2 |       "use strict"
-> 3 |     } while ((""))
-    |       ^^^^^ Unexpected token: 'while'"
+  2 |   "use strict"
+> 3 | } while ((""))
+    |   ^^^^^ Unexpected token: 'while'"
 `;
 
 exports[`Statements - Do while > Statements - Do while (fail) > do x, y while (z) 1`] = `

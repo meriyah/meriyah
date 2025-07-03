@@ -865,8 +865,10 @@ describe('Expressions - Arrow', () => {
     '([a,b])=>0;',
     '([a]) => [0];',
     '({a,b=b,a:c,[a]:[d]})=>0;',
-    `(() => {}) || true;
-    (() => {}) ? a : b;`,
+    outdent`
+      (() => {}) || true;
+      (() => {}) ? a : b;
+    `,
     '(() => {}) + 2',
     'new (() => {});',
     'bar ? ( (x) => x ) : baz;',
@@ -1014,12 +1016,14 @@ describe('Expressions - Arrow', () => {
     'factorial = x =>  x < 1 ? 1 : x * factorial(x-1)',
     'a => (a + 1)',
     'sum = ( ...nums ) => nums.reduce( ( t, n ) => t + n, 0 );',
-    `'use strict';
-     setTimeout( () => console.log( this ) );
-      function foo () {
+    outdent`
       'use strict';
       setTimeout( () => console.log( this ) );
-    }`,
+        function foo () {
+        'use strict';
+        setTimeout( () => console.log( this ) );
+      }
+    `,
     'new (() => {});',
     'bar ? ( (x) => x ) : baz;',
     '(x = 9) => {}',
@@ -1061,12 +1065,14 @@ describe('Expressions - Arrow', () => {
     '(a, b=(c)=>{}) => {}',
     'var double = (x) => x * 2',
     'let Y = F => (x=>F(y=>(x(x))(y)))(x=>F(y=>(x(x))(y)))',
-    `'use strict';
-    setTimeout( () => console.log( this ) );
-     function foo () {
-     'use strict';
-     setTimeout( () => console.log( this ) );
-   }`,
+    outdent`
+      'use strict';
+        setTimeout( () => console.log( this ) );
+        function foo () {
+        'use strict';
+        setTimeout( () => console.log( this ) );
+      }
+    `,
     'var x = a =>{}',
     'async foo => bar',
     '(async foo => bar)',
@@ -1078,42 +1084,54 @@ describe('Expressions - Arrow', () => {
     'async () => {async () => {async () => {async () => {async () => {}}}}}',
     'async => {}',
     '({ async foo(a, c, b){} });',
-    `async => {}
-   async => {}`,
+    outdent`
+      async => {}
+      async => {}
+    `,
     '() => () => () => {}',
     '() => () => ({a = b} = c) => b * c',
     '() => () => () => { async(a-vb) }',
-    `() => {}
-    async()
-    async => {}
-    async => {}
-    a => {}
-    a => {}`,
+    outdent`
+      () => {}
+      async()
+      async => {}
+      async => {}
+      a => {}
+      a => {}
+    `,
     '() => {}',
-    `() => {}
-    async()
-    async => {}
-    async => {}
-    a => {}
-    a => {}`,
+    outdent`
+      () => {}
+      async()
+      async => {}
+      async => {}
+      a => {}
+      a => {}
+    `,
     '() => {}',
-    `() => {}
-   async()
-   async => {}
-   async => {}
-   a => {}
-   a => {}`,
+    outdent`
+      () => {}
+      async()
+      async => {}
+      async => {}
+      a => {}
+      a => {}
+    `,
     '() => {}',
-    `() => {}
-  async()
-  async => {}
-  async => {}
-  a => {}
-  a => {}`,
+    outdent`
+      () => {}
+      async()
+      async => {}
+      async => {}
+      a => {}
+      a => {}
+    `,
     '(async => async)',
-    `() => {}
-  a()
-  async()`,
+    outdent`
+      () => {}
+      a()
+      async()
+    `,
     '(z = [...x.y]) => z',
     'a => a => a => async a => a',
     'a => a => a => a => a => a => a => a => a => a => a => a => a => a => a => async a => a',

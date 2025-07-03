@@ -207,13 +207,13 @@ exports[`Statements - Try > Statements - Try (pass) > function __f_3() { try { _
 `;
 
 exports[`Statements - Try > Statements - Try (pass) > try {
-      var x = 2;
-      probeTry = function() { return x; };
-      throw [];
-    } catch ([_ = (eval('var x = 3;'), probeParam = function() { return x; })]) {
-      var x = 4;
-      probeBlock = function() { return x; };
-    } 1`] = `
+  var x = 2;
+  probeTry = function() { return x; };
+  throw [];
+} catch ([_ = (eval('var x = 3;'), probeParam = function() { return x; })]) {
+  var x = 4;
+  probeBlock = function() { return x; };
+} 1`] = `
 {
   "body": [
     {

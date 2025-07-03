@@ -13,37 +13,12 @@ exports[`Statements - Break > Declarations - Break > () => {    if (x) break   }
 `;
 
 exports[`Statements - Break > Declarations - Break > (function(){
-      OuterLabel : var x=0, y=0;
-      LABEL_DO_LOOP : do {
-          LABEL_IN : x++;
-          if(x===10)
-              return;
-          break LABEL_ANOTHER_LOOP;
-          LABEL_IN_2 : y++;
-          function IN_DO_FUNC(){}
-      } while(0);
-      LABEL_ANOTHER_LOOP : do {
-          ;
-      } while(0);
-      function OUT_FUNC(){}
-  })(); 1`] = `
-"SyntaxError [7:34-7:35]: Undefined label 'LABEL_ANOTHER_LOOP'
-   5 |           if(x===10)
-   6 |               return;
->  7 |           break LABEL_ANOTHER_LOOP;
-     |                                   ^ Undefined label 'LABEL_ANOTHER_LOOP'
-   8 |           LABEL_IN_2 : y++;
-   9 |           function IN_DO_FUNC(){}
-  10 |       } while(0);"
-`;
-
-exports[`Statements - Break > Declarations - Break > (function(){
     OuterLabel : var x=0, y=0;
     LABEL_DO_LOOP : do {
         LABEL_IN : x++;
         if(x===10)
             return;
-        break IN_DO_FUNC;
+        break LABEL_ANOTHER_LOOP;
         LABEL_IN_2 : y++;
         function IN_DO_FUNC(){}
     } while(0);
@@ -51,65 +26,90 @@ exports[`Statements - Break > Declarations - Break > (function(){
         ;
     } while(0);
     function OUT_FUNC(){}
-  })(); 1`] = `
-"SyntaxError [7:24-7:25]: Undefined label 'IN_DO_FUNC'
+})(); 1`] = `
+"SyntaxError [7:32-7:33]: Undefined label 'LABEL_ANOTHER_LOOP'
    5 |         if(x===10)
    6 |             return;
->  7 |         break IN_DO_FUNC;
-     |                         ^ Undefined label 'IN_DO_FUNC'
+>  7 |         break LABEL_ANOTHER_LOOP;
+     |                                 ^ Undefined label 'LABEL_ANOTHER_LOOP'
    8 |         LABEL_IN_2 : y++;
    9 |         function IN_DO_FUNC(){}
   10 |     } while(0);"
 `;
 
 exports[`Statements - Break > Declarations - Break > (function(){
-    OuterLabel : var x=0, y=0;
-    LABEL_DO_LOOP : do {
-        LABEL_IN : x++;
-        if(x===10)
-            return;
-        break LABEL_IN;
-        LABEL_IN_2 : y++;
-        function IN_DO_FUNC(){}
-    } while(0);
-    LABEL_ANOTHER_LOOP : do {
-        ;
-    } while(0);
-    function OUT_FUNC(){}
-  })(); 1`] = `
-"SyntaxError [7:22-7:23]: Undefined label 'LABEL_IN'
-   5 |         if(x===10)
-   6 |             return;
->  7 |         break LABEL_IN;
-     |                       ^ Undefined label 'LABEL_IN'
-   8 |         LABEL_IN_2 : y++;
-   9 |         function IN_DO_FUNC(){}
-  10 |     } while(0);"
+  OuterLabel : var x=0, y=0;
+  LABEL_DO_LOOP : do {
+      LABEL_IN : x++;
+      if(x===10)
+          return;
+      break IN_DO_FUNC;
+      LABEL_IN_2 : y++;
+      function IN_DO_FUNC(){}
+  } while(0);
+  LABEL_ANOTHER_LOOP : do {
+      ;
+  } while(0);
+  function OUT_FUNC(){}
+})(); 1`] = `
+"SyntaxError [7:22-7:23]: Undefined label 'IN_DO_FUNC'
+   5 |       if(x===10)
+   6 |           return;
+>  7 |       break IN_DO_FUNC;
+     |                       ^ Undefined label 'IN_DO_FUNC'
+   8 |       LABEL_IN_2 : y++;
+   9 |       function IN_DO_FUNC(){}
+  10 |   } while(0);"
 `;
 
 exports[`Statements - Break > Declarations - Break > (function(){
-    OuterLabel : var x=0, y=0;
-    LABEL_DO_LOOP : do {
-        LABEL_IN : x++;
-        if(x===10)
-            return;
-        break LABEL_IN;
-        LABEL_IN_2 : y++;
-        function IN_DO_FUNC(){}
-    } while(0);
-    LABEL_ANOTHER_LOOP : do {
-        ;
-    } while(0);
-    function OUT_FUNC(){}
-  })(); 2`] = `
-"SyntaxError [7:22-7:23]: Undefined label 'LABEL_IN'
-   5 |         if(x===10)
-   6 |             return;
->  7 |         break LABEL_IN;
-     |                       ^ Undefined label 'LABEL_IN'
-   8 |         LABEL_IN_2 : y++;
-   9 |         function IN_DO_FUNC(){}
-  10 |     } while(0);"
+  OuterLabel : var x=0, y=0;
+  LABEL_DO_LOOP : do {
+      LABEL_IN : x++;
+      if(x===10)
+          return;
+      break LABEL_IN;
+      LABEL_IN_2 : y++;
+      function IN_DO_FUNC(){}
+  } while(0);
+  LABEL_ANOTHER_LOOP : do {
+      ;
+  } while(0);
+  function OUT_FUNC(){}
+})(); 1`] = `
+"SyntaxError [7:20-7:21]: Undefined label 'LABEL_IN'
+   5 |       if(x===10)
+   6 |           return;
+>  7 |       break LABEL_IN;
+     |                     ^ Undefined label 'LABEL_IN'
+   8 |       LABEL_IN_2 : y++;
+   9 |       function IN_DO_FUNC(){}
+  10 |   } while(0);"
+`;
+
+exports[`Statements - Break > Declarations - Break > (function(){
+  OuterLabel : var x=0, y=0;
+  LABEL_DO_LOOP : do {
+      LABEL_IN : x++;
+      if(x===10)
+          return;
+      break LABEL_IN;
+      LABEL_IN_2 : y++;
+      function IN_DO_FUNC(){}
+  } while(0);
+  LABEL_ANOTHER_LOOP : do {
+      ;
+  } while(0);
+  function OUT_FUNC(){}
+})(); 2`] = `
+"SyntaxError [7:20-7:21]: Undefined label 'LABEL_IN'
+   5 |       if(x===10)
+   6 |           return;
+>  7 |       break LABEL_IN;
+     |                     ^ Undefined label 'LABEL_IN'
+   8 |       LABEL_IN_2 : y++;
+   9 |       function IN_DO_FUNC(){}
+  10 |   } while(0);"
 `;
 
 exports[`Statements - Break > Declarations - Break > {  break foo; var y=2; } 1`] = `
@@ -131,17 +131,17 @@ exports[`Statements - Break > Declarations - Break > { break } 2`] = `
 `;
 
 exports[`Statements - Break > Declarations - Break > LABEL1 : do {
-      x++;
-      (function(){break LABEL1;})();
-      y++;
-  } while(0); 1`] = `
-"SyntaxError [3:30-3:31]: Undefined label 'LABEL1'
+    x++;
+    (function(){break LABEL1;})();
+    y++;
+} while(0); 1`] = `
+"SyntaxError [3:28-3:29]: Undefined label 'LABEL1'
   1 | LABEL1 : do {
-  2 |       x++;
-> 3 |       (function(){break LABEL1;})();
-    |                               ^ Undefined label 'LABEL1'
-  4 |       y++;
-  5 |   } while(0);"
+  2 |     x++;
+> 3 |     (function(){break LABEL1;})();
+    |                             ^ Undefined label 'LABEL1'
+  4 |     y++;
+  5 | } while(0);"
 `;
 
 exports[`Statements - Break > Declarations - Break > break
@@ -291,28 +291,28 @@ exports[`Statements - Break > Declarations - Break > switch (x){ case z:    if (
 `;
 
 exports[`Statements - Break > Declarations - Break > var x=0,y=0;
-  try{
-    LABEL1 : do {
-      x++;
-      throw "gonna leave it";
-      y++;
-    } while(0);
-    $ERROR('#1: throw "gonna leave it" lead to throwing exception');
-  } catch(e){
-    break;
-    LABEL2 : do {
-      x++;
-      y++;
-    } while(0);
-  } 1`] = `
-"SyntaxError [10:9-10:10]: Illegal break statement
-   8 |     $ERROR('#1: throw "gonna leave it" lead to throwing exception');
-   9 |   } catch(e){
-> 10 |     break;
-     |          ^ Illegal break statement
-  11 |     LABEL2 : do {
-  12 |       x++;
-  13 |       y++;"
+try{
+  LABEL1 : do {
+    x++;
+    throw "gonna leave it";
+    y++;
+  } while(0);
+  $ERROR('#1: throw "gonna leave it" lead to throwing exception');
+} catch(e){
+  break;
+  LABEL2 : do {
+    x++;
+    y++;
+  } while(0);
+} 1`] = `
+"SyntaxError [10:7-10:8]: Illegal break statement
+   8 |   $ERROR('#1: throw "gonna leave it" lead to throwing exception');
+   9 | } catch(e){
+> 10 |   break;
+     |        ^ Illegal break statement
+  11 |   LABEL2 : do {
+  12 |     x++;
+  13 |     y++;"
 `;
 
 exports[`Statements - Break > Declarations - Break > x: foo; break x; 1`] = `
@@ -353,7 +353,7 @@ x 1`] = `
 `;
 
 exports[`Statements - Break > Statements - Break (pass) > a: if (true) b: { break a; break b; }
-      else b: { break a; break b; } 1`] = `
+else b: { break a; break b; } 1`] = `
 {
   "body": [
     {

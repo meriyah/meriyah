@@ -102,9 +102,9 @@ exports[`Statements - Return > Statements - Return (pass) > (a, b) => {return} 1
 `;
 
 exports[`Statements - Return > Statements - Return (pass) > //
-      function a() {
-          return;
-      }; 1`] = `
+function a() {
+    return;
+}; 1`] = `
 {
   "body": [
     {

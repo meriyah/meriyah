@@ -1,3 +1,4 @@
+import { outdent } from 'outdent';
 import { describe } from 'vitest';
 import { fail, pass } from '../../test-utils';
 
@@ -18,13 +19,15 @@ describe('Statements - None', () => {
     'if (true) const x = null;',
     'if();',
     'if (1) let x = 10;',
-    `if({1})
-    {
-      ;
-    }else
-    {
-      ;
-    }`,
+    outdent`
+      if({1})
+      {
+        ;
+      }else
+      {
+        ;
+      }
+    `,
     'if (a) function(){}',
     'if (a) class A {}',
     'if (true) function* g() {  } else function* _g() {}',

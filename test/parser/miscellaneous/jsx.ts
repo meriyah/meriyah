@@ -12,12 +12,14 @@ describe('Miscellaneous - JSX', () => {
     '{foo && <Something foo={foo} /> }',
     '<Component:Test />;',
     '<Component.Test />;',
-    `<></>;
+    outdent`
+      <></>;
 
-    <
-    >
-      text
-    </>;`,
+      <
+      >
+        text
+      </>;
+    `,
     '<div>{this.props.children}</div>;',
     '<a>{}</a>;',
     '<p>{1/2}</p>',

@@ -1,3 +1,4 @@
+import { outdent } from 'outdent';
 import { describe } from 'vitest';
 import { fail, pass } from '../../test-utils';
 
@@ -50,12 +51,15 @@ describe('Statements - Continue', () => {
     'oop1: while (true) { loop2: function a() { continue loop2; } }',
     'oop1: while (true) { loop2: function a() { continue loop2; } }',
     'oop1: while (true) { loop2: function a() { continue loop2; } }',
-    `LABEL1 : do {
+    outdent`
+      LABEL1 : do {
       x++;
       (function(){continue LABEL1;})();
       y++;
-      } while(0);`,
-    `try{
+      } while(0);
+    `,
+    outdent`
+      try{
       LABEL1 : do {
         x++;
         throw "gonna leave it";
@@ -68,8 +72,10 @@ describe('Statements - Continue', () => {
         x++;
         y++;
       } while(0);
-      };`,
-    `try{
+      };
+    `,
+    outdent`
+      try{
       LABEL1 : do {
         x++;
         throw "gonna leave it";
@@ -82,7 +88,8 @@ describe('Statements - Continue', () => {
         x++;
         y++;
       } while(0);
-      };`,
+      };
+    `,
     'switch (x){ case z:    continue   }',
     'switch (x){ case z:    { continue }  }',
     'switch (x){ case z:    if (x) continue   }',

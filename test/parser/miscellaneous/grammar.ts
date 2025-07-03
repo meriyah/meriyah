@@ -1,4 +1,5 @@
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
 
@@ -1640,14 +1641,16 @@ describe('Miscellaneous - Cover grammar', () => {
     'try {throw {foo: 1, bar: 2}} catch({foo}) {}',
     'try {throw [1, 2, 3]} catch([x]) {}',
     '[[[[[[[[[[[[[[[[[[[[{a=b[0]}]]]]]]]]]]]]]]]]]]]]=0;',
-    `({
-    a,
-    a:a,
-    a:a=a,
-    [a]:{a},
-    a:some_call()[a],
-    a:this.a
-} = 0);`,
+    outdent`
+      ({
+          a,
+          a:a,
+          a:a=a,
+          [a]:{a},
+          a:some_call()[a],
+          a:this.a
+      } = 0);
+    `,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -2398,11 +2401,13 @@ describe('Miscellaneous - Cover grammar', () => {
     'let {a,} = 0',
     'try { } catch ({}) {}',
     '({yield} = 0);',
-    `var x = {
-      baz(a = 10) {},
-      foo(a, b = 10) {},
-      toast(a, b = 10, c) {}
-    };`,
+    outdent`
+      var x = {
+        baz(a = 10) {},
+        foo(a, b = 10) {},
+        toast(a, b = 10, c) {}
+      };
+    `,
     'function f(a = 1) {} ',
     'x = function(y = 1) {} ',
     'x = { f: function(a=1) {} } ',
@@ -2643,27 +2648,33 @@ describe('Miscellaneous - Cover grammar', () => {
     'var [{x : [{y:{z = 1}, z1 = 2}] }, {x2 = 3}, {x3 : {y3:[{z3 = 4}]}} ] = [{x:[{y:{}}]}, {}, {x3:{y3:[{}]}}];',
     '[...{x = 1}] = [{}]',
     'let a, r1; ({a:a1 = r1} = {})',
-    ` let {
-      x:{
-          y:{
-              z:{
-                  k:k2 = 31
-                } = { k:21 }
-            } = { z:{ k:20 } }
-        } = { y: { z:{} } }
-    } = { x:{ y:{ z:{} } } };`,
-    `  ({
-      x:{
-          y:{
-              z:{
-                  k:k2 = 31
-                } = {k:21}
-            } = {z:{k:20}}
-         } = {y:{z:{}}}
-  } = {x:{y:{z:undefined}}});`,
-    `let {1:x1, 0:y1} = [11, 22];
-   let {0:x2} = {"0":33};
-   let {function:x3} = {function:44};`,
+    outdent`
+      let {
+        x:{
+            y:{
+                z:{
+                    k:k2 = 31
+                  } = { k:21 }
+              } = { z:{ k:20 } }
+          } = { y: { z:{} } }
+      } = { x:{ y:{ z:{} } } };
+    `,
+    outdent`
+      ({
+          x:{
+              y:{
+                  z:{
+                      k:k2 = 31
+                    } = {k:21}
+                } = {z:{k:20}}
+             } = {y:{z:{}}}
+      } = {x:{y:{z:undefined}}});
+    `,
+    outdent`
+      let {1:x1, 0:y1} = [11, 22];
+      let {0:x2} = {"0":33};
+      let {function:x3} = {function:44};
+    `,
     '({[key]:x2} = {x:20});',
     '({[`abc${"def"}`]:x2} = {abcdef:30});',
     '({x:a.x} = {x:10});',
@@ -2982,17 +2993,19 @@ describe('Miscellaneous - Cover grammar', () => {
     'function f(){ ++a; ++a()[b]; }',
     'var obj = { a: { b: ext.b, c: ext["c"], d: { set v(val) { ext.d = val; } }.v } = { b: "b", c: "c", d: "d" } };',
     'var obj = [...[ ext.b, ext["c"], { set v(val) { ext.d = val; } }.v ] = ["b", "c", "d" ]  ];',
-    `({
-      obj: {
-        x: result.a = 10,
-        [computePropertyName("y")]: result.b = false,
-      } = {}
-    } = { obj: {
-      get x() { return loadValue(".temp.obj.x", undefined); },
-      set x(value) { assertUnreachable(); },
-      get y() { return loadValue(".temp.obj.y", undefined); },
-      set y(value) { assertUnreachable(); }
-    }});`,
+    outdent`
+      ({
+        obj: {
+          x: result.a = 10,
+          [computePropertyName("y")]: result.b = false,
+        } = {}
+      } = { obj: {
+        get x() { return loadValue(".temp.obj.x", undefined); },
+        set x(value) { assertUnreachable(); },
+        get y() { return loadValue(".temp.obj.y", undefined); },
+        set y(value) { assertUnreachable(); }
+      }});
+    `,
     '[ a = (initialized = true, initializer) ] = value',
     '[ obj.a = (initialized2 = true, initializer) ] = value',
     '[ x = "x" in {} ] = value',

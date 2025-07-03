@@ -121,18 +121,18 @@ exports[`Statements - None > Statements - If (fail) > if(); 1`] = `
 `;
 
 exports[`Statements - None > Statements - If (fail) > if({1})
-    {
-      ;
-    }else
-    {
-      ;
-    } 1`] = `
+{
+  ;
+}else
+{
+  ;
+} 1`] = `
 "SyntaxError [1:5-1:6]: Object literal keys that are strings or numbers must be a method or have a colon
 > 1 | if({1})
     |      ^ Object literal keys that are strings or numbers must be a method or have a colon
-  2 |     {
-  3 |       ;
-  4 |     }else"
+  2 | {
+  3 |   ;
+  4 | }else"
 `;
 
 exports[`Statements - None > Statements - If (pass) > function f() { if (1) { return () => { while (true) hi(); } } } 1`] = `

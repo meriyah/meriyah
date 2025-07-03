@@ -127,14 +127,14 @@ exports[`Statements - While > Statements - While (pass) > a: while (true) contin
 `;
 
 exports[`Statements - While > Statements - While (pass) > var i = 0;
-      woohoo:{
-        while(true){
-          i++;
-          if ( i == 10 ) {
-            break woohoo;
-          }
-        }
-      } 1`] = `
+woohoo:{
+  while(true){
+    i++;
+    if ( i == 10 ) {
+      break woohoo;
+    }
+  }
+} 1`] = `
 {
   "body": [
     {
@@ -252,7 +252,35 @@ exports[`Statements - While > Statements - While (pass) > while (1) /foo/ 1`] = 
 `;
 
 exports[`Statements - While > Statements - While (pass) > while (false) let // ASI
-      x = 1; 1`] = `
+{} 1`] = `
+{
+  "body": [
+    {
+      "body": {
+        "expression": {
+          "name": "let",
+          "type": "Identifier",
+        },
+        "type": "ExpressionStatement",
+      },
+      "test": {
+        "type": "Literal",
+        "value": false,
+      },
+      "type": "WhileStatement",
+    },
+    {
+      "body": [],
+      "type": "BlockStatement",
+    },
+  ],
+  "sourceType": "script",
+  "type": "Program",
+}
+`;
+
+exports[`Statements - While > Statements - While (pass) > while (false) let // ASI
+x = 1; 1`] = `
 {
   "body": [
     {
@@ -283,34 +311,6 @@ exports[`Statements - While > Statements - While (pass) > while (false) let // A
         "type": "AssignmentExpression",
       },
       "type": "ExpressionStatement",
-    },
-  ],
-  "sourceType": "script",
-  "type": "Program",
-}
-`;
-
-exports[`Statements - While > Statements - While (pass) > while (false) let // ASI
-  {} 1`] = `
-{
-  "body": [
-    {
-      "body": {
-        "expression": {
-          "name": "let",
-          "type": "Identifier",
-        },
-        "type": "ExpressionStatement",
-      },
-      "test": {
-        "type": "Literal",
-        "value": false,
-      },
-      "type": "WhileStatement",
-    },
-    {
-      "body": [],
-      "type": "BlockStatement",
     },
   ],
   "sourceType": "script",

@@ -5944,9 +5944,8 @@ exports[`Statements - For > Statements - For (pass) > function *f(){ for (yield 
 `;
 
 exports[`Statements - For > Statements - For (pass) > let = 4;
-      for ( [let][0]; ; )
-        break;
-       1`] = `
+for ( [let][0]; ; )
+  break; 1`] = `
 {
   "body": [
     {

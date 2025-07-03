@@ -169,12 +169,14 @@ describe('Expressions - Call', () => {
     'foo(...(function*() { })())',
     'foo(...[1, 2, 3], 4)',
     'foo(...new Set([1, 2, 3, 4]))',
-    `foo(...(function*() {
-      yield 1;
-      yield 2;
-      yield 3;
-      yield 4;
-    })())`,
+    outdent`
+      foo(...(function*() {
+        yield 1;
+        yield 2;
+        yield 3;
+        yield 4;
+      })())
+    `,
     'foo(0, ...[1], 2, 3, ...[4, 5], 6, 7, 8, ...[9])',
     'foo(0, ...[1], 2, 3, ...[4, 5], 6, 7, 8)',
     'foo.bar(...[1, 2, 3, 4, 5, 6])',
@@ -204,11 +206,13 @@ describe('Expressions - Call', () => {
     '(async(a, ...b = y))',
     '(async(...b = y, d))',
     '(async(...b = y, ...d))',
-    `foo();
-     foo("foo");
-     foo("foo", "bar");
-     foo(bar());
-     foo(bar("test"));`,
+    outdent`
+      foo();
+      foo("foo");
+      foo("foo", "bar");
+      foo(bar());
+      foo(bar("test"));
+    `,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {

@@ -1,4 +1,5 @@
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
 import { fail, pass } from '../../test-utils';
@@ -9,21 +10,25 @@ describe('Statements - For', () => {
     'for (const [,foo] = arr;;);',
     'for (let [[x] = [1]] = []; i < 1; i++) {}',
     'for (var {j}=x; j<10; ++j) { const foo = j }',
-    `        for ("boolean" == typeof a && (l = a, a = arguments[s] ||
-          {}, s++), "object" == typeof a ||
-          g(a) || (a = {}), s === u && (a = this, s--); s < u; s++)
-  if (null != (e = arguments[s]))
-      for (t in e) n = a[t], a !== (r = e[t]) && (l && r && (w.isPlainObject(r) ||
-      (i = Array.isArray(r))) ? (i ? (i = !1, o = n && Array.isArray(n)
-      ? n : [])
-      : o = n && w.isPlainObject(n)
-      ? n : {}, a[t] = w.extend(l, o, r))
-      : void 0 !== r && (a[t] = r));`,
+    outdent`
+      for ("boolean" == typeof a && (l = a, a = arguments[s] ||
+              {}, s++), "object" == typeof a ||
+              g(a) || (a = {}), s === u && (a = this, s--); s < u; s++)
+      if (null != (e = arguments[s]))
+          for (t in e) n = a[t], a !== (r = e[t]) && (l && r && (w.isPlainObject(r) ||
+          (i = Array.isArray(r))) ? (i ? (i = !1, o = n && Array.isArray(n)
+          ? n : [])
+          : o = n && w.isPlainObject(n)
+          ? n : {}, a[t] = w.extend(l, o, r))
+          : void 0 !== r && (a[t] = r));
+    `,
     'for (let m in ((yield))) foo; (r = a) => {}',
     'for(x, y;;);',
     'for (const { x, } = { x: 23 }; a < 1; ) {}; for (const { x, } = { x: 23 }; a < 1; ) {};',
-    `for (let [a]=x;;);
-    for (let [a]=x;;);`,
+    outdent`
+      for (let [a]=x;;);
+      for (let [a]=x;;);
+    `,
     'for (let { x, } = { x: 23 }; a < 1; ) {}; for (let { x, } = { x: 23 }; a < 1; ) {};',
     'for ([] in (class {})) for (;;) continue',
     'for (var o in ((false)) ^ 2.7262799875259632e293) do ; while ((((eval))))',
@@ -39,14 +44,18 @@ describe('Statements - For', () => {
     'for (var [[] = function() { a += 1; }()] = [[23]]; b < 1; ) {}',
     "for (let { w = a(), x = b(), y = c(), z = d() } = { w: null, x: 0, y: false, z: '' }; e < 1; ) {}",
     'for (let [,] = a(); b < 1; ) {}',
-    `for (const [ x, ] = y; a < 1; ) {};
-     for (const [ x, ] =  z; a < 1; ) {};`,
-    `for (let i = 0; i < 10; ++i) {
-      console.log(i);
-  }
-  for (let i = 0; i < 10; ++i) {
-      console.log(i);
-  }`,
+    outdent`
+      for (const [ x, ] = y; a < 1; ) {};
+      for (const [ x, ] =  z; a < 1; ) {};
+    `,
+    outdent`
+      for (let i = 0; i < 10; ++i) {
+          console.log(i);
+      }
+      for (let i = 0; i < 10; ++i) {
+          console.log(i);
+      }
+    `,
     'for (x(x in t);;) x',
     'for (((x)=>{}).x of y);',
     'for (const {} = obj; a < 1; ) {}',
@@ -333,75 +342,93 @@ describe('Statements - For', () => {
     'for (const [x = 23] = [undefined]; a < 1; ) {}',
     'for (const [{ x, y, z } = { x: 44, y: 55, z: 66 }] = [{ x: 11, y: 22, z: 33 }]; a < 1; ) {}',
     'for (const [...[,]] = g(); a < 1; ) {}',
-    `var __str, index, index_n;
-    __str="";
-    outer : for(index=0; index<4; index+=1) {
-        nested : for(index_n=0; index_n<=index; index_n++) {
-      if (index*index_n >= 4)break nested;
-      __str+=""+index+index_n;
-        }
-    }`,
-    `__str="";
-    outer : for(index=0; index<4; index+=1) {
-        nested : for(index_n=0; index_n<=index; index_n++) {
-      if (index*index_n >= 4)break outer;
-      __str+=""+index+index_n;
-        }
-    }`,
-    `__str="";
-    outer : for(index=0; index<4; index+=1) {
-        nested : for(index_n=0; index_n<=index; index_n++) {
-      if (index*index_n >= 4)break ;
-      __str+=""+index+index_n;
-        }
-    }`,
-    `let z = 1;
-    let s = 0;
-    for (const x = 1; z < 2; z++) {
-      s += x + z;
-    }`,
-    `var probeBefore = function() { return x; };
-    var probeTest, probeIncr, probeBody;
-    var run = true;
-    for (
-        var _ = eval('var x = 1;');
-        run && (probeTest = function() { return x; });
-        probeIncr = function() { return x; }
-      )
-      probeBody = function() { return x; }, run = false;
-    var x = 2;`,
-    `let x = 'outside';
-    var probeBefore = function() { return x; };
-    var probeDecl, probeTest, probeIncr, probeBody;
-    var run = true;
-    for (
-        let x = 'inside', _ = probeDecl = function() { return x; };
-        run && (probeTest = function() { return x; });
-        probeIncr = function() { return x; }
-      )
-      probeBody = function() { return x; }, run = false;`,
-    `var probeFirst;
-    var probeSecond = null;
-    for (let x = 'first'; probeSecond === null; x = 'second')
-      if (!probeFirst)
-        probeFirst = function() { return x; };
-      else
-        probeSecond = function() { return x; };`,
+    outdent`
+      var __str, index, index_n;
+      __str="";
+      outer : for(index=0; index<4; index+=1) {
+          nested : for(index_n=0; index_n<=index; index_n++) {
+        if (index*index_n >= 4)break nested;
+        __str+=""+index+index_n;
+          }
+      }
+    `,
+    outdent`
+      __str="";
+      outer : for(index=0; index<4; index+=1) {
+          nested : for(index_n=0; index_n<=index; index_n++) {
+        if (index*index_n >= 4)break outer;
+        __str+=""+index+index_n;
+          }
+      }
+    `,
+    outdent`
+      __str="";
+      outer : for(index=0; index<4; index+=1) {
+          nested : for(index_n=0; index_n<=index; index_n++) {
+        if (index*index_n >= 4)break ;
+        __str+=""+index+index_n;
+          }
+      }
+    `,
+    outdent`
+      let z = 1;
+      let s = 0;
+      for (const x = 1; z < 2; z++) {
+        s += x + z;
+      }
+    `,
+    outdent`
+      var probeBefore = function() { return x; };
+      var probeTest, probeIncr, probeBody;
+      var run = true;
+      for (
+          var _ = eval('var x = 1;');
+          run && (probeTest = function() { return x; });
+          probeIncr = function() { return x; }
+        )
+        probeBody = function() { return x; }, run = false;
+      var x = 2;
+    `,
+    outdent`
+      let x = 'outside';
+      var probeBefore = function() { return x; };
+      var probeDecl, probeTest, probeIncr, probeBody;
+      var run = true;
+      for (
+          let x = 'inside', _ = probeDecl = function() { return x; };
+          run && (probeTest = function() { return x; });
+          probeIncr = function() { return x; }
+        )
+        probeBody = function() { return x; }, run = false;
+    `,
+    outdent`
+      var probeFirst;
+      var probeSecond = null;
+      for (let x = 'first'; probeSecond === null; x = 'second')
+        if (!probeFirst)
+          probeFirst = function() { return x; };
+        else
+          probeSecond = function() { return x; };
+    `,
     'for (var {j}=x; j<10; ++j) { const foo = j }',
-    `        for ("boolean" == typeof a && (l = a, a = arguments[s] ||
-             {}, s++), "object" == typeof a ||
-             g(a) || (a = {}), s === u && (a = this, s--); s < u; s++)
-     if (null != (e = arguments[s]))
-         for (t in e) n = a[t], a !== (r = e[t]) && (l && r && (w.isPlainObject(r) ||
-         (i = Array.isArray(r))) ? (i ? (i = !1, o = n && Array.isArray(n)
-         ? n : [])
-         : o = n && w.isPlainObject(n)
-         ? n : {}, a[t] = w.extend(l, o, r))
-         : void 0 !== r && (a[t] = r));`,
+    outdent`
+      for ("boolean" == typeof a && (l = a, a = arguments[s] ||
+              {}, s++), "object" == typeof a ||
+              g(a) || (a = {}), s === u && (a = this, s--); s < u; s++)
+      if (null != (e = arguments[s]))
+          for (t in e) n = a[t], a !== (r = e[t]) && (l && r && (w.isPlainObject(r) ||
+          (i = Array.isArray(r))) ? (i ? (i = !1, o = n && Array.isArray(n)
+          ? n : [])
+          : o = n && w.isPlainObject(n)
+          ? n : {}, a[t] = w.extend(l, o, r))
+          : void 0 !== r && (a[t] = r));
+    `,
     'for ({j}=x; j<10; ++j) { function foo() {return j} }',
-    `let = 1;
+    outdent`
+      let = 1;
       for ( let; ; )
-        break;`,
+        break;
+    `,
     'for (x of [1,2,3]) {}',
     'for(var a;b;c);',
     'for(var a = 0;;) { let a; }',
@@ -463,19 +490,20 @@ describe('Statements - For', () => {
     'for (a += b;;);',
     'for (((x)=>{}).x in y);',
     'for (((x)=>{}).x of y);',
-    `var let;
+    outdent`
+      var let;
 
-    let = 1;
-    for ( let; ; )
-      break;
+      let = 1;
+      for ( let; ; )
+        break;
 
-    let = 2;
-    for ( let = 3; ; )
-      break;
+      let = 2;
+      for ( let = 3; ; )
+        break;
 
-      let = 4;
-    for ( [let][0]; ; )
-      break;
+        let = 4;
+      for ( [let][0]; ; )
+        break;
     `,
   ]) {
     it(`${arg}`, () => {
@@ -785,10 +813,11 @@ describe('Statements - For', () => {
   pass('Statements - For (pass)', [
     'for (let [,] = x;;);',
     'for(()=>{a in b};;);',
-    `let = 4;
+    outdent`
+      let = 4;
       for ( [let][0]; ; )
         break;
-      `,
+    `,
     'for (let\nfoo;;);',
     'for (let [] = x;;);',
     'for (let [foo] = arr, bar;;);',

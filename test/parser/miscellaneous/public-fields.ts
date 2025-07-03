@@ -133,34 +133,56 @@ describe('Next - Public fields', () => {
     'foo(props) { ;({ client: super.client } = props) }',
     'constructor(props) {;([super.client] = props);}',
     'constructor(props) {;({ x, ...super.client } = props)}',
-    `#client
-    constructor(props) {;([this.#client] = props);}`,
+    outdent`
+      #client
+      constructor(props) {;([this.#client] = props);}
+    `,
     'constructor(props) {;({ x, ...super.x } = props)}', //
-    `#x
-    constructor(props) {;([this.#x] = props);}`,
-    `#x
-     constructor(props) {
-      this.#x = 1;
-      ;([this.x = this.#x, this.#x, this.y = this.#x] = props);
-    }`,
-    `#x
-    constructor(props) { ;([this.#x] = props); }
-    getx() { return this.#x; }`,
-    `#x
-    constructor(props) { let x;  ;([x, ...this.#x] = props); }`,
-    `#x
-    constructor(props) {;([x, ...this.#x] = props); }`,
-    `#x
-    constructor(props) {;({ x: this.#x } = props)}`,
-    `#x
-    constructor(props) {;({ x: this.#x } = props)}`,
-    `#x
-    constructor(props) {;([x, ...super.x] = props);}`,
-    `#x
-    constructor(props) {;([super.x] = props);}`,
-    `#x
-    constructor(props) { ;([this.#x] = props); }
-    getx() { this.#x = 'foo'; ;({ x: this.x = this.#x, y: this.#x, z: this.z = this.#x } = props) }`,
+    outdent`
+      #x
+      constructor(props) {;([this.#x] = props);}
+    `,
+    outdent`
+      #x
+      constructor(props) {
+        this.#x = 1;
+        ;([this.x = this.#x, this.#x, this.y = this.#x] = props);
+      }
+    `,
+    outdent`
+      #x
+      constructor(props) { ;([this.#x] = props); }
+      getx() { return this.#x; }
+    `,
+    outdent`
+      #x
+      constructor(props) { let x;  ;([x, ...this.#x] = props); }
+    `,
+    outdent`
+      #x
+      constructor(props) {;([x, ...this.#x] = props); }
+    `,
+    outdent`
+      #x
+      constructor(props) {;({ x: this.#x } = props)}
+    `,
+    outdent`
+      #x
+      constructor(props) {;({ x: this.#x } = props)}
+    `,
+    outdent`
+      #x
+      constructor(props) {;([x, ...super.x] = props);}
+    `,
+    outdent`
+      #x
+      constructor(props) {;([super.x] = props);}
+    `,
+    outdent`
+      #x
+      constructor(props) { ;([this.#x] = props); }
+      getx() { this.#x = 'foo'; ;({ x: this.x = this.#x, y: this.#x, z: this.z = this.#x } = props) }
+    `,
   ]) {
     it(`class C { ${arg} }`, () => {
       t.doesNotThrow(() => {

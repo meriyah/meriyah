@@ -161,14 +161,16 @@ describe('Expressions - Async Generator', () => {
     '0, async function* g(...a,) {};',
     '(async function* yield() { });',
     '(async function* g() { var await; });',
-    `"use strict";
-    async function *g() {
-    return {
-         ...(function() {
-            var yield;
-         }()),
-      }
-  };`,
+    outdent`
+      "use strict";
+        async function *g() {
+        return {
+             ...(function() {
+                var yield;
+             }()),
+          }
+      };
+    `,
     '(async function* g() { var yield; });',
     '(async function*(a = super()) { });',
     '(async function*() { } = 1);',

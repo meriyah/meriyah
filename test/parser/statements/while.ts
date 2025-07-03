@@ -1,3 +1,4 @@
+import { outdent } from 'outdent';
 import { describe } from 'vitest';
 import { fail, pass } from '../../test-utils';
 
@@ -23,7 +24,8 @@ describe('Statements - While', () => {
 
   pass('Statements - While (pass)', [
     'while (1) /foo/',
-    `var i = 0;
+    outdent`
+      var i = 0;
       woohoo:{
         while(true){
           i++;
@@ -31,11 +33,16 @@ describe('Statements - While', () => {
             break woohoo;
           }
         }
-      }`,
-    `while (false) let // ASI
-      x = 1;`,
-    `while (false) let // ASI
-  {}`,
+      }
+    `,
+    outdent`
+      while (false) let // ASI
+      x = 1;
+    `,
+    outdent`
+      while (false) let // ASI
+      {}
+    `,
     'while (x < 10) { x++; y--; }',
     'while (i-->1) {}',
     'a: while (true) continue a;',

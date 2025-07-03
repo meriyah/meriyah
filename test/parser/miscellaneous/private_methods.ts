@@ -1,4 +1,5 @@
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
 import { fail, pass } from '../../test-utils';
@@ -256,7 +257,8 @@ describe('Next - Private methods', () => {
     'var C = class { static m() { return 42; } static #$ = 1; static #_ = 1; static _() { return this.#_; } }',
     'var C = class { static m() { return 42; } static #$ = 1; static #_ = 1; static _() { return this.#_; } }',
     '{ class C { #a() { class B { #a() {  } } new B; } } new C; }',
-    `{
+    outdent`
+      {
       {\n
         class A {\n
           #a() { return 1; }\n
@@ -275,7 +277,9 @@ describe('Next - Private methods', () => {
       \n
         new D;\n
         new E;\n
-      }\n}`,
+      }
+      }
+    `,
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
@@ -295,7 +299,8 @@ describe('Next - Private methods', () => {
     'class C { get #℘() {} set #℘(x) {} a() { return this.#℘; } b(value) { this.#℘ = x; } };',
     'class C { #m() { return 42; } get ref() { return this.#m; } }',
     'class A { #foo = bar; }',
-    `class Cl {
+    outdent`
+      class Cl {
         #privateField = "top secret string";
 
         constructor() {
@@ -341,41 +346,46 @@ describe('Next - Private methods', () => {
           this.#privateFieldValue = -(this.#privateFieldValue ** this.#privateFieldValue);
           this.publicFieldValue = -(this.publicFieldValue ** this.publicFieldValue);
         }
-      }`,
-    `class Cl {
-          #privateField = 0;
+      }
+    `,
+    outdent`
+      class Cl {
+        #privateField = 0;
 
-          get #privateFieldValue() {
-            return this.#privateField;
-          }
+        get #privateFieldValue() {
+          return this.#privateField;
+        }
 
-          constructor() {
-            this.#privateFieldValue = 1;
-          }
-        }`,
-    `class Cl {
-            #privateField = "top secret string";
+        constructor() {
+          this.#privateFieldValue = 1;
+        }
+      }
+    `,
+    outdent`
+      class Cl {
+        #privateField = "top secret string";
 
-            constructor() {
-              this.publicField = "not secret string";
-            }
+        constructor() {
+          this.publicField = "not secret string";
+        }
 
-            get #privateFieldValue() {
-              return this.#privateField;
-            }
+        get #privateFieldValue() {
+          return this.#privateField;
+        }
 
-            set #privateFieldValue(newValue) {
-              this.#privateField = newValue;
-            }
+        set #privateFieldValue(newValue) {
+          this.#privateField = newValue;
+        }
 
-            publicGetPrivateField() {
-              return this.#privateFieldValue;
-            }
+        publicGetPrivateField() {
+          return this.#privateFieldValue;
+        }
 
-            publicSetPrivateField(newValue) {
-              this.#privateFieldValue = newValue;
-            }
-          } `,
+        publicSetPrivateField(newValue) {
+          this.#privateFieldValue = newValue;
+        }
+      }
+    `,
     'class A { #key() {} }',
     'class A { #yield\n = 0; }',
     'class A { #foo() { #bar } }',
@@ -385,28 +395,35 @@ describe('Next - Private methods', () => {
     'class A {  #a; m() {} }',
     'class A {  #a; m() {} #b; }',
     'class A { m() { return 42; } #a;  #__;  #NJ_;  #℘_ ; }',
-    `class A { #foo = () => 'bar';  method() {
+    outdent`
+      class A { #foo = () => 'bar';  method() {
         return this.#foo();
-      } }`,
+      } }
+    `,
     'class B { #x = 0; #y = 1; }',
-    `class A {
-          static #x;
-          static #y = 1;
-        }`,
+    outdent`
+      class A {
+        static #x;
+        static #y = 1;
+      }
+    `,
     "class A {  #m = async function() { return 'foo'; };  method() { return this.#m(); } }",
     "class A { method() { return this.#m(); } #m = function () { return 'foo'; };  }",
     'class A {  #m() { return 42; } get bGetter() { return this.#b; } #b = this.#m(); get ref() { return this.#m; } constructor() {} }',
     'class A { #$_; #℘_; }',
     'class A { $(value) { this.#$_ = value; return this.#$; } }',
-    `var C = class {
+    outdent`
+      var C = class {
         static *m() { return 42; } #$_; #__;  #℘_;   set #$(value) { this.#$_ = value;
         }
         set #_(value) {
           this.#__ = value;
         }
-      }`,
+      }
+    `,
     'class A { get #foo/*{ declareWith }*/() {} }',
-    `var C = class {
+    outdent`
+      var C = class {
         static async *m() { return 42; } #$_; #__;
 
         get #_() {
@@ -421,16 +438,20 @@ describe('Next - Private methods', () => {
           return this.#_;
         }
 
-      }`,
-    `class Hotel {
+      }
+    `,
+    outdent`
+      class Hotel {
         get #evil() {
           return ohNo();
         }
         set #evil(x) {
           return makeEvil(x);
         }
-      }`,
-    `var C = class {
+      }
+    `,
+    outdent`
+      var C = class {
         ;;;;
         ;;;;;;;;;;;;;
         ;;;;
@@ -446,7 +467,8 @@ describe('Next - Private methods', () => {
         static y() {
           return this.#y(43);
         }
-      } `,
+      }
+    `,
     'class A { static set #foo/*{ declareWith }*/(param) {} }',
     'class A { #\\u{61}\nstatic #\\u0062() {} }',
     { code: 'class a {#𐌭人}', options: { ranges: true } },

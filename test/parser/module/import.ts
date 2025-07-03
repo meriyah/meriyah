@@ -1,4 +1,5 @@
 import * as t from 'node:assert/strict';
+import { outdent } from 'outdent';
 import { describe, it } from 'vitest';
 import { parseSource } from '../../../src/parser';
 import { fail, pass } from '../../test-utils';
@@ -70,8 +71,10 @@ describe('Module - Import', () => {
     'import { foo as bar, ',
     'import { foo as switch } from "module";',
     'import { foo, , } from "module";',
-    `for (const y in [])
-   import v from './foo`,
+    outdent`
+      for (const y in [])
+      import v from './foo
+    `,
     "import { a as await } from 'foo';",
     "import { a as enum } from 'foo';",
     "import { a as arguments } from 'foo';",
@@ -131,8 +134,10 @@ describe('Module - Import', () => {
     "import * as x, * as y from 'm.js';",
     "import {x}, {y} from 'm.js';",
     "import * as x, {y} from 'm.js';",
-    `for (const y in [])
-    import v from './foo`,
+    outdent`
+      for (const y in [])
+      import v from './foo
+    `,
     'import from;',
     "import { y as yield } from 'm.js'",
     "import { s as static } from 'm.js'",
@@ -145,8 +150,10 @@ describe('Module - Import', () => {
     "import , from 'm.js';",
     "import a , from 'm.js';",
     'import { a } from;',
-    `for (let x = 0; false;)
-     import v from './decl-pos-import-for-let.js';`,
+    outdent`
+      for (let x = 0; false;)
+        import v from './decl-pos-import-for-let.js';
+    `,
     "import a , from 'foo';",
     "import a { b, c } from 'foo';",
     'import * as import from "./"',
@@ -183,8 +190,10 @@ describe('Module - Import', () => {
     'if (false) import { default } from "module";',
     'for(var i=0; i<1; i++) import { default } from "module";',
     'while(false) import { default } from "module";',
-    `do import { default } from "module"
-                                while (false);`,
+    outdent`
+      do import { default } from "module"
+      while (false);
+    `,
     'function () { import { default } from "module"; }',
     'import { "foo"',
     'import { "foo" }',

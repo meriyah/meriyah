@@ -266,19 +266,21 @@ describe('Lexical - Lexical', () => {
     '{ var {foo=a} = {}; };',
     '{ var foo = a; };',
     '{ var {foo} = {foo: a}; };',
-    `try{
-      try {
-        var intry__intry__var;
-      } catch (e) {
-        var intry__incatch__var;
-      }
-  }catch(e){
-      try {
-        var incatch__intry__var;
-      } catch (e) {
-          var incatch__incatch__var;
-      }
-  };`,
+    outdent`
+      try{
+          try {
+            var intry__intry__var;
+          } catch (e) {
+            var intry__incatch__var;
+          }
+      }catch(e){
+          try {
+            var incatch__intry__var;
+          } catch (e) {
+              var incatch__incatch__var;
+          }
+      };
+    `,
     'var __v_10 = one + 1; { let __v_10 = one + 3; function __f_6() { one; __v_10; } __f_6(); }',
     'let foo = 1; function lazy() { foo = 2; } lazy(); my_global = foo;',
   ]) {
