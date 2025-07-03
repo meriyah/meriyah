@@ -5692,7 +5692,7 @@ function parseObjectLiteralOrPattern(
             value = parser.finishNode<ESTree.AssignmentPattern>(
               {
                 type: 'AssignmentPattern',
-                left: parser.options.uniqueKeyInPattern ? Object.assign({}, key) : key,
+                left: parser.options.uniqueKeyInPattern ? parser.cloneIdentifier(key) : key,
                 right,
               },
               tokenStart,
