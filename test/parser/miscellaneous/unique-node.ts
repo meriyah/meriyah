@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type * as ESTree from '../../../src/estree';
 import { parseSource } from '../../../src/parser';
 
-const parseOption = { source: 'foo.js', uniqueKeyInPattern: true, loc: true, ranges: true };
+const parseOption = { source: 'foo.js', loc: true, ranges: true };
 
 const assertClone = (nodeA: ESTree.Node, nodeB: ESTree.Node) => {
   // Same struct
