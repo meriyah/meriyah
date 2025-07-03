@@ -74,14 +74,12 @@ export type NormalizedOptions = Omit<Options, 'onComment' | 'onToken'> & {
 export function normalizeOptions(rawOptions: Options): NormalizedOptions {
   const options = { ...rawOptions } as NormalizedOptions;
 
-  if (!options.sourceType) {
-    if (options.module) {
-      options.sourceType = 'module';
-    }
+  if (options.module && !options.sourceType) {
+    options.sourceType = 'module';
+  }
 
-    if (options.globalReturn) {
-      options.sourceType = 'commonjs';
-    }
+  if (options.globalReturn && (!options.sourceType || options.sourceType === 'script')) {
+    options.sourceType = 'commonjs';
   }
 
   // Accepts either a callback function to be invoked or an array to collect comments (as the node is constructed)
