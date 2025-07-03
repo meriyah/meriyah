@@ -43,7 +43,7 @@ import { KeywordDescTable, Token } from './token';
 export function parseSource(source: string, rawOptions: Options = {}, context: Context = Context.None): ESTree.Program {
   const options = normalizeOptions(rawOptions);
 
-  if (options.module) context |= Context.Module | Context.Strict;
+  if (options.sourceType === 'module') context |= Context.Module | Context.Strict;
   // Turn on return context in global
   if (options.globalReturn) context |= Context.InReturnContext;
   if (options.impliedStrict) context |= Context.Strict;

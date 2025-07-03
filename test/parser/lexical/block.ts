@@ -10,7 +10,7 @@ describe('Lexical - Block', () => {
     { code: '{ async function f(){} function f(){} }', options: { lexical: true } },
     { code: '{ async function f(){} async function f(){} }', options: { lexical: true } },
     { code: '{ function f(){} async function f(){} }', options: { lexical: true } },
-    { code: 'var x = a; function x(){};', options: { lexical: true, module: true } },
+    { code: 'var x = a; function x(){};', options: { lexical: true, sourceType: 'module' } },
     { code: 'let x; { var x; }', options: { lexical: true } },
     { code: '{ var x; } let x;', options: { lexical: true } },
     { code: 'let x; var x;', options: { lexical: true } },

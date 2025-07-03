@@ -2168,12 +2168,12 @@ describe('Miscellaneous - Failure', () => {
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { module: true, lexical: true });
+        parseSource(`${arg}`, { sourceType: 'module', lexical: true });
       });
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { module: true });
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
   }
@@ -2186,7 +2186,7 @@ describe('Miscellaneous - Failure', () => {
   ]) {
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { module: true, lexical: true });
+        parseSource(`${arg}`, { sourceType: 'module', lexical: true });
       });
     });
     it(`${arg}`, () => {

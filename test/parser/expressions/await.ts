@@ -339,7 +339,7 @@ describe('Expressions - Await', () => {
 
     it(`let f = () => { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`let f = () => { ${arg} }`, { module: true });
+        parseSource(`let f = () => { ${arg} }`, { sourceType: 'module' });
       });
     });
 
@@ -369,7 +369,7 @@ describe('Expressions - Await', () => {
 
     it(`async function* f() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`async function* f() { ${arg} }`, { module: true });
+        parseSource(`async function* f() { ${arg} }`, { sourceType: 'module' });
       });
     });
 
@@ -394,16 +394,16 @@ describe('Expressions - Await', () => {
         return b;
       }
     `,
-    { code: 'var await = 5;', options: { module: true } },
-    { code: 'await;', options: { module: true } },
-    { code: 'function f() { await 5; }', options: { module: true } },
-    { code: '() => { await 5; }', options: { module: true } },
-    { code: 'export var await;', options: { module: true } },
-    { code: 'await => 1;', options: { module: true } },
-    { code: 'async function f() { function g() { await 3; } }', options: { module: true } },
-    { code: 'export async function() {}', options: { module: true } },
-    { code: 'export default async function() { yield; }', options: { module: true } },
-    { code: 'export default async function() { yield = 1; }', options: { module: true } },
+    { code: 'var await = 5;', options: { sourceType: 'module' } },
+    { code: 'await;', options: { sourceType: 'module' } },
+    { code: 'function f() { await 5; }', options: { sourceType: 'module' } },
+    { code: '() => { await 5; }', options: { sourceType: 'module' } },
+    { code: 'export var await;', options: { sourceType: 'module' } },
+    { code: 'await => 1;', options: { sourceType: 'module' } },
+    { code: 'async function f() { function g() { await 3; } }', options: { sourceType: 'module' } },
+    { code: 'export async function() {}', options: { sourceType: 'module' } },
+    { code: 'export default async function() { yield; }', options: { sourceType: 'module' } },
+    { code: 'export default async function() { yield = 1; }', options: { sourceType: 'module' } },
     'async await => 1;',
     'async function foo() { return {await} };',
     'async function wrap() { async function await() { } };',
@@ -445,22 +445,22 @@ describe('Expressions - Await', () => {
     'let f = () => (y=await foo) => y;',
     'async function f(){ await foo\n/foo/ }',
     'async () => { var await; }',
-    { code: 'class x {f(await){}}', options: { module: true } },
-    { code: 'let o = {*f(await){}}', options: { module: true } },
-    { code: 'let o = {f(await){}}', options: { module: true } },
-    { code: 'class x {f(await){}}', options: { module: true } },
-    { code: 'function f(await){}', options: { module: true } },
+    { code: 'class x {f(await){}}', options: { sourceType: 'module' } },
+    { code: 'let o = {*f(await){}}', options: { sourceType: 'module' } },
+    { code: 'let o = {f(await){}}', options: { sourceType: 'module' } },
+    { code: 'class x {f(await){}}', options: { sourceType: 'module' } },
+    { code: 'function f(await){}', options: { sourceType: 'module' } },
     'let o = {async *f(await){}}',
     'let o = {async f(await){}}',
     'let x = async function *f(await){}',
-    { code: 'let x = function *f(await){}', options: { module: true } },
+    { code: 'let x = function *f(await){}', options: { sourceType: 'module' } },
     'let x = async function f(await){}',
-    { code: 'let x = function f(await){}', options: { module: true } },
+    { code: 'let x = function f(await){}', options: { sourceType: 'module' } },
     'async function *f(await){}',
-    { code: 'function *f(await){}', options: { module: true } },
+    { code: 'function *f(await){}', options: { sourceType: 'module' } },
     'async function f(){  async (await) => x  }',
     'function *f(){  async (await) => x  }',
-    { code: 'function *f(){  foo(await)  }', options: { module: true } },
+    { code: 'function *f(){  foo(await)  }', options: { sourceType: 'module' } },
     'async function f(foo = await bar){}',
     'function *f(foo = await bar){}',
     'async function *f(foo = await bar){}',
@@ -666,7 +666,7 @@ describe('Expressions - Await', () => {
 
     it(`async function* f() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`async function* f() { ${arg} }`, { module: true });
+        parseSource(`async function* f() { ${arg} }`, { sourceType: 'module' });
       });
     });
 
@@ -776,9 +776,9 @@ describe('Expressions - Await', () => {
   }
 
   pass('Expressions - Await (pass)', [
-    { code: 'await f();', options: { module: true } },
-    { code: 'await 5;', options: { module: true } },
-    { code: 'const foo = (await bar)', options: { module: true } },
+    { code: 'await f();', options: { sourceType: 'module' } },
+    { code: 'await 5;', options: { sourceType: 'module' } },
+    { code: 'const foo = (await bar)', options: { sourceType: 'module' } },
     'async function f(){ if (await \n x) {} }',
     'async function a(){     async ([y] = [{m: 5 + t(await bar)}]);     }',
     'async function f(){ await \n x; }',
@@ -786,7 +786,7 @@ describe('Expressions - Await', () => {
     { code: 'let o = {await(){}}', options: { ranges: true } },
     { code: 'class x {await(){}}', options: { ranges: true } },
     { code: 'class x {async *await(){}}', options: { ranges: true } },
-    { code: 'async function f() { await 3; }', options: { module: true } },
+    { code: 'async function f() { await 3; }', options: { sourceType: 'module' } },
     'function f(x = await){}',
     { code: 'async function a(){     async ({r} = await bar);     }', options: { ranges: true } },
     'await()',
@@ -824,7 +824,7 @@ describe('Expressions - Await', () => {
     'function *f(){  foo(await)  }',
     'function f(foo = await){}',
     'let o = {*f(await){}}',
-    { code: 'foo[await 1]', options: { module: true } },
-    { code: 'foo(await bar)', options: { module: true } },
+    { code: 'foo[await 1]', options: { sourceType: 'module' } },
+    { code: 'foo(await bar)', options: { sourceType: 'module' } },
   ]);
 });

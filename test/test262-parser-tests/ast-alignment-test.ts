@@ -77,10 +77,10 @@ type MeriyahAst = ESTree.Program & { comments: ESTree.Comment[] };
 function parseMeriyah(text: string, sourceType: 'module' | 'script') {
   const comments: ESTree.Comment[] = [];
   const ast = meriyah.parse(text, {
+    sourceType,
     webcompat: true,
     lexical: true,
     next: true,
-    module: sourceType === 'module',
     ranges: true,
     loc: true,
     raw: true,

@@ -139,7 +139,7 @@ describe('Expressions - BigInt', () => {
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { module: true });
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
   }

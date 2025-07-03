@@ -98,7 +98,7 @@ describe('Miscellaneous - Simple parameter list', () => {
 
     it(`function f(${arg}) { "use strict"; }`, () => {
       t.throws(() => {
-        parseSource(`function f(${arg}) { "use strict"; }`, { module: true });
+        parseSource(`function f(${arg}) { "use strict"; }`, { sourceType: 'module' });
       });
     });
 
@@ -110,7 +110,7 @@ describe('Miscellaneous - Simple parameter list', () => {
 
     it(`async function *f(${arg}) { "use strict"; }`, () => {
       t.throws(() => {
-        parseSource(`async function *f(${arg}) { "use strict"; }`, { module: true });
+        parseSource(`async function *f(${arg}) { "use strict"; }`, { sourceType: 'module' });
       });
     });
 
@@ -158,7 +158,7 @@ describe('Miscellaneous - Simple parameter list', () => {
 
     it(`async (${arg}) => { "use strict"; };`, () => {
       t.throws(() => {
-        parseSource(`async (${arg}) => { "use strict"; };`, { module: true });
+        parseSource(`async (${arg}) => { "use strict"; };`, { sourceType: 'module' });
       });
     });
 
@@ -194,7 +194,7 @@ describe('Miscellaneous - Simple parameter list', () => {
 
     it(`class C { async m(${arg}) { "use strict"; } }`, () => {
       t.throws(() => {
-        parseSource(`class C { async m(${arg}) { "use strict"; } }`, { module: true });
+        parseSource(`class C { async m(${arg}) { "use strict"; } }`, { sourceType: 'module' });
       });
     });
 

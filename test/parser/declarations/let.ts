@@ -469,7 +469,7 @@ describe('Declarations - Let', () => {
     'let x = {y=z} => d',
     'let {[x]: y = z};',
     'let {...let} = {a: 1, b: 2};',
-    { code: 'let {...let} = {a: 1, b: 2};', options: { module: true } },
+    { code: 'let {...let} = {a: 1, b: 2};', options: { sourceType: 'module' } },
     'let const',
     'const let',
     outdent`

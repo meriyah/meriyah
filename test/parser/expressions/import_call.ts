@@ -19,11 +19,11 @@ describe('ImportCall', () => {
     'import]',
     'import[x]',
     'import{',
-    { code: 'import[]', options: { module: true } },
-    { code: 'import]', options: { module: true } },
-    { code: 'import[x]', options: { module: true } },
-    { code: 'import{', options: { module: true } },
-    { code: 'import{x', options: { module: true } },
+    { code: 'import[]', options: { sourceType: 'module' } },
+    { code: 'import]', options: { sourceType: 'module' } },
+    { code: 'import[x]', options: { sourceType: 'module' } },
+    { code: 'import{', options: { sourceType: 'module' } },
+    { code: 'import{x', options: { sourceType: 'module' } },
     'import{x}',
     'import(...y)',
     'import(,)',
@@ -44,7 +44,7 @@ describe('ImportCall', () => {
     '(async () => await import())',
     'async function * f() { await new import("") }',
     'label: { import(); };',
-    { code: 'do { import(...[""]); } while (false);', options: { module: true } },
+    { code: 'do { import(...[""]); } while (false);', options: { sourceType: 'module' } },
     'function fn() { new import(""); }',
     'if (true) { import(...[""]); }',
     '(async () => await import())',
@@ -149,7 +149,7 @@ describe('ImportCall', () => {
   ]) {
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { module: true });
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
     it(`${arg}`, () => {
@@ -160,7 +160,7 @@ describe('ImportCall', () => {
   }
 
   pass('ImportCall (pass)', [
-    { code: 'import("lib.js").then(doThis);', options: { module: true, ranges: true } },
+    { code: 'import("lib.js").then(doThis);', options: { sourceType: 'module', ranges: true } },
     { code: 'async function bar(){ await import("./nchanged") }', options: { next: true } },
     'function loadImport(file) { import(file).then(() => {}), console.log("Done."); }',
   ]);

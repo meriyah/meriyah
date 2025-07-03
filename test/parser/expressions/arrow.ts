@@ -132,7 +132,7 @@ describe('Expressions - Arrow', () => {
 
     it(`(function *g(z = ( ${arg} ) => {}) { });`, () => {
       t.throws(() => {
-        parseSource(`(function *g(z = ( ${arg} ) => {}) { });`, { module: true });
+        parseSource(`(function *g(z = ( ${arg} ) => {}) { });`, { sourceType: 'module' });
       });
     });
   }
@@ -258,7 +258,7 @@ describe('Expressions - Arrow', () => {
 
     it(`bar,  ${arg};`, () => {
       t.throws(() => {
-        parseSource(`bar,  ${arg};`, { module: true });
+        parseSource(`bar,  ${arg};`, { sourceType: 'module' });
       });
     });
 
@@ -521,7 +521,7 @@ describe('Expressions - Arrow', () => {
 
   fail('Expressions - Array (fail)', [
     { code: '"use strict"; let => {}', options: { lexical: true } },
-    { code: 'let => {}', options: { module: true } },
+    { code: 'let => {}', options: { sourceType: 'module' } },
     'function *a() { yield => foo }',
     'yield x => zoo',
     'foo bar => zoo',
@@ -569,7 +569,7 @@ describe('Expressions - Arrow', () => {
     'a?c:d=>{}=>{};',
     '(...a)`template-head${c}`=>{}',
     '(...a)?c:d=>{}=>{};',
-    { code: 'interface => {}', options: { module: true } },
+    { code: 'interface => {}', options: { sourceType: 'module' } },
     'x = (...a)?c:d=>{}=>{}',
     'x = (...a)[1]=>{};',
     '(a,...b)`template-head${c}`=>{}',

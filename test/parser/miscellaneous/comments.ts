@@ -34,7 +34,7 @@ describe('Miscellaneous - Comments', () => {
       */ the comment should not include these characters, regardless of AnnexB extensions -->
     `,
     '/*FOO/',
-    { code: '<!-- HTML comment', options: { module: true } },
+    { code: '<!-- HTML comment', options: { sourceType: 'module' } },
     'x/* precomment */ --> is eol-comment\nvar y = 37;\n',
     'var x = a; --> is eol-comment\nvar y = b;\n',
     '</',
