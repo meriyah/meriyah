@@ -144,8 +144,7 @@ function fixAcornAst(ast: acorn.Program, text: string): MeriyahAst {
         return Object.assign(node, { type: 'MultiLine' });
       case 'Line': {
         const type = getSingleLineCommentType(node as acorn.Comment, text);
-
-        return Object.assign(node, { type }) as ESTree.Comment;
+        return Object.assign(node, { type });
       }
       case 'FunctionExpression':
       case 'FunctionDeclaration':
