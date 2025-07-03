@@ -1,3 +1,4 @@
+// Current version
 import { version as pkgVersion } from '../package.json';
 import { type Program } from './estree';
 import { type Options } from './options';
