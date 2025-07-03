@@ -84,7 +84,7 @@ describe('Declarations - const', () => {
 
     it(`for (const  ${arg}  = x;;);`, () => {
       t.throws(() => {
-        parseSource(`for (const  ${arg}  = x;;);`, { module: true, webcompat: true });
+        parseSource(`for (const  ${arg}  = x;;);`, { sourceType: 'module', webcompat: true });
       });
     });
   }
@@ -182,7 +182,7 @@ describe('Declarations - const', () => {
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { module: true });
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
 
@@ -276,7 +276,7 @@ describe('Declarations - const', () => {
     'const {...a+b} = x',
     'const [(x)] = []',
     'const a, [...x] = y',
-    { code: 'const foo;', options: { module: true } },
+    { code: 'const foo;', options: { sourceType: 'module' } },
     'const foo, bar = x;',
     'const [a)] = [];',
     'const [[(a)], ((((((([b])))))))] = [[],[]];',
@@ -285,7 +285,7 @@ describe('Declarations - const', () => {
     'const [1, a] = [];',
     'const [...a, b] = [];',
     'const foo =x, bar;',
-    { code: 'const foo, bar;', options: { module: true } },
+    { code: 'const foo, bar;', options: { sourceType: 'module' } },
     'const [a, let, b] = [1, 2, 3];',
     'const {let} = 1;',
   ]);

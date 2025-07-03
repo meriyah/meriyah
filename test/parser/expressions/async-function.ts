@@ -105,7 +105,7 @@ describe('Expressions - Async function', () => {
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { module: true });
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
   }
@@ -187,7 +187,7 @@ describe('Expressions - Async function', () => {
     'class C { async constructor() {} }',
     '(async function(...x = []) {})',
     '(async function f (...a,) {  })',
-    { code: 'export async function() {}', options: { module: true } },
+    { code: 'export async function() {}', options: { sourceType: 'module' } },
     'async while (1) {}',
     '(async function() { } () => 1)',
     '(async function *() { var await; })',
@@ -197,17 +197,17 @@ describe('Expressions - Async function', () => {
     'async function wrap() { async function await() { } };',
     '(async.foo6 => 1)',
     '(async.foo7 foo8 => 1)',
-    { code: '(async function foo4() { } => 1)', options: { module: true } },
-    { code: '(async function() { } foo5 => 1)', options: { module: true } },
-    { code: '(async function() { } () => 1)', options: { module: true } },
-    { code: '(async function() { } => 1)', options: { module: true } },
-    { code: '"use strict"; async function asyncFunctionDeclaration(await) {}', options: { module: true } },
-    { code: '"use strict"; (async function foo() { } bar => 1)', options: { module: true } },
-    { code: '"use strict"; (async function foo() { } () => 1)', options: { module: true } },
-    { code: '"use strict"; (async function foo() { } => 1)', options: { module: true } },
-    { code: '"use strict"; (async function() { } () => 1)', options: { module: true } },
-    { code: '"use strict"; (async function() { } => 1)', options: { module: true } },
-    { code: '"use strict"; (async.foo bar => 1)', options: { module: true } },
+    { code: '(async function foo4() { } => 1)', options: { sourceType: 'module' } },
+    { code: '(async function() { } foo5 => 1)', options: { sourceType: 'module' } },
+    { code: '(async function() { } () => 1)', options: { sourceType: 'module' } },
+    { code: '(async function() { } => 1)', options: { sourceType: 'module' } },
+    { code: '"use strict"; async function asyncFunctionDeclaration(await) {}', options: { sourceType: 'module' } },
+    { code: '"use strict"; (async function foo() { } bar => 1)', options: { sourceType: 'module' } },
+    { code: '"use strict"; (async function foo() { } () => 1)', options: { sourceType: 'module' } },
+    { code: '"use strict"; (async function foo() { } => 1)', options: { sourceType: 'module' } },
+    { code: '"use strict"; (async function() { } () => 1)', options: { sourceType: 'module' } },
+    { code: '"use strict"; (async function() { } => 1)', options: { sourceType: 'module' } },
+    { code: '"use strict"; (async.foo bar => 1)', options: { sourceType: 'module' } },
     '(async function arguments () { "use strict"; })',
     '(async function (x = 1) {"use strict"})',
     'async function wrap() {\nasync function await() { }\n}',
@@ -230,9 +230,9 @@ describe('Expressions - Async function', () => {
     '({async async: 0})',
     '({async async})',
     '({async async = 0} = {})',
-    { code: 'function f() { await 5; }', options: { module: true } },
+    { code: 'function f() { await 5; }', options: { sourceType: 'module' } },
     //['async function f(){ (x = new x(await x)) => {} }', Context.Module],
-    { code: 'async function f() { function g() { await 3; } }', options: { module: true } },
+    { code: 'async function f() { function g() { await 3; } }', options: { sourceType: 'module' } },
     'async function f(){ new await x; }',
     'async function f(){ [new await foo] }',
     'async function f(){ (new await foo) }',

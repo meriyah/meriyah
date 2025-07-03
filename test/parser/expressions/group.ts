@@ -195,7 +195,7 @@ describe('Expressions - Group', () => {
 
     it(`should fail on '(${arg})=> y'`, () => {
       t.throws(() => {
-        parseSource(`(${arg})=> y`, { module: true });
+        parseSource(`(${arg})=> y`, { sourceType: 'module' });
       });
     });
   }
@@ -281,7 +281,7 @@ describe('Expressions - Group', () => {
 
     it(`should fail on '${arg}'`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { module: true });
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
 
@@ -499,7 +499,7 @@ describe('Expressions - Group', () => {
     '({a:b[0]})=>0',
     '([x]++)',
     '(..., x)',
-    { code: '(x = (await) = f) => {}', options: { module: true } },
+    { code: '(x = (await) = f) => {}', options: { sourceType: 'module' } },
     'async (x = (await) = f) => {}',
     // ['(x = delete ((await) = f)) => {}', Context.Strict],
     'function *f(){ yield = 1; }',
@@ -521,7 +521,7 @@ describe('Expressions - Group', () => {
     '({...{x} }) => {}',
     '({...(x) }) => {}',
     '({...[x] }) => {}',
-    { code: '(await) = 1', options: { module: true } },
+    { code: '(await) = 1', options: { sourceType: 'module' } },
     'x = ({}) = b',
     '32 => {}',
     '(32) => {}',

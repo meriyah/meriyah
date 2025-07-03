@@ -145,19 +145,14 @@ describe('Lexer - Regular expressions', () => {
     [Context.AllowRegExp, '/.*/m', '.*', 'm'],
     [Context.AllowRegExp, '/.*/y', '.*', 'y'],
     [Context.AllowRegExp, String.raw`/\%([0-9]*)\[(\^)?(\]?[^\]]*)\]/`, String.raw`\%([0-9]*)\[(\^)?(\]?[^\]]*)\]`, ''],
+    [Context.AllowRegExp, String.raw`/[\u{FDD0}-\u{FDEF}]/v`, String.raw`[\u{FDD0}-\u{FDEF}]`, 'v'],
+    [
+      Context.AllowRegExp,
+      String.raw`/[\p{Script_Extensions=Greek}&&\p{Letter}]/v`,
+      String.raw`[\p{Script_Extensions=Greek}&&\p{Letter}]`,
+      'v',
+    ],
   ];
-
-  if (regexFeatures.unicodeSets) {
-    tokens.push(
-      [Context.AllowRegExp, String.raw`/[\u{FDD0}-\u{FDEF}]/v`, String.raw`[\u{FDD0}-\u{FDEF}]`, 'v'],
-      [
-        Context.AllowRegExp,
-        String.raw`/[\p{Script_Extensions=Greek}&&\p{Letter}]/v`,
-        String.raw`[\p{Script_Extensions=Greek}&&\p{Letter}]`,
-        'v',
-      ],
-    );
-  }
 
   if (regexFeatures.modifiers) {
     tokens.push(

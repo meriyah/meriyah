@@ -93,7 +93,7 @@ describe('Miscellaneous - Directives', () => {
 
     it(`function foo() { ${arg} }`, () => {
       t.throws(() => {
-        parseSource(`function foo() { ${arg} }`, { module: true });
+        parseSource(`function foo() { ${arg} }`, { sourceType: 'module' });
       });
     });
   }
@@ -206,17 +206,17 @@ describe('Miscellaneous - Directives', () => {
     '"use strict" \n "Hello\\312World"',
     String.raw`function a() { "use strict" "Hello\312World" }`,
     'function a() { "use strict" \n "Hello\\312World" }',
-    { code: String.raw`"use strict" + "Hello\312World"`, options: { ranges: true, raw: true, module: true } },
+    { code: String.raw`"use strict" + "Hello\312World"`, options: { ranges: true, raw: true, sourceType: 'module' } },
   ]);
 
   pass('Miscellaneous - Directives (pass)', [
     { code: String.raw`"use strict" + "Hello\312World"`, options: { ranges: true, raw: true } },
-    { code: '("use strict"); foo = 42;', options: { module: true, ranges: true, raw: true } },
+    { code: '("use strict"); foo = 42;', options: { sourceType: 'module', ranges: true, raw: true } },
     { code: String.raw`"use strict", "Hello\312World"`, options: { ranges: true, raw: true } },
     { code: '"use asm" \n "use strict"', options: { ranges: true, raw: true } },
     { code: '"use strict"; + 1', options: { ranges: true } },
     { code: '("use strict"); foo = 42;', options: { ranges: true } },
     '"\\u0061b"\n"c\\u0064"',
-    { code: '"\\u0061b"\n"c\\u0064"', options: { module: true } },
+    { code: '"\\u0061b"\n"c\\u0064"', options: { sourceType: 'module' } },
   ]);
 });

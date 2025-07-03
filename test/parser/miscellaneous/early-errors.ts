@@ -336,7 +336,7 @@ describe('Miscellaneous - Early errors', () => {
     });
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { module: true });
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
   }

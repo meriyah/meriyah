@@ -70,7 +70,7 @@ describe('Expressions - Call', () => {
 
     it(`function fn() { } fn(${arg});`, () => {
       t.doesNotThrow(() => {
-        parseSource(`function fn() { } fn(${arg});`, { module: true });
+        parseSource(`function fn() { } fn(${arg});`, { sourceType: 'module' });
       });
     });
   }
@@ -233,7 +233,7 @@ describe('Expressions - Call', () => {
 
     it(`"use strict"; ${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`"use strict"; ${arg}`, { module: true });
+        parseSource(`"use strict"; ${arg}`, { sourceType: 'module' });
       });
     });
   }

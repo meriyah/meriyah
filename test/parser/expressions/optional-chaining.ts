@@ -378,7 +378,7 @@ describe('Optional chaining', () => {
     'foo?.x?.y?.z?()=>foo;',
     'const a = { b(){ return super?.c; } }',
     { code: 'class A{ b(){ return super?.b; } }', options: { webcompat: true } },
-    { code: 'new a?.();', options: { module: true } },
+    { code: 'new a?.();', options: { sourceType: 'module' } },
     { code: 'new C?.b.d()', options: { webcompat: true } },
     { code: 'a.?b.?()', options: { webcompat: true } },
     { code: 'a.?()', options: { webcompat: true } },

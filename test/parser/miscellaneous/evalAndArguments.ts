@@ -62,7 +62,7 @@ describe('Miscellaneous - Eval and arguments', () => {
 
     it(`for (${arg} in {}) {}`, () => {
       t.throws(() => {
-        parseSource(`for (${arg} in {}) {}`, { module: true });
+        parseSource(`for (${arg} in {}) {}`, { sourceType: 'module' });
       });
     });
   }

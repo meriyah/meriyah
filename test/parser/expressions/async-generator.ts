@@ -58,7 +58,7 @@ describe('Expressions - Async Generator', () => {
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { module: true });
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
 
@@ -195,7 +195,7 @@ describe('Expressions - Async Generator', () => {
     '(async function *foo([...{ x } = []])',
     '(async function* yield() { });',
     '(async function* g() { var await; });',
-    { code: '(async function* g() { void await; });', options: { module: true } },
+    { code: '(async function* g() { void await; });', options: { sourceType: 'module' } },
     '(async function* g() { void yield; });',
     '0, async function* g(...x = []) {}',
     '(async function *foo([...{ x } = []])',

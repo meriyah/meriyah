@@ -31,7 +31,7 @@ describe('Expressions - Functions', () => {
       });
 
       t.throws(() => {
-        parseSource(`(function (${arg}) {})`, { module: true });
+        parseSource(`(function (${arg}) {})`, { sourceType: 'module' });
       });
     });
   }
@@ -65,7 +65,7 @@ describe('Expressions - Functions', () => {
 
     it(`${arg}`, () => {
       t.throws(() => {
-        parseSource(`${arg}`, { module: true });
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
   }
@@ -255,7 +255,7 @@ describe('Expressions - Functions', () => {
 
     it(`${arg}`, () => {
       t.doesNotThrow(() => {
-        parseSource(`${arg}`, { module: true });
+        parseSource(`${arg}`, { sourceType: 'module' });
       });
     });
   }
