@@ -5701,7 +5701,7 @@ function parseObjectLiteralOrPattern(
             destructible |=
               (token === Token.AwaitKeyword ? DestructuringKind.Await : 0) |
               (token === Token.EscapedReserved ? DestructuringKind.CannotDestruct : 0);
-            value = parser.options.uniqueKeyInPattern ? Object.assign({}, key) : key;
+            value = parser.options.uniqueKeyInPattern ? parser.cloneIdentifier(key) : key;
           }
         } else if (consumeOpt(parser, context | Context.AllowRegExp, Token.Colon)) {
           const { tokenStart } = parser;

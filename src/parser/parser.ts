@@ -270,6 +270,24 @@ export class Parser {
 
     return undefined;
   }
+
+  cloneIdentifier(original: ESTree.Identifier): ESTree.Identifier {
+    const node: ESTree.Identifier = { ...original };
+
+    if (this.options.ranges) {
+      node.range = [...original.range!];
+    }
+
+    if (this.options.loc) {
+      node.loc = {
+        ...original.loc,
+        start: { ...original.loc!.start },
+        end: { ...original.loc!.end },
+      };
+    }
+
+    return node;
+  }
 }
 
 export function pushComment(comments: ESTree.Comment[], options: NormalizedOptions): OnComment {
