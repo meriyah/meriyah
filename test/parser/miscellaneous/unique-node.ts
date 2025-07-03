@@ -83,7 +83,7 @@ describe('Unique node', () => {
     assertExportSpecifier(specifier);
   });
 
-  it('ExportSpecifier 2', () => {
+  it('ExportSpecifier(string)', () => {
     const program = parseSource('export {"foo"} from "foo"', parseOptions);
     const declaration = program.body[0] as ESTree.ExportNamedDeclaration;
     const specifier = declaration.specifiers[0] as ESTree.ExportSpecifier;

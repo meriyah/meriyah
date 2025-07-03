@@ -2321,7 +2321,7 @@ function parseImportSpecifierOrNamedImports(
       // by the keyword 'as'.
       // See the ImportSpecifier production in ES6 section 15.2.2.
       validateBindingIdentifier(parser, context, BindingKind.Const, token, 0);
-      local = imported;
+      local = parser.cloneIdentifier(imported);
     } else {
       // Expect `import "str" as ...`
       parser.report(Errors.ExpectedToken, KeywordDescTable[Token.AsKeyword & Token.Type]);
@@ -2663,7 +2663,7 @@ function parseExportDeclaration(
           hasLiteralLocal = 1;
         }
 
-        let exported: ESTree.Identifier | ESTree.Literal | null;
+        let exported: ESTree.Identifier | ESTree.StringLiteral | null;
 
         if (parser.getToken() === Token.AsKeyword) {
           nextToken(parser, context);
@@ -2680,7 +2680,7 @@ function parseExportDeclaration(
             tmpExportedNames.push(parser.tokenValue);
             tmpExportedBindings.push(parser.tokenValue);
           }
-          exported = local;
+          exported = local.type === 'Literal' ? parser.cloneStringLiteral(local) : parser.cloneIdentifier(local);
         }
 
         specifiers.push(
@@ -4234,7 +4234,7 @@ function validateStringWellFormed(parser: Parser, str: string): void {
   }
 }
 
-function parseModuleExportName(parser: Parser, context: Context): ESTree.Identifier | ESTree.Literal {
+function parseModuleExportName(parser: Parser, context: Context): ESTree.Identifier | ESTree.StringLiteral {
   // ModuleExportName :
   //   IdentifierName
   //   StringLiteral
@@ -4245,7 +4245,7 @@ function parseModuleExportName(parser: Parser, context: Context): ESTree.Identif
 
   if (parser.getToken() === Token.StringLiteral) {
     validateStringWellFormed(parser, parser.tokenValue as string);
-    return parseLiteral(parser, context);
+    return parseLiteral(parser, context) as ESTree.StringLiteral;
   } else if (parser.getToken() & Token.IsIdentifier) {
     return parseIdentifier(parser, context);
   } else {
