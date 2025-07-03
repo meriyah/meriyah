@@ -8,11 +8,11 @@ describe('Statements - Return', () => {
     '() => return',
     '*() => {return}',
     // https://github.com/acornjs/acorn/issues/1376#issuecomment-2960924476
-    { code: 'class X { static { return; } }', options: { globalReturn: true } },
+    { code: 'class X { static { return; } }', options: { sourceType: 'commonjs' } },
     // The following should be allowed in CommonJS
     // https://github.com/acornjs/acorn/issues/1376#issuecomment-2960396571
-    { code: 'new.target', options: { globalReturn: true } },
-    { code: 'using foo = null', options: { globalReturn: true, next: true } },
+    { code: 'new.target', options: { sourceType: 'commonjs' } },
+    { code: 'using foo = null', options: { sourceType: 'commonjs', next: true } },
   ]);
 
   pass('Statements - Return (pass)', [
@@ -20,7 +20,7 @@ describe('Statements - Return', () => {
     'x => {return}',
     '(a, b) => {return}',
     'function *f() { return }',
-    { code: '{return}', options: { globalReturn: true } },
+    { code: '{return}', options: { sourceType: 'commonjs' } },
     'function f(){   {return}    }',
     'function f(){   return 15;    }',
     'function *f() { return }',

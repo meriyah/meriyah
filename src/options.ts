@@ -7,7 +7,7 @@ import { type Token } from './token';
  */
 type OnInsertedSemicolon = (pos: number) => any;
 
-type SourceType = 'script' | 'module';
+type SourceType = 'script' | 'module' | 'commonjs';
 
 /**
  * Token process function.
@@ -29,10 +29,7 @@ export type OnComment = (
  * The parser options.
  */
 export interface Options {
-  // Allow module code
-  /** @deprecated Use `sourceType` instead. */
-  module?: boolean;
-  // Indicate the mode the code should be parsed in 'script' or 'module' mode
+  // Indicate the mode the code should be parsed in 'script', 'module', or 'commonjs' mode
   sourceType?: SourceType;
   // Enable stage 3 support (ESNext)
   next?: boolean;
@@ -44,8 +41,6 @@ export interface Options {
   loc?: boolean;
   // Attach raw property to each literal and identifier node
   raw?: boolean;
-  // Allow return in the global scope
-  globalReturn?: boolean;
   // Enable implied strict mode
   impliedStrict?: boolean;
   // Enable non-standard parenthesized expression node
@@ -62,6 +57,13 @@ export interface Options {
   onInsertedSemicolon?: OnInsertedSemicolon;
   // Allows token extraction. Accepts either a callback function or an array
   onToken?: Token[] | OnToken;
+
+  // Allow module code
+  /** @deprecated Use `sourceType` instead. */
+  module?: boolean;
+  // Allow return in the global scope
+  /** @deprecated Use `sourceType: 'commonjs'` instead. */
+  globalReturn?: boolean;
 }
 
 export type NormalizedOptions = Omit<Options, 'onComment' | 'onToken'> & {
@@ -72,8 +74,14 @@ export type NormalizedOptions = Omit<Options, 'onComment' | 'onToken'> & {
 export function normalizeOptions(rawOptions: Options): NormalizedOptions {
   const options = { ...rawOptions } as NormalizedOptions;
 
-  if (options.module && !options.sourceType) {
-    options.sourceType = 'module';
+  if (!options.sourceType) {
+    if (options.module) {
+      options.sourceType = 'module';
+    }
+
+    if (options.globalReturn) {
+      options.sourceType = 'commonjs';
+    }
   }
 
   // Accepts either a callback function to be invoked or an array to collect comments (as the node is constructed)

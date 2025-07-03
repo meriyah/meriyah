@@ -51,7 +51,6 @@ export default {
         }
 
         const flagToOptions = {
-          InReturnContext: 'globalReturn',
           Strict: 'impliedStrict',
         };
 

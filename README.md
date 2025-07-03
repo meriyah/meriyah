@@ -73,8 +73,8 @@ The available options:
 
 ```ts
 {
-  // Indicate the mode the code should be parsed in 'script' or 'module' mode, default `'script'`
-  sourceType: 'script' | 'module';
+  // Indicate the mode the code should be parsed in 'script', 'module', or 'commonjs' mode, default `'script'`
+  sourceType: 'script' | 'module' | 'commonjs';
 
   // The flag to enable stage 3 support (ESNext), default `false`
   next: boolean;
@@ -90,9 +90,6 @@ The available options:
 
   // The flag to attach raw property to each literal and identifier node, default `false`
   raw: boolean;
-
-  // The flag to allow return in the global scope, default `false`
-  globalReturn: boolean;
 
   // The flag to enable implied strict mode, default `false`
   impliedStrict: boolean;

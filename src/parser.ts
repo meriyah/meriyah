@@ -45,7 +45,7 @@ export function parseSource(source: string, rawOptions: Options = {}, context: C
 
   if (options.sourceType === 'module') context |= Context.Module | Context.Strict;
   // Turn on return context in global
-  if (options.globalReturn) context |= Context.InReturnContext;
+  if (options.sourceType === 'commonjs') context |= Context.InReturnContext;
   if (options.impliedStrict) context |= Context.Strict;
 
   // Initialize parser state
