@@ -15,9 +15,6 @@ function loadList(filename) {
 }
 
 const unsupportedFeatures = new Set(loadList('unsupported-features.txt'));
-if (!regexFeatures.unicodeSets) {
-  unsupportedFeatures.add('regexp-v-flag');
-}
 if (!regexFeatures.modifiers) {
   unsupportedFeatures.add('regexp-modifiers');
 }
