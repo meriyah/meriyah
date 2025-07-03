@@ -7,7 +7,6 @@ describe('Expressions - API', () => {
     t.deepEqual(
       parse('foo', {
         loc: true,
-        globalReturn: true,
         ranges: true,
         webcompat: true,
         sourceType: 'module',
@@ -173,7 +172,7 @@ describe('Expressions - API', () => {
     t.deepEqual(
       parseModule('foo', {
         raw: true,
-      }) as any,
+      }),
       {
         body: [
           {
@@ -194,7 +193,7 @@ describe('Expressions - API', () => {
     t.deepEqual(
       parseModule('"a"', {
         raw: true,
-      }) as any,
+      }),
       {
         body: [
           {
@@ -213,31 +212,12 @@ describe('Expressions - API', () => {
     );
   });
 
-  it('should parse with globalReturn option', () => {
-    t.deepEqual(
-      parseModule('return', {
-        globalReturn: true,
-        next: true,
-      }) as any,
-      {
-        body: [
-          {
-            argument: null,
-            type: 'ReturnStatement',
-          },
-        ],
-        sourceType: 'module',
-        type: 'Program',
-      },
-    );
-  });
-
   it('should parse with directive option', () => {
     t.deepEqual(
       parseModule('"abc"', {
         raw: true,
         next: true,
-      }) as any,
+      }),
       {
         body: [
           {
@@ -262,7 +242,7 @@ describe('Expressions - API', () => {
         next: true,
         ranges: true,
         loc: true,
-      }) as any,
+      }),
       {
         type: 'Program',
         sourceType: 'module',
@@ -493,7 +473,7 @@ describe('Expressions - API', () => {
       parseModule('x || y || z && a ** x ? b ? c : d : e', {
         jsx: true,
         next: true,
-      }) as any,
+      }),
       {
         type: 'Program',
         sourceType: 'module',
@@ -569,7 +549,7 @@ describe('Expressions - API', () => {
       parseModule('<ul></ul>', {
         jsx: true,
         next: true,
-      }) as any,
+      }),
       {
         body: [
           {
