@@ -239,16 +239,16 @@ exports[`Next - Decorators > Next - Decorators (pass) > (@
                   "line": 2,
                 },
                 "start": {
-                  "column": 4,
+                  "column": 1,
                   "line": 2,
                 },
               },
               "optional": false,
               "range": [
-                7,
+                4,
                 9,
               ],
-              "start": 7,
+              "start": 4,
               "type": "CallExpression",
             },
             "loc": {
@@ -427,16 +427,16 @@ class Foo {}) 1`] = `
                   "line": 1,
                 },
                 "start": {
-                  "column": 5,
+                  "column": 2,
                   "line": 1,
                 },
               },
               "optional": false,
               "range": [
-                5,
+                2,
                 12,
               ],
-              "start": 5,
+              "start": 2,
               "type": "CallExpression",
             },
             "loc": {
@@ -1046,16 +1046,16 @@ exports[`Next - Decorators > Next - Decorators (pass) > @
                 "line": 2,
               },
               "start": {
-                "column": 4,
+                "column": 1,
                 "line": 2,
               },
             },
             "optional": false,
             "range": [
-              6,
+              3,
               8,
             ],
-            "start": 6,
+            "start": 3,
             "type": "CallExpression",
           },
           "loc": {
@@ -1174,7 +1174,7 @@ exports[`Next - Decorators > Next - Decorators (pass) > @
                 "line": 2,
               },
               "start": {
-                "column": 2,
+                "column": 1,
                 "line": 2,
               },
             },
@@ -1220,10 +1220,10 @@ exports[`Next - Decorators > Next - Decorators (pass) > @
               "type": "Identifier",
             },
             "range": [
-              4,
+              3,
               6,
             ],
-            "start": 4,
+            "start": 3,
             "type": "MemberExpression",
           },
           "loc": {
